@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @deprecated Checkstyle will not support abstract checks anymore. Use
  *             {@link AbstractCheck} instead.
  * @author Oliver Burn
- * @noinspection AbstractClassNeverImplemented
+ * @noinspection AbstractClassNeverImplemented, ClassOnlyUsedInOnePackage
  */
 @Deprecated
 public abstract class AbstractIllegalMethodCheck extends AbstractCheck {

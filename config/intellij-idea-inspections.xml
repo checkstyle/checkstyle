@@ -300,7 +300,7 @@
         <option name="excludeTestCode" value="false" />
         <option name="excludeInnerClasses" value="false" />
     </inspection_tool>
-    <inspection_tool class="ClassIndependentOfModule" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="ClassIndependentOfModule" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ClassInheritanceDepth" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="m_limit" value="6" />
     </inspection_tool>
@@ -309,6 +309,8 @@
     <inspection_tool class="ClassLoaderInstantiation" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ClassMayBeInterface" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ClassNameDiffersFromFileName" enabled="true" level="WARNING" enabled_by_default="true" />
+    <!-- names of Checks are public to users, we do care about clear name for user without information in
+    what package it is placed. Check name is unique in the whole project -->
     <inspection_tool class="ClassNamePrefixedWithPackageName" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ClassNameSameAsAncestorName" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ClassNamingConvention" enabled="true" level="WARNING" enabled_by_default="true">
@@ -321,8 +323,9 @@
     </inspection_tool>
     <inspection_tool class="ClassNewInstance" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ClassOnlyUsedInOneModule" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="ClassOnlyUsedInOnePackage" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="ClassOnlyUsedInOnePackage" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ClassReferencesSubclass" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- we are library(interfaces are used outside of our code base) we can not follow this rule -->
     <inspection_tool class="ClassUnconnectedToPackage" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ClassWithMultipleLoggers" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="loggerNamesString" value="java.util.logging.Logger,org.slf4j.Logger,org.apache.commons.logging.Log,org.apache.log4j.Logger" />
@@ -344,6 +347,7 @@
     </inspection_tool>
     <!-- we do not like suggested style -->
     <inspection_tool class="ClassWithoutConstructor" enabled="false" level="ERROR" enabled_by_default="false" />
+    <!-- we do not need logging by loggers in all places -->
     <inspection_tool class="ClassWithoutLogger" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="loggerNamesString" value="java.util.logging.Logger,org.slf4j.Logger,org.apache.commons.logging.Log,org.apache.log4j.Logger" />
         <option name="ignoreSuperLoggers" value="false" />
@@ -504,6 +508,7 @@
     <!-- we can not afford this now, api cleanup is in progress and it hard and takes time for
      deprecation process -->
     <inspection_tool class="CyclicPackageDependency" enabled="false" level="ERROR" enabled_by_default="false" />
+    <!-- we use our own CyclomaticComplexityCheck and counts SWITCH in special way -->
     <inspection_tool class="CyclomaticComplexity" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="m_limit" value="10" />
     </inspection_tool>
@@ -546,6 +551,7 @@
      to do any breaking compatibility fixes in favor to avoid violations from this inspection -->
     <inspection_tool class="DesignForExtension" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="DialogTitleCapitalization" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- we against of over decomposition -->
     <inspection_tool class="DisjointPackage" enabled="false" level="ERROR" enabled_by_default="false">
       <scope name="Checkstyle Inspection Scope" level="ERROR" enabled="false" />
     </inspection_tool>
@@ -1036,10 +1042,10 @@
     <!-- we do not like this style, but we could change our mind in future -->
     <inspection_tool class="ImplicitCallToSuper" enabled="false" level="ERROR" enabled_by_default="false"/>
     <inspection_tool class="ImplicitDefaultCharsetUsage" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="ImplicitNumericConversion" enabled="false" level="ERROR" enabled_by_default="false">
-        <option name="ignoreWideningConversions" value="false" />
+    <inspection_tool class="ImplicitNumericConversion" enabled="true" level="ERROR" enabled_by_default="true">
+        <option name="ignoreWideningConversions" value="true" />
         <option name="ignoreCharConversions" value="false" />
-        <option name="ignoreConstantConversions" value="false" />
+        <option name="ignoreConstantConversions" value="true" />
     </inspection_tool>
     <inspection_tool class="ImplicitTypeConversion" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="BITS" value="1720" />
@@ -1281,7 +1287,9 @@
     <inspection_tool class="LabeledStatement" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="LabeledStatementJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="LambdaParameterHidingMemberVariable" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="LambdaParameterNamingConvention" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="LambdaParameterNamingConvention" enabled="true" level="ERROR" enabled_by_default="true" >
+        <option name="m_maxLength" value="25"/>
+    </inspection_tool>
     <inspection_tool class="LanguageMismatch" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="CHECK_NON_ANNOTATED_REFERENCES" value="true" />
     </inspection_tool>
@@ -1360,6 +1368,7 @@
     <inspection_tool class="MathRandomCastToInt" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="MavenDuplicateDependenciesInspection" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="MavenDuplicatePluginInspection" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- behavior is different from local execution, no violations on local -->
     <inspection_tool class="MavenModelInspection" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="MavenRedundantGroupId" enabled="true" level="ERROR" enabled_by_default="true" />
     <!-- this rule is too severe, it requires some options to skip well known simple methods like string.length() etc. -->
@@ -1401,6 +1410,7 @@
     <!-- it is too demanding, event violated private methods. Nothing is bad to be exact inside custom logic,
      might be good for api classes validation, but setup of this is too heavy for us -->
     <inspection_tool class="MethodReturnOfConcreteClass" enabled="false" level="ERROR" enabled_by_default="false" />
+    <!-- nonsense in our context -->
     <inspection_tool class="MethodWithMultipleLoops" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="MimeType" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="MinMaxValuesInspection" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -1447,6 +1457,7 @@
     <inspection_tool class="ModuleWithTooFewClasses" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="limit" value="10" />
     </inspection_tool>
+    <!-- we a single jar project by design, at least in the near future -->
     <inspection_tool class="ModuleWithTooManyClasses" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="limit" value="100" />
     </inspection_tool>
@@ -1514,6 +1525,7 @@
         <option name="ignoreBooleanMethods" value="false" />
         <option name="onlyWarnOnBaseMethods" value="true" />
     </inspection_tool>
+    <!-- we use MethodLengthCheck that supported by better suppression model -->
     <inspection_tool class="NonCommentSourceStatements" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="m_limit" value="30" />
     </inspection_tool>
@@ -1591,6 +1603,7 @@
     <inspection_tool class="OverloadedMethodsWithSameNumberOfParameters" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="ignoreInconvertibleTypes" value="true" />
     </inspection_tool>
+    <!-- design problem in inspection as it is not considering diff in argument types before varargs -->
     <inspection_tool class="OverloadedVarargsMethod" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="OverlyComplexArithmeticExpression" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="m_limit" value="6" />
@@ -1664,7 +1677,9 @@
     <inspection_tool class="ParameterOfConcreteClass" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ParameterTypePreventsOverriding" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ParameterizedParametersStaticCollection" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="ParametersPerConstructor" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="ParametersPerConstructor" enabled="true" level="ERROR" enabled_by_default="true" >
+        <option name="m_limit" value="7"/>
+    </inspection_tool>
     <inspection_tool class="ParametersPerFunctionJS" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="m_limit" value="5" />
     </inspection_tool>
@@ -1733,6 +1748,7 @@
         </option>
         <option name="onlyWarnIfContainingClassImplementsAnInterface" value="false" />
     </inspection_tool>
+    <!-- we do not need logging by loggers in all places -->
     <inspection_tool class="PublicMethodWithoutLogging" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="loggerClassName" value="" />
     </inspection_tool>
@@ -2072,6 +2088,11 @@
                 <option value="AbstractClassWithOnlyOneDirectInheritor" />
                 <!-- in some cases it makes the logic even more complicated -->
                 <option value="SimplifiableIfStatement" />
+                <option value="ClassOnlyUsedInOnePackage" />
+                <!-- bug in inspection as it might consider only imports -->
+                <option value="ClassIndependentOfModule" />
+                <!-- it is hard to change api classes constructors -->
+                <option value="ConstructorWithTooManyParameters" />
             </list>
         </option>
     </inspection_tool>

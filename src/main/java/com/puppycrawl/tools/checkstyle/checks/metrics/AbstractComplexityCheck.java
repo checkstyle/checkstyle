@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *             {@link AbstractCheck} instead.
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @author Oliver Burn
- * @noinspection AbstractClassNeverImplemented
+ * @noinspection AbstractClassNeverImplemented, ClassOnlyUsedInOnePackage
  */
 @Deprecated
 public abstract class AbstractComplexityCheck

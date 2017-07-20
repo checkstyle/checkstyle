@@ -26,6 +26,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractTreeTestSupport;
 
+/** @noinspection ClassOnlyUsedInOnePackage */
 public class JavadocParseTreeTest extends AbstractTreeTestSupport {
 
     @Override
