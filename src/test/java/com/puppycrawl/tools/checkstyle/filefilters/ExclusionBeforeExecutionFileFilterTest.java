@@ -22,6 +22,8 @@ package com.puppycrawl.tools.checkstyle.filefilters;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.regex.Pattern;
 
 import org.junit.Test;
@@ -32,6 +34,11 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class ExclusionBeforeExecutionFileFilterTest extends BaseCheckTestSupport {
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("filefilters" + File.separator + filename);
+    }
+
     @Test
     public void testAccept() {
         final String fileName = "BAD";
