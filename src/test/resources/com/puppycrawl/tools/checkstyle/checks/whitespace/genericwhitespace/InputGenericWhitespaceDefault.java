@@ -11,10 +11,10 @@ class InputGenericWhitespaceDefault implements Comparable<InputGenericWhitespace
 {
     void meth()
     {
-        List<Integer> x = new ArrayList<Integer>();
-        List<List<Integer>> y = new ArrayList<List<Integer>>();
-        List < Integer > a = new ArrayList < Integer > ();
-        List < List < Integer > > b = new ArrayList < List < Integer > > ();
+        List<Integer> x = new ArrayList<>();
+        List<List<Integer>> y = new ArrayList<>();
+        List< Integer > a = new ArrayList<>();
+        List< List < Integer > > b = new ArrayList<>();
     }
     //always 0
     public int compareTo(InputGenericWhitespaceDefault aObject)
@@ -29,7 +29,7 @@ class InputGenericWhitespaceDefault implements Comparable<InputGenericWhitespace
 
     public static<T>Callable<T> callable2(Runnable task, T result)
     {
-        Map<Class<?>, Integer> x = new HashMap<Class<?>, Integer>();
+        Map<Class<?>, Integer> x = new HashMap<>();
         for (final Map.Entry<Class<?>, Integer> entry : x.entrySet()) {
             entry.getValue();
         }
@@ -67,14 +67,10 @@ class InputGenericWhitespaceDefault implements Comparable<InputGenericWhitespace
     }
 
     public void beforeAndAfter() {
-        List
-<
-Integer> x = new ArrayList<Integer
->();
-        List
-        <Integer> y = new ArrayList<Integer
-        >();
-        Map<Class<?>, Integer> a = new HashMap<Class<?>, Integer>();
+        List<
+Integer> x = new ArrayList<>();
+        List<Integer> y = new ArrayList<>();
+        Map<Class<?>, Integer> a = new HashMap<>();
         Map<Class<?>, Integer> b = (Map<Class<?>, Integer>) a;
     }
 }
