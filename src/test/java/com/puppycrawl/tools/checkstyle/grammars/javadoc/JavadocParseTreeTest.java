@@ -251,4 +251,10 @@ public class JavadocParseTreeTest extends AbstractTreeTestSupport {
         verifyJavadocTree(getPath("expectedJavadocWithCrAsNewlineAst.txt"),
                 getPath("InputJavadocWithCrAsNewline.javadoc"));
     }
+
+    @Test
+    public void testNestingWithSingletonElement() throws Exception {
+        verifyJavadocTree(getHtmlPath("expectedNestingWithSingletonElementAst.txt"),
+                getHtmlPath("InputNestingWithSingletonElement.javadoc"));
+    }
 }

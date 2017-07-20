@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * <li>groups static imports: ensures that static imports are at the top (or the
  * bottom) of all the imports, or above (or under) each group, or are treated
  * like non static imports (@see {@link ImportOrderOption}</li>
- * </ul>
+ * </ul>.
  *
  * <pre>
  * Properties:

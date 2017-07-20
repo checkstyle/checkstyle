@@ -47,4 +47,14 @@ public class InputPeriodAtEnd {
     public void foo5(){
 
     }
+
+    /**
+     * <p>Sentence without period</p>
+     *
+     * <p> this is a <br>
+     *     paragraph.</p>
+     */
+    public void foo6() {
+
+    }
 }
