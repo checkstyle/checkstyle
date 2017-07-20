@@ -257,16 +257,4 @@ public class JavadocParseTreeTest extends AbstractTreeTestSupport {
         verifyJavadocTree(getHtmlPath("expectedNestingWithSingletonElementAst.txt"),
                 getHtmlPath("InputNestingWithSingletonElement.javadoc"));
     }
-
-    @Test
-    public void testVoidElements() throws Exception {
-        verifyJavadocTree(getHtmlPath("expectedVoidElementsAst.txt"),
-                getHtmlPath("InputVoidElements.javadoc"));
-    }
-
-    @Test
-    public void testHtmlVoidElementEmbed() throws Exception {
-        verifyJavadocTree(getHtmlPath("expectedHtmlVoidElementEmbedAst.txt"),
-                getHtmlPath("InputHtmlVoidElementEmbed.javadoc"));
-    }
 }

@@ -1546,8 +1546,8 @@
                 <haltOnFailure>true</haltOnFailure>
                 <branchRate>100</branchRate>
                 <lineRate>100</lineRate>
-                <totalBranchRate>84</totalBranchRate>
-                <totalLineRate>89</totalLineRate>
+                <totalBranchRate>83</totalBranchRate>
+                <totalLineRate>88</totalLineRate>
                 <regexes>
                   <regex>
                     <pattern>com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer</pattern>
@@ -1561,13 +1561,13 @@
                   </regex>
                   <regex>
                     <pattern>com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser</pattern>
-                    <branchRate>37</branchRate>
-                    <lineRate>48</lineRate>
+                    <branchRate>34</branchRate>
+                    <lineRate>45</lineRate>
                   </regex>
                   <regex>
                     <pattern>com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocLexer</pattern>
-                    <branchRate>63</branchRate>
-                    <lineRate>83</lineRate>
+                    <branchRate>57</branchRate>
+                    <lineRate>75</lineRate>
                   </regex>
                 </regexes>
               </check>
@@ -1652,11 +1652,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.UpperEllCheckTest</param>
               </targetTests>
-<<<<<<< 9d4a1692feb39b70df7475481e4828635a8a24ce
-              <mutationThreshold>96</mutationThreshold>
-=======
               <mutationThreshold>93</mutationThreshold>
->>>>>>> Issue #4675: increase coverage of pitest-checks-misc to 93%
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
