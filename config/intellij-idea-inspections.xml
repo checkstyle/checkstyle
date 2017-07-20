@@ -213,7 +213,7 @@
     <inspection_tool class="CStyleArrayDeclaration" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="CachedNumberConstructorCall" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="CallToNativeMethodWhileLocked" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="CallToSimpleGetterInClass" enabled="false" level="ERROR" enabled_by_default="false">
+    <inspection_tool class="CallToSimpleGetterInClass" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="ignoreGetterCallsOnOtherObjects" value="false" />
         <option name="onlyReportPrivateGetter" value="false" />
     </inspection_tool>
@@ -1416,7 +1416,7 @@
     <inspection_tool class="MinMaxValuesInspection" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="MismatchedArrayReadWrite" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="MismatchedCollectionQueryUpdate" enabled="true" level="WARNING" enabled_by_default="true">
-        <scope name="Tests" level="WARNING" enabled="false">
+        <scope name="Tests" level="WARNING" enabled="true">
             <option name="queryNames">
                 <value />
             </option>
@@ -1569,6 +1569,7 @@
     <inspection_tool class="NotifyWithoutCorrespondingWait" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="NullArgumentToVariableArgMethod" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="NullThrown" enabled="true" level="WARNING" enabled_by_default="true" />
+    <!-- we are not ready to use extra dependency com.google.code.findbugs:jsr305 in our API -->
     <inspection_tool class="NullableProblems" enabled="false" level="WARNING" enabled_by_default="false">
         <option name="REPORT_NULLABLE_METHOD_OVERRIDES_NOTNULL" value="true" />
         <option name="REPORT_NOT_ANNOTATED_METHOD_OVERRIDES_NOTNULL" value="true" />
@@ -2093,6 +2094,12 @@
                 <option value="ClassIndependentOfModule" />
                 <!-- it is hard to change api classes constructors -->
                 <option value="ConstructorWithTooManyParameters" />
+                <!-- till #4734 -->
+                <option value="NonFinalFieldReferenceInEquals" />
+                <!-- till #4734 -->
+                <option value="NonFinalFieldReferencedInHashCode" />
+                <!-- FileContentsHolder#getContence() getter is deprecated -->
+                <option value="CallToSimpleGetterFromWithinClass" />
             </list>
         </option>
     </inspection_tool>

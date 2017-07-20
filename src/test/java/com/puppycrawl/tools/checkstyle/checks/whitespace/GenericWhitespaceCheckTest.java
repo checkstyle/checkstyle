@@ -27,9 +27,6 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -47,8 +44,6 @@ public class GenericWhitespaceCheckTest
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(GenericWhitespaceCheck.class);
-        final Map<Class<?>, Integer> x = new HashMap<>();
-        x.entrySet().forEach(Map.Entry::getValue);
     }
 
     @Override

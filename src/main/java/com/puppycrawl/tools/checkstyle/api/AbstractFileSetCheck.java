@@ -171,6 +171,6 @@ public abstract class AbstractFileSetCheck
     protected final void fireErrors(String fileName) {
         final SortedSet<LocalizedMessage> errors = new TreeSet<>(messageCollector);
         messageCollector.clear();
-        getMessageDispatcher().fireErrors(fileName, errors);
+        messageDispatcher.fireErrors(fileName, errors);
     }
 }
