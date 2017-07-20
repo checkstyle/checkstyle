@@ -44,7 +44,7 @@
         </p>
         <p>
          ATTENTION: If the method which can be overridden in a subclass has a javadoc comment
-         (a good practise is to explain its self-use of overridable methods) the check will not
+         (a good practice is to explain its self-use of overridable methods) the check will not
          rise a violation. The violation can also be skipped if the method which can be overridden
          in a subclass has one or more annotations that are specified in ignoredAnnotations
          option. Note, that by default @Override annotation is not included in the
