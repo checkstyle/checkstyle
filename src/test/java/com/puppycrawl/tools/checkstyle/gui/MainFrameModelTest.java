@@ -55,7 +55,7 @@ public class MainFrameModelTest {
     }
 
     private static String getNonCompilablePath(String filename) {
-        return "src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/" + filename;
+        return "src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/gui/" + filename;
     }
 
     @Before
