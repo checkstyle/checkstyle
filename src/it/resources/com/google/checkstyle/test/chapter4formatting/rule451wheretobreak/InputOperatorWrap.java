@@ -50,7 +50,7 @@ class InputOperatorWrap
             String
             >
             c = new String();
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap<>();
 
         boolean flag = false;
         
@@ -96,7 +96,7 @@ class InputOperatorWrap
                 String
                 >
                 c = new String();
-            Map<String, String> map = new HashMap<String, String>();
+            Map<String, String> map = new HashMap<>();
             boolean flag = false;
             
             int init = 9;
@@ -143,7 +143,7 @@ class InputOperatorWrap
                 String
                 >
                 c = new String();
-            Map<String, String> map = new HashMap<String, String>();
+            Map<String, String> map = new HashMap<>();
             boolean flag = false;
             int init = 9;
             

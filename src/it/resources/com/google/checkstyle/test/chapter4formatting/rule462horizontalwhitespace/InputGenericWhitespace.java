@@ -11,10 +11,10 @@ class InputGenericWhitespace implements Comparable<InputGenericWhitespace>, Seri
 {
     void meth()
     {
-        List<Integer> x = new ArrayList<Integer>();
-        List<List<Integer>> y = new ArrayList<List<Integer>>();
-        List < Integer > a = new ArrayList < Integer > (); // warn
-        List < List < Integer > > b = new ArrayList < List < Integer > > (); // warn
+        List<Integer> x = new ArrayList<>();
+        List<List<Integer>> y = new ArrayList<>();
+        List< Integer > a = new ArrayList<>(); // warn
+        List< List < Integer > > b = new ArrayList<>(); // warn
     }
 
     public int compareTo(InputGenericWhitespace aObject)
@@ -29,7 +29,7 @@ class InputGenericWhitespace implements Comparable<InputGenericWhitespace>, Seri
 
     public static<T>Callable<T> callable2(Runnable task, T result) // warn
     {
-        Map<Class<?>, Integer> x = new HashMap<Class<?>, Integer>();
+        Map<Class<?>, Integer> x = new HashMap<>();
         for (final Map.Entry<Class<?>, Integer> entry : x.entrySet()) {
             entry.getValue();
         }
