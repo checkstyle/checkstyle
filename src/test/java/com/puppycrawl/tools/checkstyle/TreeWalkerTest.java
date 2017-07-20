@@ -314,8 +314,6 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         // create file that should throw exception
         final File file = temporaryFolder.newFile("file.java");
         final FileText fileText = new FileText(file, new ArrayList<>());
-        final List<String> lines = new ArrayList<>();
-        lines.add(" class a%$# {} ");
 
         treeWalker.processFiltered(file, fileText);
         final Collection<Checks> checks =

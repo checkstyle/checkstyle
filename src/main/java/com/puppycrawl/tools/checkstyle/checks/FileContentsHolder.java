@@ -47,6 +47,7 @@ public class FileContentsHolder extends AbstractCheck {
      * Returns content of current file.
      * @return the current file contents.
      * @deprecated use getCurrentFileContents() instead.
+     * @noinspection CallToSimpleGetterFromWithinClass
      */
     @Deprecated
     public static FileContents getContents() {

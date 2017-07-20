@@ -421,10 +421,10 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
      * child count for the current DetailAST instance.
      */
     private void clearBranchTokenTypes() {
-        DetailAST prevParent = getParent();
+        DetailAST prevParent = parent;
         while (prevParent != null) {
             prevParent.branchTokenTypes = null;
-            prevParent = prevParent.getParent();
+            prevParent = prevParent.parent;
         }
     }
 }
