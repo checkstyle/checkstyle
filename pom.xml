@@ -1540,10 +1540,6 @@
                   <exclude>com/puppycrawl/tools/checkstyle/gui/TreeTableCellRenderer*.class</exclude>
                   <exclude>com/puppycrawl/tools/checkstyle/gui/TreeTableModelAdapter*.class</exclude>
                   <!-- deprecated classes -->
-                  <exclude>com/puppycrawl/tools/checkstyle/checks/coding/AbstractIllegalCheck.class</exclude>
-                  <exclude>com/puppycrawl/tools/checkstyle/checks/coding/AbstractIllegalMethodCheck.class</exclude>
-                  <exclude>com/puppycrawl/tools/checkstyle/checks/coding/AbstractNestedDepthCheck.class</exclude>
-                  <exclude>com/puppycrawl/tools/checkstyle/checks/metrics/AbstractComplexityCheck.class</exclude>
                   <exclude>com/puppycrawl/tools/checkstyle/checks/naming/AbstractTypeParameterNameCheck.class</exclude>
                 </excludes>
               </instrumentation>
@@ -1697,12 +1693,6 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.*</param>
               </targetTests>
-              <excludedClasses>
-                <!-- deprecated class -->
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.AbstractIllegalCheck</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.AbstractIllegalMethodCheck</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck</param>
-              </excludedClasses>
               <mutationThreshold>95</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
@@ -1865,10 +1855,6 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.metrics.*</param>
               </targetTests>
-              <excludedClasses>
-                <!-- deprecated class -->
-                <param>com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck</param>
-              </excludedClasses>
               <mutationThreshold>91</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
