@@ -210,7 +210,7 @@ public class CommitValidationTest {
     private static RevCommitsPair resolveRevCommitsPair(Repository repo) {
         RevCommitsPair revCommitIteratorPair;
 
-        try (RevWalk revWalk = new RevWalk(repo)) {
+        try (RevWalk revWalk = new RevWalk(repo); Git git = new Git(repo)) {
             final Iterator<RevCommit> first;
             final Iterator<RevCommit> second;
             final ObjectId headId = repo.resolve(Constants.HEAD);
@@ -219,16 +219,11 @@ public class CommitValidationTest {
             if (isMergeCommit(headCommit)) {
                 final RevCommit firstParent = headCommit.getParent(0);
                 final RevCommit secondParent = headCommit.getParent(1);
-
-                try (Git git = new Git(repo)) {
-                    first = git.log().add(firstParent).call().iterator();
-                    second = git.log().add(secondParent).call().iterator();
-                }
+                first = git.log().add(firstParent).call().iterator();
+                second = git.log().add(secondParent).call().iterator();
             }
             else {
-                try (Git git = new Git(repo)) {
-                    first = git.log().call().iterator();
-                }
+                first = git.log().call().iterator();
                 second = Collections.emptyIterator();
             }
 

@@ -42,7 +42,6 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.BriefUtLogger;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -204,7 +203,7 @@ public class SuppressionFilterTest extends BaseCheckTestSupport {
 
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        checker.addListener(new BriefUtLogger(stream));
+        checker.addListener(getBriefUtLogger());
         checker.configure(checkerConfig);
 
         final String filePath = temporaryFolder.newFile("file.java").getPath();
@@ -249,7 +248,7 @@ public class SuppressionFilterTest extends BaseCheckTestSupport {
             final Checker checker = new Checker();
             checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
             checker.configure(firstCheckerConfig);
-            checker.addListener(new BriefUtLogger(stream));
+            checker.addListener(getBriefUtLogger());
 
             final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
             final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;

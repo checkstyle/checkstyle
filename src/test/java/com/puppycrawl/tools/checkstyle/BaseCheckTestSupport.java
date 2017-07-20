@@ -53,7 +53,15 @@ public class BaseCheckTestSupport {
 
     protected static final String CLRF_REGEX = "\\\\r\\\\n";
 
-    protected final ByteArrayOutputStream stream = new ByteArrayOutputStream();
+    private final ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+    /**
+     * Returns test logger.
+     * @return logger for tests
+     */
+    public BriefUtLogger getBriefUtLogger() {
+        return new BriefUtLogger(stream);
+    }
 
     protected static DefaultConfiguration createCheckConfig(Class<?> clazz) {
         return new DefaultConfiguration(clazz.getName());
@@ -71,7 +79,7 @@ public class BaseCheckTestSupport {
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(dc);
-        checker.addListener(new BriefUtLogger(stream));
+        checker.addListener(getBriefUtLogger());
         return checker;
     }
 

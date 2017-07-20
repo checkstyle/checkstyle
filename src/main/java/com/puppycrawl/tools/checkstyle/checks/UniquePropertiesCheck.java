@@ -30,6 +30,7 @@ import com.google.common.collect.HashMultiset;
 import com.google.common.collect.ImmutableMultiset;
 import com.google.common.collect.Multiset;
 import com.google.common.collect.Multiset.Entry;
+import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
@@ -65,20 +66,17 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
     @Override
     protected void processFiltered(File file, FileText fileText) {
         final UniqueProperties properties = new UniqueProperties();
-
+        FileInputStream fileInputStream = null;
         try {
-            final FileInputStream fileInputStream = new FileInputStream(file);
-            try {
-                // As file is already read, there should not be any exceptions.
-                properties.load(fileInputStream);
-            }
-            finally {
-                fileInputStream.close();
-            }
+            fileInputStream = new FileInputStream(file);
+            properties.load(fileInputStream);
         }
         catch (IOException ex) {
             log(0, MSG_IO_EXCEPTION_KEY, file.getPath(),
                     ex.getLocalizedMessage());
+        }
+        finally {
+            Closeables.closeQuietly(fileInputStream);
         }
 
         for (Entry<String> duplication : properties
@@ -136,6 +134,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
      * Properties subclass to store duplicated property keys in a separate map.
      *
      * @author Pavel Baranchikov
+     * @noinspection ClassExtendsConcreteCollection
      */
     private static class UniqueProperties extends Properties {
         private static final long serialVersionUID = 1L;

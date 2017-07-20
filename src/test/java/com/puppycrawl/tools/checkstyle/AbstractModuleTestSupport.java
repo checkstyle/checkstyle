@@ -47,7 +47,23 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
 public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport {
 
-    protected final ByteArrayOutputStream stream = new ByteArrayOutputStream();
+    private final ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+    /**
+     * Returns log stream.
+     * @return stream log stream
+     */
+    public ByteArrayOutputStream getStream() {
+        return stream;
+    }
+
+    /**
+     * Returns test logger.
+     * @return logger for tests
+     */
+    public BriefUtLogger getBriefUtLogger() {
+        return new BriefUtLogger(stream);
+    }
 
     protected static DefaultConfiguration createCheckConfig(Class<?> clazz) {
         return new DefaultConfiguration(clazz.getName());

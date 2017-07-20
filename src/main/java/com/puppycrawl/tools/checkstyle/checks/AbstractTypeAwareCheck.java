@@ -397,6 +397,7 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
 
     /**
      * Contains class's {@code Token}.
+     * @noinspection ProtectedInnerClass
      */
     protected abstract static class AbstractClassInfo {
         /** {@code FullIdent} associated with this class. */
@@ -509,6 +510,7 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
 
     /**
      * Represents text element with location in the text.
+     * @noinspection ProtectedInnerClass
      */
     protected static class Token {
         /** Token's column number. */

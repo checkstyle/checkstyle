@@ -320,17 +320,12 @@ public class SuppressWithNearbyCommentFilter
                 }
                 format = CommonUtils.fillTemplateWithStringsByRegexp(
                         filter.influenceFormat, text, filter.commentFormat);
-                final int influence;
-                try {
-                    if (CommonUtils.startsWithChar(format, '+')) {
-                        format = format.substring(1);
-                    }
-                    influence = Integer.parseInt(format);
+
+                if (CommonUtils.startsWithChar(format, '+')) {
+                    format = format.substring(1);
                 }
-                catch (final NumberFormatException ex) {
-                    throw new IllegalArgumentException("unable to parse influence from '" + text
-                            + "' using " + filter.influenceFormat, ex);
-                }
+                final int influence = parseInfluence(format, filter.influenceFormat, text);
+
                 if (influence >= 1) {
                     firstLine = line;
                     lastLine = line + influence;
@@ -343,6 +338,24 @@ public class SuppressWithNearbyCommentFilter
             catch (final PatternSyntaxException ex) {
                 throw new IllegalArgumentException(
                     "unable to parse expanded comment " + format, ex);
+            }
+        }
+
+        /**
+         * Gets influence from suppress filter influence format param.
+         *
+         * @param format          influence format to parse
+         * @param influenceFormat raw influence format
+         * @param text            text of the suppression
+         * @return parsed influence
+         */
+        private static int parseInfluence(String format, String influenceFormat, String text) {
+            try {
+                return Integer.parseInt(format);
+            }
+            catch (final NumberFormatException ex) {
+                throw new IllegalArgumentException("unable to parse influence from '" + text
+                        + "' using " + influenceFormat, ex);
             }
         }
 
