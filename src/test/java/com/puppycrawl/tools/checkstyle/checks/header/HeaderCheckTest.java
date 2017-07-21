@@ -38,6 +38,7 @@ import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
@@ -297,5 +298,19 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
         checkConfig.addAttribute("ignoreLines", "4,2,3");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputHeaderjava3.header"), expected);
+    }
+
+    @Test
+    public void testLoadHeaderFileTwice() throws Exception {
+        final HeaderCheck check = new HeaderCheck();
+        check.setHeader("Header");
+        try {
+            Whitebox.invokeMethod(check, "loadHeaderFile");
+            fail("ConversionException is expected");
+        }
+        catch (IllegalArgumentException ex) {
+            assertEquals("Invalid exception message", "header has already been set - "
+                    + "set either header or headerFile, not both", ex.getMessage());
+        }
     }
 }
