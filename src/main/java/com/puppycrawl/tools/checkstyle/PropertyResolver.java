@@ -29,6 +29,7 @@ package com.puppycrawl.tools.checkstyle;
  * @author lkuehne
  * @see ConfigurationLoader
  */
+@FunctionalInterface
 public interface PropertyResolver {
     /**
      * Resolves a property name to it's value.

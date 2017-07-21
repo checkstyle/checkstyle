@@ -29,6 +29,7 @@ package com.puppycrawl.tools.checkstyle.api;
  * href="http://avalon.apache.org/closed.html">Jakarta's Avalon framework</a>.
  * @author lkuehne
  */
+@FunctionalInterface
 public interface Configurable {
     /**
      * Configures this component.
