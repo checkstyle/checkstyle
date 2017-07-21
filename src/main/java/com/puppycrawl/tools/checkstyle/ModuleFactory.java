@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  *
  * @author lkuehne
  */
+@FunctionalInterface
 public interface ModuleFactory {
     /**
      * Creates a new instance of a class from a given name.

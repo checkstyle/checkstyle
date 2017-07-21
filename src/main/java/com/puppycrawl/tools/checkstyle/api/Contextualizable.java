@@ -30,6 +30,7 @@ package com.puppycrawl.tools.checkstyle.api;
  * href="http://avalon.apache.org/closed.html">Jakarta's Avalon framework</a>.
  * @author lkuehne
  */
+@FunctionalInterface
 public interface Contextualizable {
     /**
      * Sets the context for this Component.

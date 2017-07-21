@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.Checker;
  *
  * @author Andrei Selkin
  */
+@FunctionalInterface
 public interface ExternalResourceHolder {
 
     /**
