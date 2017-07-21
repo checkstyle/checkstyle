@@ -696,6 +696,7 @@
     <inspection_tool class="FacesModelInspection" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="FallThroughInSwitchStatementJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="FallthruInSwitchStatement" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- we use DetailAST heavily and that that is on purpose and not a problem, no ways to adjust this inspection -->
     <inspection_tool class="FeatureEnvy" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="ignoreTestCases" value="false" />
     </inspection_tool>
@@ -1108,6 +1109,8 @@
         <option name="ignoreInstanceofOnLibraryClasses" value="true" />
     </inspection_tool>
     <inspection_tool class="InstanceofIncompatibleInterface" enabled="true" level="WARNING" enabled_by_default="true" />
+    <!-- unfortunate , but there are multiple cases where instanceof is required due to loading classes
+    from config file and usage of reflection -->
     <inspection_tool class="InstanceofInterfaces" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="InstanceofThis" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="InstantiatingObjectToGetClassObject" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -1674,6 +1677,7 @@
         <option name="m_minLength" value="1" />
         <option name="m_maxLength" value="32" />
     </inspection_tool>
+    <!-- we like implementation to be concrete, we do not like a lot of abstractions -->
     <inspection_tool class="ParameterOfConcreteClass" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ParameterTypePreventsOverriding" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ParameterizedParametersStaticCollection" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -1742,6 +1746,7 @@
     <!-- we like to use them as we not always ready to make class top level, for Checks
      it is better to keep all in one class. -->
     <inspection_tool class="PublicInnerClass" enabled="false" level="WARNING" enabled_by_default="false" />
+    <!-- we are not fanatics of interfaces, we use concept 'the less abstractions the better -->
     <inspection_tool class="PublicMethodNotExposedInInterface" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="ignorableAnnotations">
             <value />
@@ -2227,6 +2232,7 @@
     <inspection_tool class="TryWithIdenticalCatches" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="TsLint" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="TypeCustomizer" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- we like implementation to be concrete, we do not like a lot of abstractions -->
     <inspection_tool class="TypeMayBeWeakened" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="useRighthandTypeAsWeakestTypeInAssignments" value="true" />
         <option name="useParameterizedTypeForCollectionMethods" value="true" />
