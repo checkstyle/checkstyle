@@ -370,7 +370,7 @@ public class JavadocStyleCheck
                     log(tag.getLineNo(),
                         tag.getPosition(),
                         MSG_EXTRA_HTML,
-                        tag);
+                        tag.getText());
                 }
                 else {
                     // See if there are any unclosed tags that were opened
@@ -394,7 +394,8 @@ public class JavadocStyleCheck
             if (!isSingleTag(htmlTag)
                 && !htmlTag.getId().equals(lastFound)
                 && !typeParameters.contains(htmlTag.getId())) {
-                log(htmlTag.getLineNo(), htmlTag.getPosition(), MSG_UNCLOSED_HTML, htmlTag);
+                log(htmlTag.getLineNo(), htmlTag.getPosition(),
+                        MSG_UNCLOSED_HTML, htmlTag.getText());
                 lastFound = htmlTag.getId();
             }
         }
@@ -436,7 +437,7 @@ public class JavadocStyleCheck
             log(lastOpenTag.getLineNo(),
                 lastOpenTag.getPosition(),
                 MSG_UNCLOSED_HTML,
-                lastOpenTag);
+                lastOpenTag.getText());
         }
     }
 

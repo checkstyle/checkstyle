@@ -36,7 +36,8 @@ public class JavadocNodeImplTest {
 
         final String result = javadocNode.toString();
 
-        assertEquals("CODE_LITERAL[1x2]", result);
+        assertEquals("JavadocNodeImpl[index=0, type=CODE_LITERAL, text='null', lineNumber=1,"
+                + " columnNumber=2, children=0, parent=null]", result);
     }
 
     @Test

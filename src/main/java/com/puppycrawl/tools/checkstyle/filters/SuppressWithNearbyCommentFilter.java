@@ -411,9 +411,13 @@ public class SuppressWithNearbyCommentFilter
         }
 
         @Override
-        public final String toString() {
-            return "Tag[lines=[" + firstLine + " to " + lastLine
-                + "]; text='" + text + "']";
+        public String toString() {
+            return "Tag[text='" + text + '\''
+                    + ", firstLine=" + firstLine
+                    + ", lastLine=" + lastLine
+                    + ", tagCheckRegexp=" + tagCheckRegexp
+                    + ", tagMessageRegexp=" + tagMessageRegexp
+                    + ']';
         }
     }
 }

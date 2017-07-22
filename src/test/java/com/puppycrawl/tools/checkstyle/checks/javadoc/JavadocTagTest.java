@@ -61,6 +61,6 @@ public class JavadocTagTest {
 
         final String result = javadocTag.toString();
 
-        assertEquals("JavadocTag{tag='author' lineNo=0, columnNo=1, firstArg='firstArg'}", result);
+        assertEquals("JavadocTag[tag='author' lineNo=0, columnNo=1, firstArg='firstArg']", result);
     }
 }

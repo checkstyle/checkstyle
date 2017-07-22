@@ -721,7 +721,7 @@
     </inspection_tool>
     <inspection_tool class="FieldMayBeFinal" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="FieldMayBeStatic" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="FieldNotUsedInToString" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="FieldNotUsedInToString" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="FieldRepeatedlyAccessed" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="m_ignoreFinalFields" value="false" />
     </inspection_tool>
@@ -2118,6 +2118,8 @@
                 <option value="NonFinalFieldReferencedInHashCode" />
                 <!-- FileContentsHolder#getContence() getter is deprecated -->
                 <option value="CallToSimpleGetterFromWithinClass" />
+                <!-- violations in DetailAST will be addressed further -->
+                <option value="FieldNotUsedInToString" />
             </list>
         </option>
     </inspection_tool>

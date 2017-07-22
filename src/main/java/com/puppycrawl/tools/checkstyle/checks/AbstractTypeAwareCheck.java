@@ -476,9 +476,11 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
         @Override
         public String toString() {
             return "RegularClass[name=" + getName()
-                + ", in class=" + surroundingClass
-                + ", loadable=" + loadable
-                + ", class=" + classObj + "]";
+                    + ", in class='" + surroundingClass + '\''
+                    + ", check=" + check.hashCode()
+                    + ", loadable=" + loadable
+                    + ", class=" + classObj
+                    + ']';
         }
     }
 

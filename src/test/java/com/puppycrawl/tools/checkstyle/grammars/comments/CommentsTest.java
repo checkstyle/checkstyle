@@ -44,7 +44,9 @@ public class CommentsTest extends AbstractTreeTestSupport {
     @Test
     public void testToString() {
         final Comment comment = new Comment(new String[] {"value"}, 1, 2, 3);
-        Assert.assertEquals("Comment[2:1-2:3]", comment.toString());
+        Assert.assertEquals(
+                "Comment[text=[value], startLineNo=2, endLineNo=2, startColNo=1, endColNo=3]",
+                comment.toString());
     }
 
     @Test

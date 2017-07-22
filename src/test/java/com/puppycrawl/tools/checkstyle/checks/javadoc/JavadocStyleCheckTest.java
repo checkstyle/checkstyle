@@ -26,6 +26,7 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.M
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_NO_PERIOD;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_UNCLOSED_HTML;
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 
@@ -411,5 +412,12 @@ public class JavadocStyleCheckTest
             "418: " + getCheckMessage(MSG_NO_PERIOD),
         };
         verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
+    }
+
+    @Test
+    public void testHtmlTagToString() {
+        final HtmlTag tag = new HtmlTag("id", 3, 5, true, false, "<a href=\"URL\"/>");
+        assertEquals("HtmlTag[id='id', lineNo=3, position=5, text='<a href=\"URL\"/>', "
+                + "closedTag=true, incompleteTag=false]", tag.toString());
     }
 }

@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
@@ -169,7 +170,13 @@ public class JavadocNodeImpl implements DetailNode {
 
     @Override
     public String toString() {
-        return JavadocUtils.getTokenName(type)
-                + "[" + lineNumber + "x" + columnNumber + "]";
+        return "JavadocNodeImpl["
+                + "index=" + index
+                + ", type=" + JavadocUtils.getTokenName(type)
+                + ", text='" + text + '\''
+                + ", lineNumber=" + lineNumber
+                + ", columnNumber=" + columnNumber
+                + ", children=" + Objects.hashCode(children)
+                + ", parent=" + parent + ']';
     }
 }

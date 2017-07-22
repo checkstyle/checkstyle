@@ -450,9 +450,13 @@ public class SuppressionCommentFilter
         }
 
         @Override
-        public final String toString() {
-            return "Tag[line=" + line + "; col=" + column
-                + "; on=" + reportingOn + "; text='" + text + "']";
+        public String toString() {
+            return "Tag[text='" + text + '\''
+                    + ", line=" + line
+                    + ", column=" + column
+                    + ", on=" + reportingOn
+                    + ", tagCheckRegexp=" + tagCheckRegexp
+                    + ", tagMessageRegexp=" + tagMessageRegexp + ']';
         }
     }
 }

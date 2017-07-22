@@ -308,7 +308,8 @@ public class SuppressWithNearbyCommentFilterTest
                 "text", 7, new SuppressWithNearbyCommentFilter()
         );
         assertEquals("Invalid toString result",
-            "Tag[lines=[7 to 7]; text='text']", tag.toString());
+            "Tag[text='text', firstLine=7, lastLine=7, "
+                    + "tagCheckRegexp=.*, tagMessageRegexp=null]", tag.toString());
     }
 
     @Test
