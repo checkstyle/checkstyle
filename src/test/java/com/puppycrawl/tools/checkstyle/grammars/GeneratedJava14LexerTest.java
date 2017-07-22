@@ -21,13 +21,10 @@ package com.puppycrawl.tools.checkstyle.grammars;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.junit.Assume;
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
@@ -37,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author Rick Giles
  */
 public class GeneratedJava14LexerTest
-    extends BaseCheckTestSupport {
+    extends AbstractModuleTestSupport {
 
     /**
      * <p>Is {@code true} if this is Windows.</p>
@@ -47,13 +44,8 @@ public class GeneratedJava14LexerTest
     private static final boolean IS_WINDOWS = System.getProperty("os.name").startsWith("Windows");
 
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("grammars" + File.separator + filename);
-    }
-
-    @Override
-    protected String getNonCompilablePath(String filename) throws IOException {
-        return super.getNonCompilablePath("grammars" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/grammars";
     }
 
     @Test

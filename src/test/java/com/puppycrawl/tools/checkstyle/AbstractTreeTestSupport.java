@@ -66,6 +66,19 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
     }
 
     /**
+     * Performs verification of the given text ast tree representation.
+     * This implementation uses {@link BaseCheckTestSupport#verifyAst(String, String, boolean)}
+     * method inside.
+     * @param expectedTextPrintFileName expected text ast tree representation.
+     * @param actualJavaFileName actual text ast tree representation.
+     * @throws Exception if exception occurs during verification.
+     */
+    protected static void verifyAst(String expectedTextPrintFileName, String actualJavaFileName)
+            throws Exception {
+        verifyAst(expectedTextPrintFileName, actualJavaFileName, false);
+    }
+
+    /**
      * Verifies the java and javadoc AST generated for the supplied java file against
      * the expected AST in supplied text file.
      * @param expectedTextPrintFilename name of the file having the expected ast.
