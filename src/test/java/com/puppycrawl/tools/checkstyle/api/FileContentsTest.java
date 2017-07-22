@@ -74,7 +74,7 @@ public class FileContentsTest {
         fileContents.reportCppComment(1, 2);
         final Map<Integer, TextBlock> cppComments = fileContents.getCppComments();
 
-        assertEquals(new Comment(new String[] {"// "}, 2, 1, 6).toString(),
+        assertEquals(new Comment(new String[] {" //  "}, 2, 1, 6).toString(),
                 cppComments.get(1).toString());
     }
 
@@ -95,7 +95,7 @@ public class FileContentsTest {
         fileContents.reportCComment(1, 2, 1, 2);
         final ImmutableMap<Integer, List<TextBlock>> comments = fileContents.getCComments();
 
-        assertEquals(new Comment(new String[] {"// "}, 2, 1, 2).toString(),
+        assertEquals(new Comment(new String[] {"/"}, 2, 1, 2).toString(),
                 comments.get(1).get(0).toString());
     }
 

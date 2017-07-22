@@ -91,8 +91,10 @@ public class JavadocTag {
 
     @Override
     public String toString() {
-        return "JavadocTag{tag='" + getTagName() + "' lineNo=" + lineNo + ", columnNo=" + columnNo
-                + ", firstArg='" + firstArg + "'}";
+        return "JavadocTag[tag='" + tagInfo.getName()
+                + "' lineNo=" + lineNo
+                + ", columnNo=" + columnNo
+                + ", firstArg='" + firstArg + "']";
     }
 
     /**

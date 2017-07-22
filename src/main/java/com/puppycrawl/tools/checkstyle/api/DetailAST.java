@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * @author Oliver Burn
  * @author lkuehne
  * @see <a href="http://www.antlr.org/">ANTLR Website</a>
+ * @noinspection FieldNotUsedInToString
  */
 public final class DetailAST extends CommonASTWithHiddenTokens {
     private static final long serialVersionUID = -2580884815577559874L;

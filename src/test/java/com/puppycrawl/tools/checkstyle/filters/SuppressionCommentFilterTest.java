@@ -257,7 +257,8 @@ public class SuppressionCommentFilterTest
         );
 
         assertEquals("Invalid toString result",
-            "Tag[line=0; col=1; on=false; text='text']", tag.toString());
+            "Tag[text='text', line=0, column=1, on=false,"
+                    + " tagCheckRegexp=.*, tagMessageRegexp=null]", tag.toString());
     }
 
     @Test

@@ -117,9 +117,21 @@ class HtmlTag {
 
     @Override
     public String toString() {
+        return "HtmlTag[id='" + id + '\''
+                + ", lineNo=" + lineNo
+                + ", position=" + position
+                + ", text='" + text + '\''
+                + ", closedTag=" + closedTag
+                + ", incompleteTag=" + incompleteTag + ']';
+    }
+
+    /**
+     * Returns the comment line of text where this tag appears.
+     * @return text of the tag
+     */
+    public String getText() {
         final int startOfText = position;
-        final int endOfText =
-            Math.min(startOfText + MAX_TEXT_LEN, text.length());
+        final int endOfText = Math.min(startOfText + MAX_TEXT_LEN, text.length());
         return text.substring(startOfText, endOfText);
     }
 }

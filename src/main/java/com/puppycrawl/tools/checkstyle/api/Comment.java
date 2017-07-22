@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.util.Arrays;
+
 /**
  * Representation of the comment block.
  *
@@ -98,8 +100,10 @@ public class Comment implements TextBlock {
 
     @Override
     public String toString() {
-        final String separator = ":";
-        return "Comment[" + startLineNo + separator + startColNo + "-"
-            + endLineNo + separator + endColNo + "]";
+        return "Comment[text=" + Arrays.toString(text)
+                + ", startLineNo=" + startLineNo
+                + ", endLineNo=" + endLineNo
+                + ", startColNo=" + startColNo
+                + ", endColNo=" + endColNo + ']';
     }
 }

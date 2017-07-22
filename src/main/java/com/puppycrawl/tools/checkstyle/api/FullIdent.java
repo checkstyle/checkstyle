@@ -95,7 +95,7 @@ public final class FullIdent {
 
     @Override
     public String toString() {
-        return getText() + "[" + lineNo + "x" + columnNo + "]";
+        return String.join("", elements) + "[" + lineNo + "x" + columnNo + "]";
     }
 
     /**

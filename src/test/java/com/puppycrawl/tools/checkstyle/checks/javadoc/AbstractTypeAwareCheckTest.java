@@ -100,15 +100,17 @@ public class AbstractTypeAwareCheckTest extends AbstractModuleTestSupport {
                 int.class, int.class);
         final Object token = tokenConstructor.newInstance("blablabla", 1, 1);
 
+        final JavadocMethodCheck methodCheck = new JavadocMethodCheck();
         final Object regularClass = regularClassConstructor.newInstance(token, "sur",
-                new JavadocMethodCheck());
+                methodCheck);
 
         final Method toString = regularClass.getClass().getDeclaredMethod("toString");
         toString.setAccessible(true);
         final String result = (String) toString.invoke(regularClass);
-        assertEquals("Invalid toString result",
-            "RegularClass[name=Token[blablabla(1x1)], in class=sur, loadable=true, class=null]",
-            result);
+        final String expected = "RegularClass[name=Token[blablabla(1x1)], in class='sur', check="
+                + methodCheck.hashCode() + "," + " loadable=true, class=null]";
+
+        assertEquals("Invalid toString result", expected, result);
 
         final Method setClazz = regularClass.getClass().getDeclaredMethod("setClazz", Class.class);
         setClazz.setAccessible(true);
