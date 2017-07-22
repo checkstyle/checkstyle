@@ -34,7 +34,6 @@ options { tokenVocab=JavadocLexer; }
       boolean isSameTagNames(ParserRuleContext htmlTagOpen, ParserRuleContext htmlTagClose) {
             String openTag = htmlTagOpen.getToken(HTML_TAG_NAME, 0).getText().toLowerCase();
             String closeTag = htmlTagClose.getToken(HTML_TAG_NAME, 0).getText().toLowerCase();
-            System.out.println(openTag + " - " + closeTag);
             return openTag.equals(closeTag);
       }
 }
@@ -114,7 +113,6 @@ htmlTag: htmlElementOpen (htmlElement
                               | CDATA
                               | NEWLINE
                               | text
-                               //{isSameTagNames($htmlElementOpen.ctx, $htmlElementClose.ctx)}?
                               | javadocInlineTag)* htmlElementClose
 
             | htmlElementOpen (htmlElement
