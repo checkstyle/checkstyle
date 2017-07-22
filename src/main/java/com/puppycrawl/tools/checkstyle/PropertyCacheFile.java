@@ -35,6 +35,7 @@ import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
 
@@ -183,8 +184,7 @@ final class PropertyCacheFile {
      */
     public boolean isInCache(String uncheckedFileName, long timestamp) {
         final String lastChecked = details.getProperty(uncheckedFileName);
-        return lastChecked != null
-            && lastChecked.equals(Long.toString(timestamp));
+        return Objects.equals(lastChecked, Long.toString(timestamp));
     }
 
     /**
