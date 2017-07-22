@@ -19,20 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.grammars.comments;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractTreeTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Comment;
 
-public class CommentsTest extends BaseCheckTestSupport {
+public class CommentsTest extends AbstractTreeTestSupport {
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("grammars" + File.separator
-                + "comments" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/grammars/comments";
     }
 
     @Test
