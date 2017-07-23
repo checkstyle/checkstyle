@@ -29,19 +29,19 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Checks for redundant modifiers in interface and annotation definitions,
- * final modifier on methods of final classes, inner <code>interface</code>
- * declarations that are declared as <code>static</code>, non public class
+ * final modifier on methods of final classes, inner {@code interface}
+ * declarations that are declared as {@code static}, non public class
  * constructors and enum constructors, nested enum definitions that are declared
- * as <code>static</code>.
+ * as {@code static}.
  *
- * <p>Interfaces by definition are abstract so the <code>abstract</code>
+ * <p>Interfaces by definition are abstract so the {@code abstract}
  * modifier on the interface is redundant.
  *
  * <p>Classes inside of interfaces by definition are public and static,
- * so the <code>public</code> and <code>static</code> modifiers
+ * so the {@code public} and {@code static} modifiers
  * on the inner classes are redundant. On the other hand, classes
  * inside of interfaces can be abstract or non abstract.
- * So, <code>abstract</code> modifier is allowed.
+ * So, {@code abstract} modifier is allowed.
  *
  * <p>Fields in interfaces and annotations are automatically
  * public, static and final, so these modifiers are redundant as
@@ -52,8 +52,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * annotation fields are automatically public and abstract.</p>
  *
  * <p>Enums by definition are static implicit subclasses of java.lang.Enum&#60;E&#62;.
- * So, the <code>static</code> modifier on the enums is redundant. In addition,
- * if enum is inside of interface, <code>public</code> modifier is also redundant.</p>
+ * So, the {@code static} modifier on the enums is redundant. In addition,
+ * if enum is inside of interface, {@code public} modifier is also redundant.</p>
  *
  * <p>Enums can also contain abstract methods and methods which can be overridden by the declared
  * enumeration fields.
@@ -74,7 +74,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * <p>Since these methods can be overridden in these situations, the final methods are not
  * marked as redundant even though they can't be extended by other classes/enums.</p>
  *
- * <p>Final classes by definition cannot be extended so the <code>final</code>
+ * <p>Final classes by definition cannot be extended so the {@code final}
  * modifier on the method of a final class is redundant.
  *
  * <p>Public modifier for constructors in non-public non-protected classes

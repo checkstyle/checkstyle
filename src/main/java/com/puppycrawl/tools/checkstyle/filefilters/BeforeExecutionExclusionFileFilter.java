@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
 
 /**
  * <p>
- * File filter <code>BeforeExecutionExclusionFileFilter</code> decides which files should be
+ * File filter {@code BeforeExecutionExclusionFileFilter} decides which files should be
  * excluded from being processed by the utility.
  * </p>
  *
@@ -35,8 +35,8 @@ import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
  * checked for violations. Users could have files that are in these sub-directories that shouldn't
  * be processed with their checkstyle configuration for various reasons, one of which is a valid
  * Java file that won't pass Checkstyle's parser. When Checkstyle tries to parse a Java file and
- * fails, it will throw an <code>Exception</code> and halt parsing any more files for violations.
- * An example of a valid Java file Checkstyle can't parse is JDK 9's <code>module-info.java</code>.
+ * fails, it will throw an {@code Exception} and halt parsing any more files for violations.
+ * An example of a valid Java file Checkstyle can't parse is JDK 9's {@code module-info.java}.
  * This file filter will exclude these problem files from being parsed, allowing the rest of the
  * files to run normal and be validated.
  * </p>

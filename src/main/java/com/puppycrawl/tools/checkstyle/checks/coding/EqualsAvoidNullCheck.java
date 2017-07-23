@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Checks that any combination of String literals
  * is on the left side of an equals() comparison.
  * Also checks for String literals assigned to some field
- * (such as <code>someString.equals(anotherString = "text")</code>).
+ * (such as {@code someString.equals(anotherString = "text")}).
  *
  * <p>Rationale: Calling the equals() method on String literals
  * will avoid a potential NullPointerException.  Also, it is

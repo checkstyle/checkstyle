@@ -983,7 +983,7 @@
     <inspection_tool class="HtmlFormInputWithoutLabel" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="HtmlNonExistentInternetResource" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="HtmlPresentationalElement" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="HtmlTagCanBeJavadocTag" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="HtmlTagCanBeJavadocTag" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="HtmlUnknownAnchorTarget" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="myValues">
@@ -2122,6 +2122,8 @@
                 <option value="CallToSimpleGetterFromWithinClass" />
                 <!-- violations in DetailAST will be addressed further -->
                 <option value="FieldNotUsedInToString" />
+                <!-- till #4805-->
+                <option value="HtmlTagCanBeJavadocTag" />
             </list>
         </option>
     </inspection_tool>
