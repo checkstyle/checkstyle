@@ -219,7 +219,7 @@ public class NeedBracesCheck extends AbstractCheck {
      * @param ast ast to test.
      * @return true if current ast is default and it is part of annotation.
      */
-    private boolean isDefaultInAnnotation(DetailAST ast) {
+    private static boolean isDefaultInAnnotation(DetailAST ast) {
         boolean isDefaultInAnnotation = false;
         if (ast.getType() == TokenTypes.LITERAL_DEFAULT
                 && ast.getParent().getType() == TokenTypes.ANNOTATION_FIELD_DEF) {

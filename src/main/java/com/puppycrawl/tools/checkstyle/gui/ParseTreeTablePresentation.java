@@ -294,7 +294,7 @@ public class ParseTreeTablePresentation {
      * @param column column index.
      * @return value at specified column.
      */
-    private Object getValueAtDetailNode(DetailNode node, int column) {
+    private static Object getValueAtDetailNode(DetailNode node, int column) {
         final Object value;
 
         switch (column) {
@@ -326,7 +326,7 @@ public class ParseTreeTablePresentation {
      * @param column column index.
      * @return value at specified column.
      */
-    private Object getValueAtDetailAST(DetailAST ast, int column) {
+    private static Object getValueAtDetailAST(DetailAST ast, int column) {
         final Object value;
 
         switch (column) {

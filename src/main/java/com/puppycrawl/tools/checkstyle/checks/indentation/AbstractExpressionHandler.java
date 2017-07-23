@@ -415,7 +415,7 @@ public abstract class AbstractExpressionHandler {
      *
      * @return the first line of the expression
      */
-    protected final int getFirstLine(int startLine, DetailAST tree) {
+    protected static int getFirstLine(int startLine, DetailAST tree) {
         int realStart = startLine;
         final int currLine = tree.getLineNo();
         if (currLine < realStart) {
