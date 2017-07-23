@@ -569,6 +569,7 @@ public final class Main {
      * @param outputLocation the location of output
      * @return a fresh new {@code AuditListener}
      * @exception FileNotFoundException when provided output location is not found
+     * @noinspection IOResourceOpenedButNotSafelyClosed
      */
     private static AuditListener createListener(String format,
                                                 String outputLocation)

@@ -134,7 +134,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
      * Properties subclass to store duplicated property keys in a separate map.
      *
      * @author Pavel Baranchikov
-     * @noinspection ClassExtendsConcreteCollection
+     * @noinspection ClassExtendsConcreteCollection, SerializableHasSerializationMethods
      */
     private static class UniqueProperties extends Properties {
         private static final long serialVersionUID = 1L;
@@ -146,7 +146,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
                 .create();
 
         @Override
-        public Object put(Object key, Object value) {
+        public synchronized Object put(Object key, Object value) {
             final Object oldValue = super.put(key, value);
             if (oldValue != null && key instanceof String) {
                 final String keyString = (String) key;

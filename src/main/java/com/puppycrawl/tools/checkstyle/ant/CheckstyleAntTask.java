@@ -64,6 +64,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
  * An implementation of a ANT task for calling checkstyle. See the documentation
  * of the task for usage.
  * @author Oliver Burn
+ * @noinspection ClassLoaderInstantiation
  */
 public class CheckstyleAntTask extends Task {
     /** Poor man's enum for an xml formatter. */

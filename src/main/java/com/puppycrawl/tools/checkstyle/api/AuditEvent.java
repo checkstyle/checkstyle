@@ -37,6 +37,7 @@ import java.util.EventObject;
  *
  * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
  * @see AuditListener
+ * @noinspection SerializableHasSerializationMethods
  */
 public final class AuditEvent
     extends EventObject {

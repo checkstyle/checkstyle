@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 /**
  * Default implementation of the Configuration interface.
  * @author lkuehne
+ * @noinspection SerializableHasSerializationMethods
  */
 public final class DefaultConfiguration implements Configuration {
     private static final long serialVersionUID = 1157875385356127169L;

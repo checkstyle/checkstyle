@@ -190,6 +190,13 @@
     </properties>
   </rule>
 
+  <rule ref="rulesets/java/design.xml/AvoidSynchronizedAtMethodLevel">
+    <properties>
+      <!-- UniqueProperties#put overloads synchronized method, so it should have synchronized modifier -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='UniqueProperties']//MethodDeclarator[@Image='put']"/>
+    </properties>
+  </rule>
+
   <rule ref="rulesets/java/empty.xml"/>
   <rule ref="rulesets/java/empty.xml/EmptyCatchBlock">
     <properties>
