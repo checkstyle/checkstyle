@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * <p>
  * Checks that class which has only private ctors
  * is declared as final. Doesn't check for classes nested in interfaces
- * or annotations, as they are always <code>final</code> there.
+ * or annotations, as they are always {@code final} there.
  * </p>
  * <p>
  * An example of how to configure the check is:

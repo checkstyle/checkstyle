@@ -519,7 +519,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * started from 1 for parameter values
      * @param startLine number of the first line in the range
      * @param endLine number of the second line in the range
-     * @return <code>true</code> if found any blank line within the range, <code>false</code>
+     * @return {@code true} if found any blank line within the range, {@code false}
      *         otherwise
      */
     private boolean hasEmptyLine(int startLine, int endLine) {
