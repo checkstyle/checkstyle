@@ -246,9 +246,8 @@ final class PropertyCacheFile {
      */
     private static void serialize(Serializable object,
                                   OutputStream outputStream) throws IOException {
-        ObjectOutputStream oos = null;
+        final ObjectOutputStream oos = new ObjectOutputStream(outputStream);
         try {
-            oos = new ObjectOutputStream(outputStream);
             oos.writeObject(object);
         }
         finally {

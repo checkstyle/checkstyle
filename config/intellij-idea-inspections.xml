@@ -306,7 +306,7 @@
     </inspection_tool>
     <inspection_tool class="ClassInitializer" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ClassInitializerMayBeStatic" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="ClassLoaderInstantiation" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="ClassLoaderInstantiation" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ClassMayBeInterface" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ClassNameDiffersFromFileName" enabled="true" level="WARNING" enabled_by_default="true" />
     <!-- names of Checks are public to users, we do care about clear name for user without information in
@@ -1011,7 +1011,7 @@
     </inspection_tool>
     <inspection_tool class="HtmlUnknownTarget" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="IOResource" enabled="true" level="WARNING" enabled_by_default="true">
-        <scope name="Production" level="WARNING" enabled="false">
+        <scope name="Production" level="WARNING" enabled="true">
             <option name="ignoredTypesString" value="java.io.ByteArrayOutputStream,java.io.ByteArrayInputStream,java.io.StringBufferInputStream,java.io.CharArrayWriter,java.io.CharArrayReader,java.io.StringWriter,java.io.StringReader" />
             <option name="insideTryAllowed" value="false" />
         </scope>
@@ -1554,7 +1554,7 @@
     </inspection_tool>
     <inspection_tool class="NonPublicClone" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="NonReproducibleMathCall" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="NonSerializableFieldInSerializableClass" enabled="false" level="ERROR" enabled_by_default="false">
+    <inspection_tool class="NonSerializableFieldInSerializableClass" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="ignorableAnnotations">
             <value />
         </option>
@@ -1572,7 +1572,7 @@
     </inspection_tool>
     <!-- this inspection is not for us -->
     <inspection_tool class="NonStaticInnerClassInSecureContext" enabled="false" level="ERROR" enabled_by_default="false" />
-    <inspection_tool class="NonSynchronizedMethodOverridesSynchronizedMethod" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="NonSynchronizedMethodOverridesSynchronizedMethod" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="NonThreadSafeLazyInitialization" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="NoopMethodInAbstractClass" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="NotifyCalledOnCondition" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -1861,9 +1861,10 @@
         <option name="ignoreAnonymousInnerClasses" value="false" />
         <option name="superClassString" value="" />
     </inspection_tool>
-    <inspection_tool class="SerializableHasSerializationMethods" enabled="false" level="ERROR" enabled_by_default="false">
-        <option name="ignoreAnonymousInnerClasses" value="false" />
-        <option name="superClassString" value="" />
+    <inspection_tool class="SerializableHasSerializationMethods" enabled="true" level="ERROR" enabled_by_default="true">
+        <option name="ignoreAnonymousInnerClasses" value="true" />
+        <option name="superClassString" value="com.puppycrawl.tools.checkstyle.gui.BaseCellEditor,com.puppycrawl.tools.checkstyle.gui.CodeSelector,com.puppycrawl.tools.checkstyle.gui.CodeSelectorPresentation,com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper,com.puppycrawl.tools.checkstyle.gui.Main,com.puppycrawl.tools.checkstyle.gui.MainFrame,com.puppycrawl.tools.checkstyle.gui.MainFrameModel,com.puppycrawl.tools.checkstyle.gui.ParseTreeTableModel,com.puppycrawl.tools.checkstyle.gui.ParseTreeTablePresentation,com.puppycrawl.tools.checkstyle.gui.TreeTableCellRenderer,com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter,com.puppycrawl.tools.checkstyle.gui.TreeTable" />
+        <option name="ignoreClassWithoutFields" value="true" />
     </inspection_tool>
     <inspection_tool class="SerializableInnerClassHasSerialVersionUIDField" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="ignoreAnonymousInnerClasses" value="false" />
@@ -2124,6 +2125,8 @@
                 <option value="FieldNotUsedInToString" />
                 <!-- till #4805-->
                 <option value="HtmlTagCanBeJavadocTag" />
+                <!-- we need to work with AntClassLoader, there is no way to avoid this -->
+                <option value="ClassLoaderInstantiation" />
             </list>
         </option>
     </inspection_tool>

@@ -113,7 +113,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
         final String header = "abc.*";
         instance.setHeader(header);
 
-        verifyStatic(times(1));
+        verifyStatic(times(2));
         Closeables.closeQuietly(any(Reader.class));
     }
 
@@ -372,7 +372,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
         createChecker(checkConfig);
 
         //check if reader finally closed
-        verifyStatic(times(1));
+        verifyStatic(times(2));
         Closeables.closeQuietly(any(InputStreamReader.class));
     }
 }
