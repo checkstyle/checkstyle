@@ -127,16 +127,20 @@ public final class FileText {
         // is about 30% faster than using the
         // LINE_TERMINATOR.split(fullText, -1) method
         final ArrayList<String> textLines = new ArrayList<>();
-        final BufferedReader reader =
-            new BufferedReader(new StringReader(fullText));
-        while (true) {
-            final String line = reader.readLine();
-            if (line == null) {
-                break;
+        final BufferedReader reader = new BufferedReader(new StringReader(fullText));
+        try {
+            while (true) {
+                final String line = reader.readLine();
+                if (line == null) {
+                    break;
+                }
+                textLines.add(line);
             }
-            textLines.add(line);
+            lines = textLines.toArray(new String[textLines.size()]);
         }
-        lines = textLines.toArray(new String[textLines.size()]);
+        finally {
+            Closeables.closeQuietly(reader);
+        }
     }
 
     /**

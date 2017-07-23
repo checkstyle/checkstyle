@@ -45,7 +45,7 @@ import java.util.ResourceBundle.Control;
  *
  * @author Oliver Burn
  * @author lkuehne
- * @noinspection ConstructorWithTooManyParameters
+ * @noinspection ConstructorWithTooManyParameters, SerializableHasSerializationMethods
  */
 public final class LocalizedMessage
     implements Comparable<LocalizedMessage>, Serializable {
@@ -78,7 +78,9 @@ public final class LocalizedMessage
     /** Key for the message format. **/
     private final String key;
 
-    /** Arguments for MessageFormat. **/
+    /** Arguments for MessageFormat.
+     * @noinspection NonSerializableFieldInSerializableClass
+     */
     private final Object[] args;
 
     /** Name of the resource bundle to get messages from. **/
@@ -388,6 +390,7 @@ public final class LocalizedMessage
      * </p>
      *
      * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
+     * @noinspection IOResourceOpenedButNotSafelyClosed
      */
     public static class Utf8Control extends Control {
         @Override

@@ -68,7 +68,7 @@ public class FileTextTest {
                  + "checkstyle/api/import-control_complete.xml"), charsetName);
         assertEquals(charsetName, fileText.getCharset().name());
 
-        verifyStatic(times(1));
+        verifyStatic(times(2));
         Closeables.closeQuietly(any(Reader.class));
     }
 
