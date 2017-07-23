@@ -2056,9 +2056,9 @@
         <option name="ignoreSubstringArguments" value="false" />
     </inspection_tool>
     <inspection_tool class="StringEquality" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="StringEquals" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="StringEquals" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="StringEqualsEmptyString" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="StringEqualsIgnoreCase" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="StringEqualsIgnoreCase" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="StringLiteralBreaksHTMLJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="StringReplaceableByStringBuffer" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="onlyWarnOnLoop" value="true" />
@@ -2070,7 +2070,7 @@
     <inspection_tool class="SubstringZero" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SubtractionInCompareTo" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SuperClassHasFrequentlyUsedInheritors" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="SuperTearDownInFinally" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="SuperTearDownInFinally" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SuppressionAnnotation" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="myAllowedSuppressions">
             <list>
@@ -2128,8 +2128,8 @@
         <option name="onlyWarnWhenFieldPresent" value="true" />
     </inspection_tool>
     <inspection_tool class="SuspiciousIndentAfterControlStatement" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="SuspiciousLiteralUnderscore" enabled="false" level="ERROR" enabled_by_default="false" />
-    <inspection_tool class="SuspiciousLocalesLanguages" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="SuspiciousLiteralUnderscore" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="SuspiciousLocalesLanguages" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SuspiciousMethodCalls" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="REPORT_CONVERTIBLE_METHOD_CALLS" value="true" />
     </inspection_tool>
@@ -2139,6 +2139,7 @@
     </inspection_tool>
     <inspection_tool class="SuspiciousSystemArraycopy" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SuspiciousToArrayCall" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- we like switch statements, we can not avoid usage of them -->
     <inspection_tool class="SwitchStatement" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="SwitchStatementDensity" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="m_limit" value="20" />
@@ -2148,8 +2149,8 @@
     <inspection_tool class="SwitchStatementWithTooFewBranches" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="m_limit" value="2" />
     </inspection_tool>
-    <inspection_tool class="SwitchStatementWithTooManyBranches" enabled="false" level="ERROR" enabled_by_default="false">
-        <option name="m_limit" value="10" />
+    <inspection_tool class="SwitchStatementWithTooManyBranches" enabled="true" level="ERROR" enabled_by_default="true">
+        <option name="m_limit" value="21" />
     </inspection_tool>
     <inspection_tool class="SwitchStatementsWithoutDefault" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="m_ignoreFullyCoveredEnums" value="true" />
@@ -2167,16 +2168,17 @@
         <option name="ignoreSynchronizedSuperMethods" value="true" />
     </inspection_tool>
     <inspection_tool class="SynchronizedOnLiteralObject" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="SyntaxError" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="SyntaxError" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SystemExit" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="SystemGC" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SystemGetenv" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SystemOutErr" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- we do not use system variables for any security relates reasons (no passwords or authentication etc.) -->
     <inspection_tool class="SystemProperties" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="SystemRunFinalizersOnExit" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SystemSetSecurityManager" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="TaglibDomModelInspection" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="TailRecursion" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="TailRecursion" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="TailRecursionJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="TeardownCallsSuperTeardown" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="TeardownIsPublicVoidNoArg" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -2208,11 +2210,12 @@
     <inspection_tool class="ThreadWithDefaultRunMethod" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ThreadYield" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ThreeNegationsPerFunctionJS" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- this inspection is not configurable, 3 it is too demanding, result code will not be better -->
     <inspection_tool class="ThreeNegationsPerMethod" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="m_ignoreInEquals" value="true" />
         <option name="ignoreInAssert" value="false" />
     </inspection_tool>
-    <inspection_tool class="ThrowCaughtLocally" enabled="false" level="ERROR" enabled_by_default="false">
+    <inspection_tool class="ThrowCaughtLocally" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="ignoreRethrownExceptions" value="false" />
     </inspection_tool>
     <!-- disabled till we switch to jacoco that support try-with-resources -->
@@ -2241,13 +2244,14 @@
     <inspection_tool class="TooBroadThrows" enabled="false" level="WARNING" enabled_by_default="true">
         <scope name="Tests" level="WARNING" enabled="false" />
     </inspection_tool>
-    <inspection_tool class="TrailingSpacesInProperty" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="TrailingSpacesInProperty" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="TransientFieldInNonSerializableClass" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="TransientFieldNotInitialized" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="TrivialConditionalJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="TrivialIf" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="TrivialIfJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="TrivialStringConcatenation" enabled="true" level="WARNING" enabled_by_default="true" />
+    <!-- we can not use try-with-resources till we switch to jacoco for code coverage -->
     <inspection_tool class="TryFinallyCanBeTryWithResources" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="TryWithIdenticalCatches" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="TsLint" enabled="false" level="WARNING" enabled_by_default="false" />
@@ -2275,6 +2279,8 @@
     <inspection_tool class="UNUSED_IMPORT" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="UnaryPlus" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="UncheckedExceptionClass" enabled="false" level="ERROR" enabled_by_default="false" />
+    <!-- raise a lot of violations that make no sense to benefit from parentheses,
+    like "a==1 && b==2" force to use parentheses, that is not good -->
     <inspection_tool class="UnclearBinaryExpression" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="UnconditionalWait" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="UnconstructableTestCase" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -2349,7 +2355,7 @@
     <inspection_tool class="UnnecessaryToStringCall" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="UnnecessaryUnaryMinus" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="UnnecessaryUnboxing" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="UnnecessaryUnicodeEscape" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="UnnecessaryUnicodeEscape" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="UnparsedCustomBeanInspection" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="UnpredictableBigDecimalConstructorCall" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="ignoreReferences" value="true" />
@@ -2402,6 +2408,7 @@
     <inspection_tool class="UnusedSymbol" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="UpperCaseFieldNameNotConstant" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="UseOfAWTPeerClass" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- we like this style of accessing of content of inner classes, maybe one day in future we change our mind -->
     <inspection_tool class="UseOfAnotherObjectsPrivateField" enabled="false" level="WARNING" enabled_by_default="false">
         <option name="ignoreSameClass" value="true" />
         <option name="ignoreEquals" value="true" />
@@ -2431,6 +2438,7 @@
     </inspection_tool>
     <inspection_tool class="ValidExternallyBoundObject" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="VarargParameter" enabled="false" level="ERROR" enabled_by_default="false" />
+    <!-- using the same variable is not always required, especially in case where null is signal for action or break etc. -->
     <inspection_tool class="VariableNotUsedInsideIf" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="VoidExpressionJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="VoidMethodAnnotatedWithGET" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -2465,13 +2473,17 @@
     </inspection_tool>
     <inspection_tool class="WithStatementJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="WrongPackageStatement" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="WrongPropertyKeyValueDelimiter" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="WrongPropertyKeyValueDelimiter" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="WsdlHighlightingInspection" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="XHTMLIncompatabilitiesJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="XmlDuplicatedId" enabled="true" level="WARNING" enabled_by_default="true" />
+    <!-- there is not xsd or DTD for ant files https://ant.apache.org/faq.html#dtd,
+    some other config files also do not have schemes too -->
     <inspection_tool class="XmlHighlighting" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="XmlInvalidId" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="XmlPathReference" enabled="false" level="ERROR" enabled_by_default="false" />
+    <!-- there is not xsd or DTD for ant files https://ant.apache.org/faq.html#dtd,
+    some other config files also do not have schemes too -->
     <inspection_tool class="XmlUnboundNsPrefix" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="XmlUnusedNamespaceDeclaration" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="XmlWrongRootElement" enabled="true" level="WARNING" enabled_by_default="true" />
