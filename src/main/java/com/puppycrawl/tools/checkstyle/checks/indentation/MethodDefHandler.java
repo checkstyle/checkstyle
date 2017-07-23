@@ -79,7 +79,7 @@ public class MethodDefHandler extends BlockParentHandler {
      *            The method definition ast.
      * @return The start column position of the method.
      */
-    private int getMethodDefLineStart(DetailAST mainAst) {
+    private static int getMethodDefLineStart(DetailAST mainAst) {
         // get first type position
         int lineStart = mainAst.findFirstToken(TokenTypes.IDENT).getLineNo();
 

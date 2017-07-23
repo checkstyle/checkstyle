@@ -521,7 +521,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @param parameterDefAst parameter definition
      * @return true if it is a multiple type catch, false otherwise
      */
-    private boolean isMultipleTypeCatch(DetailAST parameterDefAst) {
+    private static boolean isMultipleTypeCatch(DetailAST parameterDefAst) {
         final DetailAST typeAst = parameterDefAst.findFirstToken(TokenTypes.TYPE);
         return typeAst.getFirstChild().getType() == TokenTypes.BOR;
     }
