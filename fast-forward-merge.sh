@@ -1,4 +1,4 @@
-#!/usr/bin/env bash 
+#!/usr/bin/env bash
 
 # GitHub does not support fast-forward merge.
 # This script is intended to simplify merge of Pull Requests to keep history linear (fast-forwarded)
@@ -21,6 +21,9 @@ FORK_USER_NAME=$1
 USER_BRANCH=$2
 REPO=${FORK_USER_NAME}-fork
 LOCAL_USER_BRANCH=${FORK_USER_NAME}-${USER_BRANCH}
+
+echo "removing remote ${REPO} if present ..."
+git remote rm ${REPO}
 
 echo "adding remote ..."
 git remote add ${REPO} https://github.com/${FORK_USER_NAME}/${GIT_REPO}.git
