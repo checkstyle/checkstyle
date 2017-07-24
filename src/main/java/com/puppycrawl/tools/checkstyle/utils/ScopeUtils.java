@@ -98,27 +98,7 @@ public final class ScopeUtils {
      * @return a {@code boolean} value
      */
     public static boolean isInInterfaceBlock(DetailAST node) {
-        boolean returnValue = false;
-
-        // Loop up looking for a containing interface block
-        for (DetailAST token = node.getParent();
-             token != null && !returnValue;
-             token = token.getParent()) {
-
-            final int type = token.getType();
-
-            if (type == TokenTypes.INTERFACE_DEF) {
-                returnValue = true;
-            }
-            else if (type == TokenTypes.CLASS_DEF
-                || type == TokenTypes.ENUM_DEF
-                || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.LITERAL_NEW) {
-                break;
-            }
-        }
-
-        return returnValue;
+        return isInBlockOf(node, TokenTypes.INTERFACE_DEF);
     }
 
     /**
@@ -128,6 +108,17 @@ public final class ScopeUtils {
      * @return a {@code boolean} value
      */
     public static boolean isInAnnotationBlock(DetailAST node) {
+        return isInBlockOf(node, TokenTypes.ANNOTATION_DEF);
+    }
+
+    /**
+     * Returns whether a node is directly contained within a specified block.
+     *
+     * @param node the node to check if directly contained within a specified block.
+     * @param tokenType type of token.
+     * @return a {@code boolean} value
+     */
+    private static boolean isInBlockOf(DetailAST node, int tokenType) {
         boolean returnValue = false;
 
         // Loop up looking for a containing interface block
@@ -135,12 +126,13 @@ public final class ScopeUtils {
              token != null && !returnValue;
              token = token.getParent()) {
             final int type = token.getType();
-            if (type == TokenTypes.ANNOTATION_DEF) {
+            if (type == tokenType) {
                 returnValue = true;
             }
             else if (type == TokenTypes.CLASS_DEF
                 || type == TokenTypes.ENUM_DEF
                 || type == TokenTypes.INTERFACE_DEF
+                || type == TokenTypes.ANNOTATION_DEF
                 || type == TokenTypes.LITERAL_NEW) {
                 break;
             }
