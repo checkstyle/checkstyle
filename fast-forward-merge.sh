@@ -23,11 +23,14 @@ REPO=${FORK_USER_NAME}-fork
 LOCAL_USER_BRANCH=${FORK_USER_NAME}-${USER_BRANCH}
 
 echo "removing remote ${REPO} if present ..."
-git remote rm ${REPO}
+git remote rm ${REPO} | true
 
 echo "adding remote ..."
 git remote add ${REPO} https://github.com/${FORK_USER_NAME}/${GIT_REPO}.git
 git fetch ${REPO}
+
+echo "removing remote ${LOCAL_USER_BRANCH} if present ..."
+git branch -D ${LOCAL_USER_BRANCH} | true
 
 echo "creating local branch ..."
 git checkout -b ${LOCAL_USER_BRANCH} ${REPO}/${USER_BRANCH}
