@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
 
 /**
  * <p>
@@ -80,15 +81,9 @@ public final class IllegalThrowsCheck extends AbstractCheck {
      */
     public void setIllegalClassNames(final String... classNames) {
         illegalClassNames.clear();
-        for (final String name : classNames) {
-            illegalClassNames.add(name);
-            final int lastDot = name.lastIndexOf('.');
-            if (lastDot > 0 && lastDot < name.length() - 1) {
-                final String shortName = name
-                        .substring(name.lastIndexOf('.') + 1);
-                illegalClassNames.add(shortName);
-            }
-        }
+        illegalClassNames.addAll(
+                CheckUtils.parseClassNames(classNames));
+
     }
 
     @Override

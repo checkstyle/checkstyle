@@ -29,8 +29,10 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -302,6 +304,15 @@ public class CheckUtilsTest {
         assertEquals(2.147_483_647E10,
                 CheckUtils.parseDouble("21474836470", TokenTypes.NUM_LONG), 0);
         assertEquals(59.0, CheckUtils.parseDouble("073L", TokenTypes.NUM_LONG), 0);
+    }
+
+    @Test
+    public void testParseClassNames() {
+        final String className = "I.am.class.name.with.dot.in.the.end.";
+        final Set<String> result = CheckUtils.parseClassNames(className);
+        final Set<String> expected = new HashSet<>();
+        expected.add(className);
+        assertEquals("Result is not expected", expected, result);
     }
 
     private static File getPath(String filename) {

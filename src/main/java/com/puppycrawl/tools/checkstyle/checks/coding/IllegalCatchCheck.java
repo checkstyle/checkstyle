@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
 
 /**
  * Catching java.lang.Exception, java.lang.Error or java.lang.RuntimeException
@@ -57,15 +58,8 @@ public final class IllegalCatchCheck extends AbstractCheck {
      */
     public void setIllegalClassNames(final String... classNames) {
         illegalClassNames.clear();
-        for (final String name : classNames) {
-            illegalClassNames.add(name);
-            final int lastDot = name.lastIndexOf('.');
-            if (lastDot > 0 && lastDot < name.length() - 1) {
-                final String shortName = name
-                        .substring(name.lastIndexOf('.') + 1);
-                illegalClassNames.add(shortName);
-            }
-        }
+        illegalClassNames.addAll(
+                CheckUtils.parseClassNames(classNames));
     }
 
     @Override

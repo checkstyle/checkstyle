@@ -20,7 +20,9 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import antlr.collections.AST;
@@ -457,5 +459,25 @@ public final class CheckUtils {
             }
         }
         return accessModifier;
+    }
+
+    /**
+     * Create set of class names and short class names.
+     *
+     * @param classNames array of class names.
+     * @return set of class names and short class names.
+     */
+    public static Set<String> parseClassNames(String... classNames) {
+        final Set<String> illegalClassNames = new HashSet<>();
+        for (final String name : classNames) {
+            illegalClassNames.add(name);
+            final int lastDot = name.lastIndexOf('.');
+            if (lastDot != -1 && lastDot < name.length() - 1) {
+                final String shortName = name
+                        .substring(name.lastIndexOf('.') + 1);
+                illegalClassNames.add(shortName);
+            }
+        }
+        return illegalClassNames;
     }
 }

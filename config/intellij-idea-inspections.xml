@@ -590,7 +590,9 @@
     <inspection_tool class="DuplicateThrows" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="DuplicatedBeanNamesInspection" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="DuplicatedDataProviderNames" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="Duplicates" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="Duplicates" enabled="true" level="ERROR" enabled_by_default="true" >
+        <scope name="Tests" level="ERROR" enabled="false" />
+    </inspection_tool>
     <inspection_tool class="DynamicRegexReplaceableByCompiledPattern" enabled="true" level="WARNING" enabled_by_default="true">
         <scope name="Tests" level="WARNING" enabled="false" />
     </inspection_tool>
@@ -679,6 +681,7 @@
     <!-- there is false-positive, and rest cases are result of our loading modules by reflection
     that throws Error. Error is not always jvm problem, bunch of libraries throw Error instead of Exception -->
     <inspection_tool class="ErrorRethrown" enabled="false" level="ERROR" enabled_by_default="false" />
+    <!--we do not use this tool-->
     <inspection_tool class="Eslint" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="ExceptionCaughtLocallyJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ExceptionFromCatchWhichDoesntWrap" enabled="true" level="WARNING" enabled_by_default="true">
@@ -780,6 +783,7 @@
     <inspection_tool class="FunctionWithMultipleReturnPointsJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="GherkinBrokenTableInspection" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="GherkinMisplacedBackground" enabled="true" level="WARNING" enabled_by_default="true" />
+    <!--we do not use this tool-->
     <inspection_tool class="GjsLint" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="GrDeprecatedAPIUsage" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="GrEqualsBetweenInconvertibleTypes" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -1084,7 +1088,7 @@
     <inspection_tool class="InnerClassVariableHidesOuterClassVariable" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="m_ignoreInvisibleFields" value="true" />
     </inspection_tool>
-    <inspection_tool class="InnerHTMLJS" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="InnerHTMLJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="InstanceGuardedByStatic" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="InstanceMethodNamingConvention" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="m_regex" value="[a-z][A-Za-z\d]*" />
@@ -1164,11 +1168,11 @@
     <inspection_tool class="JSDeprecatedSymbols" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="JSDuplicatedDeclaration" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="JSFileReferences" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="JSHint" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="JSHint" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="JSJQueryEfficiency" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="JSLastCommaInArrayLiteral" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="JSLastCommaInObjectLiteral" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="JSLint" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="JSLint" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="JSMethodCanBeStatic" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="JSMismatchedCollectionQueryUpdate" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="queries" value="trace,write,forEach" />
@@ -1280,6 +1284,7 @@
     <inspection_tool class="JpaObjectClassSignatureInspection" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="JpaQlInspection" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="JpaQueryApiInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <!--we do not use this tool-->
     <inspection_tool class="Jscs" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="JsfJamExtendsClassInconsistencyInspection" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="JsfManagedBeansInconsistencyInspection" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -2263,7 +2268,7 @@
     <!-- we can not use try-with-resources till we switch to jacoco for code coverage -->
     <inspection_tool class="TryFinallyCanBeTryWithResources" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="TryWithIdenticalCatches" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="TsLint" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="TsLint" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="TypeCustomizer" enabled="true" level="ERROR" enabled_by_default="true" />
     <!-- we like implementation to be concrete, we do not like a lot of abstractions -->
     <inspection_tool class="TypeMayBeWeakened" enabled="false" level="ERROR" enabled_by_default="false">
