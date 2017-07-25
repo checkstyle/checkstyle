@@ -131,7 +131,7 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
         final int[] expected = {
             TokenTypes.CLASS_DEF,
         };
-        Assert.assertArrayEquals(expected, actual);
+        Assert.assertArrayEquals("Invalid accaptable tokens", expected, actual);
     }
 
     @Test
@@ -141,6 +141,6 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
         final int[] expected = {
             TokenTypes.CLASS_DEF,
         };
-        Assert.assertArrayEquals(expected, actual);
+        Assert.assertArrayEquals("Invalid required tokens", expected, actual);
     }
 }

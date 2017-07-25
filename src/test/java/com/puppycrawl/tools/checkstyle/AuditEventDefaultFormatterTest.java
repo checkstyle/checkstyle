@@ -52,7 +52,7 @@ public class AuditEventDefaultFormatterTest {
 
         final String expected = "[WARN] InputMockFile.java:1:1: Mocked message. [TestModule]";
 
-        assertEquals(expected, formatter.format(mock));
+        assertEquals("Invalid format", expected, formatter.format(mock));
     }
 
     @Test
@@ -68,7 +68,7 @@ public class AuditEventDefaultFormatterTest {
 
         final String expected = "[WARN] InputMockFile.java:1:1: Mocked message. [TestModule]";
 
-        assertEquals(expected, formatter.format(mock));
+        assertEquals("Invalid format", expected, formatter.format(mock));
     }
 
     @Test
@@ -84,7 +84,7 @@ public class AuditEventDefaultFormatterTest {
 
         final String expected = "[WARN] InputMockFile.java:1:1: Mocked message. [TestModule]";
 
-        assertEquals(expected, formatter.format(mock));
+        assertEquals("Invalid format", expected, formatter.format(mock));
     }
 
     @Test
@@ -100,7 +100,7 @@ public class AuditEventDefaultFormatterTest {
 
         final String expected = "[WARN] InputMockFile.java:1:1: Mocked message. [TestModule]";
 
-        assertEquals(expected, formatter.format(mock));
+        assertEquals("Invalid format", expected, formatter.format(mock));
     }
 
     @Test

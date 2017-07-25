@@ -47,7 +47,7 @@ public class ClassResolverTest {
         final ClassResolver classResolver =
             new ClassResolver(Thread.currentThread().getContextClassLoader(),
                 null, imports);
-        assertNotNull(classResolver);
+        assertNotNull("Class resolver should not be null", classResolver);
         try {
             classResolver.resolve("who.will.win.the.world.cup", "");
             fail("Should not resolve class");
@@ -98,7 +98,7 @@ public class ClassResolverTest {
         }
         catch (ClassNotFoundException ex) {
             // expected
-            assertEquals("someClass", ex.getMessage());
+            assertEquals("Invalid exception message", "someClass", ex.getMessage());
         }
     }
 
@@ -110,7 +110,7 @@ public class ClassResolverTest {
                 "java.util", imports);
 
         final Class<?> entry = classResolver.resolve("Entry", "Map");
-        assertEquals("java.util.Map$Entry", entry.getName());
+        assertEquals("Invalid resolve result", "java.util.Map$Entry", entry.getName());
     }
 
     @Test
@@ -124,7 +124,7 @@ public class ClassResolverTest {
             classResolver.resolve("Entry", "Map");
         }
         catch (ClassNotFoundException ex) {
-            assertEquals("Entry", ex.getMessage());
+            assertEquals("Invalid exception message", "Entry", ex.getMessage());
         }
     }
 
@@ -146,8 +146,11 @@ public class ClassResolverTest {
         }
         catch (IllegalStateException ex) {
             // expected
-            assertTrue(ex.getCause() instanceof ClassNotFoundException);
-            assertTrue(ex.getMessage().endsWith("expected exception"));
+            final String expected = "expected exception";
+            assertTrue("Invalid exception cause, should be: ClassNotFoundException",
+                    ex.getCause() instanceof ClassNotFoundException);
+            assertTrue("Invalid excpetion message, should end with: " + expected,
+                    ex.getMessage().endsWith(expected));
         }
     }
 
@@ -175,7 +178,9 @@ public class ClassResolverTest {
         }
         catch (NoClassDefFoundError ex) {
             fail("NoClassDefFoundError is not expected");
-            assertTrue(ex.getMessage().endsWith("expected exception"));
+            final String expected = "expected exception";
+            assertTrue("Invalid exception message, should end with: " + expected,
+                    ex.getMessage().endsWith(expected));
         }
     }
 }

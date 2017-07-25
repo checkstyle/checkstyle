@@ -50,9 +50,9 @@ public class AbstractFileSetCheckTest {
         final SortedSet<LocalizedMessage> secondFileMessages =
             check.process(secondFile, new FileText(secondFile, lines));
 
-        assertEquals("File should not be empty.",
+        assertEquals("Invalid message", "File should not be empty.",
             firstFileMessages.first().getMessage());
-        assertTrue(secondFileMessages.isEmpty());
+        assertTrue("Message should be empty, but was not", secondFileMessages.isEmpty());
     }
 
     @Test
@@ -61,7 +61,8 @@ public class AbstractFileSetCheckTest {
         check.setFileExtensions("tmp", ".java");
         final String[] expectedExtentions = {".tmp", ".java"};
 
-        Assert.assertArrayEquals(expectedExtentions, check.getFileExtensions());
+        Assert.assertArrayEquals("Invalid extensions",
+                expectedExtentions, check.getFileExtensions());
     }
 
     /**
@@ -77,7 +78,8 @@ public class AbstractFileSetCheckTest {
             fail("Expected exception.");
         }
         catch (IllegalArgumentException exception) {
-            assertEquals("Extensions array can not be null", exception.getMessage());
+            assertEquals("Invalid exception message",
+                    "Extensions array can not be null", exception.getMessage());
         }
     }
 
@@ -87,7 +89,7 @@ public class AbstractFileSetCheckTest {
         final Checker checker = new Checker();
         check.setMessageDispatcher(checker);
 
-        assertEquals(checker, check.getMessageDispatcher());
+        assertEquals("Invalid message dispatcher", checker, check.getMessageDispatcher());
     }
 
     private static class DummyFileSetCheck extends AbstractFileSetCheck {

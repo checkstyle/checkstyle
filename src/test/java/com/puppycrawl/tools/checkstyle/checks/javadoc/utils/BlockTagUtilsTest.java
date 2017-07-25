@@ -48,7 +48,7 @@ public class BlockTagUtilsTest {
         };
 
         final List<TagInfo> tags = BlockTagUtils.extractBlockTags(text);
-        assertEquals(4, tags.size());
+        assertEquals("Invalid tags size", 4, tags.size());
 
         final TagInfo tag1 = tags.get(0);
         assertTagEquals(tag1, "foo", "abc", 1, 4);
@@ -71,9 +71,9 @@ public class BlockTagUtilsTest {
             " */",
         };
         final List<TagInfo> tags = BlockTagUtils.extractBlockTags(text);
-        assertEquals(1, tags.size());
-        assertEquals("version", tags.get(0).getName());
-        assertEquals("1.0", tags.get(0).getValue());
+        assertEquals("Invalid tags size", 1, tags.size());
+        assertEquals("Invalid tag name", "version", tags.get(0).getName());
+        assertEquals("Invalid tag value", "1.0", tags.get(0).getValue());
     }
 
     @Test
@@ -84,16 +84,16 @@ public class BlockTagUtilsTest {
             " * @version 1.0 */"};
 
         final List<TagInfo> tags = BlockTagUtils.extractBlockTags(text);
-        assertEquals(1, tags.size());
-        assertEquals("version", tags.get(0).getName());
-        assertEquals("1.0", tags.get(0).getValue());
+        assertEquals("Invalid tags size", 1, tags.size());
+        assertEquals("Invalid tag name", "version", tags.get(0).getName());
+        assertEquals("Invalid tag value", "1.0", tags.get(0).getValue());
     }
 
     private static void assertTagEquals(TagInfo tag, String name, String value,
             int line, int column) {
-        assertEquals(name, tag.getName());
-        assertEquals(value, tag.getValue());
-        assertEquals(line, tag.getPosition().getLine());
-        assertEquals(column, tag.getPosition().getColumn());
+        assertEquals("Invalid tag name", name, tag.getName());
+        assertEquals("Invalid tag value", value, tag.getValue());
+        assertEquals("Invalid tag line", line, tag.getPosition().getLine());
+        assertEquals("Invalid tag column", column, tag.getPosition().getColumn());
     }
 }

@@ -75,8 +75,8 @@ public class CodeSelectorPresentationTest {
         final CodeSelectorPresentation selector = new CodeSelectorPresentation(tree,
                 linesToPosition);
         selector.findSelectionPositions();
-        Assert.assertEquals(23, selector.getSelectionStart());
-        Assert.assertEquals(212, selector.getSelectionEnd());
+        Assert.assertEquals("Invalid selection start", 23, selector.getSelectionStart());
+        Assert.assertEquals("Invalid selection end", 212, selector.getSelectionEnd());
     }
 
     @Test
@@ -85,8 +85,8 @@ public class CodeSelectorPresentationTest {
         final CodeSelectorPresentation selector = new CodeSelectorPresentation(leaf,
                 linesToPosition);
         selector.findSelectionPositions();
-        Assert.assertEquals(62, selector.getSelectionStart());
-        Assert.assertEquals(63, selector.getSelectionEnd());
+        Assert.assertEquals("Invalid selection start", 62, selector.getSelectionStart());
+        Assert.assertEquals("Invalid selection end", 63, selector.getSelectionEnd());
     }
 
     @Test
@@ -95,8 +95,8 @@ public class CodeSelectorPresentationTest {
         final CodeSelectorPresentation selector = new CodeSelectorPresentation(leaf,
                 linesToPosition);
         selector.findSelectionPositions();
-        Assert.assertEquals(23, selector.getSelectionStart());
-        Assert.assertEquals(23, selector.getSelectionEnd());
+        Assert.assertEquals("Invalid selection start", 23, selector.getSelectionStart());
+        Assert.assertEquals("Invalid selection end", 23, selector.getSelectionEnd());
     }
 
     @Test
@@ -106,8 +106,8 @@ public class CodeSelectorPresentationTest {
         final CodeSelectorPresentation selector = new CodeSelectorPresentation(javadoc,
                 linesToPosition);
         selector.findSelectionPositions();
-        Assert.assertEquals(3, selector.getSelectionStart());
-        Assert.assertEquals(25, selector.getSelectionEnd());
+        Assert.assertEquals("Invalid selection start", 3, selector.getSelectionStart());
+        Assert.assertEquals("Invalid selection end", 25, selector.getSelectionEnd());
     }
 
     @Test
@@ -118,8 +118,8 @@ public class CodeSelectorPresentationTest {
         final CodeSelectorPresentation selector = new CodeSelectorPresentation(javadocLeaf,
                 linesToPosition);
         selector.findSelectionPositions();
-        Assert.assertEquals(5, selector.getSelectionStart());
-        Assert.assertEquals(19, selector.getSelectionEnd());
+        Assert.assertEquals("Invalid selection start", 5, selector.getSelectionStart());
+        Assert.assertEquals("Invalid selection end", 19, selector.getSelectionEnd());
     }
 
 }

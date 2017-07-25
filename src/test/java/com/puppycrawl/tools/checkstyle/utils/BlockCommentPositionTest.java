@@ -60,7 +60,7 @@ public class BlockCommentPositionTest {
                     new File(getPath(metadata.getFileName()))
             );
             final int matches = getJavadocsCount(ast, metadata.getAssertion());
-            assertEquals(metadata.getMatchesNum(), matches);
+            assertEquals("Invalid javadoc count", metadata.getMatchesNum(), matches);
         }
     }
 

@@ -51,7 +51,7 @@ public class AllBlockCommentsTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(BlockCommentListenerCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputFullOfBlockComments.java"), expected);
-        Assert.assertTrue(ALL_COMMENTS.isEmpty());
+        Assert.assertTrue("All comments should be empty", ALL_COMMENTS.isEmpty());
     }
 
     @Test

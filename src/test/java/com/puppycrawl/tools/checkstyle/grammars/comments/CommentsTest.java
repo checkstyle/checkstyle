@@ -44,7 +44,7 @@ public class CommentsTest extends AbstractTreeTestSupport {
     @Test
     public void testToString() {
         final Comment comment = new Comment(new String[] {"value"}, 1, 2, 3);
-        Assert.assertEquals(
+        Assert.assertEquals("Invalid toString result",
                 "Comment[text=[value], startLineNo=2, endLineNo=2, startColNo=1, endColNo=3]",
                 comment.toString());
     }
@@ -60,10 +60,10 @@ public class CommentsTest extends AbstractTreeTestSupport {
             "     */"};
         final Comment comment = new Comment(commentText, 5, 49, 66);
 
-        Assert.assertEquals(43, comment.getStartLineNo());
-        Assert.assertEquals(5, comment.getStartColNo());
-        Assert.assertEquals(49, comment.getEndLineNo());
-        Assert.assertEquals(66, comment.getEndColNo());
+        Assert.assertEquals("Invalid comment start line number", 43, comment.getStartLineNo());
+        Assert.assertEquals("Invalid comment start column number", 5, comment.getStartColNo());
+        Assert.assertEquals("Invalid comment end line number", 49, comment.getEndLineNo());
+        Assert.assertEquals("Invalid comment end column number", 66, comment.getEndColNo());
     }
 
     @Test
@@ -72,10 +72,10 @@ public class CommentsTest extends AbstractTreeTestSupport {
             "// to simplify conditional logic"};
         final Comment comment = new Comment(commentText, 9, 89, 53);
 
-        Assert.assertTrue(comment.intersects(89, 9, 89, 41));
-        Assert.assertTrue(comment.intersects(89, 53, 90, 50));
-        Assert.assertTrue(comment.intersects(87, 7, 88, 9));
-        Assert.assertFalse(comment.intersects(90, 7, 91, 20));
-        Assert.assertFalse(comment.intersects(89, 56, 89, 80));
+        Assert.assertTrue("Invalid intersection result", comment.intersects(89, 9, 89, 41));
+        Assert.assertTrue("Invalid intersection result", comment.intersects(89, 53, 90, 50));
+        Assert.assertTrue("Invalid intersection result", comment.intersects(87, 7, 88, 9));
+        Assert.assertFalse("Invalid intersection result", comment.intersects(90, 7, 91, 20));
+        Assert.assertFalse("Invalid intersection result", comment.intersects(89, 56, 89, 80));
     }
 }
