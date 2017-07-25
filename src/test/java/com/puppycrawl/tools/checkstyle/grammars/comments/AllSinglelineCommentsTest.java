@@ -51,7 +51,7 @@ public class AllSinglelineCommentsTest extends BaseCheckTestSupport {
             createCheckConfig(SinglelineCommentListenerCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputFullOfSinglelineComments.java"), expected);
-        Assert.assertTrue(ALL_COMMENTS.isEmpty());
+        Assert.assertTrue("All comments should be empty", ALL_COMMENTS.isEmpty());
     }
 
     @Test

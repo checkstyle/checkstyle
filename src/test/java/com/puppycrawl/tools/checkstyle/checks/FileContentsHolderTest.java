@@ -28,7 +28,7 @@ public class FileContentsHolderTest {
     @Test
     @SuppressWarnings("deprecation")
     public void testGetContents() {
-        assertSame(FileContentsHolder.getCurrentFileContents(),
+        assertSame("Invalid file content", FileContentsHolder.getCurrentFileContents(),
                 FileContentsHolder.getContents());
     }
 }

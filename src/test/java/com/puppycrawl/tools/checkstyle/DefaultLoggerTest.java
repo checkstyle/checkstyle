@@ -45,8 +45,10 @@ public class DefaultLoggerTest {
                 new String[] {"myfile"}, null,
                 getClass(), null);
 
-        assertTrue(output.contains(addExceptionMessage.getMessage()));
-        assertTrue(output.contains("java.lang.IllegalStateException: upsss"));
+        assertTrue("Output should contain: " + addExceptionMessage.getMessage(),
+                output.contains(addExceptionMessage.getMessage()));
+        assertTrue("Output should contain: java.lang.IllegalStateException: upsss",
+                output.contains("java.lang.IllegalStateException: upsss"));
     }
 
     @Test

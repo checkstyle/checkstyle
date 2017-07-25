@@ -47,8 +47,10 @@ public class AutomaticBeanTest {
             testBean.configure(conf);
         }
         catch (CheckstyleException ex) {
-            assertNull(ex.getCause());
-            assertTrue(ex.getMessage().startsWith("Property '" + "NonExisting" + "' in module "));
+            final String expected = "Property 'NonExisting' in module ";
+            assertNull("Exceptions cause should be null", ex.getCause());
+            assertTrue("Invalid exception message, should start with: " + expected,
+                    ex.getMessage().startsWith(expected));
         }
     }
 
@@ -61,8 +63,10 @@ public class AutomaticBeanTest {
             testBean.configure(conf);
         }
         catch (CheckstyleException ex) {
-            assertNull(ex.getCause());
-            assertTrue(ex.getMessage().startsWith("Property '" + "privateField" + "' in module "));
+            final String expected = "Property 'privateField' in module ";
+            assertNull("Exceptions cause should be null", ex.getCause());
+            assertTrue("Invalid exception message, should start with: " + expected,
+                    ex.getMessage().startsWith(expected));
         }
     }
 
@@ -103,8 +107,11 @@ public class AutomaticBeanTest {
             fail("InvocationTargetException is expected");
         }
         catch (CheckstyleException ex) {
-            assertTrue(ex.getCause() instanceof InvocationTargetException);
-            assertTrue(ex.getMessage().startsWith("Cannot set property "));
+            final String expected = "Cannot set property ";
+            assertTrue("Invalid exception cause, should be: InvocationTargetException",
+                    ex.getCause() instanceof InvocationTargetException);
+            assertTrue("Invalid exception message, should start with: " + expected,
+                    ex.getMessage().startsWith(expected));
         }
     }
 
@@ -118,8 +125,11 @@ public class AutomaticBeanTest {
             fail("InvocationTargetException is expected");
         }
         catch (CheckstyleException ex) {
-            assertTrue(ex.getCause() instanceof ConversionException);
-            assertTrue(ex.getMessage().startsWith("illegal value "));
+            final String expected = "illegal value ";
+            assertTrue("Invalid exception cause, should be: ConversionException",
+                    ex.getCause() instanceof ConversionException);
+            assertTrue("Invalid exception message, should start with: " + expected,
+                    ex.getMessage().startsWith(expected));
         }
     }
 
@@ -133,7 +143,8 @@ public class AutomaticBeanTest {
             fail("exception expected");
         }
         catch (IllegalStateException ex) {
-            assertEquals("null,wrongVal,0,someValue", ex.getMessage());
+            assertEquals("Invalid exception message",
+                    "null,wrongVal,0,someValue", ex.getMessage());
         }
     }
 

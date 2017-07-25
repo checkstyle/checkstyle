@@ -33,7 +33,7 @@ public class AccessResultTest {
     @Test
     public void testAccessResultValueOf() {
         final AccessResult result = AccessResult.valueOf("ALLOWED");
-        assertEquals(AccessResult.ALLOWED, result);
+        assertEquals("Invalid access result", AccessResult.ALLOWED, result);
     }
 
     /* Additional test for jacoco, since values()
@@ -48,6 +48,6 @@ public class AccessResultTest {
             AccessResult.DISALLOWED,
             AccessResult.UNKNOWN,
         };
-        assertArrayEquals(expected, actual);
+        assertArrayEquals("Invalid aaccess result values", expected, actual);
     }
 }

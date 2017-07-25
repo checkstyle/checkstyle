@@ -106,7 +106,8 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
         final Class<?> clss = GeneratedJavaLexer.class;
         final Constructor<?> constructor = clss.getDeclaredConstructor(InputStream.class);
 
-        assertNotNull(constructor.newInstance((InputStream) null));
+        assertNotNull("InputStream should not be null",
+                constructor.newInstance((InputStream) null));
     }
 
     @Test
@@ -115,7 +116,8 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
         final Constructor<?> constructor = clss
                 .getDeclaredConstructor(ParserSharedInputState.class);
 
-        assertNotNull(constructor.newInstance((ParserSharedInputState) null));
+        assertNotNull("ParserSharedInputState should not be null",
+                constructor.newInstance((ParserSharedInputState) null));
     }
 
     @Test
@@ -123,7 +125,8 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
         final Class<?> clss = GeneratedJavaRecognizer.class;
         final Constructor<?> constructor = clss.getDeclaredConstructor(TokenBuffer.class);
 
-        assertNotNull(constructor.newInstance((TokenBuffer) null));
+        assertNotNull("TokenBuffer should not be null",
+                constructor.newInstance((TokenBuffer) null));
     }
 
     @Test

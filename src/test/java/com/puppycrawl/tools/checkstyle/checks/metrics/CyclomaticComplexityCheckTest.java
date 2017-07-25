@@ -108,7 +108,7 @@ public class CyclomaticComplexityCheckTest
             TokenTypes.LAND,
             TokenTypes.LOR,
         };
-        Assert.assertArrayEquals(expected, actual);
+        Assert.assertArrayEquals("Invalid acceptable tokens", expected, actual);
     }
 
     @Test

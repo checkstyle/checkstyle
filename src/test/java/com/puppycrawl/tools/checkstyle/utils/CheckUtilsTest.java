@@ -50,7 +50,7 @@ public class CheckUtilsTest {
     @Test
     public void testParseDoubleWithIncorrectToken() {
         final double parsedDouble = CheckUtils.parseDouble("1_02", TokenTypes.ASSIGN);
-        assertEquals(0.0, parsedDouble, 0.0);
+        assertEquals("Invalid parse result", 0.0, parsedDouble, 0.0);
     }
 
     @Test
@@ -58,7 +58,8 @@ public class CheckUtilsTest {
         final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.ASSIGN);
         ast.setText("ASSIGN");
-        assertFalse(CheckUtils.isElseIf(ast));
+        assertFalse("Invalid elseIf check result 'ASSIGN' is not 'else if'",
+                CheckUtils.isElseIf(ast));
 
         final DetailAST parentAst = new DetailAST();
         parentAst.setType(TokenTypes.LCURLY);
@@ -69,7 +70,8 @@ public class CheckUtilsTest {
         ifAst.setText("IF");
         parentAst.addChild(ifAst);
 
-        assertFalse(CheckUtils.isElseIf(ifAst));
+        assertFalse("Invalid elseIf check result: 'IF' is not 'else if'",
+                CheckUtils.isElseIf(ifAst));
 
         final DetailAST parentAst2 = new DetailAST();
         parentAst2.setType(TokenTypes.SLIST);
@@ -77,13 +79,14 @@ public class CheckUtilsTest {
 
         parentAst2.addChild(ifAst);
 
-        assertFalse(CheckUtils.isElseIf(ifAst));
+        assertFalse("Invalid elseIf check result: 'SLIST' is not 'else if'",
+                CheckUtils.isElseIf(ifAst));
 
         final DetailAST elseAst = new DetailAST();
         elseAst.setType(TokenTypes.LITERAL_ELSE);
 
         elseAst.setFirstChild(ifAst);
-        assertTrue(CheckUtils.isElseIf(ifAst));
+        assertTrue("Invalid elseIf check result", CheckUtils.isElseIf(ifAst));
     }
 
     @Test
@@ -99,7 +102,8 @@ public class CheckUtilsTest {
         metDef.setType(TokenTypes.METHOD_DEF);
         metDef.addChild(modifiers);
 
-        assertFalse(CheckUtils.isEqualsMethod(metDef));
+        assertFalse("Invalid result: ast is not equals method",
+                CheckUtils.isEqualsMethod(metDef));
 
         metDef.removeChildren();
 
@@ -123,7 +127,8 @@ public class CheckUtilsTest {
         parameters.addChild(parameter1);
         metDef.addChild(parameters);
 
-        assertFalse(CheckUtils.isEqualsMethod(metDef));
+        assertFalse("Invalid result: ast is not equals method",
+                CheckUtils.isEqualsMethod(metDef));
     }
 
     @Test
@@ -138,7 +143,7 @@ public class CheckUtilsTest {
         catch (IllegalArgumentException exc) {
             final String expectedExceptionMsg = "expected non-null AST-token with type 'MODIFIERS'";
             final String actualExceptionMsg = exc.getMessage();
-            assertEquals(expectedExceptionMsg, actualExceptionMsg);
+            assertEquals("Invalid exception message", expectedExceptionMsg, actualExceptionMsg);
         }
     }
 
@@ -151,7 +156,7 @@ public class CheckUtilsTest {
         catch (IllegalArgumentException exc) {
             final String expectedExceptionMsg = "expected non-null AST-token with type 'MODIFIERS'";
             final String actualExceptionMsg = exc.getMessage();
-            assertEquals(expectedExceptionMsg, actualExceptionMsg);
+            assertEquals("Invalid exception message", expectedExceptionMsg, actualExceptionMsg);
         }
     }
 
@@ -159,7 +164,8 @@ public class CheckUtilsTest {
     public void testCreateFullType() throws Exception {
         final DetailAST typeNode = getNodeFromFile(TokenTypes.TYPE);
 
-        assertEquals("Map[13x12]", CheckUtils.createFullType(typeNode).toString());
+        assertEquals("Invalid full type", "Map[13x12]",
+                CheckUtils.createFullType(typeNode).toString());
     }
 
     @Test
@@ -167,7 +173,8 @@ public class CheckUtilsTest {
         final DetailAST arrayTypeNode = getNodeFromFile(TokenTypes.VARIABLE_DEF)
                 .getNextSibling().getFirstChild().getNextSibling();
 
-        assertEquals("int[14x14]", CheckUtils.createFullType(arrayTypeNode).toString());
+        assertEquals("Invalid full type", "int[14x14]",
+                CheckUtils.createFullType(arrayTypeNode).toString());
     }
 
     @Test
@@ -175,7 +182,8 @@ public class CheckUtilsTest {
         final DetailAST parameterisedClassNode = getNodeFromFile(TokenTypes.CLASS_DEF);
         final List<String> expected = Arrays.asList("V", "C");
 
-        assertEquals(expected, CheckUtils.getTypeParameterNames(parameterisedClassNode));
+        assertEquals("Invalid type parameters",
+                expected, CheckUtils.getTypeParameterNames(parameterisedClassNode));
     }
 
     @Test
@@ -186,7 +194,8 @@ public class CheckUtilsTest {
         final List<DetailAST> expected = Arrays.asList(firstTypeParameter,
                 firstTypeParameter.getNextSibling().getNextSibling());
 
-        assertEquals(expected, CheckUtils.getTypeParameters(parameterisedClassNode));
+        assertEquals("Invalid type parameters", expected,
+                CheckUtils.getTypeParameters(parameterisedClassNode));
     }
 
     @Test
@@ -194,8 +203,10 @@ public class CheckUtilsTest {
         final DetailAST equalsMethodNode = getNodeFromFile(TokenTypes.METHOD_DEF);
         final DetailAST someOtherMethod = equalsMethodNode.getNextSibling();
 
-        assertTrue(CheckUtils.isEqualsMethod(equalsMethodNode));
-        assertFalse(CheckUtils.isEqualsMethod(someOtherMethod));
+        assertTrue("Invalid result: AST provided is not equals method",
+                CheckUtils.isEqualsMethod(equalsMethodNode));
+        assertFalse("Invalid result: AST provided is equals method",
+                CheckUtils.isEqualsMethod(someOtherMethod));
     }
 
     @Test
@@ -208,9 +219,12 @@ public class CheckUtilsTest {
         final DetailAST ifWithoutElse =
                 firstElseNode.getParent().getNextSibling().getNextSibling();
 
-        assertTrue(CheckUtils.isElseIf(ifElseWithCurlyBraces));
-        assertTrue(CheckUtils.isElseIf(ifElse));
-        assertFalse(CheckUtils.isElseIf(ifWithoutElse));
+        assertTrue("Invalid result: AST provided is not else if with curly",
+                CheckUtils.isElseIf(ifElseWithCurlyBraces));
+        assertTrue("Invalid result: AST provided is not else if with curly",
+                CheckUtils.isElseIf(ifElse));
+        assertFalse("Invalid result: AST provided is else if with curly",
+                CheckUtils.isElseIf(ifWithoutElse));
     }
 
     @Test
@@ -218,8 +232,10 @@ public class CheckUtilsTest {
         final DetailAST nonVoidMethod = getNodeFromFile(TokenTypes.METHOD_DEF);
         final DetailAST voidMethod = nonVoidMethod.getNextSibling();
 
-        assertTrue(CheckUtils.isNonVoidMethod(nonVoidMethod));
-        assertFalse(CheckUtils.isNonVoidMethod(voidMethod));
+        assertTrue("Invalid result: AST provided is void method",
+                CheckUtils.isNonVoidMethod(nonVoidMethod));
+        assertFalse("Invalid result: AST provided is non void method",
+                CheckUtils.isNonVoidMethod(voidMethod));
     }
 
     @Test
@@ -227,8 +243,10 @@ public class CheckUtilsTest {
         final DetailAST notGetterMethod = getNodeFromFile(TokenTypes.METHOD_DEF);
         final DetailAST getterMethod = notGetterMethod.getNextSibling().getNextSibling();
 
-        assertTrue(CheckUtils.isGetterMethod(getterMethod));
-        assertFalse(CheckUtils.isGetterMethod(notGetterMethod));
+        assertTrue("Invalid result: AST provided is getter method",
+                CheckUtils.isGetterMethod(getterMethod));
+        assertFalse("Invalid result: AST provided is not getter method",
+                CheckUtils.isGetterMethod(notGetterMethod));
     }
 
     @Test
@@ -238,8 +256,10 @@ public class CheckUtilsTest {
                 firstClassMethod.getNextSibling().getNextSibling().getNextSibling();
         final DetailAST notSetterMethod = setterMethod.getNextSibling();
 
-        assertTrue(CheckUtils.isSetterMethod(setterMethod));
-        assertFalse(CheckUtils.isSetterMethod(notSetterMethod));
+        assertTrue("Invalid result: AST provided is setter method",
+                CheckUtils.isSetterMethod(setterMethod));
+        assertFalse("Invalid result: AST provided is not setter method",
+                CheckUtils.isSetterMethod(notSetterMethod));
     }
 
     @Test
@@ -249,13 +269,13 @@ public class CheckUtilsTest {
         final DetailAST publicVariable = protectedVariable.getNextSibling();
         final DetailAST packageVariable = publicVariable.getNextSibling();
 
-        assertEquals(AccessModifier.PRIVATE,
+        assertEquals("Invalid access modofier", AccessModifier.PRIVATE,
                 CheckUtils.getAccessModifierFromModifiersToken(privateVariable.getFirstChild()));
-        assertEquals(AccessModifier.PROTECTED,
+        assertEquals("Invalid access modofier", AccessModifier.PROTECTED,
                 CheckUtils.getAccessModifierFromModifiersToken(protectedVariable.getFirstChild()));
-        assertEquals(AccessModifier.PUBLIC,
+        assertEquals("Invalid access modofier", AccessModifier.PUBLIC,
                 CheckUtils.getAccessModifierFromModifiersToken(publicVariable.getFirstChild()));
-        assertEquals(AccessModifier.PACKAGE,
+        assertEquals("Invalid access modofier", AccessModifier.PACKAGE,
                 CheckUtils.getAccessModifierFromModifiersToken(packageVariable.getFirstChild()));
     }
 
@@ -263,7 +283,8 @@ public class CheckUtilsTest {
     public void testGetFirstNode() throws Exception {
         final DetailAST classDef = getNodeFromFile(TokenTypes.CLASS_DEF);
 
-        assertEquals(classDef.getFirstChild().getFirstChild(), CheckUtils.getFirstNode(classDef));
+        assertEquals("Invalid first node", classDef.getFirstChild().getFirstChild(),
+                CheckUtils.getFirstNode(classDef));
     }
 
     @Test
@@ -290,20 +311,28 @@ public class CheckUtilsTest {
         final DetailAST simpleParameter =
                 receiverParameter.getNextSibling().getNextSibling();
 
-        assertTrue(CheckUtils.isReceiverParameter(receiverParameter));
-        assertFalse(CheckUtils.isReceiverParameter(simpleParameter));
+        assertTrue("Invalid result: parameter provided is receiver parameter",
+                CheckUtils.isReceiverParameter(receiverParameter));
+        assertFalse("Invalid result: parameter provided is not receiver parameter",
+                CheckUtils.isReceiverParameter(simpleParameter));
     }
 
     @Test
     public void testParseDouble() throws Exception {
-        assertEquals(1.0, CheckUtils.parseDouble("1", TokenTypes.NUM_INT), 0);
-        assertEquals(-0.05, CheckUtils.parseDouble("-0.05f", TokenTypes.NUM_FLOAT), 0);
-        assertEquals(8.0, CheckUtils.parseDouble("8L", TokenTypes.NUM_LONG), 0);
-        assertEquals(0.0, CheckUtils.parseDouble("0.0", TokenTypes.NUM_DOUBLE), 0);
-        assertEquals(2915.0, CheckUtils.parseDouble("0x0B63", TokenTypes.NUM_INT), 0);
-        assertEquals(2.147_483_647E10,
+        assertEquals("Invalid parse result", 1.0,
+                CheckUtils.parseDouble("1", TokenTypes.NUM_INT), 0);
+        assertEquals("Invalid parse result", -0.05,
+                CheckUtils.parseDouble("-0.05f", TokenTypes.NUM_FLOAT), 0);
+        assertEquals("Invalid parse result", 8.0,
+                CheckUtils.parseDouble("8L", TokenTypes.NUM_LONG), 0);
+        assertEquals("Invalid parse result", 0.0,
+                CheckUtils.parseDouble("0.0", TokenTypes.NUM_DOUBLE), 0);
+        assertEquals("Invalid parse result", 2915.0,
+                CheckUtils.parseDouble("0x0B63", TokenTypes.NUM_INT), 0);
+        assertEquals("Invalid parse result", 2.147_483_647E10,
                 CheckUtils.parseDouble("21474836470", TokenTypes.NUM_LONG), 0);
-        assertEquals(59.0, CheckUtils.parseDouble("073L", TokenTypes.NUM_LONG), 0);
+        assertEquals("Invalid parse result", 59.0,
+                CheckUtils.parseDouble("073L", TokenTypes.NUM_LONG), 0);
     }
 
     @Test

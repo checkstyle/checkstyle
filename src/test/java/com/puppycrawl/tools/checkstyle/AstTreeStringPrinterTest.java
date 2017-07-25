@@ -53,8 +53,10 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
             Assert.fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            Assert.assertSame(NoViableAltException.class, ex.getCause().getClass());
-            Assert.assertEquals("unexpected token: classD", ex.getCause().getMessage());
+            Assert.assertSame("Invalid class",
+                    NoViableAltException.class, ex.getCause().getClass());
+            Assert.assertEquals("Invalid exception message",
+                    "unexpected token: classD", ex.getCause().getMessage());
         }
     }
 
@@ -73,7 +75,7 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
         final String expected = new String(Files.readAllBytes(Paths.get(
                 getPath("expectedInputAstTreeStringPrinter.txt"))), StandardCharsets.UTF_8);
 
-        Assert.assertEquals(expected, actual);
+        Assert.assertEquals("Print AST output is invalid", expected, actual);
     }
 
     @Test

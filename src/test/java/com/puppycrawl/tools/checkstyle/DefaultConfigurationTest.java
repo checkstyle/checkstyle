@@ -32,11 +32,11 @@ public class DefaultConfigurationTest {
     public void testRemoveChild() {
         final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
         final DefaultConfiguration configChild = new DefaultConfiguration("childConfig");
-        assertEquals(0, config.getChildren().length);
+        assertEquals("Invalid cildren count", 0, config.getChildren().length);
         config.addChild(configChild);
-        assertEquals(1, config.getChildren().length);
+        assertEquals("Invalid cildren count", 1, config.getChildren().length);
         config.removeChild(configChild);
-        assertEquals(0, config.getChildren().length);
+        assertEquals("Invalid cildren count", 0, config.getChildren().length);
     }
 
     @Test
@@ -49,7 +49,8 @@ public class DefaultConfigurationTest {
             fail("Exception is expected");
         }
         catch (CheckstyleException expected) {
-            assertEquals("missing key '" + attributeName + "' in " + name,
+            assertEquals("Invalid exception message",
+                    "missing key '" + attributeName + "' in " + name,
                     expected.getMessage());
         }
     }
@@ -60,7 +61,7 @@ public class DefaultConfigurationTest {
         final DefaultConfiguration config = new DefaultConfiguration(name);
         final ThreadModeSettings singleThreadMode =
                 ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
-        assertEquals(singleThreadMode, config.getThreadModeSettings());
+        assertEquals("Invalid thread mode", singleThreadMode, config.getThreadModeSettings());
     }
 
     @Test
@@ -69,6 +70,6 @@ public class DefaultConfigurationTest {
         final ThreadModeSettings multiThreadMode =
                 new ThreadModeSettings(4, 2);
         final DefaultConfiguration config = new DefaultConfiguration(name, multiThreadMode);
-        assertEquals(multiThreadMode, config.getThreadModeSettings());
+        assertEquals("Invalid thread mode", multiThreadMode, config.getThreadModeSettings());
     }
 }

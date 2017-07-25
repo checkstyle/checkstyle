@@ -40,7 +40,7 @@ public class BeforeExecutionFileFilterSetTest {
         final BeforeExecutionFileFilterSet set = new BeforeExecutionFileFilterSet();
         set.addBeforeExecutionFileFilter(filter);
 
-        assertTrue(set.accept("ATest.java"));
+        assertTrue("Invalid accept state, should accept", set.accept("ATest.java"));
     }
 
     @Test
@@ -51,7 +51,7 @@ public class BeforeExecutionFileFilterSetTest {
         final BeforeExecutionFileFilterSet set = new BeforeExecutionFileFilterSet();
         set.addBeforeExecutionFileFilter(filter);
 
-        assertFalse(set.accept("ATest.java"));
+        assertFalse("Invalid accept state, should not accept", set.accept("ATest.java"));
     }
 
     @Test
@@ -73,10 +73,12 @@ public class BeforeExecutionFileFilterSetTest {
         final BeforeExecutionFileFilterSet filterSet = new BeforeExecutionFileFilterSet();
         filterSet.addBeforeExecutionFileFilter(new BeforeExecutionExclusionFileFilter());
 
-        assertEquals(1, filterSet.getBeforeExecutionFileFilters().size());
+        assertEquals("Invalid filter set size",
+                1, filterSet.getBeforeExecutionFileFilters().size());
 
         filterSet.clear();
 
-        assertEquals(0, filterSet.getBeforeExecutionFileFilters().size());
+        assertEquals("Invalid filter set size",
+                0, filterSet.getBeforeExecutionFileFilters().size());
     }
 }
