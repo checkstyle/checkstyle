@@ -54,12 +54,6 @@ public class AllSinglelineCommentsTest extends BaseCheckTestSupport {
         Assert.assertTrue("All comments should be empty", ALL_COMMENTS.isEmpty());
     }
 
-    @Test
-    public void testAstTree() throws Exception {
-        verifyAst(getPath("InputFullOfSinglelineCommentsAst.txt"),
-                getPath("InputFullOfSinglelineComments.java"), true);
-    }
-
     private static class SinglelineCommentListenerCheck extends AbstractCheck {
         @Override
         public boolean isCommentNodesRequired() {

@@ -109,4 +109,16 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
         verifyJavaAndJavadocAst(getPath("expectedJavadocPosition.txt"),
                 getPath("InputJavadocPosition.java"));
     }
+
+    @Test
+    public void testAstTreeBlockComments() throws Exception {
+        verifyAst(getPath("InputFullOfBlockCommentsAst.txt"),
+                getPath("InputFullOfBlockComments.java"), true);
+    }
+
+    @Test
+    public void testAstTreeSingleLineComments() throws Exception {
+        verifyAst(getPath("InputFullOfSinglelineCommentsAst.txt"),
+                getPath("InputFullOfSinglelineComments.java"), true);
+    }
 }
