@@ -16,6 +16,192 @@
   <body>
     <!-- placeholder for a new section -->
 
+    <section name="Release 8.1">
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Make SuppressionCommentFilter and SuppressWithNearbyCommentFilter children of TreeWalker. Author: Timur <a href="https://github.com/checkstyle/checkstyle/issues/4714">#4714</a>
+          </li>
+          <li>
+            remove AbstractComplexityCheck, AbstractIllegalCheck, AbstractIllegalMethodCheck, AbstractNestedDepthCheck. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4749">#4749</a>
+          </li>
+          <li>
+            ImportControl: Remove deprecated 'url' property. Author: Dmytro Kytsmen <a href="https://github.com/checkstyle/checkstyle/issues/3578">#3578</a>
+          </li>
+          <li>
+            remove deprecated AbstractDeclarationCollector, AbstractFormatCheck, AbstractOptionCheck . Author: Dmytro Kytsmen <a href="https://github.com/checkstyle/checkstyle/issues/4677">#4677</a>
+          </li>
+          <li>
+            FileText should not extends AbstractList. Author: Timur <a href="https://github.com/checkstyle/checkstyle/issues/3034">#3034</a>
+          </li>
+          <li>
+            Move DetailAST log away from AbstractViolationReporter. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3574">#3574</a>
+          </li>
+          <li>
+            api: LocalizedMessages class should be removed. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/3545">#3545</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            SummaryJavadoc: no violation on absent summary and on javadoc where '.' is used not as end of sentense. Author: Sagar <a href="https://github.com/checkstyle/checkstyle/issues/3907">#3907</a>
+          </li>
+          <li>
+            MethodCountCheck with wrong tokens crashes Checkstyle. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/4556">#4556</a>
+          </li>
+          <li>
+            UnusedImportsCheck does not detect parameter types in javadoc block tags. Author: Brent Plump <a href="https://github.com/checkstyle/checkstyle/issues/4606">#4606</a>
+          </li>
+          <li>
+            UnusedImports processJavadoc fails with javadoc tags that span lines. Author: Nathan Naze <a href="https://github.com/checkstyle/checkstyle/issues/2840">#2840</a>
+          </li>
+          <li>
+            some messages are still hardcoded in english. Author: Subbu Dantu <a href="https://github.com/checkstyle/checkstyle/issues/3110">#3110</a>
+          </li>
+          <li>
+            EmptyBlock: NPE on annotation declaration. Author: Andrew Kuchev <a href="https://github.com/checkstyle/checkstyle/issues/4472">#4472</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            idea: tenth part of idea violations. Author: vasilyeva, vasylieva <a href="https://github.com/checkstyle/checkstyle/issues/4725">#4725</a>
+          </li>
+          <li>
+            idea: sixth part of idea violations. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4724">#4724</a>
+          </li>
+          <li>
+            idea: seventh part of idea violations. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4722">#4722</a>
+          </li>
+          <li>
+            idea: fifth part of idea violations. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4726">#4726</a>
+          </li>
+          <li>
+            idea: eleventh part of idea violations. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4801">#4801</a>
+          </li>
+          <li>
+            Split BaseCheckTestSupport into AbstractPathTestSupport, AbstractModuleTestSupport, and AbstractTreeTestSupport. Author: Subbu Dantu <a href="https://github.com/checkstyle/checkstyle/issues/4592">#4592</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-check-header profile to 100%. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4401">#4401</a>
+          </li>
+          <li>
+            activate IntellijIdea inspection InterfaceMayBeAnnotatedFunctional. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/3435">#3435</a>
+          </li>
+          <li>
+            idea: ninth part of idea violations. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4707">#4707</a>
+          </li>
+          <li>
+            spelling: Fix German translation. Author: FriedrichFroebel
+          </li>
+          <li>
+            Increase coverage of JavadocParser and JavadocLexer. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/4769">#4769</a>
+          </li>
+          <li>
+            idea: third part of violations. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4713">#4713</a>
+          </li>
+          <li>
+            idea: fourth part of idea violations. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4723">#4723</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for checks in 'regexp' package . Author: Dmytro Kytsmen <a href="https://github.com/checkstyle/checkstyle/issues/4585">#4585</a>
+          </li>
+          <li>
+            spelling: fix typo in docs. Author: Vladislav Lisetskii
+          </li>
+          <li>
+            add vavr library to our regression testing. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/4363">#4363</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checkstyle-filters profile to 100%. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4396">#4396</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checkstyle-api profile to 100%. Author: vasilyeva, vasylieva <a href="https://github.com/checkstyle/checkstyle/issues/4394">#4394</a>
+          </li>
+          <li>
+            idea: second part of violations. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4708">#4708</a>
+          </li>
+          <li>
+            Enable IntellijIdea inspection: 'throw' inside 'finally' block. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/3301">#3301</a>
+          </li>
+          <li>
+            idea: eights part of idea violations. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4711">#4711</a>
+          </li>
+          <li>
+            MT mode: Intelllij inspection violations. Author: Andrew Kuchev <a href="https://github.com/checkstyle/checkstyle/issues/4700">#4700</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs for MainTests to 'main' folder. Author: Dmytro Kytsmen <a href="https://github.com/checkstyle/checkstyle/issues/4588">#4588</a>
+          </li>
+          <li>
+            UniquePropertiesCheck.getLineNumber should be private. Author: BBG <a href="https://github.com/checkstyle/checkstyle/issues/4694">#4694</a>
+          </li>
+          <li>
+            suppress NewlineAtEndOfFile on all internal javadoc files. Author: Dmytro Kytsmen <a href="https://github.com/checkstyle/checkstyle/issues/4702">#4702</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for checks in 'ant' package. Author: Subbu Dantu <a href="https://github.com/checkstyle/checkstyle/issues/4686">#4686</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for checks in header package. Author: BBG, Dmytro Kytsmen <a href="https://github.com/checkstyle/checkstyle/issues/4365">#4365</a>
+          </li>
+          <li>
+            review all suppressed IntellijIdea inspections with comment 'till ...'. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/4681">#4681</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for checks in 'javadoc' package . Author: BBG <a href="https://github.com/checkstyle/checkstyle/issues/4586">#4586</a>
+          </li>
+          <li>
+            LeftCurlyCheck: clarify behavior of 'nlow' option after removal of 'maxLineLength'. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3855">#3855</a>
+          </li>
+          <li>
+            Avoid usage of getLines method from FileText. Author: Timur <a href="https://github.com/checkstyle/checkstyle/issues/4641">#4641</a>
+          </li>
+          <li>
+            reevaluate tokens in google config for SeparatorWrapCheck. Author: kazachka <a href="https://github.com/checkstyle/checkstyle/issues/3752">#3752</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checks-misc profile to 100%. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/4675">#4675</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for checks in 'checks' package . Author: Dmytro Kytsmen <a href="https://github.com/checkstyle/checkstyle/issues/4587">#4587</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checkstyle-tree-walker profile to 100%. Author: rnveach, vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4398">#4398</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checkstyle-main profile to 100%. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4399">#4399</a>
+          </li>
+          <li>
+            ConfigurationLoaderTest::testIncorrectTag is flaky. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/4664">#4664</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checkstyle-utils profile to 100%. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4395">#4395</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checkstyle-common profile to 100%. Author: vasilyeva, vasylieva <a href="https://github.com/checkstyle/checkstyle/issues/4400">#4400</a>
+          </li>
+          <li>
+            refactoring: CodeSelectorPModel do double copy of collectio in c-tor. Author: Dmytro Kytsmen <a href="https://github.com/checkstyle/checkstyle/issues/3555">#3555</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for checks in 'metrics' package . Author: Subbu Dantu <a href="https://github.com/checkstyle/checkstyle/issues/4575">#4575</a>
+          </li>
+          <li>
+            Restore wercker CIs that have custom Checks. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/4582">#4582</a>
+          </li>
+          <li>
+            Fix PMD violations for test code in Checkstyle. Author: vasylieva <a href="https://github.com/checkstyle/checkstyle/issues/877">#877</a>
+          </li>
+          <li>
+            Build fails on cobertura:check goal. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/4450">#4450</a>
+          </li>
+          <li>
+            Add multi thread mode to checkstyle launcher. Author: Andrew Kuchev <a href="https://github.com/checkstyle/checkstyle/issues/4370">#4370</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 8.0">
       <p>Breaking backward compatibility:</p>
         <ul>
