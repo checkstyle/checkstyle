@@ -115,10 +115,6 @@
             javadoc.parse.rule.error</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unrecognized.antlr.error%22">
-            javadoc.unrecognized.antlr.error</a>
-          </li>
-          <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wrong.singleton.html.tag%22">
             javadoc.wrong.singleton.html.tag</a>
           </li>
@@ -717,10 +713,6 @@ public boolean isSomething()
             javadoc.parse.rule.error</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unrecognized.antlr.error%22">
-            javadoc.unrecognized.antlr.error</a>
-          </li>
-          <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wrong.singleton.html.tag%22">
             javadoc.wrong.singleton.html.tag</a>
           </li>
@@ -1053,10 +1045,6 @@ public boolean isSomething()
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
             javadoc.parse.rule.error</a>
-          </li>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unrecognized.antlr.error%22">
-            javadoc.unrecognized.antlr.error</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wrong.singleton.html.tag%22">
@@ -1498,10 +1486,6 @@ public boolean isSomething()
             javadoc.parse.rule.error</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unrecognized.antlr.error%22">
-            javadoc.unrecognized.antlr.error</a>
-          </li>
-          <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wrong.singleton.html.tag%22">
             javadoc.wrong.singleton.html.tag</a>
           </li>
@@ -1609,10 +1593,6 @@ public boolean isSomething()
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
             javadoc.parse.rule.error</a>
-          </li>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unrecognized.antlr.error%22">
-            javadoc.unrecognized.antlr.error</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wrong.singleton.html.tag%22">
@@ -1769,10 +1749,6 @@ public class TestClass {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
             javadoc.parse.rule.error</a>
-          </li>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unrecognized.antlr.error%22">
-            javadoc.unrecognized.antlr.error</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wrong.singleton.html.tag%22">
