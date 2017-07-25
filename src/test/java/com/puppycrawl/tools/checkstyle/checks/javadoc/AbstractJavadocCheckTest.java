@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.MSG_JAVADOC_MISSED_HTML_CLOSE;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.MSG_JAVADOC_PARSE_RULE_ERROR;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.MSG_JAVADOC_WRONG_SINGLETON_TAG;
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.MSG_KEY_UNRECOGNIZED_ANTLR_ERROR;
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
 
@@ -101,7 +100,8 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testAntlrError() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_KEY_UNRECOGNIZED_ANTLR_ERROR, 0, null),
+            "4: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 49,
+                    "mismatched input 'get' expecting <EOF>", "JAVADOC"),
         };
         verify(checkConfig, getPath("InputAbstractJavadocInvalidAtSeeReference.java"), expected);
     }
@@ -115,7 +115,8 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             "8: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 35, "img")
         ));
         expectedMessages.put(getPath("InputAbstractJavadocInvalidAtSeeReference.java"),
-            singletonList("3: " + getCheckMessage(MSG_KEY_UNRECOGNIZED_ANTLR_ERROR, 0, null)
+            singletonList("4: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 49,
+                    "mismatched input 'get' expecting <EOF>", "JAVADOC")
         ));
         verify(createChecker(checkConfig), new File[] {
             new File(getPath("InputAbstractJavadocParsingErrors.java")),
@@ -129,7 +130,8 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
         final String[] expected = {
             "4: " + getCheckMessage(MSG_JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
-            "7: " + getCheckMessage(MSG_KEY_UNRECOGNIZED_ANTLR_ERROR, 4, null),
+            "8: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 53,
+                    "mismatched input 'get' expecting <EOF>", "JAVADOC"),
         };
         verify(checkConfig,
             getPath("InputAbstractJavadocUnclosedTagAndInvalidAtSeeReference.java"), expected);

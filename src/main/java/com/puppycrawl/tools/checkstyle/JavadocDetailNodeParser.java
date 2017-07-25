@@ -23,6 +23,8 @@ import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BailErrorStrategy;
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.InputMismatchException;
+import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
@@ -72,12 +74,6 @@ public class JavadocDetailNodeParser {
      */
     public static final String MSG_KEY_PARSE_ERROR = "javadoc.parse.error";
 
-    /**
-     * Unrecognized error from antlr parser.
-     */
-    public static final String MSG_KEY_UNRECOGNIZED_ANTLR_ERROR =
-            "javadoc.unrecognized.antlr.error";
-
     /** Symbols with which javadoc starts. */
     private static final String JAVADOC_START = "/**";
 
@@ -124,19 +120,11 @@ public class JavadocDetailNodeParser {
                                 + JAVADOC_START.length());
             result.setTree(tree);
         }
-        catch (ParseCancellationException | IllegalArgumentException ex) {
+        catch (ParseCancellationException | IllegalArgumentException ignored) {
             // If syntax error occurs then message is printed by error listener
             // and parser throws this runtime exception to stop parsing.
             // Just stop processing current Javadoc comment.
-            ParseErrorMessage parseErrorMessage = errorListener.getErrorMessage();
-
-            // There are cases when antlr error listener does not handle syntax error
-            if (parseErrorMessage == null) {
-                parseErrorMessage = new ParseErrorMessage(javadocCommentAst.getLineNo(),
-                        MSG_KEY_UNRECOGNIZED_ANTLR_ERROR,
-                        javadocCommentAst.getColumnNo(), ex.getMessage());
-            }
-
+            final ParseErrorMessage parseErrorMessage = errorListener.getErrorMessage();
             result.setParseErrorMessage(parseErrorMessage);
         }
 
@@ -173,7 +161,7 @@ public class JavadocDetailNodeParser {
 
         // This strategy stops parsing when parser error occurs.
         // By default it uses Error Recover Strategy which is slow and useless.
-        parser.setErrorHandler(new BailErrorStrategy());
+        parser.setErrorHandler(new JavadocParserErrorStrategy());
 
         return parser.javadoc();
     }
@@ -625,6 +613,24 @@ public class JavadocDetailNodeParser {
          */
         public Object[] getMessageArguments() {
             return messageArguments.clone();
+        }
+    }
+
+    /**
+     * <a href="http://www.antlr.org/api/Java/org/antlr/v4/runtime/BailErrorStrategy.html">
+     * BailErrorStrategy</a> is used to make ANTLR generated parser bail out on the first error
+     * in parser and not attempt any recovery methods but it doesn't report error to the
+     * listeners. This class is to ensure proper error reporting.
+     *
+     * @see DescriptiveErrorListener
+     * @see <a href="http://www.antlr.org/api/Java/org/antlr/v4/runtime/ANTLRErrorStrategy.html">
+     *     ANTLRErrorStrategy</a>
+     */
+    private static class JavadocParserErrorStrategy extends BailErrorStrategy {
+        @Override
+        public Token recoverInline(Parser recognizer) {
+            reportError(recognizer, new InputMismatchException(recognizer));
+            return super.recoverInline(recognizer);
         }
     }
 

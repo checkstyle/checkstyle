@@ -70,11 +70,6 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      */
     public static final String MSG_KEY_PARSE_ERROR =
             JavadocDetailNodeParser.MSG_KEY_PARSE_ERROR;
-    /**
-     * Unrecognized error from antlr parser.
-     */
-    public static final String MSG_KEY_UNRECOGNIZED_ANTLR_ERROR =
-            JavadocDetailNodeParser.MSG_KEY_UNRECOGNIZED_ANTLR_ERROR;
 
     /**
      * Key is "line:column". Value is {@link DetailNode} tree. Map is stored in {@link ThreadLocal}
