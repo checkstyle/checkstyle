@@ -205,6 +205,19 @@ public class LocalizedMessageTest {
         assertEquals(0, bundleCache.size());
     }
 
+    @Test
+    public void testTokenType() {
+        final LocalizedMessage localizedMessage1 = new LocalizedMessage(1, 1, TokenTypes.CLASS_DEF,
+                "messages.properties", "key", null, SeverityLevel.ERROR, null,
+                getClass(), null);
+        final LocalizedMessage localizedMessage2 = new LocalizedMessage(1, 1, TokenTypes.OBJBLOCK,
+                "messages.properties", "key", EMPTY_OBJECT_ARRAY, SeverityLevel.ERROR, null,
+                getClass(), null);
+
+        assertEquals(TokenTypes.CLASS_DEF, localizedMessage1.getTokenType());
+        assertEquals(TokenTypes.OBJBLOCK, localizedMessage2.getTokenType());
+    }
+
     private static LocalizedMessage createSampleLocalizedMessage() {
         return new LocalizedMessage(0, "com.puppycrawl.tools.checkstyle.checks.coding.messages",
                 "empty.statement", EMPTY_OBJECT_ARRAY, "module", LocalizedMessage.class, null);
