@@ -63,10 +63,10 @@ public class SeverityLevelTest {
 
     @Test
     public void testMixedCaseSpaces() {
-        SeverityLevel.getInstance("IgnoRe ");
-        SeverityLevel.getInstance(" iNfo");
-        SeverityLevel.getInstance(" WarniNg");
-        SeverityLevel.getInstance("    ERROR ");
+        assertEquals(SeverityLevel.IGNORE, SeverityLevel.getInstance("IgnoRe "));
+        assertEquals(SeverityLevel.INFO, SeverityLevel.getInstance(" iNfo"));
+        assertEquals(SeverityLevel.WARNING, SeverityLevel.getInstance(" WarniNg"));
+        assertEquals(SeverityLevel.ERROR, SeverityLevel.getInstance("    ERROR "));
     }
 
     @Test
@@ -76,7 +76,10 @@ public class SeverityLevelTest {
         try {
             for (Locale differentLocale : differentLocales) {
                 Locale.setDefault(differentLocale);
-                testMixedCaseSpaces();
+                assertEquals(SeverityLevel.IGNORE, SeverityLevel.getInstance("IgnoRe "));
+                assertEquals(SeverityLevel.INFO, SeverityLevel.getInstance(" iNfo"));
+                assertEquals(SeverityLevel.WARNING, SeverityLevel.getInstance(" WarniNg"));
+                assertEquals(SeverityLevel.ERROR, SeverityLevel.getInstance("    ERROR "));
             }
         }
         finally {

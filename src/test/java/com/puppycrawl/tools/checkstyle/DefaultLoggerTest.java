@@ -45,10 +45,9 @@ public class DefaultLoggerTest {
                 new String[] {"myfile"}, null,
                 getClass(), null);
 
-        assertTrue("Output should contain: " + addExceptionMessage.getMessage(),
-                output.contains(addExceptionMessage.getMessage()));
-        assertTrue("Output should contain: java.lang.IllegalStateException: upsss",
-                output.contains("java.lang.IllegalStateException: upsss"));
+        assertTrue("Invalid exception", output.contains(addExceptionMessage.getMessage()));
+        assertTrue("Invalid exception class",
+            output.contains("java.lang.IllegalStateException: upsss"));
     }
 
     @Test
@@ -57,5 +56,8 @@ public class DefaultLoggerTest {
         final DefaultLogger dl = new DefaultLogger(infoStream, true);
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
+        final String output = infoStream.toString();
+        assertTrue("Message should contain exception info, but was " + output,
+                output.contains("java.lang.IllegalStateException: upsss"));
     }
 }

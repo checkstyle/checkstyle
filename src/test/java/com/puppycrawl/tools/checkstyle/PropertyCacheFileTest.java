@@ -306,10 +306,8 @@ public class PropertyCacheFileTest {
 
         // no exception expected
         cache.persist();
-
-        if (Files.exists(Paths.get(filePath))) {
-            Files.delete(Paths.get(filePath));
-        }
+        assertTrue(Files.exists(Paths.get(filePath)));
+        Files.delete(Paths.get(filePath));
     }
 
     @Test

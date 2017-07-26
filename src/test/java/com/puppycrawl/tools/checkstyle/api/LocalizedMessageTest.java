@@ -74,9 +74,11 @@ public class LocalizedMessageTest {
     @Test
     public void testBundleReloadUrlNull() throws IOException {
         final LocalizedMessage.Utf8Control control = new LocalizedMessage.Utf8Control();
-        control.newBundle("com.puppycrawl.tools.checkstyle.checks.coding.messages",
+        final ResourceBundle bundle = control.newBundle(
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages",
                 Locale.ENGLISH, "java.class",
                 Thread.currentThread().getContextClassLoader(), true);
+        assertNull("Bundle should be null when reload is true and URL is null", bundle);
     }
 
     @Test
@@ -117,9 +119,11 @@ public class LocalizedMessageTest {
         when(classloader.getResource(resource)).thenReturn(url);
 
         final LocalizedMessage.Utf8Control control = new LocalizedMessage.Utf8Control();
-        control.newBundle("com.puppycrawl.tools.checkstyle.checks.coding.messages",
+        final ResourceBundle bundle = control.newBundle(
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages",
                 Locale.ENGLISH, "java.class",
                 classloader, true);
+        assertNull("Bundle should be null when stream is null", bundle);
     }
 
     private static URL getMockUrl(final URLConnection connection) throws IOException {

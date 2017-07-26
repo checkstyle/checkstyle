@@ -43,10 +43,15 @@ public class FileContentsTest {
     public void testDeprecatedAbbreviatedMethod() {
         // just to make UT coverage 100%
         final FileContents fileContents = new FileContents("filename", "123", "456");
-        fileContents.getCppComments();
-        fileContents.getCComments();
         fileContents.reportCppComment(1, 1);
         fileContents.reportCComment(1, 1, 1, 1);
+
+        final Comment cppComment = new Comment(new String[] {"23"}, 1, 1, 2);
+        final Comment cComment = new Comment(new String[] {"2"}, 1, 1, 1);
+        assertEquals("Invalid cpp comment", cppComment.toString(),
+                fileContents.getCppComments().get(1).toString());
+        assertEquals("Invalid c comment", cComment.toString(),
+                fileContents.getCComments().get(1).get(0).toString());
     }
 
     @Test

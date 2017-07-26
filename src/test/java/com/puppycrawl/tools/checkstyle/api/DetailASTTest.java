@@ -199,6 +199,10 @@ public class DetailASTTest {
         assertTrue(child.getNextSibling().equals(newSibling));
     }
 
+    /**
+     * There are asserts in checkNode, but idea does not see them
+     * @noinspection JUnitTestMethodWithNoAssertions
+     */
     @Test
     public void testTreeStructure() throws Exception {
         checkDir(new File("src/test/resources/com/puppycrawl/tools/checkstyle"));

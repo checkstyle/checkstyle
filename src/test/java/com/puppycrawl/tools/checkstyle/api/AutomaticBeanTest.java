@@ -73,7 +73,18 @@ public class AutomaticBeanTest {
     @Test
     public void testSetupChildFromBaseClass() throws CheckstyleException {
         final TestBean testBean = new TestBean();
+        testBean.configure(new DefaultConfiguration("bean config"));
         testBean.setupChild(null);
+        try {
+            testBean.setupChild(new DefaultConfiguration("dummy"));
+            fail("Exception expected");
+        }
+        catch (CheckstyleException ex) {
+            final String expectedMessage = "dummy is not allowed as a child in bean config. "
+                    + "Please review 'Parent Module' section for this Check"
+                    + " in web documentation if Check is standard.";
+            assertEquals("Invalid exception message", expectedMessage, ex.getMessage());
+        }
     }
 
     @Test

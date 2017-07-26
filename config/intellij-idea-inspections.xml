@@ -2132,6 +2132,8 @@
                 <option value="HtmlTagCanBeJavadocTag" />
                 <!-- we need to work with AntClassLoader, there is no way to avoid this -->
                 <option value="ClassLoaderInstantiation" />
+                <!-- There are asserts in DetailASTTest#checkNode, but idea does not see them -->
+                <option value="JUnitTestMethodWithNoAssertions" />
             </list>
         </option>
     </inspection_tool>
@@ -2203,8 +2205,8 @@
     </inspection_tool>
     <inspection_tool class="TestMethodInProductCode" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="TestMethodIsPublicVoidNoArg" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="TestMethodWithoutAssertion" enabled="false" level="ERROR" enabled_by_default="false">
-        <option name="assertionMethods" value="org.junit.Assert,assert.*|fail.*,junit.framework.Assert,assert.*|fail.*,org.mockito.Mockito,verify.*,org.mockito.InOrder,verify,org.junit.rules.ExpectedException,expect.*,org.hamcrest.MatcherAssert,assertThat" />
+    <inspection_tool class="TestMethodWithoutAssertion" enabled="true" level="ERROR" enabled_by_default="true">
+        <option name="assertionMethods" value="org.junit.Assert,assert.*|fail.*,junit.framework.Assert,assert.*|fail.*,org.mockito.Mockito,verify.*,org.mockito.InOrder,verify,org.junit.rules.ExpectedException,expect.*,org.hamcrest.MatcherAssert,assertThat,com.puppycrawl.tools.checkstyle.BaseCheckTestSupport,verify.*,com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport,verify.*,com.puppycrawl.tools.checkstyle.AbstractTreeTestSupport,verify.*,com.google.checkstyle.test.base.BaseCheckTestSupport,verify.*,com.puppycrawl.tools.checkstyle.internal.TestUtils,assert.*,com.puppycrawl.tools.checkstyle.grammars.AstRegressionTest.AssertGeneratedJavaLexer,verify.*,nl.jqno.equalsverifier.EqualsVerifier,verify.*,org.powermock.api.mockito.PowerMockito,verify.*" />
         <option name="assertKeywordIsAssertion" value="false" />
     </inspection_tool>
     <inspection_tool class="TestNGDataProvider" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -2260,6 +2262,7 @@
     </inspection_tool>
     <inspection_tool class="TrailingSpacesInProperty" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="TransientFieldInNonSerializableClass" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- conflicts with FindBugs -->
     <inspection_tool class="TransientFieldNotInitialized" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="TrivialConditionalJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="TrivialIf" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -2325,6 +2328,7 @@
     <inspection_tool class="UnnecessaryConstructor" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="UnnecessaryContinue" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="UnnecessaryContinueJS" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- conflicts with other tools -->
     <inspection_tool class="UnnecessaryDefault" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="UnnecessaryEnumModifier" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="UnnecessaryExplicitNumericCast" enabled="true" level="ERROR" enabled_by_default="true" />
