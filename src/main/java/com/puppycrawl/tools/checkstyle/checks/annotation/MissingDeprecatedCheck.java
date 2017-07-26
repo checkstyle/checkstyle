@@ -242,7 +242,7 @@ public final class MissingDeprecatedCheck extends AbstractCheck {
 
         boolean found = false;
         int reindex = index + 1;
-        while (reindex < lines.length) {
+        while (reindex <= lines.length - 1) {
             final Matcher multilineCont = MATCH_DEPRECATED_MULTILINE_CONT.matcher(lines[reindex]);
 
             if (multilineCont.find()) {
