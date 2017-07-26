@@ -64,12 +64,12 @@ public class ScopeTest {
 
     @Test
     public void testMixedCaseSpaces() {
-        Scope.getInstance("NothinG ");
-        Scope.getInstance(" PuBlic");
-        Scope.getInstance(" ProteCted");
-        Scope.getInstance("    PackAge ");
-        Scope.getInstance("privaTe   ");
-        Scope.getInstance("AnonInner");
+        assertEquals(Scope.NOTHING, Scope.getInstance("NothinG "));
+        assertEquals(Scope.PUBLIC, Scope.getInstance(" PuBlic"));
+        assertEquals(Scope.PROTECTED, Scope.getInstance(" ProteCted"));
+        assertEquals(Scope.PACKAGE, Scope.getInstance("    PackAge "));
+        assertEquals(Scope.PRIVATE, Scope.getInstance("privaTe   "));
+        assertEquals(Scope.ANONINNER, Scope.getInstance("AnonInner"));
     }
 
     @Test
@@ -79,7 +79,12 @@ public class ScopeTest {
         try {
             for (Locale differentLocale : differentLocales) {
                 Locale.setDefault(differentLocale);
-                testMixedCaseSpaces();
+                assertEquals(Scope.NOTHING, Scope.getInstance("NothinG "));
+                assertEquals(Scope.PUBLIC, Scope.getInstance(" PuBlic"));
+                assertEquals(Scope.PROTECTED, Scope.getInstance(" ProteCted"));
+                assertEquals(Scope.PACKAGE, Scope.getInstance("    PackAge "));
+                assertEquals(Scope.PRIVATE, Scope.getInstance("privaTe   "));
+                assertEquals(Scope.ANONINNER, Scope.getInstance("AnonInner"));
             }
         }
         finally {

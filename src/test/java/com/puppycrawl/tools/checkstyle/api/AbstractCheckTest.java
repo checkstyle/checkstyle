@@ -19,6 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
 import java.io.File;
 import java.nio.charset.Charset;
 import java.util.Arrays;
@@ -98,8 +102,11 @@ public class AbstractCheckTest {
                 return CommonUtils.EMPTY_INT_ARRAY;
             }
         };
+        final AbstractCheck checkSpy = spy(check);
         // Eventually it will become clear abstract method
-        check.visitToken(null);
+        checkSpy.visitToken(null);
+
+        verify(checkSpy, times(1)).visitToken(null);
     }
 
     @Test

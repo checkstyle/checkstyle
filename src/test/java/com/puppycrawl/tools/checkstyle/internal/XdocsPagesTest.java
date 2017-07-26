@@ -43,8 +43,6 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
 
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.apache.commons.beanutils.PropertyUtils;
 import org.junit.Assert;
 import org.junit.Test;
@@ -157,13 +155,19 @@ public class XdocsPagesTest {
                     continue;
                 }
 
-                buildAndValidateXml(fileName, unserializedSource);
+                final String code = buildXml(unserializedSource);
+                // validate only
+                XmlUtil.getRawXml(fileName, code, unserializedSource);
+
+                // can't test ant structure, or old and outdated checks
+                Assert.assertTrue(fileName.startsWith("anttask")
+                        || fileName.startsWith("releasenotes")
+                        || isValidCheckstyleXml(fileName, code, unserializedSource));
             }
         }
     }
 
-    private static void buildAndValidateXml(String fileName, String unserializedSource)
-            throws IOException, ParserConfigurationException, CheckstyleException {
+    private static String buildXml(String unserializedSource) throws IOException {
         // not all examples come with the full xml structure
         String code = unserializedSource
             // don't corrupt our own cachefile
@@ -184,14 +188,7 @@ public class XdocsPagesTest {
                     + "\"-//Puppy Crawl//DTD Check Configuration 1.3//EN\" \"" + dtdPath + "\">\n"
                     + code;
         }
-
-        // validate only
-        XmlUtil.getRawXml(fileName, code, unserializedSource);
-
-        // can't test ant structure, or old and outdated checks
-        if (!fileName.startsWith("anttask") && !fileName.startsWith("releasenotes")) {
-            validateCheckstyleXml(fileName, code, unserializedSource);
-        }
+        return code;
     }
 
     private static boolean hasFileSetClass(String xml) {
@@ -207,8 +204,9 @@ public class XdocsPagesTest {
         return found;
     }
 
-    private static void validateCheckstyleXml(String fileName, String code,
-            String unserializedSource) throws IOException, CheckstyleException {
+    private static boolean isValidCheckstyleXml(String fileName, String code,
+                                                String unserializedSource)
+            throws IOException, CheckstyleException {
         // can't process non-existent examples, or out of context snippets
         if (!code.contains("com.mycompany") && !code.contains("checkstyle-packages")
                 && !code.contains("MethodLimit") && !code.contains("<suppress ")
@@ -241,6 +239,7 @@ public class XdocsPagesTest {
                         + ex.getMessage() + "): " + unserializedSource, ex);
             }
         }
+        return true;
     }
 
     @Test
@@ -287,6 +286,10 @@ public class XdocsPagesTest {
         }
     }
 
+    /**
+     * Test contains asserts in callstack, but idea does not see them
+     * @noinspection JUnitTestMethodWithNoAssertions
+     */
     @Test
     public void testAllCheckSectionsEx() throws Exception {
         final ModuleFactory moduleFactory = TestUtils.getPackageObjectFactory();
