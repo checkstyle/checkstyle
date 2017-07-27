@@ -24,7 +24,7 @@
         <option name="nonThreadSafeTypes" value="" />
     </inspection_tool>
     <inspection_tool class="AccessToStaticFieldLockedOnInstance" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="AlphaUnsortedPropertiesFile" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="AlphaUnsortedPropertiesFile" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="AmbiguousFieldAccess" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="AmbiguousMethodCall" enabled="true" level="WARNING" enabled_by_default="true" />
     <!-- this rule is inspection is only for old java, we are ok to use annotations -->
