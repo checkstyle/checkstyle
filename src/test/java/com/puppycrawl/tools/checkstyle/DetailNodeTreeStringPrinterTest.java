@@ -56,7 +56,7 @@ public class DetailNodeTreeStringPrinterTest {
         final String expected = new String(Files.readAllBytes(Paths.get(
             getPath("expectedInputJavadocComment.txt"))), StandardCharsets.UTF_8)
             .replaceAll("\\\\r\\\\n", "\\\\n");
-        assertEquals(expected, actual);
+        assertEquals("Invalid parsing result", expected, actual);
     }
 
     @Test
@@ -71,7 +71,7 @@ public class DetailNodeTreeStringPrinterTest {
             final String expected = "[ERROR:0] Javadoc comment at column 1 has parse error. "
                     + "Missed HTML close tag 'qwe'. Sometimes it means that close tag missed "
                     + "for one of previous tags.";
-            assertEquals(expected, ex.getMessage());
+            assertEquals("Invalidexception message", expected, ex.getMessage());
         }
     }
 
@@ -83,19 +83,21 @@ public class DetailNodeTreeStringPrinterTest {
 
         final DetailAST testCommentBlock =
                 (DetailAST) createFakeBlockComment.invoke(null, "test_comment");
-        assertEquals(TokenTypes.BLOCK_COMMENT_BEGIN, testCommentBlock.getType());
-        assertEquals("/*", testCommentBlock.getText());
-        assertEquals(0, testCommentBlock.getLineNo());
+        assertEquals("Invalid token type",
+                TokenTypes.BLOCK_COMMENT_BEGIN, testCommentBlock.getType());
+        assertEquals("Invalid text", "/*", testCommentBlock.getText());
+        assertEquals("Invalid line number", 0, testCommentBlock.getLineNo());
 
         final DetailAST contentCommentBlock = testCommentBlock.getFirstChild();
-        assertEquals(TokenTypes.COMMENT_CONTENT, contentCommentBlock.getType());
-        assertEquals("*test_comment", contentCommentBlock.getText());
-        assertEquals(0, contentCommentBlock.getLineNo());
-        assertEquals(-1, contentCommentBlock.getColumnNo());
+        assertEquals("Invalid tiken type",
+                TokenTypes.COMMENT_CONTENT, contentCommentBlock.getType());
+        assertEquals("Invalid text", "*test_comment", contentCommentBlock.getText());
+        assertEquals("Invalid line number", 0, contentCommentBlock.getLineNo());
+        assertEquals("Invalid column number", -1, contentCommentBlock.getColumnNo());
 
         final DetailAST endCommentBlock = contentCommentBlock.getNextSibling();
-        assertEquals(TokenTypes.BLOCK_COMMENT_END, endCommentBlock.getType());
-        assertEquals("*/", endCommentBlock.getText());
+        assertEquals("Invalid tiken type", TokenTypes.BLOCK_COMMENT_END, endCommentBlock.getType());
+        assertEquals("Invalid text", "*/", endCommentBlock.getText());
     }
 
     @Test
@@ -106,6 +108,6 @@ public class DetailNodeTreeStringPrinterTest {
         final String expected = new String(Files.readAllBytes(Paths.get(
                 getPath("expectedNoUnnecessaryTextInJavadocAst.txt"))), StandardCharsets.UTF_8)
                 .replaceAll("\\\\r\\\\n", "\\\\n");
-        assertEquals(expected, actual);
+        assertEquals("Invalid parsing result", expected, actual);
     }
 }
