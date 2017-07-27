@@ -119,7 +119,7 @@ public class IndentLevel {
         if (levels.cardinality() == 1) {
             return String.valueOf(levels.nextSetBit(0));
         }
-        final StringBuilder sb = new StringBuilder();
+        final StringBuilder sb = new StringBuilder(50);
         for (int i = levels.nextSetBit(0); i >= 0;
             i = levels.nextSetBit(i + 1)) {
             if (sb.length() > 0) {

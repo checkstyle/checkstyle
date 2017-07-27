@@ -108,7 +108,7 @@ public final class DetailNodeTreeStringPrinter {
      * @return string AST.
      */
     public static String printTree(DetailNode ast, String rootPrefix, String prefix) {
-        final StringBuilder messageBuilder = new StringBuilder();
+        final StringBuilder messageBuilder = new StringBuilder(1024);
         DetailNode node = ast;
         while (node != null) {
             if (node.getType() == JavadocTokenTypes.JAVADOC) {
@@ -136,7 +136,7 @@ public final class DetailNodeTreeStringPrinter {
     private static String getIndentation(DetailNode node) {
         final boolean isLastChild = JavadocUtils.getNextSibling(node) == null;
         DetailNode currentNode = node;
-        final StringBuilder indentation = new StringBuilder();
+        final StringBuilder indentation = new StringBuilder(1024);
         while (currentNode.getParent() != null) {
             currentNode = currentNode.getParent();
             if (currentNode.getParent() == null) {

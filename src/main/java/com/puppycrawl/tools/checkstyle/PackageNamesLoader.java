@@ -97,7 +97,7 @@ public final class PackageNamesLoader
      * @return the full name of the current package.
      */
     private String getPackageName() {
-        final StringBuilder buf = new StringBuilder();
+        final StringBuilder buf = new StringBuilder(256);
         final Iterator<String> iterator = packageStack.descendingIterator();
         while (iterator.hasNext()) {
             final String subPackage = iterator.next();

@@ -215,7 +215,7 @@ public class MainFrameModel {
                 // starts line counting at 1
                 linesToPositionTemp.add(0);
 
-                final StringBuilder sb = new StringBuilder();
+                final StringBuilder sb = new StringBuilder(1024);
                 // insert the contents of the file to the text area
                 for (final String element : sourceLines) {
                     linesToPositionTemp.add(sb.length());
