@@ -34,7 +34,7 @@ public class BlockTagUtilsTest {
 
     @Test
     public void testHasPrivateConstructor() throws Exception {
-        TestUtils.assertUtilsClassHasPrivateConstructor(BlockTagUtils.class);
+        TestUtils.assertUtilsClassHasPrivateConstructor(BlockTagUtils.class, true);
     }
 
     @Test

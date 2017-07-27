@@ -45,7 +45,7 @@ public class DetailNodeTreeStringPrinterTest {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertUtilsClassHasPrivateConstructor(DetailNodeTreeStringPrinter.class);
+        assertUtilsClassHasPrivateConstructor(DetailNodeTreeStringPrinter.class, true);
     }
 
     @Test

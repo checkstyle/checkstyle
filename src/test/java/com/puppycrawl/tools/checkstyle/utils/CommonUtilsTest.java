@@ -54,7 +54,7 @@ public class CommonUtilsTest {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertUtilsClassHasPrivateConstructor(CommonUtils.class);
+        assertUtilsClassHasPrivateConstructor(CommonUtils.class, true);
     }
 
     /**

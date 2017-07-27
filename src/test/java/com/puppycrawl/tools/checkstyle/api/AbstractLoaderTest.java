@@ -51,7 +51,7 @@ public class AbstractLoaderTest {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertUtilsClassHasPrivateConstructor(
-                AbstractLoader.FeaturesForVerySecureJavaInstallations.class);
+                AbstractLoader.FeaturesForVerySecureJavaInstallations.class, true);
     }
 
     private static final class DummyLoader extends AbstractLoader {

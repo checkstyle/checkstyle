@@ -44,7 +44,7 @@ public class CheckUtilsTest {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertUtilsClassHasPrivateConstructor(CheckUtils.class);
+        assertUtilsClassHasPrivateConstructor(CheckUtils.class, true);
     }
 
     @Test

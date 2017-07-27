@@ -168,7 +168,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBlockCommentPositionHasPrivateConstr() throws Exception {
-        TestUtils.assertUtilsClassHasPrivateConstructor(BlockCommentPosition.class);
+        TestUtils.assertUtilsClassHasPrivateConstructor(BlockCommentPosition.class, true);
     }
 
     @Test

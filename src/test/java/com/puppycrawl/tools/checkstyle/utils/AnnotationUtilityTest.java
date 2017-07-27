@@ -36,7 +36,7 @@ public class AnnotationUtilityTest {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         try {
-            assertUtilsClassHasPrivateConstructor(AnnotationUtility.class);
+            assertUtilsClassHasPrivateConstructor(AnnotationUtility.class, true);
         }
         catch (InvocationTargetException ex) {
             assertEquals("do not instantiate.", ex.getCause().getMessage());

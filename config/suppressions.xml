@@ -49,6 +49,7 @@
     <suppress checks="ExecutableStatementCount" files=".*GeneratedJavaTokenTypesTest\.java"/>
     <suppress checks="JavaNCSS" files=".*GeneratedJavaTokenTypesTest\.java"/>
     <suppress checks="ExecutableStatementCount" files=".*IllegalInstantiationCheckTest\.java"/>
+    <suppress checks="ExecutableStatementCount" files=".*Main\.java"/>
 
     <suppress checks="." files=".*JavadocTokenTypes\.java"/>
     <suppress checks="." files=".*ParseTreeBuilder\.java"/>

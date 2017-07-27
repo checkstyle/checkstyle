@@ -38,7 +38,7 @@ public class TokenUtilsTest {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertUtilsClassHasPrivateConstructor(TokenUtils.class);
+        assertUtilsClassHasPrivateConstructor(TokenUtils.class, true);
     }
 
     @Test
