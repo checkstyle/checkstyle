@@ -73,8 +73,8 @@ public class InnerAssignmentCheckTest
     @Test
     public void testTokensNotNull() {
         final InnerAssignmentCheck check = new InnerAssignmentCheck();
-        Assert.assertNotNull(check.getAcceptableTokens());
-        Assert.assertNotNull(check.getDefaultTokens());
-        Assert.assertNotNull(check.getRequiredTokens());
+        Assert.assertNotNull("Unexpected acceptable tokenks", check.getAcceptableTokens());
+        Assert.assertNotNull("Unexpected default tokens", check.getDefaultTokens());
+        Assert.assertNotNull("Unexpected required tokens", check.getRequiredTokens());
     }
 }

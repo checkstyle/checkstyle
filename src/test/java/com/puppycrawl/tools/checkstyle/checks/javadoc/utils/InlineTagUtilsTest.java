@@ -49,7 +49,7 @@ public class InlineTagUtilsTest {
             " */"};
         final List<TagInfo> tags = InlineTagUtils.extractInlineTags(text);
 
-        assertEquals(4, tags.size());
+        assertEquals("Unexpected tags size", 4, tags.size());
 
         assertTag(tags.get(0), "link", "List", 2, 4);
         assertTag(tags.get(1), "link", "List link text", 2, 19);
@@ -67,7 +67,7 @@ public class InlineTagUtilsTest {
 
         final List<TagInfo> tags = InlineTagUtils.extractInlineTags(text);
 
-        assertEquals(1, tags.size());
+        assertEquals("Unexpected tags size", 1, tags.size());
         assertTag(tags.get(0), "link", "foo bar baz", 2, 4);
     }
 
@@ -80,7 +80,7 @@ public class InlineTagUtilsTest {
 
         final List<TagInfo> tags = InlineTagUtils.extractInlineTags(text);
 
-        assertEquals(1, tags.size());
+        assertEquals("Unexpected tags size", 1, tags.size());
         assertTag(tags.get(0), "code", "foo bar baz", 2, 4);
     }
 
@@ -92,7 +92,7 @@ public class InlineTagUtilsTest {
 
         final List<TagInfo> tags = InlineTagUtils.extractInlineTags(source);
 
-        assertEquals(1, tags.size());
+        assertEquals("Unexpected tags size", 1, tags.size());
 
         final TagInfo tag = tags.get(0);
         assertTag(tag, "link", "foo", 1, 3);
@@ -105,7 +105,7 @@ public class InlineTagUtilsTest {
             fail("IllegalArgumentException expected");
         }
         catch (IllegalArgumentException ex) {
-            assertTrue(ex.getMessage().contains("newline"));
+            assertTrue("Unexpected error message", ex.getMessage().contains("newline"));
         }
     }
 
@@ -116,14 +116,14 @@ public class InlineTagUtilsTest {
             fail("IllegalArgumentException expected");
         }
         catch (IllegalArgumentException ex) {
-            assertTrue(ex.getMessage().contains("newline"));
+            assertTrue("Invalid error message", ex.getMessage().contains("newline"));
         }
     }
 
     private static void assertTag(TagInfo tag, String name, String value, int line, int col) {
-        assertEquals(name, tag.getName());
-        assertEquals(value, tag.getValue());
-        assertEquals(line, tag.getPosition().getLine());
-        assertEquals(col, tag.getPosition().getColumn());
+        assertEquals("Unexpected tags name", name, tag.getName());
+        assertEquals("Unexpected tags value", value, tag.getValue());
+        assertEquals("Unexpected tags position", line, tag.getPosition().getLine());
+        assertEquals("Unexpected tags position", col, tag.getPosition().getColumn());
     }
 }
