@@ -138,6 +138,7 @@
     <allow class="java.nio.charset.StandardCharsets"/>
     <allow pkg="com.sun.javadoc"/>
     <allow pkg="java.io"/>
+    <allow pkg="java.util"/>
   </subpackage>
 
   <subpackage name="filters">

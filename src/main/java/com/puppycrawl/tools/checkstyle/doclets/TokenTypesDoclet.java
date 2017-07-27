@@ -25,11 +25,16 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 import com.sun.javadoc.ClassDoc;
 import com.sun.javadoc.DocErrorReporter;
 import com.sun.javadoc.FieldDoc;
 import com.sun.javadoc.RootDoc;
+import com.sun.javadoc.Tag;
 
 /**
  * Doclet which is used to write property file with short descriptions
@@ -69,7 +74,14 @@ public final class TokenTypesDoclet {
                 if (field.isStatic() && field.isPublic() && field.isFinal()
                     && "int".equals(field.type().qualifiedTypeName())) {
                     if (field.firstSentenceTags().length != 1) {
-                        final String message = "Should be only one tag.";
+                        final List<Tag> tags = Arrays.asList(field.firstSentenceTags());
+                        final String joinedTags = tags
+                            .stream()
+                            .map(tag -> tag.toString())
+                            .collect(Collectors.joining("\", \"", "[\"", "\"]"));
+                        final String message = String.format(Locale.ROOT,
+                                "Should be only one tag for %s. Tags %s.",
+                                field.toString(), joinedTags);
                         throw new IllegalArgumentException(message);
                     }
                     writer.println(field.name() + "="
