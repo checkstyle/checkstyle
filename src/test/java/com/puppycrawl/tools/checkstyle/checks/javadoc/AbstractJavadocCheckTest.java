@@ -142,7 +142,8 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(JavadocCatchCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputAbstractJavadocPosition.java"), expected);
-        Assert.assertEquals(58, JavadocCatchCheck.javadocsNumber);
+        Assert.assertEquals("Invalid number of javadocs",
+            58, JavadocCatchCheck.javadocsNumber);
     }
 
     @Test

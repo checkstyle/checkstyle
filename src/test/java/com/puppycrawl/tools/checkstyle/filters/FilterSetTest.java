@@ -91,10 +91,10 @@ public class FilterSetTest {
         final FilterSet filterSet = new FilterSet();
         filterSet.addFilter(new SeverityMatchFilter());
 
-        assertEquals(1, filterSet.getFilters().size());
+        assertEquals("Invalid filter set size", 1, filterSet.getFilters().size());
 
         filterSet.clear();
 
-        assertEquals(0, filterSet.getFilters().size());
+        assertEquals("Invalid filter set size", 0, filterSet.getFilters().size());
     }
 }

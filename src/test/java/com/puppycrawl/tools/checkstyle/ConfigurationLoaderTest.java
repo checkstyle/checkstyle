@@ -115,7 +115,8 @@ public class ConfigurationLoaderTest {
             fail("An exception is expected");
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("Multi thread mode for Checker module is not implemented",
+            assertEquals("Invalid exception message",
+                "Multi thread mode for Checker module is not implemented",
                 ex.getMessage());
         }
     }
@@ -162,9 +163,12 @@ public class ConfigurationLoaderTest {
             fail("missing property name");
         }
         catch (CheckstyleException ex) {
-            assertTrue(ex.getMessage().contains("\"name\""));
-            assertTrue(ex.getMessage().contains("\"property\""));
-            assertTrue(ex.getMessage().endsWith(":8:41"));
+            assertTrue("Invalid exception message: " + ex.getMessage(),
+                    ex.getMessage().contains("\"name\""));
+            assertTrue("Invalid exception message: " + ex.getMessage(),
+                    ex.getMessage().contains("\"property\""));
+            assertTrue("Invalid exception message: " + ex.getMessage(),
+                    ex.getMessage().endsWith(":8:41"));
         }
     }
 
@@ -175,9 +179,12 @@ public class ConfigurationLoaderTest {
             fail("missing property value");
         }
         catch (CheckstyleException ex) {
-            assertTrue(ex.getMessage().contains("\"value\""));
-            assertTrue(ex.getMessage().contains("\"property\""));
-            assertTrue(ex.getMessage().endsWith(":8:41"));
+            assertTrue("Invalid exception message: " + ex.getMessage(),
+                    ex.getMessage().contains("\"value\""));
+            assertTrue("Invalid exception message: " + ex.getMessage(),
+                    ex.getMessage().contains("\"property\""));
+            assertTrue("Invalid exception message: " + ex.getMessage(),
+                    ex.getMessage().endsWith(":8:41"));
         }
     }
 
@@ -188,9 +195,12 @@ public class ConfigurationLoaderTest {
             fail("missing module name");
         }
         catch (CheckstyleException ex) {
-            assertTrue(ex.getMessage().contains("\"name\""));
-            assertTrue(ex.getMessage().contains("\"module\""));
-            assertTrue(ex.getMessage().endsWith(":7:23"));
+            assertTrue("Invalid exception message: " + ex.getMessage(),
+                    ex.getMessage().contains("\"name\""));
+            assertTrue("Invalid exception message: " + ex.getMessage(),
+                    ex.getMessage().contains("\"module\""));
+            assertTrue("Invalid exception message: " + ex.getMessage(),
+                    ex.getMessage().endsWith(":7:23"));
         }
     }
 
@@ -201,9 +211,12 @@ public class ConfigurationLoaderTest {
             fail("missing module parent");
         }
         catch (CheckstyleException ex) {
-            assertTrue(ex.getMessage().contains("\"property\""));
-            assertTrue(ex.getMessage().contains("\"module\""));
-            assertTrue(ex.getMessage().endsWith(":8:38"));
+            assertTrue("Invalid exception message: " + ex.getMessage(),
+                    ex.getMessage().contains("\"property\""));
+            assertTrue("Invalid exception message: " + ex.getMessage(),
+                    ex.getMessage().contains("\"module\""));
+            assertTrue("Invalid exception message: " + ex.getMessage(),
+                    ex.getMessage().endsWith(":8:38"));
         }
     }
 
@@ -272,8 +285,10 @@ public class ConfigurationLoaderTest {
         final Configuration[] children = config.getChildren();
         final Configuration[] grandchildren = children[0].getChildren();
 
-        assertTrue(grandchildren[0].getMessages()
-            .containsKey("name.invalidPattern"));
+        final String expectedKey = "name.invalidPattern";
+        assertTrue("Messages should contain key: " + expectedKey,
+            grandchildren[0].getMessages()
+            .containsKey(expectedKey));
     }
 
     private static void verifyConfigNode(
@@ -317,7 +332,8 @@ public class ConfigurationLoaderTest {
             fail("expected to fail, instead got: " + value);
         }
         catch (InvocationTargetException ex) {
-            assertEquals("Syntax error in property: ${a", ex.getCause().getMessage());
+            assertEquals("Invalid exception cause message",
+                "Syntax error in property: ${a", ex.getCause().getMessage());
         }
     }
 
@@ -330,7 +346,8 @@ public class ConfigurationLoaderTest {
             fail("expected to fail, instead got: " + value);
         }
         catch (InvocationTargetException ex) {
-            assertEquals("Property ${c} has not been set", ex.getCause().getMessage());
+            assertEquals("Invalid exception cause message",
+                "Property ${c} has not been set", ex.getCause().getMessage());
         }
     }
 
@@ -438,8 +455,10 @@ public class ConfigurationLoaderTest {
 
         }
         catch (InvocationTargetException ex) {
-            assertTrue(ex.getCause() instanceof IllegalStateException);
-            assertEquals("Unknown name:" + "hello" + ".", ex.getCause().getMessage());
+            assertTrue("Invalid exception cause",
+                ex.getCause() instanceof IllegalStateException);
+            assertEquals("Invalid exception cause message",
+                "Unknown name:" + "hello" + ".", ex.getCause().getMessage());
         }
     }
 
@@ -460,12 +479,14 @@ public class ConfigurationLoaderTest {
         final Field overridePropsResolverField =
                 configurationLoaderClass.getDeclaredField("overridePropsResolver");
         overridePropsResolverField.setAccessible(true);
-        assertEquals(propertyResolver, overridePropsResolverField.get(configurationLoader));
+        assertEquals("Invalid property resolver",
+            propertyResolver, overridePropsResolverField.get(configurationLoader));
 
         final Field omitIgnoredModulesField =
                 configurationLoaderClass.getDeclaredField("omitIgnoredModules");
         omitIgnoredModulesField.setAccessible(true);
-        assertEquals(true, omitIgnoredModulesField.get(configurationLoader));
+        assertEquals("omitIgnoredModules should be set to true",
+            true, omitIgnoredModulesField.get(configurationLoader));
     }
 
     @Test
@@ -475,8 +496,10 @@ public class ConfigurationLoaderTest {
             fail("exception in expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("unable to parse configuration stream", ex.getMessage());
-            assertEquals("Property ${nonexisting} has not been set",
+            assertEquals("Invalid exception message",
+                "unable to parse configuration stream", ex.getMessage());
+            assertEquals("Invalid exception cause message",
+                "Property ${nonexisting} has not been set",
                     ex.getCause().getMessage());
         }
     }
@@ -490,7 +513,7 @@ public class ConfigurationLoaderTest {
                         new PropertiesExpander(new Properties()), true);
 
         final Configuration[] children = config.getChildren();
-        assertEquals(0, children[0].getChildren().length);
+        assertEquals("Invalid children count", 0, children[0].getChildren().length);
     }
 
     @Test
@@ -502,7 +525,7 @@ public class ConfigurationLoaderTest {
                         new PropertiesExpander(new Properties()), true);
 
         final Configuration[] children = config.getChildren();
-        assertEquals(0, children[0].getChildren().length);
+        assertEquals("Invalid children count", 0, children[0].getChildren().length);
     }
 
     @Test
@@ -514,7 +537,7 @@ public class ConfigurationLoaderTest {
                         new PropertiesExpander(new Properties()), true);
 
         final Configuration[] children = config.getChildren();
-        assertEquals(0, children.length);
+        assertEquals("Invalid children count", 0, children.length);
     }
 
     @Test
@@ -526,11 +549,12 @@ public class ConfigurationLoaderTest {
                             new PropertiesExpander(new Properties()), true);
 
             final Configuration[] children = config.getChildren();
-            assertEquals(0, children[0].getChildren().length);
+            assertEquals("Invalid children count", 0, children[0].getChildren().length);
             fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Unable to find: ;config_with_ignore.xml", ex.getMessage());
+            assertEquals("Invalid exception message",
+                "Unable to find: ;config_with_ignore.xml", ex.getMessage());
         }
     }
 
@@ -543,7 +567,8 @@ public class ConfigurationLoaderTest {
                         new PropertiesExpander(new Properties()), true);
 
         final Configuration[] children = config.getChildren();
-        assertEquals(0, children[0].getChildren().length);
+        assertEquals("Invalid children count",
+            0, children[0].getChildren().length);
     }
 
     @Test
@@ -554,7 +579,7 @@ public class ConfigurationLoaderTest {
         final String value = (String) getReplacePropertiesMethod().invoke(
             null, "${checkstyle.basedir}", new PropertiesExpander(props), defaultValue);
 
-        assertEquals(defaultValue, value);
+        assertEquals("Invalid property value", defaultValue, value);
     }
 
     @Test
@@ -566,7 +591,8 @@ public class ConfigurationLoaderTest {
                         new PropertiesExpander(new Properties()), true);
 
         final Configuration[] children = config.getChildren();
-        assertEquals(0, children[0].getChildren().length);
+        assertEquals("Invalid children count",
+            0, children[0].getChildren().length);
     }
 
     /**
@@ -601,7 +627,8 @@ public class ConfigurationLoaderTest {
             fail("Exception is expected");
         }
         catch (CheckstyleException expected) {
-            assertEquals("Problem during accessing 'severity' attribute for MemberName",
+            assertEquals("Invalid exception cause message",
+                "Problem during accessing 'severity' attribute for MemberName",
                     expected.getCause().getMessage());
         }
     }

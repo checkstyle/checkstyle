@@ -51,7 +51,7 @@ public class GeneratedJava14LexerTest
     @Test
     public void testUnexpectedChar() throws Exception {
         // Encoding problems can occur in Windows
-        Assume.assumeFalse(IS_WINDOWS);
+        Assume.assumeFalse("Problems with encoding may occur", IS_WINDOWS);
 
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);

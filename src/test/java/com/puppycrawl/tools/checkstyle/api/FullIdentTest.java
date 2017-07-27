@@ -33,19 +33,19 @@ public class FullIdentTest {
         ast.setText("MyTest");
 
         final FullIdent indent = FullIdent.createFullIdent(ast);
-        Assert.assertEquals("MyTest[15x14]", indent.toString());
+        Assert.assertEquals("Invalid full indent", "MyTest[15x14]", indent.toString());
     }
 
     @Test
     public void testNonValidCoordinatesWithNegative() {
         final FullIdent fullIdent = prepareFullIdentWithCoordinates(14, 15);
-        Assert.assertEquals("MyTest.MyTestik[15x14]", fullIdent.toString());
+        Assert.assertEquals("Invalid full indent", "MyTest.MyTestik[15x14]", fullIdent.toString());
     }
 
     @Test
     public void testNonValidCoordinatesWithZero() {
         final FullIdent fullIdent = prepareFullIdentWithCoordinates(0, 0);
-        Assert.assertEquals("MyTest.MyTestik[15x14]", fullIdent.toString());
+        Assert.assertEquals("Invalid full indent", "MyTest.MyTestik[15x14]", fullIdent.toString());
     }
 
     private static FullIdent prepareFullIdentWithCoordinates(int columnNo, int lineNo) {

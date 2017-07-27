@@ -62,7 +62,7 @@ public class ImportControlLoaderTest {
         final ImportControl root =
                 ImportControlLoader.load(
                 new File(getPath("InputImportControlLoaderComplete.xml")).toURI());
-        assertNotNull(root);
+        assertNotNull("Import root should not be null", root);
     }
 
     @Test
@@ -73,8 +73,10 @@ public class ImportControlLoaderTest {
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertSame(MalformedURLException.class, ex.getCause().getClass());
-            assertEquals("unknown protocol: aaa", ex.getCause().getMessage());
+            assertSame("Invalid exception class",
+                    MalformedURLException.class, ex.getCause().getClass());
+            assertEquals("Invalid exception message",
+                    "unknown protocol: aaa", ex.getCause().getMessage());
         }
     }
 
@@ -83,7 +85,7 @@ public class ImportControlLoaderTest {
         final ImportControl root =
                 ImportControlLoader.load(
                     new File(getPath("InputImportControlLoaderWithNewElement.xml")).toURI());
-        assertNotNull(root);
+        assertNotNull("Import root should not be null", root);
     }
 
     @Test
@@ -104,8 +106,9 @@ public class ImportControlLoaderTest {
             fail("exception expected");
         }
         catch (InvocationTargetException ex) {
-            assertSame(SAXException.class, ex.getCause().getClass());
-            assertEquals("missing attribute you_cannot_find_me", ex.getCause().getMessage());
+            assertSame("Invalid exception class", SAXException.class, ex.getCause().getClass());
+            assertEquals("Invalid exception message",
+                    "missing attribute you_cannot_find_me", ex.getCause().getMessage());
         }
     }
 
@@ -125,8 +128,10 @@ public class ImportControlLoaderTest {
             fail("exception expected");
         }
         catch (InvocationTargetException ex) {
-            assertSame(CheckstyleException.class, ex.getCause().getClass());
-            assertTrue(ex.getCause().getMessage().startsWith("unable to read"));
+            assertSame("Invalid exception class",
+                    CheckstyleException.class, ex.getCause().getClass());
+            assertTrue("Invalid exception message: " + ex.getCause().getMessage(),
+                    ex.getCause().getMessage().startsWith("unable to read"));
         }
     }
 
@@ -148,7 +153,7 @@ public class ImportControlLoaderTest {
             fail("exception expected " + available);
         }
         catch (CheckstyleException ex) {
-            assertSame(IOException.class, ex.getCause().getClass());
+            assertSame("Invalid exception class", IOException.class, ex.getCause().getClass());
         }
         Mockito.verify(inputStream).close();
     }
@@ -170,7 +175,8 @@ public class ImportControlLoaderTest {
             fail("exception expected " + available);
         }
         catch (CheckstyleException ex) {
-            assertSame(SAXParseException.class, ex.getCause().getClass());
+            assertSame("Invalid exception class",
+                    SAXParseException.class, ex.getCause().getClass());
         }
     }
 }

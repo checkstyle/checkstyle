@@ -155,7 +155,8 @@ public class HiddenFieldCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(HiddenFieldCheck.class);
         checkConfig.addAttribute("ignoreFormat", "^i.*$");
-        Assert.assertNotNull(checkConfig.getAttribute("ignoreFormat"));
+        Assert.assertNotNull("Ignore format should not be null",
+                checkConfig.getAttribute("ignoreFormat"));
         final String[] expected = {
             "18:13: " + getCheckMessage(MSG_KEY, "hidden"),
             "21:33: " + getCheckMessage(MSG_KEY, "hidden"),

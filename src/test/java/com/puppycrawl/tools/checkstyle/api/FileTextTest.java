@@ -51,7 +51,8 @@ public class FileTextTest {
             fail("UnsupportedEncodingException is expected");
         }
         catch (IllegalStateException ex) {
-            assertEquals("Unsupported charset: " + charsetName, ex.getMessage());
+            assertEquals("Invalid exception message",
+                    "Unsupported charset: " + charsetName, ex.getMessage());
         }
 
     }
@@ -66,7 +67,7 @@ public class FileTextTest {
         final String charsetName = "ISO-8859-1";
         final FileText fileText = new FileText(new File("src/test/resources/com/puppycrawl/tools/"
                  + "checkstyle/api/import-control_complete.xml"), charsetName);
-        assertEquals(charsetName, fileText.getCharset().name());
+        assertEquals("Invalid charset name", charsetName, fileText.getCharset().name());
 
         verifyStatic(times(2));
         Closeables.closeQuietly(any(Reader.class));
@@ -79,7 +80,7 @@ public class FileTextTest {
                  + "checkstyle/api/import-control_complete.xml"), charsetName);
         final LineColumn lineColumn = fileText.lineColumn(100);
         final FileText copy = new FileText(fileText);
-        assertEquals(lineColumn, copy.lineColumn(100));
+        assertEquals("Invalid linecolumn", lineColumn, copy.lineColumn(100));
     }
 
     @Test
@@ -89,12 +90,12 @@ public class FileTextTest {
                  + "checkstyle/api/import-control_complete.xml"), charsetName);
         final FileText copy = new FileText(fileText);
         final LineColumn lineColumn = copy.lineColumn(100);
-        assertEquals(3, lineColumn.getLine());
+        assertEquals("Invalid line", 3, lineColumn.getLine());
         if (System.getProperty("os.name").toLowerCase(Locale.ENGLISH).startsWith("windows")) {
-            assertEquals(44, lineColumn.getColumn());
+            assertEquals("Invalid column", 44, lineColumn.getColumn());
         }
         else {
-            assertEquals(46, lineColumn.getColumn());
+            assertEquals("Invalid column", 46, lineColumn.getColumn());
         }
     }
 
@@ -105,7 +106,7 @@ public class FileTextTest {
                 + "checkstyle/api/import-control_complete.xml"), charsetName);
         final FileText copy = new FileText(fileText);
         final LineColumn lineColumn = copy.lineColumn(0);
-        assertEquals(1, lineColumn.getLine());
-        assertEquals(0, lineColumn.getColumn());
+        assertEquals("Invalid line", 1, lineColumn.getLine());
+        assertEquals("Invalid column", 0, lineColumn.getColumn());
     }
 }

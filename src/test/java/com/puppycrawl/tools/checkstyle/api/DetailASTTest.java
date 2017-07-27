@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.api;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -69,16 +68,16 @@ public class DetailASTTest {
 
         setParentMethod.invoke(secondLevelA, root);
 
-        assertEquals(0, secondLevelA.getChildCount());
-        assertEquals(0, firstLevelB.getChildCount());
-        assertEquals(1, firstLevelA.getChildCount());
-        assertEquals(2, root.getChildCount());
-        assertEquals(2, root.getChildCount());
+        assertEquals("Invalid child count", 0, secondLevelA.getChildCount());
+        assertEquals("Invalid child count", 0, firstLevelB.getChildCount());
+        assertEquals("Invalid child count", 1, firstLevelA.getChildCount());
+        assertEquals("Invalid child count", 2, root.getChildCount());
+        assertEquals("Invalid child count", 2, root.getChildCount());
 
-        assertNull(root.getPreviousSibling());
-        assertNull(firstLevelA.getPreviousSibling());
-        assertNull(secondLevelA.getPreviousSibling());
-        assertEquals(firstLevelA, firstLevelB.getPreviousSibling());
+        assertNull("Previous sibling should be null", root.getPreviousSibling());
+        assertNull("Previous sibling should be null", firstLevelA.getPreviousSibling());
+        assertNull("Previous sibling should be null", secondLevelA.getPreviousSibling());
+        assertEquals("Invalid previous sibling", firstLevelA, firstLevelB.getPreviousSibling());
     }
 
     @Test
@@ -88,13 +87,13 @@ public class DetailASTTest {
 
         root.setFirstChild(firstLevelA);
 
-        assertEquals(1, root.getChildCount());
+        assertEquals("Invalid child count", 1, root.getChildCount());
 
         getSetParentMethod().invoke(firstLevelA, root);
         firstLevelA.addPreviousSibling(null);
         firstLevelA.addNextSibling(null);
 
-        assertEquals(1, root.getChildCount());
+        assertEquals("Invalid child count", 1, root.getChildCount());
     }
 
     @Test
@@ -104,23 +103,23 @@ public class DetailASTTest {
         final DetailAST firstLevelB = new DetailAST();
         final DetailAST firstLevelC = new DetailAST();
 
-        assertEquals(0, root.getChildCount());
+        assertEquals("Invalid child count", 0, root.getChildCount());
 
         root.setFirstChild(firstLevelA);
         final Method setParentMethod = getSetParentMethod();
         setParentMethod.invoke(firstLevelA, root);
 
-        assertEquals(1, root.getChildCount());
+        assertEquals("Invalid child count", 1, root.getChildCount());
 
         firstLevelA.addNextSibling(firstLevelB);
         setParentMethod.invoke(firstLevelB, root);
 
-        assertEquals(firstLevelB, firstLevelA.getNextSibling());
+        assertEquals("Invalid next sibling", firstLevelB, firstLevelA.getNextSibling());
 
         firstLevelA.addNextSibling(firstLevelC);
         setParentMethod.invoke(firstLevelC, root);
 
-        assertEquals(firstLevelC, firstLevelA.getNextSibling());
+        assertEquals("Invalid next sibling", firstLevelC, firstLevelA.getNextSibling());
     }
 
     @Test
@@ -150,8 +149,9 @@ public class DetailASTTest {
             final BitSet branchTokenTypes = Whitebox.invokeMethod(parent, "getBranchTokenTypes");
             method.accept(null);
             final BitSet branchTokenTypes2 = Whitebox.invokeMethod(parent, "getBranchTokenTypes");
-            assertEquals(branchTokenTypes, branchTokenTypes2);
-            assertNotSame(branchTokenTypes, branchTokenTypes2);
+            assertEquals("Branch token types are not equal", branchTokenTypes, branchTokenTypes2);
+            assertNotSame("Branch token types should not be the same",
+                    branchTokenTypes, branchTokenTypes2);
         }
     }
 
@@ -172,16 +172,16 @@ public class DetailASTTest {
             method.accept(null);
             final int intermediateCount = Whitebox.getInternalState(parent, "childCount");
             final int finishCount = parent.getChildCount();
-            assertEquals(startCount, finishCount);
-            assertEquals(Integer.MIN_VALUE, intermediateCount);
+            assertEquals("Child count has changed", startCount, finishCount);
+            assertEquals("Invalid child count", Integer.MIN_VALUE, intermediateCount);
         }
 
         final int startCount = child.getChildCount();
         child.addChild(null);
         final int intermediateCount = Whitebox.getInternalState(child, "childCount");
         final int finishCount = child.getChildCount();
-        assertEquals(startCount, finishCount);
-        assertEquals(Integer.MIN_VALUE, intermediateCount);
+        assertEquals("Child count has changed", startCount, finishCount);
+        assertEquals("Invalid child count", Integer.MIN_VALUE, intermediateCount);
     }
 
     @Test
@@ -192,11 +192,11 @@ public class DetailASTTest {
         final DetailAST newSibling = new DetailAST();
         parent.setFirstChild(child);
         child.setNextSibling(sibling);
-
         child.addNextSibling(newSibling);
-        assertTrue(newSibling.getParent().equals(parent));
-        assertTrue(newSibling.getNextSibling().equals(sibling));
-        assertTrue(child.getNextSibling().equals(newSibling));
+
+        assertEquals("Invalid parent", parent, newSibling.getParent());
+        assertEquals("Invalid next sibling", sibling, newSibling.getNextSibling());
+        assertEquals("Invalid child", newSibling, child.getNextSibling());
     }
 
     /**
@@ -214,7 +214,7 @@ public class DetailASTTest {
         ast.setText("text");
         ast.setColumnNo(0);
         ast.setLineNo(0);
-        assertEquals("text[0x0]", ast.toString());
+        assertEquals("Invalid text", "text[0x0]", ast.toString());
     }
 
     private static void checkDir(File dir) throws Exception {
