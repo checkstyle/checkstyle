@@ -46,6 +46,10 @@ public final class TestUtils {
 
     /**
      * Verifies that utils class has private constructor and invokes it to satisfy code coverage.
+     * @param utilClass class to test for c-tor
+     * @param checkConstructorIsPrivate flag to skip check for private visibility, it is useful
+     *                                  for Classes that are mocked by PowerMockRunner that make
+     *                                  private c-tors as public
      */
     public static void assertUtilsClassHasPrivateConstructor(final Class<?> utilClass,
                                                              boolean checkConstructorIsPrivate)
