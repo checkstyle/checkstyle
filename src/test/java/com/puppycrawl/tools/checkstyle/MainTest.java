@@ -25,11 +25,18 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.times;
+import static org.powermock.api.mockito.PowerMockito.doNothing;
 import static org.powermock.api.mockito.PowerMockito.mock;
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
+import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
@@ -52,11 +59,18 @@ import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 import org.junit.contrib.java.lang.system.SystemErrRule;
 import org.junit.contrib.java.lang.system.SystemOutRule;
 import org.junit.rules.TemporaryFolder;
+import org.junit.runner.RunWith;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
+import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({Main.class, CommonUtils.class, Closeables.class})
 public class MainTest {
     private static final String USAGE = String.format(Locale.ROOT,
           "usage: java com.puppycrawl.tools.checkstyle.Main [options] -c <config.xml>"
@@ -148,7 +162,7 @@ public class MainTest {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertUtilsClassHasPrivateConstructor(Main.class);
+        assertUtilsClassHasPrivateConstructor(Main.class, false);
     }
 
     @Test
@@ -387,8 +401,11 @@ public class MainTest {
     }
 
     @Test
-    public void testExistingTargetFilePlainOutputProperties()
-            throws Exception {
+    public void testExistingTargetFilePlainOutputProperties() throws Exception {
+        mockStatic(Closeables.class);
+        doNothing().when(Closeables.class);
+        Closeables.closeQuietly(any(InputStream.class));
+
         //exit.expectSystemExitWithStatus(0);
         exit.checkAssertionAfterwards(() -> {
             assertEquals(auditStartMessage.getMessage() + EOL
@@ -398,6 +415,9 @@ public class MainTest {
         Main.main("-c", getPath("InputMainConfig-classname-prop.xml"),
                 "-p", getPath("InputMainMycheckstyle.properties"),
                 getPath("InputMain.java"));
+
+        verifyStatic(times(2));
+        Closeables.closeQuietly(any(InputStream.class));
     }
 
     @Test
@@ -511,6 +531,10 @@ public class MainTest {
 
     @Test
     public void testCreateListenerWithLocationIllegalStateException() throws Exception {
+        mockStatic(CommonUtils.class);
+        doNothing().when(CommonUtils.class);
+        CommonUtils.close(any(OutputStream.class));
+
         final Method method = Main.class.getDeclaredMethod("createListener", String.class,
             String.class);
         method.setAccessible(true);
@@ -530,6 +554,9 @@ public class MainTest {
             // method creates output folder
             FileUtils.deleteQuietly(new File(outDir));
         }
+
+        verifyStatic(times(1));
+        CommonUtils.close(any(OutputStream.class));
     }
 
     @Test
@@ -840,6 +867,7 @@ public class MainTest {
         });
         Main.main("-c", getPath("InputMainConfig-custom-root-module.xml"),
                 getPath("InputMain.java"));
+        assertTrue(TestRootModuleChecker.isDestroyed());
     }
 
     @Test

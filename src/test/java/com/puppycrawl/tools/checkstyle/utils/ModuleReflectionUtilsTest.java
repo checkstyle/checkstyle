@@ -43,7 +43,7 @@ public class ModuleReflectionUtilsTest {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertUtilsClassHasPrivateConstructor(ModuleReflectionUtils.class);
+        assertUtilsClassHasPrivateConstructor(ModuleReflectionUtils.class, true);
     }
 
     @Test

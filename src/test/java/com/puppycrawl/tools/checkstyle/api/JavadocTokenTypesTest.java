@@ -26,6 +26,6 @@ import org.junit.Test;
 public class JavadocTokenTypesTest {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertUtilsClassHasPrivateConstructor(JavadocTokenTypes.class);
+        assertUtilsClassHasPrivateConstructor(JavadocTokenTypes.class, true);
     }
 }

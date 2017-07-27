@@ -26,6 +26,6 @@ import org.junit.Test;
 public class DefinitionsTest {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertUtilsClassHasPrivateConstructor(Definitions.class);
+        assertUtilsClassHasPrivateConstructor(Definitions.class, true);
     }
 }

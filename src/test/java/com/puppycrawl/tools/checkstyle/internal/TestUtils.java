@@ -47,10 +47,11 @@ public final class TestUtils {
     /**
      * Verifies that utils class has private constructor and invokes it to satisfy code coverage.
      */
-    public static void assertUtilsClassHasPrivateConstructor(final Class<?> utilClass)
+    public static void assertUtilsClassHasPrivateConstructor(final Class<?> utilClass,
+                                                             boolean checkConstructorIsPrivate)
             throws ReflectiveOperationException {
         final Constructor<?> constructor = utilClass.getDeclaredConstructor();
-        if (!Modifier.isPrivate(constructor.getModifiers())) {
+        if (checkConstructorIsPrivate && !Modifier.isPrivate(constructor.getModifiers())) {
             Assert.fail("Constructor is not private");
         }
         constructor.setAccessible(true);

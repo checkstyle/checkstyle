@@ -226,11 +226,14 @@ public final class Main {
         }
         finally {
             // return exit code base on validation of Checker
-            if (errorCounter != 0 && !cliViolations) {
-                final LocalizedMessage errorCounterMessage = new LocalizedMessage(0,
-                        Definitions.CHECKSTYLE_BUNDLE, ERROR_COUNTER,
-                        new String[] {String.valueOf(errorCounter)}, null, Main.class, null);
-                System.out.println(errorCounterMessage.getMessage());
+            // two ifs exist till https://github.com/hcoles/pitest/issues/377
+            if (errorCounter != 0) {
+                if (!cliViolations) {
+                    final LocalizedMessage errorCounterMessage = new LocalizedMessage(0,
+                            Definitions.CHECKSTYLE_BUNDLE, ERROR_COUNTER,
+                            new String[] {String.valueOf(errorCounter)}, null, Main.class, null);
+                    System.out.println(errorCounterMessage.getMessage());
+                }
             }
             if (exitStatus != 0) {
                 System.exit(exitStatus);

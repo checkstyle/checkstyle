@@ -42,7 +42,7 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertUtilsClassHasPrivateConstructor(AstTreeStringPrinter.class);
+        assertUtilsClassHasPrivateConstructor(AstTreeStringPrinter.class, true);
     }
 
     @Test

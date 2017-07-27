@@ -19,4 +19,11 @@
             | //MethodDeclaration[@Name='getHashCodeBasedOnObjectContent' and ../../..[@Image='PropertyCacheFile']]"/>
         </properties>
     </rule>
+    <rule ref="rulesets/java/basic.xml/CollapsibleIfStatements">
+        <properties>
+            <!-- till https://github.com/hcoles/pitest/issues/377 -->
+            <property name="violationSuppressXPath" value="//MethodDeclaration[@Name='main' and ../../..[@Image='Main']]"/>
+        </properties>
+    </rule>
+
 </ruleset>
