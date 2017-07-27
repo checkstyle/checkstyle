@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
@@ -34,6 +35,8 @@ public class TreeWalkerAuditEvent {
     private final FileContents fileContents;
     /** Message associated with the event. **/
     private final LocalizedMessage localizedMessage;
+    /** Root ast element. **/
+    private final DetailAST rootAst;
 
     /**
      * Creates a new {@code TreeWalkerAuditEvent} instance.
@@ -41,12 +44,14 @@ public class TreeWalkerAuditEvent {
      * @param fileContents contents of the file associated with the event
      * @param fileName file associated with the event
      * @param localizedMessage the actual message
+     * @param rootAst root AST element {@link DetailAST} of the file
      */
     public TreeWalkerAuditEvent(FileContents fileContents, String fileName,
-                                LocalizedMessage localizedMessage) {
+                                LocalizedMessage localizedMessage, DetailAST rootAst) {
         this.fileContents = fileContents;
         this.fileName = fileName;
         this.localizedMessage = localizedMessage;
+        this.rootAst = rootAst;
     }
 
     /**
@@ -114,5 +119,21 @@ public class TreeWalkerAuditEvent {
      */
     public String getSourceName() {
         return localizedMessage.getSourceName();
+    }
+
+    /**
+     * Gets the token type of the message.
+     * @return the token type of the message
+     */
+    public int getTokenType() {
+        return localizedMessage.getTokenType();
+    }
+
+    /**
+     * Gets the root element of the AST tree.
+     * @return the root element of the AST tree
+     */
+    public DetailAST getRootAst() {
+        return rootAst;
     }
 }

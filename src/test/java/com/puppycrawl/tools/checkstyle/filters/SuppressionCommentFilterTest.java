@@ -297,7 +297,7 @@ public class SuppressionCommentFilterTest
     @Test
     public void testAcceptNullLocalizedMessage() {
         final SuppressionCommentFilter filter = new SuppressionCommentFilter();
-        final TreeWalkerAuditEvent auditEvent = new TreeWalkerAuditEvent(null, null, null);
+        final TreeWalkerAuditEvent auditEvent = new TreeWalkerAuditEvent(null, null, null, null);
         Assert.assertTrue("Filter should accept audit event", filter.accept(auditEvent));
         Assert.assertNull("File name should not be null", auditEvent.getFileName());
     }
@@ -332,7 +332,7 @@ public class SuppressionCommentFilterTest
                 new FileContents("filename", "//CHECKSTYLE:OFF: ConstantNameCheck", "line2");
         contents.reportSingleLineComment(1, 0);
         final TreeWalkerAuditEvent dummyEvent = new TreeWalkerAuditEvent(contents, "filename",
-                new LocalizedMessage(1, null, null, null, null, Object.class, null));
+                new LocalizedMessage(1, null, null, null, null, Object.class, null), null);
         final boolean result = suppressionCommentFilter.accept(dummyEvent);
         assertFalse("Fileter should not accept event", result);
     }
@@ -344,13 +344,13 @@ public class SuppressionCommentFilterTest
                 new FileContents("filename", "//CHECKSTYLE:OFF", "line2");
         contents.reportSingleLineComment(1, 0);
         final TreeWalkerAuditEvent dummyEvent = new TreeWalkerAuditEvent(contents, "filename",
-                new LocalizedMessage(1, null, null, null, null, Object.class, null));
+                new LocalizedMessage(1, null, null, null, null, Object.class, null), null);
         suppressionCommentFilter.accept(dummyEvent);
         final FileContents contents2 =
                 new FileContents("filename2", "some line", "//CHECKSTYLE:OFF");
         contents2.reportSingleLineComment(2, 0);
         final TreeWalkerAuditEvent dummyEvent2 = new TreeWalkerAuditEvent(contents2, "filename",
-                new LocalizedMessage(1, null, null, null, null, Object.class, null));
+                new LocalizedMessage(1, null, null, null, null, Object.class, null), null);
         suppressionCommentFilter.accept(dummyEvent2);
         final List<SuppressionCommentFilter.Tag> tags =
                 Whitebox.getInternalState(suppressionCommentFilter, "tags");

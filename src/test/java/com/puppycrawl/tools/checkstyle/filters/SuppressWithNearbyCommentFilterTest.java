@@ -297,7 +297,7 @@ public class SuppressWithNearbyCommentFilterTest
     @Test
     public void testAcceptNullLocalizedMessage() {
         final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
-        final TreeWalkerAuditEvent auditEvent = new TreeWalkerAuditEvent(null, null, null);
+        final TreeWalkerAuditEvent auditEvent = new TreeWalkerAuditEvent(null, null, null, null);
         assertTrue("Filter should accept null localized message", filter.accept(auditEvent));
     }
 
@@ -353,13 +353,13 @@ public class SuppressWithNearbyCommentFilterTest
                 new FileContents("filename", "//SUPPRESS CHECKSTYLE ignore", "line2");
         contents.reportSingleLineComment(1, 0);
         final TreeWalkerAuditEvent dummyEvent = new TreeWalkerAuditEvent(contents, "filename",
-                new LocalizedMessage(1, null, null, null, null, Object.class, null));
+                new LocalizedMessage(1, null, null, null, null, Object.class, null), null);
         suppressionCommentFilter.accept(dummyEvent);
         final FileContents contents2 =
                 new FileContents("filename2", "some line", "//SUPPRESS CHECKSTYLE ignore");
         contents2.reportSingleLineComment(2, 0);
         final TreeWalkerAuditEvent dummyEvent2 = new TreeWalkerAuditEvent(contents2, "filename",
-                new LocalizedMessage(1, null, null, null, null, Object.class, null));
+                new LocalizedMessage(1, null, null, null, null, Object.class, null), null);
         suppressionCommentFilter.accept(dummyEvent2);
         final List<SuppressionCommentFilter.Tag> tags =
                 Whitebox.getInternalState(suppressionCommentFilter, "tags");

@@ -209,9 +209,14 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
                         walk(astWithComments, contents, AstState.WITH_COMMENTS);
                     }
-                    final SortedSet<LocalizedMessage> filteredMessages =
-                            getFilteredMessages(fileName, contents);
-                    addMessages(filteredMessages);
+                    if (filters.isEmpty()) {
+                        addMessages(messages);
+                    }
+                    else {
+                        final SortedSet<LocalizedMessage> filteredMessages =
+                            getFilteredMessages(fileName, contents, rootAST);
+                        addMessages(filteredMessages);
+                    }
                     messages.clear();
                 }
             }
@@ -232,14 +237,15 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      * Returns filtered set of {@link LocalizedMessage}.
      * @param fileName path to the file
      * @param fileContents the contents of the file
+     * @param rootAST root AST element {@link DetailAST} of the file
      * @return filtered set of messages
      */
-    private SortedSet<LocalizedMessage> getFilteredMessages(String fileName,
-                                                            FileContents fileContents) {
+    private SortedSet<LocalizedMessage> getFilteredMessages(
+            String fileName, FileContents fileContents, DetailAST rootAST) {
         final SortedSet<LocalizedMessage> result = new TreeSet<>(messages);
         for (LocalizedMessage element : messages) {
             final TreeWalkerAuditEvent event =
-                    new TreeWalkerAuditEvent(fileContents, fileName, element);
+                    new TreeWalkerAuditEvent(fileContents, fileName, element, rootAST);
             for (TreeWalkerFilter filter : filters) {
                 if (!filter.accept(event)) {
                     result.remove(element);
