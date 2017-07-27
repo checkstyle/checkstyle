@@ -152,7 +152,7 @@ public class XMLLogger
      * @return the escaped value if necessary.
      */
     public static String encode(String value) {
-        final StringBuilder sb = new StringBuilder();
+        final StringBuilder sb = new StringBuilder(256);
         for (int i = 0; i < value.length(); i++) {
             final char chr = value.charAt(i);
             switch (chr) {

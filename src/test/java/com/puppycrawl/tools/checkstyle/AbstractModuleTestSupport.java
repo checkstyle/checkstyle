@@ -249,7 +249,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final Map<String, MapDifference.ValueDifference<List<String>>> differingViolations =
                 violationDifferences.entriesDiffering();
 
-        final StringBuilder message = new StringBuilder();
+        final StringBuilder message = new StringBuilder(256);
         if (!missingViolations.isEmpty()) {
             message.append("missing violations: ").append(missingViolations);
         }

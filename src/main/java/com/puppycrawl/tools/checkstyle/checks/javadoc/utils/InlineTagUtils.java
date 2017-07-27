@@ -104,7 +104,7 @@ public final class InlineTagUtils {
      * @return The lines, joined together with newlines, as a single string.
      */
     private static String convertLinesToString(String... lines) {
-        final StringBuilder builder = new StringBuilder();
+        final StringBuilder builder = new StringBuilder(1024);
         for (String line : lines) {
             builder.append(line);
             builder.append(LINE_FEED);

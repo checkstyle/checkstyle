@@ -361,7 +361,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * @return Imported canonical type's name.
      */
     private static String getImportedTypeCanonicalName(DetailAST importAst) {
-        final StringBuilder canonicalNameBuilder = new StringBuilder();
+        final StringBuilder canonicalNameBuilder = new StringBuilder(256);
         DetailAST toVisit = importAst;
         while (toVisit != null) {
             toVisit = getNextSubTreeNode(toVisit, importAst);

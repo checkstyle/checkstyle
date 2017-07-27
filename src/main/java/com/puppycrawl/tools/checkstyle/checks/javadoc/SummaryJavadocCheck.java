@@ -163,7 +163,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      */
     private static String getSummarySentence(DetailNode ast) {
         boolean flag = true;
-        final StringBuilder result = new StringBuilder();
+        final StringBuilder result = new StringBuilder(256);
         for (DetailNode child : ast.getChildren()) {
             if (ALLOWED_TYPES.contains(child.getType())) {
                 result.append(child.getText());
@@ -193,7 +193,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @return content of child nodes as string.
      */
     private static String getContentOfChild(DetailNode child) {
-        final StringBuilder contents = new StringBuilder();
+        final StringBuilder contents = new StringBuilder(256);
         for (DetailNode node : child.getChildren()) {
             contents.append(node.getText().trim());
         }
@@ -224,7 +224,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @return first sentence.
      */
     private static String getFirstSentence(DetailNode ast) {
-        final StringBuilder result = new StringBuilder();
+        final StringBuilder result = new StringBuilder(256);
         final String periodSuffix = PERIOD + ' ';
         for (DetailNode child : ast.getChildren()) {
             final String text;
