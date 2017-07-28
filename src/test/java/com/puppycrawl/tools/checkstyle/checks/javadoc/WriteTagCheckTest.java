@@ -51,7 +51,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
     @Before
     public void setUp() {
-        checkConfig = createCheckConfig(WriteTagCheck.class);
+        checkConfig = createModuleConfig(WriteTagCheck.class);
     }
 
     @Override

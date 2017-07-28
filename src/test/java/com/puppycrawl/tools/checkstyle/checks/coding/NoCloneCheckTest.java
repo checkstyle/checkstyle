@@ -41,7 +41,7 @@ public class NoCloneCheckTest
     public void testHasClone()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(NoCloneCheck.class);
+            createModuleConfig(NoCloneCheck.class);
         final String[] expected = {
             "10: " + getCheckMessage(MSG_KEY),
             "27: " + getCheckMessage(MSG_KEY),

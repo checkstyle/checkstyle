@@ -47,7 +47,7 @@ public class AbstractViolationReporterTest {
         return getMessageBundleMethod;
     }
 
-    protected static DefaultConfiguration createCheckConfig(Class<?> clazz) {
+    protected static DefaultConfiguration createModuleConfig(Class<?> clazz) {
         return new DefaultConfiguration(clazz.getName());
     }
 
@@ -73,7 +73,7 @@ public class AbstractViolationReporterTest {
 
     @Test
     public void testCustomMessage() throws Exception {
-        final DefaultConfiguration config = createCheckConfig(emptyCheck.getClass());
+        final DefaultConfiguration config = createModuleConfig(emptyCheck.getClass());
         config.addMessage("msgKey", "This is a custom message.");
         emptyCheck.configure(config);
 
@@ -90,7 +90,7 @@ public class AbstractViolationReporterTest {
 
     @Test
     public void testCustomMessageWithParameters() throws Exception {
-        final DefaultConfiguration config = createCheckConfig(emptyCheck.getClass());
+        final DefaultConfiguration config = createModuleConfig(emptyCheck.getClass());
         config.addMessage("msgKey", "This is a custom message with {0}.");
         emptyCheck.configure(config);
 
@@ -107,7 +107,7 @@ public class AbstractViolationReporterTest {
 
     @Test
     public void testCustomMessageWithParametersNegative() throws Exception {
-        final DefaultConfiguration config = createCheckConfig(emptyCheck.getClass());
+        final DefaultConfiguration config = createModuleConfig(emptyCheck.getClass());
         config.addMessage("msgKey", "This is a custom message {0.");
         emptyCheck.configure(config);
 

@@ -48,7 +48,7 @@ public class InterfaceTypeParameterNameCheckTest
     public void testInterfaceDefault()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(InterfaceTypeParameterNameCheck.class);
+            createModuleConfig(InterfaceTypeParameterNameCheck.class);
 
         final String pattern = "^[A-Z]$";
 
@@ -62,7 +62,7 @@ public class InterfaceTypeParameterNameCheckTest
     public void testInterfaceFooName()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(InterfaceTypeParameterNameCheck.class);
+            createModuleConfig(InterfaceTypeParameterNameCheck.class);
         checkConfig.addAttribute("format", "^foo$");
 
         final String pattern = "^foo$";

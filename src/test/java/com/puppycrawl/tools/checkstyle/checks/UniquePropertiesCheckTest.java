@@ -40,7 +40,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
@@ -48,13 +48,13 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 /**
  * JUnit tests for Unique Properties check.
  */
-public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
+public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
 
     private DefaultConfiguration checkConfig;
 
     @Before
     public void setUp() {
-        checkConfig = createCheckConfig(UniquePropertiesCheck.class);
+        checkConfig = createModuleConfig(UniquePropertiesCheck.class);
     }
 
     @Override

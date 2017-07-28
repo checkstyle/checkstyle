@@ -36,14 +36,14 @@ public class NoLineWrapCheckTest
 
     @Test
     public void testCaseWithoutLineWrapping() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(NoLineWrapCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(NoLineWrapCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputNoLineWrapGood.java"), expected);
     }
 
     @Test
     public void testDefaultTokensLineWrapping() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(NoLineWrapCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(NoLineWrapCheck.class);
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY, "package"),
             "6: " + getCheckMessage(MSG_KEY, "import"),
@@ -55,7 +55,7 @@ public class NoLineWrapCheckTest
     @Test
     public void testCustomTokensLineWrapping()
             throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(NoLineWrapCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(NoLineWrapCheck.class);
         checkConfig.addAttribute(
                 "tokens", "IMPORT, STATIC_IMPORT, CLASS_DEF, METHOD_DEF, ENUM_DEF");
         final String[] expected = {

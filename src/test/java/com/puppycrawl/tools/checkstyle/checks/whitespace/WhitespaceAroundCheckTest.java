@@ -37,7 +37,7 @@ public class WhitespaceAroundCheckTest
 
     @Before
     public void setUp() {
-        checkConfig = createCheckConfig(WhitespaceAroundCheck.class);
+        checkConfig = createModuleConfig(WhitespaceAroundCheck.class);
     }
 
     @Override

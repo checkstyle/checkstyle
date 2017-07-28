@@ -36,7 +36,7 @@ public class SuperFinalizeCheckTest
     @Test
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(SuperFinalizeCheck.class);
+            createModuleConfig(SuperFinalizeCheck.class);
         final String[] expected = {
             "27:17: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
             "34:17: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),

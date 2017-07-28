@@ -67,7 +67,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
     @Test
     public void testOnComplexAnnotations() throws Exception {
-        final Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
+        final Configuration checkConfig = createModuleConfig(SuppressWarningsHolder.class);
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -76,7 +76,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCustomAnnotation() throws Exception {
-        final Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
+        final Configuration checkConfig = createModuleConfig(SuppressWarningsHolder.class);
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -197,7 +197,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAnnotationInTry() throws Exception {
-        final Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
+        final Configuration checkConfig = createModuleConfig(SuppressWarningsHolder.class);
 
         final String[] expected = {
             "11: " + getCheckMessage("suppress.warnings.invalid.target"),
@@ -208,7 +208,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
     @Test
     public void testEmptyAnnotation() throws Exception {
-        final Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
+        final Configuration checkConfig = createModuleConfig(SuppressWarningsHolder.class);
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -322,7 +322,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAnnotationWithFullName() throws Exception {
-        final Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
+        final Configuration checkConfig = createModuleConfig(SuppressWarningsHolder.class);
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 

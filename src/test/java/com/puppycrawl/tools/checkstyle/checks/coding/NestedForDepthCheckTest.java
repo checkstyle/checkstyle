@@ -50,7 +50,7 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNestedTooDeep() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(NestedForDepthCheck.class);
+            createModuleConfig(NestedForDepthCheck.class);
         checkConfig.addAttribute("max", "2");
 
         final String[] expected = {
@@ -75,7 +75,7 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNestedOk() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(NestedForDepthCheck.class);
+            createModuleConfig(NestedForDepthCheck.class);
         checkConfig.addAttribute("max", "4");
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;

@@ -36,7 +36,7 @@ public class WhitespaceAfterCheckTest
 
     @Before
     public void setUp() {
-        checkConfig = createCheckConfig(WhitespaceAfterCheck.class);
+        checkConfig = createModuleConfig(WhitespaceAfterCheck.class);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class WhitespaceAfterCheckTest
     @Test
     public void testCast() throws Exception {
         final DefaultConfiguration configurationTestCast =
-                createCheckConfig(WhitespaceAfterCheck.class);
+                createModuleConfig(WhitespaceAfterCheck.class);
         configurationTestCast.addAttribute("tokens", "TYPECAST");
         final String[] expected = {
             "88:21: " + getCheckMessage(MSG_WS_TYPECAST),
@@ -77,7 +77,7 @@ public class WhitespaceAfterCheckTest
     @Test
     public void testMultilineCast() throws Exception {
         final DefaultConfiguration configurationTestCast =
-                createCheckConfig(WhitespaceAfterCheck.class);
+                createModuleConfig(WhitespaceAfterCheck.class);
         configurationTestCast.addAttribute("tokens", "TYPECAST");
         final String[] expected = {
             "7:24: " + getCheckMessage(MSG_WS_TYPECAST),
@@ -89,7 +89,7 @@ public class WhitespaceAfterCheckTest
     @Test
     public void testSemi() throws Exception {
         final DefaultConfiguration configurationTestSemi =
-                createCheckConfig(WhitespaceAfterCheck.class);
+                createModuleConfig(WhitespaceAfterCheck.class);
         configurationTestSemi.addAttribute("tokens", "SEMI");
         final String[] expected = {
             "54:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
@@ -103,7 +103,7 @@ public class WhitespaceAfterCheckTest
     @Test
     public void testLiteralWhile() throws Exception {
         final DefaultConfiguration configurationTestLiteralWhile =
-                createCheckConfig(WhitespaceAfterCheck.class);
+                createModuleConfig(WhitespaceAfterCheck.class);
         configurationTestLiteralWhile.addAttribute("tokens", "LITERAL_WHILE");
         final String[] expected = {
             "39:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "while"),
@@ -115,7 +115,7 @@ public class WhitespaceAfterCheckTest
     @Test
     public void testLiteralIf() throws Exception {
         final DefaultConfiguration configurationTestLiteralIf =
-                createCheckConfig(WhitespaceAfterCheck.class);
+                createModuleConfig(WhitespaceAfterCheck.class);
         configurationTestLiteralIf.addAttribute("tokens", "LITERAL_IF");
         final String[] expected = {
             "18:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "if"),
@@ -127,7 +127,7 @@ public class WhitespaceAfterCheckTest
     @Test
     public void testLiteralElse() throws Exception {
         final DefaultConfiguration configurationTestLiteralElse =
-                createCheckConfig(WhitespaceAfterCheck.class);
+                createModuleConfig(WhitespaceAfterCheck.class);
         configurationTestLiteralElse.addAttribute("tokens", "LITERAL_ELSE");
         final String[] expected = {
             "27:15: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "else"),
@@ -139,7 +139,7 @@ public class WhitespaceAfterCheckTest
     @Test
     public void testLiteralFor() throws Exception {
         final DefaultConfiguration configurationTestLiteralFor =
-                createCheckConfig(WhitespaceAfterCheck.class);
+                createModuleConfig(WhitespaceAfterCheck.class);
         configurationTestLiteralFor.addAttribute("tokens", "LITERAL_FOR");
         final String[] expected = {
             "51:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "for"),
@@ -151,7 +151,7 @@ public class WhitespaceAfterCheckTest
     @Test
     public void testLiteralDo() throws Exception {
         final DefaultConfiguration configurationTestLiteralDo =
-                createCheckConfig(WhitespaceAfterCheck.class);
+                createModuleConfig(WhitespaceAfterCheck.class);
         configurationTestLiteralDo.addAttribute("tokens", "LITERAL_DO");
         final String[] expected = {
             "63:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "do"),
@@ -163,7 +163,7 @@ public class WhitespaceAfterCheckTest
     @Test
     public void testDoWhile() throws Exception {
         final DefaultConfiguration configurationTestDoWhile =
-                createCheckConfig(WhitespaceAfterCheck.class);
+                createModuleConfig(WhitespaceAfterCheck.class);
         configurationTestDoWhile.addAttribute("tokens", "DO_WHILE");
         final String[] expected = {
             "18:16: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "while"),

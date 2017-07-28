@@ -50,7 +50,7 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(EmptyCatchBlockCheck.class);
+            createModuleConfig(EmptyCatchBlockCheck.class);
         final String[] expected = {
             "35: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
             "42: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
@@ -61,7 +61,7 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWithUserSetValues() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(EmptyCatchBlockCheck.class);
+            createModuleConfig(EmptyCatchBlockCheck.class);
         checkConfig.addAttribute("exceptionVariableName", "expected|ignore|myException");
         checkConfig.addAttribute("commentFormat", "This is expected");
         final String[] expected = {

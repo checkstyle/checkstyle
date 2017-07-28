@@ -44,14 +44,6 @@ public class FileSetCheckLifecycleTest
         return "com/puppycrawl/tools/checkstyle/checks/misc/fileset";
     }
 
-    @Override
-    protected DefaultConfiguration createCheckerConfig(
-        Configuration config) {
-        final DefaultConfiguration dc = new DefaultConfiguration("root");
-        dc.addChild(config);
-        return dc;
-    }
-
     @Test
     public void testGetRequiredTokens() {
         final FileContentsHolder checkObj = new FileContentsHolder();
@@ -62,7 +54,7 @@ public class FileSetCheckLifecycleTest
     @Test
     public void testTranslation() throws Exception {
         final Configuration checkConfig =
-            createCheckConfig(TestFileSetCheck.class);
+            createModuleConfig(TestFileSetCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputFileSetIllegalTokens.java"), expected);
 
@@ -73,7 +65,7 @@ public class FileSetCheckLifecycleTest
     public void testProcessCallsFinishBeforeCallingDestroy() throws Exception {
 
         final DefaultConfiguration dc = new DefaultConfiguration("configuration");
-        final DefaultConfiguration twConf = createCheckConfig(TreeWalker.class);
+        final DefaultConfiguration twConf = createModuleConfig(TreeWalker.class);
         dc.addAttribute("charset", "UTF-8");
         dc.addChild(twConf);
         twConf.addChild(new DefaultConfiguration(FileContentsHolder.class.getName()));

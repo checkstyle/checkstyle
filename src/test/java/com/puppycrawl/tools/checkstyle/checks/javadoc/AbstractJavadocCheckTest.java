@@ -56,7 +56,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNumberFormatException() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
         final String[] expected = {
             "3: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 52, "no viable "
                 + "alternative at input '<ul><li>a' {@link EntityEntry} (by way of {@link #;'",
@@ -67,14 +67,14 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCustomTag() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputAbstractJavadocCustomTag.java"), expected);
     }
 
     @Test
     public void testParsingErrors() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
         final String[] expected = {
             "4: " + getCheckMessage(MSG_JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
             "8: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 35, "img"),
@@ -85,9 +85,9 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWithMultipleChecks() throws Exception {
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
-        final DefaultConfiguration checksConfig = createCheckConfig(TreeWalker.class);
-        checksConfig.addChild(createCheckConfig(AtclauseOrderCheck.class));
-        checksConfig.addChild(createCheckConfig(JavadocParagraphCheck.class));
+        final DefaultConfiguration checksConfig = createModuleConfig(TreeWalker.class);
+        checksConfig.addChild(createModuleConfig(AtclauseOrderCheck.class));
+        checksConfig.addChild(createModuleConfig(JavadocParagraphCheck.class));
         checkerConfig.addChild(checksConfig);
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
@@ -98,7 +98,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAntlrError() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
         final String[] expected = {
             "4: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 49,
                     "mismatched input 'get' expecting <EOF>", "JAVADOC"),
@@ -108,7 +108,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCheckReuseAfterParseErrorWithFollowingAntlrErrorInTwoFiles() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
         final Map<String, List<String>> expectedMessages = new LinkedHashMap<>(2);
         expectedMessages.put(getPath("InputAbstractJavadocParsingErrors.java"), asList(
             "4: " + getCheckMessage(MSG_JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
@@ -127,7 +127,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCheckReuseAfterParseErrorWithFollowingAntlrErrorInSingleFile()
             throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
         final String[] expected = {
             "4: " + getCheckMessage(MSG_JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
             "8: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 53,
@@ -141,7 +141,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testPosition()
             throws Exception {
         JavadocCatchCheck.clearCounter();
-        final DefaultConfiguration checkConfig = createCheckConfig(JavadocCatchCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(JavadocCatchCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputAbstractJavadocPosition.java"), expected);
         Assert.assertEquals("Invalid number of javadocs",
@@ -152,7 +152,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testPositionWithSinglelineComments()
             throws Exception {
         JavadocCatchCheck.clearCounter();
-        final DefaultConfiguration checkConfig = createCheckConfig(JavadocCatchCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(JavadocCatchCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
             getPath("InputAbstractJavadocPositionWithSinglelineComments.java"), expected);
@@ -164,7 +164,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testPositionOnlyComments()
             throws Exception {
         JavadocCatchCheck.clearCounter();
-        final DefaultConfiguration checkConfig = createCheckConfig(JavadocCatchCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(JavadocCatchCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputAbstractJavadocPositionOnlyComments.java"), expected);
         Assert.assertEquals("Invalid number of javadocs",
@@ -209,7 +209,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testAcceptableTokensFail()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(TokenIsNotInAcceptablesJavadocCheck.class);
+            createModuleConfig(TokenIsNotInAcceptablesJavadocCheck.class);
         checkConfig.addAttribute("javadocTokens", "RETURN_LITERAL");
         try {
             final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -229,7 +229,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testAcceptableTokensPass()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(TokenIsNotInAcceptablesJavadocCheck.class);
+            createModuleConfig(TokenIsNotInAcceptablesJavadocCheck.class);
         checkConfig.addAttribute("javadocTokens", "DEPRECATED_LITERAL");
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -239,7 +239,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRequiredTokenIsNotInDefaultTokens() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(RequiredTokenIsNotInDefaultsJavadocCheck.class);
+            createModuleConfig(RequiredTokenIsNotInDefaultsJavadocCheck.class);
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
 
         try {
@@ -260,7 +260,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testVisitLeaveToken()
             throws Exception {
         JavadocVisitLeaveCheck.clearCounter();
-        final DefaultConfiguration checkConfig = createCheckConfig(JavadocVisitLeaveCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(JavadocVisitLeaveCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputAbstractJavadocPosition.java"), expected);
         Assert.assertTrue("Javadoc visit count should be greater than zero",

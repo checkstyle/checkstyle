@@ -43,7 +43,7 @@ public class GenericWhitespaceCheckTest
 
     @Before
     public void setUp() {
-        checkConfig = createCheckConfig(GenericWhitespaceCheck.class);
+        checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
     }
 
     @Override

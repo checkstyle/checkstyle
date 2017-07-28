@@ -52,7 +52,7 @@ public class ConstantNameCheckTest
     public void testIllegalRegexp()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ConstantNameCheck.class);
+            createModuleConfig(ConstantNameCheck.class);
         checkConfig.addAttribute("format", "\\");
         try {
             createChecker(checkConfig);
@@ -71,7 +71,7 @@ public class ConstantNameCheckTest
     public void testDefault()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ConstantNameCheck.class);
+            createModuleConfig(ConstantNameCheck.class);
 
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
@@ -86,7 +86,7 @@ public class ConstantNameCheckTest
     public void testAccessControlTuning()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ConstantNameCheck.class);
+            createModuleConfig(ConstantNameCheck.class);
         checkConfig.addAttribute("applyToPublic", "false");
         checkConfig.addAttribute("applyToProtected", "false");
         checkConfig.addAttribute("applyToPackage", "false");
@@ -103,7 +103,7 @@ public class ConstantNameCheckTest
     public void testInterfaceAndAnnotation()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ConstantNameCheck.class);
+            createModuleConfig(ConstantNameCheck.class);
 
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
@@ -118,7 +118,7 @@ public class ConstantNameCheckTest
     public void testDefault1()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ConstantNameCheck.class);
+            createModuleConfig(ConstantNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputConstantName.java"), expected);
     }
@@ -126,7 +126,7 @@ public class ConstantNameCheckTest
     @Test
     public void testIntoInterface() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(ConstantNameCheck.class);
+                createModuleConfig(ConstantNameCheck.class);
 
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
@@ -147,7 +147,7 @@ public class ConstantNameCheckTest
     public void testStaticMethodInInterface()
             throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(ConstantNameCheck.class);
+                createModuleConfig(ConstantNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputConstantNameStaticModifierInInterface.java"), expected);
     }

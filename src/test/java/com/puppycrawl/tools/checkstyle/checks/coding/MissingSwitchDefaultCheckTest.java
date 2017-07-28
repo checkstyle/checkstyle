@@ -34,7 +34,7 @@ public class MissingSwitchDefaultCheckTest
 
     @Before
     public void setUp() {
-        checkConfig = createCheckConfig(MissingSwitchDefaultCheck.class);
+        checkConfig = createModuleConfig(MissingSwitchDefaultCheck.class);
     }
 
     @Override

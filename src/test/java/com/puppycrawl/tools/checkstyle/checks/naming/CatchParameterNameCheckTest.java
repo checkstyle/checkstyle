@@ -49,7 +49,7 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaultConfigurationOnCorrectFile() throws Exception {
-        final Configuration checkConfig = createCheckConfig(CatchParameterNameCheck.class);
+        final Configuration checkConfig = createModuleConfig(CatchParameterNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputCatchParameterNameSimple.java"), expected);
@@ -57,7 +57,7 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaultConfigurationOnFileWithViolations() throws Exception {
-        final Configuration checkConfig = createCheckConfig(CatchParameterNameCheck.class);
+        final Configuration checkConfig = createModuleConfig(CatchParameterNameCheck.class);
         final String defaultFormat = "^(e|t|ex|[a-z][a-z][a-zA-Z]+)$";
 
         final String[] expected = {
@@ -76,7 +76,7 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCustomFormatFromJavadoc() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(CatchParameterNameCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(CatchParameterNameCheck.class);
         final String format = "^[a-z][a-zA-Z0-9]+$";
         checkConfig.addAttribute("format", format);
 
@@ -90,7 +90,7 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCustomFormatWithNoAnchors() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(CatchParameterNameCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(CatchParameterNameCheck.class);
         final String format = "[a-z]";
         checkConfig.addAttribute("format", format);
 

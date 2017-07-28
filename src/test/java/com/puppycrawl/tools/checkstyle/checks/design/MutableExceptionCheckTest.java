@@ -40,7 +40,7 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testClassExtendsGenericClass() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(MutableExceptionCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(MutableExceptionCheck.class);
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -50,7 +50,7 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(MutableExceptionCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(MutableExceptionCheck.class);
 
         final String[] expected = {
             "6:9: " + getCheckMessage(MSG_KEY, "errorCode"),
@@ -63,7 +63,7 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFormat() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(MutableExceptionCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(MutableExceptionCheck.class);
         checkConfig.addAttribute("format", "^.*Failure$");
         checkConfig.addAttribute("extendedClassNameFormat", "^.*ThreadDeath$");
         final String[] expected = {

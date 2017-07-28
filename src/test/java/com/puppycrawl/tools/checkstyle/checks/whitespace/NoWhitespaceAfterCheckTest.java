@@ -43,7 +43,7 @@ public class NoWhitespaceAfterCheckTest
 
     @Before
     public void setUp() {
-        checkConfig = createCheckConfig(NoWhitespaceAfterCheck.class);
+        checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
     }
 
     @Test

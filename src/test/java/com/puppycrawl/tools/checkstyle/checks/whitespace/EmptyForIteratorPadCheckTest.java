@@ -40,7 +40,7 @@ public class EmptyForIteratorPadCheckTest
 
     @Before
     public void setUp() {
-        checkConfig = createCheckConfig(EmptyForIteratorPadCheck.class);
+        checkConfig = createModuleConfig(EmptyForIteratorPadCheck.class);
     }
 
     @Override

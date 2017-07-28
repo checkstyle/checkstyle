@@ -55,7 +55,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFileWithOneTopLevelClass() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(OneTopLevelClassCheck.class);
+            createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputOneTopLevelClass.java"), expected);
     }
@@ -63,7 +63,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFileWithOneTopLevelInterface() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(OneTopLevelClassCheck.class);
+                createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputOneTopLevelInterface.java"), expected);
     }
@@ -71,7 +71,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFileWithOneTopLevelEnum() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(OneTopLevelClassCheck.class);
+                createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputOneTopLevelEnum.java"), expected);
     }
@@ -79,7 +79,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFileWithNoPublicTopLevelClass() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(OneTopLevelClassCheck.class);
+                createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "8: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassNoPublic2"),
         };
@@ -89,7 +89,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFileWithThreeTopLevelInterface() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(OneTopLevelClassCheck.class);
+                createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "3: " + getCheckMessage(MSG_KEY, "InputOneTopLevelInterface2inner1"),
             "11: " + getCheckMessage(MSG_KEY, "InputOneTopLevelInterface2inner2"),
@@ -100,7 +100,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFileWithThreeTopLevelEnum() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(OneTopLevelClassCheck.class);
+                createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "3: " + getCheckMessage(MSG_KEY, "InputOneTopLevelEnum2inner1"),
             "11: " + getCheckMessage(MSG_KEY, "InputOneTopLevelEnum2inner2"),
@@ -111,7 +111,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFileWithFewTopLevelClasses() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(OneTopLevelClassCheck.class);
+            createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "25: " + getCheckMessage(MSG_KEY, "NoSuperClone"),
             "29: " + getCheckMessage(MSG_KEY, "InnerClone"),
@@ -127,7 +127,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFileWithSecondEnumTopLevelClass() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(OneTopLevelClassCheck.class);
+            createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "10: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderEnum"),
         };
@@ -136,7 +136,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testPackageInfoWithNoTypesDeclared() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(OneTopLevelClassCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath("package-info.java"), expected);
     }

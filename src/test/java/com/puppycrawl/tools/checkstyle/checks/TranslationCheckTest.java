@@ -57,21 +57,13 @@ public class TranslationCheckTest extends AbstractModuleTestSupport {
     private ArgumentCaptor<SortedSet<LocalizedMessage>> captor;
 
     @Override
-    protected DefaultConfiguration createCheckerConfig(
-        Configuration config) {
-        final DefaultConfiguration dc = new DefaultConfiguration("root");
-        dc.addChild(config);
-        return dc;
-    }
-
-    @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/misc/translation";
     }
 
     @Test
     public void testTranslation() throws Exception {
-        final Configuration checkConfig = createCheckConfig(TranslationCheck.class);
+        final Configuration checkConfig = createModuleConfig(TranslationCheck.class);
         final String[] expected = {
             "0: " + getCheckMessage(MSG_KEY, "only.english"),
         };
@@ -88,7 +80,7 @@ public class TranslationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testOnePropertyFileSet() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         final File[] propertyFiles = {
             new File(getPath("app-dev.properties")),
@@ -107,7 +99,7 @@ public class TranslationCheckTest extends AbstractModuleTestSupport {
         //I saw some usage of file or handling of wrong file in Checker, or somewhere
         //in checks running part. So I had to do it with reflection to improve coverage.
         final TranslationCheck check = new TranslationCheck();
-        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
         check.configure(checkConfig);
         final Checker checker = createChecker(checkConfig);
         check.setMessageDispatcher(checker);
@@ -125,7 +117,7 @@ public class TranslationCheckTest extends AbstractModuleTestSupport {
         //I saw some usage of file or handling of wrong file in Checker, or somewhere
         //in checks running part. So I had to do it with reflection to improve coverage.
         final TranslationCheck check = new TranslationCheck();
-        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
         final MessageDispatcher dispatcher = mock(MessageDispatcher.class);
         check.configure(checkConfig);
         check.setMessageDispatcher(dispatcher);
@@ -143,7 +135,7 @@ public class TranslationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaultTranslationFileIsMissing() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
         checkConfig.addAttribute("requiredTranslations", "ja,,, de, ja");
 
         final File[] propertyFiles = {
@@ -164,7 +156,7 @@ public class TranslationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTranslationFilesAreMissing() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
         checkConfig.addAttribute("requiredTranslations", "ja, de");
 
         final File[] propertyFiles = {
@@ -185,7 +177,7 @@ public class TranslationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBaseNameWithSeparatorDefaultTranslationIsMissing() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
         checkConfig.addAttribute("requiredTranslations", "fr");
 
         final File[] propertyFiles = {
@@ -205,7 +197,7 @@ public class TranslationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBaseNameWithSeparatorTranslationsAreMissing() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
         checkConfig.addAttribute("requiredTranslations", "fr, tr");
 
         final File[] propertyFiles = {
@@ -226,7 +218,7 @@ public class TranslationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIsNotMessagesBundle() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
         checkConfig.addAttribute("requiredTranslations", "de");
 
         final File[] propertyFiles = {
@@ -244,7 +236,7 @@ public class TranslationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTranslationFileWithLanguageCountryVariantIsMissing() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
         checkConfig.addAttribute("requiredTranslations", "es, de");
 
         final File[] propertyFiles = {
@@ -266,7 +258,7 @@ public class TranslationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTranslationFileWithLanguageCountryVariantArePresent() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
         checkConfig.addAttribute("requiredTranslations", "es, fr");
 
         final File[] propertyFiles = {
@@ -285,7 +277,7 @@ public class TranslationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBaseNameOption() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
         checkConfig.addAttribute("requiredTranslations", "de, es, fr, ja");
         checkConfig.addAttribute("baseName", "^.*Labels$");
 
@@ -312,7 +304,7 @@ public class TranslationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFileExtensions() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
         checkConfig.addAttribute("requiredTranslations", "de, es, fr, ja");
         checkConfig.addAttribute("fileExtensions", "properties,translation");
         checkConfig.addAttribute("baseName", "^.*(Titles|Labels)$");
@@ -343,7 +335,7 @@ public class TranslationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testEqualBaseNamesButDifferentExtensions() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
         checkConfig.addAttribute("requiredTranslations", "de, es, fr, ja");
         checkConfig.addAttribute("fileExtensions", "properties,translations");
         checkConfig.addAttribute("baseName", "^.*Labels$");
@@ -374,7 +366,7 @@ public class TranslationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRegexpToMatchPartOfBaseName() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
         checkConfig.addAttribute("requiredTranslations", "de, es, fr, ja");
         checkConfig.addAttribute("fileExtensions", "properties,translations");
         checkConfig.addAttribute("baseName", "^.*Labels.*");
@@ -399,7 +391,7 @@ public class TranslationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBundlesWithSameNameButDifferentPaths() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
         checkConfig.addAttribute("requiredTranslations", "de");
         checkConfig.addAttribute("fileExtensions", "properties");
         checkConfig.addAttribute("baseName", "^.*Labels.*");

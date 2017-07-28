@@ -209,23 +209,24 @@ public class SuppressionCommentFilterTest
     }
 
     @Override
-    public Checker createChecker(Configuration checkConfig)
+    public Checker createChecker(Configuration moduleConfig)
             throws CheckstyleException {
         final DefaultConfiguration checkerConfig =
             new DefaultConfiguration("configuration");
-        final DefaultConfiguration checksConfig = createCheckConfig(TreeWalker.class);
-        checksConfig.addChild(createCheckConfig(FileContentsHolder.class));
-        final DefaultConfiguration memberNameCheckConfig = createCheckConfig(MemberNameCheck.class);
+        final DefaultConfiguration checksConfig = createModuleConfig(TreeWalker.class);
+        checksConfig.addChild(createModuleConfig(FileContentsHolder.class));
+        final DefaultConfiguration memberNameCheckConfig =
+                createModuleConfig(MemberNameCheck.class);
         memberNameCheckConfig.addAttribute("id", "ignore");
         checksConfig.addChild(memberNameCheckConfig);
         final DefaultConfiguration constantNameCheckConfig =
-            createCheckConfig(ConstantNameCheck.class);
+            createModuleConfig(ConstantNameCheck.class);
         constantNameCheckConfig.addAttribute("id", null);
         checksConfig.addChild(constantNameCheckConfig);
-        checksConfig.addChild(createCheckConfig(IllegalCatchCheck.class));
+        checksConfig.addChild(createModuleConfig(IllegalCatchCheck.class));
         checkerConfig.addChild(checksConfig);
-        if (checkConfig != null) {
-            checksConfig.addChild(checkConfig);
+        if (moduleConfig != null) {
+            checksConfig.addChild(moduleConfig);
         }
         final Checker checker = new Checker();
         final Locale locale = Locale.ROOT;

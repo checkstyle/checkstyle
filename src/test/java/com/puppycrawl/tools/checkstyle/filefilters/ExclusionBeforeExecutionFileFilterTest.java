@@ -90,7 +90,7 @@ public class ExclusionBeforeExecutionFileFilterTest extends AbstractModuleTestSu
     }
 
     @Override
-    protected DefaultConfiguration createCheckerConfig(Configuration config) {
+    protected DefaultConfiguration createTreeWalkerConfig(Configuration config) {
         final DefaultConfiguration dc =
                 new DefaultConfiguration("configuration");
         dc.addChild(config);

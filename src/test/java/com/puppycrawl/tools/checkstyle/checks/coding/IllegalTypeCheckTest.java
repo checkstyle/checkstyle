@@ -36,7 +36,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
 
     @Before
     public void setUp() {
-        checkConfig = createCheckConfig(IllegalTypeCheck.class);
+        checkConfig = createModuleConfig(IllegalTypeCheck.class);
     }
 
     @Override

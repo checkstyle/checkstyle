@@ -38,7 +38,7 @@ public class CovariantEqualsCheckTest
     public void testDefault()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(CovariantEqualsCheck.class);
+            createModuleConfig(CovariantEqualsCheck.class);
         final String[] expected = {
             "11:24: " + getCheckMessage(MSG_KEY),
             "30:20: " + getCheckMessage(MSG_KEY),

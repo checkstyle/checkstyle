@@ -41,7 +41,7 @@ public class MethodParamPadCheckTest
 
     @Before
     public void setUp() {
-        checkConfig = createCheckConfig(MethodParamPadCheck.class);
+        checkConfig = createModuleConfig(MethodParamPadCheck.class);
     }
 
     @Override

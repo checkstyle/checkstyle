@@ -47,7 +47,7 @@ public class MemberNameCheckTest
     public void testSpecified()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MemberNameCheck.class);
+            createModuleConfig(MemberNameCheck.class);
         checkConfig.addAttribute("format", "^m[A-Z][a-zA-Z0-9]*$");
 
         final String pattern = "^m[A-Z][a-zA-Z0-9]*$";
@@ -63,7 +63,7 @@ public class MemberNameCheckTest
     public void testInnerClass()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MemberNameCheck.class);
+            createModuleConfig(MemberNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -76,7 +76,7 @@ public class MemberNameCheckTest
     @Test
     public void testDefaults() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MemberNameCheck.class);
+            createModuleConfig(MemberNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -92,7 +92,7 @@ public class MemberNameCheckTest
     @Test
     public void testUnderlined() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MemberNameCheck.class);
+            createModuleConfig(MemberNameCheck.class);
         checkConfig.addAttribute("format", "^_[a-z]*$");
 
         final String pattern = "^_[a-z]*$";
@@ -109,7 +109,7 @@ public class MemberNameCheckTest
     @Test
     public void testPublicOnly() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MemberNameCheck.class);
+            createModuleConfig(MemberNameCheck.class);
         checkConfig.addAttribute("format", "^_[a-z]*$");
         checkConfig.addAttribute("applyToProtected", "false");
         checkConfig.addAttribute("applyToPackage", "false");
@@ -126,7 +126,7 @@ public class MemberNameCheckTest
     @Test
     public void testProtectedOnly() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MemberNameCheck.class);
+            createModuleConfig(MemberNameCheck.class);
         checkConfig.addAttribute("format", "^_[a-z]*$");
         checkConfig.addAttribute("applyToPublic", "false");
         checkConfig.addAttribute("applyToPackage", "false");
@@ -143,7 +143,7 @@ public class MemberNameCheckTest
     @Test
     public void testPackageOnly() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MemberNameCheck.class);
+            createModuleConfig(MemberNameCheck.class);
         checkConfig.addAttribute("format", "^_[a-z]*$");
         checkConfig.addAttribute("applyToPublic", "false");
         checkConfig.addAttribute("applyToProtected", "false");
@@ -160,7 +160,7 @@ public class MemberNameCheckTest
     @Test
     public void testPrivateOnly() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MemberNameCheck.class);
+            createModuleConfig(MemberNameCheck.class);
         checkConfig.addAttribute("format", "^_[a-z]*$");
         checkConfig.addAttribute("applyToPublic", "false");
         checkConfig.addAttribute("applyToProtected", "false");
@@ -177,7 +177,7 @@ public class MemberNameCheckTest
     @Test
     public void testNotPrivate() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MemberNameCheck.class);
+            createModuleConfig(MemberNameCheck.class);
         checkConfig.addAttribute("applyToPrivate", "false");
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
@@ -193,7 +193,7 @@ public class MemberNameCheckTest
     @Test
     public void memberNameExtended() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MemberNameCheck.class);
+            createModuleConfig(MemberNameCheck.class);
         checkConfig.addAttribute("format", "^[a-z][a-z0-9][a-zA-Z0-9]*$");
 
         final String pattern = "^[a-z][a-z0-9][a-zA-Z0-9]*$";

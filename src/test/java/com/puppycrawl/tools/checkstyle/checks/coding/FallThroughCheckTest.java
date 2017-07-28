@@ -36,7 +36,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(FallThroughCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(FallThroughCheck.class);
         final String[] expected = {
             "14:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "38:13: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -62,7 +62,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testLastCaseGroup() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(FallThroughCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(FallThroughCheck.class);
         checkConfig.addAttribute("checkLastCaseGroup", "true");
         final String[] expected = {
             "14:13: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -92,7 +92,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     public void testOwnPattern() throws Exception {
         final String ownPattern = "Continue with next case";
         final DefaultConfiguration checkConfig =
-            createCheckConfig(FallThroughCheck.class);
+            createModuleConfig(FallThroughCheck.class);
         checkConfig.addAttribute("reliefPattern", ownPattern);
 
         final String[] expected = {
@@ -150,7 +150,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFallThroughNoElse() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(FallThroughCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(FallThroughCheck.class);
         final String[] expected = {
             "20:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "35:13: " + getCheckMessage(MSG_FALL_THROUGH),

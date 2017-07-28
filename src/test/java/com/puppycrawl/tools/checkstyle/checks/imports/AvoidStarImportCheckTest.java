@@ -39,7 +39,7 @@ public class AvoidStarImportCheckTest
     public void testDefaultOperation()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(AvoidStarImportCheck.class);
+            createModuleConfig(AvoidStarImportCheck.class);
         final String[] expected = {
             "7: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.imports.*"),
             "9: " + getCheckMessage(MSG_KEY, "java.io.*"),
@@ -57,7 +57,7 @@ public class AvoidStarImportCheckTest
     public void testExcludes()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(AvoidStarImportCheck.class);
+            createModuleConfig(AvoidStarImportCheck.class);
         checkConfig.addAttribute("excludes",
             "java.io,java.lang,javax.swing.WindowConstants.*, javax.swing.WindowConstants");
         // allow the java.io/java.lang,javax.swing.WindowConstants star imports
@@ -71,7 +71,7 @@ public class AvoidStarImportCheckTest
 
     @Test
     public void testAllowClassImports() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(AvoidStarImportCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(AvoidStarImportCheck.class);
         checkConfig.addAttribute("allowClassImports", "true");
         // allow all class star imports
         final String[] expected2 = {
@@ -83,7 +83,7 @@ public class AvoidStarImportCheckTest
 
     @Test
     public void testAllowStaticMemberImports() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(AvoidStarImportCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(AvoidStarImportCheck.class);
         checkConfig.addAttribute("allowStaticMemberImports", "true");
         // allow all static star imports
         final String[] expected2 = {

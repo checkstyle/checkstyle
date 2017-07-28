@@ -53,7 +53,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCorrect() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(AtclauseOrderCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(AtclauseOrderCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputAtClauseOrderCorrect.java"), expected);
@@ -63,7 +63,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     public void testIncorrect() throws Exception {
         final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
                 + " @since, @serial, @serialField, @serialData, @deprecated]";
-        final DefaultConfiguration checkConfig = createCheckConfig(AtclauseOrderCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(AtclauseOrderCheck.class);
         final String[] expected = {
             "9: " + getCheckMessage(MSG_KEY, tagOrder),
             "11: " + getCheckMessage(MSG_KEY, tagOrder),
@@ -112,7 +112,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIncorrectCustom() throws Exception {
 
-        final DefaultConfiguration checkConfig = createCheckConfig(AtclauseOrderCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(AtclauseOrderCheck.class);
         checkConfig.addAttribute("target", "CLASS_DEF");
         final String customOrder = " @since,  @version, @param,@return,@throws, @exception,"
                 + "@deprecated, @see,@serial,   @serialField,  @serialData,@author";

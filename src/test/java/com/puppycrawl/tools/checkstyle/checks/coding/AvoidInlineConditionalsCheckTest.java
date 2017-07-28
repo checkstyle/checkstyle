@@ -38,7 +38,7 @@ public class AvoidInlineConditionalsCheckTest
     public void testDefault()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(AvoidInlineConditionalsCheck.class);
+            createModuleConfig(AvoidInlineConditionalsCheck.class);
         final String[] expected = {
             "32:29: " + getCheckMessage(MSG_KEY),
             "33:20: " + getCheckMessage(MSG_KEY),

@@ -37,7 +37,7 @@ public class NestedIfDepthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(NestedIfDepthCheck.class);
+            createModuleConfig(NestedIfDepthCheck.class);
 
         final String[] expected = {
             "18:17: " + getCheckMessage(MSG_KEY, 2, 1),
@@ -51,7 +51,7 @@ public class NestedIfDepthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCustomizedDepth() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(NestedIfDepthCheck.class);
+            createModuleConfig(NestedIfDepthCheck.class);
         checkConfig.addAttribute("max", "2");
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;

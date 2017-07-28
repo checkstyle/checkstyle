@@ -43,7 +43,7 @@ public class NoFinalizerCheckTest
     public void testHasFinalizer()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(NoFinalizerCheck.class);
+            createModuleConfig(NoFinalizerCheck.class);
         final String[] expected = {
             "5: " + getCheckMessage(MSG_KEY),
         };
@@ -54,7 +54,7 @@ public class NoFinalizerCheckTest
     public void testHasNoFinalizer()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(NoFinalizerCheck.class);
+            createModuleConfig(NoFinalizerCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputNoFinalizerFallThrough.java"), expected);
     }

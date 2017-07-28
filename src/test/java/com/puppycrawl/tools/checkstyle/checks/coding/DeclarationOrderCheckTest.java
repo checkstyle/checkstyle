@@ -46,7 +46,7 @@ public class DeclarationOrderCheckTest
     @Test
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(DeclarationOrderCheck.class);
+            createModuleConfig(DeclarationOrderCheck.class);
 
         final String[] expected = {
             "8:5: " + getCheckMessage(MSG_ACCESS),
@@ -78,7 +78,7 @@ public class DeclarationOrderCheckTest
     @Test
     public void testOnlyConstructors() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(DeclarationOrderCheck.class);
+            createModuleConfig(DeclarationOrderCheck.class);
         checkConfig.addAttribute("ignoreConstructors", "false");
         checkConfig.addAttribute("ignoreModifiers", "true");
 
@@ -97,7 +97,7 @@ public class DeclarationOrderCheckTest
     @Test
     public void testOnlyModifiers() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(DeclarationOrderCheck.class);
+            createModuleConfig(DeclarationOrderCheck.class);
         checkConfig.addAttribute("ignoreConstructors", "true");
         checkConfig.addAttribute("ignoreModifiers", "false");
 
@@ -176,7 +176,7 @@ public class DeclarationOrderCheckTest
 
     @Test
     public void testForwardReference() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(DeclarationOrderCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(DeclarationOrderCheck.class);
         final String[] expected = {
             "12:5: " + getCheckMessage(MSG_ACCESS),
             "13:5: " + getCheckMessage(MSG_ACCESS),
@@ -192,7 +192,7 @@ public class DeclarationOrderCheckTest
 
     @Test
     public void testAvoidDuplicatesForStaticFinalFields() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(DeclarationOrderCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(DeclarationOrderCheck.class);
         final String[] expected = {
             "6:5: " + getCheckMessage(MSG_STATIC),
         };

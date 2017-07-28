@@ -48,7 +48,7 @@ public class UpperEllCheckTest
     public void testWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(UpperEllCheck.class);
+            createModuleConfig(UpperEllCheck.class);
         final String[] expected = {
             "94:43: " + getCheckMessage(MSG_KEY),
         };

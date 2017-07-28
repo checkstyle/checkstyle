@@ -161,7 +161,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     @Test
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(AvoidEscapedUnicodeCharactersCheck.class);
+                createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
         final String[] expected = {
             "7: " + getCheckMessage(MSG_KEY),
             "9: " + getCheckMessage(MSG_KEY),
@@ -205,7 +205,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     @Test
     public void testAllowEscapesForControlCharacterSet() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(AvoidEscapedUnicodeCharactersCheck.class);
+                createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
         checkConfig.addAttribute("allowEscapesForControlCharacters", "true");
         final String[] expected = {
             "7: " + getCheckMessage(MSG_KEY),
@@ -246,7 +246,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     @Test
     public void testAllowByTailComment() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(AvoidEscapedUnicodeCharactersCheck.class);
+                createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
         checkConfig.addAttribute("allowByTailComment", "true");
         final String[] expected = {
             "7: " + getCheckMessage(MSG_KEY),
@@ -276,7 +276,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     @Test
     public void testAllowAllCharactersEscaped() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(AvoidEscapedUnicodeCharactersCheck.class);
+                createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
         checkConfig.addAttribute("allowIfAllCharactersEscaped", "true");
         final String[] expected = {
             "7: " + getCheckMessage(MSG_KEY),
@@ -300,7 +300,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     @Test
     public void allowNonPrintableEscapes() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(AvoidEscapedUnicodeCharactersCheck.class);
+                createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
         checkConfig.addAttribute("allowNonPrintableEscapes", "true");
         final String[] expected = {
             "7: " + getCheckMessage(MSG_KEY),
@@ -339,7 +339,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     @Test
     public void testAllowEscapesForControlCharacterSetForAllCharacters() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(AvoidEscapedUnicodeCharactersCheck.class);
+                createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
         checkConfig.addAttribute("allowEscapesForControlCharacters", "true");
 
         final int indexOfStartLineInInputFile = 6;

@@ -37,7 +37,7 @@ public class SuperCloneCheckTest
     @Test
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(SuperCloneCheck.class);
+            createModuleConfig(SuperCloneCheck.class);
         final String[] expected = {
             "27:19: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
             "35:19: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
@@ -49,7 +49,7 @@ public class SuperCloneCheckTest
     @Test
     public void testAnotherInputFile() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(SuperCloneCheck.class);
+            createModuleConfig(SuperCloneCheck.class);
         final String[] expected = {
             "9:17: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
         };

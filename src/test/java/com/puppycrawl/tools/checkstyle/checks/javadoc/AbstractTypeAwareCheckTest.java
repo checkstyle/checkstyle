@@ -44,7 +44,7 @@ public class AbstractTypeAwareCheckTest extends AbstractModuleTestSupport {
 
     @Before
     public void setUp() {
-        checkConfig = createCheckConfig(JavadocMethodCheck.class);
+        checkConfig = createModuleConfig(JavadocMethodCheck.class);
     }
 
     @Override
@@ -160,7 +160,7 @@ public class AbstractTypeAwareCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testWithoutLogErrors() throws Exception {
-        final DefaultConfiguration config = createCheckConfig(JavadocMethodCheck.class);
+        final DefaultConfiguration config = createModuleConfig(JavadocMethodCheck.class);
         config.addAttribute("logLoadErrors", "false");
         config.addAttribute("allowUndeclaredRTE", "true");
         final String[] expected = {

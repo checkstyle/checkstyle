@@ -38,7 +38,7 @@ public class ArrayTrailingCommaCheckTest
     public void testDefault()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ArrayTrailingCommaCheck.class);
+            createModuleConfig(ArrayTrailingCommaCheck.class);
         final String[] expected = {
             "17: " + getCheckMessage(MSG_KEY),
             "37: " + getCheckMessage(MSG_KEY),

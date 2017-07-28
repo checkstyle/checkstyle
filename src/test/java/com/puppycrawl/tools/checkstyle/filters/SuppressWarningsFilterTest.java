@@ -110,35 +110,36 @@ public class SuppressWarningsFilterTest
     }
 
     @Override
-    public Checker createChecker(Configuration checkConfig)
+    public Checker createChecker(Configuration moduleConfig)
             throws Exception {
         final DefaultConfiguration checkerConfig =
             new DefaultConfiguration("configuration");
         final DefaultConfiguration checksConfig =
-            createCheckConfig(TreeWalker.class);
+            createModuleConfig(TreeWalker.class);
         final DefaultConfiguration holderConfig =
-            createCheckConfig(SuppressWarningsHolder.class);
+            createModuleConfig(SuppressWarningsHolder.class);
         holderConfig.addAttribute("aliasList",
             "com.puppycrawl.tools.checkstyle.checks.sizes."
                 + "ParameterNumberCheck=paramnum");
         checksConfig.addChild(holderConfig);
-        final DefaultConfiguration memberNameCheckConfig = createCheckConfig(MemberNameCheck.class);
+        final DefaultConfiguration memberNameCheckConfig =
+                createModuleConfig(MemberNameCheck.class);
         memberNameCheckConfig.addAttribute("id", "ignore");
         checksConfig.addChild(memberNameCheckConfig);
         final DefaultConfiguration constantNameCheckConfig =
-            createCheckConfig(ConstantNameCheck.class);
+            createModuleConfig(ConstantNameCheck.class);
         constantNameCheckConfig.addAttribute("id", "");
         checksConfig.addChild(constantNameCheckConfig);
-        checksConfig.addChild(createCheckConfig(ParameterNumberCheck.class));
-        checksConfig.addChild(createCheckConfig(IllegalCatchCheck.class));
+        checksConfig.addChild(createModuleConfig(ParameterNumberCheck.class));
+        checksConfig.addChild(createModuleConfig(IllegalCatchCheck.class));
         final DefaultConfiguration uncommentedMainCheckConfig =
-            createCheckConfig(UncommentedMainCheck.class);
+            createModuleConfig(UncommentedMainCheck.class);
         uncommentedMainCheckConfig.addAttribute("id", "ignore");
         checksConfig.addChild(uncommentedMainCheckConfig);
-        checksConfig.addChild(createCheckConfig(JavadocTypeCheck.class));
+        checksConfig.addChild(createModuleConfig(JavadocTypeCheck.class));
         checkerConfig.addChild(checksConfig);
-        if (checkConfig != null) {
-            checkerConfig.addChild(checkConfig);
+        if (moduleConfig != null) {
+            checkerConfig.addChild(moduleConfig);
         }
         final Checker checker = new Checker();
         final Locale locale = Locale.ROOT;

@@ -45,7 +45,7 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMembersBeforeInner() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(InnerTypeLastCheck.class);
+            createModuleConfig(InnerTypeLastCheck.class);
         final String[] expected = {
             "44:9: " + getCheckMessage(MSG_KEY),
             "65:9: " + getCheckMessage(MSG_KEY),

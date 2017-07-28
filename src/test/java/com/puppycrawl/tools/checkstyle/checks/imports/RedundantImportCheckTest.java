@@ -53,7 +53,7 @@ public class RedundantImportCheckTest
     public void testWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(RedundantImportCheck.class);
+            createModuleConfig(RedundantImportCheck.class);
         final String[] expected = {
             "7:1: " + getCheckMessage(MSG_SAME,
                 "com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.*"),
@@ -71,7 +71,7 @@ public class RedundantImportCheckTest
     public void testUnnamedPackage()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(RedundantImportCheck.class);
+            createModuleConfig(RedundantImportCheck.class);
         final String[] expected = {
             "4:1: " + getCheckMessage(MSG_DUPLICATE, 3, "java.util.List"),
             "6:1: " + getCheckMessage(MSG_LANG, "java.lang.String"),

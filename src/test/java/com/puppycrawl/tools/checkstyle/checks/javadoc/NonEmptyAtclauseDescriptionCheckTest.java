@@ -57,7 +57,7 @@ public class NonEmptyAtclauseDescriptionCheckTest
     public void testCheck()
             throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(NonEmptyAtclauseDescriptionCheck.class);
+                createModuleConfig(NonEmptyAtclauseDescriptionCheck.class);
         final String[] expected = {
             //this is a case with description that is sequences of spaces
             "26: " + getCheckMessage(MSG_KEY),

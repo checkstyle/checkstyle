@@ -44,6 +44,7 @@ import com.google.common.collect.MapDifference;
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtils;
 
 public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport {
 
@@ -65,19 +66,52 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         return new BriefUtLogger(stream);
     }
 
-    protected static DefaultConfiguration createCheckConfig(Class<?> clazz) {
+    protected static DefaultConfiguration createModuleConfig(Class<?> clazz) {
         return new DefaultConfiguration(clazz.getName());
     }
 
     /**
      * Creates {@link Checker} instance based on the given {@link Configuration} instance.
-     * @param checkConfig {@link Configuration} instance.
+     * @param moduleConfig {@link Configuration} instance.
      * @return {@link Checker} instance based on the given {@link Configuration} instance.
      * @throws Exception if an exception occurs during checker configuration.
      */
-    public Checker createChecker(Configuration checkConfig)
+    public Checker createChecker(Configuration moduleConfig)
             throws Exception {
-        final DefaultConfiguration dc = createCheckerConfig(checkConfig);
+        boolean addTreeWalker = false;
+
+        try {
+            final Class<?> moduleClass = Class.forName(moduleConfig.getName());
+            if (ModuleReflectionUtils.isCheckstyleCheck(moduleClass)) {
+                addTreeWalker = true;
+            }
+        }
+        catch (ClassNotFoundException ignore) {
+            // ignore exception, assume it is not part of TreeWalker
+        }
+
+        return createChecker(moduleConfig, addTreeWalker);
+    }
+
+    /**
+     * Creates {@link Checker} instance based on the given {@link Configuration} instance.
+     * @param moduleConfig {@link Configuration} instance.
+     * @param addTreeWalker {@code true} if the {@code moduleConfig} should be added under
+     *            {@link TreeWalker}.
+     * @return {@link Checker} instance based on the given {@link Configuration} instance.
+     * @throws Exception if an exception occurs during checker configuration.
+     */
+    public Checker createChecker(Configuration moduleConfig, boolean addTreeWalker)
+            throws Exception {
+        final Configuration dc;
+
+        if (addTreeWalker) {
+            dc = createTreeWalkerConfig(moduleConfig);
+        }
+        else {
+            dc = createRootConfig(moduleConfig);
+        }
+
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(dc);
@@ -86,20 +120,31 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
-     * Creates {@link DefaultConfiguration} for the {@link Checker}
+     * Creates {@link DefaultConfiguration} for the {@link TreeWalker}
      * based on the given {@link Configuration} instance.
      * @param config {@link Configuration} instance.
-     * @return {@link DefaultConfiguration} for the {@link Checker}
+     * @return {@link DefaultConfiguration} for the {@link TreeWalker}
      * based on the given {@link Configuration} instance.
      */
-    protected DefaultConfiguration createCheckerConfig(Configuration config) {
+    protected DefaultConfiguration createTreeWalkerConfig(Configuration config) {
         final DefaultConfiguration dc =
                 new DefaultConfiguration("configuration");
-        final DefaultConfiguration twConf = createCheckConfig(TreeWalker.class);
+        final DefaultConfiguration twConf = createModuleConfig(TreeWalker.class);
         // make sure that the tests always run with this charset
         dc.addAttribute("charset", "UTF-8");
         dc.addChild(twConf);
         twConf.addChild(config);
+        return dc;
+    }
+
+    /**
+     * Creates {@link DefaultConfiguration} for the given {@link Configuration} instance.
+     * @param config {@link Configuration} instance.
+     * @return {@link DefaultConfiguration} for the given {@link Configuration} instance.
+     */
+    protected DefaultConfiguration createRootConfig(Configuration config) {
+        final DefaultConfiguration dc = new DefaultConfiguration("root");
+        dc.addChild(config);
         return dc;
     }
 

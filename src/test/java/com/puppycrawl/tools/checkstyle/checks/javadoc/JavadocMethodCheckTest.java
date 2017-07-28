@@ -43,7 +43,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
 
     @Before
     public void setUp() {
-        checkConfig = createCheckConfig(JavadocMethodCheck.class);
+        checkConfig = createModuleConfig(JavadocMethodCheck.class);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testLogLoadErrors() throws Exception {
-        final DefaultConfiguration config = createCheckConfig(JavadocMethodCheck.class);
+        final DefaultConfiguration config = createModuleConfig(JavadocMethodCheck.class);
         config.addAttribute("logLoadErrors", "true");
         config.addAttribute("allowUndeclaredRTE", "true");
         final String[] expected = {
@@ -83,7 +83,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void extendAnnotationTest() throws Exception {
-        final DefaultConfiguration config = createCheckConfig(JavadocMethodCheck.class);
+        final DefaultConfiguration config = createModuleConfig(JavadocMethodCheck.class);
         config.addAttribute("allowedAnnotations", "MyAnnotation, Override");
         config.addAttribute("minLineCount", "2");
         final String[] expected = {
@@ -94,7 +94,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void newTest() throws Exception {
-        final DefaultConfiguration config = createCheckConfig(JavadocMethodCheck.class);
+        final DefaultConfiguration config = createModuleConfig(JavadocMethodCheck.class);
         config.addAttribute("allowedAnnotations", "MyAnnotation, Override");
         config.addAttribute("minLineCount", "2");
         final String[] expected = {
@@ -106,7 +106,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void allowedAnnotationsTest() throws Exception {
 
-        final DefaultConfiguration config = createCheckConfig(JavadocMethodCheck.class);
+        final DefaultConfiguration config = createModuleConfig(JavadocMethodCheck.class);
         config.addAttribute("allowedAnnotations", "Override,ThisIsOk, \t\n\t ThisIsOkToo");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(config, getPath("InputJavadocMethodAllowedAnnotations.java"), expected);

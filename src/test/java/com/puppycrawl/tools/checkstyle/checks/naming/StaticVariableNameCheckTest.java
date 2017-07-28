@@ -48,7 +48,7 @@ public class StaticVariableNameCheckTest
     public void testSpecified()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(StaticVariableNameCheck.class);
+            createModuleConfig(StaticVariableNameCheck.class);
         checkConfig.addAttribute("format", "^s[A-Z][a-zA-Z0-9]*$");
 
         final String pattern = "^s[A-Z][a-zA-Z0-9]*$";
@@ -63,7 +63,7 @@ public class StaticVariableNameCheckTest
     public void testAccessTuning()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(StaticVariableNameCheck.class);
+            createModuleConfig(StaticVariableNameCheck.class);
         checkConfig.addAttribute("format", "^s[A-Z][a-zA-Z0-9]*$");
 
         // allow method names and class names to equal
@@ -77,7 +77,7 @@ public class StaticVariableNameCheckTest
     public void testInterfaceOrAnnotationBlock()
             throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(StaticVariableNameCheck.class);
+                createModuleConfig(StaticVariableNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputStaticVariableName.java"), expected);
     }

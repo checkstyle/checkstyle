@@ -37,7 +37,7 @@ public class StringLiteralEqualityCheckTest
     @Test
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(StringLiteralEqualityCheck.class);
+            createModuleConfig(StringLiteralEqualityCheck.class);
         final String[] expected = {
             "11:18: " + getCheckMessage(MSG_KEY, "=="),
             "16:20: " + getCheckMessage(MSG_KEY, "=="),

@@ -43,21 +43,12 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class NewlineAtEndOfFileCheckTest
     extends AbstractModuleTestSupport {
-    @Override
-    protected DefaultConfiguration createCheckerConfig(
-        Configuration config) {
-        final DefaultConfiguration dc = new DefaultConfiguration("root");
-        dc.addChild(config);
-        return dc;
-    }
-
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/misc/newlineatendoffile";
@@ -66,7 +57,7 @@ public class NewlineAtEndOfFileCheckTest
     @Test
     public void testNewlineLfAtEndOfFile() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(NewlineAtEndOfFileCheck.class);
+            createModuleConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF.toString());
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(
@@ -78,7 +69,7 @@ public class NewlineAtEndOfFileCheckTest
     @Test
     public void testNewlineCrlfAtEndOfFile() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(NewlineAtEndOfFileCheck.class);
+            createModuleConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addAttribute("lineSeparator", LineSeparatorOption.CRLF.toString());
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(
@@ -90,7 +81,7 @@ public class NewlineAtEndOfFileCheckTest
     @Test
     public void testNewlineCrAtEndOfFile() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(NewlineAtEndOfFileCheck.class);
+            createModuleConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addAttribute("lineSeparator", LineSeparatorOption.CR.toString());
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(
@@ -102,7 +93,7 @@ public class NewlineAtEndOfFileCheckTest
     @Test
     public void testAnyNewlineAtEndOfFile() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(NewlineAtEndOfFileCheck.class);
+            createModuleConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF_CR_CRLF.toString());
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(
@@ -122,7 +113,7 @@ public class NewlineAtEndOfFileCheckTest
     @Test
     public void testNoNewlineLfAtEndOfFile() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(NewlineAtEndOfFileCheck.class);
+            createModuleConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF.toString());
         final String[] expected = {
             "0: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
@@ -136,7 +127,7 @@ public class NewlineAtEndOfFileCheckTest
     @Test
     public void testNoNewlineAtEndOfFile() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(NewlineAtEndOfFileCheck.class);
+            createModuleConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF_CR_CRLF.toString());
         final String[] expected = {
             "0: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
@@ -151,7 +142,7 @@ public class NewlineAtEndOfFileCheckTest
     public void testSetLineSeparatorFailure()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(NewlineAtEndOfFileCheck.class);
+            createModuleConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addAttribute("lineSeparator", "ct");
         try {
             createChecker(checkConfig);
@@ -169,7 +160,7 @@ public class NewlineAtEndOfFileCheckTest
     @Test
     public void testEmptyFileFile() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(NewlineAtEndOfFileCheck.class);
+            createModuleConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF.toString());
         final String[] expected = {
             "0: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
@@ -182,7 +173,7 @@ public class NewlineAtEndOfFileCheckTest
 
     @Test
     public void testWrongFile() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(NewlineAtEndOfFileCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(NewlineAtEndOfFileCheck.class);
         final NewlineAtEndOfFileCheck check = new NewlineAtEndOfFileCheck();
         check.configure(checkConfig);
         final List<String> lines = new ArrayList<>(1);
@@ -200,7 +191,7 @@ public class NewlineAtEndOfFileCheckTest
     @Test
     public void testWrongSeparatorLength() throws Exception {
         final NewlineAtEndOfFileCheck check = new NewlineAtEndOfFileCheck();
-        final DefaultConfiguration checkConfig = createCheckConfig(NewlineAtEndOfFileCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(NewlineAtEndOfFileCheck.class);
         check.configure(checkConfig);
 
         final Method method = NewlineAtEndOfFileCheck.class

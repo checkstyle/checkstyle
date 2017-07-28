@@ -37,7 +37,7 @@ public class SimplifyBooleanExpressionCheckTest
     @Test
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(SimplifyBooleanExpressionCheck.class);
+            createModuleConfig(SimplifyBooleanExpressionCheck.class);
         final String[] expected = {
             "20:18: " + getCheckMessage(MSG_KEY),
             "41:36: " + getCheckMessage(MSG_KEY),

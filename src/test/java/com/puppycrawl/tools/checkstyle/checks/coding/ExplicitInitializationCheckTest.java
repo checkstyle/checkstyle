@@ -36,7 +36,7 @@ public class ExplicitInitializationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ExplicitInitializationCheck.class);
+            createModuleConfig(ExplicitInitializationCheck.class);
         final String[] expected = {
             "4:17: " + getCheckMessage(MSG_KEY, "x", 0),
             "5:20: " + getCheckMessage(MSG_KEY, "bar", "null"),
@@ -74,7 +74,7 @@ public class ExplicitInitializationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testonlyObjectReferences() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ExplicitInitializationCheck.class);
+            createModuleConfig(ExplicitInitializationCheck.class);
         checkConfig.addAttribute("onlyObjectReferences", "true");
         final String[] expected = {
             "5:20: " + getCheckMessage(MSG_KEY, "bar", "null"),

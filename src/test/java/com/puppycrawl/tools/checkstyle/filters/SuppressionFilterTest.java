@@ -192,7 +192,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
 
     @Test
     public void testLocalFileExternalResourceContentDoesNotChange() throws Exception {
-        final DefaultConfiguration filterConfig = createCheckConfig(SuppressionFilter.class);
+        final DefaultConfiguration filterConfig = createModuleConfig(SuppressionFilter.class);
         filterConfig.addAttribute("file", getPath("suppressions_none.xml"));
 
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyle_checks");
@@ -235,7 +235,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         // instead of a skip when it doesn't pass
         if (urlForTest != null) {
             final DefaultConfiguration firstFilterConfig =
-                createCheckConfig(SuppressionFilter.class);
+                createModuleConfig(SuppressionFilter.class);
             firstFilterConfig.addAttribute("file", urlForTest);
 
             final DefaultConfiguration firstCheckerConfig =
@@ -256,7 +256,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
 
             // One more time to use cache.
             final DefaultConfiguration secondFilterConfig =
-                createCheckConfig(SuppressionFilter.class);
+                createModuleConfig(SuppressionFilter.class);
             secondFilterConfig.addAttribute("file", urlForTest);
 
             final DefaultConfiguration secondCheckerConfig =

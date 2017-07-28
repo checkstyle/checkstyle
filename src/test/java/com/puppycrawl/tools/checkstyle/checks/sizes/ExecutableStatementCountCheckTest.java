@@ -42,7 +42,7 @@ public class ExecutableStatementCountCheckTest
     @Test
     public void testMaxZero() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ExecutableStatementCountCheck.class);
+            createModuleConfig(ExecutableStatementCountCheck.class);
 
         checkConfig.addAttribute("max", "0");
 
@@ -65,7 +65,7 @@ public class ExecutableStatementCountCheckTest
     @Test
     public void testMethodDef() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ExecutableStatementCountCheck.class);
+            createModuleConfig(ExecutableStatementCountCheck.class);
 
         checkConfig.addAttribute("max", "0");
         checkConfig.addAttribute("tokens", "METHOD_DEF");
@@ -85,7 +85,7 @@ public class ExecutableStatementCountCheckTest
     @Test
     public void testCtorDef() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ExecutableStatementCountCheck.class);
+            createModuleConfig(ExecutableStatementCountCheck.class);
 
         checkConfig.addAttribute("max", "0");
         checkConfig.addAttribute("tokens", "CTOR_DEF");
@@ -101,7 +101,7 @@ public class ExecutableStatementCountCheckTest
     @Test
     public void testStaticInit() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ExecutableStatementCountCheck.class);
+            createModuleConfig(ExecutableStatementCountCheck.class);
 
         checkConfig.addAttribute("max", "0");
         checkConfig.addAttribute("tokens", "STATIC_INIT");
@@ -116,7 +116,7 @@ public class ExecutableStatementCountCheckTest
     @Test
     public void testInstanceInit() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ExecutableStatementCountCheck.class);
+            createModuleConfig(ExecutableStatementCountCheck.class);
 
         checkConfig.addAttribute("max", "0");
         checkConfig.addAttribute("tokens", "INSTANCE_INIT");
@@ -163,7 +163,7 @@ public class ExecutableStatementCountCheckTest
     @Test
     public void testDefaultConfiguration() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ExecutableStatementCountCheck.class);
+            createModuleConfig(ExecutableStatementCountCheck.class);
 
         createChecker(checkConfig);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;

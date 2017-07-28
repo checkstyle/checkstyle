@@ -47,7 +47,7 @@ public class AvoidStaticImportCheckTest
     public void testDefaultOperation()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(AvoidStaticImportCheck.class);
+            createModuleConfig(AvoidStaticImportCheck.class);
         final String[] expected = {
             "23: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
             "25: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
@@ -69,7 +69,7 @@ public class AvoidStaticImportCheckTest
     public void testStarExcludes()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(AvoidStaticImportCheck.class);
+            createModuleConfig(AvoidStaticImportCheck.class);
         checkConfig.addAttribute("excludes", "java.io.File.*,sun.net.ftpclient.FtpClient.*");
         // allow the "java.io.File.*" AND "sun.net.ftpclient.FtpClient.*" star imports
         final String[] expected = {
@@ -89,7 +89,7 @@ public class AvoidStaticImportCheckTest
     public void testMemberExcludes()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(AvoidStaticImportCheck.class);
+            createModuleConfig(AvoidStaticImportCheck.class);
         checkConfig.addAttribute("excludes", "java.io.File.listRoots");
         // allow the java.io.File.listRoots member imports
         final String[] expected = {
@@ -111,7 +111,7 @@ public class AvoidStaticImportCheckTest
     public void testBogusMemberExcludes()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(AvoidStaticImportCheck.class);
+            createModuleConfig(AvoidStaticImportCheck.class);
 
         // should NOT mask anything
         checkConfig.addAttribute(
@@ -139,7 +139,7 @@ public class AvoidStaticImportCheckTest
     public void testInnerClassMemberExcludesStar()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(AvoidStaticImportCheck.class);
+            createModuleConfig(AvoidStaticImportCheck.class);
 
         // should mask com.puppycrawl.tools.checkstyle.imports.avoidstaticimport.
         // InputAvoidStaticImportNestedClass.InnerClass.one

@@ -38,17 +38,9 @@ public class JavadocPackageCheckTest
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadocpackage";
     }
 
-    @Override
-    protected DefaultConfiguration createCheckerConfig(
-        Configuration config) {
-        final DefaultConfiguration dc = new DefaultConfiguration("root");
-        dc.addChild(config);
-        return dc;
-    }
-
     @Test
     public void testMissing() throws Exception {
-        final Configuration checkConfig = createCheckConfig(JavadocPackageCheck.class);
+        final Configuration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         final String[] expected = {
             "0: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
@@ -61,7 +53,7 @@ public class JavadocPackageCheckTest
 
     @Test
     public void testMissingWithAllowLegacy() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(JavadocPackageCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         checkConfig.addAttribute("allowLegacy", "true");
         final String[] expected = {
             "0: " + getCheckMessage(MSG_PACKAGE_INFO),
@@ -75,7 +67,7 @@ public class JavadocPackageCheckTest
 
     @Test
     public void testWithMultipleFiles() throws Exception {
-        final Configuration checkConfig = createCheckConfig(JavadocPackageCheck.class);
+        final Configuration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         final String path1 = getPath("InputJavadocPackageNoJavadoc.java");
         final String path2 = getPath("InputJavadocPackageBadTag.java");
         final String[] expected = {
@@ -90,7 +82,7 @@ public class JavadocPackageCheckTest
 
     @Test
     public void testBoth() throws Exception {
-        final Configuration checkConfig = createCheckConfig(JavadocPackageCheck.class);
+        final Configuration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         final String[] expected = {
             "0: " + getCheckMessage(MSG_LEGACY_PACKAGE_HTML),
         };
@@ -102,7 +94,7 @@ public class JavadocPackageCheckTest
 
     @Test
     public void testHtmlDisallowed() throws Exception {
-        final Configuration checkConfig = createCheckConfig(JavadocPackageCheck.class);
+        final Configuration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         final String[] expected = {
             "0: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
@@ -113,7 +105,7 @@ public class JavadocPackageCheckTest
 
     @Test
     public void testHtmlAllowed() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(JavadocPackageCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         checkConfig.addAttribute("allowLegacy", "true");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(createChecker(checkConfig),
@@ -123,7 +115,7 @@ public class JavadocPackageCheckTest
 
     @Test
     public void testAnnotation() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(JavadocPackageCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(createChecker(checkConfig),
             getPath("annotation"
