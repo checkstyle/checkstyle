@@ -26,6 +26,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Locale;
 
 import org.junit.Before;
@@ -36,11 +37,12 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.reflect.Whitebox;
 
+import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 
 @RunWith(PowerMockRunner.class)
-public class MainFrameModelTest {
+public class MainFrameModelTest extends AbstractPathTestSupport {
 
     private static final String FILE_NAME_TEST_DATA = "InputJavadocAttributesAndMethods.java";
     private static final String FILE_NAME_NON_JAVA = "NotJavaFile.notjava";
@@ -50,8 +52,9 @@ public class MainFrameModelTest {
     private MainFrameModel model;
     private File testData;
 
-    private static String getPath(String filename) {
-        return "src/test/resources/com/puppycrawl/tools/checkstyle/gui/" + filename;
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/gui";
     }
 
     private static String getNonCompilablePath(String filename) {
@@ -59,7 +62,7 @@ public class MainFrameModelTest {
     }
 
     @Before
-    public void prepareTestData() {
+    public void prepareTestData() throws IOException {
         model = new MainFrameModel();
         testData = new File(getPath(FILE_NAME_TEST_DATA));
     }
@@ -84,7 +87,7 @@ public class MainFrameModelTest {
     }
 
     @Test
-    public void testShouldAcceptFile() {
+    public void testShouldAcceptFile() throws IOException {
         final File directory = PowerMockito.mock(File.class);
         PowerMockito.when(directory.isDirectory()).thenReturn(true);
         assertTrue(MainFrameModel.shouldAcceptFile(directory));
@@ -102,7 +105,7 @@ public class MainFrameModelTest {
     }
 
     @Test
-    public void testOpenFileWithParseModePlainJava() throws CheckstyleException {
+    public void testOpenFileWithParseModePlainJava() throws Exception {
         // Default parse mode: Plain Java
         model.openFile(testData);
         verifyCorrectTestDataInFrameModel();
@@ -112,7 +115,7 @@ public class MainFrameModelTest {
     }
 
     @Test
-    public void testOpenFileWithParseModeJavaWithComments() throws CheckstyleException {
+    public void testOpenFileWithParseModeJavaWithComments() throws Exception {
         model.setParseMode(ParseMode.JAVA_WITH_COMMENTS);
         model.openFile(testData);
 
@@ -120,7 +123,7 @@ public class MainFrameModelTest {
     }
 
     @Test
-    public void testOpenFileWithParseModeJavaWithJavadocAndComments() throws CheckstyleException {
+    public void testOpenFileWithParseModeJavaWithJavadocAndComments() throws Exception {
         model.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         model.openFile(testData);
 
@@ -152,7 +155,7 @@ public class MainFrameModelTest {
     }
 
     @Test
-    public void testOpenFileNullParameter() throws CheckstyleException {
+    public void testOpenFileNullParameter() throws Exception {
         model.openFile(testData);
 
         model.openFile(null);
@@ -162,7 +165,7 @@ public class MainFrameModelTest {
     }
 
     @Test
-    public void testOpenFileNonExistentFile() {
+    public void testOpenFileNonExistentFile() throws IOException {
         final File nonExistentFile = new File(getPath(FILE_NAME_NON_EXISTENT));
 
         try {
@@ -197,7 +200,7 @@ public class MainFrameModelTest {
         }
     }
 
-    private void verifyCorrectTestDataInFrameModel() {
+    private void verifyCorrectTestDataInFrameModel() throws IOException {
         assertEquals(testData, model.getCurrentFile());
 
         final String expectedTitle = "Checkstyle GUI : " + FILE_NAME_TEST_DATA;

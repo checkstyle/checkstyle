@@ -31,7 +31,6 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URI;
@@ -59,9 +58,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 @PrepareForTest(Closeables.class)
 public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "header" + File.separator + "regexpheader" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/header/regexpheader";
     }
 
     /**

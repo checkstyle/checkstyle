@@ -63,9 +63,15 @@ import com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter;
 import com.puppycrawl.tools.checkstyle.internal.TestUtils;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class TreeWalkerTest extends BaseCheckTestSupport {
+public class TreeWalkerTest extends AbstractModuleTestSupport {
+
     @Rule
     public final TemporaryFolder temporaryFolder = new TemporaryFolder();
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle";
+    }
 
     @Test
     public void testProperFileExtension() throws Exception {

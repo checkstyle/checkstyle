@@ -22,9 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_REGEXP_EXCEEDED;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_REGEXP_MINIMUM;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -41,11 +38,8 @@ public class RegexpSinglelineCheckTest extends BaseFileSetCheckTestSupport {
     }
 
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "regexp" + File.separator
-                + "regexpsingleline" + File.separator
-                + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline";
     }
 
     @Test

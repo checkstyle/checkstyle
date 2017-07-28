@@ -25,7 +25,6 @@ import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MS
 import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_STACKOVERFLOW;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
@@ -50,11 +49,8 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
     }
 
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "regexp" + File.separator
-                + "regexpmultiline" + File.separator
-                + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline";
     }
 
     @Test

@@ -26,6 +26,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import antlr.collections.AST;
+import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -36,12 +37,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
-public class ParseTreeTablePresentationTest {
+public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
 
     private DetailAST tree;
 
-    public static String getPath(String filename) {
-        return "src/test/resources/com/puppycrawl/tools/checkstyle/gui/" + filename;
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/gui";
     }
 
     private static DetailAST parseFile(File file) throws Exception {

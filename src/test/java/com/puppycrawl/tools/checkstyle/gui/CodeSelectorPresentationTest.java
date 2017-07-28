@@ -28,12 +28,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.google.common.collect.ImmutableList;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 
-public class CodeSelectorPresentationTest {
+public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
 
     private MainFrameModel model;
 
@@ -42,7 +42,7 @@ public class CodeSelectorPresentationTest {
     private ImmutableList<Integer> linesToPosition;
 
     @Before
-    public void loadFile() throws CheckstyleException {
+    public void loadFile() throws Exception {
         model = new MainFrameModel();
         model.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         model.openFile(new File(getPath("InputJavadocAttributesAndMethods.java")));
@@ -50,8 +50,9 @@ public class CodeSelectorPresentationTest {
         linesToPosition = ImmutableList.copyOf(convertLinesToPosition(model.getLinesToPosition()));
     }
 
-    private static String getPath(String filename) {
-        return "src/test/resources/com/puppycrawl/tools/checkstyle/gui/" + filename;
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/gui";
     }
 
     /** Converts lineToPosition from multicharacter to one character line separator

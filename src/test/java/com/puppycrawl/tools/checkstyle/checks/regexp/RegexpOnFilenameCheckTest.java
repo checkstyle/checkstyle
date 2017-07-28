@@ -25,7 +25,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.regex.Pattern;
 
 import org.junit.Test;
@@ -37,11 +36,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class RegexpOnFilenameCheckTest extends BaseFileSetCheckTestSupport {
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "regexp" + File.separator
-                + "regexponfilename" + File.separator
-                + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/regexp/regexponfilename";
     }
 
     @Test
