@@ -37,7 +37,6 @@ import java.util.BitSet;
 
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.CheckerTest;
-import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.Input15Extensions;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest;

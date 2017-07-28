@@ -59,18 +59,16 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             "35:8: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
             "37:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.Checker"),
             "38:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.CheckerTest"),
-            "39:8: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport"),
-            "40:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.Definitions"),
-            "41:8: " + getCheckMessage(MSG_KEY,
+            "39:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.Definitions"),
+            "40:8: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.Input15Extensions"),
-            "42:8: " + getCheckMessage(MSG_KEY,
+            "41:8: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest"),
-            "43:8: " + getCheckMessage(MSG_KEY,
+            "42:8: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.PackageNamesLoader"),
-            "44:8: " + getCheckMessage(MSG_KEY,
+            "43:8: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.DefaultConfiguration"),
-            "45:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.DefaultLogger"),
+            "44:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.DefaultLogger"),
         };
         verify(checkConfig, getPath("InputUnusedImports.java"), expected);
     }
@@ -91,7 +89,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             "27:15: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
             //"29:8: Unused import - java.awt.Component.", // Should be detected
             "32:8: " + getCheckMessage(MSG_KEY, "java.awt.Label"),
-            "45:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.DefaultLogger"),
+            "44:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.DefaultLogger"),
         };
         verify(checkConfig, getPath("InputUnusedImports.java"), expected);
     }
