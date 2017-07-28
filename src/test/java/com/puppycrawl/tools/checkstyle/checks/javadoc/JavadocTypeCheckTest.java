@@ -69,7 +69,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTags() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
+            createModuleConfig(JavadocTypeCheck.class);
         final String[] expected = {
             "8: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "302: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -81,7 +81,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testInner() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
+            createModuleConfig(JavadocTypeCheck.class);
         final String[] expected = {
             "14: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "21: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -93,7 +93,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testStrict() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
+            createModuleConfig(JavadocTypeCheck.class);
         final String[] expected = {
             "7: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "9: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -106,7 +106,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testProtected() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
+            createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
         final String[] expected = {
             "7: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -117,7 +117,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testPublic() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
+            createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
         final String[] expected = {
             "7: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -131,7 +131,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testProtest() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
+            createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
         final String[] expected = {
             "7: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -147,7 +147,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testPkg() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
+            createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute(
             "scope",
             Scope.getInstance("package").getName());
@@ -162,7 +162,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testEclipse() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
+            createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute(
             "scope",
             Scope.getInstance("public").getName());
@@ -175,7 +175,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAuthorRequired() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
+            createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("authorFormat", "\\S");
         final String[] expected = {
             "13: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
@@ -187,7 +187,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testAuthorRegularEx()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
+            createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("authorFormat", "0*");
         final String[] expected = {
             "22: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
@@ -201,7 +201,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testAuthorRegularExError()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
+            createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("authorFormat", "ABC");
         final String[] expected = {
             "13: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
@@ -221,7 +221,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testVersionRequired()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
+            createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("versionFormat", "\\S");
         final String[] expected = {
             "13: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
@@ -233,7 +233,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testVersionRegularEx()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
+            createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("versionFormat", "^\\p{Digit}+\\.\\p{Digit}+$");
         final String[] expected = {
             "22: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
@@ -247,7 +247,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testVersionRegularExError()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
+            createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("versionFormat", "\\$Revision.*\\$");
         final String[] expected = {
             "13: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
@@ -269,7 +269,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testScopes() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
+            createModuleConfig(JavadocTypeCheck.class);
         final String[] expected = {
             "3: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "15: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -290,7 +290,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testLimitViolationsBySpecifyingTokens() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
+            createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("tokens", "INTERFACE_DEF");
         final String[] expected = {
             "4: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -303,7 +303,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testScopes2() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
+            createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
         final String[] expected = {
             "3: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -317,7 +317,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testExcludeScope() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
+            createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("scope", Scope.PRIVATE.getName());
         checkConfig.addAttribute("excludeScope", Scope.PROTECTED.getName());
         final String[] expected = {
@@ -338,7 +338,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTypeParameters() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
+            createModuleConfig(JavadocTypeCheck.class);
         final String[] expected = {
             "7:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<D123>"),
             "11: " + getCheckMessage(MSG_MISSING_TAG, "@param <C456>"),
@@ -352,7 +352,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAllowMissingTypeParameters() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
+            createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("allowMissingParamTags", "true");
         final String[] expected = {
             "7:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<D123>"),
@@ -365,7 +365,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDontAllowUnusedParameterTag() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(JavadocTypeCheck.class);
+                createModuleConfig(JavadocTypeCheck.class);
         final String[] expected = {
             "6:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<BAD>"),
             "7:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<BAD>"),
@@ -378,7 +378,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testBadTag() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
+            createModuleConfig(JavadocTypeCheck.class);
         final String[] expected = {
             "5:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "mytag"),
         };
@@ -390,7 +390,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testBadTagSuppress() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
+            createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("allowUnknownTags", "true");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,

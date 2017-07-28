@@ -48,7 +48,7 @@ public class ClassTypeParameterNameCheckTest
     public void testClassDefault()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ClassTypeParameterNameCheck.class);
+            createModuleConfig(ClassTypeParameterNameCheck.class);
 
         final String pattern = "^[A-Z]$";
 
@@ -64,7 +64,7 @@ public class ClassTypeParameterNameCheckTest
     public void testClassFooName()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ClassTypeParameterNameCheck.class);
+            createModuleConfig(ClassTypeParameterNameCheck.class);
         checkConfig.addAttribute("format", "^foo$");
 
         final String pattern = "^foo$";

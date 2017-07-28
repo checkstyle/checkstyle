@@ -47,7 +47,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(UnnecessaryParenthesesCheck.class);
+            createModuleConfig(UnnecessaryParenthesesCheck.class);
 
         final String[] expected = {
             "5:22: " + getCheckMessage(MSG_ASSIGN),
@@ -102,7 +102,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     @Test
     public void test15Extensions() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(UnnecessaryParenthesesCheck.class);
+            createModuleConfig(UnnecessaryParenthesesCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputUnnecessaryParentheses15Extensions.java"), expected);
     }

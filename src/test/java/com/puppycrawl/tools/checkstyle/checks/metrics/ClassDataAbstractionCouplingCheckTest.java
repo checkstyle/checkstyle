@@ -43,7 +43,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     @Test
     public void test() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ClassDataAbstractionCouplingCheck.class);
+            createModuleConfig(ClassDataAbstractionCouplingCheck.class);
 
         checkConfig.addAttribute("max", "0");
         checkConfig.addAttribute("excludedClasses", "InnerClass");
@@ -60,7 +60,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     @Test
     public void testExludedPackageDirectPackages() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ClassDataAbstractionCouplingCheck.class);
+            createModuleConfig(ClassDataAbstractionCouplingCheck.class);
 
         checkConfig.addAttribute("max", "0");
         checkConfig.addAttribute("excludedPackages",
@@ -79,7 +79,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     @Test
     public void testExludedPackageCommonPackages() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ClassDataAbstractionCouplingCheck.class);
+            createModuleConfig(ClassDataAbstractionCouplingCheck.class);
 
         checkConfig.addAttribute("max", "0");
         checkConfig.addAttribute("excludedPackages",
@@ -98,7 +98,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     @Test
     public void testExludedPackageWithEndingDot() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ClassDataAbstractionCouplingCheck.class);
+            createModuleConfig(ClassDataAbstractionCouplingCheck.class);
 
         checkConfig.addAttribute("max", "0");
         checkConfig.addAttribute("excludedPackages",
@@ -124,7 +124,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     @Test
     public void testExludedPackageCommonPackagesAllIgnored() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ClassDataAbstractionCouplingCheck.class);
+            createModuleConfig(ClassDataAbstractionCouplingCheck.class);
 
         checkConfig.addAttribute("max", "0");
         checkConfig.addAttribute("excludedPackages",
@@ -141,7 +141,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     @Test
     public void testDefaultConfiguration() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ClassDataAbstractionCouplingCheck.class);
+            createModuleConfig(ClassDataAbstractionCouplingCheck.class);
 
         createChecker(checkConfig);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -167,7 +167,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     @Test
     public void testRegularExpression() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(ClassDataAbstractionCouplingCheck.class);
+                createModuleConfig(ClassDataAbstractionCouplingCheck.class);
 
         checkConfig.addAttribute("max", "0");
         checkConfig.addAttribute("excludedClasses", "InnerClass");
@@ -184,7 +184,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     @Test
     public void testEmptyRegularExpression() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(ClassDataAbstractionCouplingCheck.class);
+                createModuleConfig(ClassDataAbstractionCouplingCheck.class);
 
         checkConfig.addAttribute("max", "0");
         checkConfig.addAttribute("excludedClasses", "InnerClass");

@@ -38,7 +38,7 @@ public class InnerAssignmentCheckTest
     @Test
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(InnerAssignmentCheck.class);
+            createModuleConfig(InnerAssignmentCheck.class);
         final String[] expected = {
             "16:15: " + getCheckMessage(MSG_KEY),
             "16:19: " + getCheckMessage(MSG_KEY),
@@ -64,7 +64,7 @@ public class InnerAssignmentCheckTest
     @Test
     public void testLambdaExpression() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(InnerAssignmentCheck.class);
+            createModuleConfig(InnerAssignmentCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputInnerAssignmentLambdaExpressions.java"),
             expected);

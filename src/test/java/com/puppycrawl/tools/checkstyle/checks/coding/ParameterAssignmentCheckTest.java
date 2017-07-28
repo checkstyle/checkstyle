@@ -40,7 +40,7 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
     public void testDefault()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ParameterAssignmentCheck.class);
+            createModuleConfig(ParameterAssignmentCheck.class);
         final String[] expected = {
             "9:15: " + getCheckMessage(MSG_KEY, "field"),
             "10:15: " + getCheckMessage(MSG_KEY, "field"),
@@ -53,7 +53,7 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testReceiverParameter() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(ParameterAssignmentCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(ParameterAssignmentCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputParameterAssignmentReceiver.java"), expected);
     }

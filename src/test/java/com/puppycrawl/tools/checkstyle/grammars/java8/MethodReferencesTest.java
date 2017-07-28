@@ -36,7 +36,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
     public void testCanParse()
             throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(MemberNameCheck.class);
+                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodReferences.java"), expected);
 
@@ -46,7 +46,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
     public void testFromSpec()
             throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(MemberNameCheck.class);
+                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodReferences2.java"), expected);
 
@@ -56,7 +56,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
     public void testGenericInPostfixExpressionBeforeReference()
             throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(MemberNameCheck.class);
+                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodReferences3.java"), expected);
 
@@ -65,7 +65,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
     @Test
     public void testArrayAfterGeneric()
             throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(MemberNameCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodReferences4.java"), expected);
 
@@ -74,7 +74,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
     @Test
     public void testFromHibernate()
             throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(MemberNameCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodReferences5.java"), expected);
 
@@ -83,7 +83,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
     @Test
     public void testFromSpring()
             throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(MemberNameCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodReferences6.java"), expected);
     }
@@ -92,7 +92,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
     public void testMethodReferences7()
             throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(MemberNameCheck.class);
+                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodReferences7.java"), expected);
 

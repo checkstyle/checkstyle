@@ -35,14 +35,16 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNoSpaceErrors() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(SingleSpaceSeparatorCheck.class);
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(SingleSpaceSeparatorCheck.class);
         verify(checkConfig, getPath("InputSingleSpaceSeparatorNoErrors.java"),
                 CommonUtils.EMPTY_STRING_ARRAY);
     }
 
     @Test
     public void testSpaceErrors() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(SingleSpaceSeparatorCheck.class);
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(SingleSpaceSeparatorCheck.class);
         checkConfig.addAttribute("validateComments", String.valueOf(true));
         final String[] expected = {
             "1:9: " + getCheckMessage(MSG_KEY),
@@ -84,7 +86,8 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSpaceErrorsAroundComments() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(SingleSpaceSeparatorCheck.class);
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(SingleSpaceSeparatorCheck.class);
         checkConfig.addAttribute("validateComments", String.valueOf(true));
         final String[] expected = {
             "5:10: " + getCheckMessage(MSG_KEY),
@@ -100,7 +103,8 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSpaceErrorsIfCommentsIgnored() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(SingleSpaceSeparatorCheck.class);
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(SingleSpaceSeparatorCheck.class);
         final String[] expected = {
             "13:13: " + getCheckMessage(MSG_KEY),
         };

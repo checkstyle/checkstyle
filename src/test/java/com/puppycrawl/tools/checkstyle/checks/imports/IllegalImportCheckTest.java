@@ -46,7 +46,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     public void testWithSupplied()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(IllegalImportCheck.class);
+            createModuleConfig(IllegalImportCheck.class);
         checkConfig.addAttribute("illegalPkgs", "java.io");
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY, "java.io.*"),
@@ -60,7 +60,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     public void testWithDefault()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(IllegalImportCheck.class);
+            createModuleConfig(IllegalImportCheck.class);
         final String[] expected = {
             "15:1: " + getCheckMessage(MSG_KEY, "sun.applet.*"),
             "28:1: " + getCheckMessage(MSG_KEY, "sun.*"),
@@ -82,7 +82,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     public void testIllegalClasses()
             throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(IllegalImportCheck.class);
+                createModuleConfig(IllegalImportCheck.class);
         checkConfig.addAttribute("illegalClasses", "java.sql.Connection");
         final String[] expected = {
             "11:1: " + getCheckMessage(MSG_KEY, "java.sql.Connection"),
@@ -96,7 +96,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     public void testIllegalPackagesRegularExpression()
             throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(IllegalImportCheck.class);
+                createModuleConfig(IllegalImportCheck.class);
         checkConfig.addAttribute("illegalPkgs", "java\\.util");
         checkConfig.addAttribute("regexp", "true");
         final String[] expected = {
@@ -115,7 +115,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     public void testIllegalClassessRegularExpression()
             throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(IllegalImportCheck.class);
+                createModuleConfig(IllegalImportCheck.class);
         checkConfig.addAttribute("illegalPkgs", "");
         checkConfig.addAttribute("illegalClasses", "^java\\.util\\.(List|Arrays)");
         checkConfig.addAttribute("regexp", "true");
@@ -131,7 +131,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     public void testIllegalPackagesAndClassesRegularExpression()
             throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(IllegalImportCheck.class);
+                createModuleConfig(IllegalImportCheck.class);
         checkConfig.addAttribute("illegalPkgs", "java\\.util");
         checkConfig.addAttribute("illegalClasses",
                 "^com\\.puppycrawl\\.tools\\.checkstyle\\.Checker.*");

@@ -37,7 +37,7 @@ public class OverloadMethodsDeclarationOrderCheckTest
     @Test
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(OverloadMethodsDeclarationOrderCheck.class);
+            createModuleConfig(OverloadMethodsDeclarationOrderCheck.class);
 
         final String[] expected = {
             "28: " + getCheckMessage(MSG_KEY, 17),

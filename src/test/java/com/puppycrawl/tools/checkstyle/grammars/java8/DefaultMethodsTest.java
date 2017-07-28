@@ -36,7 +36,7 @@ public class DefaultMethodsTest extends AbstractModuleTestSupport {
     public void testCanParse()
             throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(MemberNameCheck.class);
+                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputDefaultMethods.java"), expected);
 
@@ -46,7 +46,7 @@ public class DefaultMethodsTest extends AbstractModuleTestSupport {
     public void testSwitch()
             throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(MemberNameCheck.class);
+                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputDefaultMethods2.java"), expected);
 

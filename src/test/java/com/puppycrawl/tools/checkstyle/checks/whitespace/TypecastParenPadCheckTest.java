@@ -43,7 +43,7 @@ public class TypecastParenPadCheckTest
     public void testDefault()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(TypecastParenPadCheck.class);
+            createModuleConfig(TypecastParenPadCheck.class);
         final String[] expected = {
             "89:14: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "89:21: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
@@ -55,7 +55,7 @@ public class TypecastParenPadCheckTest
     public void testSpace()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(TypecastParenPadCheck.class);
+            createModuleConfig(TypecastParenPadCheck.class);
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
         final String[] expected = {
             "87:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
@@ -73,7 +73,7 @@ public class TypecastParenPadCheckTest
     @Test
     public void test1322879() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(TypecastParenPadCheck.class);
+            createModuleConfig(TypecastParenPadCheck.class);
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputTypecastParenPadWhitespaceAround.java"),

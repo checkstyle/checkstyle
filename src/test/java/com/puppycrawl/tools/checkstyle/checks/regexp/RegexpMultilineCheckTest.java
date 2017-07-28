@@ -33,11 +33,11 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
+public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     @Rule
     public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
@@ -45,7 +45,7 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
 
     @Before
     public void setUp() {
-        checkConfig = createCheckConfig(RegexpMultilineCheck.class);
+        checkConfig = createModuleConfig(RegexpMultilineCheck.class);
     }
 
     @Override

@@ -38,7 +38,7 @@ public class LocalVariableNameCheckTest
     public void testDefault()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(LocalVariableNameCheck.class);
+            createModuleConfig(LocalVariableNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -55,7 +55,7 @@ public class LocalVariableNameCheckTest
     public void testInnerClass()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(LocalVariableNameCheck.class);
+            createModuleConfig(LocalVariableNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLocalVariableNameInnerClass.java"), expected);
     }
@@ -64,7 +64,7 @@ public class LocalVariableNameCheckTest
     public void testLoopVariables()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(LocalVariableNameCheck.class);
+            createModuleConfig(LocalVariableNameCheck.class);
         checkConfig.addAttribute("format", "^[a-z]{2,}[a-zA-Z0-9]*$");
         checkConfig.addAttribute("allowOneCharVarInForLoop", "true");
 

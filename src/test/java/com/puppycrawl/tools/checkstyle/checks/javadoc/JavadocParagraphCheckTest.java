@@ -38,7 +38,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
 
     @Before
     public void setUp() {
-        checkConfig = createCheckConfig(JavadocParagraphCheck.class);
+        checkConfig = createModuleConfig(JavadocParagraphCheck.class);
     }
 
     @Override

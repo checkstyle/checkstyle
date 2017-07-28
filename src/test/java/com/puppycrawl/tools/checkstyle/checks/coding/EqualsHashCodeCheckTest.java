@@ -39,7 +39,7 @@ public class EqualsHashCodeCheckTest
     @Test
     public void testSemantic() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(EqualsHashCodeCheck.class);
+            createModuleConfig(EqualsHashCodeCheck.class);
         final String[] expected = {
             "94:13: " + getCheckMessage(MSG_KEY_HASHCODE),
         };
@@ -49,7 +49,7 @@ public class EqualsHashCodeCheckTest
     @Test
     public void testNoEquals() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(EqualsHashCodeCheck.class);
+            createModuleConfig(EqualsHashCodeCheck.class);
         final String[] expected = {
             "4:5: " + getCheckMessage(MSG_KEY_EQUALS),
         };
@@ -59,7 +59,7 @@ public class EqualsHashCodeCheckTest
     @Test
     public void testBooleanMethods() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(EqualsHashCodeCheck.class);
+            createModuleConfig(EqualsHashCodeCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputEqualsHashCode.java"), expected);
     }
@@ -67,7 +67,7 @@ public class EqualsHashCodeCheckTest
     @Test
     public void testEqualsParameter() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(EqualsHashCodeCheck.class);
+            createModuleConfig(EqualsHashCodeCheck.class);
         final String[] expected = {
             "10:9: " + getCheckMessage(MSG_KEY_EQUALS),
             "18:9: " + getCheckMessage(MSG_KEY_HASHCODE),

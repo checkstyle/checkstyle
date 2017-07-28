@@ -48,7 +48,7 @@ public class PackageNameCheckTest
     public void testSpecified()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(PackageNameCheck.class);
+            createModuleConfig(PackageNameCheck.class);
         checkConfig.addAttribute("format", "[A-Z]+");
 
         final String pattern = "[A-Z]+";
@@ -64,7 +64,7 @@ public class PackageNameCheckTest
     public void testDefault()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(PackageNameCheck.class);
+            createModuleConfig(PackageNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputPackageNameSimple.java"), expected);
     }

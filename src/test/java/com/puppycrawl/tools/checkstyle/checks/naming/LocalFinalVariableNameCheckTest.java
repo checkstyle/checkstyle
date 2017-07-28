@@ -49,7 +49,7 @@ public class LocalFinalVariableNameCheckTest
     public void testDefault()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(LocalFinalVariableNameCheck.class);
+            createModuleConfig(LocalFinalVariableNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -63,7 +63,7 @@ public class LocalFinalVariableNameCheckTest
     public void testSet()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(LocalFinalVariableNameCheck.class);
+            createModuleConfig(LocalFinalVariableNameCheck.class);
         checkConfig.addAttribute("format", "[A-Z]+");
 
         final String pattern = "[A-Z]+";
@@ -78,7 +78,7 @@ public class LocalFinalVariableNameCheckTest
     public void testInnerClass()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(LocalFinalVariableNameCheck.class);
+            createModuleConfig(LocalFinalVariableNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLocalFinalVariableNameInnerClass.java"), expected);
     }
@@ -99,7 +99,7 @@ public class LocalFinalVariableNameCheckTest
     @Test
     public void testTryWithResources() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(LocalFinalVariableNameCheck.class);
+            createModuleConfig(LocalFinalVariableNameCheck.class);
         checkConfig.addAttribute("format", "[A-Z]+");
 
         final String pattern = "[A-Z]+";

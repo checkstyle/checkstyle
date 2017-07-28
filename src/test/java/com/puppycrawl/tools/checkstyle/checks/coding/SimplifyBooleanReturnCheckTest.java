@@ -37,7 +37,7 @@ public class SimplifyBooleanReturnCheckTest
     @Test
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(SimplifyBooleanReturnCheck.class);
+            createModuleConfig(SimplifyBooleanReturnCheck.class);
         final String[] expected = {
             "20:9: " + getCheckMessage(MSG_KEY),
             "33:9: " + getCheckMessage(MSG_KEY),

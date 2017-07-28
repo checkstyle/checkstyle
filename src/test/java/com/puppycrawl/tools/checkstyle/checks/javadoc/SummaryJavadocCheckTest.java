@@ -37,7 +37,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Before
     public void setUp() {
-        checkConfig = createCheckConfig(SummaryJavadocCheck.class);
+        checkConfig = createModuleConfig(SummaryJavadocCheck.class);
     }
 
     @Override

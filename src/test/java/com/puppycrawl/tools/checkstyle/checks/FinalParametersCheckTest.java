@@ -36,7 +36,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultTokens() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(FinalParametersCheck.class);
+            createModuleConfig(FinalParametersCheck.class);
         final String[] expected = {
             "23:26: " + getCheckMessage(MSG_KEY, "s"),
             "38:26: " + getCheckMessage(MSG_KEY, "i"),
@@ -56,7 +56,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCtorToken() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(FinalParametersCheck.class);
+            createModuleConfig(FinalParametersCheck.class);
         checkConfig.addAttribute("tokens", "CTOR_DEF");
         final String[] expected = {
             "23:26: " + getCheckMessage(MSG_KEY, "s"),
@@ -69,7 +69,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMethodToken() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(FinalParametersCheck.class);
+            createModuleConfig(FinalParametersCheck.class);
         checkConfig.addAttribute("tokens", "METHOD_DEF");
         final String[] expected = {
             "53:17: " + getCheckMessage(MSG_KEY, "s"),
@@ -87,7 +87,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCatchToken() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(FinalParametersCheck.class);
+            createModuleConfig(FinalParametersCheck.class);
         checkConfig.addAttribute("tokens", "LITERAL_CATCH");
         final String[] expected = {
             "125:16: " + getCheckMessage(MSG_KEY, "npe"),
@@ -100,7 +100,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testForEachClauseToken() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(FinalParametersCheck.class);
+            createModuleConfig(FinalParametersCheck.class);
         checkConfig.addAttribute("tokens", "FOR_EACH_CLAUSE");
         final String[] expected = {
             "152:13: " + getCheckMessage(MSG_KEY, "s"),
@@ -112,7 +112,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIgnorePrimitiveTypesParameters() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(FinalParametersCheck.class);
+            createModuleConfig(FinalParametersCheck.class);
         checkConfig.addAttribute("ignorePrimitiveTypes", "true");
         final String[] expected = {
             "6:22: " + getCheckMessage(MSG_KEY, "k"),
@@ -129,7 +129,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testReceiverParameters() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(FinalParametersCheck.class);
+            createModuleConfig(FinalParametersCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputFinalParametersReceiver.java"), expected);
     }

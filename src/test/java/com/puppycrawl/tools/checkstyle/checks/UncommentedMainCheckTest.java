@@ -43,7 +43,7 @@ public class UncommentedMainCheckTest
     public void testDefaults()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(UncommentedMainCheck.class);
+            createModuleConfig(UncommentedMainCheck.class);
         final String[] expected = {
             "14: " + getCheckMessage(MSG_KEY),
             "23: " + getCheckMessage(MSG_KEY),
@@ -57,7 +57,7 @@ public class UncommentedMainCheckTest
     public void testExcludedClasses()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(UncommentedMainCheck.class);
+            createModuleConfig(UncommentedMainCheck.class);
         checkConfig.addAttribute("excludedClasses", "\\.Main.*$");
         final String[] expected = {
             "14: " + getCheckMessage(MSG_KEY),
@@ -78,21 +78,21 @@ public class UncommentedMainCheckTest
 
     @Test
     public void testDeepDepth() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(UncommentedMainCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(UncommentedMainCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputUncommentedMain2.java"), expected);
     }
 
     @Test
     public void testWrongName() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(UncommentedMainCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(UncommentedMainCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputUncommentedMain3.java"), expected);
     }
 
     @Test
     public void testWrongArrayType() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(UncommentedMainCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(UncommentedMainCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputUncommentedMain4.java"), expected);
     }

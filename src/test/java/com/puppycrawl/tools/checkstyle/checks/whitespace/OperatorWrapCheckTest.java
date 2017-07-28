@@ -38,7 +38,7 @@ public class OperatorWrapCheckTest
 
     @Before
     public void setUp() {
-        checkConfig = createCheckConfig(OperatorWrapCheck.class);
+        checkConfig = createModuleConfig(OperatorWrapCheck.class);
     }
 
     @Override

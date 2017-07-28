@@ -41,7 +41,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
     @Test
     public void test() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(BooleanExpressionComplexityCheck.class);
+            createModuleConfig(BooleanExpressionComplexityCheck.class);
 
         final String[] expected = {
             "13:9: " + getCheckMessage(MSG_KEY, 4, 3),
@@ -56,7 +56,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
     @Test
     public void testNoBitwise() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(BooleanExpressionComplexityCheck.class);
+            createModuleConfig(BooleanExpressionComplexityCheck.class);
         checkConfig.addAttribute("max", "5");
         checkConfig.addAttribute("tokens", "BXOR,LAND,LOR");
 
@@ -68,7 +68,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
     @Test
     public void testNullPointerException() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(BooleanExpressionComplexityCheck.class);
+            createModuleConfig(BooleanExpressionComplexityCheck.class);
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 

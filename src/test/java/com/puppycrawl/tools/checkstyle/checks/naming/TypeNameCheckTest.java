@@ -41,7 +41,7 @@ public class TypeNameCheckTest
     public void testSpecified()
             throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(TypeNameCheck.class);
+                createModuleConfig(TypeNameCheck.class);
         checkConfig.addAttribute("format", "^inputHe");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputTypeName.java"), expected);
@@ -51,7 +51,7 @@ public class TypeNameCheckTest
     public void testDefault()
             throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(TypeNameCheck.class);
+                createModuleConfig(TypeNameCheck.class);
         final String[] expected = {
             "3:7: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderClass", DEFAULT_PATTERN),
@@ -69,7 +69,7 @@ public class TypeNameCheckTest
     public void testClassSpecific()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(TypeNameCheck.class);
+            createModuleConfig(TypeNameCheck.class);
         checkConfig.addAttribute("tokens", TokenUtils.getTokenName(TokenTypes.CLASS_DEF));
         final String[] expected = {
             "3:7: " + getCheckMessage(MSG_INVALID_PATTERN,
@@ -82,7 +82,7 @@ public class TypeNameCheckTest
     public void testInterfaceSpecific()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(TypeNameCheck.class);
+            createModuleConfig(TypeNameCheck.class);
         checkConfig.addAttribute("tokens", TokenUtils.getTokenName(TokenTypes.INTERFACE_DEF));
         final String[] expected = {
             "5:22: " + getCheckMessage(MSG_INVALID_PATTERN,
@@ -95,7 +95,7 @@ public class TypeNameCheckTest
     public void testEnumSpecific()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(TypeNameCheck.class);
+            createModuleConfig(TypeNameCheck.class);
         checkConfig.addAttribute("tokens", TokenUtils.getTokenName(TokenTypes.ENUM_DEF));
         final String[] expected = {
             "7:17: " + getCheckMessage(MSG_INVALID_PATTERN,
@@ -108,7 +108,7 @@ public class TypeNameCheckTest
     public void testAnnotationSpecific()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(TypeNameCheck.class);
+            createModuleConfig(TypeNameCheck.class);
         checkConfig.addAttribute("tokens", TokenUtils.getTokenName(TokenTypes.ANNOTATION_DEF));
         final String[] expected = {
             "9:23: " + getCheckMessage(MSG_INVALID_PATTERN,

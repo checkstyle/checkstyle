@@ -41,7 +41,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void test() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ClassFanOutComplexityCheck.class);
+            createModuleConfig(ClassFanOutComplexityCheck.class);
 
         checkConfig.addAttribute("max", "0");
 
@@ -56,7 +56,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testExcludedPackagesDirectPackages() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ClassFanOutComplexityCheck.class);
+            createModuleConfig(ClassFanOutComplexityCheck.class);
 
         checkConfig.addAttribute("max", "0");
         checkConfig.addAttribute("excludedPackages",
@@ -74,7 +74,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testExcludedPackagesCommonPackages() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ClassFanOutComplexityCheck.class);
+            createModuleConfig(ClassFanOutComplexityCheck.class);
 
         checkConfig.addAttribute("max", "0");
         checkConfig.addAttribute("excludedPackages",
@@ -92,7 +92,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testExcludedPackagesCommonPackagesWithEndingDot() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ClassFanOutComplexityCheck.class);
+            createModuleConfig(ClassFanOutComplexityCheck.class);
 
         checkConfig.addAttribute("max", "0");
         checkConfig.addAttribute("excludedPackages",
@@ -118,7 +118,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testExcludedPackagesAllIgnored() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ClassFanOutComplexityCheck.class);
+            createModuleConfig(ClassFanOutComplexityCheck.class);
 
         checkConfig.addAttribute("max", "0");
         checkConfig.addAttribute("excludedPackages",
@@ -135,7 +135,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void test15() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ClassFanOutComplexityCheck.class);
+            createModuleConfig(ClassFanOutComplexityCheck.class);
 
         checkConfig.addAttribute("max", "0");
 
@@ -147,7 +147,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultConfiguration() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ClassFanOutComplexityCheck.class);
+            createModuleConfig(ClassFanOutComplexityCheck.class);
 
         createChecker(checkConfig);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -177,7 +177,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRegularExpression() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(ClassFanOutComplexityCheck.class);
+                createModuleConfig(ClassFanOutComplexityCheck.class);
 
         checkConfig.addAttribute("max", "0");
         checkConfig.addAttribute("excludeClassesRegexps", "^Inner.*");
@@ -193,7 +193,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testEmptyRegularExpression() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(ClassFanOutComplexityCheck.class);
+                createModuleConfig(ClassFanOutComplexityCheck.class);
 
         checkConfig.addAttribute("max", "0");
         checkConfig.addAttribute("excludeClassesRegexps", "");

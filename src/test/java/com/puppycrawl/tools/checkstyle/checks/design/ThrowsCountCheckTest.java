@@ -40,7 +40,7 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(ThrowsCountCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(ThrowsCountCheck.class);
 
         final String[] expected = {
             "17:20: " + getCheckMessage(MSG_KEY, 5, 4),
@@ -54,7 +54,7 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMax() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(ThrowsCountCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(ThrowsCountCheck.class);
         checkConfig.addAttribute("max", "5");
 
         final String[] expected = {
@@ -96,7 +96,7 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNotIgnorePrivateMethod() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(ThrowsCountCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(ThrowsCountCheck.class);
         checkConfig.addAttribute("ignorePrivateMethods", "false");
         final String[] expected = {
             "17:20: " + getCheckMessage(MSG_KEY, 5, 4),

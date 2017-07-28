@@ -40,7 +40,7 @@ public class Java9TryWithResourcesTest extends AbstractModuleTestSupport {
     @Test
     public void testCanParse() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MemberNameCheck.class);
+            createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath("InputJava9TryWithResources.java"), expected);
     }

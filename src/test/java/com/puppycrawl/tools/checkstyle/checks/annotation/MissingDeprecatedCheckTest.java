@@ -60,7 +60,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testBadDeprecatedAnnotation() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
             "7: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
@@ -83,7 +83,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testBadDeprecatedJavadoc() throws Exception {
 
-        final DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
             "5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
@@ -106,7 +106,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSpecialCaseDeprecated() throws Exception {
 
-        final DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
             "5: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
@@ -133,7 +133,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGoodDeprecated() throws Exception {
 
-        final DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -143,7 +143,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTwoInJavadocWithoutAnnotation() throws Exception {
 
-        final DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
             "7: " + getCheckMessage(MSG_KEY_JAVADOC_MISSING),
@@ -157,7 +157,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testEmptyJavadocLine() throws Exception {
 
-        final DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
             "7: " + getCheckMessage(MSG_KEY_JAVADOC_MISSING),
@@ -169,7 +169,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSkipNoJavadocOption() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
         checkConfig.addAttribute("skipNoJavadoc", "true");
 
         final String[] expected = {

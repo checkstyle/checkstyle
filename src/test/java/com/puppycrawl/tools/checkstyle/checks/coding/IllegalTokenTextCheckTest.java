@@ -43,7 +43,7 @@ public class IllegalTokenTextCheckTest
     public void testCaseSensitive()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(IllegalTokenTextCheck.class);
+            createModuleConfig(IllegalTokenTextCheck.class);
         checkConfig.addAttribute("tokens", "STRING_LITERAL");
         checkConfig.addAttribute("format", "a href");
         checkConfig.addAttribute("ignoreCase", "false");
@@ -57,7 +57,7 @@ public class IllegalTokenTextCheckTest
     public void testCaseInSensitive()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(IllegalTokenTextCheck.class);
+            createModuleConfig(IllegalTokenTextCheck.class);
         checkConfig.addAttribute("tokens", "STRING_LITERAL");
         checkConfig.addAttribute("format", "a href");
         checkConfig.addAttribute("ignoreCase", "true");
@@ -72,7 +72,7 @@ public class IllegalTokenTextCheckTest
     public void testCustomMessage()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(IllegalTokenTextCheck.class);
+            createModuleConfig(IllegalTokenTextCheck.class);
         checkConfig.addAttribute("tokens", "STRING_LITERAL");
         checkConfig.addAttribute("format", "a href");
 
@@ -88,7 +88,7 @@ public class IllegalTokenTextCheckTest
     public void testNullCustomMessage()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(IllegalTokenTextCheck.class);
+            createModuleConfig(IllegalTokenTextCheck.class);
         checkConfig.addAttribute("tokens", "STRING_LITERAL");
         checkConfig.addAttribute("format", "a href");
 
@@ -112,7 +112,7 @@ public class IllegalTokenTextCheckTest
     public void testCommentToken()
             throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(IllegalTokenTextCheck.class);
+                createModuleConfig(IllegalTokenTextCheck.class);
         checkConfig.addAttribute("tokens", "COMMENT_CONTENT");
         checkConfig.addAttribute("format", "a href");
 

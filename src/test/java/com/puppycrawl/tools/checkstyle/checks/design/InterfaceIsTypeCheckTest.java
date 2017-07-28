@@ -39,7 +39,7 @@ public class InterfaceIsTypeCheckTest
     public void testDefault()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(InterfaceIsTypeCheck.class);
+            createModuleConfig(InterfaceIsTypeCheck.class);
         final String[] expected = {
             "25: " + getCheckMessage(MSG_KEY),
         };
@@ -50,7 +50,7 @@ public class InterfaceIsTypeCheckTest
     public void testAllowMarker()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(InterfaceIsTypeCheck.class);
+            createModuleConfig(InterfaceIsTypeCheck.class);
         checkConfig.addAttribute("allowMarkerInterfaces", "false");
         final String[] expected = {
             "20: " + getCheckMessage(MSG_KEY),

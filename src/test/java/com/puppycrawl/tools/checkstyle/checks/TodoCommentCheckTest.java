@@ -47,7 +47,7 @@ public class TodoCommentCheckTest
     @Test
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(TodoCommentCheck.class);
+            createModuleConfig(TodoCommentCheck.class);
         checkConfig.addAttribute("format", "FIXME:");
         final String[] expected = {
             "161: " + getCheckMessage(MSG_KEY, "FIXME:"),

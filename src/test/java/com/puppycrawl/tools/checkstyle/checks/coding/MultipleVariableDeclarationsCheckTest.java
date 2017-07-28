@@ -37,7 +37,7 @@ public class MultipleVariableDeclarationsCheckTest extends AbstractModuleTestSup
     @Test
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MultipleVariableDeclarationsCheck.class);
+            createModuleConfig(MultipleVariableDeclarationsCheck.class);
 
         final String[] expected = {
             "4:5: " + getCheckMessage(MSG_MULTIPLE_COMMA),

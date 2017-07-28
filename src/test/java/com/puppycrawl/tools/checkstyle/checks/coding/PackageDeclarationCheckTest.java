@@ -37,7 +37,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaultNoPackage() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
 
         final String[] expected = {
             "4: " + getCheckMessage(MSG_KEY_MISSING),
@@ -49,7 +49,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaultWithPackage() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -58,7 +58,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testOnFileWithCommentOnly() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
 
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY_MISSING),
@@ -69,7 +69,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFileForDiffDirectoryMismatch() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
 
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY_MISMATCH),
@@ -80,7 +80,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFileForDirectoryMismatchAtParent() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
 
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY_MISMATCH),
@@ -91,7 +91,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFileForDirectoryMismatchAtSubpackage() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
 
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY_MISMATCH),
@@ -103,7 +103,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFileIgnoreDiffDirectoryMismatch() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
         checkConfig.addAttribute("matchDirectoryStructure", "false");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -112,7 +112,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFileIgnoreDirectoryMismatchAtParent() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
         checkConfig.addAttribute("matchDirectoryStructure", "false");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -121,7 +121,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFileIgnoreDirectoryMismatchAtSubpackage() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
         checkConfig.addAttribute("matchDirectoryStructure", "false");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 

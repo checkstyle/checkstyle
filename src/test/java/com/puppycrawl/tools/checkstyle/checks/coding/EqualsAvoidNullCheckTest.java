@@ -37,7 +37,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testEqualsWithDefault() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(EqualsAvoidNullCheck.class);
+            createModuleConfig(EqualsAvoidNullCheck.class);
 
         final String[] expected = {
             "37:27: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
@@ -101,7 +101,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testEqualsWithoutEqualsIgnoreCase() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(EqualsAvoidNullCheck.class);
+                createModuleConfig(EqualsAvoidNullCheck.class);
         checkConfig.addAttribute("ignoreEqualsIgnoreCase", "true");
 
         final String[] expected = {

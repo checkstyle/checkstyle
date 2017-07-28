@@ -40,7 +40,7 @@ public class SeparatorWrapCheckTest
 
     @Before
     public void setUp() {
-        checkConfig = createCheckConfig(SeparatorWrapCheck.class);
+        checkConfig = createModuleConfig(SeparatorWrapCheck.class);
     }
 
     @Override

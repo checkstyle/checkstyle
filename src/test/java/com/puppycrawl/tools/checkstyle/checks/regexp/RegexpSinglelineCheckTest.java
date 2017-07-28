@@ -25,16 +25,16 @@ import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MS
 import org.junit.Before;
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class RegexpSinglelineCheckTest extends BaseFileSetCheckTestSupport {
+public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
     private DefaultConfiguration checkConfig;
 
     @Before
     public void setUp() {
-        checkConfig = createCheckConfig(RegexpSinglelineCheck.class);
+        checkConfig = createModuleConfig(RegexpSinglelineCheck.class);
     }
 
     @Override

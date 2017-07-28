@@ -37,7 +37,7 @@ public class MagicNumberCheckTest
     public void testDefault()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MagicNumberCheck.class);
+            createModuleConfig(MagicNumberCheck.class);
         final String[] expected = {
             "41:26: " + getCheckMessage(MSG_KEY, "3_000"),
             "42:32: " + getCheckMessage(MSG_KEY, "1.5_0"),
@@ -88,7 +88,7 @@ public class MagicNumberCheckTest
     public void testIgnoreSome()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MagicNumberCheck.class);
+            createModuleConfig(MagicNumberCheck.class);
         checkConfig.addAttribute("ignoreNumbers", "0, 1, 3.0, 8, 16, 3000");
         checkConfig.addAttribute("ignoreAnnotation", "true");
         final String[] expected = {
@@ -134,7 +134,7 @@ public class MagicNumberCheckTest
     public void testIgnoreNone()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MagicNumberCheck.class);
+            createModuleConfig(MagicNumberCheck.class);
         checkConfig.addAttribute("ignoreNumbers", "");
         checkConfig.addAttribute("ignoreAnnotation", "true");
         final String[] expected = {
@@ -208,7 +208,7 @@ public class MagicNumberCheckTest
     public void testIntegersOnly()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MagicNumberCheck.class);
+            createModuleConfig(MagicNumberCheck.class);
         checkConfig.addAttribute("tokens", "NUM_INT, NUM_LONG");
         checkConfig.addAttribute("ignoreAnnotation", "true");
         final String[] expected = {
@@ -252,7 +252,7 @@ public class MagicNumberCheckTest
     @Test
     public void testIgnoreNegativeOctalHex() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MagicNumberCheck.class);
+            createModuleConfig(MagicNumberCheck.class);
         checkConfig.addAttribute("ignoreNumbers", "-9223372036854775808, -2147483648, -1, 0, 1, 2");
         checkConfig.addAttribute("tokens", "NUM_INT, NUM_LONG");
         checkConfig.addAttribute("ignoreAnnotation", "true");
@@ -293,7 +293,7 @@ public class MagicNumberCheckTest
     @Test
     public void testIgnoreHashCodeMethod() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MagicNumberCheck.class);
+            createModuleConfig(MagicNumberCheck.class);
         checkConfig.addAttribute("ignoreHashCodeMethod", "true");
         checkConfig.addAttribute("ignoreAnnotation", "true");
         final String[] expected = {
@@ -341,7 +341,7 @@ public class MagicNumberCheckTest
     public void testIgnoreFieldDeclaration()
             throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(MagicNumberCheck.class);
+                createModuleConfig(MagicNumberCheck.class);
         checkConfig.addAttribute("ignoreFieldDeclaration", "true");
         final String[] expected = {
             "41:26: " + getCheckMessage(MSG_KEY, "3_000"),
@@ -383,7 +383,7 @@ public class MagicNumberCheckTest
     public void testWaiverParentToken()
             throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(MagicNumberCheck.class);
+                createModuleConfig(MagicNumberCheck.class);
         checkConfig.addAttribute("constantWaiverParentToken", "ASSIGN, ARRAY_INIT,"
                 + " EXPR, UNARY_PLUS, UNARY_MINUS, TYPECAST, ELIST, STAR, DIV, PLUS, MINUS");
         final String[] expected = {

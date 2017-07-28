@@ -49,7 +49,7 @@ public class MethodNameCheckTest
     public void testDefault()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MethodNameCheck.class);
+            createModuleConfig(MethodNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -62,7 +62,7 @@ public class MethodNameCheckTest
     @Test
     public void testMethodEqClass() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MethodNameCheck.class);
+            createModuleConfig(MethodNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -91,7 +91,7 @@ public class MethodNameCheckTest
     @Test
     public void testMethodEqClassAllow() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MethodNameCheck.class);
+            createModuleConfig(MethodNameCheck.class);
 
         // allow method names and class names to equal
         checkConfig.addAttribute("allowClassName", "true");
@@ -118,7 +118,7 @@ public class MethodNameCheckTest
     @Test
     public void testAccessTuning() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MethodNameCheck.class);
+            createModuleConfig(MethodNameCheck.class);
 
         // allow method names and class names to equal
         checkConfig.addAttribute("allowClassName", "true");
@@ -146,7 +146,7 @@ public class MethodNameCheckTest
     @Test
     public void testForNpe() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MethodNameCheck.class);
+            createModuleConfig(MethodNameCheck.class);
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -156,7 +156,7 @@ public class MethodNameCheckTest
     @Test
     public void testOverriddenMethods() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MethodNameCheck.class);
+            createModuleConfig(MethodNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 

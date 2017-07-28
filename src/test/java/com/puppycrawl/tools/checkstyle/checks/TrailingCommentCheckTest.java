@@ -37,7 +37,7 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
 
     @Before
     public void setUp() {
-        checkConfig = createCheckConfig(TrailingCommentCheck.class);
+        checkConfig = createModuleConfig(TrailingCommentCheck.class);
     }
 
     @Override

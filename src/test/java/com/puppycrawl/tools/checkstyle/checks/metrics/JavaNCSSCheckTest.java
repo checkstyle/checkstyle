@@ -45,7 +45,7 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void test() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(JavaNCSSCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(JavaNCSSCheck.class);
 
         checkConfig.addAttribute("methodMaximum", "0");
         checkConfig.addAttribute("classMaximum", "1");
@@ -72,7 +72,7 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaultConfiguration() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(JavaNCSSCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(JavaNCSSCheck.class);
 
         createChecker(checkConfig);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;

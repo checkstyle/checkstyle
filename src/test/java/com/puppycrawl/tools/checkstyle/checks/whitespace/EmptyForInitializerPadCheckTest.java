@@ -41,7 +41,7 @@ public class EmptyForInitializerPadCheckTest
 
     @Before
     public void setUp() {
-        checkConfig = createCheckConfig(EmptyForInitializerPadCheck.class);
+        checkConfig = createModuleConfig(EmptyForInitializerPadCheck.class);
     }
 
     @Override

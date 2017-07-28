@@ -45,7 +45,7 @@ public class AllSinglelineCommentsTest extends AbstractModuleTestSupport {
     @Test
     public void testAllBlockComments() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(SinglelineCommentListenerCheck.class);
+            createModuleConfig(SinglelineCommentListenerCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputFullOfSinglelineComments.java"), expected);
         Assert.assertTrue("All comments should be empty", ALL_COMMENTS.isEmpty());

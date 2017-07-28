@@ -38,7 +38,7 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIllegalAbstractClassName() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(AbstractClassNameCheck.class);
+            createModuleConfig(AbstractClassNameCheck.class);
         checkConfig.addAttribute("ignoreName", "false");
         checkConfig.addAttribute("ignoreModifier", "true");
 
@@ -59,7 +59,7 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCustomFormat() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(AbstractClassNameCheck.class);
+            createModuleConfig(AbstractClassNameCheck.class);
         checkConfig.addAttribute("ignoreName", "false");
         checkConfig.addAttribute("ignoreModifier", "true");
         final String pattern = "^NonAbstract.+$";
@@ -79,7 +79,7 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIllegalClassType() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(AbstractClassNameCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(AbstractClassNameCheck.class);
         checkConfig.addAttribute("ignoreName", "true");
         checkConfig.addAttribute("ignoreModifier", "false");
 
@@ -93,7 +93,7 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAllVariants() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(AbstractClassNameCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(AbstractClassNameCheck.class);
         checkConfig.addAttribute("ignoreName", "false");
         checkConfig.addAttribute("ignoreModifier", "false");
 
@@ -115,7 +115,7 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFalsePositive() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(AbstractClassNameCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(AbstractClassNameCheck.class);
 
         final String[] expected = {
             "9:5: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClass"),

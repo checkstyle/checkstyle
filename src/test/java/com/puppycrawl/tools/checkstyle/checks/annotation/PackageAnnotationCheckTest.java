@@ -41,7 +41,7 @@ public class PackageAnnotationCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testGoodPackageAnnotation() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(PackageAnnotationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(PackageAnnotationCheck.class);
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -58,7 +58,7 @@ public class PackageAnnotationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAnnotationNotInPackageInfo() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(PackageAnnotationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(PackageAnnotationCheck.class);
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -67,7 +67,7 @@ public class PackageAnnotationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testWithoutAnnotation() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(PackageAnnotationCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(PackageAnnotationCheck.class);
 
         final String[] expected = {
             "0: " + getCheckMessage(MSG_KEY),

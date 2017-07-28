@@ -36,7 +36,7 @@ public class MissingCtorCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMissingSwitchDefault() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MissingCtorCheck.class);
+            createModuleConfig(MissingCtorCheck.class);
 
         final String[] expected = {
             "3: " + getCheckMessage(MSG_KEY),

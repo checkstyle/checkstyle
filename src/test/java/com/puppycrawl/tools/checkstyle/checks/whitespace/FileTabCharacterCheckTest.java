@@ -29,7 +29,6 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.Definitions;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
 public class FileTabCharacterCheckTest
@@ -37,14 +36,6 @@ public class FileTabCharacterCheckTest
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/filetabcharacter";
-    }
-
-    @Override
-    protected DefaultConfiguration createCheckerConfig(
-        Configuration config) {
-        final DefaultConfiguration dc = new DefaultConfiguration("root");
-        dc.addChild(config);
-        return dc;
     }
 
     @Test
@@ -104,7 +95,7 @@ public class FileTabCharacterCheckTest
      */
     private static DefaultConfiguration createConfig(boolean verbose) {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(FileTabCharacterCheck.class);
+            createModuleConfig(FileTabCharacterCheck.class);
         checkConfig.addAttribute("eachLine", Boolean.toString(verbose));
         return checkConfig;
     }

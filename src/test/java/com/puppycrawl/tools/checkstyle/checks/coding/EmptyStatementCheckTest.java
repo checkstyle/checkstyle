@@ -38,7 +38,7 @@ public class EmptyStatementCheckTest
     public void testEmptyStatements()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(EmptyStatementCheck.class);
+            createModuleConfig(EmptyStatementCheck.class);
         final String[] expected = {
             "12:7: " + getCheckMessage(MSG_KEY),
             "17:7: " + getCheckMessage(MSG_KEY),

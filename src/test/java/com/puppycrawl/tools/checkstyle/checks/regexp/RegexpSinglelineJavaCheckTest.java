@@ -35,7 +35,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
 
     @Before
     public void setUp() {
-        checkConfig = createCheckConfig(RegexpSinglelineJavaCheck.class);
+        checkConfig = createModuleConfig(RegexpSinglelineJavaCheck.class);
     }
 
     @Override

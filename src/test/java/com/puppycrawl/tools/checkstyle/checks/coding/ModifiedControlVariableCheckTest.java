@@ -40,7 +40,7 @@ public class ModifiedControlVariableCheckTest
     @Test
     public void testModifiedControlVariable() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ModifiedControlVariableCheck.class);
+            createModuleConfig(ModifiedControlVariableCheck.class);
         final String[] expected = {
             "14:14: " + getCheckMessage(MSG_KEY, "i"),
             "17:15: " + getCheckMessage(MSG_KEY, "i"),
@@ -57,7 +57,7 @@ public class ModifiedControlVariableCheckTest
     @Test
     public void testEnhancedForLoopVariableTrue() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ModifiedControlVariableCheck.class);
+            createModuleConfig(ModifiedControlVariableCheck.class);
         checkConfig.addAttribute("skipEnhancedForLoopVariable", "true");
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -68,7 +68,7 @@ public class ModifiedControlVariableCheckTest
     @Test
     public void testEnhancedForLoopVariableFalse() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ModifiedControlVariableCheck.class);
+            createModuleConfig(ModifiedControlVariableCheck.class);
 
         final String[] expected = {
             "9:18: " + getCheckMessage(MSG_KEY, "line"),

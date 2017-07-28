@@ -53,7 +53,7 @@ public class SingleLineJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void simpleTest() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(SingleLineJavadocCheck.class);
+                createModuleConfig(SingleLineJavadocCheck.class);
         final String[] expected = {
             "12: " + getCheckMessage(MSG_KEY),
             "28: " + getCheckMessage(MSG_KEY),
@@ -67,7 +67,7 @@ public class SingleLineJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIgnoredTags() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(SingleLineJavadocCheck.class);
+                createModuleConfig(SingleLineJavadocCheck.class);
         checkConfig.addAttribute("ignoredTags", "@inheritDoc, @throws,  "
             + "@ignoredCustomTag");
         checkConfig.addAttribute("ignoreInlineTags", "false");

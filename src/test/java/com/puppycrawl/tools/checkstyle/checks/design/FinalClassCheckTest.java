@@ -48,7 +48,7 @@ public class FinalClassCheckTest
     @Test
     public void testFinalClass() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(FinalClassCheck.class);
+            createModuleConfig(FinalClassCheck.class);
         final String[] expected = {
             "7: " + getCheckMessage(MSG_KEY, "InputFinalClass"),
             "15: " + getCheckMessage(MSG_KEY, "test4"),
@@ -60,7 +60,7 @@ public class FinalClassCheckTest
     @Test
     public void testClassWithPrivateCtorAndNestedExtendingSubclass() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(FinalClassCheck.class);
+                createModuleConfig(FinalClassCheck.class);
         final String[] expected = {
             "15: " + getCheckMessage(MSG_KEY, "C"),
         };
@@ -74,7 +74,7 @@ public class FinalClassCheckTest
     public void testClassWithPrivateCtorAndNestedExtendingSubclassWithoutPackage()
             throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(FinalClassCheck.class);
+                createModuleConfig(FinalClassCheck.class);
         final String[] expected = {
             "7: " + getCheckMessage(MSG_KEY, "C"),
         };

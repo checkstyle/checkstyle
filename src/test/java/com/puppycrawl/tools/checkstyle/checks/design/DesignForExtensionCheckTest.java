@@ -47,7 +47,7 @@ public class DesignForExtensionCheckTest
     @Test
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(DesignForExtensionCheck.class);
+            createModuleConfig(DesignForExtensionCheck.class);
         final String[] expected = {
             "46:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtension", "doh"),
             "100:9: " + getCheckMessage(MSG_KEY, "anotherNonFinalClass", "someMethod"),
@@ -66,7 +66,7 @@ public class DesignForExtensionCheckTest
 
     @Test
     public void testOverridableMethods() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(DesignForExtensionCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
         final String[] expected = {
             "6:9: " + getCheckMessage(MSG_KEY, "A", "foo1"),
             "30:9: " + getCheckMessage(MSG_KEY, "A", "foo8"),
@@ -86,7 +86,7 @@ public class DesignForExtensionCheckTest
 
     @Test
     public void testIgnoredAnnotationsOption() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(DesignForExtensionCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
         checkConfig.addAttribute("ignoredAnnotations", "Override, Deprecated, MyAnnotation");
         final String[] expected = {
             "31:5: "
@@ -103,7 +103,7 @@ public class DesignForExtensionCheckTest
 
     @Test
     public void testIgnoreAnnotationsOptionWithMultipleAnnotations() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(DesignForExtensionCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
         checkConfig.addAttribute("ignoredAnnotations",
             "Override, Deprecated, Before, After, BeforeClass, AfterClass");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -112,7 +112,7 @@ public class DesignForExtensionCheckTest
 
     @Test
     public void testNativeMethods() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(DesignForExtensionCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
         checkConfig.addAttribute("ignoredAnnotations", "Deprecated");
         final String[] expected = {
             "8:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtensionNativeMethods", "foo1"),

@@ -33,7 +33,7 @@ public class NoWhitespaceBeforeCheckTest
 
     @Before
     public void setUp() {
-        checkConfig = createCheckConfig(NoWhitespaceBeforeCheck.class);
+        checkConfig = createModuleConfig(NoWhitespaceBeforeCheck.class);
     }
 
     @Override

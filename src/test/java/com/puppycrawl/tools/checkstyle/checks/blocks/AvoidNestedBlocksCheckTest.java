@@ -47,7 +47,7 @@ public class AvoidNestedBlocksCheckTest
     public void testStrictSettings()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(AvoidNestedBlocksCheck.class);
+            createModuleConfig(AvoidNestedBlocksCheck.class);
         final String[] expected = {
             "22:9: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
             "44:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
@@ -61,7 +61,7 @@ public class AvoidNestedBlocksCheckTest
     public void testAllowSwitchInCase()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(AvoidNestedBlocksCheck.class);
+            createModuleConfig(AvoidNestedBlocksCheck.class);
         checkConfig.addAttribute("allowInSwitchCase", "true");
 
         final String[] expected = {

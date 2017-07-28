@@ -54,7 +54,7 @@ public class InputLineLengthCheckTest extends AbstractModuleTestSupport {
     public void testSimple()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(LineLengthCheck.class);
+            createModuleConfig(LineLengthCheck.class);
         checkConfig.addAttribute("max", "80");
         checkConfig.addAttribute("ignorePattern", "^.*is OK.*regexp.*$");
         final String[] expected = {
@@ -68,7 +68,7 @@ public class InputLineLengthCheckTest extends AbstractModuleTestSupport {
     public void shouldLogActualLineLength()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(LineLengthCheck.class);
+            createModuleConfig(LineLengthCheck.class);
         checkConfig.addAttribute("max", "80");
         checkConfig.addAttribute("ignorePattern", "^.*is OK.*regexp.*$");
         checkConfig.addMessage("maxLineLen", "{0},{1}");
@@ -82,7 +82,7 @@ public class InputLineLengthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void shouldNotLogLongImportStatements() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(LineLengthCheck.class);
+            createModuleConfig(LineLengthCheck.class);
         checkConfig.addAttribute("max", "80");
         final String[] expected = {
             "9: " + getCheckMessage(MSG_KEY, 80, 87),
@@ -93,7 +93,7 @@ public class InputLineLengthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void shouldNotLogLongPackageStatements() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(LineLengthCheck.class);
+            createModuleConfig(LineLengthCheck.class);
         checkConfig.addAttribute("max", "80");
         final String[] expected = {
             "6: " + getCheckMessage(MSG_KEY, 80, 88),

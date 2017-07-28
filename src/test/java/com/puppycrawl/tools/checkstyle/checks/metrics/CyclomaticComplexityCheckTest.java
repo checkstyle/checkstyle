@@ -39,7 +39,7 @@ public class CyclomaticComplexityCheckTest
     @Test
     public void testSwitchBlockAsSingleDecisionPointSetToTrue() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(CyclomaticComplexityCheck.class);
+            createModuleConfig(CyclomaticComplexityCheck.class);
         checkConfig.addAttribute("max", "0");
         checkConfig.addAttribute("switchBlockAsSingleDecisionPoint", "true");
 
@@ -53,7 +53,7 @@ public class CyclomaticComplexityCheckTest
     @Test
     public void testSwitchBlockAsSingleDecisionPointSetToFalse() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(CyclomaticComplexityCheck.class);
+            createModuleConfig(CyclomaticComplexityCheck.class);
         checkConfig.addAttribute("max", "0");
         checkConfig.addAttribute("switchBlockAsSingleDecisionPoint", "false");
 
@@ -67,7 +67,7 @@ public class CyclomaticComplexityCheckTest
     @Test
     public void test() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(CyclomaticComplexityCheck.class);
+            createModuleConfig(CyclomaticComplexityCheck.class);
 
         checkConfig.addAttribute("max", "0");
 
@@ -114,7 +114,7 @@ public class CyclomaticComplexityCheckTest
     @Test
     public void testHighMax() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(CyclomaticComplexityCheck.class);
+            createModuleConfig(CyclomaticComplexityCheck.class);
         checkConfig.addAttribute("max", "100");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 

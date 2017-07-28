@@ -48,7 +48,7 @@ public class ArrayTypeStyleCheckTest
     public void testJavaStyleOn()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ArrayTypeStyleCheck.class);
+            createModuleConfig(ArrayTypeStyleCheck.class);
         final String[] expected = {
             "14:23: " + getCheckMessage(MSG_KEY),
             "20:44: " + getCheckMessage(MSG_KEY),
@@ -60,7 +60,7 @@ public class ArrayTypeStyleCheckTest
     public void testJavaStyleOff()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ArrayTypeStyleCheck.class);
+            createModuleConfig(ArrayTypeStyleCheck.class);
         checkConfig.addAttribute("javaStyle", "false");
         final String[] expected = {
             "13:16: " + getCheckMessage(MSG_KEY),

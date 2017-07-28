@@ -41,7 +41,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Before
     public void setUp() {
-        checkConfig = createCheckConfig(LeftCurlyCheck.class);
+        checkConfig = createModuleConfig(LeftCurlyCheck.class);
     }
 
     @Override

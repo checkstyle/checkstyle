@@ -49,7 +49,7 @@ public class ModifierOrderCheckTest
     @Test
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ModifierOrderCheck.class);
+            createModuleConfig(ModifierOrderCheck.class);
         final String[] expected = {
             "14:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "final"),
             "18:12: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
@@ -66,7 +66,7 @@ public class ModifierOrderCheckTest
     public void testDefaultMethods()
             throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(ModifierOrderCheck.class);
+                createModuleConfig(ModifierOrderCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputModifierOrderDefaultMethods.java"), expected);
     }
@@ -108,7 +108,7 @@ public class ModifierOrderCheckTest
         // Type Annotations are available only in Java 8
         // We skip type annotations from validation
         // See https://github.com/checkstyle/checkstyle/issues/903#issuecomment-172228013
-        final DefaultConfiguration checkConfig = createCheckConfig(ModifierOrderCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(ModifierOrderCheck.class);
         final String[] expected = {
             "103:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MethodAnnotation"),
         };
@@ -118,7 +118,7 @@ public class ModifierOrderCheckTest
 
     @Test
     public void testAnnotationOnAnnotationDeclaration() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(ModifierOrderCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(ModifierOrderCheck.class);
         final String[] expected = {
             "3:8: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@InterfaceAnnotation"),
         };
