@@ -26,7 +26,6 @@ import static org.junit.Assert.assertEquals;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
@@ -59,11 +58,8 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
     }
 
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "misc" + File.separator
-                + "uniqueproperties" + File.separator
-                + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/misc/uniqueproperties";
     }
 
     /* Additional test for jacoco, since valueOf()

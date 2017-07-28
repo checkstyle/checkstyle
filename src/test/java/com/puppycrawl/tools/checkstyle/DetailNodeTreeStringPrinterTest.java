@@ -37,10 +37,11 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class DetailNodeTreeStringPrinterTest {
+public class DetailNodeTreeStringPrinterTest extends AbstractPathTestSupport {
 
-    private static String getPath(String filename) {
-        return "src/test/resources/com/puppycrawl/tools/checkstyle/astprinter/" + filename;
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/astprinter";
     }
 
     @Test

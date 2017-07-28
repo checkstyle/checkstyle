@@ -21,7 +21,12 @@ package com.puppycrawl.tools.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public class BaseFileSetCheckTestSupport extends BaseCheckTestSupport {
+public class BaseFileSetCheckTestSupport extends AbstractModuleTestSupport {
+    @Override
+    protected String getPackageLocation() {
+        return "";
+    }
+
     @Override
     protected DefaultConfiguration createCheckerConfig(
         Configuration config) {

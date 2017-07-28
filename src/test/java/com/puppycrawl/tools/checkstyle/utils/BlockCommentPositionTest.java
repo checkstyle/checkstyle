@@ -28,11 +28,12 @@ import java.util.function.Function;
 
 import org.junit.Test;
 
+import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.TestUtils;
 
-public class BlockCommentPositionTest {
+public class BlockCommentPositionTest extends AbstractPathTestSupport {
 
     @Test
     public void testJavaDocsRecognition() throws Exception {
@@ -82,9 +83,9 @@ public class BlockCommentPositionTest {
         return matchFound;
     }
 
-    private static String getPath(String filename) {
-        return "src/test/resources/com/puppycrawl/tools/checkstyle/utils/blockcommentposition/"
-                + filename;
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/utils/blockcommentposition";
     }
 
     private static final class BlockCommentPositionTestMetadata {
