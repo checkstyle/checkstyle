@@ -2124,8 +2124,6 @@
                 <option value="NonFinalFieldReferenceInEquals" />
                 <!-- till #4734 -->
                 <option value="NonFinalFieldReferencedInHashCode" />
-                <!-- FileContentsHolder#getContence() getter is deprecated -->
-                <option value="CallToSimpleGetterFromWithinClass" />
                 <!-- violations in DetailAST will be addressed further -->
                 <option value="FieldNotUsedInToString" />
                 <!-- till #4805-->

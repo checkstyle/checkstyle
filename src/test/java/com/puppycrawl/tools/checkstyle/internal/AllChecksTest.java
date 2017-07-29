@@ -437,16 +437,9 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         for (Class<?> module : CheckUtil.getCheckstyleChecks()) {
             final String name = module.getSimpleName();
 
-            if ("FileContentsHolder".equals(name)) {
-                Assert.assertTrue(name
-                        + " should not have any 'MSG_*' field for error messages", CheckUtil
-                        .getCheckMessages(module).isEmpty());
-            }
-            else {
-                Assert.assertFalse(name
-                        + " should have at least one 'MSG_*' field for error messages", CheckUtil
-                        .getCheckMessages(module).isEmpty());
-            }
+            Assert.assertFalse(name
+                    + " should have at least one 'MSG_*' field for error messages", CheckUtil
+                    .getCheckMessages(module).isEmpty());
         }
     }
 

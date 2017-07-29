@@ -110,8 +110,8 @@ public class SuppressWithNearbyCommentFilter
      * References the current FileContents for this filter.
      * Since this is a weak reference to the FileContents, the FileContents
      * can be reclaimed as soon as the strong references in TreeWalker
-     * and FileContentsHolder are reassigned to the next FileContents,
-     * at which time filtering for the current FileContents is finished.
+     * are reassigned to the next FileContents, at which time filtering for
+     * the current FileContents is finished.
      */
     private WeakReference<FileContents> fileContentsReference = new WeakReference<>(null);
 
