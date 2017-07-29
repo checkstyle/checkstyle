@@ -169,6 +169,21 @@ build:
           echo "build is skipped ..."
         fi
 
+  # NoErrorTest - sevntu-checks
+  - script:
+      name: NoErrorTest - sevntu-checks
+      code: |
+        if [[ $SKIP_CI == 'false' ]]; then
+          set -e
+          CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+          echo CS_version: ${CS_POM_VERSION}
+          for i in 1 2 3 4 5; do git clone https://github.com/sevntu-checkstyle/sevntu.checkstyle && break || sleep 15; done
+          cd sevntu.checkstyle/sevntu-checks
+          mvn -Pno-validations verify  -Dcheckstyle.skip=false -Dcheckstyle.version=${CS_POM_VERSION} -Dcheckstyle.configLocation=../../config/checkstyle_checks.xml
+        else
+          echo "build is skipped ..."
+        fi
+
   # NoExceptiontest - Apache Struts (oraclejdk8)
   - script:
       name: NoExceptiontest - Apache Struts
