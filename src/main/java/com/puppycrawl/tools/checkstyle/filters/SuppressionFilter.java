@@ -42,6 +42,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * </p>
  * @author Rick Giles
  * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
+ * @noinspection NonFinalFieldReferenceInEquals, NonFinalFieldReferencedInHashCode
  */
 public class SuppressionFilter extends AutomaticBean implements Filter, ExternalResourceHolder {
 

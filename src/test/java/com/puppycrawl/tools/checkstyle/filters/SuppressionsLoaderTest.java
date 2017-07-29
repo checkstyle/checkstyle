@@ -118,21 +118,18 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final FilterSet fc =
             SuppressionsLoader.loadSuppressions(getPath("suppressions_multiple.xml"));
         final FilterSet fc2 = new FilterSet();
-        final SuppressElement se0 = new SuppressElement("file0");
-        se0.setChecks("check0");
+
+        final SuppressElement se0 =
+                new SuppressElement("file0", "check0", null, null, null);
         fc2.addFilter(se0);
-        final SuppressElement se1 = new SuppressElement("file1");
-        se1.setChecks("check1");
-        se1.setLines("1,2-3");
+        final SuppressElement se1 =
+                new SuppressElement("file1", "check1", null, "1,2-3", null);
         fc2.addFilter(se1);
-        final SuppressElement se2 = new SuppressElement("file2");
-        se2.setChecks("check2");
-        se2.setColumns("1,2-3");
+        final SuppressElement se2 =
+                new SuppressElement("file2", "check2", null, null, "1,2-3");
         fc2.addFilter(se2);
-        final SuppressElement se3 = new SuppressElement("file3");
-        se3.setChecks("check3");
-        se3.setLines("1,2-3");
-        se3.setColumns("1,2-3");
+        final SuppressElement se3 =
+                new SuppressElement("file3", "check3", null, "1,2-3", "1,2-3");
         fc2.addFilter(se3);
         assertEquals("Multiple suppressions were loaded incorrectly", fc2, fc);
     }

@@ -48,60 +48,48 @@ public class SuppressElement
     private final String filePattern;
 
     /** The regexp to match check names against. */
-    private Pattern checkRegexp;
+    private final Pattern checkRegexp;
 
     /** The pattern for check class names. */
-    private String checkPattern;
+    private final String checkPattern;
 
     /** Module id filter. */
-    private String moduleId;
+    private final String moduleId;
 
     /** Line number filter. */
-    private CsvFilter lineFilter;
+    private final CsvFilter lineFilter;
 
     /** CSV for line number filter. */
-    private String linesCsv;
+    private final String linesCsv;
 
     /** Column number filter. */
-    private CsvFilter columnFilter;
+    private final CsvFilter columnFilter;
 
     /** CSV for column number filter. */
-    private String columnsCsv;
+    private final String columnsCsv;
 
     /**
      * Constructs a {@code SuppressElement} for a
-     * file name pattern. Must either call {@link #setColumns(String)} or
-     * {@link #setModuleId(String)} before using this object.
-     * @param files regular expression for names of filtered files.
+     * file name pattern.
+     *
+     * @param files   regular expression for names of filtered files.
+     * @param checks  regular expression for filtered check classes.
+     * @param modId   the id
+     * @param lines   lines CSV values and ranges for line number filtering.
+     * @param columns columns CSV values and ranges for column number filtering.
      */
-    public SuppressElement(String files) {
+    public SuppressElement(String files, String checks,
+                           String modId, String lines, String columns) {
         filePattern = files;
         fileRegexp = Pattern.compile(files);
-    }
-
-    /**
-     * Set the check class pattern.
-     * @param checks regular expression for filtered check classes.
-     */
-    public void setChecks(final String checks) {
         checkPattern = checks;
-        checkRegexp = CommonUtils.createPattern(checks);
-    }
-
-    /**
-     * Set the module id for filtering. Cannot be null.
-     * @param moduleId the id
-     */
-    public void setModuleId(final String moduleId) {
-        this.moduleId = moduleId;
-    }
-
-    /**
-     * Sets the CSV values and ranges for line number filtering.
-     * E.g. "1,7-15,18".
-     * @param lines CSV values and ranges for line number filtering.
-     */
-    public void setLines(String lines) {
+        if (checks == null) {
+            checkRegexp = null;
+        }
+        else {
+            checkRegexp = CommonUtils.createPattern(checks);
+        }
+        moduleId = modId;
         linesCsv = lines;
         if (lines == null) {
             lineFilter = null;
@@ -109,14 +97,6 @@ public class SuppressElement
         else {
             lineFilter = new CsvFilter(lines);
         }
-    }
-
-    /**
-     * Sets the CSV values and ranges for column number filtering.
-     *  E.g. "1,7-15,18".
-     * @param columns CSV values and ranges for column number filtering.
-     */
-    public void setColumns(String columns) {
         columnsCsv = columns;
         if (columns == null) {
             columnFilter = null;
