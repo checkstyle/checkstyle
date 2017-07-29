@@ -88,13 +88,13 @@ public class SuppressElementTest {
         final LocalizedMessage message =
                 new LocalizedMessage(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, null, message);
-        assertTrue(filter.accept(ev));
+        assertTrue("Filter should accept valid event", filter.accept(ev));
     }
 
     @Test
     public void testDecideByFileNameAndModuleMatchingMessageNull() {
         final AuditEvent ev = new AuditEvent(this, "ATest.java", null);
-        assertTrue(filter.accept(ev));
+        assertTrue("Filter should accept valid event", filter.accept(ev));
     }
 
     @Test
@@ -103,7 +103,7 @@ public class SuppressElementTest {
                 new LocalizedMessage(10, 10, "", "", null, "MyModule", getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
         filter.setModuleId(null);
-        assertFalse(filter.accept(ev));
+        assertFalse("Filter should not accept invalid event", filter.accept(ev));
     }
 
     @Test
@@ -112,7 +112,7 @@ public class SuppressElementTest {
                 new LocalizedMessage(10, 10, "", "", null, "MyModule", getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
         filter.setModuleId("MyModule");
-        assertFalse(filter.accept(ev));
+        assertFalse("Filter should not accept invalid event", filter.accept(ev));
     }
 
     @Test
@@ -121,7 +121,7 @@ public class SuppressElementTest {
                 new LocalizedMessage(10, 10, "", "", null, "TheirModule", getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
         filter.setModuleId("MyModule");
-        assertTrue(filter.accept(ev));
+        assertTrue("Filter should accept valid event", filter.accept(ev));
     }
 
     @Test
@@ -129,7 +129,7 @@ public class SuppressElementTest {
         final LocalizedMessage message =
                 new LocalizedMessage(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "T1est", message);
-        assertTrue(filter.accept(ev));
+        assertTrue("Filter should accept valid event", filter.accept(ev));
     }
 
     @Test
@@ -138,7 +138,7 @@ public class SuppressElementTest {
                 new LocalizedMessage(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "TestSUFFIX", message);
         final SuppressElement filterWithoutChecks = new SuppressElement("Test");
-        assertFalse(filterWithoutChecks.accept(ev));
+        assertFalse("Filter should not accept invalid event", filterWithoutChecks.accept(ev));
     }
 
     @Test
@@ -147,7 +147,7 @@ public class SuppressElementTest {
                 new LocalizedMessage(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
         filter.setChecks("NON_EXISTING_CHECK");
-        assertTrue(filter.accept(ev));
+        assertTrue("Filter should accept valid event", filter.accept(ev));
     }
 
     @Test
@@ -156,7 +156,7 @@ public class SuppressElementTest {
                 new LocalizedMessage(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
         filter.setChecks(getClass().getCanonicalName());
-        assertFalse(filter.accept(ev));
+        assertFalse("Filter should not accept invalid event", filter.accept(ev));
     }
 
     @Test

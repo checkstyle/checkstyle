@@ -160,7 +160,8 @@ public class XdocsPagesTest {
                 XmlUtil.getRawXml(fileName, code, unserializedSource);
 
                 // can't test ant structure, or old and outdated checks
-                Assert.assertTrue(fileName.startsWith("anttask")
+                Assert.assertTrue("Xml is invalid, old or has outdated structure",
+                        fileName.startsWith("anttask")
                         || fileName.startsWith("releasenotes")
                         || isValidCheckstyleXml(fileName, code, unserializedSource));
             }

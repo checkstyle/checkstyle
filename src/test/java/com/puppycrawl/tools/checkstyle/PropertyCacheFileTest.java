@@ -84,14 +84,16 @@ public class PropertyCacheFileTest {
             new PropertyCacheFile(null, "");
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("config can not be null", ex.getMessage());
+            assertEquals("Invalid exception message",
+                    "config can not be null", ex.getMessage());
         }
         try {
             final Configuration config = new DefaultConfiguration("myName");
             new PropertyCacheFile(config, null);
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("fileName can not be null", ex.getMessage());
+            assertEquals("Invalid exception message",
+                    "fileName can not be null", ex.getMessage());
         }
     }
 
@@ -101,9 +103,12 @@ public class PropertyCacheFileTest {
         final String filePath = temporaryFolder.newFile().getPath();
         final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
         cache.put("myFile", 1);
-        assertTrue(cache.isInCache("myFile", 1));
-        assertFalse(cache.isInCache("myFile", 2));
-        assertFalse(cache.isInCache("myFile1", 1));
+        assertTrue("Should return true wnen file is in cache",
+                cache.isInCache("myFile", 1));
+        assertFalse("Should return false wnen file is not in cache",
+                cache.isInCache("myFile", 2));
+        assertFalse("Should return false wnen file is not in cache",
+                cache.isInCache("myFile1", 1));
     }
 
     @Test
@@ -113,7 +118,8 @@ public class PropertyCacheFileTest {
 
         cache.load();
 
-        assertNotNull(cache.get(PropertyCacheFile.CONFIG_HASH_KEY));
+        assertNotNull("Config hash key should not be null",
+                cache.get(PropertyCacheFile.CONFIG_HASH_KEY));
     }
 
     @Test
@@ -148,14 +154,15 @@ public class PropertyCacheFileTest {
         cache.load();
 
         final String hash = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
-        assertNotNull(hash);
-        assertNull(cache.get("key"));
+        assertNotNull("Config hash key should not be null", hash);
+        assertNull("Should return null if key is not in cache", cache.get("key"));
 
         cache.load();
 
-        assertEquals(hash, cache.get(PropertyCacheFile.CONFIG_HASH_KEY));
-        assertEquals("value", cache.get("key"));
-        assertNotNull(cache.get(PropertyCacheFile.CONFIG_HASH_KEY));
+        assertEquals("Invalid config hash key", hash, cache.get(PropertyCacheFile.CONFIG_HASH_KEY));
+        assertEquals("Invalid cache value", "value", cache.get("key"));
+        assertNotNull("Config hash key should not be null",
+                cache.get(PropertyCacheFile.CONFIG_HASH_KEY));
 
         verifyStatic(times(2));
         Closeables.closeQuietly(any(FileInputStream.class));
@@ -170,11 +177,12 @@ public class PropertyCacheFileTest {
         cache.load();
 
         final String hash = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
-        assertNotNull(hash);
+        assertNotNull("Config hash key should not be null", hash);
 
         cache.reset();
 
-        assertEquals(hash, cache.get(PropertyCacheFile.CONFIG_HASH_KEY));
+        assertEquals("Invalid config hash key",
+                hash, cache.get(PropertyCacheFile.CONFIG_HASH_KEY));
     }
 
     @Test
@@ -188,15 +196,17 @@ public class PropertyCacheFileTest {
         cache.put("myFile", 1);
 
         final String hash = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
-        assertNotNull(hash);
+        assertNotNull("Config hash key should not be null", hash);
 
         // apply new external resource to clear cache
         final Set<String> resources = new HashSet<>();
         resources.add("dummy");
         cache.putExternalResources(resources);
 
-        assertEquals(hash, cache.get(PropertyCacheFile.CONFIG_HASH_KEY));
-        assertFalse(cache.isInCache("myFile", 1));
+        assertEquals("Invalid config hash key",
+                hash, cache.get(PropertyCacheFile.CONFIG_HASH_KEY));
+        assertFalse("Should return false in file is not in cache",
+                cache.isInCache("myFile", 1));
     }
 
     @Test
@@ -246,7 +256,7 @@ public class PropertyCacheFileTest {
         cache.put(myFile, 1);
 
         final String hash = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
-        assertNotNull(hash);
+        assertNotNull("Config hash key should not be null", hash);
 
         mockStatic(ByteStreams.class);
 
@@ -259,8 +269,10 @@ public class PropertyCacheFileTest {
         resources.add(resource);
         cache.putExternalResources(resources);
 
-        assertFalse(cache.isInCache(myFile, 1));
-        assertFalse(cache.isInCache(resource, 1));
+        assertFalse("Should return false in file is not in cache",
+                cache.isInCache(myFile, 1));
+        assertFalse("Should return false in file is not in cache",
+                cache.isInCache(resource, 1));
     }
 
     @Test
@@ -306,7 +318,7 @@ public class PropertyCacheFileTest {
 
         // no exception expected
         cache.persist();
-        assertTrue(Files.exists(Paths.get(filePath)));
+        assertTrue("Cache file does not exist", Files.exists(Paths.get(filePath)));
         Files.delete(Paths.get(filePath));
     }
 
@@ -333,8 +345,10 @@ public class PropertyCacheFileTest {
             fail("InvocationTargetException is expected");
         }
         catch (InvocationTargetException ex) {
-            assertTrue(ex.getCause().getCause() instanceof NoSuchAlgorithmException);
-            assertEquals("Unable to calculate hashcode.", ex.getCause().getMessage());
+            assertTrue("Invalid exception cause",
+                    ex.getCause().getCause() instanceof NoSuchAlgorithmException);
+            assertEquals("Invalid exception message",
+                    "Unable to calculate hashcode.", ex.getCause().getMessage());
         }
     }
 
@@ -361,7 +375,7 @@ public class PropertyCacheFileTest {
             cache.load();
 
             configHashes[i] = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
-            assertNotNull(configHashes[i]);
+            assertNotNull("Config hash key should not be null", configHashes[i]);
 
             final Set<String> nonExistingExternalResources = new HashSet<>();
             final String externalResourceFileName = "non_existing_file.xml";
@@ -370,7 +384,8 @@ public class PropertyCacheFileTest {
 
             externalResourceHashes[i] = cache.get(PropertyCacheFile.EXTERNAL_RESOURCE_KEY_PREFIX
                     + externalResourceFileName);
-            assertNotNull(externalResourceHashes[i]);
+            assertNotNull("External resource hashes should not be null",
+                    externalResourceHashes[i]);
 
             cache.persist();
 
@@ -378,11 +393,13 @@ public class PropertyCacheFileTest {
             cacheDetails.load(Files.newBufferedReader(cacheFile.toPath()));
 
             final int expectedNumberOfObjectsInCacheFile = 2;
-            assertEquals(expectedNumberOfObjectsInCacheFile, cacheDetails.size());
+            assertEquals("Unexpected number of objects in cache",
+                    expectedNumberOfObjectsInCacheFile, cacheDetails.size());
         }
 
-        assertEquals(configHashes[0], configHashes[1]);
-        assertEquals(externalResourceHashes[0], externalResourceHashes[1]);
+        assertEquals("Invalid config hash", configHashes[0], configHashes[1]);
+        assertEquals("Invalid external resource hashes",
+                externalResourceHashes[0], externalResourceHashes[1]);
     }
 
     /**
@@ -414,7 +431,7 @@ public class PropertyCacheFileTest {
             cache.load();
 
             configHashes[i] = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
-            assertNotNull(configHashes[i]);
+            assertNotNull("Config hash key should not be null", configHashes[i]);
 
             final Set<String> nonExistingExternalResources = new HashSet<>();
             final String externalResourceFileName = "non_existing_file.xml";
@@ -423,7 +440,8 @@ public class PropertyCacheFileTest {
 
             externalResourceHashes[i] = cache.get(PropertyCacheFile.EXTERNAL_RESOURCE_KEY_PREFIX
                     + externalResourceFileName);
-            assertNotNull(externalResourceHashes[i]);
+            assertNotNull("External resource hashes should not be null",
+                    externalResourceHashes[i]);
 
             cache.persist();
 
@@ -431,11 +449,13 @@ public class PropertyCacheFileTest {
             cacheDetails.load(Files.newBufferedReader(cacheFile.toPath()));
 
             final int expectedNumberOfObjectsInCacheFile = 2;
-            assertEquals(expectedNumberOfObjectsInCacheFile, cacheDetails.size());
+            assertEquals("Unexpected number of objects in cache",
+                    expectedNumberOfObjectsInCacheFile, cacheDetails.size());
         }
 
-        assertEquals(configHashes[0], configHashes[1]);
-        assertNotEquals(externalResourceHashes[0], externalResourceHashes[1]);
+        assertEquals("Invalid config hash", configHashes[0], configHashes[1]);
+        assertNotEquals("Invalid external resource hashes",
+                externalResourceHashes[0], externalResourceHashes[1]);
     }
 
     @Test
@@ -449,13 +469,13 @@ public class PropertyCacheFileTest {
 
         final String expectedInitialConfigHash = "91753B970AFDF9F5F3DFA0D258064841949D3C6B";
         final String actualInitialConfigHash = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
-        assertEquals(expectedInitialConfigHash, actualInitialConfigHash);
+        assertEquals("Invalid config hash", expectedInitialConfigHash, actualInitialConfigHash);
 
         cache.persist();
 
         final Properties details = new Properties();
         details.load(Files.newBufferedReader(cacheFile.toPath()));
-        assertEquals(1, details.size());
+        assertEquals("Invalid details size", 1, details.size());
 
         // change in config
         config.addAttribute("newAttr", "newValue");
@@ -467,12 +487,13 @@ public class PropertyCacheFileTest {
         final String expectedConfigHashAfterChange = "4CF5EC78955B81D76153ACC2CA6D60CB77FDCB2A";
         final String actualConfigHashAfterChange =
             cacheAfterChangeInConfig.get(PropertyCacheFile.CONFIG_HASH_KEY);
-        assertEquals(expectedConfigHashAfterChange, actualConfigHashAfterChange);
+        assertEquals("Invalid config hash",
+                expectedConfigHashAfterChange, actualConfigHashAfterChange);
 
         cacheAfterChangeInConfig.persist();
 
         final Properties detailsAfterChangeInConfig = new Properties();
         detailsAfterChangeInConfig.load(Files.newBufferedReader(cacheFile.toPath()));
-        assertEquals(1, detailsAfterChangeInConfig.size());
+        assertEquals("Invalid cache size", 1, detailsAfterChangeInConfig.size());
     }
 }

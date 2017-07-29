@@ -33,6 +33,6 @@ public class LineSetTest {
 
         final String result = lineSet.toString();
 
-        assertEquals("LineSet[firstLine=0, lastLine=2]", result);
+        assertEquals("Invalid toString result", "LineSet[firstLine=0, lastLine=2]", result);
     }
 }

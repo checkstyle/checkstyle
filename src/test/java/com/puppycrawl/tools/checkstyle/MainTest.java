@@ -880,7 +880,7 @@ public class MainTest {
         });
         Main.main("-c", getPath("InputMainConfig-custom-root-module.xml"),
                 getPath("InputMain.java"));
-        assertTrue(TestRootModuleChecker.isDestroyed());
+        assertTrue("RootModule should be destroyed", TestRootModuleChecker.isDestroyed());
     }
 
     @Test

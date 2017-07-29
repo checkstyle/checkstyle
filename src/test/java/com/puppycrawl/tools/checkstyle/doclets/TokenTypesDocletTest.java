@@ -59,10 +59,10 @@ public class TokenTypesDocletTest extends AbstractPathTestSupport {
     @Test
     public void testOptionLength() {
         // optionLength returns 2 for option "-destfile"
-        assertEquals(2, TokenTypesDoclet.optionLength("-destfile"));
+        assertEquals("Invalid option length", 2, TokenTypesDoclet.optionLength("-destfile"));
 
         // optionLength returns 0 for options different from "-destfile"
-        assertEquals(0, TokenTypesDoclet.optionLength("-anyOtherOption"));
+        assertEquals("Invalid option length", 0, TokenTypesDoclet.optionLength("-anyOtherOption"));
     }
 
     @Test
@@ -70,24 +70,25 @@ public class TokenTypesDocletTest extends AbstractPathTestSupport {
         final Context context = new Context();
         final TestMessager testMessager = new TestMessager(context);
 
-        //pass invalid options - empty array
         final String[][] options = new String[3][1];
-        assertFalse(TokenTypesDoclet.checkOptions(options, testMessager));
+        assertFalse("Should return false when options are empty",
+                TokenTypesDoclet.checkOptions(options, testMessager));
 
-        //pass valid options - array with one "-destfile" option
         options[0][0] = "-destfile";
-        assertTrue(TokenTypesDoclet.checkOptions(options, testMessager));
+        assertTrue("Should return true when options are valid",
+                TokenTypesDoclet.checkOptions(options, testMessager));
 
         //pass invalid options - array with more than one "-destfile" option
         options[1][0] = "-destfile";
-        assertFalse(TokenTypesDoclet.checkOptions(options, testMessager));
+        assertFalse("Should return false when more then one '-destfile' option passed",
+                TokenTypesDoclet.checkOptions(options, testMessager));
 
         final String[] expected = {
             "Usage: javadoc -destfile file -doclet TokenTypesDoclet ...",
             "Only one -destfile option allowed.",
         };
 
-        Assert.assertArrayEquals(expected, testMessager.messages.toArray());
+        Assert.assertArrayEquals("Invalid message", expected, testMessager.messages.toArray());
     }
 
     @Test
@@ -108,7 +109,7 @@ public class TokenTypesDocletTest extends AbstractPathTestSupport {
         final JavadocTool javadocTool = JavadocTool.make0(context);
         final RootDoc rootDoc = getRootDoc(javadocTool, options, names);
 
-        assertTrue(TokenTypesDoclet.start(rootDoc));
+        assertTrue("Should process valid root doc", TokenTypesDoclet.start(rootDoc));
     }
 
     @Test
@@ -148,7 +149,7 @@ public class TokenTypesDocletTest extends AbstractPathTestSupport {
         final JavadocTool javadocTool = JavadocTool.make0(context);
         final RootDoc rootDoc = getRootDoc(javadocTool, options, names);
 
-        assertTrue(TokenTypesDoclet.start(rootDoc));
+        assertTrue("Should process valid root doc", TokenTypesDoclet.start(rootDoc));
         final String fileContent =
                 FileUtils.readFileToString(new File("target/tokentypes.properties"),
                         StandardCharsets.UTF_8);

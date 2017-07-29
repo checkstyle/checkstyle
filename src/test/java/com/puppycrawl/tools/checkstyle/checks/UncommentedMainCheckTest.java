@@ -70,10 +70,12 @@ public class UncommentedMainCheckTest
     @Test
     public void testTokens() {
         final UncommentedMainCheck check = new UncommentedMainCheck();
-        Assert.assertNotNull(check.getRequiredTokens());
-        Assert.assertNotNull(check.getAcceptableTokens());
-        Assert.assertArrayEquals(check.getDefaultTokens(), check.getAcceptableTokens());
-        Assert.assertArrayEquals(check.getDefaultTokens(), check.getRequiredTokens());
+        Assert.assertNotNull("Required tokens should not be null", check.getRequiredTokens());
+        Assert.assertNotNull("Acceptable tokens should not be null", check.getAcceptableTokens());
+        Assert.assertArrayEquals("Invalid default tokens", check.getDefaultTokens(),
+                check.getAcceptableTokens());
+        Assert.assertArrayEquals("Invalid acceptable tokens", check.getDefaultTokens(),
+                check.getRequiredTokens());
     }
 
     @Test

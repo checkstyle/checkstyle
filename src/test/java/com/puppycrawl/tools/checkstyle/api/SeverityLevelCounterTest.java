@@ -33,7 +33,8 @@ public class SeverityLevelCounterTest {
             fail("exception expected");
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("'level' cannot be null", ex.getMessage());
+            assertEquals("Invalid exception message",
+                    "'level' cannot be null", ex.getMessage());
         }
     }
 
@@ -41,17 +42,17 @@ public class SeverityLevelCounterTest {
     public void testAddException() {
         final SeverityLevelCounter counter = new SeverityLevelCounter(SeverityLevel.ERROR);
         final AuditEvent event = new AuditEvent(this, "ATest.java", null);
-        assertEquals(0, counter.getCount());
+        assertEquals("Invalid severity level count", 0, counter.getCount());
         counter.addException(event, new IllegalStateException("Test IllegalStateException"));
-        assertEquals(1, counter.getCount());
+        assertEquals("Invalid severity level count", 1, counter.getCount());
     }
 
     @Test
     public void testAddExceptionWarning() {
         final SeverityLevelCounter counter = new SeverityLevelCounter(SeverityLevel.WARNING);
         final AuditEvent event = new AuditEvent(this, "ATest.java", null);
-        assertEquals(0, counter.getCount());
+        assertEquals("Invalid severity level count", 0, counter.getCount());
         counter.addException(event, new IllegalStateException("Test IllegalStateException"));
-        assertEquals(0, counter.getCount());
+        assertEquals("Invalid severity level count", 0, counter.getCount());
     }
 }

@@ -417,7 +417,8 @@ public class JavadocStyleCheckTest
     @Test
     public void testHtmlTagToString() {
         final HtmlTag tag = new HtmlTag("id", 3, 5, true, false, "<a href=\"URL\"/>");
-        assertEquals("HtmlTag[id='id', lineNo=3, position=5, text='<a href=\"URL\"/>', "
+        assertEquals("Invalid toString result",
+                "HtmlTag[id='id', lineNo=3, position=5, text='<a href=\"URL\"/>', "
                 + "closedTag=true, incompleteTag=false]", tag.toString());
     }
 }

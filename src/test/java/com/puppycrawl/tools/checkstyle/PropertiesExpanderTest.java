@@ -33,7 +33,7 @@ public class PropertiesExpanderTest {
             Assert.fail("exception expected");
         }
         catch (IllegalArgumentException ex) {
-            Assert.assertEquals("cannot pass null", ex.getMessage());
+            Assert.assertEquals("Invalid exception message", "cannot pass null", ex.getMessage());
         }
     }
 
@@ -41,11 +41,15 @@ public class PropertiesExpanderTest {
     public void testDefaultProperties() {
         final Properties properties = new Properties(System.getProperties());
         properties.setProperty("test", "checkstyle");
-        Assert.assertEquals(System.getProperty("user.home"), properties.getProperty("user.home"));
-        Assert.assertEquals("checkstyle", properties.getProperty("test"));
+        Assert.assertEquals("Invalid user.home property",
+                System.getProperty("user.home"), properties.getProperty("user.home"));
+        Assert.assertEquals("Invalid checkstyle property",
+                "checkstyle", properties.getProperty("test"));
 
         final PropertiesExpander expander = new PropertiesExpander(properties);
-        Assert.assertEquals(System.getProperty("user.home"), expander.resolve("user.home"));
-        Assert.assertEquals("checkstyle", expander.resolve("test"));
+        Assert.assertEquals("Invalid user.home property",
+                System.getProperty("user.home"), expander.resolve("user.home"));
+        Assert.assertEquals("Invalid checkstyle property",
+                "checkstyle", expander.resolve("test"));
     }
 }

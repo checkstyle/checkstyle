@@ -159,7 +159,7 @@ public class RedundantModifierCheckTest
             TokenTypes.ENUM_DEF,
             TokenTypes.RESOURCE,
         };
-        Assert.assertArrayEquals(expected, actual);
+        Assert.assertArrayEquals("Invalid acceptable tokens", expected, actual);
     }
 
     @Test
@@ -167,7 +167,7 @@ public class RedundantModifierCheckTest
         final RedundantModifierCheck redundantModifierCheckObj = new RedundantModifierCheck();
         final int[] actual = redundantModifierCheckObj.getRequiredTokens();
         final int[] expected = CommonUtils.EMPTY_INT_ARRAY;
-        Assert.assertArrayEquals(expected, actual);
+        Assert.assertArrayEquals("Invalid required tokens", expected, actual);
     }
 
     @Test
