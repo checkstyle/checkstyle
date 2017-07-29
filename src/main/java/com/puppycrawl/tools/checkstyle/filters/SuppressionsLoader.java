@@ -92,23 +92,13 @@ public final class SuppressionsLoader
             final SuppressElement suppress;
             try {
                 final String files = attributes.getValue("files");
-                suppress = new SuppressElement(files);
-                suppress.setModuleId(modId);
-                if (checks != null) {
-                    suppress.setChecks(checks);
-                }
+                final String lines = attributes.getValue("lines");
+                final String columns = attributes.getValue("columns");
+                suppress = new SuppressElement(files, checks, modId, lines, columns);
             }
             catch (final PatternSyntaxException ex) {
                 // -@cs[IllegalInstantiation] SAXException is in the overridden method signature
                 throw new SAXException("invalid files or checks format", ex);
-            }
-            final String lines = attributes.getValue("lines");
-            if (lines != null) {
-                suppress.setLines(lines);
-            }
-            final String columns = attributes.getValue("columns");
-            if (columns != null) {
-                suppress.setColumns(columns);
             }
             filterChain.addFilter(suppress);
         }
