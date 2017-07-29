@@ -292,4 +292,11 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputRequireThisAllowLambdaParameters.java"), expected);
     }
+
+    @Test
+    public void test() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RequireThisCheck.class);
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputRequireThisCaseGroup.java"), expected);
+    }
 }
