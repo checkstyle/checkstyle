@@ -28,6 +28,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
+import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -54,6 +56,8 @@ public class ModuleReflectionUtilsTest {
                 ModuleReflectionUtils.isCheckstyleModule(FileSetModuleClass.class));
         assertTrue("Should return true when checkstyle module is passed",
                 ModuleReflectionUtils.isCheckstyleModule(FilterClass.class));
+        assertTrue("Should return true when checkstyle module is passed",
+                ModuleReflectionUtils.isCheckstyleModule(TreeWalkerFilterClass.class));
         assertTrue("Should return true when checkstyle module is passed",
                 ModuleReflectionUtils.isCheckstyleModule(FileFilterModuleClass.class));
         assertTrue("Should return true when checkstyle module is passed",
@@ -101,6 +105,14 @@ public class ModuleReflectionUtilsTest {
                 ModuleReflectionUtils.isFileFilterModule(FileFilterModuleClass.class));
         assertFalse("Should return false when invalid class is passed",
                 ModuleReflectionUtils.isFileFilterModule(NotCheckstyleCheck.class));
+    }
+
+    @Test
+    public void testIsTreeWalkerFilterModule() {
+        assertTrue("Should return true when valid checkstyle TreeWalker filter module is passed",
+                ModuleReflectionUtils.isTreeWalkerFilterModule(TreeWalkerFilterClass.class));
+        assertFalse("Should return false when invalid class is passed",
+                ModuleReflectionUtils.isTreeWalkerFilterModule(NotCheckstyleCheck.class));
     }
 
     @Test
@@ -193,6 +205,13 @@ public class ModuleReflectionUtilsTest {
         @Override
         public void setModuleClassLoader(ClassLoader moduleClassLoader) {
             //dummy method
+        }
+    }
+
+    private static class TreeWalkerFilterClass extends AutomaticBean implements TreeWalkerFilter {
+        @Override
+        public boolean accept(TreeWalkerAuditEvent treeWalkerAuditEvent) {
+            return false;
         }
     }
 

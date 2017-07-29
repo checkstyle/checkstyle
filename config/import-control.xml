@@ -55,7 +55,7 @@
   <subpackage name="utils">
     <allow pkg="java.lang.reflect" local-only="true" />
     <allow pkg="java.nio" local-only="true" />
-
+    <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerFilter"/>
     <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
     <allow class="com.google.common.collect.ImmutableMap" local-only="true"/>
     <allow class="com.google.common.reflect.ClassPath" local-only="true"/>
