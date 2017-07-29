@@ -202,7 +202,7 @@ public final class DetectorOptions {
          * Specifies whether to ignore case when matching and returns Builder object.
          * @param val whether to ignore case when matching.
          * @return Builder object.
-         * @noinspection ReturnOfInnerClass
+         * @noinspection ReturnOfInnerClass, BooleanParameter
          */
         public Builder ignoreCase(boolean val) {
             ignoreCase = val;

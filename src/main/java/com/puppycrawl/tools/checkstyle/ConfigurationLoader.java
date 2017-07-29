@@ -205,6 +205,7 @@ public final class ConfigurationLoader {
      *            'ignore' should be omitted, {@code false} otherwise
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
+     * @noinspection BooleanParameter
      */
     public static Configuration loadConfiguration(String config,
         PropertyResolver overridePropsResolver, boolean omitIgnoredModules)
@@ -223,6 +224,7 @@ public final class ConfigurationLoader {
      * @param threadModeSettings the thread mode configuration
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
+     * @noinspection BooleanParameter
      */
     public static Configuration loadConfiguration(String config,
             PropertyResolver overridePropsResolver,
@@ -251,6 +253,7 @@ public final class ConfigurationLoader {
      *     {@link #loadConfiguration(InputSource,PropertyResolver,boolean)
      *          version using an InputSource}
      *     should be used instead
+     * @noinspection BooleanParameter
      */
     @Deprecated
     public static Configuration loadConfiguration(InputStream configStream,
@@ -271,6 +274,7 @@ public final class ConfigurationLoader {
      *            'ignore' should be omitted, {@code false} otherwise
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
+     * @noinspection BooleanParameter
      */
     public static Configuration loadConfiguration(InputSource configSource,
             PropertyResolver overridePropsResolver, boolean omitIgnoredModules)
@@ -291,6 +295,7 @@ public final class ConfigurationLoader {
      * @param threadModeSettings the thread mode configuration
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
+     * @noinspection BooleanParameter
      */
     public static Configuration loadConfiguration(InputSource configSource,
         PropertyResolver overridePropsResolver,

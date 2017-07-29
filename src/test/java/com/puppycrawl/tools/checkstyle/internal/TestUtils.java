@@ -50,6 +50,7 @@ public final class TestUtils {
      * @param checkConstructorIsPrivate flag to skip check for private visibility, it is useful
      *                                  for Classes that are mocked by PowerMockRunner that make
      *                                  private c-tors as public
+     * @noinspection BooleanParameter
      */
     public static void assertUtilsClassHasPrivateConstructor(final Class<?> utilClass,
                                                              boolean checkConstructorIsPrivate)

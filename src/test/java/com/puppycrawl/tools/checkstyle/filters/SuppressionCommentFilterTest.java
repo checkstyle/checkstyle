@@ -251,11 +251,12 @@ public class SuppressionCommentFilterTest
     @Test
     public void testToStringOfTagClass() {
         final SuppressionCommentFilter.Tag tag = new SuppressionCommentFilter.Tag(
-                0, 1, "text", false, new SuppressionCommentFilter()
+                0, 1, "text",
+                SuppressionCommentFilter.TagType.OFF, new SuppressionCommentFilter()
         );
 
         assertEquals("Invalid toString result",
-            "Tag[text='text', line=0, column=1, on=false,"
+            "Tag[text='text', line=0, column=1, type=OFF,"
                     + " tagCheckRegexp=.*, tagMessageRegexp=null]", tag.toString());
     }
 

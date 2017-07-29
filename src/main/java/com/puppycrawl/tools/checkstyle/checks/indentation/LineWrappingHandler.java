@@ -39,6 +39,36 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 public class LineWrappingHandler {
 
     /**
+     * Enum to be used for test if first line's indentation should be checked or not.
+     */
+    public enum LineWrappingOptions {
+        /**
+         * First line's indentation should NOT be checked.
+         */
+        IGNORE_FIRST_LINE,
+        /**
+         * First line's indentation should be checked.
+         */
+        NONE;
+
+        /**
+         * Builds enum value from boolean.
+         * @param val value.
+         * @return enum instance.
+         *
+         * @noinspection BooleanParameter
+         */
+        public static LineWrappingOptions ofBoolean(boolean val) {
+            if (val) {
+                return IGNORE_FIRST_LINE;
+            }
+            else {
+                return NONE;
+            }
+        }
+    }
+
+    /**
      * The current instance of {@code IndentationCheck} class using this
      * handler. This field used to get access to private fields of
      * IndentationCheck instance.
@@ -74,7 +104,8 @@ public class LineWrappingHandler {
      * @param indentLevel Indentation all wrapped lines should use.
      */
     public void checkIndentation(DetailAST firstNode, DetailAST lastNode, int indentLevel) {
-        checkIndentation(firstNode, lastNode, indentLevel, -1, true);
+        checkIndentation(firstNode, lastNode, indentLevel,
+                -1, LineWrappingOptions.IGNORE_FIRST_LINE);
     }
 
     /**
@@ -87,7 +118,7 @@ public class LineWrappingHandler {
      * @param ignoreFirstLine Test if first line's indentation should be checked or not.
      */
     public void checkIndentation(DetailAST firstNode, DetailAST lastNode, int indentLevel,
-            int startIndent, boolean ignoreFirstLine) {
+            int startIndent, LineWrappingOptions ignoreFirstLine) {
         final NavigableMap<Integer, DetailAST> firstNodesOnLines = collectFirstNodes(firstNode,
                 lastNode);
 
@@ -110,7 +141,7 @@ public class LineWrappingHandler {
             }
         }
 
-        if (ignoreFirstLine) {
+        if (ignoreFirstLine == LineWrappingOptions.IGNORE_FIRST_LINE) {
             // First node should be removed because it was already checked before.
             firstNodesOnLines.remove(firstNodesOnLines.firstKey());
         }

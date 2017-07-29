@@ -353,7 +353,8 @@ public abstract class AbstractExpressionHandler {
     protected void checkWrappingIndentation(DetailAST firstNode, DetailAST lastNode,
             int wrappedIndentLevel, int startIndent, boolean ignoreFirstLine) {
         indentCheck.getLineWrappingHandler().checkIndentation(firstNode, lastNode,
-                wrappedIndentLevel, startIndent, ignoreFirstLine);
+                wrappedIndentLevel, startIndent,
+                LineWrappingHandler.LineWrappingOptions.ofBoolean(ignoreFirstLine));
     }
 
     /**

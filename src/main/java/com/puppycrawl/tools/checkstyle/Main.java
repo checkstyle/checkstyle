@@ -390,12 +390,14 @@ public final class Main {
         if (commandLine.hasOption(OPTION_T_NAME)) {
             // print AST
             final File file = config.files.get(0);
-            final String stringAst = AstTreeStringPrinter.printFileAst(file, false);
+            final String stringAst = AstTreeStringPrinter.printFileAst(file,
+                    AstTreeStringPrinter.PrintOptions.WITHOUT_COMMENTS);
             System.out.print(stringAst);
         }
         else if (commandLine.hasOption(OPTION_CAPITAL_T_NAME)) {
             final File file = config.files.get(0);
-            final String stringAst = AstTreeStringPrinter.printFileAst(file, true);
+            final String stringAst = AstTreeStringPrinter.printFileAst(file,
+                    AstTreeStringPrinter.PrintOptions.WITH_COMMENTS);
             System.out.print(stringAst);
         }
         else if (commandLine.hasOption(OPTION_J_NAME)) {
