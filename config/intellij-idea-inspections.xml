@@ -196,7 +196,7 @@
         <option name="onlyWarnOnBaseMethods" value="true" />
         <option name="questionString" value="is,can,has,should,could,will,shall,check,contains,equals,add,put,remove,starts,ends,are,was,matches,start,must,accept" />
     </inspection_tool>
-    <inspection_tool class="BooleanParameter" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="BooleanParameter" enabled="true" level="ERROR" enabled_by_default="true" />
     <!-- even it is always negated, it is better than possible negation/inversion of negated term -->
     <inspection_tool class="BooleanVariableAlwaysNegated" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="BoxingBoxedValue" enabled="true" level="ERROR" enabled_by_default="true" />

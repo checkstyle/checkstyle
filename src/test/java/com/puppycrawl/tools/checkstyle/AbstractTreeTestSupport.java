@@ -55,7 +55,8 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
      * @throws Exception if exception occurs during verification.
      */
     protected static void verifyAst(String expectedTextPrintFileName, String actualJavaFileName,
-                                    boolean withComments) throws Exception {
+                                    AstTreeStringPrinter.PrintOptions withComments)
+            throws Exception {
         final String expectedContents = readFile(expectedTextPrintFileName);
 
         final String actualContents = AstTreeStringPrinter.printFileAst(
@@ -67,7 +68,8 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
 
     /**
      * Performs verification of the given text ast tree representation.
-     * This implementation uses {@link BaseCheckTestSupport#verifyAst(String, String, boolean)}
+     * This implementation uses
+     * {@link BaseCheckTestSupport#verifyAst(String, String, AstTreeStringPrinter.PrintOptions)}
      * method inside.
      * @param expectedTextPrintFileName expected text ast tree representation.
      * @param actualJavaFileName actual text ast tree representation.
@@ -75,7 +77,8 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
      */
     protected static void verifyAst(String expectedTextPrintFileName, String actualJavaFileName)
             throws Exception {
-        verifyAst(expectedTextPrintFileName, actualJavaFileName, false);
+        verifyAst(expectedTextPrintFileName, actualJavaFileName,
+                AstTreeStringPrinter.PrintOptions.WITHOUT_COMMENTS);
     }
 
     /**

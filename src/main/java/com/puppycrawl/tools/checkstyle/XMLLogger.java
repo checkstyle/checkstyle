@@ -67,6 +67,7 @@ public class XMLLogger
      * Sets the output to a defined stream.
      * @param outputStream the stream to write logs to.
      * @param closeStream close oS in auditFinished
+     * @noinspection BooleanParameter
      */
     public XMLLogger(OutputStream outputStream, boolean closeStream) {
         setOutputStream(outputStream);

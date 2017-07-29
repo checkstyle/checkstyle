@@ -146,7 +146,8 @@ public class BaseCheckTestSupport {
 
     /**
      * Performs verification of the given text ast tree representation.
-     * This implementation uses {@link BaseCheckTestSupport#verifyAst(String, String, boolean)}
+     * This implementation uses
+     * {@link BaseCheckTestSupport#verifyAst(String, String, AstTreeStringPrinter.PrintOptions)}
      * method inside.
      * @param expectedTextPrintFileName expected text ast tree representation.
      * @param actualJavaFileName actual text ast tree representation.
@@ -154,7 +155,8 @@ public class BaseCheckTestSupport {
      */
     protected static void verifyAst(String expectedTextPrintFileName, String actualJavaFileName)
             throws Exception {
-        verifyAst(expectedTextPrintFileName, actualJavaFileName, false);
+        verifyAst(expectedTextPrintFileName, actualJavaFileName,
+                AstTreeStringPrinter.PrintOptions.WITHOUT_COMMENTS);
     }
 
     /**
@@ -165,7 +167,8 @@ public class BaseCheckTestSupport {
      * @throws Exception if exception occurs during verification.
      */
     protected static void verifyAst(String expectedTextPrintFileName, String actualJavaFileName,
-                                    boolean withComments) throws Exception {
+                                    AstTreeStringPrinter.PrintOptions withComments)
+            throws Exception {
         final String expectedContents = readFile(expectedTextPrintFileName);
 
         final String actualContents = AstTreeStringPrinter.printFileAst(
