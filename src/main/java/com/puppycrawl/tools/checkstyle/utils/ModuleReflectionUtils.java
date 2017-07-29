@@ -26,6 +26,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.google.common.reflect.ClassPath;
+import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -64,7 +65,7 @@ public final class ModuleReflectionUtils {
     /**
      * Checks whether a class may be considered as a checkstyle module. Checkstyle's modules are
      * non-abstract classes, which are either checkstyle's checks, file sets, filters, file filters,
-     * or root module.
+     * {@code TreeWalker} filters or root module.
      * @param clazz class to check.
      * @return true if the class may be considered as the checkstyle module.
      */
@@ -74,6 +75,7 @@ public final class ModuleReflectionUtils {
                     || isFileSetModule(clazz)
                     || isFilterModule(clazz)
                     || isFileFilterModule(clazz)
+                    || isTreeWalkerFilterModule(clazz)
                     || isRootModule(clazz));
     }
 
@@ -135,5 +137,16 @@ public final class ModuleReflectionUtils {
      */
     public static boolean isRootModule(Class<?> clazz) {
         return RootModule.class.isAssignableFrom(clazz);
+    }
+
+    /**
+     * Checks whether a class may be considered as the checkstyle {@code TreeWalker} filter.
+     * Checkstyle's {@code TreeWalker} filters are classes which implement 'TreeWalkerFilter'
+     * interface.
+     * @param clazz class to check.
+     * @return true if a class may be considered as the checkstyle {@code TreeWalker} filter.
+     */
+    public static boolean isTreeWalkerFilterModule(Class<?> clazz) {
+        return TreeWalkerFilter.class.isAssignableFrom(clazz);
     }
 }
