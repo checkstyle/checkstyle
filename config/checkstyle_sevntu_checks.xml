@@ -21,7 +21,6 @@
             <property name="checkFormat" value="$1"/>
             <property name="influenceFormat" value="3"/>
         </module>
-        <module name="FileContentsHolder"/>
         <module name="StaticMethodCandidate"/>
         <module name="UselessSingleCatchCheck"/>
         <module name="NestedSwitchCheck"/>

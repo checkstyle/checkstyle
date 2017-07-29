@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
@@ -33,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
@@ -42,13 +42,6 @@ public class FileSetCheckLifecycleTest
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/misc/fileset";
-    }
-
-    @Test
-    public void testGetRequiredTokens() {
-        final FileContentsHolder checkObj = new FileContentsHolder();
-        assertArrayEquals("Required tokens array is not empty",
-                CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -68,7 +61,6 @@ public class FileSetCheckLifecycleTest
         final DefaultConfiguration twConf = createModuleConfig(TreeWalker.class);
         dc.addAttribute("charset", "UTF-8");
         dc.addChild(twConf);
-        twConf.addChild(new DefaultConfiguration(FileContentsHolder.class.getName()));
         twConf.addChild(new DefaultConfiguration(AvoidStarImportCheck.class.getName()));
 
         final Checker checker = new Checker();
@@ -92,6 +84,7 @@ public class FileSetCheckLifecycleTest
     private static class TestFileSetCheck extends AbstractFileSetCheck {
         private static boolean destroyed;
         private static boolean fileContentAvailable;
+        private static FileContents contents;
 
         @Override
         public void destroy() {
@@ -108,12 +101,12 @@ public class FileSetCheckLifecycleTest
 
         @Override
         protected void processFiltered(File file, FileText fileText) {
-            //dummy method
+            contents = new FileContents(fileText);
         }
 
         @Override
         public void finishProcessing() {
-            fileContentAvailable = FileContentsHolder.getCurrentFileContents() != null;
+            fileContentAvailable = contents != null;
         }
     }
 }

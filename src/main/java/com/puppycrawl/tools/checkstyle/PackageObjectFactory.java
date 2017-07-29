@@ -706,8 +706,6 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.AvoidEscapedUnicodeCharactersCheck");
         NAME_TO_FULL_MODULE_NAME.put("DescendantTokenCheck",
                 BASE_PACKAGE + ".checks.DescendantTokenCheck");
-        NAME_TO_FULL_MODULE_NAME.put("FileContentsHolder",
-                BASE_PACKAGE + ".checks.FileContentsHolder");
         NAME_TO_FULL_MODULE_NAME.put("FinalParametersCheck",
                 BASE_PACKAGE + ".checks.FinalParametersCheck");
         NAME_TO_FULL_MODULE_NAME.put("NewlineAtEndOfFileCheck",

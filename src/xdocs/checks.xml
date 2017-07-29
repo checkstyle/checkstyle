@@ -809,11 +809,6 @@
 
     <table>
       <tr>
-        <td><a href="config_misc.html#FileContentsHolder">FileContentsHolder</a></td>
-        <td>Holds the current file contents for global access when configured as a
-        TreeWalker sub-module.</td>
-      </tr>
-      <tr>
         <td><a href="config_annotation.html#SuppressWarningsHolder">SuppressWarningsHolder</a></td>
         <td>
           Maintains a set of check suppressions from <code>SuppressWarnings</code> annotations.

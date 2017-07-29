@@ -374,7 +374,6 @@
     </module>
     <module name="CommentsIndentation"/>
     <module name="DescendantToken"/>
-    <module name="FileContentsHolder"/>
     <module name="FinalParameters">
       <!--
         we will not use that fanatic validation, extra modifiers pollute a code

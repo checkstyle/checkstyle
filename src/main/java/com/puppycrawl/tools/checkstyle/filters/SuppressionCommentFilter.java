@@ -49,12 +49,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * This is sometimes superior to a separate suppressions file, which
  * must be kept up-to-date as the source file is edited.
  * </p>
- * <p>
- * Usage:
- * This check only works in conjunction with the FileContentsHolder module
- * since that module makes the suppression comments in the .java
- * files available <i>sub rosa</i>.
- * </p>
  * @author Mike McMahon
  * @author Rick Giles
  */
@@ -112,8 +106,8 @@ public class SuppressionCommentFilter
      * References the current FileContents for this filter.
      * Since this is a weak reference to the FileContents, the FileContents
      * can be reclaimed as soon as the strong references in TreeWalker
-     * and FileContentsHolder are reassigned to the next FileContents,
-     * at which time filtering for the current FileContents is finished.
+     * are reassigned to the next FileContents, at which time filtering for
+     * the current FileContents is finished.
      */
     private WeakReference<FileContents> fileContentsReference = new WeakReference<>(null);
 
