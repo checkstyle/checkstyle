@@ -299,8 +299,8 @@ public class SuppressionCommentFilterTest
     public void testAcceptNullLocalizedMessage() {
         final SuppressionCommentFilter filter = new SuppressionCommentFilter();
         final TreeWalkerAuditEvent auditEvent = new TreeWalkerAuditEvent(null, null, null);
-        Assert.assertTrue(filter.accept(auditEvent));
-        Assert.assertNull(auditEvent.getFileName());
+        Assert.assertTrue("Filter should accept audit event", filter.accept(auditEvent));
+        Assert.assertNull("File name should not be null", auditEvent.getFileName());
     }
 
     @Test
@@ -338,7 +338,7 @@ public class SuppressionCommentFilterTest
         final TreeWalkerAuditEvent dummyEvent = new TreeWalkerAuditEvent(contents, "filename",
                 new LocalizedMessage(1, null, null, null, null, Object.class, null));
         final boolean result = suppressionCommentFilter.accept(dummyEvent);
-        assertFalse(result);
+        assertFalse("Fileter should not accept event", result);
     }
 
     @Test
@@ -363,6 +363,6 @@ public class SuppressionCommentFilterTest
         suppressionCommentFilter.accept(dummyEvent2);
         final List<SuppressionCommentFilter.Tag> tags =
                 Whitebox.getInternalState(suppressionCommentFilter, "tags");
-        assertEquals(1, tags.size());
+        assertEquals("Invalid tags size", 1, tags.size());
     }
 }

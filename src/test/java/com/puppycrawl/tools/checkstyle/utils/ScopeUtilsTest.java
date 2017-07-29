@@ -39,110 +39,129 @@ public class ScopeUtilsTest {
 
     @Test
     public void testInEnumOnRoot() {
-        assertFalse(ScopeUtils.isInEnumBlock(new DetailAST()));
+        assertFalse("Should return false when passed is not enum",
+                ScopeUtils.isInEnumBlock(new DetailAST()));
     }
 
     @Test
     public void testInEnumBlockInNew() {
-        assertFalse(ScopeUtils.isInEnumBlock(
-                getNode(TokenTypes.LITERAL_NEW, TokenTypes.MODIFIERS)));
+        assertFalse("Should return false when passed is not enum",
+                ScopeUtils.isInEnumBlock(getNode(TokenTypes.LITERAL_NEW,
+                        TokenTypes.MODIFIERS)));
     }
 
     @Test
     public void testInEnumBlockWithEnum() {
-        assertTrue(ScopeUtils.isInEnumBlock(
-                getNode(TokenTypes.OBJBLOCK, TokenTypes.ENUM_DEF, TokenTypes.MODIFIERS)));
+        assertTrue("Should return true when passed is enum",
+                ScopeUtils.isInEnumBlock(getNode(TokenTypes.OBJBLOCK, TokenTypes.ENUM_DEF,
+                        TokenTypes.MODIFIERS)));
     }
 
     @Test
     public void testInEnumBlockInInterface() {
-        assertFalse(ScopeUtils.isInEnumBlock(
-                getNode(TokenTypes.INTERFACE_DEF, TokenTypes.MODIFIERS)));
+        assertFalse("Should return false when passed is not enum",
+                ScopeUtils.isInEnumBlock(getNode(TokenTypes.INTERFACE_DEF,
+                        TokenTypes.MODIFIERS)));
     }
 
     @Test
     public void testInEnumBlockInAnnotation() {
-        assertFalse(ScopeUtils.isInEnumBlock(
-                getNode(TokenTypes.ANNOTATION_DEF, TokenTypes.MODIFIERS)));
+        assertFalse("Should return false when passed is not enum",
+                ScopeUtils.isInEnumBlock(getNode(TokenTypes.ANNOTATION_DEF,
+                        TokenTypes.MODIFIERS)));
     }
 
     @Test
     public void testInEnumBlockInClass() {
-        assertFalse(ScopeUtils.isInEnumBlock(
-                getNode(TokenTypes.CLASS_DEF, TokenTypes.MODIFIERS)));
+        assertFalse("Should return false when passed is not enum",
+                ScopeUtils.isInEnumBlock(getNode(TokenTypes.CLASS_DEF,
+                        TokenTypes.MODIFIERS)));
     }
 
     @Test
     public void testInEnumBlockInLiteralNew() {
-        assertFalse(ScopeUtils.isInEnumBlock(
-                getNode(TokenTypes.LITERAL_NEW, TokenTypes.IDENT)));
+        assertFalse("Should return false when passed is not enum",
+                ScopeUtils.isInEnumBlock(getNode(TokenTypes.LITERAL_NEW,
+                        TokenTypes.IDENT)));
     }
 
     @Test
     public void testIsOuterMostTypeInterface() {
-        assertFalse(ScopeUtils.isOuterMostType(
-                getNode(TokenTypes.INTERFACE_DEF, TokenTypes.MODIFIERS)));
+        assertFalse("Should return false when passed is not outer most type",
+                ScopeUtils.isOuterMostType(getNode(TokenTypes.INTERFACE_DEF,
+                        TokenTypes.MODIFIERS)));
     }
 
     @Test
     public void testIsOuterMostTypeAnnotation() {
-        assertFalse(ScopeUtils.isOuterMostType(
-                getNode(TokenTypes.ANNOTATION_DEF, TokenTypes.MODIFIERS)));
+        assertFalse("Should return false when passed is not outer most type",
+                ScopeUtils.isOuterMostType(getNode(TokenTypes.ANNOTATION_DEF,
+                        TokenTypes.MODIFIERS)));
     }
 
     @Test
     public void testIsOuterMostTypeEnum() {
-        assertFalse(ScopeUtils.isOuterMostType(
-                getNode(TokenTypes.ENUM_DEF, TokenTypes.MODIFIERS)));
+        assertFalse("Should return false when passed is not outer most type",
+                ScopeUtils.isOuterMostType(getNode(TokenTypes.ENUM_DEF, TokenTypes.MODIFIERS)));
     }
 
     @Test
     public void testIsOuterMostTypeClass() {
-        assertFalse(ScopeUtils.isOuterMostType(
-                getNode(TokenTypes.CLASS_DEF, TokenTypes.MODIFIERS)));
+        assertFalse("Should return false when passed is not outer most type",
+                ScopeUtils.isOuterMostType(getNode(TokenTypes.CLASS_DEF, TokenTypes.MODIFIERS)));
     }
 
     @Test
     public void testIsLocalVariableDefCatch() {
-        assertTrue(ScopeUtils.isLocalVariableDef(
-                getNode(TokenTypes.LITERAL_CATCH, TokenTypes.PARAMETER_DEF)));
+        assertTrue("Should return true when passed is variable def",
+                ScopeUtils.isLocalVariableDef(getNode(TokenTypes.LITERAL_CATCH,
+                        TokenTypes.PARAMETER_DEF)));
     }
 
     @Test
     public void testIsLocalVariableDefUnexpected() {
-        assertFalse(ScopeUtils.isLocalVariableDef(getNode(TokenTypes.LITERAL_CATCH)));
+        assertFalse("Should return false when passed is not variable def",
+                ScopeUtils.isLocalVariableDef(getNode(TokenTypes.LITERAL_CATCH)));
     }
 
     @Test
     public void testIsClassFieldDef() {
-        assertTrue(ScopeUtils.isClassFieldDef(
-                getNode(TokenTypes.CLASS_DEF, TokenTypes.OBJBLOCK, TokenTypes.VARIABLE_DEF)));
+        assertTrue("Should return true when passed is class field def",
+                ScopeUtils.isClassFieldDef(getNode(TokenTypes.CLASS_DEF,
+                        TokenTypes.OBJBLOCK, TokenTypes.VARIABLE_DEF)));
     }
 
     @Test
     public void testSurroundingScope() {
-        assertEquals(Scope.PUBLIC, ScopeUtils.getSurroundingScope(getNodeWithParentScope(
+        assertEquals("Invalid surrounding scope",
+                Scope.PUBLIC, ScopeUtils.getSurroundingScope(getNodeWithParentScope(
             TokenTypes.LITERAL_PUBLIC, "public", TokenTypes.ANNOTATION_DEF)));
-        assertEquals(Scope.PROTECTED, ScopeUtils.getSurroundingScope(
+        assertEquals("Invalid surrounding scope",
+                Scope.PROTECTED, ScopeUtils.getSurroundingScope(
             getNodeWithParentScope(TokenTypes.LITERAL_PROTECTED, "protected",
             TokenTypes.INTERFACE_DEF)));
-        assertEquals(Scope.PRIVATE, ScopeUtils.getSurroundingScope(
+        assertEquals("Invalid surrounding scope",
+                Scope.PRIVATE, ScopeUtils.getSurroundingScope(
             getNodeWithParentScope(TokenTypes.LITERAL_PRIVATE, "private", TokenTypes.ENUM_DEF)));
-        assertEquals(Scope.PACKAGE, ScopeUtils.getSurroundingScope(
+        assertEquals("Invalid surrounding scope",
+                Scope.PACKAGE, ScopeUtils.getSurroundingScope(
             getNodeWithParentScope(TokenTypes.LITERAL_STATIC, "static", TokenTypes.CLASS_DEF)));
     }
 
     @Test
     public void testIsInScope() {
-        assertTrue(ScopeUtils.isInScope(getNodeWithParentScope(TokenTypes.LITERAL_PUBLIC,
+        assertTrue("Should return true when node is in valid scope",
+                ScopeUtils.isInScope(getNodeWithParentScope(TokenTypes.LITERAL_PUBLIC,
                 "public", TokenTypes.ANNOTATION_DEF), Scope.PUBLIC));
-        assertFalse(ScopeUtils.isInScope(getNodeWithParentScope(TokenTypes.LITERAL_PROTECTED,
+        assertFalse("Should return false when node is in invalid scope",
+                ScopeUtils.isInScope(getNodeWithParentScope(TokenTypes.LITERAL_PROTECTED,
                 "protected", TokenTypes.INTERFACE_DEF), Scope.PRIVATE));
     }
 
     @Test
     public void testSurroundingScopeOfNodeChildOfLiteralNewIsAnoninner() {
-        assertEquals(Scope.ANONINNER, ScopeUtils.getSurroundingScope(
+        assertEquals("Invalid surrounding scope",
+                Scope.ANONINNER, ScopeUtils.getSurroundingScope(
                 getNode(TokenTypes.LITERAL_NEW, TokenTypes.IDENT)));
     }
 
@@ -151,8 +170,10 @@ public class ScopeUtilsTest {
         final DetailAST ast = getNode(TokenTypes.INTERFACE_DEF, TokenTypes.OBJBLOCK,
                 TokenTypes.CLASS_DEF, TokenTypes.MODIFIERS);
 
-        assertTrue(ScopeUtils.isInInterfaceBlock(ast.getParent()));
-        assertFalse(ScopeUtils.isInInterfaceBlock(ast));
+        assertTrue("Should return true when node is interface block",
+                ScopeUtils.isInInterfaceBlock(ast.getParent()));
+        assertFalse("Should return false when node is not interface block",
+                ScopeUtils.isInInterfaceBlock(ast));
     }
 
     @Test
@@ -160,21 +181,28 @@ public class ScopeUtilsTest {
         final DetailAST ast = getNode(TokenTypes.ANNOTATION_DEF, TokenTypes.OBJBLOCK,
                 TokenTypes.INTERFACE_DEF, TokenTypes.MODIFIERS);
 
-        assertTrue(ScopeUtils.isInAnnotationBlock(ast.getParent()));
-        assertFalse(ScopeUtils.isInAnnotationBlock(ast));
+        assertTrue("Should return true when node is annotation block",
+                ScopeUtils.isInAnnotationBlock(ast.getParent()));
+        assertFalse("Should return false when node is not annotation block",
+                ScopeUtils.isInAnnotationBlock(ast));
     }
 
     @Test
     public void testisInInterfaceOrAnnotationBlock() {
-        assertTrue(ScopeUtils.isInInterfaceOrAnnotationBlock(
+        assertTrue("Should return true when node is in interface or annotation block",
+                ScopeUtils.isInInterfaceOrAnnotationBlock(
                 getNode(TokenTypes.ANNOTATION_DEF, TokenTypes.OBJBLOCK)));
-        assertTrue(ScopeUtils.isInInterfaceOrAnnotationBlock(
+        assertTrue("Should return true when node is in interface or annotation block",
+                ScopeUtils.isInInterfaceOrAnnotationBlock(
                 getNode(TokenTypes.INTERFACE_DEF, TokenTypes.OBJBLOCK)));
-        assertFalse(ScopeUtils.isInInterfaceOrAnnotationBlock(
+        assertFalse("Should return false when node is not in interface or annotation block",
+                ScopeUtils.isInInterfaceOrAnnotationBlock(
                 getNode(TokenTypes.CLASS_DEF, TokenTypes.OBJBLOCK)));
-        assertFalse(ScopeUtils.isInInterfaceOrAnnotationBlock(
+        assertFalse("Should return false when node is not in interface or annotation block",
+                ScopeUtils.isInInterfaceOrAnnotationBlock(
                 getNode(TokenTypes.LITERAL_NEW, TokenTypes.IDENT)));
-        assertFalse(ScopeUtils.isInInterfaceOrAnnotationBlock(
+        assertFalse("Should return false when node is not in interface or annotation block",
+                ScopeUtils.isInInterfaceOrAnnotationBlock(
                 getNode(TokenTypes.ENUM_DEF, TokenTypes.OBJBLOCK)));
     }
 

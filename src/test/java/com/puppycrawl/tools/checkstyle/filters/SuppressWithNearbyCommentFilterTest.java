@@ -300,7 +300,7 @@ public class SuppressWithNearbyCommentFilterTest
     public void testAcceptNullLocalizedMessage() {
         final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
         final TreeWalkerAuditEvent auditEvent = new TreeWalkerAuditEvent(null, null, null);
-        assertTrue(filter.accept(auditEvent));
+        assertTrue("Filter should accept null localized message", filter.accept(auditEvent));
     }
 
     @Test
@@ -370,6 +370,6 @@ public class SuppressWithNearbyCommentFilterTest
         suppressionCommentFilter.accept(dummyEvent2);
         final List<SuppressionCommentFilter.Tag> tags =
                 Whitebox.getInternalState(suppressionCommentFilter, "tags");
-        assertEquals(1, tags.size());
+        assertEquals("Invalid tags size", 1, tags.size());
     }
 }

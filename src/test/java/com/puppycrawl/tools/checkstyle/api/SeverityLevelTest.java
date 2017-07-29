@@ -40,22 +40,22 @@ public class SeverityLevelTest {
     @Test
     public void testSeverityLevelValueOf() {
         final SeverityLevel level = SeverityLevel.valueOf("INFO");
-        assertEquals(SeverityLevel.INFO, level);
+        assertEquals("Invalid severity level", SeverityLevel.INFO, level);
     }
 
     @Test
     public void testMisc() {
         final SeverityLevel severityLevel = SeverityLevel.getInstance("info");
-        assertNotNull(severityLevel);
-        assertEquals("info", severityLevel.toString());
-        assertEquals("info", severityLevel.getName());
+        assertNotNull("Invalid getInstance result, should not be null", severityLevel);
+        assertEquals("Invalid toString result", "info", severityLevel.toString());
+        assertEquals("Invalid severity level name", "info", severityLevel.getName());
 
         try {
             SeverityLevel.getInstance("unknown");
             fail("exception expected");
         }
         catch (IllegalArgumentException ex) {
-            assertEquals(
+            assertEquals("Invalid exception message",
                     "No enum constant com.puppycrawl.tools.checkstyle.api.SeverityLevel.UNKNOWN",
                     ex.getMessage());
         }
@@ -63,10 +63,14 @@ public class SeverityLevelTest {
 
     @Test
     public void testMixedCaseSpaces() {
-        assertEquals(SeverityLevel.IGNORE, SeverityLevel.getInstance("IgnoRe "));
-        assertEquals(SeverityLevel.INFO, SeverityLevel.getInstance(" iNfo"));
-        assertEquals(SeverityLevel.WARNING, SeverityLevel.getInstance(" WarniNg"));
-        assertEquals(SeverityLevel.ERROR, SeverityLevel.getInstance("    ERROR "));
+        assertEquals("Invalid getInstance result",
+                SeverityLevel.IGNORE, SeverityLevel.getInstance("IgnoRe "));
+        assertEquals("Invalid getInstance result",
+                SeverityLevel.INFO, SeverityLevel.getInstance(" iNfo"));
+        assertEquals("Invalid getInstance result",
+                SeverityLevel.WARNING, SeverityLevel.getInstance(" WarniNg"));
+        assertEquals("Invalid getInstance result",
+                SeverityLevel.ERROR, SeverityLevel.getInstance("    ERROR "));
     }
 
     @Test
@@ -76,10 +80,14 @@ public class SeverityLevelTest {
         try {
             for (Locale differentLocale : differentLocales) {
                 Locale.setDefault(differentLocale);
-                assertEquals(SeverityLevel.IGNORE, SeverityLevel.getInstance("IgnoRe "));
-                assertEquals(SeverityLevel.INFO, SeverityLevel.getInstance(" iNfo"));
-                assertEquals(SeverityLevel.WARNING, SeverityLevel.getInstance(" WarniNg"));
-                assertEquals(SeverityLevel.ERROR, SeverityLevel.getInstance("    ERROR "));
+                assertEquals("Invalid getInstance result",
+                        SeverityLevel.IGNORE, SeverityLevel.getInstance("IgnoRe "));
+                assertEquals("Invalid getInstance result",
+                        SeverityLevel.INFO, SeverityLevel.getInstance(" iNfo"));
+                assertEquals("Invalid getInstance result",
+                        SeverityLevel.WARNING, SeverityLevel.getInstance(" WarniNg"));
+                assertEquals("Invalid getInstance result",
+                        SeverityLevel.ERROR, SeverityLevel.getInstance("    ERROR "));
             }
         }
         finally {

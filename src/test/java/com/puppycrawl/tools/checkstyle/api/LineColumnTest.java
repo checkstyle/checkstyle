@@ -29,23 +29,28 @@ public class LineColumnTest {
 
     @Test
     public void testCompareToBothEqual() {
-        assertEquals(0, new LineColumn(0, 0).compareTo(new LineColumn(0, 0)));
+        assertEquals("Invalid LineColumn comparing result",
+                0, new LineColumn(0, 0).compareTo(new LineColumn(0, 0)));
     }
 
     @Test
     public void testCompareToFirstLarger() {
         final LineColumn lineColumn = new LineColumn(0, 0);
 
-        assertEquals(1, new LineColumn(1, 0).compareTo(lineColumn));
-        assertEquals(1, new LineColumn(0, 1).compareTo(lineColumn));
+        assertEquals("Invalid LineColumn comparison result",
+                1, new LineColumn(1, 0).compareTo(lineColumn));
+        assertEquals("Invalid LineColumn comparison result",
+                1, new LineColumn(0, 1).compareTo(lineColumn));
     }
 
     @Test
     public void testCompareToFirstSmaller() {
         final Comparable<LineColumn> lineColumn = new LineColumn(0, 0);
 
-        assertEquals(-1, lineColumn.compareTo(new LineColumn(1, 0)));
-        assertEquals(-1, lineColumn.compareTo(new LineColumn(0, 1)));
+        assertEquals("Invalid LineColumn comparison result", -1,
+                lineColumn.compareTo(new LineColumn(1, 0)));
+        assertEquals("Invalid LineColumn comparison result", -1,
+                lineColumn.compareTo(new LineColumn(0, 1)));
     }
 
     @Test
@@ -57,7 +62,9 @@ public class LineColumnTest {
     public void testGetters() {
         final LineColumn lineColumn = new LineColumn(2, 3);
 
-        assertEquals(2, lineColumn.getLine());
-        assertEquals(3, lineColumn.getColumn());
+        assertEquals("Invalid LineColumn comparison result",
+                2, lineColumn.getLine());
+        assertEquals("Invalid LineColumn comparison result",
+                3, lineColumn.getColumn());
     }
 }

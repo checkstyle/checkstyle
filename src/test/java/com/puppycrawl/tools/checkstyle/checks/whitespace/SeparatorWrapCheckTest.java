@@ -87,7 +87,7 @@ public class SeparatorWrapCheckTest
             TokenTypes.DOT,
             TokenTypes.COMMA,
         };
-        Assert.assertArrayEquals(expected, actual);
+        Assert.assertArrayEquals("Invalid default tokens", expected, actual);
     }
 
     @Test

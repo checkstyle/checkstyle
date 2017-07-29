@@ -97,7 +97,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
         final List<String> testStrings = new ArrayList<>(3);
         final Method getLineNumber = UniquePropertiesCheck.class.getDeclaredMethod(
             "getLineNumber", FileText.class, String.class);
-        Assert.assertNotNull(getLineNumber);
+        Assert.assertNotNull("Get line number method should be present", getLineNumber);
         getLineNumber.setAccessible(true);
         testStrings.add("");
         testStrings.add("0 = 0");
@@ -105,7 +105,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
         final FileText fileText = new FileText(new File("some.properties"), testStrings);
         final Object lineNumber = getLineNumber.invoke(UniquePropertiesCheck.class,
                 fileText, "some key");
-        Assert.assertNotNull(lineNumber);
+        Assert.assertNotNull("Line number should not be null", lineNumber);
         assertEquals("Invalid line number", 0, lineNumber);
     }
 

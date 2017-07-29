@@ -45,6 +45,6 @@ public class IntMatchFilterTest {
     @Test
     public void testToString() {
         final IntFilter filter = new IntMatchFilter(6);
-        assertEquals("IntMatchFilter[6]", filter.toString());
+        assertEquals("Invalid toString result", "IntMatchFilter[6]", filter.toString());
     }
 }

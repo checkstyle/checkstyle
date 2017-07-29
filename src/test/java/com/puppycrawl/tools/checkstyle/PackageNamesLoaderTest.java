@@ -106,7 +106,7 @@ public class PackageNamesLoaderTest {
         final Field field = PackageNamesLoader.class.getDeclaredField("packageNames");
         field.setAccessible(true);
         final Set<String> list = (Set<String>) field.get(loader);
-        assertEquals("coding.", list.iterator().next());
+        assertEquals("Invalid package name", "coding.", list.iterator().next());
     }
 
     @Test
@@ -131,7 +131,7 @@ public class PackageNamesLoaderTest {
             fail("CheckstyleException is expected");
         }
         catch (CheckstyleException ex) {
-            assertTrue(ex.getCause() instanceof SAXException);
+            assertTrue("Invalid exception cause class", ex.getCause() instanceof SAXException);
         }
     }
 
@@ -156,8 +156,9 @@ public class PackageNamesLoaderTest {
             fail("CheckstyleException is expected");
         }
         catch (CheckstyleException ex) {
-            assertTrue(ex.getCause() instanceof IOException);
-            assertNotEquals("unable to get package file resources", ex.getMessage());
+            assertTrue("Invalid exception cause class", ex.getCause() instanceof IOException);
+            assertNotEquals("Invalid exception message",
+                    "unable to get package file resources", ex.getMessage());
         }
     }
 
@@ -173,8 +174,9 @@ public class PackageNamesLoaderTest {
             fail("CheckstyleException is expected");
         }
         catch (CheckstyleException ex) {
-            assertTrue(ex.getCause() instanceof IOException);
-            assertEquals("unable to get package file resources", ex.getMessage());
+            assertTrue("Invalid exception cause class", ex.getCause() instanceof IOException);
+            assertEquals("Invalid exception message",
+                    "unable to get package file resources", ex.getMessage());
         }
     }
 

@@ -215,7 +215,7 @@ public class XMLLoggerTest {
         };
 
         verifyLines(expectedLines);
-        assertEquals(1, outStream.getCloseCount());
+        assertEquals("Invalid close count", 1, outStream.getCloseCount());
     }
 
     private String[] getOutStreamLines()

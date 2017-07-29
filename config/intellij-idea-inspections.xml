@@ -78,7 +78,7 @@
     <inspection_tool class="AssertMessageNotString" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="AssertStatement" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="AssertWithSideEffects" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="AssertsWithoutMessages" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="AssertsWithoutMessages" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="AssertsWithoutMessagesTestNG" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="AssignmentResultUsedJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="AssignmentToCatchBlockParameter" enabled="true" level="ERROR" enabled_by_default="true" />

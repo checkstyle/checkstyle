@@ -465,7 +465,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final Optional<DetailAST> blockComment = TestUtils.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN);
 
-        assertTrue(blockComment.isPresent());
+        assertTrue("Block comment should be present", blockComment.isPresent());
 
         final DetailAST commentContent = blockComment.get().getFirstChild();
         final DetailAST commentEnd = blockComment.get().getLastChild();
@@ -483,7 +483,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         final Optional<DetailAST> singleLineComment = TestUtils.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.SINGLE_LINE_COMMENT);
-        assertTrue(singleLineComment.isPresent());
+        assertTrue("Single line comment should be present", singleLineComment.isPresent());
 
         final DetailAST commentContent = singleLineComment.get().getFirstChild();
 

@@ -130,7 +130,8 @@ public class TranslationCheckTest extends AbstractModuleTestSupport {
         logIoException.invoke(check, new IOException("test exception"), file);
 
         Mockito.verify(dispatcher, times(1)).fireErrors(any(String.class), captor.capture());
-        assertThat(captor.getValue().first().getMessage(), endsWith("test exception"));
+        final String actual = captor.getValue().first().getMessage();
+        assertThat("Invalid message: " + actual, actual, endsWith("test exception"));
     }
 
     @Test
