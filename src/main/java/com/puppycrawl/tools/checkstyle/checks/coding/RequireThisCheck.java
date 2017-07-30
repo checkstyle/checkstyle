@@ -803,11 +803,13 @@ public class RequireThisCheck extends AbstractCheck {
      */
     private AbstractFrame getMethodWithoutThis(DetailAST ast) {
         AbstractFrame result = null;
-        final AbstractFrame frame = findFrame(ast, true);
-        if (!validateOnlyOverlapping
-                && ((ClassFrame) frame).hasInstanceMethod(ast)
-                && !((ClassFrame) frame).hasStaticMethod(ast)) {
-            result = frame;
+        if (!validateOnlyOverlapping) {
+            final AbstractFrame frame = findFrame(ast, true);
+            if (frame != null
+                    && ((ClassFrame) frame).hasInstanceMethod(ast)
+                    && !((ClassFrame) frame).hasStaticMethod(ast)) {
+                result = frame;
+            }
         }
         return result;
     }
