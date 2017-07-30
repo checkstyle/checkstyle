@@ -100,6 +100,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      *            {@link TreeWalker}.
      * @return {@link Checker} instance based on the given {@link Configuration} instance.
      * @throws Exception if an exception occurs during checker configuration.
+     * @noinspection BooleanParameter
      */
     public Checker createChecker(Configuration moduleConfig, boolean addTreeWalker)
             throws Exception {
