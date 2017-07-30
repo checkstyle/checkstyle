@@ -625,6 +625,62 @@ switch (i) {
       </subsection>
     </section>
 
+    <section name="DiamondOperatorForVariableDefinition">
+      <subsection name="Description">
+        <p>Since Checkstyle 8.2</p>
+        <p>
+          Check that the diamond operator is used in variable definition.
+        </p>
+
+        <p>
+          Rationale: Using the diamond operator reduces the amount
+          of code duplicated unnecessarily.
+        </p>
+      </subsection>
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;DiamondOperatorForVariableDefinition&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+DiamondOperatorForVariableDefinition">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22diamond.operator.for.variable.definition%22">
+            diamond.operator.for.variable.definition</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="EmptyStatement">
       <subsection name="Description">
         <p>Since Checkstyle 3.1</p>

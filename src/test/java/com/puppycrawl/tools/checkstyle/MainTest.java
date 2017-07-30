@@ -630,7 +630,7 @@ public class MainTest {
         when(fileMock.listFiles()).thenReturn(null);
 
         final List<File> result = (List<File>) method.invoke(null, fileMock,
-                new ArrayList<Pattern>());
+                new ArrayList<>());
         assertEquals("Invalid result size", 0, result.size());
     }
 
