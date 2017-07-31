@@ -47,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtils;
 
 public class AllChecksTest extends AbstractModuleTestSupport {
     private static final Locale[] ALL_LOCALES = {
@@ -236,20 +237,24 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAllChecksWithDefaultConfiguration() throws Exception {
+    public void testAllModulesWithDefaultConfiguration() throws Exception {
         final String inputFilePath = getPath("InputAllChecksDefaultConfig.java");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        for (Class<?> check : CheckUtil.getCheckstyleChecks()) {
-            final DefaultConfiguration checkConfig = createModuleConfig(check);
+        for (Class<?> module : CheckUtil.getCheckstyleModules()) {
+            if (ModuleReflectionUtils.isRootModule(module)) {
+                continue;
+            }
+
+            final DefaultConfiguration moduleConfig = createModuleConfig(module);
             final Checker checker;
-            if (check.equals(ImportControlCheck.class)) {
+            if (module.equals(ImportControlCheck.class)) {
                 // ImportControlCheck must have the import control configuration file to avoid
                 // violation.
-                checkConfig.addAttribute("file", getPath(
+                moduleConfig.addAttribute("file", getPath(
                         "InputAllChecksImport-control_complete.xml"));
             }
-            checker = createChecker(checkConfig);
+            checker = createChecker(moduleConfig);
             verify(checker, inputFilePath, expected);
         }
     }
