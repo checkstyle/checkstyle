@@ -76,7 +76,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionFilter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class CheckerTest extends BaseCheckTestSupport {
+public class CheckerTest extends AbstractModuleTestSupport {
 
     @Rule
     public final TemporaryFolder temporaryFolder = new TemporaryFolder();
@@ -93,6 +93,11 @@ public class CheckerTest extends BaseCheckTestSupport {
         final Method fireAuditStarted = checkerClass.getDeclaredMethod("fireAuditStarted");
         fireAuditStarted.setAccessible(true);
         return fireAuditStarted;
+    }
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle";
     }
 
     @Test
@@ -471,9 +476,9 @@ public class CheckerTest extends BaseCheckTestSupport {
             throws Exception {
         assertFalse("ExternalResourceHolder has changed his parent",
                 ExternalResourceHolder.class.isAssignableFrom(HiddenFieldCheck.class));
-        final DefaultConfiguration checkConfig = createCheckConfig(HiddenFieldCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(HiddenFieldCheck.class);
 
-        final DefaultConfiguration treeWalkerConfig = createCheckConfig(TreeWalker.class);
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
         treeWalkerConfig.addChild(checkConfig);
 
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyleConfig");
@@ -513,12 +518,12 @@ public class CheckerTest extends BaseCheckTestSupport {
         final PackageObjectFactory factory = new PackageObjectFactory(
             new HashSet<>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
-        checker.configure(createCheckConfig(TranslationCheck.class));
+        checker.configure(createModuleConfig(TranslationCheck.class));
 
         final File cacheFile = temporaryFolder.newFile();
         checker.setCacheFile(cacheFile.getPath());
 
-        checker.setupChild(createCheckConfig(TranslationCheck.class));
+        checker.setupChild(createModuleConfig(TranslationCheck.class));
         final File tmpFile = temporaryFolder.newFile("file.java");
         final List<File> files = new ArrayList<>(1);
         files.add(tmpFile);
@@ -589,7 +594,7 @@ public class CheckerTest extends BaseCheckTestSupport {
     @Test
     public void testClearCache() throws Exception {
         final DefaultConfiguration violationCheck =
-                createCheckConfig(DummyFileSetViolationCheck.class);
+                createModuleConfig(DummyFileSetViolationCheck.class);
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("myConfig");
         checkerConfig.addAttribute("charset", "UTF-8");
         final File cacheFile = temporaryFolder.newFile();
@@ -674,7 +679,7 @@ public class CheckerTest extends BaseCheckTestSupport {
             throws Exception {
         assertFalse("ExternalResourceHolder has changed its parent",
                 ExternalResourceHolder.class.isAssignableFrom(DummyFilter.class));
-        final DefaultConfiguration filterConfig = createCheckConfig(DummyFilter.class);
+        final DefaultConfiguration filterConfig = createModuleConfig(DummyFilter.class);
 
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyle_checks");
         checkerConfig.addChild(filterConfig);
@@ -795,11 +800,11 @@ public class CheckerTest extends BaseCheckTestSupport {
     @Test
     public void testClearLazyLoadCacheInDetailAST() throws Exception {
         final DefaultConfiguration checkConfig1 =
-            createCheckConfig(CheckWhichDoesNotRequireCommentNodes.class);
+            createModuleConfig(CheckWhichDoesNotRequireCommentNodes.class);
         final DefaultConfiguration checkConfig2 =
-            createCheckConfig(CheckWhichRequiresCommentNodes.class);
+            createModuleConfig(CheckWhichRequiresCommentNodes.class);
 
-        final DefaultConfiguration treeWalkerConfig = createCheckConfig(TreeWalker.class);
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
         treeWalkerConfig.addChild(checkConfig1);
         treeWalkerConfig.addChild(checkConfig2);
 
@@ -821,12 +826,12 @@ public class CheckerTest extends BaseCheckTestSupport {
     public void testCacheOnViolationSuppression() throws Exception {
         final File cacheFile = temporaryFolder.newFile();
         final DefaultConfiguration violationCheck =
-                createCheckConfig(DummyFileSetViolationCheck.class);
+                createModuleConfig(DummyFileSetViolationCheck.class);
         final DefaultConfiguration defaultConfig = new DefaultConfiguration("defaultConfiguration");
         defaultConfig.addAttribute("cacheFile", cacheFile.getPath());
         defaultConfig.addChild(violationCheck);
 
-        final DefaultConfiguration filterConfig = createCheckConfig(SuppressionFilter.class);
+        final DefaultConfiguration filterConfig = createModuleConfig(SuppressionFilter.class);
         filterConfig.addAttribute("file", getPath("suppress_all.xml"));
         defaultConfig.addChild(filterConfig);
 
@@ -852,9 +857,9 @@ public class CheckerTest extends BaseCheckTestSupport {
     @Test
     public void testHaltOnExceptionOff() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(CheckWhichThrowsError.class);
+            createModuleConfig(CheckWhichThrowsError.class);
 
-        final DefaultConfiguration treeWalkerConfig = createCheckConfig(TreeWalker.class);
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
         treeWalkerConfig.addChild(checkConfig);
 
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyleConfig");
@@ -912,7 +917,7 @@ public class CheckerTest extends BaseCheckTestSupport {
             }
         };
         checker.setModuleFactory(factory);
-        checker.setupChild(createCheckConfig(DebugAuditAdapter.class));
+        checker.setupChild(createModuleConfig(DebugAuditAdapter.class));
         // Let's try fire some events
         checker.process(Collections.singletonList(new File("dummy.java")));
         assertTrue("Checker.fireAuditStarted() doesn't call listener", auditAdapter.wasCalled());
@@ -934,7 +939,7 @@ public class CheckerTest extends BaseCheckTestSupport {
             }
         };
         checker.setModuleFactory(factory);
-        checker.setupChild(createCheckConfig(TestBeforeExecutionFileFilter.class));
+        checker.setupChild(createModuleConfig(TestBeforeExecutionFileFilter.class));
         checker.process(Collections.singletonList(new File("dummy.java")));
         assertTrue("Checker.acceptFileStarted() doesn't call listener", fileFilter.wasCalled());
     }
@@ -956,7 +961,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         };
         checker.setModuleFactory(factory);
         checker.finishLocalSetup();
-        checker.setupChild(createCheckConfig(DummyFileSet.class));
+        checker.setupChild(createModuleConfig(DummyFileSet.class));
         assertTrue("FileSetCheck.init() wasn't called", fileSet.isInitCalled());
     }
 

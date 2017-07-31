@@ -332,7 +332,7 @@
     </inspection_tool>
     <inspection_tool class="ClassWithOnlyPrivateConstructors" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ClassWithTooManyDependencies" enabled="true" level="ERROR" enabled_by_default="true">
-        <option name="limit" value="33" />
+        <option name="limit" value="34" />
     </inspection_tool>
     <inspection_tool class="ClassWithTooManyDependents" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="limit" value="300" />
