@@ -44,8 +44,8 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 /**
  * @deprecated BaseCheckTestSupport is no longer used. All checks
- * now extend AbstractPathTestSupport, AbstractModuleTestSupport,
- * AbstractTreeTestSupport
+ * now extend {@link AbstractPathTestSupport}, {@link AbstractModuleTestSupport},
+ * {@link AbstractTreeTestSupport}.
  */
 @Deprecated
 public class BaseCheckTestSupport {
