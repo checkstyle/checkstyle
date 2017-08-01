@@ -32,7 +32,7 @@
     <suppress checks="Javadoc" files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <suppress checks="MagicNumber" files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <suppress checks="AvoidStaticImport" files=".*[\\/]src[\\/](test|it)[\\/]"/>
-    <suppress checks="ClassDataAbstractionCoupling" files="[\\/]IndentationCheckTest.java$|[\\/]SuppressWithNearbyCommentFilterTest.java$|[\\/]SuppressionCommentFilterTest.java$"/>
+    <suppress checks="ClassDataAbstractionCoupling" files="[\\/]IndentationCheckTest.java$|[\\/]SuppressWithNearbyCommentFilterTest.java$|[\\/]SuppressionCommentFilterTest.java|[\\/]DetailASTTest.java$"/>
     <suppress checks="EqualsAvoidNull" files="[\\/]Int.*FilterTest.java$"/>
     <suppress checks="VisibilityModifier" files="[\\/]BaseCheckTestSupport.java$|[\\/]AbstractModuleTestSupport.java$"/>
     <suppress checks="WriteTag" files=".*[\\/]src[\\/](test|it)[\\/]"/>

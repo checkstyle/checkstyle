@@ -23,8 +23,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertNull;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.Method;
+import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.BitSet;
@@ -32,16 +36,30 @@ import java.util.List;
 import java.util.Locale;
 import java.util.function.Consumer;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 import org.powermock.reflect.Whitebox;
 
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * TestCase to check DetailAST.
  * @author Oliver Burn
  */
-public class DetailASTTest {
+public class DetailASTTest extends AbstractModuleTestSupport {
+    @Rule
+    public final TemporaryFolder temporaryFolder = new TemporaryFolder();
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/api";
+    }
+
     private static Method getSetParentMethod() throws Exception {
         final Class<DetailAST> detailAstClass = DetailAST.class;
         final Method setParentMethod =
@@ -197,6 +215,25 @@ public class DetailASTTest {
         assertEquals("Invalid parent", parent, newSibling.getParent());
         assertEquals("Invalid next sibling", sibling, newSibling.getNextSibling());
         assertEquals("Invalid child", newSibling, child.getNextSibling());
+    }
+
+    @Test
+    public void testManyComments() throws Exception {
+        final File file = temporaryFolder.newFile("InputDetailASTManyComments.java");
+
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream(file), StandardCharsets.UTF_8))) {
+            bw.write("class C {\n");
+            for (int i = 0; i <= 30000; i++) {
+                bw.write("// " + i + "\n");
+            }
+            bw.write("}\n");
+        }
+
+        final DefaultConfiguration checkConfig = createModuleConfig(TodoCommentCheck.class);
+
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, file.getAbsolutePath(), expected);
     }
 
     /**
