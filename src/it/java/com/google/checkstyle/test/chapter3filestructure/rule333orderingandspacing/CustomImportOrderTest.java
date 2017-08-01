@@ -19,17 +19,14 @@
 
 package com.google.checkstyle.test.chapter3filestructure.rule333orderingandspacing;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class CustomImportOrderTest extends BaseCheckTestSupport {
+public class CustomImportOrderTest extends AbstractModuleTestSupport {
 
     /** Shortcuts to make code more compact. */
     private static final String MSG_LINE_SEPARATOR = CustomImportOrderCheck.MSG_LINE_SEPARATOR;
@@ -42,9 +39,8 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
     private final Class<CustomImportOrderCheck> clazz = CustomImportOrderCheck.class;
 
     @Override
-    protected String getPath(String fileName) throws IOException {
-        return super.getPath("chapter3filestructure" + File.separator + "rule333orderingandspacing"
-                + File.separator + fileName);
+    protected String getPackageLocation() {
+        return "com/google/checkstyle/test/chapter3filestructure/rule333orderingandspacing";
     }
 
     @Test

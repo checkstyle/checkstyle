@@ -19,21 +19,17 @@
 
 package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.BaseIndentationCheckSupport;
+import com.google.checkstyle.test.base.AbstractIndentationTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class IndentationTest extends BaseIndentationCheckSupport {
+public class IndentationTest extends AbstractIndentationTestSupport {
 
     @Override
-    protected String getPath(String fileName) throws IOException {
-        return super.getPath("chapter4formatting" + File.separator + "rule4841indentation"
-                + File.separator + fileName);
+    protected String getPackageLocation() {
+        return "com/google/checkstyle/test/chapter4formatting/rule4841indentation";
     }
 
     @Test

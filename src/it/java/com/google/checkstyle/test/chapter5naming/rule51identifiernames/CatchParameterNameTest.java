@@ -19,24 +19,20 @@
 
 package com.google.checkstyle.test.chapter5naming.rule51identifiernames;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public class CatchParameterNameTest extends BaseCheckTestSupport {
+public class CatchParameterNameTest extends AbstractModuleTestSupport {
     private static Configuration checkConfig;
     private static String format;
 
     @Override
-    protected String getPath(String fileName) throws IOException {
-        return super.getPath("chapter5naming" + File.separator + "rule51identifiernames"
-            + File.separator + fileName);
+    protected String getPackageLocation() {
+        return "com/google/checkstyle/test/chapter5naming/rule51identifiernames";
     }
 
     @BeforeClass

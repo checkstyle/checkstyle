@@ -19,23 +19,19 @@
 
 package com.google.checkstyle.test.chapter3filestructure.rule332nolinewrap;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.NoLineWrapCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class NoLineWrapTest extends BaseCheckTestSupport {
+public class NoLineWrapTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPath(String fileName) throws IOException {
-        return super.getPath("chapter3filestructure" + File.separator + "rule332nolinewrap"
-                + File.separator + fileName);
+    protected String getPackageLocation() {
+        return "com/google/checkstyle/test/chapter3filestructure/rule332nolinewrap";
     }
 
     @Test

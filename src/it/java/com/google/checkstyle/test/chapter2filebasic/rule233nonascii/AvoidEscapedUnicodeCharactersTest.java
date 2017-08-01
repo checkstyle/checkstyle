@@ -21,21 +21,17 @@ package com.google.checkstyle.test.chapter2filebasic.rule233nonascii;
 
 import static com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck.MSG_KEY;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck;
 
-public class AvoidEscapedUnicodeCharactersTest extends BaseCheckTestSupport {
+public class AvoidEscapedUnicodeCharactersTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPath(String fileName) throws IOException {
-        return super.getPath("chapter2filebasic" + File.separator + "rule233nonascii"
-                + File.separator + fileName);
+    protected String getPackageLocation() {
+        return "com/google/checkstyle/test/chapter2filebasic/rule233nonascii";
     }
 
     @Test

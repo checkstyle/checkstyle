@@ -19,22 +19,18 @@
 
 package com.google.checkstyle.test.chapter7javadoc.rule72thesummaryfragment;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class SummaryJavadocTest extends BaseCheckTestSupport {
+public class SummaryJavadocTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPath(String fileName) throws IOException {
-        return super.getPath("chapter7javadoc" + File.separator + "rule72thesummaryfragment"
-                + File.separator + fileName);
+    protected String getPackageLocation() {
+        return "com/google/checkstyle/test/chapter7javadoc/rule72thesummaryfragment";
     }
 
     @Test
