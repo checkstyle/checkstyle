@@ -31,4 +31,8 @@
     and do not have coverage problems due to imports from java.util.stream. -->
     <suppress id="ForbidInterfacesImportFromJavaUtilStream"
               files=".*[\\/]src[\\/](test|it)[\\/]"/>
+
+    <!-- Tone down the checking for test code -->
+    <suppress checks="ForbidCertainImports"
+              files="DetailASTTest\.java"/>
 </suppressions>

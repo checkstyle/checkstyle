@@ -199,13 +199,17 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
      * @param parent the parent token
      */
     private void setParent(DetailAST parent) {
-        clearBranchTokenTypes();
-        this.parent = parent;
-        final DetailAST nextSibling = getNextSibling();
-        if (nextSibling != null) {
-            nextSibling.setParent(parent);
-            nextSibling.previousSibling = this;
-        }
+        DetailAST instance = this;
+        do {
+            instance.clearBranchTokenTypes();
+            instance.parent = parent;
+            final DetailAST nextSibling = instance.getNextSibling();
+            if (nextSibling != null) {
+                nextSibling.previousSibling = instance;
+            }
+
+            instance = nextSibling;
+        } while (instance != null);
     }
 
     /**
