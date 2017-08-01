@@ -48,7 +48,7 @@ public class OneTopLevelClassTest extends AbstractModuleTestSupport {
             "77: " + getCheckMessage(clazz, messageKey, "AnotherClass"),
         };
 
-        final Configuration checkConfig = getCheckConfig("OneTopLevelClass");
+        final Configuration checkConfig = getModuleConfig("OneTopLevelClass");
         final String filePath = getPath("InputOneTopLevelClassBasic.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -60,7 +60,7 @@ public class OneTopLevelClassTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = getCheckConfig("OneTopLevelClass");
+        final Configuration checkConfig = getModuleConfig("OneTopLevelClass");
         final String filePath = getPath("InputOneTopLevelClassGood.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -77,7 +77,7 @@ public class OneTopLevelClassTest extends AbstractModuleTestSupport {
             "4: " + getCheckMessage(clazz, messageKey, "FooEnum"),
         };
 
-        final Configuration checkConfig = getCheckConfig("OneTopLevelClass");
+        final Configuration checkConfig = getModuleConfig("OneTopLevelClass");
         final String filePath = getPath("InputOneTopLevelClassBad1.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -95,7 +95,7 @@ public class OneTopLevelClassTest extends AbstractModuleTestSupport {
             "7: " + getCheckMessage(clazz, messageKey, "FooClass"),
         };
 
-        final Configuration checkConfig = getCheckConfig("OneTopLevelClass");
+        final Configuration checkConfig = getModuleConfig("OneTopLevelClass");
         final String filePath = getPath("InputOneTopLevelClassBad2.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

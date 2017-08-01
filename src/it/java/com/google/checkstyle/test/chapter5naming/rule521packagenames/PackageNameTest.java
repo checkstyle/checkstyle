@@ -47,7 +47,7 @@ public class PackageNameTest extends AbstractModuleTestSupport {
 
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException {
-        checkConfig = getCheckConfig("PackageName");
+        checkConfig = getModuleConfig("PackageName");
         format = checkConfig.getAttribute("format");
     }
 

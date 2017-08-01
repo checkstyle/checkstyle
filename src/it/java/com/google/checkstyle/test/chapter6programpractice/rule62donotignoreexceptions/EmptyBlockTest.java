@@ -41,7 +41,7 @@ public class EmptyBlockTest extends AbstractModuleTestSupport {
             "72:21: " + getCheckMessage(EmptyBlockCheck.class, "block.empty", "finally"),
         };
 
-        final Configuration checkConfig = getCheckConfig("EmptyBlock");
+        final Configuration checkConfig = getModuleConfig("EmptyBlock");
         final String filePath = getPath("InputEmptyBlockCatch.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

@@ -51,7 +51,7 @@ public class NonEmptyAtclauseDescriptionTest extends AbstractModuleTestSupport {
             "52: " + msg,
         };
 
-        final Configuration checkConfig = getCheckConfig("NonEmptyAtclauseDescription");
+        final Configuration checkConfig = getModuleConfig("NonEmptyAtclauseDescription");
         final String filePath = getPath("InputNonEmptyAtclauseDescriptionCheck.java");
 
         final Integer[] warnList = getLineNumbersFromExpected(expected);
@@ -72,7 +72,7 @@ public class NonEmptyAtclauseDescriptionTest extends AbstractModuleTestSupport {
             "40: " + msg,
         };
 
-        final Configuration checkConfig = getCheckConfig("NonEmptyAtclauseDescription");
+        final Configuration checkConfig = getModuleConfig("NonEmptyAtclauseDescription");
         final String filePath = getPath("InputNonEmptyAtclauseDescriptionCheckSpaceSeq.java");
 
         final Integer[] warnList = getLineNumbersFromExpected(expected);

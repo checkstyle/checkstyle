@@ -38,6 +38,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.BriefUtLogger;
@@ -49,7 +50,9 @@ import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.internal.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtils;
 
 public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport {
     private static final Pattern WARN_PATTERN = CommonUtils
@@ -58,6 +61,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     private static final String XML_NAME = "/google_checks.xml";
 
     private static Configuration configuration;
+
+    private static Set<Class<?>> checkstyleModules;
 
     private final ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
@@ -86,23 +91,61 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
-     * Creates {@link DefaultConfiguration} instance for the given check class.
-     * @param clazz check class.
+     * Creates {@link DefaultConfiguration} instance for the given module class.
+     * @param clazz module class.
      * @return {@link DefaultConfiguration} instance.
      */
-    private static DefaultConfiguration createCheckConfig(Class<?> clazz) {
+    private static DefaultConfiguration createModuleConfig(Class<?> clazz) {
         return new DefaultConfiguration(clazz.getName());
     }
 
     /**
+     * Creates {@link Checker} instance based on the given {@link Configuration} instance.
+     * @param moduleConfig {@link Configuration} instance.
+     * @return {@link Checker} instance based on the given {@link Configuration} instance.
+     * @throws Exception if an exception occurs during checker configuration.
+     */
+    public Checker createChecker(Configuration moduleConfig)
+            throws Exception {
+        if (checkstyleModules == null) {
+            checkstyleModules = CheckUtil.getCheckstyleModules();
+        }
+
+        final String name = moduleConfig.getName();
+        boolean addTreeWalker = false;
+
+        for (Class<?> moduleClass : checkstyleModules) {
+            if (moduleClass.getSimpleName().equals(name)
+                    || moduleClass.getSimpleName().equals(name + "Check")) {
+                if (ModuleReflectionUtils.isCheckstyleCheck(moduleClass)
+                        || ModuleReflectionUtils.isTreeWalkerFilterModule(moduleClass)) {
+                    addTreeWalker = true;
+                }
+                break;
+            }
+        }
+
+        return createChecker(moduleConfig, addTreeWalker);
+    }
+
+    /**
      * Creates {@link Checker} instance based on specified {@link Configuration}.
-     * @param checkConfig {@link Configuration} instance.
+     * @param moduleConfig {@link Configuration} instance.
      * @return {@link Checker} instance.
      * @throws CheckstyleException if an exception occurs during checker configuration.
+     * @noinspection BooleanParameter
      */
-    protected Checker createChecker(Configuration checkConfig)
+    protected Checker createChecker(Configuration moduleConfig, boolean addTreeWalker)
             throws Exception {
-        final DefaultConfiguration dc = createCheckerConfig(checkConfig);
+        final DefaultConfiguration dc;
+
+        if (addTreeWalker) {
+            dc = createTreeWalkerConfig(moduleConfig);
+        }
+        else {
+            dc = createRootConfig(moduleConfig);
+        }
+
         final Checker checker = new Checker();
         // make sure the tests always run with English error messages
         // so the tests don't fail in supported locales like German
@@ -121,14 +164,25 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param config {@link Configuration} instance.
      * @return {@link DefaultConfiguration} for the {@link Checker}.
      */
-    protected DefaultConfiguration createCheckerConfig(Configuration config) {
+    protected DefaultConfiguration createTreeWalkerConfig(Configuration config) {
         final DefaultConfiguration dc =
                 new DefaultConfiguration("configuration");
-        final DefaultConfiguration twConf = createCheckConfig(TreeWalker.class);
+        final DefaultConfiguration twConf = createModuleConfig(TreeWalker.class);
         // make sure that the tests always run with this charset
         dc.addAttribute("charset", "iso-8859-1");
         dc.addChild(twConf);
         twConf.addChild(config);
+        return dc;
+    }
+
+    /**
+     * Creates {@link DefaultConfiguration} for the given {@link Configuration} instance.
+     * @param config {@link Configuration} instance.
+     * @return {@link DefaultConfiguration} for the given {@link Configuration} instance.
+     */
+    protected DefaultConfiguration createRootConfig(Configuration config) {
+        final DefaultConfiguration dc = new DefaultConfiguration("root");
+        dc.addChild(config);
         return dc;
     }
 
@@ -246,42 +300,37 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
-     * Returns {@link Configuration} instance for the given check name.
+     * Returns {@link Configuration} instance for the given module name.
      * This implementation uses {@link AbstractModuleTestSupport#getConfiguration()} method inside.
-     * @param checkName check name.
-     * @return {@link Configuration} instance for the given check name.
+     * @param moduleName module name.
+     * @return {@link Configuration} instance for the given module name.
      * @throws CheckstyleException if exception occurs during configuration loading.
      */
-    protected static Configuration getCheckConfig(String checkName) throws CheckstyleException {
-        final Configuration result;
-        final List<Configuration> configs = getCheckConfigs(checkName);
-        if (configs.size() == 1) {
-            result = configs.get(0);
-        }
-        else {
-            throw new IllegalStateException("multiple instances of the same Check are detected");
-        }
-        return result;
+    protected static Configuration getModuleConfig(String moduleName) throws CheckstyleException {
+        return getModuleConfig(moduleName, null);
     }
 
     /**
-     * Returns {@link Configuration} instance for the given check name.
+     * Returns {@link Configuration} instance for the given module name.
      * This implementation uses {@link AbstractModuleTestSupport#getConfiguration()} method inside.
-     * @param checkName check name.
-     * @return {@link Configuration} instance for the given check name.
+     * @param moduleName module name.
+     * @return {@link Configuration} instance for the given module name.
      * @throws CheckstyleException if exception occurs during configuration loading.
      */
-    protected static Configuration getCheckConfig(String checkName, String checkId)
+    protected static Configuration getModuleConfig(String moduleName, String moduleId)
             throws CheckstyleException {
         final Configuration result;
-        final List<Configuration> configs = getCheckConfigs(checkName);
+        final List<Configuration> configs = getModuleConfigs(moduleName);
         if (configs.size() == 1) {
             result = configs.get(0);
+        }
+        else if (moduleId == null) {
+            throw new IllegalStateException("multiple instances of the same Module are detected");
         }
         else {
             result = configs.stream().filter(conf -> {
                 try {
-                    return conf.getAttribute("id").equals(checkId);
+                    return conf.getAttribute("id").equals(moduleId);
                 }
                 catch (CheckstyleException ex) {
                     throw new IllegalStateException("problem to get ID attribute from " + conf, ex);
@@ -289,28 +338,29 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             })
             .findFirst().orElseGet(null);
         }
+
         return result;
     }
 
     /**
-     * Returns a list of all {@link Configuration} instances for the given check name.
+     * Returns a list of all {@link Configuration} instances for the given module name.
      * This implementation uses {@link AbstractModuleTestSupport#getConfiguration()} method inside.
-     * @param checkName check name.
-     * @return {@link Configuration} instance for the given check name.
+     * @param moduleName module name.
+     * @return {@link Configuration} instance for the given module name.
      * @throws CheckstyleException if exception occurs during configuration loading.
      */
-    protected static List<Configuration> getCheckConfigs(String checkName)
+    protected static List<Configuration> getModuleConfigs(String moduleName)
             throws CheckstyleException {
         final List<Configuration> result = new ArrayList<>();
         for (Configuration currentConfig : getConfiguration().getChildren()) {
             if ("TreeWalker".equals(currentConfig.getName())) {
-                for (Configuration checkConfig : currentConfig.getChildren()) {
-                    if (checkName.equals(checkConfig.getName())) {
-                        result.add(checkConfig);
+                for (Configuration moduleConfig : currentConfig.getChildren()) {
+                    if (moduleName.equals(moduleConfig.getName())) {
+                        result.add(moduleConfig);
                     }
                 }
             }
-            else if (checkName.equals(currentConfig.getName())) {
+            else if (moduleName.equals(currentConfig.getName())) {
                 result.add(currentConfig);
             }
         }

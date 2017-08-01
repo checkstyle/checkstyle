@@ -47,7 +47,7 @@ public class LeftCurlyTest extends AbstractModuleTestSupport {
             "97:5: " + getCheckMessage(LeftCurlyCheck.class, MSG_KEY_LINE_PREVIOUS, "{", 5),
         };
 
-        final Configuration checkConfig = getCheckConfig("LeftCurly");
+        final Configuration checkConfig = getModuleConfig("LeftCurly");
         final String filePath = getPath("InputLeftCurlyBraces.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -65,7 +65,7 @@ public class LeftCurlyTest extends AbstractModuleTestSupport {
             "50:5: " + getCheckMessage(LeftCurlyCheck.class, MSG_KEY_LINE_PREVIOUS, "{", 5),
         };
 
-        final Configuration checkConfig = getCheckConfig("LeftCurly");
+        final Configuration checkConfig = getModuleConfig("LeftCurly");
         final String filePath = getPath("InputLeftCurlyAnnotations.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -93,7 +93,7 @@ public class LeftCurlyTest extends AbstractModuleTestSupport {
             "76:5: " + getCheckMessage(LeftCurlyCheck.class, MSG_KEY_LINE_PREVIOUS, "{", 5),
         };
 
-        final Configuration checkConfig = getCheckConfig("LeftCurly");
+        final Configuration checkConfig = getModuleConfig("LeftCurly");
         final String filePath = getPath("InputLeftCurlyMethod.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

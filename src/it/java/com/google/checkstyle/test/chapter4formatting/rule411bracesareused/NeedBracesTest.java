@@ -79,7 +79,7 @@ public class NeedBracesTest extends AbstractModuleTestSupport {
             "210: " + getCheckMessage(clazz, messageKey, "for"),
         };
 
-        final Configuration checkConfig = getCheckConfig("NeedBraces");
+        final Configuration checkConfig = getModuleConfig("NeedBraces");
         final String filePath = getPath("InputNeedBraces.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

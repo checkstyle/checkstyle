@@ -44,7 +44,7 @@ public class EmptyCatchBlockTest extends AbstractModuleTestSupport {
             "83: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
         };
 
-        final Configuration checkConfig = getCheckConfig("EmptyCatchBlock");
+        final Configuration checkConfig = getModuleConfig("EmptyCatchBlock");
         final String filePath = getPath("InputEmptyBlockCatch.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -56,7 +56,7 @@ public class EmptyCatchBlockTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = getCheckConfig("EmptyCatchBlock");
+        final Configuration checkConfig = getModuleConfig("EmptyCatchBlock");
         final String filePath = getPath("InputEmptyCatchBlockNoViolations.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -71,7 +71,7 @@ public class EmptyCatchBlockTest extends AbstractModuleTestSupport {
             "27: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
         };
 
-        final Configuration checkConfig = getCheckConfig("EmptyCatchBlock");
+        final Configuration checkConfig = getModuleConfig("EmptyCatchBlock");
         final String filePath = getPath("InputEmptyCatchBlockViolationsByComment.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -87,7 +87,7 @@ public class EmptyCatchBlockTest extends AbstractModuleTestSupport {
             "58: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
         };
 
-        final Configuration checkConfig = getCheckConfig("EmptyCatchBlock");
+        final Configuration checkConfig = getModuleConfig("EmptyCatchBlock");
         final String filePath = getPath("InputEmptyCatchBlockViolationsByVariableName.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

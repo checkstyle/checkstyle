@@ -47,7 +47,7 @@ public class VariableDeclarationUsageDistanceTest extends AbstractModuleTestSupp
         };
 
         final Configuration checkConfig =
-            getCheckConfig("VariableDeclarationUsageDistance");
+            getModuleConfig("VariableDeclarationUsageDistance");
         final String filePath = getPath("InputVariableDeclarationUsageDistanceCheck.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

@@ -36,7 +36,7 @@ public class GenericWhitespaceTest extends AbstractModuleTestSupport {
 
         final String msgPreceded = "ws.preceded";
         final String msgFollowed = "ws.followed";
-        final Configuration checkConfig = getCheckConfig("GenericWhitespace");
+        final Configuration checkConfig = getModuleConfig("GenericWhitespace");
 
         final String[] expected = {
             "12:16: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, "<"),
@@ -69,7 +69,7 @@ public class GenericWhitespaceTest extends AbstractModuleTestSupport {
         final String msgFollowed = "ws.followed";
         final String msgNotPreceded = "ws.notPreceded";
         final String msgIllegalFollow = "ws.illegalFollow";
-        final Configuration checkConfig = getCheckConfig("GenericWhitespace");
+        final Configuration checkConfig = getModuleConfig("GenericWhitespace");
 
         final String[] expected = {
             "16:13: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, "<"),
@@ -108,7 +108,7 @@ public class GenericWhitespaceTest extends AbstractModuleTestSupport {
 
     @Test
     public void genericEndsTheLine() throws Exception {
-        final Configuration checkConfig = getCheckConfig("GenericWhitespace");
+        final Configuration checkConfig = getModuleConfig("GenericWhitespace");
         final String[] expected = {
         };
         verify(checkConfig, getPath("InputGenericWhitespaceEndsTheLine.java"),

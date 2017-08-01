@@ -96,7 +96,7 @@ public class ModifierOrderTest extends AbstractModuleTestSupport {
             "245:14: " + getCheckMessage(clazz, msgMod, "default"),
         };
 
-        final Configuration checkConfig = getCheckConfig("ModifierOrder");
+        final Configuration checkConfig = getModuleConfig("ModifierOrder");
         final String filePath = getPath("InputModifierOrder.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

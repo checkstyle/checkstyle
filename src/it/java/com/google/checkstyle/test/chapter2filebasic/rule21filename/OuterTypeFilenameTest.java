@@ -40,7 +40,7 @@ public class OuterTypeFilenameTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = getCheckConfig("OuterTypeFilename");
+        final Configuration checkConfig = getModuleConfig("OuterTypeFilename");
         final String filePath = getPath("InputOuterTypeFilename1.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -52,7 +52,7 @@ public class OuterTypeFilenameTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = getCheckConfig("OuterTypeFilename");
+        final Configuration checkConfig = getModuleConfig("OuterTypeFilename");
         final String filePath = getPath("InputOuterTypeFilename2.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -66,7 +66,7 @@ public class OuterTypeFilenameTest extends AbstractModuleTestSupport {
             "3: " + getCheckMessage(OuterTypeFilenameCheck.class, MSG_KEY),
         };
 
-        final Configuration checkConfig = getCheckConfig("OuterTypeFilename");
+        final Configuration checkConfig = getModuleConfig("OuterTypeFilename");
         final String filePath = getPath("InputOuterTypeFilename3.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

@@ -41,7 +41,7 @@ public class NoFinalizerTest extends AbstractModuleTestSupport {
             "5: " + msg,
         };
 
-        final Configuration checkConfig = getCheckConfig("NoFinalizer");
+        final Configuration checkConfig = getModuleConfig("NoFinalizer");
         final String filePath = getPath("InputNoFinalizer.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -65,7 +65,7 @@ public class NoFinalizerTest extends AbstractModuleTestSupport {
             "136: " + msg,
         };
 
-        final Configuration checkConfig = getCheckConfig("NoFinalizer");
+        final Configuration checkConfig = getModuleConfig("NoFinalizer");
         final String filePath = getPath("InputNoFinalizeExtend.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

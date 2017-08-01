@@ -38,7 +38,7 @@ public class SummaryJavadocTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = getCheckConfig("SummaryJavadoc");
+        final Configuration checkConfig = getModuleConfig("SummaryJavadoc");
         final String filePath = getPath("InputCorrectSummaryJavaDocCheck.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -68,7 +68,7 @@ public class SummaryJavadocTest extends AbstractModuleTestSupport {
             "103: " + msgMissingDoc,
         };
 
-        final Configuration checkConfig = getCheckConfig("SummaryJavadoc");
+        final Configuration checkConfig = getModuleConfig("SummaryJavadoc");
         final String filePath = getPath("InputIncorrectSummaryJavaDocCheck.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

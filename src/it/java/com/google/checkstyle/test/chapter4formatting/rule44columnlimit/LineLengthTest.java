@@ -40,7 +40,7 @@ public class LineLengthTest extends AbstractModuleTestSupport {
             "29: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 113),
         };
 
-        final Configuration checkConfig = getCheckConfig("LineLength");
+        final Configuration checkConfig = getModuleConfig("LineLength");
         final String filePath = getPath("InputLineLength.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

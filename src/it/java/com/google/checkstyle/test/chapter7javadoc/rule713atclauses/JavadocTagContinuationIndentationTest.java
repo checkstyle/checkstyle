@@ -52,7 +52,7 @@ public class JavadocTagContinuationIndentationTest extends AbstractModuleTestSup
             "322: " + msg,
         };
 
-        final Configuration checkConfig = getCheckConfig("JavadocTagContinuationIndentation");
+        final Configuration checkConfig = getModuleConfig("JavadocTagContinuationIndentation");
         final String filePath = getPath("InputJavaDocTagContinuationIndentation.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

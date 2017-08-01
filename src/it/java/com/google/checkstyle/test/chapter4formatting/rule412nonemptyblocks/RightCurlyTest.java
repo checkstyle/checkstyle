@@ -46,7 +46,7 @@ public class RightCurlyTest extends AbstractModuleTestSupport {
             "79:27: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_BREAK_BEFORE, "}", 27),
         };
 
-        final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlySame");
+        final Configuration checkConfig = getModuleConfig("RightCurly", "RightCurlySame");
         final String filePath = getPath("InputRightCurlyOther.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -57,7 +57,7 @@ public class RightCurlyTest extends AbstractModuleTestSupport {
     public void testRightCurlySame() throws Exception {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlySame");
+        final Configuration checkConfig = getModuleConfig("RightCurly", "RightCurlySame");
         final String filePath = getPath("InputRightCurlySame.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -72,7 +72,7 @@ public class RightCurlyTest extends AbstractModuleTestSupport {
             "83:9: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_SAME, "}", 9),
         };
 
-        final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlySame");
+        final Configuration checkConfig = getModuleConfig("RightCurly", "RightCurlySame");
         final String filePath = getPath("InputRightCurlyDoWhile.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -89,7 +89,7 @@ public class RightCurlyTest extends AbstractModuleTestSupport {
             "122:6: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_NEW, "}", 6),
         };
 
-        final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlyAlone");
+        final Configuration checkConfig = getModuleConfig("RightCurly", "RightCurlyAlone");
         final String filePath = getPath("InputRightCurlyOtherAlone.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -100,7 +100,7 @@ public class RightCurlyTest extends AbstractModuleTestSupport {
     public void testRightCurlyAloneSame() throws Exception {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlyAlone");
+        final Configuration checkConfig = getModuleConfig("RightCurly", "RightCurlyAlone");
         final String filePath = getPath("InputRightCurlySame.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -111,7 +111,7 @@ public class RightCurlyTest extends AbstractModuleTestSupport {
     public void testRightCurlyAloneSameAndLiteralDo() throws Exception {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlyAlone");
+        final Configuration checkConfig = getModuleConfig("RightCurly", "RightCurlyAlone");
         final String filePath = getPath("InputRightCurlyDoWhileAlone.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

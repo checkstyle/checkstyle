@@ -41,7 +41,7 @@ public class AvoidStarImportTest extends AbstractModuleTestSupport {
             "19: Using the '.*' form of import should be avoided - javax.swing.WindowConstants.*.",
         };
 
-        final Configuration checkConfig = getCheckConfig("AvoidStarImport");
+        final Configuration checkConfig = getModuleConfig("AvoidStarImport");
         final String filePath = getPath("InputAvoidStarImport.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

@@ -35,7 +35,7 @@ public class ClassTypeParameterNameTest extends AbstractModuleTestSupport {
 
     @Test
     public void testClassDefault() throws Exception {
-        final Configuration configuration = getCheckConfig("ClassTypeParameterName");
+        final Configuration configuration = getModuleConfig("ClassTypeParameterName");
         final String format = configuration.getAttribute("format");
 
         final String[] expected = {

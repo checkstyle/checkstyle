@@ -59,7 +59,7 @@ public class CustomImportOrderTest extends AbstractModuleTestSupport {
                 "javax.swing.JTable"),
         };
 
-        final Configuration checkConfig = getCheckConfig("CustomImportOrder");
+        final Configuration checkConfig = getModuleConfig("CustomImportOrder");
         final String filePath = getPath("InputCustomImportOrder1.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -84,7 +84,7 @@ public class CustomImportOrderTest extends AbstractModuleTestSupport {
                 "java.util.concurrent.AbstractExecutorService"),
         };
 
-        final Configuration checkConfig = getCheckConfig("CustomImportOrder");
+        final Configuration checkConfig = getModuleConfig("CustomImportOrder");
         final String filePath = getPath("InputCustomImportOrder2.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -111,7 +111,7 @@ public class CustomImportOrderTest extends AbstractModuleTestSupport {
                 "java.util.concurrent.AbstractExecutorService"),
         };
 
-        final Configuration checkConfig = getCheckConfig("CustomImportOrder");
+        final Configuration checkConfig = getModuleConfig("CustomImportOrder");
         final String filePath = getPath("InputCustomImportOrder3.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -123,7 +123,7 @@ public class CustomImportOrderTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = getCheckConfig("CustomImportOrder");
+        final Configuration checkConfig = getModuleConfig("CustomImportOrder");
         final String filePath = getPath("InputCustomImportOrderValid.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -134,7 +134,7 @@ public class CustomImportOrderTest extends AbstractModuleTestSupport {
     public void testValidGoogleStyleOrderOfImports() throws Exception {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = getCheckConfig("CustomImportOrder");
+        final Configuration checkConfig = getModuleConfig("CustomImportOrder");
         final String filePath = getPath("InputCustomImportOrderNoImports.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

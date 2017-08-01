@@ -46,7 +46,7 @@ public class OverloadMethodsDeclarationOrderTest extends AbstractModuleTestSuppo
             "109: " + getCheckMessage(clazz, messageKey, 98),
         };
 
-        final Configuration checkConfig = getCheckConfig("OverloadMethodsDeclarationOrder");
+        final Configuration checkConfig = getModuleConfig("OverloadMethodsDeclarationOrder");
         final String filePath = getPath("InputOverloadMethodsDeclarationOrder.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

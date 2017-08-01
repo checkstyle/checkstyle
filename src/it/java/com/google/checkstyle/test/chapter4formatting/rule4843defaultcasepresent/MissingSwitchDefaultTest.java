@@ -47,7 +47,7 @@ public class MissingSwitchDefaultTest extends AbstractModuleTestSupport {
             "42: " + msg,
         };
 
-        final Configuration checkConfig = getCheckConfig("MissingSwitchDefault");
+        final Configuration checkConfig = getModuleConfig("MissingSwitchDefault");
         final String filePath = getPath("InputMissingSwitchDefault.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

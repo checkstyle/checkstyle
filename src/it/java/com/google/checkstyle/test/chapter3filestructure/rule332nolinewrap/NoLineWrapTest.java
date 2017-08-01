@@ -43,7 +43,7 @@ public class NoLineWrapTest extends AbstractModuleTestSupport {
             "10: " + getCheckMessage(NoLineWrapCheck.class, "no.line.wrap", "import"),
         };
 
-        final Configuration checkConfig = getCheckConfig("NoLineWrap");
+        final Configuration checkConfig = getModuleConfig("NoLineWrap");
         final String filePath = getPath("InputNoLineWrapBad.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -55,7 +55,7 @@ public class NoLineWrapTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = getCheckConfig("NoLineWrap");
+        final Configuration checkConfig = getModuleConfig("NoLineWrap");
         final String filePath = getPath("InputNoLineWrapGood.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -71,7 +71,7 @@ public class NoLineWrapTest extends AbstractModuleTestSupport {
             "29: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", maxLineLength, 113),
         };
 
-        final Configuration checkConfig = getCheckConfig("LineLength");
+        final Configuration checkConfig = getModuleConfig("LineLength");
         final String filePath = getPath("InputLineLength.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

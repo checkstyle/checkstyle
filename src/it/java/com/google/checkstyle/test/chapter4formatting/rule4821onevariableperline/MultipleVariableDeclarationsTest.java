@@ -63,7 +63,7 @@ public class MultipleVariableDeclarationsTest extends AbstractModuleTestSupport 
             "89:5: " + msgComma,
         };
 
-        final Configuration checkConfig = getCheckConfig("MultipleVariableDeclarations");
+        final Configuration checkConfig = getModuleConfig("MultipleVariableDeclarations");
         final String filePath = getPath("InputMultipleVariableDeclarations.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

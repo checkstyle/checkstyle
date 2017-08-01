@@ -22,7 +22,6 @@ package com.google.checkstyle.test.chapter2filebasic.rule231filetab;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck;
 
@@ -31,13 +30,6 @@ public class FileTabCharacterTest extends AbstractModuleTestSupport {
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter2filebasic/rule231filetab";
-    }
-
-    @Override
-    protected DefaultConfiguration createCheckerConfig(Configuration config) {
-        final DefaultConfiguration dc = new DefaultConfiguration("root");
-        dc.addChild(config);
-        return dc;
     }
 
     @Test
@@ -55,7 +47,7 @@ public class FileTabCharacterTest extends AbstractModuleTestSupport {
             "134:3: " + getCheckMessage(FileTabCharacterCheck.class, "containsTab"),
         };
 
-        final Configuration checkConfig = getCheckConfig("FileTabCharacter");
+        final Configuration checkConfig = getModuleConfig("FileTabCharacter");
         final String filePath = getPath("InputFileTabCharacter.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
