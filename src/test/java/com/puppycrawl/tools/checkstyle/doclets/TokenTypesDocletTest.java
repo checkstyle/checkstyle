@@ -31,8 +31,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.tools.JavaFileObject;
-
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
@@ -168,8 +166,8 @@ public class TokenTypesDocletTest extends AbstractPathTestSupport {
                     names.toList(),
                     options.toList(),
                     false,
-                    new ListBuffer<String>().toList(),
-                    new ListBuffer<String>().toList(),
+                    new ListBuffer<>().toList(),
+                    new ListBuffer<>().toList(),
                     false, false, false);
         }
         else {
@@ -177,10 +175,10 @@ public class TokenTypesDocletTest extends AbstractPathTestSupport {
                     new ModifierFilter(ModifierFilter.ALL_ACCESS),
                     names.toList(),
                     options.toList(),
-                    new ListBuffer<JavaFileObject>().toList(),
+                    new ListBuffer<>().toList(),
                     false,
-                    new ListBuffer<String>().toList(),
-                    new ListBuffer<String>().toList(),
+                    new ListBuffer<>().toList(),
+                    new ListBuffer<>().toList(),
                     false, false, false);
         }
         return rootDoc;

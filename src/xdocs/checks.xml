@@ -164,6 +164,10 @@
         <td>Checks that classes are designed for inheritance.</td>
       </tr>
       <tr>
+        <td><a href="config_coding.html#DiamondOperatorForVariableDefinition">DiamondOperatorForVariableDefinition</a></td>
+        <td>Checks that the diamond operator is used in variable definition.</td>
+      </tr>
+      <tr>
         <td><a href="config_blocks.html#EmptyBlock">EmptyBlock</a></td>
         <td>Checks for empty blocks but does not validate sequential blocks.</td>
       </tr>
