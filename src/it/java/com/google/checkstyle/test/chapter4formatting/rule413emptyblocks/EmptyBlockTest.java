@@ -19,21 +19,17 @@
 
 package com.google.checkstyle.test.chapter4formatting.rule413emptyblocks;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck;
 
-public class EmptyBlockTest extends BaseCheckTestSupport {
+public class EmptyBlockTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPath(String fileName) throws IOException {
-        return super.getPath("chapter4formatting" + File.separator + "rule413emptyblocks"
-                + File.separator + fileName);
+    protected String getPackageLocation() {
+        return "com/google/checkstyle/test/chapter4formatting/rule413emptyblocks";
     }
 
     @Test

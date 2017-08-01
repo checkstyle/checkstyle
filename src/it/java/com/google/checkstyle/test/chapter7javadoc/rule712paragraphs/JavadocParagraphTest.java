@@ -19,22 +19,18 @@
 
 package com.google.checkstyle.test.chapter7javadoc.rule712paragraphs;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class JavadocParagraphTest extends BaseCheckTestSupport {
+public class JavadocParagraphTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPath(String fileName) throws IOException {
-        return super.getPath("chapter7javadoc" + File.separator + "rule712paragraphs"
-                + File.separator + fileName);
+    protected String getPackageLocation() {
+        return "com/google/checkstyle/test/chapter7javadoc/rule712paragraphs";
     }
 
     @Test

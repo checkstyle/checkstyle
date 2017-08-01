@@ -24,22 +24,18 @@ import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_NEW;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_SAME;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class RightCurlyTest extends BaseCheckTestSupport {
+public class RightCurlyTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPath(String fileName) throws IOException {
-        return super.getPath("chapter4formatting" + File.separator + "rule412nonemptyblocks"
-                + File.separator + fileName);
+    protected String getPackageLocation() {
+        return "com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks";
     }
 
     @Test

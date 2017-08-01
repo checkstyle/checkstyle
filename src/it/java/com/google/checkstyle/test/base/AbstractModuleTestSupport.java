@@ -51,7 +51,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class BaseCheckTestSupport {
+public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport {
     private static final Pattern WARN_PATTERN = CommonUtils
             .createPattern(".*[ ]*//[ ]*warn[ ]*|/[*]\\s?warn\\s?[*]/");
 
@@ -133,25 +133,12 @@ public class BaseCheckTestSupport {
     }
 
     /**
-     * Returns canonical path for the file with the given file name.
-     * The path is formed based on the specific root location.
-     * This implementation uses 'src/it/resources/com/google/checkstyle/test/' as a root location.
-     * @param fileName file name.
-     * @return canonical path for the the file with the given file name.
-     * @throws IOException if I/O exception occurs while forming the path.
-     */
-    protected String getPath(String fileName) throws IOException {
-        return new File("src/it/resources/com/google/checkstyle/test/" + fileName)
-                .getCanonicalPath();
-    }
-
-    /**
      * Performs verification of the file with given file name. Uses specified configuration.
      * Expected messages are represented by the array of strings, warning line numbers are
      * represented by the array of integers.
      * This implementation uses overloaded
-     * {@link BaseCheckTestSupport#verify(Checker, File[], String, String[], Integer...)} method
-     * inside.
+     * {@link AbstractModuleTestSupport#verify(Checker, File[], String, String[], Integer...)}
+     * method inside.
      * @param config configuration.
      * @param fileName file name to verify.
      * @param expected an array of expected messages.
@@ -260,7 +247,7 @@ public class BaseCheckTestSupport {
 
     /**
      * Returns {@link Configuration} instance for the given check name.
-     * This implementation uses {@link BaseCheckTestSupport#getConfiguration()} method inside.
+     * This implementation uses {@link AbstractModuleTestSupport#getConfiguration()} method inside.
      * @param checkName check name.
      * @return {@link Configuration} instance for the given check name.
      * @throws CheckstyleException if exception occurs during configuration loading.
@@ -279,7 +266,7 @@ public class BaseCheckTestSupport {
 
     /**
      * Returns {@link Configuration} instance for the given check name.
-     * This implementation uses {@link BaseCheckTestSupport#getConfiguration()} method inside.
+     * This implementation uses {@link AbstractModuleTestSupport#getConfiguration()} method inside.
      * @param checkName check name.
      * @return {@link Configuration} instance for the given check name.
      * @throws CheckstyleException if exception occurs during configuration loading.
@@ -307,7 +294,7 @@ public class BaseCheckTestSupport {
 
     /**
      * Returns a list of all {@link Configuration} instances for the given check name.
-     * This implementation uses {@link BaseCheckTestSupport#getConfiguration()} method inside.
+     * This implementation uses {@link AbstractModuleTestSupport#getConfiguration()} method inside.
      * @param checkName check name.
      * @return {@link Configuration} instance for the given check name.
      * @throws CheckstyleException if exception occurs during configuration loading.

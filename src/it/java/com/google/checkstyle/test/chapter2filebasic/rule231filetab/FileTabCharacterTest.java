@@ -19,22 +19,18 @@
 
 package com.google.checkstyle.test.chapter2filebasic.rule231filetab;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck;
 
-public class FileTabCharacterTest extends BaseCheckTestSupport {
+public class FileTabCharacterTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPath(String fileName) throws IOException {
-        return super.getPath("chapter2filebasic" + File.separator + "rule231filetab"
-                + File.separator + fileName);
+    protected String getPackageLocation() {
+        return "com/google/checkstyle/test/chapter2filebasic/rule231filetab";
     }
 
     @Override

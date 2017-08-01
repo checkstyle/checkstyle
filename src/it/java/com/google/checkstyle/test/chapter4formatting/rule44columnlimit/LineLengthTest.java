@@ -19,21 +19,17 @@
 
 package com.google.checkstyle.test.chapter4formatting.rule44columnlimit;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 
-public class LineLengthTest extends BaseCheckTestSupport {
+public class LineLengthTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPath(String fileName) throws IOException {
-        return super.getPath("chapter4formatting" + File.separator + "rule44columnlimit"
-                + File.separator + fileName);
+    protected String getPackageLocation() {
+        return "com/google/checkstyle/test/chapter4formatting/rule44columnlimit";
     }
 
     @Test

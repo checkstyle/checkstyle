@@ -19,21 +19,17 @@
 
 package com.google.checkstyle.test.chapter4formatting.rule4842fallthrough;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck;
 
-public class FallThroughTest extends BaseCheckTestSupport {
+public class FallThroughTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPath(String fileName) throws IOException {
-        return super.getPath("chapter4formatting" + File.separator + "rule4842fallthrough"
-                + File.separator + fileName);
+    protected String getPackageLocation() {
+        return "com/google/checkstyle/test/chapter4formatting/rule4842fallthrough";
     }
 
     @Test
