@@ -78,6 +78,19 @@ public class ModifiedControlVariableCheckTest
     }
 
     @Test
+    public void testEnhancedForLoopVariable2() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(ModifiedControlVariableCheck.class);
+        checkConfig.addAttribute("skipEnhancedForLoopVariable", "true");
+
+        final String[] expected = {
+            "14:18: " + getCheckMessage(MSG_KEY, "i"),
+        };
+        verify(checkConfig, getPath("InputModifiedControlVariableEnhancedForLoopVariable2.java"),
+            expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final ModifiedControlVariableCheck check = new ModifiedControlVariableCheck();
         Assert.assertNotNull("Acceptable tokens should not be null", check.getAcceptableTokens());
