@@ -64,7 +64,7 @@ public class OneStatementPerLineTest extends AbstractModuleTestSupport {
             "307:39: " + msg,
         };
 
-        final Configuration checkConfig = getCheckConfig("OneStatementPerLine");
+        final Configuration checkConfig = getModuleConfig("OneStatementPerLine");
         final String filePath = getPath("InputOneStatementPerLine.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -86,7 +86,7 @@ public class OneStatementPerLineTest extends AbstractModuleTestSupport {
             "43:91: " + msg,
         };
 
-        final Configuration checkConfig = getCheckConfig("OneStatementPerLine");
+        final Configuration checkConfig = getModuleConfig("OneStatementPerLine");
         final String filePath = new File("src/test/resources-noncompilable/"
             + "com/puppycrawl/tools/checkstyle/checks/coding/onestatementperline/"
             + "InputOneStatementPerLine.java").getCanonicalPath();

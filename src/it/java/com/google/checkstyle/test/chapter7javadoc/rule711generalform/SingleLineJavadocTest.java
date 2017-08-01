@@ -47,7 +47,7 @@ public class SingleLineJavadocTest extends AbstractModuleTestSupport {
             "41: " + msg,
         };
 
-        final Configuration checkConfig = getCheckConfig("SingleLineJavadoc");
+        final Configuration checkConfig = getModuleConfig("SingleLineJavadoc");
         final String filePath = getPath("InputSingleLineJavadocCheck.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

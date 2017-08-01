@@ -38,7 +38,7 @@ public class AtclauseOrderTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = getCheckConfig("AtclauseOrder");
+        final Configuration checkConfig = getModuleConfig("AtclauseOrder");
         final String filePath = getPath("InputCorrectAtClauseOrderCheck.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -80,7 +80,7 @@ public class AtclauseOrderTest extends AbstractModuleTestSupport {
             "261: " + msg,
         };
 
-        final Configuration checkConfig = getCheckConfig("AtclauseOrder");
+        final Configuration checkConfig = getModuleConfig("AtclauseOrder");
         final String filePath = getPath("InputIncorrectAtClauseOrderCheck.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

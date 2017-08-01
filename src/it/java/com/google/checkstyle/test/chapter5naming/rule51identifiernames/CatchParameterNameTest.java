@@ -37,7 +37,7 @@ public class CatchParameterNameTest extends AbstractModuleTestSupport {
 
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException {
-        checkConfig = getCheckConfig("CatchParameterName");
+        checkConfig = getModuleConfig("CatchParameterName");
         format = checkConfig.getAttribute("format");
     }
 

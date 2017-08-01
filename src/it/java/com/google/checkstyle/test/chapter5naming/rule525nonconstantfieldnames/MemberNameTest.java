@@ -39,7 +39,7 @@ public class MemberNameTest extends AbstractModuleTestSupport {
 
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException {
-        checkConfig = getCheckConfig("MemberName");
+        checkConfig = getModuleConfig("MemberName");
         format = checkConfig.getAttribute("format");
     }
 

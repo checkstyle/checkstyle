@@ -42,7 +42,7 @@ public class ParameterNameTest extends AbstractModuleTestSupport {
 
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException {
-        final List<Configuration> configs = getCheckConfigs("ParameterName");
+        final List<Configuration> configs = getModuleConfigs("ParameterName");
 
         Assert.assertEquals("Invalid configs size", 1, configs.size());
 

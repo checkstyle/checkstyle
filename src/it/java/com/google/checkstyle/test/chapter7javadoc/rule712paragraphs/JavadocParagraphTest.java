@@ -38,7 +38,7 @@ public class JavadocParagraphTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = getCheckConfig("JavadocParagraph");
+        final Configuration checkConfig = getModuleConfig("JavadocParagraph");
         final String filePath = getPath("InputCorrectJavadocParagraphCheck.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -88,7 +88,7 @@ public class JavadocParagraphTest extends AbstractModuleTestSupport {
             "73: " + msgBefore,
         };
 
-        final Configuration checkConfig = getCheckConfig("JavadocParagraph");
+        final Configuration checkConfig = getModuleConfig("JavadocParagraph");
         final String filePath = getPath("InputIncorrectJavadocParagraphCheck.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

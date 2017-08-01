@@ -60,7 +60,7 @@ public class OperatorWrapTest extends AbstractModuleTestSupport {
             "194:38: " + getCheckMessage(clazz, messageKey, "?"),
         };
 
-        final Configuration checkConfig = getCheckConfig("OperatorWrap");
+        final Configuration checkConfig = getModuleConfig("OperatorWrap");
         final String filePath = getPath("InputOperatorWrap.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

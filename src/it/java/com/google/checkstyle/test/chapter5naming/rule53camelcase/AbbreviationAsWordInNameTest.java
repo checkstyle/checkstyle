@@ -54,7 +54,7 @@ public class AbbreviationAsWordInNameTest extends AbstractModuleTestSupport {
 
         final String filePath = getPath("InputAbbreviationAsWordInTypeNameCheck.java");
 
-        final Configuration checkConfig = getCheckConfig("AbbreviationAsWordInName");
+        final Configuration checkConfig = getModuleConfig("AbbreviationAsWordInName");
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }

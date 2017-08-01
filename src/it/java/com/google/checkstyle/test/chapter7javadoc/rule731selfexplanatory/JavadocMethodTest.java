@@ -41,7 +41,7 @@ public class JavadocMethodTest extends AbstractModuleTestSupport {
             "57:5: " + msg,
         };
 
-        final Configuration checkConfig = getCheckConfig("JavadocMethod");
+        final Configuration checkConfig = getModuleConfig("JavadocMethod");
         final String filePath = getPath("InputJavadocMethodCheck.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

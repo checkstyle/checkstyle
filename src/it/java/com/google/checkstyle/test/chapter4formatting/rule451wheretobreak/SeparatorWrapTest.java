@@ -41,7 +41,7 @@ public class SeparatorWrapTest extends AbstractModuleTestSupport {
             "28:30: " + getCheckMessage(SeparatorWrapCheck.class, "line.new", "."),
         };
 
-        final Configuration checkConfig = getCheckConfig("SeparatorWrap", "SeparatorWrapDot");
+        final Configuration checkConfig = getModuleConfig("SeparatorWrap", "SeparatorWrapDot");
         final String filePath = getPath("InputSeparatorWrap.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -55,7 +55,7 @@ public class SeparatorWrapTest extends AbstractModuleTestSupport {
             "31:17: " + getCheckMessage(SeparatorWrapCheck.class, "line.previous", ","),
         };
 
-        final Configuration checkConfig = getCheckConfig("SeparatorWrap", "SeparatorWrapComma");
+        final Configuration checkConfig = getModuleConfig("SeparatorWrap", "SeparatorWrapComma");
         final String filePath = getPath("InputSeparatorWrapComma.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -69,7 +69,8 @@ public class SeparatorWrapTest extends AbstractModuleTestSupport {
             "17:49: " + getCheckMessage(SeparatorWrapCheck.class, MSG_LINE_NEW, "::"),
         };
 
-        final Configuration checkConfig = getCheckConfig("SeparatorWrap", "SeparatorWrapMethodRef");
+        final Configuration checkConfig = getModuleConfig("SeparatorWrap",
+                "SeparatorWrapMethodRef");
         final String filePath = getPath("InputSeparatorWrapMethodRef.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -82,7 +83,7 @@ public class SeparatorWrapTest extends AbstractModuleTestSupport {
             "11:13: " + getCheckMessage(SeparatorWrapCheck.class, "line.previous", "..."),
         };
 
-        final Configuration checkConfig = getCheckConfig("SeparatorWrap", "SeparatorWrapEllipsis");
+        final Configuration checkConfig = getModuleConfig("SeparatorWrap", "SeparatorWrapEllipsis");
         final String filePath = getPath("InputSeparatorWrapEllipsis.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -94,7 +95,7 @@ public class SeparatorWrapTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "9:13: " + getCheckMessage(SeparatorWrapCheck.class, "line.previous", "["),
         };
-        final Configuration checkConfig = getCheckConfig("SeparatorWrap",
+        final Configuration checkConfig = getModuleConfig("SeparatorWrap",
                 "SeparatorWrapArrayDeclarator");
         final String filePath = getPath("InputSeparatorWrapArrayDeclarator.java");
 

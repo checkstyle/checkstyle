@@ -37,7 +37,7 @@ public class IndentationTest extends AbstractIndentationTestSupport {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = getCheckConfig("Indentation");
+        final Configuration checkConfig = getModuleConfig("Indentation");
         final String filePath = getPath("InputIndentationCorrectClass.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -49,7 +49,7 @@ public class IndentationTest extends AbstractIndentationTestSupport {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = getCheckConfig("Indentation");
+        final Configuration checkConfig = getModuleConfig("Indentation");
         final String filePath = getPath("InputIndentationCorrectFieldAndParameter.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -61,7 +61,7 @@ public class IndentationTest extends AbstractIndentationTestSupport {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = getCheckConfig("Indentation");
+        final Configuration checkConfig = getModuleConfig("Indentation");
         final String filePath = getPath("InputIndentationCorrectForAndParameter.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -73,7 +73,7 @@ public class IndentationTest extends AbstractIndentationTestSupport {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = getCheckConfig("Indentation");
+        final Configuration checkConfig = getModuleConfig("Indentation");
         final String filePath = getPath("InputIndentationCorrectIfAndParameter.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -85,7 +85,7 @@ public class IndentationTest extends AbstractIndentationTestSupport {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = getCheckConfig("Indentation");
+        final Configuration checkConfig = getModuleConfig("Indentation");
         final String filePath = getPath("InputIndentationCorrect.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -97,7 +97,7 @@ public class IndentationTest extends AbstractIndentationTestSupport {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = getCheckConfig("Indentation");
+        final Configuration checkConfig = getModuleConfig("Indentation");
         final String filePath = getPath("InputIndentationCorrectReturnAndParameter.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -109,7 +109,7 @@ public class IndentationTest extends AbstractIndentationTestSupport {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = getCheckConfig("Indentation");
+        final Configuration checkConfig = getModuleConfig("Indentation");
         final String filePath = getPath("InputIndentationCorrectWhileDoWhileAndParameter.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

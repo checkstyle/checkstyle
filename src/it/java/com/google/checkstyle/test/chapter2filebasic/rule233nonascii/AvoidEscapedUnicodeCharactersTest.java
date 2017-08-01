@@ -46,7 +46,7 @@ public class AvoidEscapedUnicodeCharactersTest extends AbstractModuleTestSupport
             "36: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
         };
 
-        final Configuration checkConfig = getCheckConfig("AvoidEscapedUnicodeCharacters");
+        final Configuration checkConfig = getModuleConfig("AvoidEscapedUnicodeCharacters");
         final String filePath = getPath("InputAvoidEscapedUnicodeCharacters.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

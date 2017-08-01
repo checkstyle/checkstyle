@@ -50,7 +50,7 @@ public class EmptyLineSeparatorTest extends AbstractModuleTestSupport {
             "119: " + getCheckMessage(clazz, messageKey, "VARIABLE_DEF"),
         };
 
-        final Configuration checkConfig = getCheckConfig("EmptyLineSeparator");
+        final Configuration checkConfig = getModuleConfig("EmptyLineSeparator");
         final String filePath = getPath("InputEmptyLineSeparator.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

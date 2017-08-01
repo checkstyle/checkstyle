@@ -51,7 +51,7 @@ public class FallThroughTest extends AbstractModuleTestSupport {
             "374:41: " + msg,
         };
 
-        final Configuration checkConfig = getCheckConfig("FallThrough");
+        final Configuration checkConfig = getModuleConfig("FallThrough");
         final String filePath = getPath("InputFallThrough.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

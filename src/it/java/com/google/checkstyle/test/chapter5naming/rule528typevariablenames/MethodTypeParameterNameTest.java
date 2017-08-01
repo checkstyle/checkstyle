@@ -38,13 +38,13 @@ public class MethodTypeParameterNameTest extends AbstractModuleTestSupport {
 
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException {
-        format = getCheckConfig("ClassTypeParameterName").getAttribute("format");
+        format = getModuleConfig("ClassTypeParameterName").getAttribute("format");
     }
 
     @Test
     public void testMethodDefault() throws Exception {
 
-        final Configuration checkConfig = getCheckConfig("MethodTypeParameterName");
+        final Configuration checkConfig = getModuleConfig("MethodTypeParameterName");
 
         final String[] expected = {
             "9:6: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "e_e", format),

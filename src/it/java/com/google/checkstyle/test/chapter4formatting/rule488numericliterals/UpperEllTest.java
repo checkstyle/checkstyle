@@ -61,7 +61,7 @@ public class UpperEllTest extends AbstractModuleTestSupport {
             "100:22: Should use uppercase 'L'.",
         };
 
-        final Configuration checkConfig = getCheckConfig("UpperEll");
+        final Configuration checkConfig = getModuleConfig("UpperEll");
         final String filePath = getPath("InputUpperEll.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

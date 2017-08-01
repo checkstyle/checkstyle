@@ -35,7 +35,7 @@ public class InterfaceTypeParameterNameTest extends AbstractModuleTestSupport {
 
     @Test
     public void testInterfaceDefault() throws Exception {
-        final Configuration configuration = getCheckConfig("InterfaceTypeParameterName");
+        final Configuration configuration = getModuleConfig("InterfaceTypeParameterName");
         final String format = configuration.getAttribute("format");
 
         final String[] expected = {

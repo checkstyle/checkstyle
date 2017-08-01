@@ -46,7 +46,7 @@ public class ArrayTypeStyleTest extends AbstractModuleTestSupport {
             "42:19: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
         };
 
-        final Configuration checkConfig = getCheckConfig("ArrayTypeStyle");
+        final Configuration checkConfig = getModuleConfig("ArrayTypeStyle");
         final String filePath = getPath("InputArrayTypeStyle.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

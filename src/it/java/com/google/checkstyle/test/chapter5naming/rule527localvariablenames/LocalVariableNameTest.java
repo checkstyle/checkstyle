@@ -39,7 +39,7 @@ public class LocalVariableNameTest extends AbstractModuleTestSupport {
 
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException {
-        checkConfig = getCheckConfig("LocalVariableName");
+        checkConfig = getModuleConfig("LocalVariableName");
         format = checkConfig.getAttribute("format");
     }
 

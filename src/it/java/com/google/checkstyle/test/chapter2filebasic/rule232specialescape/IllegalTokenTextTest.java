@@ -99,7 +99,7 @@ public class IllegalTokenTextTest extends AbstractModuleTestSupport {
             "162:29: " + message,
         };
 
-        final Configuration checkConfig = getCheckConfig("IllegalTokenText");
+        final Configuration checkConfig = getModuleConfig("IllegalTokenText");
         final String filePath = getPath("InputIllegalTokenText.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
