@@ -48,6 +48,10 @@
         <td>Check location of annotation on language elements.</td>
       </tr>
       <tr>
+        <td><a href="config_annotation.html#AnnotationOnSameLine">AnnotationOnSameLine</a></td>
+        <td>The check does verifying that annotations are located on the same line with their targets.</td>
+      </tr>
+      <tr>
         <td><a href="config_annotation.html#AnnotationUseStyle">AnnotationUseStyle</a></td>
         <td>This check controls the style with the usage of annotations.</td>
       </tr>
