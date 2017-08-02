@@ -1676,6 +1676,7 @@
             <configuration>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationOnSameLineCheck</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck</param>
@@ -1684,6 +1685,7 @@
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationOnSameLineCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheckTest</param>
