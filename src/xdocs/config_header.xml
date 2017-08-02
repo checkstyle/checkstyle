@@ -225,7 +225,8 @@ line 14: ^ \*/
           four digit year. Line 5 is an example how to enforce revision
           control keywords in a file header. Lines 12-14 is a template for
           javadoc (line 13 is so complicated to remove conflict with and of
-          javadoc comment).
+          javadoc comment). Lines 7, 9 and 11 will be treated as '^$' and
+          will forcefully expect the line to be empty.
         </p>
 
         <p>
@@ -287,8 +288,9 @@ line 6: ^\W*$
             <td>
               the required header specified inline. Individual header lines
               must be separated by the string <code>&quot;\n&quot;</code> (even on platforms with a
-              different line separator), and regular expressions must not span
-              multiple lines.
+              different line separator). For header lines containing <code>&quot;\n\n&quot;</code>
+              checkstyle will forcefully expect an empty line to exist. See examples
+              below. Regular expressions must not span multiple lines.
             </td>
             <td><a href="property_types.html#string">string</a></td>
             <td><code>null</code></td>
@@ -347,6 +349,33 @@ line 6: ^\W*$
     name=&quot;header&quot;
     value=&quot;^// Copyright \(C\) (\d\d\d\d -)? 2004 MyCompany$\n^// All rights reserved$&quot;/&gt;
 &lt;/module&gt;
+        </source>
+
+        <p>
+          For regex containing <code>"\n\n"</code>
+        </p>
+        <source>
+&lt;module name=&quot;RegexpHeader&quot;&gt;
+  &lt;property
+    name=&quot;header&quot;
+    value=&quot;^package .*\n\n.*&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          <code>"\n\n"</code> will be treated as '^$' and will forcefully
+          expect the line to be empty. For example -
+        </p>
+        <source>
+package com.some.package;
+public class ThisWillFail { }
+        </source>
+        <p>
+          would fail for the regex above. Expected -
+        </p>
+        <source>
+package com.some.package;
+
+public class ThisWillPass { }
         </source>
 
         <p>
