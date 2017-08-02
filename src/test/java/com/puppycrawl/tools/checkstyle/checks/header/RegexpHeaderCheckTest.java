@@ -212,6 +212,29 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testInlineRegexpHeaderConsecutiveNewlines() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addAttribute("header", "^/*$\\n// .*\\n\\n// Created: 2017\\n^//.*");
+        final String[] expected = {
+            "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "^$"),
+        };
+        verify(checkConfig, getPath("InputRegexpHeaderConsecutiveNewLines.java"), expected);
+    }
+
+    @Test
+    public void testInlineRegexpHeaderConsecutiveNewlinesThroughConfigFile() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(RegexpHeaderCheck.class);
+        final URI uri = new File(getPath("InputRegexpHeaderNewLines.header")).toURI();
+        checkConfig.addAttribute("headerFile", uri.toString());
+        final String[] expected = {
+            "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "^$"),
+        };
+        verify(checkConfig, getPath("InputRegexpHeaderConsecutiveNewLines.java"), expected);
+    }
+
+    @Test
     public void testRegexpHeaderIgnore() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(RegexpHeaderCheck.class);
