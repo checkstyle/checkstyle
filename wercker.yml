@@ -194,8 +194,6 @@ build:
           cd contribution/checkstyle-tester
           sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
           sed -i'' 's/#apache-struts/apache-struts/' projects-for-wercker.properties
-          wget https://gist.githubusercontent.com/timurt/dedda143b7a4984006af4731f3a236ec/raw/9c19f6f5cacfb21089efa0f6bc0cbbf966c81e13/checkstyle-tester.patch
-          git apply checkstyle-tester.patch
           groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
           cd ../../
           rm -rf contribution
@@ -214,8 +212,6 @@ build:
           sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
           sed -i'' 's/#checkstyle/checkstyle/' projects-for-wercker.properties
           sed -i'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-for-wercker.properties
-          wget https://gist.githubusercontent.com/timurt/dedda143b7a4984006af4731f3a236ec/raw/9c19f6f5cacfb21089efa0f6bc0cbbf966c81e13/checkstyle-tester.patch
-          git apply checkstyle-tester.patch
           groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
           cd ../../
           rm -rf contribution
@@ -233,8 +229,6 @@ build:
           cd contribution/checkstyle-tester
           sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
           sed -i'' 's/#guava/guava/' projects-for-wercker.properties
-          wget https://gist.githubusercontent.com/timurt/dedda143b7a4984006af4731f3a236ec/raw/9c19f6f5cacfb21089efa0f6bc0cbbf966c81e13/checkstyle-tester.patch
-          git apply checkstyle-tester.patch
           groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
           cd ../../
           rm -rf contribution
@@ -252,8 +246,6 @@ build:
           cd contribution/checkstyle-tester
           sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
           sed -i'' 's/#hibernate-orm/hibernate-orm/' projects-for-wercker.properties
-          wget https://gist.githubusercontent.com/timurt/dedda143b7a4984006af4731f3a236ec/raw/9c19f6f5cacfb21089efa0f6bc0cbbf966c81e13/checkstyle-tester.patch
-          git apply checkstyle-tester.patch
           groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
           cd ../../
           rm -rf contribution
@@ -272,8 +264,6 @@ build:
           cd contribution/checkstyle-tester
           sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
           sed -i'' 's/#findbugs/findbugs/' projects-for-wercker.properties
-          wget https://gist.githubusercontent.com/timurt/dedda143b7a4984006af4731f3a236ec/raw/9c19f6f5cacfb21089efa0f6bc0cbbf966c81e13/checkstyle-tester.patch
-          git apply checkstyle-tester.patch
           groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
           cd ../../
           rm -rf contribution
@@ -291,8 +281,6 @@ build:
           cd contribution/checkstyle-tester
           sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
           sed -i'' 's/#spring-framework/spring-framework/' projects-for-wercker.properties
-          wget https://gist.githubusercontent.com/timurt/dedda143b7a4984006af4731f3a236ec/raw/9c19f6f5cacfb21089efa0f6bc0cbbf966c81e13/checkstyle-tester.patch
-          git apply checkstyle-tester.patch
           groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
           cd ../../
           rm -rf contribution
@@ -310,8 +298,6 @@ build:
           cd contribution/checkstyle-tester
           sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
           sed -i'' 's/#Hbase/Hbase/' projects-for-wercker.properties
-          wget https://gist.githubusercontent.com/timurt/dedda143b7a4984006af4731f3a236ec/raw/9c19f6f5cacfb21089efa0f6bc0cbbf966c81e13/checkstyle-tester.patch
-          git apply checkstyle-tester.patch
           groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
           cd ../../
           rm -rf contribution
@@ -331,8 +317,6 @@ build:
           sed -i'' 's/#pmd/pmd/' projects-for-wercker.properties
           sed -i'' 's/#elasticsearch/elasticsearch/' projects-for-wercker.properties
           sed -i'' 's/#lombok-ast/lombok-ast/' projects-for-wercker.properties
-          wget https://gist.githubusercontent.com/timurt/dedda143b7a4984006af4731f3a236ec/raw/9c19f6f5cacfb21089efa0f6bc0cbbf966c81e13/checkstyle-tester.patch
-          git apply checkstyle-tester.patch
           groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
           cd ../../
           rm -rf contribution
@@ -356,8 +340,6 @@ build:
           sed -i'' 's/#apache-ant/apache-ant/' projects-for-wercker.properties
           sed -i'' 's/#apache-jsecurity/apache-jsecurity/' projects-for-wercker.properties
           sed -i'' 's/#android-launcher/android-launcher/' projects-for-wercker.properties
-          wget https://gist.githubusercontent.com/timurt/dedda143b7a4984006af4731f3a236ec/raw/9c19f6f5cacfb21089efa0f6bc0cbbf966c81e13/checkstyle-tester.patch
-          git apply checkstyle-tester.patch
           groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
           cd ../../
           rm -rf contribution
