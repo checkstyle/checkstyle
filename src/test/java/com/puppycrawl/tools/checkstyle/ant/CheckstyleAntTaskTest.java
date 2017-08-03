@@ -63,10 +63,8 @@ import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.CheckerStub;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.Definitions;
-import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
 import com.puppycrawl.tools.checkstyle.TestRootModuleChecker;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
 @RunWith(PowerMockRunner.class)
@@ -807,17 +805,6 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                     expected.getLevel(), actual.getLevel());
         }
 
-    }
-
-    @Test
-    public void testPackageNamesLoaderStreamClosed() throws CheckstyleException {
-        mockStatic(Closeables.class);
-        doNothing().when(Closeables.class);
-        Closeables.closeQuietly(any(InputStream.class));
-
-        PackageNamesLoader.getPackageNames(Thread.currentThread().getContextClassLoader());
-        verifyStatic();
-        Closeables.closeQuietly(any(InputStream.class));
     }
 
     private static class CheckstyleAntTaskStub extends CheckstyleAntTask {

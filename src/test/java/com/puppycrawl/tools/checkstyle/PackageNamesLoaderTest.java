@@ -28,9 +28,11 @@ import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLStreamHandler;
@@ -51,18 +53,41 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  * @author Rick Giles
  * @author lkuehne
  */
-public class PackageNamesLoaderTest {
+public class PackageNamesLoaderTest extends AbstractPathTestSupport {
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/packagenamesloader";
+    }
+
     @Test
     public void testDefault()
             throws CheckstyleException {
         final Set<String> packageNames = PackageNamesLoader
                 .getPackageNames(Thread.currentThread()
                         .getContextClassLoader());
-        validatePackageNames(packageNames);
+        assertEquals("pkgNames.length.", 0,
+                packageNames.size());
     }
 
-    private static void validatePackageNames(Set<String> pkgNames) {
-        final String[] checkstylePackages = {
+    @Test
+    @SuppressWarnings("unchecked")
+    public void testPackagesFile() throws Exception {
+        final Method processFileMethod = PackageNamesLoader.class.getDeclaredMethod("processFile",
+                URL.class, PackageNamesLoader.class);
+        processFileMethod.setAccessible(true);
+        final Constructor<PackageNamesLoader> constructor = PackageNamesLoader.class
+                .getDeclaredConstructor();
+        constructor.setAccessible(true);
+        final PackageNamesLoader namesLoader = constructor.newInstance();
+        final URL input = new File(getPath("InputPackageNamesLoaderFile.xml")).toURI().toURL();
+
+        processFileMethod.invoke(null, input, namesLoader);
+
+        final Field packageNamesField = PackageNamesLoader.class.getDeclaredField("packageNames");
+        packageNamesField.setAccessible(true);
+
+        final Set<String> actualPackageNames = (Set<String>) packageNamesField.get(namesLoader);
+        final String[] expectedPackageNames = {
             "com.puppycrawl.tools.checkstyle",
             "com.puppycrawl.tools.checkstyle.checks",
             "com.puppycrawl.tools.checkstyle.checks.annotation",
@@ -83,10 +108,11 @@ public class PackageNamesLoaderTest {
             "com.puppycrawl.tools.checkstyle.filters",
         };
 
-        assertEquals("pkgNames.length.", checkstylePackages.length,
-            pkgNames.size());
-        final Set<String> checkstylePackagesSet = new HashSet<>(Arrays.asList(checkstylePackages));
-        assertEquals("names set.", checkstylePackagesSet, pkgNames);
+        assertEquals("Invalid package names length.", expectedPackageNames.length,
+            actualPackageNames.size());
+        final Set<String> checkstylePackagesSet =
+                new HashSet<>(Arrays.asList(expectedPackageNames));
+        assertEquals("Invalid names set.", checkstylePackagesSet, actualPackageNames);
     }
 
     @Test

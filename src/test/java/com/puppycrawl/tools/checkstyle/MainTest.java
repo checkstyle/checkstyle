@@ -418,7 +418,7 @@ public class MainTest {
                 "-p", getPath("InputMainMycheckstyle.properties"),
                 getPath("InputMain.java"));
 
-        verifyStatic(times(2));
+        verifyStatic(times(1));
         Closeables.closeQuietly(any(InputStream.class));
     }
 
