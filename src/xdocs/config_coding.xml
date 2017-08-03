@@ -91,6 +91,27 @@ return new int[] {
         </source>
       </subsection>
 
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+            <th>since</th>
+          </tr>
+          <tr>
+            <td>ignoreInlineArrays</td>
+            <td>The flag controls trailing commas in inline arrays.
+                If set to true, then you can ignore the lack of a trailing comma,
+                otherwise an error should be raised.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+            <td>8.2</td>
+          </tr>
+        </table>
+      </subsection>
+
       <subsection name="Examples">
           <p>
           To configure the check:
@@ -133,6 +154,45 @@ return new int[] {
                 1,
                 2
                 ,};        // no violation
+          </source>
+          <p>
+          With <b>ignoreInlineArrays</b> option:
+          </p>
+          <source>
+            &lt;module name=&quot;ArrayTrailingComma&quot;&gt;
+                &lt;property name=&quot;ignoreInlineArrays&quot; value=&quot;false&quot;/&gt;
+            &lt;/module&gt;
+          </source>
+          <p>
+            Which results in the following violations:
+          </p>
+          <source>
+            int[] numbers = new int[] {1, 2, 3};        //violation
+            boolean[] bools = new boolean[] {
+            true,
+            true,
+            false
+            };        //violation
+
+            String[][] text = new int[] {{},{}};        //violation
+
+            double[][] decimals = new double[][] {
+            {0.5, 2.3, 1.1,},
+            {1.7, 1.9, 0.6},
+            {0.8, 7.4, 6.5}
+            };        // violation as previous line misses a comma
+
+            char[] chars = new char[] {'a', 'b', 'c'
+                };        //violation
+
+            String[] letters = new String[] {
+                "a", "b", "c"};        //violation
+
+            int[] a1 = new int[]{
+                1,
+                2
+                ,
+            };        // no violation
           </source>
       </subsection>
 

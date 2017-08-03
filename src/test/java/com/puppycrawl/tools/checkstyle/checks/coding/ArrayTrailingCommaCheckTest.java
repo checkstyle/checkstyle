@@ -53,4 +53,18 @@ public class ArrayTrailingCommaCheckTest
         Assert.assertNotNull("Invalid default tokens", check.getDefaultTokens());
         Assert.assertNotNull("Invalid required tokens", check.getRequiredTokens());
     }
+
+    @Test
+    public void testInlineArrays() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(ArrayTrailingCommaCheck.class);
+        checkConfig.addAttribute("ignoreInlineArrays", "false");
+        final String[] expected = {
+            "5: " + getCheckMessage(MSG_KEY),
+            "11: " + getCheckMessage(MSG_KEY),
+            "18: " + getCheckMessage(MSG_KEY),
+            "20: " + getCheckMessage(MSG_KEY),
+        };
+        verify(checkConfig, getPath("InputInlineArrayTrailingComma.java"), expected);
+
+    }
 }
