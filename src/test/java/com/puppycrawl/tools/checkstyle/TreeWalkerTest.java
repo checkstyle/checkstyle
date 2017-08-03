@@ -233,7 +233,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final TreeWalker treeWalker = new TreeWalker();
         treeWalker.setTabWidth(1);
         treeWalker.configure(new DefaultConfiguration("default config"));
-        final File file = new File("src/main/resources/checkstyle_packages.xml");
+        final File file = new File(getPath("InputTreeWalkerNotJava.xml"));
         final FileText fileText = new FileText(file, StandardCharsets.ISO_8859_1.name());
         treeWalker.processFiltered(file, fileText);
         final Collection<Checks> checks =
