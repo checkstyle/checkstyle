@@ -124,7 +124,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         }
         catch (IllegalArgumentException ex) {
             assertEquals("Invalid exception message",
-                "Multi thread mode for Checker module is not implemented",
+                "Multi thread mode for TreeWalker module is not implemented",
                 ex.getMessage());
         }
     }

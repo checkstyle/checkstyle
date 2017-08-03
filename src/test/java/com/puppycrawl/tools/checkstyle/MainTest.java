@@ -1384,7 +1384,7 @@ public class MainTest {
         }
         catch (IllegalArgumentException ex) {
             assertEquals("Invalid error message",
-                    "Multi thread mode for Checker module is not implemented",
+                    "Multi thread mode for TreeWalker module is not implemented",
                 ex.getMessage());
         }
     }

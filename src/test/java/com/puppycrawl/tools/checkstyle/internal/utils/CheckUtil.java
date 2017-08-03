@@ -174,6 +174,7 @@ public final class CheckUtil {
                         .startsWith("com.puppycrawl.tools.checkstyle.internal.testmodules"))
                 .filter(cls -> !cls.getCanonicalName()
                         .startsWith("com.puppycrawl.tools.checkstyle.packageobjectfactory"))
+                .filter(cls -> !"MultiThreadChecker".equals(cls.getSimpleName()))
                 .collect(Collectors.toSet());
     }
 

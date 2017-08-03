@@ -831,6 +831,8 @@
                     <exclude>
                       com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck
                     </exclude>
+                    <!-- false positive -->
+                    <exclude>com.puppycrawl.tools.checkstyle.AbstractChecker</exclude>
                   </excludes>
                   <limits>
                     <limit>
@@ -862,6 +864,25 @@
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
                       <minimum>0.73</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+                <!-- below rule is a false missed line coverage -->
+                <rule>
+                  <element>CLASS</element>
+                  <includes>
+                    <include>com.puppycrawl.tools.checkstyle.AbstractChecker</include>
+                  </includes>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.99</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>1.00</minimum>
                     </limit>
                   </limits>
                 </rule>
@@ -2579,6 +2600,7 @@
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
+                <param>com.puppycrawl.tools.checkstyle.AbstractChecker*</param>
                 <param>com.puppycrawl.tools.checkstyle.AuditEventDefaultFormatter*</param>
                 <param>com.puppycrawl.tools.checkstyle.ConfigurationLoader*</param>
                 <param>com.puppycrawl.tools.checkstyle.DefaultConfiguration*</param>
@@ -2590,6 +2612,7 @@
                 <param>com.puppycrawl.tools.checkstyle.PropertiesExpander*</param>
                 <param>com.puppycrawl.tools.checkstyle.PropertyCacheFile*</param>
                 <param>com.puppycrawl.tools.checkstyle.Checker*</param>
+                <param>com.puppycrawl.tools.checkstyle.MultiThreadChecker*</param>
                 <param>com.puppycrawl.tools.checkstyle.ThreadModeSettings*</param>
                 <!-- interfaces -->
                 <param>com.puppycrawl.tools.checkstyle.AuditEventFormatter</param>

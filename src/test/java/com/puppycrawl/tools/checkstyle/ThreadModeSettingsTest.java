@@ -43,15 +43,8 @@ public class ThreadModeSettingsTest {
     public void testResolveCheckerInMultiThreadMode() {
         final ThreadModeSettings configuration = new ThreadModeSettings(2, 2);
 
-        try {
-            configuration.resolveName(ThreadModeSettings.CHECKER_MODULE_NAME);
-            fail("An exception is expected");
-        }
-        catch (IllegalArgumentException ex) {
-            assertEquals("Invalid exception message",
-                    "Multi thread mode for Checker module is not implemented",
-                    ex.getMessage());
-        }
+        final String moduleName = configuration.resolveName(ThreadModeSettings.CHECKER_MODULE_NAME);
+        assertEquals("The invalid MT checker module", "MultiThreadChecker", moduleName);
     }
 
     @Test

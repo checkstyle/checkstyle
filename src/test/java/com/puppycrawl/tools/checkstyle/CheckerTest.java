@@ -97,15 +97,17 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
     private static Method getFireAuditFinished() throws NoSuchMethodException {
-        final Class<Checker> checkerClass = Checker.class;
-        final Method fireAuditFinished = checkerClass.getDeclaredMethod("fireAuditFinished");
+        final Class<AbstractChecker> abstractCheckerClass = AbstractChecker.class;
+        final Method fireAuditFinished = abstractCheckerClass.getDeclaredMethod(
+            "fireAuditFinished");
         fireAuditFinished.setAccessible(true);
         return fireAuditFinished;
     }
 
     private static Method getFireAuditStartedMethod() throws NoSuchMethodException {
-        final Class<Checker> checkerClass = Checker.class;
-        final Method fireAuditStarted = checkerClass.getDeclaredMethod("fireAuditStarted");
+        final Class<AbstractChecker> abstractCheckerClass = AbstractChecker.class;
+        final Method fireAuditStarted = abstractCheckerClass.getDeclaredMethod(
+            "fireAuditStarted");
         fireAuditStarted.setAccessible(true);
         return fireAuditStarted;
     }

@@ -200,12 +200,12 @@
   </rule>
   <rule ref="category/java/design.xml/AvoidCatchingGenericException">
     <properties>
-      <!-- Checker: There is no other way to deliver the filename that was under processing.
-           See https://github.com/checkstyle/checkstyle/issues/2285
+      <!-- AbstractChecker: There is no other way to deliver the filename that was under
+           processing. See https://github.com/checkstyle/checkstyle/issues/2285
            TranslationCheck: It is better to catch all exceptions since it can throw
            a runtime exception. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='Checker']
+                value="//ClassOrInterfaceDeclaration[@Image='AbstractChecker']
                              //MethodDeclaration[@Name='processFiles']
                       |//ClassOrInterfaceDeclaration[@Image='TranslationCheck']
                              //MethodDeclaration[@Name='getTranslationKeys']"/>
@@ -226,7 +226,7 @@
       <!-- There is no other way to deliver the filename that was under processing.
            See https://github.com/checkstyle/checkstyle/issues/2285 -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='Checker']
+                value="//ClassOrInterfaceDeclaration[@Image='AbstractChecker']
                              //MethodDeclaration[@Name='processFiles']"/>
     </properties>
   </rule>
@@ -316,10 +316,10 @@
   </rule>
   <rule ref="category/java/design.xml/TooManyFields">
     <properties>
-      <!-- Unable to split fields out of the class. -->
+      <!-- Unable to split fields out of the AbstractChecker class. -->
       <!-- Main has an annotated field for each command line option. This is by design. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='Checker']
+                value="//ClassOrInterfaceDeclaration[@Image='AbstractChecker']
     | //ClassOrInterfaceDeclaration[@Image='Main']"/>
     </properties>
   </rule>
@@ -336,10 +336,11 @@
       <property name="maxmethods" value="20"/>
       <!-- Reducing the number of methods in RequireThisCheck requires making an excessive hierarchy
              or duplicating the code, or making existing methods too complex.
-           The class PackageObjectFactory has many boilerplate methods. -->
+           The class PackageObjectFactory has many boilerplate methods.
+           Unable to split fields out of the AbstractChecker class. -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@Image='RequireThisCheck'
-        or @Image='PackageObjectFactory']"/>
+        or @Image='PackageObjectFactory' or @Image='AbstractChecker']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveClassLength">
@@ -362,12 +363,12 @@
   <rule ref="category/java/design.xml/ExcessiveImports">
     <properties>
       <!-- Main actively uses Checkstyle, logging and command line parsing API.
-           Checker collects external resource locations and sets up the configuration.
+           AbstractChecker collects external resource locations and sets up the configuration.
            CheckstyleAntTask integrates Checkstyle with Ant.
            TranslationCheck just get one extra import by annotation usage.
             -->
       <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main'
-        or @Image='Checker' or @Image='CheckstyleAntTask' or @Image='TranslationCheck']"/>
+        or @Image='AbstractChecker' or @Image='CheckstyleAntTask' or @Image='TranslationCheck']"/>
     </properties>
   </rule>
 

@@ -444,6 +444,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         checkstyleModulesNames.remove("TreeWalker");
         checkstyleModulesNames.remove("Checker");
 
+        // this module is hidden for a while and should not be documented
+        checkstyleModulesNames.remove("MultiThreadChecker");
+        checkstyleModulesNames.remove("MultiThreadTreeWalker");
+
         checkstyleModulesNames.stream()
             .filter(moduleName -> !modulesNamesWhichHaveXdocs.contains(moduleName))
             .forEach(moduleName -> {

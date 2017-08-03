@@ -60,6 +60,7 @@
     <allow pkg="java.lang.reflect" local-only="true" />
     <allow pkg="java.nio" local-only="true" />
     <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerFilter"/>
+    <allow class="com.puppycrawl.tools.checkstyle.MultiThreadChecker" local-only="true"/>
     <allow class="com.google.common.reflect.ClassPath" local-only="true"/>
   </subpackage>
 
@@ -90,6 +91,7 @@
     <allow pkg="org.antlr.v4.runtime" local-only="true"/>
 
     <allow class="com.puppycrawl.tools.checkstyle.Checker" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.CheckContextHolder" local-only="true"/>
     <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3817 -->
     <allow pkg="com.puppycrawl.tools.checkstyle.utils"/>
   </subpackage>
@@ -101,6 +103,8 @@
     <allow class="java.nio.file.Files" local-only="true"/>
     <allow class="java.nio.file.NoSuchFileException" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.Definitions" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.OneCheckInstancePerThread"/>
+    <allow class="com.puppycrawl.tools.checkstyle.OneCheckInstancePerApplication"/>
 
     <allow class="com.puppycrawl.tools.checkstyle.StatelessCheck"/>
     <allow class="com.puppycrawl.tools.checkstyle.FileStatefulCheck"/>
