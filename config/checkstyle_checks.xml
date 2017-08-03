@@ -166,9 +166,7 @@
       <property name="option" value="text"/>
     </module>
     <module name="EmptyCatchBlock"/>
-    <module name="LeftCurly">
-      <property name="maxLineLength" value="100"/>
-    </module>
+    <module name="LeftCurly"/>
     <module name="NeedBraces"/>
     <module name="NeedBraces">
       <property name="tokens" value="LAMBDA"/>
