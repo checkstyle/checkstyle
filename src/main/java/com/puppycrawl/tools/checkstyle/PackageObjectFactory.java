@@ -270,9 +270,9 @@ public class PackageObjectFactory implements ModuleFactory {
      * @return a string which is obtained by joining package names with a class name.
      */
     private static String joinPackageNamesWithClassName(String className, Set<String> packages) {
-        return packages.stream()
-            .collect(Collectors.joining(
-                    className + STRING_SEPARATOR, "", PACKAGE_SEPARATOR + className));
+        return packages.stream().collect(
+            Collectors.joining(PACKAGE_SEPARATOR + className + STRING_SEPARATOR, "",
+                    PACKAGE_SEPARATOR + className));
     }
 
     /**

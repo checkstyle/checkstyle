@@ -169,7 +169,7 @@ public class PackageObjectFactoryTest {
     }
 
     @Test
-    public void testCreateObjectFromFullModuleNamesWithException() throws Exception {
+    public void testCreateObjectFromFullModuleNamesWithAmbiguousException() throws Exception {
         final String barPackage = BASE_PACKAGE + ".packageobjectfactory.bar";
         final String fooPackage = BASE_PACKAGE + ".packageobjectfactory.foo";
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -186,6 +186,33 @@ public class PackageObjectFactoryTest {
             final LocalizedMessage exceptionMessage = new LocalizedMessage(0,
                     Definitions.CHECKSTYLE_BUNDLE, AMBIGUOUS_MODULE_NAME_EXCEPTION_MESSAGE,
                     new String[] {name, optionalNames}, null, getClass(), null);
+            assertEquals("Invalid exception message",
+                    exceptionMessage.getMessage(), ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testCreateObjectFromFullModuleNamesWithCantInstantiateException() {
+        final String package1 = BASE_PACKAGE + ".wrong1";
+        final String package2 = BASE_PACKAGE + ".wrong2";
+        final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        final PackageObjectFactory objectFactory = new PackageObjectFactory(
+                new LinkedHashSet<>(Arrays.asList(package1, package2)), classLoader);
+        final String name = "FooCheck";
+        final String checkName = name + CHECK_SUFFIX;
+        try {
+            objectFactory.createModule(name);
+            fail("Exception is expected");
+        }
+        catch (CheckstyleException ex) {
+            final String attemptedNames = package1 + PACKAGE_SEPARATOR + name + STRING_SEPARATOR
+                    + package2 + PACKAGE_SEPARATOR + name + STRING_SEPARATOR
+                    + checkName + STRING_SEPARATOR
+                    + package1 + PACKAGE_SEPARATOR + checkName + STRING_SEPARATOR
+                    + package2 + PACKAGE_SEPARATOR + checkName;
+            final LocalizedMessage exceptionMessage = new LocalizedMessage(0,
+                    Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
+                    new String[] {name, attemptedNames}, null, getClass(), null);
             assertEquals("Invalid exception message",
                     exceptionMessage.getMessage(), ex.getMessage());
         }
