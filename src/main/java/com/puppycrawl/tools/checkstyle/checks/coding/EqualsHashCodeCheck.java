@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import antlr.collections.AST;
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -51,6 +52,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
  * </pre>
  * @author lkuehne
  */
+@FileStatefulCheck
 public class EqualsHashCodeCheck
         extends AbstractCheck {
     // implementation note: we have to use the following members to

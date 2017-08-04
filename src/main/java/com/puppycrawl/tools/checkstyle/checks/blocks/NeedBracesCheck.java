@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -133,6 +134,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  * @author <a href="mailto:andreyselkin@gmail.com">Andrei Selkin</a>
  */
+@StatelessCheck
 public class NeedBracesCheck extends AbstractCheck {
     /**
      * A key is pointing to the warning message text in "messages.properties"

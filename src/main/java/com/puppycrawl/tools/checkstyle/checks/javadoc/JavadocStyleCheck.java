@@ -31,6 +31,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser;
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -48,6 +49,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * @author Daniel Grenner
  * @author Travis Schneeberger
  */
+@StatelessCheck
 public class JavadocStyleCheck
     extends AbstractCheck {
 

@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -41,6 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Alexander Jesse
  * @see NestedIfDepthCheck
  */
+@FileStatefulCheck
 public final class NestedForDepthCheck extends AbstractCheck {
 
     /**

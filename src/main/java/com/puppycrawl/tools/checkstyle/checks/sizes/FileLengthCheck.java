@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import java.io.File;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
@@ -54,6 +55,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </pre>
  * @author Lars Kühne
  */
+@StatelessCheck
 public class FileLengthCheck extends AbstractFileSetCheck {
 
     /**

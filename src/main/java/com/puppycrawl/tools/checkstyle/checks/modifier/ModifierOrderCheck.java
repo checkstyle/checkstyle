@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -65,6 +66,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * @author Lars Kühne
  */
+@StatelessCheck
 public class ModifierOrderCheck
     extends AbstractCheck {
 

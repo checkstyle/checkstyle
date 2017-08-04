@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FileText;
@@ -183,6 +184,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *
  * @author Richard Veach
  */
+@StatelessCheck
 public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
     /**
      * A key is pointing to the warning message text in "messages.properties"

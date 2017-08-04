@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -27,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Checks for the number of defined types at the "outer" level.
  * @author oliverb
  */
+@FileStatefulCheck
 public class OuterTypeNumberCheck extends AbstractCheck {
 
     /**

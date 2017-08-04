@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -37,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @author o_sukhodolsky
  */
+@FileStatefulCheck
 public final class BooleanExpressionComplexityCheck extends AbstractCheck {
 
     /**

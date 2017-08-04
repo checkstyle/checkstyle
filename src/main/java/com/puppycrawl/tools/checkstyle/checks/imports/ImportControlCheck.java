@@ -24,6 +24,7 @@ import java.util.Collections;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -44,6 +45,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author Oliver Burn
  */
+@FileStatefulCheck
 public class ImportControlCheck extends AbstractCheck implements ExternalResourceHolder {
 
     /**

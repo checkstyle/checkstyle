@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.header;
 import java.io.File;
 import java.util.Arrays;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
@@ -32,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  *
  * @author Lars Kühne
  */
+@StatelessCheck
 public class HeaderCheck extends AbstractHeaderCheck {
 
     /**

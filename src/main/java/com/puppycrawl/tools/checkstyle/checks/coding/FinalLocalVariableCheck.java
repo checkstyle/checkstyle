@@ -27,6 +27,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Optional;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -74,6 +75,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * @author k_gibbs, r_auckenthaler
  * @author Vladislav Lisetskiy
  */
+@FileStatefulCheck
 public class FinalLocalVariableCheck extends AbstractCheck {
 
     /**

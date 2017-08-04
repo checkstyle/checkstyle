@@ -23,6 +23,7 @@ import java.math.BigInteger;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -38,6 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author o_sukhodolsky
  */
 // -@cs[AbbreviationAsWordInName] Can't change check name
+@FileStatefulCheck
 public final class NPathComplexityCheck extends AbstractCheck {
 
     /**

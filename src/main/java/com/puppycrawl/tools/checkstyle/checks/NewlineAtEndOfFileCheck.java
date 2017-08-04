@@ -25,6 +25,7 @@ import java.io.RandomAccessFile;
 import java.util.Locale;
 
 import com.google.common.io.Closeables;
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
@@ -56,6 +57,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * @author Christopher Lenz
  * @author lkuehne
  */
+@StatelessCheck
 public class NewlineAtEndOfFileCheck
     extends AbstractFileSetCheck {
 

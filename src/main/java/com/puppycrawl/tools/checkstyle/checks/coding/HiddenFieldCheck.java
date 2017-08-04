@@ -25,6 +25,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
@@ -128,6 +129,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  *
  * @author Dmitri Priimak
  */
+@FileStatefulCheck
 public class HiddenFieldCheck
     extends AbstractCheck {
     /**

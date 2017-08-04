@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -95,6 +96,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Daniel Grenner
  * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
  */
+@FileStatefulCheck
 public final class ModifiedControlVariableCheck extends AbstractCheck {
 
     /**

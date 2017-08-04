@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -53,6 +54,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @author Rick Giles
  */
+@StatelessCheck
 public class IllegalTokenCheck
     extends AbstractCheck {
 

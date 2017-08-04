@@ -25,6 +25,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
@@ -90,6 +91,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * @author lkuehne
  * @author Andrei Selkin
  */
+@StatelessCheck
 public class DesignForExtensionCheck extends AbstractCheck {
 
     /**

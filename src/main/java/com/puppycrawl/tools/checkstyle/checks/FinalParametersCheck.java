@@ -24,6 +24,7 @@ import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -54,6 +55,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author Michael Studman
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
+@StatelessCheck
 public class FinalParametersCheck extends AbstractCheck {
 
     /**

@@ -24,6 +24,7 @@ import java.util.Deque;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
@@ -82,6 +83,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * @author maxvetrenko
  * @noinspection ThisEscapedInObjectConstruction
  */
+@FileStatefulCheck
 public class IndentationCheck extends AbstractCheck {
     /**
      * A key is pointing to the warning message text in "messages.properties"

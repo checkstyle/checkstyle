@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -40,6 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 // -@cs[AbbreviationAsWordInName] We can not change it as,
 // check's name is a part of API (used in configurations).
+@FileStatefulCheck
 public class JavaNCSSCheck extends AbstractCheck {
 
     /**

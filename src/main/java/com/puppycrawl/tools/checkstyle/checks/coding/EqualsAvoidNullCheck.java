@@ -23,6 +23,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -58,6 +59,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Travis Schneeberger
  * @author Vladislav Lisetskiy
  */
+@FileStatefulCheck
 public class EqualsAvoidNullCheck extends AbstractCheck {
 
     /**

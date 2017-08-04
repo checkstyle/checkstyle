@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -37,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Trevor Robinson
  * @author St&eacute;phane Galland
  */
+@StatelessCheck
 public class SuppressWarningsHolder
     extends AbstractCheck {
 

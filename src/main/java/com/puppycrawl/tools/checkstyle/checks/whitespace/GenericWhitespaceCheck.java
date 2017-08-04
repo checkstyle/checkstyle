@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -67,6 +68,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * </pre>
  * @author Oliver Burn
  */
+@FileStatefulCheck
 public class GenericWhitespaceCheck extends AbstractCheck {
 
     /**

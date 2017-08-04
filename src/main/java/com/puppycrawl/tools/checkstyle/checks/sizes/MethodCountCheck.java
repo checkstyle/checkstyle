@@ -24,6 +24,7 @@ import java.util.Deque;
 import java.util.EnumMap;
 import java.util.Map;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
@@ -36,6 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * @author Alexander Jesse
  * @author Oliver Burn
  */
+@FileStatefulCheck
 public final class MethodCountCheck extends AbstractCheck {
 
     /**

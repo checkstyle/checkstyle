@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -41,6 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @author <a href="mailto:solid.danil@gmail.com">Danil Lopatin</a>
  */
+@StatelessCheck
 public final class AbstractClassNameCheck extends AbstractCheck {
 
     /**

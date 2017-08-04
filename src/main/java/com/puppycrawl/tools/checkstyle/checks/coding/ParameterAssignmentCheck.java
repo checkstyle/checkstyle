@@ -25,6 +25,7 @@ import java.util.Deque;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -44,6 +45,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
  * </p>
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  */
+@FileStatefulCheck
 public final class ParameterAssignmentCheck extends AbstractCheck {
 
     /**

@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -37,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @author <a href="mailto:IliaDubinin91@gmail.com">Ilja Dubinin</a>
  */
+@StatelessCheck
 public final class IllegalCatchCheck extends AbstractCheck {
 
     /**

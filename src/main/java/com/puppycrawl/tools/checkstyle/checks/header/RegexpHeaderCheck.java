@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -39,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author Lars Kühne
  * @author o_sukhodolsky
  */
+@StatelessCheck
 public class RegexpHeaderCheck extends AbstractHeaderCheck {
 
     /**
