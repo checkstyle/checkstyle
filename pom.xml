@@ -2653,11 +2653,13 @@
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
+                <param>com.puppycrawl.tools.checkstyle.CheckCloneService*</param>
                 <param>com.puppycrawl.tools.checkstyle.JavadocPropertiesGenerator*</param>
                 <param>com.puppycrawl.tools.checkstyle.XmlLoader*</param>
                 <param>com.puppycrawl.tools.checkstyle.JavaParser*</param>
               </targetClasses>
               <targetTests>
+                <param>com.puppycrawl.tools.checkstyle.CheckCloneServiceTest</param>
                 <param>com.puppycrawl.tools.checkstyle.JavadocPropertiesGeneratorTest</param>
                 <param>com.puppycrawl.tools.checkstyle.XmlLoaderTest</param>
                 <param>com.puppycrawl.tools.checkstyle.JavaParserTest</param>
@@ -2858,6 +2860,7 @@
                   com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheckTest
                 </param>
                 <param>com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest</param>
+                <param>com.puppycrawl.tools.checkstyle.CheckCloneServiceTest</param>
                 <param>com.puppycrawl.tools.checkstyle.CheckerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.TranslationCheckTest</param>
               </targetTests>

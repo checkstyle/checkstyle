@@ -43,6 +43,12 @@ public class TestRootModuleChecker implements RootModule {
         property = configuration.getAttribute("property");
     }
 
+    // -@cs[SimpleAccessorNameNotation] config is used in getConfig() static method
+    @Override
+    public Configuration getConfiguration() {
+        return config;
+    }
+
     @Override
     public void destroy() {
         destroyed = true;

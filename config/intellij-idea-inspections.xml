@@ -4435,6 +4435,8 @@
                 <option value="ThisEscapedInObjectConstruction"/>
                 <!-- it will makes code too complicated in some cases -->
                 <option value="MultipleReturnPointsPerMethod"/>
+                <!-- required by CheckCloneService -->
+                <option value="InstanceofChain"/>
                 <!-- MT check markers are annotations -->
                 <option value="AnnotationClass"/>
                 <!-- Suppression is only for TokenTypes class -->

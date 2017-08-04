@@ -79,6 +79,9 @@ public abstract class AutomaticBean
     /** The configuration of this bean. */
     private Configuration configuration;
 
+    /** The context of this bean. */
+    private Context context;
+
     /**
      * Provides a hook to finish the part of this component's setup that
      * was not handled by the bean introspection.
@@ -249,23 +252,35 @@ public abstract class AutomaticBean
      * @see Contextualizable
      */
     @Override
-    public final void contextualize(Context context)
+    public final void contextualize(Context newContext)
             throws CheckstyleException {
-        final Collection<String> attributes = context.getAttributeNames();
+        final Collection<String> attributes = newContext.getAttributeNames();
 
         for (final String key : attributes) {
-            final Object value = context.get(key);
+            final Object value = newContext.get(key);
 
             tryCopyProperty(getClass().getName(), key, value, false);
         }
+
+        context = newContext;
     }
 
     /**
      * Returns the configuration that was used to configure this component.
      * @return the configuration that was used to configure this component.
      */
-    protected final Configuration getConfiguration() {
+    @Override
+    public final Configuration getConfiguration() {
         return configuration;
+    }
+
+    /**
+     * Returns the context that was used to configure this component.
+     * @return the context that was used to configure this component.
+     */
+    @Override
+    public final Context getContext() {
+        return context;
     }
 
     /**

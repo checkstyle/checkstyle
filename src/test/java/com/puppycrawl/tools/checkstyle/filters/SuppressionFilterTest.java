@@ -59,7 +59,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     public void testEqualsAndHashCode() {
         final EqualsVerifierReport ev = EqualsVerifier.forClass(SuppressionFilter.class)
                 .usingGetClass()
-                .withIgnoredFields("file", "optional", "configuration")
+                .withIgnoredFields("file", "optional", "configuration", "context")
                 .suppress(Warning.NONFINAL_FIELDS)
                 .report();
         assertEquals("Error: " + ev.getMessage(), EqualsVerifierReport.SUCCESS, ev);

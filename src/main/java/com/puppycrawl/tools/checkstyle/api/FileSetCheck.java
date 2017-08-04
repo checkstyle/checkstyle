@@ -79,4 +79,9 @@ public interface FileSetCheck
      */
     void finishProcessing();
 
+    /**
+     * Finishes check cloning.
+     * @param originalFileSetCheck original check. Might be used to copy or move some properties.
+     */
+    void finishCloning(FileSetCheck originalFileSetCheck);
 }

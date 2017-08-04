@@ -91,6 +91,11 @@ public abstract class AbstractFileSetCheck
     }
 
     @Override
+    public void finishCloning(FileSetCheck originalFileSetCheck) {
+        // No code by default, should be overridden only by demand at subclasses
+    }
+
+    @Override
     public final void setMessageDispatcher(MessageDispatcher messageDispatcher) {
         this.messageDispatcher = messageDispatcher;
     }

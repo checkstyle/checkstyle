@@ -160,7 +160,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
     public void testEqualsAndHashCode() {
         final EqualsVerifierReport ev = EqualsVerifier.forClass(SuppressionXpathFilter.class)
                 .usingGetClass()
-                .withIgnoredFields("file", "optional", "configuration")
+                .withIgnoredFields("file", "optional", "configuration", "context")
                 .suppress(Warning.NONFINAL_FIELDS).report();
         assertEquals("Error: " + ev.getMessage(), EqualsVerifierReport.SUCCESS, ev);
     }
