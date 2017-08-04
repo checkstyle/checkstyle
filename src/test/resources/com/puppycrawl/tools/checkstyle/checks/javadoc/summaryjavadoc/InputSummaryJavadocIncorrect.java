@@ -119,11 +119,6 @@ class InputSummaryJavadocIncorrect {
          void foo7() {}
 
          /**
-          * {@inheritDoc}mm
-          */
-         void foo9() {}
-
-         /**
           * {@link #setBounds(int,int,int,int)}
           */
          void foo8() {}
@@ -133,4 +128,9 @@ class InputSummaryJavadocIncorrect {
           */
          void foo10() {}
     };
+
+    /**
+     * M m m m {@inheritDoc}
+     */
+    void foo7() {}
 }

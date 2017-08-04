@@ -50,6 +50,36 @@ class InputSummaryJavadocCorrect {
     void foo10() {}
 
     /**
+     * {@inheritDoc}mm
+     */
+    void foo9a() {}
+
+    /**
+     * {@inheritDoc}mm.
+     */
+    void foo11() {}
+
+    /**
+     * {@inheritDoc} M m m m
+     */
+    void foo12() {}
+
+    /**
+     * {@inheritDoc} M m m m.
+     */
+    void foo13() {}
+
+    /**
+     * mm. {@inheritDoc}
+     */
+    void foo14() {}
+
+    /**
+     * M m m m. {@inheritDoc}
+     */
+    void foo15() {}
+
+    /**
      * This is summary java doc.
      * <a href="mailto:vlad@htmlbook.ru"/>
      */

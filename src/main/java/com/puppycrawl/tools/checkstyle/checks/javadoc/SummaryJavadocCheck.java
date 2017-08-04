@@ -92,9 +92,6 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     /** Period literal. */
     private static final String PERIOD = ".";
 
-    /** Inherit doc literal. */
-    private static final String INHERIT_DOC = "{@inheritDoc}";
-
     /** Set of allowed Tokens tags in summary java doc. */
     private static final Set<Integer> ALLOWED_TYPES = Collections.unmodifiableSet(
             new HashSet<>(Arrays.asList(JavadocTokenTypes.TEXT,
@@ -137,23 +134,48 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     @Override
     public void visitJavadocToken(DetailNode ast) {
-        String firstSentence = getFirstSentence(ast);
-        final int endOfSentence = firstSentence.lastIndexOf(period);
-        final String summaryDoc = getSummarySentence(ast);
-        if (summaryDoc.isEmpty()) {
-            log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
-        }
-        else if (!period.isEmpty()
-                && !summaryDoc.contains(period)
-                && !summaryDoc.equals(INHERIT_DOC)) {
-            log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
-        }
-        if (endOfSentence != -1) {
-            firstSentence = firstSentence.substring(0, endOfSentence);
-            if (containsForbiddenFragment(firstSentence)) {
-                log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
+        if (!startsWithInheritDoc(ast)) {
+            String firstSentence = getFirstSentence(ast);
+            final int endOfSentence = firstSentence.lastIndexOf(period);
+            final String summaryDoc = getSummarySentence(ast);
+            if (summaryDoc.isEmpty()) {
+                log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
+            }
+            else if (!period.isEmpty()
+                    && !summaryDoc.contains(period)) {
+                log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
+            }
+            if (endOfSentence != -1) {
+                firstSentence = firstSentence.substring(0, endOfSentence);
+                if (containsForbiddenFragment(firstSentence)) {
+                    log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
+                }
             }
         }
+    }
+
+    /**
+     * Checks if the node starts with an {&#64;inheritDoc}.
+     * @param root The root node to examine.
+     * @return {@code true} if the javadoc starts with an {&#64;inheritDoc}.
+     */
+    private static boolean startsWithInheritDoc(DetailNode root) {
+        boolean found = false;
+        final DetailNode[] children = root.getChildren();
+
+        for (int i = 0; !found && i < children.length - 1; i++) {
+            final DetailNode child = children[i];
+            if (child.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG
+                    && child.getChildren()[1].getType() == JavadocTokenTypes.INHERIT_DOC_LITERAL) {
+                found = true;
+            }
+            else if (child.getType() != JavadocTokenTypes.LEADING_ASTERISK
+                    && !CommonUtils.isBlank(child.getText())) {
+                break;
+            }
+        }
+
+        return found;
     }
 
     /**
@@ -168,10 +190,6 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             if (ALLOWED_TYPES.contains(child.getType())) {
                 result.append(child.getText());
             }
-            else if (child.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG
-                    && getContentOfChild(child).equals(INHERIT_DOC)) {
-                result.append(INHERIT_DOC);
-            }
             else if (child.getType() == JavadocTokenTypes.HTML_ELEMENT
                     && CommonUtils.isBlank(result.toString().trim())) {
                 result.append(getStringInsideTag(result.toString(),
@@ -185,19 +203,6 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             }
         }
         return result.toString().trim();
-    }
-
-    /**
-     * Returns content when token type is javadoc inline tag.
-     * @param child javadoc inline tag ast.
-     * @return content of child nodes as string.
-     */
-    private static String getContentOfChild(DetailNode child) {
-        final StringBuilder contents = new StringBuilder(256);
-        for (DetailNode node : child.getChildren()) {
-            contents.append(node.getText().trim());
-        }
-        return contents.toString();
     }
 
     /**
