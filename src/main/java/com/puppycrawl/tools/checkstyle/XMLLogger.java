@@ -129,9 +129,14 @@ public class XMLLogger
             writer.print(" message=\""
                 + encode(event.getMessage())
                 + "\"");
-            writer.println(" source=\""
-                + encode(event.getSourceName())
-                + "\"/>");
+            writer.print(" source=\"");
+            if (event.getModuleId() == null) {
+                writer.print(encode(event.getSourceName()));
+            }
+            else {
+                writer.print(encode(event.getModuleId()));
+            }
+            writer.println("\"/>");
         }
     }
 

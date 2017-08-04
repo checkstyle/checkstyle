@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.utils.CommonUtils.EMPTY_BYTE_ARRAY
 import static com.puppycrawl.tools.checkstyle.utils.CommonUtils.EMPTY_OBJECT_ARRAY;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.times;
@@ -222,9 +223,24 @@ public class LocalizedMessageTest {
         assertEquals("Invalid token type", TokenTypes.OBJBLOCK, localizedMessage2.getTokenType());
     }
 
+    @Test
+    public void testCompareToWithDifferentModuleId() {
+        final LocalizedMessage message1 = createSampleLocalizedMessageWithId("module1");
+        final LocalizedMessage message2 = createSampleLocalizedMessageWithId("module2");
+        final LocalizedMessage messageNull = createSampleLocalizedMessageWithId(null);
+
+        assertTrue("Invalid comparing result", message1.compareTo(messageNull) > 0);
+        assertTrue("Invalid comparing result", messageNull.compareTo(message1) < 0);
+        assertTrue("Invalid comparing result", message1.compareTo(message2) < 0);
+    }
+
     private static LocalizedMessage createSampleLocalizedMessage() {
+        return createSampleLocalizedMessageWithId("module");
+    }
+
+    private static LocalizedMessage createSampleLocalizedMessageWithId(String id) {
         return new LocalizedMessage(0, "com.puppycrawl.tools.checkstyle.checks.coding.messages",
-                "empty.statement", EMPTY_OBJECT_ARRAY, "module", LocalizedMessage.class, null);
+                "empty.statement", EMPTY_OBJECT_ARRAY, id, LocalizedMessage.class, null);
     }
 
     @After

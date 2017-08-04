@@ -104,6 +104,23 @@ public class AuditEventDefaultFormatterTest {
     }
 
     @Test
+    public void testFormatModuleWithModuleId() {
+        final AuditEvent mock = PowerMockito.mock(AuditEvent.class);
+        when(mock.getSourceName()).thenReturn("TestModule");
+        when(mock.getSeverityLevel()).thenReturn(SeverityLevel.WARNING);
+        when(mock.getLine()).thenReturn(1);
+        when(mock.getColumn()).thenReturn(1);
+        when(mock.getMessage()).thenReturn("Mocked message.");
+        when(mock.getFileName()).thenReturn("InputMockFile.java");
+        when(mock.getModuleId()).thenReturn("ModuleId");
+        final AuditEventFormatter formatter = new AuditEventDefaultFormatter();
+
+        final String expected = "[WARN] InputMockFile.java:1:1: Mocked message. [ModuleId]";
+
+        assertEquals("Invalid format", expected, formatter.format(mock));
+    }
+
+    @Test
     public void testCalculateBufferLength() throws Exception {
         final Method calculateBufferLengthMethod =
                 Whitebox.getMethod(AuditEventDefaultFormatter.class,

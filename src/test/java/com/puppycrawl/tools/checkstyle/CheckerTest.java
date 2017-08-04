@@ -20,6 +20,9 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.puppycrawl.tools.checkstyle.Checker.EXCEPTION_MSG;
+import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_FINISHED_MESSAGE;
+import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_STARTED_MESSAGE;
+import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -31,13 +34,18 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.when;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOError;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,6 +57,7 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -71,6 +80,7 @@ import com.puppycrawl.tools.checkstyle.api.FilterSet;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck;
 import com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionFilter;
@@ -1008,6 +1018,63 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 1, testInfoOutputStream.getCloseCount());
         assertEquals("Flush count was not expected",
                 0, testInfoOutputStream.getFlushCount());
+    }
+
+    @Test
+    public void testDuplicatedModule() throws Exception {
+        // we need to test a module with two instances, one with id and the other not
+        final DefaultConfiguration moduleConfig1 =
+                createModuleConfig(NewlineAtEndOfFileCheck.class);
+        final DefaultConfiguration moduleConfig2 =
+                createModuleConfig(NewlineAtEndOfFileCheck.class);
+        moduleConfig2.addAttribute("id", "ModuleId");
+        final DefaultConfiguration root = new DefaultConfiguration("root");
+        root.addChild(moduleConfig1);
+        root.addChild(moduleConfig2);
+        final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(root);
+        // BriefUtLogger does not print the module name or id postfix,
+        // so we need to set logger manually
+        final ByteArrayOutputStream out =
+                (ByteArrayOutputStream) Whitebox.getInternalState(this, "stream");
+        final DefaultLogger logger =
+                new DefaultLogger(out, true, out, false, new AuditEventDefaultFormatter());
+        checker.addListener(logger);
+
+        final String path = temporaryFolder.newFile("file.java").getPath();
+        final String errorMessage =
+                getCheckMessage(NewlineAtEndOfFileCheck.class, MSG_KEY_NO_NEWLINE_EOF);
+        final String[] expected = {
+            "0: " + errorMessage + " [NewlineAtEndOfFile]",
+            "0: " + errorMessage + " [ModuleId]",
+        };
+
+        // super.verify does not work here, for we change the logger
+        out.flush();
+        final int errs = checker.process(Collections.singletonList(new File(path)));
+        final ByteArrayInputStream inputStream =
+                new ByteArrayInputStream(out.toByteArray());
+        try (LineNumberReader lnr = new LineNumberReader(
+                new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+            // we need to ignore the unrelated lines
+            final List<String> actual = lnr.lines()
+                    .filter(line -> !getCheckMessage(AUDIT_STARTED_MESSAGE).equals(line))
+                    .filter(line -> !getCheckMessage(AUDIT_FINISHED_MESSAGE).equals(line))
+                    .limit(expected.length)
+                    .sorted()
+                    .collect(Collectors.toList());
+            Arrays.sort(expected);
+
+            for (int i = 0; i < expected.length; i++) {
+                final String expectedResult = "[ERROR] " + path + ":" + expected[i];
+                assertEquals("error message " + i, expectedResult, actual.get(i));
+            }
+
+            assertEquals("unexpected output: " + lnr.readLine(), expected.length, errs);
+        }
+
+        checker.destroy();
     }
 
     private static class DummyFilter implements Filter {
