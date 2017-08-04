@@ -411,15 +411,29 @@ public final class LocalizedMessage
 
     @Override
     public int compareTo(LocalizedMessage other) {
-        int result = Integer.compare(lineNo, other.lineNo);
+        final int result;
 
         if (lineNo == other.lineNo) {
             if (columnNo == other.columnNo) {
-                result = getMessage().compareTo(other.getMessage());
+                if (Objects.equals(moduleId, other.moduleId)) {
+                    result = getMessage().compareTo(other.getMessage());
+                }
+                else if (moduleId == null) {
+                    result = -1;
+                }
+                else if (other.moduleId == null) {
+                    result = 1;
+                }
+                else {
+                    result = moduleId.compareTo(other.moduleId);
+                }
             }
             else {
                 result = Integer.compare(columnNo, other.columnNo);
             }
+        }
+        else {
+            result = Integer.compare(lineNo, other.lineNo);
         }
         return result;
     }
