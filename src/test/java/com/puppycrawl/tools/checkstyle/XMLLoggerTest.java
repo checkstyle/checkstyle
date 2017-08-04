@@ -175,6 +175,24 @@ public class XMLLoggerTest {
     }
 
     @Test
+    public void testAddErrorModuleId() throws IOException {
+        final XMLLogger logger = new XMLLogger(outStream, true);
+        logger.auditStarted(null);
+        final LocalizedMessage message =
+            new LocalizedMessage(1, 1,
+                "messages.properties", "key", null, SeverityLevel.ERROR, "module",
+                    getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, "Test.java", message);
+        logger.addError(ev);
+        logger.auditFinished(null);
+        final String[] expectedLines = {
+            "<error line=\"1\" column=\"1\" severity=\"error\" message=\"key\""
+                + " source=\"module\"/>",
+        };
+        verifyLines(expectedLines);
+    }
+
+    @Test
     public void testAddErrorOnZeroColumns() throws IOException {
         final XMLLogger logger = new XMLLogger(outStream, true);
         logger.auditStarted(null);
