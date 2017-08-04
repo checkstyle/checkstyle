@@ -31,6 +31,7 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -90,6 +91,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * @author o_sukhodolsky
  * @author Andrei Selkin
  */
+@FileStatefulCheck
 public class RequireThisCheck extends AbstractCheck {
 
     /**

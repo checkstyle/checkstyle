@@ -23,6 +23,7 @@ import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -83,6 +84,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *
  * @author maxvetrenko
  */
+@FileStatefulCheck
 public class OneTopLevelClassCheck extends AbstractCheck {
 
     /**

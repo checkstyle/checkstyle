@@ -23,6 +23,7 @@ import java.util.Locale;
 
 import org.apache.commons.beanutils.ConversionException;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -101,6 +102,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author Travis Schneeberger
  */
+@StatelessCheck
 public final class AnnotationUseStyleCheck extends AbstractCheck {
 
     /**

@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import java.io.File;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
@@ -28,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * Checks to see if a file contains a tab character.
  * @author oliverb
  */
+@StatelessCheck
 public class FileTabCharacterCheck extends AbstractFileSetCheck {
 
     /**

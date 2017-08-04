@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -62,6 +63,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * </p>
  * @author Travis Schneeberger
  */
+@StatelessCheck
 public class AvoidStaticImportCheck
     extends AbstractCheck {
 

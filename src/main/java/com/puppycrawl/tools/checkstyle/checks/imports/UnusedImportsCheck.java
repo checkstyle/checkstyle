@@ -26,6 +26,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -50,6 +51,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
  *
  * @author Oliver Burn
  */
+@FileStatefulCheck
 public class UnusedImportsCheck extends AbstractCheck {
 
     /**

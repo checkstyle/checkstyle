@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -39,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Michael Yui
  * @author o_sukhodolsky
  */
+@FileStatefulCheck
 public class UncommentedMainCheck
     extends AbstractCheck {
 

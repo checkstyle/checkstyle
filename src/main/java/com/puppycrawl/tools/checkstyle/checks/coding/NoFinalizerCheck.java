@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -31,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author smckay@google.com (Steve McKay)
  * @author lkuehne
  */
+@StatelessCheck
 public class NoFinalizerCheck extends AbstractCheck {
 
     /**

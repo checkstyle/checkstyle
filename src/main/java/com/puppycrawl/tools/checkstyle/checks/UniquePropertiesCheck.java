@@ -31,6 +31,7 @@ import com.google.common.collect.ImmutableMultiset;
 import com.google.common.collect.Multiset;
 import com.google.common.collect.Multiset.Entry;
 import com.google.common.io.Closeables;
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
@@ -40,6 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  *
  * @author Pavel Baranchikov
  */
+@StatelessCheck
 public class UniquePropertiesCheck extends AbstractFileSetCheck {
 
     /**

@@ -45,6 +45,8 @@
   <allow class="java.lang.annotation.Retention" local-only="true"/>
   <allow class="java.lang.annotation.RetentionPolicy" local-only="true"/>
   <allow class="java.lang.annotation.Target" local-only="true"/>
+  <allow class="com.puppycrawl.tools.checkstyle.FileStatefulCheck"/>
+  <allow class="com.puppycrawl.tools.checkstyle.StatelessCheck"/>
 
   <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
   <allow class="com.google.common.base.CaseFormat" local-only="true"/>

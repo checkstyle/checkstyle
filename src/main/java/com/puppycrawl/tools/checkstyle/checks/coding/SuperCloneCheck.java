@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
+
 /**
  * <p>
  * Checks that an overriding clone() method invokes super.clone().
@@ -37,6 +39,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
  * </pre>
  * @author Rick Giles
  */
+@StatelessCheck
 public class SuperCloneCheck extends AbstractSuperCheck {
     @Override
     protected String getMethodName() {

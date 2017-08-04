@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -34,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  *
  * @author Oliver Burn
  */
+@StatelessCheck
 public class JavadocVariableCheck
     extends AbstractCheck {
 

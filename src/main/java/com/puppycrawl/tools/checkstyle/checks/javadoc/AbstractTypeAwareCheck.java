@@ -27,6 +27,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -44,6 +45,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @noinspection DeprecatedIsStillUsed, AbstractClassWithOnlyOneDirectInheritor
  */
 @Deprecated
+@FileStatefulCheck
 public abstract class AbstractTypeAwareCheck extends AbstractCheck {
     /** Stack of maps for type params. */
     private final Deque<Map<String, AbstractClassInfo>> typeParams = new ArrayDeque<>();
