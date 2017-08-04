@@ -40,6 +40,11 @@
   <allow pkg="org.antlr.v4.runtime" local-only="true"/>
   <allow class="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.+"
           local-only="true" regex="true"/>
+  <allow class="java.lang.annotation.ElementType" local-only="true"/>
+  <allow class="java.lang.annotation.Inherited" local-only="true"/>
+  <allow class="java.lang.annotation.Retention" local-only="true"/>
+  <allow class="java.lang.annotation.RetentionPolicy" local-only="true"/>
+  <allow class="java.lang.annotation.Target" local-only="true"/>
 
   <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
   <allow class="com.google.common.base.CaseFormat" local-only="true"/>
