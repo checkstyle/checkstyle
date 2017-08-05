@@ -209,11 +209,27 @@ public class RedundantModifierCheck
      */
     private void checkEnumConstructorModifiers(DetailAST ast) {
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-        final DetailAST modifier = modifiers.getFirstChild();
+        final DetailAST modifier = getFirstModifierAst(modifiers);
+
         if (modifier != null) {
             log(modifier.getLineNo(), modifier.getColumnNo(),
                     MSG_KEY, modifier.getText());
         }
+    }
+
+    /**
+     * Retrieves the first modifier that is not an annotation.
+     * @param modifiers The ast to examine.
+     * @return The first modifier or {@code null} if none found.
+     */
+    private static DetailAST getFirstModifierAst(DetailAST modifiers) {
+        DetailAST modifier = modifiers.getFirstChild();
+
+        while (modifier != null && modifier.getType() == TokenTypes.ANNOTATION) {
+            modifier = modifier.getNextSibling();
+        }
+
+        return modifier;
     }
 
     /**
