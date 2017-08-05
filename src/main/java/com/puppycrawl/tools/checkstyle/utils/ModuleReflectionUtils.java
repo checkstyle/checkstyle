@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import java.io.IOException;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
 import java.util.Collection;
 import java.util.Set;
@@ -29,6 +30,7 @@ import com.google.common.reflect.ClassPath;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
 import com.puppycrawl.tools.checkstyle.api.Filter;
@@ -65,7 +67,7 @@ public final class ModuleReflectionUtils {
     /**
      * Checks whether a class may be considered as a checkstyle module. Checkstyle's modules are
      * non-abstract classes, which are either checkstyle's checks, file sets, filters, file filters,
-     * {@code TreeWalker} filters or root module.
+     * {@code TreeWalker} filters, audit listener, or root module.
      * @param clazz class to check.
      * @return true if the class may be considered as the checkstyle module.
      */
@@ -76,17 +78,36 @@ public final class ModuleReflectionUtils {
                     || isFilterModule(clazz)
                     || isFileFilterModule(clazz)
                     || isTreeWalkerFilterModule(clazz)
+                    || isAuditListener(clazz)
                     || isRootModule(clazz));
     }
 
     /**
-     * Checks whether a class extends 'AutomaticBean' and is non-abstract.
+     * Checks whether a class extends 'AutomaticBean', is non-abstract, and has a default
+     * constructor.
      * @param clazz class to check.
      * @return true if a class may be considered a valid production class.
      */
     public static boolean isValidCheckstyleClass(Class<?> clazz) {
         return AutomaticBean.class.isAssignableFrom(clazz)
-                && !Modifier.isAbstract(clazz.getModifiers());
+                && !Modifier.isAbstract(clazz.getModifiers())
+                && hasDefaultConstructor(clazz);
+    }
+
+    /**
+     * Checks if the class has a default constructor.
+     * @param clazz class to check
+     * @return true if the class has a default constructor.
+     */
+    private static boolean hasDefaultConstructor(Class<?> clazz) {
+        boolean result = false;
+        for (Constructor<?> constructor : clazz.getDeclaredConstructors()) {
+            if (constructor.getParameterCount() == 0) {
+                result = true;
+                break;
+            }
+        }
+        return result;
     }
 
     /**
@@ -127,6 +148,16 @@ public final class ModuleReflectionUtils {
      */
     public static boolean isFileFilterModule(Class<?> clazz) {
         return BeforeExecutionFileFilter.class.isAssignableFrom(clazz);
+    }
+
+    /**
+     * Checks whether a class may be considered as the checkstyle audit listener module.
+     * Checkstyle's audit listener modules are classes which implement 'AuditListener' interface.
+     * @param clazz class to check.
+     * @return true if a class may be considered as the checkstyle audit listener module.
+     */
+    public static boolean isAuditListener(Class<?> clazz) {
+        return AuditListener.class.isAssignableFrom(clazz);
     }
 
     /**
