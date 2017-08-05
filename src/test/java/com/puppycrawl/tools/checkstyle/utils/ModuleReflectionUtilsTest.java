@@ -28,6 +28,7 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -61,6 +62,8 @@ public class ModuleReflectionUtilsTest {
         assertTrue("Should return true when checkstyle module is passed",
                 ModuleReflectionUtils.isCheckstyleModule(FileFilterModuleClass.class));
         assertTrue("Should return true when checkstyle module is passed",
+                ModuleReflectionUtils.isCheckstyleModule(AuditListenerClass.class));
+        assertTrue("Should return true when checkstyle module is passed",
                 ModuleReflectionUtils.isCheckstyleModule(RootModuleClass.class));
     }
 
@@ -73,6 +76,9 @@ public class ModuleReflectionUtilsTest {
                 .isValidCheckstyleClass(InvalidNonAutomaticBeanClass.class));
         assertFalse("Should return false when invalid class is passed",
                 ModuleReflectionUtils.isValidCheckstyleClass(AbstractInvalidClass.class));
+        assertFalse("Should return false when invalid class is passed",
+                ModuleReflectionUtils
+                        .isValidCheckstyleClass(InvalidNonDefaultConstructorClass.class));
     }
 
     @Test
@@ -113,6 +119,14 @@ public class ModuleReflectionUtilsTest {
                 ModuleReflectionUtils.isTreeWalkerFilterModule(TreeWalkerFilterClass.class));
         assertFalse("Should return false when invalid class is passed",
                 ModuleReflectionUtils.isTreeWalkerFilterModule(NotCheckstyleCheck.class));
+    }
+
+    @Test
+    public void testIsAuditListener() {
+        assertTrue("Should return true when valid checkstyle AuditListener module is passed",
+                ModuleReflectionUtils.isAuditListener(DefaultLogger.class));
+        assertFalse("Should return false when invalid class is passed",
+                ModuleReflectionUtils.isAuditListener(NotCheckstyleCheck.class));
     }
 
     @Test
@@ -208,9 +222,59 @@ public class ModuleReflectionUtilsTest {
         }
     }
 
+    private static class AuditListenerClass extends AutomaticBean implements AuditListener {
+
+        @Override
+        public void auditStarted(AuditEvent event) {
+            //dummy method
+        }
+
+        @Override
+        public void auditFinished(AuditEvent event) {
+            //dummy method
+        }
+
+        @Override
+        public void fileStarted(AuditEvent event) {
+            //dummy method
+        }
+
+        @Override
+        public void fileFinished(AuditEvent event) {
+            //dummy method
+        }
+
+        @Override
+        public void addError(AuditEvent event) {
+            //dummy method
+        }
+
+        @Override
+        public void addException(AuditEvent event, Throwable throwable) {
+            //dummy method
+        }
+    }
+
     private static class NotCheckstyleCheck {
         protected NotCheckstyleCheck() {
             //keep pmd calm and happy
+        }
+    }
+
+    private static class InvalidNonDefaultConstructorClass extends AutomaticBean {
+        private int field;
+
+        protected InvalidNonDefaultConstructorClass(int data) {
+            //keep pmd calm and happy
+            field = 0;
+            method(data);
+        }
+
+        public final void method(int data) {
+            field++;
+            if (data > 0) {
+                method(data - 1);
+            }
         }
     }
 }
