@@ -61,7 +61,6 @@ public class SummaryJavadocTest extends AbstractModuleTestSupport {
             "37: " + msgFirstSentence,
             "47: " + msgForbiddenFragment,
             "53: " + msgMissingDoc,
-            "58: " + msgForbiddenFragment,
             "58: " + msgMissingDoc,
             "69: " + msgMissingDoc,
             "83: " + msgForbiddenFragment,

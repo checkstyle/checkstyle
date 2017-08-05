@@ -73,7 +73,6 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
             "47: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
             "53: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "58: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "58: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
             "69: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "83: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
             "103: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
