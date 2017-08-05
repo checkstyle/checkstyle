@@ -35,7 +35,6 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 @SuppressWarnings("deprecation")
@@ -64,8 +63,8 @@ public class AbstractTypeAwareCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTokenToString() throws Exception {
-        final Class<?> tokenType = Class
-                .forName("com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token");
+        final Class<?> tokenType = Class.forName("com.puppycrawl.tools.checkstyle.checks.javadoc."
+                + "AbstractTypeAwareCheck$Token");
         final Constructor<?> tokenConstructor = tokenType.getDeclaredConstructor(String.class,
                 int.class, int.class);
         final Object token = tokenConstructor.newInstance("blablabla", 1, 1);
@@ -76,12 +75,12 @@ public class AbstractTypeAwareCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testClassRegularClass() throws Exception {
-        final Class<?> tokenType = Class
-                .forName("com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token");
+        final Class<?> tokenType = Class.forName("com.puppycrawl.tools.checkstyle.checks.javadoc."
+                + "AbstractTypeAwareCheck$Token");
 
         final Class<?> regularClassType = Class
-                .forName(
-                    "com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass");
+                .forName("com.puppycrawl.tools.checkstyle.checks.javadoc."
+                        + "AbstractTypeAwareCheck$RegularClass");
         final Constructor<?> regularClassConstructor = regularClassType.getDeclaredConstructor(
                 tokenType, String.class, AbstractTypeAwareCheck.class);
         regularClassConstructor.setAccessible(true);
@@ -124,12 +123,12 @@ public class AbstractTypeAwareCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testClassAliasToString() throws Exception {
-        final Class<?> tokenType = Class
-                .forName("com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token");
+        final Class<?> tokenType = Class.forName("com.puppycrawl.tools.checkstyle.checks.javadoc."
+                + "AbstractTypeAwareCheck$Token");
 
         final Class<?> regularClassType = Class
-                .forName(
-                    "com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass");
+                .forName("com.puppycrawl.tools.checkstyle.checks.javadoc."
+                        + "AbstractTypeAwareCheck$RegularClass");
         final Constructor<?> regularClassConstructor = regularClassType.getDeclaredConstructor(
                 tokenType, String.class, AbstractTypeAwareCheck.class);
         regularClassConstructor.setAccessible(true);
@@ -142,9 +141,10 @@ public class AbstractTypeAwareCheckTest extends AbstractModuleTestSupport {
                 new JavadocMethodCheck());
 
         final Class<?> classAliasType = Class.forName(
-                "com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassAlias");
-        final Class<?> abstractTypeInfoType = Class.forName(
-                "com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$AbstractClassInfo");
+                "com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractTypeAwareCheck$ClassAlias");
+        final Class<?> abstractTypeInfoType = Class
+                .forName("com.puppycrawl.tools.checkstyle.checks.javadoc."
+                        + "AbstractTypeAwareCheck$AbstractClassInfo");
 
         final Constructor<?> classAliasConstructor = classAliasType
                 .getDeclaredConstructor(tokenType, abstractTypeInfoType);
