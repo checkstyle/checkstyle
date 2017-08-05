@@ -135,19 +135,18 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     @Override
     public void visitJavadocToken(DetailNode ast) {
         if (!startsWithInheritDoc(ast)) {
-            String firstSentence = getFirstSentence(ast);
-            final int endOfSentence = firstSentence.lastIndexOf(period);
             final String summaryDoc = getSummarySentence(ast);
             if (summaryDoc.isEmpty()) {
                 log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
             }
-            else if (!period.isEmpty()
-                    && !summaryDoc.contains(period)) {
-                log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
-            }
-            if (endOfSentence != -1) {
-                firstSentence = firstSentence.substring(0, endOfSentence);
-                if (containsForbiddenFragment(firstSentence)) {
+            else if (!period.isEmpty()) {
+                final String firstSentence = getFirstSentence(ast);
+                final int endOfSentence = firstSentence.lastIndexOf(period);
+                if (!summaryDoc.contains(period)) {
+                    log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
+                }
+                if (endOfSentence != -1
+                        && containsForbiddenFragment(firstSentence.substring(0, endOfSentence))) {
                     log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
                 }
             }
