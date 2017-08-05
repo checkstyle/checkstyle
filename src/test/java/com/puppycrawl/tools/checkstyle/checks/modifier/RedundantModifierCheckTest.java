@@ -230,4 +230,14 @@ public class RedundantModifierCheckTest
         };
         verify(checkConfig, getPath("InputRedundantModifierFinalInEnumMethods.java"), expected);
     }
+
+    @Test
+    public void testAnnotationOnEnumConstructor() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RedundantModifierCheck.class);
+        final String[] expected = {
+            "14:5: " + getCheckMessage(MSG_KEY, "private"),
+        };
+        verify(checkConfig, getPath("InputRedundantModifierAnnotationOnEnumConstructor.java"),
+                expected);
+    }
 }
