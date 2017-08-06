@@ -89,6 +89,12 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
      */
     public static final String MSG_RETURN = "unnecessary.paren.return";
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_LAMBDA = "unnecessary.paren.lambda";
+
     /** The maximum string length before we chop the string. */
     private static final int MAX_QUOTED_LENGTH = 25;
 
@@ -153,6 +159,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.SL_ASSIGN,
             TokenTypes.SR_ASSIGN,
             TokenTypes.STAR_ASSIGN,
+            TokenTypes.LAMBDA,
         };
     }
 
@@ -181,6 +188,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.SL_ASSIGN,
             TokenTypes.SR_ASSIGN,
             TokenTypes.STAR_ASSIGN,
+            TokenTypes.LAMBDA,
         };
     }
 
@@ -190,12 +198,16 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         return CommonUtils.EMPTY_INT_ARRAY;
     }
 
+    // -@cs[CyclomaticComplexity] All logs should be in visit token.
     @Override
     public void visitToken(DetailAST ast) {
         final int type = ast.getType();
         final DetailAST parent = ast.getParent();
 
-        if (type != TokenTypes.ASSIGN
+        if (type == TokenTypes.LAMBDA && isLambdaSingleParameterSurrounded(ast)) {
+            log(ast, MSG_LAMBDA, ast.getText());
+        }
+        else if (type != TokenTypes.ASSIGN
             || parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
 
             final boolean surrounded = isSurrounded(ast);
@@ -289,6 +301,22 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
      */
     private static boolean isExprSurrounded(DetailAST ast) {
         return ast.getFirstChild().getType() == TokenTypes.LPAREN;
+    }
+
+    /**
+     * Tests if the given lambda node has a single parameter, no defined type, and is surrounded
+     * by parentheses.
+     * @param ast a {@code DetailAST} whose type is
+     *        {@code TokenTypes.LAMBDA}.
+     * @return {@code true} if the lambda has a single parameter, no defined type, and is
+     *         surrounded by parentheses.
+     */
+    private static boolean isLambdaSingleParameterSurrounded(DetailAST ast) {
+        final DetailAST firstChild = ast.getFirstChild();
+        return firstChild.getType() == TokenTypes.LPAREN
+                && firstChild.getNextSibling().getChildCount(TokenTypes.PARAMETER_DEF) == 1
+                && firstChild.getNextSibling().getFirstChild().findFirstToken(TokenTypes.TYPE)
+                        .getChildCount() == 0;
     }
 
     /**
