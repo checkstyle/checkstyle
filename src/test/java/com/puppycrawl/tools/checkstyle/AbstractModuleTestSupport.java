@@ -48,6 +48,22 @@ import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtils;
 
 public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport {
 
+    /**
+     * Enum to specify options for checker creation.
+     */
+    public enum ModuleCreationOption {
+        /**
+         * Points that the module configurations
+         * has to be added under {@link TreeWalker}.
+         */
+        IN_TREEWALKER,
+        /**
+         * Points that checker will be created as
+         * a root of default configuration.
+         */
+        IN_CHECKER
+    }
+
     private final ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
     /**
@@ -78,36 +94,36 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      */
     public Checker createChecker(Configuration moduleConfig)
             throws Exception {
-        boolean addTreeWalker = false;
+        ModuleCreationOption moduleCreationOption = ModuleCreationOption.IN_CHECKER;
 
         try {
             final Class<?> moduleClass = Class.forName(moduleConfig.getName());
             if (ModuleReflectionUtils.isCheckstyleCheck(moduleClass)
                     || ModuleReflectionUtils.isTreeWalkerFilterModule(moduleClass)) {
-                addTreeWalker = true;
+                moduleCreationOption = ModuleCreationOption.IN_TREEWALKER;
             }
         }
         catch (ClassNotFoundException ignore) {
             // ignore exception, assume it is not part of TreeWalker
         }
 
-        return createChecker(moduleConfig, addTreeWalker);
+        return createChecker(moduleConfig, moduleCreationOption);
     }
 
     /**
      * Creates {@link Checker} instance based on the given {@link Configuration} instance.
      * @param moduleConfig {@link Configuration} instance.
-     * @param addTreeWalker {@code true} if the {@code moduleConfig} should be added under
-     *            {@link TreeWalker}.
+     * @param moduleCreationOption {@code IN_TREEWALKER} if the {@code moduleConfig} should be added
+*                                              under {@link TreeWalker}.
      * @return {@link Checker} instance based on the given {@link Configuration} instance.
      * @throws Exception if an exception occurs during checker configuration.
-     * @noinspection BooleanParameter
      */
-    public Checker createChecker(Configuration moduleConfig, boolean addTreeWalker)
+    public Checker createChecker(Configuration moduleConfig,
+                                 ModuleCreationOption moduleCreationOption)
             throws Exception {
         final Configuration dc;
 
-        if (addTreeWalker) {
+        if (moduleCreationOption == ModuleCreationOption.IN_TREEWALKER) {
             dc = createTreeWalkerConfig(moduleConfig);
         }
         else {
