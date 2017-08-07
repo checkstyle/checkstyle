@@ -135,16 +135,9 @@ public class ModuleReflectionUtilsTest {
         }
     }
 
-    /** @noinspection AbstractClassWithOnlyOneDirectInheritor */
+    /** @noinspection AbstractClassNeverImplemented */
     private abstract static class AbstractInvalidClass extends AutomaticBean {
         public abstract void method();
-    }
-
-    private static class DummyClass extends AbstractInvalidClass {
-        @Override
-        public void method() {
-            //keep pmd calm and happy
-        }
     }
 
     private static class CheckClass extends AbstractCheck {
