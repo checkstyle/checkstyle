@@ -216,7 +216,7 @@ public class CyclomaticComplexityCheck
     /**
      * Pops a value off the stack and makes it the current value.
      */
-    private void popValue() {
+    protected final void popValue() {
         currentValue = valueStack.pop();
     }
 

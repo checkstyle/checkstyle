@@ -31,6 +31,7 @@ import java.util.regex.Pattern;
  * be the root node. Each instance may have zero or more children.
  *
  * @author Oliver Burn
+ * @noinspection ThisEscapedInObjectConstruction
  */
 class ImportControl {
     /** The package separator: "." */
