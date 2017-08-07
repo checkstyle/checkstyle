@@ -215,11 +215,9 @@ public class CyclomaticComplexityCheck
 
     /**
      * Pops a value off the stack and makes it the current value.
-     * @return pop a value off the stack and make it the current value
      */
-    protected final BigInteger popValue() {
+    protected final void popValue() {
         currentValue = valueStack.pop();
-        return currentValue;
     }
 
     /** Process the start of the method definition. */

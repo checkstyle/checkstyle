@@ -238,6 +238,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
 
     /**
      * Encapsulates information about classes coupling inside single file.
+     * @noinspection ThisEscapedInObjectConstruction
      */
     private class FileContext {
         /** A map of (imported class name -> class name with package) pairs. */

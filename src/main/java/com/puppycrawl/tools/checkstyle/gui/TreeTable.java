@@ -52,6 +52,7 @@ import com.google.common.collect.ImmutableList;
  * @author Philip Milne
  * @author Scott Violet
  * @author Lars Kühne
+ * @noinspection ThisEscapedInObjectConstruction
  */
 public class TreeTable extends JTable {
     private static final long serialVersionUID = -8493693409423365387L;
