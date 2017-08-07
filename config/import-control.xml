@@ -27,6 +27,7 @@
   <disallow class="java.util.stream.LongStream.Builder"/>
   <disallow class="java.util.stream.BaseStream"/>
   <disallow class="java.util.stream.Collector"/>
+  <disallow class="java.util.Comparator"/>
 
   <!-- The local ones -->
   <allow pkg="java.lang.reflect" local-only="true" />
