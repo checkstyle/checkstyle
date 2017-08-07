@@ -196,7 +196,9 @@ public class VerboseListener
         the listener in the <a
         href="config.html#AuditListeners">configuration file</a>. For
         example, to configure a <code>Checker</code> so
-        that it uses custom listener <code>VerboseListener</code> to print audit messages to a
+        that it uses custom listener
+        <a href="https://github.com/checkstyle/contribution/blob/master/examples/listeners/com/mycompany/listeners/VerboseListener.java">VerboseListener</a>
+        to print audit messages to a
         file named &quot;audit.txt&quot;, include the following module
         in the configuration file:
       </p>
@@ -253,8 +255,9 @@ Audit finished. Total errors: 1
       </p>
 
       <p>
-        The source code for <code>CommonsLoggingListener</code> is in distribution
-        directory <code>https://github.com/checkstyle/contribution/examples/listeners</code>.  Notice that
+        The source code for
+        <a href="https://github.com/checkstyle/contribution/blob/master/examples/listeners/com/mycompany/listeners/CommonsLoggingListener.java">
+        CommonsLoggingListener</a>.  Notice that
         each <code>AuditListener</code> method that
         receives an <code> AuditEvent</code> calls a method
         for the Commons Logging log level corresponding to the
@@ -316,7 +319,9 @@ INFO  com.puppycrawl...Checker  - Audit finished.
       <a name="MailLogger"/>
       <h4>MailLogger</h4>
       <p>
-        <code>MailLogger</code> sends an audit report in an
+        <a href="https://github.com/checkstyle/contribution/blob/master/examples/listeners/com/mycompany/listeners/MailLogger.java">
+        MailLogger</a>
+        sends an audit report in an
         email message.  The listener uses a <code>DefaultLogger</code> to prepare the text of the
         message. The listener obtains other message parameters such as
         <code>to</code> and <code>subject</code> from environment properties that
@@ -324,8 +329,7 @@ INFO  com.puppycrawl...Checker  - Audit finished.
       </p>
 
       <p>
-        The source code for <code>CommonsLoggingListener</code> is in distribution
-        directory <code>https://github.com/checkstyle/contribution/examples/listeners</code>.  This
+        This
         implementation uses the <a
         href="http://www.oracle.com/technetwork/java/javamail/index.html">JavaMail API</a> as
         the mail system, and you must include appropriate jar files in
