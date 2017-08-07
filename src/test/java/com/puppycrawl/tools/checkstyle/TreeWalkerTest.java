@@ -144,7 +144,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         try {
             final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-            verify(createChecker(checkConfig, true), temporaryFolder.newFile().getPath(), expected);
+            verify(createChecker(checkConfig, ModuleCreationOption.IN_TREEWALKER),
+                    temporaryFolder.newFile().getPath(), expected);
             fail("CheckstyleException is expected");
         }
         catch (CheckstyleException exception) {
