@@ -80,6 +80,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * @author o_sukhodolsky
  * @author Maikel Steneker
  * @author maxvetrenko
+ * @noinspection ThisEscapedInObjectConstruction
  */
 public class IndentationCheck extends AbstractCheck {
     /**

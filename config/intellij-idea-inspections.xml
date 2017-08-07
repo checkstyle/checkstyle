@@ -2073,6 +2073,8 @@
     </inspection_tool>
     <inspection_tool class="StringToString" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="StringToUpperWithoutLocale" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!--  usage of string.split will use less efficient way of parsing,
+    usage of some other tokennizer might demand new dependency -->
     <inspection_tool class="StringTokenizer" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="StringTokenizerDelimiter" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SubstringZero" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -2132,6 +2134,14 @@
                 <option value="ClassLoaderInstantiation" />
                 <!-- There are asserts in DetailASTTest#checkNode, but idea does not see them -->
                 <option value="JUnitTestMethodWithNoAssertions" />
+                <!-- we use it in Main class -->
+                <option value="CallToSystemExit" />
+                <!-- we use it for testing purposes -->
+                <option value="unused" />
+                <!-- we use it for testing purposes -->
+                <option value="UseOfPropertiesAsHashtable" />
+                <!-- till #4861, #4862, #4863, #4864, #4866 -->
+                <option value="ThisEscapedInObjectConstruction" />
             </list>
         </option>
     </inspection_tool>
@@ -2183,7 +2193,7 @@
     </inspection_tool>
     <inspection_tool class="SynchronizedOnLiteralObject" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SyntaxError" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="SystemExit" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="SystemExit" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SystemGC" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SystemGetenv" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SystemOutErr" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -2212,7 +2222,7 @@
     <inspection_tool class="TestOnlyProblems" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="TextLabelInSwitchStatement" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="TextLabelInSwitchStatementJS" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="ThisEscapedInConstructor" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="ThisEscapedInConstructor" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ThisExpressionReferencesGlobalObjectJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ThreadDeathRethrown" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ThreadDumpStack" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -2247,7 +2257,9 @@
     <inspection_tool class="ThymeleafVariablesResolveInspection" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="TimeToString" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ToArrayCallWithZeroLengthArrayArgument" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- we use our own Check, that have proper suppression -->
     <inspection_tool class="TodoComment" enabled="false" level="ERROR" enabled_by_default="false" />
+    <!-- show too much false-positives in our code -->
     <inspection_tool class="TooBroadCatch" enabled="false" level="ERROR" enabled_by_default="false" />
     <!-- Disabled till GSoC completion -->
     <inspection_tool class="TooBroadScope" enabled="false" level="ERROR" enabled_by_default="false">
@@ -2293,6 +2305,7 @@
     <inspection_tool class="UNCHECKED_WARNING" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="UNUSED_IMPORT" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="UnaryPlus" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- this is old style, modern world like unchecked exceptions more -->
     <inspection_tool class="UncheckedExceptionClass" enabled="false" level="ERROR" enabled_by_default="false" />
     <!-- raise a lot of violations that make no sense to benefit from parentheses,
     like "a==1 && b==2" force to use parentheses, that is not good -->
@@ -2330,6 +2343,7 @@
     <inspection_tool class="UnnecessaryDefault" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="UnnecessaryEnumModifier" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="UnnecessaryExplicitNumericCast" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- it conflicts with our FinalLocalVariable -->
     <inspection_tool class="UnnecessaryFinalOnLocalVariableOrParameter" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="UnnecessaryFullyQualifiedName" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="m_ignoreJavadoc" value="false" />
@@ -2418,9 +2432,9 @@
     <inspection_tool class="UnusedParameters" enabled="true" level="WARNING" enabled_by_default="true">
         <scope name="Production" level="WARNING" enabled="true" />
     </inspection_tool>
-    <inspection_tool class="UnusedProperty" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="UnusedProperty" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="UnusedReceiverParameter" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="UnusedReturnValue" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="UnusedReturnValue" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="UnusedSymbol" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="UpperCaseFieldNameNotConstant" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="UseOfAWTPeerClass" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -2434,7 +2448,7 @@
     <inspection_tool class="UseOfObsoleteAssert" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="UseOfObsoleteDateTimeApi" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="UseOfProcessBuilder" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="UseOfPropertiesAsHashtable" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="UseOfPropertiesAsHashtable" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="UseOfSunClasses" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="UtilSchemaInspection" enabled="true" level="WARNING" enabled_by_default="true" />
     <!-- we are not pure object-oriented library, we like reasonable mix of styles, especially state-less and context-less -->
@@ -2453,6 +2467,7 @@
         <option name="ignoreClassesWithOnlyMain" value="false" />
     </inspection_tool>
     <inspection_tool class="ValidExternallyBoundObject" enabled="true" level="WARNING" enabled_by_default="true" />
+    <!-- we like varargs methods, we use modern jdk -->
     <inspection_tool class="VarargParameter" enabled="false" level="ERROR" enabled_by_default="false" />
     <!-- using the same variable is not always required, especially in case where null is signal for action or break etc. -->
     <inspection_tool class="VariableNotUsedInsideIf" enabled="false" level="ERROR" enabled_by_default="false" />
@@ -2497,6 +2512,7 @@
     some other config files also do not have schemes too -->
     <inspection_tool class="XmlHighlighting" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="XmlInvalidId" enabled="true" level="WARNING" enabled_by_default="true" />
+    <!-- this inspection is too severely demand all paths to be from repo root, no options to adjust -->
     <inspection_tool class="XmlPathReference" enabled="false" level="ERROR" enabled_by_default="false" />
     <!-- there is not xsd or DTD for ant files https://ant.apache.org/faq.html#dtd,
     some other config files also do not have schemes too -->
@@ -2516,13 +2532,13 @@
             </value>
         </option>
     </inspection_tool>
-    <inspection_tool class="unused" enabled="false" level="WARNING" enabled_by_default="false">
+    <inspection_tool class="unused" enabled="true" level="WARNING" enabled_by_default="true" field="protected" ignoreAccessors="true">
         <option name="LOCAL_VARIABLE" value="true" />
         <option name="FIELD" value="true" />
-        <option name="METHOD" value="true" />
+        <option name="METHOD" value="false" />
         <option name="CLASS" value="true" />
         <option name="PARAMETER" value="true" />
-        <option name="REPORT_PARAMETER_FOR_PUBLIC_METHODS" value="true" />
+        <option name="REPORT_PARAMETER_FOR_PUBLIC_METHODS" value="false" />
         <option name="ADD_MAINS_TO_ENTRIES" value="true" />
         <option name="ADD_APPLET_TO_ENTRIES" value="true" />
         <option name="ADD_SERVLET_TO_ENTRIES" value="true" />

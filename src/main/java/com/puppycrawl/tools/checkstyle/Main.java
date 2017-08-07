@@ -175,7 +175,7 @@ public final class Main {
      * is the number of errors found in all the files.
      * @param args the command line arguments.
      * @throws IOException if there is a problem with files access
-     * @noinspection CallToPrintStackTrace
+     * @noinspection CallToPrintStackTrace, CallToSystemExit
      **/
     public static void main(String... args) throws IOException {
         int errorCounter = 0;
