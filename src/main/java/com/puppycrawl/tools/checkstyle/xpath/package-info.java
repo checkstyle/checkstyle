@@ -18,6 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Contains the nodes implementations for XPATH queries.
+ * Contains the nodes implementations for XPATH queries and query generator.
  */
 package com.puppycrawl.tools.checkstyle.xpath;
