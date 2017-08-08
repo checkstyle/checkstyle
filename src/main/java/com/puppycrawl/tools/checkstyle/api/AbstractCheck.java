@@ -39,14 +39,14 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     /** Default tab width for column reporting. */
     private static final int DEFAULT_TAB_WIDTH = 8;
 
+    /**
+     * The check context.
+     * @noinspection ThreadLocalNotStaticFinal
+     */
+    private final ThreadLocal<FileContext> context = ThreadLocal.withInitial(FileContext::new);
+
     /** The tokens the check is interested in. */
     private final Set<String> tokens = new HashSet<>();
-
-    /** The sorted set for collecting messages. */
-    private final SortedSet<LocalizedMessage> messages = new TreeSet<>();
-
-    /** The current file contents. */
-    private FileContents fileContents;
 
     /** The tab width for column reporting. */
     private int tabWidth = DEFAULT_TAB_WIDTH;
@@ -112,14 +112,14 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * @return the sorted set of {@link LocalizedMessage}.
      */
     public SortedSet<LocalizedMessage> getMessages() {
-        return new TreeSet<>(messages);
+        return new TreeSet<>(context.get().messages);
     }
 
     /**
      * Clears the sorted set of {@link LocalizedMessage} of the check.
      */
     public final void clearMessages() {
-        messages.clear();
+        context.get().messages.clear();
     }
 
     /**
@@ -176,7 +176,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * @return the file contents
      */
     public final String[] getLines() {
-        return fileContents.getLines();
+        return context.get().fileContents.getLines();
     }
 
     /**
@@ -185,7 +185,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * @return the line from the file contents
      */
     public final String getLine(int index) {
-        return fileContents.getLine(index);
+        return context.get().fileContents.getLine(index);
     }
 
     /**
@@ -193,7 +193,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * @param contents the manager
      */
     public final void setFileContents(FileContents contents) {
-        fileContents = contents;
+        context.get().fileContents = contents;
     }
 
     /**
@@ -202,7 +202,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * @noinspection WeakerAccess
      */
     public final FileContents getFileContents() {
-        return fileContents;
+        return context.get().fileContents;
     }
 
     /**
@@ -251,7 +251,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
 
     @Override
     public final void log(int line, String key, Object... args) {
-        messages.add(
+        context.get().messages.add(
             new LocalizedMessage(
                 line,
                 getMessageBundle(),
@@ -268,7 +268,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
             Object... args) {
         final int col = 1 + CommonUtils.lengthExpandedTabs(
             getLines()[lineNo - 1], colNo, tabWidth);
-        messages.add(
+        context.get().messages.add(
             new LocalizedMessage(
                 lineNo,
                 col,
@@ -279,5 +279,16 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
                 getId(),
                 getClass(),
                 getCustomMessages().get(key)));
+    }
+
+    /**
+     * The actual context holder.
+     */
+    private static class FileContext {
+        /** The sorted set for collecting messages. */
+        private final SortedSet<LocalizedMessage> messages = new TreeSet<>();
+
+        /** The current file contents. */
+        private FileContents fileContents;
     }
 }
