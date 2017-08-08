@@ -20,6 +20,9 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -28,6 +31,7 @@ import java.io.UnsupportedEncodingException;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
 public class DefaultLoggerTest {
@@ -59,5 +63,39 @@ public class DefaultLoggerTest {
         final String output = infoStream.toString();
         assertTrue("Message should contain exception info, but was " + output,
                 output.contains("java.lang.IllegalStateException: upsss"));
+    }
+
+    @Test
+    public void testNewCtor() throws Exception {
+        final OutputStream infoStream = spy(new ByteArrayOutputStream());
+        final ByteArrayOutputStream errorStream = spy(new ByteArrayOutputStream());
+        final DefaultLogger dl = new DefaultLogger(infoStream,
+                AutomaticBean.OutputStreamOptions.CLOSE, errorStream,
+                AutomaticBean.OutputStreamOptions.CLOSE);
+        dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
+        dl.auditFinished(new AuditEvent(6000, "myfile"));
+        final String output = errorStream.toString("UTF-8");
+        final LocalizedMessage addExceptionMessage = new LocalizedMessage(0,
+                Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.addException",
+                new String[] {"myfile"}, null,
+                getClass(), null);
+
+        verify(infoStream, times(1)).close();
+        verify(errorStream, times(1)).close();
+        assertTrue("Message should contain exception info, but was " + output,
+                output.contains(addExceptionMessage.getMessage()));
+        assertTrue("Message should contain exception info, but was " + output,
+                output.contains("java.lang.IllegalStateException: upsss"));
+    }
+
+    @Test
+    public void testNewCtorWithTwoParameters() {
+        final OutputStream infoStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(infoStream,
+                AutomaticBean.OutputStreamOptions.NONE);
+        dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
+        dl.auditFinished(new AuditEvent(6000, "myfile"));
+        assertTrue("Message should contain exception info, but was " + infoStream,
+                infoStream.toString().contains("java.lang.IllegalStateException: upsss"));
     }
 }

@@ -56,6 +56,21 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 public class AutomaticBean
     implements Configurable, Contextualizable {
 
+    /**
+     * Enum to specify behaviour regarding ignored modules.
+     */
+    public enum OutputStreamOptions {
+        /**
+         * Close stream in the end.
+         */
+        CLOSE,
+
+        /**
+         * Do nothing in the end.
+         */
+        NONE
+    }
+
     /** Comma separator for StringTokenizer. */
     private static final String COMMA_SEPARATOR = ",";
 

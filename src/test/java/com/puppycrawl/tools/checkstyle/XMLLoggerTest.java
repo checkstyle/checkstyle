@@ -36,6 +36,7 @@ import java.util.regex.Pattern;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
@@ -105,9 +106,13 @@ public class XMLLoggerTest {
     @Test
     public void testCloseStream()
             throws IOException {
-        final XMLLogger logger = new XMLLogger(outStream, true);
+        final XMLLogger logger = new XMLLogger(outStream,
+                AutomaticBean.OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
         logger.auditFinished(null);
+
+        assertEquals("Invalid close count", 1, outStream.getCloseCount());
+
         final String[] expectedLines = CommonUtils.EMPTY_STRING_ARRAY;
         verifyLines(expectedLines);
     }
@@ -115,9 +120,13 @@ public class XMLLoggerTest {
     @Test
     public void testNoCloseStream()
             throws IOException {
-        final XMLLogger logger = new XMLLogger(outStream, false);
+        final XMLLogger logger = new XMLLogger(outStream,
+                AutomaticBean.OutputStreamOptions.NONE);
         logger.auditStarted(null);
         logger.auditFinished(null);
+
+        assertEquals("Invalid close count", 0, outStream.getCloseCount());
+
         outStream.close();
         final String[] expectedLines = CommonUtils.EMPTY_STRING_ARRAY;
         verifyLines(expectedLines);
