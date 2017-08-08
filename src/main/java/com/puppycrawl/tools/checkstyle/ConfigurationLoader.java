@@ -53,6 +53,24 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  */
 public final class ConfigurationLoader {
 
+    /**
+     * Enum to specify behaviour regarding ignored modules.
+     */
+    public enum IgnoredModulesOptions {
+        /**
+         * Omit ignored modules.
+         */
+        OMIT,
+
+        /**
+         * Execute ignored modules.
+         */
+        EXECUTE
+    }
+
+    /** Format of message for sax parse exception. */
+    private static final String SAX_PARSE_EXCEPTION_FORMAT = "%s - %s:%s:%s";
+
     /** The public ID for version 1_0 of the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_0 =
         "-//Puppy Crawl//DTD Check Configuration 1.0//EN";
@@ -179,7 +197,7 @@ public final class ConfigurationLoader {
      */
     public static Configuration loadConfiguration(String config,
             PropertyResolver overridePropsResolver) throws CheckstyleException {
-        return loadConfiguration(config, overridePropsResolver, false);
+        return loadConfiguration(config, overridePropsResolver, IgnoredModulesOptions.EXECUTE);
     }
 
     /**
@@ -193,7 +211,8 @@ public final class ConfigurationLoader {
     public static Configuration loadConfiguration(String config,
             PropertyResolver overridePropsResolver, ThreadModeSettings threadModeSettings)
             throws CheckstyleException {
-        return loadConfiguration(config, overridePropsResolver, false, threadModeSettings);
+        return loadConfiguration(config, overridePropsResolver,
+                IgnoredModulesOptions.EXECUTE, threadModeSettings);
     }
 
     /**
@@ -205,8 +224,10 @@ public final class ConfigurationLoader {
      *            'ignore' should be omitted, {@code false} otherwise
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
+     * @deprecated in order to fullfil demands of BooleanParameter IDEA check.
      * @noinspection BooleanParameter
      */
+    @Deprecated
     public static Configuration loadConfiguration(String config,
         PropertyResolver overridePropsResolver, boolean omitIgnoredModules)
             throws CheckstyleException {
@@ -224,8 +245,10 @@ public final class ConfigurationLoader {
      * @param threadModeSettings the thread mode configuration
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
+     * @deprecated in order to fullfil demands of BooleanParameter IDEA check.
      * @noinspection BooleanParameter
      */
+    @Deprecated
     public static Configuration loadConfiguration(String config,
             PropertyResolver overridePropsResolver,
             boolean omitIgnoredModules, ThreadModeSettings threadModeSettings)
@@ -274,8 +297,10 @@ public final class ConfigurationLoader {
      *            'ignore' should be omitted, {@code false} otherwise
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
+     * @deprecated in order to fullfil demands of BooleanParameter IDEA check.
      * @noinspection BooleanParameter
      */
+    @Deprecated
     public static Configuration loadConfiguration(InputSource configSource,
             PropertyResolver overridePropsResolver, boolean omitIgnoredModules)
             throws CheckstyleException {
@@ -295,8 +320,10 @@ public final class ConfigurationLoader {
      * @param threadModeSettings the thread mode configuration
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
+     * @deprecated in order to fullfil demands of BooleanParameter IDEA check.
      * @noinspection BooleanParameter
      */
+    @Deprecated
     public static Configuration loadConfiguration(InputSource configSource,
         PropertyResolver overridePropsResolver,
         boolean omitIgnoredModules, ThreadModeSettings threadModeSettings)
@@ -309,7 +336,105 @@ public final class ConfigurationLoader {
             return loader.configuration;
         }
         catch (final SAXParseException ex) {
-            final String message = String.format(Locale.ROOT, "%s - %s:%s:%s",
+            final String message = String.format(Locale.ROOT, SAX_PARSE_EXCEPTION_FORMAT,
+                    UNABLE_TO_PARSE_EXCEPTION_PREFIX,
+                    ex.getMessage(), ex.getLineNumber(), ex.getColumnNumber());
+            throw new CheckstyleException(message, ex);
+        }
+        catch (final ParserConfigurationException | IOException | SAXException ex) {
+            throw new CheckstyleException(UNABLE_TO_PARSE_EXCEPTION_PREFIX, ex);
+        }
+    }
+
+    /**
+     * Returns the module configurations in a specified file.
+     *
+     * @param config location of config file, can be either a URL or a filename
+     * @param overridePropsResolver overriding properties
+     * @param ignoredModulesOptions {@code OMIT} if modules with severity
+     *            'ignore' should be omitted, {@code EXECUTE} otherwise
+     * @return the check configurations
+     * @throws CheckstyleException if an error occurs
+     */
+    public static Configuration loadConfiguration(String config,
+                                                  PropertyResolver overridePropsResolver,
+                                                  IgnoredModulesOptions ignoredModulesOptions)
+            throws CheckstyleException {
+        return loadConfiguration(config, overridePropsResolver, ignoredModulesOptions,
+                ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE);
+    }
+
+    /**
+     * Returns the module configurations in a specified file.
+     *
+     * @param config location of config file, can be either a URL or a filename
+     * @param overridePropsResolver overriding properties
+     * @param ignoredModulesOptions {@code OMIT} if modules with severity
+     *            'ignore' should be omitted, {@code EXECUTE} otherwise
+     * @param threadModeSettings the thread mode configuration
+     * @return the check configurations
+     * @throws CheckstyleException if an error occurs
+     */
+    public static Configuration loadConfiguration(String config,
+                                                  PropertyResolver overridePropsResolver,
+                                                  IgnoredModulesOptions ignoredModulesOptions,
+                                                  ThreadModeSettings threadModeSettings)
+            throws CheckstyleException {
+        // figure out if this is a File or a URL
+        final URI uri = CommonUtils.getUriByFilename(config);
+        final InputSource source = new InputSource(uri.toString());
+        return loadConfiguration(source, overridePropsResolver,
+                ignoredModulesOptions, threadModeSettings);
+    }
+
+    /**
+     * Returns the module configurations from a specified input source.
+     * Note that if the source does wrap an open byte or character
+     * stream, clients are required to close that stream by themselves
+     *
+     * @param configSource the input stream to the Checkstyle configuration
+     * @param overridePropsResolver overriding properties
+     * @param ignoredModulesOptions {@code OMIT} if modules with severity
+     *            'ignore' should be omitted, {@code EXECUTE} otherwise
+     * @return the check configurations
+     * @throws CheckstyleException if an error occurs
+     */
+    public static Configuration loadConfiguration(InputSource configSource,
+                                                  PropertyResolver overridePropsResolver,
+                                                  IgnoredModulesOptions ignoredModulesOptions)
+            throws CheckstyleException {
+        return loadConfiguration(configSource, overridePropsResolver,
+                ignoredModulesOptions, ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE);
+    }
+
+    /**
+     * Returns the module configurations from a specified input source.
+     * Note that if the source does wrap an open byte or character
+     * stream, clients are required to close that stream by themselves
+     *
+     * @param configSource the input stream to the Checkstyle configuration
+     * @param overridePropsResolver overriding properties
+     * @param ignoredModulesOptions {@code OMIT} if modules with severity
+     *            'ignore' should be omitted, {@code EXECUTE} otherwise
+     * @param threadModeSettings the thread mode configuration
+     * @return the check configurations
+     * @throws CheckstyleException if an error occurs
+     */
+    public static Configuration loadConfiguration(InputSource configSource,
+                                                  PropertyResolver overridePropsResolver,
+                                                  IgnoredModulesOptions ignoredModulesOptions,
+                                                  ThreadModeSettings threadModeSettings)
+            throws CheckstyleException {
+        try {
+            final boolean omitIgnoreModules = ignoredModulesOptions == IgnoredModulesOptions.OMIT;
+            final ConfigurationLoader loader =
+                    new ConfigurationLoader(overridePropsResolver,
+                            omitIgnoreModules, threadModeSettings);
+            loader.parseInputSource(configSource);
+            return loader.configuration;
+        }
+        catch (final SAXParseException ex) {
+            final String message = String.format(Locale.ROOT, SAX_PARSE_EXCEPTION_FORMAT,
                     UNABLE_TO_PARSE_EXCEPTION_PREFIX,
                     ex.getMessage(), ex.getLineNumber(), ex.getColumnNumber());
             throw new CheckstyleException(message, ex);

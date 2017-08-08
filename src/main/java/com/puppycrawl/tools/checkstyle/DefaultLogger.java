@@ -40,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  *
  * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
  * @see XMLLogger
+ * @noinspection ClassWithTooManyConstructors
  */
 public class DefaultLogger extends AutomaticBean implements AuditListener {
 
@@ -76,8 +77,10 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
      * Creates a new {@code DefaultLogger} instance.
      * @param outputStream where to log infos and errors
      * @param closeStreamsAfterUse if oS should be closed in auditFinished()
+     * @deprecated in order to fullfil demands of BooleanParameter IDEA check.
      * @noinspection BooleanParameter
      */
+    @Deprecated
     public DefaultLogger(OutputStream outputStream, boolean closeStreamsAfterUse) {
         // no need to close oS twice
         this(outputStream, closeStreamsAfterUse, outputStream, false);
@@ -89,8 +92,10 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
      * @param closeInfoAfterUse auditFinished should close infoStream.
      * @param errorStream the {@code OutputStream} for error messages.
      * @param closeErrorAfterUse auditFinished should close errorStream
+     * @deprecated in order to fullfil demands of BooleanParameter IDEA check.
      * @noinspection BooleanParameter
      */
+    @Deprecated
     public DefaultLogger(OutputStream infoStream,
                          boolean closeInfoAfterUse,
                          OutputStream errorStream,
@@ -107,8 +112,10 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
      * @param errorStream the {@code OutputStream} for error messages
      * @param closeErrorAfterUse auditFinished should close errorStream
      * @param messageFormatter formatter for the log message.
+     * @deprecated in order to fullfil demands of BooleanParameter IDEA check.
      * @noinspection BooleanParameter
      */
+    @Deprecated
     public DefaultLogger(OutputStream infoStream,
                          boolean closeInfoAfterUse,
                          OutputStream errorStream,
@@ -116,6 +123,61 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
                          AuditEventFormatter messageFormatter) {
         closeInfo = closeInfoAfterUse;
         closeError = closeErrorAfterUse;
+        final Writer infoStreamWriter = new OutputStreamWriter(infoStream, StandardCharsets.UTF_8);
+        infoWriter = new PrintWriter(infoStreamWriter);
+
+        if (infoStream == errorStream) {
+            errorWriter = infoWriter;
+        }
+        else {
+            final Writer errorStreamWriter = new OutputStreamWriter(errorStream,
+                    StandardCharsets.UTF_8);
+            errorWriter = new PrintWriter(errorStreamWriter);
+        }
+        formatter = messageFormatter;
+    }
+
+    /**
+     * Creates a new {@code DefaultLogger} instance.
+     * @param outputStream where to log infos and errors
+     * @param outputStreamOptions if {@code CLOSE} that should be closed in auditFinished()
+     */
+    public DefaultLogger(OutputStream outputStream, OutputStreamOptions outputStreamOptions) {
+        // no need to close oS twice
+        this(outputStream, outputStreamOptions, outputStream, OutputStreamOptions.NONE);
+    }
+
+    /**
+     * Creates a new {@code DefaultLogger} instance.
+     * @param infoStream the {@code OutputStream} for info messages.
+     * @param infoStreamOptions if {@code CLOSE} info should be closed in auditFinished()
+     * @param errorStream the {@code OutputStream} for error messages.
+     * @param errorStreamOptions if {@code CLOSE} error should be closed in auditFinished()
+     */
+    public DefaultLogger(OutputStream infoStream,
+                         OutputStreamOptions infoStreamOptions,
+                         OutputStream errorStream,
+                         OutputStreamOptions errorStreamOptions) {
+        this(infoStream, infoStreamOptions, errorStream, errorStreamOptions,
+                new AuditEventDefaultFormatter());
+    }
+
+    /**
+     * Creates a new {@code DefaultLogger} instance.
+     *
+     * @param infoStream the {@code OutputStream} for info messages
+     * @param infoStreamOptions if {@code CLOSE} info should be closed in auditFinished()
+     * @param errorStream the {@code OutputStream} for error messages
+     * @param errorStreamOptions if {@code CLOSE} error should be closed in auditFinished()
+     * @param messageFormatter formatter for the log message.
+     */
+    public DefaultLogger(OutputStream infoStream,
+                         OutputStreamOptions infoStreamOptions,
+                         OutputStream errorStream,
+                         OutputStreamOptions errorStreamOptions,
+                         AuditEventFormatter messageFormatter) {
+        closeInfo = infoStreamOptions == OutputStreamOptions.CLOSE;
+        closeError = errorStreamOptions == OutputStreamOptions.CLOSE;
         final Writer infoStreamWriter = new OutputStreamWriter(infoStream, StandardCharsets.UTF_8);
         infoWriter = new PrintWriter(infoStreamWriter);
 

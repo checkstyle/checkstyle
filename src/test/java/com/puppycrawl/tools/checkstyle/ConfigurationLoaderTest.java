@@ -173,6 +173,25 @@ public class ConfigurationLoaderTest {
     }
 
     @Test
+    public void testMissingPropertyNameInMethodWithBooleanParameter() {
+        try {
+            final String fName = getConfigPath("missing_property_name.xml");
+            ConfigurationLoader.loadConfiguration(fName, new PropertiesExpander(new Properties()),
+                    false);
+
+            fail("missing property name");
+        }
+        catch (CheckstyleException ex) {
+            assertTrue("Invalid exception message: " + ex.getMessage(),
+                    ex.getMessage().contains("\"name\""));
+            assertTrue("Invalid exception message: " + ex.getMessage(),
+                    ex.getMessage().contains("\"property\""));
+            assertTrue("Invalid exception message: " + ex.getMessage(),
+                    ex.getMessage().endsWith(":8:41"));
+        }
+    }
+
+    @Test
     public void testMissingPropertyValue() {
         try {
             loadConfiguration("missing_property_value.xml");
@@ -643,5 +662,26 @@ public class ConfigurationLoaderTest {
                fragments, propertyRefs);
         assertEquals("Fragments list has unexpected amount of items",
                 1, fragments.size());
+    }
+
+    @Test
+    public void testConstructors() throws Exception {
+        final Properties props = new Properties();
+        props.setProperty("checkstyle.basedir", "basedir");
+        final String fName = getConfigPath("checkstyle_checks.xml");
+
+        final Configuration configuration = ConfigurationLoader.loadConfiguration(fName,
+                new PropertiesExpander(props), ConfigurationLoader.IgnoredModulesOptions.OMIT);
+        assertEquals("Name is not expected", "Checker", configuration.getName());
+
+        final DefaultConfiguration configuration1 =
+                (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
+                        new InputSource(
+                                new FileInputStream(getConfigPath("config_with_ignore.xml"))),
+                        new PropertiesExpander(new Properties()),
+                        ConfigurationLoader.IgnoredModulesOptions.EXECUTE);
+
+        final Configuration[] children = configuration1.getChildren();
+        assertEquals("Unexpected children size", 1, children[0].getChildren().length);
     }
 }

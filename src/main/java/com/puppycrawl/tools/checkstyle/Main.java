@@ -47,6 +47,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
@@ -491,9 +492,18 @@ public final class Main {
         final ThreadModeSettings multiThreadModeSettings =
                 new ThreadModeSettings(
                         cliOptions.checkerThreadsNumber, cliOptions.treeWalkerThreadsNumber);
+
+        final ConfigurationLoader.IgnoredModulesOptions ignoredModulesOptions;
+        if (cliOptions.executeIgnoredModules) {
+            ignoredModulesOptions = ConfigurationLoader.IgnoredModulesOptions.EXECUTE;
+        }
+        else {
+            ignoredModulesOptions = ConfigurationLoader.IgnoredModulesOptions.OMIT;
+        }
+
         final Configuration config = ConfigurationLoader.loadConfiguration(
                 cliOptions.configLocation, new PropertiesExpander(props),
-                !cliOptions.executeIgnoredModules, multiThreadModeSettings);
+                ignoredModulesOptions, multiThreadModeSettings);
 
         // create a listener for output
         final AuditListener listener = createListener(cliOptions.format, cliOptions.outputLocation);
@@ -582,14 +592,14 @@ public final class Main {
 
         // setup the output stream
         final OutputStream out;
-        final boolean closeOutputStream;
+        final AutomaticBean.OutputStreamOptions closeOutputStream;
         if (outputLocation == null) {
             out = System.out;
-            closeOutputStream = false;
+            closeOutputStream = AutomaticBean.OutputStreamOptions.NONE;
         }
         else {
             out = new FileOutputStream(outputLocation);
-            closeOutputStream = true;
+            closeOutputStream = AutomaticBean.OutputStreamOptions.CLOSE;
         }
 
         // setup a listener
@@ -599,11 +609,12 @@ public final class Main {
 
         }
         else if (PLAIN_FORMAT_NAME.equals(format)) {
-            listener = new DefaultLogger(out, closeOutputStream, out, false);
+            listener = new DefaultLogger(out, closeOutputStream, out,
+                    AutomaticBean.OutputStreamOptions.NONE);
 
         }
         else {
-            if (closeOutputStream) {
+            if (closeOutputStream == AutomaticBean.OutputStreamOptions.CLOSE) {
                 CommonUtils.close(out);
             }
             final LocalizedMessage outputFormatExceptionMessage = new LocalizedMessage(0,

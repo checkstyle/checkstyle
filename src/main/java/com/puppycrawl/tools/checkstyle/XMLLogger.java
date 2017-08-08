@@ -67,11 +67,24 @@ public class XMLLogger
      * Sets the output to a defined stream.
      * @param outputStream the stream to write logs to.
      * @param closeStream close oS in auditFinished
+     * @deprecated in order to fullfil demands of BooleanParameter IDEA check.
      * @noinspection BooleanParameter
      */
+    @Deprecated
     public XMLLogger(OutputStream outputStream, boolean closeStream) {
         setOutputStream(outputStream);
         this.closeStream = closeStream;
+    }
+
+    /**
+     * Creates a new {@code XMLLogger} instance.
+     * Sets the output to a defined stream.
+     * @param outputStream the stream to write logs to.
+     * @param outputStreamOptions if {@code CLOSE} stream should be closed in auditFinished()
+     */
+    public XMLLogger(OutputStream outputStream, OutputStreamOptions outputStreamOptions) {
+        setOutputStream(outputStream);
+        closeStream = outputStreamOptions == OutputStreamOptions.CLOSE;
     }
 
     /**

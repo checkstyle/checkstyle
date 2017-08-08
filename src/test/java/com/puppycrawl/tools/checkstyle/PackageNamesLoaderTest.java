@@ -24,12 +24,18 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.times;
+import static org.powermock.api.mockito.PowerMockito.doNothing;
 import static org.powermock.api.mockito.PowerMockito.mock;
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
+import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -42,10 +48,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
+import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
@@ -53,6 +63,8 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  * @author Rick Giles
  * @author lkuehne
  */
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({PackageNamesLoader.class, Closeables.class})
 public class PackageNamesLoaderTest extends AbstractPathTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -72,6 +84,10 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
     @Test
     @SuppressWarnings("unchecked")
     public void testPackagesFile() throws Exception {
+        mockStatic(Closeables.class);
+        doNothing().when(Closeables.class);
+        Closeables.closeQuietly(any(InputStream.class));
+
         final Method processFileMethod = PackageNamesLoader.class.getDeclaredMethod("processFile",
                 URL.class, PackageNamesLoader.class);
         processFileMethod.setAccessible(true);
@@ -113,6 +129,9 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
         final Set<String> checkstylePackagesSet =
                 new HashSet<>(Arrays.asList(expectedPackageNames));
         assertEquals("Invalid names set.", checkstylePackagesSet, actualPackageNames);
+
+        verifyStatic(times(1));
+        Closeables.closeQuietly(any(InputStream.class));
     }
 
     @Test
