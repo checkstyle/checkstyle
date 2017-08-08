@@ -26,13 +26,11 @@ import static org.mockito.Mockito.verify;
 import java.io.File;
 import java.nio.charset.Charset;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.mockito.internal.util.reflection.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -215,16 +213,13 @@ public class AbstractCheckTest {
     }
 
     @Test
-    @SuppressWarnings("unchecked")
     public void testClearMessages() {
         final AbstractCheck check = new DummyAbstractCheck();
 
         check.log(0, "key", "args");
-        final Collection<LocalizedMessage> messages =
-                (Collection<LocalizedMessage>) Whitebox.getInternalState(check, "messages");
-        Assert.assertEquals("Invalid message size", 1, messages.size());
+        Assert.assertEquals("Invalid message size", 1, check.getMessages().size());
         check.clearMessages();
-        Assert.assertEquals("Invalid message size", 0, messages.size());
+        Assert.assertEquals("Invalid message size", 0, check.getMessages().size());
     }
 
     private static final class DummyAbstractCheck extends AbstractCheck {
