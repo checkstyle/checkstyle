@@ -41,6 +41,7 @@ public abstract class AbstractViolationReporter
      * @return the severity level
      * @see SeverityLevel
      * @see LocalizedMessage#getSeverityLevel
+     * @noinspection WeakerAccess
      */
     public final SeverityLevel getSeverityLevel() {
         return severityLevel;
@@ -61,6 +62,7 @@ public abstract class AbstractViolationReporter
      *  Get the severity level's name.
      *
      *  @return  the check's severity level name.
+     *  @noinspection WeakerAccess
      */
     public final String getSeverity() {
         return severityLevel.getName();

@@ -46,7 +46,7 @@ public class TryHandler extends BlockParentHandler {
      *
      * @return DetailAst    left parenthesis of try with resources
      */
-    protected DetailAST getTryResLparen() {
+    private DetailAST getTryResLparen() {
         return getMainAst().getFirstChild().getFirstChild();
     }
 
@@ -55,7 +55,7 @@ public class TryHandler extends BlockParentHandler {
      *
      * @return DetailAst    right parenthesis of try with resources
      */
-    protected DetailAST getTryResRparen() {
+    private DetailAST getTryResRparen() {
         return getMainAst().getFirstChild().getLastChild();
     }
 
@@ -86,7 +86,7 @@ public class TryHandler extends BlockParentHandler {
      * @param parenAst      lparen or rparen ast to check
      * @param subType       name to be used in log message
      */
-    protected void checkTryResParen(final DetailAST parenAst,
+    private void checkTryResParen(final DetailAST parenAst,
                                     final String subType) {
         if (isOnStartOfLine(parenAst)) {
             final IndentLevel expectedIdent = new IndentLevel(getIndent(), 0,
@@ -123,7 +123,7 @@ public class TryHandler extends BlockParentHandler {
      *
      * @param resourcesSpecAst   Resource specification ast
      */
-    protected void checkTryResources(final DetailAST resourcesSpecAst) {
+    private void checkTryResources(final DetailAST resourcesSpecAst) {
         final DetailAST resourcesAst = resourcesSpecAst.findFirstToken(TokenTypes.RESOURCES);
         final int indetation = getIndent().getFirstIndentLevel()
             + getIndentCheck().getLineWrappingIndentation();

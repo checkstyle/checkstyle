@@ -240,7 +240,7 @@ public class MainFrameModel {
      * @throws IOException if the file could not be read.
      * @throws ANTLRException if the file is not a Java source.
      */
-    public DetailAST parseFile(File file) throws IOException, ANTLRException {
+    private static DetailAST parseFile(File file) throws IOException, ANTLRException {
         final FileText fileText = getFileText(file);
         final FileContents contents = new FileContents(fileText);
         return TreeWalker.parse(contents);
@@ -253,7 +253,7 @@ public class MainFrameModel {
      * @throws IOException if the file could not be read.
      * @throws ANTLRException if the file is not a Java source.
      */
-    public DetailAST parseFileWithComments(File file) throws IOException, ANTLRException {
+    private static DetailAST parseFileWithComments(File file) throws IOException, ANTLRException {
         final FileText fileText = getFileText(file);
         final FileContents contents = new FileContents(fileText);
         return TreeWalker.parseWithComments(contents);
@@ -265,7 +265,7 @@ public class MainFrameModel {
      * @return the FileText.
      * @throws IOException if the file could not be read.
      */
-    public FileText getFileText(File file) throws IOException {
+    private static FileText getFileText(File file) throws IOException {
         return new FileText(file.getAbsoluteFile(),
                 System.getProperty("file.encoding", "UTF-8"));
     }

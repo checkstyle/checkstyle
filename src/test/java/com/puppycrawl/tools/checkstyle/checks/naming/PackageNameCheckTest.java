@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Test;
@@ -54,7 +54,7 @@ public class PackageNameCheckTest
         final String pattern = "[A-Z]+";
 
         final String[] expected = {
-            "6:9: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "6:9: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.checks.naming.packagename", pattern),
         };
         verify(checkConfig, getPath("InputPackageNameSimple.java"), expected);

@@ -113,7 +113,7 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
      * @param closeErrorAfterUse auditFinished should close errorStream
      * @param messageFormatter formatter for the log message.
      * @deprecated in order to fullfil demands of BooleanParameter IDEA check.
-     * @noinspection BooleanParameter
+     * @noinspection BooleanParameter, WeakerAccess
      */
     @Deprecated
     public DefaultLogger(OutputStream infoStream,
@@ -170,6 +170,7 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
      * @param errorStream the {@code OutputStream} for error messages
      * @param errorStreamOptions if {@code CLOSE} error should be closed in auditFinished()
      * @param messageFormatter formatter for the log message.
+     * @noinspection WeakerAccess
      */
     public DefaultLogger(OutputStream infoStream,
                          OutputStreamOptions infoStreamOptions,
