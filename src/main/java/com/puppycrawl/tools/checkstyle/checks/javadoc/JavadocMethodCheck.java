@@ -419,7 +419,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * @param ast the tree node for the method or constructor.
      * @return True if this method or constructor doesn't need Javadoc.
      */
-    protected boolean isMissingJavadocAllowed(final DetailAST ast) {
+    private boolean isMissingJavadocAllowed(final DetailAST ast) {
         return allowMissingJavadoc
             || allowMissingPropertyJavadoc
                 && (CheckUtils.isSetterMethod(ast) || CheckUtils.isGetterMethod(ast))

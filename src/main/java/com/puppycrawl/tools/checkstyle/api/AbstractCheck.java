@@ -93,6 +93,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     /**
      * Adds a set of tokens the check is interested in.
      * @param strRep the string representation of the tokens interested in
+     * @noinspection WeakerAccess
      */
     public final void setTokens(String... strRep) {
         Collections.addAll(tokens, strRep);
@@ -198,6 +199,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     /**
      * Returns the file contents associated with the tree.
      * @return the file contents
+     * @noinspection WeakerAccess
      */
     public final FileContents getFileContents() {
         return fileContents;

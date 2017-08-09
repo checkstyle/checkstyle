@@ -43,7 +43,7 @@ public class ThreadModeSettingsTest {
         final ThreadModeSettings configuration = new ThreadModeSettings(2, 2);
 
         try {
-            configuration.resolveName("Checker");
+            configuration.resolveName(ThreadModeSettings.CHECKER_MODULE_NAME);
             fail("An exception is expected");
         }
         catch (IllegalArgumentException ex) {
@@ -57,7 +57,8 @@ public class ThreadModeSettingsTest {
     public void testResolveCheckerInSingleThreadMode() throws Exception {
         final ThreadModeSettings singleThreadMode = ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
 
-        assertEquals("Invalid name resolved", "Checker", singleThreadMode.resolveName("Checker"));
+        assertEquals("Invalid name resolved", ThreadModeSettings.CHECKER_MODULE_NAME,
+                singleThreadMode.resolveName(ThreadModeSettings.CHECKER_MODULE_NAME));
     }
 
     @Test
@@ -65,7 +66,7 @@ public class ThreadModeSettingsTest {
         final ThreadModeSettings configuration = new ThreadModeSettings(2, 2);
 
         try {
-            configuration.resolveName("TreeWalker");
+            configuration.resolveName(ThreadModeSettings.TREE_WALKER_MODULE_NAME);
         }
         catch (IllegalArgumentException ex) {
             assertEquals("Invalid exception message",
@@ -77,8 +78,10 @@ public class ThreadModeSettingsTest {
     @Test
     public void testResolveTreeWalkerInSingleThreadMode() throws Exception {
         final ThreadModeSettings singleThreadMode = ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
-        final String actual = singleThreadMode.resolveName("TreeWalker");
-        assertThat("Invalid name resolved: " + actual, actual, is("TreeWalker"));
+        final String actual =
+                singleThreadMode.resolveName(ThreadModeSettings.TREE_WALKER_MODULE_NAME);
+        assertThat("Invalid name resolved: " + actual,
+                actual, is(ThreadModeSettings.TREE_WALKER_MODULE_NAME));
     }
 
     @Test

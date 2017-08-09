@@ -2130,6 +2130,8 @@
                 <option value="FieldNotUsedInToString" />
                 <!-- till #4805-->
                 <option value="HtmlTagCanBeJavadocTag" />
+                <!-- WeakerAccess reports 'can be protected' that we can not change -->
+                <option value="WeakerAccess" />
                 <!-- we need to work with AntClassLoader, there is no way to avoid this -->
                 <option value="ClassLoaderInstantiation" />
                 <!-- There are asserts in DetailASTTest#checkNode, but idea does not see them -->
@@ -2488,7 +2490,13 @@
     <inspection_tool class="WaitOrAwaitWithoutTimeout" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="WaitWhileHoldingTwoLocks" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="WaitWithoutCorrespondingNotify" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="WeakerAccess" enabled="false" level="WARNING" enabled_by_default="false">
+    <inspection_tool class="WeakerAccess" enabled="true" level="WARNING" enabled_by_default="false">
+        <scope name="Production" level="WARNING" enabled="true">
+          <option name="SUGGEST_PACKAGE_LOCAL_FOR_MEMBERS" value="false" />
+          <option name="SUGGEST_PACKAGE_LOCAL_FOR_TOP_CLASSES" value="false" />
+          <option name="SUGGEST_PRIVATE_FOR_INNERS" value="false" />
+          <disabledExtension id="junit" />
+        </scope>
         <option name="SUGGEST_PACKAGE_LOCAL_FOR_MEMBERS" value="true" />
         <option name="SUGGEST_PACKAGE_LOCAL_FOR_TOP_CLASSES" value="true" />
         <option name="SUGGEST_PRIVATE_FOR_INNERS" value="false" />
