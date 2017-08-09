@@ -191,8 +191,8 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
 
     /**
      * Called before the starting to process a tree.
-     * @param rootAst
-     *        the root of the tree
+     * @param rootAst the root of the tree
+     * @noinspection WeakerAccess
      */
     public void beginJavadocTree(DetailNode rootAst) {
         // No code by default, should be overridden only by demand at subclasses
@@ -200,8 +200,8 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
 
     /**
      * Called after finished processing a tree.
-     * @param rootAst
-     *        the root of the tree
+     * @param rootAst the root of the tree
+     * @noinspection WeakerAccess
      */
     public void finishJavadocTree(DetailNode rootAst) {
         // No code by default, should be overridden only by demand at subclasses

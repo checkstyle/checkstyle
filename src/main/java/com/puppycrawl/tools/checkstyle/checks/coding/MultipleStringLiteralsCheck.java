@@ -86,8 +86,8 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
 
     /**
      * Sets regular expression pattern for ignored strings.
-     * @param ignoreStringsRegexp
-     *        regular expression pattern for ignored strings
+     * @param ignoreStringsRegexp regular expression pattern for ignored strings
+     * @noinspection WeakerAccess
      */
     public final void setIgnoreStringsRegexp(Pattern ignoreStringsRegexp) {
         if (ignoreStringsRegexp == null || ignoreStringsRegexp.pattern().isEmpty()) {

@@ -43,6 +43,7 @@ public class SuppressWarningsHolder
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
+     * @noinspection WeakerAccess
      */
     public static final String MSG_KEY = "suppress.warnings.invalid.target";
 
@@ -116,6 +117,7 @@ public class SuppressWarningsHolder
      * @param sourceName the source name of the check (generally the class
      *        name)
      * @param checkAlias the alias used in {@link SuppressWarnings} annotations
+     * @noinspection WeakerAccess
      */
     public static void registerAlias(String sourceName, String checkAlias) {
         CHECK_ALIAS_MAP.put(sourceName, checkAlias);

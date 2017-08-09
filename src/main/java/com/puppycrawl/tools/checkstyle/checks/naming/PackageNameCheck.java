@@ -67,6 +67,7 @@ public class PackageNameCheck
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
+     * @noinspection WeakerAccess
      */
     public static final String MSG_KEY = "name.invalidPattern";
 

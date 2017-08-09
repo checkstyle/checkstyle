@@ -31,12 +31,14 @@ class SinglelineDetector {
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
+     * @noinspection WeakerAccess
      */
     public static final String MSG_REGEXP_EXCEEDED = "regexp.exceeded";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
+     * @noinspection WeakerAccess
      */
     public static final String MSG_REGEXP_MINIMUM = "regexp.minimum";
 
