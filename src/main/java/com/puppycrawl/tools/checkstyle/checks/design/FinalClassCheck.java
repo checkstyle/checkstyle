@@ -55,7 +55,7 @@ public class FinalClassCheck
     /**
      * Character separate package names in qualified name of java class.
      */
-    public static final String PACKAGE_SEPARATOR = ".";
+    private static final String PACKAGE_SEPARATOR = ".";
 
     /** Keeps ClassDesc objects for stack of declared classes. */
     private Deque<ClassDesc> classes;

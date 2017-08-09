@@ -104,7 +104,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      * Check if the top level token has label before.
      * @return true if the top level token has label before.
      */
-    protected boolean hasLabelBefore() {
+    private boolean hasLabelBefore() {
         final DetailAST parent = getTopLevelAst().getParent();
         return parent.getType() == TokenTypes.LABELED_STAT
             && parent.getLineNo() == getTopLevelAst().getLineNo();
@@ -124,7 +124,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      *
      * @return true if curly braces are present, false otherwise
      */
-    protected boolean hasCurlies() {
+    private boolean hasCurlies() {
         return getLeftCurly() != null && getRightCurly() != null;
     }
 
@@ -150,7 +150,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     /**
      * Check the indentation of the left curly brace.
      */
-    protected void checkLeftCurly() {
+    private void checkLeftCurly() {
         // the lcurly can either be at the correct indentation, or nested
         // with a previous expression
         final DetailAST lcurly = getLeftCurly();
@@ -182,7 +182,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     /**
      * Check the indentation of the right curly brace.
      */
-    protected void checkRightCurly() {
+    private void checkRightCurly() {
         final DetailAST rcurly = getRightCurly();
         final int rcurlyPos = expandedTabsColumnNo(rcurly);
 
@@ -226,7 +226,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      *
      * @return the right parenthesis expression
      */
-    protected DetailAST getRightParen() {
+    private DetailAST getRightParen() {
         return getMainAst().findFirstToken(TokenTypes.RPAREN);
     }
 
@@ -235,7 +235,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      *
      * @return the left parenthesis expression
      */
-    protected DetailAST getLeftParen() {
+    private DetailAST getLeftParen() {
         return getMainAst().findFirstToken(TokenTypes.LPAREN);
     }
 

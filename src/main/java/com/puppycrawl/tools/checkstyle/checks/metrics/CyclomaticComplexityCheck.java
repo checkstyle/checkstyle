@@ -174,7 +174,7 @@ public class CyclomaticComplexityCheck
      *
      * @param ast the token being visited
      */
-    protected final void visitTokenHook(DetailAST ast) {
+    private void visitTokenHook(DetailAST ast) {
         if (switchBlockAsSingleDecisionPoint) {
             if (ast.getType() != TokenTypes.LITERAL_CASE) {
                 incrementCurrentValue(BigInteger.ONE);
@@ -203,12 +203,12 @@ public class CyclomaticComplexityCheck
      *
      * @param amount the amount to increment by
      */
-    protected final void incrementCurrentValue(BigInteger amount) {
+    private void incrementCurrentValue(BigInteger amount) {
         currentValue = currentValue.add(amount);
     }
 
     /** Push the current value on the stack. */
-    protected final void pushValue() {
+    private void pushValue() {
         valueStack.push(currentValue);
         currentValue = INITIAL_VALUE;
     }
@@ -216,7 +216,7 @@ public class CyclomaticComplexityCheck
     /**
      * Pops a value off the stack and makes it the current value.
      */
-    protected final void popValue() {
+    private void popValue() {
         currentValue = valueStack.pop();
     }
 

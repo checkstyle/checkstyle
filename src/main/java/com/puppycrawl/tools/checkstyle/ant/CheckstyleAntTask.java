@@ -507,7 +507,7 @@ public class CheckstyleAntTask extends Task {
      * Returns the list of files (full path name) to process.
      * @return the list of files included via the fileName, filesets and paths.
      */
-    protected List<File> getFilesToCheck() {
+    private List<File> getFilesToCheck() {
         final List<File> allFiles = new ArrayList<>();
         if (fileName != null) {
             // oops we've got an additional one to process, don't
