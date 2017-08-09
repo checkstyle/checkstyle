@@ -37,8 +37,11 @@ public abstract class AbstractFileSetCheck
     extends AbstractViolationReporter
     implements FileSetCheck {
 
-    /** Collects the error messages. */
-    private final SortedSet<LocalizedMessage> messageCollector = new TreeSet<>();
+    /**
+     * Collects the error messages.
+     */
+    private static final ThreadLocal<SortedSet<LocalizedMessage>> MESSAGE_COLLECTOR =
+            ThreadLocal.withInitial(TreeSet::new);
 
     /** The dispatcher errors are fired to. */
     private MessageDispatcher messageDispatcher;
@@ -73,12 +76,12 @@ public abstract class AbstractFileSetCheck
     @Override
     public final SortedSet<LocalizedMessage> process(File file, FileText fileText)
             throws CheckstyleException {
-        messageCollector.clear();
+        MESSAGE_COLLECTOR.get().clear();
         // Process only what interested in
         if (CommonUtils.matchesFileExtension(file, fileExtensions)) {
             processFiltered(file, fileText);
         }
-        return new TreeSet<>(messageCollector);
+        return new TreeSet<>(MESSAGE_COLLECTOR.get());
     }
 
     @Override
@@ -138,8 +141,8 @@ public abstract class AbstractFileSetCheck
      * Adds the sorted set of {@link LocalizedMessage} to the message collector.
      * @param messages the sorted set of {@link LocalizedMessage}.
      */
-    protected final void addMessages(SortedSet<LocalizedMessage> messages) {
-        messageCollector.addAll(messages);
+    protected static void addMessages(SortedSet<LocalizedMessage> messages) {
+        MESSAGE_COLLECTOR.get().addAll(messages);
     }
 
     @Override
@@ -150,7 +153,7 @@ public abstract class AbstractFileSetCheck
     @Override
     public final void log(int lineNo, int colNo, String key,
             Object... args) {
-        messageCollector.add(
+        MESSAGE_COLLECTOR.get().add(
                 new LocalizedMessage(lineNo,
                         colNo,
                         getMessageBundle(),
@@ -169,8 +172,8 @@ public abstract class AbstractFileSetCheck
      * @param fileName the audited file
      */
     protected final void fireErrors(String fileName) {
-        final SortedSet<LocalizedMessage> errors = new TreeSet<>(messageCollector);
-        messageCollector.clear();
+        final SortedSet<LocalizedMessage> errors = new TreeSet<>(MESSAGE_COLLECTOR.get());
+        MESSAGE_COLLECTOR.get().clear();
         messageDispatcher.fireErrors(fileName, errors);
     }
 }
