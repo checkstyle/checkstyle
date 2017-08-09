@@ -98,14 +98,6 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
     }
 
     /**
-     * Getter for maximum allowed complexity.
-     * @return value of maximum allowed complexity.
-     */
-    public int getMax() {
-        return max;
-    }
-
-    /**
      * Setter for maximum allowed complexity.
      * @param max new maximum allowed complexity.
      */
@@ -252,11 +244,11 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
          * @param ast a node we check now.
          */
         public void checkCount(DetailAST ast) {
-            if (checking && count > getMax()) {
+            if (checking && count > max) {
                 final DetailAST parentAST = ast.getParent();
 
                 log(parentAST.getLineNo(), parentAST.getColumnNo(),
-                    MSG_KEY, count, getMax());
+                    MSG_KEY, count, max);
             }
         }
     }

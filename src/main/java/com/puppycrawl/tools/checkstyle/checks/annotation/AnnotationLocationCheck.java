@@ -408,7 +408,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
      * @param allowedPositions an array of allowed annotation positions.
      * @return true if position of annotation is allowed.
      */
-    public static boolean isAllowedPosition(DetailAST annotation, int... allowedPositions) {
+    private static boolean isAllowedPosition(DetailAST annotation, int... allowedPositions) {
         boolean allowed = false;
         for (int position : allowedPositions) {
             if (isInSpecificCodeBlock(annotation, position)) {
