@@ -170,7 +170,7 @@ public class EmptyBlockCheck
      * @param slistAST a {@code DetailAST} value
      * @return whether the SLIST token contains any text.
      */
-    protected boolean hasText(final DetailAST slistAST) {
+    private boolean hasText(final DetailAST slistAST) {
         final DetailAST rightCurly = slistAST.findFirstToken(TokenTypes.RCURLY);
         final DetailAST rcurlyAST;
 

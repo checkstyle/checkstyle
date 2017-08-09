@@ -43,7 +43,7 @@ public enum AccessModifier {
         return getName();
     }
 
-    public String getName() {
+    private String getName() {
         return name().toLowerCase(Locale.ENGLISH);
     }
 

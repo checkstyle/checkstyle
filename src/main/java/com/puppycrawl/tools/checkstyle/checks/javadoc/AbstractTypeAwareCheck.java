@@ -229,10 +229,11 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
      * @param className name of surrounding class.
      * @return the resolved class or {@code null}
      *          if unable to resolve the class.
+     * @noinspection WeakerAccess
      */
     // -@cs[ForbidWildcardAsReturnType] The class is deprecated and will be removed soon.
     protected final Class<?> resolveClass(String resolvableClassName,
-            String className) {
+                                          String className) {
         Class<?> clazz;
         try {
             clazz = getClassResolver().resolve(resolvableClassName, className);
@@ -248,6 +249,7 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
      * @param ident name of class which we try to load.
      * @param className name of surrounding class.
      * @return {@code Class} for a ident.
+     * @noinspection WeakerAccess
      */
     // -@cs[ForbidWildcardAsReturnType] The class is deprecated and will be removed soon.
     protected final Class<?> tryLoadClass(Token ident, String className) {
@@ -381,6 +383,7 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
      * Looking if a given name is alias.
      * @param name given name
      * @return ClassInfo for alias if it exists, null otherwise
+     * @noinspection WeakerAccess
      */
     protected final AbstractClassInfo findClassAlias(final String name) {
         AbstractClassInfo classInfo = null;

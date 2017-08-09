@@ -246,7 +246,7 @@ public final class ConfigurationLoader {
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
      * @deprecated in order to fullfil demands of BooleanParameter IDEA check.
-     * @noinspection BooleanParameter
+     * @noinspection BooleanParameter, WeakerAccess
      */
     @Deprecated
     public static Configuration loadConfiguration(String config,
@@ -321,7 +321,7 @@ public final class ConfigurationLoader {
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
      * @deprecated in order to fullfil demands of BooleanParameter IDEA check.
-     * @noinspection BooleanParameter
+     * @noinspection BooleanParameter, WeakerAccess
      */
     @Deprecated
     public static Configuration loadConfiguration(InputSource configSource,
@@ -419,6 +419,7 @@ public final class ConfigurationLoader {
      * @param threadModeSettings the thread mode configuration
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
+     * @noinspection WeakerAccess
      */
     public static Configuration loadConfiguration(InputSource configSource,
                                                   PropertyResolver overridePropsResolver,

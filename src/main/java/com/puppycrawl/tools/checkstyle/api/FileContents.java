@@ -122,7 +122,7 @@ public final class FileContents implements CommentListener {
      * @param endLineNo the ending line number
      * @param endColNo the ending column number
      **/
-    public void reportBlockComment(int startLineNo, int startColNo,
+    private void reportBlockComment(int startLineNo, int startColNo,
             int endLineNo, int endColNo) {
         final String[] cComment = extractBlockComment(startLineNo, startColNo,
                 endLineNo, endColNo);
