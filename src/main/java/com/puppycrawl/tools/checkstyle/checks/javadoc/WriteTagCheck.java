@@ -200,7 +200,7 @@ public class WriteTagCheck
      *
      * @see java.text.MessageFormat
      */
-    protected final void logTag(int line, String tagName, String tagValue) {
+    private void logTag(int line, String tagName, String tagValue) {
         final String originalSeverity = getSeverity();
         setSeverity(tagSeverity.getName());
 

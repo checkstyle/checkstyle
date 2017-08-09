@@ -410,7 +410,7 @@ public final class JavadocUtils {
      * @param blockComment Block comment AST
      * @return true if Javadoc is in right place
      */
-    public static boolean isCorrectJavadocPosition(DetailAST blockComment) {
+    private static boolean isCorrectJavadocPosition(DetailAST blockComment) {
         return BlockCommentPosition.isOnClass(blockComment)
                 || BlockCommentPosition.isOnInterface(blockComment)
                 || BlockCommentPosition.isOnEnum(blockComment)

@@ -53,7 +53,7 @@ public class SuppressWarningsHolder
      * suppression {@code "checkstyle:fallthrough"} or {@code "checkstyle:FallThrough"}.
      * To suppress the warning in both tools, just use {@code "fallthrough"}.
      */
-    public static final String CHECKSTYLE_PREFIX = "checkstyle:";
+    private static final String CHECKSTYLE_PREFIX = "checkstyle:";
 
     /** Java.lang namespace prefix, which is stripped from SuppressWarnings */
     private static final String JAVA_LANG_PREFIX = "java.lang.";
@@ -117,7 +117,7 @@ public class SuppressWarningsHolder
      *        name)
      * @param checkAlias the alias used in {@link SuppressWarnings} annotations
      */
-    public static void registerAlias(String sourceName, String checkAlias) {
+    private static void registerAlias(String sourceName, String checkAlias) {
         CHECK_ALIAS_MAP.put(sourceName, checkAlias);
     }
 

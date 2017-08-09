@@ -103,7 +103,7 @@ public class LineWrappingHandler {
      * @param lastNode Last node to examine inclusively.
      * @param indentLevel Indentation all wrapped lines should use.
      */
-    public void checkIndentation(DetailAST firstNode, DetailAST lastNode, int indentLevel) {
+    private void checkIndentation(DetailAST firstNode, DetailAST lastNode, int indentLevel) {
         checkIndentation(firstNode, lastNode, indentLevel,
                 -1, LineWrappingOptions.IGNORE_FIRST_LINE);
     }

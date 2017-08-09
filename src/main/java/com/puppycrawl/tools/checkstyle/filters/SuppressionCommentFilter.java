@@ -131,13 +131,14 @@ public class SuppressionCommentFilter
      * Returns FileContents for this filter.
      * @return the FileContents for this filter.
      */
-    public FileContents getFileContents() {
+    private FileContents getFileContents() {
         return fileContentsReference.get();
     }
 
     /**
      * Set the FileContents for this filter.
      * @param fileContents the FileContents for this filter.
+     * @noinspection WeakerAccess
      */
     public void setFileContents(FileContents fileContents) {
         fileContentsReference = new WeakReference<>(fileContents);

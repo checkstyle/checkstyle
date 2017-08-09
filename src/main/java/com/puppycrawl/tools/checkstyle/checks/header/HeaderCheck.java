@@ -67,7 +67,7 @@ public class HeaderCheck extends AbstractHeaderCheck {
      * @param line the line contents
      * @return true if and only if the line matches the required header line
      */
-    protected boolean isMatch(int lineNumber, String line) {
+    private boolean isMatch(int lineNumber, String line) {
         // skip lines we are meant to ignore
         return isIgnoreLine(lineNumber + 1)
             || getHeaderLines().get(lineNumber).equals(line);
