@@ -84,18 +84,13 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
         };
 
     /**
-     * Parses content of Javadoc comment as DetailNode tree.
+     * The file context.
+     * @noinspection ThreadLocalNotStaticFinal
      */
-    private final JavadocDetailNodeParser parser = new JavadocDetailNodeParser();
+    private final ThreadLocal<FileContext> context = ThreadLocal.withInitial(FileContext::new);
 
     /** The javadoc tokens the check is interested in. */
     private final Set<Integer> javadocTokens = new HashSet<>();
-
-    /**
-     * DetailAST node of considered Javadoc comment that is just a block comment
-     * in Java language syntax tree.
-     */
-    private DetailAST blockCommentAst;
 
     /**
      * Returns the default javadoc token types a check is interested in.
@@ -260,7 +255,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
     public final void visitToken(DetailAST blockCommentNode) {
         if (JavadocUtils.isJavadocComment(blockCommentNode)) {
             // store as field, to share with child Checks
-            blockCommentAst = blockCommentNode;
+            context.get().blockCommentAst = blockCommentNode;
 
             final String treeCacheKey = blockCommentNode.getLineNo() + ":"
                     + blockCommentNode.getColumnNo();
@@ -271,7 +266,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
                 result = TREE_CACHE.get().get(treeCacheKey);
             }
             else {
-                result = parser.parseJavadocAsDetailNode(blockCommentNode);
+                result = context.get().parser.parseJavadocAsDetailNode(blockCommentNode);
                 TREE_CACHE.get().put(treeCacheKey, result);
             }
 
@@ -293,7 +288,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      * @return A block comment in the syntax tree.
      */
     protected DetailAST getBlockCommentAst() {
-        return blockCommentAst;
+        return context.get().blockCommentAst;
     }
 
     /**
@@ -348,4 +343,19 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
         return javadocTokens.contains(curNode.getType());
     }
 
+    /**
+     * The file context holder.
+     */
+    private static class FileContext {
+        /**
+         * Parses content of Javadoc comment as DetailNode tree.
+         */
+        private final JavadocDetailNodeParser parser = new JavadocDetailNodeParser();
+
+        /**
+         * DetailAST node of considered Javadoc comment that is just a block comment
+         * in Java language syntax tree.
+         */
+        private DetailAST blockCommentAst;
+    }
 }
