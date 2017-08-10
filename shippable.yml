@@ -6,12 +6,14 @@ jdk:
 
 env:
   matrix:
+    - PROFILE="-Ppitest-checkstyle-xpath,no-validations"
+    - PROFILE="-Ppitest-checkstyle-filters,no-validations"
+    - PROFILE="-Ppitest-checkstyle-tree-walker,no-validations"
     - PROFILE="-Ppitest-checkstyle-common,no-validations"
     - PROFILE="-Ppitest-checkstyle-main,no-validations"
-    - PROFILE="-Ppitest-checkstyle-tree-walker,no-validations"
     - PROFILE="-Ppitest-checkstyle-api,no-validations"
-    - PROFILE="-Ppitest-checkstyle-filters,no-validations"
     - PROFILE="-Ppitest-checkstyle-utils,no-validations"
+    - PROFILE="-Ppitest-checks-javadoc,no-validations"
     - PROFILE="-Ppitest-checks-annotation,no-validations"
     - PROFILE="-Ppitest-checks-blocks,no-validations"
     - PROFILE="-Ppitest-checks-coding,no-validations"
@@ -19,7 +21,6 @@ env:
     - PROFILE="-Ppitest-checks-header,no-validations"
     - PROFILE="-Ppitest-checks-imports,no-validations"
     - PROFILE="-Ppitest-checks-indentation,no-validations"
-    - PROFILE="-Ppitest-checks-javadoc,no-validations"
     - PROFILE="-Ppitest-checks-metrics,no-validations"
     - PROFILE="-Ppitest-checks-modifier,no-validations"
     - PROFILE="-Ppitest-checks-naming,no-validations"
@@ -28,7 +29,6 @@ env:
     - PROFILE="-Ppitest-checks-whitespace,no-validations"
     - PROFILE="-Ppitest-checks-misc,no-validations"
     - PROFILE="-Ppitest-checkstyle-gui,no-validations"
-    - PROFILE="-Ppitest-checkstyle-xpath,no-validations"
 
 branches:
   only:
