@@ -1349,6 +1349,8 @@
             <excludedLink>https://git-scm.com</excludedLink>
             <!-- till https://github.com/gleclaire/findbugs-maven-plugin/pull/69 merged and released -->
             <excludedLink>http://gleclaire.github.io/findbugs-maven-plugin/</excludedLink>
+            <!-- I do not know how to resolve this "302 Found" responce -->
+            <excludedLink>https://plus.google.com/+CheckstyleJava</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
