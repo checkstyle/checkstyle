@@ -127,4 +127,12 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
                 getPath("InputFullOfSinglelineComments.java"),
                 AstTreeStringPrinter.PrintOptions.WITH_COMMENTS);
     }
+
+    @Test
+    public void testJavadocTagsWithoutArgs() throws Exception {
+        verifyJavaAndJavadocAst(
+                getPath("expectedAstTreeStringPrinterJavadocTagsWithoutArgsAst.txt"),
+                getPath("InputAstTreeStringPrinterJavadocTagsWithoutArgs.java")
+        );
+    }
 }

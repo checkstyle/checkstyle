@@ -268,6 +268,27 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
                 JavadocVisitLeaveCheck.visitCount, JavadocVisitLeaveCheck.leaveCount);
     }
 
+    @Test
+    public void testNoWsBeforeDescriptionInJavadocTags() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
+        final String[] expected = {
+            "13: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+                    23, "mismatched input 'd' expecting <EOF>", "JAVADOC"),
+            "22: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+                    30, "mismatched input '-' expecting <EOF>", "JAVADOC"),
+            "28: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+                    39, "mismatched input '-' expecting <EOF>", "JAVADOC"),
+            "40: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+                    34, "mismatched input '-' expecting <EOF>", "JAVADOC"),
+            "48: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+                    31, "mismatched input '-' expecting <EOF>", "JAVADOC"),
+            "57: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+                    15, "mismatched input '-' expecting <EOF>", "JAVADOC"),
+        };
+        verify(checkConfig, getPath("InputAbstractJavadocNoWsBeforeDescriptionInJavadocTags.java"),
+                expected);
+    }
+
     private static class TempCheck extends AbstractJavadocCheck {
 
         @Override
