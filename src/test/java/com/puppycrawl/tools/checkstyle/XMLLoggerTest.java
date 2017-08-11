@@ -140,7 +140,10 @@ public class XMLLoggerTest {
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         logger.fileStarted(ev);
         logger.auditFinished(null);
-        final String[] expectedLines = {"<file name=\"Test.java\">"};
+        final String[] expectedLines = {
+            "<file name=\"Test.java\">",
+            "</file>",
+        };
         verifyLines(expectedLines);
     }
 
@@ -152,7 +155,10 @@ public class XMLLoggerTest {
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         logger.fileFinished(ev);
         logger.auditFinished(null);
-        final String[] expectedLines = {"</file>"};
+        final String[] expectedLines = {
+            "<file name=\"Test.java\">",
+            "</file>",
+        };
         verifyLines(expectedLines);
     }
 
@@ -165,6 +171,26 @@ public class XMLLoggerTest {
                 "messages.properties", "key", null, SeverityLevel.ERROR, null,
                     getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "Test.java", message);
+        logger.addError(ev);
+        logger.auditFinished(null);
+        final String[] expectedLines = {
+            "<file name=\"Test.java\">",
+            "<error line=\"1\" column=\"1\" severity=\"error\" message=\"key\""
+                + " source=\"com.puppycrawl.tools.checkstyle.XMLLoggerTest\"/>",
+            "</file>",
+        };
+        verifyLines(expectedLines);
+    }
+
+    @Test
+    public void testAddErrorWithNullFileName() throws IOException {
+        final XMLLogger logger = new XMLLogger(outStream, true);
+        logger.auditStarted(null);
+        final LocalizedMessage message =
+                new LocalizedMessage(1, 1,
+                        "messages.properties", "key", null, SeverityLevel.ERROR, null,
+                        getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, null, message);
         logger.addError(ev);
         logger.auditFinished(null);
         final String[] expectedLines = {
@@ -186,8 +212,10 @@ public class XMLLoggerTest {
         logger.addError(ev);
         logger.auditFinished(null);
         final String[] expectedLines = {
+            "<file name=\"Test.java\">",
             "<error line=\"1\" column=\"1\" severity=\"error\" message=\"key\""
                 + " source=\"module\"/>",
+            "</file>",
         };
         verifyLines(expectedLines);
     }
@@ -204,8 +232,10 @@ public class XMLLoggerTest {
         logger.addError(ev);
         logger.auditFinished(null);
         final String[] expectedLines = {
+            "<file name=\"Test.java\">",
             "<error line=\"1\" severity=\"error\" message=\"key\""
                 + " source=\"com.puppycrawl.tools.checkstyle.XMLLoggerTest\"/>",
+            "</file>",
         };
         verifyLines(expectedLines);
     }
@@ -237,12 +267,135 @@ public class XMLLoggerTest {
         logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
         logger.auditFinished(null);
         final String[] expectedLines = {
+            "<file name=\"Test.java\">",
+            "&lt;exception&gt;&#10;&lt;![CDATA[&#10;stackTrace&#10;example]]&gt;"
+                + "&#10;&lt;/exception&gt;&#10;",
+            "</file>",
+        };
+
+        verifyLines(expectedLines);
+        assertEquals("Invalid close count", 1, outStream.getCloseCount());
+    }
+
+    @Test
+    public void testAddExceptionWithNullFileName()
+            throws IOException {
+        final XMLLogger logger = new XMLLogger(outStream, true);
+        logger.auditStarted(null);
+        final LocalizedMessage message =
+                new LocalizedMessage(1, 1,
+                        "messages.properties", null, null, null, getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, null, message);
+        logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
+        logger.auditFinished(null);
+        final String[] expectedLines = {
             "&lt;exception&gt;&#10;&lt;![CDATA[&#10;stackTrace&#10;example]]&gt;"
                 + "&#10;&lt;/exception&gt;&#10;",
         };
 
         verifyLines(expectedLines);
         assertEquals("Invalid close count", 1, outStream.getCloseCount());
+    }
+
+    @Test
+    public void testAddExceptionAfterFileStarted()
+            throws IOException {
+        final XMLLogger logger = new XMLLogger(outStream, true);
+        logger.auditStarted(null);
+
+        final AuditEvent fileStartedEvent = new AuditEvent(this, "Test.java");
+        logger.fileStarted(fileStartedEvent);
+
+        final LocalizedMessage message =
+                new LocalizedMessage(1, 1,
+                        "messages.properties", null, null, null, getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, "Test.java", message);
+        logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
+
+        logger.auditFinished(null);
+        final String[] expectedLines = {
+            "<file name=\"Test.java\">",
+            "&lt;exception&gt;&#10;&lt;![CDATA[&#10;stackTrace&#10;example]]&gt;"
+                    + "&#10;&lt;/exception&gt;&#10;",
+            "</file>",
+        };
+
+        verifyLines(expectedLines);
+        assertEquals("Invalid close count", 1, outStream.getCloseCount());
+    }
+
+    @Test
+    public void testAddExceptionBeforeFileFinished()
+            throws IOException {
+        final XMLLogger logger = new XMLLogger(outStream, true);
+        logger.auditStarted(null);
+        final LocalizedMessage message =
+                new LocalizedMessage(1, 1,
+                        "messages.properties", null, null, null, getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, "Test.java", message);
+        logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
+        final AuditEvent fileFinishedEvent = new AuditEvent(this, "Test.java");
+        logger.fileFinished(fileFinishedEvent);
+        logger.auditFinished(null);
+        final String[] expectedLines = {
+            "<file name=\"Test.java\">",
+            "&lt;exception&gt;&#10;&lt;![CDATA[&#10;stackTrace&#10;example]]&gt;"
+                    + "&#10;&lt;/exception&gt;&#10;",
+            "</file>",
+        };
+
+        verifyLines(expectedLines);
+        assertEquals("Invalid close count", 1, outStream.getCloseCount());
+    }
+
+    @Test
+    public void testAddExceptionBetweenFileStartedAndFinished()
+            throws IOException {
+        final XMLLogger logger = new XMLLogger(outStream, true);
+        logger.auditStarted(null);
+        final LocalizedMessage message =
+                new LocalizedMessage(1, 1,
+                        "messages.properties", null, null, null, getClass(), null);
+        final AuditEvent fileStartedEvent = new AuditEvent(this, "Test.java");
+        logger.fileStarted(fileStartedEvent);
+        final AuditEvent ev = new AuditEvent(this, "Test.java", message);
+        logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
+        final AuditEvent fileFinishedEvent = new AuditEvent(this, "Test.java");
+        logger.fileFinished(fileFinishedEvent);
+        logger.auditFinished(null);
+        final String[] expectedLines = {
+            "<file name=\"Test.java\">",
+            "&lt;exception&gt;&#10;&lt;![CDATA[&#10;stackTrace&#10;example]]&gt;"
+                    + "&#10;&lt;/exception&gt;&#10;",
+            "</file>",
+        };
+
+        verifyLines(expectedLines);
+        assertEquals("Invalid close count", 1, outStream.getCloseCount());
+    }
+
+    @Test
+    public void testAuditFinishedWithoutFileFinished() throws IOException {
+        final XMLLogger logger = new XMLLogger(outStream, true);
+        logger.auditStarted(null);
+        final AuditEvent fileStartedEvent = new AuditEvent(this, "Test.java");
+        logger.fileStarted(fileStartedEvent);
+
+        final LocalizedMessage message =
+                new LocalizedMessage(1, 1,
+                        "messages.properties", "key", null, SeverityLevel.ERROR, null,
+                        getClass(), null);
+        final AuditEvent errorEvent = new AuditEvent(this, "Test.java", message);
+        logger.addError(errorEvent);
+
+        logger.auditFinished(null);
+        final String[] expectedLines = {
+            "<file name=\"Test.java\">",
+            "<error line=\"1\" column=\"1\" severity=\"error\" message=\"key\""
+                    + " source=\"com.puppycrawl.tools.checkstyle.XMLLoggerTest\"/>",
+            "</file>",
+        };
+        verifyLines(expectedLines);
     }
 
     private String[] getOutStreamLines()
