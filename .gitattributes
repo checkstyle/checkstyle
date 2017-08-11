@@ -2,3 +2,4 @@
 /src/test/resources/com/puppycrawl/tools/checkstyle/checks/misc/newlineatendoffile/InputNewlineCrlfAtEndOfFile.java eol=crlf
 /src/test/resources/com/puppycrawl/tools/checkstyle/grammars/InputNewlineCrAtEndOfFile.java -text
 /src/test/resources/com/puppycrawl/tools/checkstyle/checks/misc/newlineatendoffile/InputNewlineCrAtEndOfFile.java -text
+/src/test/resources/com/puppycrawl/tools/checkstyle/grammars/javadoc/javadocTags/InputSpaceBeforeDescriptionInBlockJavadocTags.javadoc eol=lf

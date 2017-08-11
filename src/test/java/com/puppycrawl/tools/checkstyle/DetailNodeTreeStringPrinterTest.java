@@ -233,4 +233,5 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
                     expected, ex.getMessage());
         }
     }
+
 }
