@@ -1565,6 +1565,15 @@ public final class JavadocTokenTypes {
     public static final int PARAM_TAG = JavadocParser.RULE_paramTag + RULE_TYPES_OFFSET;
     /** Param tag name. */
     public static final int PARAM_HTML_TAG_NAME = JavadocParser.PARAM_HTML_TAG_NAME;
+    /**
+     * HTML void element {@code <embed>}.
+     * @see #SINGLETON_ELEMENT
+     * @see <a href="https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-embed">
+     *     W3 docs</a>
+     */
+    public static final int EMBED_TAG = JavadocParser.RULE_embedTag + RULE_TYPES_OFFSET;
+    /** "embed" tag name. */
+    public static final int EMBED_HTML_TAG_NAME = JavadocParser.EMBED_HTML_TAG_NAME;
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     /** Html comment: {@code <!-- -->}. */

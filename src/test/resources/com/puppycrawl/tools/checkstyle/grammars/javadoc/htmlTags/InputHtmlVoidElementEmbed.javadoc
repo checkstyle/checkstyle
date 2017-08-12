@@ -1,0 +1,42 @@
+* <p> <embed> </p>
+* <li> <embed> </li>
+* <tr> <embed> </tr>
+* <td> <embed> </td>
+* <th> <embed> </th>
+* <body> <embed> </body>
+* <colgroup> <embed> </colgroup>
+* <dd> <embed> </dd>
+* <dt> <embed> </dt>
+* <head> <embed> </head>
+* <html> <embed> </html>
+* <option> <embed> </option>
+* <tbody> <embed> </tbody>
+* <thead> <embed> </thead>
+* <tfoot> <embed> </tfoot>
+
+* <p> <embed/> </p>
+* <li> <embed/> </li>
+* <tr> <embed/> </tr>
+* <td> <embed/> </td>
+* <th> <embed/> </th>
+* <body> <embed/> </body>
+* <colgroup> <embed/> </colgroup>
+* <dd> <embed/> </dd>
+* <dt> <embed/> </dt>
+* <head> <embed/> </head>
+* <html> <embed/> </html>
+* <option> <embed/> </option>
+* <tbody> <embed/> </tbody>
+* <thead> <embed/> </thead>
+* <tfoot> <embed/> </tfoot>
+
+* <embed>
+* <embed/>
+* <embed attr="something">
+* <embed attr="something"/>
+* <embed attr="something" attr2="someotherthing">
+* <embed attr="something" attr2="someotherthing"/>
+* <embed attr="something" 
+* attr2="someotherting">
+* <embed attr="something" 
+* attr2="someotherting"/>

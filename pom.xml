@@ -1546,8 +1546,8 @@
                 <haltOnFailure>true</haltOnFailure>
                 <branchRate>100</branchRate>
                 <lineRate>100</lineRate>
-                <totalBranchRate>83</totalBranchRate>
-                <totalLineRate>88</totalLineRate>
+                <totalBranchRate>84</totalBranchRate>
+                <totalLineRate>89</totalLineRate>
                 <regexes>
                   <regex>
                     <pattern>com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer</pattern>
@@ -1561,13 +1561,13 @@
                   </regex>
                   <regex>
                     <pattern>com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser</pattern>
-                    <branchRate>34</branchRate>
-                    <lineRate>45</lineRate>
+                    <branchRate>37</branchRate>
+                    <lineRate>48</lineRate>
                   </regex>
                   <regex>
                     <pattern>com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocLexer</pattern>
-                    <branchRate>57</branchRate>
-                    <lineRate>75</lineRate>
+                    <branchRate>63</branchRate>
+                    <lineRate>83</lineRate>
                   </regex>
                 </regexes>
               </check>
