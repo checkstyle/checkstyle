@@ -257,12 +257,12 @@ public class JavadocUtilsTest {
     @Test
     public void testGetTokenNameForLargeId() {
         try {
-            JavadocUtils.getTokenName(20074);
+            JavadocUtils.getTokenName(30073);
             fail("exception expected");
         }
         catch (IllegalArgumentException ex) {
             assertEquals("Invalid exception message",
-                    "Unknown javadoc token id. Given id: 20074", ex.getMessage());
+                    "Unknown javadoc token id. Given id: 30073", ex.getMessage());
         }
     }
 
@@ -346,6 +346,6 @@ public class JavadocUtilsTest {
     @Test
     public void testGetTokenNames() {
         assertEquals("Unexpected token name",
-            "HTML_COMMENT", JavadocUtils.getTokenName(20073));
+            "HTML_COMMENT", JavadocUtils.getTokenName(20074));
     }
 }
