@@ -20,8 +20,8 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.io.File;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
@@ -46,7 +46,7 @@ public class JavadocPackageCheck extends AbstractFileSetCheck {
     public static final String MSG_PACKAGE_INFO = "javadoc.packageInfo";
 
     /** The directories checked. */
-    private final Set<File> directoriesChecked = new HashSet<>();
+    private final Set<File> directoriesChecked = ConcurrentHashMap.newKeySet();
 
     /** Indicates if allow legacy "package.html" file to be used. */
     private boolean allowLegacy;
@@ -70,9 +70,8 @@ public class JavadocPackageCheck extends AbstractFileSetCheck {
     protected void processFiltered(File file, FileText fileText) {
         // Check if already processed directory
         final File dir = file.getParentFile();
-        if (!directoriesChecked.contains(dir)) {
-            directoriesChecked.add(dir);
-
+        final boolean isDirChecked = !directoriesChecked.add(dir);
+        if (!isDirChecked) {
             // Check for the preferred file.
             final File packageInfo = new File(dir, "package-info.java");
             final File packageHtml = new File(dir, "package.html");
