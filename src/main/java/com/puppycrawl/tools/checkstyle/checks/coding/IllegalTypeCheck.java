@@ -124,6 +124,8 @@ public final class IllegalTypeCheck extends AbstractCheck {
 
     /** Illegal classes. */
     private final Set<String> illegalClassNames = new HashSet<>();
+    /** Illegal short classes. */
+    private final Set<String> illegalShortClassNames = new HashSet<>();
     /** Legal abstract classes. */
     private final Set<String> legalAbstractClassNames = new HashSet<>();
     /** Methods which should be ignored. */
@@ -175,6 +177,17 @@ public final class IllegalTypeCheck extends AbstractCheck {
             TokenTypes.METHOD_DEF,
             TokenTypes.IMPORT,
         };
+    }
+
+    @Override
+    public void beginTree(DetailAST rootAST) {
+        illegalShortClassNames.clear();
+
+        for (String s : illegalClassNames) {
+            if (s.indexOf('.') == -1) {
+                illegalShortClassNames.add(s);
+            }
+        }
     }
 
     @Override
@@ -333,7 +346,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
     private boolean isMatchingClassName(String className) {
         final String shortName = className.substring(className.lastIndexOf('.') + 1);
         return illegalClassNames.contains(className)
-                || illegalClassNames.contains(shortName)
+                || illegalShortClassNames.contains(shortName)
                 || validateAbstractClassNames
                     && !legalAbstractClassNames.contains(className)
                     && format.matcher(className).find();
@@ -349,7 +362,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
         if (illegalClassNames.contains(canonicalName)) {
             final String shortName = canonicalName
                 .substring(canonicalName.lastIndexOf('.') + 1);
-            illegalClassNames.add(shortName);
+            illegalShortClassNames.add(shortName);
         }
     }
 

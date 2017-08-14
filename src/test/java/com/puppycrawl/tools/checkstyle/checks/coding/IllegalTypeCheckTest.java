@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck.MSG_KEY;
 
+import java.io.File;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -189,6 +191,21 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
         };
 
         verify(checkConfig, getPath("InputIllegalTypeMemberModifiers.java"), expected);
+    }
+
+    @Test
+    public void testClearDataBetweenFiles() throws Exception {
+        final String violationFile = getPath("InputIllegalType.java");
+        checkConfig.addAttribute("illegalClassNames", "java.util.TreeSet");
+        final String[] expected = {
+            "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
+            "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
+        };
+
+        verify(createChecker(checkConfig), new File[] {
+            new File(violationFile),
+            new File(getPath("InputIllegalTypeSimilarClassName.java")),
+        }, violationFile, expected);
     }
 
     @Test
