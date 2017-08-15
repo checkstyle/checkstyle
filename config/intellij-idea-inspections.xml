@@ -280,6 +280,8 @@
     <inspection_tool class="CheckedExceptionClass" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ClashingGetters" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ClashingTraitMethods" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- we use design model to keep all logic for class in one file. So, we have a lot of completely
+isolated classes and we cannot put them to separate package as it will affect users configs -->
     <inspection_tool class="ClassComplexity" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="m_limit" value="80" />
     </inspection_tool>
@@ -455,7 +457,8 @@
     <inspection_tool class="Convert2Lambda" enabled="true" level="ERROR" enabled_by_default="true" />
     <!-- disabled till GSoC project completion-->
     <inspection_tool class="Convert2MethodRef" enabled="false" level="ERROR" enabled_by_default="false" />
-    <!-- disabled till GSoC project completion-->
+    <!-- on the moment of review we were not a big fans of functional style, none of code coverage tools can
+    distinguish that body of lambda is executed. When this problem is resolved we could reconsider disablement. -->
     <inspection_tool class="Convert2streamapi" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ConvertAnnotations" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ConvertJavadoc" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -568,7 +571,7 @@
     <inspection_tool class="DoubleLiteralMayBeFloatLiteral" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="DoubleNegation" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="DriverManagerGetConnection" enabled="true" level="WARNING" enabled_by_default="true" />
-    <!-- Disabled till GSoC completion -->
+    <!-- the only violation found is false-positive at AvoidEscapedUnicodeCharactersCheck -->
     <inspection_tool class="DuplicateAlternationBranch" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="DuplicateBooleanBranch" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="DuplicateCaseLabelJS" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -1224,7 +1227,8 @@
     </inspection_tool>
     <!-- we need to stay on junit -->
     <inspection_tool class="JUnitTestNG" enabled="false" level="ERROR" enabled_by_default="false" />
-    <!-- Disabled till GSoC completion -->
+    <!-- on the moment of review we were not a big fans of functional style, none of code coverage tools can
+     distinguish that body of lambda is executed. When this problem is resolved we could reconsider disablement. -->
     <inspection_tool class="Java8MapApi" enabled="false" level="WARNING" enabled_by_default="false" />
     <!-- Disabled till GSoC completion -->
     <inspection_tool class="Java8MapForEach" enabled="false" level="WARNING" enabled_by_default="false" />
@@ -1615,7 +1619,8 @@
     <inspection_tool class="OctalLiteral" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="OnDemandImport" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="OneWayWebMethod" enabled="true" level="WARNING" enabled_by_default="true" />
-    <!-- suppressed till GSoC project completion .... -->
+    <!-- on the moment of review we were not a big fans of functional style, none of code coverage tools can
+     distinguish that body of lambda is executed. When this problem is resolved we could reconsider disablement. -->
     <inspection_tool class="OptionalIsPresent" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="OverloadedMethodsWithSameNumberOfParameters" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="ignoreInconvertibleTypes" value="true" />
@@ -1902,7 +1907,7 @@
     <inspection_tool class="SimplifyNegatedBinaryExpression" enabled="true" level="ERROR" enabled_by_default="true" />
     <!-- suppressed till GSoC project completion .... -->
     <inspection_tool class="SimplifyStreamApiCallChains" enabled="false" level="WARNING" enabled_by_default="false" />
-    <!-- suppressed till GSoC project completion .... -->
+    <!-- the only violation found is false-positive at AvoidEscapedUnicodeCharactersCheck -->
     <inspection_tool class="SingleCharAlternation" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="SingleCharacterStartsWith" enabled="true" level="ERROR" enabled_by_default="true" />
     <!-- we like single import for single class -->
