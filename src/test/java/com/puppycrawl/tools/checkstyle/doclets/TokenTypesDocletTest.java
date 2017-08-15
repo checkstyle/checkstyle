@@ -158,6 +158,22 @@ public class TokenTypesDocletTest extends AbstractPathTestSupport {
 
     }
 
+    @Test
+    public void testJavadocTagPassValidation() throws Exception {
+        final ListBuffer<String[]> options = new ListBuffer<>();
+        options.add(new String[] {"-destfile", "target/tokentypes.properties"});
+
+        final ListBuffer<String> names = new ListBuffer<>();
+        names.add(getPath("InputTokenTypesDocletJavadocParseError.java"));
+
+        final Context context = new Context();
+        new TestMessager(context);
+        final JavadocTool javadocTool = JavadocTool.make0(context);
+        final RootDoc rootDoc = getRootDoc(javadocTool, options, names);
+
+        assertTrue("Should process valid root doc", TokenTypesDoclet.start(rootDoc));
+    }
+
     private static RootDoc getRootDoc(JavadocTool javadocTool, ListBuffer<String[]> options,
             ListBuffer<String> names) throws Exception {
         final Method getRootDocImpl = getMethodGetRootDocImplByReflection();
