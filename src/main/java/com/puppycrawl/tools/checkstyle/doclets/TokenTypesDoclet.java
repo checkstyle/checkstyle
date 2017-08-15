@@ -73,7 +73,11 @@ public final class TokenTypesDoclet {
             for (final FieldDoc field : fields) {
                 if (field.isStatic() && field.isPublic() && field.isFinal()
                     && "int".equals(field.type().qualifiedTypeName())) {
-                    if (field.firstSentenceTags().length != 1) {
+                    // We have to filter "Text" tags because of jdk parsing bug
+                    // till Oracle reference id: 9050448
+                    if (field.firstSentenceTags().length != 1
+                            && Arrays.stream(field.firstSentenceTags())
+                            .filter(tag -> !"Text".equals(tag.name())).count() != 1) {
                         final List<Tag> tags = Arrays.asList(field.firstSentenceTags());
                         final String joinedTags = tags
                             .stream()
