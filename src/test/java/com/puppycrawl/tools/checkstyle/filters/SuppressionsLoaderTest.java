@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Set;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -38,6 +39,7 @@ import org.powermock.reflect.Whitebox;
 import org.xml.sax.InputSource;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
 
@@ -304,5 +306,52 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
 
         final String id = Whitebox.getInternalState(suppressElement, "moduleId");
         assertEquals("Id has to be defined", "someId", id);
+    }
+
+    @Test
+    public void testXpathSuppressions() throws Exception {
+        final String fn = getPath("InputSuppressionsLoaderXpathCorrect.xml");
+        final Set<TreeWalkerFilter> filterSet = SuppressionsLoader.loadXpathSuppressions(fn);
+
+        assertEquals("Invalid number of filters", 1, filterSet.size());
+    }
+
+    @Test
+    public void testXpathInvalidFileFormat() throws IOException {
+        final String fn = getPath("InputSuppressionsLoaderXpathInvalidFile.xml");
+        try {
+            SuppressionsLoader.loadXpathSuppressions(fn);
+            fail("Exception should be thrown");
+        }
+        catch (CheckstyleException ex) {
+            assertEquals("Invalid error message",
+                    "Unable to parse " + fn + " - invalid files or checks format for "
+                            + "suppress-xpath",
+                    ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testXpathNoCheckNoId() throws IOException {
+        final String fn =
+                getPath("InputSuppressionsLoaderXpathNoCheckAndId.xml");
+        try {
+            SuppressionsLoader.loadXpathSuppressions(fn);
+            fail("Exception should be thrown");
+        }
+        catch (CheckstyleException ex) {
+            assertEquals("Invalid error message",
+                    "Unable to parse " + fn + " - missing checks and id attribute for "
+                            + "suppress-xpath",
+                    ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testXpathNoCheckYesId() throws Exception {
+        final String fn = getPath("InputSuppressionsLoaderXpathId.xml");
+        final Set<TreeWalkerFilter> filterSet = SuppressionsLoader.loadXpathSuppressions(fn);
+
+        assertEquals("Invalid number of filters", 1, filterSet.size());
     }
 }

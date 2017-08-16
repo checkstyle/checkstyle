@@ -26,18 +26,11 @@ import static org.junit.Assert.fail;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.URI;
 import java.net.URL;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
-import org.junit.runner.RunWith;
-import org.mockito.BDDMockito;
-import org.mockito.Mockito;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -49,8 +42,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.Warning;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({SuppressionFilter.class, CommonUtils.class})
 public class SuppressionFilterTest extends AbstractModuleTestSupport {
 
     @Rule
@@ -131,31 +122,6 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         final AuditEvent ev = new AuditEvent(this, "AnyFile.java", null);
 
         assertTrue("Suppression file with true optional was not accepted",
-            filter.accept(ev));
-    }
-
-    @Test
-    public void testExistingConfigWithTrueOptionalThrowsIoErrorWhileClosing()
-            throws Exception {
-        final InputStream inputStream = PowerMockito.mock(InputStream.class);
-        Mockito.doThrow(IOException.class).when(inputStream).close();
-
-        final URL url = PowerMockito.mock(URL.class);
-        BDDMockito.given(url.openStream()).willReturn(inputStream);
-
-        final URI uri = PowerMockito.mock(URI.class);
-        BDDMockito.given(uri.toURL()).willReturn(url);
-
-        PowerMockito.mockStatic(CommonUtils.class);
-
-        final String fileName = getPath("InputSuppressionFilterNone.xml");
-        BDDMockito.given(CommonUtils.getUriByFilename(fileName)).willReturn(uri);
-
-        final boolean optional = true;
-        final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
-        final AuditEvent ev = new AuditEvent(this, "AnyFile.java", null);
-        assertTrue(
-            "Event was not excepted when IOException is thrown while reading suppression file",
             filter.accept(ev));
     }
 

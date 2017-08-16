@@ -20,34 +20,33 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
+import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
-import com.puppycrawl.tools.checkstyle.api.Filter;
-import com.puppycrawl.tools.checkstyle.api.FilterSet;
 import com.puppycrawl.tools.checkstyle.utils.FilterUtils;
 
 /**
- * <p>
- * This filter accepts AuditEvents according to file, check, line, and
- * column, as specified in a suppression file.
- * </p>
- * @author Rick Giles
- * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
+ * This filter accepts TreeWalkerAuditEvents according to file, check and xpath query,
+ * as specified in a suppression file.
+ *
+ * @author Timur Tibeyev.
  * @noinspection NonFinalFieldReferenceInEquals, NonFinalFieldReferencedInHashCode
  */
-public class SuppressionFilter extends AutomaticBean implements Filter, ExternalResourceHolder {
+public class SuppressionXpathFilter extends AutomaticBean implements
+        TreeWalkerFilter, ExternalResourceHolder {
 
     /** Filename of supression file. */
     private String file;
     /** Tells whether config file existence is optional. */
     private boolean optional;
-    /** Set of individual suppresses. */
-    private FilterSet filters = new FilterSet();
+    /** Set of individual xpath suppresses. */
+    private Set<TreeWalkerFilter> filters = new HashSet<>();
 
     /**
      * Sets name of the supression file.
@@ -66,11 +65,6 @@ public class SuppressionFilter extends AutomaticBean implements Filter, External
     }
 
     @Override
-    public boolean accept(AuditEvent event) {
-        return filters.accept(event);
-    }
-
-    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -78,8 +72,8 @@ public class SuppressionFilter extends AutomaticBean implements Filter, External
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        final SuppressionFilter suppressionFilter = (SuppressionFilter) obj;
-        return Objects.equals(filters, suppressionFilter.filters);
+        final SuppressionXpathFilter suppressionXpathFilter = (SuppressionXpathFilter) obj;
+        return Objects.equals(filters, suppressionXpathFilter.filters);
     }
 
     @Override
@@ -88,24 +82,36 @@ public class SuppressionFilter extends AutomaticBean implements Filter, External
     }
 
     @Override
-    protected void finishLocalSetup() throws CheckstyleException {
-        if (file != null) {
-            if (optional) {
-                if (FilterUtils.isFileExists(file)) {
-                    filters = SuppressionsLoader.loadSuppressions(file);
-                }
-                else {
-                    filters = new FilterSet();
-                }
-            }
-            else {
-                filters = SuppressionsLoader.loadSuppressions(file);
+    public boolean accept(TreeWalkerAuditEvent treeWalkerAuditEvent) {
+        boolean result = true;
+        for (TreeWalkerFilter filter : filters) {
+            if (!filter.accept(treeWalkerAuditEvent)) {
+                result = false;
+                break;
             }
         }
+        return result;
     }
 
     @Override
     public Set<String> getExternalResourceLocations() {
         return Collections.singleton(file);
+    }
+
+    @Override
+    protected void finishLocalSetup() throws CheckstyleException {
+        if (file != null) {
+            if (optional) {
+                if (FilterUtils.isFileExists(file)) {
+                    filters = SuppressionsLoader.loadXpathSuppressions(file);
+                }
+                else {
+                    filters = new HashSet<>();
+                }
+            }
+            else {
+                filters = SuppressionsLoader.loadXpathSuppressions(file);
+            }
+        }
     }
 }
