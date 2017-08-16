@@ -31,7 +31,9 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.lang.reflect.Method;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -62,6 +64,7 @@ import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter;
+import com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -541,6 +544,36 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, file.getPath(), expected);
         assertTrue("Destroy was not called", VerifyDestroyCheck.isDestroyWasCalled());
+    }
+
+    @Test
+    public void testCacheWhenFileExternalResourceContentDoesNotChange() throws Exception {
+        final DefaultConfiguration filterConfig = createModuleConfig(SuppressionXpathFilter.class);
+        filterConfig.addAttribute("file", getPath("InputTreeWalkerSuppressionXpathFilter.xml"));
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        treeWalkerConfig.addChild(filterConfig);
+
+        final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyle_checks");
+        checkerConfig.addChild(treeWalkerConfig);
+        final File cacheFile = temporaryFolder.newFile();
+        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
+
+        final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.addListener(getBriefUtLogger());
+        checker.configure(checkerConfig);
+
+        final String filePath = temporaryFolder.newFile("file.java").getPath();
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+
+        verify(checker, filePath, expected);
+        // One more time to use cache.
+        verify(checker, filePath, expected);
+
+        assertTrue("External resource is not present in cache",
+                new String(Files.readAllBytes(cacheFile.toPath()),
+                        Charset.forName("UTF-8")).contains(
+                                "InputTreeWalkerSuppressionXpathFilter.xml"));
     }
 
     /**
