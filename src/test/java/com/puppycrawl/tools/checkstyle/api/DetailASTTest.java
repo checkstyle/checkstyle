@@ -147,11 +147,11 @@ public class DetailASTTest extends AbstractModuleTestSupport {
         parent.setFirstChild(child);
 
         final List<Consumer<DetailAST>> clearBranchTokenTypesMethods = Arrays.asList(
-            ast -> child.setFirstChild(ast),
-            ast -> child.setNextSibling(ast),
-            ast -> child.addPreviousSibling(ast),
-            ast -> child.addNextSibling(ast),
-            ast -> child.addChild(ast),
+                child::setFirstChild,
+                child::setNextSibling,
+                child::addPreviousSibling,
+                child::addNextSibling,
+                child::addChild,
             ast -> {
                 try {
                     Whitebox.invokeMethod(child, "setParent", ast);
@@ -180,9 +180,9 @@ public class DetailASTTest extends AbstractModuleTestSupport {
         parent.setFirstChild(child);
 
         final List<Consumer<DetailAST>> clearChildCountCacheMethods = Arrays.asList(
-            ast -> child.setNextSibling(ast),
-            ast -> child.addPreviousSibling(ast),
-            ast -> child.addNextSibling(ast)
+                child::setNextSibling,
+                child::addPreviousSibling,
+                child::addNextSibling
         );
 
         for (Consumer<DetailAST> method : clearChildCountCacheMethods) {

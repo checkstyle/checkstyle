@@ -44,8 +44,7 @@
     <inspection_tool class="AnonymousClassMethodCount" enabled="false" level="WARNING" enabled_by_default="false"/>
     <inspection_tool class="AnonymousClassVariableHidesContainingMethodVariable" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="AnonymousFunctionJS" enabled="true" level="ERROR" enabled_by_default="true" />
-    <!-- suppressed till GSoC project completion .... -->
-    <inspection_tool class="AnonymousHasLambdaAlternative" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AnonymousHasLambdaAlternative" enabled="true" level="WARNING" enabled_by_default="true" />
     <!-- we are ok with anonymous classes -->
     <inspection_tool class="AnonymousInnerClass" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="AnonymousInnerClassMayBeStatic" enabled="true" level="WARNING" enabled_by_default="true">
@@ -455,8 +454,7 @@ isolated classes and we cannot put them to separate package as it will affect us
     <inspection_tool class="ControlFlowStatementWithoutBraces" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="Convert2Diamond" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="Convert2Lambda" enabled="true" level="ERROR" enabled_by_default="true" />
-    <!-- disabled till GSoC project completion-->
-    <inspection_tool class="Convert2MethodRef" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="Convert2MethodRef" enabled="true" level="ERROR" enabled_by_default="true" />
     <!-- on the moment of review we were not a big fans of functional style, none of code coverage tools can
     distinguish that body of lambda is executed. When this problem is resolved we could reconsider disablement. -->
     <inspection_tool class="Convert2streamapi" enabled="false" level="ERROR" enabled_by_default="false" />
@@ -1230,8 +1228,7 @@ isolated classes and we cannot put them to separate package as it will affect us
     <!-- on the moment of review we were not a big fans of functional style, none of code coverage tools can
      distinguish that body of lambda is executed. When this problem is resolved we could reconsider disablement. -->
     <inspection_tool class="Java8MapApi" enabled="false" level="WARNING" enabled_by_default="false" />
-    <!-- Disabled till GSoC completion -->
-    <inspection_tool class="Java8MapForEach" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="Java8MapForEach" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="JavaDoc" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="TOP_LEVEL_CLASS_OPTIONS">
             <value>
@@ -1522,7 +1519,7 @@ isolated classes and we cannot put them to separate package as it will affect us
     </inspection_tool>
     <!-- we like nested method calls -->
     <inspection_tool class="NestedMethodCall" enabled="false" level="ERROR" enabled_by_default="false" />
-    <inspection_tool class="NestedSwitchStatement" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="NestedSwitchStatement" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="NestedSwitchStatementJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="NestedSynchronizedStatement" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="NestedTryStatement" enabled="true" level="ERROR" enabled_by_default="true" >
@@ -1905,8 +1902,7 @@ isolated classes and we cannot put them to separate package as it will affect us
     <inspection_tool class="SimplifiableIfStatement" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SimplifiableJUnitAssertion" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SimplifyNegatedBinaryExpression" enabled="true" level="ERROR" enabled_by_default="true" />
-    <!-- suppressed till GSoC project completion .... -->
-    <inspection_tool class="SimplifyStreamApiCallChains" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="SimplifyStreamApiCallChains" enabled="true" level="WARNING" enabled_by_default="true" />
     <!-- the only violation found is false-positive at AvoidEscapedUnicodeCharactersCheck -->
     <inspection_tool class="SingleCharAlternation" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="SingleCharacterStartsWith" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -2051,7 +2047,7 @@ isolated classes and we cannot put them to separate package as it will affect us
     <inspection_tool class="StringBufferReplaceableByString" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="StringBufferReplaceableByStringBuilder" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="StringBufferToStringInConcatenation" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="StringCompareTo" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="StringCompareTo" enabled="true" level="ERROR" enabled_by_default="true" />
     <!-- we like it, it is not performance issue for us -->
     <inspection_tool class="StringConcatenation" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="StringConcatenationArgumentToLogCall" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -2268,8 +2264,11 @@ isolated classes and we cannot put them to separate package as it will affect us
     <inspection_tool class="TodoComment" enabled="false" level="ERROR" enabled_by_default="false" />
     <!-- show too much false-positives in our code -->
     <inspection_tool class="TooBroadCatch" enabled="false" level="ERROR" enabled_by_default="false" />
-    <!-- Disabled till GSoC completion -->
-    <inspection_tool class="TooBroadScope" enabled="false" level="ERROR" enabled_by_default="false">
+    <inspection_tool class="TooBroadScope" enabled="true" level="ERROR" enabled_by_default="false">
+        <scope name="Production" level="ERROR" enabled="true">
+            <option name="m_allowConstructorAsInitializer" value="false" />
+            <option name="m_onlyLookAtBlocks" value="false" />
+        </scope>
         <option name="m_allowConstructorAsInitializer" value="false" />
         <option name="m_onlyLookAtBlocks" value="false" />
     </inspection_tool>

@@ -722,11 +722,11 @@ public class VisibilityModifierCheck
      * @return true if all of generic type arguments are immutable.
      */
     private boolean areImmutableTypeArguments(List<String> typeArgsClassNames) {
-        return !typeArgsClassNames.stream().filter(
+        return typeArgsClassNames.stream().noneMatch(
             typeName -> {
                 return !immutableClassShortNames.contains(typeName)
                     && !immutableClassCanonicalNames.contains(typeName);
-            }).findFirst().isPresent();
+            });
     }
 
     /**

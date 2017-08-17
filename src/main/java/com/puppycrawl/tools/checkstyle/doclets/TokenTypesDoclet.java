@@ -81,7 +81,7 @@ public final class TokenTypesDoclet {
                         final List<Tag> tags = Arrays.asList(field.firstSentenceTags());
                         final String joinedTags = tags
                             .stream()
-                            .map(tag -> tag.toString())
+                            .map(Tag::toString)
                             .collect(Collectors.joining("\", \"", "[\"", "\"]"));
                         final String message = String.format(Locale.ROOT,
                                 "Should be only one tag for %s. Tags %s.",
