@@ -76,12 +76,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      * to guarantee basic thread safety and avoid shared, mutable state when not necessary.
      */
     private static final ThreadLocal<Map<String, ParseStatus>> TREE_CACHE =
-        new ThreadLocal<Map<String, ParseStatus>>() {
-            @Override
-            protected Map<String, ParseStatus> initialValue() {
-                return new HashMap<>();
-            }
-        };
+            ThreadLocal.withInitial(HashMap::new);
 
     /**
      * The file context.
