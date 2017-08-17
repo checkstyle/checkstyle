@@ -454,8 +454,7 @@ isolated classes and we cannot put them to separate package as it will affect us
     <inspection_tool class="ControlFlowStatementWithoutBraces" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="Convert2Diamond" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="Convert2Lambda" enabled="true" level="ERROR" enabled_by_default="true" />
-    <!-- disabled till GSoC project completion-->
-    <inspection_tool class="Convert2MethodRef" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="Convert2MethodRef" enabled="true" level="ERROR" enabled_by_default="true" />
     <!-- on the moment of review we were not a big fans of functional style, none of code coverage tools can
     distinguish that body of lambda is executed. When this problem is resolved we could reconsider disablement. -->
     <inspection_tool class="Convert2streamapi" enabled="false" level="ERROR" enabled_by_default="false" />
@@ -1902,8 +1901,7 @@ isolated classes and we cannot put them to separate package as it will affect us
     <inspection_tool class="SimplifiableIfStatement" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SimplifiableJUnitAssertion" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SimplifyNegatedBinaryExpression" enabled="true" level="ERROR" enabled_by_default="true" />
-    <!-- suppressed till GSoC project completion .... -->
-    <inspection_tool class="SimplifyStreamApiCallChains" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="SimplifyStreamApiCallChains" enabled="true" level="WARNING" enabled_by_default="true" />
     <!-- the only violation found is false-positive at AvoidEscapedUnicodeCharactersCheck -->
     <inspection_tool class="SingleCharAlternation" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="SingleCharacterStartsWith" enabled="true" level="ERROR" enabled_by_default="true" />
