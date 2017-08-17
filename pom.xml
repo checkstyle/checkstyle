@@ -50,6 +50,27 @@
       <id>rnveach</id>
       <name>Richard Veach</name>
       <roles>
+        <role>project admin, developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>sabaka</id>
+      <name>Ilja Dubinin</name>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>MEZk</id>
+      <name>Andrei Selkin</name>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>Vladlis</id>
+      <name>Vladislav Lisetskii</name>
+      <roles>
         <role>developer</role>
       </roles>
     </developer>
@@ -77,13 +98,6 @@
     <developer>
       <id>baratali</id>
       <name>Baratali Izmailov</name>
-      <roles>
-        <role>former developer</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>sabaka</id>
-      <name>Ilja Dubinin</name>
       <roles>
         <role>former developer</role>
       </roles>
