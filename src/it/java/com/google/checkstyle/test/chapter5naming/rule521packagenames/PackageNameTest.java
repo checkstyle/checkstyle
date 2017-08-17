@@ -42,7 +42,7 @@ public class PackageNameTest extends AbstractModuleTestSupport {
     }
 
     private String getPath(String packageName, String fileName) throws IOException {
-        return super.getPath("rule521" + packageName + File.separator + fileName);
+        return getPath("rule521" + packageName + File.separator + fileName);
     }
 
     @BeforeClass

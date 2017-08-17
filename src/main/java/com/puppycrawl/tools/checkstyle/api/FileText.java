@@ -126,9 +126,9 @@ public final class FileText {
         // Use the BufferedReader to break down the lines as this
         // is about 30% faster than using the
         // LINE_TERMINATOR.split(fullText, -1) method
-        final ArrayList<String> textLines = new ArrayList<>();
         final BufferedReader reader = new BufferedReader(new StringReader(fullText));
         try {
+            final ArrayList<String> textLines = new ArrayList<>();
             while (true) {
                 final String line = reader.readLine();
                 if (line == null) {
