@@ -41,34 +41,28 @@ public class AuditEventDefaultFormatterTest {
 
     @Test
     public void testFormatFullyQualifiedModuleNameContainsCheckSuffix() {
-        final AuditEvent mock = PowerMockito.mock(AuditEvent.class);
-        when(mock.getSourceName()).thenReturn("com.test.package.TestModuleCheck");
-        when(mock.getSeverityLevel()).thenReturn(SeverityLevel.WARNING);
-        when(mock.getLine()).thenReturn(1);
-        when(mock.getColumn()).thenReturn(1);
-        when(mock.getMessage()).thenReturn("Mocked message.");
-        when(mock.getFileName()).thenReturn("InputMockFile.java");
+        final LocalizedMessage message = new LocalizedMessage(1, 1, null, null, null,
+                SeverityLevel.WARNING, null, TestModuleCheck.class, "Mocked message.");
+        final AuditEvent event = new AuditEvent("", "InputMockFile.java", message);
         final AuditEventFormatter formatter = new AuditEventDefaultFormatter();
 
-        final String expected = "[WARN] InputMockFile.java:1:1: Mocked message. [TestModule]";
+        final String expected = "[WARN] InputMockFile.java:1:1: Mocked message. "
+                + "[AuditEventDefaultFormatterTest$TestModule]";
 
-        assertEquals("Invalid format", expected, formatter.format(mock));
+        assertEquals("Invalid format", expected, formatter.format(event));
     }
 
     @Test
     public void testFormatFullyQualifiedModuleNameDoesNotContainCheckSuffix() {
-        final AuditEvent mock = PowerMockito.mock(AuditEvent.class);
-        when(mock.getSourceName()).thenReturn("com.test.package.TestModule");
-        when(mock.getSeverityLevel()).thenReturn(SeverityLevel.WARNING);
-        when(mock.getLine()).thenReturn(1);
-        when(mock.getColumn()).thenReturn(1);
-        when(mock.getMessage()).thenReturn("Mocked message.");
-        when(mock.getFileName()).thenReturn("InputMockFile.java");
+        final LocalizedMessage message = new LocalizedMessage(1, 1, null, null, null,
+                SeverityLevel.WARNING, null, TestModule.class, "Mocked message.");
+        final AuditEvent event = new AuditEvent("", "InputMockFile.java", message);
         final AuditEventFormatter formatter = new AuditEventDefaultFormatter();
 
-        final String expected = "[WARN] InputMockFile.java:1:1: Mocked message. [TestModule]";
+        final String expected = "[WARN] InputMockFile.java:1:1: Mocked message. "
+                + "[AuditEventDefaultFormatterTest$TestModule]";
 
-        assertEquals("Invalid format", expected, formatter.format(mock));
+        assertEquals("Invalid format", expected, formatter.format(event));
     }
 
     @Test
@@ -105,19 +99,14 @@ public class AuditEventDefaultFormatterTest {
 
     @Test
     public void testFormatModuleWithModuleId() {
-        final AuditEvent mock = PowerMockito.mock(AuditEvent.class);
-        when(mock.getSourceName()).thenReturn("TestModule");
-        when(mock.getSeverityLevel()).thenReturn(SeverityLevel.WARNING);
-        when(mock.getLine()).thenReturn(1);
-        when(mock.getColumn()).thenReturn(1);
-        when(mock.getMessage()).thenReturn("Mocked message.");
-        when(mock.getFileName()).thenReturn("InputMockFile.java");
-        when(mock.getModuleId()).thenReturn("ModuleId");
+        final LocalizedMessage message = new LocalizedMessage(1, 1, null, null, null,
+                SeverityLevel.WARNING, "ModuleId", TestModule.class, "Mocked message.");
+        final AuditEvent event = new AuditEvent("", "InputMockFile.java", message);
         final AuditEventFormatter formatter = new AuditEventDefaultFormatter();
 
         final String expected = "[WARN] InputMockFile.java:1:1: Mocked message. [ModuleId]";
 
-        assertEquals("Invalid format", expected, formatter.format(mock));
+        assertEquals("Invalid format", expected, formatter.format(event));
     }
 
     @Test
@@ -133,5 +122,13 @@ public class AuditEventDefaultFormatterTest {
                 auditEvent, SeverityLevel.ERROR.ordinal());
 
         assertEquals("Buffer length is not expected", 54, result);
+    }
+
+    private static class TestModuleCheck {
+        // no code
+    }
+
+    private static class TestModule {
+        // no code
     }
 }
