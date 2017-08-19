@@ -55,6 +55,23 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtils;
 
 public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport {
+
+    /**
+     * Enum to specify options for checker creation.
+     */
+    public enum ModuleCreationOption {
+        /**
+         * Points that the module configurations
+         * has to be added under {@link TreeWalker}.
+         */
+        IN_TREEWALKER,
+        /**
+         * Points that checker will be created as
+         * a root of default configuration.
+         */
+        IN_CHECKER
+    }
+
     private static final Pattern WARN_PATTERN = CommonUtils
             .createPattern(".*[ ]*//[ ]*warn[ ]*|/[*]\\s?warn\\s?[*]/");
 
@@ -112,33 +129,36 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         }
 
         final String name = moduleConfig.getName();
-        boolean addTreeWalker = false;
+        ModuleCreationOption moduleCreationOption = ModuleCreationOption.IN_CHECKER;
 
         for (Class<?> moduleClass : checkstyleModules) {
             if (moduleClass.getSimpleName().equals(name)
                     || moduleClass.getSimpleName().equals(name + "Check")) {
                 if (ModuleReflectionUtils.isCheckstyleCheck(moduleClass)
                         || ModuleReflectionUtils.isTreeWalkerFilterModule(moduleClass)) {
-                    addTreeWalker = true;
+                    moduleCreationOption = ModuleCreationOption.IN_TREEWALKER;
                 }
                 break;
             }
         }
 
-        return createChecker(moduleConfig, addTreeWalker);
+        return createChecker(moduleConfig, moduleCreationOption);
     }
 
     /**
      * Creates {@link Checker} instance based on specified {@link Configuration}.
      * @param moduleConfig {@link Configuration} instance.
+     * @param moduleCreationOption {@code IN_TREEWALKER} if the {@code moduleConfig} should be added
+     *                                                  under {@link TreeWalker}.
      * @return {@link Checker} instance.
      * @throws CheckstyleException if an exception occurs during checker configuration.
      */
-    protected Checker createChecker(Configuration moduleConfig, boolean addTreeWalker)
+    protected Checker createChecker(Configuration moduleConfig,
+                                    ModuleCreationOption moduleCreationOption)
             throws Exception {
         final DefaultConfiguration dc;
 
-        if (addTreeWalker) {
+        if (moduleCreationOption == ModuleCreationOption.IN_TREEWALKER) {
             dc = createTreeWalkerConfig(moduleConfig);
         }
         else {
