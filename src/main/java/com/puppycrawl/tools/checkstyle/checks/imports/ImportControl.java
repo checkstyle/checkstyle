@@ -31,7 +31,6 @@ import java.util.regex.Pattern;
  * be the root node. Each instance may have zero or more children.
  *
  * @author Oliver Burn
- * @noinspection ThisEscapedInObjectConstruction
  */
 class ImportControl {
     /** The package separator: "." */
@@ -120,7 +119,6 @@ class ImportControl {
             patternForExactMatch = null;
             this.regex = false;
         }
-        parent.children.add(this);
     }
 
     /**
@@ -214,6 +212,14 @@ class ImportControl {
      */
     protected void addImportRule(AbstractImportRule rule) {
         rules.addFirst(rule);
+    }
+
+    /**
+     * Adds new child import control.
+     * @param importControl child import control
+     */
+    public void addChild(ImportControl importControl) {
+        children.add(importControl);
     }
 
     /**

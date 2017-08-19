@@ -22,11 +22,19 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class ImportControlRegExpInPkgTest {
-    private final ImportControl icRoot = new ImportControl("com\\.[^.]+\\.courtlink", true);
-    private final ImportControl icCommon = new ImportControl(icRoot, "com+on", true);
+    private ImportControl icRoot;
+    private ImportControl icCommon;
+
+    @Before
+    public void setUp() {
+        icRoot = new ImportControl("com\\.[^.]+\\.courtlink", true);
+        icCommon = new ImportControl(icRoot, "com+on", true);
+        icRoot.addChild(icCommon);
+    }
 
     @Test
     public void testRegExpInRootIsConsidered() {
@@ -57,6 +65,7 @@ public class ImportControlRegExpInPkgTest {
         // the regular expression has to be adjusted to (com\.foo|com\.bar)
         final ImportControl root = new ImportControl("com\\.foo|com\\.bar", true);
         final ImportControl common = new ImportControl(root, "common", false);
+        root.addChild(common);
         assertEquals("Invalid package", root, root.locateFinest("com.foo"));
         assertEquals("Invalid package", common, root.locateFinest("com.foo.common"));
         assertEquals("Invalid package", root, root.locateFinest("com.bar"));
@@ -68,6 +77,7 @@ public class ImportControlRegExpInPkgTest {
         // the regular expression has to be adjusted to (com\.foo|com\.bar)
         final ImportControl root = new ImportControl("(com\\.foo|com\\.bar)", true);
         final ImportControl common = new ImportControl(root, "common", false);
+        root.addChild(common);
         assertEquals("Invalid package", root, root.locateFinest("com.foo"));
         assertEquals("Invalid package", common, root.locateFinest("com.foo.common"));
         assertEquals("Invalid package", root, root.locateFinest("com.bar"));
@@ -79,6 +89,7 @@ public class ImportControlRegExpInPkgTest {
         final ImportControl root = new ImportControl("org.somewhere", false);
         // the regular expression has to be adjusted to (foo|bar)
         final ImportControl subpackages = new ImportControl(root, "foo|bar", true);
+        root.addChild(subpackages);
         assertEquals("Invalid package", root, root.locateFinest("org.somewhere"));
         assertEquals("Invalid package", subpackages, root.locateFinest("org.somewhere.foo"));
         assertEquals("Invalid package", subpackages, root.locateFinest("org.somewhere.bar"));
