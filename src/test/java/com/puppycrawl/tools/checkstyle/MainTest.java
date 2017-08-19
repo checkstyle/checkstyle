@@ -60,6 +60,7 @@ import org.junit.contrib.java.lang.system.SystemErrRule;
 import org.junit.contrib.java.lang.system.SystemOutRule;
 import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
@@ -573,12 +574,14 @@ public class MainTest {
                     ex.getCause() instanceof IllegalStateException);
         }
         finally {
+            verifyStatic(times(1));
+            final ArgumentCaptor<OutputStream> out =
+                    ArgumentCaptor.forClass(OutputStream.class);
+            CommonUtils.close(out.capture());
+            out.getValue().close();
             // method creates output folder
             FileUtils.deleteQuietly(new File(outDir));
         }
-
-        verifyStatic(times(1));
-        CommonUtils.close(any(OutputStream.class));
     }
 
     @Test
