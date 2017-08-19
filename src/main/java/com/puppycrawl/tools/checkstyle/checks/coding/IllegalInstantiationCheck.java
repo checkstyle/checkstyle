@@ -326,6 +326,7 @@ public class IllegalInstantiationCheck
      * @return true if type is standard
      */
     private boolean isStandardClass(String className, String illegal) {
+        boolean isStandardCalss = false;
         // class from java.lang
         if (illegal.length() - JAVA_LANG.length() == className.length()
             && illegal.endsWith(className)
@@ -340,10 +341,10 @@ public class IllegalInstantiationCheck
             final boolean isSamePackage = isSamePackage(className);
 
             if (!isSameFile && !isSamePackage) {
-                return true;
+                isStandardCalss = true;
             }
         }
-        return false;
+        return isStandardCalss;
     }
 
     /**

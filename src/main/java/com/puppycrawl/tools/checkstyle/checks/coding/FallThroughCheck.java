@@ -371,19 +371,15 @@ public class FallThroughCheck extends AbstractCheck {
      * @param lineNo The line number in the file.
      * @return True if a match was found inside a comment.
      */
-    private boolean matchesComment(Pattern pattern, String line, int lineNo
-    ) {
+    private boolean matchesComment(Pattern pattern, String line, int lineNo) {
         final Matcher matcher = pattern.matcher(line);
+        boolean matches = false;
 
-        final boolean hit = matcher.find();
-
-        if (hit) {
-            final int startMatch = matcher.start();
+        if (matcher.find()) {
             // -1 because it returns the char position beyond the match
-            final int endMatch = matcher.end() - 1;
-            return getFileContents().hasIntersectionWithComment(lineNo,
-                    startMatch, lineNo, endMatch);
+            matches = getFileContents().hasIntersectionWithComment(lineNo, matcher.start(),
+                    lineNo, matcher.end() - 1);
         }
-        return false;
+        return matches;
     }
 }

@@ -487,7 +487,8 @@ public final class ConfigurationLoader {
                 fragment = props.resolve(propertyName);
                 if (fragment == null) {
                     if (defaultValue != null) {
-                        return defaultValue;
+                        sb.replace(0, sb.length(), defaultValue);
+                        break;
                     }
                     throw new CheckstyleException(
                         "Property ${" + propertyName + "} has not been set");

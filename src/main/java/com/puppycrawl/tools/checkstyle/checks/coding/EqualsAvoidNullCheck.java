@@ -605,12 +605,14 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
          * @return true if this FieldFrame contains instance field field.
          */
         public DetailAST findField(String name) {
+            DetailAST resultField = null;
             for (DetailAST field: fields) {
                 if (getFieldName(field).equals(name)) {
-                    return field;
+                    resultField = field;
+                    break;
                 }
             }
-            return null;
+            return resultField;
         }
 
         /**
