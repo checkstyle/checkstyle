@@ -31,6 +31,7 @@ public class ImportControlRegExpTest {
 
     @Before
     public void setUp() {
+        icRoot.addChild(icCommon);
         icRoot.addImportRule(
             new PkgImportRule(false, false, ".*\\.(spring|lui)framework", false, true));
         icRoot.addImportRule(

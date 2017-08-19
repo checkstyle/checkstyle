@@ -31,6 +31,7 @@ public class ImportControlTest {
 
     @Before
     public void setUp() {
+        icRoot.addChild(icCommon);
         icRoot.addImportRule(
             new PkgImportRule(false, false, "org.springframework", false, false));
         icRoot.addImportRule(

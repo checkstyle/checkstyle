@@ -131,7 +131,11 @@ final class ImportControlLoader extends AbstractLoader {
             final String name = safeGet(attributes, "name");
             final MismatchStrategy strategyOnMismatch = getStrategyForSubpackage(attributes);
             final boolean regex = containsRegexAttribute(attributes);
-            stack.push(new ImportControl(stack.peek(), name, regex, strategyOnMismatch));
+            final ImportControl parentImportControl = stack.peek();
+            final ImportControl importControl = new ImportControl(parentImportControl, name,
+                    regex, strategyOnMismatch);
+            parentImportControl.addChild(importControl);
+            stack.push(importControl);
         }
         else if (ALLOW_ELEMENT_NAME.equals(qName) || "disallow".equals(qName)) {
             // Need to handle either "pkg" or "class" attribute.
