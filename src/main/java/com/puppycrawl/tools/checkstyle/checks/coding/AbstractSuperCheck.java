@@ -154,11 +154,7 @@ public abstract class AbstractSuperCheck
             && sibling.getType() == TokenTypes.TYPE_ARGUMENTS) {
             sibling = sibling.getNextSibling();
         }
-        if (sibling == null) {
-            return true;
-        }
-        final String name = sibling.getText();
-        return !getMethodName().equals(name);
+        return sibling == null || !getMethodName().equals(sibling.getText());
     }
 
     @Override

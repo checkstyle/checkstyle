@@ -1484,9 +1484,9 @@ isolated classes and we cannot put them to separate package as it will affect us
     <inspection_tool class="MultipleInjectedConstructorsForClass" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="MultipleMethodDesignatorsInspection" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="MultipleRepositoryUrls" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="MultipleReturnPointsPerMethod" enabled="false" level="ERROR" enabled_by_default="false">
-        <option name="ignoreGuardClauses" value="false" />
-        <option name="ignoreEqualsMethod" value="false" />
+    <inspection_tool class="MultipleReturnPointsPerMethod" enabled="true" level="ERROR" enabled_by_default="true">
+        <option name="ignoreGuardClauses" value="true" />
+        <option name="ignoreEqualsMethod" value="true" />
         <option name="m_limit" value="1" />
     </inspection_tool>
     <inspection_tool class="MultipleTopLevelClassesInFile" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -2145,6 +2145,8 @@ isolated classes and we cannot put them to separate package as it will affect us
                 <option value="UseOfPropertiesAsHashtable" />
                 <!-- till #4861, #4862, #4863, #4864, #4866 -->
                 <option value="ThisEscapedInObjectConstruction" />
+                <!-- it will makes code too complicated in some cases -->
+                <option value="MultipleReturnPointsPerMethod" />
             </list>
         </option>
     </inspection_tool>

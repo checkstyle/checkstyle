@@ -58,12 +58,11 @@ public class LineWrappingHandler {
          * @noinspection BooleanParameter
          */
         public static LineWrappingOptions ofBoolean(boolean val) {
+            LineWrappingOptions option = NONE;
             if (val) {
-                return IGNORE_FIRST_LINE;
+                option = IGNORE_FIRST_LINE;
             }
-            else {
-                return NONE;
-            }
+            return option;
         }
     }
 

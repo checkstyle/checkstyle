@@ -402,16 +402,17 @@ public class HiddenFieldCheck
      *     ignoreSetter is true and ast is the parameter of a setter method.
      */
     private boolean isIgnoredSetterParam(DetailAST ast, String name) {
+        boolean isIgnoredSetterParam = false;
         if (ignoreSetter && ast.getType() == TokenTypes.PARAMETER_DEF) {
             final DetailAST parametersAST = ast.getParent();
             final DetailAST methodAST = parametersAST.getParent();
             if (parametersAST.getChildCount() == 1
                 && methodAST.getType() == TokenTypes.METHOD_DEF
                 && isSetterMethod(methodAST, name)) {
-                return true;
+                isIgnoredSetterParam = true;
             }
         }
-        return false;
+        return isIgnoredSetterParam;
     }
 
     /**
@@ -653,13 +654,15 @@ public class HiddenFieldCheck
          */
         private boolean isEmbeddedIn(String classOrEnumName) {
             FieldFrame currentFrame = this;
+            boolean isEmbeddedIn = false;
             while (currentFrame != null) {
                 if (Objects.equals(currentFrame.frameName, classOrEnumName)) {
-                    return true;
+                    isEmbeddedIn = true;
+                    break;
                 }
                 currentFrame = currentFrame.parent;
             }
-            return false;
+            return isEmbeddedIn;
         }
     }
 }
