@@ -192,16 +192,18 @@ public class ExplicitInitializationCheck extends AbstractCheck {
      */
     private static boolean isZero(DetailAST expr) {
         final int type = expr.getType();
+        final boolean isZero;
         switch (type) {
             case TokenTypes.NUM_FLOAT:
             case TokenTypes.NUM_DOUBLE:
             case TokenTypes.NUM_INT:
             case TokenTypes.NUM_LONG:
                 final String text = expr.getText();
-                return Double.compare(
-                    CheckUtils.parseDouble(text, type), 0.0) == 0;
+                isZero = Double.compare(CheckUtils.parseDouble(text, type), 0.0) == 0;
+                break;
             default:
-                return false;
+                isZero = false;
         }
+        return isZero;
     }
 }

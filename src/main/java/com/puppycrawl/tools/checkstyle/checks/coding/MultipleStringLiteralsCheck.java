@@ -152,15 +152,17 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
      *     token type in {@link #ignoreOccurrenceContext}.
      */
     private boolean isInIgnoreOccurrenceContext(DetailAST ast) {
+        boolean isInIgnoreOccurrenceContext = false;
         for (DetailAST token = ast;
              token.getParent() != null;
              token = token.getParent()) {
             final int type = token.getType();
             if (ignoreOccurrenceContext.get(type)) {
-                return true;
+                isInIgnoreOccurrenceContext = true;
+                break;
             }
         }
-        return false;
+        return isInIgnoreOccurrenceContext;
     }
 
     @Override
