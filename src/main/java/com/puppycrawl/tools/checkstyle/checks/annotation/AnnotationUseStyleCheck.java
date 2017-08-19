@@ -69,8 +69,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * array comma preference a {@link TrailingArrayComma#IGNORE IGNORE} type
  * is provided.  Set this through the {@code trailingArrayComma} property.
  *
- * <p>By default the ElementStyle is set to EXPANDED, the TrailingArrayComma
- * is set to NEVER, and the ClosingParens is set to ALWAYS.
+ * <p>By default the ElementStyle is set to COMPACT_NO_ARRAY, the
+ * TrailingArrayComma is set to NEVER, and the ClosingParens is set to NEVER.
  *
  * <p>According to the JLS, it is legal to include a trailing comma
  * in arrays used in annotations but Sun's Java 5 &amp; 6 compilers will not
