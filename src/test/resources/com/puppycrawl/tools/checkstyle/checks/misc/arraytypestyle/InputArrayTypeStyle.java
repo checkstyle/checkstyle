@@ -12,6 +12,7 @@ public class InputArrayTypeStyle
 {
     private int[] javaStyle = new int[0];
     private int cStyle[] = new int[0];
+    private int c[] = new int[0];
 
     public static void mainJava(String[] aJavaStyle)
     {

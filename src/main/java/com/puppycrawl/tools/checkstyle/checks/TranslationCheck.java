@@ -236,7 +236,6 @@ public class TranslationCheck extends AbstractFileSetCheck {
 
     @Override
     public void beginProcessing(String charset) {
-        super.beginProcessing(charset);
         filesToProcess.clear();
     }
 
@@ -248,8 +247,6 @@ public class TranslationCheck extends AbstractFileSetCheck {
 
     @Override
     public void finishProcessing() {
-        super.finishProcessing();
-
         final Set<ResourceBundle> bundles = groupFilesIntoBundles(filesToProcess, baseName);
         for (ResourceBundle currentBundle : bundles) {
             checkExistenceOfDefaultTranslation(currentBundle);

@@ -21,11 +21,15 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
+import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 import org.junit.Test;
+import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -350,6 +354,26 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
                 .mapToObj(msg -> indexOfStartLineInInputFile + msg + ": " + message)
                 .toArray(String[]::new);
         verify(checkConfig, getPath("InputAllEscapedUnicodeCharacters.java"), expected);
+    }
+
+    /**
+     * Method countMatches is used only inside isOnlyUnicodeValidChars method, and when
+     * pitest mutates 316:13 countMatches++ to countMatches-- it makes no difference for
+     * isOnlyUnicodeValidChars method as it applies countMatches to both cases in comparison.
+     * It is possible to kill mutation in countMatches method by changing code in
+     * isOnlyUnicodeValidChars, but it creates new uncoverable mutations and makes code harder
+     * to understand.
+     *
+     * @throws Exception when code tested throws some exception
+     */
+    @Test
+    public void testCountMatches() throws Exception {
+        final Method countMatches = Whitebox.getMethod(AvoidEscapedUnicodeCharactersCheck.class,
+                "countMatches", Pattern.class, String.class);
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final int actual = (int) countMatches.invoke(check,
+                Pattern.compile("\\\\u[a-fA-F0-9]{4}"), "\\u1234");
+        assertEquals("Unexpected matches count", 1, actual);
     }
 
     private static boolean isControlCharacter(final int character) {
