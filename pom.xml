@@ -1652,7 +1652,11 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.UpperEllCheckTest</param>
               </targetTests>
+<<<<<<< 9d4a1692feb39b70df7475481e4828635a8a24ce
               <mutationThreshold>96</mutationThreshold>
+=======
+              <mutationThreshold>93</mutationThreshold>
+>>>>>>> Issue #4675: increase coverage of pitest-checks-misc to 93%
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
