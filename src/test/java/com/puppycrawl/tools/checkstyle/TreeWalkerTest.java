@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -29,6 +30,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,7 +45,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.mockito.internal.util.Checks;
-import org.mockito.internal.util.reflection.Whitebox;
+import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -183,7 +185,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         treeWalker.setCacheFile(temporaryFolder.newFile().getPath());
 
         assertEquals("Invalid setter result", 1,
-            Whitebox.getInternalState(treeWalker, "tabWidth"));
+                (int) Whitebox.getInternalState(treeWalker, "tabWidth"));
         assertEquals("Invalid configuration", config,
             Whitebox.getInternalState(treeWalker, "configuration"));
     }
@@ -228,7 +230,6 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         }
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void testProcessNonJavaFilesWithoutException() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
@@ -237,8 +238,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final File file = new File(getPath("InputTreeWalkerNotJava.xml"));
         final FileText fileText = new FileText(file, StandardCharsets.ISO_8859_1.name());
         treeWalker.processFiltered(file, fileText);
-        final Collection<Checks> checks =
-                (Collection<Checks>) Whitebox.getInternalState(treeWalker, "ordinaryChecks");
+        final Collection<Checks> checks = Whitebox.getInternalState(treeWalker, "ordinaryChecks");
         assertTrue("No checks -> No parsing", checks.isEmpty());
     }
 
@@ -334,7 +334,6 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         }
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void testBehaviourWithZeroChecks() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
@@ -346,8 +345,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final FileText fileText = new FileText(file, new ArrayList<>());
 
         treeWalker.processFiltered(file, fileText);
-        final Collection<Checks> checks =
-                (Collection<Checks>) Whitebox.getInternalState(treeWalker, "ordinaryChecks");
+        final Collection<Checks> checks = Whitebox.getInternalState(treeWalker, "ordinaryChecks");
         assertTrue("No checks -> No parsing", checks.isEmpty());
     }
 
@@ -504,7 +502,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         treeWalker.setTabWidth(100);
         treeWalker.finishLocalSetup();
 
-        final Context context = (Context) Whitebox.getInternalState(treeWalker, "childContext");
+        final Context context = Whitebox.getInternalState(treeWalker, "childContext");
         assertEquals("Classloader object differs from expected",
                 contextClassLoader, context.get("classLoader"));
         assertEquals("Severity differs from expected",
@@ -543,6 +541,37 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, file.getPath(), expected);
         assertTrue("Destroy was not called", VerifyDestroyCheck.isDestroyWasCalled());
+    }
+
+    /**
+     * Could not find proper test case to test pitest mutations functionally.
+     * Should be rewritten during grammar update.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @Test
+    public void testIsPositionGreater() throws Exception {
+        final DetailAST ast1 = createAst(1, 3);
+        final DetailAST ast2 = createAst(1, 2);
+        final DetailAST ast3 = createAst(2, 2);
+
+        final TreeWalker treeWalker = new TreeWalker();
+        final Method isPositionGreater = Whitebox.getMethod(TreeWalker.class,
+                "isPositionGreater", DetailAST.class, DetailAST.class);
+
+        assertTrue("Should return true when lines are equal and column is greater",
+                (boolean) isPositionGreater.invoke(treeWalker, ast1, ast2));
+        assertFalse("Should return false when lines are equal columns are equal",
+                (boolean) isPositionGreater.invoke(treeWalker, ast1, ast1));
+        assertTrue("Should return true when line is greater",
+                (boolean) isPositionGreater.invoke(treeWalker, ast3, ast1));
+    }
+
+    private static DetailAST createAst(int line, int column) {
+        final DetailAST ast = new DetailAST();
+        ast.setLineNo(line);
+        ast.setColumnNo(column);
+        return ast;
     }
 
     private static class BadJavaDocCheck extends AbstractCheck {

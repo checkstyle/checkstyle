@@ -23,6 +23,9 @@
     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]checks[\\/]misc[\\/]newlineatendoffile[\\/]InputEmptyFile\.txt"/>
     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]InputRegressionEmptyAst\.txt"/>
 
+    <!-- File with CR line separators used for testing -->
+    <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]astprinter[\\/]InputFullOfBlockCommentsCR\.java"/>
+
     <!-- For the testing purposes -->
     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]checks[\\/]misc[\\/]uniqueproperties[\\/]InputUniquePropertiesWithDuplicates\.properties"/>
 </suppressions>

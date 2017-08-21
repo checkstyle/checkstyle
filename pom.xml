@@ -1557,7 +1557,7 @@
                   <regex>
                     <pattern>com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer</pattern>
                     <branchRate>79</branchRate>
-                    <lineRate>97</lineRate>
+                    <lineRate>96</lineRate>
                   </regex>
                   <regex>
                     <pattern>com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser</pattern>
@@ -2148,41 +2148,22 @@
                 <param>com.puppycrawl.tools.checkstyle.DetailNodeTreeStringPrinterTest</param>
                 <param>com.puppycrawl.tools.checkstyle.AstTreeStringPrinterTest</param>
                 <param>com.puppycrawl.tools.checkstyle.TreeWalkerTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.blocks.*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.design.*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.header.*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.imports.*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.indentation.*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.metrics.*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.modifiers.*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.naming.*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.regexp.*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.sizes.*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.whitespace.*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheckTest</param>
               </targetTests>
               <excludedMethods>
                 <!-- destroy in TreeWalker was added in case module had to free up resources before ending,
                 but currently it does nothing, so we cannot check it. If we remove this destroy we would have
                 to remove all of them as they are chained together, so we just exclude it from pitest check. -->
                 <param>destroy</param>
-                <!--till https://github.com/checkstyle/checkstyle/issues/4398 -->
-                <param>parseJavadocAsParseTree</param>
-                <!--till https://github.com/checkstyle/checkstyle/issues/4398 -->
-                <param>createJavadocNode</param>
-                <!--till https://github.com/checkstyle/checkstyle/issues/4398 -->
-                <param>getNextSibling</param>
-                <!--till https://github.com/checkstyle/checkstyle/issues/4398 -->
-                <param>isPositionGreater</param>
-                <!--till https://github.com/checkstyle/checkstyle/issues/4398 -->
-                <param>getExternalResourceLocations</param>
-                <!--till https://github.com/checkstyle/checkstyle/issues/4398 -->
-                <param>countLinesColumns</param>
-                <!--till https://github.com/checkstyle/checkstyle/issues/4398 -->
-                <param>getExternalResourceLocations</param>
-                <!--till https://github.com/checkstyle/checkstyle/issues/4398 -->
-                <param>parse</param>
               </excludedMethods>
               <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
