@@ -2129,8 +2129,6 @@ isolated classes and we cannot put them to separate package as it will affect us
                 <option value="NonFinalFieldReferencedInHashCode" />
                 <!-- violations in DetailAST will be addressed further -->
                 <option value="FieldNotUsedInToString" />
-                <!-- till #4805-->
-                <option value="HtmlTagCanBeJavadocTag" />
                 <!-- WeakerAccess reports 'can be protected' that we can not change -->
                 <option value="WeakerAccess" />
                 <!-- we need to work with AntClassLoader, there is no way to avoid this -->
