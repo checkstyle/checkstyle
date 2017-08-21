@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocChec
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.MSG_JAVADOC_WRONG_SINGLETON_TAG;
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
+import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.util.LinkedHashMap;
@@ -33,6 +34,7 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.contrib.java.lang.system.SystemErrRule;
 import org.junit.rules.TemporaryFolder;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -46,6 +48,9 @@ import com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
+    @Rule
+    public final SystemErrRule systemErr = new SystemErrRule().enableLog().mute();
+
     @Rule
     public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
@@ -79,6 +84,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             "8: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 35, "img"),
         };
         verify(checkConfig, getPath("InputAbstractJavadocParsingErrors.java"), expected);
+        assertEquals("Error is unexpected", "", systemErr.getLog());
     }
 
     @Test
@@ -103,6 +109,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
                     "mismatched input 'get' expecting <EOF>", "JAVADOC"),
         };
         verify(checkConfig, getPath("InputAbstractJavadocInvalidAtSeeReference.java"), expected);
+        assertEquals("Error is unexpected", "", systemErr.getLog());
     }
 
     @Test
@@ -121,6 +128,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             new File(getPath("InputAbstractJavadocParsingErrors.java")),
             new File(getPath("InputAbstractJavadocInvalidAtSeeReference.java")), },
                 expectedMessages);
+        assertEquals("Error is unexpected", "", systemErr.getLog());
     }
 
     @Test
@@ -143,7 +151,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocCatchCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputAbstractJavadocPosition.java"), expected);
-        Assert.assertEquals("Invalid number of javadocs",
+        assertEquals("Invalid number of javadocs",
             58, JavadocCatchCheck.javadocsNumber);
     }
 
@@ -155,7 +163,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
             getPath("InputAbstractJavadocPositionWithSinglelineComments.java"), expected);
-        Assert.assertEquals("Invalid number of javadocs",
+        assertEquals("Invalid number of javadocs",
                 58, JavadocCatchCheck.javadocsNumber);
     }
 
@@ -166,7 +174,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocCatchCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputAbstractJavadocPositionOnlyComments.java"), expected);
-        Assert.assertEquals("Invalid number of javadocs",
+        assertEquals("Invalid number of javadocs",
                 0, JavadocCatchCheck.javadocsNumber);
     }
 
@@ -264,7 +272,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputAbstractJavadocPosition.java"), expected);
         Assert.assertTrue("Javadoc visit count should be greater than zero",
                 JavadocVisitLeaveCheck.visitCount > 0);
-        Assert.assertEquals("Javadoc visit and leave count should be equal",
+        assertEquals("Javadoc visit and leave count should be equal",
                 JavadocVisitLeaveCheck.visitCount, JavadocVisitLeaveCheck.leaveCount);
     }
 
@@ -295,7 +303,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
         @Override
         public void visitJavadocToken(DetailNode ast) {
-            Assert.assertEquals(ast.toString(), "JAVADOC", ast.getText());
+            assertEquals(ast.toString(), "JAVADOC", ast.getText());
             javadocsNumber++;
         }
     }
