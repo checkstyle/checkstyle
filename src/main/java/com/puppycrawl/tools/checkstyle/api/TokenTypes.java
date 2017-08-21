@@ -30,7 +30,6 @@ import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes;
  *
  * @author Oliver Burn
  * @author <a href="mailto:dobratzp@ele.uri.edu">Peter Dobratz</a>
- * @noinspection HtmlTagCanBeJavadocTag
  */
 public final class TokenTypes {
     // The following three types are never part of an AST,
@@ -481,7 +480,7 @@ public final class TokenTypes {
     /**
      * An extends clause.  This appear as part of class and interface
      * definitions.  This element appears even if the
-     * <code>extends</code> keyword is not explicitly used.  The child
+     * {@code extends} keyword is not explicitly used.  The child
      * is an optional identifier.
      *
      * <p>For example:</p>
@@ -672,7 +671,7 @@ public final class TokenTypes {
      **/
     public static final int INDEX_OP = GeneratedJavaTokenTypes.INDEX_OP;
     /**
-     * The <code>++</code> (postfix increment) operator.
+     * The {@code ++} (postfix increment) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.14.1">Java
@@ -682,7 +681,7 @@ public final class TokenTypes {
      **/
     public static final int POST_INC = GeneratedJavaTokenTypes.POST_INC;
     /**
-     * The <code>--</code> (postfix decrement) operator.
+     * The {@code --} (postfix decrement) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.14.2">Java
@@ -803,7 +802,7 @@ public final class TokenTypes {
     public static final int EXPR = GeneratedJavaTokenTypes.EXPR;
     /**
      * An array initialization.  This may occur as part of an array
-     * declaration or inline with <code>new</code>.
+     * declaration or inline with {@code new}.
      *
      * <p>For example:</p>
      * <pre>
@@ -923,7 +922,7 @@ public final class TokenTypes {
      **/
     public static final int IMPORT = GeneratedJavaTokenTypes.IMPORT;
     /**
-     * The <code>-</code> (unary minus) operator.
+     * The {@code -} (unary minus) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.4">Java
@@ -932,7 +931,7 @@ public final class TokenTypes {
      **/
     public static final int UNARY_MINUS = GeneratedJavaTokenTypes.UNARY_MINUS;
     /**
-     * The <code>+</code> (unary plus) operator.
+     * The {@code +} (unary plus) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.3">Java
@@ -1007,7 +1006,7 @@ public final class TokenTypes {
     public static final int ELIST = GeneratedJavaTokenTypes.ELIST;
     /**
      * A for loop initializer.  This is a child of
-     * <code>LITERAL_FOR</code>.  The children of this element may be
+     * {@code LITERAL_FOR}.  The children of this element may be
      * a comma separated list of variable declarations, an expression
      * list, or empty.
      *
@@ -1018,7 +1017,7 @@ public final class TokenTypes {
     public static final int FOR_INIT = GeneratedJavaTokenTypes.FOR_INIT;
     /**
      * A for loop condition.  This is a child of
-     * <code>LITERAL_FOR</code>.  The child of this element is an
+     * {@code LITERAL_FOR}.  The child of this element is an
      * optional expression.
      *
      * @see #EXPR
@@ -1029,7 +1028,7 @@ public final class TokenTypes {
 
     /**
      * A for loop iterator.  This is a child of
-     * <code>LITERAL_FOR</code>.  The child of this element is an
+     * {@code LITERAL_FOR}.  The child of this element is an
      * optional expression list.
      *
      * @see #ELIST
@@ -1040,7 +1039,7 @@ public final class TokenTypes {
 
     /**
      * The empty statement.  This goes in place of an
-     * <code>SLIST</code> for a <code>for</code> or <code>while</code>
+     * {@code SLIST} for a {@code for} or {@code while}
      * loop body.
      *
      * @see <a
@@ -1051,19 +1050,19 @@ public final class TokenTypes {
      **/
     public static final int EMPTY_STAT = GeneratedJavaTokenTypes.EMPTY_STAT;
     /**
-     * The <code>final</code> keyword.
+     * The {@code final} keyword.
      *
      * @see #MODIFIERS
      **/
     public static final int FINAL = GeneratedJavaTokenTypes.FINAL;
     /**
-     * The <code>abstract</code> keyword.
+     * The {@code abstract} keyword.
      *
      * @see #MODIFIERS
      **/
     public static final int ABSTRACT = GeneratedJavaTokenTypes.ABSTRACT;
     /**
-     * The <code>strictfp</code> keyword.
+     * The {@code strictfp} keyword.
      *
      * @see #MODIFIERS
      **/
@@ -1108,7 +1107,7 @@ public final class TokenTypes {
     public static final int CTOR_CALL = GeneratedJavaTokenTypes.CTOR_CALL;
 
     /**
-     * The statement terminator (<code>;</code>).  Depending on the
+     * The statement terminator ({@code ;}).  Depending on the
      * context, this make occur as a sibling, a child, or not at all.
      *
      * @see #PACKAGE_DEF
@@ -1120,14 +1119,14 @@ public final class TokenTypes {
     public static final int SEMI = GeneratedJavaTokenTypes.SEMI;
 
     /**
-     * The <code>]</code> symbol.
+     * The {@code ]} symbol.
      *
      * @see #INDEX_OP
      * @see #ARRAY_DECLARATOR
      **/
     public static final int RBRACK = GeneratedJavaTokenTypes.RBRACK;
     /**
-     * The <code>void</code> keyword.
+     * The {@code void} keyword.
      *
      * @see #TYPE
      **/
@@ -1135,7 +1134,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_void;
 
     /**
-     * The <code>boolean</code> keyword.
+     * The {@code boolean} keyword.
      *
      * @see #TYPE
      **/
@@ -1143,7 +1142,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_boolean;
 
     /**
-     * The <code>byte</code> keyword.
+     * The {@code byte} keyword.
      *
      * @see #TYPE
      **/
@@ -1151,7 +1150,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_byte;
 
     /**
-     * The <code>char</code> keyword.
+     * The {@code char} keyword.
      *
      * @see #TYPE
      **/
@@ -1159,7 +1158,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_char;
 
     /**
-     * The <code>short</code> keyword.
+     * The {@code short} keyword.
      *
      * @see #TYPE
      **/
@@ -1167,13 +1166,13 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_short;
 
     /**
-     * The <code>int</code> keyword.
+     * The {@code int} keyword.
      *
      * @see #TYPE
      **/
     public static final int LITERAL_INT = GeneratedJavaTokenTypes.LITERAL_int;
     /**
-     * The <code>float</code> keyword.
+     * The {@code float} keyword.
      *
      * @see #TYPE
      **/
@@ -1181,7 +1180,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_float;
 
     /**
-     * The <code>long</code> keyword.
+     * The {@code long} keyword.
      *
      * @see #TYPE
      **/
@@ -1189,7 +1188,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_long;
 
     /**
-     * The <code>double</code> keyword.
+     * The {@code double} keyword.
      *
      * @see #TYPE
      **/
@@ -1202,13 +1201,13 @@ public final class TokenTypes {
      **/
     public static final int IDENT = GeneratedJavaTokenTypes.IDENT;
     /**
-     * The <code>&#46;</code> (dot) operator.
+     * The {@code &#46;} (dot) operator.
      *
      * @see FullIdent
      **/
     public static final int DOT = GeneratedJavaTokenTypes.DOT;
     /**
-     * The <code>*</code> (multiplication or wildcard) operator.
+     * The {@code *} (multiplication or wildcard) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-7.html#jls-7.5.2">Java
@@ -1221,7 +1220,7 @@ public final class TokenTypes {
      **/
     public static final int STAR = GeneratedJavaTokenTypes.STAR;
     /**
-     * The <code>private</code> keyword.
+     * The {@code private} keyword.
      *
      * @see #MODIFIERS
      **/
@@ -1229,7 +1228,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_private;
 
     /**
-     * The <code>public</code> keyword.
+     * The {@code public} keyword.
      *
      * @see #MODIFIERS
      **/
@@ -1237,7 +1236,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_public;
 
     /**
-     * The <code>protected</code> keyword.
+     * The {@code protected} keyword.
      *
      * @see #MODIFIERS
      **/
@@ -1245,7 +1244,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_protected;
 
     /**
-     * The <code>static</code> keyword.
+     * The {@code static} keyword.
      *
      * @see #MODIFIERS
      **/
@@ -1253,7 +1252,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_static;
 
     /**
-     * The <code>transient</code> keyword.
+     * The {@code transient} keyword.
      *
      * @see #MODIFIERS
      **/
@@ -1261,7 +1260,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_transient;
 
     /**
-     * The <code>native</code> keyword.
+     * The {@code native} keyword.
      *
      * @see #MODIFIERS
      **/
@@ -1269,7 +1268,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_native;
 
     /**
-     * The <code>synchronized</code> keyword.  This may be used as a
+     * The {@code synchronized} keyword.  This may be used as a
      * modifier of a method or in the definition of a synchronized
      * block.
      *
@@ -1315,7 +1314,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_synchronized;
 
     /**
-     * The <code>volatile</code> keyword.
+     * The {@code volatile} keyword.
      *
      * @see #MODIFIERS
      **/
@@ -1323,7 +1322,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_volatile;
 
     /**
-     * The <code>class</code> keyword.  This element appears both
+     * The {@code class} keyword.  This element appears both
      * as part of a class declaration, and inline to reference a
      * class object.
      *
@@ -1351,7 +1350,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_class;
 
     /**
-     * The <code>interface</code> keyword. This token appears in
+     * The {@code interface} keyword. This token appears in
      * interface definition.
      *
      * @see #INTERFACE_DEF
@@ -1360,7 +1359,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_interface;
 
     /**
-     * A left (curly) brace (<code>{</code>).
+     * A left (curly) brace ({@code &#123;}).
      *
      * @see #OBJBLOCK
      * @see #ARRAY_INIT
@@ -1368,7 +1367,7 @@ public final class TokenTypes {
      **/
     public static final int LCURLY = GeneratedJavaTokenTypes.LCURLY;
     /**
-     * A right (curly) brace (<code>}</code>).
+     * A right (curly) brace ({@code &#125;}).
      *
      * @see #OBJBLOCK
      * @see #ARRAY_INIT
@@ -1376,7 +1375,7 @@ public final class TokenTypes {
      **/
     public static final int RCURLY = GeneratedJavaTokenTypes.RCURLY;
     /**
-     * The <code>,</code> (comma) operator.
+     * The {@code ,} (comma) operator.
      *
      * @see #ARRAY_INIT
      * @see #FOR_INIT
@@ -1387,7 +1386,7 @@ public final class TokenTypes {
     public static final int COMMA = GeneratedJavaTokenTypes.COMMA;
 
     /**
-     * A left parenthesis (<code>(</code>).
+     * A left parenthesis ({@code (}).
      *
      * @see #LITERAL_FOR
      * @see #LITERAL_NEW
@@ -1397,7 +1396,7 @@ public final class TokenTypes {
      **/
     public static final int LPAREN = GeneratedJavaTokenTypes.LPAREN;
     /**
-     * A right parenthesis (<code>)</code>).
+     * A right parenthesis ({@code )}).
      *
      * @see #LITERAL_FOR
      * @see #LITERAL_NEW
@@ -1409,7 +1408,7 @@ public final class TokenTypes {
      **/
     public static final int RPAREN = GeneratedJavaTokenTypes.RPAREN;
     /**
-     * The <code>this</code> keyword.
+     * The {@code this} keyword.
      *
      * @see #EXPR
      * @see #CTOR_CALL
@@ -1418,7 +1417,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_this;
 
     /**
-     * The <code>super</code> keyword.
+     * The {@code super} keyword.
      *
      * @see #EXPR
      * @see #SUPER_CTOR_CALL
@@ -1427,7 +1426,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_super;
 
     /**
-     * The <code>=</code> (assignment) operator.
+     * The {@code =} (assignment) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.1">Java
@@ -1436,7 +1435,7 @@ public final class TokenTypes {
      **/
     public static final int ASSIGN = GeneratedJavaTokenTypes.ASSIGN;
     /**
-     * The <code>throws</code> keyword.  The children are a number of
+     * The {@code throws} keyword.  The children are a number of
      * one or more identifiers separated by commas.
      *
      * @see <a
@@ -1453,8 +1452,8 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_throws;
 
     /**
-     * The <code>:</code> (colon) operator.  This will appear as part
-     * of the conditional operator (<code>? :</code>).
+     * The {@code :} (colon) operator.  This will appear as part
+     * of the conditional operator ({@code ? :}).
      *
      * @see #QUESTION
      * @see #LABELED_STAT
@@ -1463,7 +1462,7 @@ public final class TokenTypes {
     public static final int COLON = GeneratedJavaTokenTypes.COLON;
 
     /**
-     * The <code>::</code> (double colon) separator.
+     * The {@code ::} (double colon) separator.
      * It is part of Java 8 syntax that is used for method reference.
      * The token does not appear in tree, {@link #METHOD_REF} should be used instead.
      *
@@ -1471,7 +1470,7 @@ public final class TokenTypes {
      */
     public static final int DOUBLE_COLON = GeneratedJavaTokenTypes.DOUBLE_COLON;
     /**
-     * The <code>if</code> keyword.
+     * The {@code if} keyword.
      *
      * <p>For example:</p>
      * <pre>
@@ -1526,8 +1525,8 @@ public final class TokenTypes {
      **/
     public static final int LITERAL_IF = GeneratedJavaTokenTypes.LITERAL_if;
     /**
-     * The <code>for</code> keyword.  The children are <code>(</code>,
-     * an initializer, a condition, an iterator, a <code>)</code> and
+     * The {@code for} keyword.  The children are {@code (},
+     * an initializer, a condition, an iterator, a {@code )} and
      * either a statement list, a single expression, or an empty
      * statement.
      *
@@ -1610,7 +1609,7 @@ public final class TokenTypes {
      **/
     public static final int LITERAL_FOR = GeneratedJavaTokenTypes.LITERAL_for;
     /**
-     * The <code>while</code> keyword.
+     * The {@code while} keyword.
      *
      * <p>For example:</p>
      * <pre>
@@ -1667,7 +1666,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_while;
 
     /**
-     * The <code>do</code> keyword.  Note the the while token does not
+     * The {@code do} keyword.  Note the the while token does not
      * appear as part of the do-while construct.
      *
      * <p>For example:</p>
@@ -1724,12 +1723,12 @@ public final class TokenTypes {
      **/
     public static final int LITERAL_DO = GeneratedJavaTokenTypes.LITERAL_do;
     /**
-     * Literal <code>while</code> in do-while loop.
+     * Literal {@code while} in do-while loop.
      * @see #LITERAL_DO
      */
     public static final int DO_WHILE = GeneratedJavaTokenTypes.DO_WHILE;
     /**
-     * The <code>break</code> keyword.  The first child is an optional
+     * The {@code break} keyword.  The first child is an optional
      * identifier and the last child is a semicolon.
      *
      * @see #IDENT
@@ -1740,7 +1739,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_break;
 
     /**
-     * The <code>continue</code> keyword.  The first child is an
+     * The {@code continue} keyword.  The first child is an
      * optional identifier and the last child is a semicolon.
      *
      * @see #IDENT
@@ -1751,7 +1750,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_continue;
 
     /**
-     * The <code>return</code> keyword.  The first child is an
+     * The {@code return} keyword.  The first child is an
      * optional expression for the return value.  The last child is a
      * semi colon.
      *
@@ -1763,7 +1762,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_return;
 
     /**
-     * The <code>switch</code> keyword.
+     * The {@code switch} keyword.
      *
      * <p>For example:</p>
      * <pre>
@@ -1870,8 +1869,8 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_switch;
 
     /**
-     * The <code>throw</code> keyword.  The first child is an
-     * expression that evaluates to a <code>Throwable</code> instance.
+     * The {@code throw} keyword.  The first child is an
+     * expression that evaluates to a {@code Throwable} instance.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.17">Java
@@ -1883,8 +1882,8 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_throw;
 
     /**
-     * The <code>else</code> keyword.  This appears as a child of an
-     * <code>if</code> statement.
+     * The {@code else} keyword.  This appears as a child of an
+     * {@code if} statement.
      *
      * @see #SLIST
      * @see #EXPR
@@ -1895,7 +1894,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_else;
 
     /**
-     * The <code>case</code> keyword.  The first child is a constant
+     * The {@code case} keyword.  The first child is a constant
      * expression that evaluates to a integer.
      *
      * @see #CASE_GROUP
@@ -1905,7 +1904,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_case;
 
     /**
-     * The <code>default</code> keyword.  This element has no
+     * The {@code default} keyword.  This element has no
      * children.
      *
      * @see #CASE_GROUP
@@ -1915,7 +1914,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_default;
 
     /**
-     * The <code>try</code> keyword.  The children are a statement
+     * The {@code try} keyword.  The children are a statement
      * list, zero or more catch blocks and then an optional finally
      * block.
      *
@@ -2140,7 +2139,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.RESOURCE;
 
     /**
-     * The <code>catch</code> keyword.
+     * The {@code catch} keyword.
      *
      * @see #LPAREN
      * @see #PARAMETER_DEF
@@ -2152,7 +2151,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_catch;
 
     /**
-     * The <code>finally</code> keyword.
+     * The {@code finally} keyword.
      *
      * @see #SLIST
      * @see #LITERAL_TRY
@@ -2161,7 +2160,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_finally;
 
     /**
-     * The <code>+=</code> (addition assignment) operator.
+     * The {@code +=} (addition assignment) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
@@ -2170,7 +2169,7 @@ public final class TokenTypes {
      **/
     public static final int PLUS_ASSIGN = GeneratedJavaTokenTypes.PLUS_ASSIGN;
     /**
-     * The <code>-=</code> (subtraction assignment) operator.
+     * The {@code -=} (subtraction assignment) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
@@ -2181,7 +2180,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.MINUS_ASSIGN;
 
     /**
-     * The <code>*=</code> (multiplication assignment) operator.
+     * The {@code *=} (multiplication assignment) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
@@ -2190,7 +2189,7 @@ public final class TokenTypes {
      **/
     public static final int STAR_ASSIGN = GeneratedJavaTokenTypes.STAR_ASSIGN;
     /**
-     * The <code>/=</code> (division assignment) operator.
+     * The {@code /=} (division assignment) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
@@ -2199,7 +2198,7 @@ public final class TokenTypes {
      **/
     public static final int DIV_ASSIGN = GeneratedJavaTokenTypes.DIV_ASSIGN;
     /**
-     * The <code>%=</code> (remainder assignment) operator.
+     * The {@code %=} (remainder assignment) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
@@ -2208,7 +2207,7 @@ public final class TokenTypes {
      **/
     public static final int MOD_ASSIGN = GeneratedJavaTokenTypes.MOD_ASSIGN;
     /**
-     * The <code>&gt;&gt;=</code> (signed right shift assignment)
+     * The {@code &gt;&gt;=} (signed right shift assignment)
      * operator.
      *
      * @see <a
@@ -2218,7 +2217,7 @@ public final class TokenTypes {
      **/
     public static final int SR_ASSIGN = GeneratedJavaTokenTypes.SR_ASSIGN;
     /**
-     * The <code>&gt;&gt;&gt;=</code> (unsigned right shift assignment)
+     * The {@code &gt;&gt;&gt;=} (unsigned right shift assignment)
      * operator.
      *
      * @see <a
@@ -2228,7 +2227,7 @@ public final class TokenTypes {
      **/
     public static final int BSR_ASSIGN = GeneratedJavaTokenTypes.BSR_ASSIGN;
     /**
-     * The <code>&lt;&lt;=</code> (left shift assignment) operator.
+     * The {@code &lt;&lt;=} (left shift assignment) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
@@ -2237,7 +2236,7 @@ public final class TokenTypes {
      **/
     public static final int SL_ASSIGN = GeneratedJavaTokenTypes.SL_ASSIGN;
     /**
-     * The <code>&amp;=</code> (bitwise AND assignment) operator.
+     * The {@code &amp;=} (bitwise AND assignment) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
@@ -2246,7 +2245,7 @@ public final class TokenTypes {
      **/
     public static final int BAND_ASSIGN = GeneratedJavaTokenTypes.BAND_ASSIGN;
     /**
-     * The <code>^=</code> (bitwise exclusive OR assignment) operator.
+     * The {@code ^=} (bitwise exclusive OR assignment) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
@@ -2255,7 +2254,7 @@ public final class TokenTypes {
      **/
     public static final int BXOR_ASSIGN = GeneratedJavaTokenTypes.BXOR_ASSIGN;
     /**
-     * The <code>|=</code> (bitwise OR assignment) operator.
+     * The {@code |=} (bitwise OR assignment) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
@@ -2264,7 +2263,7 @@ public final class TokenTypes {
      **/
     public static final int BOR_ASSIGN = GeneratedJavaTokenTypes.BOR_ASSIGN;
     /**
-     * The <code>&#63;</code> (conditional) operator.  Technically,
+     * The {@code &#63;} (conditional) operator.  Technically,
      * the colon is also part of this operator, but it appears as a
      * separate token.
      *
@@ -2297,7 +2296,7 @@ public final class TokenTypes {
      **/
     public static final int QUESTION = GeneratedJavaTokenTypes.QUESTION;
     /**
-     * The <code>||</code> (conditional OR) operator.
+     * The {@code ||} (conditional OR) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.24">Java
@@ -2306,7 +2305,7 @@ public final class TokenTypes {
      **/
     public static final int LOR = GeneratedJavaTokenTypes.LOR;
     /**
-     * The <code>&amp;&amp;</code> (conditional AND) operator.
+     * The {@code &amp;&amp;} (conditional AND) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.23">Java
@@ -2315,7 +2314,7 @@ public final class TokenTypes {
      **/
     public static final int LAND = GeneratedJavaTokenTypes.LAND;
     /**
-     * The <code>|</code> (bitwise OR) operator.
+     * The {@code |} (bitwise OR) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.22.1">Java
@@ -2324,7 +2323,7 @@ public final class TokenTypes {
      **/
     public static final int BOR = GeneratedJavaTokenTypes.BOR;
     /**
-     * The <code>^</code> (bitwise exclusive OR) operator.
+     * The {@code ^} (bitwise exclusive OR) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.22.1">Java
@@ -2333,7 +2332,7 @@ public final class TokenTypes {
      **/
     public static final int BXOR = GeneratedJavaTokenTypes.BXOR;
     /**
-     * The <code>&amp;</code> (bitwise AND) operator.
+     * The {@code &amp;} (bitwise AND) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.22.1">Java
@@ -2342,43 +2341,43 @@ public final class TokenTypes {
      **/
     public static final int BAND = GeneratedJavaTokenTypes.BAND;
     /**
-     * The <code>&#33;=</code> (not equal) operator.
+     * The {@code &#33;=} (not equal) operator.
      *
      * @see #EXPR
      **/
     public static final int NOT_EQUAL = GeneratedJavaTokenTypes.NOT_EQUAL;
     /**
-     * The <code>==</code> (equal) operator.
+     * The {@code ==} (equal) operator.
      *
      * @see #EXPR
      **/
     public static final int EQUAL = GeneratedJavaTokenTypes.EQUAL;
     /**
-     * The <code>&lt;</code> (less than) operator.
+     * The {@code &lt;} (less than) operator.
      *
      * @see #EXPR
      **/
     public static final int LT = GeneratedJavaTokenTypes.LT;
     /**
-     * The <code>&gt;</code> (greater than) operator.
+     * The {@code &gt;} (greater than) operator.
      *
      * @see #EXPR
      **/
     public static final int GT = GeneratedJavaTokenTypes.GT;
     /**
-     * The <code>&lt;=</code> (less than or equal) operator.
+     * The {@code &lt;=} (less than or equal) operator.
      *
      * @see #EXPR
      **/
     public static final int LE = GeneratedJavaTokenTypes.LE;
     /**
-     * The <code>&gt;=</code> (greater than or equal) operator.
+     * The {@code &gt;=} (greater than or equal) operator.
      *
      * @see #EXPR
      **/
     public static final int GE = GeneratedJavaTokenTypes.GE;
     /**
-     * The <code>instanceof</code> operator.  The first child is an
+     * The {@code instanceof} operator.  The first child is an
      * object reference or something that evaluates to an object
      * reference.  The second child is a reference type.
      *
@@ -2396,7 +2395,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_instanceof;
 
     /**
-     * The <code>&lt;&lt;</code> (shift left) operator.
+     * The {@code &lt;&lt;} (shift left) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.19">Java
@@ -2405,7 +2404,7 @@ public final class TokenTypes {
      **/
     public static final int SL = GeneratedJavaTokenTypes.SL;
     /**
-     * The <code>&gt;&gt;</code> (signed shift right) operator.
+     * The {@code &gt;&gt;} (signed shift right) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.19">Java
@@ -2414,7 +2413,7 @@ public final class TokenTypes {
      **/
     public static final int SR = GeneratedJavaTokenTypes.SR;
     /**
-     * The <code>&gt;&gt;&gt;</code> (unsigned shift right) operator.
+     * The {@code &gt;&gt;&gt;} (unsigned shift right) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.19">Java
@@ -2423,7 +2422,7 @@ public final class TokenTypes {
      **/
     public static final int BSR = GeneratedJavaTokenTypes.BSR;
     /**
-     * The <code>+</code> (addition) operator.
+     * The {@code +} (addition) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.18">Java
@@ -2432,7 +2431,7 @@ public final class TokenTypes {
      **/
     public static final int PLUS = GeneratedJavaTokenTypes.PLUS;
     /**
-     * The <code>-</code> (subtraction) operator.
+     * The {@code -} (subtraction) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.18">Java
@@ -2441,7 +2440,7 @@ public final class TokenTypes {
      **/
     public static final int MINUS = GeneratedJavaTokenTypes.MINUS;
     /**
-     * The <code>/</code> (division) operator.
+     * The {@code /} (division) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.17.2">Java
@@ -2450,7 +2449,7 @@ public final class TokenTypes {
      **/
     public static final int DIV = GeneratedJavaTokenTypes.DIV;
     /**
-     * The <code>%</code> (remainder) operator.
+     * The {@code %} (remainder) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.17.3">Java
@@ -2459,7 +2458,7 @@ public final class TokenTypes {
      **/
     public static final int MOD = GeneratedJavaTokenTypes.MOD;
     /**
-     * The <code>++</code> (prefix increment) operator.
+     * The {@code ++} (prefix increment) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.1">Java
@@ -2469,7 +2468,7 @@ public final class TokenTypes {
      **/
     public static final int INC = GeneratedJavaTokenTypes.INC;
     /**
-     * The <code>--</code> (prefix decrement) operator.
+     * The {@code --} (prefix decrement) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.2">Java
@@ -2479,7 +2478,7 @@ public final class TokenTypes {
      **/
     public static final int DEC = GeneratedJavaTokenTypes.DEC;
     /**
-     * The <code>~</code> (bitwise complement) operator.
+     * The {@code ~} (bitwise complement) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.5">Java
@@ -2488,7 +2487,7 @@ public final class TokenTypes {
      **/
     public static final int BNOT = GeneratedJavaTokenTypes.BNOT;
     /**
-     * The <code>&#33;</code> (logical complement) operator.
+     * The {@code &#33;} (logical complement) operator.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.6">Java
@@ -2497,7 +2496,7 @@ public final class TokenTypes {
      **/
     public static final int LNOT = GeneratedJavaTokenTypes.LNOT;
     /**
-     * The <code>true</code> keyword.
+     * The {@code true} keyword.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.3">Java
@@ -2509,7 +2508,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_true;
 
     /**
-     * The <code>false</code> keyword.
+     * The {@code false} keyword.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.3">Java
@@ -2521,7 +2520,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_false;
 
     /**
-     * The <code>null</code> keyword.
+     * The {@code null} keyword.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.7">Java
@@ -2532,7 +2531,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_null;
 
     /**
-     * The <code>new</code> keyword.  This element is used to define
+     * The {@code new} keyword.  This element is used to define
      * new instances of objects, new arrays, and new anonymous inner
      * classes.
      *
@@ -2701,7 +2700,7 @@ public final class TokenTypes {
 
     /**
      * A single precision floating point literal.  This is a floating
-     * point number with an <code>F</code> or <code>f</code> suffix.
+     * point number with an {@code F} or {@code f} suffix.
      *
      * @see <a
      * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.2">Java
@@ -2712,7 +2711,7 @@ public final class TokenTypes {
     public static final int NUM_FLOAT = GeneratedJavaTokenTypes.NUM_FLOAT;
     /**
      * A long integer literal.  These are almost the same as integer
-     * literals, but they have an <code>L</code> or <code>l</code>
+     * literals, but they have an {@code L} or {@code l}
      * (ell) suffix.
      *
      * @see <a
@@ -2724,7 +2723,7 @@ public final class TokenTypes {
     public static final int NUM_LONG = GeneratedJavaTokenTypes.NUM_LONG;
     /**
      * A double precision floating point literal.  This is a floating
-     * point number with an optional <code>D</code> or <code>d</code>
+     * point number with an optional {@code D} or {@code d}
      * suffix.
      *
      * @see <a
@@ -2736,7 +2735,7 @@ public final class TokenTypes {
     public static final int NUM_DOUBLE = GeneratedJavaTokenTypes.NUM_DOUBLE;
 
     /**
-     * The <code>assert</code> keyword.  This is only for Java 1.4 and
+     * The {@code assert} keyword.  This is only for Java 1.4 and
      * later.
      *
      * <p>For example:</p>
@@ -2874,7 +2873,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.ENUM_DEF;
 
     /**
-     * The <code>enum</code> keyword.  This element appears
+     * The {@code enum} keyword.  This element appears
      * as part of an enum declaration.
      **/
     public static final int ENUM =
@@ -2942,7 +2941,7 @@ public final class TokenTypes {
 
     /**
      * A for-each clause.  This is a child of
-     * <code>LITERAL_FOR</code>.  The children of this element may be
+     * {@code LITERAL_FOR}.  The children of this element may be
      * a parameter definition, the colon literal and an expression.
      *
      * <p>For example:</p>

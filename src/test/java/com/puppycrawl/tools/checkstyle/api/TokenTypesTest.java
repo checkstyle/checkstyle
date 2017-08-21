@@ -30,8 +30,28 @@ public class TokenTypesTest {
     @Test
     public void testGetShortDescription() {
         assertEquals("short description for EQUAL",
-                "The <code>==</code> (equal) operator.", TokenUtils
-                        .getShortDescription("EQUAL"));
+                "The <code>==</code> (equal) operator.",
+                TokenUtils.getShortDescription("EQUAL"));
+
+        assertEquals("short description for LAND",
+                "The <code>&amp;&amp;</code> (conditional AND) operator.",
+                TokenUtils.getShortDescription("LAND"));
+
+        assertEquals("short description for LCURLY",
+                "A left (curly) brace (<code>&#123;</code>).",
+                TokenUtils.getShortDescription("LCURLY"));
+
+        assertEquals("short description for SR_ASSIGN",
+                "The <code>&gt;&gt;=</code> (signed right shift assignment)",
+                TokenUtils.getShortDescription("SR_ASSIGN"));
+
+        assertEquals("short description for SL",
+                "The <code>&lt;&lt;</code> (shift left) operator.",
+                TokenUtils.getShortDescription("SL"));
+
+        assertEquals("short description for BSR",
+                "The <code>&gt;&gt;&gt;</code> (unsigned shift right) operator.",
+                TokenUtils.getShortDescription("BSR"));
     }
 
     @Test
