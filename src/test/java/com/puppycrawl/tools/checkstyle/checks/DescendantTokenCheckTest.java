@@ -346,4 +346,34 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
 
         verify(checkConfig, getPath("InputDescendantTokenReturnFromFinally.java"), expected);
     }
+
+    @Test
+    public void testMaxTokenType() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(DescendantTokenCheck.class);
+        checkConfig.addAttribute("tokens", "OBJBLOCK");
+        checkConfig.addAttribute("limitedTokens", "LCURLY,RCURLY");
+        checkConfig.addAttribute("maximumNumber", "0");
+        checkConfig.addAttribute("maximumDepth", "2");
+        final String[] expected = {
+            "6:48: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "OBJBLOCK", "LCURLY"),
+            "6:48: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "OBJBLOCK", "RCURLY"),
+        };
+        verify(checkConfig, getPath("InputDescendantTokenLastTokenType.java"), expected);
+    }
+
+    @Test
+    public void testMaxTokenTypeReverseOrder() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(DescendantTokenCheck.class);
+        checkConfig.addAttribute("tokens", "OBJBLOCK");
+        checkConfig.addAttribute("limitedTokens", "RCURLY,LCURLY");
+        checkConfig.addAttribute("maximumNumber", "0");
+        checkConfig.addAttribute("maximumDepth", "2");
+        final String[] expected = {
+            "6:48: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "OBJBLOCK", "LCURLY"),
+            "6:48: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "OBJBLOCK", "RCURLY"),
+        };
+        verify(checkConfig, getPath("InputDescendantTokenLastTokenType.java"), expected);
+    }
 }

@@ -111,7 +111,9 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
             }
             ++lineNumber;
         }
-        if (lineNumber > fileText.size()) {
+        // -1 as check seeks for the first duplicate occurance in file,
+        // so it cannot be the last line.
+        if (lineNumber > fileText.size() - 1) {
             lineNumber = 0;
         }
         return lineNumber;

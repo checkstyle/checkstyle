@@ -93,6 +93,13 @@ public class OuterTypeFilenameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testPublicClassIsNotFirst() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(OuterTypeFilenameCheck.class);
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputOuterTypeFilenameCheckPublic.java"), expected);
+    }
+
+    @Test
     public void testFineDefault() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OuterTypeFilenameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;

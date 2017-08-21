@@ -86,6 +86,16 @@ public class UncommentedMainCheckTest
     }
 
     @Test
+    public void testVisitPackage() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(UncommentedMainCheck.class);
+        checkConfig.addAttribute("excludedClasses", "uncommentedmain\\.InputUncommentedMain5");
+        final String[] expected = {
+            "14: " + getCheckMessage(MSG_KEY),
+        };
+        verify(checkConfig, getPath("InputUncommentedMain5.java"), expected);
+    }
+
+    @Test
     public void testWrongName() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UncommentedMainCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;

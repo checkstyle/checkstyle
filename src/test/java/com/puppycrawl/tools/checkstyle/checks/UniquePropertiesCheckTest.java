@@ -22,6 +22,11 @@ package com.puppycrawl.tools.checkstyle.checks;
 import static com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.MSG_IO_EXCEPTION_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.MSG_KEY;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.times;
+import static org.powermock.api.mockito.PowerMockito.doNothing;
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
+import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -39,15 +44,22 @@ import java.util.SortedSet;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
+import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * JUnit tests for Unique Properties check.
  */
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(Closeables.class)
 public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
 
     private DefaultConfiguration checkConfig;
@@ -89,6 +101,25 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
     }
 
     /**
+     * Pitest requires all closes of streams and readers to be verified. Using PowerMock
+     * is almost only posibility to check it without rewriting production code.
+     *
+     * @throws Exception when code tested throws some exception
+     */
+    @Test
+    public void testCloseInputStream() throws Exception {
+        mockStatic(Closeables.class);
+        doNothing().when(Closeables.class);
+        Closeables.closeQuietly(any(FileInputStream.class));
+
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputUniquePropertiesWithoutErrors.properties"), expected);
+
+        verifyStatic(times(1));
+        Closeables.closeQuietly(any(FileInputStream.class));
+    }
+
+    /**
      * Tests the {@link UniquePropertiesCheck#getLineNumber(FileText, String)}
      * method return value.
      */
@@ -107,6 +138,20 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
                 fileText, "some key");
         Assert.assertNotNull("Line number should not be null", lineNumber);
         assertEquals("Invalid line number", 0, lineNumber);
+    }
+
+    @Test
+    public void testDuplicatedProperty() throws Exception {
+        final String[] expected = {
+            "2: " + getCheckMessage(MSG_KEY, "key", 2),
+        };
+        verify(checkConfig, getPath("InputUniquePropertiesWithDuplicates.properties"), expected);
+    }
+
+    @Test
+    public void testShouldNotProcessFilesWithWrongFileExtension() throws Exception {
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputUniqueProperties.txt"), expected);
     }
 
     /**

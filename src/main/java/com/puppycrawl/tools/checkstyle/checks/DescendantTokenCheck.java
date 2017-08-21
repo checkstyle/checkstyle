@@ -355,7 +355,7 @@ public class DescendantTokenCheck extends AbstractCheck {
         int maxToken = 0;
         for (int i = 0; i < limitedTokensParam.length; i++) {
             limitedTokens[i] = TokenUtils.getTokenId(limitedTokensParam[i]);
-            if (limitedTokens[i] > maxToken) {
+            if (limitedTokens[i] >= maxToken + 1) {
                 maxToken = limitedTokens[i];
             }
         }
