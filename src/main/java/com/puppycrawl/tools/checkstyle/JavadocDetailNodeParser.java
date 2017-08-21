@@ -169,12 +169,6 @@ public class JavadocDetailNodeParser {
 
         final JavadocLexer lexer = new JavadocLexer(input);
 
-        // remove default error listeners
-        lexer.removeErrorListeners();
-
-        // add custom error listener that logs parsing errors
-        lexer.addErrorListener(errorListener);
-
         final CommonTokenStream tokens = new CommonTokenStream(lexer);
 
         final JavadocParser parser = new JavadocParser(tokens);
@@ -296,14 +290,14 @@ public class JavadocDetailNodeParser {
         final JavadocNodeImpl rootJavadocNode = createJavadocNode(parseTreeNode, null, -1);
 
         final int childCount = parseTreeNode.getChildCount();
-        final JavadocNodeImpl[] children = new JavadocNodeImpl[childCount];
+        final DetailNode[] children = rootJavadocNode.getChildren();
 
         for (int i = 0; i < childCount; i++) {
             final JavadocNodeImpl child = createJavadocNode(parseTreeNode.getChild(i),
                     rootJavadocNode, i);
             children[i] = child;
         }
-        rootJavadocNode.setChildren((DetailNode[]) children);
+        rootJavadocNode.setChildren(children);
         return rootJavadocNode;
     }
 
@@ -394,15 +388,11 @@ public class JavadocDetailNodeParser {
 
         if (node.getParent() != null) {
             final ParseTree parent = node.getParent();
-            final int childCount = parent.getChildCount();
-
             int index = 0;
             while (true) {
                 final ParseTree currentNode = parent.getChild(index);
                 if (currentNode.equals(node)) {
-                    if (index != childCount - 1) {
-                        nextSibling = parent.getChild(index + 1);
-                    }
+                    nextSibling = parent.getChild(index + 1);
                     break;
                 }
                 index++;
