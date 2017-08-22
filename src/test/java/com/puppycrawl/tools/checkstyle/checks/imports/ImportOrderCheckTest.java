@@ -409,6 +409,57 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testStaticGroupsAlphabeticalOrderBottomNegative() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("option", "bottom");
+        checkConfig.addAttribute("groups", "org, java");
+        checkConfig.addAttribute("separated", "true");
+        checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
+        final String[] expected = {
+            "8: " + getCheckMessage(MSG_ORDERING, "java.util.Set"),
+        };
+        verify(checkConfig, getPath("InputImportOrderStaticGroupOrderBottom_Negative.java"),
+            expected);
+    }
+
+    /** Tests that a non-static import after a static import correctly gives an
+     * error if order=bottom. */
+
+    @Test
+    public void testStaticGroupsAlphabeticalOrderTopNegative() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("option", "top");
+        checkConfig.addAttribute("groups", "org, java");
+        checkConfig.addAttribute("separated", "true");
+        checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
+        final String[] expected = {
+            "5: " + getCheckMessage(MSG_ORDERING, "java.lang.Math.PI"),
+        };
+        verify(checkConfig, getPath("InputImportOrderStaticGroupOrderBottom_Negative.java"),
+            expected);
+    }
+
+    /** Tests that a non-static import before a static import correctly gives an
+     * error if order=top. */
+
+    @Test
+    public void testStaticGroupsAlphabeticalOrderBottomNegative2() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("option", "bottom");
+        checkConfig.addAttribute("groups", "org, java");
+        checkConfig.addAttribute("separated", "true");
+        checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
+        final String[] expected = {
+            "8: " + getCheckMessage(MSG_ORDERING, "java.util.Set"),
+        };
+        verify(checkConfig, getPath("InputImportOrderStaticGroupOrderBottom_Negative2.java"),
+            expected);
+    }
+
+    @Test
     public void testStaticGroupsOrderBottom() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ImportOrderCheck.class);
