@@ -361,11 +361,12 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
      * @return the next relevant token
      */
     private static DetailAST skipVariableAssign(final DetailAST currentAST) {
+        DetailAST result = currentAST;
         if (currentAST.getType() == TokenTypes.ASSIGN
                 && currentAST.getFirstChild().getType() == TokenTypes.IDENT) {
-            return currentAST.getFirstChild().getNextSibling();
+            result = currentAST.getFirstChild().getNextSibling();
         }
-        return currentAST;
+        return result;
     }
 
     /**

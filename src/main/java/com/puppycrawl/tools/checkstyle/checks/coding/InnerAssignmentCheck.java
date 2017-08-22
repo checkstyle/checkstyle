@@ -169,12 +169,13 @@ public class InnerAssignmentCheck
      * @return whether ast is in the body of a flow control statement
      */
     private static boolean isInNoBraceControlStatement(DetailAST ast) {
-        if (!isInContext(ast, CONTROL_CONTEXT)) {
-            return false;
+        boolean result = false;
+        if (isInContext(ast, CONTROL_CONTEXT)) {
+            final DetailAST expr = ast.getParent();
+            final AST exprNext = expr.getNextSibling();
+            result = exprNext.getType() == TokenTypes.SEMI;
         }
-        final DetailAST expr = ast.getParent();
-        final AST exprNext = expr.getNextSibling();
-        return exprNext.getType() == TokenTypes.SEMI;
+        return result;
     }
 
     /**
@@ -191,14 +192,14 @@ public class InnerAssignmentCheck
      *
      * @param ast assignment AST
      * @return whether the context of the assignment AST indicates the idiom
-     * @noinspection SimplifiableIfStatement
      */
     private static boolean isInWhileIdiom(DetailAST ast) {
-        if (!isComparison(ast.getParent())) {
-            return false;
+        boolean result = false;
+        if (isComparison(ast.getParent())) {
+            result = isInContext(
+                    ast.getParent(), ALLOWED_ASSIGNMENT_IN_COMPARISON_CONTEXT);
         }
-        return isInContext(
-                ast.getParent(), ALLOWED_ASSIGNMENT_IN_COMPARISON_CONTEXT);
+        return result;
     }
 
     /**

@@ -116,17 +116,21 @@ public class IndentLevel {
 
     @Override
     public String toString() {
+        final String result;
         if (levels.cardinality() == 1) {
-            return String.valueOf(levels.nextSetBit(0));
+            result = String.valueOf(levels.nextSetBit(0));
         }
-        final StringBuilder sb = new StringBuilder(50);
-        for (int i = levels.nextSetBit(0); i >= 0;
-            i = levels.nextSetBit(i + 1)) {
-            if (sb.length() > 0) {
-                sb.append(", ");
+        else {
+            final StringBuilder sb = new StringBuilder(50);
+            for (int i = levels.nextSetBit(0); i >= 0;
+                 i = levels.nextSetBit(i + 1)) {
+                if (sb.length() > 0) {
+                    sb.append(", ");
+                }
+                sb.append(i);
             }
-            sb.append(i);
+            result = sb.toString();
         }
-        return sb.toString();
+        return result;
     }
 }

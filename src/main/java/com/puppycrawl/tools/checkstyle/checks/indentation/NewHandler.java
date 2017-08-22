@@ -55,12 +55,16 @@ public class NewHandler extends AbstractExpressionHandler {
 
     @Override
     protected IndentLevel getIndentImpl() {
+        final IndentLevel result;
         // if our expression isn't first on the line, just use the start
         // of the line
-        if (getLineStart(getMainAst()) != getMainAst().getColumnNo()) {
-            return new IndentLevel(getLineStart(getMainAst()));
+        if (getLineStart(getMainAst()) == getMainAst().getColumnNo()) {
+            result = super.getIndentImpl();
         }
-        return super.getIndentImpl();
+        else {
+            result = new IndentLevel(getLineStart(getMainAst()));
+        }
+        return result;
     }
 
     @Override
