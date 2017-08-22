@@ -392,6 +392,10 @@ public class ImportOrderCheck
             }
             doVisitToken(ident, isStatic, isStaticAndNotLastImport);
 
+            if (isStaticAndNotLastImport && !beforeFirstImport) {
+                log(ident.getLineNo(), MSG_ORDERING, ident.getText());
+            }
+
         }
         else if (option == ImportOrderOption.BOTTOM) {
 
@@ -400,6 +404,10 @@ public class ImportOrderCheck
                 lastImport = "";
             }
             doVisitToken(ident, isStatic, isLastImportAndNonStatic);
+
+            if (isLastImportAndNonStatic) {
+                log(ident.getLineNo(), MSG_ORDERING, ident.getText());
+            }
 
         }
         else if (option == ImportOrderOption.ABOVE) {
@@ -440,13 +448,14 @@ public class ImportOrderCheck
         final int groupIdx = getGroupNumber(name);
         final int line = ident.getLineNo();
 
-        if (isInSameGroup(groupIdx, isStatic)) {
-            doVisitTokenInSameGroup(isStatic, previous, name, line);
-        }
-        else if (groupIdx > lastGroup) {
-            if (!beforeFirstImport && separated && line - lastImportLine < 2) {
+        if (groupIdx > lastGroup) {
+            if (!beforeFirstImport && separated && line - lastImportLine < 2
+                && !isInSameGroup(groupIdx, isStatic)) {
                 log(line, MSG_SEPARATION, name);
             }
+        }
+        else if (isInSameGroup(groupIdx, isStatic)) {
+            doVisitTokenInSameGroup(isStatic, previous, name, line);
         }
         else {
             log(line, MSG_ORDERING, name);
