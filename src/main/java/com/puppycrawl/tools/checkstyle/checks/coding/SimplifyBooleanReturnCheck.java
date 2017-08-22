@@ -108,12 +108,12 @@ public class SimplifyBooleanReturnCheck
      * @return if ast is a return statement with a boolean literal.
      */
     private static boolean canReturnOnlyBooleanLiteral(AST ast) {
-        if (isBooleanLiteralReturnStatement(ast)) {
-            return true;
+        boolean result = true;
+        if (!isBooleanLiteralReturnStatement(ast)) {
+            final AST firstStatement = ast.getFirstChild();
+            result = isBooleanLiteralReturnStatement(firstStatement);
         }
-
-        final AST firstStatement = ast.getFirstChild();
-        return isBooleanLiteralReturnStatement(firstStatement);
+        return result;
     }
 
     /**

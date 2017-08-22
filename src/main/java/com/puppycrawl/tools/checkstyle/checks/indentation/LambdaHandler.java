@@ -45,6 +45,10 @@ public class LambdaHandler extends AbstractExpressionHandler {
         return getIndent();
     }
 
+    /**
+     * {@inheritDoc}.
+     * @noinspection MethodWithMultipleReturnPoints
+     */
     @Override
     protected IndentLevel getIndentImpl() {
         if (getParent() instanceof MethodCallHandler) {

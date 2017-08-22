@@ -78,14 +78,18 @@ public class SlistHandler extends BlockParentHandler {
         //  ... the case SLIST is followed by a user-created SLIST and
         //  preceded by a switch
 
+        final IndentLevel result;
         // if our parent is a block handler we want to be transparent
         if (getParent() instanceof BlockParentHandler
                 && !(getParent() instanceof SlistHandler)
             || child instanceof SlistHandler
                 && getParent() instanceof CaseHandler) {
-            return getParent().getSuggestedChildIndent(child);
+            result = getParent().getSuggestedChildIndent(child);
         }
-        return super.getSuggestedChildIndent(child);
+        else {
+            result = super.getSuggestedChildIndent(child);
+        }
+        return result;
     }
 
     @Override

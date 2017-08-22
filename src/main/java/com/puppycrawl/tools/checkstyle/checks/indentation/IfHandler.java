@@ -43,18 +43,26 @@ public class IfHandler extends BlockParentHandler {
 
     @Override
     public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
+        final IndentLevel result;
         if (child instanceof ElseHandler) {
-            return getIndent();
+            result = getIndent();
         }
-        return super.getSuggestedChildIndent(child);
+        else {
+            result = super.getSuggestedChildIndent(child);
+        }
+        return result;
     }
 
     @Override
     protected IndentLevel getIndentImpl() {
+        final IndentLevel result;
         if (isIfAfterElse()) {
-            return getParent().getIndent();
+            result = getParent().getIndent();
         }
-        return super.getIndentImpl();
+        else {
+            result = super.getIndentImpl();
+        }
+        return result;
     }
 
     /**

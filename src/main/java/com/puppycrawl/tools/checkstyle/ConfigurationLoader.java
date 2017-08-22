@@ -465,6 +465,7 @@ public final class ConfigurationLoader {
      * @throws CheckstyleException if the string contains an opening
      *                           {@code ${} without a closing
      *                           {@code }}
+     * @noinspection MethodWithMultipleReturnPoints
      */
     private static String replaceProperties(
             String value, PropertyResolver props, String defaultValue)

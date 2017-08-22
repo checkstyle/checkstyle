@@ -199,7 +199,12 @@
           <property name="classNameFormat" value=".*Exception$"/>
           <property name="ignoredClassNameFormat" value="UnsupportedOperationException"/>
         </module>
-        <module name="ReturnCountExtendedCheck" />
+        <module name="ReturnCountExtendedCheck">
+          <property name="maxReturnCount" value="1"/>
+          <property name="topLinesToIgnoreCount" value="5"/>
+          <property name="ignoreMethodLinesCount" value="0"/>
+          <property name="ignoreEmptyReturns" value="false"/>
+        </module>
         <module name="MoveVariableInsideIfCheck" />
     </module>
 </module>
