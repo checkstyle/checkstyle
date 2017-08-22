@@ -46,7 +46,6 @@ public class RegexpSinglelineCheck extends AbstractFileSetCheck {
 
     @Override
     public void beginProcessing(String charset) {
-        super.beginProcessing(charset);
         final DetectorOptions options = DetectorOptions.newBuilder()
             .reporter(this)
             .compileFlags(0)
