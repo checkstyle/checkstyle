@@ -1485,7 +1485,6 @@ isolated classes and we cannot put them to separate package as it will affect us
     <inspection_tool class="MultipleMethodDesignatorsInspection" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="MultipleRepositoryUrls" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="MultipleReturnPointsPerMethod" enabled="true" level="ERROR" enabled_by_default="true">
-        <option name="ignoreGuardClauses" value="true" />
         <option name="ignoreEqualsMethod" value="true" />
         <option name="m_limit" value="1" />
     </inspection_tool>
