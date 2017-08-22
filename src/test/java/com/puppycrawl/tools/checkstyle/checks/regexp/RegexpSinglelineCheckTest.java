@@ -22,14 +22,21 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector.MSG_REGEXP_EXCEEDED;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector.MSG_REGEXP_MINIMUM;
 
+import java.io.File;
+import java.nio.charset.StandardCharsets;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.TestLoggingReporter;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
+    private static final String[] EMPTY = {};
     private DefaultConfiguration checkConfig;
 
     @Before
@@ -110,5 +117,37 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
         };
 
         verify(checkConfig, getPath("InputRegexpSinglelineSemantic.java"), expected);
+    }
+
+    @Test
+    public void testMaximum() throws Exception {
+        final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("maximum", "1");
+        verify(checkConfig, getPath("InputRegexpSinglelineSemantic.java"), EMPTY);
+    }
+
+    /**
+     * Done as a UT cause new instance of Detector is created each time 'verify' executed.
+     * @throws Exception some Exception
+     */
+    @Test
+    public void testStateIsBeingReset() throws Exception {
+        final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
+        final TestLoggingReporter reporter = new TestLoggingReporter();
+        final DetectorOptions detectorOptions = DetectorOptions.newBuilder()
+                .reporter(reporter)
+                .format(illegal)
+                .maximum(1)
+                .build();
+
+        final SinglelineDetector detector =
+                new SinglelineDetector(detectorOptions);
+        final File file = new File(getPath("InputRegexpSinglelineSemantic.java"));
+
+        detector.processLines(new FileText(file, StandardCharsets.UTF_8.name()));
+        detector.processLines(new FileText(file, StandardCharsets.UTF_8.name()));
+        Assert.assertEquals("Logged unexpected amount of issues",
+                0, reporter.getLogCount());
     }
 }

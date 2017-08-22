@@ -28,6 +28,7 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -35,6 +36,8 @@ import org.junit.rules.TemporaryFolder;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.TestLoggingReporter;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
@@ -123,6 +126,47 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
             "first line \r\n second line \n\r third line".getBytes(StandardCharsets.UTF_8));
 
         verify(checkConfig, file.getPath(), expected);
+    }
+
+    @Test
+    public void testMaximum() throws Exception {
+        final String illegal = "\\r";
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("maximum", "1");
+        final String[] expected = {
+            "3: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
+        };
+
+        final File file = temporaryFolder.newFile();
+        Files.write(file.toPath(),
+                "first line \r\n second line \n\r third line".getBytes(StandardCharsets.UTF_8));
+
+        verify(checkConfig, file.getPath(), expected);
+    }
+
+    /**
+     * Done as a UT cause new instance of Detector is created each time 'verify' executed.
+     * @throws Exception some Exception
+     */
+    @Test
+    public void testStateIsBeingReset() throws Exception {
+        final TestLoggingReporter reporter = new TestLoggingReporter();
+        final DetectorOptions detectorOptions = DetectorOptions.newBuilder()
+                .reporter(reporter)
+                .format("\\r")
+                .maximum(1)
+                .build();
+
+        final MultilineDetector detector =
+                new MultilineDetector(detectorOptions);
+        final File file = temporaryFolder.newFile();
+        Files.write(file.toPath(),
+                "first line \r\n second line \n\r third line".getBytes(StandardCharsets.UTF_8));
+
+        detector.processLines(new FileText(file, StandardCharsets.UTF_8.name()));
+        detector.processLines(new FileText(file, StandardCharsets.UTF_8.name()));
+        Assert.assertEquals("Logged unexpected amount of issues",
+                2, reporter.getLogCount());
     }
 
     @Test
