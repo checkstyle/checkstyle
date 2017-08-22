@@ -164,7 +164,7 @@ public final class JavadocTokenTypes {
     public static final int RETURN_LITERAL = JavadocParser.RETURN_LITERAL;
 
     /**
-     * '@deprecated' literal in @deprecated Javadoc tag.
+     * '{@literal @}deprecated' literal in {@literal @}deprecated Javadoc tag.
      *
      * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}
      *
@@ -1453,7 +1453,8 @@ public final class JavadocTokenTypes {
     /** Option html tag. */
     public static final int OPTION = JavadocParser.RULE_option + RULE_TYPES_OFFSET;
     /** Start option tag. */
-    public static final int OPTION_TAG_START = JavadocParser.RULE_optionTagStart + RULE_TYPES_OFFSET;
+    public static final int OPTION_TAG_START =
+            JavadocParser.RULE_optionTagStart + RULE_TYPES_OFFSET;
     /** End option tag. */
     public static final int OPTION_TAG_END = JavadocParser.RULE_optionTagEnd
             + RULE_TYPES_OFFSET;

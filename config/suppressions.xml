@@ -51,8 +51,12 @@
     <suppress checks="ExecutableStatementCount" files=".*IllegalInstantiationCheckTest\.java"/>
     <suppress checks="ExecutableStatementCount" files=".*Main\.java"/>
 
-    <suppress checks="." files=".*JavadocTokenTypes\.java"/>
-    <suppress checks="." files=".*ParseTreeBuilder\.java"/>
+    <!-- till https://github.com/checkstyle/checkstyle/issues/4983 -->
+    <suppress checks="MissingDeprecated" files=".*JavadocTokenTypes\.java"/>
+    <!-- till https://github.com/checkstyle/checkstyle/issues/4384 -->
+    <suppress checks="JavadocParagraph" files=".*JavadocTokenTypes\.java"/>
+    <!-- till https://github.com/checkstyle/checkstyle/issues/4984 -->
+    <suppress checks="DeclarationOrder" files=".*JavadocTokenTypes\.java"/>
 
     <!-- Till https://github.com/checkstyle/checkstyle/issues/1854 -->
     <suppress checks="TrailingComment" files="(InnerAssignmentCheck\.java|OperatorWrapCheck\.java|XMLLoggerTest\.java|AbbreviationAsWordInNameCheckTest\.java)"/>
