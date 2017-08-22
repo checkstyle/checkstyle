@@ -192,7 +192,6 @@ public class InnerAssignmentCheck
      *
      * @param ast assignment AST
      * @return whether the context of the assignment AST indicates the idiom
-     * @noinspection SimplifiableIfStatement
      */
     private static boolean isInWhileIdiom(DetailAST ast) {
         boolean result = false;
