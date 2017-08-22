@@ -108,10 +108,7 @@ class SinglelineDetector {
             // So we need to use (endCol - 1) here.
             if (options.getSuppressor()
                     .shouldSuppress(lineNo, startCol, lineNo, endCol - 1)) {
-                if (endCol < line.length()) {
-                    // check if the expression is on the rest of the line
-                    checkLine(lineNo, line, matcher, endCol);
-                }
+                checkLine(lineNo, line, matcher, endCol);
             }
             else {
                 currentMatches++;

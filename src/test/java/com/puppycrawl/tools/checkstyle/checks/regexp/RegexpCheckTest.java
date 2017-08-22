@@ -134,13 +134,12 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(RegexpCheck.class);
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("illegalPattern", "true");
-        checkConfig.addAttribute("errorLimit", "3");
+        checkConfig.addAttribute("errorLimit", "2");
         final String error = "The error limit has been exceeded, "
                 + "the check is aborting, there may be more unreported errors.";
         final String[] expected = {
             "7: " + getCheckMessage(MSG_ILLEGAL_REGEXP, illegal),
-            "8: " + getCheckMessage(MSG_ILLEGAL_REGEXP, illegal),
-            "9: " + getCheckMessage(MSG_ILLEGAL_REGEXP, error + illegal),
+            "8: " + getCheckMessage(MSG_ILLEGAL_REGEXP, error + illegal),
         };
         verify(checkConfig, getPath("InputRegexpSemantic.java"), expected);
     }
@@ -348,5 +347,20 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpStartingWithEmptyLine.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreCommentsCppStyleWithIllegalPatternFalse() throws Exception {
+        // See if the comment is removed properly
+        final String illegal = "don't use trailing comments";
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(RegexpCheck.class);
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("illegalPattern", "false");
+        checkConfig.addAttribute("ignoreComments", "true");
+        final String[] expected = {
+            "0: " + getCheckMessage(MSG_REQUIRED_REGEXP, illegal),
+        };
+        verify(checkConfig, getPath("InputRegexpTrailingComment.java"), expected);
     }
 }
