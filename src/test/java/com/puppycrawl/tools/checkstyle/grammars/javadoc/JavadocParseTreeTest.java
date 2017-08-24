@@ -281,4 +281,10 @@ public class JavadocParseTreeTest extends AbstractTreeTestSupport {
         verifyJavadocTree(getHtmlPath("expectedHtmlVoidElementKeygenAst.txt"),
                 getHtmlPath("InputHtmlVoidElementKeygen.javadoc"));
     }
+
+    @Test
+    public void testHtmlVoidElementSource() throws Exception {
+        verifyJavadocTree(getHtmlPath("expectedHtmlVoidElementSourceAst.txt"),
+                getHtmlPath("InputHtmlVoidElementSource.javadoc"));
+    }
 }
