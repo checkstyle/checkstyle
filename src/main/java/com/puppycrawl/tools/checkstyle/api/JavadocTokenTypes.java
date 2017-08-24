@@ -1575,6 +1575,15 @@ public final class JavadocTokenTypes {
     public static final int EMBED_TAG = JavadocParser.RULE_embedTag + RULE_TYPES_OFFSET;
     /** "embed" tag name. */
     public static final int EMBED_HTML_TAG_NAME = JavadocParser.EMBED_HTML_TAG_NAME;
+    /**
+     * HTML void element {@code <keygen>}.
+     * @see #SINGLETON_ELEMENT
+     * @see <a href="https://www.w3.org/TR/html51/sec-forms.html#elementdef-keygen">
+     *     W3 docs</a>
+     */
+    public static final int KEYGEN_TAG = JavadocParser.RULE_keygenTag + RULE_TYPES_OFFSET;
+    /** "keygen" tag name. */
+    public static final int KEYGEN_HTML_TAG_NAME = JavadocParser.KEYGEN_HTML_TAG_NAME;
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     /** Html comment: {@code <!-- -->}. */

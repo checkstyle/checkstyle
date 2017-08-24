@@ -1,0 +1,42 @@
+* <p> <keygen> </p>
+* <li> <keygen> </li>
+* <tr> <keygen> </tr>
+* <td> <keygen> </td>
+* <th> <keygen> </th>
+* <body> <keygen> </body>
+* <colgroup> <keygen> </colgroup>
+* <dd> <keygen> </dd>
+* <dt> <keygen> </dt>
+* <head> <keygen> </head>
+* <html> <keygen> </html>
+* <option> <keygen> </option>
+* <tbody> <keygen> </tbody>
+* <thead> <keygen> </thead>
+* <tfoot> <keygen> </tfoot>
+
+* <p> <keygen/> </p>
+* <li> <keygen/> </li>
+* <tr> <keygen/> </tr>
+* <td> <keygen/> </td>
+* <th> <keygen/> </th>
+* <body> <keygen/> </body>
+* <colgroup> <keygen/> </colgroup>
+* <dd> <keygen/> </dd>
+* <dt> <keygen/> </dt>
+* <head> <keygen/> </head>
+* <html> <keygen/> </html>
+* <option> <keygen/> </option>
+* <tbody> <keygen/> </tbody>
+* <thead> <keygen/> </thead>
+* <tfoot> <keygen/> </tfoot>
+
+* <keygen>
+* <keygen/>
+* <keygen attr="something">
+* <keygen attr="something"/>
+* <keygen attr="something" attr2="someotherthing">
+* <keygen attr="something" attr2="someotherthing"/>
+* <keygen attr="something" 
+* attr2="someotherting">
+* <keygen attr="something" 
+* attr2="someotherting"/>

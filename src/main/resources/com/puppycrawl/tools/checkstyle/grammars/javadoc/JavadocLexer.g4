@@ -309,6 +309,7 @@ LINK_HTML_TAG_NAME: L I N K {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
 META_HTML_TAG_NAME: M E T A {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
 PARAM_HTML_TAG_NAME: P A R A M {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
 EMBED_HTML_TAG_NAME: E M B E D {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
+KEYGEN_HTML_TAG_NAME: K E Y G E N {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
 
 // other tag names and attribute names
 HTML_TAG_NAME: NAME_START_CHAR NAME_CHAR* {htmlTagNameCatched=true;};

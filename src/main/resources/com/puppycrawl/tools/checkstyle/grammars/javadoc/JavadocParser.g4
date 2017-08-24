@@ -768,6 +768,7 @@ singletonElement: emptyTag
             | metaTag
             | paramTag
             | embedTag
+            | keygenTag
             | wrongSinletonTag
             ;
 
@@ -816,6 +817,8 @@ paramTag: START PARAM_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS
          (SLASH_END | END);
 embedTag: START EMBED_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
          (SLASH_END | END);
+keygenTag: START KEYGEN_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
+         (SLASH_END | END);
 
 wrongSinletonTag: START SLASH singletonTagName
                   END {notifyErrorListeners($singletonTagName.start,
@@ -835,6 +838,7 @@ singletonTagName: (AREA_HTML_TAG_NAME
                   | META_HTML_TAG_NAME
                   | PARAM_HTML_TAG_NAME
                   | EMBED_HTML_TAG_NAME
+                  | KEYGEN_HTML_TAG_NAME
                   )
                   ;
 
