@@ -1,0 +1,13 @@
+package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
+
+public class InputAbstractJavadocWrongSingletonTagInJavadoc {
+    /**
+     * </embed>
+     */
+    private int field1;
+
+    /**
+     * </keygen>
+     */
+    private int field2;
+}

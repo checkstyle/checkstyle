@@ -275,4 +275,10 @@ public class JavadocParseTreeTest extends AbstractTreeTestSupport {
         verifyJavadocTree(getDocPath("expectedSpaceBeforeDescriptionInBlockJavadocTagsAst.txt"),
                 getDocPath("InputSpaceBeforeDescriptionInBlockJavadocTags.javadoc"));
     }
+
+    @Test
+    public void testHtmlVoidElementKeygen() throws Exception {
+        verifyJavadocTree(getHtmlPath("expectedHtmlVoidElementKeygenAst.txt"),
+                getHtmlPath("InputHtmlVoidElementKeygen.javadoc"));
+    }
 }
