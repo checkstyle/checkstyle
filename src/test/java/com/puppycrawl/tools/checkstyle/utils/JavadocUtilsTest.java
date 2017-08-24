@@ -346,6 +346,6 @@ public class JavadocUtilsTest {
     @Test
     public void testGetTokenNames() {
         assertEquals("Unexpected token name",
-            "HTML_COMMENT", JavadocUtils.getTokenName(20077));
+            "HTML_COMMENT", JavadocUtils.getTokenName(20078));
     }
 }
