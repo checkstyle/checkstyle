@@ -10,4 +10,9 @@ public class InputAbstractJavadocWrongSingletonTagInJavadoc {
      * </keygen>
      */
     private int field2;
+
+    /**
+     * </SOURCE>
+     */
+    private int field3;
 }

@@ -1584,6 +1584,14 @@ public final class JavadocTokenTypes {
     public static final int KEYGEN_TAG = JavadocParser.RULE_keygenTag + RULE_TYPES_OFFSET;
     /** "keygen" tag name. */
     public static final int KEYGEN_HTML_TAG_NAME = JavadocParser.KEYGEN_HTML_TAG_NAME;
+    /**
+     * HTML void element {@code <source>}.
+     * @see #SINGLETON_ELEMENT
+     * @see "https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-media-source"
+     */
+    public static final int SOURCE_TAG = JavadocParser.RULE_sourceTag + RULE_TYPES_OFFSET;
+    /** "source" tag name. */
+    public static final int SOURCE_HTML_TAG_NAME = JavadocParser.SOURCE_HTML_TAG_NAME;
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     /** Html comment: {@code <!-- -->}. */
