@@ -287,4 +287,10 @@ public class JavadocParseTreeTest extends AbstractTreeTestSupport {
         verifyJavadocTree(getHtmlPath("expectedHtmlVoidElementSourceAst.txt"),
                 getHtmlPath("InputHtmlVoidElementSource.javadoc"));
     }
+
+    @Test
+    public void testHtmlVoidElementTrack() throws Exception {
+        verifyJavadocTree(getHtmlPath("expectedHtmlVoidElementTrackAst.txt"),
+                getHtmlPath("InputHtmlVoidElementTrack.javadoc"));
+    }
 }

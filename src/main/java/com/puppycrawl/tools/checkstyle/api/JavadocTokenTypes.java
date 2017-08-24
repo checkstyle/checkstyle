@@ -1592,6 +1592,16 @@ public final class JavadocTokenTypes {
     public static final int SOURCE_TAG = JavadocParser.RULE_sourceTag + RULE_TYPES_OFFSET;
     /** "source" tag name. */
     public static final int SOURCE_HTML_TAG_NAME = JavadocParser.SOURCE_HTML_TAG_NAME;
+    /**
+     * HTML void element {@code <track>}.
+     * @see #SINGLETON_ELEMENT
+     * @see <a
+     *     href="https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-track">
+     *     W3 docs</a>
+     */
+    public static final int TRACK_TAG = JavadocParser.RULE_trackTag + RULE_TYPES_OFFSET;
+    /** "track" tag name. */
+    public static final int TRACK_HTML_TAG_NAME = JavadocParser.TRACK_HTML_TAG_NAME;
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     /** Html comment: {@code <!-- -->}. */

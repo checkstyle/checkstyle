@@ -15,4 +15,9 @@ public class InputAbstractJavadocWrongSingletonTagInJavadoc {
      * </SOURCE>
      */
     private int field3;
+
+    /**
+     * </TRACK>
+     */
+    private int field4;
 }

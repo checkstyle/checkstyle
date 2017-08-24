@@ -304,6 +304,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             "5: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "embed"),
             "10: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "keygen"),
             "15: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "SOURCE"),
+            "20: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "TRACK"),
         };
         verify(checkConfig, getPath("InputAbstractJavadocWrongSingletonTagInJavadoc.java"),
                 expected);
