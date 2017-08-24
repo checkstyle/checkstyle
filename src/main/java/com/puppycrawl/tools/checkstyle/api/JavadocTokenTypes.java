@@ -1602,6 +1602,15 @@ public final class JavadocTokenTypes {
     public static final int TRACK_TAG = JavadocParser.RULE_trackTag + RULE_TYPES_OFFSET;
     /** "track" tag name. */
     public static final int TRACK_HTML_TAG_NAME = JavadocParser.TRACK_HTML_TAG_NAME;
+    /**
+     * HTML void element {@code <wbr>}.
+     * @see #SINGLETON_ELEMENT
+     * @see <a href="https://www.w3.org/TR/html51/textlevel-semantics.html#elementdef-wbr">
+     *     W3 docs</a>
+     */
+    public static final int WBR_TAG = JavadocParser.RULE_wbrTag + RULE_TYPES_OFFSET;
+    /** "wbr" tag name. */
+    public static final int WBR_HTML_TAG_NAME = JavadocParser.WBR_HTML_TAG_NAME;
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     /** Html comment: {@code <!-- -->}. */

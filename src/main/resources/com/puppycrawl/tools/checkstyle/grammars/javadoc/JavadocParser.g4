@@ -771,6 +771,7 @@ singletonElement: emptyTag
             | keygenTag
             | sourceTag
             | trackTag
+            | wbrTag
             | wrongSinletonTag
             ;
 
@@ -825,6 +826,8 @@ sourceTag: START SOURCE_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | 
          (SLASH_END | END);
 trackTag: START TRACK_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
          (SLASH_END | END);
+wbrTag: START WBR_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
+         (SLASH_END | END);
 
 wrongSinletonTag: START SLASH singletonTagName
                   END {notifyErrorListeners($singletonTagName.start,
@@ -847,6 +850,7 @@ singletonTagName: (AREA_HTML_TAG_NAME
                   | KEYGEN_HTML_TAG_NAME
                   | SOURCE_HTML_TAG_NAME
                   | TRACK_HTML_TAG_NAME
+                  | WBR_HTML_TAG_NAME
                   )
                   ;
 

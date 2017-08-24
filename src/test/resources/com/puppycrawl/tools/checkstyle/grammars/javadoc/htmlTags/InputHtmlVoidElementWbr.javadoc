@@ -1,0 +1,42 @@
+* <p> <wbr> </p>
+* <li> <wbr> </li>
+* <tr> <wbr> </tr>
+* <td> <wbr> </td>
+* <th> <wbr> </th>
+* <body> <wbr> </body>
+* <colgroup> <wbr> </colgroup>
+* <dd> <wbr> </dd>
+* <dt> <wbr> </dt>
+* <head> <wbr> </head>
+* <html> <wbr> </html>
+* <option> <wbr> </option>
+* <tbody> <wbr> </tbody>
+* <thead> <wbr> </thead>
+* <tfoot> <wbr> </tfoot>
+
+* <p> <wbr/> </p>
+* <li> <wbr/> </li>
+* <tr> <wbr/> </tr>
+* <td> <wbr/> </td>
+* <th> <wbr/> </th>
+* <body> <wbr/> </body>
+* <colgroup> <wbr/> </colgroup>
+* <dd> <wbr/> </dd>
+* <dt> <wbr/> </dt>
+* <head> <wbr/> </head>
+* <html> <wbr/> </html>
+* <option> <wbr/> </option>
+* <tbody> <wbr/> </tbody>
+* <thead> <wbr/> </thead>
+* <tfoot> <wbr/> </tfoot>
+
+* <wbr>
+* <wbr/>
+* <wbr attr="something">
+* <wbr attr="something"/>
+* <wbr attr="something" attr2="someotherthing">
+* <wbr attr="something" attr2="someotherthing"/>
+* <wbr attr="something" 
+* attr2="someotherting">
+* <wbr attr="something" 
+* attr2="someotherting"/>
