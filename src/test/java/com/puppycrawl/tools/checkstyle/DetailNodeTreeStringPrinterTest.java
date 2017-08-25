@@ -182,7 +182,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
         catch (IllegalArgumentException ex) {
             final String expected = (String) GET_PARSE_ERROR_MESSAGE.invoke(null,
                     new ParseErrorMessage(0, MSG_JAVADOC_PARSE_RULE_ERROR,
-                            9, "no viable alternative at input ' <<'", "JAVADOC_TAG"));
+                            9, "no viable alternative at input '<<'", "HTML_ELEMENT"));
             assertEquals("Generated and expected parse error messages don't match",
                     expected, ex.getMessage());
         }

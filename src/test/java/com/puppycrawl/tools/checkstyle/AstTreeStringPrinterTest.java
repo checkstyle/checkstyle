@@ -136,11 +136,4 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
                 AstTreeStringPrinter.PrintOptions.WITH_COMMENTS);
     }
 
-    @Test
-    public void testJavadocTagsWithoutArgs() throws Exception {
-        verifyJavaAndJavadocAst(
-                getPath("expectedAstTreeStringPrinterJavadocTagsWithoutArgsAst.txt"),
-                getPath("InputAstTreeStringPrinterJavadocTagsWithoutArgs.java")
-        );
-    }
 }

@@ -40,17 +40,5 @@ include
      
      DESCRIPTION
 
-* @exception
-      Exception     Exception-description
-      spanning multiple lines
-
-* @param
-      ParamName
-      Param-description
-
-* @throws
-     Exception     Exception-description
-         spanning multiple lines
-
 * @see package.Class#member(Object, Object)             
 *         Description
