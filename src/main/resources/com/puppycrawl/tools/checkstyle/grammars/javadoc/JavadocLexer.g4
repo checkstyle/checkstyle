@@ -250,6 +250,7 @@ Char8: .
 
 //////////////////////////////////////////////////////////////////////////////////////
 mode value;
+Leading_asterisk2: LEADING_ASTERISK -> type(LEADING_ASTERISK);
 Space6: WS -> type(WS);
 Newline4: NEWLINE -> type(NEWLINE);
 Package2: PACKAGE -> type(PACKAGE);
