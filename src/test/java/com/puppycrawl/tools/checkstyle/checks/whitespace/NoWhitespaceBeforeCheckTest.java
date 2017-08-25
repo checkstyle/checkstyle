@@ -95,4 +95,23 @@ public class NoWhitespaceBeforeCheckTest
         };
         verify(checkConfig, getPath("InputNoWhitespaceBeforeMethodRef.java"), expected);
     }
+
+    @Test
+    public void testDotAtTheStartOfTheLine() throws Exception {
+        checkConfig.addAttribute("tokens", "DOT");
+        final String[] expected = {
+            "2:1: " + getCheckMessage(MSG_KEY, "."),
+        };
+        verify(checkConfig, getPath("InputNoWhitespaceBeforeAtStartOfTheLine.java"), expected);
+    }
+
+    @Test
+    public void testMethodRefAtTheStartOfTheLine() throws Exception {
+        checkConfig.addAttribute("tokens", "METHOD_REF");
+        checkConfig.addAttribute("allowLineBreaks", "yes");
+        final String[] expected = {
+            "14:2: " + getCheckMessage(MSG_KEY, "::"),
+        };
+        verify(checkConfig, getPath("InputNoWhitespaceBeforeAtStartOfTheLine.java"), expected);
+    }
 }

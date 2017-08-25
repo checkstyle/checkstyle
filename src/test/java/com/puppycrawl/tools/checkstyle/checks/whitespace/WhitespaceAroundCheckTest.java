@@ -112,6 +112,15 @@ public class WhitespaceAroundCheckTest
     }
 
     @Test
+    public void testStartOfTheLine()
+            throws Exception {
+        final String[] expected = {
+            "5:2: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+        };
+        verify(checkConfig, getPath("InputWhitespaceAroundStartOfTheLine.java"), expected);
+    }
+
+    @Test
     public void testBraces()
             throws Exception {
         final String[] expected = {

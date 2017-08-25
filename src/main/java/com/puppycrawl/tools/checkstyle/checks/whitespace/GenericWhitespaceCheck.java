@@ -150,7 +150,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
         final int after = ast.getColumnNo() + 1;
 
         if (before >= 0 && Character.isWhitespace(line.charAt(before))
-                && !CommonUtils.hasWhitespaceBefore(before, line)) {
+                && !containsWhitespaceBefore(before, line)) {
             log(ast.getLineNo(), before, MSG_WS_PRECEDED, CLOSE_ANGLE_BRACKET);
         }
 
@@ -183,7 +183,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
         //   should be whitespace if followed by & -+
         //
         final int indexOfAmp = line.indexOf('&', after);
-        if (indexOfAmp >= 0
+        if (indexOfAmp >= 1
             && containsWhitespaceBetween(after, indexOfAmp, line)) {
             if (indexOfAmp - after == 0) {
                 log(ast.getLineNo(), after, MSG_WS_NOT_PRECEDED, "&");
@@ -271,7 +271,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
             }
             // Whitespace not required
             else if (Character.isWhitespace(line.charAt(before))
-                && !CommonUtils.hasWhitespaceBefore(before, line)) {
+                && !containsWhitespaceBefore(before, line)) {
                 log(ast.getLineNo(), before, MSG_WS_PRECEDED, OPEN_ANGLE_BRACKET);
             }
         }
@@ -300,6 +300,18 @@ public class GenericWhitespaceCheck extends AbstractCheck {
             }
         }
         return result;
+    }
+
+    /**
+     * Returns whether the specified string contains only whitespace up to specified index.
+     *
+     * @param before the index to start the search from. Inclusive
+     * @param line   the index to finish the search. Exclusive
+     * @return {@code true} if there are only whitespaces,
+     *     false if there is nothing before or some other characters
+     */
+    private static boolean containsWhitespaceBefore(int before, String line) {
+        return before != 0 && CommonUtils.hasWhitespaceBefore(before, line);
     }
 
     /**
