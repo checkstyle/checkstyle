@@ -435,4 +435,14 @@ public class ParenPadCheckTest
         };
         verify(checkConfig, getPath("InputParenPadLambdaOnlyWithSpace.java"), expected);
     }
+
+    @Test
+    public void testLambdaCheckOnlyWithSpace1() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(ParenPadCheck.class);
+        checkConfig.addAttribute("option", PadOption.SPACE.toString());
+        final String[] expected = {
+            "5:2: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+        };
+        verify(checkConfig, getPath("InputParenPadStartOfTheLine.java"), expected);
+    }
 }

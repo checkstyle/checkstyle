@@ -108,12 +108,12 @@ public class NoWhitespaceBeforeCheck
         final String line = getLine(ast.getLineNo() - 1);
         final int before = ast.getColumnNo() - 1;
 
-        if ((before < 0 || Character.isWhitespace(line.charAt(before)))
+        if ((before == -1 || Character.isWhitespace(line.charAt(before)))
                 && !isInEmptyForInitializer(ast)) {
 
             boolean flag = !allowLineBreaks;
             // verify all characters before '.' are whitespace
-            for (int i = 0; !flag && i < before; i++) {
+            for (int i = 0; !flag && i <= before - 1; i++) {
                 if (!Character.isWhitespace(line.charAt(i))) {
                     flag = true;
                     break;

@@ -166,6 +166,31 @@ public class EmptyLineSeparatorCheckTest
     }
 
     @Test
+    public void testPrePreviousLineIsEmpty() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addAttribute("allowMultipleEmptyLines", "false");
+        final String[] expected = {
+            "3: " + getCheckMessage(MSG_MULTIPLE_LINES, "package"),
+        };
+        verify(checkConfig,
+                getPath("InputEmptyLineSeparatorPrePreviousLineIsEmpty.java"), expected);
+    }
+
+    @Test
+    public void testPreviousLineEmptiness() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addAttribute("allowMultipleEmptyLinesInsideClassMembers", "false");
+        final String[] expected = {
+            "11: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+            "16: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+            "22: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+            "31: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+        };
+        verify(checkConfig,
+                getPath("InputEmptyLineSeparatorPreviousLineEmptiness.java"), expected);
+    }
+
+    @Test
     public void testDisAllowMultipleEmptyLinesInsideClassMembers() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
         checkConfig.addAttribute("allowMultipleEmptyLinesInsideClassMembers", "false");

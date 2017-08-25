@@ -96,6 +96,23 @@ public class GenericWhitespaceCheckTest
     }
 
     @Test
+    public void testAtTheStartOfTheLine() throws Exception {
+        final String[] expected = {
+            "10:1: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
+            "12:1: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
+        };
+        verify(checkConfig, getPath("InputGenericWhitespaceAtStartOfTheLine.java"), expected);
+    }
+
+    @Test
+    public void testNestedGeneric() throws Exception {
+        final String[] expected = {
+            "11:2: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "&"),
+        };
+        verify(checkConfig, getPath("InputGenericWhitespaceNested.java"), expected);
+    }
+
+    @Test
     public void testList() throws Exception {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputGenericWhitespaceList.java"), expected);

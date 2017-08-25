@@ -328,7 +328,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private void processMultipleLinesInside(DetailAST ast) {
         final int astType = ast.getType();
-        if (isClassMemberBlock(astType)) {
+        if (astType != TokenTypes.CLASS_DEF && isClassMemberBlock(astType)) {
             final List<Integer> emptyLines = getEmptyLines(ast);
             final List<Integer> emptyLinesToLog = getEmptyLinesToLog(emptyLines);
 
@@ -360,12 +360,14 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         final DetailAST lastToken = ast.getLastChild().getLastChild();
         int lastTokenLineNo = 0;
         if (lastToken != null) {
-            lastTokenLineNo = lastToken.getLineNo();
+            // -1 as count starts from 0
+            // -2 as last token line cannot be empty, because it is a RCURLY
+            lastTokenLineNo = lastToken.getLineNo() - 2;
         }
         final List<Integer> emptyLines = new ArrayList<>();
         final FileContents fileContents = getFileContents();
 
-        for (int lineNo = ast.getLineNo(); lineNo < lastTokenLineNo; lineNo++) {
+        for (int lineNo = ast.getLineNo(); lineNo <= lastTokenLineNo; lineNo++) {
             if (fileContents.lineIsBlank(lineNo)) {
                 emptyLines.add(lineNo);
             }
@@ -380,7 +382,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private static List<Integer> getEmptyLinesToLog(List<Integer> emptyLines) {
         final List<Integer> emptyLinesToLog = new ArrayList<>();
-        if (emptyLines.size() > 1) {
+        if (emptyLines.size() >= 2) {
             int previousEmptyLineNo = emptyLines.get(0);
             for (int emptyLineNo : emptyLines) {
                 if (previousEmptyLineNo + 1 == emptyLineNo) {
