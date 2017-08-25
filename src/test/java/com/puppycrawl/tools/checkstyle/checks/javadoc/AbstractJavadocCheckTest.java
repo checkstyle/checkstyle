@@ -292,6 +292,16 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
                     31, "mismatched input '-' expecting <EOF>", "JAVADOC"),
             "57: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     15, "mismatched input '-' expecting <EOF>", "JAVADOC"),
+            "64: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+                    32, "mismatched input '-' expecting <EOF>", "JAVADOC"),
+            "71: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+                    17, "mismatched input '<' expecting <EOF>", "JAVADOC"),
+            "78: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+                    34, "no viable alternative at input '-'", "JAVADOC_INLINE_TAG"),
+            "85: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+                    39, "no viable alternative at input '-'", "JAVADOC_INLINE_TAG"),
+            "92: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+                    19, "no viable alternative at input '<'", "JAVADOC_INLINE_TAG"),
         };
         verify(checkConfig, getPath("InputAbstractJavadocNoWsBeforeDescriptionInJavadocTags.java"),
                 expected);

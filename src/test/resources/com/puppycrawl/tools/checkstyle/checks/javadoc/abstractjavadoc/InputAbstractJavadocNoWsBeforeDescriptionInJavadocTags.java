@@ -60,4 +60,38 @@ public class InputAbstractJavadocNoWsBeforeDescriptionInJavadocTags implements S
 
     }
 
+    /**
+     * @see #objectStreamField1-description
+     */
+    private static void method4() {
+
+    }
+
+    /**
+     * @customTag<description>
+     */
+    private static void method8() {
+
+    }
+
+    /**
+     * {@link #objectStreamField2-description}
+     */
+    private static void method5() {
+
+    }
+
+    /**
+     * {@linkplain #objectStreamField3-description}
+     */
+    private static void method6() {
+
+    }
+
+    /**
+     * {@customlink<description>}
+     */
+    private static void method7() {
+
+    }
 }

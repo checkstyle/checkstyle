@@ -51,3 +51,6 @@ include
 * @throws
      Exception     Exception-description
          spanning multiple lines
+
+* @see package.Class#member(Object, Object)             
+*         Description
