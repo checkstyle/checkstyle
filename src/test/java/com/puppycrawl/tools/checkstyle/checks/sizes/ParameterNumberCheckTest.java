@@ -82,6 +82,16 @@ public class ParameterNumberCheckTest
     }
 
     @Test
+    public void testMaxParam()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(ParameterNumberCheck.class);
+        checkConfig.addAttribute("max", "9");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputParameterNumberSimple.java"), expected);
+    }
+
+    @Test
     public void shouldLogActualParameterNumber()
             throws Exception {
         final DefaultConfiguration checkConfig =

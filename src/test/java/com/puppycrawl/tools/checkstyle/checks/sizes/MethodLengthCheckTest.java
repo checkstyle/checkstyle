@@ -78,6 +78,18 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testWithComments() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(MethodLengthCheck.class);
+        checkConfig.addAttribute("max", "7");
+        checkConfig.addAttribute("countEmpty", "false");
+        final String[] expected = {
+            "18:5: " + getCheckMessage(MSG_KEY, 8, 7),
+        };
+        verify(checkConfig, getPath("InputMethodLengthComments.java"), expected);
+    }
+
+    @Test
     public void testAbstract() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MethodLengthCheck.class);

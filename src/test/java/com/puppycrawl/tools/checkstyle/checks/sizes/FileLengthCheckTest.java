@@ -51,10 +51,21 @@ public class FileLengthCheckTest
     }
 
     @Test
+    public void testFileLengthEqualToMaxLength() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(FileLengthCheck.class);
+        checkConfig.addAttribute("max", "225");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(createChecker(checkConfig),
+                getPath("InputFileLength.java"),
+                getPath("InputFileLength.java"), expected);
+    }
+
+    @Test
     public void testOk() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(FileLengthCheck.class);
-        checkConfig.addAttribute("max", "2000");
+        checkConfig.addAttribute("max", "1000");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(createChecker(checkConfig),
                 getPath("InputFileLength.java"),

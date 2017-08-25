@@ -23,13 +23,18 @@ import static com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCo
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.util.Collection;
+
+import org.junit.Assert;
 import org.junit.Test;
 
 import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.TestUtils;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class ExecutableStatementCountCheckTest
@@ -37,6 +42,17 @@ public class ExecutableStatementCountCheckTest
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/executablestatementcount";
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    public void testStatefulFieldsClearedOnBeginTree() throws Exception {
+        final DetailAST ast = new DetailAST();
+        ast.setType(TokenTypes.STATIC_INIT);
+        final ExecutableStatementCountCheck check = new ExecutableStatementCountCheck();
+        Assert.assertTrue("Stateful field is not cleared after beginTree",
+                TestUtils.isStatefulFieldClearedDuringBeginTree(check, ast, "contextStack",
+                    contextStack -> ((Collection<Context>) contextStack).isEmpty()));
     }
 
     @Test
