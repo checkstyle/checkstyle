@@ -113,7 +113,10 @@ public class MethodLengthCheck extends AbstractCheck {
         if (!countEmpty) {
             final FileContents contents = getFileContents();
             final int lastLine = closingBrace.getLineNo();
-            for (int i = openingBrace.getLineNo() - 1; i < lastLine; i++) {
+            // lastLine - 1 is actual last line index. Last line is line with curly brace,
+            // which is always not empty. So, we make it lastLine - 2 to cover last line that
+            // actually may be empty.
+            for (int i = openingBrace.getLineNo() - 1; i <= lastLine - 2; i++) {
                 if (contents.lineIsBlank(i) || contents.lineIsComment(i)) {
                     length--;
                 }

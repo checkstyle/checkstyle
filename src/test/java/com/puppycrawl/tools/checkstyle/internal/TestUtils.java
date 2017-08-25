@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.TreeWalker.parseWithComments;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Optional;
 import java.util.Set;
@@ -34,6 +35,7 @@ import org.junit.Assert;
 import antlr.ANTLRException;
 import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
 import com.puppycrawl.tools.checkstyle.PackageObjectFactory;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -61,6 +63,31 @@ public final class TestUtils {
         }
         constructor.setAccessible(true);
         constructor.newInstance();
+    }
+
+    /**
+     * Checks if stateful field is cleared during {@link AbstractCheck#beginTree} in check.
+     *
+     * @param check      check object which field is to be verified
+     * @param astToVisit ast to pass into check methods
+     * @param fieldName  name of the field to be checked
+     * @param isClear    function for checking field state
+     * @return {@code true} if state of the field is cleared
+     * @throws NoSuchFieldException   if there is no field with the
+     *                                {@code fieldName} in the {@code check}
+     * @throws IllegalAccessException if the field is inaccessible
+     */
+    public static boolean isStatefulFieldClearedDuringBeginTree(AbstractCheck check,
+                                                                DetailAST astToVisit,
+                                                                String fieldName,
+                                                                Predicate<Object> isClear)
+            throws NoSuchFieldException, IllegalAccessException {
+        check.beginTree(null);
+        check.visitToken(astToVisit);
+        check.beginTree(null);
+        final Field field = check.getClass().getDeclaredField(fieldName);
+        field.setAccessible(true);
+        return isClear.test(field.get(check));
     }
 
     /**
