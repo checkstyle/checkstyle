@@ -877,20 +877,20 @@ reference:
       ;
 parameters: LEFT_BRACE (ARGUMENT | COMMA | WS | NEWLINE | LEADING_ASTERISK)* RIGHT_BRACE;
 
-javadocTag: AUTHOR_LITERAL (WS | NEWLINE)* ((WS | NEWLINE) description)?
+javadocTag: AUTHOR_LITERAL (WS | NEWLINE)+ description
 
     | DEPRECATED_LITERAL (WS | NEWLINE)* ((WS | NEWLINE) description)?
 
-      | EXCEPTION_LITERAL (WS | NEWLINE)* ((WS | NEWLINE) CLASS_NAME)? (WS | NEWLINE)*
-          ((WS | NEWLINE) description)?
+      | EXCEPTION_LITERAL (WS | NEWLINE | {!isNextJavadocTag()}? LEADING_ASTERISK)+ CLASS_NAME
+          (WS | NEWLINE)* ((WS | NEWLINE) description)?
 
-      | PARAM_LITERAL (WS | NEWLINE)* ((WS | NEWLINE) PARAMETER_NAME)? (WS | NEWLINE)*
-          ((WS | NEWLINE) description)?
+      | PARAM_LITERAL (WS | NEWLINE | {!isNextJavadocTag()}? LEADING_ASTERISK)+ PARAMETER_NAME
+          (WS | NEWLINE)* ((WS | NEWLINE) description)?
 
-      | RETURN_LITERAL (WS | NEWLINE)* ((WS | NEWLINE) description)?
+      | RETURN_LITERAL (WS | NEWLINE)+ description
 
-      | SEE_LITERAL (WS | NEWLINE | {!isNextJavadocTag()}? LEADING_ASTERISK)* reference?
-          (STRING | htmlElement)* (WS | NEWLINE)* ((WS | NEWLINE) description)?
+      | SEE_LITERAL (WS | NEWLINE | {!isNextJavadocTag()}? LEADING_ASTERISK)+
+          (reference | STRING | htmlElement) (WS | NEWLINE)* ((WS | NEWLINE) description)?
 
       | SERIAL_LITERAL (WS | NEWLINE)*
           ((WS | NEWLINE) description | LITERAL_INCLUDE | LITERAL_EXCLUDE)? (WS | NEWLINE)*
@@ -900,12 +900,12 @@ javadocTag: AUTHOR_LITERAL (WS | NEWLINE)* ((WS | NEWLINE) description)?
       | SERIAL_FIELD_LITERAL (WS | NEWLINE)* ((WS | NEWLINE) FIELD_NAME)? (WS | NEWLINE)*
           ((WS | NEWLINE) FIELD_TYPE)? (WS | NEWLINE)* ((WS | NEWLINE) description)?
 
-      | SINCE_LITERAL (WS | NEWLINE)* ((WS | NEWLINE) description)?
+      | SINCE_LITERAL (WS | NEWLINE)+ description
 
-      | THROWS_LITERAL (WS | NEWLINE)* ((WS | NEWLINE) CLASS_NAME)? (WS | NEWLINE)*
-          ((WS | NEWLINE) description)?
+      | THROWS_LITERAL (WS | NEWLINE | {!isNextJavadocTag()}? LEADING_ASTERISK)+ CLASS_NAME
+          (WS | NEWLINE)* ((WS | NEWLINE) description)?
 
-      | VERSION_LITERAL (WS | NEWLINE)* ((WS | NEWLINE) description)?
+      | VERSION_LITERAL (WS | NEWLINE)+ description
 
       | CUSTOM_NAME (WS | NEWLINE)* ((WS | NEWLINE) description)?
     ;
@@ -918,14 +918,13 @@ javadocInlineTag:
             CODE_LITERAL (WS | NEWLINE | LEADING_ASTERISK | text)*
             | DOC_ROOT_LITERAL (WS | NEWLINE | LEADING_ASTERISK)*
             | INHERIT_DOC_LITERAL (WS | NEWLINE | LEADING_ASTERISK)*
-            | LINK_LITERAL (WS | NEWLINE | LEADING_ASTERISK)* reference (WS | NEWLINE)*
+            | LINK_LITERAL (WS | NEWLINE | LEADING_ASTERISK)+ reference (WS | NEWLINE)*
                 ((WS | NEWLINE) description)?
-            | LINKPLAIN_LITERAL (WS | NEWLINE | LEADING_ASTERISK)* reference (WS | NEWLINE)*
+            | LINKPLAIN_LITERAL (WS | NEWLINE | LEADING_ASTERISK)+ reference (WS | NEWLINE)*
                 ((WS | NEWLINE) description)?
             | LITERAL_LITERAL (WS | NEWLINE | LEADING_ASTERISK | text)*
             | VALUE_LITERAL (WS | NEWLINE | LEADING_ASTERISK)* ((WS | NEWLINE) reference)?
-            | CUSTOM_NAME (WS | NEWLINE | LEADING_ASTERISK)* (WS | NEWLINE)*
-                ((WS | NEWLINE) description)?
+            | CUSTOM_NAME (WS | NEWLINE | LEADING_ASTERISK)* ((WS | NEWLINE) description)?
       )
       JAVADOC_INLINE_TAG_END
       ;

@@ -1,9 +1,9 @@
-package com.puppycrawl.tools.checkstyle.astprinter;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 import java.io.Serializable;
 
 /**@author*/
-public class InputAstTreeStringPrinterJavadocTagsWithoutArgs implements Serializable{
+public class InputAbstractJavadocJavadocTagsWithoutArgs implements Serializable{
     /**@serial*/
     private static final long serialVersionUID = 7556448691029650757L;
 
@@ -54,7 +54,17 @@ public class InputAstTreeStringPrinterJavadocTagsWithoutArgs implements Serializ
 
     }
 
-    private void writeObject(java.io.ObjectOutputStream outputStream) {
+    /**
+     * {@link}
+     */
+    public void method7() {
+
+    }
+
+    /**
+     * {@linkplain }
+     */
+    public void method8() {
 
     }
 }

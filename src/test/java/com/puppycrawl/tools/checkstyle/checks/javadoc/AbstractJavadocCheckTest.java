@@ -60,6 +60,35 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testJavadocTagsWithoutArgs() throws Exception {
+        final DefaultConfiguration checkconfig = createModuleConfig(TempCheck.class);
+        final String[] expected = {
+            "5: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 7,
+                    "mismatched input '<EOF>' expecting {WS, NEWLINE}", "JAVADOC_TAG"),
+            "10: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 4,
+                    "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
+            "13: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 6,
+                    "mismatched input '<EOF>' expecting {WS, NEWLINE}", "JAVADOC_TAG"),
+            "16: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 8,
+                    "mismatched input '<EOF>' expecting {WS, NEWLINE}", "JAVADOC_TAG"),
+            "22: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 10,
+                    "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
+            "27: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 7,
+                    "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
+            "32: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 7,
+                    "mismatched input '<EOF>' expecting {WS, NEWLINE}", "JAVADOC_TAG"),
+            "37: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 6,
+                    "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
+            "58: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 13,
+                    "mismatched input '}' expecting {LEADING_ASTERISK, WS, NEWLINE}",
+                    "JAVADOC_INLINE_TAG"),
+            "65: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 19,
+                    "no viable alternative at input '}'", "REFERENCE"),
+        };
+        verify(checkconfig, getPath("InputAbstractJavadocJavadocTagsWithoutArgs.java"), expected);
+    }
+
+    @Test
     public void testNumberFormatException() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
         final String[] expected = {

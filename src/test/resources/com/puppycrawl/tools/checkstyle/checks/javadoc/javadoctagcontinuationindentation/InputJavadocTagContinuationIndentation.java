@@ -324,7 +324,7 @@ enum Foo1 {}
  * L.
  *
  * @author max
- * @see {@link com.puppycrawl.tools.checkstyle.AllChecksPresentOnAvailableChecksPageTest
+ * @customTag {@link com.puppycrawl.tools.checkstyle.AllChecksPresentOnAvailableChecksPageTest
  *   some description} // no warning, as this is just inline tag description
  */
 interface FooIn1 {}

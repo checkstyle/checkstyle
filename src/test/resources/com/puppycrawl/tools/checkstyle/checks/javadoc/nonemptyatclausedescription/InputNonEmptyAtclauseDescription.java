@@ -75,7 +75,7 @@ class InputNonEmptyAtclauseDescription
 	 * @param a
 	 * @param b
 	 * @param c
-	 * @return
+	 * @deprecated
 	 * @throws Exception
 	 * @deprecated
 	 */
@@ -89,7 +89,7 @@ class InputNonEmptyAtclauseDescription
 	 * @param a
 	 * @param b
 	 * @param c
-	 * @return
+	 * @deprecated
 	 * @throws Exception
 	 */
 	public int foo4(String a, int b, double c) throws Exception
