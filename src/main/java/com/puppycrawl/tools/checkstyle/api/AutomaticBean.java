@@ -24,8 +24,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 
@@ -45,7 +47,6 @@ import org.apache.commons.beanutils.converters.IntegerConverter;
 import org.apache.commons.beanutils.converters.LongConverter;
 import org.apache.commons.beanutils.converters.ShortConverter;
 
-import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
@@ -77,21 +78,29 @@ public class AutomaticBean
     /** The configuration of this bean. */
     private Configuration configuration;
 
+    /** Bean utils instance for conversion of beans. */
+    private BeanUtilsBean beanUtils;
+
     /**
      * Creates a BeanUtilsBean that is configured to use
      * type converters that throw a ConversionException
      * instead of using the default value when something
      * goes wrong.
-     *
-     * @return a configured BeanUtilsBean
      */
-    private static BeanUtilsBean createBeanUtilsBean() {
-        final ConvertUtilsBean cub = new ConvertUtilsBean();
+    private void createBeanUtilsBean() {
+        if (beanUtils == null) {
+            final ConvertUtilsBean cub = new ConvertUtilsBean();
 
-        registerIntegralTypes(cub);
-        registerCustomTypes(cub);
+            registerIntegralTypes(cub);
+            registerJdkClassesTypes(cub);
 
-        return new BeanUtilsBean(cub, new PropertyUtilsBean());
+            for (Map.Entry<Class<?>, Converter> converter
+                    : getPropertyTypeConverters().entrySet()) {
+                cub.register(converter.getValue(), converter.getKey());
+            }
+
+            beanUtils = new BeanUtilsBean(cub, new PropertyUtilsBean());
+        }
     }
 
     /**
@@ -140,17 +149,25 @@ public class AutomaticBean
     }
 
     /**
-     * Register custom types of JDK like URI and Checkstyle specific classes to use with BeanUtils.
+     * Register custom types of JDK like URI classes to use with BeanUtils.
      * None of these types should be found in the {@code java.lang} package.
      * @param cub
      *            Instance of {@link ConvertUtilsBean} to register types with.
      */
-    private static void registerCustomTypes(ConvertUtilsBean cub) {
+    private static void registerJdkClassesTypes(ConvertUtilsBean cub) {
         cub.register(new PatternConverter(), Pattern.class);
         cub.register(new SeverityLevelConverter(), SeverityLevel.class);
         cub.register(new ScopeConverter(), Scope.class);
         cub.register(new UriConverter(), URI.class);
-        cub.register(new RelaxedAccessModifierArrayConverter(), AccessModifier[].class);
+    }
+
+    /**
+     * Retrieve the list of custom classes and their converters to help Checkstyle
+     * recognize and use these custom types in the module's setters for properties.
+     * @return list of classes and their converter instance.
+     */
+    protected Map<Class<?>, Converter> getPropertyTypeConverters() {
+        return new HashMap<>();
     }
 
     /**
@@ -170,6 +187,7 @@ public class AutomaticBean
     public final void configure(Configuration config)
             throws CheckstyleException {
         configuration = config;
+        createBeanUtilsBean();
 
         final String[] attributes = config.getAttributeNames();
 
@@ -197,9 +215,6 @@ public class AutomaticBean
      */
     private void tryCopyProperty(String moduleName, String key, Object value, boolean recheck)
             throws CheckstyleException {
-
-        final BeanUtilsBean beanUtils = createBeanUtilsBean();
-
         try {
             if (recheck) {
                 // BeanUtilsBean.copyProperties silently ignores missing setters
@@ -240,6 +255,7 @@ public class AutomaticBean
     @Override
     public final void contextualize(Context context)
             throws CheckstyleException {
+        createBeanUtilsBean();
 
         final Collection<String> attributes = context.getAttributeNames();
 
@@ -359,30 +375,6 @@ public class AutomaticBean
             }
 
             return result.toArray(new String[result.size()]);
-        }
-    }
-
-    /**
-     * A converter that converts strings to {@link AccessModifier}.
-     * This implementation does not care whether the array elements contain characters like '_'.
-     * The normal {@link ArrayConverter} class has problems with this character.
-     */
-    private static class RelaxedAccessModifierArrayConverter implements Converter {
-
-        @SuppressWarnings({"unchecked", "rawtypes"})
-        @Override
-        public Object convert(Class type, Object value) {
-            // Converts to a String and trims it for the tokenizer.
-            final StringTokenizer tokenizer = new StringTokenizer(
-                value.toString().trim(), COMMA_SEPARATOR);
-            final List<AccessModifier> result = new ArrayList<>();
-
-            while (tokenizer.hasMoreTokens()) {
-                final String token = tokenizer.nextToken();
-                result.add(AccessModifier.getInstance(token.trim()));
-            }
-
-            return result.toArray(new AccessModifier[result.size()]);
         }
     }
 }

@@ -19,7 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+import java.util.StringTokenizer;
+
+import org.apache.commons.beanutils.Converter;
+import org.apache.commons.beanutils.converters.ArrayConverter;
 
 /**
  * This enum represents access modifiers.
@@ -48,6 +54,32 @@ public enum AccessModifier {
     }
 
     /**
+     * Retrieves the converter that converts strings to AccessModifier.
+     * This implementation does not care whether the array elements contain characters like '_'.
+     * The normal {@link ArrayConverter} class has problems with this character.
+     * @return the converter.
+     */
+    public static Converter getBeanConverter() {
+        return new Converter() {
+            @SuppressWarnings({"unchecked", "rawtypes"})
+            @Override
+            public Object convert(Class type, Object value) {
+                // Converts to a String and trims it for the tokenizer.
+                final StringTokenizer tokenizer = new StringTokenizer(
+                    value.toString().trim(), ",");
+                final List<AccessModifier> result = new ArrayList<>();
+
+                while (tokenizer.hasMoreTokens()) {
+                    final String token = tokenizer.nextToken();
+                    result.add(getInstance(token.trim()));
+                }
+
+                return result.toArray(new AccessModifier[result.size()]);
+            }
+        };
+    }
+
+    /**
      * Factory method which returns an AccessModifier instance that corresponds to the
      * given access modifier name represented as a {@link String}.
      * The access modifier name can be formatted both as lower case or upper case string.
@@ -57,7 +89,7 @@ public enum AccessModifier {
      * @param modifierName access modifier name represented as a {@link String}.
      * @return the AccessModifier associated with given access modifier name.
      */
-    public static AccessModifier getInstance(String modifierName) {
+    private static AccessModifier getInstance(String modifierName) {
         return valueOf(AccessModifier.class, modifierName.trim().toUpperCase(Locale.ENGLISH));
     }
 }
