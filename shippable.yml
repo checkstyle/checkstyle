@@ -6,7 +6,7 @@ jdk:
 
 env:
   matrix:
-    - PROFILE="-Ppitest-checkstyle-xpath,no-validations"
+    - PROFILE="-Ppitest-checkstyle-xpath,no-validations";CHECK_SURVIVED=true
     - PROFILE="-Ppitest-checkstyle-filters,no-validations"
     - PROFILE="-Ppitest-checks-javadoc,no-validations"
     - PROFILE="-Ppitest-checks-imports,no-validations"
@@ -42,10 +42,16 @@ build:
   ci:
     # we skip PRs and commits that are not for Issues, as pitest is too time consuming
     - |
+      set -e
       SKIP_FILES="appveyor.yml|circle.yml|distelli-manifest.yml|.travis.yml|wercker.yml|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr|intellij-idea-inspections.xml"
       SKIP_CI=$(if [[ $(git diff --name-only HEAD HEAD~1 | grep -vE "$SKIP_FILES" | cat | wc -c) > 0 ]]; then echo false; else echo true; fi;)
       echo "SKIP_CI="$SKIP_CI
       if [[ $SKIP_CI == 'false' ]];
       then
         mvn $PROFILE clean verify org.pitest:pitest-maven:mutationCoverage;
+        RESULT=0
+        if [[ $CHECK_SURVIVED == 'true' && $(grep -RE "class='survived'" .* | cat | wc -l) > 0 ]]; then
+           RESULT=1
+        fi
+        exit $RESULT
       fi
