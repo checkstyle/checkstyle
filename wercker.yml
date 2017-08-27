@@ -49,6 +49,8 @@ build:
           cd pgjdbc/pgjdbc
           wget https://gist.githubusercontent.com/timurt/a981d094cbbbe746ecd400424f5f3af8/raw/6e5d28a83b0d63a880f897d839f7f536b64f0979/pgjdbc.patch
           git apply pgjdbc.patch
+          wget https://gist.githubusercontent.com/ps-sp/23da49c7e776391ee9e436cae5611631/raw/0134a5a78ed0f7f569c0e597ba2de6b0bd49d21f/pgjdbc.patch -O pgjdbc.patch
+          git apply pgjdbc.patch
           mvn compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
           cd ../../
           rm -rf pgjdbc
