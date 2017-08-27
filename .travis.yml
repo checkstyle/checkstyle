@@ -58,6 +58,12 @@ matrix:
         - DESC="findbugs, spotbugs and pmd"
         - CMD="mvn clean compile pmd:check findbugs:check spotbugs:check"
 
+    # eclipse static analysis
+    - jdk: oraclejdk8
+      env:
+        - DESC="eclipse static analysis"
+        - CMD="mvn clean compile exec:exec -Peclipse-compiler"
+
     # Releasenotes generation - validaton
     - jdk: oraclejdk8
       env:
