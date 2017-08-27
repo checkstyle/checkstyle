@@ -1029,6 +1029,7 @@
               <excludes>
                 <exclude>java.header</exclude>
                 <exclude>java_regexp.header</exclude>
+                <exclude>org.eclipse.jdt.core.prefs</exclude>
               </excludes>
             </validationSet>
             <validationSet>
@@ -2300,6 +2301,25 @@
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>eclipse-compiler</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.6.0</version>
+            <configuration>
+              <executable>.ci/eclipse-compiler-javac.sh</executable>
+              <classpathScope>compile</classpathScope>
+              <arguments>
+                <classpath />
+              </arguments>
             </configuration>
           </plugin>
         </plugins>

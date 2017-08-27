@@ -86,6 +86,11 @@
       <p>
         <img alt="screenshot" src="images/gui_screenshot_eclipse_ignore_warnings.png"/>
       </p>
+      <br/>
+      <p>
+        Next, you need to put <i>.ci/org.eclipse.jdt.core.prefs</i> file to the <i>.settings/org.eclipse.jdt.core.prefs</i>
+        to setup Eclipse compiler.
+      </p>
     </section>
 
     <section name="Organize Imports">
