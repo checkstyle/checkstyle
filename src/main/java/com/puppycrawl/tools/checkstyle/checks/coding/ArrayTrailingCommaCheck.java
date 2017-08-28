@@ -95,6 +95,20 @@ public class ArrayTrailingCommaCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "array.trailing.comma";
 
+    /**
+     * Boolean to set whether or not to check trailing comma in inline arrays.
+     * Set to true by default.
+     */
+    private boolean ignoreInlineArrays = true;
+
+    /**
+     * Setter for {@link #ignoreInlineArrays}.
+     * @param ignoreInlineArrays true to ignore trailing commas in inline arrays, false otherwise.
+     */
+    public void setIgnoreInlineArrays(boolean ignoreInlineArrays) {
+        this.ignoreInlineArrays = ignoreInlineArrays;
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getAcceptableTokens();
@@ -114,6 +128,11 @@ public class ArrayTrailingCommaCheck extends AbstractCheck {
     public void visitToken(DetailAST arrayInit) {
         final DetailAST rcurly = arrayInit.findFirstToken(TokenTypes.RCURLY);
         final DetailAST previousSibling = rcurly.getPreviousSibling();
+
+        if (!ignoreInlineArrays
+                && (previousSibling == null || previousSibling.getType() != TokenTypes.COMMA)) {
+            log(rcurly.getLineNo(), MSG_KEY);
+        }
 
         if (arrayInit.getLineNo() != rcurly.getLineNo()
                 && arrayInit.getChildCount() != 1
