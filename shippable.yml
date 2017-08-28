@@ -50,12 +50,11 @@ build:
       if [[ $SKIP_CI == 'false' ]];
       then
         mvn $PROFILE clean verify org.pitest:pitest-maven:mutationCoverage;
-        RESULT=0
+        
         if [[ $CHECK_SURVIVED == 'true' && $(grep -RE "class='survived'" target/ | cat | wc -l) > 0 ]]; then
            echo "Survived items:"$(grep -RE "class='survived'" target/ | cat)
            echo "Survived items found in reports, build will be failed"
-           RESULT=1
+           exit 1
         fi
-        echo "RESULT="$RESULT
-        exit $RESULT
+        
       fi
