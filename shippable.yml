@@ -56,5 +56,6 @@ build:
            echo "Survived items found in reports, build will be failed"
            RESULT=1
         fi
+        echo "RESULT="$RESULT
         exit $RESULT
       fi
