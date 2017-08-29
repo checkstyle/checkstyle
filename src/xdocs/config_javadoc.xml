@@ -212,7 +212,7 @@ public int checkReturnTag(final int aTagIndex,
           </tr>
           <tr>
             <td>minLineCount</td>
-            <td>Minimal amount of lines in method to demand documentation presence.</td>
+            <td>Minimal amount of lines in method to allow no documentation.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>-1</code></td>
             <td>6.0</td>
