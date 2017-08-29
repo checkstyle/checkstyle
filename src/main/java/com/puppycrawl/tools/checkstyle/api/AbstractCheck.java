@@ -246,7 +246,28 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * @param args arguments to format
      */
     public final void log(DetailAST ast, String key, Object... args) {
-        log(ast.getLineNo(), ast.getColumnNo(), key, args);
+
+        // CommonUtils.lengthExpandedTabs returns column number considering tabulation
+        // characters, it takes line from the file by line number, ast column number and tab
+        // width as arguments. Returned value is 0-based, but user must see column number starting
+        // from 1, that is why result of the method CommonUtils.lengthExpandedTabs
+        // is increased by one.
+
+        final int col = 1 + CommonUtils.lengthExpandedTabs(
+                getLines()[ast.getLineNo() - 1], ast.getColumnNo(), tabWidth);
+        context.get().messages.add(
+                new LocalizedMessage(
+                        ast.getLineNo(),
+                        col,
+                        ast.getColumnNo(),
+                        ast.getType(),
+                        getMessageBundle(),
+                        key,
+                        args,
+                        getSeverityLevel(),
+                        getId(),
+                        getClass(),
+                        getCustomMessages().get(key)));
     }
 
     @Override

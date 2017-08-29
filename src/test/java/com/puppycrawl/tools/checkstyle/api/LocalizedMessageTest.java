@@ -224,6 +224,15 @@ public class LocalizedMessageTest {
     }
 
     @Test
+    public void testGetColumnCharIndex() {
+        final LocalizedMessage localizedMessage1 = new LocalizedMessage(1, 1, 123,
+                TokenTypes.CLASS_DEF, "messages.properties", "key", null, SeverityLevel.ERROR,
+                null, getClass(), null);
+
+        assertEquals("Invalid column char index", 123, localizedMessage1.getColumnCharIndex());
+    }
+
+    @Test
     public void testCompareToWithDifferentModuleId() {
         final LocalizedMessage message1 = createSampleLocalizedMessageWithId("module1");
         final LocalizedMessage message2 = createSampleLocalizedMessageWithId("module2");
