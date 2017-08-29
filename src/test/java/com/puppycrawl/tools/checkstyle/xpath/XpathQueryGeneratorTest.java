@@ -23,6 +23,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -32,11 +33,16 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.internal.TestUtils;
 
 public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
 
+    private static final int DEFAULT_TAB_WIDTH = 4;
+
     private static DetailAST rootAst;
+
+    private static FileText fileText;
 
     @Override
     protected String getPackageLocation() {
@@ -46,15 +52,17 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
     @Before
     public void init() throws Exception {
         final File file = new File(getPath("InputXpathQueryGenerator.java"));
+        fileText = new FileText(file,
+                StandardCharsets.UTF_8.name());
         rootAst = TestUtils.parseFile(file);
     }
 
     @Test
     public void testClassDef() {
         final int lineNumber = 12;
-        final int columnNumber = 0;
+        final int columnNumber = 1;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
-                columnNumber);
+                columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
         final List<String> expected = Arrays.asList(
             "/CLASS_DEF[@text='InputXpathQueryGenerator']",
@@ -66,9 +74,9 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
     @Test
     public void testMethodDef() {
         final int lineNumber = 45;
-        final int columnNumber = 4;
+        final int columnNumber = 5;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
-                columnNumber);
+                columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
         final List<String> expected = Arrays.asList(
             "/CLASS_DEF[@text='InputXpathQueryGenerator']"
@@ -83,9 +91,9 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
     @Test
     public void testVariableDef() {
         final int lineNumber = 53;
-        final int columnNumber = 12;
+        final int columnNumber = 13;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
-                columnNumber);
+                columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
         final List<String> expected = Arrays.asList(
             "/CLASS_DEF[@text='InputXpathQueryGenerator']/OBJBLOCK"
@@ -106,9 +114,9 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
     @Test
     public void testLcurly() {
         final int lineNumber = 37;
-        final int columnNumber = 19;
+        final int columnNumber = 20;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
-                columnNumber);
+                columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
         final List<String> expected = Collections.singletonList(
             "/CLASS_DEF[@text='InputXpathQueryGenerator']/OBJBLOCK/METHOD_DEF[@text='Label']"
@@ -119,9 +127,9 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
     @Test
     public void testRcurly() {
         final int lineNumber = 25;
-        final int columnNumber = 4;
+        final int columnNumber = 5;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
-                columnNumber);
+                columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
         final List<String> expected = Collections.singletonList(
             "/CLASS_DEF[@text='InputXpathQueryGenerator']/OBJBLOCK/INSTANCE_INIT"
@@ -132,9 +140,9 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
     @Test
     public void testExpr() {
         final int lineNumber = 17;
-        final int columnNumber = 49;
+        final int columnNumber = 50;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
-                columnNumber);
+                columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
         final List<String> expected = Arrays.asList(
             "/CLASS_DEF[@text='InputXpathQueryGenerator']/OBJBLOCK"
@@ -147,9 +155,9 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
     @Test
     public void testLparen() {
         final int lineNumber = 45;
-        final int columnNumber = 30;
+        final int columnNumber = 31;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
-                columnNumber);
+                columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
         final List<String> expected = Collections.singletonList(
             "/CLASS_DEF[@text='InputXpathQueryGenerator']/OBJBLOCK"
@@ -162,7 +170,7 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
         final int lineNumber = 300;
         final int columnNumber = 300;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
-                columnNumber);
+                columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
         assertTrue("Result should be empty", actual.isEmpty());
     }
@@ -170,9 +178,9 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
     @Test
     public void testPackage() {
         final int lineNumber = 2;
-        final int columnNumber = 0;
+        final int columnNumber = 1;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
-                columnNumber);
+                columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
         final List<String> expected = Collections.singletonList(
             "/PACKAGE_DEF");
@@ -182,9 +190,9 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
     @Test
     public void testImport() {
         final int lineNumber = 5;
-        final int columnNumber = 0;
+        final int columnNumber = 1;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
-                columnNumber);
+                columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
         final List<String> expected = Collections.singletonList(
             "/IMPORT[./DOT[@text='File']]");
@@ -194,9 +202,9 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
     @Test
     public void testMethodParams() {
         final int lineNumber = 72;
-        final int columnNumber = 29;
+        final int columnNumber = 30;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
-                columnNumber);
+                columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
         final List<String> expected = Arrays.asList(
             "/CLASS_DEF[@text='InputXpathQueryGenerator']/OBJBLOCK"
@@ -215,9 +223,9 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
     @Test
     public void testSwitch() {
         final int lineNumber = 37;
-        final int columnNumber = 8;
+        final int columnNumber = 9;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
-                columnNumber);
+                columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
         final List<String> expected = Collections.singletonList(
             "/CLASS_DEF[@text='InputXpathQueryGenerator']/OBJBLOCK"
@@ -228,9 +236,9 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
     @Test
     public void testSwitchCase() {
         final int lineNumber = 38;
-        final int columnNumber = 12;
+        final int columnNumber = 13;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
-                columnNumber);
+                columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
         final List<String> expected = Arrays.asList(
             "/CLASS_DEF[@text='InputXpathQueryGenerator']/OBJBLOCK/METHOD_DEF[@text='Label']"
@@ -243,9 +251,9 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
     @Test
     public void testVariableStringLiteral() {
         final int lineNumber = 47;
-        final int columnNumber = 25;
+        final int columnNumber = 26;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
-                columnNumber);
+                columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
         final List<String> expected = Arrays.asList(
             "/CLASS_DEF[@text='InputXpathQueryGenerator']/OBJBLOCK"
@@ -260,9 +268,9 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
     @Test
     public void testComma() {
         final int lineNumber = 66;
-        final int columnNumber = 35;
+        final int columnNumber = 36;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
-                columnNumber);
+                columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
         final List<String> expected = Collections.singletonList(
             "/CLASS_DEF[@text='InputXpathQueryGenerator']/OBJBLOCK/METHOD_DEF[@text='foo']"
@@ -273,9 +281,9 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
     @Test
     public void testLiteralVoid() {
         final int lineNumber = 65;
-        final int columnNumber = 11;
+        final int columnNumber = 12;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
-                columnNumber);
+                columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
         final List<String> expected = Arrays.asList(
             "/CLASS_DEF[@text='InputXpathQueryGenerator']/OBJBLOCK"
@@ -288,9 +296,9 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
     @Test
     public void testFirstImport() {
         final int lineNumber = 4;
-        final int columnNumber = 0;
+        final int columnNumber = 1;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
-                columnNumber);
+                columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
         final List<String> expected = Collections.singletonList(
                 "/IMPORT[./DOT[@text='JToolBar']]");
@@ -300,12 +308,90 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
     @Test
     public void testLastImport() {
         final int lineNumber = 8;
-        final int columnNumber = 0;
+        final int columnNumber = 1;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
-                columnNumber);
+                columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
         final List<String> expected = Collections.singletonList(
                 "/IMPORT[./DOT[@text='Iterator']]");
+        assertEquals("Generated queries do not match expected ones", expected, actual);
+    }
+
+    @Test
+    public void testTabWidthBeforeMethodDef() throws Exception {
+        final File testFile = new File(getPath("InputXpathQueryGeneratorTabWidth.java"));
+        final FileText testFileText = new FileText(testFile,
+                StandardCharsets.UTF_8.name());
+        final DetailAST detailAst = TestUtils.parseFile(testFile);
+        final int lineNumber = 4;
+        final int columnNumber = 13;
+        final int tabWidth = 4;
+        final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(detailAst, lineNumber,
+                columnNumber, testFileText, tabWidth);
+        final List<String> actual = queryGenerator.generate();
+        final List<String> expected = Arrays.asList(
+                "/CLASS_DEF[@text='InputXpathQueryGeneratorTabWidth']/OBJBLOCK"
+                        + "/METHOD_DEF[@text='toString']",
+                "/CLASS_DEF[@text='InputXpathQueryGeneratorTabWidth']/OBJBLOCK"
+                        + "/METHOD_DEF[@text='toString']/MODIFIERS",
+                "/CLASS_DEF[@text='InputXpathQueryGeneratorTabWidth']/OBJBLOCK"
+                        + "/METHOD_DEF[@text='toString']/MODIFIERS/LITERAL_PUBLIC");
+        assertEquals("Generated queries do not match expected ones", expected, actual);
+    }
+
+    @Test
+    public void testTabWidthAfterVoidLiteral() throws Exception {
+        final File testFile = new File(getPath("InputXpathQueryGeneratorTabWidth.java"));
+        final FileText testFileText = new FileText(testFile,
+                StandardCharsets.UTF_8.name());
+        final DetailAST detailAst = TestUtils.parseFile(testFile);
+        final int lineNumber = 8;
+        final int columnNumber = 41;
+        final int tabWidth = 8;
+        final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(detailAst, lineNumber,
+                columnNumber, testFileText, tabWidth);
+        final List<String> actual = queryGenerator.generate();
+        final List<String> expected = Arrays.asList(
+                "/CLASS_DEF[@text='InputXpathQueryGeneratorTabWidth']/OBJBLOCK"
+                        + "/METHOD_DEF[@text='getName']/TYPE",
+                "/CLASS_DEF[@text='InputXpathQueryGeneratorTabWidth']/OBJBLOCK"
+                        + "/METHOD_DEF[@text='getName']/TYPE/LITERAL_VOID");
+        assertEquals("Generated queries do not match expected ones", expected, actual);
+    }
+
+    @Test
+    public void testTabWidthBeforeSlist() throws Exception {
+        final File testFile = new File(getPath("InputXpathQueryGeneratorTabWidth.java"));
+        final FileText testFileText = new FileText(testFile,
+                StandardCharsets.UTF_8.name());
+        final DetailAST detailAst = TestUtils.parseFile(testFile);
+        final int lineNumber = 12;
+        final int columnNumber = 57;
+        final int tabWidth = 8;
+        final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(detailAst, lineNumber,
+                columnNumber, testFileText, tabWidth);
+        final List<String> actual = queryGenerator.generate();
+        final List<String> expected = Collections.singletonList(
+                "/CLASS_DEF[@text='InputXpathQueryGeneratorTabWidth']/OBJBLOCK"
+                        + "/METHOD_DEF[@text='tabAfterMe']/SLIST");
+        assertEquals("Generated queries do not match expected ones", expected, actual);
+    }
+
+    @Test
+    public void testTabWidthEndOfLine() throws Exception {
+        final File testFile = new File(getPath("InputXpathQueryGeneratorTabWidth.java"));
+        final FileText testFileText = new FileText(testFile,
+                StandardCharsets.UTF_8.name());
+        final DetailAST detailAst = TestUtils.parseFile(testFile);
+        final int lineNumber = 16;
+        final int columnNumber = 58;
+        final int tabWidth = 8;
+        final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(detailAst, lineNumber,
+                columnNumber, testFileText, tabWidth);
+        final List<String> actual = queryGenerator.generate();
+        final List<String> expected = Collections.singletonList(
+                "/CLASS_DEF[@text='InputXpathQueryGeneratorTabWidth']/OBJBLOCK"
+                        + "/VARIABLE_DEF[@text='endLineTab']/SEMI");
         assertEquals("Generated queries do not match expected ones", expected, actual);
     }
 }

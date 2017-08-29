@@ -24,7 +24,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
@@ -75,6 +77,10 @@ public class XpathQueryGenerator {
     private final int lineNumber;
     /** The column number of the element for which the query should be generated. */
     private final int columnNumber;
+    /** The {@code FileText} object, representing content of the file. */
+    private final FileText fileText;
+    /** The distance between tab stop position. */
+    private final int tabWidth;
 
     /**
      * Creates a new {@code XpathQueryGenerator} instance.
@@ -82,11 +88,16 @@ public class XpathQueryGenerator {
      * @param rootAst root ast
      * @param lineNumber line number of the element for which the query should be generated
      * @param columnNumber column number of the element for which the query should be generated
+     * @param fileText the {@code FileText} object
+     * @param tabWidth distance between tab stop position
      */
-    public XpathQueryGenerator(DetailAST rootAst, int lineNumber, int columnNumber) {
+    public XpathQueryGenerator(DetailAST rootAst, int lineNumber, int columnNumber,
+                               FileText fileText, int tabWidth) {
         this.rootAst = rootAst;
         this.lineNumber = lineNumber;
         this.columnNumber = columnNumber;
+        this.fileText = fileText;
+        this.tabWidth = tabWidth;
     }
 
     /**
@@ -95,7 +106,7 @@ public class XpathQueryGenerator {
      * @return list of xpath queries of nodes, matching line and column number
      */
     public List<String> generate() {
-        return getMatchingAstElements(rootAst, lineNumber, columnNumber)
+        return getMatchingAstElements()
             .stream()
             .map(XpathQueryGenerator::generateXpathQuery)
             .collect(Collectors.toList());
@@ -132,19 +143,13 @@ public class XpathQueryGenerator {
 
     /**
      * Returns list of nodes matching defined line and column number.
-     * @param root {@code DetailAST} root ast
-     * @param lineNumber line number
-     * @param columnNumber column number
      * @return list of nodes matching defined line and column number
      */
-    private static List<DetailAST> getMatchingAstElements(DetailAST root, int lineNumber,
-                                                          int columnNumber) {
+    private List<DetailAST> getMatchingAstElements() {
         final List<DetailAST> result = new ArrayList<>();
-        DetailAST curNode = root;
+        DetailAST curNode = rootAst;
         while (curNode != null && curNode.getLineNo() <= lineNumber) {
-            if (curNode.getLineNo() == lineNumber
-                    && curNode.getColumnNo() == columnNumber
-                    && curNode.getType() != TokenTypes.IDENT) {
+            if (isMatchingByLineAndColumnAndNotIdent(curNode)) {
                 result.add(curNode);
             }
             DetailAST toVisit = curNode.getFirstChild();
@@ -216,6 +221,28 @@ public class XpathQueryGenerator {
             result = ast.getParent().getChildCount(ast.getType()) > 1;
         }
         return result;
+    }
+
+    /**
+     * Returns the column number with tabs expanded.
+     * @param ast {@code DetailAST} root ast
+     * @return the column number with tabs expanded
+     */
+    private int expandedTabColumn(DetailAST ast) {
+        return 1 + CommonUtils.lengthExpandedTabs(fileText.get(lineNumber - 1),
+                ast.getColumnNo(), tabWidth);
+    }
+
+    /**
+     * Checks if the given {@code DetailAST} node is matching line and column number and
+     * it is not {@link TokenTypes#IDENT}.
+     * @param ast {@code DetailAST} ast element
+     * @return true if the given {@code DetailAST} node is matching
+     */
+    private boolean isMatchingByLineAndColumnAndNotIdent(DetailAST ast) {
+        return ast.getType() != TokenTypes.IDENT
+                && ast.getLineNo() == lineNumber
+                && expandedTabColumn(ast) == columnNumber;
     }
 
     /**

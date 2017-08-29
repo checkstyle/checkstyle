@@ -170,6 +170,7 @@
   <subpackage name="xpath">
     <allow pkg="net.sf.saxon"/>
     <allow class="java.lang.reflect.Field"/>
+    <allow class="java.nio.charset.StandardCharsets" local-only="true"/>
     <allow pkg="com.puppycrawl.tools.checkstyle.utils" local-only="true"/>
   </subpackage>
 </import-control>
