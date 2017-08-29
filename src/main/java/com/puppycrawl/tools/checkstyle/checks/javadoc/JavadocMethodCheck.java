@@ -125,7 +125,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     private static final Pattern MATCH_JAVADOC_NOARG_CURLY =
             CommonUtils.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
 
-    /** Default value of minimal amount of lines in method to demand documentation presence.*/
+    /** Default value of minimal amount of lines in method to allow no documentation.*/
     private static final int DEFAULT_MIN_LINE_COUNT = -1;
 
     /** The visibility scope where Javadoc comments are checked. */
@@ -134,7 +134,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     /** The visibility scope where Javadoc comments shouldn't be checked. */
     private Scope excludeScope;
 
-    /** Minimal amount of lines in method to demand documentation presence.*/
+    /** Minimal amount of lines in method to allow no documentation.*/
     private int minLineCount = DEFAULT_MIN_LINE_COUNT;
 
     /**
@@ -202,7 +202,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     }
 
     /**
-     * Sets minimal amount of lines in method.
+     * Sets minimal amount of lines in method to allow no documentation.
      * @param value user's value.
      */
     public void setMinLineCount(int value) {
