@@ -43,4 +43,15 @@ public class InputNoWhitespaceAfterArrayDeclarations
     private long getLongMultArray(int someParam, String value) [][][] { //Incorrect
         return null;
     }
+    int aa = new int[]{1}[0];//Correct
+    int bb = new int[]{1} [0];//Incorrect
+    int aaa = new int[][]{{1},{2}}[0][0];//Correct
+    int bbb = new int [][]{{1},{2}}[0][0];//Incorrect
+    int ccc = new int[] []{{1},{2}}[0][0];//Incorrect
+    int ddd = new int[][]{{1},{2}} [0][0];//Incorrect
+    int eee = new int[][]{{1},{2}}[0] [0];//Incorrect
+    int in1 = new int[][]{{1},{2}}[ 0][0];//Correct
+    int in2 = new int[][]{{1},{2}}[0 ][0];//Correct
+    int in3 = new int[][]{{1},{2}}[0][ 0];//Correct
+    int in4 = new int[][]{{1},{2}}[0][0 ];//Correct
 }
