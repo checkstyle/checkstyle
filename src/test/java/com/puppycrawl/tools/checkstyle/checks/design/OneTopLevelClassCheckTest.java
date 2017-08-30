@@ -22,9 +22,15 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 import static com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
 
+import java.io.File;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
@@ -40,6 +46,29 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
         final OneTopLevelClassCheck checkObj = new OneTopLevelClassCheck();
         assertArrayEquals("Required tokens array is not empty",
                 CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+    }
+
+    @Test
+    public void testClearState() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(OneTopLevelClassCheck.class);
+        final String firstInputFilePath = getPath("InputOneTopLevelClassDeclarationOrder.java");
+        final String secondInputFilePath = getPath("InputOneTopLevelInterface2.java");
+
+        final File[] inputs = {
+            new File(firstInputFilePath),
+            new File(secondInputFilePath),
+        };
+
+        final List<String> expectedFirstInput = Collections.singletonList(
+            "10: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderEnum"));
+        final List<String> expectedSecondInput = Arrays.asList(
+            "3: " + getCheckMessage(MSG_KEY, "InputOneTopLevelInterface2inner1"),
+            "11: " + getCheckMessage(MSG_KEY, "InputOneTopLevelInterface2inner2"));
+
+        verify(createChecker(checkConfig), inputs,
+            ImmutableMap.of(firstInputFilePath, expectedFirstInput,
+                secondInputFilePath, expectedSecondInput));
     }
 
     @Test

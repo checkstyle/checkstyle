@@ -11,13 +11,13 @@ env:
     - PROFILE="-Ppitest-checks-javadoc,no-validations"
     - PROFILE="-Ppitest-checks-imports,no-validations"
     - PROFILE="-Ppitest-checks-metrics,no-validations"
-    - PROFILE="-Ppitest-checks-regexp,no-validations"
+    - PROFILE="-Ppitest-checks-regexp,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checks-sizes,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checks-whitespace,no-validations"
     - PROFILE="-Ppitest-checks-misc,no-validations"
     - PROFILE="-Ppitest-checks-blocks,no-validations"
     - PROFILE="-Ppitest-checks-coding,no-validations"
-    - PROFILE="-Ppitest-checks-design,no-validations"
+    - PROFILE="-Ppitest-checks-design,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checks-annotation,no-validations"
     - PROFILE="-Ppitest-checks-header,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checks-modifier,no-validations"; POST_ACTION=check_survived

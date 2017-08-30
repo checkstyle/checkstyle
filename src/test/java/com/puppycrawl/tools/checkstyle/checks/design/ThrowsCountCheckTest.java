@@ -107,4 +107,13 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputThrowsCount.java"), expected);
     }
+
+    @Test
+    public void testMethodWithAnnotation() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(ThrowsCountCheck.class);
+        final String[] expected = {
+            "18:26: " + getCheckMessage(MSG_KEY, 5, 4),
+        };
+        verify(checkConfig, getPath("InputThrowsCountMwthodWithAnnotation.java"), expected);
+    }
 }

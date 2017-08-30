@@ -82,7 +82,7 @@ public final class TestUtils {
                                                                 String fieldName,
                                                                 Predicate<Object> isClear)
             throws NoSuchFieldException, IllegalAccessException {
-        check.beginTree(null);
+        check.beginTree(astToVisit);
         check.visitToken(astToVisit);
         check.beginTree(null);
         final Field field = check.getClass().getDeclaredField(fieldName);
