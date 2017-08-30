@@ -53,8 +53,6 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.Set;
 
-import javax.xml.bind.DatatypeConverter;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -63,6 +61,7 @@ import org.mockito.Matchers;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import com.google.common.io.BaseEncoding;
 import com.google.common.io.ByteStreams;
 import com.google.common.io.Closeables;
 import com.google.common.io.Flushables;
@@ -232,7 +231,7 @@ public class PropertyCacheFileTest {
             oos.writeObject(input);
         }
         digest.update(out.toByteArray());
-        final String expected = DatatypeConverter.printHexBinary(digest.digest());
+        final String expected = BaseEncoding.base16().upperCase().encode(digest.digest());
 
         assertEquals("Hashes are not equal", expected,
                 cache.get("module-resource*?:" + pathToResource));
