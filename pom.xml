@@ -2204,6 +2204,8 @@
               <excludedMethods>
                 <!--cause of https://github.com/checkstyle/checkstyle/issues/3605-->
                 <param>addFeaturesForVerySecureJavaInstallations</param>
+                <!-- till https://github.com/checkstyle/checkstyle/issues/4394 -->
+                <param>auditStarted</param>
               </excludedMethods>
               <avoidCallsTo>
                 <!--cause of https://github.com/checkstyle/checkstyle/issues/3605-->
