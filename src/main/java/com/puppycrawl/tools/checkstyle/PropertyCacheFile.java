@@ -39,8 +39,7 @@ import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
 
-import javax.xml.bind.DatatypeConverter;
-
+import com.google.common.io.BaseEncoding;
 import com.google.common.io.ByteStreams;
 import com.google.common.io.Closeables;
 import com.google.common.io.Flushables;
@@ -230,7 +229,7 @@ final class PropertyCacheFile {
             final MessageDigest digest = MessageDigest.getInstance("SHA-1");
             digest.update(outputStream.toByteArray());
 
-            return DatatypeConverter.printHexBinary(digest.digest());
+            return BaseEncoding.base16().upperCase().encode(digest.digest());
         }
         catch (final IOException | NoSuchAlgorithmException ex) {
             // rethrow as unchecked exception
