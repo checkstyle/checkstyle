@@ -27,7 +27,7 @@ env:
     - PROFILE="-Ppitest-checkstyle-common,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checkstyle-main,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checkstyle-api,no-validations"; POST_ACTION=off_till_resolved
-    - PROFILE="-Ppitest-checkstyle-utils,no-validations"; POST_ACTION=off_till_resolved
+    - PROFILE="-Ppitest-checkstyle-utils,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checkstyle-gui,no-validations"
 
 branches:
