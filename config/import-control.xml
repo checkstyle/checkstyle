@@ -34,7 +34,6 @@
   <allow pkg="java.nio" local-only="true" />
   <allow class="java.security.MessageDigest" local-only="true"/>
   <allow class="java.security.NoSuchAlgorithmException" local-only="true"/>
-  <allow class="javax.xml.bind.DatatypeConverter" local-only="true"/>
   <allow pkg="com.puppycrawl.tools.checkstyle.utils" local-only="true"/>
   <allow pkg="com.puppycrawl.tools.checkstyle.grammars" local-only="true"/>
   <allow pkg="org.apache.commons.cli" local-only="true"/>
@@ -44,6 +43,7 @@
 
   <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
   <allow class="com.google.common.base.CaseFormat" local-only="true"/>
+  <allow class="com.google.common.io.BaseEncoding" local-only="true"/>
   <allow class="com.google.common.io.Closeables" local-only="true"/>
   <allow class="com.google.common.io.Flushables" local-only="true"/>
   <allow class="com.google.common.collect.HashMultimap" local-only="true"/>
