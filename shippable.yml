@@ -6,29 +6,7 @@ jdk:
 
 env:
   matrix:
-    - PROFILE="-Ppitest-checkstyle-xpath,no-validations"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checkstyle-filters,no-validations"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checks-javadoc,no-validations"
-    - PROFILE="-Ppitest-checks-imports,no-validations"
-    - PROFILE="-Ppitest-checks-metrics,no-validations"
-    - PROFILE="-Ppitest-checks-regexp,no-validations"
-    - PROFILE="-Ppitest-checks-sizes,no-validations"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checks-whitespace,no-validations"
-    - PROFILE="-Ppitest-checks-misc,no-validations"
-    - PROFILE="-Ppitest-checks-blocks,no-validations"
-    - PROFILE="-Ppitest-checks-coding,no-validations"
-    - PROFILE="-Ppitest-checks-design,no-validations"
-    - PROFILE="-Ppitest-checks-annotation,no-validations"
-    - PROFILE="-Ppitest-checks-header,no-validations"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checks-modifier,no-validations"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checks-naming,no-validations"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checks-indentation,no-validations"
-    - PROFILE="-Ppitest-checkstyle-tree-walker,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checkstyle-common,no-validations"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checkstyle-main,no-validations"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checkstyle-api,no-validations"; POST_ACTION=off_till_resolved
-    - PROFILE="-Ppitest-checkstyle-utils,no-validations"; POST_ACTION=off_till_resolved
-    - PROFILE="-Ppitest-checkstyle-gui,no-validations"
 
 branches:
   only:
@@ -49,7 +27,7 @@ build:
       echo "POST_ACTION="$POST_ACTION
       if [[ $SKIP_CI == 'false' ]];
       then
-        mvn $PROFILE clean verify org.pitest:pitest-maven:mutationCoverage;
+        mvn $PROFILE clean verify org.pitest:pitest-maven:mutationCoverage -Dverbose;
 
         if [[ $POST_ACTION == 'check_survived' && $(grep -RE "class='survived'" target/ | cat | wc -l) > 0 ]]; then
            echo "Survived items:"$(grep -RE "class='survived'" target/ | cat)
