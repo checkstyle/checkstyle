@@ -39,8 +39,7 @@ public final class JavadocTokenTypes {
      * Root node of any Javadoc comment.
      * Last child is always {@link #EOF}.
      *
-     * <p>
-     * <b>Tree for example:</b>
+     * <p><b>Tree for example:</b></p>
      * <pre>{@code
      * JAVADOC[3x0]
      *   |--NEWLINE[3x0] : [\n]
@@ -67,9 +66,9 @@ public final class JavadocTokenTypes {
     /**
      * Javadoc tag.
      *
-     * <p>Type of Javadoc tag is resolved by literal node that is first child of this node.
+     * <p>Type of Javadoc tag is resolved by literal node that is first child of this node.</p>
      *
-     * <p>As literal could be:
+     * <p>As literal could be:</p>
      * <ul>
      * <li>{@link #RETURN_LITERAL}</li>
      * <li>{@link #DEPRECATED_LITERAL}</li>
@@ -86,8 +85,7 @@ public final class JavadocTokenTypes {
      * <li>or {@link #CUSTOM_NAME} if it is custom Javadoc tag.</li>
      * </ul>
      *
-     * <p>
-     * <b>Example</b>
+     * <p><b>Example</b></p>
      * <pre>{@code &#64;param T The bar.}</pre>
      * <b>Tree</b>
      * <pre>{@code
@@ -107,9 +105,9 @@ public final class JavadocTokenTypes {
      *
      * <p>Type of Javadoc inline tag is resolved by literal node that is second child of this node.
      * First child is always {@link #JAVADOC_INLINE_TAG_START} and last node is always
-     * {@link #JAVADOC_INLINE_TAG_END}.
+     * {@link #JAVADOC_INLINE_TAG_END}.</p>
      *
-     * <p>As literal could be:
+     * <p>As literal could be:</p>
      * <ul>
      * <li>{@link #CODE_LITERAL}</li>
      * <li>{@link #DOC_ROOT_LITERAL}</li>
@@ -121,8 +119,7 @@ public final class JavadocTokenTypes {
      * <li>or {@link #CUSTOM_NAME} if it is custom Javadoc inline tag.</li>
      * </ul>
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code {&#64;link String}}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -142,10 +139,9 @@ public final class JavadocTokenTypes {
     /**
      * '@return' literal in @return Javadoc tag.
      *
-     * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}
+     * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}</p>
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @return true if file exists}</pre>
      * <b>Tree:</b>
      * <pre>{@code
@@ -166,10 +162,9 @@ public final class JavadocTokenTypes {
     /**
      * '{@literal @}deprecated' literal in {@literal @}deprecated Javadoc tag.
      *
-     * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}
+     * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}</p>
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @deprecated it is deprecated method}</pre>
      * <b>Tree:</b>
      * <pre>{@code
@@ -190,10 +185,9 @@ public final class JavadocTokenTypes {
     /**
      * '@since' literal in @since Javadoc tag.
      *
-     * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}
+     * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}</p>
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @since 3.4 RELEASE}</pre>
      * <b>Tree:</b>
      * <pre>{@code
@@ -214,10 +208,9 @@ public final class JavadocTokenTypes {
     /**
      * '@serialData' literal in @serialData Javadoc tag.
      *
-     * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}
+     * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}</p>
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @serialData two values of Integer type}</pre>
      * <b>Tree:</b>
      * <pre>{@code
@@ -239,15 +232,14 @@ public final class JavadocTokenTypes {
     /**
      * '@serialField' literal in @serialField Javadoc tag.
      *
-     * <p>Such Javadoc tag can have three arguments:
+     * <p>Such Javadoc tag can have three arguments:</p>
      * <ol>
      * <li>{@link #FIELD_NAME}</li>
      * <li>{@link #FIELD_TYPE}</li>
      * <li>{@link #DESCRIPTION}</li>
      * </ol>
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @serialField counter Integer objects counter}</pre>
      * <b>Tree:</b>
      * <pre>{@code
@@ -272,14 +264,13 @@ public final class JavadocTokenTypes {
     /**
      * '@param' literal in @param Javadoc tag.
      *
-     * <p>Such Javadoc tag can have two arguments:
+     * <p>Such Javadoc tag can have two arguments:</p>
      * <ol>
      * <li>{@link #PARAMETER_NAME}</li>
      * <li>{@link #DESCRIPTION}</li>
      * </ol>
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @param T The bar.}</pre>
      * <b>Tree:</b>
      * <pre>{@code
@@ -302,10 +293,9 @@ public final class JavadocTokenTypes {
     /**
      * '@see' literal in @see Javadoc tag.
      *
-     * <p>Such Javadoc tag can have one argument - {@link #REFERENCE}
+     * <p>Such Javadoc tag can have one argument - {@link #REFERENCE}</p>
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @see org.apache.utils.Lists.Comparator#compare(Object)}</pre>
      * <b>Tree:</b>
      * <pre>{@code
@@ -337,10 +327,9 @@ public final class JavadocTokenTypes {
      * '@see' literal in @see Javadoc tag.
      *
      * <p>Such Javadoc tag can have one argument - {@link #REFERENCE} or {@link #LITERAL_EXCLUDE}
-     * or {@link #LITERAL_INCLUDE}
+     * or {@link #LITERAL_INCLUDE}</p>
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @serial include}</pre>
      * <b>Tree:</b>
      * <pre>{@code
@@ -350,8 +339,7 @@ public final class JavadocTokenTypes {
      *       |--LITERAL_INCLUDE[3x8] : [include]
      * }</pre>
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @serial serialized company name}</pre>
      * <b>Tree:</b>
      * <pre>{@code
@@ -372,10 +360,9 @@ public final class JavadocTokenTypes {
     /**
      * '@version' literal in @version Javadoc tag.
      *
-     * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}
+     * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}</p>
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @version 1.3}</pre>
      * <b>Tree:</b>
      * <pre>{@code
@@ -396,10 +383,9 @@ public final class JavadocTokenTypes {
     /**
      * '@exception' literal in @exception Javadoc tag.
      *
-     * <p>Such Javadoc tag can have two argument - {@link #CLASS_NAME} and {@link #DESCRIPTION}
+     * <p>Such Javadoc tag can have two argument - {@link #CLASS_NAME} and {@link #DESCRIPTION}</p>
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @exception SQLException if query is not correct}</pre>
      * <b>Tree:</b>
      * <pre>{@code
@@ -422,10 +408,9 @@ public final class JavadocTokenTypes {
     /**
      * '@throws' literal in @throws Javadoc tag.
      *
-     * <p>Such Javadoc tag can have two argument - {@link #CLASS_NAME} and {@link #DESCRIPTION}
+     * <p>Such Javadoc tag can have two argument - {@link #CLASS_NAME} and {@link #DESCRIPTION}</p>
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @throws SQLException if query is not correct}</pre>
      * <b>Tree:</b>
      * <pre>{@code
@@ -448,10 +433,9 @@ public final class JavadocTokenTypes {
     /**
      * '@author' literal in @author Javadoc tag.
      *
-     * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}
+     * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}</p>
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @author Baratali Izmailov}</pre>
      * <b>Tree:</b>
      * <pre>{@code
@@ -472,10 +456,9 @@ public final class JavadocTokenTypes {
     /**
      * Name of custom Javadoc tag (or Javadoc inline tag).
      *
-     * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}
+     * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}</p>
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @myJavadocTag some magic}</pre>
      * <b>Tree:</b>
      * <pre>{@code
@@ -491,8 +474,7 @@ public final class JavadocTokenTypes {
     /**
      * First child of {@link #JAVADOC_INLINE_TAG} that represents left curly brace '{'.
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code {&#64;code Comparable&lt;E&gt;}}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -509,8 +491,7 @@ public final class JavadocTokenTypes {
     /**
      * Last child of {@link #JAVADOC_INLINE_TAG} that represents right curly brace '}'.
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code {&#64;code Comparable&lt;E&gt;}}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -528,15 +509,14 @@ public final class JavadocTokenTypes {
     /**
      * '@code' literal in {&#64;code} Javadoc inline tag.
      *
-     * <p>Such Javadoc inline tag can have such child nodes:
+     * <p>Such Javadoc inline tag can have such child nodes:</p>
      * <ul>
      * <li>{@link #NEWLINE}</li>
      * <li>{@link #WS}</li>
      * <li>{@link #TEXT}</li>
      * </ul>
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code {&#64;code Comparable&lt;E&gt;}}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -559,14 +539,13 @@ public final class JavadocTokenTypes {
     /**
      * '@docRoot' literal in {&#64;docRoot} Javadoc inline tag.
      *
-     * <p>Such Javadoc inline tag does not have any arguments and can have such child nodes:
+     * <p>Such Javadoc inline tag does not have any arguments and can have such child nodes:</p>
      * <ul>
      * <li>{@link #NEWLINE}</li>
      * <li>{@link #WS}</li>
      * </ul>
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code {&#64;docRoot}}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -577,8 +556,7 @@ public final class JavadocTokenTypes {
      * }
      * </pre>
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code {&#64;docRoot
      *}}</pre>
      * <b>Tree:</b>
@@ -601,9 +579,7 @@ public final class JavadocTokenTypes {
 
     /**
      * '@link' literal in {&#64;link} Javadoc inline tag.
-     * <p>
-     * Such Javadoc inline tag can have one argument - {@link #REFERENCE}
-     * </p>
+     * <p>Such Javadoc inline tag can have one argument - {@link #REFERENCE}</p>
      * <p><b>Example:</b></p>
      * <pre>{@code {&#64;link org.apache.utils.Lists.Comparator#compare(Object)}}</pre>
      * <p><b>Tree:</b></p>
@@ -639,14 +615,13 @@ public final class JavadocTokenTypes {
     /**
      * '@inheritDoc' literal in {&#64;inheritDoc} Javadoc inline tag.
      *
-     * <p>Such Javadoc inline tag does not have any arguments and can have such child nodes:
+     * <p>Such Javadoc inline tag does not have any arguments and can have such child nodes:</p>
      * <ul>
      * <li>{@link #NEWLINE}</li>
      * <li>{@link #WS}</li>
      * </ul>
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code {&#64;inheritDoc}}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -667,10 +642,9 @@ public final class JavadocTokenTypes {
     /**
      * '@linkplain' literal in {&#64;linkplain} Javadoc inline tag.
      *
-     * <p>Such Javadoc inline tag can have one argument - {@link #REFERENCE}
+     * <p>Such Javadoc inline tag can have one argument - {@link #REFERENCE}</p>
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code {&#64;linkplain org.apache.utils.Lists.Comparator#compare(Object) compare}}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -707,15 +681,14 @@ public final class JavadocTokenTypes {
     /**
      * '@literal' literal in {&#64;literal} Javadoc inline tag.
      *
-     * <p>Such Javadoc inline tag can have such child nodes:
+     * <p>Such Javadoc inline tag can have such child nodes:</p>
      * <ul>
      * <li>{@link #NEWLINE}</li>
      * <li>{@link #WS}</li>
      * <li>{@link #TEXT}</li>
      * </ul>
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code {&#64;literal #compare(Object)}}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -739,14 +712,13 @@ public final class JavadocTokenTypes {
      * '@value' literal in {&#64;value} Javadoc inline tag.
      *
      * <p>Such Javadoc inline tag has one argument {@link #REFERENCE}
-     * and can have such child nodes:
+     * and can have such child nodes:</p>
      * <ul>
      * <li>{@link #NEWLINE}</li>
      * <li>{@link #WS}</li>
      * </ul>
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code {&#64;value Integer#MAX_VALUE}}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -784,8 +756,7 @@ public final class JavadocTokenTypes {
      * Package definition in {@link #REFERENCE}.
      * Package definition is lowercase part of REFERENCE and before a hash character (#).
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @see org.apache.utils.Lists.Comparator#compare(Object)}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -814,8 +785,7 @@ public final class JavadocTokenTypes {
      * Class definition is part of REFERENCE, that is started by capital letter
      * and before a hash character (#).
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @see org.apache.utils.Lists.Comparator#compare(Object)}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -844,8 +814,7 @@ public final class JavadocTokenTypes {
      * Dot separator is used between {@link #PACKAGE} and {@link #CLASS}; between {@link #CLASS}
      * and {@link #CLASS}
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @see org.apache.utils.Lists.Comparator#compare(Object)}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -873,8 +842,7 @@ public final class JavadocTokenTypes {
      * Hash character in {@link #REFERENCE}.
      * Hash character is used before specifying a class member.
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @see org.apache.utils.Lists.Comparator#compare(Object)}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -902,8 +870,7 @@ public final class JavadocTokenTypes {
      * A class member in {@link #REFERENCE}.
      * Class member is specified after {@link #HASH} symbol.
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @see org.apache.utils.Lists.Comparator#compare(Object)}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -934,8 +901,7 @@ public final class JavadocTokenTypes {
      * Each parameter is represented by {@link #ARGUMENT} node.
      * Arguments in braces are separated by {@link #COMMA} (and optional {@link #WS}).
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @see #method(Processor, String)}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -960,8 +926,7 @@ public final class JavadocTokenTypes {
     /**
      * Left brace in {@link #PARAMETERS} part of {@link #REFERENCE}.
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @see #method(Processor, String)}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -986,8 +951,7 @@ public final class JavadocTokenTypes {
     /**
      * Right brace in {@link #PARAMETERS} part of {@link #REFERENCE}.
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @see #method(Processor, String)}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -1012,8 +976,7 @@ public final class JavadocTokenTypes {
     /**
      * Argument definition in {@link #PARAMETERS} part of {@link #REFERENCE}.
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @see #method(Processor, String)}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -1038,8 +1001,7 @@ public final class JavadocTokenTypes {
     /**
      * Comma separator between parameters in {@link #PARAMETERS} part of {@link #REFERENCE}.
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @see #method(Processor, String)}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -1069,8 +1031,7 @@ public final class JavadocTokenTypes {
      * Quoted text.
      * One of possible @see tag arguments.
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @see "Spring Framework"}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -1086,7 +1047,7 @@ public final class JavadocTokenTypes {
     public static final int STRING = JavadocParser.STRING;
 
     /**
-     * Description node, that contains:
+     * Description node. It contains:
      * <ul>
      * <li>{@link #TEXT}</li>
      * <li>{@link #WS}</li>
@@ -1094,10 +1055,9 @@ public final class JavadocTokenTypes {
      * <li>{@link #HTML_ELEMENT}</li>
      * </ul>
      *
-     * <p>It is argument for many Javadoc tags and inline tags.
+     * <p>It is argument for many Javadoc tags and inline tags.</p>
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @throws IOException if &lt;b&gt;connection&lt;/b&gt; problems occur}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -1131,8 +1091,7 @@ public final class JavadocTokenTypes {
      * Exception class name. First argument in {@link #THROWS_LITERAL @throws} and
      * {@link #EXCEPTION_LITERAL @exception} Javadoc tags.
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @throws IOException connection problems}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -1154,8 +1113,7 @@ public final class JavadocTokenTypes {
     /**
      * First argument in {@link #PARAM_LITERAL @param} Javadoc tag.
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @param T The bar.}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -1180,8 +1138,7 @@ public final class JavadocTokenTypes {
      * 'exclude' literal.
      * One of three possible {@link #SERIAL_LITERAL @serial} tag arguments.
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @serial exclude}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -1203,8 +1160,7 @@ public final class JavadocTokenTypes {
      * 'include' literal.
      * One of three possible {@link #SERIAL_LITERAL @serial} tag arguments.
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @serial include}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -1225,8 +1181,7 @@ public final class JavadocTokenTypes {
     /**
      * Field name. First argument of {@link #SERIAL_FIELD_LITERAL @serialField} Javadoc tag.
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @serialField counter Integer objects counter}</pre>
      * <b>Tree:</b>
      * <pre>
@@ -1252,8 +1207,7 @@ public final class JavadocTokenTypes {
     /**
      * Field type. Second argument of {@link #SERIAL_FIELD_LITERAL @serialField} Javadoc tag.
      *
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre>{@code @serialField counter Integer objects counter}</pre>
      * <b>Tree:</b>
      * <pre>
