@@ -366,9 +366,9 @@
                   <td/>
               </tr>
               <tr>
-                  <td><a href="http://www.vim.org">Vim editor</a></td>
+                  <td><a href="https://vim.sourceforge.io/">Vim editor</a></td>
                   <td>Xandy Johnson</td>
-                  <td><a href="http://vim.sourceforge.net/scripts/script.php?script_id=448">Plugin Homepage</a></td>
+                  <td><a href="https://vim.sourceforge.io/scripts/script.php?script_id=448">Plugin Homepage</a></td>
                   <td>Vim file-type plug-in</td>
               </tr>
           </table>
