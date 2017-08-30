@@ -125,7 +125,6 @@ public class XMLLogger
     @Override
     public void auditFinished(AuditEvent event) {
         fileMessages.forEach(this::writeFileMessages);
-        fileMessages.clear();
 
         writer.println("</checkstyle>");
         if (closeStream) {
