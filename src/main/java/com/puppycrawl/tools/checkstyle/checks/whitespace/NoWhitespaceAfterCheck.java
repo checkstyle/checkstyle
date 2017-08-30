@@ -294,8 +294,16 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
         else {
             final DetailAST ident = getIdentLastToken(ast);
             if (ident == null) {
+                final DetailAST rparen = ast.findFirstToken(TokenTypes.RPAREN);
+                // construction like new int[]{1}[0]
+                if (rparen == null) {
+                    final DetailAST lastChild = firstChild.getLastChild();
+                    result = lastChild.findFirstToken(TokenTypes.RCURLY);
+                }
                 // construction like ((byte[]) pixels)[0]
-                result = ast.findFirstToken(TokenTypes.RPAREN);
+                else {
+                    result = rparen;
+                }
             }
             else {
                 result = ident;
