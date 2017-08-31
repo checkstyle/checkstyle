@@ -115,7 +115,6 @@ public class IllegalImportCheck
      */
     public void setIllegalClasses(String... from) {
         illegalClasses = from.clone();
-        illegalClassesRegexps.clear();
         for (String illegalClass : illegalClasses) {
             illegalClassesRegexps.add(CommonUtils.createPattern(illegalClass));
         }

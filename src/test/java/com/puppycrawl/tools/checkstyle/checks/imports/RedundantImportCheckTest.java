@@ -24,11 +24,17 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportChec
 import static com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck.MSG_SAME;
 import static org.junit.Assert.assertArrayEquals;
 
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Test;
 
+import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class RedundantImportCheckTest
     extends AbstractModuleTestSupport {
@@ -47,6 +53,24 @@ public class RedundantImportCheckTest
         };
         assertArrayEquals("Default required tokens are invalid",
             expected, checkObj.getRequiredTokens());
+    }
+
+    @Test
+    public void testStateIsClearedOnBeginTree1()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RedundantImportCheck.class);
+        final String inputWithWarnings = getPath("InputRedundantImportCheckClearState.java");
+        final String inputWithoutWarnings = getPath("InputRedundantImportWithoutWarnings.java");
+        final List<String> expectedFirstInput = Arrays.asList(
+            "4:1: " + getCheckMessage(MSG_DUPLICATE, 3, "java.util.Arrays.asList"),
+            "7:1: " + getCheckMessage(MSG_DUPLICATE, 6, "java.util.List")
+        );
+        final List<String> expectedSecondInput = Arrays.asList(CommonUtils.EMPTY_STRING_ARRAY);
+        final File[] inputs = {new File(inputWithWarnings), new File(inputWithoutWarnings)};
+
+        verify(createChecker(checkConfig), inputs, ImmutableMap.of(
+            inputWithWarnings, expectedFirstInput,
+            inputWithoutWarnings, expectedSecondInput));
     }
 
     @Test
