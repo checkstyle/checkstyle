@@ -1528,6 +1528,19 @@
     </profile>
 
     <profile>
+      <id>sonar</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>2.7.1</version>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
       <id>cobertura-check</id>
       <activation>
         <jdk>[1.8,)</jdk>
