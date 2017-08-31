@@ -22,8 +22,13 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 import static com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
 
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Test;
 
+import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -33,6 +38,31 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/imports/unusedimports";
+    }
+
+    @Test
+    public void testReferencedStateIsCleared() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
+        final String inputWithoutWarnings = getPath("InputUnusedImportWithoutWarnings.java");
+        final String inputWithWarnings = getPath("InputUnusedImportCheckClearState.java");
+        final List<String> expectedFirstInput = Arrays.asList(CommonUtils.EMPTY_STRING_ARRAY);
+        final List<String> expectedSecondInput = Arrays.asList(
+                "3:8: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
+                "4:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
+                "5:8: " + getCheckMessage(MSG_KEY, "java.util.Set")
+        );
+        final File[] inputsWithWarningsFirst =
+            {new File(inputWithWarnings), new File(inputWithoutWarnings)};
+        final File[] inputsWithoutWarningFirst =
+            {new File(inputWithoutWarnings), new File(inputWithWarnings)};
+
+        verify(createChecker(checkConfig), inputsWithWarningsFirst, ImmutableMap.of(
+                inputWithoutWarnings, expectedFirstInput,
+                inputWithWarnings, expectedSecondInput));
+        verify(createChecker(checkConfig), inputsWithoutWarningFirst, ImmutableMap.of(
+                inputWithoutWarnings, expectedFirstInput,
+                inputWithWarnings, expectedSecondInput));
+
     }
 
     @Test

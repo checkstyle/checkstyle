@@ -114,8 +114,6 @@ public class AvoidStarImportCheck
      *     where star imports are ok.
      */
     public void setExcludes(String... excludesParam) {
-        excludes.clear();
-
         for (final String exclude : excludesParam) {
             if (exclude.endsWith(STAR_IMPORT_SUFFIX)) {
                 excludes.add(exclude);
