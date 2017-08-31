@@ -1357,7 +1357,8 @@
             <!-- permanent SSLHandshakeException https://issues.apache.org/jira/browse/MLINKCHECK-28 -->
             <excludedLink>https://sourceforge.net/projects/checkstyle/files/checkstyle/</excludedLink>
             <!-- permanent SSLHandshakeException -->
-            <excludedLink>http://vim.sourceforge.net/scripts/script.php?script_id=448</excludedLink>
+            <excludedLink>https://vim.sourceforge.io/</excludedLink>
+            <excludedLink>https://vim.sourceforge.io/scripts/script.php?script_id=448</excludedLink>
             <!-- permanent SSLException -->
             <excludedLink>https://button.flattr.com/flattr-badge-large.png</excludedLink>
             <!-- permanent SSLException -->
