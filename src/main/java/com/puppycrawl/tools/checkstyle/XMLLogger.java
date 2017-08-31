@@ -74,7 +74,7 @@ public class XMLLogger
     /**
      * Helper writer that allows easy encoding and printing.
      */
-    private PrintWriter writer;
+    private final PrintWriter writer;
 
     /**
      * Creates a new {@code XMLLogger} instance.
@@ -86,7 +86,7 @@ public class XMLLogger
      */
     @Deprecated
     public XMLLogger(OutputStream outputStream, boolean closeStream) {
-        setOutputStream(outputStream);
+        writer = new PrintWriter(new OutputStreamWriter(outputStream, StandardCharsets.UTF_8));
         this.closeStream = closeStream;
     }
 
@@ -97,17 +97,8 @@ public class XMLLogger
      * @param outputStreamOptions if {@code CLOSE} stream should be closed in auditFinished()
      */
     public XMLLogger(OutputStream outputStream, OutputStreamOptions outputStreamOptions) {
-        setOutputStream(outputStream);
+        writer = new PrintWriter(new OutputStreamWriter(outputStream, StandardCharsets.UTF_8));
         closeStream = outputStreamOptions == OutputStreamOptions.CLOSE;
-    }
-
-    /**
-     * Sets the OutputStream.
-     * @param outputStream the OutputStream to use
-     **/
-    private void setOutputStream(OutputStream outputStream) {
-        final OutputStreamWriter osw = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
-        writer = new PrintWriter(osw);
     }
 
     @Override
