@@ -180,6 +180,9 @@ public class FallThroughCheck extends AbstractCheck {
             case TokenTypes.LITERAL_SWITCH:
                 terminated = checkSwitch(ast, useContinue);
                 break;
+            case TokenTypes.LITERAL_SYNCHRONIZED:
+                terminated = checkSynchronized(ast, useBreak, useContinue);
+                break;
             default:
                 terminated = false;
         }
@@ -307,6 +310,20 @@ public class FallThroughCheck extends AbstractCheck {
             caseGroup = caseGroup.getNextSibling();
         }
         return isTerminated;
+    }
+
+    /**
+     * Checks if a given synchronized block terminated by return, throw or,
+     * if allowed break, continue.
+     * @param synchronizedAst synchronized block to check.
+     * @param useBreak should we consider break as terminator.
+     * @param useContinue should we consider continue as terminator.
+     * @return true if synchronized block is terminated.
+     */
+    private boolean checkSynchronized(final DetailAST synchronizedAst, boolean useBreak,
+                                      boolean useContinue) {
+        return isTerminated(
+            synchronizedAst.findFirstToken(TokenTypes.SLIST), useBreak, useContinue);
     }
 
     /**
