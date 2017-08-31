@@ -556,10 +556,6 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
         See <a href="writingchecks.html#Declare_checks_external_resource_locations">Declare check's external resource locations</a>.
     </section>
 
-    <section name="Known API issues">
-        <a href="https://github.com/checkstyle/checkstyle/issues/3810">JvadocParser: inconsistent AST tree with and without SINGLETON_ELEMENT #3810</a>.
-    </section>
-
     <section name="Examples of Javadoc Checks">
       The best source knowledge about how to write Javadoc Checks
       could be taken from
