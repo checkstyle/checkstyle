@@ -133,6 +133,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "501:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "507:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "514:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "546:12: " + getCheckMessage(MSG_FALL_THROUGH),
         };
         verify(checkConfig,
                getPath("InputFallThrough.java"),

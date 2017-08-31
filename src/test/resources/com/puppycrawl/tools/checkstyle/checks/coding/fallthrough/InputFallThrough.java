@@ -521,4 +521,30 @@ public class InputFallThrough
         public void close() throws Exception {
         }
     }
+
+    void synchronizedStatement() {
+       switch (hashCode()) {
+           case 1:
+               synchronized (this) {
+                   break;
+               }
+           case 2:
+               // synchronized nested in if
+               if (true) {
+                   synchronized (this) {
+                       break;
+                   }
+               } else {
+                   synchronized (this) {
+                       break;
+                   }
+               }
+           case 3:
+               synchronized (this) {
+               }
+               // fallthru
+           default:
+               break;
+       }
+    }
 }
