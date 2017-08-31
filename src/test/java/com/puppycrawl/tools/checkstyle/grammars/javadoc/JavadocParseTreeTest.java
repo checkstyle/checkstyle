@@ -305,4 +305,10 @@ public class JavadocParseTreeTest extends AbstractTreeTestSupport {
         verifyJavadocTree(getHtmlPath("expectedHtmlVoidElementWbrAst.txt"),
                 getHtmlPath("InputHtmlVoidElementWbr.javadoc"));
     }
+
+    @Test
+    public void testLeadingAsteriskAfterSeeTag() throws Exception {
+        verifyJavadocTree(getDocPath("expectedLeadingAsteriskAfterSeeTagAst.txt"),
+                getDocPath("InputLeadingAsteriskAfterSeeTag.javadoc"));
+    }
 }
