@@ -16,6 +16,225 @@
   <body>
     <!-- placeholder for a new section -->
 
+    <section name="Release 8.2">
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            JavadocParser: inconsistent AST tree with and without SINGLETON_ELEMENT. Author: Piyush Sharma <a href="https://github.com/checkstyle/checkstyle/issues/3810">#3810</a>
+          </li>
+          <li>
+            move AbstractTypeAwareCheck and ClassResolver to javadoc package. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/4676">#4676</a>
+          </li>
+          <li>
+            remove deprecated property maxLineLength from LeftCurlyCheck. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3671">#3671</a>
+          </li>
+          <li>
+            remove FileContentsHolder module as FileContents object is available for filters on TreeWalker in TreeWalkerAudit Event . Author: Timur, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3573">#3573</a>
+          </li>
+          <li>
+            Replace terms in AST Tokens by terms from HTML specification. Author: Piyush Sharma <a href="https://github.com/checkstyle/checkstyle/issues/4448">#4448</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            new Check: single line annotation location. Author: kazachka <a href="https://github.com/checkstyle/checkstyle/issues/3440">#3440</a>
+          </li>
+          <li>
+            Add HTML5 tags support to Javadoc antlr4 grammar and related classes. Author: Piyush Sharma <a href="https://github.com/checkstyle/checkstyle/issues/3332">#3332</a>
+          </li>
+          <li>
+            UnnecessaryParentheses: Reject parentheses around single parameters in lambdas. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/4639">#4639</a>
+          </li>
+          <li>
+            Add token type to LocalizedMessage. Author: Timur <a href="https://github.com/checkstyle/checkstyle/issues/4419">#4419</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Add (WS | NEWLINE) in proper places for javadoc tags. Author: Piyush Sharma <a href="https://github.com/checkstyle/checkstyle/issues/4934">#4934</a>
+          </li>
+          <li>
+            XMLLogger methods should be thread-safe. Author: Andrew Kuchev <a href="https://github.com/checkstyle/checkstyle/issues/4932">#4932</a>
+          </li>
+          <li>
+            Javadoc comments containing unescaped Java code with generic types leads to enormous parsing times. Author: Piyush Sharma <a href="https://github.com/checkstyle/checkstyle/issues/4390">#4390</a>
+          </li>
+          <li>
+            PackageObjectFactory can't instantiate AuditListeners. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/4742">#4742</a>
+          </li>
+          <li>
+            Remove thread-unsafe context from the AbstractJavadocCheck class . Author: Andrew Kuchev <a href="https://github.com/checkstyle/checkstyle/issues/4925">#4925</a>
+          </li>
+          <li>
+            SeverityLevelCounter should be thread-safe. Author: Andrew Kuchev <a href="https://github.com/checkstyle/checkstyle/issues/4927">#4927</a>
+          </li>
+          <li>
+            JavadocPackageCheck should be thread-safe. Author: Andrew Kuchev <a href="https://github.com/checkstyle/checkstyle/issues/4945">#4945</a>
+          </li>
+          <li>
+            Violations should print ID and observe them as unique. Author: Luolc <a href="https://github.com/checkstyle/checkstyle/issues/4607">#4607</a>
+          </li>
+          <li>
+            SuppressWarnings triggers RedundantModifier check on enum constructor. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/4846">#4846</a>
+          </li>
+          <li>
+            SummaryJavadoc: overlapping messages. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/4798">#4798</a>
+          </li>
+          <li>
+            Remove checkstyle_packages.xml from checkstyle. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3660">#3660</a>
+          </li>
+          <li>
+            SummaryJavadoc: doesn't completely ignore inheritDoc tag. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/4744">#4744</a>
+          </li>
+          <li>
+            TodoCommentCheck overflows the stack for files with many comments. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/4563">#4563</a>
+          </li>
+          <li>
+            RegexpHeader not detecting '\n\n' by regex properly. Author: Vivek Rao <a href="https://github.com/checkstyle/checkstyle/issues/4735">#4735</a>
+          </li>
+          <li>
+            ModifiedControlVariableCheck crashes for some nested loops with multiple assignments. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/4630">#4630</a>
+          </li>
+          <li>
+            MethodCountCheck: class counts include anonymous methods. Author: rnveach, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/4539">#4539</a>
+          </li>
+          <li>
+            RequireThisCheck: NPE on method from base class with validateOnlyOverlapping off. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/4856">#4856</a>
+          </li>
+          <li>
+            TreeWalkerFilter needs to be added to ModuleReflectionUtils. Author: Timur <a href="https://github.com/checkstyle/checkstyle/issues/4843">#4843</a>
+          </li>
+          <li>
+            RequireThisCheck: Use and declare a local variable with same name as class variable cause a NPE. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/4777">#4777</a>
+          </li>
+          <li>
+            Indentation: multiple try with resource not checked. Author: Vikramaditya Kukreja <a href="https://github.com/checkstyle/checkstyle/issues/3131">#3131</a>
+          </li>
+          <li>
+            FinalLocalVariable: false-negative with anonymous class. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/4727">#4727</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            pitest: increase mutation coverage for pitest-checkstyle-utils profile to 100%. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/4395">#4395</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checkstyle-api profile to 100%. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/4394">#4394</a>
+          </li>
+          <li>
+            Remove strong, wildcard suppressions in configuration. Author: vasilyeva, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/4384">#4384</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checks-design profile to 100%. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/5007">#5007</a>
+          </li>
+          <li>
+            Remove usage of javax.xml.bind.DatatypeConverter (removed in Java 9). Author: Oliver Siegmar <a href="https://github.com/checkstyle/checkstyle/issues/5027">#5027</a>
+          </li>
+          <li>
+            shippable: unstable execution of pitest for pitest-checkstyle-common profile. Author: Andrew Kuchev, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5022">#5022</a>
+          </li>
+          <li>
+            Fix documentation for minLineCount property in JavadocMethod. Author: Ruslan Iagudin <a href="https://github.com/checkstyle/checkstyle/issues/4987">#4987</a>
+          </li>
+          <li>
+            Using Eclipse compiler in CI to control 0 Warning level. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/2600">#2600</a>
+          </li>
+          <li>
+            IllegalTypeCheck: split illegalClassNames for short names to prevent runtime modification. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/4947">#4947</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checks-whitespace profile to 100%. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/5003">#5003</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checks-sizes profile to 100%. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4993">#4993</a>
+          </li>
+          <li>
+            MainTest.testCreateListenerWithLocationIllegalStateException isn't deleting it's test file anymore. Author: liscju <a href="https://github.com/checkstyle/checkstyle/issues/4842">#4842</a>
+          </li>
+          <li>
+            Implement xpath query generator. Author: Timur <a href="https://github.com/checkstyle/checkstyle/issues/4901">#4901</a>
+          </li>
+          <li>
+            Implement XpathFilter. Author: Timur <a href="https://github.com/checkstyle/checkstyle/issues/4422">#4422</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checks-misc profile to 100%. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4675">#4675</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checks-regexp profile to 100%. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4988">#4988</a>
+          </li>
+          <li>
+            ReturnCount: enforce max=1 over checkstyle code. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3496">#3496</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checkstyle-tree-walker profile to 100%. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4398">#4398</a>
+          </li>
+          <li>
+            idea: fixing HtmlTagCanBeJavadocTag cause ant build error. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4805">#4805</a>
+          </li>
+          <li>
+            AnnotationUseStyleCheck defaults: mismatch between documentation and code. Author: Stephan Schroevers <a href="https://github.com/checkstyle/checkstyle/issues/4966">#4966</a>
+          </li>
+          <li>
+            idea: fix ThisEscapedInConstructor idea violation for ImportControl class. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4863">#4863</a>
+          </li>
+          <li>
+            idea:  twelfth part of idea violations. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4940">#4940</a>
+          </li>
+          <li>
+            resolve IDEA inspection BooleanParameter in AbstractModuleTestSupport.createChecker. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4857">#4857</a>
+          </li>
+          <li>
+            AuditEventDefaultFormatterTest should not use PowerMockito for testing. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/4931">#4931</a>
+          </li>
+          <li>
+            idea: eleventh part of idea violations. Author: vasilyeva, vasylieva, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/4801">#4801</a>
+          </li>
+          <li>
+            avoid boolean parameters for public methods. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4709">#4709</a>
+          </li>
+          <li>
+            Mapper of XPath expressions onto AST nodes. Author: Timur <a href="https://github.com/checkstyle/checkstyle/issues/4369">#4369</a>
+          </li>
+          <li>
+            disallow java.util.Comparator in import-control. Author: Luolc <a href="https://github.com/checkstyle/checkstyle/issues/4907">#4907</a>
+          </li>
+          <li>
+            Custom checks broken with Checkstyle 8.0. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/4885">#4885</a>
+          </li>
+          <li>
+            Split BaseCheckTestSupport into AbstractPathTestSupport, AbstractModuleTestSupport, and AbstractTreeTestSupport. Author: rnveach, Subbu Dantu <a href="https://github.com/checkstyle/checkstyle/issues/4592">#4592</a>
+          </li>
+          <li>
+            idea: ninth part of idea violations. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4707">#4707</a>
+          </li>
+          <li>
+            idea: fifth part of idea violations. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4726">#4726</a>
+          </li>
+          <li>
+            idea: add messages to all asserts. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4808">#4808</a>
+          </li>
+          <li>
+            wercker: NoErrorTest on sevntu with checkstyle's snapshot. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/4829">#4829</a>
+          </li>
+          <li>
+            Improve Error Handling for Javadoc Parsing. Author: Piyush Sharma <a href="https://github.com/checkstyle/checkstyle/issues/4717">#4717</a>
+          </li>
+          <li>
+            idea: add initial capacities to StringBuffer. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/4812">#4812</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checkstyle-main profile to 100%. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4399">#4399</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-check-annotation profile to 100%. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4402">#4402</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 8.1">
       <p>Breaking backward compatibility:</p>
         <ul>
