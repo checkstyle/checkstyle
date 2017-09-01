@@ -238,4 +238,13 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputUnusedImportsFromJavaLang.java"), expected);
     }
+
+    @Test
+    public void testImportsJavadocQualifiedName() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
+        final String[] expected = {
+            "4:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
+        };
+        verify(checkConfig, getPath("InputUnusedImportsJavadocQualifiedName.java"), expected);
+    }
 }

@@ -300,8 +300,27 @@ public class UnusedImportsCheck extends AbstractCheck {
         final Set<String> references = new HashSet<>();
         final Matcher matcher = pattern.matcher(identifier);
         while (matcher.find()) {
-            references.add(matcher.group(1));
+            references.add(topLevelType(matcher.group(1)));
         }
         return references;
+    }
+
+    /**
+     * If the given type string contains "." (e.g. "Map.Entry"), returns the
+     * top level type (e.g. "Map"), as that is what must be imported for the
+     * type to resolve. Otherwise, returns the type as-is.
+     * @param type A possibly qualified type name
+     * @return The simple name of the top level type
+     */
+    private static String topLevelType(String type) {
+        final String topLevelType;
+        final int dotIndex = type.indexOf('.');
+        if (dotIndex == -1) {
+            topLevelType = type;
+        }
+        else {
+            topLevelType = type.substring(0, dotIndex);
+        }
+        return topLevelType;
     }
 }
