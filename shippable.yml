@@ -18,7 +18,7 @@ env:
     - PROFILE="-Ppitest-checks-blocks,no-validations"
     - PROFILE="-Ppitest-checks-coding,no-validations"
     - PROFILE="-Ppitest-checks-design,no-validations"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checks-annotation,no-validations"
+    - PROFILE="-Ppitest-checks-annotation,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checks-header,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checks-modifier,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checks-naming,no-validations"; POST_ACTION=check_survived
