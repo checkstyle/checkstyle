@@ -48,7 +48,7 @@ import com.sun.tools.javadoc.ModifierFilter;
 public class TokenTypesDocletTest extends AbstractPathTestSupport {
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/doclets";
+        return "com/puppycrawl/tools/checkstyle/doclets/tokentypesdoclet";
     }
 
     @Test

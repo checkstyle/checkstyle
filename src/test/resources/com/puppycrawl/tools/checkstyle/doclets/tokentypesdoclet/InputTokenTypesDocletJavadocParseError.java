@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.doclets;
+package com.puppycrawl.tools.checkstyle.doclets.tokentypesdoclet;
 
 public final class InputTokenTypesDocletJavadocParseError {
 
