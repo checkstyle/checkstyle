@@ -69,7 +69,7 @@ public class SuppressWarningsFilterTest
 
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/filters";
+        return "com/puppycrawl/tools/checkstyle/filters/suppresswarningsfilter";
     }
 
     @Test
@@ -173,7 +173,7 @@ public class SuppressWarningsFilterTest
         };
 
         verify(createChecker(filterConfig),
-            getPath("InputSuppressByIdWithWarningsFilter.java"),
+            getPath("InputSuppressWarningsFilterById.java"),
             removeSuppressed(expectedViolationMessages, suppressedViolationMessages));
     }
 }

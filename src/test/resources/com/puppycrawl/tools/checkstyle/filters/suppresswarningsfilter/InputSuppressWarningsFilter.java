@@ -2,7 +2,7 @@
 // Test case file for checkstyle.
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.filters;
+package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
 
 /**
  * Test input for using comments to suppress errors.

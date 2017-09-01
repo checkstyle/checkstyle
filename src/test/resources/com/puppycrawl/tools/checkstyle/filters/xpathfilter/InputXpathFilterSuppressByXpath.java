@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.filters.xpathfilter;
 
-public class InputSuppressByXpath {
+public class InputXpathFilterSuppressByXpath {
     private int countTokens() {
         double pi = 3.14;
         return 123;
