@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.filters;
+package com.puppycrawl.tools.checkstyle.filters.suppressioncommentfilter;
 
-public class InputSuppressByIdWithCommentFilter {
+public class InputSuppressionCommentFilterSuppressById {
 
     //CSOFF ignore (reason)
     private int A1;

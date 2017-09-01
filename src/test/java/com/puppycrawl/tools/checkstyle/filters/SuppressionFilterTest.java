@@ -58,7 +58,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/filters";
+        return "com/puppycrawl/tools/checkstyle/filters/suppressionfilter";
     }
 
     @Test
@@ -72,9 +72,8 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAccept() throws CheckstyleException {
-        final String fileName = "src/test/resources/com/puppycrawl/tools/checkstyle/filters/"
-                          + "suppressions_none.xml";
+    public void testAccept() throws Exception {
+        final String fileName = getPath("InputSuppressionFilterNone.xml");
         final boolean optional = false;
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 
@@ -96,8 +95,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNonExistingSuppressionFileWithFalseOptional() {
-        final String fileName = "src/test/resources/com/puppycrawl/tools/checkstyle/filters/"
-                + "non_existing_suppression_file.xml";
+        final String fileName = "non_existing_suppression_file.xml";
         try {
             final boolean optional = false;
             createSuppressionFilter(fileName, optional);
@@ -110,9 +108,8 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testExistingInvalidSuppressionFileWithTrueOptional() {
-        final String fileName = "src/test/resources/com/puppycrawl/tools/checkstyle/filters/"
-                + "suppressions_invalid_file.xml";
+    public void testExistingInvalidSuppressionFileWithTrueOptional() throws IOException {
+        final String fileName = getPath("InputSuppressionFilterInvalidFile.xml");
         try {
             final boolean optional = true;
             createSuppressionFilter(fileName, optional);
@@ -127,8 +124,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
 
     @Test
     public void testExistingSuppressionFileWithTrueOptional() throws Exception {
-        final String fileName = "src/test/resources/com/puppycrawl/tools/checkstyle/filters/"
-                + "suppressions_none.xml";
+        final String fileName = getPath("InputSuppressionFilterNone.xml");
         final boolean optional = true;
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 
@@ -152,8 +148,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
 
         PowerMockito.mockStatic(CommonUtils.class);
 
-        final String fileName = "src/test/resources/com/puppycrawl/tools/checkstyle/filters/"
-                + "suppressions_none.xml";
+        final String fileName = getPath("InputSuppressionFilterNone.xml");
         BDDMockito.given(CommonUtils.getUriByFilename(fileName)).willReturn(uri);
 
         final boolean optional = true;
@@ -166,8 +161,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNonExistingSuppressionFileWithTrueOptional() throws Exception {
-        final String fileName = "src/test/resources/com/puppycrawl/tools/checkstyle/filters/"
-                + "non_existing_suppression_file.xml";
+        final String fileName = "non_existing_suppression_file.xml";
         final boolean optional = true;
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 
@@ -193,7 +187,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     @Test
     public void testLocalFileExternalResourceContentDoesNotChange() throws Exception {
         final DefaultConfiguration filterConfig = createModuleConfig(SuppressionFilter.class);
-        filterConfig.addAttribute("file", getPath("suppressions_none.xml"));
+        filterConfig.addAttribute("file", getPath("InputSuppressionFilterNone.xml"));
 
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyle_checks");
         checkerConfig.addChild(filterConfig);

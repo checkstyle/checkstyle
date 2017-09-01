@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.filters;
+package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
 
-public class InputSuppressByIdWithWarningsFilter {
+public class InputSuppressWarningsFilterById {
 
     @SuppressWarnings("checkstyle:ignore")
     private int A1 = 1;

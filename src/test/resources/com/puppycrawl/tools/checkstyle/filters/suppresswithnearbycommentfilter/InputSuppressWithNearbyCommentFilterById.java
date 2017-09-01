@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.filters;
+package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbycommentfilter;
 
-public class InputSuppressByIdWithNearbyCommentFilter {
+public class InputSuppressWithNearbyCommentFilterById {
 
     private int A1; // @cs-: ignore (reason)
 

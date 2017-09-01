@@ -79,7 +79,7 @@ public class SuppressWithNearbyCommentFilterTest
 
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/filters";
+        return "com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter";
     }
 
     @Test
@@ -341,7 +341,7 @@ public class SuppressWithNearbyCommentFilterTest
         };
 
         verify(createChecker(filterConfig),
-            getPath("InputSuppressByIdWithNearbyCommentFilter.java"),
+            getPath("InputSuppressWithNearbyCommentFilterById.java"),
             removeSuppressed(expectedViolationMessages, suppressedViolationMessages));
     }
 

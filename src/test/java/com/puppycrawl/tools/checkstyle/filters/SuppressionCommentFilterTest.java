@@ -71,7 +71,7 @@ public class SuppressionCommentFilterTest
 
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/filters";
+        return "com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter";
     }
 
     @Test
@@ -321,7 +321,7 @@ public class SuppressionCommentFilterTest
             };
 
         verify(createChecker(filterConfig),
-            getPath("InputSuppressByIdWithCommentFilter.java"),
+            getPath("InputSuppressionCommentFilterSuppressById.java"),
             removeSuppressed(expectedViolationMessages, suppressedViolationMessages));
     }
 
