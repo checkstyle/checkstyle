@@ -45,14 +45,14 @@ public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
     public void loadFile() throws Exception {
         model = new MainFrameModel();
         model.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
-        model.openFile(new File(getPath("InputJavadocAttributesAndMethods.java")));
+        model.openFile(new File(getPath("InputCodeSelectorPresentation.java")));
         tree = ((DetailAST) model.getParseTreeTableModel().getRoot()).getFirstChild();
         linesToPosition = ImmutableList.copyOf(convertLinesToPosition(model.getLinesToPosition()));
     }
 
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/gui";
+        return "com/puppycrawl/tools/checkstyle/gui/codeselectorpresentation";
     }
 
     /** Converts lineToPosition from multicharacter to one character line separator
@@ -77,7 +77,7 @@ public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
                 linesToPosition);
         selector.findSelectionPositions();
         Assert.assertEquals("Invalid selection start", 23, selector.getSelectionStart());
-        Assert.assertEquals("Invalid selection end", 212, selector.getSelectionEnd());
+        Assert.assertEquals("Invalid selection end", 209, selector.getSelectionEnd());
     }
 
     @Test
@@ -86,8 +86,8 @@ public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
         final CodeSelectorPresentation selector = new CodeSelectorPresentation(leaf,
                 linesToPosition);
         selector.findSelectionPositions();
-        Assert.assertEquals("Invalid selection start", 62, selector.getSelectionStart());
-        Assert.assertEquals("Invalid selection end", 63, selector.getSelectionEnd());
+        Assert.assertEquals("Invalid selection start", 59, selector.getSelectionStart());
+        Assert.assertEquals("Invalid selection end", 60, selector.getSelectionEnd());
     }
 
     @Test

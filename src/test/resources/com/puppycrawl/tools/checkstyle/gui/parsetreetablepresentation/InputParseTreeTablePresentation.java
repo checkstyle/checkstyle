@@ -1,7 +1,7 @@
 /**
 * class javadoc
 */
-class InputJavadocAttributesAndMethods {
+class InputParseTreeTablePresentation {
 
     /** attribute javadoc*/
     int attribute;
