@@ -34,11 +34,14 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.internal.util.reflection.Whitebox;
 
+import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class AbstractCheckTest {
-    private static final String INPUT_FOLDER =
-        "src/test/resources/com/puppycrawl/tools/checkstyle/api/abstractcheck/";
+public class AbstractCheckTest extends AbstractPathTestSupport {
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/api/abstractcheck";
+    }
 
     @Test
     public void testGetRequiredTokens() {
@@ -130,7 +133,7 @@ public class AbstractCheckTest {
             }
         };
         check.setFileContents(new FileContents(new FileText(
-            new File(INPUT_FOLDER + "InputAbstractCheckTestFileContence.java"),
+            new File(getPath("InputAbstractCheckTestFileContence.java")),
             Charset.defaultCharset().name())));
 
         Assert.assertEquals("Invalid line content", " * I'm a javadoc", check.getLine(3));

@@ -57,7 +57,7 @@ public class DetailASTTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/api";
+        return "com/puppycrawl/tools/checkstyle/api/detailast";
     }
 
     private static Method getSetParentMethod() throws Exception {
