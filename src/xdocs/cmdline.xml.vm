@@ -39,7 +39,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
      com.puppycrawl.tools.checkstyle.Main \
      -c &lt;configurationFile&gt; \
      [-f &lt;format&gt;] [-p &lt;propertiesFile&gt;] [-o &lt;file&gt;] \
-     [-s &lt;line:column&gt;] [-tabWidth &lt;length&gt;] \
+     [-s &lt;line:column&gt;] [-gxs | --generate-xpath-suppression] [-tabWidth &lt;length&gt;] \
      [-t | --tree] [-T | --treeWithComments] [-J | treeWithJavadoc] [-j | --javadocTree] [-v] \
      file...
       </source>
@@ -90,8 +90,14 @@ java -D&lt;property&gt;=&lt;value&gt;  \
           also ok, but might result in undesirable matching and suppress other issues.
         </li>
         <li>
+          <code>-gxs,--generate-xpath-suppression</code> - generate to output a suppression.xml to
+          use to suppress all violations from user's config. Instead of printing every violation,
+          all errors will be catched and single suppressions.xml file will be printed out. Used only
+          with <code>-c</code> option.
+        </li>
+        <li>
           <code>-tabWidth length</code> - set the length of the tab character. Used only with
-          <code>-s</code> option. Default value is 8.
+          <code>-s</code> and <code>-gxs</code> options. Default value is 8.
         </li>
         <li>
           <code>-t, --tree</code> - print Abstract Syntax Tree(AST) of the checked file. The option

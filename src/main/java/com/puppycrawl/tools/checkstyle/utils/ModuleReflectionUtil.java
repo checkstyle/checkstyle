@@ -90,7 +90,8 @@ public final class ModuleReflectionUtil {
     public static boolean isValidCheckstyleClass(Class<?> clazz) {
         return AutomaticBean.class.isAssignableFrom(clazz)
                 && !Modifier.isAbstract(clazz.getModifiers())
-                && hasDefaultConstructor(clazz);
+                && hasDefaultConstructor(clazz)
+                && isNotXpathFileGenerator(clazz);
     }
 
     /**
@@ -181,4 +182,14 @@ public final class ModuleReflectionUtil {
         return TreeWalkerFilter.class.isAssignableFrom(clazz);
     }
 
+    /**
+     * Checks whether a class is {@code XpathFileGeneratorAstFilter} or
+     * {@code XpathFileGeneratorAuditListener}.
+     * See issue #102 https://github.com/checkstyle/checkstyle/issues/102
+     * @param clazz class to check.
+     * @return true if a class name starts with `XpathFileGenerator`.
+     */
+    private static boolean isNotXpathFileGenerator(Class<?> clazz) {
+        return !clazz.getSimpleName().startsWith("XpathFileGenerator");
+    }
 }

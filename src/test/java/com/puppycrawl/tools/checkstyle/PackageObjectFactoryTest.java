@@ -377,6 +377,26 @@ public class PackageObjectFactoryTest {
         }
     }
 
+    @Test
+    public void testGetShortFromFullModuleNames() {
+        final String fullName =
+                "com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck";
+
+        assertEquals("Invalid simple check name",
+                "DefaultComesLastCheck",
+                PackageObjectFactory.getShortFromFullModuleNames(fullName));
+    }
+
+    @Test
+    public void testGetShortFromFullModuleNamesThirdParty() {
+        final String fullName =
+                "java.util.stream.Collectors";
+
+        assertEquals("Invalid simple check name",
+                fullName,
+                PackageObjectFactory.getShortFromFullModuleNames(fullName));
+    }
+
     private static final class FailConstructorFileSet extends AbstractFileSetCheck {
 
         private FailConstructorFileSet() {

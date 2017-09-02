@@ -163,6 +163,13 @@ public final class Main {
     private static final String OPTION_TREE_WALKER_THREADS_NUMBER_NAME =
         "tree-walker-threads-number";
 
+    /** Name for the option 'gxs'. */
+    private static final String OPTION_GXS_NAME = "gxs";
+
+    /** Name for the option 'generate-xpath-suppression'. */
+    private static final String OPTION_GENERATE_XPATH_SUPPRESSION_NAME =
+            "generate-xpath-suppression";
+
     /** Name for 'xml' format. */
     private static final String XML_FORMAT_NAME = "xml";
 
@@ -495,6 +502,8 @@ public final class Main {
         final String tabWidth =
                 cmdLine.getOptionValue(OPTION_TAB_WIDTH_NAME, DEFAULT_TAB_WIDTH);
         conf.tabWidth = Integer.parseInt(tabWidth);
+        conf.generateXpathSuppressionsFile =
+                cmdLine.hasOption(OPTION_GENERATE_XPATH_SUPPRESSION_NAME);
         return conf;
     }
 
@@ -537,15 +546,33 @@ public final class Main {
                 cliOptions.configLocation, new PropertiesExpander(props),
                 ignoredModulesOptions, multiThreadModeSettings);
 
-        // create a listener for output
-        final AuditListener listener = createListener(cliOptions.format, cliOptions.outputLocation);
-
         // create RootModule object and run it
         final int errorCounter;
         final ClassLoader moduleClassLoader = Checker.class.getClassLoader();
         final RootModule rootModule = getRootModule(config.getName(), moduleClassLoader);
 
         try {
+            final AuditListener listener;
+            if (cliOptions.generateXpathSuppressionsFile) {
+                // create filter to print generated xpath suppressions file
+                final Configuration treeWalkerConfig = getTreeWalkerConfig(config);
+                if (treeWalkerConfig != null) {
+                    final DefaultConfiguration moduleConfig =
+                            new DefaultConfiguration(
+                                    XpathFileGeneratorAstFilter.class.getName());
+                    moduleConfig.addAttribute(OPTION_TAB_WIDTH_NAME,
+                            Integer.toString(cliOptions.tabWidth));
+                    ((DefaultConfiguration) treeWalkerConfig).addChild(moduleConfig);
+                }
+
+                listener = new XpathFileGeneratorAuditListener(System.out,
+                        AutomaticBean.OutputStreamOptions.NONE);
+            }
+            else {
+                listener = createListener(cliOptions.format,
+                        cliOptions.outputLocation);
+            }
+
             rootModule.setModuleClassLoader(moduleClassLoader);
             rootModule.configure(config);
             rootModule.addListener(listener);
@@ -558,6 +585,24 @@ public final class Main {
         }
 
         return errorCounter;
+    }
+
+    /**
+     * Returns {@code TreeWalker} module configuration.
+     * @param config The configuration object.
+     * @return The {@code TreeWalker} module configuration.
+     */
+    private static Configuration getTreeWalkerConfig(Configuration config) {
+        Configuration result = null;
+
+        final Configuration[] children = config.getChildren();
+        for (Configuration child : children) {
+            if ("TreeWalker".equals(child.getName())) {
+                result = child;
+                break;
+            }
+        }
+        return result;
     }
 
     /**
@@ -765,6 +810,9 @@ public final class Main {
                 String.format("Sets the length of the tab character. Used only with \"-s\" option. "
                         + "Default value is %s",
                         DEFAULT_TAB_WIDTH));
+        options.addOption(OPTION_GXS_NAME, OPTION_GENERATE_XPATH_SUPPRESSION_NAME, false,
+                "Generates to output a suppression.xml to use to suppress all violations"
+                        + " from user's config");
         options.addOption(OPTION_F_NAME, true, String.format(
                 "Sets the output format. (%s|%s). Defaults to %s",
                 PLAIN_FORMAT_NAME, XML_FORMAT_NAME, PLAIN_FORMAT_NAME));
@@ -815,6 +863,8 @@ public final class Main {
         private String suppressionLineColumnNumber;
         /** Tab character length. */
         private int tabWidth;
+        /** Switch whether to generate suppressions file or not. */
+        private boolean generateXpathSuppressionsFile;
 
     }
 
