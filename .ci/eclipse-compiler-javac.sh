@@ -5,8 +5,10 @@ ECJ_JAR="ecj-4.7.jar"
 ECJ_MAVEN_VERSION="R-4.7-201706120950"
 ECJ_PATH=~/.m2/repository/$ECJ_MAVEN_VERSION/$ECJ_JAR
 
-if [ ! -f ~/.m2/repository/$ECJ_MAVEN_VERSION/$ECJ_JAR ]; then
-    wget http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse/eclipse/downloads/drops4/$ECJ_MAVEN_VERSION/$ECJ_JAR -P $ECJ_PATH
+if [ ! -f $ECJ_PATH ]; then
+    echo "$ECJ_PATH is not found, downloading ..."
+    mkdir -p $(dirname "$ECJ_PATH")
+    wget http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse/eclipse/downloads/drops4/$ECJ_MAVEN_VERSION/$ECJ_JAR -O $ECJ_PATH
 fi
 
 mkdir -p target/classes

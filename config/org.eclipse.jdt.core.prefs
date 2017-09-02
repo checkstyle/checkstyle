@@ -71,4 +71,5 @@ org.eclipse.jdt.core.compiler.problem.uncheckedTypeOperation=ignore
 org.eclipse.jdt.core.compiler.problem.unnecessaryElse=ignore
 org.eclipse.jdt.core.compiler.problem.unnecessaryTypeCheck=ignore
 org.eclipse.jdt.core.compiler.problem.unqualifiedFieldAccess=ignore
+#We use checkstyle rule, special cases could be suppressed by configs out of code
 org.eclipse.jdt.core.compiler.problem.unusedExceptionParameter=ignore
