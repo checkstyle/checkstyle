@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.api;
+package com.puppycrawl.tools.checkstyle;
 
 public class InputClearDetailAstLazyLoadCache {
 

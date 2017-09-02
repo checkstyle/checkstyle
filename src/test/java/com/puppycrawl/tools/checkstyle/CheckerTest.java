@@ -826,7 +826,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.configure(checkerConfig);
         checker.addListener(getBriefUtLogger());
 
-        final String filePath = getPath("api/InputClearDetailAstLazyLoadCache.java");
+        final String filePath = getPath("InputClearDetailAstLazyLoadCache.java");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checker, filePath, filePath, expected);

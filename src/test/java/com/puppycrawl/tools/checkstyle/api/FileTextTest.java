@@ -38,10 +38,16 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.google.common.io.Closeables;
+import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(Closeables.class)
-public class FileTextTest {
+public class FileTextTest extends AbstractPathTestSupport {
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/api/filetext";
+    }
+
     @Test
     public void testUnsupportedCharset() throws IOException {
         // just to make UT coverage 100%
@@ -65,8 +71,8 @@ public class FileTextTest {
         Closeables.closeQuietly(any(Reader.class));
 
         final String charsetName = "ISO-8859-1";
-        final FileText fileText = new FileText(new File("src/test/resources/com/puppycrawl/tools/"
-                 + "checkstyle/api/import-control_complete.xml"), charsetName);
+        final FileText fileText = new FileText(new File(getPath("InputFileTextImportControl.xml")),
+                charsetName);
         assertEquals("Invalid charset name", charsetName, fileText.getCharset().name());
 
         verifyStatic(times(2));
@@ -76,8 +82,8 @@ public class FileTextTest {
     @Test
     public void testLineColumnBeforeCopyConstructor() throws IOException {
         final String charsetName = "ISO-8859-1";
-        final FileText fileText = new FileText(new File("src/test/resources/com/puppycrawl/tools/"
-                 + "checkstyle/api/import-control_complete.xml"), charsetName);
+        final FileText fileText = new FileText(new File(getPath("InputFileTextImportControl.xml")),
+                charsetName);
         final LineColumn lineColumn = fileText.lineColumn(100);
         final FileText copy = new FileText(fileText);
         assertEquals("Invalid linecolumn", lineColumn, copy.lineColumn(100));
@@ -86,8 +92,8 @@ public class FileTextTest {
     @Test
     public void testLineColumnAfterCopyConstructor() throws IOException {
         final String charsetName = "ISO-8859-1";
-        final FileText fileText = new FileText(new File("src/test/resources/com/puppycrawl/tools/"
-                 + "checkstyle/api/import-control_complete.xml"), charsetName);
+        final FileText fileText = new FileText(new File(getPath("InputFileTextImportControl.xml")),
+                charsetName);
         final FileText copy = new FileText(fileText);
         final LineColumn lineColumn = copy.lineColumn(100);
         assertEquals("Invalid line", 3, lineColumn.getLine());
@@ -102,8 +108,8 @@ public class FileTextTest {
     @Test
     public void testLineColumnAtTheStartOfFile() throws IOException {
         final String charsetName = "ISO-8859-1";
-        final FileText fileText = new FileText(new File("src/test/resources/com/puppycrawl/tools/"
-                + "checkstyle/api/import-control_complete.xml"), charsetName);
+        final FileText fileText = new FileText(new File(getPath("InputFileTextImportControl.xml")),
+                charsetName);
         final FileText copy = new FileText(fileText);
         final LineColumn lineColumn = copy.lineColumn(0);
         assertEquals("Invalid line", 1, lineColumn.getLine());
