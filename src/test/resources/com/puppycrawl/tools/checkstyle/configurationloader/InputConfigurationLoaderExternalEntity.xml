@@ -3,7 +3,7 @@
 <!DOCTYPE module PUBLIC
     "-//Puppy Crawl//DTD Check Configuration 1.1//EN"
     "http://checkstyle.sourceforge.net/dtds/configuration_1_1.dtd" [
-  <!ENTITY includedConfig SYSTEM "../included.xml">
+  <!ENTITY includedConfig SYSTEM "InputConfigurationLoaderIncludeFile.xml">
 ]>
 
 <module name="Checker">
