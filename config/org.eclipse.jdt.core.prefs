@@ -53,23 +53,29 @@ org.eclipse.jdt.core.compiler.problem.unusedParameter=error
 org.eclipse.jdt.core.compiler.problem.unusedPrivateMember=error
 org.eclipse.jdt.core.compiler.problem.unusedTypeParameter=error
 org.eclipse.jdt.core.compiler.problem.varargsArgumentNeedCast=error
+org.eclipse.jdt.core.compiler.problem.specialParameterHidingField=error
+org.eclipse.jdt.core.compiler.problem.typeParameterHiding=error
+org.eclipse.jdt.core.compiler.problem.fieldHiding=error
+#We can not efnforce this rule as we are library and we keep deprecated stuff for some time
+org.eclipse.jdt.core.compiler.problem.deprecation=ignore
+#We can not use try-with-resources till we use cobertura for coverage
+org.eclipse.jdt.core.compiler.problem.explicitlyClosedAutoCloseable=ignore
+#we will not put all String values to resources, it does not make sense in our project
+org.eclipse.jdt.core.compiler.problem.nonExternalizedStringLiteral=ignore
+#We use checkstyle rule, special cases could be suppressed by configs out of code
+org.eclipse.jdt.core.compiler.problem.unusedExceptionParameter=ignore
 
+#
+#All below is disabled till - https://github.com/checkstyle/checkstyle/issues/5060
+#
 org.eclipse.jdt.core.compiler.annotation.missingNonNullByDefaultAnnotation=ignore
 org.eclipse.jdt.core.compiler.problem.autoboxing=ignore
-org.eclipse.jdt.core.compiler.problem.deprecation=ignore
-org.eclipse.jdt.core.compiler.problem.explicitlyClosedAutoCloseable=ignore
-org.eclipse.jdt.core.compiler.problem.fieldHiding=ignore
-org.eclipse.jdt.core.compiler.problem.nonExternalizedStringLiteral=ignore
 org.eclipse.jdt.core.compiler.problem.potentiallyUnclosedCloseable=ignore
 org.eclipse.jdt.core.compiler.problem.potentialNullReference=ignore
 org.eclipse.jdt.core.compiler.problem.rawTypeReference=ignore
 org.eclipse.jdt.core.compiler.problem.reportMethodCanBePotentiallyStatic=ignore
-org.eclipse.jdt.core.compiler.problem.specialParameterHidingField=ignore
 org.eclipse.jdt.core.compiler.problem.syntheticAccessEmulation=ignore
-org.eclipse.jdt.core.compiler.problem.typeParameterHiding=ignore
 org.eclipse.jdt.core.compiler.problem.uncheckedTypeOperation=ignore
 org.eclipse.jdt.core.compiler.problem.unnecessaryElse=ignore
 org.eclipse.jdt.core.compiler.problem.unnecessaryTypeCheck=ignore
 org.eclipse.jdt.core.compiler.problem.unqualifiedFieldAccess=ignore
-#We use checkstyle rule, special cases could be suppressed by configs out of code
-org.eclipse.jdt.core.compiler.problem.unusedExceptionParameter=ignore
