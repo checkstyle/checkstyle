@@ -43,11 +43,12 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 /**
  * Checks the Javadoc of a method or constructor.
  *
+ * @noinspection deprecation
+ *
  * @author Oliver Burn
  * @author Rick Giles
  * @author o_sukhodoslky
  */
-@SuppressWarnings("deprecation")
 public class JavadocMethodCheck extends AbstractTypeAwareCheck {
 
     /**

@@ -22,8 +22,8 @@ java -jar $ECJ_PATH -target 1.8 -source 1.8 -cp $1 \
         -enableJavadoc src/main/java target/generated-sources/antlr -properties config/org.eclipse.jdt.core.prefs \
     > $RESULT_FILE 2>&1 | true
 
-echo "Checking for ERRORs in $RESULT_FILE ..."
-if [[ $(grep ERROR $RESULT_FILE | cat | wc -l) > 0 ]]; then
+echo "Checking for ERROR|WARNING|INFO  in $RESULT_FILE ..."
+if [[ $(grep -E "ERROR|WARNING|INFO" $RESULT_FILE | cat | wc -l) > 0 ]]; then
   cat $RESULT_FILE
   false
 fi
