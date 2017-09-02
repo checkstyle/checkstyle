@@ -1109,7 +1109,8 @@ import static java.math.BigInteger.ZERO;
           specifically, it checks that it is not preceded with whitespace, or
           (if linebreaks are allowed) all characters on the line before are
           whitespace. To allow linebreaks before a token, set property <code>allowLineBreaks</code> to <code>
-          true</code>.
+          true</code>. No check occurs before semi-colons in empty for loop
+          initializers or conditions.
         </p>
       </subsection>
 
@@ -1180,6 +1181,10 @@ import static java.math.BigInteger.ZERO;
 
       <subsection name="Example of Usage">
         <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBefore">
+            Google Style</a>
+          </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBefore">
             Sun Style</a>

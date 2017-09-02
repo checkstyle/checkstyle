@@ -30,7 +30,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * More specifically, it checks that it is not preceded with whitespace,
  * or (if line breaks are allowed) all characters on the line before are
  * whitespace. To allow line breaks before a token, set property
- * allowLineBreaks to true.
+ * allowLineBreaks to true. No check occurs before semi-colons in empty
+ * for loop initializers or conditions.
  * </p>
  * <p> By default the check will check the following operators:
  *  {@link TokenTypes#COMMA COMMA},
@@ -109,7 +110,7 @@ public class NoWhitespaceBeforeCheck
         final int before = ast.getColumnNo() - 1;
 
         if ((before == -1 || Character.isWhitespace(line.charAt(before)))
-                && !isInEmptyForInitializer(ast)) {
+                && !isInEmptyForInitializerOrCondition(ast)) {
 
             boolean flag = !allowLineBreaks;
             // verify all characters before '.' are whitespace
@@ -126,16 +127,17 @@ public class NoWhitespaceBeforeCheck
     }
 
     /**
-     * Checks that semicolon is in empty for initializer.
+     * Checks that semicolon is in empty for initializer or condition.
      * @param semicolonAst DetailAST of semicolon.
-     * @return true if semicolon is in empty for initializer.
+     * @return true if semicolon is in empty for initializer or condition.
      */
-    private static boolean isInEmptyForInitializer(DetailAST semicolonAst) {
+    private static boolean isInEmptyForInitializerOrCondition(DetailAST semicolonAst) {
         boolean result = false;
         if (semicolonAst.getType() == TokenTypes.SEMI) {
             final DetailAST sibling = semicolonAst.getPreviousSibling();
             if (sibling != null
-                    && sibling.getType() == TokenTypes.FOR_INIT
+                    && (sibling.getType() == TokenTypes.FOR_INIT
+                            || sibling.getType() == TokenTypes.FOR_CONDITION)
                     && sibling.getChildCount() == 0) {
                 result = true;
             }

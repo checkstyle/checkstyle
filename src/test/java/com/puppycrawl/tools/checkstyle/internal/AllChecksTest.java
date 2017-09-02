@@ -229,6 +229,9 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("RightCurly", Stream.of(
                 // Until https://github.com/checkstyle/checkstyle/issues/4178
                 "LAMBDA").collect(Collectors.toSet()));
+        GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NoWhitespaceBefore", Stream.of(
+                // google uses GenericWhitespace for this behavior
+                "GENERIC_START", "GENERIC_END").collect(Collectors.toSet()));
     }
 
     @Override
