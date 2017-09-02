@@ -445,4 +445,14 @@ public class ParenPadCheckTest
         };
         verify(checkConfig, getPath("InputParenPadStartOfTheLine.java"), expected);
     }
+
+    @Test
+    public void testTryWithResources() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(ParenPadCheck.class);
+        final String[] expected = {
+            "9:36: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "10:60: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+        };
+        verify(checkConfig, getPath("InputParenPadTryWithResources.java"), expected);
+    }
 }
