@@ -146,7 +146,7 @@ public abstract class AbstractNode implements NodeInfo {
      * @return namespace array
      */
     @Override
-    public final NamespaceBinding[] getDeclaredNamespaces(NamespaceBinding... namespaceBindings) {
+    public final NamespaceBinding[] getDeclaredNamespaces(NamespaceBinding[] namespaceBindings) {
         throw throwUnsupportedOperationException();
     }
 

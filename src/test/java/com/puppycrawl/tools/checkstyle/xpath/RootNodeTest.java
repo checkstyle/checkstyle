@@ -132,7 +132,8 @@ public class RootNodeTest extends AbstractPathTestSupport {
     @Test
     public void testGetDeclaredNamespaces() throws Exception {
         try {
-            rootNode.getDeclaredNamespaces(new NamespaceBinding("prefix", "uri"));
+            rootNode.getDeclaredNamespaces(
+                    new NamespaceBinding[] {new NamespaceBinding("prefix", "uri")});
             fail("Exception is excepted");
         }
         catch (UnsupportedOperationException ex) {
