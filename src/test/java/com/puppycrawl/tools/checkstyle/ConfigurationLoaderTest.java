@@ -53,19 +53,20 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({DefaultConfiguration.class, ConfigurationLoader.class})
-public class ConfigurationLoaderTest {
-    private static String getConfigPath(String filename) {
-        return "src/test/resources/com/puppycrawl/tools/checkstyle/configs/" + filename;
+public class ConfigurationLoaderTest extends AbstractPathTestSupport {
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/configurationloader";
     }
 
-    private static Configuration loadConfiguration(String name)
-            throws CheckstyleException {
+    private Configuration loadConfiguration(String name) throws Exception {
         return loadConfiguration(name, new Properties());
     }
 
-    private static Configuration loadConfiguration(
-        String name, Properties props) throws CheckstyleException {
-        final String fName = getConfigPath(name);
+    private Configuration loadConfiguration(
+        String name, Properties props) throws Exception {
+        final String fName = getPath(name);
 
         return ConfigurationLoader.loadConfiguration(fName, new PropertiesExpander(props));
     }
@@ -90,7 +91,7 @@ public class ConfigurationLoaderTest {
         // load config that's only found in the classpath
         final DefaultConfiguration config =
             (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
-                getConfigPath("checkstyle_checks.xml"), new PropertiesExpander(props));
+                getPath("InputConfigurationLoaderChecks.xml"), new PropertiesExpander(props));
 
         //verify the root, and property substitution
         final Properties attributes = new Properties();
@@ -105,7 +106,7 @@ public class ConfigurationLoaderTest {
         props.setProperty("checkstyle.basedir", "basedir");
 
         final PropertiesExpander propertiesExpander = new PropertiesExpander(props);
-        final String configPath = getConfigPath("checkstyle_checks.xml");
+        final String configPath = getPath("InputConfigurationLoaderChecks.xml");
         final ThreadModeSettings multiThreadModeSettings =
             new ThreadModeSettings(4, 2);
 
@@ -127,7 +128,7 @@ public class ConfigurationLoaderTest {
         props.setProperty("checkstyle.basedir", "basedir");
 
         final PropertiesExpander propertiesExpander = new PropertiesExpander(props);
-        final String configPath = getConfigPath("checkstyle_checks.xml");
+        final String configPath = getPath("InputConfigurationLoaderChecks.xml");
         final ThreadModeSettings singleThreadModeSettings =
             ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
 
@@ -144,7 +145,7 @@ public class ConfigurationLoaderTest {
     @Test
     public void testEmptyConfiguration() throws Exception {
         final DefaultConfiguration config =
-            (DefaultConfiguration) loadConfiguration("empty_configuration.xml");
+            (DefaultConfiguration) loadConfiguration("InputConfigurationLoaderEmpty.xml");
         verifyConfigNode(config, "Checker", 0, new Properties());
     }
 
@@ -152,14 +153,14 @@ public class ConfigurationLoaderTest {
     public void testEmptyModuleResolver() throws Exception {
         final DefaultConfiguration config =
             (DefaultConfiguration) loadConfiguration(
-                "empty_configuration.xml", new Properties());
+                "InputConfigurationLoaderEmpty.xml", new Properties());
         verifyConfigNode(config, "Checker", 0, new Properties());
     }
 
     @Test
-    public void testMissingPropertyName() {
+    public void testMissingPropertyName() throws Exception {
         try {
-            loadConfiguration("missing_property_name.xml");
+            loadConfiguration("InputConfigurationLoaderMissingPropertyName.xml");
             fail("missing property name");
         }
         catch (CheckstyleException ex) {
@@ -173,9 +174,9 @@ public class ConfigurationLoaderTest {
     }
 
     @Test
-    public void testMissingPropertyNameInMethodWithBooleanParameter() {
+    public void testMissingPropertyNameInMethodWithBooleanParameter() throws Exception {
         try {
-            final String fName = getConfigPath("missing_property_name.xml");
+            final String fName = getPath("InputConfigurationLoaderMissingPropertyName.xml");
             ConfigurationLoader.loadConfiguration(fName, new PropertiesExpander(new Properties()),
                     false);
 
@@ -192,9 +193,9 @@ public class ConfigurationLoaderTest {
     }
 
     @Test
-    public void testMissingPropertyValue() {
+    public void testMissingPropertyValue() throws Exception {
         try {
-            loadConfiguration("missing_property_value.xml");
+            loadConfiguration("InputConfigurationLoaderMissingPropertyValue.xml");
             fail("missing property value");
         }
         catch (CheckstyleException ex) {
@@ -208,9 +209,9 @@ public class ConfigurationLoaderTest {
     }
 
     @Test
-    public void testMissingConfigName() {
+    public void testMissingConfigName() throws Exception {
         try {
-            loadConfiguration("missing_config_name.xml");
+            loadConfiguration("InputConfigurationLoaderMissingConfigName.xml");
             fail("missing module name");
         }
         catch (CheckstyleException ex) {
@@ -224,9 +225,9 @@ public class ConfigurationLoaderTest {
     }
 
     @Test
-    public void testMissingConfigParent() {
+    public void testMissingConfigParent() throws Exception {
         try {
-            loadConfiguration("missing_config_parent.xml");
+            loadConfiguration("InputConfigurationLoaderMissingConfigParent.xml");
             fail("missing module parent");
         }
         catch (CheckstyleException ex) {
@@ -246,7 +247,7 @@ public class ConfigurationLoaderTest {
 
         final DefaultConfiguration config =
             (DefaultConfiguration) loadConfiguration(
-                "checkstyle_checks.xml", props);
+                "InputConfigurationLoaderChecks.xml", props);
 
         //verify the root, and property substitution
         final Properties atts = new Properties();
@@ -293,13 +294,13 @@ public class ConfigurationLoaderTest {
     }
 
     @Test
-    public void testCustomMessages() throws CheckstyleException {
+    public void testCustomMessages() throws Exception {
         final Properties props = new Properties();
         props.setProperty("checkstyle.basedir", "basedir");
 
         final DefaultConfiguration config =
             (DefaultConfiguration) loadConfiguration(
-                "custom_messages.xml", props);
+                "InputConfigurationLoaderCustomMessages.xml", props);
 
         final Configuration[] children = config.getChildren();
         final Configuration[] grandchildren = children[0].getChildren();
@@ -409,7 +410,7 @@ public class ConfigurationLoaderTest {
 
         final DefaultConfiguration config =
             (DefaultConfiguration) loadConfiguration(
-                "including.xml", props);
+                "InputConfigurationLoaderExternalEntity.xml", props);
 
         final Properties atts = new Properties();
         atts.setProperty("tabWidth", "4");
@@ -424,7 +425,7 @@ public class ConfigurationLoaderTest {
 
         final DefaultConfiguration config =
             (DefaultConfiguration) loadConfiguration(
-                "subdir/including.xml", props);
+                "subdir/InputConfigurationLoaderExternalEntitySubDir.xml", props);
 
         final Properties attributes = new Properties();
         attributes.setProperty("tabWidth", "4");
@@ -437,7 +438,8 @@ public class ConfigurationLoaderTest {
         final Properties props = new Properties();
         props.setProperty("checkstyle.basedir", "basedir");
 
-        final File file = new File(getConfigPath("subdir/including.xml"));
+        final File file = new File(
+                getPath("subdir/InputConfigurationLoaderExternalEntitySubDir.xml"));
         final DefaultConfiguration config =
             (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
                     file.toURI().toString(), new PropertiesExpander(props));
@@ -509,9 +511,9 @@ public class ConfigurationLoaderTest {
     }
 
     @Test
-    public void testNonExistingPropertyName() {
+    public void testNonExistingPropertyName() throws Exception {
         try {
-            loadConfiguration("config_nonexisting_property.xml");
+            loadConfiguration("InputConfigurationLoaderNonexistingProperty.xml");
             fail("exception in expected");
         }
         catch (CheckstyleException ex) {
@@ -524,11 +526,11 @@ public class ConfigurationLoaderTest {
     }
 
     @Test
-    public void testConfigWithIgnore() throws CheckstyleException {
+    public void testConfigWithIgnore() throws Exception {
 
         final DefaultConfiguration config =
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
-                        getConfigPath("config_with_ignore.xml"),
+                        getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml"),
                         new PropertiesExpander(new Properties()), true);
 
         final Configuration[] children = config.getChildren();
@@ -536,11 +538,12 @@ public class ConfigurationLoaderTest {
     }
 
     @Test
-    public void testConfigWithIgnoreUsingInputSource() throws CheckstyleException {
+    public void testConfigWithIgnoreUsingInputSource() throws Exception {
 
         final DefaultConfiguration config =
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(new InputSource(
-                        new File(getConfigPath("config_with_ignore.xml")).toURI().toString()),
+                        new File(getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml"))
+                            .toURI().toString()),
                         new PropertiesExpander(new Properties()), true);
 
         final Configuration[] children = config.getChildren();
@@ -548,11 +551,11 @@ public class ConfigurationLoaderTest {
     }
 
     @Test
-    public void testConfigCheckerWithIgnore() throws CheckstyleException {
+    public void testConfigCheckerWithIgnore() throws Exception {
 
         final DefaultConfiguration config =
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
-                        getConfigPath("config_with_checker_ignore.xml"),
+                        getPath("InputConfigurationLoaderCheckerIgnoreSeverity.xml"),
                         new PropertiesExpander(new Properties()), true);
 
         final Configuration[] children = config.getChildren();
@@ -564,7 +567,7 @@ public class ConfigurationLoaderTest {
         try {
             final DefaultConfiguration config =
                     (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
-                            ";config_with_ignore.xml",
+                            ";InputConfigurationLoaderModuleIgnoreSeverity.xml",
                             new PropertiesExpander(new Properties()), true);
 
             final Configuration[] children = config.getChildren();
@@ -573,7 +576,8 @@ public class ConfigurationLoaderTest {
         }
         catch (CheckstyleException ex) {
             assertEquals("Invalid exception message",
-                "Unable to find: ;config_with_ignore.xml", ex.getMessage());
+                    "Unable to find: ;InputConfigurationLoaderModuleIgnoreSeverity.xml",
+                    ex.getMessage());
         }
     }
 
@@ -582,7 +586,8 @@ public class ConfigurationLoaderTest {
         @SuppressWarnings("deprecation")
         final DefaultConfiguration config =
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
-                        new FileInputStream(getConfigPath("config_with_ignore.xml")),
+                        new FileInputStream(
+                            getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml")),
                         new PropertiesExpander(new Properties()), true);
 
         final Configuration[] children = config.getChildren();
@@ -605,8 +610,7 @@ public class ConfigurationLoaderTest {
     public void testLoadConfigurationFromClassPath() throws Exception {
         final DefaultConfiguration config =
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
-                        "/com/puppycrawl/tools/checkstyle/configs/"
-                                + "config_with_ignore.xml",
+                        getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml"),
                         new PropertiesExpander(new Properties()), true);
 
         final Configuration[] children = config.getChildren();
@@ -641,7 +645,7 @@ public class ConfigurationLoaderTest {
 
         try {
             ConfigurationLoader.loadConfiguration(
-                    getConfigPath("config_with_ignore.xml"),
+                    getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml"),
                     new PropertiesExpander(new Properties()), true);
             fail("Exception is expected");
         }
@@ -668,7 +672,7 @@ public class ConfigurationLoaderTest {
     public void testConstructors() throws Exception {
         final Properties props = new Properties();
         props.setProperty("checkstyle.basedir", "basedir");
-        final String fName = getConfigPath("checkstyle_checks.xml");
+        final String fName = getPath("InputConfigurationLoaderChecks.xml");
 
         final Configuration configuration = ConfigurationLoader.loadConfiguration(fName,
                 new PropertiesExpander(props), ConfigurationLoader.IgnoredModulesOptions.OMIT);
@@ -676,8 +680,8 @@ public class ConfigurationLoaderTest {
 
         final DefaultConfiguration configuration1 =
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
-                        new InputSource(
-                                new FileInputStream(getConfigPath("config_with_ignore.xml"))),
+                        new InputSource(new FileInputStream(
+                            getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml"))),
                         new PropertiesExpander(new Properties()),
                         ConfigurationLoader.IgnoredModulesOptions.EXECUTE);
 
