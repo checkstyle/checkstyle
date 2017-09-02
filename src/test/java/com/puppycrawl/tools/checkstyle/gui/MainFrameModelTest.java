@@ -37,28 +37,24 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.reflect.Whitebox;
 
-import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 
 @RunWith(PowerMockRunner.class)
-public class MainFrameModelTest extends AbstractPathTestSupport {
+public class MainFrameModelTest extends AbstractModuleTestSupport {
 
-    private static final String FILE_NAME_TEST_DATA = "InputJavadocAttributesAndMethods.java";
+    private static final String FILE_NAME_TEST_DATA = "InputMainFrameModel.java";
     private static final String FILE_NAME_NON_JAVA = "NotJavaFile.notjava";
     private static final String FILE_NAME_NON_EXISTENT = "non-existent.file";
-    private static final String FILE_NAME_NON_COMPILABLE = "InputIncorrectClass.java";
+    private static final String FILE_NAME_NON_COMPILABLE = "InputMainFrameModelIncorrectClass.java";
 
     private MainFrameModel model;
     private File testData;
 
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/gui";
-    }
-
-    private static String getNonCompilablePath(String filename) {
-        return "src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/gui/" + filename;
+        return "com/puppycrawl/tools/checkstyle/gui/mainframemodel";
     }
 
     @Before
@@ -191,7 +187,7 @@ public class MainFrameModelTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testOpenFileNonCompilableFile() {
+    public void testOpenFileNonCompilableFile() throws IOException {
         final File nonCompilableFile = new File(getNonCompilablePath(FILE_NAME_NON_COMPILABLE));
 
         try {

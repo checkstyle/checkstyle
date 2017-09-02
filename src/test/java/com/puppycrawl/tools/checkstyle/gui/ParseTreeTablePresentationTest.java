@@ -43,7 +43,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
 
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/gui";
+        return "com/puppycrawl/tools/checkstyle/gui/parsetreetablepresentation";
     }
 
     private static DetailAST parseFile(File file) throws Exception {
@@ -55,7 +55,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     @Before
     public void loadTree() throws Exception {
         tree = parseFile(
-                new File(getPath("InputJavadocAttributesAndMethods.java")));
+                new File(getPath("InputParseTreeTablePresentation.java")));
     }
 
     @Test
@@ -230,7 +230,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         Assert.assertEquals("Node should be an Identifier", "IDENT", type);
         Assert.assertEquals("Class identifier should start on line 4", 4, line);
         Assert.assertEquals("Class name should start from column 6", 6, column);
-        Assert.assertEquals("Wrong class name", "InputJavadocAttributesAndMethods", text);
+        Assert.assertEquals("Wrong class name", "InputParseTreeTablePresentation", text);
         Assert.assertNull("Root node should have null value", treeModel);
 
         try {
