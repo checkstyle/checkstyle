@@ -749,6 +749,14 @@
                                     alt="" />
                                 <a
                                     href="config_whitespace.html#ParenPad">ParenPad</a>
+
+                                <br />
+                                <br />
+                                <img
+                                    src="images/ok_green.png"
+                                    alt="" />
+                                <a
+                                    href="config_whitespace.html#NoWhitespaceBefore">NoWhitespaceBefore</a>
                             </td>
                             <td>
                                 <a
@@ -774,6 +782,13 @@
                                 <br />
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/ParenPadTest.java">test</a>
+                                <br />
+                                <a
+                                    href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBefore">config</a>
+                                <br />
+                                <a
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/NoWhitespaceBeforeTest.java">test</a>
+
                             </td>
                         </tr>
                         <tr>

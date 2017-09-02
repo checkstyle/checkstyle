@@ -114,4 +114,15 @@ public class NoWhitespaceBeforeCheckTest
         };
         verify(checkConfig, getPath("InputNoWhitespaceBeforeAtStartOfTheLine.java"), expected);
     }
+
+    @Test
+    public void testEmptyForLoop() throws Exception {
+        checkConfig.addAttribute("tokens", "SEMI");
+        checkConfig.addAttribute("allowLineBreaks", "yes");
+        final String[] expected = {
+            "12:23: " + getCheckMessage(MSG_KEY, ";"),
+            "18:31: " + getCheckMessage(MSG_KEY, ";"),
+        };
+        verify(checkConfig, getPath("InputNoWhitespaceBeforeEmptyForLoop.java"), expected);
+    }
 }
