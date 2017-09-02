@@ -158,6 +158,8 @@ public class ParenPadTest extends AbstractModuleTestSupport {
             "212:49: " + getCheckMessage(clazz, messageKeyFollowed, "("),
             "212:51: " + getCheckMessage(clazz, messageKeyPreceded, ")"),
             "212:53: " + getCheckMessage(clazz, messageKeyPreceded, ")"),
+            "220:36: " + getCheckMessage(clazz, messageKeyPreceded, ")"),
+            "221:60: " + getCheckMessage(clazz, messageKeyPreceded, ")"),
         };
         final Configuration checkConfig = getModuleConfig("ParenPad");
         final String filePath = getPath("InputParenPad.java");

@@ -1396,9 +1396,11 @@ import static java.math.BigInteger.ZERO;
         <p>
           Checks the policy on the padding of parentheses; i.e. whether a
           space is required after a left parenthesis and before a right
-          parenthesis, or such spaces are forbidden, with the exception that it does
-          not check for padding of the right parenthesis at an empty for iterator and
-          empty for initializer.
+          parenthesis, or such spaces are forbidden. No check occurs at
+          the right parenthesis after an empty for iterator, at the left
+          parenthesis before an empty for initialization, or at the right
+          parenthesis of a try-with-resources resource specification where
+          the last resource variable has a trailing semi-colon.
           Use Check <a
           href="config_whitespace.html#EmptyForIteratorPad">EmptyForIteratorPad</a>
           to validate empty for iterators and <a
@@ -1542,6 +1544,16 @@ import static java.math.BigInteger.ZERO;
     &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
 &lt;/module&gt;
         </source>
+
+        <p>
+          The following cases not checked:
+        </p>
+        <source>
+for ( ; i &lt; j; i++, j--) // no check after left parenthesis
+for (Iterator it = xs.iterator(); it.hasNext(); ) // no check before right parenthesis
+try (Closeable resource = acquire(); ) // no check before right parenthesis
+        </source>
+
       </subsection>
 
       <subsection name="Example of Usage">
