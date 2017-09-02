@@ -310,6 +310,24 @@ public class PackageObjectFactory implements ModuleFactory {
     }
 
     /**
+     * Returns simple check name from full modules names map.
+     * @param fullName name of the class for joining.
+     * @return simple check name.
+     */
+    public static String getShortFromFullModuleNames(String fullName) {
+        String result = fullName;
+        if (NAME_TO_FULL_MODULE_NAME.containsValue(fullName)) {
+            result = NAME_TO_FULL_MODULE_NAME
+                    .entrySet()
+                    .stream()
+                    .filter(entry -> entry.getValue().equals(fullName))
+                    .findFirst().get().getKey();
+        }
+
+        return result;
+    }
+
+    /**
      * Creates a string by joining package names with a class name.
      * @param className name of the class for joining.
      * @param packages packages names.
