@@ -72,7 +72,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle";
+        return "com/puppycrawl/tools/checkstyle/treewalker";
     }
 
     @Test
@@ -115,7 +115,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                 + "IMPORT");
         try {
             final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-            verify(checkConfig, getPath("InputMain.java"), expected);
+            verify(checkConfig, getPath("InputTreeWalker.java"), expected);
             fail("CheckstyleException is expected");
         }
         catch (CheckstyleException ex) {
