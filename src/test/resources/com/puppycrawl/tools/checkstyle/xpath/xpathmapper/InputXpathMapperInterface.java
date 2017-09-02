@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.xpath;
+package com.puppycrawl.tools.checkstyle.xpath.xpathmapper;
 
-public interface InputXpathInterface {
+public interface InputXpathMapperInterface {
     int sum(int a, int b);
     void init(String someVariable, int age);
     String getName();

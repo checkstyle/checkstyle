@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.xpath;
+package com.puppycrawl.tools.checkstyle.xpath.xpathmapper;
 
 public class InputXpathMapperAst {
 

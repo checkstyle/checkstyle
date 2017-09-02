@@ -29,20 +29,25 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.TestUtils;
 import net.sf.saxon.om.Item;
 import net.sf.saxon.om.NodeInfo;
 
-public class ElementNodeTest {
+public class ElementNodeTest extends AbstractPathTestSupport {
 
     private static RootNode rootNode;
 
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/xpath/xpathmapper";
+    }
+
     @Before
     public void init() throws Exception {
-        final File file = new File("src/test/resources/com/puppycrawl/tools/"
-                + "checkstyle/xpath/InputXpathMapperAst.java");
+        final File file = new File(getPath("InputXpathMapperAst.java"));
         final DetailAST rootAst = TestUtils.parseFile(file);
         rootNode = new RootNode(rootAst);
     }
