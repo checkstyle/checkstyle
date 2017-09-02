@@ -31,6 +31,7 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.TestUtils;
@@ -39,7 +40,12 @@ import net.sf.saxon.om.Item;
 import net.sf.saxon.trans.XPathException;
 import net.sf.saxon.tree.iter.EmptyIterator;
 
-public class XpathMapperTest {
+public class XpathMapperTest extends AbstractPathTestSupport {
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/xpath/xpathmapper";
+    }
 
     @Test
     public void testFullPath() throws Exception {
@@ -138,7 +144,7 @@ public class XpathMapperTest {
         final String xpath = "//*[@text]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<Item> nodes = getXpathItems(xpath, rootNode);
-        assertEquals("Invalid number of nodes", 17, nodes.size());
+        assertEquals("Invalid number of nodes", 18, nodes.size());
     }
 
     @Test
@@ -433,7 +439,7 @@ public class XpathMapperTest {
     @Test
     public void testQueryAnnotation() throws Exception {
         final String xpath = "//ANNOTATION[@text='SuppressWarnings']";
-        final RootNode rootNode = getRootNode("InputXpathAnnotation.java");
+        final RootNode rootNode = getRootNode("InputXpathMapperAnnotation.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedAnnotationNode = getSiblingByType(rootNode.getUnderlyingNode(),
                 TokenTypes.CLASS_DEF)
@@ -446,7 +452,7 @@ public class XpathMapperTest {
     @Test
     public void testQueryNonExistingAnnotation() throws Exception {
         final String xpath = "//ANNOTATION[@text='SpringBootApplication']";
-        final RootNode rootNode = getRootNode("InputXpathAnnotation.java");
+        final RootNode rootNode = getRootNode("InputXpathMapperAnnotation.java");
         final List<Item> nodes = getXpathItems(xpath, rootNode);
         assertEquals("Invalid number of nodes", 0, nodes.size());
     }
@@ -454,7 +460,7 @@ public class XpathMapperTest {
     @Test
     public void testQueryEnumDef() throws Exception {
         final String xpath = "/ENUM_DEF";
-        final RootNode enumRootNode = getRootNode("InputXpathEnum.java");
+        final RootNode enumRootNode = getRootNode("InputXpathMapperEnum.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, enumRootNode));
         final DetailAST expectedEnumDefNode = getSiblingByType(enumRootNode.getUnderlyingNode(),
                 TokenTypes.ENUM_DEF);
@@ -465,7 +471,7 @@ public class XpathMapperTest {
     @Test
     public void testQueryEnumElementsNumber() throws Exception {
         final String xpath = "/ENUM_DEF/OBJBLOCK/ENUM_CONSTANT_DEF";
-        final RootNode enumRootNode = getRootNode("InputXpathEnum.java");
+        final RootNode enumRootNode = getRootNode("InputXpathMapperEnum.java");
         final List<Item> nodes = getXpathItems(xpath, enumRootNode);
         assertEquals("Invalid number of nodes", 3, nodes.size());
     }
@@ -473,7 +479,7 @@ public class XpathMapperTest {
     @Test
     public void testQueryEnumElementByName() throws Exception {
         final String xpath = "//*[@text='TWO']";
-        final RootNode enumRootNode = getRootNode("InputXpathEnum.java");
+        final RootNode enumRootNode = getRootNode("InputXpathMapperEnum.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, enumRootNode));
         final DetailAST expectedEnumConstantDefNode = getSiblingByType(
                 enumRootNode.getUnderlyingNode(),
@@ -489,7 +495,7 @@ public class XpathMapperTest {
     @Test
     public void testQueryInterfaceDef() throws Exception {
         final String xpath = "/INTERFACE_DEF";
-        final RootNode interfaceRootNode = getRootNode("InputXpathInterface.java");
+        final RootNode interfaceRootNode = getRootNode("InputXpathMapperInterface.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, interfaceRootNode));
         final DetailAST expectedInterfaceDefNode = getSiblingByType(
                 interfaceRootNode.getUnderlyingNode(),
@@ -501,7 +507,7 @@ public class XpathMapperTest {
     @Test
     public void testQueryInterfaceMethodDefNumber() throws Exception {
         final String xpath = "/INTERFACE_DEF/OBJBLOCK/METHOD_DEF";
-        final RootNode interfaceRootNode = getRootNode("InputXpathInterface.java");
+        final RootNode interfaceRootNode = getRootNode("InputXpathMapperInterface.java");
         final List<Item> nodes = getXpathItems(xpath, interfaceRootNode);
         assertEquals("Invalid number of nodes", 4, nodes.size());
     }
@@ -509,7 +515,7 @@ public class XpathMapperTest {
     @Test
     public void testQueryInterfaceParameterDef() throws Exception {
         final String xpath = "//PARAMETER_DEF[@text='someVariable']/../..";
-        final RootNode interfaceRootNode = getRootNode("InputXpathInterface.java");
+        final RootNode interfaceRootNode = getRootNode("InputXpathMapperInterface.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, interfaceRootNode));
         final DetailAST expectedMethodDefNode = getSiblingByType(
                 interfaceRootNode.getUnderlyingNode(),
@@ -521,9 +527,8 @@ public class XpathMapperTest {
         assertArrayEquals("Result nodes differ from expected", expected, actual);
     }
 
-    private static RootNode getRootNode(String fileName) throws Exception {
-        final File file = new File("src/test/resources/com/puppycrawl/tools/"
-                + "checkstyle/xpath/" + fileName);
+    private RootNode getRootNode(String fileName) throws Exception {
+        final File file = new File(getPath(fileName));
         final DetailAST rootAst = TestUtils.parseFile(file);
         return new RootNode(rootAst);
     }
