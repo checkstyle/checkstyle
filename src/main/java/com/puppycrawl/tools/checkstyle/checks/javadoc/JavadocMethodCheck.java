@@ -46,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * @author Oliver Burn
  * @author Rick Giles
  * @author o_sukhodoslky
- * 
+ *
  * @noinspection deprecation
  */
 public class JavadocMethodCheck extends AbstractTypeAwareCheck {
