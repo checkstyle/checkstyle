@@ -1030,6 +1030,7 @@
                 <exclude>java.header</exclude>
                 <exclude>java_regexp.header</exclude>
                 <exclude>org.eclipse.jdt.core.prefs</exclude>
+                <exclude>idea.properties</exclude>
               </excludes>
             </validationSet>
             <validationSet>
