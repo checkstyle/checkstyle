@@ -28,17 +28,21 @@ if [[ -z $IDEA_PATH ]]; then
     fi
 fi
 
+#Execute compilation of Checkstyle to generate all source files
+mvn compile
+
 mkdir -p $RESULTS_DIR
 rm -rf $RESULTS_DIR/*
 
-echo "Validation is about to start ... progress output will be flushed at end. Validation is in progress ..."
+echo "Intellij Idea validation is about to start"
+echo "Progress output will be flushed at end. Validation is in progress ..."
 IDEA_OUTPUT=`exec "$IDEA_PATH" inspect $PROJECT_DIR $INSPECTIONS_PATH $RESULTS_DIR -$NOISE_LVL`
 echo $IDEA_OUTPUT
 
 echo "Checking results ..."
-if [[ $(grep "problems" $RESULTS_DIR/* --exclude="RedundantSuppression.xml" | cat | wc -l ) > 0 ]]; then
+if [[ $(grep -R "<problems" $RESULTS_DIR/ --exclude="RedundantSuppression.xml" | cat | wc -l ) > 0 ]]; then
     echo "There are inspection problems. Review results at $RESULTS_DIR folder. Files:"
-    grep -l "problems" $RESULTS_DIR/* --exclude="RedundantSuppression.xml"
+    grep -Rl "<problems" $RESULTS_DIR/ --exclude="RedundantSuppression.xml"
     exit 1;
 else
     echo "Inpection did not found any problems"
