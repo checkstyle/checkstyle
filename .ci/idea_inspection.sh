@@ -4,13 +4,10 @@
 # IntelliJ IDEA inspections for checkstyle.
 #
 # Example Mac OS:
-# export IDEA_PATH="/Applications/IntelliJ IDEA.app/Contents/MacOS/idea"
-# bash ./.ci/idea_inspection.sh
+# IDEA_PATH="/Applications/IntelliJ IDEA.app/Contents/MacOS/idea" ./.ci/idea_inspection.sh
 #
 # Example Linux:
-# export IDEA_PATH=/opt/idea-IC-171.4694.70/bin/idea.sh
-# export IDEA_PROPERTIES=$PWD/config/idea.properties
-# ./.ci/idea_inspection.sh
+# IDEA_PATH=/opt/idea-IC-171.4694.70/bin/idea.sh ./.ci/idea_inspection.sh
 #################################################
 
 PROJECT_DIR=$PWD/
@@ -18,6 +15,7 @@ INSPECTIONS_PATH=$PWD/config/intellij-idea-inspections.xml
 RESULTS_DIR=$PWD/target/inspection-results
 NOISE_LVL=v1
 IDEA_LOCATION=
+# we need to export this variable as it is required for idea.sh script
 export IDEA_PROPERTIES=$PWD/config/idea.properties
 
 # Check IDEA_PATH env variable
