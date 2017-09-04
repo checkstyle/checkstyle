@@ -1,6 +1,12 @@
 #!/bin/bash
 set -e
 
+if [ -z "$1" ]; then
+    echo "No parameters supplied!"
+    echo "      The classpath of the project and it's libraries to compile must be supplied."
+    exit 1
+fi
+
 ECJ_JAR="ecj-4.7.jar"
 ECJ_MAVEN_VERSION="R-4.7-201706120950"
 ECJ_PATH=~/.m2/repository/$ECJ_MAVEN_VERSION/$ECJ_JAR
