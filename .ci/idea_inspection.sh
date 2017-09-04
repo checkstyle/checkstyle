@@ -44,9 +44,9 @@ IDEA_OUTPUT=`exec "$IDEA_LOCATION" inspect $PROJECT_DIR $INSPECTIONS_PATH $RESUL
 echo $IDEA_OUTPUT
 
 echo "Checking results ..."
-if [[ $(grep "problems" $RESULTS_DIR/* --exclude="UnusedProperty.xml" --exclude="RedundantSuppression.xml" | cat | wc -l ) > 0 ]]; then
+if [[ $(grep "problems" $RESULTS_DIR/* --exclude="RedundantSuppression.xml" | cat | wc -l ) > 0 ]]; then
     echo "There are inspection problems. Review results at $RESULTS_DIR folder. Files:"
-    grep -l "problems" $RESULTS_DIR/* --exclude="UnusedProperty.xml" --exclude="RedundantSuppression.xml"
+    grep -l "problems" $RESULTS_DIR/* --exclude="RedundantSuppression.xml"
     exit 1;
 else
     echo "Inpection did not found any problems"
