@@ -13,7 +13,7 @@ SET INSPECTIONS_PATH=%CD%\config\intellij-idea-inspections.xml
 SET RESULTS_DIR=%CD%\target\inspection-results
 SET NOISE_LVL=v1
 SET IDEA_LOCATION=
-SET IDEA_PROPERTIES=%CD%\config\idea.properties
+SET IDEA_PROPERTIES=%CD%\config\intellij-idea-inspections.properties
 
 ::Check IDEA_PATH env variable
 IF EXIST %IDEA_PATH% SET (
@@ -26,7 +26,7 @@ IF EXIST %IDEA_PATH% SET (
 ::Try to search in path
 FOR /f "delims=" %%i IN ('"where idea.bat"') DO SET IDEA_LOCATION="%%i"
 if [%IDEA_LOCATION%] NEQ [] (
-    goto run 
+    goto run
 ) ELSE (
     echo IntelliJ IDEA was not found in path.
     exit /b

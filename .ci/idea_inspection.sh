@@ -15,7 +15,7 @@ INSPECTIONS_PATH=$PWD/config/intellij-idea-inspections.xml
 RESULTS_DIR=$PWD/target/inspection-results
 NOISE_LVL=v1
 # we need to export this variable as it is required for idea.sh script
-export IDEA_PROPERTIES=$PWD/config/idea.properties
+export IDEA_PROPERTIES=$PWD/config/intellij-idea-inspections.properties
 
 # Check IDEA_PATH env variable
 if [[ -z $IDEA_PATH ]]; then
