@@ -241,7 +241,7 @@ Char7: .
 //////////////////////////////////////////////////////////////////////////////////////
 mode codeText;
 Leading_asterisk5: LEADING_ASTERISK -> type(LEADING_ASTERISK);
-Skobki: '{' (~[}] | Skobki)* '}' -> type(CHAR);
+Brackets: '{' (~[}] | Brackets)* '}' -> type(CHAR);
 Text: ~[}] -> type(CHAR);
 Char8: .
       {
