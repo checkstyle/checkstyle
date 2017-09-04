@@ -382,7 +382,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
          * @param ast type to process.
          */
         public void visitType(DetailAST ast) {
-            final String fullTypeName = CheckUtils.createFullType(ast).getText();
+            final String fullTypeName = CheckUtils.createFullTypeNoArrays(ast).getText();
             addReferencedClassName(fullTypeName);
         }
 

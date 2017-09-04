@@ -26,4 +26,7 @@ public class InputIllegalTypeSameFileName
     }
     java.util.List<Integer> list = new ArrayList<>(); //WARNING
     private ArrayList<String> values;
+    private Boolean x;// WARNING Boolean
+    private Integer[] x1;// WARNING Integer[]
+    private int[][] x2;// WARNING int[][]
 }

@@ -48,6 +48,57 @@ public class FullIdentTest {
         Assert.assertEquals("Invalid full indent", "MyTest.MyTestik[15x14]", fullIdent.toString());
     }
 
+    @Test
+    public void testWithArrayCreateFullIdentWithArrayDeclare() {
+        final DetailAST ast = new DetailAST();
+        ast.setType(TokenTypes.ARRAY_DECLARATOR);
+        ast.setColumnNo(18);
+        ast.setLineNo(15);
+        ast.setText("[");
+
+        final DetailAST ast1 = new DetailAST();
+        ast1.setType(TokenTypes.LITERAL_INT);
+        ast1.setColumnNo(14);
+        ast1.setLineNo(15);
+        ast1.setText("int");
+
+        final DetailAST ast2 = new DetailAST();
+        ast2.setType(TokenTypes.RBRACK);
+        ast2.setText("]");
+
+        final DetailAST ast3 = new DetailAST();
+        ast3.setType(TokenTypes.ARRAY_DECLARATOR);
+        ast3.setText("[");
+
+        final DetailAST ast4 = new DetailAST();
+        ast4.setType(TokenTypes.RBRACK);
+        ast4.setText("]");
+
+        final DetailAST ast5 = new DetailAST();
+        ast5.setType(TokenTypes.TYPE);
+        ast5.setText("TYPE");
+
+        ast5.addChild(ast3);
+        ast.addChild(ast1);
+        ast3.addChild(ast);
+        ast1.setNextSibling(ast2);
+        ast.setNextSibling(ast4);
+        final FullIdent indent = FullIdent.createFullIdentWithArrayDeclare(ast1);
+        Assert.assertEquals("Invalid full indent", "int[][][15x14]", indent.toString());
+    }
+
+    @Test
+    public void testWithOutArrayCreateFullIdentWithArrayDeclare() {
+        final DetailAST ast = new DetailAST();
+        ast.setType(TokenTypes.LITERAL_INT);
+        ast.setColumnNo(14);
+        ast.setLineNo(15);
+        ast.setText("int");
+
+        final FullIdent indent = FullIdent.createFullIdentWithArrayDeclare(ast);
+        Assert.assertEquals("Invalid full indent", "int[15x14]", indent.toString());
+    }
+
     private static FullIdent prepareFullIdentWithCoordinates(int columnNo, int lineNo) {
         final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.DOT);

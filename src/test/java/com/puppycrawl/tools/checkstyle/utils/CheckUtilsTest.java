@@ -180,7 +180,7 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
                 .getNextSibling().getFirstChild().getNextSibling();
 
         assertEquals("Invalid full type", "int[14x14]",
-                CheckUtils.createFullType(arrayTypeNode).toString());
+                CheckUtils.createFullTypeNoArrays(arrayTypeNode).toString());
     }
 
     @Test
