@@ -40,9 +40,9 @@ IDEA_OUTPUT=`exec "$IDEA_PATH" inspect $PROJECT_DIR $INSPECTIONS_PATH $RESULTS_D
 echo $IDEA_OUTPUT
 
 echo "Checking results ..."
-if [[ $(grep -R "<problems" $RESULTS_DIR/ --exclude="RedundantSuppression.xml" | cat | wc -l ) > 0 ]]; then
+if [[ $(grep -R "<problems" $RESULTS_DIR/ | cat | wc -l ) > 0 ]]; then
     echo "There are inspection problems. Review results at $RESULTS_DIR folder. Files:"
-    grep -Rl "<problems" $RESULTS_DIR/ --exclude="RedundantSuppression.xml"
+    grep -Rl "<problems" $RESULTS_DIR/
     exit 1;
 else
     echo "Inpection did not found any problems"
