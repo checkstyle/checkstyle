@@ -31,7 +31,7 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
 
     protected static final String LF_REGEX = "\\\\n";
 
-    protected static final String CLRF_REGEX = "\\\\r\\\\n";
+    protected static final String CRLF_REGEX = "\\\\r\\\\n";
 
     /**
      * Returns canonical path for the file with the given file name.
@@ -60,7 +60,7 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
         final String expectedContents = readFile(expectedTextPrintFileName);
 
         final String actualContents = AstTreeStringPrinter.printFileAst(
-                new File(actualJavaFileName), withComments).replaceAll(CLRF_REGEX, LF_REGEX);
+                new File(actualJavaFileName), withComments).replaceAll(CRLF_REGEX, LF_REGEX);
 
         assertEquals("Generated AST from Java file should match pre-defined AST", expectedContents,
                 actualContents);
@@ -94,7 +94,7 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
         final String expectedContents = readFile(expectedTextPrintFilename);
 
         final String actualContents = AstTreeStringPrinter.printJavaAndJavadocTree(
-                new File(actualJavaFilename)).replaceAll(CLRF_REGEX, LF_REGEX);
+                new File(actualJavaFilename)).replaceAll(CRLF_REGEX, LF_REGEX);
 
         assertEquals("Generated AST from the java file should match the pre-defined AST",
                 expectedContents, actualContents);
@@ -113,7 +113,7 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
         final String expectedContents = readFile(expectedTextPrintFilename);
 
         final String actualContents = DetailNodeTreeStringPrinter.printFileAst(
-                new File(actualJavadocFilename)).replaceAll(CLRF_REGEX, LF_REGEX);
+                new File(actualJavadocFilename)).replaceAll(CRLF_REGEX, LF_REGEX);
 
         assertEquals("Generated tree from the javadoc file should match the pre-defined tree",
                 expectedContents, actualContents);
@@ -127,6 +127,6 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
     protected static String readFile(String filename) throws IOException {
         return new String(Files.readAllBytes(
                 Paths.get(filename)), StandardCharsets.UTF_8)
-                .replaceAll(CLRF_REGEX, LF_REGEX);
+                .replaceAll(CRLF_REGEX, LF_REGEX);
     }
 }
