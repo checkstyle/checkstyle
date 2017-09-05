@@ -961,7 +961,13 @@ import static java.math.BigInteger.ZERO;
           <a
           href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">INDEX_OP</a>
           tokens specially from other tokens. Actually it is checked that there is
-          no whitespace before this tokens, not after them.
+          no whitespace before this tokens, not after them. Annotation before
+          <a
+          href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">ARRAY_DECLARATOR</a>
+          and
+          <a
+          href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">INDEX_OP</a>
+          will be ignored.
           </p>
       </subsection>
 
