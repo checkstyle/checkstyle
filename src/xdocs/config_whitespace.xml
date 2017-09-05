@@ -962,6 +962,15 @@ import static java.math.BigInteger.ZERO;
           href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">INDEX_OP</a>
           tokens specially from other tokens. Actually it is checked that there is
           no whitespace before this tokens, not after them.
+          Space after the
+          <a
+          href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATIONS">ANNOTATIONS</a> before
+          <a
+          href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">ARRAY_DECLARATOR</a>
+          and
+          <a
+          href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">INDEX_OP</a>
+          will be ignored.
           </p>
       </subsection>
 
@@ -1059,6 +1068,12 @@ import static java.math.BigInteger.ZERO;
     &lt;property name=&quot;tokens&quot; value=&quot;DOT&quot;/&gt;
     &lt;property name=&quot;allowLineBreaks&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+         If the annotation is between the type and the array, the check will skip validation for spaces:
+        </p>
+        <source>
+public void foo(final char @NotNull [] param) {} // No violation
         </source>
       </subsection>
 

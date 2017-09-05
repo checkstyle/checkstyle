@@ -51,6 +51,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * {@link TokenTypes#INDEX_OP INDEX_OP}
  * specially from other tokens. Actually it is checked that there is
  * no whitespace before this tokens, not after them.
+ * Spaces after the {@link TokenTypes#ANNOTATIONS ANNOTATIONS}
+ * before {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR}
+ * and {@link TokenTypes#INDEX_OP INDEX_OP} will be ignored.
  * </p>
  * <p>
  * An example of how to configure the check is:
@@ -66,6 +69,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *     &lt;property name="tokens" value="DOT"/&gt;
  *     &lt;property name="allowLineBreaks" value="false"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * If the annotation is between the type and the array, the check will skip validation for spaces:
+ * </p>
+ * <pre>
+ * public void foo(final char @NotNull [] param) {} // No violation
  * </pre>
  * @author Rick Giles
  * @author lkuehne
@@ -136,12 +145,15 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         final DetailAST whitespaceFollowedAst = getWhitespaceFollowedNode(ast);
 
-        final int whitespaceColumnNo = getPositionAfter(whitespaceFollowedAst);
-        final int whitespaceLineNo = whitespaceFollowedAst.getLineNo();
+        if (whitespaceFollowedAst.getNextSibling() == null
+                || whitespaceFollowedAst.getNextSibling().getType() != TokenTypes.ANNOTATIONS) {
+            final int whitespaceColumnNo = getPositionAfter(whitespaceFollowedAst);
+            final int whitespaceLineNo = whitespaceFollowedAst.getLineNo();
 
-        if (hasTrailingWhitespace(ast, whitespaceColumnNo, whitespaceLineNo)) {
-            log(whitespaceLineNo, whitespaceColumnNo,
-                MSG_KEY, whitespaceFollowedAst.getText());
+            if (hasTrailingWhitespace(ast, whitespaceColumnNo, whitespaceLineNo)) {
+                log(whitespaceLineNo, whitespaceColumnNo,
+                        MSG_KEY, whitespaceFollowedAst.getText());
+            }
         }
     }
 
