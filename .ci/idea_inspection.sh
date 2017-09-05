@@ -39,6 +39,11 @@ echo "Progress output will be flushed at end. Validation is in progress ..."
 IDEA_OUTPUT=`exec "$IDEA_PATH" inspect $PROJECT_DIR $INSPECTIONS_PATH $RESULTS_DIR -$NOISE_LVL`
 echo $IDEA_OUTPUT
 
+if [[ $IDEA_OUTPUT == "Already running" ]]; then
+    echo "It might be that Intellij Idea is running, please close it."
+    exit 1;
+else
+
 echo "Checking results ..."
 if [[ $(grep -R "<problems" $RESULTS_DIR/ | cat | wc -l ) > 0 ]]; then
     echo "There are inspection problems. Review results at $RESULTS_DIR folder. Files:"
