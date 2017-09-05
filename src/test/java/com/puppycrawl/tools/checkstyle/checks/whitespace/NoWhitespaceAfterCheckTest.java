@@ -169,6 +169,13 @@ public class NoWhitespaceAfterCheckTest
     }
 
     @Test
+    public void testArrayDeclarations3() throws Exception {
+        checkConfig.addAttribute("tokens", "ARRAY_DECLARATOR");
+        checkConfig.addAttribute("tokens", "INDEX_OP");
+        verify(checkConfig, getPath("InputNoWhitespaceAfterArrayDeclarations3.java"));
+    }
+
+    @Test
     public void testSynchronized() throws Exception {
         checkConfig.addAttribute("tokens", "LITERAL_SYNCHRONIZED");
         final String[] expected = {
