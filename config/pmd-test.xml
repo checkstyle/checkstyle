@@ -84,7 +84,7 @@
             | //ClassOrInterfaceDeclaration[@Image='ImportControlCheckTest']//MethodDeclarator[@Image='testPkgRegExpInChild']
             | //ClassOrInterfaceDeclaration[@Image='ImportControlCheckTest']//MethodDeclarator[@Image='testPkgRegExpInParent']
             | //ClassOrInterfaceDeclaration[@Image='ImportControlCheckTest']//MethodDeclarator[@Image='testPkgRegExpInBoth']
-            | /ClassOrInterfaceDeclaration[@Image='AstRegressionTest']//MethodDeclarator[@Image='testImpossibleExceptions']
+            | //ClassOrInterfaceDeclaration[@Image='AstRegressionTest']//MethodDeclarator[@Image='testImpossibleExceptions']
             | //ClassOrInterfaceDeclaration[@Image='AstRegressionTest']//MethodDeclarator[@Image='testImpossibleValid']
             | //ClassOrInterfaceDeclaration[@Image='AllChecksTest']//MethodDeclarator[@Image='testAllModulesAreReferencedInConfigFile']
             | //ClassOrInterfaceDeclaration[@Image='DetailASTTest']//MethodDeclarator[@Image='testTreeStructure']
