@@ -1,5 +1,4 @@
 org.eclipse.jdt.core.compiler.annotation.inheritNullAnnotations=enabled
-org.eclipse.jdt.core.compiler.annotation.nullanalysis=enabled
 org.eclipse.jdt.core.compiler.problem.comparingIdentical=error
 org.eclipse.jdt.core.compiler.problem.deadCode=error
 org.eclipse.jdt.core.compiler.problem.deprecationInDeprecatedCode=enabled
@@ -79,3 +78,4 @@ org.eclipse.jdt.core.compiler.problem.uncheckedTypeOperation=warning
 org.eclipse.jdt.core.compiler.problem.unnecessaryElse=ignore
 org.eclipse.jdt.core.compiler.problem.unnecessaryTypeCheck=ignore
 org.eclipse.jdt.core.compiler.problem.unqualifiedFieldAccess=ignore
+org.eclipse.jdt.core.compiler.annotation.nullanalysis=ignore
