@@ -57,8 +57,9 @@ all-sevntu-checks)
     | grep -vE "Checker|TreeWalker|Filter|Holder" | grep -v "^$" \
     | sed "s/com\.github\.sevntu\.checkstyle\.checks\..*\.//" \
     | sort | uniq | sed "s/Check$//" > file.txt
-  wget -q http://sevntu-checkstyle.github.io/sevntu.checkstyle/apidocs/allclasses-frame.html -O - | html2text \
-    | grep -E "Check$" | cut -d " " -f6 \
+  wget -q http://sevntu-checkstyle.github.io/sevntu.checkstyle/apidocs/allclasses-frame.html -O - \
+    | grep "<li>" | cut -d '>' -f 3 | sed "s/<\/a//" \
+    | grep -E "Check$" \
     | sort | uniq | sed "s/Check$//" > web.txt
   diff -u web.txt file.txt
   ;;
