@@ -52,6 +52,12 @@ matrix:
         - CMD="./.ci/travis/travis.sh cobertura-check"
         - CMD_AFTER_SUCCESS="bash <(curl -s https://codecov.io/bash)"
 
+    # findbugs, spotbugs and pmd (oraclejdk8)
+    - jdk: oraclejdk8
+      env:
+        - DESC="findbugs,spotbugs,pmd"
+        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn clean compile pmd:check findbugs:check spotbugs:check"
+
     # eclipse static analysis
     - jdk: oraclejdk8
       env:
@@ -168,12 +174,6 @@ matrix:
       env:
         - DESC="no error test on simple-binary-encoding"
         - CMD="./.ci/travis/travis.sh no-error-test-sbe"
-
-    # findbugs, spotbugs and pmd (oraclejdk8)
-    - jdk: oraclejdk8
-      env:
-        - DESC="findbugs,spotbugs,pmd"
-        - CMD="mvn clean compile pmd:check findbugs:check spotbugs:check"
 
 script:
   - SKIP_FILES=".github|appveyor.yml|circle.yml|distelli-manifest.yml|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr|shippable.yml|wercker.yml|intellij-idea-inspections.xml"
