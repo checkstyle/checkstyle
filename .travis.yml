@@ -56,7 +56,7 @@ matrix:
     - jdk: oraclejdk8
       env:
         - DESC="findbugs,spotbugs,pmd"
-        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn clean compile pmd:check findbugs:check spotbugs:check"
+        - CMD="export MAVEN_OPTS='-Xmx2000m' && set +e && mvn clean compile pmd:check findbugs:check spotbugs:check"
 
     # eclipse static analysis
     - jdk: oraclejdk8
