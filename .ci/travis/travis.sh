@@ -25,6 +25,7 @@ assembly-run-all-jar)
 
 sonarqube)
   if [[ $TRAVIS_PULL_REQUEST =~ ^([0-9]*)$ ]]; then exit 0; fi
+  export MAVEN_OPTS='-Xmx2000m'
   mvn clean package cobertura:cobertura sonar:sonar \
        -Dsonar.host.url=https://sonarqube.com \
        -Dsonar.login=$SONAR_TOKEN \
