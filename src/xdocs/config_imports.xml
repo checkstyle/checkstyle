@@ -1292,7 +1292,7 @@ import java.util.stream.IntStream;
             <td>separated</td>
             <td>
               whether imports groups should be separated by, at least, one
-              blank line and aren't separated internally
+              blank line or comment and aren't separated internally
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
