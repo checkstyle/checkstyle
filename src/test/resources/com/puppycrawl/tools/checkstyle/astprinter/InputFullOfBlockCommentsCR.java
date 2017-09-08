@@ -1,1 +1,0 @@
-package/*2*/com.puppycrawl.tools.checkstyle.astprinter;/*13*/public/*15*/class/*16*/InputFullOfBlockCommentsCR/*49*/{/*21*/}

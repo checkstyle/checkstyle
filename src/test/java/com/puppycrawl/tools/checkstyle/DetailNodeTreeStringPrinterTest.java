@@ -47,7 +47,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
 
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/astprinter";
+        return "com/puppycrawl/tools/checkstyle/detailnodetreestringprinter";
     }
 
     @Test
@@ -57,15 +57,15 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
 
     @Test
     public void testParseFile() throws Exception {
-        verifyJavadocTree(getPath("expectedInputJavadocComment.txt"),
-                getPath("InputJavadocComment.javadoc"));
+        verifyJavadocTree(getPath("ExpectedDetailNodeTreeStringPrinterJavadocComment.txt"),
+                getPath("InputDetailNodeTreeStringPrinterJavadocComment.javadoc"));
     }
 
     @Test
     public void testParseFileWithError() throws Exception {
         try {
             DetailNodeTreeStringPrinter.printFileAst(
-                    new File(getPath("InputJavadocWithError.javadoc")));
+                    new File(getPath("InputDetailNodeTreeStringPrinterJavadocWithError.javadoc")));
             Assert.fail("Javadoc parser didn't fail on missing end tag");
         }
         catch (IllegalArgumentException ex) {
@@ -103,8 +103,9 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
 
     @Test
     public void testNoUnnecessaryTextinJavadocAst() throws Exception {
-        verifyJavadocTree(getPath("expectedNoUnnecessaryTextInJavadocAst.txt"),
-                getPath("InputNoUnnecessaryTextInJavadocAst.javadoc"));
+        verifyJavadocTree(
+                getPath("ExpectedDetailNodeTreeStringPrinterNoUnnecessaryTextInJavadocAst.txt"),
+                getPath("InputDetailNodeTreeStringPrinterNoUnnecessaryTextInJavadocAst.javadoc"));
     }
 
     @Test
@@ -162,8 +163,9 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     @Test
     public void testUnescapedJavaCodeWithGenericsInJavadoc() throws Exception {
         try {
-            DetailNodeTreeStringPrinter.printFileAst(new File(getPath(
-                    "InputUnescapedJavaCodeWithGenericsInJavadoc.javadoc")));
+            DetailNodeTreeStringPrinter.printFileAst(new File(
+                    getPath("InputDetailNodeTreeStringPrinter"
+                            + "UnescapedJavaCodeWithGenericsInJavadoc.javadoc")));
         }
         catch (IllegalArgumentException ex) {
             final String expected = (String) GET_PARSE_ERROR_MESSAGE.invoke(null,
@@ -177,7 +179,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     public void testNoViableAltException() throws Exception {
         try {
             DetailNodeTreeStringPrinter.printFileAst(new File(getPath(
-                    "InputNoViableAltException.javadoc")));
+                    "InputDetailNodeTreeStringPrinterNoViableAltException.javadoc")));
         }
         catch (IllegalArgumentException ex) {
             final String expected = (String) GET_PARSE_ERROR_MESSAGE.invoke(null,
@@ -192,7 +194,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     public void testHtmlTagCloseBeforeTagOpen() throws Exception {
         try {
             DetailNodeTreeStringPrinter.printFileAst(new File(getPath(
-                    "InputHtmlTagCloseBeforeTagOpen.javadoc"
+                    "InputDetailNodeTreeStringPrinterHtmlTagCloseBeforeTagOpen.javadoc"
             )));
         }
         catch (IllegalArgumentException ex) {
@@ -208,7 +210,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     public void testWrongHtmlTagOrder() throws Exception {
         try {
             DetailNodeTreeStringPrinter.printFileAst(new File(getPath(
-                    "InputWrongHtmlTagOrder.javadoc"
+                    "InputDetailNodeTreeStringPrinterWrongHtmlTagOrder.javadoc"
             )));
         }
         catch (IllegalArgumentException ex) {
@@ -223,7 +225,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     public void testOmittedStartTagForHtmlElement() throws Exception {
         try {
             DetailNodeTreeStringPrinter.printFileAst(new File(getPath(
-                    "InputOmittedStartTagForHtmlElement.javadoc"
+                    "InputDetailNodeTreeStringPrinterOmittedStartTagForHtmlElement.javadoc"
             )));
         }
         catch (IllegalArgumentException ex) {

@@ -15,7 +15,7 @@ astprinter//10
 //14
 public//15
 class//16
-InputFullOfSinglelineComments//17
+InputAstTreeStringPrinterFullOfSinglelineComments//17
 {//18
 public//19
 static//20
