@@ -51,7 +51,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
             "1:27: " + getCheckMessage(MSG_KEY),
             "4:8: " + getCheckMessage(MSG_KEY),
             "6:18: " + getCheckMessage(MSG_KEY),
-            "6:42: " + getCheckMessage(MSG_KEY),
+            "6:51: " + getCheckMessage(MSG_KEY),
             "7:20: " + getCheckMessage(MSG_KEY),
             "8:11: " + getCheckMessage(MSG_KEY),
             "8:15: " + getCheckMessage(MSG_KEY),
@@ -81,7 +81,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
             "31:7: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig, getPath("InputSingleSpaceErrors.java"), expected);
+        verify(checkConfig, getPath("InputSingleSpaceSeparatorErrors.java"), expected);
     }
 
     @Test

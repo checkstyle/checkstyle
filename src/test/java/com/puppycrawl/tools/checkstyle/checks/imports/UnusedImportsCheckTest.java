@@ -43,8 +43,8 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testReferencedStateIsCleared() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
-        final String inputWithoutWarnings = getPath("InputUnusedImportWithoutWarnings.java");
-        final String inputWithWarnings = getPath("InputUnusedImportCheckClearState.java");
+        final String inputWithoutWarnings = getPath("InputUnusedImportsWithoutWarnings.java");
+        final String inputWithWarnings = getPath("InputUnusedImportsCheckClearState.java");
         final List<String> expectedFirstInput = Arrays.asList(CommonUtils.EMPTY_STRING_ARRAY);
         final List<String> expectedSecondInput = Arrays.asList(
                 "3:8: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
@@ -91,7 +91,8 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             "38:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.CheckerTest"),
             "39:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.Definitions"),
             "40:8: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.Input15Extensions"),
+                "com.puppycrawl.tools.checkstyle.checks.imports.unusedimports."
+                        + "InputUnusedImports15Extensions"),
             "41:8: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest"),
             "42:8: " + getCheckMessage(MSG_KEY,
@@ -135,7 +136,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     public void testProcessJavadocWithBlockTagContainingMethodParameters() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputUnusedImportWithBlockMethodParameters.java"), expected);
+        verify(checkConfig, getPath("InputUnusedImportsWithBlockMethodParameters.java"), expected);
     }
 
     @Test

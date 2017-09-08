@@ -1,7 +1,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.summaryjavadoc;
 
 
-public class InputPeriodAtEnd {
+public class InputSummaryJavadocPeriodAtEnd {
     /**
      * JAXB 1.0 only default validation event handler
      */

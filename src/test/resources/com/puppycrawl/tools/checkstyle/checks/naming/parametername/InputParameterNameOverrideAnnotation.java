@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.checks.naming.parametername;
 
-public class InputOverrideAnnotation {
+public class InputParameterNameOverrideAnnotation {
 
     @Override
     public boolean equals(Object o) {
@@ -23,9 +23,9 @@ public class InputOverrideAnnotation {
     private int field;
     private java.util.Set<String> packageNames;
 
-    InputOverrideAnnotation() {} // No NPE here!
+    InputParameterNameOverrideAnnotation() {} // No NPE here!
 
-    InputOverrideAnnotation(int field, java.util.Set<String> packageNames) {} // No NPE here!
+    InputParameterNameOverrideAnnotation(int field, java.util.Set<String> packageNames) {} // No NPE here!
 
 
 }

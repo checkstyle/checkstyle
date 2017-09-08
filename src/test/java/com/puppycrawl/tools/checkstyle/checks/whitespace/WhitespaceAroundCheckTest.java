@@ -169,10 +169,10 @@ public class WhitespaceAroundCheckTest
     public void testGenericsTokensAreFlagged()
             throws Exception {
         final String[] expected = {
-            "6:67: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "&"),
-            "6:68: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "&"),
+            "6:83: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "&"),
+            "6:84: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "&"),
         };
-        verify(checkConfig, getPath("InputGenerics.java"), expected);
+        verify(checkConfig, getPath("InputWhitespaceAroundGenerics.java"), expected);
     }
 
     @Test
@@ -331,7 +331,7 @@ public class WhitespaceAroundCheckTest
     public void testAllowEmptyTypesIsSetToFalseAndNonEmptyClasses() throws Exception {
         checkConfig.addAttribute("allowEmptyTypes", "false");
         final String[] expected = {
-            "6:52: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "6:68: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
             "10:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
             "14:32: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
             "18:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
@@ -347,7 +347,7 @@ public class WhitespaceAroundCheckTest
             "31:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
             "31:13: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
         };
-        verify(checkConfig, getPath("InputAllowEmptyTypesAndNonEmptyClasses.java"),
+        verify(checkConfig, getPath("InputWhitespaceAroundAllowEmptyTypesAndNonEmptyClasses.java"),
             expected);
     }
 
@@ -355,7 +355,7 @@ public class WhitespaceAroundCheckTest
     public void testAllowEmptyTypesIsSetToTrueAndNonEmptyClasses() throws Exception {
         checkConfig.addAttribute("allowEmptyTypes", "true");
         final String[] expected = {
-            "6:52: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "6:68: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
             "10:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
             "14:32: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
             "18:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
@@ -367,7 +367,7 @@ public class WhitespaceAroundCheckTest
             "31:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
             "31:13: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
             };
-        verify(checkConfig, getPath("InputAllowEmptyTypesAndNonEmptyClasses.java"),
+        verify(checkConfig, getPath("InputWhitespaceAroundAllowEmptyTypesAndNonEmptyClasses.java"),
             expected);
     }
 

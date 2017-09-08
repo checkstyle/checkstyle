@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
-public class InputAllEscapedUnicodeCharacters {
+public class InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters {
 
   private String[] allEscapedUnicodeCharacters = { ""
                         /* control character ok */ + "\u0000"

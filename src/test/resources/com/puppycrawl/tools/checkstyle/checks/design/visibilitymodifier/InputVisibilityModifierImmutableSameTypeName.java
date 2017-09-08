@@ -1,7 +1,7 @@
 package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier;
 
 import com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier.InputVisibilityModifierGregorianCalendar;
-import com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier.InetSocketAddress;
+import com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier.inputs.InetSocketAddress;
 public final class InputVisibilityModifierImmutableSameTypeName
 {
     public final java.util.GregorianCalendar calendar = null;

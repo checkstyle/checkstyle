@@ -197,7 +197,7 @@ public class VisibilityModifierCheckTest
                  "com.puppycrawl.tools.checkstyle.checks.design."
                          + "visibilitymodifier.InputVisibilityModifierGregorianCalendar,"
                  + "com.puppycrawl.tools.checkstyle.checks.design."
-                         + "visibilitymodifier.InetSocketAddress");
+                         + "visibilitymodifier.inputs.InetSocketAddress");
         final String[] expected = {
             "7:46: " + getCheckMessage(MSG_KEY, "calendar"),
             "12:45: " + getCheckMessage(MSG_KEY, "adr"),

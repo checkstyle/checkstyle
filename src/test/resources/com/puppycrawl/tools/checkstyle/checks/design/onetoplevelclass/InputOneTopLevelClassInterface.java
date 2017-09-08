@@ -1,5 +1,5 @@
 package com.puppycrawl.tools.checkstyle.checks.design.onetoplevelclass;
 
-public interface InputOneTopLevelInterface {
+public interface InputOneTopLevelClassInterface {
     int foo();
 }

@@ -37,7 +37,7 @@ import java.util.BitSet;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.CheckerTest;
 import com.puppycrawl.tools.checkstyle.Definitions;
-import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.Input15Extensions;
+import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImports15Extensions;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest;
 import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -99,7 +99,7 @@ class InputUnusedImports
 
     /**
      * First is a class with a method with arguments {@link Checker#method1(CheckerTest)}.
-     * Next is a class with typed method {@link BaseFileSetCheckTestSupport#method2(Definitions, Input15Extensions)}.
+     * Next is a class with typed method {@link BaseFileSetCheckTestSupport#method2(Definitions, InputUnusedImports15Extensions)}.
      *
      * @param param1 with a link {@link ConfigurationLoaderTest}
      * @throws PackageNamesLoader when broken
