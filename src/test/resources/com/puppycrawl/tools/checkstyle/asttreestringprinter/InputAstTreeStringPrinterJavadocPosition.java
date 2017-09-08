@@ -1,4 +1,4 @@
-public class InputJavadocPosition {
+public class InputAstTreeStringPrinterJavadocPosition {
     void method() {
 	/**
 	This is a method
