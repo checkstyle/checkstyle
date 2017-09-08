@@ -236,7 +236,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/internal";
+        return "com/puppycrawl/tools/checkstyle/internal/allchecks";
     }
 
     @Test
@@ -255,7 +255,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 // ImportControlCheck must have the import control configuration file to avoid
                 // violation.
                 moduleConfig.addAttribute("file", getPath(
-                        "InputAllChecksImport-control_complete.xml"));
+                        "InputAllChecksImportControl.xml"));
             }
             checker = createChecker(moduleConfig);
             verify(checker, inputFilePath, expected);
