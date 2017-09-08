@@ -59,7 +59,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *   <tr><td>ordered</td><td>whether imports within group should be sorted</td>
  *       <td>Boolean</td><td>true</td></tr>
  *   <tr><td>separated</td><td>whether imports groups should be separated by, at least,
- *       one blank line and aren't separated internally</td><td>Boolean</td><td>false</td></tr>
+ *       one blank line or comment and aren't separated internally
+ *       </td><td>Boolean</td><td>false</td></tr>
  *   <tr><td>caseSensitive</td><td>whether string comparison should be case sensitive or not.
  *       Case sensitive sorting is in ASCII sort order</td><td>Boolean</td><td>true</td></tr>
  *   <tr><td>sortStaticImportsAlphabetically</td><td>whether static imports grouped by top or
@@ -449,7 +450,7 @@ public class ImportOrderCheck
         else {
             log(line, MSG_ORDERING, name);
         }
-        if (checkSeparatorInGroup(groupIdx, isStatic, line)) {
+        if (isSeparatorInGroup(groupIdx, isStatic, line)) {
             log(line, MSG_SEPARATED_IN_GROUP, name);
         }
 
@@ -464,9 +465,38 @@ public class ImportOrderCheck
      * @param line the line of the current import.
      * @return true if imports group are separated internally.
      */
-    private boolean checkSeparatorInGroup(int groupIdx, boolean isStatic, int line) {
-        return !beforeFirstImport && separated && groupIdx == lastGroup
-                && isStatic == lastImportStatic && line - lastImportLine > 1;
+    private boolean isSeparatorInGroup(int groupIdx, boolean isStatic, int line) {
+        final boolean inSameGroup = isInSameGroup(groupIdx, isStatic);
+        return (!separated || inSameGroup) && isSeparatorBeforeImport(line);
+    }
+
+    /**
+     * Checks whether there is any separator before current import.
+     * @param line the line of the current import.
+     * @return true if there is separator before current import which isn't the first import.
+     */
+    private boolean isSeparatorBeforeImport(int line) {
+        return !beforeFirstImport && line - lastImportLine > 1;
+    }
+
+    /**
+     * Checks whether imports are in same group.
+     * @param groupIdx group number.
+     * @param isStatic whether the token is static or not.
+     * @return true if imports are in same group.
+     */
+    private boolean isInSameGroup(int groupIdx, boolean isStatic) {
+        final boolean isStaticImportGroupIndependent =
+            option == ImportOrderOption.TOP || option == ImportOrderOption.BOTTOM;
+        final boolean result;
+        if (isStaticImportGroupIndependent) {
+            result = isStatic && lastImportStatic
+                || groupIdx == lastGroup && isStatic == lastImportStatic;
+        }
+        else {
+            result = groupIdx == lastGroup;
+        }
+        return result;
     }
 
     /**
