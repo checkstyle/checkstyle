@@ -353,7 +353,9 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
                 .filter(val -> !isControlCharacter(val))
                 .mapToObj(msg -> indexOfStartLineInInputFile + msg + ": " + message)
                 .toArray(String[]::new);
-        verify(checkConfig, getPath("InputAllEscapedUnicodeCharacters.java"), expected);
+        verify(checkConfig,
+                getPath("InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters.java"),
+                expected);
     }
 
     /**

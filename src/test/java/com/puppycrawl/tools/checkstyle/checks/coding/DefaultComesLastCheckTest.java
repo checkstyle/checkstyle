@@ -53,7 +53,8 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
             "98:13: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig, getPath("InputSkipIfLastAndSharedWithCase.java"), expected);
+        verify(checkConfig, getPath("InputDefaultComesLastSkipIfLastAndSharedWithCase.java"),
+                expected);
     }
 
     @Test

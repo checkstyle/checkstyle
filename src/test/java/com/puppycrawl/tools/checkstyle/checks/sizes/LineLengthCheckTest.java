@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class InputLineLengthCheckTest extends AbstractModuleTestSupport {
+public class LineLengthCheckTest extends AbstractModuleTestSupport {
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/linelength";
@@ -87,7 +87,7 @@ public class InputLineLengthCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "9: " + getCheckMessage(MSG_KEY, 80, 87),
         };
-        verify(checkConfig, getPath("InputLongImportStatements.java"), expected);
+        verify(checkConfig, getPath("InputLineLengthLongImportStatements.java"), expected);
     }
 
     @Test
@@ -98,6 +98,7 @@ public class InputLineLengthCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "6: " + getCheckMessage(MSG_KEY, 80, 88),
         };
-        verify(checkConfig, getNonCompilablePath("InputLongPackageStatement.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputLineLengthLongPackageStatement.java"),
+                expected);
     }
 }

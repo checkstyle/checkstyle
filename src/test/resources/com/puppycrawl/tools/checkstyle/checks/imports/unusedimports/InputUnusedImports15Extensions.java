@@ -7,7 +7,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 }
 
 @MyAnnotation1(name = "ABC", version = 1)
-public class Input15Extensions
+public class InputUnusedImports15Extensions
 {
 
 }

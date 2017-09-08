@@ -58,7 +58,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     public void testCorrect() throws Exception {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputJavaDocParagraphCorrect.java"), expected);
+        verify(checkConfig, getPath("InputJavadocParagraphCorrect.java"), expected);
     }
 
     @Test
@@ -101,7 +101,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
             "81: " + getCheckMessage(MSG_TAG_AFTER),
             "82: " + getCheckMessage(MSG_TAG_AFTER),
         };
-        verify(checkConfig, getPath("InputJavaDocParagraphIncorrect.java"), expected);
+        verify(checkConfig, getPath("InputJavadocParagraphIncorrect.java"), expected);
     }
 
     @Test
@@ -128,6 +128,6 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
             "81: " + getCheckMessage(MSG_TAG_AFTER),
             "82: " + getCheckMessage(MSG_TAG_AFTER),
         };
-        verify(checkConfig, getPath("InputJavaDocParagraphIncorrect.java"), expected);
+        verify(checkConfig, getPath("InputJavadocParagraphIncorrect.java"), expected);
     }
 }

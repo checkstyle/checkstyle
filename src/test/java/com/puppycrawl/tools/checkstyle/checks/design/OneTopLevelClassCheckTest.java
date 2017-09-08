@@ -53,7 +53,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(OneTopLevelClassCheck.class);
         final String firstInputFilePath = getPath("InputOneTopLevelClassDeclarationOrder.java");
-        final String secondInputFilePath = getPath("InputOneTopLevelInterface2.java");
+        final String secondInputFilePath = getPath("InputOneTopLevelClassInterface2.java");
 
         final File[] inputs = {
             new File(firstInputFilePath),
@@ -63,8 +63,8 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
         final List<String> expectedFirstInput = Collections.singletonList(
             "10: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderEnum"));
         final List<String> expectedSecondInput = Arrays.asList(
-            "3: " + getCheckMessage(MSG_KEY, "InputOneTopLevelInterface2inner1"),
-            "11: " + getCheckMessage(MSG_KEY, "InputOneTopLevelInterface2inner2"));
+            "3: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassInterface2inner1"),
+            "11: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassInterface2inner2"));
 
         verify(createChecker(checkConfig), inputs,
             ImmutableMap.of(firstInputFilePath, expectedFirstInput,
@@ -94,7 +94,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputOneTopLevelInterface.java"), expected);
+        verify(checkConfig, getPath("InputOneTopLevelClassInterface.java"), expected);
     }
 
     @Test
@@ -102,7 +102,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputOneTopLevelEnum.java"), expected);
+        verify(checkConfig, getPath("InputOneTopLevelClassEnum.java"), expected);
     }
 
     @Test
@@ -120,10 +120,10 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_KEY, "InputOneTopLevelInterface2inner1"),
-            "11: " + getCheckMessage(MSG_KEY, "InputOneTopLevelInterface2inner2"),
+            "3: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassInterface2inner1"),
+            "11: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassInterface2inner2"),
         };
-        verify(checkConfig, getPath("InputOneTopLevelInterface2.java"), expected);
+        verify(checkConfig, getPath("InputOneTopLevelClassInterface2.java"), expected);
     }
 
     @Test
@@ -131,10 +131,10 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_KEY, "InputOneTopLevelEnum2inner1"),
-            "11: " + getCheckMessage(MSG_KEY, "InputOneTopLevelEnum2inner2"),
+            "3: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassEnum2inner1"),
+            "11: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassEnum2inner2"),
         };
-        verify(checkConfig, getPath("InputOneTopLevelEnum2.java"), expected);
+        verify(checkConfig, getPath("InputOneTopLevelClassEnum2.java"), expected);
     }
 
     @Test

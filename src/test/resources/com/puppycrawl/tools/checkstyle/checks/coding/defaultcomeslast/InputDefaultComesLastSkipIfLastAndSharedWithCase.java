@@ -1,7 +1,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.defaultcomeslast;
 
 
-public class InputSkipIfLastAndSharedWithCase
+public class InputDefaultComesLastSkipIfLastAndSharedWithCase
 {
     void method(int i) {
         switch (i) {

@@ -56,7 +56,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(AtclauseOrderCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputAtClauseOrderCorrect.java"), expected);
+        verify(checkConfig, getPath("InputAtclauseOrderCorrect.java"), expected);
     }
 
     @Test
@@ -106,7 +106,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
             "278: " + getCheckMessage(MSG_KEY, tagOrder),
             "288: " + getCheckMessage(MSG_KEY, tagOrder),
         };
-        verify(checkConfig, getPath("InputAtClauseOrderIncorrect.java"), expected);
+        verify(checkConfig, getPath("InputAtclauseOrderIncorrect.java"), expected);
     }
 
     @Test
@@ -123,6 +123,6 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "113: " + getCheckMessage(MSG_KEY, tagOrder),
         };
-        verify(checkConfig, getPath("InputAtClauseOrderIncorrect.java"), expected);
+        verify(checkConfig, getPath("InputAtclauseOrderIncorrect.java"), expected);
     }
 }

@@ -49,7 +49,7 @@ public class FileSetCheckLifecycleTest
         final Configuration checkConfig =
             createModuleConfig(TestFileSetCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputFileSetIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("InputFileSetCheckLifecycleIllegalTokens.java"), expected);
 
         assertTrue("destroy() not called by Checker", TestFileSetCheck.isDestroyed());
     }
@@ -75,7 +75,7 @@ public class FileSetCheckLifecycleTest
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checker, getPath("InputFileSetIllegalTokens.java"), expected);
+        verify(checker, getPath("InputFileSetCheckLifecycleIllegalTokens.java"), expected);
 
         assertTrue("FileContent should be available during finishProcessing() call",
                 TestFileSetCheck.isFileContentAvailable());

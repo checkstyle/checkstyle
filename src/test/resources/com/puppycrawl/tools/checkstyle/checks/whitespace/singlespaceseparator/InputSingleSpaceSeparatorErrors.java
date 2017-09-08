@@ -3,7 +3,7 @@ package  com.puppycrawl.   tools.checkstyle.checks.whitespace.singlespaceseparat
 import java.util.List;
 import  java.util.Vector;
 
-public class      InputSingleSpaceErrors  {
+public class      InputSingleSpaceSeparatorErrors  {
     int             number; //violation
 int i =    99  ;
 {

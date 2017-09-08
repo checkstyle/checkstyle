@@ -82,7 +82,8 @@ public class RedundantImportCheckTest
             "7:1: " + getCheckMessage(MSG_SAME,
                 "com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.*"),
             "8:1: " + getCheckMessage(MSG_SAME,
-                "com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.InputImportBug"),
+                "com.puppycrawl.tools.checkstyle.checks.imports.redundantimport."
+                        + "InputRedundantImportBug"),
             "10:1: " + getCheckMessage(MSG_LANG, "java.lang.*"),
             "11:1: " + getCheckMessage(MSG_LANG, "java.lang.String"),
             "14:1: " + getCheckMessage(MSG_DUPLICATE, 13, "java.util.List"),

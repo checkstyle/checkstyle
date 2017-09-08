@@ -1809,7 +1809,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("forceStrictCondition", "true");
         checkConfig.addAttribute("braceAdjustment", "0");
         checkConfig.addAttribute("lineWrappingIndentation", "4");
-        final String fileName = getPath("InputTryWithResourcesStrict.java");
+        final String fileName = getPath("InputIndentationTryWithResourcesStrict.java");
         final String[] expected = {
             "26: " + getCheckMessage(MSG_ERROR, "try resource", 0, 12),
             "28: " + getCheckMessage(MSG_ERROR_MULTI, "try rparen", 13, "8, 12"),
@@ -1843,7 +1843,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("braceAdjustment", "0");
         checkConfig.addAttribute("lineWrappingIndentation", "4");
-        final String fileName = getPath("InputTryResourcesNotStrict.java");
+        final String fileName = getPath("InputIndentationTryResourcesNotStrict.java");
         final String[] expected = {
             "27: " + getCheckMessage(MSG_ERROR, "try resource", 0, 12),
             "33: " + getCheckMessage(MSG_ERROR, "newBufferedWriter", 0, 16),

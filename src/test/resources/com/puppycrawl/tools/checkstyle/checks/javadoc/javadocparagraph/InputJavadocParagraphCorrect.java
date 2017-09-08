@@ -6,7 +6,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
  * <p>Some Javadoc.
  *
  */
-class InputCorrectJavaDocParagraphCorrect {
+class InputJavadocParagraphCorrect {
 
     /**
      * Some Javadoc.
@@ -53,7 +53,7 @@ class InputCorrectJavaDocParagraphCorrect {
      * <p>Some Javadoc.
      *
      */
-     class InnerInputCorrectJavaDocParagraphCheck {
+     class InnerInputJavadocParagraphCorrect {
 
         /**
          * Some Javadoc.
@@ -77,7 +77,7 @@ class InputCorrectJavaDocParagraphCorrect {
         boolean emulated() {return false;}
     }
     
-    InnerInputCorrectJavaDocParagraphCheck anon = new InnerInputCorrectJavaDocParagraphCheck() {
+     InnerInputJavadocParagraphCorrect anon = new InnerInputJavadocParagraphCorrect() {
 
     	/**
          * Some Javadoc.
