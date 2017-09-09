@@ -62,7 +62,7 @@
       </p>
 
       <p>
-        Example of report that we expect:
+        Example of report that we expect (you can skip <code>-Duser.language=en -Duser.country=US</code> if your default locale is English):
 
         <source><![CDATA[
 /var/tmp $ javac Test.java
@@ -85,7 +85,7 @@ private static final int SOMETHING = 1;
     </module>
 </module>
 
-/var/tmp $ java -jar checkstyle-6.XX-all.jar -c config.xml Test.java
+/var/tmp $ java -Duser.language=en -Duser.country=US -jar checkstyle-6.XX-all.jar -c config.xml Test.java
 Starting audit...
 Audit done.
 
