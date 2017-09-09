@@ -9,6 +9,6 @@ package com.puppycrawl.tools.checkstyle.checks.misc.newlineatendoffile;
  * NewlineAtEndOfFileCheck.
  * @author Christopher Lenz
  **/
-public interface InputNoNewlineAtEndOfFile
+public interface InputNewlineAtEndOfFileNoNewline
 {
 }
