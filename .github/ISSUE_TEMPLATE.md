@@ -10,7 +10,7 @@
 
 [[PLACE YOUR OUTPUT HERE]]
 
-/var/tmp $ java -jar checkstyle-X.XX-all.jar -c config.xml YOUR_FILE.java
+/var/tmp $ java -Duser.language=en -Duser.country=US -jar checkstyle-X.XX-all.jar -c config.xml YOUR_FILE.java
 
 [[PLACE YOUR OUTPUT HERE]]
 
