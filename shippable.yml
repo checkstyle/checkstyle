@@ -9,14 +9,14 @@ env:
     - PROFILE="-Ppitest-checkstyle-xpath,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checkstyle-filters,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checks-javadoc,no-validations"
-    - PROFILE="-Ppitest-checks-imports,no-validations"
+    - PROFILE="-Ppitest-checks-imports,no-validations"; POST_ACTION=check_survived_imports
     - PROFILE="-Ppitest-checks-metrics,no-validations"
     - PROFILE="-Ppitest-checks-regexp,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checks-sizes,no-validations"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checks-whitespace,no-validations"
+    - PROFILE="-Ppitest-checks-whitespace,no-validations"; POST_ACTION=check_survived_whitespace
     - PROFILE="-Ppitest-checks-misc,no-validations"
-    - PROFILE="-Ppitest-checks-blocks,no-validations"
-    - PROFILE="-Ppitest-checks-coding,no-validations"
+    - PROFILE="-Ppitest-checks-blocks,no-validations"; POST_ACTION=check_survived_blocks
+    - PROFILE="-Ppitest-checks-coding,no-validations"; POST_ACTION=check_survived_coding
     - PROFILE="-Ppitest-checks-design,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checks-annotation,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checks-header,no-validations"; POST_ACTION=check_survived
@@ -53,6 +53,37 @@ build:
 
         if [[ $POST_ACTION == 'check_survived' && $(grep -RE "class='survived'" target/ | cat | wc -l) > 0 ]]; then
            echo "Survived items:"$(grep -RE "class='survived'" target/ | cat)
+           echo "Survived items found in reports, build will be failed"
+           exit 1
+        fi
+        if [[ $POST_ACTION == 'check_survived_whitespace' && $(grep -RE "class='survived'" --exclude="NoWhitespaceAfterCheck.*" --exclude="ParenPadCheck.*" --exclude="SingleSpaceSeparatorCheck.*" target/ | cat | wc -l) > 0 ]]; then
+           echo "Survived items:"$(grep -RE "class='survived'" --exclude="NoWhitespaceAfterCheck.*" --exclude="ParenPadCheck.*" --exclude="SingleSpaceSeparatorCheck.*" target/ | cat)
+           echo "Survived items found in reports, build will be failed"
+           exit 1
+        fi
+        if [[ $POST_ACTION == 'check_survived_imports' && $(grep -RE "class='survived'" --exclude="CustomImportOrderCheck.*" --exclude="ImportOrderCheck.*" target/ | cat | wc -l) > 0 ]]; then
+           echo "Survived items:"$(grep -RE "class='survived'" --exclude="CustomImportOrderCheck.*" --exclude="ImportOrderCheck.*" target/ | cat)
+           echo "Survived items found in reports, build will be failed"
+           exit 1
+        fi
+        if [[ $POST_ACTION == 'check_survived_blocks' && $(grep -RE "class='survived'" --exclude="LeftCurlyCheck.*" target/ | cat | wc -l) > 0 ]]; then
+           echo "Survived items:"$(grep -RE "class='survived'" --exclude="LeftCurlyCheck.*" target/ | cat)
+           echo "Survived items found in reports, build will be failed"
+           exit 1
+        fi
+        if [[ $POST_ACTION == 'check_survived_coding'
+              && $(grep -RE "class='survived'"  --exclude="AbstractSuperCheck.*" --exclude="DeclarationOrderCheck.*" --exclude="EqualsAvoidNullCheck.*" \
+              --exclude="EqualsHashCodeCheck.*" --exclude="FallThroughCheck.*" --exclude="HiddenFieldCheck.*" --exclude="IllegalInstantiationCheck.*" \
+              --exclude="IllegalTokenTextCheck.*" --exclude="IllegalTypeCheck.*" --exclude="MagicNumberCheck.*" --exclude="ModifiedControlVariableCheck.*" \
+              --exclude="MultipleStringLiteralsCheck.*" --exclude="MultipleVariableDeclarationsCheck.*" --exclude="NestedForDepthCheck.*" \
+              --exclude="OneStatementPerLineCheck.*" --exclude="ParameterAssignmentCheck.*" --exclude="RequireThisCheck.*" --exclude="ReturnCountCheck.*" \
+              --exclude="UnnecessaryParenthesesCheck.*" --exclude="VariableDeclarationUsageDistanceCheck.*"   target/ | cat | wc -l) > 0 ]]; then
+           echo "Survived items:"$(grep -RE "class='survived'"  --exclude="AbstractSuperCheck.*" --exclude="DeclarationOrderCheck.*" --exclude="EqualsAvoidNullCheck.*" \
+              --exclude="EqualsHashCodeCheck.*" --exclude="FallThroughCheck.*" --exclude="HiddenFieldCheck.*" --exclude="IllegalInstantiationCheck.*" \
+              --exclude="IllegalTokenTextCheck.*" --exclude="IllegalTypeCheck.*" --exclude="MagicNumberCheck.*" --exclude="ModifiedControlVariableCheck.*" \
+              --exclude="MultipleStringLiteralsCheck.*" --exclude="MultipleVariableDeclarationsCheck.*" --exclude="NestedForDepthCheck.*" \
+              --exclude="OneStatementPerLineCheck.*" --exclude="ParameterAssignmentCheck.*" --exclude="RequireThisCheck.*" --exclude="ReturnCountCheck.*" \
+              --exclude="UnnecessaryParenthesesCheck.*" --exclude="VariableDeclarationUsageDistanceCheck.*"  target/ | cat)
            echo "Survived items found in reports, build will be failed"
            exit 1
         fi
