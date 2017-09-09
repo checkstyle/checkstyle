@@ -5,10 +5,10 @@
 package com.puppycrawl.tools.checkstyle.checks.misc.newlineatendoffile;
 
 /**
- * Test case for detection of an existing CRLF newline at EOF, using the 
+ * Test case for detection of an existing LF newline at EOF, using the 
  * NewlineAtEndOfFileCheck.
  * @author Martin Steiger
  **/
-public interface InputNewlineCrlfAtEndOfFile
+public interface InputNewlineAtEndOfFileLf
 {
 }
