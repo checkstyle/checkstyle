@@ -92,7 +92,7 @@ no-exception-test-guava)
   git clone https://github.com/checkstyle/contribution
   cd contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
-  sed -i.'' 's/#guava/guava/' projects-to-test-on.properties
+  sed -i.'' 's/#guava|/guava|/' projects-to-test-on.properties
   cd ../../
   mvn clean install -Pno-validations
   cd contribution/checkstyle-tester
@@ -103,7 +103,7 @@ no-exception-test-guava-with-google-checks)
   git clone https://github.com/checkstyle/contribution
   cd contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
-  sed -i.'' 's/#guava/guava/' projects-to-test-on.properties
+  sed -i.'' 's/#guava|/guava|/' projects-to-test-on.properties
   cd ../../
   mvn clean install -Pno-validations
   sed -i.'' 's/warning/ignore/' src/main/resources/google_checks.xml
