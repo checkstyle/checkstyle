@@ -94,9 +94,6 @@ public class UncommentedMainCheck
     @Override
     public void leaveToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.CLASS_DEF) {
-            if (classDepth == 1) {
-                currentClass = null;
-            }
             classDepth--;
         }
     }
