@@ -1644,7 +1644,8 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder</param>
+                <!-- this class will be rewritten in future releases -->
+                <!--<param>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder</param>-->
                 <param>com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.TranslationCheck</param>
@@ -1667,7 +1668,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.UpperEllCheckTest</param>
               </targetTests>
-              <mutationThreshold>96</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
