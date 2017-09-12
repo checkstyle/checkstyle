@@ -1,9 +1,9 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity;
 
-import com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.aa.AAClass;
-import com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.ab.ABClass;
-import com.puppycrawl.tools.checkstyle.checks.metrics.inputs.b.BClass;
-import com.puppycrawl.tools.checkstyle.checks.metrics.inputs.c.CClass;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity.inputs.a.aa.AAClass;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity.inputs.a.ab.ABClass;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity.inputs.b.BClass;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity.inputs.c.CClass;
 
 public class InputClassFanOutComplexityExcludedPackagesAllIgnored { // total: ok
     public AAClass aa; // ok

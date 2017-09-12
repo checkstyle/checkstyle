@@ -60,8 +60,8 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
 
         checkConfig.addAttribute("max", "0");
         checkConfig.addAttribute("excludedPackages",
-            "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.c,"
-                + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.b");
+            "com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity.inputs.c,"
+                + "com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity.inputs.b");
 
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_KEY, 2, 0),
@@ -122,10 +122,11 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
 
         checkConfig.addAttribute("max", "0");
         checkConfig.addAttribute("excludedPackages",
-            "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.aa,"
-                + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.ab,"
-                + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.b,"
-                + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.c");
+            "com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity.inputs.a.aa,"
+                + "com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity."
+                    + "inputs.a.ab,"
+                + "com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity.inputs.b,"
+                + "com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity.inputs.c");
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,

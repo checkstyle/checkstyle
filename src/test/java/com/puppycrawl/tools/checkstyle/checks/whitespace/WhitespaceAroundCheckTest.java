@@ -128,12 +128,12 @@ public class WhitespaceAroundCheckTest
             "54:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "for"),
             // + ":58:23: ';' is not followed by whitespace.",
             //  + ":58:29: ';' is not followed by whitespace.",
-            "111:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
-            "111:27: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "111:43: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "111:43: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
             "114:40: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
             "114:40: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
         };
-        verify(checkConfig, getPath("InputBraces.java"), expected);
+        verify(checkConfig, getPath("InputWhitespaceAroundBraces.java"), expected);
     }
 
     @Test
@@ -145,7 +145,7 @@ public class WhitespaceAroundCheckTest
             "37:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "while"),
             "54:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "for"),
         };
-        verify(checkConfig, getPath("InputBraces.java"), expected);
+        verify(checkConfig, getPath("InputWhitespaceAroundBraces.java"), expected);
     }
 
     @Test
