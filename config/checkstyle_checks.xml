@@ -485,6 +485,7 @@
     <module name="NoLineWrap"/>
     <module name="NoWhitespaceAfter">
       <property name="tokens" value="ARRAY_INIT"/>
+      <property name="tokens" value="AT"/>
       <property name="tokens" value="BNOT"/>
       <property name="tokens" value="DEC"/>
       <property name="tokens" value="DOT"/>
