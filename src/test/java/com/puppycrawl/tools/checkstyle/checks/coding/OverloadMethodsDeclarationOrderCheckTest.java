@@ -31,7 +31,7 @@ public class OverloadMethodsDeclarationOrderCheckTest
     extends AbstractModuleTestSupport {
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/checks/coding/overloadmethoddeclaration";
+        return "com/puppycrawl/tools/checkstyle/checks/coding/overloadmethodsdeclarationorder";
     }
 
     @Test

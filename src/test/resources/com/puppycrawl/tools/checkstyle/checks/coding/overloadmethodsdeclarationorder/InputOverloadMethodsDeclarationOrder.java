@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.coding.overloadmethoddeclaration;
+package com.puppycrawl.tools.checkstyle.checks.coding.overloadmethodsdeclarationorder;
 
 
 

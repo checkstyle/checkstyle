@@ -64,8 +64,9 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
 
         checkConfig.addAttribute("max", "0");
         checkConfig.addAttribute("excludedPackages",
-            "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.c,"
-                + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.b");
+            "com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.inputs.c,"
+                + "com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling."
+                + "inputs.b");
 
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AAClass, ABClass]"),
@@ -128,10 +129,14 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
 
         checkConfig.addAttribute("max", "0");
         checkConfig.addAttribute("excludedPackages",
-            "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.aa,"
-                + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.ab,"
-                + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.b,"
-                + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.c");
+            "com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.inputs."
+                    + "a.aa,"
+                + "com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling."
+                    + "inputs.a.ab,"
+                + "com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling."
+                    + "inputs.b,"
+                + "com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling."
+                    + "inputs.c");
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,

@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.naming.abbrevationaswordinname;
+package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
 
 abstract class IIIInputAbstractClassName {
 }

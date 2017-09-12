@@ -31,7 +31,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
 
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/checks/naming/abbrevationaswordinname";
+        return "com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname";
     }
 
     @Test
