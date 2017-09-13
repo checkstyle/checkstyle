@@ -62,7 +62,7 @@ import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter;
-import com.puppycrawl.tools.checkstyle.internal.TestUtils;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class TreeWalkerTest extends AbstractModuleTestSupport {
@@ -459,9 +459,9 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     @Test
     public void testAppendHiddenBlockCommentNodes() throws Exception {
         final DetailAST root =
-            TestUtils.parseFile(new File(getPath("InputTreeWalkerHiddenComments.java")));
+            TestUtil.parseFile(new File(getPath("InputTreeWalkerHiddenComments.java")));
 
-        final Optional<DetailAST> blockComment = TestUtils.findTokenInAstByPredicate(root,
+        final Optional<DetailAST> blockComment = TestUtil.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN);
 
         assertTrue("Block comment should be present", blockComment.isPresent());
@@ -478,9 +478,9 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     @Test
     public void testAppendHiddenSingleLineCommentNodes() throws Exception {
         final DetailAST root =
-            TestUtils.parseFile(new File(getPath("InputTreeWalkerHiddenComments.java")));
+            TestUtil.parseFile(new File(getPath("InputTreeWalkerHiddenComments.java")));
 
-        final Optional<DetailAST> singleLineComment = TestUtils.findTokenInAstByPredicate(root,
+        final Optional<DetailAST> singleLineComment = TestUtil.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.SINGLE_LINE_COMMENT);
         assertTrue("Single line comment should be present", singleLineComment.isPresent());
 

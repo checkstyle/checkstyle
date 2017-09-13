@@ -44,6 +44,7 @@ import com.google.common.collect.MapDifference;
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtils;
 
 public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport {

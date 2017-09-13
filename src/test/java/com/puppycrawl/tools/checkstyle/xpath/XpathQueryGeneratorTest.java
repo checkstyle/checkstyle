@@ -34,7 +34,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.internal.TestUtils;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
 
@@ -54,7 +54,7 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
         final File file = new File(getPath("InputXpathQueryGenerator.java"));
         fileText = new FileText(file,
                 StandardCharsets.UTF_8.name());
-        rootAst = TestUtils.parseFile(file);
+        rootAst = TestUtil.parseFile(file);
     }
 
     @Test
@@ -322,7 +322,7 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
         final File testFile = new File(getPath("InputXpathQueryGeneratorTabWidth.java"));
         final FileText testFileText = new FileText(testFile,
                 StandardCharsets.UTF_8.name());
-        final DetailAST detailAst = TestUtils.parseFile(testFile);
+        final DetailAST detailAst = TestUtil.parseFile(testFile);
         final int lineNumber = 4;
         final int columnNumber = 13;
         final int tabWidth = 4;
@@ -344,7 +344,7 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
         final File testFile = new File(getPath("InputXpathQueryGeneratorTabWidth.java"));
         final FileText testFileText = new FileText(testFile,
                 StandardCharsets.UTF_8.name());
-        final DetailAST detailAst = TestUtils.parseFile(testFile);
+        final DetailAST detailAst = TestUtil.parseFile(testFile);
         final int lineNumber = 8;
         final int columnNumber = 41;
         final int tabWidth = 8;
@@ -364,7 +364,7 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
         final File testFile = new File(getPath("InputXpathQueryGeneratorTabWidth.java"));
         final FileText testFileText = new FileText(testFile,
                 StandardCharsets.UTF_8.name());
-        final DetailAST detailAst = TestUtils.parseFile(testFile);
+        final DetailAST detailAst = TestUtil.parseFile(testFile);
         final int lineNumber = 12;
         final int columnNumber = 57;
         final int tabWidth = 8;
@@ -382,7 +382,7 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
         final File testFile = new File(getPath("InputXpathQueryGeneratorTabWidth.java"));
         final FileText testFileText = new FileText(testFile,
                 StandardCharsets.UTF_8.name());
-        final DetailAST detailAst = TestUtils.parseFile(testFile);
+        final DetailAST detailAst = TestUtil.parseFile(testFile);
         final int lineNumber = 16;
         final int columnNumber = 58;
         final int tabWidth = 8;

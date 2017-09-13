@@ -28,7 +28,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.internal.CheckUtil;
+import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
 public class ThreadModeSettingsTest {
     @Test

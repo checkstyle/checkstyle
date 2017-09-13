@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.internal;
+package com.puppycrawl.tools.checkstyle.internal.utils;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -34,6 +34,7 @@ import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+/** @noinspection ClassOnlyUsedInOnePackage */
 public final class XmlUtil {
     private XmlUtil() {
     }

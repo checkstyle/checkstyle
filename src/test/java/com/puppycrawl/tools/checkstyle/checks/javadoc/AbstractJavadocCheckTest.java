@@ -45,7 +45,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
-import com.puppycrawl.tools.checkstyle.internal.TestUtils;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -213,7 +213,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testBlockCommentPositionHasPrivateConstr() throws Exception {
         Assert.assertTrue("Constructor is not private",
-                TestUtils.isUtilsClassHasPrivateConstructor(BlockCommentPosition.class, true));
+                TestUtil.isUtilsClassHasPrivateConstructor(BlockCommentPosition.class, true));
     }
 
     @Test
