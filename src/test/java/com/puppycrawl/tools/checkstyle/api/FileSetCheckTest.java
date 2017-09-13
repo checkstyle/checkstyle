@@ -17,31 +17,22 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.api;
 
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
-import java.util.Locale;
 
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.Checker;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.TreeWalker;
-import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
-import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class FileSetCheckLifecycleTest
+public class FileSetCheckTest
     extends AbstractModuleTestSupport {
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/checks/misc/fileset";
+        return "com/puppycrawl/tools/checkstyle/api/fileset";
     }
 
     @Test
@@ -49,7 +40,7 @@ public class FileSetCheckLifecycleTest
         final Configuration checkConfig =
             createModuleConfig(TestFileSetCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputFileSetCheckLifecycleIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("InputFileSetIllegalTokens.java"), expected);
 
         assertTrue("destroy() not called by Checker", TestFileSetCheck.isDestroyed());
     }
@@ -57,25 +48,11 @@ public class FileSetCheckLifecycleTest
     @Test
     public void testProcessCallsFinishBeforeCallingDestroy() throws Exception {
 
-        final DefaultConfiguration dc = new DefaultConfiguration("configuration");
-        final DefaultConfiguration twConf = createModuleConfig(TreeWalker.class);
-        dc.addAttribute("charset", "UTF-8");
-        dc.addChild(twConf);
-        twConf.addChild(new DefaultConfiguration(AvoidStarImportCheck.class.getName()));
-
-        final Checker checker = new Checker();
-        final Locale locale = Locale.ROOT;
-        checker.setLocaleCountry(locale.getCountry());
-        checker.setLocaleLanguage(locale.getLanguage());
-        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        checker.configure(dc);
-        checker.addListener(getBriefUtLogger());
-
-        checker.addFileSetCheck(new TestFileSetCheck());
-
+        final Configuration checkConfig =
+            createModuleConfig(TestFileSetCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checker, getPath("InputFileSetCheckLifecycleIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("InputFileSetIllegalTokens.java"), expected);
 
         assertTrue("FileContent should be available during finishProcessing() call",
                 TestFileSetCheck.isFileContentAvailable());

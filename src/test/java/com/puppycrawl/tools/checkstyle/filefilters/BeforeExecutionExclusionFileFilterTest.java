@@ -31,10 +31,10 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class ExclusionBeforeExecutionFileFilterTest extends AbstractModuleTestSupport {
+public class BeforeExecutionExclusionFileFilterTest extends AbstractModuleTestSupport {
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/filefilters/exclusionbeforeexecutionfilefilter";
+        return "com/puppycrawl/tools/checkstyle/filefilters/beforeexecutionexclusionfilefilter";
     }
 
     @Test
@@ -72,7 +72,7 @@ public class ExclusionBeforeExecutionFileFilterTest extends AbstractModuleTestSu
 
         final String[] violations = CommonUtils.EMPTY_STRING_ARRAY;
         verify(createChecker(filterConfig),
-                getNonCompilablePath("InputExclusionBeforeExecutionFileFilterIncorrectClass.java"),
+                getNonCompilablePath("InputBeforeExecutionExclusionFileFilterIncorrectClass.java"),
                 violations);
     }
 

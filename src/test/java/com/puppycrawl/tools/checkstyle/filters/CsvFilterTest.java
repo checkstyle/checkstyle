@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -74,6 +75,38 @@ public class CsvFilterTest {
         assertTrue("equal 2", filter.accept(2));
         assertFalse("greater than", filter.accept(3));
         assertTrue("equal 10", filter.accept(10));
+    }
+
+    @Test
+    public void testEmptyChain() {
+        final CsvFilter filter = new CsvFilter("");
+        assertFalse("0", filter.accept(0));
+    }
+
+    @Test
+    public void testOneFilter() {
+        final CsvFilter filter = new CsvFilter("");
+        filter.addFilter(new IntMatchFilter(0));
+        assertTrue("0", filter.accept(0));
+        assertFalse("1", filter.accept(1));
+    }
+
+    @Test
+    public void testMultipleFilter() {
+        final CsvFilter filter = new CsvFilter("");
+        filter.addFilter(new IntMatchFilter(0));
+        filter.addFilter(new IntRangeFilter(0, 2));
+        assertTrue("0", filter.accept(0));
+        assertTrue("1", filter.accept(1));
+        filter.addFilter(new IntRangeFilter(3, 4));
+        assertTrue("0 is in [3,4]", filter.accept(0));
+    }
+
+    @Test
+    public void testGetFilters() {
+        final CsvFilter filter = new CsvFilter("");
+        filter.addFilter(new IntMatchFilter(0));
+        assertEquals("size is the same", 1, filter.getFilters().size());
     }
 
     @Test
