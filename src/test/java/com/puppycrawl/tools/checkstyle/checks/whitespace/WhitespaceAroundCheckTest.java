@@ -323,6 +323,7 @@ public class WhitespaceAroundCheckTest
             TokenTypes.WILDCARD_TYPE,
             TokenTypes.GENERIC_START,
             TokenTypes.GENERIC_END,
+            TokenTypes.ELLIPSIS,
         };
         assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
@@ -413,5 +414,21 @@ public class WhitespaceAroundCheckTest
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputWhitespaceAroundCatch.java"),
                 expected);
+    }
+
+    @Test
+    public void testWhitespaceAroundVarargs() throws Exception {
+        checkConfig.addAttribute("tokens", "ELLIPSIS");
+        final String[] expected = {
+            "9:36: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "..."),
+            "10:40: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
+            "11:36: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "..."),
+            "11:39: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
+            "13:28: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "..."),
+            "13:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
+            "14:39: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "..."),
+            "14:42: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
+        };
+        verify(checkConfig, getPath("InputWhitespaceAroundVarargs.java"), expected);
     }
 }
