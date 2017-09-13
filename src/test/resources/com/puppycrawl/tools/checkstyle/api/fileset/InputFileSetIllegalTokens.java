@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.misc.fileset;
+package com.puppycrawl.tools.checkstyle.api.fileset;
 
-public class InputFileSetCheckLifecycleIllegalTokens
+public class InputFileSetIllegalTokens
 {
     public void methodWithPreviouslyIllegalTokens()
     {
