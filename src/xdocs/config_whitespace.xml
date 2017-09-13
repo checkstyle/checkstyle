@@ -1000,6 +1000,8 @@ import static java.math.BigInteger.ZERO;
               subset of tokens <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_INIT">ARRAY_INIT</a>,
               <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#AT">AT</a>,
+              <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INC">INC</a>,
               <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DEC">DEC</a>,
@@ -1028,6 +1030,8 @@ import static java.math.BigInteger.ZERO;
             <td>
               <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_INIT">ARRAY_INIT</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#AT">AT</a>,
               <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INC">INC</a>,
               <a
