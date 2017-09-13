@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
-import static com.puppycrawl.tools.checkstyle.internal.XpathUtil.getXpathItems;
+import static com.puppycrawl.tools.checkstyle.internal.utils.XpathUtil.getXpathItems;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -34,7 +34,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.internal.TestUtils;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import net.sf.saxon.om.AxisInfo;
 import net.sf.saxon.om.Item;
 import net.sf.saxon.om.NamespaceBinding;
@@ -52,7 +52,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     @Before
     public void init() throws Exception {
         final File file = new File(getPath("InputXpathMapperAst.java"));
-        final DetailAST rootAst = TestUtils.parseFile(file);
+        final DetailAST rootAst = TestUtil.parseFile(file);
         rootNode = new RootNode(rootAst);
     }
 

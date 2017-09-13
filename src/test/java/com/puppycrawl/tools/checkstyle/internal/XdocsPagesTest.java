@@ -63,6 +63,10 @@ import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier;
+import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
+import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
 
 public class XdocsPagesTest {
     private static final Path AVAILABLE_CHECKS_PATH = Paths.get("src/xdocs/checks.xml");
@@ -245,7 +249,7 @@ public class XdocsPagesTest {
 
     @Test
     public void testAllCheckSections() throws Exception {
-        final ModuleFactory moduleFactory = TestUtils.getPackageObjectFactory();
+        final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
 
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
             final String fileName = path.getFileName().toString();
@@ -293,7 +297,7 @@ public class XdocsPagesTest {
      */
     @Test
     public void testAllCheckSectionsEx() throws Exception {
-        final ModuleFactory moduleFactory = TestUtils.getPackageObjectFactory();
+        final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
 
         final Path path = Paths.get(XdocUtil.DIRECTORY_PATH + "/config.xml");
         final String fileName = path.getFileName().toString();

@@ -27,7 +27,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.internal.TestUtils;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 /**
  * Tests InlineTagUtils
@@ -37,7 +37,7 @@ public class InlineTagUtilsTest {
     @Test
     public void testHasPrivateConstructor() throws Exception {
         assertTrue("Constructor is not private",
-                TestUtils.isUtilsClassHasPrivateConstructor(InlineTagUtils.class, true));
+                TestUtil.isUtilsClassHasPrivateConstructor(InlineTagUtils.class, true));
     }
 
     @Test

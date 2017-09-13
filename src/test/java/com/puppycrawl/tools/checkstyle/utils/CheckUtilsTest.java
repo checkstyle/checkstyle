@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
-import static com.puppycrawl.tools.checkstyle.internal.TestUtils.findTokenInAstByPredicate;
-import static com.puppycrawl.tools.checkstyle.internal.TestUtils.isUtilsClassHasPrivateConstructor;
-import static com.puppycrawl.tools.checkstyle.internal.TestUtils.parseFile;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.findTokenInAstByPredicate;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.parseFile;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

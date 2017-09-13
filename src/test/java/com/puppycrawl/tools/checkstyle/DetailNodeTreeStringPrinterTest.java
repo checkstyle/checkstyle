@@ -23,7 +23,7 @@ import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADO
 import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_PARSE_RULE_ERROR;
 import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_WRONG_SINGLETON_TAG;
 import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseErrorMessage;
-import static com.puppycrawl.tools.checkstyle.internal.TestUtils.isUtilsClassHasPrivateConstructor;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 

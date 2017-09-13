@@ -17,36 +17,34 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.internal.utils;
 
-import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
-/**
- * Represents the formatter for log message which is used in UTs.
- * Message format is: filePath:lineNo:columnNo: message.
- * @author Andrei Selkin
- */
-public class AuditEventUtFormatter implements AuditEventFormatter {
+/** @noinspection ClassOnlyUsedInOnePackage */
+public final class CloseAndFlushTestByteArrayOutputStream extends ByteArrayOutputStream {
 
-    /** Length of all separators. */
-    private static final int LENGTH_OF_ALL_SEPARATORS = 4;
+    private int closeCount;
+    private int flushCount;
 
     @Override
-    public String format(AuditEvent event) {
-        final String fileName = event.getFileName();
-        final String message = event.getMessage();
+    public void flush() throws IOException {
+        super.flush();
+        flushCount++;
+    }
 
-        // avoid StringBuffer.expandCapacity
-        final int bufLen = event.getFileName().length() + event.getMessage().length()
-            + LENGTH_OF_ALL_SEPARATORS;
-        final StringBuilder sb = new StringBuilder(bufLen);
+    @Override
+    public void close() throws IOException {
+        super.close();
+        closeCount++;
+    }
 
-        sb.append(fileName).append(':').append(event.getLine());
-        if (event.getColumn() > 0) {
-            sb.append(':').append(event.getColumn());
-        }
-        sb.append(": ").append(message);
+    public int getCloseCount() {
+        return closeCount;
+    }
 
-        return sb.toString();
+    public int getFlushCount() {
+        return flushCount;
     }
 }

@@ -46,6 +46,10 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck;
+import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.internal.utils.ConfigurationUtil;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtils;
 
@@ -355,7 +359,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
 
     private static void validateAllCheckTokensAreReferencedInConfigFile(String configName,
             Configuration configuration, Map<String, Set<String>> tokensToIgnore) throws Exception {
-        final ModuleFactory moduleFactory = TestUtils.getPackageObjectFactory();
+        final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
         final Set<Configuration> configChecks = ConfigurationUtil.getChecks(configuration);
 
         final Map<String, Set<String>> configCheckTokens = new HashMap<>();

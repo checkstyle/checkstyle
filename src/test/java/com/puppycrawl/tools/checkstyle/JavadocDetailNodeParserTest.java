@@ -30,7 +30,7 @@ import java.nio.file.Paths;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.internal.TestUtils;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class JavadocDetailNodeParserTest extends AbstractModuleTestSupport {
 
@@ -43,7 +43,7 @@ public class JavadocDetailNodeParserTest extends AbstractModuleTestSupport {
 
     @Test
     public void testParseJavadocAsDetailNode() throws Exception {
-        final DetailAST ast = TestUtils
+        final DetailAST ast = TestUtil
                 .parseFile(new File(getPath("InputJavadocDetailNodeParser.java"))).getNextSibling()
                 .getFirstChild().getFirstChild();
         final JavadocDetailNodeParser parser = new JavadocDetailNodeParser();

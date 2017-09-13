@@ -17,28 +17,37 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.internal.utils;
 
-import java.io.OutputStream;
-
+import com.puppycrawl.tools.checkstyle.AuditEventFormatter;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 
 /**
- * A brief logger that only display info about errors.
+ * Represents the formatter for log message which is used in UTs.
+ * Message format is: filePath:lineNo:columnNo: message.
  * @author Andrei Selkin
  */
-public class BriefUtLogger extends DefaultLogger {
+public class AuditEventUtFormatter implements AuditEventFormatter {
 
-    /**
-     * Creates BriefLogger object.
-     * @param out output stream for info messages and errors.
-     */
-    public BriefUtLogger(OutputStream out) {
-        super(out, true, out, false, new AuditEventUtFormatter());
-    }
+    /** Length of all separators. */
+    private static final int LENGTH_OF_ALL_SEPARATORS = 4;
 
     @Override
-    public void auditStarted(AuditEvent event) {
-        //has to NOT log audit started event
+    public String format(AuditEvent event) {
+        final String fileName = event.getFileName();
+        final String message = event.getMessage();
+
+        // avoid StringBuffer.expandCapacity
+        final int bufLen = event.getFileName().length() + event.getMessage().length()
+            + LENGTH_OF_ALL_SEPARATORS;
+        final StringBuilder sb = new StringBuilder(bufLen);
+
+        sb.append(fileName).append(':').append(event.getLine());
+        if (event.getColumn() > 0) {
+            sb.append(':').append(event.getColumn());
+        }
+        sb.append(": ").append(message);
+
+        return sb.toString();
     }
 }

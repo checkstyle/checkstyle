@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.internal.TestUtils;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class ReturnCountCheckTest extends AbstractModuleTestSupport {
@@ -165,13 +165,13 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
     @SuppressWarnings("unchecked")
     public void testClearState() throws Exception {
         final ReturnCountCheck check = new ReturnCountCheck();
-        final Optional<DetailAST> methodDef = TestUtils.findTokenInAstByPredicate(
-            TestUtils.parseFile(new File(getPath("InputReturnCountVoid.java"))),
+        final Optional<DetailAST> methodDef = TestUtil.findTokenInAstByPredicate(
+            TestUtil.parseFile(new File(getPath("InputReturnCountVoid.java"))),
             ast -> ast.getType() == TokenTypes.METHOD_DEF);
 
         assertTrue("Ast should contain METHOD_DEF", methodDef.isPresent());
         assertTrue("State is not cleared on beginTree",
-            TestUtils.isStatefulFieldClearedDuringBeginTree(check, methodDef.get(),
+            TestUtil.isStatefulFieldClearedDuringBeginTree(check, methodDef.get(),
                 "contextStack",
                 contextStack -> ((Collection<Set<String>>) contextStack).isEmpty()));
     }

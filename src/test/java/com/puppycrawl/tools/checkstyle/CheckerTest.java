@@ -84,6 +84,7 @@ import com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck;
 import com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionFilter;
+import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class CheckerTest extends AbstractModuleTestSupport {

@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.internal.TestUtils;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 // -@cs[AbbreviationAsWordInName] Can't change check name
@@ -115,10 +115,10 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
 
         final NPathComplexityCheck check = new NPathComplexityCheck();
         Assert.assertTrue("Stateful field is not cleared after beginTree",
-            TestUtils.isStatefulFieldClearedDuringBeginTree(check, ast, "rangeValues",
+            TestUtil.isStatefulFieldClearedDuringBeginTree(check, ast, "rangeValues",
                 rangeValues -> ((Collection<Context>) rangeValues).isEmpty()));
         Assert.assertTrue("Stateful field is not cleared after beginTree",
-            TestUtils.isStatefulFieldClearedDuringBeginTree(check, ast, "expressionValues",
+            TestUtil.isStatefulFieldClearedDuringBeginTree(check, ast, "expressionValues",
                 expressionValues -> ((Collection<Context>) expressionValues).isEmpty()));
     }
 
@@ -134,7 +134,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
 
         final NPathComplexityCheck check = new NPathComplexityCheck();
         Assert.assertTrue("Stateful field is not cleared after beginTree",
-            TestUtils.isStatefulFieldClearedDuringBeginTree(check, ast, "isAfterValues",
+            TestUtil.isStatefulFieldClearedDuringBeginTree(check, ast, "isAfterValues",
                 isAfterValues -> ((Collection<Context>) isAfterValues).isEmpty()));
     }
 

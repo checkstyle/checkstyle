@@ -17,33 +17,29 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.internal.utils;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+import java.io.OutputStream;
 
-public final class CloseAndFlushTestByteArrayOutputStream extends ByteArrayOutputStream {
+import com.puppycrawl.tools.checkstyle.DefaultLogger;
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 
-    private int closeCount;
-    private int flushCount;
+/**
+ * A brief logger that only display info about errors.
+ * @author Andrei Selkin
+ */
+public class BriefUtLogger extends DefaultLogger {
 
-    @Override
-    public void flush() throws IOException {
-        super.flush();
-        flushCount++;
+    /**
+     * Creates BriefLogger object.
+     * @param out output stream for info messages and errors.
+     */
+    public BriefUtLogger(OutputStream out) {
+        super(out, true, out, false, new AuditEventUtFormatter());
     }
 
     @Override
-    public void close() throws IOException {
-        super.close();
-        closeCount++;
-    }
-
-    public int getCloseCount() {
-        return closeCount;
-    }
-
-    public int getFlushCount() {
-        return flushCount;
+    public void auditStarted(AuditEvent event) {
+        //has to NOT log audit started event
     }
 }

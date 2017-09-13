@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.internal;
+package com.puppycrawl.tools.checkstyle.internal.utils;
 
 import static com.puppycrawl.tools.checkstyle.TreeWalker.parseWithComments;
 
@@ -40,9 +40,9 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
-public final class TestUtils {
+public final class TestUtil {
 
-    private TestUtils() {
+    private TestUtil() {
     }
 
     /**
@@ -108,7 +108,7 @@ public final class TestUtils {
      * @return the default PackageObjectFactory.
      */
     public static PackageObjectFactory getPackageObjectFactory() throws CheckstyleException {
-        final ClassLoader cl = TestUtils.class.getClassLoader();
+        final ClassLoader cl = TestUtil.class.getClassLoader();
         final Set<String> packageNames = PackageNamesLoader.getPackageNames(cl);
         return new PackageObjectFactory(packageNames, cl);
     }

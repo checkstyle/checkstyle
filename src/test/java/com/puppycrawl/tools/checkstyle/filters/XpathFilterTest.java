@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.internal.TestUtils;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import net.sf.saxon.sxpath.XPathEvaluator;
 import net.sf.saxon.sxpath.XPathExpression;
 import nl.jqno.equalsverifier.EqualsVerifier;
@@ -176,7 +176,7 @@ public class XpathFilterTest extends AbstractModuleTestSupport {
                 new LocalizedMessage(3, 0, TokenTypes.CLASS_DEF, "", "", null, null, "id20",
                         getClass(), null);
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents,
-                file.getName(), message, TestUtils.parseFile(file));
+                file.getName(), message, TestUtil.parseFile(file));
         assertTrue("Event should be accepted", filter.accept(ev));
     }
 
@@ -189,7 +189,7 @@ public class XpathFilterTest extends AbstractModuleTestSupport {
                 new LocalizedMessage(3, 0, TokenTypes.CLASS_DEF, "", "", null, null, "id19",
                         getClass(), null);
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents,
-                file.getName(), message, TestUtils.parseFile(file));
+                file.getName(), message, TestUtil.parseFile(file));
         assertFalse("Event should be rejected", filter.accept(ev));
     }
 
@@ -202,7 +202,7 @@ public class XpathFilterTest extends AbstractModuleTestSupport {
                 new LocalizedMessage(3, 0, TokenTypes.CLASS_DEF, "", "", null, null, "id19",
                         getClass(), null);
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents,
-                file.getName(), message, TestUtils.parseFile(file));
+                file.getName(), message, TestUtil.parseFile(file));
         assertTrue("Event should be accepted", filter.accept(ev));
     }
 
@@ -262,6 +262,6 @@ public class XpathFilterTest extends AbstractModuleTestSupport {
                 new LocalizedMessage(line, column, tokenType, "", "", null, null, null,
                         getClass(), null);
         return new TreeWalkerAuditEvent(fileContents, file.getName(), message,
-                TestUtils.parseFile(file));
+                TestUtil.parseFile(file));
     }
 }

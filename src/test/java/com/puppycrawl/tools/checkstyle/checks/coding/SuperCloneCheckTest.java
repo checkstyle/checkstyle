@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.internal.TestUtils;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class SuperCloneCheckTest
     extends AbstractModuleTestSupport {
@@ -84,13 +84,13 @@ public class SuperCloneCheckTest
     @SuppressWarnings("unchecked")
     public void testClearState() throws Exception {
         final AbstractSuperCheck check = new SuperCloneCheck();
-        final Optional<DetailAST> methodDef = TestUtils.findTokenInAstByPredicate(
-            TestUtils.parseFile(new File(getPath("InputSuperCloneWithoutWarnings.java"))),
+        final Optional<DetailAST> methodDef = TestUtil.findTokenInAstByPredicate(
+            TestUtil.parseFile(new File(getPath("InputSuperCloneWithoutWarnings.java"))),
             ast -> ast.getType() == TokenTypes.METHOD_DEF);
 
         assertTrue("Ast should contain METHOD_DEF", methodDef.isPresent());
         assertTrue("State is not cleared on beginTree",
-            TestUtils.isStatefulFieldClearedDuringBeginTree(check, methodDef.get(),
+            TestUtil.isStatefulFieldClearedDuringBeginTree(check, methodDef.get(),
                 "methodStack",
                 methodStack -> ((Collection<Set<String>>) methodStack).isEmpty()));
     }

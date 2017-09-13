@@ -39,6 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**

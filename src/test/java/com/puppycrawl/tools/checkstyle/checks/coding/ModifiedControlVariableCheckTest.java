@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.internal.TestUtils;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class ModifiedControlVariableCheckTest
@@ -140,14 +140,14 @@ public class ModifiedControlVariableCheckTest
     @SuppressWarnings("unchecked")
     public void testClearState() throws Exception {
         final ModifiedControlVariableCheck check = new ModifiedControlVariableCheck();
-        final Optional<DetailAST> methodDef = TestUtils.findTokenInAstByPredicate(
-            TestUtils.parseFile(new File(
+        final Optional<DetailAST> methodDef = TestUtil.findTokenInAstByPredicate(
+            TestUtil.parseFile(new File(
                 getPath("InputModifiedControlVariableEnhancedForLoopVariable.java"))),
             ast -> ast.getType() == TokenTypes.OBJBLOCK);
 
         assertTrue("Ast should contain METHOD_DEF", methodDef.isPresent());
         assertTrue("State is not cleared on beginTree",
-            TestUtils.isStatefulFieldClearedDuringBeginTree(check, methodDef.get(),
+            TestUtil.isStatefulFieldClearedDuringBeginTree(check, methodDef.get(),
                 "variableStack",
                 variableStack -> ((Collection<Set<String>>) variableStack).isEmpty()));
     }
