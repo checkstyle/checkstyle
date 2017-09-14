@@ -2010,7 +2010,7 @@ class SomeClass
         <p>Since Checkstyle 3.2</p>
         <p>
           Checks that particular classes are never used as types in variable
-          declarations, return values or parameters.
+          declarations, one-dimensional and multi-dimensional arrays, return values or parameters.
         </p>
 
         <p>

@@ -135,7 +135,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSameFileNameGeneral() throws Exception {
         checkConfig.addAttribute("illegalClassNames",
-            "List, InputIllegalTypeGregorianCalendar, java.io.File, ArrayList");
+            "List, InputIllegalTypeGregorianCalendar, java.io.File, ArrayList, Boolean");
         final String[] expected = {
             "10:5: " + getCheckMessage(MSG_KEY, "InputIllegalTypeGregorianCalendar"),
             "16:23: " + getCheckMessage(MSG_KEY, "InputIllegalTypeGregorianCalendar"),
@@ -143,6 +143,9 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "25:9: " + getCheckMessage(MSG_KEY, "java.io.File"),
             "27:5: " + getCheckMessage(MSG_KEY, "java.util.List"),
             "28:13: " + getCheckMessage(MSG_KEY, "ArrayList"),
+            "29:13: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "30:13: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "31:13: " + getCheckMessage(MSG_KEY, "Boolean"),
         };
         verify(checkConfig, getPath("InputIllegalTypeSameFileName.java"), expected);
     }
