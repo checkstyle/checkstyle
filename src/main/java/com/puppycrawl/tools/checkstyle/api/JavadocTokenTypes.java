@@ -32,109 +32,9 @@ import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser;
  * javadoc - The Java API Documentation Generator</a>
  */
 public final class JavadocTokenTypes {
-    /** Rule types offset. */
-    private static final int RULE_TYPES_OFFSET = 10000;
-
-    /**
-     * Root node of any Javadoc comment.
-     * Last child is always {@link #EOF}.
-     *
-     * <p><b>Tree for example:</b></p>
-     * <pre>{@code
-     * JAVADOC[3x0]
-     *   |--NEWLINE[3x0] : [\n]
-     *   |--LEADING_ASTERISK[4x0] : [ *]
-     *   |--WS[4x2] : [ ]
-     *   |--JAVADOC_TAG[4x3] : [@param T The bar.\n ]
-     *       |--PARAM_LITERAL[4x3] : [@param]
-     *       |--WS[4x9] : [ ]
-     *       |--PARAMETER_NAME[4x10] : [T]
-     *       |--WS[4x11] : [ ]
-     *       |--DESCRIPTION[4x12] : [The bar.\n ]
-     *           |--TEXT[4x12] : [The bar.]
-     *           |--NEWLINE[4x20] : [\n]
-     *           |--TEXT[5x0] : [ ]
-     *   |--EOF[5x1] : [<EOF>]
-     * }</pre>
-     */
-    public static final int JAVADOC = JavadocParser.RULE_javadoc + RULE_TYPES_OFFSET;
-
     //--------------------------------------------------------------------------------------------//
     //------------------        JAVADOC TAGS          --------------------------------------------//
     //--------------------------------------------------------------------------------------------//
-
-    /**
-     * Javadoc tag.
-     *
-     * <p>Type of Javadoc tag is resolved by literal node that is first child of this node.</p>
-     *
-     * <p>As literal could be:</p>
-     * <ul>
-     * <li>{@link #RETURN_LITERAL}</li>
-     * <li>{@link #DEPRECATED_LITERAL}</li>
-     * <li>{@link #SINCE_LITERAL}</li>
-     * <li>{@link #SERIAL_DATA_LITERAL}</li>
-     * <li>{@link #SERIAL_FIELD_LITERAL}</li>
-     * <li>{@link #PARAM_LITERAL}</li>
-     * <li>{@link #SEE_LITERAL}</li>
-     * <li>{@link #SERIAL_LITERAL}</li>
-     * <li>{@link #VERSION_LITERAL}</li>
-     * <li>{@link #EXCEPTION_LITERAL}</li>
-     * <li>{@link #THROWS_LITERAL}</li>
-     * <li>{@link #AUTHOR_LITERAL}</li>
-     * <li>or {@link #CUSTOM_NAME} if it is custom Javadoc tag.</li>
-     * </ul>
-     *
-     * <p><b>Example</b></p>
-     * <pre>{@code &#64;param T The bar.}</pre>
-     * <b>Tree</b>
-     * <pre>{@code
-     *   |--JAVADOC_TAG[4x3] : [@param T The bar.]
-     *       |--PARAM_LITERAL[4x3] : [@param]
-     *       |--WS[4x9] : [ ]
-     *       |--PARAMETER_NAME[4x10] : [T]
-     *       |--WS[4x11] : [ ]
-     *       |--DESCRIPTION[4x12] : [The bar.]
-     *           |--TEXT[4x12] : [The bar.]
-     * }</pre>
-     */
-    public static final int JAVADOC_TAG = JavadocParser.RULE_javadocTag + RULE_TYPES_OFFSET;
-
-    /**
-     * Javadoc inline tag.
-     *
-     * <p>Type of Javadoc inline tag is resolved by literal node that is second child of this node.
-     * First child is always {@link #JAVADOC_INLINE_TAG_START} and last node is always
-     * {@link #JAVADOC_INLINE_TAG_END}.</p>
-     *
-     * <p>As literal could be:</p>
-     * <ul>
-     * <li>{@link #CODE_LITERAL}</li>
-     * <li>{@link #DOC_ROOT_LITERAL}</li>
-     * <li>{@link #LINK_LITERAL}</li>
-     * <li>{@link #INHERIT_DOC_LITERAL}</li>
-     * <li>{@link #LINKPLAIN_LITERAL}</li>
-     * <li>{@link #LITERAL_LITERAL}</li>
-     * <li>{@link #VALUE_LITERAL}</li>
-     * <li>or {@link #CUSTOM_NAME} if it is custom Javadoc inline tag.</li>
-     * </ul>
-     *
-     * <p><b>Example:</b></p>
-     * <pre>{@code {&#64;link String}}</pre>
-     * <b>Tree:</b>
-     * <pre>
-     * {@code |--JAVADOC_INLINE_TAG[4x3] : [{&#64;link String}]
-     *        |--JAVADOC_INLINE_TAG_START[4x3] : [{]
-     *        |--LINK_LITERAL[4x4] : [@link]
-     *        |--WS[4x9] : [ ]
-     *        |--REFERENCE[4x10] : [String]
-     *            |--CLASS[4x10] : [String]
-     *        |--JAVADOC_INLINE_TAG_END[4x16] : [}]
-     * }
-     * </pre>
-     */
-    public static final int JAVADOC_INLINE_TAG = JavadocParser.RULE_javadocInlineTag
-            + RULE_TYPES_OFFSET;
 
     /**
      * '@return' literal in @return Javadoc tag.
@@ -742,17 +642,6 @@ public final class JavadocTokenTypes {
     public static final int VALUE_LITERAL = JavadocParser.VALUE_LITERAL;
 
     /**
-     * Parameter of the Javadoc tags listed below.
-     * <ul>
-     * <li>{@link #SEE_LITERAL @see}</li>
-     * <li>{@link #LINK_LITERAL &#123;&#64;link&#125;}</li>
-     * <li>{@link #LINKPLAIN_LITERAL &#123;&#64;linkplain&#125;}</li>
-     * <li>{@link #VALUE_LITERAL &#123;&#64;value&#125;}</li>
-     * </ul>
-     */
-    public static final int REFERENCE = JavadocParser.RULE_reference + RULE_TYPES_OFFSET;
-
-    /**
      * Package definition in {@link #REFERENCE}.
      * Package definition is lowercase part of REFERENCE and before a hash character (#).
      *
@@ -895,35 +784,6 @@ public final class JavadocTokenTypes {
     public static final int MEMBER = JavadocParser.MEMBER;
 
     /**
-     * Parameters part in {@link #REFERENCE}.
-     * It is used to specify parameters for {@link #MEMBER method}.
-     * Always contains {@link #LEFT_BRACE} as first child and {@link #RIGHT_BRACE} as last child.
-     * Each parameter is represented by {@link #ARGUMENT} node.
-     * Arguments in braces are separated by {@link #COMMA} (and optional {@link #WS}).
-     *
-     * <p><b>Example:</b></p>
-     * <pre>{@code @see #method(Processor, String)}</pre>
-     * <b>Tree:</b>
-     * <pre>
-     * {@code |--JAVADOC_TAG[1x0] : [@see #method(Processor, String)]
-     *        |--SEE_LITERAL[1x0] : [@see]
-     *        |--WS[1x4] : [ ]
-     *        |--REFERENCE[1x5] : [#method(Processor, String)]
-     *            |--HASH[1x5] : [#]
-     *            |--MEMBER[1x6] : [method]
-     *            |--PARAMETERS[1x12] : [(Processor, String)]
-     *                |--LEFT_BRACE[1x12] : [(]
-     *                |--ARGUMENT[1x13] : [Processor]
-     *                |--COMMA[1x22] : [,]
-     *                |--WS[1x23] : [ ]
-     *                |--ARGUMENT[1x24] : [String]
-     *                |--RIGHT_BRACE[1x30] : [)]
-     * }
-     * </pre>
-     */
-    public static final int PARAMETERS = JavadocParser.RULE_parameters + RULE_TYPES_OFFSET;
-
-    /**
      * Left brace in {@link #PARAMETERS} part of {@link #REFERENCE}.
      *
      * <p><b>Example:</b></p>
@@ -1045,47 +905,6 @@ public final class JavadocTokenTypes {
      * @see #SEE_LITERAL
      */
     public static final int STRING = JavadocParser.STRING;
-
-    /**
-     * Description node. It contains:
-     * <ul>
-     * <li>{@link #TEXT}</li>
-     * <li>{@link #WS}</li>
-     * <li>{@link #NEWLINE}</li>
-     * <li>{@link #HTML_ELEMENT}</li>
-     * </ul>
-     *
-     * <p>It is argument for many Javadoc tags and inline tags.</p>
-     *
-     * <p><b>Example:</b></p>
-     * <pre>{@code @throws IOException if &lt;b&gt;connection&lt;/b&gt; problems occur}</pre>
-     * <b>Tree:</b>
-     * <pre>
-     * {@code |--JAVADOC_TAG[1x0] :
-     *               [@throws IOException if &lt;b&gt;connection&lt;/b&gt; problems occur]
-     *        |--THROWS_LITERAL[1x0] : [@throws]
-     *        |--WS[1x7] : [ ]
-     *        |--CLASS_NAME[1x8] : [IOException]
-     *        |--WS[1x19] : [ ]
-     *        |--DESCRIPTION[1x20] : [if &lt;b&gt;connection&lt;/b&gt; problems occur]
-     *            |--TEXT[1x20] : [if ]
-     *            |--HTML_ELEMENT[1x23] : [&lt;b&gt;connection&lt;/b&gt;]
-     *                |--HTML_TAG[1x23] : [&lt;b&gt;connection&lt;/b&gt;]
-     *                    |--HTML_ELEMENT_START[1x23] : [&lt;b&gt;]
-     *                        |--START[1x23] : [&lt;]
-     *                        |--HTML_TAG_NAME[1x24] : [b]
-     *                        |--END[1x25] : [&gt;]
-     *                    |--TEXT[1x26] : [connection]
-     *                    |--HTML_ELEMENT_END[1x36] : [&lt;/b&gt;]
-     *                        |--START[1x36] : [&lt;]
-     *                        |--SLASH[1x37] : [/]
-     *                        |--HTML_TAG_NAME[1x38] : [b]
-     *                        |--END[1x39] : [&gt;]
-     *            |--TEXT[1x40] : [ problems occur]
-     * }
-     * </pre>
-     */
-    public static final int DESCRIPTION = JavadocParser.RULE_description + RULE_TYPES_OFFSET;
 
     /**
      * Exception class name. First argument in {@link #THROWS_LITERAL @throws} and
@@ -1235,40 +1054,9 @@ public final class JavadocTokenTypes {
     //--------------------------------------------------------------------------------------------//
 
     /**
-     * Parent node for all html tags.
-     */
-    public static final int HTML_ELEMENT = JavadocParser.RULE_htmlElement
-            + RULE_TYPES_OFFSET;
-
-    /**
-     * Start html tag: &lt;XXX&gt;.
-     */
-    public static final int HTML_ELEMENT_START = JavadocParser.RULE_htmlElementStart
-            + RULE_TYPES_OFFSET
-            + RULE_TYPES_OFFSET;
-
-    /**
-     * End html tag: &lt;XXX&gt;.
-     */
-    public static final int HTML_ELEMENT_END = JavadocParser.RULE_htmlElementEnd
-            + RULE_TYPES_OFFSET;
-
-    /**
-     * Non-special HTML tag.
-     */
-    public static final int HTML_TAG = JavadocParser.RULE_htmlTag + RULE_TYPES_OFFSET;
-
-    /**
      * Identifier inside HTML tag: tag name or attribute name.
      */
     public static final int HTML_TAG_NAME = JavadocParser.HTML_TAG_NAME;
-
-    /**
-     * Html tag attribute. Parent node for: {@code HTML_TAG_IDENT, EQUALS, ATTR_VALUE}.
-     */
-    public static final int ATTRIBUTE = JavadocParser.RULE_attribute
-            + RULE_TYPES_OFFSET
-            + RULE_TYPES_OFFSET;
 
     // HTML tag components
 
@@ -1303,274 +1091,102 @@ public final class JavadocTokenTypes {
     public static final int ATTR_VALUE = JavadocParser.ATTR_VALUE;
 
     /////////////////////// HTML TAGS WITH OPTIONAL END TAG /////////////////////////////////////
-    /** Paragraph html tag: {@code <p></p>}. */
-    public static final int PARAGRAPH = JavadocParser.RULE_paragraph + RULE_TYPES_OFFSET;
-    /** Start paragraph tag. */
-    public static final int P_TAG_START = JavadocParser.RULE_pTagStart + RULE_TYPES_OFFSET;
-    /** End paragraph tag. */
-    public static final int P_TAG_END = JavadocParser.RULE_pTagEnd + RULE_TYPES_OFFSET;
     /** Paragraph tag name. */
     public static final int P_HTML_TAG_NAME = JavadocParser.P_HTML_TAG_NAME;
 
-    /** List item html tag: {@code <li></li>}. */
-    public static final int LI = JavadocParser.RULE_li + RULE_TYPES_OFFSET;
-    /** Start list item tag. */
-    public static final int LI_TAG_START = JavadocParser.RULE_liTagStart + RULE_TYPES_OFFSET;
-    /** End list item tag. */
-    public static final int LI_TAG_END = JavadocParser.RULE_liTagEnd + RULE_TYPES_OFFSET;
     /** List item tag name. */
     public static final int LI_HTML_TAG_NAME = JavadocParser.LI_HTML_TAG_NAME;
 
-    /** Table row html tag: {@code <tr></tr>}. */
-    public static final int TR = JavadocParser.RULE_tr + RULE_TYPES_OFFSET;
-    /** Start table row tag. */
-    public static final int TR_TAG_START = JavadocParser.RULE_trTagStart + RULE_TYPES_OFFSET;
-    /** End table row tag. */
-    public static final int TR_TAG_END = JavadocParser.RULE_trTagEnd + RULE_TYPES_OFFSET;
     /** Table row tag name. */
     public static final int TR_HTML_TAG_NAME = JavadocParser.TR_HTML_TAG_NAME;
 
-    /** Table cell html tag: {@code <td></td>}. */
-    public static final int TD = JavadocParser.RULE_td + RULE_TYPES_OFFSET;
-    /** Start table cell tag. */
-    public static final int TD_TAG_START = JavadocParser.RULE_tdTagStart + RULE_TYPES_OFFSET;
-    /** End table cell tag. */
-    public static final int TD_TAG_END = JavadocParser.RULE_tdTagEnd + RULE_TYPES_OFFSET;
     /** Table cell tag name. */
     public static final int TD_HTML_TAG_NAME = JavadocParser.TD_HTML_TAG_NAME;
 
-    /** Table header cell html tag: {@code <th></th>}. */
-    public static final int TH = JavadocParser.RULE_th + RULE_TYPES_OFFSET;
-    /** Start table header cell tag. */
-    public static final int TH_TAG_START = JavadocParser.RULE_thTagStart + RULE_TYPES_OFFSET;
-    /** End table header cell tag. */
-    public static final int TH_TAG_END = JavadocParser.RULE_thTagEnd + RULE_TYPES_OFFSET;
     /** Table header cell tag name. */
     public static final int TH_HTML_TAG_NAME = JavadocParser.TH_HTML_TAG_NAME;
 
-    /** Body html tag. */
-    public static final int BODY = JavadocParser.RULE_body + RULE_TYPES_OFFSET;
-    /** Start body tag. */
-    public static final int BODY_TAG_START = JavadocParser.RULE_bodyTagStart + RULE_TYPES_OFFSET;
-    /** End body tag. */
-    public static final int BODY_TAG_END = JavadocParser.RULE_bodyTagEnd + RULE_TYPES_OFFSET;
     /** Body tag name. */
     public static final int BODY_HTML_TAG_NAME = JavadocParser.BODY_HTML_TAG_NAME;
 
-    /** Colgroup html tag. */
-    public static final int COLGROUP = JavadocParser.RULE_colgroup + RULE_TYPES_OFFSET;
-    /** Start colgroup tag. */
-    public static final int COLGROUP_TAG_START = JavadocParser.RULE_colgroupTagStart
-            + RULE_TYPES_OFFSET;
-    /** End colgroup tag. */
-    public static final int COLGROUP_TAG_END = JavadocParser.RULE_colgroupTagEnd
-            + RULE_TYPES_OFFSET;
     /** Colgroup tag name. */
     public static final int COLGROUP_HTML_TAG_NAME = JavadocParser.COLGROUP_HTML_TAG_NAME;
 
-    /** Description of a term html tag: {@code <dd></dd>}. */
-    public static final int DD = JavadocParser.RULE_dd + RULE_TYPES_OFFSET;
-    /** Start description of a term tag. */
-    public static final int DD_TAG_START = JavadocParser.RULE_ddTagStart + RULE_TYPES_OFFSET;
-    /** End description of a term tag. */
-    public static final int DD_TAG_END = JavadocParser.RULE_ddTagEnd + RULE_TYPES_OFFSET;
     /** Description of a term tag name. */
     public static final int DD_HTML_TAG_NAME = JavadocParser.DD_HTML_TAG_NAME;
 
-    /** Description term html tag: {@code <dt></dt>}. */
-    public static final int DT = JavadocParser.RULE_dt + RULE_TYPES_OFFSET;
-    /** Start description term tag. */
-    public static final int DT_TAG_START = JavadocParser.RULE_dtTagStart + RULE_TYPES_OFFSET;
-    /** End description term tag. */
-    public static final int DT_TAG_END = JavadocParser.RULE_dtTagEnd + RULE_TYPES_OFFSET;
     /** Description term tag name. */
     public static final int DT_HTML_TAG_NAME = JavadocParser.DT_HTML_TAG_NAME;
 
-    /** Head html tag. */
-    public static final int HEAD = JavadocParser.RULE_head + RULE_TYPES_OFFSET;
-    /** Start head tag. */
-    public static final int HEAD_TAG_START = JavadocParser.RULE_headTagStart + RULE_TYPES_OFFSET;
-    /** End head tag. */
-    public static final int HEAD_TAG_END = JavadocParser.RULE_headTagEnd + RULE_TYPES_OFFSET;
     /** Head tag name. */
     public static final int HEAD_HTML_TAG_NAME = JavadocParser.HEAD_HTML_TAG_NAME;
 
-    /** Html html tag. */
-    public static final int HTML = JavadocParser.RULE_html + RULE_TYPES_OFFSET;
-    /** Start html tag. */
-    public static final int HTML_TAG_START = JavadocParser.RULE_htmlTagStart + RULE_TYPES_OFFSET;
-    /** End html tag. */
-    public static final int HTML_TAG_END = JavadocParser.RULE_htmlTagEnd + RULE_TYPES_OFFSET;
     /** Html tag name. */
     public static final int HTML_HTML_TAG_NAME = JavadocParser.HTML_HTML_TAG_NAME;
 
-    /** Option html tag. */
-    public static final int OPTION = JavadocParser.RULE_option + RULE_TYPES_OFFSET;
-    /** Start option tag. */
-    public static final int OPTION_TAG_START =
-            JavadocParser.RULE_optionTagStart + RULE_TYPES_OFFSET;
-    /** End option tag. */
-    public static final int OPTION_TAG_END = JavadocParser.RULE_optionTagEnd
-            + RULE_TYPES_OFFSET;
     /** Option tag name. */
     public static final int OPTION_HTML_TAG_NAME = JavadocParser.OPTION_HTML_TAG_NAME;
 
-    /** Table body html tag. */
-    public static final int TBODY = JavadocParser.RULE_tbody + RULE_TYPES_OFFSET;
-    /** Start table body tag. */
-    public static final int TBODY_TAG_START = JavadocParser.RULE_tbodyTagStart + RULE_TYPES_OFFSET;
-    /** End table body tag. */
-    public static final int TBODY_TAG_END = JavadocParser.RULE_tbodyTagEnd + RULE_TYPES_OFFSET;
     /** Table body tag name. */
     public static final int TBODY_HTML_TAG_NAME = JavadocParser.TBODY_HTML_TAG_NAME;
 
-    /** Table foot html tag. */
-    public static final int TFOOT = JavadocParser.RULE_tfoot + RULE_TYPES_OFFSET;
-    /** Start table foot tag. */
-    public static final int TFOOT_TAG_START = JavadocParser.RULE_tfootTagStart + RULE_TYPES_OFFSET;
-    /** End table foot tag. */
-    public static final int TFOOT_TAG_END = JavadocParser.RULE_tfootTagEnd + RULE_TYPES_OFFSET;
     /** Table foot tag name. */
     public static final int TFOOT_HTML_TAG_NAME = JavadocParser.TFOOT_HTML_TAG_NAME;
 
-    /** Table head html tag. */
-    public static final int THEAD = JavadocParser.RULE_thead + RULE_TYPES_OFFSET;
-    /** Start table head tag. */
-    public static final int THEAD_TAG_START = JavadocParser.RULE_theadTagStart + RULE_TYPES_OFFSET;
-    /** End table head tag. */
-    public static final int THEAD_TAG_END = JavadocParser.RULE_theadTagEnd + RULE_TYPES_OFFSET;
     /** Table head tag name. */
     public static final int THEAD_HTML_TAG_NAME = JavadocParser.THEAD_HTML_TAG_NAME;
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     /////////////////////// SINGLETON HTML TAGS  //////////////////////////////////////////////////
-    /**
-     * Parent node for all singleton html tags.
-     */
-    public static final int SINGLETON_ELEMENT = JavadocParser.RULE_singletonElement
-            + RULE_TYPES_OFFSET;
-
-    /**
-     * Non-special empty html tag.
-     */
-    public static final int EMPTY_TAG = JavadocParser.RULE_emptyTag
-            + RULE_TYPES_OFFSET;
-
-    /** Area html tag. */
-    public static final int AREA_TAG = JavadocParser.RULE_areaTag + RULE_TYPES_OFFSET;
     /** Area tag name. */
     public static final int AREA_HTML_TAG_NAME = JavadocParser.AREA_HTML_TAG_NAME;
 
-    /** Base html tag. */
-    public static final int BASE_TAG = JavadocParser.RULE_baseTag + RULE_TYPES_OFFSET;
     /** Base tag name. */
     public static final int BASE_HTML_TAG_NAME = JavadocParser.BASE_HTML_TAG_NAME;
 
-    /** Basefont html tag. */
-    public static final int BASEFONT_TAG = JavadocParser.RULE_basefontTag + RULE_TYPES_OFFSET;
     /** Basefont tag name. */
     public static final int BASEFONT_HTML_TAG_NAME = JavadocParser.BASEFONT_HTML_TAG_NAME;
 
-    /** Br html tag. */
-    public static final int BR_TAG = JavadocParser.RULE_brTag + RULE_TYPES_OFFSET;
     /** Br tag name. */
     public static final int BR_HTML_TAG_NAME = JavadocParser.BR_HTML_TAG_NAME;
 
-    /** Col html tag. */
-    public static final int COL_TAG = JavadocParser.RULE_colTag + RULE_TYPES_OFFSET;
     /** Col tag name. */
     public static final int COL_HTML_TAG_NAME = JavadocParser.COL_HTML_TAG_NAME;
 
-    /** Frame html tag. */
-    public static final int FRAME_TAG = JavadocParser.RULE_frameTag + RULE_TYPES_OFFSET;
     /** Frame tag name. */
     public static final int FRAME_HTML_TAG_NAME = JavadocParser.FRAME_HTML_TAG_NAME;
 
-    /** Hr html tag. */
-    public static final int HR_TAG = JavadocParser.RULE_hrTag + RULE_TYPES_OFFSET;
     /** Hr tag name. */
     public static final int HR_HTML_TAG_NAME = JavadocParser.HR_HTML_TAG_NAME;
 
-    /** Img html tag. */
-    public static final int IMG_TAG = JavadocParser.RULE_imgTag + RULE_TYPES_OFFSET;
     /** Img tag name. */
     public static final int IMG_HTML_TAG_NAME = JavadocParser.IMG_HTML_TAG_NAME;
 
-    /** Input html tag. */
-    public static final int INPUT_TAG = JavadocParser.RULE_inputTag + RULE_TYPES_OFFSET;
     /** Input tag name. */
     public static final int INPUT_HTML_TAG_NAME = JavadocParser.INPUT_HTML_TAG_NAME;
 
-    /** Isindex html tag. */
-    public static final int ISINDEX_TAG = JavadocParser.RULE_isindexTag + RULE_TYPES_OFFSET;
     /** Isindex tag name. */
     public static final int ISINDEX_HTML_TAG_NAME = JavadocParser.ISINDEX_HTML_TAG_NAME;
 
-    /** Link html tag. */
-    public static final int LINK_TAG = JavadocParser.RULE_linkTag + RULE_TYPES_OFFSET;
     /** Link tag name. */
     public static final int LINK_HTML_TAG_NAME = JavadocParser.LINK_HTML_TAG_NAME;
 
-    /** Meta html tag. */
-    public static final int META_TAG = JavadocParser.RULE_metaTag + RULE_TYPES_OFFSET;
     /** Meta tag name. */
     public static final int META_HTML_TAG_NAME = JavadocParser.META_HTML_TAG_NAME;
 
-    /** Param html tag. */
-    public static final int PARAM_TAG = JavadocParser.RULE_paramTag + RULE_TYPES_OFFSET;
     /** Param tag name. */
     public static final int PARAM_HTML_TAG_NAME = JavadocParser.PARAM_HTML_TAG_NAME;
-    /**
-     * HTML void element {@code <embed>}.
-     * @see #SINGLETON_ELEMENT
-     * @see <a href="https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-embed">
-     *     W3 docs</a>
-     */
-    public static final int EMBED_TAG = JavadocParser.RULE_embedTag + RULE_TYPES_OFFSET;
     /** "embed" tag name. */
     public static final int EMBED_HTML_TAG_NAME = JavadocParser.EMBED_HTML_TAG_NAME;
-    /**
-     * HTML void element {@code <keygen>}.
-     * @see #SINGLETON_ELEMENT
-     * @see <a href="https://www.w3.org/TR/html51/sec-forms.html#elementdef-keygen">
-     *     W3 docs</a>
-     */
-    public static final int KEYGEN_TAG = JavadocParser.RULE_keygenTag + RULE_TYPES_OFFSET;
     /** "keygen" tag name. */
     public static final int KEYGEN_HTML_TAG_NAME = JavadocParser.KEYGEN_HTML_TAG_NAME;
-    /**
-     * HTML void element {@code <source>}.
-     * @see #SINGLETON_ELEMENT
-     * @see "https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-media-source"
-     */
-    public static final int SOURCE_TAG = JavadocParser.RULE_sourceTag + RULE_TYPES_OFFSET;
     /** "source" tag name. */
     public static final int SOURCE_HTML_TAG_NAME = JavadocParser.SOURCE_HTML_TAG_NAME;
-    /**
-     * HTML void element {@code <track>}.
-     * @see #SINGLETON_ELEMENT
-     * @see <a
-     *     href="https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-track">
-     *     W3 docs</a>
-     */
-    public static final int TRACK_TAG = JavadocParser.RULE_trackTag + RULE_TYPES_OFFSET;
     /** "track" tag name. */
     public static final int TRACK_HTML_TAG_NAME = JavadocParser.TRACK_HTML_TAG_NAME;
-    /**
-     * HTML void element {@code <wbr>}.
-     * @see #SINGLETON_ELEMENT
-     * @see <a href="https://www.w3.org/TR/html51/textlevel-semantics.html#elementdef-wbr">
-     *     W3 docs</a>
-     */
-    public static final int WBR_TAG = JavadocParser.RULE_wbrTag + RULE_TYPES_OFFSET;
     /** "wbr" tag name. */
     public static final int WBR_HTML_TAG_NAME = JavadocParser.WBR_HTML_TAG_NAME;
     ///////////////////////////////////////////////////////////////////////////////////////////////
-
-    /** Html comment: {@code <!-- -->}. */
-    public static final int HTML_COMMENT = JavadocParser.RULE_htmlComment
-            + RULE_TYPES_OFFSET
-            + RULE_TYPES_OFFSET;
 
     /**
      * HTML comment start symbol '&lt;!--'.
@@ -1610,16 +1226,445 @@ public final class JavadocTokenTypes {
     public static final int WS = JavadocParser.WS;
 
     /**
-     * CHAR and WS sequence.
-     */
-    public static final int TEXT = JavadocParser.RULE_text + RULE_TYPES_OFFSET;
-
-    /**
      * End Of File symbol.
      */
     public static final int EOF = Recognizer.EOF;
 
+    /** Rule types offset. */
+    private static final int RULE_TYPES_OFFSET = 10000;
+
+    //--------------------------------------------------------------------------------------------//
+    //------- JAVADOC TAGS DEPENDING ON RULE TYPES OFFSET ----------------------------------------//
+    //--------------------------------------------------------------------------------------------//
+
+    /**
+     * Root node of any Javadoc comment.
+     * Last child is always {@link #EOF}.
+     *
+     * <p><b>Tree for example:</b></p>
+     * <pre>{@code
+     * JAVADOC[3x0]
+     *   |--NEWLINE[3x0] : [\n]
+     *   |--LEADING_ASTERISK[4x0] : [ *]
+     *   |--WS[4x2] : [ ]
+     *   |--JAVADOC_TAG[4x3] : [@param T The bar.\n ]
+     *       |--PARAM_LITERAL[4x3] : [@param]
+     *       |--WS[4x9] : [ ]
+     *       |--PARAMETER_NAME[4x10] : [T]
+     *       |--WS[4x11] : [ ]
+     *       |--DESCRIPTION[4x12] : [The bar.\n ]
+     *           |--TEXT[4x12] : [The bar.]
+     *           |--NEWLINE[4x20] : [\n]
+     *           |--TEXT[5x0] : [ ]
+     *   |--EOF[5x1] : [<EOF>]
+     * }</pre>
+     */
+    public static final int JAVADOC = JavadocParser.RULE_javadoc + RULE_TYPES_OFFSET;
+
+    /**
+     * Javadoc tag.
+     *
+     * <p>Type of Javadoc tag is resolved by literal node that is first child of this node.</p>
+     *
+     * <p>As literal could be:</p>
+     * <ul>
+     * <li>{@link #RETURN_LITERAL}</li>
+     * <li>{@link #DEPRECATED_LITERAL}</li>
+     * <li>{@link #SINCE_LITERAL}</li>
+     * <li>{@link #SERIAL_DATA_LITERAL}</li>
+     * <li>{@link #SERIAL_FIELD_LITERAL}</li>
+     * <li>{@link #PARAM_LITERAL}</li>
+     * <li>{@link #SEE_LITERAL}</li>
+     * <li>{@link #SERIAL_LITERAL}</li>
+     * <li>{@link #VERSION_LITERAL}</li>
+     * <li>{@link #EXCEPTION_LITERAL}</li>
+     * <li>{@link #THROWS_LITERAL}</li>
+     * <li>{@link #AUTHOR_LITERAL}</li>
+     * <li>or {@link #CUSTOM_NAME} if it is custom Javadoc tag.</li>
+     * </ul>
+     *
+     * <p><b>Example</b></p>
+     * <pre>{@code &#64;param T The bar.}</pre>
+     * <b>Tree</b>
+     * <pre>{@code
+     *   |--JAVADOC_TAG[4x3] : [@param T The bar.]
+     *       |--PARAM_LITERAL[4x3] : [@param]
+     *       |--WS[4x9] : [ ]
+     *       |--PARAMETER_NAME[4x10] : [T]
+     *       |--WS[4x11] : [ ]
+     *       |--DESCRIPTION[4x12] : [The bar.]
+     *           |--TEXT[4x12] : [The bar.]
+     * }</pre>
+     */
+
+    public static final int JAVADOC_TAG = JavadocParser.RULE_javadocTag + RULE_TYPES_OFFSET;
+    /**
+     * Javadoc inline tag.
+     *
+     * <p>Type of Javadoc inline tag is resolved by literal node that is second child of this node.
+     * First child is always {@link #JAVADOC_INLINE_TAG_START} and last node is always
+     * {@link #JAVADOC_INLINE_TAG_END}.</p>
+     *
+     * <p>As literal could be:</p>
+     * <ul>
+     * <li>{@link #CODE_LITERAL}</li>
+     * <li>{@link #DOC_ROOT_LITERAL}</li>
+     * <li>{@link #LINK_LITERAL}</li>
+     * <li>{@link #INHERIT_DOC_LITERAL}</li>
+     * <li>{@link #LINKPLAIN_LITERAL}</li>
+     * <li>{@link #LITERAL_LITERAL}</li>
+     * <li>{@link #VALUE_LITERAL}</li>
+     * <li>or {@link #CUSTOM_NAME} if it is custom Javadoc inline tag.</li>
+     * </ul>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code {&#64;link String}}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code |--JAVADOC_INLINE_TAG[4x3] : [{&#64;link String}]
+     *        |--JAVADOC_INLINE_TAG_START[4x3] : [{]
+     *        |--LINK_LITERAL[4x4] : [@link]
+     *        |--WS[4x9] : [ ]
+     *        |--REFERENCE[4x10] : [String]
+     *            |--CLASS[4x10] : [String]
+     *        |--JAVADOC_INLINE_TAG_END[4x16] : [}]
+     * }
+     * </pre>
+     */
+    public static final int JAVADOC_INLINE_TAG = JavadocParser.RULE_javadocInlineTag
+            + RULE_TYPES_OFFSET;
+
+    /**
+     * Parameter of the Javadoc tags listed below.
+     * <ul>
+     * <li>{@link #SEE_LITERAL @see}</li>
+     * <li>{@link #LINK_LITERAL &#123;&#64;link&#125;}</li>
+     * <li>{@link #LINKPLAIN_LITERAL &#123;&#64;linkplain&#125;}</li>
+     * <li>{@link #VALUE_LITERAL &#123;&#64;value&#125;}</li>
+     * </ul>
+     */
+    public static final int REFERENCE = JavadocParser.RULE_reference + RULE_TYPES_OFFSET;
+
+    /**
+     * Parameters part in {@link #REFERENCE}.
+     * It is used to specify parameters for {@link #MEMBER method}.
+     * Always contains {@link #LEFT_BRACE} as first child and {@link #RIGHT_BRACE} as last child.
+     * Each parameter is represented by {@link #ARGUMENT} node.
+     * Arguments in braces are separated by {@link #COMMA} (and optional {@link #WS}).
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code @see #method(Processor, String)}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code |--JAVADOC_TAG[1x0] : [@see #method(Processor, String)]
+     *        |--SEE_LITERAL[1x0] : [@see]
+     *        |--WS[1x4] : [ ]
+     *        |--REFERENCE[1x5] : [#method(Processor, String)]
+     *            |--HASH[1x5] : [#]
+     *            |--MEMBER[1x6] : [method]
+     *            |--PARAMETERS[1x12] : [(Processor, String)]
+     *                |--LEFT_BRACE[1x12] : [(]
+     *                |--ARGUMENT[1x13] : [Processor]
+     *                |--COMMA[1x22] : [,]
+     *                |--WS[1x23] : [ ]
+     *                |--ARGUMENT[1x24] : [String]
+     *                |--RIGHT_BRACE[1x30] : [)]
+     * }
+     * </pre>
+     */
+    public static final int PARAMETERS = JavadocParser.RULE_parameters + RULE_TYPES_OFFSET;
+
+    /**
+     * Description node. It contains:
+     * <ul>
+     * <li>{@link #TEXT}</li>
+     * <li>{@link #WS}</li>
+     * <li>{@link #NEWLINE}</li>
+     * <li>{@link #HTML_ELEMENT}</li>
+     * </ul>
+     *
+     * <p>It is argument for many Javadoc tags and inline tags.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code @throws IOException if &lt;b&gt;connection&lt;/b&gt; problems occur}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code |--JAVADOC_TAG[1x0] :
+     *               [@throws IOException if &lt;b&gt;connection&lt;/b&gt; problems occur]
+     *        |--THROWS_LITERAL[1x0] : [@throws]
+     *        |--WS[1x7] : [ ]
+     *        |--CLASS_NAME[1x8] : [IOException]
+     *        |--WS[1x19] : [ ]
+     *        |--DESCRIPTION[1x20] : [if &lt;b&gt;connection&lt;/b&gt; problems occur]
+     *            |--TEXT[1x20] : [if ]
+     *            |--HTML_ELEMENT[1x23] : [&lt;b&gt;connection&lt;/b&gt;]
+     *                |--HTML_TAG[1x23] : [&lt;b&gt;connection&lt;/b&gt;]
+     *                    |--HTML_ELEMENT_START[1x23] : [&lt;b&gt;]
+     *                        |--START[1x23] : [&lt;]
+     *                        |--HTML_TAG_NAME[1x24] : [b]
+     *                        |--END[1x25] : [&gt;]
+     *                    |--TEXT[1x26] : [connection]
+     *                    |--HTML_ELEMENT_END[1x36] : [&lt;/b&gt;]
+     *                        |--START[1x36] : [&lt;]
+     *                        |--SLASH[1x37] : [/]
+     *                        |--HTML_TAG_NAME[1x38] : [b]
+     *                        |--END[1x39] : [&gt;]
+     *            |--TEXT[1x40] : [ problems occur]
+     * }
+     * </pre>
+     */
+    public static final int DESCRIPTION = JavadocParser.RULE_description + RULE_TYPES_OFFSET;
+
+    //--------------------------------------------------------------------------------------------//
+    //--------- HTML TAGS DEPENDING ON RULE TYPES OFFSET -----------------------------------------//
+    //--------------------------------------------------------------------------------------------//
+
+    /**
+     * Parent node for all html tags.
+     */
+    public static final int HTML_ELEMENT = JavadocParser.RULE_htmlElement
+            + RULE_TYPES_OFFSET;
+
+    /**
+     * Start html tag: &lt;XXX&gt;.
+     */
+    public static final int HTML_ELEMENT_START = JavadocParser.RULE_htmlElementStart
+            + RULE_TYPES_OFFSET
+            + RULE_TYPES_OFFSET;
+
+    /**
+     * End html tag: &lt;XXX&gt;.
+     */
+    public static final int HTML_ELEMENT_END = JavadocParser.RULE_htmlElementEnd
+            + RULE_TYPES_OFFSET;
+
+    /**
+     * Non-special HTML tag.
+     */
+    public static final int HTML_TAG = JavadocParser.RULE_htmlTag + RULE_TYPES_OFFSET;
+
+    /**
+     * Html tag attribute. Parent node for: {@code HTML_TAG_IDENT, EQUALS, ATTR_VALUE}.
+     */
+    public static final int ATTRIBUTE = JavadocParser.RULE_attribute
+            + RULE_TYPES_OFFSET
+            + RULE_TYPES_OFFSET;
+
+    /////////////////////// HTML TAGS WITH OPTIONAL END TAG /////////////////////////////////////
+    /** Paragraph html tag: {@code <p></p>}. */
+    public static final int PARAGRAPH = JavadocParser.RULE_paragraph + RULE_TYPES_OFFSET;
+    /** Start paragraph tag. */
+    public static final int P_TAG_START = JavadocParser.RULE_pTagStart + RULE_TYPES_OFFSET;
+    /** End paragraph tag. */
+    public static final int P_TAG_END = JavadocParser.RULE_pTagEnd + RULE_TYPES_OFFSET;
+    /** List item html tag: {@code <li></li>}. */
+
+    public static final int LI = JavadocParser.RULE_li + RULE_TYPES_OFFSET;
+    /** Start list item tag. */
+    public static final int LI_TAG_START = JavadocParser.RULE_liTagStart + RULE_TYPES_OFFSET;
+    /** End list item tag. */
+    public static final int LI_TAG_END = JavadocParser.RULE_liTagEnd + RULE_TYPES_OFFSET;
+
+    /** Table row html tag: {@code <tr></tr>}. */
+    public static final int TR = JavadocParser.RULE_tr + RULE_TYPES_OFFSET;
+    /** Start table row tag. */
+    public static final int TR_TAG_START = JavadocParser.RULE_trTagStart + RULE_TYPES_OFFSET;
+    /** End table row tag. */
+    public static final int TR_TAG_END = JavadocParser.RULE_trTagEnd + RULE_TYPES_OFFSET;
+
+    /** Table cell html tag: {@code <td></td>}. */
+    public static final int TD = JavadocParser.RULE_td + RULE_TYPES_OFFSET;
+    /** Start table cell tag. */
+    public static final int TD_TAG_START = JavadocParser.RULE_tdTagStart + RULE_TYPES_OFFSET;
+    /** End table cell tag. */
+    public static final int TD_TAG_END = JavadocParser.RULE_tdTagEnd + RULE_TYPES_OFFSET;
+
+    /** Table header cell html tag: {@code <th></th>}. */
+    public static final int TH = JavadocParser.RULE_th + RULE_TYPES_OFFSET;
+    /** Start table header cell tag. */
+    public static final int TH_TAG_START = JavadocParser.RULE_thTagStart + RULE_TYPES_OFFSET;
+    /** End table header cell tag. */
+    public static final int TH_TAG_END = JavadocParser.RULE_thTagEnd + RULE_TYPES_OFFSET;
+
+    /** Body html tag. */
+    public static final int BODY = JavadocParser.RULE_body + RULE_TYPES_OFFSET;
+    /** Start body tag. */
+    public static final int BODY_TAG_START = JavadocParser.RULE_bodyTagStart + RULE_TYPES_OFFSET;
+    /** End body tag. */
+    public static final int BODY_TAG_END = JavadocParser.RULE_bodyTagEnd + RULE_TYPES_OFFSET;
+
+    /** Colgroup html tag. */
+    public static final int COLGROUP = JavadocParser.RULE_colgroup + RULE_TYPES_OFFSET;
+    /** Start colgroup tag. */
+    public static final int COLGROUP_TAG_START = JavadocParser.RULE_colgroupTagStart
+            + RULE_TYPES_OFFSET;
+    /** End colgroup tag. */
+    public static final int COLGROUP_TAG_END = JavadocParser.RULE_colgroupTagEnd
+            + RULE_TYPES_OFFSET;
+
+    /** Description of a term html tag: {@code <dd></dd>}. */
+    public static final int DD = JavadocParser.RULE_dd + RULE_TYPES_OFFSET;
+    /** Start description of a term tag. */
+    public static final int DD_TAG_START = JavadocParser.RULE_ddTagStart + RULE_TYPES_OFFSET;
+    /** End description of a term tag. */
+    public static final int DD_TAG_END = JavadocParser.RULE_ddTagEnd + RULE_TYPES_OFFSET;
+
+    /** Description term html tag: {@code <dt></dt>}. */
+    public static final int DT = JavadocParser.RULE_dt + RULE_TYPES_OFFSET;
+    /** Start description term tag. */
+    public static final int DT_TAG_START = JavadocParser.RULE_dtTagStart + RULE_TYPES_OFFSET;
+    /** End description term tag. */
+    public static final int DT_TAG_END = JavadocParser.RULE_dtTagEnd + RULE_TYPES_OFFSET;
+
+    /** Head html tag. */
+    public static final int HEAD = JavadocParser.RULE_head + RULE_TYPES_OFFSET;
+    /** Start head tag. */
+    public static final int HEAD_TAG_START = JavadocParser.RULE_headTagStart + RULE_TYPES_OFFSET;
+    /** End head tag. */
+    public static final int HEAD_TAG_END = JavadocParser.RULE_headTagEnd + RULE_TYPES_OFFSET;
+
+    /** Html html tag. */
+    public static final int HTML = JavadocParser.RULE_html + RULE_TYPES_OFFSET;
+    /** Start html tag. */
+    public static final int HTML_TAG_START = JavadocParser.RULE_htmlTagStart + RULE_TYPES_OFFSET;
+    /** End html tag. */
+    public static final int HTML_TAG_END = JavadocParser.RULE_htmlTagEnd + RULE_TYPES_OFFSET;
+
+    /** Option html tag. */
+    public static final int OPTION = JavadocParser.RULE_option + RULE_TYPES_OFFSET;
+    /** Start option tag. */
+    public static final int OPTION_TAG_START =
+            JavadocParser.RULE_optionTagStart + RULE_TYPES_OFFSET;
+    /** End option tag. */
+    public static final int OPTION_TAG_END = JavadocParser.RULE_optionTagEnd
+            + RULE_TYPES_OFFSET;
+
+    /** Table body html tag. */
+    public static final int TBODY = JavadocParser.RULE_tbody + RULE_TYPES_OFFSET;
+    /** Start table body tag. */
+    public static final int TBODY_TAG_START = JavadocParser.RULE_tbodyTagStart + RULE_TYPES_OFFSET;
+    /** End table body tag. */
+    public static final int TBODY_TAG_END = JavadocParser.RULE_tbodyTagEnd + RULE_TYPES_OFFSET;
+
+    /** Table foot html tag. */
+    public static final int TFOOT = JavadocParser.RULE_tfoot + RULE_TYPES_OFFSET;
+    /** Start table foot tag. */
+    public static final int TFOOT_TAG_START = JavadocParser.RULE_tfootTagStart + RULE_TYPES_OFFSET;
+    /** End table foot tag. */
+    public static final int TFOOT_TAG_END = JavadocParser.RULE_tfootTagEnd + RULE_TYPES_OFFSET;
+
+    /** Table head html tag. */
+    public static final int THEAD = JavadocParser.RULE_thead + RULE_TYPES_OFFSET;
+    /** Start table head tag. */
+    public static final int THEAD_TAG_START = JavadocParser.RULE_theadTagStart + RULE_TYPES_OFFSET;
+    /** End table head tag. */
+    public static final int THEAD_TAG_END = JavadocParser.RULE_theadTagEnd + RULE_TYPES_OFFSET;
+
+    /////////////////////// SINGLETON HTML TAGS  //////////////////////////////////////////////////
+    /**
+     * Parent node for all singleton html tags.
+     */
+    public static final int SINGLETON_ELEMENT = JavadocParser.RULE_singletonElement
+            + RULE_TYPES_OFFSET;
+
+    /**
+     * Non-special empty html tag.
+     */
+    public static final int EMPTY_TAG = JavadocParser.RULE_emptyTag
+            + RULE_TYPES_OFFSET;
+
+    /** Area html tag. */
+    public static final int AREA_TAG = JavadocParser.RULE_areaTag + RULE_TYPES_OFFSET;
+
+    /** Base html tag. */
+    public static final int BASE_TAG = JavadocParser.RULE_baseTag + RULE_TYPES_OFFSET;
+
+    /** Basefont html tag. */
+    public static final int BASEFONT_TAG = JavadocParser.RULE_basefontTag + RULE_TYPES_OFFSET;
+
+    /** Br html tag. */
+    public static final int BR_TAG = JavadocParser.RULE_brTag + RULE_TYPES_OFFSET;
+
+    /** Col html tag. */
+    public static final int COL_TAG = JavadocParser.RULE_colTag + RULE_TYPES_OFFSET;
+
+    /** Frame html tag. */
+    public static final int FRAME_TAG = JavadocParser.RULE_frameTag + RULE_TYPES_OFFSET;
+
+    /** Hr html tag. */
+    public static final int HR_TAG = JavadocParser.RULE_hrTag + RULE_TYPES_OFFSET;
+
+    /** Img html tag. */
+    public static final int IMG_TAG = JavadocParser.RULE_imgTag + RULE_TYPES_OFFSET;
+
+    /** Input html tag. */
+    public static final int INPUT_TAG = JavadocParser.RULE_inputTag + RULE_TYPES_OFFSET;
+
+    /** Isindex html tag. */
+    public static final int ISINDEX_TAG = JavadocParser.RULE_isindexTag + RULE_TYPES_OFFSET;
+
+    /** Link html tag. */
+    public static final int LINK_TAG = JavadocParser.RULE_linkTag + RULE_TYPES_OFFSET;
+
+    /** Meta html tag. */
+    public static final int META_TAG = JavadocParser.RULE_metaTag + RULE_TYPES_OFFSET;
+
+    /** Param html tag. */
+    public static final int PARAM_TAG = JavadocParser.RULE_paramTag + RULE_TYPES_OFFSET;
+
+    /**
+     * HTML void element {@code <embed>}.
+     * @see #SINGLETON_ELEMENT
+     * @see <a href="https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-embed">
+     *     W3 docs</a>
+     */
+    public static final int EMBED_TAG = JavadocParser.RULE_embedTag + RULE_TYPES_OFFSET;
+
+    /**
+     * HTML void element {@code <keygen>}.
+     * @see #SINGLETON_ELEMENT
+     * @see <a href="https://www.w3.org/TR/html51/sec-forms.html#elementdef-keygen">
+     *     W3 docs</a>
+     */
+    public static final int KEYGEN_TAG = JavadocParser.RULE_keygenTag + RULE_TYPES_OFFSET;
+
+    /**
+     * HTML void element {@code <source>}.
+     * @see #SINGLETON_ELEMENT
+     * @see "https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-media-source"
+     */
+    public static final int SOURCE_TAG = JavadocParser.RULE_sourceTag + RULE_TYPES_OFFSET;
+
+    /**
+     * HTML void element {@code <track>}.
+     * @see #SINGLETON_ELEMENT
+     * @see <a
+     *     href="https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-track">
+     *     W3 docs</a>
+     */
+    public static final int TRACK_TAG = JavadocParser.RULE_trackTag + RULE_TYPES_OFFSET;
+
+    /**
+     * HTML void element {@code <wbr>}.
+     * @see #SINGLETON_ELEMENT
+     * @see <a href="https://www.w3.org/TR/html51/textlevel-semantics.html#elementdef-wbr">
+     *     W3 docs</a>
+     */
+    public static final int WBR_TAG = JavadocParser.RULE_wbrTag + RULE_TYPES_OFFSET;
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
+    /** Html comment: {@code <!-- -->}. */
+    public static final int HTML_COMMENT = JavadocParser.RULE_htmlComment
+            + RULE_TYPES_OFFSET
+            + RULE_TYPES_OFFSET;
+    /**
+     * CHAR and WS sequence.
+     */
+    public static final int TEXT = JavadocParser.RULE_text + RULE_TYPES_OFFSET;
+
     /** Empty private constructor of the current class. */
     private JavadocTokenTypes() {
     }
+
 }
