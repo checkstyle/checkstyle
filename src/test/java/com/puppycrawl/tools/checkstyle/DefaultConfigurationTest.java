@@ -56,7 +56,7 @@ public class DefaultConfigurationTest {
     }
 
     @Test
-    public void testDefaultMultiThreadConfiguration() throws Exception {
+    public void testDefaultMultiThreadConfiguration() {
         final String name = "MyConfig";
         final DefaultConfiguration config = new DefaultConfiguration(name);
         final ThreadModeSettings singleThreadMode =
@@ -65,7 +65,7 @@ public class DefaultConfigurationTest {
     }
 
     @Test
-    public void testMultiThreadConfiguration() throws Exception {
+    public void testMultiThreadConfiguration() {
         final String name = "MyConfig";
         final ThreadModeSettings multiThreadMode =
                 new ThreadModeSettings(4, 2);

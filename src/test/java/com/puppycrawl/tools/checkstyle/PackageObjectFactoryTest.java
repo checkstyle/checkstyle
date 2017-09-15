@@ -169,7 +169,7 @@ public class PackageObjectFactoryTest {
     }
 
     @Test
-    public void testCreateObjectFromFullModuleNamesWithAmbiguousException() throws Exception {
+    public void testCreateObjectFromFullModuleNamesWithAmbiguousException() {
         final String barPackage = BASE_PACKAGE + ".packageobjectfactory.bar";
         final String fooPackage = BASE_PACKAGE + ".packageobjectfactory.foo";
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();

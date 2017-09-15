@@ -37,7 +37,7 @@ public class AttributeNodeTest {
     }
 
     @Test
-    public void testGetAttributeValue() throws Exception {
+    public void testGetAttributeValue() {
         try {
             attributeNode.getAttributeValue("", "");
             fail("Exception is excepted");
@@ -51,7 +51,7 @@ public class AttributeNodeTest {
     }
 
     @Test
-    public void testGetParent() throws Exception {
+    public void testGetParent() {
         try {
             attributeNode.getParent();
             fail("Exception is excepted");
@@ -65,7 +65,7 @@ public class AttributeNodeTest {
     }
 
     @Test
-    public void testGetRoot() throws Exception {
+    public void testGetRoot() {
         try {
             attributeNode.getRoot();
             fail("Exception is excepted");
@@ -79,12 +79,12 @@ public class AttributeNodeTest {
     }
 
     @Test
-    public void testGetStringValue() throws Exception {
+    public void testGetStringValue() {
         assertEquals("Invalid string value", "value", attributeNode.getStringValue());
     }
 
     @Test
-    public void testIterate() throws Exception {
+    public void testIterate() {
         try {
             attributeNode.iterateAxis(AxisInfo.SELF);
             fail("Exception is excepted");
@@ -98,7 +98,7 @@ public class AttributeNodeTest {
     }
 
     @Test
-    public void testGetLineNumber() throws Exception {
+    public void testGetLineNumber() {
         try {
             attributeNode.getLineNumber();
             fail("Exception is excepted");
@@ -112,7 +112,7 @@ public class AttributeNodeTest {
     }
 
     @Test
-    public void testGetColumnNumber() throws Exception {
+    public void testGetColumnNumber() {
         try {
             attributeNode.getColumnNumber();
             fail("Exception is excepted");
@@ -126,7 +126,7 @@ public class AttributeNodeTest {
     }
 
     @Test
-    public void testGetTokenType() throws Exception {
+    public void testGetTokenType() {
         try {
             attributeNode.getTokenType();
             fail("Exception is excepted");
@@ -140,7 +140,7 @@ public class AttributeNodeTest {
     }
 
     @Test
-    public void testGetUnderlyingNode() throws Exception {
+    public void testGetUnderlyingNode() {
         try {
             attributeNode.getUnderlyingNode();
             fail("Exception is excepted");

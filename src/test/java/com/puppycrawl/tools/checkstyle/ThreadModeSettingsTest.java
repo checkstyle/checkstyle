@@ -32,14 +32,14 @@ import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
 public class ThreadModeSettingsTest {
     @Test
-    public void testProperties() throws Exception {
+    public void testProperties() {
         final ThreadModeSettings config = new ThreadModeSettings(1, 2);
         assertEquals("Invalid checker threads number", 1, config.getCheckerThreadsNumber());
         assertEquals("Invalid treewalker threads number", 2, config.getTreeWalkerThreadsNumber());
     }
 
     @Test
-    public void testResolveCheckerInMultiThreadMode() throws Exception {
+    public void testResolveCheckerInMultiThreadMode() {
         final ThreadModeSettings configuration = new ThreadModeSettings(2, 2);
 
         try {
@@ -54,7 +54,7 @@ public class ThreadModeSettingsTest {
     }
 
     @Test
-    public void testResolveCheckerInSingleThreadMode() throws Exception {
+    public void testResolveCheckerInSingleThreadMode() {
         final ThreadModeSettings singleThreadMode = ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
 
         assertEquals("Invalid name resolved", ThreadModeSettings.CHECKER_MODULE_NAME,
@@ -62,7 +62,7 @@ public class ThreadModeSettingsTest {
     }
 
     @Test
-    public void testResolveTreeWalker() throws Exception {
+    public void testResolveTreeWalker() {
         final ThreadModeSettings configuration = new ThreadModeSettings(2, 2);
 
         try {
@@ -76,7 +76,7 @@ public class ThreadModeSettingsTest {
     }
 
     @Test
-    public void testResolveTreeWalkerInSingleThreadMode() throws Exception {
+    public void testResolveTreeWalkerInSingleThreadMode() {
         final ThreadModeSettings singleThreadMode = ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
         final String actual =
                 singleThreadMode.resolveName(ThreadModeSettings.TREE_WALKER_MODULE_NAME);

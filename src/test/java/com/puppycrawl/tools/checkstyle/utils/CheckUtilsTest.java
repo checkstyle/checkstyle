@@ -295,7 +295,7 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetFirstNode1() throws Exception {
+    public void testGetFirstNode1() {
         final DetailAST child = new DetailAST();
         child.setLineNo(5);
         child.setColumnNo(6);
@@ -325,7 +325,7 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testParseDouble() throws Exception {
+    public void testParseDouble() {
         assertEquals("Invalid parse result", 1.0,
                 CheckUtils.parseDouble("1", TokenTypes.NUM_INT), 0);
         assertEquals("Invalid parse result", -0.05,

@@ -250,109 +250,109 @@ public class CommonUtilsTest {
     }
 
     @Test
-    public void testIsIdentifier() throws Exception {
+    public void testIsIdentifier() {
         assertTrue("Should return true when valid identifier is passed",
             CommonUtils.isIdentifier("aValidIdentifier"));
     }
 
     @Test
-    public void testIsIdentifierEmptyString() throws Exception {
+    public void testIsIdentifierEmptyString() {
         assertFalse("Should return false when empty string is passed",
             CommonUtils.isIdentifier(""));
     }
 
     @Test
-    public void testIsIdentifierInvalidFirstSymbol() throws Exception {
+    public void testIsIdentifierInvalidFirstSymbol() {
         assertFalse("Should return false when invalid identifier is passed",
             CommonUtils.isIdentifier("1InvalidIdentifier"));
     }
 
     @Test
-    public void testIsIdentifierInvalidSymbols() throws Exception {
+    public void testIsIdentifierInvalidSymbols() {
         assertFalse("Should return false when invalid identifier is passed",
             CommonUtils.isIdentifier("invalid#Identifier"));
     }
 
     @Test
-    public void testIsName() throws Exception {
+    public void testIsName() {
         assertTrue("Should return true when valid name is passed",
             CommonUtils.isName("a.valid.Nam3"));
     }
 
     @Test
-    public void testIsNameEmptyString() throws Exception {
+    public void testIsNameEmptyString() {
         assertFalse("Should return false when empty string is passed",
             CommonUtils.isName(""));
     }
 
     @Test
-    public void testIsNameInvalidFirstSymbol() throws Exception {
+    public void testIsNameInvalidFirstSymbol() {
         assertFalse("Should return false when invalid name is passed",
             CommonUtils.isName("1.invalid.name"));
     }
 
     @Test
-    public void testIsNameEmptyPart() throws Exception {
+    public void testIsNameEmptyPart() {
         assertFalse("Should return false when name has empty part",
             CommonUtils.isName("invalid..name"));
     }
 
     @Test
-    public void testIsNameEmptyLastPart() throws Exception {
+    public void testIsNameEmptyLastPart() {
         assertFalse("Should return false when name has empty part",
             CommonUtils.isName("invalid.name."));
     }
 
     @Test
-    public void testIsNameInvalidSymbol() throws Exception {
+    public void testIsNameInvalidSymbol() {
         assertFalse("Should return false when invalid name is passed",
             CommonUtils.isName("invalid.name#42"));
     }
 
     @Test
-    public void testIsBlank() throws Exception {
+    public void testIsBlank() {
         assertFalse("Should return false when string is not empty",
             CommonUtils.isBlank("string"));
     }
 
     @Test
-    public void testIsBlankAheadWhitespace() throws Exception {
+    public void testIsBlankAheadWhitespace() {
         assertFalse("Should return false when string is not empty",
             CommonUtils.isBlank("  string"));
     }
 
     @Test
-    public void testIsBlankBehindWhitespace() throws Exception {
+    public void testIsBlankBehindWhitespace() {
         assertFalse("Should return false when string is not empty",
             CommonUtils.isBlank("string    "));
     }
 
     @Test
-    public void testIsBlankWithWhitespacesAround() throws Exception {
+    public void testIsBlankWithWhitespacesAround() {
         assertFalse("Should return false when string is not empty",
             CommonUtils.isBlank("    string    "));
     }
 
     @Test
-    public void testIsBlankWhitespaceInside() throws Exception {
+    public void testIsBlankWhitespaceInside() {
         assertFalse("Should return false when string is not empty",
             CommonUtils.isBlank("str    ing"));
     }
 
     @Test
-    public void testIsBlankNullString() throws Exception {
+    public void testIsBlankNullString() {
         assertTrue("Should return true when string is null",
             CommonUtils.isBlank(null));
     }
 
     @Test
-    public void testIsBlankWithEmptyString() throws Exception {
+    public void testIsBlankWithEmptyString() {
         assertTrue("Should return true when string is empty",
             CommonUtils.isBlank(""));
     }
 
     @Test
-    public void testIsBlankWithWhitespacesOnly() throws Exception {
+    public void testIsBlankWithWhitespacesOnly() {
         assertTrue("Should return true when string contains only spaces",
             CommonUtils.isBlank("   "));
     }
@@ -380,18 +380,18 @@ public class CommonUtilsTest {
     }
 
     @Test
-    public void testIsIntValidString() throws Exception {
+    public void testIsIntValidString() {
         assertTrue("Should return true when string is null", CommonUtils.isInt("42"));
     }
 
     @Test
-    public void testIsIntInvalidString() throws Exception {
+    public void testIsIntInvalidString() {
         assertFalse("Should return false when object passed is not integer",
             CommonUtils.isInt("foo"));
     }
 
     @Test
-    public void testIsIntNull() throws Exception {
+    public void testIsIntNull() {
         assertFalse("Should return false when null is passed",
             CommonUtils.isInt(null));
     }

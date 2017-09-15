@@ -44,6 +44,7 @@ org.eclipse.jdt.core.compiler.problem.unlikelyCollectionMethodArgumentType=error
 org.eclipse.jdt.core.compiler.problem.unlikelyCollectionMethodArgumentTypeStrict=enabled
 org.eclipse.jdt.core.compiler.problem.unlikelyEqualsArgumentType=error
 org.eclipse.jdt.core.compiler.problem.unusedDeclaredThrownException=error
+org.eclipse.jdt.core.compiler.problem.unusedDeclaredThrownExceptionIncludeDocCommentReference=enabled
 org.eclipse.jdt.core.compiler.problem.unusedImport=error
 org.eclipse.jdt.core.compiler.problem.unusedLabel=error
 org.eclipse.jdt.core.compiler.problem.unusedLocal=error
@@ -61,6 +62,10 @@ org.eclipse.jdt.core.compiler.problem.deprecation=ignore
 org.eclipse.jdt.core.compiler.problem.explicitlyClosedAutoCloseable=ignore
 #we will not put all String values to resources, it does not make sense in our project
 org.eclipse.jdt.core.compiler.problem.nonExternalizedStringLiteral=ignore
+#we should print errors on all throwables
+org.eclipse.jdt.core.compiler.problem.unusedDeclaredThrownExceptionExemptExceptionAndThrowable=disabled
+#we shouldn't print errors on overriding methods that don't make use of exceptions
+org.eclipse.jdt.core.compiler.problem.unusedDeclaredThrownExceptionWhenOverriding=disabled
 #We use checkstyle rule, special cases could be suppressed by configs out of code
 org.eclipse.jdt.core.compiler.problem.unusedExceptionParameter=ignore
 
