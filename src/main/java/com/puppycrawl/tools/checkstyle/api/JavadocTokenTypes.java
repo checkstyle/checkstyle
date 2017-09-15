@@ -1230,12 +1230,21 @@ public final class JavadocTokenTypes {
      */
     public static final int EOF = Recognizer.EOF;
 
-    /** Rule types offset. */
-    private static final int RULE_TYPES_OFFSET = 10000;
-
     //--------------------------------------------------------------------------------------------//
     //------- JAVADOC TAGS DEPENDING ON RULE TYPES OFFSET ----------------------------------------//
     //--------------------------------------------------------------------------------------------//
+
+    /** Rule types offset.
+     * RULE_TYPES_OFFSET constant is used to split lexer tokens types and parser rules types.
+     * We need unique numbers for all tokens,
+     * ANTLR do not need this and that is why this types are mixed by used values.
+     * All values we can take a look at
+     * target/generated-sources/antlr/com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser.java
+     * For example: LEADING_ASTERISK=1 and RULE_htmlElement = 1.
+     * RULE_TYPES_OFFSET required to shift parser rules,
+     * to let them not overlap with types that have prefix "RULE_".
+     */
+    private static final int RULE_TYPES_OFFSET = 10000;
 
     /**
      * Root node of any Javadoc comment.
