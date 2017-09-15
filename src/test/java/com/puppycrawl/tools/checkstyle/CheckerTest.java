@@ -904,7 +904,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSetFileSetCheckSetsMessageDispatcher() throws Exception {
+    public void testSetFileSetCheckSetsMessageDispatcher() {
         final DummyFileSet fileSet = new DummyFileSet();
         final Checker checker = new Checker();
         checker.addFileSetCheck(fileSet);

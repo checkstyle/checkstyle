@@ -69,32 +69,32 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetTokenType() throws Exception {
+    public void testGetTokenType() {
         assertEquals("Invalid token type", TokenTypes.EOF, rootNode.getTokenType());
     }
 
     @Test
-    public void testGetLineNumber() throws Exception {
+    public void testGetLineNumber() {
         assertEquals("Invalid line number", 1, rootNode.getLineNumber());
     }
 
     @Test
-    public void testGetColumnNumber() throws Exception {
+    public void testGetColumnNumber() {
         assertEquals("Invalid column number", 0, rootNode.getColumnNumber());
     }
 
     @Test
-    public void testGetLocalPart() throws Exception {
+    public void testGetLocalPart() {
         assertEquals("Invalid local part", "ROOT", rootNode.getLocalPart());
     }
 
     @Test
-    public void testGetStringValue() throws Exception {
+    public void testGetStringValue() {
         assertEquals("Invalid string value", "ROOT", rootNode.getStringValue());
     }
 
     @Test
-    public void testIterate() throws Exception {
+    public void testIterate() {
         assertEquals("Result iterator does not match expected",
                 EmptyIterator.OfNodes.THE_INSTANCE, rootNode.iterateAxis(AxisInfo.PARENT));
         assertEquals("Result iterator does not match expected",
@@ -103,7 +103,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testIterateWithoutArgument() throws Exception {
+    public void testIterateWithoutArgument() {
         try {
             rootNode.iterate();
             fail("Exception is excepted");
@@ -116,7 +116,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetAttributeValue() throws Exception {
+    public void testGetAttributeValue() {
         try {
             rootNode.getAttributeValue("", "");
             fail("Exception is excepted");
@@ -130,7 +130,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetDeclaredNamespaces() throws Exception {
+    public void testGetDeclaredNamespaces() {
         try {
             rootNode.getDeclaredNamespaces(
                     new NamespaceBinding[] {new NamespaceBinding("prefix", "uri")});
@@ -397,7 +397,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testAtomize() throws Exception {
+    public void testAtomize() {
         try {
             rootNode.atomize();
             fail("Exception is excepted");
@@ -425,7 +425,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testCopy() throws Exception {
+    public void testCopy() {
         try {
             rootNode.copy(null, -1, null);
             fail("Exception is excepted");

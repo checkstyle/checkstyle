@@ -174,7 +174,7 @@ public class DetailASTTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testClearChildCountCache() throws Exception {
+    public void testClearChildCountCache() {
         final DetailAST parent = new DetailAST();
         final DetailAST child = new DetailAST();
         parent.setFirstChild(child);

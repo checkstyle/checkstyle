@@ -217,7 +217,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTokens() throws Exception {
+    public void testTokens() {
         final int[] defaultJavadocTokens = {JavadocTokenTypes.JAVADOC};
         final AbstractJavadocCheck check = new AbstractJavadocCheck() {
 

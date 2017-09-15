@@ -402,7 +402,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testRootWithNullDetailAst() throws Exception {
+    public void testRootWithNullDetailAst() {
         final RootNode emptyRootNode = new RootNode(null);
         assertFalse("Empty node should not have children", emptyRootNode.hasChildNodes());
         assertEquals("Invalid number of nodes", EmptyIterator.OfNodes.THE_INSTANCE,

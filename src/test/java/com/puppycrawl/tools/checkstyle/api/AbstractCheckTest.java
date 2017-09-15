@@ -138,7 +138,7 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetTabWidth() throws Exception {
+    public void testGetTabWidth() {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
@@ -162,7 +162,7 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetClassLoader() throws Exception {
+    public void testGetClassLoader() {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
@@ -186,7 +186,7 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetAcceptableTokens() throws Exception {
+    public void testGetAcceptableTokens() {
         final int[] defaultTokens = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
         final int[] acceptableTokens = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
         final int[] requiredTokens = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};

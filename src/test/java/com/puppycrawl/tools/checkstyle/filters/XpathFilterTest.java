@@ -116,7 +116,7 @@ public class XpathFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIncorrectQuery() throws Exception {
+    public void testIncorrectQuery() {
         final String xpath = "1@#";
         try {
             final Object test = new XpathFilter("InputXpathFilterSuppressByXpath", "Test", null,
@@ -139,7 +139,7 @@ public class XpathFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNullFileName() throws Exception {
+    public void testNullFileName() {
         final String xpath = "NON_MATCHING_QUERY";
         final XpathFilter filter =
                 new XpathFilter("InputXpathFilterSuppressByXpath", "Test", null, xpath);
@@ -159,7 +159,7 @@ public class XpathFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNullLocalizedMessage() throws Exception {
+    public void testNullLocalizedMessage() {
         final String xpath = "NON_MATCHING_QUERY";
         final XpathFilter filter =
                 new XpathFilter("InputXpathFilterSuppressByXpath", "Test", null, xpath);
@@ -228,7 +228,7 @@ public class XpathFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testThrowException() throws Exception {
+    public void testThrowException() {
         final String xpath = "/CLASS_DEF[@text='InputXpathFilterSuppressByXpath']";
         final XpathFilter filter =
                 new XpathFilter("InputXpathFilterSuppressByXpath", "Test", null, xpath);
