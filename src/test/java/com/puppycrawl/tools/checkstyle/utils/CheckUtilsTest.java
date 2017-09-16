@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
-import static com.puppycrawl.tools.checkstyle.internal.TestUtils.assertUtilsClassHasPrivateConstructor;
 import static com.puppycrawl.tools.checkstyle.internal.TestUtils.findTokenInAstByPredicate;
+import static com.puppycrawl.tools.checkstyle.internal.TestUtils.isUtilsClassHasPrivateConstructor;
 import static com.puppycrawl.tools.checkstyle.internal.TestUtils.parseFile;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -50,7 +50,8 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertUtilsClassHasPrivateConstructor(CheckUtils.class, true);
+        assertTrue("Constructor is not private",
+                isUtilsClassHasPrivateConstructor(CheckUtils.class, true));
     }
 
     @Test

@@ -30,8 +30,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import org.junit.Assert;
-
 import antlr.ANTLRException;
 import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
 import com.puppycrawl.tools.checkstyle.PackageObjectFactory;
@@ -52,17 +50,23 @@ public final class TestUtils {
      * @param checkConstructorIsPrivate flag to skip check for private visibility, it is useful
      *                                  for Classes that are mocked by PowerMockRunner that make
      *                                  private c-tors as public
+     * @return true if constructor is expected.
      * @noinspection BooleanParameter
      */
-    public static void assertUtilsClassHasPrivateConstructor(final Class<?> utilClass,
+    public static boolean isUtilsClassHasPrivateConstructor(final Class<?> utilClass,
                                                              boolean checkConstructorIsPrivate)
             throws ReflectiveOperationException {
         final Constructor<?> constructor = utilClass.getDeclaredConstructor();
+        final boolean result;
         if (checkConstructorIsPrivate && !Modifier.isPrivate(constructor.getModifiers())) {
-            Assert.fail("Constructor is not private");
+            result = false;
         }
-        constructor.setAccessible(true);
-        constructor.newInstance();
+        else {
+            constructor.setAccessible(true);
+            constructor.newInstance();
+            result = true;
+        }
+        return result;
     }
 
     /**
