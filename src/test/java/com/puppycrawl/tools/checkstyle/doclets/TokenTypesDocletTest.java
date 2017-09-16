@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.doclets;
 
-import static com.puppycrawl.tools.checkstyle.internal.TestUtils.assertUtilsClassHasPrivateConstructor;
+import static com.puppycrawl.tools.checkstyle.internal.TestUtils.isUtilsClassHasPrivateConstructor;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -53,7 +53,8 @@ public class TokenTypesDocletTest extends AbstractPathTestSupport {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertUtilsClassHasPrivateConstructor(TokenTypesDoclet.class, true);
+        assertTrue("Constructor is not private",
+                isUtilsClassHasPrivateConstructor(TokenTypesDoclet.class, true));
     }
 
     @Test

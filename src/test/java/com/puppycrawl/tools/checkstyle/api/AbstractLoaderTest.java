@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import static com.puppycrawl.tools.checkstyle.internal.TestUtils.assertUtilsClassHasPrivateConstructor;
+import static com.puppycrawl.tools.checkstyle.internal.TestUtils.isUtilsClassHasPrivateConstructor;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -50,8 +50,8 @@ public class AbstractLoaderTest {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertUtilsClassHasPrivateConstructor(
-                AbstractLoader.FeaturesForVerySecureJavaInstallations.class, true);
+        assertTrue("Constructor is not private", isUtilsClassHasPrivateConstructor(
+                AbstractLoader.FeaturesForVerySecureJavaInstallations.class, true));
     }
 
     private static final class DummyLoader extends AbstractLoader {

@@ -19,13 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static com.puppycrawl.tools.checkstyle.internal.TestUtils.assertUtilsClassHasPrivateConstructor;
+import static com.puppycrawl.tools.checkstyle.internal.TestUtils.isUtilsClassHasPrivateConstructor;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 public class DefinitionsTest {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertUtilsClassHasPrivateConstructor(Definitions.class, true);
+        assertTrue("Constructor is not private",
+                isUtilsClassHasPrivateConstructor(Definitions.class, true));
     }
 }

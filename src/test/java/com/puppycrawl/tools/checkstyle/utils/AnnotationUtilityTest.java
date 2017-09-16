@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
-import static com.puppycrawl.tools.checkstyle.internal.TestUtils.assertUtilsClassHasPrivateConstructor;
+import static com.puppycrawl.tools.checkstyle.internal.TestUtils.isUtilsClassHasPrivateConstructor;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -36,7 +36,7 @@ public class AnnotationUtilityTest {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         try {
-            assertUtilsClassHasPrivateConstructor(AnnotationUtility.class, true);
+            isUtilsClassHasPrivateConstructor(AnnotationUtility.class, true);
         }
         catch (InvocationTargetException ex) {
             assertEquals("Invalid exception message",
