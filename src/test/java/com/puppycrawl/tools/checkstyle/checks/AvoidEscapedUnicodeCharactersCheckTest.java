@@ -147,7 +147,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
 
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/checks/misc/avoidescapedunicodecharacters";
+        return "com/puppycrawl/tools/checkstyle/checks/avoidescapedunicodecharacters";
     }
 
     @Test

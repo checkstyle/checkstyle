@@ -36,7 +36,7 @@ public class UncommentedMainCheckTest
     extends AbstractModuleTestSupport {
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/checks/misc/uncommentedmain";
+        return "com/puppycrawl/tools/checkstyle/checks/uncommentedmain";
     }
 
     @Test

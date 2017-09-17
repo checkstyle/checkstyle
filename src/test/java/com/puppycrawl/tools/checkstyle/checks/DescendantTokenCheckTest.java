@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/checks/misc/descendanttoken";
+        return "com/puppycrawl/tools/checkstyle/checks/descendanttoken";
     }
 
     @Test

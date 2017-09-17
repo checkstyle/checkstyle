@@ -58,7 +58,7 @@ public class TranslationCheckTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/checks/misc/translation";
+        return "com/puppycrawl/tools/checkstyle/checks/translation";
     }
 
     @Test

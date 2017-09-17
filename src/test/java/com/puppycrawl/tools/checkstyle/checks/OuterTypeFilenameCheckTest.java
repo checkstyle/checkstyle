@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 public class OuterTypeFilenameCheckTest extends AbstractModuleTestSupport {
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/checks/misc/outertypefilename";
+        return "com/puppycrawl/tools/checkstyle/checks/outertypefilename";
     }
 
     @Test

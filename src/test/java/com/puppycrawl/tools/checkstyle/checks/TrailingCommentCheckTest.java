@@ -42,7 +42,7 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/checks/misc/trailingcomment";
+        return "com/puppycrawl/tools/checkstyle/checks/trailingcomment";
     }
 
     @Test
