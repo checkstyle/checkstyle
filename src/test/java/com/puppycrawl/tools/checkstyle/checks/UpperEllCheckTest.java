@@ -33,7 +33,7 @@ public class UpperEllCheckTest
     extends AbstractModuleTestSupport {
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/checks/misc/upperell";
+        return "com/puppycrawl/tools/checkstyle/checks/upperell";
     }
 
     @Test

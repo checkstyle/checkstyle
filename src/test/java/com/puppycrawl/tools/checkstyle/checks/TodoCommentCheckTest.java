@@ -33,7 +33,7 @@ public class TodoCommentCheckTest
     extends AbstractModuleTestSupport {
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/checks/misc/todocomment";
+        return "com/puppycrawl/tools/checkstyle/checks/todocomment";
     }
 
     @Test

@@ -71,7 +71,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/checks/misc/uniqueproperties";
+        return "com/puppycrawl/tools/checkstyle/checks/uniqueproperties";
     }
 
     /* Additional test for jacoco, since valueOf()
