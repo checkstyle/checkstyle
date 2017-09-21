@@ -7,9 +7,9 @@
 <file name="path_to_file">
 <error line="0" severity="error" message="%s" source="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"/>
 </file>
+<file name="path_to_file\InputTranslationCheckFireErrors.properties">
+</file>
 <file name="path_to_file\InputTranslationCheckFireErrors_de.properties">
 <error line="0" severity="error" message="%s" source="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"/>
-</file>
-<file name="path_to_file\InputTranslationCheckFireErrors.properties">
 </file>
 </checkstyle>
