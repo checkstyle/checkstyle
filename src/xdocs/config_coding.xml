@@ -2016,6 +2016,10 @@ class SomeClass
         <p>
           Rationale: Helps reduce coupling on concrete classes.
         </p>
+        <p>
+          For additional restriction of type usage see also:
+          <a href="#IllegalInstantiation">IllegalInstantiation</a>, <a href="config_imports.html#IllegalImport">IllegalImport</a>
+        </p>
       </subsection>
 
       <subsection name="Properties">
