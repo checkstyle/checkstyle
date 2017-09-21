@@ -43,7 +43,6 @@ public final class ClassDataAbstractionCouplingCheck
     /** Creates bew instance of the check. */
     public ClassDataAbstractionCouplingCheck() {
         super(DEFAULT_MAX);
-        setTokens("LITERAL_NEW");
     }
 
     @Override
