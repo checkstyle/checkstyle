@@ -132,7 +132,6 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      * @param from array representing regular expressions of classes to ignore.
      */
     public void setExcludeClassesRegexps(String... from) {
-        excludeClassesRegexps.clear();
         excludeClassesRegexps.addAll(Arrays.stream(from.clone())
                 .map(CommonUtils::createPattern)
                 .collect(Collectors.toSet()));

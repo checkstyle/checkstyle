@@ -71,6 +71,19 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testEqualToMax() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(JavaNCSSCheck.class);
+
+        checkConfig.addAttribute("methodMaximum", "12");
+        checkConfig.addAttribute("classMaximum", "22");
+        checkConfig.addAttribute("fileMaximum", "39");
+
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getPath("InputJavaNCSS.java"), expected);
+    }
+
+    @Test
     public void testDefaultConfiguration() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavaNCSSCheck.class);
 

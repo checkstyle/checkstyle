@@ -65,6 +65,17 @@ public class CyclomaticComplexityCheckTest
     }
 
     @Test
+    public void testEqualsMaxComplexity() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(CyclomaticComplexityCheck.class);
+        checkConfig.addAttribute("max", "5");
+
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getPath("InputCyclomaticComplexitySwitchBlocks.java"), expected);
+    }
+
+    @Test
     public void test() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(CyclomaticComplexityCheck.class);
