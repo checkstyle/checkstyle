@@ -55,9 +55,17 @@ public final class FullIdent {
      * @return a {@code FullIdent} value
      */
     public static FullIdent createFullIdent(DetailAST ast) {
-        final FullIdent ident = new FullIdent();
-        extractFullIdent(ident, ast);
-        return ident;
+        return createFullIdentMaybeArrayDeclare(ast, false);
+    }
+
+    /**
+     * Creates a new FullIdent starting from the specified node.
+     * FullIdent will include array, if it contained.
+     * @param ast the node to start from
+     * @return a {@code FullIdent} value
+     */
+    public static FullIdent createFullIdentWithArrayDeclare(DetailAST ast) {
+        return createFullIdentMaybeArrayDeclare(ast, true);
     }
 
     /**
@@ -99,18 +107,47 @@ public final class FullIdent {
     }
 
     /**
+     * Creates a new FullIdent starting from the child of the specified node.
+     * FullIdent can include array.
+     * @param ast the parent node from where to start from
+     * @param isArrayDeclare the FullIdent will be include array
+     * @return a {@code FullIdent} value
+     */
+    private static FullIdent createFullIdentMaybeArrayDeclare(DetailAST ast,
+                                                              boolean isArrayDeclare) {
+        final FullIdent ident = new FullIdent();
+        extractFullIdent(ident, ast, isArrayDeclare);
+        return ident;
+    }
+
+    /**
      * Recursively extract a FullIdent.
      *
      * @param full the FullIdent to add to
      * @param ast the node to recurse from
+     * @param isArrayDeclare the FullIdent will be include array
      */
-    private static void extractFullIdent(FullIdent full, DetailAST ast) {
+    private static void extractFullIdent(FullIdent full, DetailAST ast,
+                                         boolean isArrayDeclare) {
         if (ast != null) {
             if (ast.getType() == TokenTypes.DOT) {
-                extractFullIdent(full, ast.getFirstChild());
+                extractFullIdent(full, ast.getFirstChild(), isArrayDeclare);
                 full.append(".");
                 extractFullIdent(
-                    full, ast.getFirstChild().getNextSibling());
+                    full, ast.getFirstChild().getNextSibling(), isArrayDeclare);
+            }
+            else if (isArrayDeclare && ast.getParent() != null
+                    && ast.getParent().getType() == TokenTypes.ARRAY_DECLARATOR) {
+                if (ast.getType() == TokenTypes.ARRAY_DECLARATOR) {
+                    extractFullIdent(full, ast.getParent(), true);
+                    full.append(ast.getNextSibling());
+                    full.append(ast);
+                }
+                else {
+                    full.append(ast);
+                    extractFullIdent(full, ast.getParent(), true);
+                    full.append(ast.getNextSibling());
+                }
             }
             else {
                 full.append(ast);

@@ -77,17 +77,27 @@ public final class CheckUtils {
      * @return {@code FullIdent} for given type.
      */
     public static FullIdent createFullType(DetailAST typeAST) {
-        final DetailAST arrayDeclaratorAST =
-            typeAST.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
-        final FullIdent fullType;
+        DetailAST ast = typeAST;
 
-        if (arrayDeclaratorAST == null) {
-            fullType = createFullTypeNoArrays(typeAST);
+        while (ast.findFirstToken(TokenTypes.ARRAY_DECLARATOR) != null) {
+            ast = ast.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
         }
-        else {
-            fullType = createFullTypeNoArrays(arrayDeclaratorAST);
+        return FullIdent.createFullIdentWithArrayDeclare(ast.getFirstChild());
+    }
+
+    /**
+     * Returns FullIndent for given type, but ignored array dimension.
+     * @param typeAST a type node (no array).
+     * @return {@code FullIdent} for given type.
+     */
+    public static FullIdent createFullTypeNoArrays(DetailAST typeAST) {
+        DetailAST ast = typeAST;
+
+        while (ast.findFirstToken(TokenTypes.ARRAY_DECLARATOR) != null) {
+            ast = ast.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
         }
-        return fullType;
+
+        return FullIdent.createFullIdent(ast.getFirstChild());
     }
 
     /**
@@ -149,15 +159,6 @@ public final class CheckUtils {
         return ast.getType() == TokenTypes.SLIST
             && ast.getChildCount() == 2
             && isElse(ast.getParent());
-    }
-
-    /**
-     * Returns FullIndent for given type.
-     * @param typeAST a type node (no array)
-     * @return {@code FullIdent} for given type.
-     */
-    private static FullIdent createFullTypeNoArrays(DetailAST typeAST) {
-        return FullIdent.createFullIdent(typeAST.getFirstChild());
     }
 
     /**
