@@ -2342,7 +2342,7 @@
             <version>1.6.0</version>
             <configuration>
               <executable>.ci/eclipse-compiler-javac.sh</executable>
-              <classpathScope>compile</classpathScope>
+              <classpathScope>test</classpathScope>
               <arguments>
                 <classpath />
               </arguments>
