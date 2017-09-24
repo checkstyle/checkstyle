@@ -152,6 +152,30 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testEqualsOnTheSameLine() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(EqualsAvoidNullCheck.class);
+
+        final String[] expected = {
+            "7:28: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+        };
+        verify(checkConfig, getPath("InputEqualsAvoidNullOnTheSameLine.java"), expected);
+    }
+
+    @Test
+    public void testEqualsNested() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(EqualsAvoidNullCheck.class);
+
+        final String[] expected = {
+            "18:44: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
+            "19:48: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
+            "20:48: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
+        };
+        verify(checkConfig, getPath("InputEqualsAvoidNullNested.java"), expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final EqualsAvoidNullCheck check = new EqualsAvoidNullCheck();
         Assert.assertNotNull("Acceptable tokens should not be null", check.getAcceptableTokens());
