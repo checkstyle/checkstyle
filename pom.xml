@@ -1368,6 +1368,8 @@
             <excludedLink>http://gleclaire.github.io/findbugs-maven-plugin/</excludedLink>
             <!-- I do not know how to resolve this "302 Found" responce -->
             <excludedLink>https://plus.google.com/+CheckstyleJava</excludedLink>
+            <!-- it permanently gives 404, but image is opening in browser without problems -->
+            <excludedLink>https://www.ej-technologies.com/images/product_banners/jprofiler_medium.png</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
