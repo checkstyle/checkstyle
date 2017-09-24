@@ -270,8 +270,6 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             else if (isInTokenList(type, ASSIGNMENTS)) {
                 assignDepth--;
             }
-
-            super.leaveToken(ast);
         }
     }
 

@@ -40,6 +40,13 @@ public class InputDeclarationOrder
             foo += INNER_FOO3;
         }
 
+        public InnerClass(int start)
+        {
+            int foo = start;
+            foo += INNER_FOO2;
+            foo += INNER_FOO3;
+        }
+
         // error member variables should be before methods or ctors
         // error public before private
         public static final int INNER_FOO3 = 2;

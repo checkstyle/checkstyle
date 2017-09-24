@@ -20,6 +20,12 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck.MSG_KEY;
+import static org.junit.Assert.assertTrue;
+
+import java.io.File;
+import java.util.Collection;
+import java.util.Optional;
+import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -28,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.TestUtils;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class ReturnCountCheckTest extends AbstractModuleTestSupport {
@@ -145,5 +152,27 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
             "30:5: " + getCheckMessage(MSG_KEY, 3, 2),
         };
         verify(checkConfig, getPath("InputReturnCountVoid.java"), expected);
+    }
+
+    /**
+     * We cannot reproduce situation when visitToken is called and leaveToken is not.
+     * So, we have to use reflection to be sure that even in such situation
+     * state of the field will be cleared.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @Test
+    @SuppressWarnings("unchecked")
+    public void testClearState() throws Exception {
+        final ReturnCountCheck check = new ReturnCountCheck();
+        final Optional<DetailAST> methodDef = TestUtils.findTokenInAstByPredicate(
+            TestUtils.parseFile(new File(getPath("InputReturnCountVoid.java"))),
+            ast -> ast.getType() == TokenTypes.METHOD_DEF);
+
+        assertTrue("Ast should contain METHOD_DEF", methodDef.isPresent());
+        assertTrue("State is not cleared on beginTree",
+            TestUtils.isStatefulFieldClearedDuringBeginTree(check, methodDef.get(),
+                "contextStack",
+                contextStack -> ((Collection<Set<String>>) contextStack).isEmpty()));
     }
 }
