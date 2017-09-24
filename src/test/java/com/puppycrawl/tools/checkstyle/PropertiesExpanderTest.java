@@ -29,8 +29,8 @@ public class PropertiesExpanderTest {
     @Test
     public void testCtorException() {
         try {
-            new PropertiesExpander(null);
-            Assert.fail("exception expected");
+            final Object test = new PropertiesExpander(null);
+            Assert.fail("exception expected but got " + test);
         }
         catch (IllegalArgumentException ex) {
             Assert.assertEquals("Invalid exception message", "cannot pass null", ex.getMessage());

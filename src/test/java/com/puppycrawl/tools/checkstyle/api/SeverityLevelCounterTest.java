@@ -29,8 +29,8 @@ public class SeverityLevelCounterTest {
     @Test
     public void testCtorException() {
         try {
-            new SeverityLevelCounter(null);
-            fail("exception expected");
+            final Object test = new SeverityLevelCounter(null);
+            fail("exception expected but got " + test);
         }
         catch (IllegalArgumentException ex) {
             assertEquals("Invalid exception message",

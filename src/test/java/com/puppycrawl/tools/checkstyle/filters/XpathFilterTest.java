@@ -119,8 +119,9 @@ public class XpathFilterTest extends AbstractModuleTestSupport {
     public void testIncorrectQuery() throws Exception {
         final String xpath = "1@#";
         try {
-            new XpathFilter("InputXpathFilterSuppressByXpath", "Test", null, xpath);
-            fail("Exception was expected");
+            final Object test = new XpathFilter("InputXpathFilterSuppressByXpath", "Test", null,
+                    xpath);
+            fail("Exception was expected but got " + test);
         }
         catch (IllegalStateException ex) {
             assertTrue("Message should be: Unexpected xpath query",

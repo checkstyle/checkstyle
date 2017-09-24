@@ -149,6 +149,7 @@ public class AutomaticBeanTest {
         final TestBean testBean = new TestBean();
         testBean.setVal(0);
         testBean.setWrong("wrongVal");
+        testBean.assignPrivateFieldSecretly(null);
         try {
             testBean.setExceptionalMethod("someValue");
             fail("exception expected");
@@ -198,12 +199,12 @@ public class AutomaticBeanTest {
             this.val = val;
         }
 
-        public void setExceptionalMethod(String value) {
-            throw new IllegalStateException(privateField + "," + wrong + "," + val + "," + value);
+        public void assignPrivateFieldSecretly(String input) {
+            privateField = input;
         }
 
-        public void doSmth() {
-            privateField = "some value, just for fun";
+        public void setExceptionalMethod(String value) {
+            throw new IllegalStateException(privateField + "," + wrong + "," + val + "," + value);
         }
 
     }

@@ -39,7 +39,6 @@ import com.google.common.collect.ImmutableMap;
 public class FileContentsTest {
 
     @Test
-    @SuppressWarnings("deprecation")
     public void testDeprecatedAbbreviatedMethod() {
         // just to make UT coverage 100%
         final FileContents fileContents = new FileContents("filename", "123", "456");

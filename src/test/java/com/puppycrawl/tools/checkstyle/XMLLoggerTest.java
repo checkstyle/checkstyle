@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
@@ -54,7 +55,8 @@ public class XMLLoggerTest {
     @Test
     public void testEncode()
             throws IOException {
-        new XMLLogger(outStream, false);
+        final XMLLogger test = new XMLLogger(outStream, false);
+        assertNotNull("should be able to create XMLLogger without issue", test);
         final String[][] encodings = {
             {"<", "&lt;"},
             {">", "&gt;"},
@@ -77,7 +79,8 @@ public class XMLLoggerTest {
     @Test
     public void testIsReference()
             throws IOException {
-        new XMLLogger(outStream, false);
+        final XMLLogger test = new XMLLogger(outStream, false);
+        assertNotNull("should be able to create XMLLogger without issue", test);
         final String[] references = {
             "&#0;",
             "&#x0;",
