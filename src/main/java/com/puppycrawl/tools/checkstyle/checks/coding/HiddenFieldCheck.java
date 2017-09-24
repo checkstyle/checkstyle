@@ -219,7 +219,8 @@ public class HiddenFieldCheck
         final DetailAST firstChild = ast.getFirstChild();
         if (firstChild.getType() == TokenTypes.IDENT) {
             final String untypedLambdaParameterName = firstChild.getText();
-            if (isStaticOrInstanceField(firstChild, untypedLambdaParameterName)) {
+            if (frame.containsStaticField(untypedLambdaParameterName)
+                || isInstanceField(firstChild, untypedLambdaParameterName)) {
                 log(firstChild, MSG_KEY, untypedLambdaParameterName);
             }
         }
@@ -306,24 +307,12 @@ public class HiddenFieldCheck
             final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
             final String name = nameAST.getText();
 
-            if ((isStaticFieldHiddenFromAnonymousClass(ast, name)
-                        || isStaticOrInstanceField(ast, name))
+            if ((frame.containsStaticField(name) || isInstanceField(ast, name))
                     && !isMatchingRegexp(name)
                     && !isIgnoredParam(ast, name)) {
                 log(nameAST, MSG_KEY, name);
             }
         }
-    }
-
-    /**
-     * Checks whether a static field is hidden from closure.
-     * @param nameAST local variable or parameter.
-     * @param name field name.
-     * @return true if static field is hidden from closure.
-     */
-    private boolean isStaticFieldHiddenFromAnonymousClass(DetailAST nameAST, String name) {
-        return isInStatic(nameAST)
-            && frame.containsStaticField(name);
     }
 
     /**
@@ -339,14 +328,13 @@ public class HiddenFieldCheck
     }
 
     /**
-     * Check for static or instance field.
+     * Check for instance field.
      * @param ast token
      * @param name identifier of token
-     * @return true if static or instance field
+     * @return true if instance field
      */
-    private boolean isStaticOrInstanceField(DetailAST ast, String name) {
-        return frame.containsStaticField(name)
-                || !isInStatic(ast) && frame.containsInstanceField(name);
+    private boolean isInstanceField(DetailAST ast, String name) {
+        return !isInStatic(ast) && frame.containsInstanceField(name);
     }
 
     /**

@@ -172,7 +172,6 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
     public void beginTree(DetailAST rootAST) {
         // clear data
         variableStack.clear();
-        variableStack.push(new ArrayDeque<>());
     }
 
     @Override
@@ -279,7 +278,8 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
      * @param ast ident to check.
      */
     private void checkIdent(DetailAST ast) {
-        if (!getCurrentVariables().isEmpty()) {
+        final Deque<String> currentVariables = getCurrentVariables();
+        if (currentVariables != null && !currentVariables.isEmpty()) {
             final DetailAST identAST = ast.getFirstChild();
 
             if (identAST != null && identAST.getType() == TokenTypes.IDENT

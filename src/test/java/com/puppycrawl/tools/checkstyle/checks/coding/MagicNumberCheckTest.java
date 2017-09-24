@@ -253,7 +253,8 @@ public class MagicNumberCheckTest
     public void testIgnoreNegativeOctalHex() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MagicNumberCheck.class);
-        checkConfig.addAttribute("ignoreNumbers", "-9223372036854775808, -2147483648, -1, 0, 1, 2");
+        checkConfig.addAttribute("ignoreNumbers",
+            "-9223372036854775808, -2147483648, -1, 0, 1, 2, -2");
         checkConfig.addAttribute("tokens", "NUM_INT, NUM_LONG");
         checkConfig.addAttribute("ignoreAnnotation", "true");
         final String[] expected = {
@@ -278,7 +279,6 @@ public class MagicNumberCheckTest
             "85:28: " + getCheckMessage(MSG_KEY, "3"),
             "92:14: " + getCheckMessage(MSG_KEY, "0xffffffffL"),
             "100:30: " + getCheckMessage(MSG_KEY, "+3"),
-            "101:29: " + getCheckMessage(MSG_KEY, "-2"),
             "131:20: " + getCheckMessage(MSG_KEY, "378"),
             "160:16: " + getCheckMessage(MSG_KEY, "31"),
             "165:16: " + getCheckMessage(MSG_KEY, "42"),

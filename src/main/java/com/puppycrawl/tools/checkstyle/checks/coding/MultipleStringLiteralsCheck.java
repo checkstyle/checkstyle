@@ -167,7 +167,6 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        super.beginTree(rootAST);
         stringMap.clear();
     }
 

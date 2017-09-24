@@ -167,8 +167,5 @@ public class EqualsHashCodeCheck
         objBlockWithHashCode.forEach((key, equalsAST) -> {
             log(equalsAST.getLineNo(), equalsAST.getColumnNo(), MSG_KEY_EQUALS);
         });
-
-        objBlockWithEquals.clear();
-        objBlockWithHashCode.clear();
     }
 }

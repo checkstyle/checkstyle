@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -89,9 +90,17 @@ public final class TestUtils {
         check.beginTree(astToVisit);
         check.visitToken(astToVisit);
         check.beginTree(null);
-        final Field field = check.getClass().getDeclaredField(fieldName);
-        field.setAccessible(true);
-        return isClear.test(field.get(check));
+        final Optional<Field> classField = Arrays.stream(check.getClass().getDeclaredFields())
+            .filter(field -> fieldName.equals(field.getName())).findFirst();
+        final Field resultField;
+        if (classField.isPresent()) {
+            resultField = classField.get();
+        }
+        else {
+            resultField = check.getClass().getSuperclass().getDeclaredField(fieldName);
+        }
+        resultField.setAccessible(true);
+        return isClear.test(resultField.get(check));
     }
 
     /**

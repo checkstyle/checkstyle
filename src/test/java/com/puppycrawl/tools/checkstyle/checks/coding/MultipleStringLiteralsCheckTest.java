@@ -21,11 +21,17 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck.MSG_KEY;
 
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
     @Override
@@ -65,6 +71,28 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig,
                getPath("InputMultipleStringLiterals.java"),
                expected);
+    }
+
+    @Test
+    public void testMultipleInputs() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(MultipleStringLiteralsCheck.class);
+        checkConfig.addAttribute("allowedDuplicates", "2");
+
+        final String firstInput = getPath("InputMultipleStringLiterals.java");
+        final String secondInput = getPath("InputMultipleStringLiteralsNoWarnings.java");
+
+        final File[] inputs = {new File(firstInput), new File(secondInput)};
+
+        final List<String> expectedFirstInput = Arrays.asList(
+            "5:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
+            "10:23: " + getCheckMessage(MSG_KEY, "\", \"", 3)
+        );
+        final List<String> expectedSecondInput = Arrays.asList(CommonUtils.EMPTY_STRING_ARRAY);
+
+        verify(createChecker(checkConfig), inputs,
+            ImmutableMap.of(firstInput, expectedFirstInput,
+                secondInput, expectedSecondInput));
     }
 
     @Test

@@ -20,6 +20,12 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck.MSG_KEY;
+import static org.junit.Assert.assertTrue;
+
+import java.io.File;
+import java.util.Collection;
+import java.util.Optional;
+import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -28,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.TestUtils;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class ModifiedControlVariableCheckTest
@@ -120,5 +127,28 @@ public class ModifiedControlVariableCheckTest
         catch (IllegalStateException ex) {
             // it is OK
         }
+    }
+
+    /**
+     * We cannot reproduce situation when visitToken is called and leaveToken is not.
+     * So, we have to use reflection to be sure that even in such situation
+     * state of the field will be cleared.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @Test
+    @SuppressWarnings("unchecked")
+    public void testClearState() throws Exception {
+        final ModifiedControlVariableCheck check = new ModifiedControlVariableCheck();
+        final Optional<DetailAST> methodDef = TestUtils.findTokenInAstByPredicate(
+            TestUtils.parseFile(new File(
+                getPath("InputModifiedControlVariableEnhancedForLoopVariable.java"))),
+            ast -> ast.getType() == TokenTypes.OBJBLOCK);
+
+        assertTrue("Ast should contain METHOD_DEF", methodDef.isPresent());
+        assertTrue("State is not cleared on beginTree",
+            TestUtils.isStatefulFieldClearedDuringBeginTree(check, methodDef.get(),
+                "variableStack",
+                variableStack -> ((Collection<Set<String>>) variableStack).isEmpty()));
     }
 }
