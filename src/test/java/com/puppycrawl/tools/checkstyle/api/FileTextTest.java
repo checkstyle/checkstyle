@@ -53,8 +53,8 @@ public class FileTextTest extends AbstractPathTestSupport {
         // just to make UT coverage 100%
         final String charsetName = "STRANGE_CHARSET";
         try {
-            new FileText(new File("any name"), charsetName);
-            fail("UnsupportedEncodingException is expected");
+            final Object test = new FileText(new File("any name"), charsetName);
+            fail("UnsupportedEncodingException is expected but got " + test);
         }
         catch (IllegalStateException ex) {
             assertEquals("Invalid exception message",

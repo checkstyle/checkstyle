@@ -20,7 +20,9 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
@@ -138,16 +140,20 @@ public class ModuleReflectionUtilsTest {
                 ModuleReflectionUtils.isRootModule(NotCheckstyleCheck.class));
     }
 
+    @Test
+    public void testKeepEclipseHappy() {
+        final InvalidNonDefaultConstructorClass test = new InvalidNonDefaultConstructorClass(0);
+        assertNotNull("should use constructor", test);
+        assertEquals("should use field", 1, test.getField());
+    }
+
+    /** @noinspection SuperClassHasFrequentlyUsedInheritors */
     private static class ValidCheckstyleClass extends AutomaticBean {
-        protected ValidCheckstyleClass() {
-            //keep pmd calm and happy
-        }
+        // empty, use default constructor
     }
 
     private static class InvalidNonAutomaticBeanClass {
-        protected InvalidNonAutomaticBeanClass() {
-            //keep pmd calm and happy
-        }
+        // empty, use default constructor
     }
 
     /** @noinspection AbstractClassNeverImplemented */
@@ -257,9 +263,7 @@ public class ModuleReflectionUtilsTest {
     }
 
     private static class NotCheckstyleCheck {
-        protected NotCheckstyleCheck() {
-            //keep pmd calm and happy
-        }
+        // empty, use default constructor
     }
 
     private static class InvalidNonDefaultConstructorClass extends AutomaticBean {
@@ -276,6 +280,10 @@ public class ModuleReflectionUtilsTest {
             if (data > 0) {
                 method(data - 1);
             }
+        }
+
+        public int getField() {
+            return field;
         }
     }
 }

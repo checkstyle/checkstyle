@@ -583,7 +583,6 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
     @Test
     public void testLoadConfigurationDeprecated() throws Exception {
-        @SuppressWarnings("deprecation")
         final DefaultConfiguration config =
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
                         new FileInputStream(

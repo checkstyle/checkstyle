@@ -68,13 +68,12 @@ public class AbstractFileSetCheckTest {
     /**
      * This javadoc exists only to suppress Intellij Idea inspection
      * @throws Exception it happens
-     * @noinspection NullArgumentToVariableArgMethod
      */
     @Test
     public void testSetExtentionThrowsExceptionWhenTheyAreNull() throws Exception {
         final DummyFileSetCheck check = new DummyFileSetCheck();
         try {
-            check.setFileExtensions(null);
+            check.setFileExtensions((String[]) null);
             fail("Expected exception.");
         }
         catch (IllegalArgumentException exception) {
