@@ -53,7 +53,6 @@ import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
 /**
@@ -122,12 +121,19 @@ public class PackageObjectFactoryTest {
     }
 
     @Test
-    public void testMakeCheckFromName()
-            throws CheckstyleException {
-        final ConstantNameCheck check =
-                (ConstantNameCheck) factory.createModule(
-                        "com.puppycrawl.tools.checkstyle.checks.naming.ConstantName");
-        assertNotNull("Checker should not be null when creating module from name", check);
+    public void testMakeCheckFromName() {
+        final String name = "com.puppycrawl.tools.checkstyle.checks.naming.ConstantName";
+        try {
+            factory.createModule(name);
+            fail("Exception is expected");
+        }
+        catch (CheckstyleException ex) {
+            final LocalizedMessage exceptionMessage = new LocalizedMessage(0,
+                    Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
+                    new String[] {name, null}, null, factory.getClass(), null);
+            assertEquals("Invalid exception message",
+                    exceptionMessage.getMessage(), ex.getMessage());
+        }
     }
 
     @Test
