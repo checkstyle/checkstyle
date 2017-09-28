@@ -63,11 +63,11 @@ public class XMLLoggerTest {
             {"'", "&apos;"},
             {"\"", "&quot;"},
             {"&", "&amp;"},
-            {"&lt;", "&lt;"},
+            {"&lt;", "&amp;lt;"},
             {"abc;", "abc;"},
-            {"&#0;", "&#0;"}, //reference
-            {"&#0", "&amp;#0"}, //not reference
-            {"&#X0;", "&amp;#X0;"}, //not reference
+            {"&#0;", "&amp;#0;"},
+            {"&#0", "&amp;#0"},
+            {"&#X0;", "&amp;#X0;"},
         };
         for (String[] encoding : encodings) {
             final String encoded = XMLLogger.encode(encoding[0]);
@@ -84,6 +84,11 @@ public class XMLLoggerTest {
         final String[] references = {
             "&#0;",
             "&#x0;",
+            "&lt;",
+            "&gt;",
+            "&apos;",
+            "&quot;",
+            "&amp;",
         };
         for (String reference : references) {
             assertTrue("reference: " + reference,
