@@ -68,6 +68,8 @@ public class XMLLoggerTest {
             {"&#0;", "&amp;#0;"},
             {"&#0", "&amp;#0"},
             {"&#X0;", "&amp;#X0;"},
+            {"\u0001", "#x1;"},
+            {"\u0080", "#x80;"},
         };
         for (String[] encoding : encodings) {
             final String encoded = XMLLogger.encode(encoding[0]);
