@@ -335,7 +335,7 @@
            CheckstyleAntTask integrates Checkstyle with Ant.
            Checker collects external resource locations and sets up the configuration. -->
       <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main'
-        or @Image='Checker' or @Image='CheckstyleAntTask']"/>
+        or @Image='Checker' or @Image='CheckstyleAntTask'] or @Image='TranslationCheck'"/>
     </properties>
   </rule>
 

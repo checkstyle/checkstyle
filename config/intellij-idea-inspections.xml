@@ -3379,6 +3379,10 @@
                        In this case, there will be a warning "AutoCloseableResource", which need
                        to be suppressed. -->
                 <option value="resource"/>
+                <!-- till https://github.com/checkstyle/checkstyle/issues/5338 -->
+                <option value="AbstractClassExtendsConcreteClass" />
+                <!-- till #4869, after that the GlobalStatefulCheck will be used in UTs -->
+                <option value="ClassOnlyUsedInOnePackage" />
             </list>
         </option>
     </inspection_tool>
