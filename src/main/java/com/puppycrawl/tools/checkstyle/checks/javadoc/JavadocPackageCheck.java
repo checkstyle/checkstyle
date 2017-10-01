@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.puppycrawl.tools.checkstyle.GlobalStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FileText;
@@ -32,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * Checks that all packages have a package documentation. See the documentation
  * for more information.
  */
+@GlobalStatefulCheck
 public class JavadocPackageCheck extends AbstractFileSetCheck {
 
     /**
