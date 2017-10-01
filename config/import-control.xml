@@ -39,8 +39,6 @@
   <allow class="java.lang.annotation.RetentionPolicy" local-only="true"/>
   <allow class="java.lang.annotation.Target" local-only="true"/>
   <allow class="com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator" local-only="true"/>
-  <allow class="com.puppycrawl.tools.checkstyle.FileStatefulCheck"/>
-  <allow class="com.puppycrawl.tools.checkstyle.StatelessCheck"/>
 
   <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
   <allow class="com.google.common.base.CaseFormat" local-only="true"/>
@@ -103,6 +101,10 @@
     <allow class="java.nio.file.Files" local-only="true"/>
     <allow class="java.nio.file.NoSuchFileException" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.Definitions" local-only="true"/>
+
+    <allow class="com.puppycrawl.tools.checkstyle.StatelessCheck"/>
+    <allow class="com.puppycrawl.tools.checkstyle.FileStatefulCheck"/>
+    <allow class="com.puppycrawl.tools.checkstyle.GlobalStatefulCheck"/>
 
     <subpackage name="imports">
       <allow class="com.puppycrawl.tools.checkstyle.XmlLoader" local-only="true"/>

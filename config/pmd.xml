@@ -332,10 +332,12 @@
   <rule ref="category/java/design.xml/ExcessiveImports">
     <properties>
       <!-- Main actively uses Checkstyle, logging and command line parsing API.
+           Checker collects external resource locations and sets up the configuration.
            CheckstyleAntTask integrates Checkstyle with Ant.
-           Checker collects external resource locations and sets up the configuration. -->
+           TranslationCheck just get one extra import by annotation usage.
+            -->
       <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main'
-        or @Image='Checker' or @Image='CheckstyleAntTask']"/>
+        or @Image='Checker' or @Image='CheckstyleAntTask' or @Image='TranslationCheck']"/>
     </properties>
   </rule>
 
