@@ -34,7 +34,7 @@
     <suppress checks="AvoidStaticImport" files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <suppress checks="ClassDataAbstractionCoupling" files="[\\/]IndentationCheckTest.java$|[\\/]SuppressWithNearbyCommentFilterTest.java$|[\\/]SuppressionCommentFilterTest.java|[\\/]DetailASTTest.java$"/>
     <suppress checks="EqualsAvoidNull" files="[\\/]Int.*FilterTest.java$"/>
-    <suppress checks="VisibilityModifier" files="[\\/]BaseCheckTestSupport.java$|[\\/]AbstractModuleTestSupport.java$"/>
+    <suppress checks="VisibilityModifier" files="[\\/]AbstractModuleTestSupport.java$"/>
     <suppress checks="WriteTag" files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <suppress checks="MethodCount" files=".*[\\/]src[\\/](test|it)[\\/]"/>
 
@@ -74,7 +74,7 @@
     <suppress checks="ClassDataAbstractionCoupling" files="AutomaticBean\.java"/>
     <!-- they are aggregators of logic, usage a several of classes are ok -->
     <suppress checks="ClassDataAbstractionCoupling" files="(Checker|TreeWalker|Main|CheckstyleAntTask|JavadocDetailNodeParser)\.java"/>
-    <suppress checks="ClassDataAbstractionCoupling" files="(CheckerTest|TreeWalkerTest|BaseCheckTestSupport|AbstractModuleTestSupport|XdocsPagesTest|CheckstyleAntTaskTest)\.java"/>
+    <suppress checks="ClassDataAbstractionCoupling" files="(CheckerTest|TreeWalkerTest|AbstractModuleTestSupport|XdocsPagesTest|CheckstyleAntTaskTest)\.java"/>
     <suppress checks="ClassDataAbstractionCoupling" files="PropertyCacheFile\.java"/>
     <suppress checks="ClassDataAbstractionCoupling" files="PropertyCacheFileTest\.java"/>
     <suppress checks="ClassFanOutComplexity" files="[\\/]Main\.java"/>
