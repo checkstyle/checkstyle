@@ -91,7 +91,7 @@ build:
           echo CS_version: ${CS_POM_VERSION}
           for i in 1 2 3 4 5; do git clone https://github.com/xwiki/xwiki-commons/ && break || sleep 15; done
           cd xwiki-commons
-          git checkout 3bdb59d3c7fe776deed44f6818278f70d3030ecb
+          git checkout 44b0c0048c516dae20cf5f8a71181af836549484
           mvn install -DskipTests -Dxwiki.clirr.skip=true checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
           cd ../../
           rm -rf xwiki-commons
