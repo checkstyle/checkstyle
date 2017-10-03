@@ -194,6 +194,7 @@
           <property name="forbiddenClassesRegexpProtected" value="Logger"/>
           <property name="forbiddenClassesRegexpPublic" value="Logger"/>
           <property name="forbiddenClassesRegexpPackagePrivate" value="Logger"/>
+          <property name="forbiddenClassesRegexpStatic" value="Logger"/>
         </module>
         <module name="ConstructorWithoutParamsCheck">
           <property name="classNameFormat" value=".*Exception$"/>

@@ -125,9 +125,6 @@ public class TranslationCheck extends AbstractFileSetCheck {
      */
     private static final String WRONG_LANGUAGE_CODE_KEY = "translation.wrongLanguageCode";
 
-    /** Logger for TranslationCheck. */
-    private static final Log LOG = LogFactory.getLog(TranslationCheck.class);
-
     /**
      * Regexp string for default translation files.
      * For example, messages.properties.
@@ -164,6 +161,9 @@ public class TranslationCheck extends AbstractFileSetCheck {
     /** Formatting string to form regexp to validate default translations file names. */
     private static final String REGEXP_FORMAT_TO_CHECK_DEFAULT_TRANSLATIONS = "^%s\\.%s$";
 
+    /** Logger for TranslationCheck. */
+    private final Log log;
+
     /** The files to process. */
     private final Set<File> filesToProcess = new HashSet<>();
 
@@ -181,6 +181,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
     public TranslationCheck() {
         setFileExtensions("properties");
         baseName = CommonUtils.createPattern("^messages.*$");
+        log = LogFactory.getLog(TranslationCheck.class);
     }
 
     /**
@@ -513,7 +514,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
         final SortedSet<LocalizedMessage> messages = new TreeSet<>();
         messages.add(message);
         getMessageDispatcher().fireErrors(file.getPath(), messages);
-        LOG.debug("IOException occurred.", exception);
+        log.debug("IOException occurred.", exception);
     }
 
     /** Class which represents a resource bundle. */

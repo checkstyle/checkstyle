@@ -35,4 +35,9 @@
     <!-- Tone down the checking for test code -->
     <suppress checks="ForbidCertainImports"
               files="DetailASTTest\.java"/>
+
+    <!-- Main and MainTest are technically not part of the checkstyle library,
+    so static Loggers are okay there. -->
+    <suppress checks="AvoidModifiersForTypesCheck"
+              files="Main\.java|MainTest\.java"/>
 </suppressions>
