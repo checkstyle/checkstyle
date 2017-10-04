@@ -23,15 +23,8 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
-
-    protected static final String LF_REGEX = "\\\\n";
-
-    protected static final String CRLF_REGEX = "\\\\r\\\\n";
 
     /**
      * Returns canonical path for the file with the given file name.
@@ -117,16 +110,5 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
 
         assertEquals("Generated tree from the javadoc file should match the pre-defined tree",
                 expectedContents, actualContents);
-    }
-
-    /** Reads the contents of a file.
-     * @param filename the name of the file whose contents are to be read
-     * @return contents of the file with all {@code \r\n} replaced by {@code \n}
-     * @throws IOException if I/O exception occurs while reading
-     */
-    protected static String readFile(String filename) throws IOException {
-        return new String(Files.readAllBytes(
-                Paths.get(filename)), StandardCharsets.UTF_8)
-                .replaceAll(CRLF_REGEX, LF_REGEX);
     }
 }
