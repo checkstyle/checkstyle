@@ -57,7 +57,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.io.Closeables;
-import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractXmlTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
@@ -68,11 +68,12 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
+import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(Closeables.class)
-public class TranslationCheckTest extends AbstractModuleTestSupport {
+public class TranslationCheckTest extends AbstractXmlTestSupport {
     @Captor
     private ArgumentCaptor<SortedSet<LocalizedMessage>> captor;
 
@@ -144,6 +145,7 @@ public class TranslationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("requiredTranslations", "ja,de");
         checkConfig.addAttribute("baseName", "^InputTranslation.*$");
         final Checker checker = createChecker(checkConfig);
+        checker.setBasedir(getPath(""));
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         final XMLLogger logger = new XMLLogger(out, AutomaticBean.OutputStreamOptions.NONE);
         checker.addListener(logger);
@@ -162,8 +164,21 @@ public class TranslationCheckTest extends AbstractModuleTestSupport {
         final String secondErrorMessage = getCheckMessage(MSG_KEY, "anotherKey");
 
         verify(checker, propertyFiles, ImmutableMap.of(
-            getPath(""), Collections.singletonList(line + firstErrorMessage),
-            translationProps, Collections.singletonList(line + secondErrorMessage)));
+            ":0", Collections.singletonList(" " + firstErrorMessage),
+            "InputTranslationCheckFireErrors_de.properties",
+                Collections.singletonList(line + secondErrorMessage)));
+
+        verifyXml(getPath("ExpectedTranslationLog.xml"), out, (expected, actual) -> {
+            // order is not always maintained here for an unknown reason.
+            // File names can appear in different orders depending on the OS and VM.
+            // This ensures we pick up the correct file based on its name and the
+            // number of children it has.
+            return !"file".equals(expected.getNodeName())
+                    || expected.getAttributes().getNamedItem("name").getNodeValue()
+                            .equals(actual.getAttributes().getNamedItem("name").getNodeValue())
+                    && XmlUtil.getChildrenElements(expected).size() == XmlUtil
+                            .getChildrenElements(actual).size();
+        }, firstErrorMessage, secondErrorMessage);
     }
 
     @Test
