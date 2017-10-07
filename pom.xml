@@ -1370,6 +1370,8 @@
             <excludedLink>https://plus.google.com/+CheckstyleJava</excludedLink>
             <!-- it permanently gives 404, but image is opening in browser without problems -->
             <excludedLink>https://www.ej-technologies.com/images/product_banners/jprofiler_medium.png</excludedLink>
+            <!-- permanent SSLHandshakeException -->
+            <excludedLink>https://www.ej-technologies.com/products/jprofiler/overview.html</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
