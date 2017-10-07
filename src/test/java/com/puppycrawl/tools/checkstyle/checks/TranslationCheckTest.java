@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.TranslationCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.TranslationCheck.MSG_KEY_MISSING_TRANSLATION_FILE;
-import static java.util.Locale.ENGLISH;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.endsWith;
 import static org.junit.Assert.assertEquals;
@@ -43,11 +42,8 @@ import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Locale;
 import java.util.Set;
 import java.util.SortedSet;
 
@@ -168,27 +164,6 @@ public class TranslationCheckTest extends AbstractModuleTestSupport {
         verify(checker, propertyFiles, ImmutableMap.of(
             getPath(""), Collections.singletonList(line + firstErrorMessage),
             translationProps, Collections.singletonList(line + secondErrorMessage)));
-
-        final String osName = System.getProperty("os.name").toLowerCase(ENGLISH);
-        String expectedLogOutput;
-
-        // till https://github.com/checkstyle/checkstyle/issues/5103
-        if (osName.startsWith("windows")) {
-            expectedLogOutput = readFile("OutputTranslationCheckWindows.xml");
-        }
-        else if (osName.startsWith("linux")) {
-            expectedLogOutput = readFile("OutputTranslationCheckLinux.xml");
-        }
-        else {
-            expectedLogOutput = readFile("OutputTranslationCheckMacOS.xml");
-        }
-
-        expectedLogOutput = expectedLogOutput.replace("path_to_file", getPackageAbsolutePath());
-        expectedLogOutput = String.format(Locale.getDefault(), expectedLogOutput,
-                firstErrorMessage, secondErrorMessage).replace("'", "&apos;");
-
-        assertEquals("Unexpected log output", expectedLogOutput,
-            out.toString(StandardCharsets.UTF_8.name()));
     }
 
     @Test
@@ -573,14 +548,5 @@ public class TranslationCheckTest extends AbstractModuleTestSupport {
             assertThat("Error message is unexpected",
                     exceptionMessage, endsWith("[TranslationCheck]"));
         }
-    }
-
-    private String readFile(String fileName) throws IOException {
-        return new String(Files.readAllBytes(Paths.get(getPath(fileName))),
-                StandardCharsets.UTF_8);
-    }
-
-    private String getPackageAbsolutePath() throws IOException {
-        return new File(getPath("")).getAbsolutePath();
     }
 }

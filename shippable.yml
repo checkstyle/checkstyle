@@ -14,7 +14,7 @@ env:
     - PROFILE="-Ppitest-checks-regexp,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checks-sizes,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checks-whitespace,no-validations"; POST_ACTION=check_survived_whitespace
-    - PROFILE="-Ppitest-checks-misc,no-validations"; POST_ACTION=check_survived
+    - PROFILE="-Ppitest-checks-misc,no-validations"; POST_ACTION=check_survived_misc
     - PROFILE="-Ppitest-checks-blocks,no-validations"; POST_ACTION=check_survived_blocks
     - PROFILE="-Ppitest-checks-coding,no-validations"; POST_ACTION=check_survived_coding
     - PROFILE="-Ppitest-checks-design,no-validations"; POST_ACTION=check_survived
@@ -63,6 +63,11 @@ build:
         fi
         if [[ $POST_ACTION == 'check_survived_imports' && $(grep -RE "class='survived'" --exclude="CustomImportOrderCheck.*" --exclude="ImportOrderCheck.*" target/ | cat | wc -l) > 0 ]]; then
            echo "Survived items:"$(grep -RE "class='survived'" --exclude="CustomImportOrderCheck.*" --exclude="ImportOrderCheck.*" target/ | cat)
+           echo "Survived items found in reports, build will be failed"
+           exit 1
+        fi
+        if [[ $POST_ACTION == 'check_survived_misc' && $(grep -RE "class='survived'" --exclude="TranslationCheck.*" target/ | cat | wc -l) > 0 ]]; then
+           echo "Survived items:"$(grep -RE "class='survived'" --exclude="TranslationCheck.*" target/ | cat)
            echo "Survived items found in reports, build will be failed"
            exit 1
         fi
