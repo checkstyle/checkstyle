@@ -15,6 +15,164 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.3">
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Uppercase letters to be allowed in package names in javadoc. Author: Piyush Sharma <a href="https://github.com/checkstyle/checkstyle/issues/4408">#4408</a>
+          </li>
+          <li>
+            Making required arguments mandatory for javadoc tags in grammar. Author: Piyush Sharma <a href="https://github.com/checkstyle/checkstyle/issues/4942">#4942</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            NoWhitespaceAfter:  do not allow whitespace after '@' sign. Author: Ruslan Iagudin <a href="https://github.com/checkstyle/checkstyle/issues/4410">#4410</a>
+          </li>
+          <li>
+            WhitespaceAround: Add support for varargs. Author: Ruslan Iagudin <a href="https://github.com/checkstyle/checkstyle/issues/4157">#4157</a>
+          </li>
+          <li>
+            Boolean flag in Javadoc Checks that shows a current Javadoc comment has unclosed HTML tags. Author: Piyush Sharma <a href="https://github.com/checkstyle/checkstyle/issues/3311">#3311</a>
+          </li>
+          <li>
+            Add columnCharIndex field to LocalizedMessage. Author: Timur Tibeyev <a href="https://github.com/checkstyle/checkstyle/issues/4998">#4998</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            IllegalType does not seem to handle multidimensional array types. Author: Ruslan Iagudin <a href="https://github.com/checkstyle/checkstyle/issues/4425">#4425</a>
+          </li>
+          <li>
+            No violation before or after changes for static import list. Author: BBG <a href="https://github.com/checkstyle/checkstyle/issues/5065">#5065</a>
+          </li>
+          <li>
+            whitespace after Array type when using a type annotation. Author: Ruslan Iagudin <a href="https://github.com/checkstyle/checkstyle/issues/3300">#3300</a>
+          </li>
+          <li>
+            Google Style: Incorrect ParenPad warning. Author: Liam Miller-Cushon <a href="https://github.com/checkstyle/checkstyle/issues/4294">#4294</a>
+          </li>
+          <li>
+            NoWhitespaceBefore and empty for loop conditions. Author: Liam Miller-Cushon <a href="https://github.com/checkstyle/checkstyle/issues/5058">#5058</a>
+          </li>
+          <li>
+            Remove thread-unsafe context from the AbstractCheck class. Author: Andrew Kuchev <a href="https://github.com/checkstyle/checkstyle/issues/4908">#4908</a>
+          </li>
+          <li>
+            Fix order of message parameters in DE translation file. Author: Andreas Kurth <a href="https://github.com/checkstyle/checkstyle/issues/5068">#5068</a>
+          </li>
+          <li>
+            Issue with UnusedImports and javadoc usage.. Author: Liam Miller-Cushon <a href="https://github.com/checkstyle/checkstyle/issues/3453">#3453</a>
+          </li>
+          <li>
+            @see tag with leading asterisk before arguments lead to parse failure. Author: Piyush Sharma <a href="https://github.com/checkstyle/checkstyle/issues/5035">#5035</a>
+          </li>
+          <li>
+            FallThrough check doesn't handle synchronized blocks. Author: Liam Miller-Cushon <a href="https://github.com/checkstyle/checkstyle/issues/5037">#5037</a>
+          </li>
+          <li>
+            NoWhitespaceAfterCheck for some array initialization crashes Checkstyle. Author: Ruslan Iagudin <a href="https://github.com/checkstyle/checkstyle/issues/4557">#4557</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            pitest: increase mutation coverage for pitest-checks-misc profile to 100%. Author: vasilyeva, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/4675">#4675</a>
+          </li>
+          <li>
+             Pull #5113: enabled eclipse compiler to flag unused exceptions . Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5113">#5113</a>
+          </li>
+          <li>
+            conifg: bump maven-surefire-plugin to 2.20.1. Author: Roman Ivanov
+          </li>
+          <li>
+            Support suppression-xpath element in SuppressionLoader. Author: Timur <a href="https://github.com/checkstyle/checkstyle/issues/4421">#4421</a>
+          </li>
+          <li>
+            Checkstyle tests should be named after the class they test and extra validations/helpers should be in a special package. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5104">#5104</a>
+          </li>
+          <li>
+            Expand eclipse compiler to check test code. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5116">#5116</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checks-coding profile to 100%. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/5008">#5008</a>
+          </li>
+          <li>
+            Add file-stateful and stateless / global stateful check markers. Author: Andrew Kuchev <a href="https://github.com/checkstyle/checkstyle/issues/4883">#4883</a>
+          </li>
+          <li>
+            Remove thread-unsafe context from the AbstractFileSetCheck class. Author: Andrew Kuchev <a href="https://github.com/checkstyle/checkstyle/issues/4917">#4917</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3891">#3891</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checks-metrics profile to 100%. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/5005">#5005</a>
+          </li>
+          <li>
+            IllegalType: update documentation to make it clear that LITERAL_NEW is not a target of this Check. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5129">#5129</a>
+          </li>
+          <li>
+            XpathQueryGenerator should consider tabWith parameter. Author: Timur Tibeyev <a href="https://github.com/checkstyle/checkstyle/issues/4999">#4999</a>
+          </li>
+          <li>
+            Increase coverage of JavadocParser and JavadocLexer. Author: Piyush Sharma <a href="https://github.com/checkstyle/checkstyle/issues/4769">#4769</a>
+          </li>
+          <li>
+            doc: extend javadoc for JavadocTokenTypes.RULE_TYPES_OFFSET. Author: Roman Ivanov
+          </li>
+          <li>
+            DeclarationOrder: problem with forward references. Author: kazachka <a href="https://github.com/checkstyle/checkstyle/issues/4984">#4984</a>
+          </li>
+          <li>
+            Fix up Portuguese messages. Author: Victor Williams Stafusa da Silva <a href="https://github.com/checkstyle/checkstyle/issues/5082">#5082</a>
+          </li>
+          <li>
+            Travis failing to execute some item on trusty instances. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5086">#5086</a>
+          </li>
+          <li>
+            Strive for 100% mutation coverage. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3708">#3708</a>
+          </li>
+          <li>
+            Eclipse validtion is failed with "The type org.eclipse.jdt.annotation.NonNull cannot be resolved". Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5078">#5078</a>
+          </li>
+          <li>
+            find way to launch IntellijIdea inspections from command line. Author: vasilyeva, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/4682">#4682</a>
+          </li>
+          <li>
+            Rename JavadocLexer rule to a more meaningful name. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/5040">#5040</a>
+          </li>
+          <li>
+            Review disabled validations of eclipse compiler. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5060">#5060</a>
+          </li>
+          <li>
+            Using Eclipse compiler in CI to control 0 Warning level. Author: vasilyeva, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2600">#2600</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checkstyle-api profile to 100%. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4394">#4394</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-check-annotation profile to 100%. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/4402">#4402</a>
+          </li>
+          <li>
+            Launch Sonarqube validation in docker in our CI for each PR validation. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4912">#4912</a>
+          </li>
+          <li>
+            doc: remove section about a resolved API issue. Author: Vladislav Lisetskii
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checks-imports profile to 100%. Author: vasylieva <a href="https://github.com/checkstyle/checkstyle/issues/5004">#5004</a>
+          </li>
+          <li>
+            made XMLLogger writer final. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5033">#5033</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checkstyle-utils profile to 100%. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4395">#4395</a>
+          </li>
+        </ul>
+    </section>
 
     <section name="Release 8.2">
       <p>Breaking backward compatibility:</p>
