@@ -1372,6 +1372,8 @@
             <excludedLink>https://www.ej-technologies.com/images/product_banners/jprofiler_medium.png</excludedLink>
             <!-- permanent SSLHandshakeException -->
             <excludedLink>https://www.ej-technologies.com/products/jprofiler/overview.html</excludedLink>
+            <!-- permanent java.net.SocketException : Connection reset -->
+            <excludedLink>https://www.jarchitect.com</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
