@@ -140,7 +140,9 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
 
         checkConfig.addAttribute("max", "0");
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "9:1: " + getCheckMessage(MSG_KEY, 1, 0),
+        };
 
         verify(checkConfig, getPath("InputClassFanOutComplexity15Extensions.java"), expected);
     }
@@ -164,6 +166,9 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
             TokenTypes.CLASS_DEF,
+            TokenTypes.EXTENDS_CLAUSE,
+            TokenTypes.IMPLEMENTS_CLAUSE,
+            TokenTypes.ANNOTATION,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.TYPE,
@@ -205,5 +210,52 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
         };
 
         verify(checkConfig, getPath("InputClassFanOutComplexity.java"), expected);
+    }
+
+    @Test
+    public void testExtends() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(ClassFanOutComplexityCheck.class);
+
+        checkConfig.addAttribute("max", "0");
+
+        final String[] expected = {
+            "3:1: " + getCheckMessage(MSG_KEY, 1, 0),
+        };
+
+        verify(checkConfig,
+                getPath("InputClassFanOutComplexityExtends.java"), expected);
+    }
+
+    @Test
+    public void testImplements() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(ClassFanOutComplexityCheck.class);
+
+        checkConfig.addAttribute("max", "0");
+
+        final String[] expected = {
+            "3:1: " + getCheckMessage(MSG_KEY, 1, 0),
+        };
+
+        verify(checkConfig,
+                getPath("InputClassFanOutComplexityImplements.java"), expected);
+    }
+
+    @Test
+    public void testAnnotation() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(ClassFanOutComplexityCheck.class);
+
+        checkConfig.addAttribute("max", "0");
+
+        final String[] expected = {
+            "6:1: " + getCheckMessage(MSG_KEY, 2, 0),
+            "28:1: " + getCheckMessage(MSG_KEY, 1, 0),
+            "31:1: " + getCheckMessage(MSG_KEY, 1, 0),
+        };
+
+        verify(checkConfig,
+                getPath("InputClassFanOutComplexityAnnotations.java"), expected);
     }
 }

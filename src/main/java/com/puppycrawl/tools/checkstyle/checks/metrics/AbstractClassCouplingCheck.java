@@ -72,6 +72,8 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
             "List", "ArrayList", "Deque", "Queue", "LinkedList",
             "Set", "HashSet", "SortedSet", "TreeSet",
             "Map", "HashMap", "SortedMap", "TreeMap",
+            // Annotations
+            "Override", "Deprecated", "SafeVarargs", "SuppressWarnings",
         }).collect(Collectors.toSet()));
 
     /** Package names to ignore. */
@@ -176,6 +178,8 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
             case TokenTypes.ENUM_DEF:
                 visitClassDef(ast);
                 break;
+            case TokenTypes.IMPLEMENTS_CLAUSE:
+            case TokenTypes.EXTENDS_CLAUSE:
             case TokenTypes.TYPE:
                 fileContext.visitType(ast);
                 break;
@@ -184,6 +188,9 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
                 break;
             case TokenTypes.LITERAL_THROWS:
                 fileContext.visitLiteralThrows(ast);
+                break;
+            case TokenTypes.ANNOTATION:
+                fileContext.visitAnnotation(ast);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown type: " + ast);
@@ -318,6 +325,14 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
         }
 
         /**
+         * Visits ANNOTATION token for the current class context.
+         * @param ast NEW token.
+         */
+        public void visitAnnotation(DetailAST ast) {
+            classContext.visitAnnotationType(ast);
+        }
+
+        /**
          * Visits THROWS token for the current class context.
          * @param ast THROWS token.
          */
@@ -386,6 +401,16 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
         }
 
         /**
+         * Visits Annotation type.
+         * @param ast type to process.
+         */
+        public void visitAnnotationType(DetailAST ast) {
+            final DetailAST children = ast.getFirstChild();
+            final DetailAST type = children.getNextSibling();
+            addReferencedClassName(type.getText());
+        }
+
+        /**
          * Visits NEW.
          * @param ast NEW to process.
          */
@@ -425,7 +450,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
         }
 
         /**
-         * Checks if given class shouldn't be ignored and not from java.lang.
+         * Checks if given class and annotations shouldn't be ignored and not from java.lang.
          * @param candidateClassName class to check.
          * @return true if we should count this class.
          */

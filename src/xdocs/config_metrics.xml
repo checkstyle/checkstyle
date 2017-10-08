@@ -240,7 +240,8 @@
                 UnsupportedOperationException,
                 List, ArrayList, Deque, Queue, LinkedList,
                 Set, HashSet, SortedSet, TreeSet,
-                Map, HashMap, SortedMap, TreeMap</td>
+                Map, HashMap, SortedMap, TreeMap, Override, Deprecated, SafeVarargs,
+                SuppressWarnings</td>
             <td>5.7</td>
           </tr>
           <tr>
@@ -483,6 +484,15 @@ public class Foo {
                 </li>
                 <li>
                   <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>
+                </li>
+                <li>
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXTENDS_CLAUSE">EXTENDS_CLAUSE</a>
+                </li>
+                <li>
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXTENDS_CLAUSE">IMPLEMENTS_CLAUSE</a>
+                </li>
+                <li>
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION">ANNOTATION</a>
                 </li>
                 <li>
                   <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>
