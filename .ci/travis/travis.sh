@@ -24,7 +24,9 @@ assembly-run-all-jar)
   ;;
 
 sonarqube)
-  if [[ $TRAVIS_PULL_REQUEST =~ ^([0-9]*)$ ]]; then exit 0; fi
+  # token could be generated at https://sonarcloud.io/account/security/
+  # executon on local: SONAR_TOKEN=xxxxxxxxxx ./.ci/travis/travis.sh sonarqube
+  if [[ $TRAVIS_PULL_REQUEST && $TRAVIS_PULL_REQUEST =~ ^([0-9]*)$ ]]; then exit 0; fi
   export MAVEN_OPTS='-Xmx2000m'
   mvn clean package cobertura:cobertura sonar:sonar \
        -Dsonar.host.url=https://sonarqube.com \

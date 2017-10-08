@@ -163,11 +163,11 @@ matrix:
         - DESC="MacOS verify, site, assembly"
         - CMD="export JAVA_HOME=$(/usr/libexec/java_home) && mvn package -Dlinkcheck.skip=true && mvn package -Passembly "
 
-    # https://sonarqube.com (oraclejdk8) disabled till https://github.com/checkstyle/checkstyle/issues/5175
-    #- jdk: oraclejdk8
-    #  env:
-    #    - DESC="sonarqube.com"
-    #    - CMD="./.ci/travis/travis.sh sonarqube"
+    # https://sonarqube.com (oraclejdk8)
+    - jdk: oraclejdk8
+      env:
+        - DESC="sonarqube.com"
+        - CMD="./.ci/travis/travis.sh sonarqube"
 
     # No error testing - simple-binary-encoding
     - jdk: oraclejdk8
