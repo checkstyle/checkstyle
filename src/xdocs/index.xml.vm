@@ -123,7 +123,7 @@
               </tr>
               <tr>
                   <td>
-                      <a href="https://bitbucket.org/product/server">Bitbucket Server</a>
+                      <a href="https://www.atlassian.com/software/bitbucket/server">Bitbucket Server</a>
                   </td>
                   <td>Stephan Bechter</td>
                   <td>
@@ -289,9 +289,9 @@
                   <td>Provides quality assurance features.</td>
               </tr>
               <tr>
-                  <td><a href="http://www.jarchitect.com/">JArchitect</a></td>
+                  <td><a href="https://www.jarchitect.com">JArchitect</a></td>
                   <td/>
-                  <td><a href="http://www.jarchitect.com/">JArchitect Home Page</a></td>
+                  <td><a href="https://www.jarchitect.com">JArchitect Home Page</a></td>
                   <td>Imports XML result files from CheckStyle.</td>
               </tr>
               <tr>
