@@ -1046,9 +1046,10 @@
               <systemId>http://maven.apache.org/xsd/decoration-1.0.0.xsd</systemId>
             </validationSet>
             <validationSet>
-              <dir>src/main/resources</dir>
+              <dir>src/test/resources</dir>
               <includes>
-                <include>checkstyle_packages.xml</include>
+                <include>com/puppycrawl/tools/checkstyle/packagenamesloader/InputPackageNamesLoaderFile.xml</include>
+                <include>com/puppycrawl/tools/checkstyle/treewalker/InputTreeWalkerNotJava.xml</include>
               </includes>
               <systemId>src/main/resources/com/puppycrawl/tools/checkstyle/packages_1_0.dtd</systemId>
             </validationSet>
