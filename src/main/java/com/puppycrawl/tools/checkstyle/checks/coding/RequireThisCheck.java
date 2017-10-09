@@ -147,7 +147,7 @@ public class RequireThisCheck extends AbstractCheck {
     private Map<DetailAST, AbstractFrame> frames;
 
     /** Frame for the currently processed AST. */
-    private AbstractFrame current;
+    private final ThreadLocal<AbstractFrame> current = new ThreadLocal<>();
 
     /** Whether we should check fields usage. */
     private boolean checkFields = true;
@@ -206,7 +206,7 @@ public class RequireThisCheck extends AbstractCheck {
     @Override
     public void beginTree(DetailAST rootAST) {
         frames = new HashMap<>();
-        current = null;
+        current.set(null);
 
         final Deque<AbstractFrame> frameStack = new LinkedList<>();
         DetailAST curNode = rootAST;
@@ -237,7 +237,7 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.SLIST :
             case TokenTypes.METHOD_DEF :
             case TokenTypes.CTOR_DEF :
-                current = frames.get(ast);
+                current.set(frames.get(ast));
                 break;
             default :
                 // do nothing
@@ -821,7 +821,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @return AbstractFrame containing declaration or null.
      */
     private AbstractFrame findClassFrame(DetailAST name, boolean lookForMethod) {
-        AbstractFrame frame = current;
+        AbstractFrame frame = current.get();
 
         while (true) {
             frame = findFrame(frame, name, lookForMethod);
@@ -843,7 +843,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @return AbstractFrame containing declaration or null.
      */
     private AbstractFrame findFrame(DetailAST name, boolean lookForMethod) {
-        return findFrame(current, name, lookForMethod);
+        return findFrame(current.get(), name, lookForMethod);
     }
 
     /**
@@ -897,7 +897,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @return the name of the nearest parent ClassFrame.
      */
     private String getNearestClassFrameName() {
-        AbstractFrame frame = current;
+        AbstractFrame frame = current.get();
         while (frame.getType() != FrameType.CLASS_FRAME) {
             frame = frame.getParent();
         }
