@@ -23,6 +23,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -40,8 +41,8 @@ public abstract class AbstractFileSetCheck
     /**
      * Collects the error messages.
      */
-    private static final ThreadLocal<SortedSet<LocalizedMessage>> MESSAGE_COLLECTOR =
-            ThreadLocal.withInitial(TreeSet::new);
+    private static final ThreadLocal<ConcurrentSkipListSet<LocalizedMessage>> MESSAGE_COLLECTOR =
+            ThreadLocal.withInitial(ConcurrentSkipListSet::new);
 
     /** The dispatcher errors are fired to. */
     private MessageDispatcher messageDispatcher;
