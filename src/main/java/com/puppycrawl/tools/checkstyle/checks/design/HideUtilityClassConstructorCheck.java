@@ -25,7 +25,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Make sure that utility classes (classes that contain only static methods)
- * do not have a public constructor.
+ * do not have a public constructor. If all constructors are private,
+ * consider declaring the class as final.
  * <p>
  * Rationale: Instantiating utility classes does not make sense.
  * A common mistake is forgetting to hide the default constructor.
