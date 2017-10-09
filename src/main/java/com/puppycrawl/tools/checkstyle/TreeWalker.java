@@ -31,6 +31,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 import antlr.CommonHiddenStreamToken;
 import antlr.RecognitionException;
@@ -89,7 +90,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     private final Set<TreeWalkerFilter> filters = new HashSet<>();
 
     /** The sorted set of messages. */
-    private final SortedSet<LocalizedMessage> messages = new TreeSet<>();
+    private final ConcurrentSkipListSet<LocalizedMessage> messages = new ConcurrentSkipListSet<>();
 
     /** The distance between tab stops. */
     private int tabWidth = DEFAULT_TAB_WIDTH;
