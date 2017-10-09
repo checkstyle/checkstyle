@@ -76,34 +76,9 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     public static final String MSG_KEY = "multiple.statements.line";
 
     /**
-     * Counts number of semicolons in nested lambdas.
+     * The file context.
      */
-    private final Deque<Integer> countOfSemiInLambda = new ArrayDeque<>();
-
-    /**
-     * Hold the line-number where the last statement ended.
-     */
-    private int lastStatementEnd = -1;
-
-    /**
-     * Hold the line-number where the last 'for-loop' statement ended.
-     */
-    private int forStatementEnd = -1;
-
-    /**
-     * The for-header usually has 3 statements on one line, but THIS IS OK.
-     */
-    private boolean inForHeader;
-
-    /**
-     * Holds if current token is inside lambda.
-     */
-    private boolean isInLambda;
-
-    /**
-     * Hold the line-number where the last lambda statement ended.
-     */
-    private int lambdaStatementEnd = -1;
+    private final ThreadLocal<FileContext> context = ThreadLocal.withInitial(FileContext::new);
 
     @Override
     public int[] getDefaultTokens() {
@@ -127,10 +102,10 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        inForHeader = false;
-        lastStatementEnd = -1;
-        forStatementEnd = -1;
-        isInLambda = false;
+        context.get().inForHeader = false;
+        context.get().lastStatementEnd = -1;
+        context.get().forStatementEnd = -1;
+        context.get().isInLambda = false;
     }
 
     @Override
@@ -140,14 +115,14 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
                 checkIfSemicolonIsInDifferentLineThanPrevious(ast);
                 break;
             case TokenTypes.FOR_ITERATOR:
-                forStatementEnd = ast.getLineNo();
+                context.get().forStatementEnd = ast.getLineNo();
                 break;
             case TokenTypes.LAMBDA:
-                isInLambda = true;
-                countOfSemiInLambda.push(0);
+                context.get().isInLambda = true;
+                context.get().countOfSemiInLambda.push(0);
                 break;
             default:
-                inForHeader = true;
+                context.get().inForHeader = true;
                 break;
         }
     }
@@ -156,19 +131,19 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     public void leaveToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.SEMI:
-                lastStatementEnd = ast.getLineNo();
-                forStatementEnd = -1;
-                lambdaStatementEnd = -1;
+                context.get().lastStatementEnd = ast.getLineNo();
+                context.get().forStatementEnd = -1;
+                context.get().lambdaStatementEnd = -1;
                 break;
             case TokenTypes.FOR_ITERATOR:
-                inForHeader = false;
+                context.get().inForHeader = false;
                 break;
             case TokenTypes.LAMBDA:
-                countOfSemiInLambda.pop();
-                if (countOfSemiInLambda.isEmpty()) {
-                    isInLambda = false;
+                context.get().countOfSemiInLambda.pop();
+                if (context.get().countOfSemiInLambda.isEmpty()) {
+                    context.get().isInLambda = false;
                 }
-                lambdaStatementEnd = ast.getLineNo();
+                context.get().lambdaStatementEnd = ast.getLineNo();
                 break;
             default:
                 break;
@@ -187,19 +162,20 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
         if (!hasResourcesPrevSibling && isMultilineStatement(currentStatement)) {
             currentStatement = ast.getPreviousSibling();
         }
-        if (isInLambda) {
-            int countOfSemiInCurrentLambda = countOfSemiInLambda.pop();
+        if (context.get().isInLambda) {
+            int countOfSemiInCurrentLambda = context.get().countOfSemiInLambda.pop();
             countOfSemiInCurrentLambda++;
-            countOfSemiInLambda.push(countOfSemiInCurrentLambda);
-            if (!inForHeader && countOfSemiInCurrentLambda > 1
+            context.get().countOfSemiInLambda.push(countOfSemiInCurrentLambda);
+            if (!context.get().inForHeader && countOfSemiInCurrentLambda > 1
                     && isOnTheSameLine(currentStatement,
-                    lastStatementEnd, forStatementEnd,
-                    lambdaStatementEnd)) {
+                    context.get().lastStatementEnd, context.get().forStatementEnd,
+                    context.get().lambdaStatementEnd)) {
                 log(ast, MSG_KEY);
             }
         }
-        else if (!inForHeader && isOnTheSameLine(currentStatement, lastStatementEnd,
-                forStatementEnd, lambdaStatementEnd)) {
+        else if (!context.get().inForHeader && isOnTheSameLine(currentStatement,
+                context.get().lastStatementEnd, context.get().forStatementEnd,
+                context.get().lambdaStatementEnd)) {
             log(ast, MSG_KEY);
         }
     }
@@ -236,5 +212,40 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
                     && ast.getParent() != null;
         }
         return multiline;
+    }
+
+    /**
+     * The file context holder.
+     */
+    private static class FileContext {
+        /**
+         * Counts number of semicolons in nested lambdas.
+         */
+        private final Deque<Integer> countOfSemiInLambda = new ArrayDeque<>();
+
+        /**
+         * Hold the line-number where the last statement ended.
+         */
+        private int lastStatementEnd = -1;
+
+        /**
+         * Hold the line-number where the last 'for-loop' statement ended.
+         */
+        private int forStatementEnd = -1;
+
+        /**
+         * The for-header usually has 3 statements on one line, but THIS IS OK.
+         */
+        private boolean inForHeader;
+
+        /**
+         * Holds if current token is inside lambda.
+         */
+        private boolean isInLambda;
+
+        /**
+         * Hold the line-number where the last lambda statement ended.
+         */
+        private int lambdaStatementEnd = -1;
     }
 }
