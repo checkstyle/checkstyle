@@ -255,7 +255,7 @@
           <td><code>nlow</code></td>
           <td>
             If the statement/expression/declaration connected to the brace spans multiple lines,
-            than apply <code>eol</code> rule. Otherwise apply the <code>nl</code> rule.
+            than apply <code>nl</code> rule. Otherwise apply the <code>eol</code> rule.
             <code>nlow</code> is a mnemonic for "new line on wrap".
             For the example above Checkstyle will enforce:
             <pre>
