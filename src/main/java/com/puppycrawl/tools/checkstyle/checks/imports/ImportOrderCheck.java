@@ -440,8 +440,7 @@ public class ImportOrderCheck
         final int groupIdx = getGroupNumber(name);
         final int line = ident.getLineNo();
 
-        if (groupIdx == lastGroup
-            || !beforeFirstImport && isAlphabeticallySortableStaticImport(isStatic)) {
+        if (isInSameGroup(groupIdx, isStatic)) {
             doVisitTokenInSameGroup(isStatic, previous, name, line);
         }
         else if (groupIdx > lastGroup) {
@@ -502,18 +501,6 @@ public class ImportOrderCheck
     }
 
     /**
-     * Checks whether static imports grouped by <b>top</b> or <b>bottom</b> option
-     * are sorted alphabetically or not.
-     * @param isStatic if current import is static.
-     * @return true if static imports should be sorted alphabetically.
-     */
-    private boolean isAlphabeticallySortableStaticImport(boolean isStatic) {
-        return isStatic && sortStaticImportsAlphabetically
-                && (option == ImportOrderOption.TOP
-                    || option == ImportOrderOption.BOTTOM);
-    }
-
-    /**
      * Shares processing...
      *
      * @param isStatic whether the token is static or not.
@@ -557,12 +544,22 @@ public class ImportOrderCheck
      */
     private boolean isWrongOrder(String name, boolean isStatic) {
         final boolean result;
-        if (isStatic && useContainerOrderingForStatic) {
-            result = compareContainerOrder(lastImport, name, caseSensitive) > 0;
+        if (isStatic) {
+            if (useContainerOrderingForStatic) {
+                result = compareContainerOrder(lastImport, name, caseSensitive) >= 0;
+            }
+            else if (option == ImportOrderOption.TOP
+                || option == ImportOrderOption.BOTTOM) {
+                result = sortStaticImportsAlphabetically
+                    && compare(lastImport, name, caseSensitive) >= 0;
+            }
+            else {
+                result = compare(lastImport, name, caseSensitive) >= 0;
+            }
         }
         else {
             // out of lexicographic order
-            result = compare(lastImport, name, caseSensitive) > 0;
+            result = compare(lastImport, name, caseSensitive) >= 0;
         }
         return result;
     }

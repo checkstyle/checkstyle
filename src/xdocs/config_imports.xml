@@ -1291,7 +1291,8 @@ import java.util.stream.IntStream;
           </tr>
           <tr>
             <td>ordered</td>
-            <td>whether imports within group should be sorted</td>
+            <td>whether imports within group should be sorted
+              (It don't affect soring for static imports.)</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>true</td>
             <td>3.2</td>
@@ -1318,8 +1319,9 @@ import java.util.stream.IntStream;
           </tr>
           <tr>
             <td>sortStaticImportsAlphabetically</td>
-            <td>whether static imports grouped by <b>top</b> or <b>bottom</b> option
-            are sorted alphabetically or not</td>
+            <td>whether <b>static imports</b> grouped by <b>top</b> or <b>bottom</b> option
+                are sorted alphabetically or not.
+                Attention:it is applied for all static imports as one group.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
             <td>6.5</td>
