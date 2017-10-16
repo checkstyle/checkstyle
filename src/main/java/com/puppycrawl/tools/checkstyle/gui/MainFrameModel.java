@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.gui;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -267,6 +268,6 @@ public class MainFrameModel {
      */
     private static FileText getFileText(File file) throws IOException {
         return new FileText(file.getAbsoluteFile(),
-                System.getProperty("file.encoding", "UTF-8"));
+                System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
     }
 }

@@ -257,7 +257,11 @@
         <property name="tokens" value="LITERAL_VOLATILE"/>
         <property name="tokens" value="LITERAL_ASSERT"/>
     </module>
-    <module name="IllegalTokenText"/>
+    <module name="IllegalTokenText">
+      <property name="tokens" value="STRING_LITERAL"/>
+      <property name="format" value="^(US-ASCII|ISO-8859-1|UTF-8|UTF-16BE|UTF-16LE|UTF-16)$"/>
+      <property name="ignoreCase" value="true"/>
+    </module>
     <module name="IllegalType"/>
     <module name="InnerAssignment"/>
     <module name="MagicNumber"/>

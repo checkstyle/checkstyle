@@ -185,7 +185,8 @@ public class TokenTypesDocletTest extends AbstractPathTestSupport {
         final Method getRootDocImpl = getMethodGetRootDocImplByReflection();
         final RootDoc rootDoc;
         if (System.getProperty("java.version").startsWith("1.7.")) {
-            rootDoc = (RootDoc) getRootDocImpl.invoke(javadocTool, "", "UTF-8",
+            rootDoc = (RootDoc) getRootDocImpl.invoke(javadocTool, "",
+                    StandardCharsets.UTF_8.name(),
                     new ModifierFilter(ModifierFilter.ALL_ACCESS),
                     names.toList(),
                     options.toList(),
@@ -195,7 +196,8 @@ public class TokenTypesDocletTest extends AbstractPathTestSupport {
                     false, false, false);
         }
         else {
-            rootDoc = (RootDoc) getRootDocImpl.invoke(javadocTool, "", "UTF-8",
+            rootDoc = (RootDoc) getRootDocImpl.invoke(javadocTool, "",
+                    StandardCharsets.UTF_8.name(),
                     new ModifierFilter(ModifierFilter.ALL_ACCESS),
                     names.toList(),
                     options.toList(),

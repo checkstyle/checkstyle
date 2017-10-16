@@ -123,7 +123,7 @@
     </subpackage>
     <subpackage name="header">
       <allow class="java.nio.charset.Charset" local-only="true"/>
-
+      <allow class="java.nio.charset.StandardCharsets" local-only="true" />
       <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
       <allow class="com.google.common.io.Closeables" local-only="true"/>
     </subpackage>
@@ -170,6 +170,7 @@
            local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser" local-only="true"/>
     <allow class="com.google.common.collect.ImmutableList" local-only="true"/>
+    <allow class="java.nio.charset.StandardCharsets" local-only="true" />
   </subpackage>
 
   <subpackage name="xpath">

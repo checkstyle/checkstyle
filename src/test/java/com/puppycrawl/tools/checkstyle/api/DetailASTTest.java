@@ -272,7 +272,7 @@ public class DetailASTTest extends AbstractModuleTestSupport {
 
     private static void checkFile(String filename) throws Exception {
         final FileText text = new FileText(new File(filename),
-                           System.getProperty("file.encoding", "UTF-8"));
+                           System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
         final FileContents contents = new FileContents(text);
         final DetailAST rootAST = TreeWalker.parse(contents);
         if (rootAST != null) {

@@ -31,7 +31,6 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.lang.reflect.Method;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -572,7 +571,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         assertTrue("External resource is not present in cache",
                 new String(Files.readAllBytes(cacheFile.toPath()),
-                        Charset.forName("UTF-8")).contains(
+                        StandardCharsets.UTF_8).contains(
                                 "InputTreeWalkerSuppressionXpathFilter.xml"));
     }
 

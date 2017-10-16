@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.gui;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -48,7 +49,9 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
 
     private static DetailAST parseFile(File file) throws Exception {
         final FileContents contents = new FileContents(
-                new FileText(file.getAbsoluteFile(), System.getProperty("file.encoding", "UTF-8")));
+                new FileText(file.getAbsoluteFile(),
+                        System.getProperty("file.encoding",
+                        StandardCharsets.UTF_8.name())));
         return TreeWalker.parseWithComments(contents);
     }
 

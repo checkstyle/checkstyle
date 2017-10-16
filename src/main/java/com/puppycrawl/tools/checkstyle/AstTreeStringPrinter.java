@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
@@ -234,7 +235,7 @@ public final class AstTreeStringPrinter {
     private static DetailAST parseFile(File file, PrintOptions withComments)
             throws IOException, CheckstyleException {
         final FileText text = new FileText(file.getAbsoluteFile(),
-            System.getProperty("file.encoding", "UTF-8"));
+            System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
         return parseFileText(text, withComments);
     }
 

@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.Set;
@@ -151,7 +152,7 @@ public final class TestUtil {
      * @throws ANTLRException       if parser or lexer failed
      */
     public static DetailAST parseFile(File file) throws IOException, ANTLRException {
-        final FileText text = new FileText(file.getAbsoluteFile(), "UTF-8");
+        final FileText text = new FileText(file.getAbsoluteFile(), StandardCharsets.UTF_8.name());
         final FileContents contents = new FileContents(text);
         return parseWithComments(contents);
     }

@@ -27,7 +27,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
 import org.junit.Rule;
@@ -351,7 +351,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
 
         assertTrue("External resourse is not present in cache",
                 new String(Files.readAllBytes(cacheFile.toPath()),
-                Charset.forName("UTF-8")).contains("InputImportControlOneRegExp.xml"));
+                        StandardCharsets.UTF_8).contains("InputImportControlOneRegExp.xml"));
     }
 
     @Test
