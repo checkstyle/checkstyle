@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 
 /**
@@ -41,9 +41,6 @@ public final class DetailNodeTreeStringPrinter {
 
     /** OS specific line separator. */
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
-
-    /** Symbols with which javadoc starts. */
-    private static final String JAVADOC_START = "/**";
 
     /** Prevent instances. */
     private DetailNodeTreeStringPrinter() {
@@ -80,7 +77,7 @@ public final class DetailNodeTreeStringPrinter {
      * @return tree
      */
     private static DetailNode parseJavadocAsDetailNode(String javadocComment) {
-        final DetailAST blockComment = createFakeBlockComment(javadocComment);
+        final DetailAST blockComment = CommonUtils.createBlockCommentNode(javadocComment);
         return parseJavadocAsDetailNode(blockComment);
     }
 
@@ -172,35 +169,6 @@ public final class DetailNodeTreeStringPrinter {
         final FileText text = new FileText(file.getAbsoluteFile(),
             System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
         return parseJavadocAsDetailNode(text.getFullText().toString());
-    }
-
-    /**
-     * Creates DetailAST block comment to pass it to the Javadoc parser.
-     * @param content comment content.
-     * @return DetailAST block comment
-     */
-    private static DetailAST createFakeBlockComment(String content) {
-        final DetailAST blockCommentBegin = new DetailAST();
-        blockCommentBegin.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
-        blockCommentBegin.setText("/*");
-        blockCommentBegin.setLineNo(0);
-        blockCommentBegin.setColumnNo(-JAVADOC_START.length());
-
-        final DetailAST commentContent = new DetailAST();
-        commentContent.setType(TokenTypes.COMMENT_CONTENT);
-        commentContent.setText("*" + content);
-        commentContent.setLineNo(0);
-        // javadoc should starts at 0 column, so COMMENT_CONTENT node
-        // that contains javadoc identificator has -1 column
-        commentContent.setColumnNo(-1);
-
-        final DetailAST blockCommentEnd = new DetailAST();
-        blockCommentEnd.setType(TokenTypes.BLOCK_COMMENT_END);
-        blockCommentEnd.setText("*/");
-
-        blockCommentBegin.setFirstChild(commentContent);
-        commentContent.setNextSibling(blockCommentEnd);
-        return blockCommentBegin;
     }
 
 }

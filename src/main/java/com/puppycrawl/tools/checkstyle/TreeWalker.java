@@ -22,12 +22,10 @@ package com.puppycrawl.tools.checkstyle;
 import java.io.File;
 import java.io.Reader;
 import java.io.StringReader;
-import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Locale;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -681,7 +679,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
             commentAst = createSlCommentNode(token);
         }
         else {
-            commentAst = createBlockCommentNode(token);
+            commentAst = CommonUtils.createBlockCommentNode(token);
         }
         return commentAst;
     }
@@ -712,83 +710,6 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
         slComment.addChild(slCommentContent);
         return slComment;
-    }
-
-    /**
-     * Create block comment from token.
-     * @param token
-     *        Token object.
-     * @return DetailAST with BLOCK_COMMENT type.
-     */
-    private static DetailAST createBlockCommentNode(Token token) {
-        final DetailAST blockComment = new DetailAST();
-        blockComment.initialize(TokenTypes.BLOCK_COMMENT_BEGIN, "/*");
-
-        // column counting begins from 0
-        blockComment.setColumnNo(token.getColumn() - 1);
-        blockComment.setLineNo(token.getLine());
-
-        final DetailAST blockCommentContent = new DetailAST();
-        blockCommentContent.setType(TokenTypes.COMMENT_CONTENT);
-
-        // column counting begins from 0
-        // plus length of '/*'
-        blockCommentContent.setColumnNo(token.getColumn() - 1 + 2);
-        blockCommentContent.setLineNo(token.getLine());
-        blockCommentContent.setText(token.getText());
-
-        final DetailAST blockCommentClose = new DetailAST();
-        blockCommentClose.initialize(TokenTypes.BLOCK_COMMENT_END, "*/");
-
-        final Entry<Integer, Integer> linesColumns = countLinesColumns(
-                token.getText(), token.getLine(), token.getColumn());
-        blockCommentClose.setLineNo(linesColumns.getKey());
-        blockCommentClose.setColumnNo(linesColumns.getValue());
-
-        blockComment.addChild(blockCommentContent);
-        blockComment.addChild(blockCommentClose);
-        return blockComment;
-    }
-
-    /**
-     * Count lines and columns (in last line) in text.
-     * @param text
-     *        String.
-     * @param initialLinesCnt
-     *        initial value of lines counter.
-     * @param initialColumnsCnt
-     *        initial value of columns counter.
-     * @return entry(pair), first element is lines counter, second - columns
-     *         counter.
-     */
-    private static Entry<Integer, Integer> countLinesColumns(
-            String text, int initialLinesCnt, int initialColumnsCnt) {
-        int lines = initialLinesCnt;
-        int columns = initialColumnsCnt;
-        boolean foundCr = false;
-        for (char c : text.toCharArray()) {
-            if (c == '\n') {
-                foundCr = false;
-                lines++;
-                columns = 0;
-            }
-            else {
-                if (foundCr) {
-                    foundCr = false;
-                    lines++;
-                    columns = 0;
-                }
-                if (c == '\r') {
-                    foundCr = true;
-                }
-                columns++;
-            }
-        }
-        if (foundCr) {
-            lines++;
-            columns = 0;
-        }
-        return new SimpleEntry<>(lines, columns);
     }
 
     /**
