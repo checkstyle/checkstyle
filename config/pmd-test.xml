@@ -110,6 +110,8 @@
     <rule ref="rulesets/java/junit.xml/JUnitTestContainsTooManyAsserts">
         <properties>
             <property name="maximumAsserts" value="11"/>
+            <!--Methods `testTokenNumbers` and `testRuleNumbers` in GeneratedJavadocTokenTypesTest contain several asserts as they check each token and each rule explicitly-->
+            <property name="violationSuppressXPath" value="//MethodDeclaration[@Name='testTokenNumbers'] and [@Name='testRuleNumbers']"/>
         </properties>
     </rule>
 
