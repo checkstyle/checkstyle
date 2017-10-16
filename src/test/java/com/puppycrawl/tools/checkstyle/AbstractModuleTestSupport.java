@@ -150,7 +150,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 new DefaultConfiguration("configuration");
         final DefaultConfiguration twConf = createModuleConfig(TreeWalker.class);
         // make sure that the tests always run with this charset
-        dc.addAttribute("charset", "UTF-8");
+        dc.addAttribute("charset", StandardCharsets.UTF_8.name());
         dc.addChild(twConf);
         twConf.addChild(config);
         return dc;

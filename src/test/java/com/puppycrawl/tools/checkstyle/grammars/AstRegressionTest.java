@@ -29,6 +29,7 @@ import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 import org.junit.Test;
@@ -217,7 +218,8 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
             AstTreeStringPrinter.PrintOptions withComments) throws Exception {
         final File expectedFile = new File(expectedTextPrintFileName);
         final String expectedContents = new FileText(expectedFile, System.getProperty(
-                "file.encoding", "UTF-8")).getFullText().toString().replace("\r", "");
+                "file.encoding", StandardCharsets.UTF_8.name()))
+                .getFullText().toString().replace("\r", "");
 
         final FileText actualFileContents = new FileText(new File(""),
                 Arrays.asList(actualJava.split("\\n|\\r\\n?")));

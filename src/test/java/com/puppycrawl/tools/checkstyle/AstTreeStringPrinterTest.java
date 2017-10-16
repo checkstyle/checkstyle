@@ -75,7 +75,7 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
     public void testPrintAst() throws Exception {
         final FileText text = new FileText(
                 new File(getPath("InputAstTreeStringPrinterComments.java")).getAbsoluteFile(),
-                System.getProperty("file.encoding", "UTF-8"));
+                System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
         final String actual = AstTreeStringPrinter.printAst(text,
                 AstTreeStringPrinter.PrintOptions.WITHOUT_COMMENTS);
         final String expected = new String(Files.readAllBytes(Paths.get(

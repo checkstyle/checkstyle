@@ -26,6 +26,7 @@ import java.io.Reader;
 import java.io.Serializable;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Collections;
@@ -519,7 +520,8 @@ public final class LocalizedMessage
             }
             ResourceBundle resourceBundle = null;
             if (stream != null) {
-                final Reader streamReader = new InputStreamReader(stream, "UTF-8");
+                final Reader streamReader = new InputStreamReader(stream,
+                        StandardCharsets.UTF_8.name());
                 try {
                     // Only this line is changed to make it to read properties files as UTF-8.
                     resourceBundle = new PropertyResourceBundle(streamReader);

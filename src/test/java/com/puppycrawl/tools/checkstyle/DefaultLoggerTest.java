@@ -27,6 +27,7 @@ import static org.mockito.Mockito.verify;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 import org.junit.Test;
 
@@ -44,7 +45,7 @@ public class DefaultLoggerTest {
         final DefaultLogger dl = new DefaultLogger(infoStream, true, errorStream, true);
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
-        final String output = errorStream.toString("UTF-8");
+        final String output = errorStream.toString(StandardCharsets.UTF_8.name());
         final LocalizedMessage addExceptionMessage = new LocalizedMessage(0,
                 Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.ADD_EXCEPTION_MESSAGE,
                 new String[] {"myfile"}, null,
@@ -76,7 +77,7 @@ public class DefaultLoggerTest {
         dl.auditStarted(null);
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
-        final String output = errorStream.toString("UTF-8");
+        final String output = errorStream.toString(StandardCharsets.UTF_8.name());
         final LocalizedMessage addExceptionMessage = new LocalizedMessage(0,
                 Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.ADD_EXCEPTION_MESSAGE,
                 new String[] {"myfile"}, null,

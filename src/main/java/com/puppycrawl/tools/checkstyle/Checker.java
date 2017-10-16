@@ -25,6 +25,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -124,7 +125,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
     private SeverityLevel severityLevel = SeverityLevel.ERROR;
 
     /** Name of a charset. */
-    private String charset = System.getProperty("file.encoding", "UTF-8");
+    private String charset = System.getProperty("file.encoding", StandardCharsets.UTF_8.name());
 
     /** Cache file. **/
     private PropertyCacheFile cache;
