@@ -1,6 +1,20 @@
 os: Windows Server 2012
 version: '{build}'
 skip_tags: true
+skip_commits:
+  files:
+    - .github/
+    - travis.yml
+    - circle.yml
+    - distelli-manifest.yml
+    - fast-forward-merge.sh
+    - LICENSE
+    - LICENSE.apache20
+    - README.md
+    - release.sh
+    - RIGHTS.antlr
+    - shippable.yml
+     -wercker.yml
 clone_depth: 10
 branches:
   only:
