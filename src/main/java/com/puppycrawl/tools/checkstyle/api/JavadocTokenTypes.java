@@ -1390,7 +1390,6 @@ public final class JavadocTokenTypes {
      * Start html tag: &lt;XXX&gt;.
      */
     public static final int HTML_ELEMENT_START = JavadocParser.RULE_htmlElementStart
-            + RULE_TYPES_OFFSET
             + RULE_TYPES_OFFSET;
 
     /**
@@ -1408,7 +1407,6 @@ public final class JavadocTokenTypes {
      * Html tag attribute. Parent node for: {@code HTML_TAG_IDENT, EQUALS, ATTR_VALUE}.
      */
     public static final int ATTRIBUTE = JavadocParser.RULE_attribute
-            + RULE_TYPES_OFFSET
             + RULE_TYPES_OFFSET;
 
     /////////////////////// HTML TAGS WITH OPTIONAL END TAG /////////////////////////////////////
@@ -1617,7 +1615,6 @@ public final class JavadocTokenTypes {
 
     /** Html comment: {@code <!-- -->}. */
     public static final int HTML_COMMENT = JavadocParser.RULE_htmlComment
-            + RULE_TYPES_OFFSET
             + RULE_TYPES_OFFSET;
     /**
      * CHAR and WS sequence.
