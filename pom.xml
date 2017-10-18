@@ -1376,6 +1376,8 @@
             <excludedLink>https://www.ej-technologies.com/products/jprofiler/overview.html</excludedLink>
             <!-- permanent java.net.SocketException : Connection reset -->
             <excludedLink>https://www.jarchitect.com</excludedLink>
+            <!-- permanent: avax.net.ssl.SSLException : Received fatal alert: internal_error -->
+            <excludedLink>https://salt.bountysource.com/teams/checkstyle</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
