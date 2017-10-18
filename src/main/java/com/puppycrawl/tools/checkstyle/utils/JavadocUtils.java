@@ -343,7 +343,7 @@ public final class JavadocUtils {
         if (id == JavadocTokenTypes.EOF) {
             name = "EOF";
         }
-        else if (id >= TOKEN_VALUE_TO_NAME.length) {
+        else if (id > TOKEN_VALUE_TO_NAME.length - 1) {
             throw new IllegalArgumentException(UNKNOWN_JAVADOC_TOKEN_ID_EXCEPTION_MESSAGE + id);
         }
         else {
