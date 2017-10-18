@@ -306,6 +306,12 @@
                   <td><a href="https://github.com/nidi3/code-assert#checkstyle-checks">code-assert</a></td>
                   <td>Assert that the java code of a project satisfies certain checks. Launch checkstyle validation from UTs</td>
               </tr>
+              <tr>
+                  <td><a href="http://jdee.sourceforge.net/">Emacs JDE</a></td>
+                  <td>Markus Mohnen</td>
+                  <td>Part of the standard JDEE distribution - <a href="https://github.com/jdee-emacs/jdee"/></td>
+                  <td><a href="https://github.com/jdee-emacs/jdee/blob/master/jdee-checkstyle.el">configuration could be seen at jdee-checkstyle.el</a></td>
+              </tr>
           </table>
       </subsection>
 
@@ -357,12 +363,6 @@
                   <td><a href="https://netbeans.org/">NetBeans</a></td>
                   <td>Paul Goulbourn</td>
                   <td><a href="http://nbcheckstyle.sourceforge.net">nbCheckStyle</a></td>
-                  <td/>
-              </tr>
-              <tr>
-                  <td><a href="http://jdee.sourceforge.net/">Emacs JDE</a></td>
-                  <td>Markus Mohnen</td>
-                  <td>Part of the standard JDEE distribution</td>
                   <td/>
               </tr>
               <tr>
