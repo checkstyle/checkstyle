@@ -45,9 +45,9 @@
     <suppress checks="MethodLength" files="src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammars[\\/]comments[\\/]CommentsTest\.java"/>
     <suppress checks="ExecutableStatementCount" files="src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammars[\\/]comments[\\/]CommentsTest\.java"/>
     <suppress checks="JavaNCSS" files="src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammars[\\/]comments[\\/]CommentsTest\.java"/>
-    <suppress checks="MethodLength" files=".*GeneratedJavaTokenTypesTest\.java"/>
-    <suppress checks="ExecutableStatementCount" files=".*GeneratedJava(doc)?TokenTypesTest\.java"/>
-    <suppress checks="JavaNCSS" files=".*GeneratedJava(doc)?TokenTypesTest\.java"/>
+    <suppress checks="MethodLength" files=".*(Generated)?Java(doc)?TokenTypesTest\.java"/>
+    <suppress checks="ExecutableStatementCount" files=".*(Generated)?Java(doc)?TokenTypesTest\.java"/>
+    <suppress checks="JavaNCSS" files=".*(Generated)?Java(doc)?TokenTypesTest\.java"/>
     <suppress checks="ExecutableStatementCount" files=".*IllegalInstantiationCheckTest\.java"/>
     <suppress checks="ExecutableStatementCount" files=".*Main\.java"/>
 
