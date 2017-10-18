@@ -39,17 +39,6 @@
       </p>
     </section>
 
-    <section name="Development Circle">
-      <p>
-        <b>Releases will happen at the end of each month</b>
-        if functional changes exists in <a href="https://github.com/checkstyle/checkstyle/commits/master">master branch of our repo</a>.
-        For exact day pelase follow our <a href="https://github.com/checkstyle/checkstyle/milestones">milestones</a>.
-      </p>
-      <p>
-        Explanation why we do not follow Semantic Versioning is in <a href="https://github.com/checkstyle/checkstyle/issues/3709">issue #3709</a>
-      </p>
-      </section>
-
     <section name="Features">
       <p>
         Checkstyle can check many aspects of your source code.
@@ -93,6 +82,17 @@
         <a href="https://github.com/rnveach/checkstyle-backport-jre6">github site</a> or the
         <a href="https://rnveach.github.io/checkstyle-backport-jre6/">documentation site</a> on how
         to use the backport version of the utility, in place of the official Checkstyle version.
+      </p>
+    </section>
+
+    <section name="Development Circle">
+      <p>
+        <b>Releases will happen at the end of each month</b>
+        if functional changes exists in <a href="https://github.com/checkstyle/checkstyle/commits/master">master branch of our repo</a>.
+        For exact day pelase follow our <a href="https://github.com/checkstyle/checkstyle/milestones">milestones</a>.
+      </p>
+      <p>
+        Explanation why we do not follow Semantic Versioning is in <a href="https://github.com/checkstyle/checkstyle/issues/3709">issue #3709</a>
       </p>
     </section>
 
