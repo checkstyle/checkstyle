@@ -252,7 +252,7 @@ System.out.println(a);
           <p>
               To configure a filter so that name of suppressed check mentioned
               in comment <code>CSOFF: <i>regexp</i></code>
-              and <code>CSN: <i>regexp</i></code> mark a matching check:
+              and <code>CSON: <i>regexp</i></code> mark a matching check:
           </p>
           <source>
 &lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
