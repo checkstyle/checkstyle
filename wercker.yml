@@ -126,9 +126,6 @@ build:
           echo CS_version: ${CS_POM_VERSION}
           for i in 1 2 3 4 5; do git clone https://github.com/hibernate/hibernate-search.git && break || sleep 15; done
           cd hibernate-search
-          git checkout 285c557fb51bbdf4bc81af8950c466f2ec336e9d
-          wget https://gist.githubusercontent.com/timurt/f8e6c08b681337dfee76fdf8cc4ebb37/raw/c95333027111d055de8c943d3bc0b757ad638605/hibernate.patch
-          git apply hibernate.patch
           mvn -s settings-example.xml clean install -DskipTests=true -Dtest.elasticsearch.host.provided=true -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION}
           mvn -s settings-example.xml checkstyle:check  -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION}
           cd ../
