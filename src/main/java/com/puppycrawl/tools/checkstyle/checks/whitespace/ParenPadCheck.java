@@ -121,7 +121,6 @@ public class ParenPadCheck extends AbstractParenPadCheck {
             case TokenTypes.METHOD_CALL:
                 processLeft(ast);
                 processRight(ast.findFirstToken(TokenTypes.RPAREN));
-                processExpression(ast);
                 break;
             case TokenTypes.DOT:
             case TokenTypes.EXPR:
@@ -209,7 +208,6 @@ public class ParenPadCheck extends AbstractParenPadCheck {
             while (childAst != null) {
                 if (childAst.getType() == TokenTypes.LPAREN) {
                     processLeft(childAst);
-                    processExpression(childAst);
                 }
                 else if (childAst.getType() == TokenTypes.RPAREN && !isInTypecast(childAst)) {
                     processRight(childAst);
