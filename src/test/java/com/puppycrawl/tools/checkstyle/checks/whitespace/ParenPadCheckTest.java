@@ -26,12 +26,17 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPad
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.lang.reflect.Method;
+
 import org.junit.Test;
+import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 public class ParenPadCheckTest
     extends AbstractModuleTestSupport {
@@ -454,5 +459,30 @@ public class ParenPadCheckTest
             "10:60: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
         verify(checkConfig, getPath("InputParenPadTryWithResources.java"), expected);
+    }
+
+    /**
+     * Pitest requires us to specify more concrete lower bound for condition for
+     * ParenPadCheck#isAcceptableToken as nodes of first several types like CTOR_DEF,
+     * METHOD_DEF will never reach this method. It is hard to recreate conditions for
+     * all tokens to go through this method. We do not want to change main code to have
+     * this set ok tokens more exact, because it will not be ease to understand.
+     * So we have to use reflection to be sure all
+     * acceptable tokens pass that check.
+     */
+    @Test
+    public void testIsAcceptableToken() throws Exception {
+        final ParenPadCheck check = new ParenPadCheck();
+        final Method method = Whitebox.getMethod(ParenPadCheck.class,
+            "isAcceptableToken", DetailAST.class);
+        final DetailAST ast = new DetailAST();
+        final String message = "Expected that all accaptable tokens will pass isAccaptableToken "
+            + "method, but some token don't: ";
+
+        for (int token : check.getAcceptableTokens()) {
+            ast.setType(token);
+            assertTrue(message + TokenUtils.getTokenName(token),
+                    (boolean) method.invoke(check, ast));
+        }
     }
 }
