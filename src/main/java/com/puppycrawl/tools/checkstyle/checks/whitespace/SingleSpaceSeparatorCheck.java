@@ -140,12 +140,17 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
         while (sibling != null) {
             final int columnNo = sibling.getColumnNo() - 1;
 
-            if (columnNo >= 0
+            // in such expression: "j  =123", placed at the start of the string index of the second
+            // space character will be: 2 = 0(j) + 1(whitespace) + 1(whitespace). It is a minimal
+            // possible index for the second whitespace between non-whitespace characters.
+            final int minSecondWhitespaceColumnNo = 2;
+
+            if (columnNo >= minSecondWhitespaceColumnNo
                     && !isTextSeparatedCorrectlyFromPrevious(getLine(sibling.getLineNo() - 1),
                             columnNo)) {
                 log(sibling.getLineNo(), columnNo, MSG_KEY);
             }
-            if (sibling.getChildCount() > 0) {
+            if (sibling.getChildCount() >= 1) {
                 visitEachToken(sibling.getFirstChild());
             }
 
@@ -212,8 +217,7 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
      *         {@code columnNo}.
      */
     private static boolean isPrecededByMultipleWhitespaces(String line, int columnNo) {
-        return columnNo >= 1
-                && Character.isWhitespace(line.charAt(columnNo))
+        return Character.isWhitespace(line.charAt(columnNo))
                 && Character.isWhitespace(line.charAt(columnNo - 1));
     }
 
@@ -239,7 +243,7 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
      *         text on the {@code line}.
      */
     private static boolean isFirstInLine(String line, int columnNo) {
-        return CommonUtils.isBlank(line.substring(0, columnNo + 1));
+        return CommonUtils.isBlank(line.substring(0, columnNo));
     }
 
     /**

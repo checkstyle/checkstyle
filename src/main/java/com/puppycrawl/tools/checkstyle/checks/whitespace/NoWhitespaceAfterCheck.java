@@ -388,7 +388,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
         }
         //ident and lastTypeNode lay on one line
         else {
-            if (ident.getColumnNo() > ast.getColumnNo()
+            if (ident.getColumnNo() >= ast.getColumnNo() + 1
                 || lastTypeNode.getColumnNo() > ident.getColumnNo()) {
                 previousElement = lastTypeNode;
             }
