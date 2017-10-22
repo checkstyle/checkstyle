@@ -320,7 +320,7 @@
     <dependency>
       <groupId>org.eclipse.jgit</groupId>
       <artifactId>org.eclipse.jgit</artifactId>
-      <version>4.8.0.201706111038-r</version>
+      <version>4.9.0.201710071750-r</version>
       <scope>test</scope>
     </dependency>
     <dependency>
