@@ -41,3 +41,9 @@ class InputThrows {
         new java.lang.ref.ReferenceQueue<Integer>();
     }
 }
+
+class InputMultiDimensionalArray {
+    public  Object[][] get() {
+        return new Object[][]{};
+    }
+}
