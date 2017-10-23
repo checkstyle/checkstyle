@@ -121,7 +121,9 @@ Leading_asterisk3: LEADING_ASTERISK -> type(LEADING_ASTERISK);
 XmlTagOpen1: '<' -> type(START), pushMode(xmlTagDefinition);
 STRING: '"' .*? '"' {referenceCatched = false;} -> mode(DEFAULT_MODE);
 PACKAGE_CLASS: Identifier ('.' Identifier)* {referenceCatched = true;};
+DOT: '.';
 HASH: '#' {referenceCatched = true;} -> mode(classMemeber);
+CLASS: [A-Z] [a-zA-Z0-9_$]* {referenceCatched = true;};
 End20: JAVADOC_INLINE_TAG_END
       {
             insideJavadocInlineTag--;
