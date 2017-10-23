@@ -231,6 +231,12 @@ enum XXXXXXX {
 
 /**Javadoc*/ //noise
 @interface/**nope*/ MyAnnotation2/**nope*/ {/**nope*/
+	/**Javadoc*/ //noise
+	@Component2/**nope*/ abstract/**nope*/ String/**nope*/ val1()/**nope*/ default/**nope*/ "";
+	/**Javadoc*/ //noise
+	abstract/**nope*/ String/**nope*/ val2()/**nope*/;
+	/**Javadoc*/ //noise
+	String/**nope*/ val3()/**nope*/;
 }
 
 class MyTemp2 {
