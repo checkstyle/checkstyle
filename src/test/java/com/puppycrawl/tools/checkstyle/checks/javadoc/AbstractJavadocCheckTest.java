@@ -184,7 +184,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputAbstractJavadocPosition.java"), expected);
         assertEquals("Invalid number of javadocs",
-            58, JavadocCatchCheck.javadocsNumber);
+            62, JavadocCatchCheck.javadocsNumber);
     }
 
     @Test
@@ -196,7 +196,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig,
             getPath("InputAbstractJavadocPositionWithSinglelineComments.java"), expected);
         assertEquals("Invalid number of javadocs",
-                58, JavadocCatchCheck.javadocsNumber);
+                62, JavadocCatchCheck.javadocsNumber);
     }
 
     @Test
