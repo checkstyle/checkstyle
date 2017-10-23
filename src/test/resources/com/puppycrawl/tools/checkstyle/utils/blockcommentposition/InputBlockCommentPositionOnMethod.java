@@ -22,4 +22,11 @@ public class InputBlockCommentPositionOnMethod {
     int method2(){
         return 0;
     }
+
+    /**
+     * I'm a javadoc
+     */
+    java.lang.String method3(){
+        return null;
+    }
 }

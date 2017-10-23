@@ -23,25 +23,74 @@
 
     <section name="What is Javadoc comment">
       <p>
-      Javadoc comment is multiline comment <code>/*  */</code> that starts with <b>*</b> character and placed above class definition, interface definition, enum definition, method definition or field definition.
+      Javadoc comment is a multiline comment <code>/*  */</code> that starts with the <b>*</b>
+      character and placed above the class definition, interface definition, enum definition,
+      method definition or field definition.
+      If an annotation precedes any of the definitions listed above, then the javadoc comment
+      should be placed before the annotation.
+      If several multiline comments with javadoc identifiers are placed sequentially, only
+      the one closest to the definition, right above it, with the javadoc identifier will be used.
+      </p>
+      <p>
+      Javadoc comments should contain: a short summary (the first sentence), an optional
+      documentation section, an optional tag section.
+      The first sentence has a special meaning and should be clear, punchy, short, and is ended by
+      a period symbol.
+      Immediately after the first sentence, the main description could begin, which may be followed
+      by the tag section.
+      The tag section starts with the first block tag, which is defined by the first <code>@</code>
+      character that begins a line (ignoring leading asterisks, white space, and leading separator
+      <code>/**</code>).
+      </p>
       <p>For example, here is java file:</p>
       <source><![CDATA[
 /**
  * My <b>class</b>.
- * @see AbstractClass
+ *
+ * @see Annotation
  */
 public class MyClass {
 
+  /** Not a javadoc (ignored). */
+
+  /**
+   * Doubles the value.
+   * The long and detailed explanation what the method does.
+   *
+   * @param value for doubling.
+   * @return double value.
+   */
+
+  /*
+   Multiline comment (ignored).
+  */
+  @Annotation
+  /** Extra javadoc (ignored). */
+  // Single line comment (ignored).
+  public int method(int value) {
+    /** Inner javadoc (ignored). */
+    return value * 2;
+  }
 }
       ]]></source>
-      Javadoc content is:
+      <p>Javadoc content for the MyClass will be:</p>
       <source><![CDATA[
- * My <b>class</b>.
- * @see AbstractClass
+    My <b>class</b>.
+
+    @see Annotation
       ]]></source>
-      </p>
+      <p>Javadoc content for the MyClass.method will be:</p>
+      <source><![CDATA[
+    Doubles the value.
+    The long and detailed explanation what the method does.
+
+    @param value for doubling.
+    @return double value.
+      ]]></source>
+      <p>
       Attention that java comment starts with <code>/*</code>, following with Identificator of comment type. Javadoc Identificator is <code>*</code>. All symbols after Javadoc Identificator till <code>*/</code> are part of javadoc comment.
-      <p>Please note that javadoc-like(miltiline comment with javdoc identificator) comment inside a method is not a javadoc comment and skipped by
+      </p>
+      <p>Please note that javadoc-like (miltiline comment with javdoc identificator) comment inside a method is not a javadoc comment and skipped by
          Sun/Oracle javadoc tool and by our javadoc comment matcher, but such comment will be in AST.
       </p>
       <p>In internet you can find different types of documentation
