@@ -47,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 
 public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
@@ -180,7 +181,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputAbstractJavadocPosition.java"), expected);
         assertEquals("Invalid number of javadocs",
-            58, JavadocCatchCheck.javadocsNumber);
+            65, JavadocCatchCheck.javadocsNumber);
     }
 
     @Test
@@ -192,7 +193,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig,
             getPath("InputAbstractJavadocPositionWithSinglelineComments.java"), expected);
         assertEquals("Invalid number of javadocs",
-                58, JavadocCatchCheck.javadocsNumber);
+                65, JavadocCatchCheck.javadocsNumber);
     }
 
     @Test
@@ -485,6 +486,9 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         @Override
         public void visitJavadocToken(DetailNode ast) {
             assertEquals(ast.toString(), "JAVADOC", ast.getText());
+            final DetailNode text = JavadocUtils.findFirstToken(ast, JavadocTokenTypes.TEXT);
+            Assert.assertNotNull("Empty javadoc text at " + ast, text);
+            assertEquals(ast.toString(), "Javadoc", text.getText());
             javadocsNumber++;
         }
     }

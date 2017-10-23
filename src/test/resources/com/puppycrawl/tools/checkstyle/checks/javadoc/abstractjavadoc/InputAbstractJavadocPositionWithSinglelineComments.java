@@ -95,6 +95,11 @@ class LKJ {
 	void/**nope*/ a/**nope*/(@Component2/**nope*/int/**nope*/ a/**nope*/)/**nope*/{/**nope*/}/**nope*/
 }
 
+class LKM {
+	/**Javadoc*/ //noise
+	java.lang.String/**nope*/ a/**nope*/(/**nope*/)/**nope*/{/**nope*/return null;/**nope*/}/**nope*/
+}
+
 ////////////////
 // INTERFACES //
 ////////////////
@@ -230,13 +235,32 @@ enum XXXXXXX {
 }
 
 /**Javadoc*/ //noise
-@interface/**nope*/ MyAnnotation2/**nope*/ {/**nope*/
+@interface/**nope*/ MyAnnotation2/**nope*/ {
+	/**Javadoc*/ //noise
+	@Component2/**nope*/abstract/**nope*/String/**nope*/val1()/**nope*/default/**nope*/"";
+	/**Javadoc*/ //noise
+	abstract/**nope*/String/**nope*/val2()/**nope*/;
+	/**Javadoc*/ //noise
+	java.lang.String/**nope*/val3()/**nope*/;
+	/**nope*/
 }
 
 class MyTemp2 {
 	/**Javadoc*/ //noise
 	private @interface/**nope*/ MyAnnotation3/**nope*/ {/**nope*/
 	}
+}
+
+/**nope*/ /*noise*/ /**nope*/ /**Javadoc*/ //noise
+interface MultipleJavadocs2 {
+	/**nope*/ /*noise*/ /**nope*/ /**Javadoc*/ //noise
+	int method();
+	/**nope*/ /*noise*/ /**nope*/ /**Javadoc*/ //noise
+	@Deprecated
+	/**nope*/ /*noise*/ /**nope*/ //noise
+	public
+	/**nope*/ /*noise*/ /**nope*/ //noise
+	void method2();
 }
 
 /**nope*/

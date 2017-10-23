@@ -95,6 +95,11 @@ class GGG {
 	void/**nope*/ a/**nope*/(@Component/**nope*/int/**nope*/ a/**nope*/)/**nope*/{/**nope*/}/**nope*/
 }
 
+class HHH {
+	/**Javadoc*/
+	java.lang.String/**nope*/ a/**nope*/()/**nope*/{/**nope*/return null;/**nope*/}/**nope*/
+}
+
 ////////////////
 // INTERFACES //
 ////////////////
@@ -229,13 +234,45 @@ enum CCCCCCC {
 }
 
 /**Javadoc*/
-@interface/**nope*/ MyAnnotation/**nope*/ {/**nope*/
+@interface/**nope*/ MyAnnotation/**nope*/ {
+	/**Javadoc*/
+	@Component/**nope*/abstract/**nope*/String/**nope*/val1()/**nope*/default/**nope*/"";
+	/**Javadoc*/
+	abstract/**nope*/String/**nope*/val2()/**nope*/;
+	/**Javadoc*/
+	java.lang.String/**nope*/val3()/**nope*/;
+	/**nope*/
 }
 
 class MyTemp1 {
 	/**Javadoc*/ //noise
 	private @interface/**nope*/ MyAnnotation3/**nope*/ {/**nope*/
 	}
+}
+
+/**nope*/
+/*noise*/
+/**nope*/
+/**Javadoc*/
+//noise
+@Component
+/*noise*/
+interface MultipleJavadoc {
+	/**nope*/
+	/*noise*/
+	/**nope*/
+	/**Javadoc*/
+	/* noise */
+	public /**nope*/ int method();
+	/**nope*/
+	/*noise*/
+	/**nope*/
+	/**Javadoc*/
+	// noise
+	@Deprecated
+	// noise
+	/**nope*/
+	public /**nope*/ void method2();
 }
 
 /**nope*/

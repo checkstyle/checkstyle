@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
@@ -400,24 +401,40 @@ public final class JavadocUtils {
 
     /**
      * Checks Javadoc comment it's in right place.
-     * From Javadoc util documentation:
+     * <p>From Javadoc util documentation:
      * "Placement of comments - Documentation comments are recognized only when placed
-     * immediately before class, interface, constructor, method, or field
+     * immediately before class, interface, constructor, method, field or annotation field
      * declarations -- see the class example, method example, and field example.
-     * Documentation comments placed in the body of a method are ignored. Only one
-     * documentation comment per declaration statement is recognized by the Javadoc tool."
+     * Documentation comments placed in the body of a method are ignored."</p>
+     * <p>If there are many documentation comments per declaration statement,
+     * only the last one will be recognized.</p>
      *
      * @param blockComment Block comment AST
      * @return true if Javadoc is in right place
+     * @see <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
+     *     Javadoc util documentation</a>
      */
     private static boolean isCorrectJavadocPosition(DetailAST blockComment) {
-        return BlockCommentPosition.isOnClass(blockComment)
-                || BlockCommentPosition.isOnInterface(blockComment)
-                || BlockCommentPosition.isOnEnum(blockComment)
-                || BlockCommentPosition.isOnMethod(blockComment)
-                || BlockCommentPosition.isOnField(blockComment)
-                || BlockCommentPosition.isOnConstructor(blockComment)
-                || BlockCommentPosition.isOnEnumConstant(blockComment)
-                || BlockCommentPosition.isOnAnnotationDef(blockComment);
+        // We must be sure that after this one there are no other documentation comments.
+        DetailAST sibling = blockComment.getNextSibling();
+        while (sibling != null) {
+            if (sibling.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                if (isJavadocComment(getBlockCommentContent(sibling))) {
+                    // Found another javadoc comment, so this one should be ignored.
+                    break;
+                }
+                sibling = sibling.getNextSibling();
+            }
+            else if (sibling.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
+                sibling = sibling.getNextSibling();
+            }
+            else {
+                // Annotation, declaration or modifier is here. Do not check further.
+                sibling = null;
+            }
+        }
+        return sibling == null
+            && (BlockCommentPosition.isOnType(blockComment)
+                || BlockCommentPosition.isOnMember(blockComment));
     }
 }
