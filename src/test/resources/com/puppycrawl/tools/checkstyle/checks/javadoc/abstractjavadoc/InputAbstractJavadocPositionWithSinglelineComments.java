@@ -11,16 +11,16 @@ import java.lang.annotation.Target;
 class/**nope*/ V/**nope*/{
 	/**Javadoc*/ //noise
 	protected/**nope*/ class/**nope*/ N/**nope*/{/**nope*/}
-	
+
 	/**Javadoc*/ //noise
 	private/**nope*/ static/**nope*/ class/**nope*/ X/**nope*/{/**nope*/}
-	
+
 	/**Javadoc*/ //noise
 	@Component2/**nope*/ class/**nope*/ Z/**nope*/{/**nope*/}
-	
+
 	/**Javadoc*/ //noise
 	@Component2/**nope*/ private/**nope*/ class/**nope*/ Y/**nope*/{/**nope*/}
-	
+
 	/**Javadoc*/ //noise
 	private/**nope*/ @Component2/**nope*/ class/**nope*/ M/**nope*/{/**nope*/}
 }
@@ -124,13 +124,13 @@ enum/**nope*/ VVVVV/**nope*/ {}
 class VSZ {
 	/**Javadoc*/ //noise
 	private/**nope*/ enum/**nope*/ NNNNN/**nope*/ {/**nope*/}
-	
+
 	/**Javadoc*/ //noise
 	@Component2/**nope*/ enum/**nope*/ XXXXX/**nope*/ {/**nope*/}
-	
+
 	/**Javadoc*/ //noise
 	@Component2/**nope*/ private/**nope*/ enum/**nope*/ ZZZZZ/**nope*/ {/**nope*/}
-	
+
 	/**Javadoc*/ //noise
 	private/**nope*/ @Component2/**nope*/ enum/**nope*/ YYYYY/**nope*/ {/**nope*/}
 }
@@ -199,14 +199,14 @@ class YYYYYY {
 
 enum VVVVVVV {
 	/**Javadoc*/ //noise
-	ONY/**nope*/, 
+	ONY/**nope*/,
 	/**Javadoc*/ //noise
 	TWO/**nope*/
 }
 
 enum NNNNNNN {
 	/**Javadoc*/ /*noise*/ //noise
-	ONY/**nope*/(/**nope*/1/**nope*/)/**nope*/, 
+	ONY/**nope*/(/**nope*/1/**nope*/)/**nope*/,
 	/**Javadoc*/ //noise
 	TWO/**nope*/(/**nope*/2/**nope*/)/**nope*/;
 	NNNNNNN(int i){}
@@ -214,7 +214,7 @@ enum NNNNNNN {
 
 enum XXXXXXX {
 	/**Javadoc*/ //noise
-	@Component2/**nope*/ ONY/**nope*/(/**nope*/1/**nope*/)/**nope*/, 
+	@Component2/**nope*/ ONY/**nope*/(/**nope*/1/**nope*/)/**nope*/,
 	/**Javadoc*/ //noise
 	@Component2/**nope*/ TWO/**nope*/(/**nope*/2/**nope*/)/**nope*/;
 	XXXXXXX(int i){}
@@ -230,7 +230,13 @@ enum XXXXXXX {
 }
 
 /**Javadoc*/ //noise
-@interface/**nope*/ MyAnnotation2/**nope*/ {/**nope*/
+@interface/**nope*/ MyAnnotation2/**nope*/ {
+	/**Javadoc*/ //noise
+	@Component2/**nope*/ abstract/**nope*/ String/**nope*/ val1()/**nope*/ default/**nope*/ "";
+	/**Javadoc*/ //noise
+	abstract/**nope*/ String/**nope*/ val2()/**nope*/;
+	/**Javadoc*/ //noise
+	String/**nope*/ val3()/**nope*/;
 }
 
 class MyTemp2 {

@@ -229,7 +229,13 @@ enum CCCCCCC {
 }
 
 /**Javadoc*/
-@interface/**nope*/ MyAnnotation/**nope*/ {/**nope*/
+@interface/**nope*/ MyAnnotation/**nope*/ {
+	/**Javadoc*/
+	@Component/**nope*/ abstract/**nope*/ String/**nope*/ val1()/**nope*/ default/**nope*/ "";
+	/**Javadoc*/
+	abstract/**nope*/ String/**nope*/ val2()/**nope*/;
+	/**Javadoc*/
+	String/**nope*/ val3()/**nope*/;
 }
 
 class MyTemp1 {
