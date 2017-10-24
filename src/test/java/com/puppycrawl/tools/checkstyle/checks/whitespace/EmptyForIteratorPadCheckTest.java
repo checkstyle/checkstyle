@@ -25,7 +25,6 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -36,13 +35,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class EmptyForIteratorPadCheckTest
     extends AbstractModuleTestSupport {
-    private DefaultConfiguration checkConfig;
-
-    @Before
-    public void setUp() {
-        checkConfig = createModuleConfig(EmptyForIteratorPadCheck.class);
-    }
-
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/emptyforiteratorpad";
@@ -58,6 +50,7 @@ public class EmptyForIteratorPadCheckTest
 
     @Test
     public void testDefault() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyForIteratorPadCheck.class);
         final String[] expected = {
             "27:31: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
             "43:32: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
@@ -68,6 +61,7 @@ public class EmptyForIteratorPadCheckTest
 
     @Test
     public void testSpaceOption() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyForIteratorPadCheck.class);
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
         final String[] expected = {
             "23:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
@@ -87,6 +81,7 @@ public class EmptyForIteratorPadCheckTest
 
     @Test
     public void testInvalidOption() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyForIteratorPadCheck.class);
         checkConfig.addAttribute("option", "invalid_option");
 
         try {

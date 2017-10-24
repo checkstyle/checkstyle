@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheck.MSG_KEY;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -30,13 +29,6 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class MissingSwitchDefaultCheckTest
     extends AbstractModuleTestSupport {
-    private DefaultConfiguration checkConfig;
-
-    @Before
-    public void setUp() {
-        checkConfig = createModuleConfig(MissingSwitchDefaultCheck.class);
-    }
-
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/missingswitchdefault";
@@ -44,6 +36,8 @@ public class MissingSwitchDefaultCheckTest
 
     @Test
     public void testMissingSwitchDefault() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(MissingSwitchDefaultCheck.class);
         final String[] expected = {
             "17: " + getCheckMessage(MSG_KEY, "default"),
         };

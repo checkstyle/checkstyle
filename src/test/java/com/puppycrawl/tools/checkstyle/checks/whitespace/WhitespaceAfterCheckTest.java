@@ -23,7 +23,6 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterC
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck.MSG_WS_TYPECAST;
 import static org.junit.Assert.assertArrayEquals;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -32,13 +31,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class WhitespaceAfterCheckTest
     extends AbstractModuleTestSupport {
-    private DefaultConfiguration checkConfig;
-
-    @Before
-    public void setUp() {
-        checkConfig = createModuleConfig(WhitespaceAfterCheck.class);
-    }
-
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/whitespaceafter";
@@ -54,6 +46,7 @@ public class WhitespaceAfterCheckTest
 
     @Test
     public void testDefault() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAfterCheck.class);
         final String[] expected = {
             "42:40: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
             "71:30: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
@@ -174,6 +167,7 @@ public class WhitespaceAfterCheckTest
 
     @Test
     public void testEmptyForIterator() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAfterCheck.class);
         final String[] expected = {
             "14:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
             "17:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
@@ -184,6 +178,7 @@ public class WhitespaceAfterCheckTest
 
     @Test
     public void testTypeArgumentAndParameterCommas() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAfterCheck.class);
         final String[] expected = {
             "11:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
             "11:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
@@ -195,6 +190,7 @@ public class WhitespaceAfterCheckTest
 
     @Test
     public void test1322879() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAfterCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputWhitespaceAfterAround.java"),
                expected);

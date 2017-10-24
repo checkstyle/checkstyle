@@ -24,7 +24,6 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -33,13 +32,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
-    private DefaultConfiguration checkConfig;
-
-    @Before
-    public void setUp() {
-        checkConfig = createModuleConfig(TrailingCommentCheck.class);
-    }
-
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/trailingcomment";
@@ -61,6 +53,7 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaults() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(TrailingCommentCheck.class);
         final String[] expected = {
             "4: " + getCheckMessage(MSG_KEY),
             "7: " + getCheckMessage(MSG_KEY),
@@ -74,6 +67,7 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testLegalComment() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(TrailingCommentCheck.class);
         checkConfig.addAttribute("legalComment", "^NOI18N$");
         final String[] expected = {
             "4: " + getCheckMessage(MSG_KEY),

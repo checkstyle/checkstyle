@@ -26,7 +26,6 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -37,12 +36,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
     private static final String[] EMPTY = {};
-    private DefaultConfiguration checkConfig;
-
-    @Before
-    public void setUp() {
-        checkConfig = createModuleConfig(RegexpSinglelineCheck.class);
-    }
 
     @Override
     protected String getPackageLocation() {
@@ -51,6 +44,7 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIt() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpSinglelineCheck.class);
         final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
         checkConfig.addAttribute("format", illegal);
         final String[] expected = {
@@ -62,6 +56,7 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMessageProperty()
             throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpSinglelineCheck.class);
         final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
         checkConfig.addAttribute("format", illegal);
         final String message = "Bad line :(";
@@ -74,6 +69,7 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIgnoreCaseTrue() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpSinglelineCheck.class);
         final String illegal = "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(";
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreCase", "true");
@@ -87,6 +83,7 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIgnoreCaseFalse() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpSinglelineCheck.class);
         final String illegal = "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(";
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreCase", "false");
@@ -96,6 +93,7 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMinimum() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpSinglelineCheck.class);
         final String illegal = "\\r";
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("minimum", "500");
@@ -108,6 +106,7 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSetMessage() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpSinglelineCheck.class);
         final String illegal = "\\r";
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("minimum", "500");
@@ -121,6 +120,7 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMaximum() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpSinglelineCheck.class);
         final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("maximum", "1");

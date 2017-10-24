@@ -25,7 +25,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -36,13 +35,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class SeparatorWrapCheckTest
         extends AbstractModuleTestSupport {
-    private DefaultConfiguration checkConfig;
-
-    @Before
-    public void setUp() {
-        checkConfig = createModuleConfig(SeparatorWrapCheck.class);
-    }
-
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/separatorwrap";
@@ -51,6 +43,7 @@ public class SeparatorWrapCheckTest
     @Test
     public void testDot()
             throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SeparatorWrapCheck.class);
         checkConfig.addAttribute("option", "NL");
         checkConfig.addAttribute("tokens", "DOT");
         final String[] expected = {
@@ -61,6 +54,7 @@ public class SeparatorWrapCheckTest
 
     @Test
     public void testComma() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SeparatorWrapCheck.class);
         checkConfig.addAttribute("option", "EOL");
         checkConfig.addAttribute("tokens", "COMMA");
         final String[] expected = {
@@ -71,6 +65,7 @@ public class SeparatorWrapCheckTest
 
     @Test
     public void testMethodRef() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SeparatorWrapCheck.class);
         checkConfig.addAttribute("option", "NL");
         checkConfig.addAttribute("tokens", "METHOD_REF");
         final String[] expected = {
@@ -92,6 +87,7 @@ public class SeparatorWrapCheckTest
 
     @Test
     public void testInvalidOption() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SeparatorWrapCheck.class);
         checkConfig.addAttribute("option", "invalid_option");
 
         try {
@@ -111,6 +107,7 @@ public class SeparatorWrapCheckTest
 
     @Test
     public void testEllipsis() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SeparatorWrapCheck.class);
         checkConfig.addAttribute("option", "EOL");
         checkConfig.addAttribute("tokens", "ELLIPSIS");
         final String[] expected = {
@@ -121,6 +118,7 @@ public class SeparatorWrapCheckTest
 
     @Test
     public void testArrayDeclarator() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SeparatorWrapCheck.class);
         checkConfig.addAttribute("option", "EOL");
         checkConfig.addAttribute("tokens", "ARRAY_DECLARATOR");
         final String[] expected = {

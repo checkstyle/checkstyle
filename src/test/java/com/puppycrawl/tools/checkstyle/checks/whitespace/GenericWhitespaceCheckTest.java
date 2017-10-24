@@ -27,7 +27,6 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import antlr.CommonHiddenStreamToken;
@@ -39,13 +38,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class GenericWhitespaceCheckTest
     extends AbstractModuleTestSupport {
-    private DefaultConfiguration checkConfig;
-
-    @Before
-    public void setUp() {
-        checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
-    }
-
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/genericwhitespace";
@@ -64,6 +56,7 @@ public class GenericWhitespaceCheckTest
 
     @Test
     public void testDefault() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
         final String[] expected = {
             "16:13: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
             "16:15: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
@@ -97,6 +90,7 @@ public class GenericWhitespaceCheckTest
 
     @Test
     public void testAtTheStartOfTheLine() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
         final String[] expected = {
             "10:1: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
             "12:1: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
@@ -106,6 +100,7 @@ public class GenericWhitespaceCheckTest
 
     @Test
     public void testNestedGeneric() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
         final String[] expected = {
             "11:2: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "&"),
         };
@@ -114,24 +109,28 @@ public class GenericWhitespaceCheckTest
 
     @Test
     public void testList() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputGenericWhitespaceList.java"), expected);
     }
 
     @Test
     public void testInnerClass() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputGenericWhitespaceInnerClass.java"), expected);
     }
 
     @Test
     public void testMethodReferences() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputGenericWhitespaceMethodRef1.java"), expected);
     }
 
     @Test
     public void testMethodReferences2() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
         final String[] expected = {
             "10:70: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
         };
@@ -140,6 +139,7 @@ public class GenericWhitespaceCheckTest
 
     @Test
     public void testGenericEndsTheLine() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputGenericWhitespaceEndsTheLine.java"), expected);
     }
