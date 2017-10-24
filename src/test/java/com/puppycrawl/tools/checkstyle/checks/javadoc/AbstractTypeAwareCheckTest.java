@@ -29,7 +29,6 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -38,13 +37,6 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class AbstractTypeAwareCheckTest extends AbstractModuleTestSupport {
-    private DefaultConfiguration checkConfig;
-
-    @Before
-    public void setUp() {
-        checkConfig = createModuleConfig(JavadocMethodCheck.class);
-    }
-
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/abstracttypeaware";
@@ -178,6 +170,7 @@ public class AbstractTypeAwareCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testWithSuppressLoadErrors() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
         checkConfig.addAttribute("suppressLoadErrors", "true");
         checkConfig.addAttribute("allowUndeclaredRTE", "true");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;

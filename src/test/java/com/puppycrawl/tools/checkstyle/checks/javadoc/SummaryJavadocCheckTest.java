@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.MSG_SUMMARY_JAVADOC_MISSING;
 import static org.junit.Assert.assertArrayEquals;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -33,13 +32,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
-    private DefaultConfiguration checkConfig;
-
-    @Before
-    public void setUp() {
-        checkConfig = createModuleConfig(SummaryJavadocCheck.class);
-    }
-
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc";
@@ -55,6 +47,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCorrect() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
         checkConfig.addAttribute("forbiddenSummaryFragments",
                 "^@return the *|^This method returns *|^A [{]@code [a-zA-Z0-9]+[}]( is a )");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -64,6 +57,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIncorrect() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
         checkConfig.addAttribute("forbiddenSummaryFragments",
                 "^@return the *|^This method returns |^A [{]@code [a-zA-Z0-9]+[}]( is a )");
         final String[] expected = {
@@ -86,6 +80,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testPeriod() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
         checkConfig.addAttribute("period", "_");
         final String[] expected = {
             "5: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
@@ -97,6 +92,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNoPeriod() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
         checkConfig.addAttribute("period", "");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -105,6 +101,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaultConfiguration() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
         final String[] expected = {
             "14: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "32: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
@@ -125,6 +122,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testPeriodAtEnd() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
         checkConfig.addAttribute("period", ".");
         final String[] expected = {
             "10: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),

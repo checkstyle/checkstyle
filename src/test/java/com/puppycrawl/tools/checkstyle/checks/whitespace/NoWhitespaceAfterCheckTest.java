@@ -23,7 +23,6 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfte
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import antlr.CommonHiddenStreamToken;
@@ -34,20 +33,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class NoWhitespaceAfterCheckTest
     extends AbstractModuleTestSupport {
-    private DefaultConfiguration checkConfig;
-
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespaceafter";
     }
 
-    @Before
-    public void setUp() {
-        checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
-    }
-
     @Test
     public void testDefault() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
         checkConfig.addAttribute("allowLineBreaks", "false");
         final String[] expected = {
             "5:14: " + getCheckMessage(MSG_KEY, "."),
@@ -71,6 +64,7 @@ public class NoWhitespaceAfterCheckTest
 
     @Test
     public void testDotAllowLineBreaks() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
         checkConfig.addAttribute("tokens", "DOT");
         final String[] expected = {
             "5:14: " + getCheckMessage(MSG_KEY, "."),
@@ -82,6 +76,7 @@ public class NoWhitespaceAfterCheckTest
 
     @Test
     public void testTypecast() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
         checkConfig.addAttribute("tokens", "TYPECAST");
         final String[] expected = {
             "87:28: " + getCheckMessage(MSG_KEY, ")"),
@@ -93,6 +88,7 @@ public class NoWhitespaceAfterCheckTest
 
     @Test
     public void testArrayDeclarations() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
         checkConfig.addAttribute("tokens", "ARRAY_DECLARATOR");
         checkConfig.addAttribute("tokens", "INDEX_OP");
         final String[] expected = {
@@ -123,6 +119,7 @@ public class NoWhitespaceAfterCheckTest
 
     @Test
     public void testArrayDeclarations2() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
         checkConfig.addAttribute("tokens", "ARRAY_DECLARATOR");
         checkConfig.addAttribute("tokens", "INDEX_OP");
         final String[] expected = {
@@ -173,6 +170,7 @@ public class NoWhitespaceAfterCheckTest
 
     @Test
     public void testArrayDeclarations3() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
         checkConfig.addAttribute("tokens", "ARRAY_DECLARATOR");
         checkConfig.addAttribute("tokens", "INDEX_OP");
         verify(checkConfig, getPath("InputNoWhitespaceAfterArrayDeclarations3.java"));
@@ -180,6 +178,7 @@ public class NoWhitespaceAfterCheckTest
 
     @Test
     public void testSynchronized() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
         checkConfig.addAttribute("tokens", "LITERAL_SYNCHRONIZED");
         final String[] expected = {
             "14:21: " + getCheckMessage(MSG_KEY, "synchronized"),
@@ -189,11 +188,13 @@ public class NoWhitespaceAfterCheckTest
 
     @Test
     public void testNpe() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
         verify(checkConfig, getPath("InputNoWhitespaceAfterFormerNpe.java"));
     }
 
     @Test
     public void testMethodReference() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
         final String[] expected = {
             "9:40: " + getCheckMessage(MSG_KEY, "int"),
             "10:61: " + getCheckMessage(MSG_KEY, "String"),
@@ -203,6 +204,7 @@ public class NoWhitespaceAfterCheckTest
 
     @Test
     public void testMethodReferenceAfter() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
         checkConfig.addAttribute("tokens", "METHOD_REF");
         final String[] expected = {
             "17:37: " + getCheckMessage(MSG_KEY, "::"),

@@ -26,7 +26,6 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -37,13 +36,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class MethodParamPadCheckTest
     extends AbstractModuleTestSupport {
-    private DefaultConfiguration checkConfig;
-
-    @Before
-    public void setUp() {
-        checkConfig = createModuleConfig(MethodParamPadCheck.class);
-    }
-
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/methodparampad";
@@ -59,6 +51,7 @@ public class MethodParamPadCheckTest
 
     @Test
     public void testDefault() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(MethodParamPadCheck.class);
         final String[] expected = {
             "11:32: " + getCheckMessage(MSG_WS_PRECEDED, "("),
             "13:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
@@ -84,6 +77,7 @@ public class MethodParamPadCheckTest
 
     @Test
     public void testAllowLineBreaks() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(MethodParamPadCheck.class);
         checkConfig.addAttribute("allowLineBreaks", "true");
         final String[] expected = {
             "11:32: " + getCheckMessage(MSG_WS_PRECEDED, "("),
@@ -101,6 +95,7 @@ public class MethodParamPadCheckTest
 
     @Test
     public void testSpaceOption() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(MethodParamPadCheck.class);
         checkConfig.addAttribute("option", "space");
         final String[] expected = {
             "6:31: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
@@ -131,6 +126,7 @@ public class MethodParamPadCheckTest
 
     @Test
     public void test1322879() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(MethodParamPadCheck.class);
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodParamPadWhitespaceAround.java"),
@@ -154,6 +150,7 @@ public class MethodParamPadCheckTest
 
     @Test
     public void testInvalidOption() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(MethodParamPadCheck.class);
         checkConfig.addAttribute("option", "invalid_option");
 
         try {

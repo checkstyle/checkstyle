@@ -34,7 +34,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -47,13 +46,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author Daniel Grenner
  */
 public class WriteTagCheckTest extends AbstractModuleTestSupport {
-    private DefaultConfiguration checkConfig;
-
-    @Before
-    public void setUp() {
-        checkConfig = createModuleConfig(WriteTagCheck.class);
-    }
-
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/writetag";
@@ -61,12 +53,14 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaultSettings() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
     @Test
     public void testTag() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
         checkConfig.addAttribute("tag", "@author");
         checkConfig.addAttribute("tagFormat", "\\S");
         final String[] expected = {
@@ -77,6 +71,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMissingFormat() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
         checkConfig.addAttribute("tag", "@author");
         final String[] expected = {
             "10: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
@@ -86,6 +81,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTagIncomplete() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
         checkConfig.addAttribute("tag", "@incomplete");
         checkConfig.addAttribute("tagFormat", "\\S");
         final String[] expected = {
@@ -97,6 +93,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDoubleTag() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
         checkConfig.addAttribute("tag", "@doubletag");
         checkConfig.addAttribute("tagFormat", "\\S");
         final String[] expected = {
@@ -108,6 +105,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testEmptyTag() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
         checkConfig.addAttribute("tag", "@emptytag");
         checkConfig.addAttribute("tagFormat", "");
         final String[] expected = {
@@ -118,6 +116,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMissingTag() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
         checkConfig.addAttribute("tag", "@missingtag");
         final String[] expected = {
             "16: " + getCheckMessage(MSG_MISSING_TAG, "@missingtag"),
@@ -127,6 +126,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMethod() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
         checkConfig.addAttribute("tag", "@todo");
         checkConfig.addAttribute("tagFormat", "\\S");
         checkConfig.addAttribute("tokens",
@@ -141,6 +141,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSeverity() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
         checkConfig.addAttribute("tag", "@author");
         checkConfig.addAttribute("tagFormat", "\\S");
         checkConfig.addAttribute("severity", "ignore");
@@ -152,6 +153,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIgnoreMissing() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
         checkConfig.addAttribute("tag", "@todo2");
         checkConfig.addAttribute("tagFormat", "\\S");
         checkConfig.addAttribute("severity", "ignore");
@@ -162,6 +164,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRegularEx()
             throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
         checkConfig.addAttribute("tag", "@author");
         checkConfig.addAttribute("tagFormat", "0*");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -171,6 +174,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRegularExError()
             throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
         checkConfig.addAttribute("tag", "@author");
         checkConfig.addAttribute("tagFormat", "ABC");
         final String[] expected = {
@@ -181,6 +185,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testEnumsAndAnnotations() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
         checkConfig.addAttribute("tag", "@incomplete");
         checkConfig.addAttribute("tagFormat", ".*");
         checkConfig.addAttribute("severity", "ignore");

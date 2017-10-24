@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapChec
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -34,13 +33,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class OperatorWrapCheckTest
     extends AbstractModuleTestSupport {
-    private DefaultConfiguration checkConfig;
-
-    @Before
-    public void setUp() {
-        checkConfig = createModuleConfig(OperatorWrapCheck.class);
-    }
-
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/operatorwrap";
@@ -49,6 +41,7 @@ public class OperatorWrapCheckTest
     @Test
     public void testDefault()
             throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
         final String[] expected = {
             "17:19: " + getCheckMessage(MSG_LINE_NEW, "+"),
             "18:15: " + getCheckMessage(MSG_LINE_NEW, "-"),
@@ -62,6 +55,7 @@ public class OperatorWrapCheckTest
     @Test
     public void testOpWrapEol()
             throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
         checkConfig.addAttribute("option", WrapOption.EOL.toString());
         final String[] expected = {
             "20:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "-"),
@@ -74,6 +68,7 @@ public class OperatorWrapCheckTest
     @Test
     public void testNonDefOpsDefault()
             throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
         checkConfig.addAttribute("tokens", "METHOD_REF");
         final String[] expected = {
             "33:33: " + getCheckMessage(MSG_LINE_NEW, "::"),
@@ -84,6 +79,7 @@ public class OperatorWrapCheckTest
     @Test
     public void testNonDefOpsWrapEol()
             throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
         checkConfig.addAttribute("tokens", "METHOD_REF");
         checkConfig.addAttribute("option", WrapOption.EOL.toString());
         final String[] expected = {
@@ -96,6 +92,7 @@ public class OperatorWrapCheckTest
     @Test
     public void testAssignEol()
             throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
         checkConfig.addAttribute("tokens", "ASSIGN");
         checkConfig.addAttribute("option", WrapOption.EOL.toString());
         final String[] expected = {
@@ -106,6 +103,7 @@ public class OperatorWrapCheckTest
 
     @Test
     public void testInvalidOption() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
         checkConfig.addAttribute("option", "invalid_option");
 
         try {

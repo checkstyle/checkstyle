@@ -25,7 +25,6 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphChe
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_TAG_AFTER;
 import static org.junit.Assert.assertArrayEquals;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -34,13 +33,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
-    private DefaultConfiguration checkConfig;
-
-    @Before
-    public void setUp() {
-        checkConfig = createModuleConfig(JavadocParagraphCheck.class);
-    }
-
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadocparagraph";
@@ -56,6 +48,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCorrect() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(JavadocParagraphCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputJavadocParagraphCorrect.java"), expected);
@@ -63,6 +56,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIncorrect() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(JavadocParagraphCheck.class);
         final String[] expected = {
             "7: " + getCheckMessage(MSG_MISPLACED_TAG),
             "7: " + getCheckMessage(MSG_LINE_BEFORE),
@@ -106,6 +100,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAllowNewlineParagraph() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(JavadocParagraphCheck.class);
         checkConfig.addAttribute("allowNewlineParagraph", "false");
         final String[] expected = {
             "7: " + getCheckMessage(MSG_LINE_BEFORE),

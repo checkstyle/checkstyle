@@ -42,7 +42,6 @@ import java.util.Map;
 import java.util.SortedSet;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -61,13 +60,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(Closeables.class)
 public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
-
-    private DefaultConfiguration checkConfig;
-
-    @Before
-    public void setUp() {
-        checkConfig = createModuleConfig(UniquePropertiesCheck.class);
-    }
 
     @Override
     protected String getPackageLocation() {
@@ -89,6 +81,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testDefault() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(UniquePropertiesCheck.class);
         final String[] expected = {
             "3: " + getCheckMessage(MSG_KEY, "general.exception", 2),
             "5: " + getCheckMessage(MSG_KEY, "DefaultLogger.auditStarted", 2),
@@ -112,6 +105,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
         doNothing().when(Closeables.class);
         Closeables.closeQuietly(any(FileInputStream.class));
 
+        final DefaultConfiguration checkConfig = createModuleConfig(UniquePropertiesCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputUniquePropertiesWithoutErrors.properties"), expected);
 
@@ -142,6 +136,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDuplicatedProperty() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(UniquePropertiesCheck.class);
         final String[] expected = {
             "2: " + getCheckMessage(MSG_KEY, "key", 2),
         };
@@ -150,6 +145,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testShouldNotProcessFilesWithWrongFileExtension() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(UniquePropertiesCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputUniqueProperties.txt"), expected);
     }
@@ -159,6 +155,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testIoException() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(UniquePropertiesCheck.class);
         final UniquePropertiesCheck check = new UniquePropertiesCheck();
         check.configure(checkConfig);
         final String fileName =

@@ -31,8 +31,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
 
-    private DefaultConfiguration checkConfig;
-
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/defaultcomeslast";
@@ -40,7 +38,7 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSkipIfLastAndSharedWithCase() throws Exception {
-        checkConfig = createModuleConfig(DefaultComesLastCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(DefaultComesLastCheck.class);
         checkConfig.addAttribute("skipIfLastAndSharedWithCase", "true");
         final String[] expected = {
             "17:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
@@ -59,7 +57,7 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        checkConfig = createModuleConfig(DefaultComesLastCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(DefaultComesLastCheck.class);
         final String[] expected = {
             "25:9: " + getCheckMessage(MSG_KEY),
             "32:24: " + getCheckMessage(MSG_KEY),
@@ -84,7 +82,7 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultMethodsInJava8()
             throws Exception {
-        checkConfig = createModuleConfig(DefaultComesLastCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(DefaultComesLastCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                 getPath("InputDefaultComesLastDefaultMethodsInInterface.java"),

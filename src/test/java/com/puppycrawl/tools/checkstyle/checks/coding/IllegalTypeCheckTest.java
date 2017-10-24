@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck.MSG
 import java.io.File;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -34,13 +33,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
-    private DefaultConfiguration checkConfig;
-
-    @Before
-    public void setUp() {
-        checkConfig = createModuleConfig(IllegalTypeCheck.class);
-    }
-
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/illegaltype";
@@ -48,6 +40,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testValidateAbstractClassNamesSetToTrue() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
         checkConfig.addAttribute("validateAbstractClassNames", "true");
         final String[] expected = {
             "27:5: " + getCheckMessage(MSG_KEY, "AbstractClass"),
@@ -60,6 +53,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testValidateAbstractClassNamesSetToFalse() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
         checkConfig.addAttribute("validateAbstractClassNames", "false");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -68,6 +62,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaults() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
         final String[] expected = {
             "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
             "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
@@ -78,6 +73,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIgnoreMethodNames() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
         checkConfig.addAttribute("ignoredMethodNames", "table2");
         checkConfig.addAttribute("validateAbstractClassNames", "true");
         final String[] expected = {
@@ -93,6 +89,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFormat() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
         checkConfig.addAttribute("format", "^$");
 
         final String[] expected = {
@@ -105,6 +102,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testLegalAbstractClassNames() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
         checkConfig.addAttribute("validateAbstractClassNames", "true");
         checkConfig.addAttribute("legalAbstractClassNames", "AbstractClass");
 
@@ -121,6 +119,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSameFileNameFalsePositive() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
         checkConfig.addAttribute("illegalClassNames", "java.util.GregorianCalendar, SubCalendar, "
                 + "java.util.List");
 
@@ -134,6 +133,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSameFileNameGeneral() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
         checkConfig.addAttribute("illegalClassNames",
             "List, InputIllegalTypeGregorianCalendar, java.io.File, ArrayList, Boolean");
         final String[] expected = {
@@ -152,6 +152,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testStarImports() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
         checkConfig.addAttribute("illegalClassNames", "List");
 
         final String[] expected = {
@@ -163,6 +164,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testStaticImports() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
         checkConfig.addAttribute("illegalClassNames", "SomeStaticClass");
         checkConfig.addAttribute("ignoredMethodNames", "foo1");
 
@@ -176,6 +178,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMemberModifiers() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
         checkConfig.addAttribute("validateAbstractClassNames", "true");
         checkConfig.addAttribute("memberModifiers", "LITERAL_PRIVATE, LITERAL_PROTECTED,"
                 + " LITERAL_STATIC");
@@ -198,6 +201,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testClearDataBetweenFiles() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
         final String violationFile = getPath("InputIllegalType.java");
         checkConfig.addAttribute("illegalClassNames", "java.util.TreeSet");
         final String[] expected = {
