@@ -26,6 +26,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Matchers.anyObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -40,7 +41,6 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
@@ -237,22 +237,17 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("InputHeaderjava.header"));
 
-        final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyle_checks");
-        checkerConfig.addChild(checkConfig);
-        checkerConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
-
-        final Checker checker = new Checker();
-        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        checker.configure(checkerConfig);
-        checker.addListener(getBriefUtLogger());
+        final DefaultConfiguration checkerConfig = createRootConfig(checkConfig);
+        final File cacheFile = temporaryFolder.newFile();
+        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
 
         final String[] expected = {
             "1: " + getCheckMessage(MSG_MISSING),
         };
 
-        verify(checker, getPath("InputHeader.java"), expected);
+        verify(checkerConfig, getPath("InputHeader.java"), expected);
         // One more time to use cache.
-        verify(checker, getPath("InputHeader.java"), expected);
+        verify(checkerConfig, getPath("InputHeader.java"), expected);
 
     }
 
@@ -261,20 +256,15 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
         checkConfig.addAttribute("header", "Test");
 
-        final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyle_checks");
-        checkerConfig.addChild(checkConfig);
-        checkerConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
-
-        final Checker checker = new Checker();
-        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        checker.configure(checkerConfig);
-        checker.addListener(getBriefUtLogger());
+        final DefaultConfiguration checkerConfig = createRootConfig(checkConfig);
+        final File cacheFile = temporaryFolder.newFile();
+        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
 
         final String[] expected = {
             "1: " + getCheckMessage(MSG_MISMATCH, "Test"),
         };
 
-        verify(checker, getPath("InputHeader.java"), expected);
+        verify(checkerConfig, getPath("InputHeader.java"), expected);
     }
 
     @Test

@@ -65,6 +65,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         IN_CHECKER
     }
 
+    private static final String ROOT_MODULE_NAME = "root";
+
     private final ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
     /**
@@ -97,15 +99,18 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             throws Exception {
         ModuleCreationOption moduleCreationOption = ModuleCreationOption.IN_CHECKER;
 
-        try {
-            final Class<?> moduleClass = Class.forName(moduleConfig.getName());
-            if (ModuleReflectionUtils.isCheckstyleCheck(moduleClass)
-                    || ModuleReflectionUtils.isTreeWalkerFilterModule(moduleClass)) {
-                moduleCreationOption = ModuleCreationOption.IN_TREEWALKER;
+        final String moduleName = moduleConfig.getName();
+        if (!ROOT_MODULE_NAME.equals(moduleName)) {
+            try {
+                final Class<?> moduleClass = Class.forName(moduleName);
+                if (ModuleReflectionUtils.isCheckstyleCheck(moduleClass)
+                        || ModuleReflectionUtils.isTreeWalkerFilterModule(moduleClass)) {
+                    moduleCreationOption = ModuleCreationOption.IN_TREEWALKER;
+                }
             }
-        }
-        catch (ClassNotFoundException ignore) {
-            // ignore exception, assume it is not part of TreeWalker
+            catch (ClassNotFoundException ignore) {
+                // ignore exception, assume it is not part of TreeWalker
+            }
         }
 
         return createChecker(moduleConfig, moduleCreationOption);
@@ -122,18 +127,20 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     public Checker createChecker(Configuration moduleConfig,
                                  ModuleCreationOption moduleCreationOption)
             throws Exception {
-        final Configuration dc;
-
-        if (moduleCreationOption == ModuleCreationOption.IN_TREEWALKER) {
-            dc = createTreeWalkerConfig(moduleConfig);
-        }
-        else {
-            dc = createRootConfig(moduleConfig);
-        }
-
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        checker.configure(dc);
+
+        if (moduleCreationOption == ModuleCreationOption.IN_TREEWALKER) {
+            final Configuration dc = createTreeWalkerConfig(moduleConfig);
+            checker.configure(dc);
+        }
+        else if (ROOT_MODULE_NAME.equals(moduleConfig.getName())) {
+            checker.configure(moduleConfig);
+        }
+        else {
+            final Configuration dc = createRootConfig(moduleConfig);
+            checker.configure(dc);
+        }
         checker.addListener(new BriefUtLogger(stream));
         return checker;
     }
@@ -162,8 +169,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @return {@link DefaultConfiguration} for the given {@link Configuration} instance.
      */
     protected DefaultConfiguration createRootConfig(Configuration config) {
-        final DefaultConfiguration dc = new DefaultConfiguration("root");
-        dc.addChild(config);
+        final DefaultConfiguration dc = new DefaultConfiguration(ROOT_MODULE_NAME);
+        if (config != null) {
+            dc.addChild(config);
+        }
         return dc;
     }
 

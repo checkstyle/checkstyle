@@ -40,7 +40,6 @@ import org.junit.contrib.java.lang.system.SystemErrRule;
 import org.junit.rules.TemporaryFolder;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -121,16 +120,13 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testWithMultipleChecks() throws Exception {
-        final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
         final DefaultConfiguration checksConfig = createModuleConfig(TreeWalker.class);
         checksConfig.addChild(createModuleConfig(AtclauseOrderCheck.class));
         checksConfig.addChild(createModuleConfig(JavadocParagraphCheck.class));
-        checkerConfig.addChild(checksConfig);
-        final Checker checker = new Checker();
-        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        checker.configure(checkerConfig);
 
-        verify(checker, getPath("InputAbstractJavadocCorrectParagraph.java"));
+        final DefaultConfiguration checkerConfig = createRootConfig(checksConfig);
+
+        verify(checkerConfig, getPath("InputAbstractJavadocCorrectParagraph.java"));
     }
 
     @Test
