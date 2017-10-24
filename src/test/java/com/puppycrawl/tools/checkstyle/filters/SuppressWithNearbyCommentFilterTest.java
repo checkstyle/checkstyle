@@ -92,7 +92,7 @@ public class SuppressWithNearbyCommentFilterTest
     @Test
     public void testDefault() throws Exception {
         final DefaultConfiguration filterConfig =
-            createFilterConfig(SuppressWithNearbyCommentFilter.class);
+            createModuleConfig(SuppressWithNearbyCommentFilter.class);
         final String[] suppressed = {
             "14:17: Name 'A1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "15:17: Name 'A2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
@@ -108,7 +108,7 @@ public class SuppressWithNearbyCommentFilterTest
     @Test
     public void testCheckC() throws Exception {
         final DefaultConfiguration filterConfig =
-            createFilterConfig(SuppressWithNearbyCommentFilter.class);
+            createModuleConfig(SuppressWithNearbyCommentFilter.class);
         filterConfig.addAttribute("checkC", "false");
         final String[] suppressed = {
             "14:17: Name 'A1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
@@ -120,7 +120,7 @@ public class SuppressWithNearbyCommentFilterTest
     @Test
     public void testCheckCpp() throws Exception {
         final DefaultConfiguration filterConfig =
-            createFilterConfig(SuppressWithNearbyCommentFilter.class);
+            createModuleConfig(SuppressWithNearbyCommentFilter.class);
         filterConfig.addAttribute("checkCPP", "false");
         final String[] suppressed = {
             "15:17: Name 'A2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
@@ -135,7 +135,7 @@ public class SuppressWithNearbyCommentFilterTest
     @Test
     public void testUsingVariableMessage() throws Exception {
         final DefaultConfiguration filterConfig =
-            createFilterConfig(SuppressWithNearbyCommentFilter.class);
+            createModuleConfig(SuppressWithNearbyCommentFilter.class);
         filterConfig.addAttribute("commentFormat", "ALLOW CATCH (\\w+) BECAUSE");
         filterConfig.addAttribute("checkFormat", "IllegalCatchCheck");
         filterConfig.addAttribute("messageFormat", "$1");
@@ -150,7 +150,7 @@ public class SuppressWithNearbyCommentFilterTest
     @Test
     public void testUsingVariableCheckOnNextLine() throws Exception {
         final DefaultConfiguration filterConfig =
-            createFilterConfig(SuppressWithNearbyCommentFilter.class);
+            createModuleConfig(SuppressWithNearbyCommentFilter.class);
         filterConfig.addAttribute("commentFormat", "ALLOW (\\w+) ON NEXT LINE");
         filterConfig.addAttribute("checkFormat", "$1");
         filterConfig.addAttribute("influenceFormat", "1");
@@ -163,7 +163,7 @@ public class SuppressWithNearbyCommentFilterTest
     @Test
     public void testUsingVariableCheckOnPreviousLine() throws Exception {
         final DefaultConfiguration filterConfig =
-            createFilterConfig(SuppressWithNearbyCommentFilter.class);
+            createModuleConfig(SuppressWithNearbyCommentFilter.class);
         filterConfig.addAttribute("commentFormat", "ALLOW (\\w+) ON PREVIOUS LINE");
         filterConfig.addAttribute("checkFormat", "$1");
         filterConfig.addAttribute("influenceFormat", "-1");
@@ -176,7 +176,7 @@ public class SuppressWithNearbyCommentFilterTest
     @Test
     public void testVariableCheckOnVariableNumberOfLines() throws Exception {
         final DefaultConfiguration filterConfig =
-            createFilterConfig(SuppressWithNearbyCommentFilter.class);
+            createModuleConfig(SuppressWithNearbyCommentFilter.class);
         filterConfig.addAttribute("commentFormat", "ALLOW (\\w+) UNTIL THIS LINE([+-]\\d+)");
         filterConfig.addAttribute("checkFormat", "$1");
         filterConfig.addAttribute("influenceFormat", "$2");
@@ -192,10 +192,6 @@ public class SuppressWithNearbyCommentFilterTest
     @Test
     public void testEqualsAndHashCodeOfTagClass() {
         EqualsVerifier.forClass(SuppressWithNearbyCommentFilter.Tag.class).usingGetClass().verify();
-    }
-
-    private static DefaultConfiguration createFilterConfig(Class<?> classObj) {
-        return new DefaultConfiguration(classObj.getName());
     }
 
     private void verifySuppressed(Configuration filterConfig,
@@ -244,7 +240,7 @@ public class SuppressWithNearbyCommentFilterTest
     @Test
     public void testInvalidInfluenceFormat() throws Exception {
         final DefaultConfiguration filterConfig =
-            createFilterConfig(SuppressWithNearbyCommentFilter.class);
+            createModuleConfig(SuppressWithNearbyCommentFilter.class);
         filterConfig.addAttribute("influenceFormat", "a");
 
         try {
@@ -261,7 +257,7 @@ public class SuppressWithNearbyCommentFilterTest
     @Test
     public void testInfluenceFormat() throws Exception {
         final DefaultConfiguration filterConfig =
-                createFilterConfig(SuppressWithNearbyCommentFilter.class);
+                createModuleConfig(SuppressWithNearbyCommentFilter.class);
         filterConfig.addAttribute("influenceFormat", "1");
 
         final String[] suppressed = {
@@ -280,7 +276,7 @@ public class SuppressWithNearbyCommentFilterTest
     @Test
     public void testInvalidCheckFormat() throws Exception {
         final DefaultConfiguration filterConfig =
-            createFilterConfig(SuppressWithNearbyCommentFilter.class);
+            createModuleConfig(SuppressWithNearbyCommentFilter.class);
         filterConfig.addAttribute("checkFormat", "a[l");
 
         try {
@@ -314,7 +310,7 @@ public class SuppressWithNearbyCommentFilterTest
     @Test
     public void testUsingTagMessageRegexp() throws Exception {
         final DefaultConfiguration filterConfig =
-            createFilterConfig(SuppressWithNearbyCommentFilter.class);
+            createModuleConfig(SuppressWithNearbyCommentFilter.class);
         filterConfig.addAttribute("commentFormat", "SUPPRESS CHECKSTYLE (\\w+)");
         filterConfig.addAttribute("checkFormat", "IllegalCatchCheck");
         filterConfig.addAttribute("messageFormat", "^$1 ololo*$");
@@ -325,7 +321,7 @@ public class SuppressWithNearbyCommentFilterTest
     @Test
     public void testSuppressById() throws Exception {
         final DefaultConfiguration filterConfig =
-            createFilterConfig(SuppressWithNearbyCommentFilter.class);
+            createModuleConfig(SuppressWithNearbyCommentFilter.class);
         filterConfig.addAttribute("commentFormat", "@cs-: (\\w+) \\(\\w+\\)");
         filterConfig.addAttribute("checkFormat", "$1");
         filterConfig.addAttribute("influenceFormat", "0");
