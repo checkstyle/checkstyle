@@ -313,23 +313,6 @@ META_HTML_TAG_NAME: M E T A {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
 PARAM_HTML_TAG_NAME: P A R A M {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
 EMBED_HTML_TAG_NAME: E M B E D {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
 KEYGEN_HTML_TAG_NAME: K E Y G E N {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
-SOURCE_HTML_TAG_NAME: S O U R C E {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
-TRACK_HTML_TAG_NAME: T R A C K {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
-WBR_HTML_TAG_NAME: W B R {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
-
-// other tag names and attribute names
-HTML_TAG_NAME: NAME_START_CHAR NAME_CHAR* {htmlTagNameCatched=true;};
-
-LeadingLEADING_ASTERISK1: LEADING_ASTERISK -> type(LEADING_ASTERISK);
-Newline1: NEWLINE -> type(NEWLINE);
-WhiteSpace3: WS -> type(WS);
-
-Char11: .
-      {
-            skipCurrentTokenConsuming();
-            htmlTagNameCatched = false;
-      } -> skip, mode(DEFAULT_MODE);
-
 
 fragment
 HEXDIGIT    :   [a-fA-F0-9] ;
@@ -412,3 +395,21 @@ LeadingAst: LEADING_ASTERISK -> type(LEADING_ASTERISK);
 Newline6: NEWLINE -> type(NEWLINE);
 WhiteSpace: WS -> type(WS);
 CommentChar: . -> type(CHAR);
+
+mode xmlTagDefinition;
+SOURCE_HTML_TAG_NAME: S O U R C E {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
+TRACK_HTML_TAG_NAME: T R A C K {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
+WBR_HTML_TAG_NAME: W B R {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
+
+// other tag names and attribute names
+HTML_TAG_NAME: NAME_START_CHAR NAME_CHAR* {htmlTagNameCatched=true;};
+
+LeadingLEADING_ASTERISK1: LEADING_ASTERISK -> type(LEADING_ASTERISK);
+Newline1: NEWLINE -> type(NEWLINE);
+WhiteSpace3: WS -> type(WS);
+
+Char11: .
+      {
+            skipCurrentTokenConsuming();
+            htmlTagNameCatched = false;
+      } -> skip, mode(DEFAULT_MODE);
