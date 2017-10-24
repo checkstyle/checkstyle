@@ -28,7 +28,6 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class BeforeExecutionExclusionFileFilterTest extends AbstractModuleTestSupport {
@@ -67,7 +66,7 @@ public class BeforeExecutionExclusionFileFilterTest extends AbstractModuleTestSu
     @Test
     public void testRejectBadFile() throws Exception {
         final DefaultConfiguration filterConfig =
-                createBeforeExecutionFileFilterConfig(BeforeExecutionExclusionFileFilter.class);
+                createModuleConfig(BeforeExecutionExclusionFileFilter.class);
         filterConfig.addAttribute("fileNamePattern", "IncorrectClass\\.java");
 
         final String[] violations = CommonUtils.EMPTY_STRING_ARRAY;
@@ -84,17 +83,5 @@ public class BeforeExecutionExclusionFileFilterTest extends AbstractModuleTestSu
             exclusionBeforeExecutionFileFilter.setFileNamePattern(Pattern.compile(fileName));
         }
         return exclusionBeforeExecutionFileFilter;
-    }
-
-    private static DefaultConfiguration createBeforeExecutionFileFilterConfig(Class<?> aClass) {
-        return new DefaultConfiguration(aClass.getName());
-    }
-
-    @Override
-    protected DefaultConfiguration createTreeWalkerConfig(Configuration config) {
-        final DefaultConfiguration dc =
-                new DefaultConfiguration("configuration");
-        dc.addChild(config);
-        return dc;
     }
 }

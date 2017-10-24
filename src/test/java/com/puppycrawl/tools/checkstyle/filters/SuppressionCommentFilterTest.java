@@ -85,7 +85,7 @@ public class SuppressionCommentFilterTest
     @Test
     public void testDefault() throws Exception {
         final DefaultConfiguration filterConfig =
-            createFilterConfig(SuppressionCommentFilter.class);
+            createModuleConfig(SuppressionCommentFilter.class);
         final String[] suppressed = {
             "16:17: Name 'J' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "43:17: Name 'T' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
@@ -99,7 +99,7 @@ public class SuppressionCommentFilterTest
     @Test
     public void testCheckC() throws Exception {
         final DefaultConfiguration filterConfig =
-            createFilterConfig(SuppressionCommentFilter.class);
+            createModuleConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("checkC", "false");
         final String[] suppressed = {
             "43:17: Name 'T' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
@@ -112,7 +112,7 @@ public class SuppressionCommentFilterTest
     @Test
     public void testCheckCpp() throws Exception {
         final DefaultConfiguration filterConfig =
-            createFilterConfig(SuppressionCommentFilter.class);
+            createModuleConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("checkCPP", "false");
         final String[] suppressed = {
             "16:17: Name 'J' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
@@ -125,7 +125,7 @@ public class SuppressionCommentFilterTest
     @Test
     public void testOffFormat() throws Exception {
         final DefaultConfiguration filterConfig =
-            createFilterConfig(SuppressionCommentFilter.class);
+            createModuleConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("offCommentFormat", "CS_OFF");
         filterConfig.addAttribute("onCommentFormat", "CS_ON");
         final String[] suppressed = {
@@ -142,7 +142,7 @@ public class SuppressionCommentFilterTest
     @Test
     public void testOffFormatCheck() throws Exception {
         final DefaultConfiguration filterConfig =
-            createFilterConfig(SuppressionCommentFilter.class);
+            createModuleConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("offCommentFormat", "CS_OFF");
         filterConfig.addAttribute("onCommentFormat", "CS_ON");
         filterConfig.addAttribute("checkFormat", "ConstantNameCheck");
@@ -155,7 +155,7 @@ public class SuppressionCommentFilterTest
     @Test
     public void testArgumentSuppression() throws Exception {
         final DefaultConfiguration filterConfig =
-            createFilterConfig(SuppressionCommentFilter.class);
+            createModuleConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("offCommentFormat", "IllegalCatchCheck OFF\\: (\\w+)");
         filterConfig.addAttribute("onCommentFormat", "IllegalCatchCheck ON\\: (\\w+)");
         filterConfig.addAttribute("checkFormat", "IllegalCatchCheck");
@@ -169,7 +169,7 @@ public class SuppressionCommentFilterTest
     @Test
     public void testExpansion() throws Exception {
         final DefaultConfiguration filterConfig =
-            createFilterConfig(SuppressionCommentFilter.class);
+            createModuleConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("offCommentFormat", "CSOFF\\: ([\\w\\|]+)");
         filterConfig.addAttribute("onCommentFormat", "CSON\\: ([\\w\\|]+)");
         filterConfig.addAttribute("checkFormat", "$1");
@@ -184,7 +184,7 @@ public class SuppressionCommentFilterTest
     @Test
     public void testMessage() throws Exception {
         final DefaultConfiguration filterConfig =
-            createFilterConfig(SuppressionCommentFilter.class);
+            createModuleConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("onCommentFormat", "UNUSED ON\\: (\\w+)");
         filterConfig.addAttribute("offCommentFormat", "UNUSED OFF\\: (\\w+)");
         filterConfig.addAttribute("checkFormat", "Unused");
@@ -193,10 +193,6 @@ public class SuppressionCommentFilterTest
             "47:34: Unused parameter 'aInt'.",
         };
         verifySuppressed(filterConfig, suppressed);
-    }
-
-    private static DefaultConfiguration createFilterConfig(Class<?> aClass) {
-        return new DefaultConfiguration(aClass.getName());
     }
 
     private void verifySuppressed(Configuration aFilterConfig,
@@ -262,7 +258,7 @@ public class SuppressionCommentFilterTest
     @Test
     public void testInvalidCheckFormat() throws Exception {
         final DefaultConfiguration filterConfig =
-            createFilterConfig(SuppressionCommentFilter.class);
+            createModuleConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("checkFormat", "e[l");
 
         try {
@@ -279,7 +275,7 @@ public class SuppressionCommentFilterTest
     @Test
     public void testInvalidMessageFormat() throws Exception {
         final DefaultConfiguration filterConfig =
-            createFilterConfig(SuppressionCommentFilter.class);
+            createModuleConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("messageFormat", "e[l");
 
         try {
@@ -305,7 +301,7 @@ public class SuppressionCommentFilterTest
     @Test
     public void testSuppressById() throws Exception {
         final DefaultConfiguration filterConfig =
-            createFilterConfig(SuppressionCommentFilter.class);
+            createModuleConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("offCommentFormat", "CSOFF (\\w+) \\(\\w+\\)");
         filterConfig.addAttribute("onCommentFormat", "CSON (\\w+)");
         filterConfig.addAttribute("checkFormat", "$1");

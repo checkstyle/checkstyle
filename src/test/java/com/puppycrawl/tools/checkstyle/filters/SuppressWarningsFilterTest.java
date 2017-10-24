@@ -82,7 +82,7 @@ public class SuppressWarningsFilterTest
     @Test
     public void testDefault() throws Exception {
         final DefaultConfiguration filterConfig =
-            createFilterConfig(SuppressWarningsFilter.class);
+            createModuleConfig(SuppressWarningsFilter.class);
         final String[] suppressed = {
             "24:17: Name 'J' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "29:17: Name 'L' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
@@ -96,10 +96,6 @@ public class SuppressWarningsFilterTest
             "97: Missing a Javadoc comment.",
         };
         verifySuppressed(filterConfig, suppressed);
-    }
-
-    private static DefaultConfiguration createFilterConfig(Class<?> classObj) {
-        return new DefaultConfiguration(classObj.getName());
     }
 
     private void verifySuppressed(Configuration aFilterConfig,
@@ -161,7 +157,7 @@ public class SuppressWarningsFilterTest
     @Test
     public void testSuppressById() throws Exception {
         final DefaultConfiguration filterConfig =
-            createFilterConfig(SuppressWarningsFilter.class);
+            createModuleConfig(SuppressWarningsFilter.class);
         final String[] suppressedViolationMessages = {
             "6:17: Name 'A1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "8: Uncommented main method found.",
