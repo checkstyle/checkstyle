@@ -910,16 +910,6 @@ metaTag: START META_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
          (SLASH_END | END);
 paramTag: START PARAM_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
          (SLASH_END | END);
-embedTag: START EMBED_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
-         (SLASH_END | END);
-keygenTag: START KEYGEN_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
-         (SLASH_END | END);
-sourceTag: START SOURCE_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
-         (SLASH_END | END);
-trackTag: START TRACK_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
-         (SLASH_END | END);
-wbrTag: START WBR_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
-         (SLASH_END | END);
 
 wrongSinletonTag: START SLASH singletonTagName
                   END {notifyErrorListeners($singletonTagName.start,
@@ -1028,3 +1018,14 @@ text : ((CHAR | WS)
   else if (_alt == 1) continue;
  }
        )+;
+
+embedTag: START EMBED_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
+         (SLASH_END | END);
+keygenTag: START KEYGEN_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
+         (SLASH_END | END);
+sourceTag: START SOURCE_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
+         (SLASH_END | END);
+trackTag: START TRACK_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
+         (SLASH_END | END);
+wbrTag: START WBR_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
+         (SLASH_END | END);
