@@ -98,7 +98,10 @@ public final class BlockCommentPosition {
     public static boolean isOnField(DetailAST blockComment) {
         return isOnPlainClassMember(blockComment, TokenTypes.VARIABLE_DEF)
                 || isOnTokenWithModifiers(blockComment, TokenTypes.VARIABLE_DEF)
-                || isOnTokenWithAnnotation(blockComment, TokenTypes.VARIABLE_DEF);
+                || isOnTokenWithAnnotation(blockComment, TokenTypes.VARIABLE_DEF)
+                || isOnPlainClassMember(blockComment, TokenTypes.ANNOTATION_FIELD_DEF)
+                || isOnTokenWithModifiers(blockComment, TokenTypes.ANNOTATION_FIELD_DEF)
+                || isOnTokenWithAnnotation(blockComment, TokenTypes.ANNOTATION_FIELD_DEF);
     }
 
     /**
