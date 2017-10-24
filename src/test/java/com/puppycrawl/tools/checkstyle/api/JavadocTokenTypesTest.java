@@ -123,11 +123,11 @@ public class JavadocTokenTypesTest {
         assertEquals(msg, 4, JavadocTokenTypes.WS);
         assertEquals(msg, -1, JavadocTokenTypes.EOF);
         assertEquals(msg, 10000, JavadocTokenTypes.JAVADOC);
-        assertEquals(msg, 10076, JavadocTokenTypes.JAVADOC_TAG);
-        assertEquals(msg, 10077, JavadocTokenTypes.JAVADOC_INLINE_TAG);
-        assertEquals(msg, 10074, JavadocTokenTypes.REFERENCE);
-        assertEquals(msg, 10075, JavadocTokenTypes.PARAMETERS);
-        assertEquals(msg, 10073, JavadocTokenTypes.DESCRIPTION);
+        assertEquals(msg, 10071, JavadocTokenTypes.JAVADOC_TAG);
+        assertEquals(msg, 10072, JavadocTokenTypes.JAVADOC_INLINE_TAG);
+        assertEquals(msg, 10069, JavadocTokenTypes.REFERENCE);
+        assertEquals(msg, 10070, JavadocTokenTypes.PARAMETERS);
+        assertEquals(msg, 10068, JavadocTokenTypes.DESCRIPTION);
         assertEquals(msg, 10001, JavadocTokenTypes.HTML_ELEMENT);
         assertEquals(msg, 10002, JavadocTokenTypes.HTML_ELEMENT_START);
         assertEquals(msg, 10003, JavadocTokenTypes.HTML_ELEMENT_END);
@@ -193,13 +193,13 @@ public class JavadocTokenTypesTest {
         assertEquals(msg, 10063, JavadocTokenTypes.LINK_TAG);
         assertEquals(msg, 10064, JavadocTokenTypes.META_TAG);
         assertEquals(msg, 10065, JavadocTokenTypes.PARAM_TAG);
-        assertEquals(msg, 10066, JavadocTokenTypes.EMBED_TAG);
-        assertEquals(msg, 10067, JavadocTokenTypes.KEYGEN_TAG);
-        assertEquals(msg, 10068, JavadocTokenTypes.SOURCE_TAG);
-        assertEquals(msg, 10069, JavadocTokenTypes.TRACK_TAG);
-        assertEquals(msg, 10070, JavadocTokenTypes.WBR_TAG);
-        assertEquals(msg, 10078, JavadocTokenTypes.HTML_COMMENT);
-        assertEquals(msg, 10079, JavadocTokenTypes.TEXT);
+        assertEquals(msg, 10075, JavadocTokenTypes.EMBED_TAG);
+        assertEquals(msg, 10076, JavadocTokenTypes.KEYGEN_TAG);
+        assertEquals(msg, 10077, JavadocTokenTypes.SOURCE_TAG);
+        assertEquals(msg, 10078, JavadocTokenTypes.TRACK_TAG);
+        assertEquals(msg, 10079, JavadocTokenTypes.WBR_TAG);
+        assertEquals(msg, 10073, JavadocTokenTypes.HTML_COMMENT);
+        assertEquals(msg, 10074, JavadocTokenTypes.TEXT);
     }
 
     @Test

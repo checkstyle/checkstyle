@@ -217,19 +217,19 @@ public class GeneratedJavadocTokenTypesTest {
         assertEquals(MSG, 63, JavadocParser.RULE_linkTag);
         assertEquals(MSG, 64, JavadocParser.RULE_metaTag);
         assertEquals(MSG, 65, JavadocParser.RULE_paramTag);
-        assertEquals(MSG, 66, JavadocParser.RULE_embedTag);
-        assertEquals(MSG, 67, JavadocParser.RULE_keygenTag);
-        assertEquals(MSG, 68, JavadocParser.RULE_sourceTag);
-        assertEquals(MSG, 69, JavadocParser.RULE_trackTag);
-        assertEquals(MSG, 70, JavadocParser.RULE_wbrTag);
-        assertEquals(MSG, 71, JavadocParser.RULE_wrongSinletonTag);
-        assertEquals(MSG, 72, JavadocParser.RULE_singletonTagName);
-        assertEquals(MSG, 73, JavadocParser.RULE_description);
-        assertEquals(MSG, 74, JavadocParser.RULE_reference);
-        assertEquals(MSG, 75, JavadocParser.RULE_parameters);
-        assertEquals(MSG, 76, JavadocParser.RULE_javadocTag);
-        assertEquals(MSG, 77, JavadocParser.RULE_javadocInlineTag);
-        assertEquals(MSG, 78, JavadocParser.RULE_htmlComment);
-        assertEquals(MSG, 79, JavadocParser.RULE_text);
+        assertEquals(MSG, 66, JavadocParser.RULE_wrongSinletonTag);
+        assertEquals(MSG, 67, JavadocParser.RULE_singletonTagName);
+        assertEquals(MSG, 68, JavadocParser.RULE_description);
+        assertEquals(MSG, 69, JavadocParser.RULE_reference);
+        assertEquals(MSG, 70, JavadocParser.RULE_parameters);
+        assertEquals(MSG, 71, JavadocParser.RULE_javadocTag);
+        assertEquals(MSG, 72, JavadocParser.RULE_javadocInlineTag);
+        assertEquals(MSG, 73, JavadocParser.RULE_htmlComment);
+        assertEquals(MSG, 74, JavadocParser.RULE_text);
+        assertEquals(MSG, 75, JavadocParser.RULE_embedTag);
+        assertEquals(MSG, 76, JavadocParser.RULE_keygenTag);
+        assertEquals(MSG, 77, JavadocParser.RULE_sourceTag);
+        assertEquals(MSG, 78, JavadocParser.RULE_trackTag);
+        assertEquals(MSG, 79, JavadocParser.RULE_wbrTag);
     }
 }

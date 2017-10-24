@@ -359,6 +359,6 @@ public class JavadocUtilsTest {
     @Test
     public void testGetTokenNames() {
         assertEquals("Unexpected token name",
-            "TEXT", JavadocUtils.getTokenName(10079));
+            "WBR_TAG", JavadocUtils.getTokenName(10079));
     }
 }
