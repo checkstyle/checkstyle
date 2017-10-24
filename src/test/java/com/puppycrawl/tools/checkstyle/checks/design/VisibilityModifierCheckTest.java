@@ -33,7 +33,6 @@ import org.powermock.reflect.Whitebox;
 
 import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -42,13 +41,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class VisibilityModifierCheckTest
     extends AbstractModuleTestSupport {
-    private Checker getChecker() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VisibilityModifierCheck.class);
-        checkConfig.addAttribute("publicMemberPattern", "^f[A-Z][a-zA-Z0-9]*$");
-        return createChecker(checkConfig);
-    }
-
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier";
@@ -68,6 +60,9 @@ public class VisibilityModifierCheckTest
     @Test
     public void testInner()
             throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(VisibilityModifierCheck.class);
+        checkConfig.addAttribute("publicMemberPattern", "^f[A-Z][a-zA-Z0-9]*$");
         final String[] expected = {
             "30:24: " + getCheckMessage(MSG_KEY, "rData"),
             "33:27: " + getCheckMessage(MSG_KEY, "protectedVariable"),
@@ -76,7 +71,7 @@ public class VisibilityModifierCheckTest
             "43:19: " + getCheckMessage(MSG_KEY, "sWeird2"),
             "77:20: " + getCheckMessage(MSG_KEY, "someValue"),
         };
-        verify(getChecker(), getPath("InputVisibilityModifierInner.java"), expected);
+        verify(checkConfig, getPath("InputVisibilityModifierInner.java"), expected);
     }
 
     @Test
@@ -96,6 +91,9 @@ public class VisibilityModifierCheckTest
 
     @Test
     public void testSimple() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(VisibilityModifierCheck.class);
+        checkConfig.addAttribute("publicMemberPattern", "^f[A-Z][a-zA-Z0-9]*$");
         final String[] expected = {
             "33:19: " + getCheckMessage(MSG_KEY, "mNumCreated2"),
             "43:23: " + getCheckMessage(MSG_KEY, "sTest1"),
@@ -104,17 +102,20 @@ public class VisibilityModifierCheckTest
             "50:9: " + getCheckMessage(MSG_KEY, "mTest1"),
             "52:16: " + getCheckMessage(MSG_KEY, "mTest2"),
         };
-        verify(getChecker(), getPath("InputVisibilityModifierSimple.java"), expected);
+        verify(checkConfig, getPath("InputVisibilityModifierSimple.java"), expected);
     }
 
     @Test
     public void testStrictJavadoc() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(VisibilityModifierCheck.class);
+        checkConfig.addAttribute("publicMemberPattern", "^f[A-Z][a-zA-Z0-9]*$");
         final String[] expected = {
             "32:9: " + getCheckMessage(MSG_KEY, "mLen"),
             "33:19: " + getCheckMessage(MSG_KEY, "mDeer"),
             "34:16: " + getCheckMessage(MSG_KEY, "aFreddo"),
         };
-        verify(getChecker(), getPath("InputVisibilityModifierPublicOnly.java"), expected);
+        verify(checkConfig, getPath("InputVisibilityModifierPublicOnly.java"), expected);
     }
 
     @Test

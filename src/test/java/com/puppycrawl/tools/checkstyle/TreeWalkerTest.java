@@ -247,7 +247,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testWithCacheWithNoViolation() throws Exception {
-        final Checker checker = createChecker(createModuleConfig(HiddenFieldCheck.class));
+        final DefaultConfiguration checkConfig = createModuleConfig(HiddenFieldCheck.class);
+        final Checker checker = createChecker(checkConfig);
         final PackageObjectFactory factory = new PackageObjectFactory(
             new HashSet<>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
@@ -427,19 +428,15 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBehaviourWithChecksAndFilters() throws Exception {
-        final DefaultConfiguration checkerConfig =
-                new DefaultConfiguration("configuration");
-        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
-        treeWalkerConfig.addChild(createModuleConfig(MemberNameCheck.class));
         final DefaultConfiguration filterConfig =
                 createModuleConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("checkCPP", "false");
+
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        treeWalkerConfig.addChild(createModuleConfig(MemberNameCheck.class));
         treeWalkerConfig.addChild(filterConfig);
-        checkerConfig.addChild(treeWalkerConfig);
-        final Checker checker = new Checker();
-        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        checker.configure(checkerConfig);
-        checker.addListener(getBriefUtLogger());
+
+        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
 
         final File file = new File(getPath("InputTreeWalkerSuppressionCommentFilter.java"));
 
@@ -450,7 +447,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                     "^[a-z][a-zA-Z0-9]*$"),
         };
 
-        verify(checker,
+        verify(checkerConfig,
                 file.getPath(),
                 expected);
     }
@@ -549,22 +546,16 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
         treeWalkerConfig.addChild(filterConfig);
 
-        final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyle_checks");
-        checkerConfig.addChild(treeWalkerConfig);
+        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
         final File cacheFile = temporaryFolder.newFile();
         checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
-
-        final Checker checker = new Checker();
-        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        checker.addListener(getBriefUtLogger());
-        checker.configure(checkerConfig);
 
         final String filePath = temporaryFolder.newFile("file.java").getPath();
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checker, filePath, expected);
+        verify(checkerConfig, filePath, expected);
         // One more time to use cache.
-        verify(checker, filePath, expected);
+        verify(checkerConfig, filePath, expected);
 
         assertTrue("External resource is not present in cache",
                 new String(Files.readAllBytes(cacheFile.toPath()),

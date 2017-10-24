@@ -125,7 +125,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
     public void testMinColumnNo() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(SingleSpaceSeparatorCheck.class);
-        checkConfig.addAttribute("validateComments", String.valueOf(true));
+        checkConfig.addAttribute("validateComments", "true");
         final String[] expected = {
             "5:3: " + getCheckMessage(MSG_KEY),
         };

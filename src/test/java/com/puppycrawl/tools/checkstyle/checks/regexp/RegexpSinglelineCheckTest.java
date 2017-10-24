@@ -57,10 +57,9 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpSinglelineCheck.class);
         checkConfig.addAttribute("format", "System\\.(out)|(err)\\.print(ln)?\\(");
-        final String message = "Bad line :(";
-        checkConfig.addAttribute("message", message);
+        checkConfig.addAttribute("message", "Bad line :(");
         final String[] expected = {
-            "69: " + message,
+            "69: Bad line :(",
         };
         verify(checkConfig, getPath("InputRegexpSinglelineSemantic.java"), expected);
     }
