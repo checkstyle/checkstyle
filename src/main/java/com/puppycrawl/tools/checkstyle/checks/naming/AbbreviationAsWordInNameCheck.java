@@ -244,9 +244,9 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
             }
             else {
                 result = ignoreFinal
-                          && modifiers.branchContains(TokenTypes.FINAL)
+                          && modifiers.findFirstToken(TokenTypes.FINAL) != null
                     || ignoreStatic
-                        && modifiers.branchContains(TokenTypes.LITERAL_STATIC);
+                        && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
             }
         }
         else if (ast.getType() == TokenTypes.METHOD_DEF) {

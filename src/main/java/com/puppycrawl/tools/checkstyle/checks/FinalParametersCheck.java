@@ -143,8 +143,8 @@ public class FinalParametersCheck extends AbstractCheck {
 
         if (method.branchContains(TokenTypes.PARAMETER_DEF)
                 // ignore abstract and native methods
-                && !modifiers.branchContains(TokenTypes.ABSTRACT)
-                && !modifiers.branchContains(TokenTypes.LITERAL_NATIVE)) {
+                && modifiers.findFirstToken(TokenTypes.ABSTRACT) == null
+                && modifiers.findFirstToken(TokenTypes.LITERAL_NATIVE) == null) {
             // we can now be sure that there is at least one parameter
             final DetailAST parameters =
                 method.findFirstToken(TokenTypes.PARAMETERS);

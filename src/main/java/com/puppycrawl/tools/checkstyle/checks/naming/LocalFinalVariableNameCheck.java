@@ -81,7 +81,7 @@ public class LocalFinalVariableNameCheck
         final DetailAST modifiersAST =
             ast.findFirstToken(TokenTypes.MODIFIERS);
         final boolean isFinal = ast.getType() == TokenTypes.RESOURCE
-            || modifiersAST.branchContains(TokenTypes.FINAL);
+            || modifiersAST.findFirstToken(TokenTypes.FINAL) != null;
         return isFinal && ScopeUtils.isLocalVariableDef(ast);
     }
 }

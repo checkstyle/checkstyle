@@ -63,7 +63,7 @@ public class MissingCtorCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-        if (!modifiers.branchContains(TokenTypes.ABSTRACT)
+        if (modifiers.findFirstToken(TokenTypes.ABSTRACT) == null
                 && ast.findFirstToken(TokenTypes.OBJBLOCK)
                     .findFirstToken(TokenTypes.CTOR_DEF) == null) {
             log(ast.getLineNo(), MSG_KEY);

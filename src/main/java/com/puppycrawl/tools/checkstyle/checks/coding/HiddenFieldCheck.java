@@ -246,7 +246,7 @@ public class HiddenFieldCheck
         final DetailAST typeMods = ast.findFirstToken(TokenTypes.MODIFIERS);
         final boolean isStaticInnerType =
                 typeMods != null
-                        && typeMods.branchContains(TokenTypes.LITERAL_STATIC);
+                        && typeMods.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
         final String frameName;
 
         if (type == TokenTypes.CLASS_DEF || type == TokenTypes.ENUM_DEF) {
@@ -268,11 +268,11 @@ public class HiddenFieldCheck
                         child.findFirstToken(TokenTypes.IDENT).getText();
                     final DetailAST mods =
                         child.findFirstToken(TokenTypes.MODIFIERS);
-                    if (mods.branchContains(TokenTypes.LITERAL_STATIC)) {
-                        newFrame.addStaticField(name);
+                    if (mods.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
+                        newFrame.addInstanceField(name);
                     }
                     else {
-                        newFrame.addInstanceField(name);
+                        newFrame.addStaticField(name);
                     }
                 }
                 child = child.getNextSibling();
@@ -365,7 +365,7 @@ public class HiddenFieldCheck
                         || parent.getType() == TokenTypes.VARIABLE_DEF) {
                 final DetailAST mods =
                     parent.findFirstToken(TokenTypes.MODIFIERS);
-                inStatic = mods.branchContains(TokenTypes.LITERAL_STATIC);
+                inStatic = mods.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
                 break;
             }
             else {
@@ -423,7 +423,7 @@ public class HiddenFieldCheck
             // therefore this method is potentially a setter
             final DetailAST typeAST = aMethodAST.findFirstToken(TokenTypes.TYPE);
             final String returnType = typeAST.getFirstChild().getText();
-            if (typeAST.branchContains(TokenTypes.LITERAL_VOID)
+            if (typeAST.findFirstToken(TokenTypes.LITERAL_VOID) != null
                     || setterCanReturnItsClass && frame.isEmbeddedIn(returnType)) {
                 // this method has signature
                 //
@@ -492,7 +492,7 @@ public class HiddenFieldCheck
             final DetailAST method = ast.getParent().getParent();
             if (method.getType() == TokenTypes.METHOD_DEF) {
                 final DetailAST mods = method.findFirstToken(TokenTypes.MODIFIERS);
-                result = mods.branchContains(TokenTypes.ABSTRACT);
+                result = mods.findFirstToken(TokenTypes.ABSTRACT) != null;
             }
         }
         return result;

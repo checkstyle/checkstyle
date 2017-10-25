@@ -97,8 +97,8 @@ public class FinalClassCheck
             case TokenTypes.CLASS_DEF:
                 registerNestedSubclassToOuterSuperClasses(ast);
 
-                final boolean isFinal = modifiers.branchContains(TokenTypes.FINAL);
-                final boolean isAbstract = modifiers.branchContains(TokenTypes.ABSTRACT);
+                final boolean isFinal = modifiers.findFirstToken(TokenTypes.FINAL) != null;
+                final boolean isAbstract = modifiers.findFirstToken(TokenTypes.ABSTRACT) != null;
 
                 final String qualifiedClassName = getQualifiedClassName(ast);
                 classes.push(new ClassDesc(qualifiedClassName, isFinal, isAbstract));
@@ -107,11 +107,11 @@ public class FinalClassCheck
             case TokenTypes.CTOR_DEF:
                 if (!ScopeUtils.isInEnumBlock(ast)) {
                     final ClassDesc desc = classes.peek();
-                    if (modifiers.branchContains(TokenTypes.LITERAL_PRIVATE)) {
-                        desc.registerPrivateCtor();
+                    if (modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null) {
+                        desc.registerNonPrivateCtor();
                     }
                     else {
-                        desc.registerNonPrivateCtor();
+                        desc.registerPrivateCtor();
                     }
                 }
                 break;

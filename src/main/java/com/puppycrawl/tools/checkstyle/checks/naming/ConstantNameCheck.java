@@ -81,8 +81,8 @@ public class ConstantNameCheck
 
         final DetailAST modifiersAST =
             ast.findFirstToken(TokenTypes.MODIFIERS);
-        final boolean isStatic = modifiersAST.branchContains(TokenTypes.LITERAL_STATIC);
-        final boolean isFinal = modifiersAST.branchContains(TokenTypes.FINAL);
+        final boolean isStatic = modifiersAST.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+        final boolean isFinal = modifiersAST.findFirstToken(TokenTypes.FINAL) != null;
 
         if (isStatic && isFinal && shouldCheckInScope(modifiersAST)
                 || ScopeUtils.isInAnnotationBlock(ast)

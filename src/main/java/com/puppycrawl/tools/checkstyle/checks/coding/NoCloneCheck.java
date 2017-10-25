@@ -148,7 +148,7 @@ public class NoCloneCheck extends AbstractCheck {
 
             final DetailAST params = aAST.findFirstToken(TokenTypes.PARAMETERS);
             final boolean hasEmptyParamList =
-                !params.branchContains(TokenTypes.PARAMETER_DEF);
+                params.findFirstToken(TokenTypes.PARAMETER_DEF) == null;
 
             if (hasEmptyParamList) {
                 log(aAST.getLineNo(), MSG_KEY);
