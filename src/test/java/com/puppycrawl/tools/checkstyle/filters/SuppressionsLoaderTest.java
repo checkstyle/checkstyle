@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Rule;
@@ -122,17 +123,20 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final FilterSet fc2 = new FilterSet();
 
         final SuppressElement se0 =
-                new SuppressElement("file0", "check0", null, null, null);
+                new SuppressElement("file0", "check0", null, null, null, null);
         fc2.addFilter(se0);
         final SuppressElement se1 =
-                new SuppressElement("file1", "check1", null, "1,2-3", null);
+                new SuppressElement("file1", "check1", null, null, "1,2-3", null);
         fc2.addFilter(se1);
         final SuppressElement se2 =
-                new SuppressElement("file2", "check2", null, null, "1,2-3");
+                new SuppressElement("file2", "check2", null, null, null, "1,2-3");
         fc2.addFilter(se2);
         final SuppressElement se3 =
-                new SuppressElement("file3", "check3", null, "1,2-3", "1,2-3");
+                new SuppressElement("file3", "check3", null, null, "1,2-3", "1,2-3");
         fc2.addFilter(se3);
+        final SuppressElement se4 =
+                new SuppressElement(null, null, "message0", null, null, null);
+        fc2.addFilter(se4);
         assertEquals("Multiple suppressions were loaded incorrectly", fc2, fc);
     }
 
@@ -268,7 +272,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         }
         catch (CheckstyleException ex) {
             assertEquals("Invalid error message",
-                "Unable to parse " + fn + " - missing checks and id attribute",
+                "Unable to parse " + fn + " - missing checks or id or message attribute",
                 ex.getMessage());
         }
     }
@@ -290,7 +294,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         }
         catch (CheckstyleException ex) {
             assertEquals("Invalid error message",
-                "Unable to parse " + fn + " - invalid files or checks format",
+                "Unable to parse " + fn + " - invalid files or checks or message format",
                 ex.getMessage());
         }
     }
@@ -318,7 +322,15 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final String fn = getPath("InputSuppressionsLoaderXpathCorrect.xml");
         final Set<TreeWalkerFilter> filterSet = SuppressionsLoader.loadXpathSuppressions(fn);
 
-        assertEquals("Invalid number of filters", 1, filterSet.size());
+        final Set<TreeWalkerFilter> expectedFilterSet = new HashSet<>();
+        final XpathFilter xf0 =
+                new XpathFilter("file1", "test", null, "id1", "/CLASS_DEF");
+        expectedFilterSet.add(xf0);
+        final XpathFilter xf1 =
+                new XpathFilter(null, null, "message1", null, "/CLASS_DEF");
+        expectedFilterSet.add(xf1);
+        assertEquals("Multiple xpath suppressions were loaded incorrectly", expectedFilterSet,
+                filterSet);
     }
 
     @Test
@@ -330,7 +342,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         }
         catch (CheckstyleException ex) {
             assertEquals("Invalid error message",
-                    "Unable to parse " + fn + " - invalid files or checks format for "
+                    "Unable to parse " + fn + " - invalid files or checks or message format for "
                             + "suppress-xpath",
                     ex.getMessage());
         }
@@ -346,7 +358,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         }
         catch (CheckstyleException ex) {
             assertEquals("Invalid error message",
-                    "Unable to parse " + fn + " - missing checks and id attribute for "
+                    "Unable to parse " + fn + " - missing checks or id or message attribute for "
                             + "suppress-xpath",
                     ex.getMessage());
         }

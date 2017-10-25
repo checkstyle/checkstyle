@@ -483,19 +483,25 @@ public class UserService {
                   <code>files</code> -
                   a <a href="property_types.html#regexp">Regular Expression</a>
                   matched against the file name associated with an audit
-                  event. It is mandatory.
+                  event. It is optional.
               </li>
               <li>
                   <code>checks</code> -
                   a <a href="property_types.html#regexp">Regular Expression</a>
                   matched against the name of the check associated with an audit
-                  event. Optional if <code>id</code> is specified.
+                  event. Optional as long as <code>id</code> or <code>message</code> is specified.
+              </li>
+              <li>
+                  <code>message</code> -
+                  a <a href="property_types.html#regexp">Regular Expression</a>
+                  matched against the message of the check associated with an audit
+                  event.  Optional as long as <code>checks</code> or <code>id</code> is specified.
               </li>
               <li>
                   <code>id</code> -
                   a <a href="property_types.html#string">string</a>
                   matched against the ID of the check associated with an audit
-                  event. Optional if <code>checks</code> is specified.
+                  event.  Optional as long as <code>checks</code> or <code>message</code> is specified.
               </li>
               <li>
                   <code>lines</code> - a comma-separated list of
@@ -527,7 +533,9 @@ public class UserService {
             lines 82 and 108 to 122 of
             file <code>AbstractComplexityCheck.java</code>,
             and <code>MagicNumberCheck</code> errors for line
-            221 of file <code>JavadocStyleCheck.java</code>:
+            221 of file <code>JavadocStyleCheck.java</code>,
+            and '<code>Missing a Javadoc comment</code>' errors
+            for all lines and files:
           </p>
           <source>
 &lt;?xml version=&quot;1.0&quot;?&gt;
@@ -544,6 +552,7 @@ public class UserService {
   files=&quot;JavadocStyleCheck.java&quot;
   lines=&quot;221&quot;/&gt;
 &lt;/suppressions&gt;
+&lt;suppress message=&quot;Missing a Javadoc comment&quot;/&gt;&lt;/suppressions&gt;
           </source>
           <p>
             As another example to suppress Check by module id:
@@ -614,6 +623,12 @@ public class UserService {
           </p>
           <source>
 &lt;suppress checks=&quot;FileLength&quot; files=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
+          </source>
+          <p>
+            Suppress naming errors on variable named 'log' in all files:
+          </p>
+          <source>
+&lt;suppress message=&quot;Name 'log' must match pattern&quot;/&gt;
           </source>
       </subsection>
       <subsection name="Example of Usage">

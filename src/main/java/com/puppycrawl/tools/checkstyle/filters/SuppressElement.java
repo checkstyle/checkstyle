@@ -24,7 +24,6 @@ import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Filter;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * This filter processes {@link AuditEvent}
@@ -53,6 +52,12 @@ public class SuppressElement
     /** The pattern for check class names. */
     private final String checkPattern;
 
+    /** The regexp to match message names against. */
+    private final Pattern messageRegexp;
+
+    /** The pattern for message names. */
+    private final String messagePattern;
+
     /** Module id filter. */
     private final String moduleId;
 
@@ -74,20 +79,33 @@ public class SuppressElement
      *
      * @param files   regular expression for names of filtered files.
      * @param checks  regular expression for filtered check classes.
+     * @param message regular expression for messages.
      * @param modId   the id
      * @param lines   lines CSV values and ranges for line number filtering.
      * @param columns columns CSV values and ranges for column number filtering.
      */
     public SuppressElement(String files, String checks,
-                           String modId, String lines, String columns) {
+                           String message, String modId, String lines, String columns) {
         filePattern = files;
-        fileRegexp = Pattern.compile(files);
+        if (files == null) {
+            fileRegexp = null;
+        }
+        else {
+            fileRegexp = Pattern.compile(files);
+        }
         checkPattern = checks;
         if (checks == null) {
             checkRegexp = null;
         }
         else {
-            checkRegexp = CommonUtils.createPattern(checks);
+            checkRegexp = Pattern.compile(checks);
+        }
+        messagePattern = message;
+        if (message == null) {
+            messageRegexp = null;
+        }
+        else {
+            messageRegexp = Pattern.compile(message);
         }
         moduleId = modId;
         linesCsv = lines;
@@ -109,6 +127,7 @@ public class SuppressElement
     @Override
     public boolean accept(AuditEvent event) {
         return isFileNameAndModuleNotMatching(event)
+                || !isMessageNameMatching(event)
                 || isLineAndColumnMatch(event);
     }
 
@@ -119,10 +138,19 @@ public class SuppressElement
      */
     private boolean isFileNameAndModuleNotMatching(AuditEvent event) {
         return event.getFileName() == null
-                || !fileRegexp.matcher(event.getFileName()).find()
+                || fileRegexp != null && !fileRegexp.matcher(event.getFileName()).find()
                 || event.getLocalizedMessage() == null
                 || moduleId != null && !moduleId.equals(event.getModuleId())
                 || checkRegexp != null && !checkRegexp.matcher(event.getSourceName()).find();
+    }
+
+    /**
+     * Is matching by message.
+     * @param event event
+     * @return true is matching or not set.
+     */
+    private boolean isMessageNameMatching(AuditEvent event) {
+        return messageRegexp == null || messageRegexp.matcher(event.getMessage()).find();
     }
 
     /**
@@ -138,7 +166,8 @@ public class SuppressElement
 
     @Override
     public int hashCode() {
-        return Objects.hash(filePattern, checkPattern, moduleId, linesCsv, columnsCsv);
+        return Objects.hash(filePattern, checkPattern, messagePattern, moduleId, linesCsv,
+                columnsCsv);
     }
 
     @Override
@@ -152,6 +181,7 @@ public class SuppressElement
         final SuppressElement suppressElement = (SuppressElement) other;
         return Objects.equals(filePattern, suppressElement.filePattern)
                 && Objects.equals(checkPattern, suppressElement.checkPattern)
+                && Objects.equals(messagePattern, suppressElement.messagePattern)
                 && Objects.equals(moduleId, suppressElement.moduleId)
                 && Objects.equals(linesCsv, suppressElement.linesCsv)
                 && Objects.equals(columnsCsv, suppressElement.columnsCsv);
