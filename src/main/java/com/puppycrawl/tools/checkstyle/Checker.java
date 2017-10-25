@@ -221,9 +221,9 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
         // It may also log!!!
         fileSetChecks.forEach(FileSetCheck::destroy);
 
-        final int errorCount = counter.getCount();
+        // It may also log!!!
         fireAuditFinished();
-        return errorCount;
+        return counter.getCount();
     }
 
     /**
