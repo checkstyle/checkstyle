@@ -17,66 +17,25 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AuditListener;
+import com.puppycrawl.tools.checkstyle.api.Filter;
 
-class DebugAuditAdapter implements AuditListener {
-    /** Keeps track whether this {@code AuditListener} was called. */
+public final class DebugFilter implements Filter {
     private boolean called;
 
-    /** Keeps track of the number of files started. */
-    private int numFilesStarted;
-
-    /** Keeps track of the number of files finished. */
-    private int numFilesFinished;
-
-    public int getNumFilesStarted() {
-        return numFilesStarted;
-    }
-
-    public int getNumFilesFinished() {
-        return numFilesFinished;
+    @Override
+    public boolean accept(AuditEvent event) {
+        called = true;
+        return true;
     }
 
     public boolean wasCalled() {
         return called;
     }
 
-    public void resetListener() {
+    public void resetFilter() {
         called = false;
-    }
-
-    @Override
-    public void addError(AuditEvent event) {
-        called = true;
-    }
-
-    @Override
-    public void addException(AuditEvent event, Throwable throwable) {
-        called = true;
-    }
-
-    @Override
-    public void auditStarted(AuditEvent event) {
-        called = true;
-    }
-
-    @Override
-    public void fileStarted(AuditEvent event) {
-        called = true;
-        numFilesStarted++;
-    }
-
-    @Override
-    public void auditFinished(AuditEvent event) {
-        called = true;
-    }
-
-    @Override
-    public void fileFinished(AuditEvent event) {
-        called = true;
-        numFilesFinished++;
     }
 }

@@ -17,9 +17,11 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
 import org.powermock.reflect.Whitebox;
+
+import com.puppycrawl.tools.checkstyle.Checker;
 
 public class CheckerStub extends Checker {
 

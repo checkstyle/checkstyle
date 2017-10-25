@@ -31,8 +31,8 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.TestLoggingReporter;
 import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.internal.testmodules.TestLoggingReporter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {

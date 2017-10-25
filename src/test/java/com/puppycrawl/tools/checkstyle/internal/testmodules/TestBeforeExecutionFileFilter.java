@@ -17,11 +17,11 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
 import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
 
-class TestBeforeExecutionFileFilter implements BeforeExecutionFileFilter {
+public final class TestBeforeExecutionFileFilter implements BeforeExecutionFileFilter {
     private boolean called;
 
     @Override
