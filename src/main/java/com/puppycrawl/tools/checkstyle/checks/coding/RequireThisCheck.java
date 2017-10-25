@@ -352,11 +352,11 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.METHOD_DEF :
                 final DetailAST methodFrameNameIdent = ast.findFirstToken(TokenTypes.IDENT);
                 final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
-                if (mods.branchContains(TokenTypes.LITERAL_STATIC)) {
-                    ((ClassFrame) frame).addStaticMethod(methodFrameNameIdent);
+                if (mods.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
+                    ((ClassFrame) frame).addInstanceMethod(methodFrameNameIdent);
                 }
                 else {
-                    ((ClassFrame) frame).addInstanceMethod(methodFrameNameIdent);
+                    ((ClassFrame) frame).addStaticMethod(methodFrameNameIdent);
                 }
                 frameStack.addFirst(new MethodFrame(frame, methodFrameNameIdent));
                 break;
@@ -386,7 +386,7 @@ public class RequireThisCheck extends AbstractCheck {
             final DetailAST mods =
                     ast.findFirstToken(TokenTypes.MODIFIERS);
             if (ScopeUtils.isInInterfaceBlock(ast)
-                    || mods.branchContains(TokenTypes.LITERAL_STATIC)) {
+                    || mods.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
                 ((ClassFrame) frame).addStaticMember(ident);
             }
             else {
@@ -599,7 +599,7 @@ public class RequireThisCheck extends AbstractCheck {
                 if (codeBlockDefinition != null) {
                     final DetailAST modifiers = codeBlockDefinition.getFirstChild();
                     staticContext = codeBlockDefinition.getType() == TokenTypes.STATIC_INIT
-                        || modifiers.branchContains(TokenTypes.LITERAL_STATIC);
+                        || modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
                 }
             }
             else {
@@ -1226,7 +1226,7 @@ public class RequireThisCheck extends AbstractCheck {
             boolean result = false;
             for (DetailAST member : instanceMembers) {
                 final DetailAST mods = member.getParent().findFirstToken(TokenTypes.MODIFIERS);
-                final boolean finalMod = mods.branchContains(TokenTypes.FINAL);
+                final boolean finalMod = mods.findFirstToken(TokenTypes.FINAL) != null;
                 if (finalMod && member.equals(instanceMember)) {
                     result = true;
                     break;

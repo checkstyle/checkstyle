@@ -271,7 +271,7 @@ public class MagicNumberCheck extends AbstractCheck {
                 // explicit constant
                 final DetailAST modifiersAST = varDefAST.findFirstToken(TokenTypes.MODIFIERS);
 
-                if (modifiersAST.branchContains(TokenTypes.FINAL)) {
+                if (modifiersAST.findFirstToken(TokenTypes.FINAL) != null) {
                     constantDef = varDefAST;
                 }
             }

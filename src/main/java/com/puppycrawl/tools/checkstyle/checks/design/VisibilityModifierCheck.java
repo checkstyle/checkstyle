@@ -736,7 +736,7 @@ public class VisibilityModifierCheck
      */
     private static boolean isFinalField(DetailAST variableDef) {
         final DetailAST modifiers = variableDef.findFirstToken(TokenTypes.MODIFIERS);
-        return modifiers.branchContains(TokenTypes.FINAL);
+        return modifiers.findFirstToken(TokenTypes.FINAL) != null;
     }
 
     /**

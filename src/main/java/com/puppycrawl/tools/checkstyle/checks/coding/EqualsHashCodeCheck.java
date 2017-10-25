@@ -116,10 +116,10 @@ public class EqualsHashCodeCheck
         final DetailAST parameters = ast.findFirstToken(TokenTypes.PARAMETERS);
 
         return CheckUtils.isEqualsMethod(ast)
-                && modifiers.branchContains(TokenTypes.LITERAL_PUBLIC)
+                && modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
                 && isObjectParam(parameters.getFirstChild())
                 && (ast.branchContains(TokenTypes.SLIST)
-                        || modifiers.branchContains(TokenTypes.LITERAL_NATIVE));
+                        || modifiers.findFirstToken(TokenTypes.LITERAL_NATIVE) != null);
     }
 
     /**
@@ -136,11 +136,11 @@ public class EqualsHashCodeCheck
 
         return type.getFirstChild().getType() == TokenTypes.LITERAL_INT
                 && "hashCode".equals(methodName.getText())
-                && modifiers.branchContains(TokenTypes.LITERAL_PUBLIC)
-                && !modifiers.branchContains(TokenTypes.LITERAL_STATIC)
+                && modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
+                && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == null
                 && parameters.getFirstChild() == null
                 && (ast.branchContains(TokenTypes.SLIST)
-                        || modifiers.branchContains(TokenTypes.LITERAL_NATIVE));
+                        || modifiers.findFirstToken(TokenTypes.LITERAL_NATIVE) != null);
     }
 
     /**

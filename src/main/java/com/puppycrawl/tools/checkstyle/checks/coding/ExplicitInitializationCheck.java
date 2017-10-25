@@ -152,7 +152,7 @@ public class ExplicitInitializationCheck extends AbstractCheck {
 
             if (assign != null) {
                 final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-                skipCase = modifiers.branchContains(TokenTypes.FINAL);
+                skipCase = modifiers.findFirstToken(TokenTypes.FINAL) != null;
             }
         }
         return skipCase;

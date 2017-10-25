@@ -120,7 +120,7 @@ public class LocalVariableNameCheck
         }
         else {
             final DetailAST modifiersAST = ast.findFirstToken(TokenTypes.MODIFIERS);
-            final boolean isFinal = modifiersAST.branchContains(TokenTypes.FINAL);
+            final boolean isFinal = modifiersAST.findFirstToken(TokenTypes.FINAL) != null;
             result = !isFinal && ScopeUtils.isLocalVariableDef(ast);
         }
         return result;

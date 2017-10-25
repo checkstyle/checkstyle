@@ -183,8 +183,8 @@ public class UncommentedMainCheck
         final DetailAST modifiers =
             method.findFirstToken(TokenTypes.MODIFIERS);
 
-        return modifiers.branchContains(TokenTypes.LITERAL_PUBLIC)
-            && modifiers.branchContains(TokenTypes.LITERAL_STATIC);
+        return modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
+            && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
     }
 
     /**

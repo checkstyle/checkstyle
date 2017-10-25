@@ -188,7 +188,7 @@ public abstract class AbstractSuperCheck
             final DetailAST modifiersAST = ast.findFirstToken(TokenTypes.MODIFIERS);
 
             if (getMethodName().equals(name)
-                    && !modifiersAST.branchContains(TokenTypes.LITERAL_NATIVE)) {
+                    && modifiersAST.findFirstToken(TokenTypes.LITERAL_NATIVE) == null) {
                 final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
                 overridingMethod = params.getChildCount() == 0;
             }

@@ -284,14 +284,14 @@ public class RedundantModifierCheck
                         ast.findFirstToken(TokenTypes.MODIFIERS);
         // private method?
         boolean checkFinal =
-            modifiers.branchContains(TokenTypes.LITERAL_PRIVATE);
+            modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) != null;
         // declared in a final class?
         DetailAST parent = ast.getParent();
         while (parent != null) {
             if (parent.getType() == TokenTypes.CLASS_DEF) {
                 final DetailAST classModifiers =
                     parent.findFirstToken(TokenTypes.MODIFIERS);
-                checkFinal = checkFinal || classModifiers.branchContains(TokenTypes.FINAL);
+                checkFinal = checkFinal || classModifiers.findFirstToken(TokenTypes.FINAL) != null;
                 parent = null;
             }
             else if (parent.getType() == TokenTypes.LITERAL_NEW
@@ -372,7 +372,7 @@ public class RedundantModifierCheck
     private static boolean isClassProtected(DetailAST classDef) {
         final DetailAST classModifiers =
                 classDef.findFirstToken(TokenTypes.MODIFIERS);
-        return classModifiers.branchContains(TokenTypes.LITERAL_PROTECTED);
+        return classModifiers.findFirstToken(TokenTypes.LITERAL_PROTECTED) != null;
     }
 
     /**
@@ -384,7 +384,8 @@ public class RedundantModifierCheck
         boolean isAccessibleFromPublic = false;
         final boolean isMostOuterScope = ast.getParent() == null;
         final DetailAST modifiersAst = ast.findFirstToken(TokenTypes.MODIFIERS);
-        final boolean hasPublicModifier = modifiersAst.branchContains(TokenTypes.LITERAL_PUBLIC);
+        final boolean hasPublicModifier =
+                modifiersAst.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null;
 
         if (isMostOuterScope) {
             isAccessibleFromPublic = hasPublicModifier;
