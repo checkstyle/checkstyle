@@ -53,6 +53,12 @@ public class XpathFilter implements TreeWalkerFilter {
     /** The pattern for check class names. */
     private final String checkPattern;
 
+    /** The regexp to match message names against. */
+    private final Pattern messageRegexp;
+
+    /** The pattern for message names. */
+    private final String messagePattern;
+
     /** Module id filter. */
     private final String moduleId;
 
@@ -66,19 +72,32 @@ public class XpathFilter implements TreeWalkerFilter {
      * Creates a {@code XpathElement} instance.
      * @param files regular expression for names of filtered files
      * @param checks regular expression for filtered check classes
+     * @param message regular expression for messages.
      * @param moduleId the module id
      * @param query the xpath query
      */
     public XpathFilter(String files, String checks,
-                       String moduleId, String query) {
+                       String message, String moduleId, String query) {
         filePattern = files;
-        fileRegexp = Pattern.compile(files);
+        if (files == null) {
+            fileRegexp = null;
+        }
+        else {
+            fileRegexp = Pattern.compile(files);
+        }
         checkPattern = checks;
         if (checks == null) {
             checkRegexp = null;
         }
         else {
             checkRegexp = CommonUtils.createPattern(checks);
+        }
+        messagePattern = message;
+        if (message == null) {
+            messageRegexp = null;
+        }
+        else {
+            messageRegexp = Pattern.compile(message);
         }
         this.moduleId = moduleId;
         xpathQuery = query;
@@ -99,6 +118,7 @@ public class XpathFilter implements TreeWalkerFilter {
     @Override
     public boolean accept(TreeWalkerAuditEvent event) {
         return !isFileNameAndModuleAndCheckNameMatching(event)
+                || !isMessageNameMatching(event)
                 || !isXpathQueryMatching(event);
     }
 
@@ -109,10 +129,19 @@ public class XpathFilter implements TreeWalkerFilter {
      */
     private boolean isFileNameAndModuleAndCheckNameMatching(TreeWalkerAuditEvent event) {
         return event.getFileName() != null
-                && fileRegexp.matcher(event.getFileName()).find()
+                && (fileRegexp == null || fileRegexp.matcher(event.getFileName()).find())
                 && event.getLocalizedMessage() != null
                 && (moduleId == null || moduleId.equals(event.getModuleId()))
                 && (checkRegexp == null || checkRegexp.matcher(event.getSourceName()).find());
+    }
+
+    /**
+     * Is matching by message.
+     * @param event event
+     * @return true is matching or not set.
+     */
+    private boolean isMessageNameMatching(TreeWalkerAuditEvent event) {
+        return messageRegexp == null || messageRegexp.matcher(event.getMessage()).find();
     }
 
     /**
@@ -169,7 +198,7 @@ public class XpathFilter implements TreeWalkerFilter {
 
     @Override
     public int hashCode() {
-        return Objects.hash(filePattern, checkPattern, moduleId, xpathQuery);
+        return Objects.hash(filePattern, checkPattern, messagePattern, moduleId, xpathQuery);
     }
 
     @Override
@@ -183,6 +212,7 @@ public class XpathFilter implements TreeWalkerFilter {
         final XpathFilter xpathFilter = (XpathFilter) other;
         return Objects.equals(filePattern, xpathFilter.filePattern)
                 && Objects.equals(checkPattern, xpathFilter.checkPattern)
+                && Objects.equals(messagePattern, xpathFilter.messagePattern)
                 && Objects.equals(moduleId, xpathFilter.moduleId)
                 && Objects.equals(xpathQuery, xpathFilter.xpathQuery);
     }

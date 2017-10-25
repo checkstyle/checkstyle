@@ -108,7 +108,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException ex) {
             assertEquals("Invalid error message",
-                "Unable to parse " + fileName + " - invalid files or checks format",
+                "Unable to parse " + fileName + " - invalid files or checks or message format",
                 ex.getMessage());
         }
     }

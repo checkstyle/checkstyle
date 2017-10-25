@@ -917,8 +917,9 @@
 &lt;!ELEMENT suppressions (suppress*)&gt;
 
 &lt;!ELEMENT suppress EMPTY&gt;
-&lt;!ATTLIST suppress files CDATA #REQUIRED
+&lt;!ATTLIST suppress files CDATA #IMPLIED
                    checks CDATA #IMPLIED
+                   message CDATA #IMPLIED
                    id CDATA #IMPLIED
                    lines CDATA #IMPLIED
                    columns CDATA #IMPLIED&gt;

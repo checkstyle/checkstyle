@@ -60,17 +60,31 @@ public final class SuppressionsLoader
     private static final String DTD_SUPPRESSIONS_NAME_1_1 =
         "com/puppycrawl/tools/checkstyle/suppressions_1_1.dtd";
     /** The public ID for the configuration dtd. */
+    private static final String DTD_PUBLIC_ID_1_2 =
+        "-//Puppy Crawl//DTD Suppressions 1.2//EN";
+    /** The resource for the configuration dtd. */
+    private static final String DTD_SUPPRESSIONS_NAME_1_2 =
+        "com/puppycrawl/tools/checkstyle/suppressions_1_2.dtd";
+    /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_1_XPATH =
             "-//Puppy Crawl//DTD Suppressions Xpath Experimental 1.1//EN";
     /** The resource for the configuration dtd. */
     private static final String DTD_SUPPRESSIONS_NAME_1_1_XPATH =
             "com/puppycrawl/tools/checkstyle/suppressions_1_1_xpath_experimental.dtd";
+    /** The public ID for the configuration dtd. */
+    private static final String DTD_PUBLIC_ID_1_2_XPATH =
+            "-//Puppy Crawl//DTD Suppressions Xpath Experimental 1.2//EN";
+    /** The resource for the configuration dtd. */
+    private static final String DTD_SUPPRESSIONS_NAME_1_2_XPATH =
+            "com/puppycrawl/tools/checkstyle/suppressions_1_2_xpath_experimental.dtd";
     /** File search error message. **/
     private static final String UNABLE_TO_FIND_ERROR_MESSAGE = "Unable to find: ";
     /** String literal for attribute name. **/
     private static final String ATTRIBUTE_NAME_FILES = "files";
     /** String literal for attribute name. **/
     private static final String ATTRIBUTE_NAME_CHECKS = "checks";
+    /** String literal for attribute name. **/
+    private static final String ATTRIBUTE_NAME_MESSAGE = "message";
     /** String literal for attribute name. **/
     private static final String ATTRIBUTE_NAME_ID = "id";
     /** String literal for attribute name. **/
@@ -128,20 +142,21 @@ public final class SuppressionsLoader
     private static SuppressElement getSuppressElement(Attributes attributes) throws SAXException {
         final String checks = attributes.getValue(ATTRIBUTE_NAME_CHECKS);
         final String modId = attributes.getValue(ATTRIBUTE_NAME_ID);
-        if (checks == null && modId == null) {
+        final String message = attributes.getValue(ATTRIBUTE_NAME_MESSAGE);
+        if (checks == null && modId == null && message == null) {
             // -@cs[IllegalInstantiation] SAXException is in the overridden method signature
-            throw new SAXException("missing checks and id attribute");
+            throw new SAXException("missing checks or id or message attribute");
         }
         final SuppressElement suppress;
         try {
             final String files = attributes.getValue(ATTRIBUTE_NAME_FILES);
             final String lines = attributes.getValue(ATTRIBUTE_NAME_LINES);
             final String columns = attributes.getValue(ATTRIBUTE_NAME_COLUMNS);
-            suppress = new SuppressElement(files, checks, modId, lines, columns);
+            suppress = new SuppressElement(files, checks, message, modId, lines, columns);
         }
         catch (final PatternSyntaxException ex) {
             // -@cs[IllegalInstantiation] SAXException is in the overridden method signature
-            throw new SAXException("invalid files or checks format", ex);
+            throw new SAXException("invalid files or checks or message format", ex);
         }
         return suppress;
     }
@@ -156,19 +171,21 @@ public final class SuppressionsLoader
     private static XpathFilter getXpathFilter(Attributes attributes) throws SAXException {
         final String checks = attributes.getValue(ATTRIBUTE_NAME_CHECKS);
         final String modId = attributes.getValue(ATTRIBUTE_NAME_ID);
-        if (checks == null && modId == null) {
+        final String message = attributes.getValue(ATTRIBUTE_NAME_MESSAGE);
+        if (checks == null && modId == null && message == null) {
             // -@cs[IllegalInstantiation] SAXException is in the overridden method signature
-            throw new SAXException("missing checks and id attribute for suppress-xpath");
+            throw new SAXException("missing checks or id or message attribute for suppress-xpath");
         }
         final XpathFilter filter;
         try {
             final String files = attributes.getValue(ATTRIBUTE_NAME_FILES);
             final String xpathQuery = attributes.getValue(ATTRIBUTE_NAME_QUERY);
-            filter = new XpathFilter(files, checks, modId, xpathQuery);
+            filter = new XpathFilter(files, checks, message, modId, xpathQuery);
         }
         catch (final PatternSyntaxException ex) {
             // -@cs[IllegalInstantiation] SAXException is in the overridden method signature
-            throw new SAXException("invalid files or checks format for suppress-xpath", ex);
+            throw new SAXException("invalid files or checks or message format for suppress-xpath",
+                    ex);
         }
         return filter;
     }
@@ -268,7 +285,9 @@ public final class SuppressionsLoader
         final Map<String, String> map = new HashMap<>();
         map.put(DTD_PUBLIC_ID_1_0, DTD_SUPPRESSIONS_NAME_1_0);
         map.put(DTD_PUBLIC_ID_1_1, DTD_SUPPRESSIONS_NAME_1_1);
+        map.put(DTD_PUBLIC_ID_1_2, DTD_SUPPRESSIONS_NAME_1_2);
         map.put(DTD_PUBLIC_ID_1_1_XPATH, DTD_SUPPRESSIONS_NAME_1_1_XPATH);
+        map.put(DTD_PUBLIC_ID_1_2_XPATH, DTD_SUPPRESSIONS_NAME_1_2_XPATH);
         return map;
     }
 }

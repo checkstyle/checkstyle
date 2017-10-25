@@ -8,7 +8,9 @@
     <system systemId="http://checkstyle.sourceforge.net/dtds/packages_1_0.dtd" uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/packages_1_0.dtd"/>
     <system systemId="http://checkstyle.sourceforge.net/dtds/suppressions_1_0.dtd" uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/suppressions_1_0.dtd"/>
     <system systemId="http://checkstyle.sourceforge.net/dtds/suppressions_1_1.dtd" uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/suppressions_1_1.dtd"/>
+    <system systemId="http://checkstyle.sourceforge.net/dtds/suppressions_1_2.dtd" uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/suppressions_1_2.dtd"/>
     <system systemId="http://checkstyle.sourceforge.net/dtds/suppressions_1_1_xpath_experimental.dtd" uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/suppressions_1_1_xpath_experimental.dtd"/>
+    <system systemId="http://checkstyle.sourceforge.net/dtds/suppressions_1_2_xpath_experimental.dtd" uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/suppressions_1_2_xpath_experimental.dtd"/>
     <system systemId="http://checkstyle.sourceforge.net/dtds/import_control_1_0.dtd" uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_0.dtd"/>
     <system systemId="http://checkstyle.sourceforge.net/dtds/import_control_1_1.dtd" uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_1.dtd"/>
     <system systemId="http://checkstyle.sourceforge.net/dtds/import_control_1_2.dtd" uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_2.dtd"/>
