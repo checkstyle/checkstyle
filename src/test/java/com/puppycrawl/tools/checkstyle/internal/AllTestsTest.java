@@ -55,6 +55,23 @@ public class AllTestsTest {
             });
     }
 
+    @Test
+    public void testAllTestsHaveProductionCode() throws Exception {
+        final Map<String, List<String>> allTests = new HashMap<>();
+
+        Files.walk(Paths.get("src/main/java"))
+            .forEach(filePath -> {
+                grabAllFiles(allTests, filePath.toFile());
+            });
+
+        Assert.assertTrue("found tests", !allTests.keySet().isEmpty());
+
+        Files.walk(Paths.get("src/test/java"))
+            .forEach(filePath -> {
+                verifyHasProductionFile(allTests, filePath.toFile());
+            });
+    }
+
     private static void grabAllTests(Map<String, List<String>> allTests, File file) {
         if (file.isFile() && file.getName().endsWith("Test.java")) {
             String path;
@@ -70,6 +87,32 @@ public class AllTestsTest {
             // override for 'AbstractCheck' naming
             if (path.endsWith(File.separator + "Abstract")) {
                 path += "Check";
+            }
+
+            final int slash = path.lastIndexOf(File.separatorChar);
+            final String packge = path.substring(0, slash);
+
+            List<String> classes = allTests.get(packge);
+
+            if (classes == null) {
+                classes = new ArrayList<>();
+
+                allTests.put(packge, classes);
+            }
+
+            classes.add(path.substring(slash + 1));
+        }
+    }
+
+    private static void grabAllFiles(Map<String, List<String>> allTests, File file) {
+        if (file.isFile()) {
+            final String path;
+
+            try {
+                path = getSimplePath(file.getCanonicalPath());
+            }
+            catch (IOException ex) {
+                throw new IllegalStateException(ex);
             }
 
             final int slash = path.lastIndexOf(File.separatorChar);
@@ -155,6 +198,36 @@ public class AllTestsTest {
         Assert.assertTrue("Resource must be named after a Test like 'InputMyCustomCase.java' "
                 + "and be in the sub-package of the test like 'mycustom' "
                 + "for test 'MyCustomCheckTest': " + path, found);
+    }
+
+    private static void verifyHasProductionFile(Map<String, List<String>> allTests, File file) {
+        if (file.isFile()) {
+            final String fileName = file.getName().replace("Test.java", ".java");
+
+            if (!fileName.endsWith("TestSupport.java")
+                    // tests external utility XPathEvaluator
+                    && !"XpathMapper.java".equals(fileName)) {
+                final String path;
+
+                try {
+                    path = getSimplePath(file.getCanonicalPath());
+                }
+                catch (IOException ex) {
+                    throw new IllegalStateException(ex);
+                }
+
+                if (!path.contains(File.separatorChar + "grammars" + File.separatorChar)
+                        && !path.contains(File.separatorChar + "internal" + File.separatorChar)) {
+                    final int slash = path.lastIndexOf(File.separatorChar);
+                    final String packge = path.substring(0, slash);
+                    final List<String> classes = allTests.get(packge);
+
+                    Assert.assertTrue("Test must be named after a production class "
+                            + "and must be in the same package of the production class: " + path,
+                            classes != null && classes.contains(fileName));
+                }
+            }
+        }
     }
 
     private static boolean checkInputMatchCorrectFileStructure(List<String> classes,
