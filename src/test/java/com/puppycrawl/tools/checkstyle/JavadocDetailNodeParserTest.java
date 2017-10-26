@@ -59,6 +59,16 @@ public class JavadocDetailNodeParserTest extends AbstractModuleTestSupport {
                     getPath("ExpectedJavadocDetailNodeParserWindows.txt"))),
                     StandardCharsets.UTF_8);
         }
+        else if (OS_NAME.startsWith("macOS")) {
+            expected = new String(Files.readAllBytes(Paths.get(
+                    getPath("ExpectedJavadocDetailNodeParsermacOS.txt"))),
+                    StandardCharsets.UTF_8);
+        }
+        else if (OS_NAME.startsWith("linux")) {
+            expected = new String(Files.readAllBytes(Paths.get(
+                    getPath("ExpectedJavadocDetailNodeParserlinux.txt"))),
+                    StandardCharsets.UTF_8);
+        }
         else {
             expected = new String(Files.readAllBytes(Paths.get(
                     getPath("ExpectedJavadocDetailNodeParser.txt"))),
