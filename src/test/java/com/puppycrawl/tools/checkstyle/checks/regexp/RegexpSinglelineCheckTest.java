@@ -45,10 +45,9 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpSinglelineCheck.class);
-        final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
-        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("format", "System\\.(out)|(err)\\.print(ln)?\\(");
         final String[] expected = {
-            "69: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
+            "69: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "System\\.(out)|(err)\\.print(ln)?\\("),
         };
         verify(checkConfig, getPath("InputRegexpSinglelineSemantic.java"), expected);
     }
@@ -57,8 +56,7 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
     public void testMessageProperty()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpSinglelineCheck.class);
-        final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
-        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("format", "System\\.(out)|(err)\\.print(ln)?\\(");
         final String message = "Bad line :(";
         checkConfig.addAttribute("message", message);
         final String[] expected = {
@@ -70,13 +68,12 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIgnoreCaseTrue() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpSinglelineCheck.class);
-        final String illegal = "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(";
-        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("format", "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(");
         checkConfig.addAttribute("ignoreCase", "true");
         checkConfig.addAttribute("maximum", "0");
 
         final String[] expected = {
-            "69: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
+            "69: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
         };
         verify(checkConfig, getPath("InputRegexpSinglelineSemantic.java"), expected);
     }
@@ -84,8 +81,7 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIgnoreCaseFalse() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpSinglelineCheck.class);
-        final String illegal = "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(";
-        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("format", "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(");
         checkConfig.addAttribute("ignoreCase", "false");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpSinglelineSemantic.java"), expected);
@@ -94,11 +90,10 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMinimum() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpSinglelineCheck.class);
-        final String illegal = "\\r";
-        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("format", "\\r");
         checkConfig.addAttribute("minimum", "500");
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_REGEXP_MINIMUM, "500", illegal),
+            "0: " + getCheckMessage(MSG_REGEXP_MINIMUM, "500", "\\r"),
         };
 
         verify(checkConfig, getPath("InputRegexpSinglelineSemantic.java"), expected);
@@ -107,8 +102,7 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSetMessage() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpSinglelineCheck.class);
-        final String illegal = "\\r";
-        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("format", "\\r");
         checkConfig.addAttribute("minimum", "500");
         checkConfig.addAttribute("message", "someMessage");
         final String[] expected = {
@@ -121,8 +115,7 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMaximum() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpSinglelineCheck.class);
-        final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
-        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("format", "System\\.(out)|(err)\\.print(ln)?\\(");
         checkConfig.addAttribute("maximum", "1");
         verify(checkConfig, getPath("InputRegexpSinglelineSemantic.java"), EMPTY);
     }

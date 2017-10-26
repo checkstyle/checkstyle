@@ -114,9 +114,8 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
 
         final DefaultConfiguration checkConfig = createModuleConfig(AtclauseOrderCheck.class);
         checkConfig.addAttribute("target", "CLASS_DEF");
-        final String customOrder = " @since,  @version, @param,@return,@throws, @exception,"
-                + "@deprecated, @see,@serial,   @serialField,  @serialData,@author";
-        checkConfig.addAttribute("tagOrder", customOrder);
+        checkConfig.addAttribute("tagOrder", " @since,  @version, @param,@return,@throws, "
+                + "@exception,@deprecated, @see,@serial,   @serialField,  @serialData,@author");
 
         final String tagOrder = "[@since, @version, @param, @return, @throws, @exception,"
                 + " @deprecated, @see, @serial, @serialField, @serialData, @author]";

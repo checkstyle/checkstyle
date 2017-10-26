@@ -90,10 +90,9 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testOwnPattern() throws Exception {
-        final String ownPattern = "Continue with next case";
         final DefaultConfiguration checkConfig =
             createModuleConfig(FallThroughCheck.class);
-        checkConfig.addAttribute("reliefPattern", ownPattern);
+        checkConfig.addAttribute("reliefPattern", "Continue with next case");
 
         final String[] expected = {
             "14:13: " + getCheckMessage(MSG_FALL_THROUGH),
