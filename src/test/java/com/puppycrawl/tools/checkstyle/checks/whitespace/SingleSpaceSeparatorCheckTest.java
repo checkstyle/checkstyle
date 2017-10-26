@@ -54,7 +54,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
     public void testSpaceErrors() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(SingleSpaceSeparatorCheck.class);
-        checkConfig.addAttribute("validateComments", String.valueOf(true));
+        checkConfig.addAttribute("validateComments", "true");
         final String[] expected = {
             "1:9: " + getCheckMessage(MSG_KEY),
             "1:27: " + getCheckMessage(MSG_KEY),
@@ -97,7 +97,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
     public void testSpaceErrorsAroundComments() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(SingleSpaceSeparatorCheck.class);
-        checkConfig.addAttribute("validateComments", String.valueOf(true));
+        checkConfig.addAttribute("validateComments", "true");
         final String[] expected = {
             "5:10: " + getCheckMessage(MSG_KEY),
             "5:42: " + getCheckMessage(MSG_KEY),

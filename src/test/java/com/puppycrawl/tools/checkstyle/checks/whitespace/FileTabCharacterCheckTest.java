@@ -40,7 +40,9 @@ public class FileTabCharacterCheckTest
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createConfig(false);
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(FileTabCharacterCheck.class);
+        checkConfig.addAttribute("eachLine", "false");
         final String[] expected = {
             "19:25: " + getCheckMessage(MSG_FILE_CONTAINS_TAB),
         };
@@ -53,7 +55,9 @@ public class FileTabCharacterCheckTest
 
     @Test
     public void testVerbose() throws Exception {
-        final DefaultConfiguration checkConfig = createConfig(true);
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(FileTabCharacterCheck.class);
+        checkConfig.addAttribute("eachLine", "true");
         final String[] expected = {
             "19:25: " + getCheckMessage(MSG_CONTAINS_TAB),
             "145:35: " + getCheckMessage(MSG_CONTAINS_TAB),
@@ -73,7 +77,9 @@ public class FileTabCharacterCheckTest
 
     @Test
     public void testBadFile() throws Exception {
-        final DefaultConfiguration checkConfig = createConfig(false);
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(FileTabCharacterCheck.class);
+        checkConfig.addAttribute("eachLine", "false");
         final String path = getPath("Claira");
         final String exceptionMessage = " (No such file or directory)";
         final LocalizedMessage localizedMessage = new LocalizedMessage(0,
@@ -87,16 +93,5 @@ public class FileTabCharacterCheckTest
             new File(path),
         };
         verify(createChecker(checkConfig), files, path, expected);
-    }
-
-    /**
-     * Creates a configuration that is functionally close to that in the docs.
-     * @param verbose verbose mode
-     */
-    private static DefaultConfiguration createConfig(boolean verbose) {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(FileTabCharacterCheck.class);
-        checkConfig.addAttribute("eachLine", Boolean.toString(verbose));
-        return checkConfig;
     }
 }

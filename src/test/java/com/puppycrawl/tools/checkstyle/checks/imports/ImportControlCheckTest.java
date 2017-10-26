@@ -52,10 +52,6 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
         return "com/puppycrawl/tools/checkstyle/checks/imports/importcontrol";
     }
 
-    private static String getResourcePath(String filename) {
-        return "/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/" + filename;
-    }
-
     @Test
     public void testGetRequiredTokens() {
         final ImportControlCheck checkObj = new ImportControlCheck();
