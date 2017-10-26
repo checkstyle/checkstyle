@@ -120,7 +120,7 @@ public class EqualsHashCodeCheck
         return CheckUtils.isEqualsMethod(ast)
                 && modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
                 && isObjectParam(parameters.getFirstChild())
-                && (ast.branchContains(TokenTypes.SLIST)
+                && (ast.findFirstToken(TokenTypes.SLIST) != null
                         || modifiers.findFirstToken(TokenTypes.LITERAL_NATIVE) != null);
     }
 
@@ -141,7 +141,7 @@ public class EqualsHashCodeCheck
                 && modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
                 && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == null
                 && parameters.getFirstChild() == null
-                && (ast.branchContains(TokenTypes.SLIST)
+                && (ast.findFirstToken(TokenTypes.SLIST) != null
                         || modifiers.findFirstToken(TokenTypes.LITERAL_NATIVE) != null);
     }
 

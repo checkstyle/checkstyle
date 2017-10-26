@@ -607,7 +607,8 @@ public class RequireThisCheck extends AbstractCheck {
             else {
                 final DetailAST frameNameIdent = variableDeclarationFrame.getFrameNameIdent();
                 final DetailAST definitionToken = frameNameIdent.getParent();
-                staticContext = definitionToken.branchContains(TokenTypes.LITERAL_STATIC);
+                staticContext = definitionToken.findFirstToken(TokenTypes.MODIFIERS)
+                        .findFirstToken(TokenTypes.LITERAL_STATIC) != null;
             }
         }
         return !staticContext;

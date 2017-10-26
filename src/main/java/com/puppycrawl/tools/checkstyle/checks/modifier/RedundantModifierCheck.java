@@ -309,7 +309,7 @@ public class RedundantModifierCheck
             checkForRedundantModifier(ast, TokenTypes.FINAL);
         }
 
-        if (!ast.branchContains(TokenTypes.SLIST)) {
+        if (ast.findFirstToken(TokenTypes.SLIST) == null) {
             processAbstractMethodParameters(ast);
         }
     }

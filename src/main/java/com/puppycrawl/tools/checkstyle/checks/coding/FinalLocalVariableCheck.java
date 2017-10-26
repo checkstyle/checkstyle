@@ -203,7 +203,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 break;
             case TokenTypes.PARAMETER_DEF:
                 if (!isInLambda(ast)
-                        && !ast.branchContains(TokenTypes.FINAL)
+                        && ast.findFirstToken(TokenTypes.MODIFIERS)
+                            .findFirstToken(TokenTypes.FINAL) == null
                         && !isInAbstractOrNativeMethod(ast)
                         && !ScopeUtils.isInInterfaceBlock(ast)
                         && !isMultipleTypeCatch(ast)) {
