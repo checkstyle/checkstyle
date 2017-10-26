@@ -160,8 +160,8 @@ public final class MissingOverrideCheck extends AbstractCheck {
             if (javaFiveCompatibility) {
                 final DetailAST defOrNew = ast.getParent().getParent();
 
-                if (defOrNew.branchContains(TokenTypes.EXTENDS_CLAUSE)
-                    || defOrNew.branchContains(TokenTypes.IMPLEMENTS_CLAUSE)
+                if (defOrNew.findFirstToken(TokenTypes.EXTENDS_CLAUSE) != null
+                    || defOrNew.findFirstToken(TokenTypes.IMPLEMENTS_CLAUSE) != null
                     || defOrNew.getType() == TokenTypes.LITERAL_NEW) {
                     check = false;
                 }

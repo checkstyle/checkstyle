@@ -143,7 +143,8 @@ public class FinalParametersCheck extends AbstractCheck {
             method.findFirstToken(TokenTypes.MODIFIERS);
         // exit on fast lane if there is nothing to check here
 
-        if (method.branchContains(TokenTypes.PARAMETER_DEF)
+        if (method.findFirstToken(TokenTypes.PARAMETERS)
+                .findFirstToken(TokenTypes.PARAMETER_DEF) != null
                 // ignore abstract and native methods
                 && modifiers.findFirstToken(TokenTypes.ABSTRACT) == null
                 && modifiers.findFirstToken(TokenTypes.LITERAL_NATIVE) == null) {

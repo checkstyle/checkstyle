@@ -162,7 +162,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
                 && astType != TokenTypes.SLIST
                 && astType != TokenTypes.LITERAL_NEW
                 || astType == TokenTypes.LITERAL_NEW
-                    && ast.branchContains(TokenTypes.LCURLY)) {
+                    && ast.findFirstToken(TokenTypes.OBJBLOCK) != null) {
             currentFrame = currentFrame.getParent();
         }
         else if (astType == TokenTypes.SLIST) {
@@ -243,7 +243,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
      * @param ast LITERAL_NEW ast.
      */
     private void processLiteralNew(DetailAST ast) {
-        if (ast.branchContains(TokenTypes.LCURLY)) {
+        if (ast.findFirstToken(TokenTypes.OBJBLOCK) != null) {
             final FieldFrame frame = new FieldFrame(currentFrame);
             currentFrame.addChild(frame);
             currentFrame = frame;

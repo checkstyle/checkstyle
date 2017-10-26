@@ -84,7 +84,7 @@ public final class AnnotationUtility {
             throw new IllegalArgumentException(THE_AST_IS_NULL);
         }
         final DetailAST holder = getAnnotationHolder(ast);
-        return holder != null && holder.branchContains(TokenTypes.ANNOTATION);
+        return holder != null && holder.findFirstToken(TokenTypes.ANNOTATION) != null;
     }
 
     /**
