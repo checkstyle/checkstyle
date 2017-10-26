@@ -24,6 +24,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -78,6 +79,7 @@ public class AbstractTypeAwareCheckTest extends AbstractModuleTestSupport {
 
         try {
             regularClassConstructor.newInstance(null, "", new JavadocMethodCheck());
+            fail("Exception is expected");
         }
         catch (InvocationTargetException ex) {
             assertTrue("Invalid exception class, expected: IllegalArgumentException.class",
@@ -159,6 +161,7 @@ public class AbstractTypeAwareCheckTest extends AbstractModuleTestSupport {
         };
         try {
             verify(config, getPath("InputAbstractTypeAwareLoadErrors.java"), expected);
+            fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
             final IllegalStateException cause = (IllegalStateException) ex.getCause();

@@ -239,6 +239,7 @@ public class XpathFilterTest extends AbstractModuleTestSupport {
                 file.getName(), message, null);
         try {
             filter.accept(ev);
+            fail("Exception is expected");
         }
         catch (IllegalStateException ex) {
             assertTrue("Exception message does not match expected one",

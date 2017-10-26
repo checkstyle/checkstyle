@@ -200,6 +200,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         try {
             final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
             verify(checkConfig, pathToEmptyFile, expected);
+            fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
             assertTrue("Error message is unexpected",
@@ -270,6 +271,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final FileText fileText = new FileText(file, lines);
         try {
             treeWalker.processFiltered(file, fileText);
+            fail("Exception is expected");
         }
         catch (CheckstyleException exception) {
             assertTrue("Error message is unexpected",
@@ -292,6 +294,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final FileText fileText = new FileText(file, lines);
         try {
             treeWalker.processFiltered(file, fileText);
+            fail("Exception is expected");
         }
         catch (CheckstyleException exception) {
             assertTrue("Error message is unexpected",
@@ -326,14 +329,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             createModuleConfig(RequiredTokenIsEmptyIntArray.class);
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
 
-        try {
-            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-            verify(checkConfig, pathToEmptyFile, expected);
-        }
-        catch (CheckstyleException ignored) {
-            // unexpected
-            fail("CheckstyleException is NOT expected");
-        }
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, pathToEmptyFile, expected);
     }
 
     @Test

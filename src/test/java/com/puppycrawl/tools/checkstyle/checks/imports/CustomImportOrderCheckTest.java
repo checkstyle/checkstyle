@@ -29,7 +29,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import org.junit.Test;
@@ -366,19 +365,12 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     @Test
     // UT uses Reflection to avoid removing null-validation from static method,
     // which is a candidate for utility method in the future
-    public void testGetFullImportIdent() {
-        Object actual;
-        try {
-            final Class<?> clazz = CustomImportOrderCheck.class;
-            final Object t = clazz.getConstructor().newInstance();
-            final Method method = clazz.getDeclaredMethod("getFullImportIdent", DetailAST.class);
-            method.setAccessible(true);
-            actual = method.invoke(t, (DetailAST) null);
-        }
-        catch (NoSuchMethodException | InstantiationException
-                  | IllegalAccessException | InvocationTargetException ignored) {
-            actual = null;
-        }
+    public void testGetFullImportIdent() throws Exception {
+        final Class<?> clazz = CustomImportOrderCheck.class;
+        final Object t = clazz.getConstructor().newInstance();
+        final Method method = clazz.getDeclaredMethod("getFullImportIdent", DetailAST.class);
+        method.setAccessible(true);
+        final Object actual = method.invoke(t, (DetailAST) null);
 
         final String expected = "";
         assertEquals("Invalid getFullImportIdent result", expected, actual);

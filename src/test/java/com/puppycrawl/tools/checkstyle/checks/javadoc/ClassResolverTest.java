@@ -122,6 +122,7 @@ public class ClassResolverTest {
 
         try {
             classResolver.resolve("Entry", "Map");
+            fail("Exception is expected");
         }
         catch (ClassNotFoundException ex) {
             assertEquals("Invalid exception message", "Entry", ex.getMessage());
@@ -172,15 +173,7 @@ public class ClassResolverTest {
         PowerMockito.doThrow(new NoClassDefFoundError("expected exception"))
                 .when(classResolver, "safeLoad", anyObject());
 
-        try {
-            final boolean result = classResolver.isLoadable("someClass");
-            assertFalse("result should be false", result);
-        }
-        catch (NoClassDefFoundError ex) {
-            fail("NoClassDefFoundError is not expected");
-            final String expected = "expected exception";
-            assertTrue("Invalid exception message, should end with: " + expected,
-                    ex.getMessage().endsWith(expected));
-        }
+        final boolean result = classResolver.isLoadable("someClass");
+        assertFalse("result should be false", result);
     }
 }

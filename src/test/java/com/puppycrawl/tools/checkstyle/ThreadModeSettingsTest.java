@@ -67,6 +67,7 @@ public class ThreadModeSettingsTest {
 
         try {
             configuration.resolveName(ThreadModeSettings.TREE_WALKER_MODULE_NAME);
+            fail("Exception is expected");
         }
         catch (IllegalArgumentException ex) {
             assertEquals("Invalid exception message",

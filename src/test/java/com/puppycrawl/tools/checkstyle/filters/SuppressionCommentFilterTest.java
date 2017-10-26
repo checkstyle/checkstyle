@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.fail;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -264,6 +265,7 @@ public class SuppressionCommentFilterTest
         try {
             final String[] suppressed = CommonUtils.EMPTY_STRING_ARRAY;
             verifySuppressed(filterConfig, suppressed);
+            fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
@@ -281,6 +283,7 @@ public class SuppressionCommentFilterTest
         try {
             final String[] suppressed = CommonUtils.EMPTY_STRING_ARRAY;
             verifySuppressed(filterConfig, suppressed);
+            fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();

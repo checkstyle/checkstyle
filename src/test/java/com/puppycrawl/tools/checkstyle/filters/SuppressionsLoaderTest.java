@@ -141,6 +141,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final String fn = getPath("InputSuppressionsLoaderNoFile.xml");
         try {
             SuppressionsLoader.loadSuppressions(fn);
+            fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
             final String messageStart = "Unable to parse " + fn;
@@ -158,6 +159,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final String fn = getPath("InputSuppressionsLoaderNoCheck.xml");
         try {
             SuppressionsLoader.loadSuppressions(fn);
+            fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
             final String messageStart = "Unable to parse " + fn;
@@ -175,6 +177,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final String fn = getPath("InputSuppressionsLoaderBadInt.xml");
         try {
             SuppressionsLoader.loadSuppressions(fn);
+            fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
             assertTrue(
@@ -261,6 +264,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final String fn = getPath("InputSuppressionsLoaderNoCheckAndId.xml");
         try {
             SuppressionsLoader.loadSuppressions(fn);
+            fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
             assertEquals("Invalid error message",
@@ -282,6 +286,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final String fn = getPath("InputSuppressionsLoaderInvalidFile.xml");
         try {
             SuppressionsLoader.loadSuppressions(fn);
+            fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
             assertEquals("Invalid error message",

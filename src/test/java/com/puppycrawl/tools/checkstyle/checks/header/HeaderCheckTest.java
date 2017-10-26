@@ -71,30 +71,20 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNoHeader() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
-        try {
-            createChecker(checkConfig);
-            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-            verify(checkConfig, getPath("InputHeaderRegexp.java"), expected);
-        }
-        catch (CheckstyleException ex) {
-            // Exception is not expected
-            fail("Exception is not expected");
-        }
+
+        createChecker(checkConfig);
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputHeaderRegexp.java"), expected);
     }
 
     @Test
     public void testWhitespaceHeader() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
         checkConfig.addAttribute("header", "\n    \n");
-        try {
-            createChecker(checkConfig);
-            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-            verify(checkConfig, getPath("InputHeaderRegexp.java"), expected);
-        }
-        catch (CheckstyleException ex) {
-            // Exception is not expected
-            fail("Exception is not expected");
-        }
+
+        createChecker(checkConfig);
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputHeaderRegexp.java"), expected);
     }
 
     @Test
