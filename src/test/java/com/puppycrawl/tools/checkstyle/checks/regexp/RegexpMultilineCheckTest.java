@@ -51,10 +51,9 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
-        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("format", "System\\.(out)|(err)\\.print(ln)?\\(");
         final String[] expected = {
-            "69: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
+            "69: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "System\\.(out)|(err)\\.print(ln)?\\("),
         };
         verify(checkConfig, getPath("InputRegexpMultilineSemantic.java"), expected);
     }
@@ -63,12 +62,10 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     public void testMessageProperty()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
-        checkConfig.addAttribute("format", illegal);
-        final String message = "Bad line :(";
-        checkConfig.addAttribute("message", message);
+        checkConfig.addAttribute("format", "System\\.(out)|(err)\\.print(ln)?\\(");
+        checkConfig.addAttribute("message", "Bad line :(");
         final String[] expected = {
-            "69: " + message,
+            "69: " + "Bad line :(",
         };
         verify(checkConfig, getPath("InputRegexpMultilineSemantic.java"), expected);
     }
@@ -76,11 +73,10 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIgnoreCaseTrue() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        final String illegal = "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(";
-        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("format", "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(");
         checkConfig.addAttribute("ignoreCase", "true");
         final String[] expected = {
-            "69: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
+            "69: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
         };
         verify(checkConfig, getPath("InputRegexpMultilineSemantic.java"), expected);
     }
@@ -88,8 +84,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIgnoreCaseFalse() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        final String illegal = "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(";
-        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("format", "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(");
         checkConfig.addAttribute("ignoreCase", "false");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpMultilineSemantic.java"), expected);
@@ -98,12 +93,11 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIllegalFailBelowErrorLimit() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        final String illegal = "^import";
-        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("format", "^import");
         final String[] expected = {
-            "7: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
-            "8: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
-            "9: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
+            "7: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "^import"),
+            "8: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "^import"),
+            "9: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "^import"),
         };
         verify(checkConfig, getPath("InputRegexpMultilineSemantic.java"), expected);
     }
@@ -111,12 +105,11 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCarriageReturn() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        final String illegal = "\\r";
-        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("format", "\\r");
         checkConfig.addAttribute("maximum", "0");
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
-            "3: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
+            "1: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "\\r"),
+            "3: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "\\r"),
         };
 
         final File file = temporaryFolder.newFile();
@@ -129,11 +122,10 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMaximum() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        final String illegal = "\\r";
-        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("format", "\\r");
         checkConfig.addAttribute("maximum", "1");
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
+            "3: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "\\r"),
         };
 
         final File file = temporaryFolder.newFile();
@@ -214,11 +206,10 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMinimum() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        final String illegal = "\\r";
-        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("format", "\\r");
         checkConfig.addAttribute("minimum", "5");
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_REGEXP_MINIMUM, "5", illegal),
+            "0: " + getCheckMessage(MSG_REGEXP_MINIMUM, "5", "\\r"),
         };
 
         final File file = temporaryFolder.newFile();
@@ -241,8 +232,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSetMessage() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        final String illegal = "\\n";
-        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("format", "\\n");
         checkConfig.addAttribute("minimum", "500");
         checkConfig.addAttribute("message", "someMessage");
 
@@ -257,8 +247,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGoodLimit() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        final String illegal = "^import";
-        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("format", "^import");
         checkConfig.addAttribute("maximum", "5000");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpMultilineSemantic.java"), expected);

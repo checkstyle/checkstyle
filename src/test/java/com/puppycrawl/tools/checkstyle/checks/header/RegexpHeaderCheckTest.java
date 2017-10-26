@@ -30,10 +30,8 @@ import static org.powermock.api.mockito.PowerMockito.doNothing;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 
-import java.io.File;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.net.URI;
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Pattern;
@@ -174,8 +172,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
     public void testRegexpHeaderUrl() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(RegexpHeaderCheck.class);
-        final URI uri = new File(getPath("InputRegexpHeader.header")).toURI();
-        checkConfig.addAttribute("headerFile", uri.toString());
+        checkConfig.addAttribute("headerFile", getUriString("InputRegexpHeader.header"));
         final String[] expected = {
             "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "// Created: 2002"),
         };
@@ -226,8 +223,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
     public void testInlineRegexpHeaderConsecutiveNewlinesThroughConfigFile() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(RegexpHeaderCheck.class);
-        final URI uri = new File(getPath("InputRegexpHeaderNewLines.header")).toURI();
-        checkConfig.addAttribute("headerFile", uri.toString());
+        checkConfig.addAttribute("headerFile", getUriString("InputRegexpHeaderNewLines.header"));
         final String[] expected = {
             "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "^$"),
         };

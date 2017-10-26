@@ -62,16 +62,15 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(AbstractClassNameCheck.class);
         checkConfig.addAttribute("ignoreName", "false");
         checkConfig.addAttribute("ignoreModifier", "true");
-        final String pattern = "^NonAbstract.+$";
-        checkConfig.addAttribute("format", pattern);
+        checkConfig.addAttribute("format", "^NonAbstract.+$");
 
         final String[] expected = {
             "3:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "InputAbstractClassName",
-                pattern),
+                "^NonAbstract.+$"),
             "9:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "AbstractClassOther",
-                pattern),
+                "^NonAbstract.+$"),
             "21:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "AbstractClassName2",
-                pattern),
+                "^NonAbstract.+$"),
         };
 
         verify(checkConfig, getPath("InputAbstractClassName.java"), expected);

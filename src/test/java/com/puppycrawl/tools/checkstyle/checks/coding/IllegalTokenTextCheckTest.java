@@ -76,10 +76,9 @@ public class IllegalTokenTextCheckTest
         checkConfig.addAttribute("tokens", "STRING_LITERAL");
         checkConfig.addAttribute("format", "a href");
 
-        final String customMessage = "My custom message";
-        checkConfig.addAttribute("message", customMessage);
+        checkConfig.addAttribute("message", "My custom message");
         final String[] expected = {
-            "24:28: " + customMessage,
+            "24:28: " + "My custom message",
         };
         verify(checkConfig, getPath("InputIllegalTokenTextTokens.java"), expected);
     }
