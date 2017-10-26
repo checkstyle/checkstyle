@@ -45,6 +45,7 @@ public class AutomaticBeanTest {
         conf.addAttribute("NonExisting", "doesn't matter");
         try {
             testBean.configure(conf);
+            fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
             final String expected = "Property 'NonExisting' in module ";
@@ -61,6 +62,7 @@ public class AutomaticBeanTest {
         conf.addAttribute("privateField", "doesn't matter");
         try {
             testBean.configure(conf);
+            fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
             final String expected = "Property 'privateField' in module ";

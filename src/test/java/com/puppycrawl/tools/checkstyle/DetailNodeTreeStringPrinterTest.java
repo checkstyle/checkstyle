@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle;
 import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_MISSED_HTML_CLOSE;
 import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_PARSE_RULE_ERROR;
 import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_WRONG_SINGLETON_TAG;
-import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseErrorMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -34,6 +33,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.powermock.reflect.Whitebox;
 
+import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseErrorMessage;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
 public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
@@ -141,6 +141,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
             DetailNodeTreeStringPrinter.printFileAst(new File(
                     getPath("InputDetailNodeTreeStringPrinter"
                             + "UnescapedJavaCodeWithGenericsInJavadoc.javadoc")));
+            Assert.fail("Exception is expected");
         }
         catch (IllegalArgumentException ex) {
             final String expected = (String) GET_PARSE_ERROR_MESSAGE.invoke(null,
@@ -155,6 +156,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
         try {
             DetailNodeTreeStringPrinter.printFileAst(new File(getPath(
                     "InputDetailNodeTreeStringPrinterNoViableAltException.javadoc")));
+            Assert.fail("Exception is expected");
         }
         catch (IllegalArgumentException ex) {
             final String expected = (String) GET_PARSE_ERROR_MESSAGE.invoke(null,
@@ -171,6 +173,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
             DetailNodeTreeStringPrinter.printFileAst(new File(getPath(
                     "InputDetailNodeTreeStringPrinterHtmlTagCloseBeforeTagOpen.javadoc"
             )));
+            Assert.fail("Exception is expected");
         }
         catch (IllegalArgumentException ex) {
             final String expected = (String) GET_PARSE_ERROR_MESSAGE.invoke(null,
@@ -187,6 +190,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
             DetailNodeTreeStringPrinter.printFileAst(new File(getPath(
                     "InputDetailNodeTreeStringPrinterWrongHtmlTagOrder.javadoc"
             )));
+            Assert.fail("Exception is expected");
         }
         catch (IllegalArgumentException ex) {
             final String expected = (String) GET_PARSE_ERROR_MESSAGE.invoke(null,
@@ -202,6 +206,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
             DetailNodeTreeStringPrinter.printFileAst(new File(getPath(
                     "InputDetailNodeTreeStringPrinterOmittedStartTagForHtmlElement.javadoc"
             )));
+            Assert.fail("Exception is expected");
         }
         catch (IllegalArgumentException ex) {
             final String expected = (String) GET_PARSE_ERROR_MESSAGE.invoke(null,
