@@ -79,11 +79,6 @@ public class JavadocDetailNodeParser {
     public static final String MSG_JAVADOC_PARSE_RULE_ERROR = "javadoc.parse.rule.error";
 
     /**
-     * Error message key for common javadoc errors.
-     */
-    public static final String MSG_KEY_PARSE_ERROR = "javadoc.parse.error";
-
-    /**
      * Message property key for the Unclosed HTML message.
      */
     public static final String MSG_UNCLOSED_HTML_TAG = "javadoc.unclosedHtml";

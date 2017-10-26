@@ -66,12 +66,6 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
             JavadocDetailNodeParser.MSG_JAVADOC_PARSE_RULE_ERROR;
 
     /**
-     * Error message key for common javadoc errors.
-     */
-    public static final String MSG_KEY_PARSE_ERROR =
-            JavadocDetailNodeParser.MSG_KEY_PARSE_ERROR;
-
-    /**
      * Key is "line:column". Value is {@link DetailNode} tree. Map is stored in {@link ThreadLocal}
      * to guarantee basic thread safety and avoid shared, mutable state when not necessary.
      */
