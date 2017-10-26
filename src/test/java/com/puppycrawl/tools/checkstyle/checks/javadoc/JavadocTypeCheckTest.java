@@ -150,7 +150,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute(
             "scope",
-            Scope.getInstance("package").getName());
+            Scope.PACKAGE.getName());
         final String[] expected = {
             "18: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "20: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -165,7 +165,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute(
             "scope",
-            Scope.getInstance("public").getName());
+            Scope.PUBLIC.getName());
         final String[] expected = {
             "18: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };

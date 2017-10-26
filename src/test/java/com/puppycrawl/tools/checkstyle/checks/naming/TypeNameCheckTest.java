@@ -26,9 +26,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 public class TypeNameCheckTest
     extends AbstractModuleTestSupport {
@@ -70,7 +68,7 @@ public class TypeNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(TypeNameCheck.class);
-        checkConfig.addAttribute("tokens", TokenUtils.getTokenName(TokenTypes.CLASS_DEF));
+        checkConfig.addAttribute("tokens", "CLASS_DEF");
         final String[] expected = {
             "3:7: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderClass", DEFAULT_PATTERN),
@@ -83,7 +81,7 @@ public class TypeNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(TypeNameCheck.class);
-        checkConfig.addAttribute("tokens", TokenUtils.getTokenName(TokenTypes.INTERFACE_DEF));
+        checkConfig.addAttribute("tokens", "INTERFACE_DEF");
         final String[] expected = {
             "5:22: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderInterface", DEFAULT_PATTERN),
@@ -96,7 +94,7 @@ public class TypeNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(TypeNameCheck.class);
-        checkConfig.addAttribute("tokens", TokenUtils.getTokenName(TokenTypes.ENUM_DEF));
+        checkConfig.addAttribute("tokens", "ENUM_DEF");
         final String[] expected = {
             "7:17: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderEnum", DEFAULT_PATTERN),
@@ -109,7 +107,7 @@ public class TypeNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(TypeNameCheck.class);
-        checkConfig.addAttribute("tokens", TokenUtils.getTokenName(TokenTypes.ANNOTATION_DEF));
+        checkConfig.addAttribute("tokens", "ANNOTATION_DEF");
         final String[] expected = {
             "9:23: " + getCheckMessage(MSG_INVALID_PATTERN,
                 "inputHeaderAnnotation", DEFAULT_PATTERN),
