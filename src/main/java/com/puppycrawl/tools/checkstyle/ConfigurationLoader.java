@@ -76,7 +76,7 @@ public final class ConfigurationLoader {
         "-//Puppy Crawl//DTD Check Configuration 1.0//EN";
 
     /** The resource for version 1_0 of the configuration dtd. */
-    private static final String DTD_RESOURCE_NAME_1_0 =
+    private static final String DTD_CONFIGURATION_NAME_1_0 =
         "com/puppycrawl/tools/checkstyle/configuration_1_0.dtd";
 
     /** The public ID for version 1_1 of the configuration dtd. */
@@ -84,7 +84,7 @@ public final class ConfigurationLoader {
         "-//Puppy Crawl//DTD Check Configuration 1.1//EN";
 
     /** The resource for version 1_1 of the configuration dtd. */
-    private static final String DTD_RESOURCE_NAME_1_1 =
+    private static final String DTD_CONFIGURATION_NAME_1_1 =
         "com/puppycrawl/tools/checkstyle/configuration_1_1.dtd";
 
     /** The public ID for version 1_2 of the configuration dtd. */
@@ -92,7 +92,7 @@ public final class ConfigurationLoader {
         "-//Puppy Crawl//DTD Check Configuration 1.2//EN";
 
     /** The resource for version 1_2 of the configuration dtd. */
-    private static final String DTD_RESOURCE_NAME_1_2 =
+    private static final String DTD_CONFIGURATION_NAME_1_2 =
         "com/puppycrawl/tools/checkstyle/configuration_1_2.dtd";
 
     /** The public ID for version 1_3 of the configuration dtd. */
@@ -100,7 +100,7 @@ public final class ConfigurationLoader {
         "-//Puppy Crawl//DTD Check Configuration 1.3//EN";
 
     /** The resource for version 1_3 of the configuration dtd. */
-    private static final String DTD_RESOURCE_NAME_1_3 =
+    private static final String DTD_CONFIGURATION_NAME_1_3 =
         "com/puppycrawl/tools/checkstyle/configuration_1_3.dtd";
 
     /** Prefix for the exception when unable to parse resource. */
@@ -166,10 +166,10 @@ public final class ConfigurationLoader {
      */
     private static Map<String, String> createIdToResourceNameMap() {
         final Map<String, String> map = new HashMap<>();
-        map.put(DTD_PUBLIC_ID_1_0, DTD_RESOURCE_NAME_1_0);
-        map.put(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
-        map.put(DTD_PUBLIC_ID_1_2, DTD_RESOURCE_NAME_1_2);
-        map.put(DTD_PUBLIC_ID_1_3, DTD_RESOURCE_NAME_1_3);
+        map.put(DTD_PUBLIC_ID_1_0, DTD_CONFIGURATION_NAME_1_0);
+        map.put(DTD_PUBLIC_ID_1_1, DTD_CONFIGURATION_NAME_1_1);
+        map.put(DTD_PUBLIC_ID_1_2, DTD_CONFIGURATION_NAME_1_2);
+        map.put(DTD_PUBLIC_ID_1_3, DTD_CONFIGURATION_NAME_1_3);
         return map;
     }
 
