@@ -15,6 +15,81 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.4">
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Disallowing user to use incomplete fully qualified Check names in config file . Author: BBG <a href="https://github.com/checkstyle/checkstyle/issues/4456">#4456</a>
+          </li>
+          <li>
+            JavadocTokenTypes should keep values of tokens, restore tokens as they were at 8.1 version. Author: Piyush Sharma <a href="https://github.com/checkstyle/checkstyle/issues/5139">#5139</a>
+          </li>
+          <li>
+            Remove extra numeric offset in JavadocTokenTypes . Author: Maksim Shilin <a href="https://github.com/checkstyle/checkstyle/issues/5114">#5114</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Checkstyle produces invalid XML file . Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5162">#5162</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Fix violations from new sevntu check - CheckstyleTestMakeupCheck. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5228">#5228</a>
+          </li>
+          <li>
+            Unused messages in message.properties. Author: dyominov <a href="https://github.com/checkstyle/checkstyle/issues/5094">#5094</a>
+          </li>
+          <li>
+            Two unit tests for SuppressionCommentFilterTest do not fail if CheckstyleException is not thrown. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5210">#5210</a>
+          </li>
+          <li>
+            ClassFanOutComplexity for a multi-dimensional array is calculating with an error.. Author: Artem Dudkin <a href="https://github.com/checkstyle/checkstyle/issues/5134">#5134</a>
+          </li>
+          <li>
+            Remove usage of DetailAST.branchContains. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5124">#5124</a>
+          </li>
+          <li>
+            Checkstyle tests should be named after the class they test and extra validations/helpers should be in a special package. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5104">#5104</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checks-whitespace profile to 100%. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/5003">#5003</a>
+          </li>
+          <li>
+            left curly nlow documentation error?. Author: Clément Guillaume <a href="https://github.com/checkstyle/checkstyle/issues/5188">#5188</a>
+          </li>
+          <li>
+            create GeneratedJavadocTokenTypesTest.java. Author: Piyush Sharma <a href="https://github.com/checkstyle/checkstyle/issues/5186">#5186</a>
+          </li>
+          <li>
+            Use private final loggers instead of private static final in Checkstyle codebase. Author: crude <a href="https://github.com/checkstyle/checkstyle/issues/929">#929</a>
+          </li>
+          <li>
+            Move DetailNodeTreeStringPrinter#createFakeBlockComment to CommonUtils. Author: Turkin Ivan <a href="https://github.com/checkstyle/checkstyle/issues/4785">#4785</a>
+          </li>
+          <li>
+            Prohibit the usage of hardcoded encoding in Checkstyle source code . Author: Artem Dudkin <a href="https://github.com/checkstyle/checkstyle/issues/5023">#5023</a>
+          </li>
+          <li>
+            appveyor:  provide ability to skip CI executions base on commit files. Author: Maksim Shilin <a href="https://github.com/checkstyle/checkstyle/issues/3870">#3870</a>
+          </li>
+          <li>
+            Reorganize token methods of all Checks. Author: Subbu Dantu <a href="https://github.com/checkstyle/checkstyle/issues/4581">#4581</a>
+          </li>
+          <li>
+            Remove deprecated class BaseCheckTestSupport. Author: Subbu Dantu <a href="https://github.com/checkstyle/checkstyle/issues/4867">#4867</a>
+          </li>
+          <li>
+            validation by xsd during build is missed for xml files that use packages_1_0.dtd. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5177">#5177</a>
+          </li>
+          <li>
+            Sonar validation failing with StackOverflowError . Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5175">#5175</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 8.3">
       <p>Breaking backward compatibility:</p>
         <ul>
