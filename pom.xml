@@ -1288,6 +1288,8 @@
           <excludedLinks>
             <excludedLink>reports/google-style/guava</excludedLink>
             <excludedLink>reports/javadoc/openjdk8</excludedLink>
+            <!-- temporal suppress till javadoc tool starts generating links to https -->
+            <excludedLink>http://docs.oracle.com/javase</excludedLink>
             <!-- SSL -->
             <excludedLink>https://travis-ci.org/</excludedLink>
             <excludedLink>https://travis-ci.org/checkstyle/checkstyle</excludedLink>
@@ -1378,6 +1380,7 @@
             <excludedLink>https://www.jarchitect.com</excludedLink>
             <!-- permanent: avax.net.ssl.SSLException : Received fatal alert: internal_error -->
             <excludedLink>https://salt.bountysource.com/teams/checkstyle</excludedLink>
+            <excludedLink>https://www.bountysource.com/teams/checkstyle/issues</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
