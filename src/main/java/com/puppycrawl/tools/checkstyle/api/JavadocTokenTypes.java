@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser;
  * Syntax Tree for the javadoc grammar.
  *
  * @author Baratali Izmailov
- * @see <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
+ * @see <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
  * javadoc - The Java API Documentation Generator</a>
  */
 public final class JavadocTokenTypes {
@@ -53,7 +53,7 @@ public final class JavadocTokenTypes {
      * }</pre>
      *
      * @see
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCDBGG">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCDBGG">
      * Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
@@ -76,7 +76,7 @@ public final class JavadocTokenTypes {
      * }</pre>
      *
      * @see
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#deprecated">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#deprecated">
      * Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
@@ -99,7 +99,7 @@ public final class JavadocTokenTypes {
      * }</pre>
      *
      * @see
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHGJGD">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHGJGD">
      * Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
@@ -123,7 +123,7 @@ public final class JavadocTokenTypes {
      * </pre>
      *
      * @see
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDJBFDB">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDJBFDB">
      * Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
@@ -155,7 +155,7 @@ public final class JavadocTokenTypes {
      * }</pre>
      *
      * @see
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDGHIDG">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDGHIDG">
      * Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
@@ -184,7 +184,7 @@ public final class JavadocTokenTypes {
      * }</pre>
      *
      * @see
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHJECF">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHJECF">
      * Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
@@ -217,7 +217,7 @@ public final class JavadocTokenTypes {
      * }</pre>
      *
      * @see
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDDIEDI">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDDIEDI">
      * Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
@@ -251,7 +251,7 @@ public final class JavadocTokenTypes {
      * }</pre>
      *
      * @see
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHDECF">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHDECF">
      * Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
@@ -274,7 +274,7 @@ public final class JavadocTokenTypes {
      * }</pre>
      *
      * @see
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCHBAE">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCHBAE">
      * Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
@@ -299,7 +299,7 @@ public final class JavadocTokenTypes {
      * }</pre>
      *
      * @see
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCEAHH">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCEAHH">
      * Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
@@ -324,7 +324,7 @@ public final class JavadocTokenTypes {
      * }</pre>
      *
      * @see
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCHAHD">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCHAHD">
      * Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
@@ -347,7 +347,7 @@ public final class JavadocTokenTypes {
      * }</pre>
      *
      * @see
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCBAHA">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCBAHA">
      * Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
@@ -430,7 +430,7 @@ public final class JavadocTokenTypes {
      * </pre>
      *
      * @see
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDFHHBB">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDFHHBB">
      * Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      */
@@ -471,7 +471,7 @@ public final class JavadocTokenTypes {
      * </pre>
      *
      * @see
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDBACBF">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDBACBF">
      * Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      */
@@ -506,7 +506,7 @@ public final class JavadocTokenTypes {
      * </pre>
      *
      * @see
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDDIECH">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDDIECH">
      * Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      */
@@ -533,7 +533,7 @@ public final class JavadocTokenTypes {
      * </pre>
      *
      * @see
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDGJCHC">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDGJCHC">
      * Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      */
@@ -572,7 +572,7 @@ public final class JavadocTokenTypes {
      * </pre>
      *
      * @see
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDGBICD">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDGBICD">
      * Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      */
@@ -602,7 +602,7 @@ public final class JavadocTokenTypes {
      * </pre>
      *
      * @see
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCFJDG">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCFJDG">
      * Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      */
@@ -635,7 +635,7 @@ public final class JavadocTokenTypes {
      * </pre>
      *
      * @see
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDDCDHH">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDDCDHH">
      * Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      */
@@ -899,7 +899,7 @@ public final class JavadocTokenTypes {
      * </pre>
      *
      * @see
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHJECF">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHJECF">
      * Oracle Docs</a>
      * @see #PARAM_LITERAL
      */
@@ -921,7 +921,7 @@ public final class JavadocTokenTypes {
      * </pre>
      *
      * @see
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHDECF">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHDECF">
      * Oracle Docs</a>
      * @see #SERIAL_LITERAL
      */
@@ -943,7 +943,7 @@ public final class JavadocTokenTypes {
      * </pre>
      *
      * @see
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHDECF">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHDECF">
      * Oracle Docs</a>
      * @see #SERIAL_LITERAL
      */
@@ -969,7 +969,7 @@ public final class JavadocTokenTypes {
      * </pre>
      *
      * @see
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHDECF">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHDECF">
      * Oracle Docs</a>
      * @see #SERIAL_FIELD_LITERAL
      */
@@ -995,7 +995,7 @@ public final class JavadocTokenTypes {
      * </pre>
      *
      * @see
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHDECF">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHDECF">
      * Oracle Docs</a>
      * @see #SERIAL_FIELD_LITERAL
      */

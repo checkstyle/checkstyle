@@ -26,7 +26,7 @@
         Each of these naming modules validates identifiers for particular code
         elements. Valid identifiers for a naming module are specified by its
         <code> format</code> property. The value of <code>format</code> is a <a
-        href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/regex/Pattern.html">
+        href="https://docs.oracle.com/javase/1.5.0/docs/api/java/util/regex/Pattern.html">
         regular expression</a> for valid identifiers.
       </p>
     </section>
@@ -749,7 +749,7 @@
           <tr>
             <td>allowOneCharVarInForLoop</td>
             <td>
-            Allow one character variable name in <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html"> initialization expressions</a> in FOR loop. For example:
+            Allow one character variable name in <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html"> initialization expressions</a> in FOR loop. For example:
               <pre>
 for (int i = 1; i &lt; 10; i++) {}
               </pre>
@@ -772,7 +772,7 @@ for (int i = 1; i &lt; 10; i++) {}
 
         <p>
           An example of how to configure the check to allow one character variable name in
-          <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
+          <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
           initialization expressions</a> in FOR loop:
         </p>
         <source>
@@ -1163,7 +1163,7 @@ class MyClass {
         <p>
           The default value of <code>format</code> for module <code>PackageName</code> has been chosen to match the
           requirements in the <a
-          href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.5.3">Java
+          href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.5.3">Java
           Language specification</a> and the Sun coding conventions. However
           both underscores and uppercase letters are rather uncommon, so most
           configurations should probably assign value <code>^[a-z]+(\.[a-z][a-z0-9]*)*$</code> to <code>format</code> for module <code>PackageName</code>, as in

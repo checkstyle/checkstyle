@@ -54,7 +54,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         <li>
           <code>-c configurationFile</code> - specifies the location of the
           file that defines the configuration modules. The location can either
-          be a filesystem location, or a <a href="http://docs.oracle.com/javase/8/docs/technotes/guides/lang/resources.html#res_names">name</a> passed to the
+          be a filesystem location, or a <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/lang/resources.html#res_names">name</a> passed to the
           ClassLoader.getResource() method.
         </li>
         <li>
@@ -191,7 +191,7 @@ java -jar target/checkstyle-X.X-SNAPSHOT-all.jar -c /sun_checks.xml MyClass.java
       <p>
         The easiest way is to include
         <a href="http://downloads.sourceforge.net/project/checkstyle/checkstyle/${projectVersion}/checkstyle-${projectVersion}-all.jar">checkstyle-${projectVersion}-all.jar</a> in the
-        <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/classpath.html#sthref10">classpath</a>. Alternatively, you must include the
+        <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/classpath.html#sthref10">classpath</a>. Alternatively, you must include the
         <code>compile</code> third party dependencies listed in
 
         <a href="dependencies.html">Project Dependencies</a> in the

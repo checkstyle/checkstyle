@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * or enum resides in a source file of its own.
  * <p>
  * Official description of a 'top-level' term:<a
- * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-7.html#jls-7.6">
+ * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-7.html#jls-7.6">
  * 7.6. Top Level Type Declarations</a>. If file doesn't contains
  * public class, enum or interface, top-level type is the first type in file.
  * </p>

@@ -12,7 +12,7 @@ public class InputAbstractJavadocNoWsBeforeDescriptionInJavadocTags implements S
      * Parse Error from ANTLR.
      * @serial include description
      * @see <a
-     * href="http://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#serial">
+     * href="https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#serial">
      * oracle docs</a> Syntax: <b>@serial field-description | include | exclude</b>
      */
     private static final long serialVersionUID = 8669426759693842025L;

@@ -527,7 +527,7 @@ public class MethodLimitCheck extends AbstractCheck
         methods to provide the dynamic part of the message (mMax in this
         case): <code>log(&quot;too.many.methods&quot;,
         mMax);</code>. Please consult the documentation of Java&#39;s <a
-        href="http://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html">MessageFormat</a>
+        href="https://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html">MessageFormat</a>
         to learn about the syntax of format strings (especially about
         those funny numbers in the translated text).
       </p>
@@ -575,7 +575,7 @@ public class MethodLimitCheck extends AbstractCheck
         create a jar that contains the classes and property files,
         e.g. <code>mycompanychecks.jar</code>. Then run
         (with the path separator
-        <a href="http://docs.oracle.com/javase/tutorial/essential/environment/sysprop.html">
+        <a href="https://docs.oracle.com/javase/tutorial/essential/environment/sysprop.html">
         system property ("path.separator")</a> adjusted to your platform:
         Linux/Unix - ":", Windows - ";"):
       </p>

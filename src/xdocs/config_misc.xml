@@ -117,7 +117,7 @@
       <subsection name="Description">
         <p>Since Checkstyle 5.8</p>
         <p>
-          Restrict using <a href = "http://docs.oracle.com/javase/specs/jls/se7/html/jls-3.html#jls-3.3">
+          Restrict using <a href = "https://docs.oracle.com/javase/specs/jls/se7/html/jls-3.html#jls-3.3">
           Unicode escapes</a> (e.g. \u221e).
           It is possible to allow using escapes for
           <a href="https://en.wiktionary.org/wiki/Appendix:Control_characters"> non-printable(control) characters</a>.
@@ -918,7 +918,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </source>
         <p>
           To configure the check to allow ignoring
-          <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">
+          <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">
            primitive datatypes</a> as parameters:
         </p>
         <source>
@@ -1948,7 +1948,7 @@ messages_home_fr_CA_UNIX.properties
           Checks that long constants are defined with an upper ell. That
           is <code>' L'</code> and not <code>'l'</code>. This is in accordance with the Java
           Language Specification, <a
-          href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.1">
+          href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.1">
           Section 3.10.1</a>.
         </p>
 

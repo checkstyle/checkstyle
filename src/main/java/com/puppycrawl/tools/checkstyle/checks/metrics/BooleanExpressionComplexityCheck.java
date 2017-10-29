@@ -148,7 +148,7 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
     /**
      * Checks if {@link TokenTypes#BOR binary OR} is applied to exceptions
      * in
-     * <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.20">
+     * <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.20">
      * multi-catch</a> (pipe-syntax).
      * @param binaryOr {@link TokenTypes#BOR binary or}
      * @return true if binary or is applied to exceptions in multi-catch.

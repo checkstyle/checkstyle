@@ -26,7 +26,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
  * </p>
  * <p>
  * Reference:<a
- * href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#clone--">
+ * href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#clone--">
  * Object.clone</a>.
  * </p>
  * <p>

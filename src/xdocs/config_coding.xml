@@ -388,7 +388,7 @@ class Test {
 
         <p>
           ATTENTION: the check skips class fields which have
-          <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.3.3">forward references</a>
+          <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.3.3">forward references</a>
            from validation due to the fact that we have Checkstyle's limitations to clearly
           detect user intention of fields location and grouping. For example,
           <source>
@@ -1147,7 +1147,7 @@ case 5:
           </tr>
           <tr>
             <td>validateEnhancedForLoopVariable</td>
-            <td>Controls whether to check <a href = "http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">enhanced for-loop</a> variable.</td>
+            <td>Controls whether to check <a href = "https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">enhanced for-loop</a> variable.</td>
             <td>
               <a
               href="property_types.html#boolean">Boolean</a>
@@ -1196,7 +1196,7 @@ case 5:
         </source>
         <p>
          By default, this Check skip final validation on
-         <a href = "http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">
+         <a href = "https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">
          Enhanced For-Loop</a>.
          </p>
          <p>
@@ -2591,7 +2591,7 @@ class MyClass {
           <p>
             Rationale: If the control variable is modified inside the loop
             body, the program flow becomes more difficult to follow.<br/>
-            See <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14">FOR statement</a> specification for more details.
+            See <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14">FOR statement</a> specification for more details.
           </p>
         <p>
             Such loop would be suppressed:
@@ -2615,7 +2615,7 @@ class MyClass {
 
           <tr>
             <td>skipEnhancedForLoopVariable</td>
-            <td>Controls whether to check <a href = "http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">enhanced for-loop</a> variable.</td>
+            <td>Controls whether to check <a href = "https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">enhanced for-loop</a> variable.</td>
             <td>
               <a
               href="property_types.html#boolean">Boolean</a>
@@ -2640,7 +2640,7 @@ class MyClass {
 
         <p>
          By default, This Check validates
-         <a href = "http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">
+         <a href = "https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">
          Enhanced For-Loop</a>.
          </p>
          <p>

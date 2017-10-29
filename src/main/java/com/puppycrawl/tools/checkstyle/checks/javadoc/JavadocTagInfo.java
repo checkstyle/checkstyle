@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  *
  * <p>
  * This class was modeled after documentation located at
- * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html">
+ * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html">
  * javadoc</a>
  *
  * and

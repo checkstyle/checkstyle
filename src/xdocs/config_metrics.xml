@@ -38,7 +38,7 @@
         <p>
           Note that the operators <code>&#x26;</code> and
           <code>|</code> are not only integer bitwise operators, they are also the
-          <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.22.2">
+          <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.22.2">
           non-shortcut versions</a> of the boolean operators.
           <code>&#x26;&#x26;</code> and <code>||</code>.
         </p>

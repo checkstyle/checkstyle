@@ -49,7 +49,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * <p><b>illegalClassNames</b> - Classes that should not be used as types in variable
    declarations, return values or parameters.
  * It is possible to set illegal class names via short or
- * <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.7">
+ * <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.7">
  *  canonical</a> name.
  *  Specifying illegal type invokes analyzing imports and Check puts violations at
  *   corresponding declarations
@@ -355,7 +355,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
     /**
      * Extends illegal class names set via imported short type name.
      * @param canonicalName
-     *  <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.7">
+     *  <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.7">
      *  Canonical</a> name of imported type.
      */
     private void extendIllegalClassNamesWithShortName(String canonicalName) {
@@ -368,7 +368,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
 
     /**
      * Gets imported type's
-     * <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.7">
+     * <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.7">
      *  canonical name</a>.
      * @param importAst {@link TokenTypes#IMPORT Import}
      * @return Imported canonical type's name.

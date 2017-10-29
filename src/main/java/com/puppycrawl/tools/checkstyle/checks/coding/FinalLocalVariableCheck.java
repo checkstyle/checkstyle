@@ -47,7 +47,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * </pre>
  * <p>
  * By default, this Check skip final validation on
- *  <a href = "http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">
+ *  <a href = "https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">
  * Enhanced For-Loop</a>
  * </p>
  * <p>

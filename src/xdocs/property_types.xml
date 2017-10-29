@@ -103,7 +103,7 @@
       <p>
         This property represents a regular expression. The string
         representation is parsed using <a
-        href="http://docs.oracle.com/javase/7/docs/api/index.html?java/util/regex/package-summary.html">java.util.regex
+        href="https://docs.oracle.com/javase/7/docs/api/index.html?java/util/regex/package-summary.html">java.util.regex
         package</a>.
       </p>
     </section>

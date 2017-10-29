@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * <p>
  * Check has an option <b>ignorePrimitiveTypes</b> which allows ignoring lack of
  * final modifier at
- * <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">
+ * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">
  *  primitive data type</a> parameter. Default value <b>false</b>.
  * </p>
  * E.g.:
@@ -64,7 +64,7 @@ public class FinalParametersCheck extends AbstractCheck {
 
     /**
      * Contains
-     * <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">
+     * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">
      * primitive datatypes</a>.
      */
     private final Set<Integer> primitiveDataTypes = Collections.unmodifiableSet(

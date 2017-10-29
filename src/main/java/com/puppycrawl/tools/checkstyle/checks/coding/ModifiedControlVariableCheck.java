@@ -45,7 +45,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * Rationale: If the control variable is modified inside the loop
  * body, the program flow becomes more difficult to follow.<br>
- * See <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14">
+ * See <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14">
  * FOR statement</a> specification for more details.
  * <p>Examples:</p>
  *
@@ -66,7 +66,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * <p>
  * By default, This Check validates
- *  <a href = "http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">
+ *  <a href = "https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">
  * Enhanced For-Loop</a>.
  * </p>
  * <p>

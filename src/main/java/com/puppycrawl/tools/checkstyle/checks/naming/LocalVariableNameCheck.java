@@ -58,7 +58,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * </pre>
  * <p>
  * An example of how to configure the check to allow one char variable name in
- * <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
+ * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
  * initialization expressions</a> in FOR loop:
  * </p>
  * <pre>

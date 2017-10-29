@@ -187,7 +187,7 @@
             breaking the build or setting the failure property. Defaults
             to <code>&quot;2147483647&quot;</code>, i.e.
 
-            <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html#MAX_VALUE">Integer.MAX_VALUE</a>.
+            <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html#MAX_VALUE">Integer.MAX_VALUE</a>.
           </td>
           <td>No</td>
         </tr>

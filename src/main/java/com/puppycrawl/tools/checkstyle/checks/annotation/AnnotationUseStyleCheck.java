@@ -81,7 +81,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * 3.4.1.
  *
  * <p>See <a
- * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-9.html#jls-9.7">
+ * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-9.html#jls-9.7">
  * Java Language specification, &sect;9.7</a>.
  *
  * <p>An example shown below is set to enforce an EXPANDED style, with a

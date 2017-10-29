@@ -50,7 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * </ol>
  *
  * <p>ATTENTION: the check skips class fields which have
- * <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.3.3">
+ * <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.3.3">
  * forward references </a> from validation due to the fact that we have Checkstyle's limitations
  * to clearly detect user intention of fields location and grouping. For example,
  * <pre>{@code

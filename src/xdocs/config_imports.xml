@@ -1128,7 +1128,7 @@ import java.util.stream.IntStream;
           classes. The language rules for packages and class names can be described by the
           following complicated regular expression that takes into account that Java names may
           contain any unicode letter, numbers, underscores, and dollar signs (see section 3.8
-          in the <a href="http://docs.oracle.com/javase/specs/">Java specs</a>):
+          in the <a href="https://docs.oracle.com/javase/specs/">Java specs</a>):
         </p>
         <ul>
           <li>

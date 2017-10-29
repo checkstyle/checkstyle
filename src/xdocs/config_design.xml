@@ -463,7 +463,7 @@ public class StringUtils // not final to allow subclassing
           According to Bloch, an interface should describe a <em>type</em>.
           It is therefore inappropriate to define an interface that does not
           contain any methods but only constants. The Standard class <a
-          href="http://docs.oracle.com/javase/8/docs/api/javax/swing/SwingConstants.html">javax.swing.SwingConstants</a>
+          href="https://docs.oracle.com/javase/8/docs/api/javax/swing/SwingConstants.html">javax.swing.SwingConstants</a>
           is an example of a class that would be flagged by this check.
         </p>
 
@@ -648,7 +648,7 @@ public class StringUtils // not final to allow subclassing
           Checks that each top-level class, interface or
           enum resides in a source file of its own.
           Official description of a 'top-level' term:<a
-          href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-7.html#jls-7.6">7.6. Top Level Type Declarations</a>.
+          href="https://docs.oracle.com/javase/specs/jls/se7/html/jls-7.html#jls-7.6">7.6. Top Level Type Declarations</a>.
           If file doesn't contains public class, enum or interface,
           top-level type is the first type in file.
         </p>

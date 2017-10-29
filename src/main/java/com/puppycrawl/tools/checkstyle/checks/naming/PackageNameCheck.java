@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * The default format has been chosen to match the requirements in the
  * <a
- * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-7.html">
+ * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-7.html">
  * Java Language specification</a> and the Sun coding conventions.
  * However both underscores and uppercase letters are rather uncommon,
  * so most projects should probably use
@@ -72,7 +72,7 @@ public class PackageNameCheck
 
     /** The regexp to match against. */
     // Uppercase letters seem rather uncommon, but they're allowed in
-    // http://docs.oracle.com/javase/specs/
+    // https://docs.oracle.com/javase/specs/
     //  second_edition/html/packages.doc.html#40169
     private Pattern format = Pattern.compile("^[a-z]+(\\.[a-zA-Z_][a-zA-Z0-9_]*)*$");
 
