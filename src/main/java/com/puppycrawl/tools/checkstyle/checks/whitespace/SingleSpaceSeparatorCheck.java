@@ -106,17 +106,17 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return getDefaultTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getDefaultTokens();
+        return CommonUtils.EMPTY_INT_ARRAY;
     }
 
     // -@cs[SimpleAccessorNameNotation] Overrides method from base class.
