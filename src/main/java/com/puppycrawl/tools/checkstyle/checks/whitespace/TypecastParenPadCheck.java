@@ -61,7 +61,7 @@ public class TypecastParenPadCheck extends AbstractParenPadCheck {
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.RPAREN, TokenTypes.TYPECAST};
+        return getRequiredTokens();
     }
 
     @Override
