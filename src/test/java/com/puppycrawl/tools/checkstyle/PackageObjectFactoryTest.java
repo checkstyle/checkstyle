@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.AMBIGUOUS_MODULE_NAME_EXCEPTION_MESSAGE;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.BASE_PACKAGE;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.CHECK_SUFFIX;
+import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.ModuleLoadOption.TRY_IN_ALL_REGISTERED_PACKAGES;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.NULL_LOADER_MESSAGE;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.NULL_PACKAGE_MESSAGE;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.PACKAGE_SEPARATOR;
@@ -53,6 +54,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
 /**
@@ -104,6 +106,19 @@ public class PackageObjectFactoryTest {
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         try {
             final Object test = new PackageObjectFactory((String) null, classLoader);
+            fail("Exception is expected but got " + test);
+        }
+        catch (IllegalArgumentException ex) {
+            assertEquals("Invalid exception message", NULL_PACKAGE_MESSAGE, ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testCtorNullPackageException3() {
+        final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        try {
+            final Object test = new PackageObjectFactory(Collections.singleton(null), classLoader,
+                    TRY_IN_ALL_REGISTERED_PACKAGES);
             fail("Exception is expected but got " + test);
         }
         catch (IllegalArgumentException ex) {
@@ -222,6 +237,69 @@ public class PackageObjectFactoryTest {
             assertEquals("Invalid exception message",
                     exceptionMessage.getMessage(), ex.getMessage());
         }
+    }
+
+    @Test
+    public void testCreateObjectFromFullModuleNamesWithExceptionByBruteForce() {
+        final String package1 = BASE_PACKAGE + ".wrong1";
+        final String package2 = BASE_PACKAGE + ".wrong2";
+        final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        final PackageObjectFactory objectFactory = new PackageObjectFactory(
+                new LinkedHashSet<>(Arrays.asList(package1, package2)), classLoader,
+                TRY_IN_ALL_REGISTERED_PACKAGES);
+        final String name = "FooCheck";
+        final String checkName = name + CHECK_SUFFIX;
+        try {
+            objectFactory.createModule(name);
+            fail("Exception is expected");
+        }
+        catch (CheckstyleException ex) {
+            final String attemptedNames = package1 + PACKAGE_SEPARATOR + name + STRING_SEPARATOR
+                    + package2 + PACKAGE_SEPARATOR + name + STRING_SEPARATOR
+                    + checkName + STRING_SEPARATOR
+                    + package1 + PACKAGE_SEPARATOR + checkName + STRING_SEPARATOR
+                    + package2 + PACKAGE_SEPARATOR + checkName;
+            final LocalizedMessage exceptionMessage = new LocalizedMessage(0,
+                    Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
+                    new String[] {name, attemptedNames}, null, getClass(), null);
+            assertEquals("Invalid exception message",
+                    exceptionMessage.getMessage(), ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testCreateObjectByBruteForce() throws Exception {
+        final String className = "Checker";
+        final Method createModuleByBruteForce = PackageObjectFactory.class.getDeclaredMethod(
+                "createModuleByTryInEachPackage", String.class);
+        createModuleByBruteForce.setAccessible(true);
+        final Checker checker = (Checker) createModuleByBruteForce.invoke(factory, className);
+        assertNotNull("Checker should not be null when creating module from name", checker);
+    }
+
+    @Test
+    public void testCreateCheckByBruteForce() throws Exception {
+        final String checkName = "AnnotationLocation";
+        final Method createModuleByBruteForce = PackageObjectFactory.class.getDeclaredMethod(
+                "createModuleByTryInEachPackage", String.class);
+        final PackageObjectFactory packageObjectFactory = new PackageObjectFactory(
+            new HashSet<>(Arrays.asList(BASE_PACKAGE, BASE_PACKAGE + ".checks.annotation")),
+            Thread.currentThread().getContextClassLoader(), TRY_IN_ALL_REGISTERED_PACKAGES);
+        createModuleByBruteForce.setAccessible(true);
+        final AnnotationLocationCheck check = (AnnotationLocationCheck) createModuleByBruteForce
+                .invoke(packageObjectFactory, checkName);
+        assertNotNull("Check should not be null when creating module from name", check);
+    }
+
+    @Test
+    public void testCreateCheckWithPartialPackageNameByBruteForce() throws Exception {
+        final String checkName = "checks.annotation.AnnotationLocation";
+        final PackageObjectFactory packageObjectFactory = new PackageObjectFactory(
+            new HashSet<>(Collections.singletonList(BASE_PACKAGE)),
+            Thread.currentThread().getContextClassLoader(), TRY_IN_ALL_REGISTERED_PACKAGES);
+        final AnnotationLocationCheck check = (AnnotationLocationCheck) packageObjectFactory
+                .createModule(checkName);
+        assertNotNull("Check should not be null when creating module from name", check);
     }
 
     @Test
