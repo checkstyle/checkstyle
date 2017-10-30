@@ -21,14 +21,21 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck.MSG_LEGACY_PACKAGE_HTML;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck.MSG_PACKAGE_INFO;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.when;
 
 import java.io.File;
+import java.util.Collections;
 
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class JavadocPackageCheckTest
@@ -122,5 +129,49 @@ public class JavadocPackageCheckTest
                     + File.separator + "package-info.java"),
             getPath("annotation"
                     + File.separator + "package-info.java"), expected);
+    }
+
+    /**
+     * Test require readable file with no parent to be used.
+     * Usage of Mockito.spy() is the only way to satisfy these requirements
+     * without the need to create new file in current working directory.
+     *
+     * @throws Exception if error occurs
+     */
+    @Test
+    public void testWithFileWithoutParent() throws Exception {
+        final DefaultConfiguration moduleConfig = createModuleConfig(JavadocPackageCheck.class);
+        final File fileWithoutParent = spy(new File(getPath("noparentfile"
+                    + File.separator + "package-info.java")));
+        when(fileWithoutParent.getParent()).thenReturn(null);
+        when(fileWithoutParent.getParentFile()).thenReturn(null);
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(createChecker(moduleConfig),
+                new File[] {fileWithoutParent},
+                getPath("annotation"
+                    + File.separator + "package-info.java"), expected);
+    }
+
+    /**
+     * Using direct call to check here because there is no other way
+     * to reproduce exception with invalid canonical path.
+     *
+     * @throws Exception if error occurs
+     */
+    @Test
+    public void testCheckstyleExceptionIfFailedToGetCanonicalPathToFile() throws Exception {
+        final JavadocPackageCheck check = new JavadocPackageCheck();
+        final File fileWithInvalidPath = new File("\u0000\u0000\u0000");
+        final FileText mockFileText = new FileText(fileWithInvalidPath, Collections.emptyList());
+        final String expectedExceptionMessage =
+                "Exception while getting canonical path to file " + fileWithInvalidPath.getPath();
+        try {
+            check.processFiltered(fileWithInvalidPath, mockFileText);
+            fail("CheckstyleException expected to be thrown");
+        }
+        catch (CheckstyleException ex) {
+            assertEquals("Invalid exception message. Expected: " + expectedExceptionMessage,
+                    expectedExceptionMessage, ex.getMessage());
+        }
     }
 }
