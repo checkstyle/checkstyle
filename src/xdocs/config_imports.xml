@@ -1167,9 +1167,10 @@ import java.util.stream.IntStream;
             you want to match only a certain package level instead.
           </li>
         </ul>
-        <h4 id="innerclass-notes">Notes on inner classes</h4>
+        <h4 id="static-import-notes">Notes on static imports</h4>
         <p>
-          Static inner classes have to be explicitly allowed when they are imported, they
+          Static members (including methods, constants and static inner classes) have to be
+          explicitly allowed when they are imported, they
           are not automatically allowed along with their enclosing class.
         </p>
         <p>
@@ -1180,6 +1181,13 @@ import java.util.stream.IntStream;
 &lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
     &lt;allow class=&quot;java.util.Map&quot;/&gt;
     &lt;allow class=&quot;java.util.Map.Entry&quot;/&gt;
+&lt;/import-control&gt;
+        </source>
+        <p>It is also possible to use a regex with a wildcard:</p>
+        <source>
+&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
+    &lt;allow class=&quot;java.util.Map&quot;/&gt;
+    &lt;allow class=&quot;java.util.Map.*&quot; regex=&quot;true&quot; /&gt;
 &lt;/import-control&gt;
         </source>
       </subsection>
