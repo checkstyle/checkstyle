@@ -38,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  *
  * <p>
  * Nothing wrong could be with founded classes.
- * This check makes sense only for library projects (not an application projects)
+ * This check makes sense only for library projects (not application projects)
  * which care of ideal OOP-design to make sure that class works in all cases even misusage.
  * Even in library projects this check most likely will find classes that are designed for extension
  * by somebody. User needs to use suppressions extensively to got a benefit from this check,
