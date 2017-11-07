@@ -8,7 +8,6 @@
 [![][coverage img]][coverage]
 
 [![][mavenbadge img]][mavenbadge]
-[![][versioneye img]][versioneye]
 [![][sonar img]][sonar]
 
 Members chat: [![][gitter_mem img]][gitter_mem]
@@ -88,9 +87,6 @@ directory.
 
 [mavenbadge]:https://search.maven.org/#search|gav|1|g%3A%22com.puppycrawl.tools%22%20AND%20a%3A%22checkstyle%22
 [mavenbadge img]:https://maven-badges.herokuapp.com/maven-central/com.puppycrawl.tools/checkstyle/badge.svg
-
-[versioneye]:https://www.versioneye.com/user/projects/5504ca834a1064774400049a
-[versioneye img]:https://www.versioneye.com/user/projects/5504ca834a1064774400049a/badge.svg
 
 [gitter_mem]:https://gitter.im/checkstyle
 [gitter_mem img]:https://img.shields.io/badge/gitter-JOIN%20CHAT-blue.svg
