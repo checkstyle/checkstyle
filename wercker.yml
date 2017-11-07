@@ -145,7 +145,7 @@ build:
           echo "checkouting project sources ..."
           svn -q export https://svn.code.sf.net/p/htmlunit/code/trunk/htmlunit@r14923 htmlunit
           cd htmlunit
-          sed -i "s/            <version>2.28-SNAPSHOT/            <version>2.28-20171106.080245-12/"
+          sed -i "s/            <version>2.28-SNAPSHOT/            <version>2.28-20171106.080245-12/" pom.xml
           echo "Running checkstyle validation ..."
           mvn compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
           cd ../
