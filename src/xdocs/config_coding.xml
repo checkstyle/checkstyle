@@ -252,7 +252,7 @@ String b = (a==null || a.length&lt;1) ? null : a.substring(1);
         </p>
 
         <p>
-          Inspired by <a href="http://www.cs.nyu.edu/~lharris/papers/findbugsPaper.pdf">
+          Inspired by <a href="https://www.cs.nyu.edu/~lharris/papers/findbugsPaper.pdf">
           Finding Bugs is Easy, chapter '2.3.1 Bad Covariant Definition of Equals (Eq)'</a>:
         </p>
 
