@@ -329,8 +329,14 @@
     </module>
     <module name="IllegalImport"/>
     <module name="ImportControl">
+      <property name="id" value="ImportControlMain"/>
       <property name="file" value="${checkstyle.importcontrol.file}"/>
       <property name="path" value="^.*[\\/]src[\\/]main[\\/].*$"/>
+    </module>
+    <module name="ImportControl">
+      <property name="id" value="ImportControlTest"/>
+      <property name="file" value="${checkstyle.importcontroltest.file}"/>
+      <property name="path" value="^.*[\\/]src[\\/]test[\\/].*$"/>
     </module>
     <module name="ImportOrder">
       <property name="groups" value="/^java\./,javax,org"/>

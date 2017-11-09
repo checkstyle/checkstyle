@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE import-control PUBLIC
+    "-//Puppy Crawl//DTD Import Control 1.3//EN"
+    "http://checkstyle.sourceforge.net/dtds/import_control_1_3.dtd">
+
+<import-control pkg="com.puppycrawl.tools.checkstyle">
+
+  <allow pkg=".*" regex="true" />
+
+  <disallow pkg="junit.framework" />
+
+</import-control>

@@ -28,7 +28,6 @@
     <suppress checks="NPathComplexity" files="[\\/]XdocsPagesTest\.java"/>
     <suppress checks="IllegalCatch" files="[\\/]internal[\\/].*[\\/]\w+Util\.java"/>
     <suppress checks="EmptyBlock" files=".*[\\/]src[\\/]test[\\/]"/>
-    <suppress checks="ImportControl" files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <suppress checks="Javadoc" files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <suppress checks="MagicNumber" files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <suppress checks="AvoidStaticImport" files=".*[\\/]src[\\/](test|it)[\\/]"/>
