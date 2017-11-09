@@ -1113,7 +1113,7 @@ import java.util.stream.IntStream;
         </p>
         <source>
 &lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;&gt;
-    &lt;allow pkg=&quot;.*&quot; regexp=&quot;true&quot;/&gt;
+    &lt;allow pkg=&quot;.*&quot; regex=&quot;true&quot;/&gt;
     &lt;subpackage name=&quot;imports&quot;&gt;
         &lt;disallow class=&quot;java.util.Date&quot;/&gt;
         &lt;disallow class=&quot;java.util.List&quot;/&gt;
