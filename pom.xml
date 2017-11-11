@@ -1270,6 +1270,10 @@
           <timeout>6000</timeout>
           <httpFollowRedirect>false</httpFollowRedirect>
           <forceSite>true</forceSite>
+          <!-- To resolve redirection violation, to find new target url, use:
+              URL=https://www.cs.....
+              curl -s -I $URL -L | awk '/Location: (.*)/ {print $2}' | tail -n 1
+          -->
           <excludedPages>
             <excludedPage>dependencies.html</excludedPage>
             <excludedPage>cobertura/**</excludedPage>
