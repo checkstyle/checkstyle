@@ -62,17 +62,7 @@ public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {
-            TokenTypes.PACKAGE_DEF,
-            TokenTypes.IMPORT,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.TYPE,
-            TokenTypes.LITERAL_NEW,
-            TokenTypes.LITERAL_THROWS,
-            TokenTypes.ANNOTATION_DEF,
-        };
+        return getRequiredTokens();
     }
 
     // -@cs[SimpleAccessorNameNotation] Override methods from base class.
