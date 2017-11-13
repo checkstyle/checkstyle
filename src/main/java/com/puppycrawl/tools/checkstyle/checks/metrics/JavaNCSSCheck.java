@@ -85,36 +85,7 @@ public class JavaNCSSCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.INSTANCE_INIT,
-            TokenTypes.STATIC_INIT,
-            TokenTypes.PACKAGE_DEF,
-            TokenTypes.IMPORT,
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.CTOR_CALL,
-            TokenTypes.SUPER_CTOR_CALL,
-            TokenTypes.LITERAL_IF,
-            TokenTypes.LITERAL_ELSE,
-            TokenTypes.LITERAL_WHILE,
-            TokenTypes.LITERAL_DO,
-            TokenTypes.LITERAL_FOR,
-            TokenTypes.LITERAL_SWITCH,
-            TokenTypes.LITERAL_BREAK,
-            TokenTypes.LITERAL_CONTINUE,
-            TokenTypes.LITERAL_RETURN,
-            TokenTypes.LITERAL_THROW,
-            TokenTypes.LITERAL_SYNCHRONIZED,
-            TokenTypes.LITERAL_CATCH,
-            TokenTypes.LITERAL_FINALLY,
-            TokenTypes.EXPR,
-            TokenTypes.LABELED_STAT,
-            TokenTypes.LITERAL_CASE,
-            TokenTypes.LITERAL_DEFAULT,
-        };
+        return getRequiredTokens();
     }
 
     @Override
@@ -153,36 +124,7 @@ public class JavaNCSSCheck extends AbstractCheck {
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {
-            TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.INSTANCE_INIT,
-            TokenTypes.STATIC_INIT,
-            TokenTypes.PACKAGE_DEF,
-            TokenTypes.IMPORT,
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.CTOR_CALL,
-            TokenTypes.SUPER_CTOR_CALL,
-            TokenTypes.LITERAL_IF,
-            TokenTypes.LITERAL_ELSE,
-            TokenTypes.LITERAL_WHILE,
-            TokenTypes.LITERAL_DO,
-            TokenTypes.LITERAL_FOR,
-            TokenTypes.LITERAL_SWITCH,
-            TokenTypes.LITERAL_BREAK,
-            TokenTypes.LITERAL_CONTINUE,
-            TokenTypes.LITERAL_RETURN,
-            TokenTypes.LITERAL_THROW,
-            TokenTypes.LITERAL_SYNCHRONIZED,
-            TokenTypes.LITERAL_CATCH,
-            TokenTypes.LITERAL_FINALLY,
-            TokenTypes.EXPR,
-            TokenTypes.LABELED_STAT,
-            TokenTypes.LITERAL_CASE,
-            TokenTypes.LITERAL_DEFAULT,
-        };
+        return getRequiredTokens();
     }
 
     @Override

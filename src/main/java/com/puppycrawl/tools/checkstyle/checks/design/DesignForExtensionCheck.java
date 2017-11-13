@@ -116,20 +116,20 @@ public class DesignForExtensionCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        // The check does not subscribe to CLASS_DEF token as now it is stateless. If the check
-        // subscribes to CLASS_DEF token it will become stateful, since we need to have additional
-        // stack to hold CLASS_DEF tokens.
-        return new int[] {TokenTypes.METHOD_DEF};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
+        // The check does not subscribe to CLASS_DEF token as now it is stateless. If the check
+        // subscribes to CLASS_DEF token it will become stateful, since we need to have additional
+        // stack to hold CLASS_DEF tokens.
+        return new int[] {TokenTypes.METHOD_DEF};
     }
 
     @Override

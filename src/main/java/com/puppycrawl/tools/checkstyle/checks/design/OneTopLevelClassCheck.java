@@ -104,18 +104,18 @@ public class OneTopLevelClassCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return getRequiredTokens();
     }
 
     // ZERO tokens as Check do Traverse of Tree himself, he does not need to subscribed to Tokens
     @Override
-    public int[] getAcceptableTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
-    }
-
-    @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
+        return CommonUtils.EMPTY_INT_ARRAY;
     }
 
     @Override
