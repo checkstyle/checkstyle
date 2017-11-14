@@ -246,17 +246,17 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      */
     @Override
     public final int[] getDefaultTokens() {
-        return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
+        return getRequiredTokens();
     }
 
     @Override
     public final int[] getAcceptableTokens() {
-        return getDefaultTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public final int[] getRequiredTokens() {
-        return getDefaultTokens();
+        return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
     }
 
     /**
