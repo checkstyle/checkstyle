@@ -106,11 +106,16 @@ public class InnerAssignmentCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
+        return getRequiredTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
         return new int[] {
             TokenTypes.ASSIGN,            // '='
             TokenTypes.DIV_ASSIGN,        // "/="
@@ -125,11 +130,6 @@ public class InnerAssignmentCheck
             TokenTypes.BOR_ASSIGN,        // "|="
             TokenTypes.BAND_ASSIGN,       // "&="
         };
-    }
-
-    @Override
-    public int[] getRequiredTokens() {
-        return getAcceptableTokens();
     }
 
     @Override

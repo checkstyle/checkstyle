@@ -61,17 +61,17 @@ public class MultipleVariableDeclarationsCheck extends AbstractCheck {
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.VARIABLE_DEF};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
+        return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
     @Override

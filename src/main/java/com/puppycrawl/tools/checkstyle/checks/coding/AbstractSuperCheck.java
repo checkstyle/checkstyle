@@ -57,20 +57,20 @@ public abstract class AbstractSuperCheck
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {
-            TokenTypes.METHOD_DEF,
-            TokenTypes.LITERAL_SUPER,
-        };
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getDefaultTokens();
+        return new int[] {
+            TokenTypes.METHOD_DEF,
+            TokenTypes.LITERAL_SUPER,
+        };
     }
 
     @Override

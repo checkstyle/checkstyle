@@ -65,19 +65,19 @@ public class DefaultComesLastCheck extends AbstractCheck {
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {
-            TokenTypes.LITERAL_DEFAULT,
-        };
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
+        return new int[] {
+            TokenTypes.LITERAL_DEFAULT,
+        };
     }
 
     /**

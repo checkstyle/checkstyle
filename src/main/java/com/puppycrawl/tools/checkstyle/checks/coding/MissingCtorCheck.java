@@ -49,17 +49,17 @@ public class MissingCtorCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.CLASS_DEF};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return getDefaultTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getDefaultTokens();
+        return new int[] {TokenTypes.CLASS_DEF};
     }
 
     @Override

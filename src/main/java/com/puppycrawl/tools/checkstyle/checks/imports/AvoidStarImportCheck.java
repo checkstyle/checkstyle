@@ -87,12 +87,12 @@ public class AvoidStarImportCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+        return getRequiredTokens();
     }
 
     @Override

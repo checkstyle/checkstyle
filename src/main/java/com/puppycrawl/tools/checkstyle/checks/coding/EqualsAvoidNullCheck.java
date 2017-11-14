@@ -88,11 +88,16 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
+        return getRequiredTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
         return new int[] {
             TokenTypes.METHOD_CALL,
             TokenTypes.CLASS_DEF,
@@ -111,11 +116,6 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
             TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.LITERAL_NEW,
         };
-    }
-
-    @Override
-    public int[] getRequiredTokens() {
-        return getAcceptableTokens();
     }
 
     /**

@@ -90,20 +90,19 @@ public class RedundantImportCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[]
-        {TokenTypes.IMPORT,
-         TokenTypes.STATIC_IMPORT,
-         TokenTypes.PACKAGE_DEF, };
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
+        return new int[] {
+            TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT, TokenTypes.PACKAGE_DEF,
+        };
     }
 
     @Override

@@ -92,17 +92,17 @@ public class FallThroughCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.CASE_GROUP};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getDefaultTokens();
+        return new int[] {TokenTypes.CASE_GROUP};
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.CASE_GROUP};
+        return getRequiredTokens();
     }
 
     /**

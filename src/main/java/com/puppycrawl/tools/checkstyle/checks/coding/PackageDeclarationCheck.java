@@ -75,17 +75,17 @@ public final class PackageDeclarationCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.PACKAGE_DEF};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getDefaultTokens();
+        return new int[] {TokenTypes.PACKAGE_DEF};
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.PACKAGE_DEF};
+        return getRequiredTokens();
     }
 
     @Override
