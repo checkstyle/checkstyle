@@ -63,17 +63,17 @@ public class ExplicitInitializationCheck extends AbstractCheck {
 
     @Override
     public final int[] getDefaultTokens() {
-        return new int[] {TokenTypes.VARIABLE_DEF};
+        return getRequiredTokens();
     }
 
     @Override
     public final int[] getRequiredTokens() {
-        return getDefaultTokens();
+        return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
     @Override
     public final int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.VARIABLE_DEF};
+        return getRequiredTokens();
     }
 
     /**

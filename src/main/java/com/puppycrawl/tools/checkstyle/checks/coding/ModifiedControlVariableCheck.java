@@ -136,16 +136,11 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
-    }
-
-    @Override
-    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.OBJBLOCK,
             TokenTypes.LITERAL_FOR,
@@ -168,6 +163,11 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
             TokenTypes.DEC,
             TokenTypes.POST_DEC,
         };
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return getRequiredTokens();
     }
 
     @Override
