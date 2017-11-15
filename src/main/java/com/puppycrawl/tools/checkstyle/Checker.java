@@ -172,6 +172,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
     @Override
     public void destroy() {
         listeners.clear();
+        fileSetChecks.clear();
         beforeExecutionFileFilters.clear();
         filters.clear();
         if (cache != null) {

@@ -169,7 +169,8 @@ public final class CheckUtil {
         return classPath.getTopLevelClassesRecursive(packageName).stream()
                 .map(ClassPath.ClassInfo::load)
                 .filter(ModuleReflectionUtils::isCheckstyleModule)
-                .filter(cls -> !cls.getName().endsWith("Stub"))
+                .filter(cls -> !cls.getCanonicalName()
+                        .startsWith("com.puppycrawl.tools.checkstyle.internal.testmodules"))
                 .filter(cls -> !cls.getCanonicalName()
                         .startsWith("com.puppycrawl.tools.checkstyle.packageobjectfactory"))
                 .collect(Collectors.toSet());

@@ -87,6 +87,7 @@ import com.puppycrawl.tools.checkstyle.filters.SuppressionFilter;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.DebugAuditAdapter;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.DebugFilter;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.TestBeforeExecutionFileFilter;
+import com.puppycrawl.tools.checkstyle.internal.testmodules.TestFileSetCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -119,21 +120,24 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Checker checker = new Checker();
         final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
         checker.addListener(auditAdapter);
+        final TestFileSetCheck fileSet = new TestFileSetCheck();
+        checker.addFileSetCheck(fileSet);
         final DebugFilter filter = new DebugFilter();
         checker.addFilter(filter);
         final TestBeforeExecutionFileFilter fileFilter = new TestBeforeExecutionFileFilter();
         checker.addBeforeExecutionFileFilter(fileFilter);
 
-        // should remove al listeners and filters
+        // should remove all listeners, file sets, and filters
         checker.destroy();
 
-        checker.process(Collections.singletonList(new File("Some File Name")));
+        checker.process(Collections.singletonList(temporaryFolder.newFile()));
         final SortedSet<LocalizedMessage> messages = new TreeSet<>();
         messages.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", messages);
 
         assertFalse("Checker.destroy() doesn't remove listeners.", auditAdapter.wasCalled());
+        assertFalse("Checker.destroy() doesn't remove file sets.", fileSet.wasCalled());
         assertFalse("Checker.destroy() doesn't remove filters.", filter.wasCalled());
         assertFalse("Checker.destroy() doesn't remove file filters.", fileFilter.wasCalled());
     }
@@ -783,6 +787,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String secondExternalResourceKey = PropertyCacheFile.EXTERNAL_RESOURCE_KEY_PREFIX
                 + secondExternalResourceLocation;
         check.setSecondExternalResourceLocation(secondExternalResourceLocation);
+
+        checker.addFileSetCheck(check);
+        checker.configure(checkerConfig);
 
         verify(checker, pathToEmptyFile, expected);
         final Properties cacheAfterSecondRun = new Properties();
