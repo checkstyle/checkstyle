@@ -76,12 +76,15 @@ public abstract class AbstractFileSetCheck
     @Override
     public final SortedSet<LocalizedMessage> process(File file, FileText fileText)
             throws CheckstyleException {
-        MESSAGE_COLLECTOR.get().clear();
+        final SortedSet<LocalizedMessage> messages = MESSAGE_COLLECTOR.get();
+        messages.clear();
         // Process only what interested in
         if (CommonUtils.matchesFileExtension(file, fileExtensions)) {
             processFiltered(file, fileText);
         }
-        return new TreeSet<>(MESSAGE_COLLECTOR.get());
+        final SortedSet<LocalizedMessage> result = new TreeSet<>(messages);
+        messages.clear();
+        return result;
     }
 
     @Override
