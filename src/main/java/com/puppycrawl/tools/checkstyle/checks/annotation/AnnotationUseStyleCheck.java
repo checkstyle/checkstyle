@@ -495,9 +495,9 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
             }
             else if (closingParens == ClosingParens.NEVER
                      && parenExists
-                     && !ast.branchContains(TokenTypes.EXPR)
-                     && !ast.branchContains(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR)
-                     && !ast.branchContains(TokenTypes.ANNOTATION_ARRAY_INIT)) {
+                     && ast.findFirstToken(TokenTypes.EXPR) == null
+                     && ast.findFirstToken(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) == null
+                     && ast.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT) == null) {
                 log(ast.getLineNo(), MSG_KEY_ANNOTATION_PARENS_PRESENT);
             }
         }

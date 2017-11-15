@@ -447,11 +447,11 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 }
                 break;
             default:
-                if (childNode.branchContains(TokenTypes.SLIST)) {
-                    resultDist = 0;
+                if (childNode.findFirstToken(TokenTypes.SLIST) == null) {
+                    resultDist++;
                 }
                 else {
-                    resultDist++;
+                    resultDist = 0;
                 }
         }
         return resultDist;
