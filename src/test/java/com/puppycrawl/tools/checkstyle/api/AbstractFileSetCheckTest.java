@@ -24,6 +24,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -45,14 +46,61 @@ public class AbstractFileSetCheckTest {
         final File firstFile = new File("inputAbstractFileSetCheck.tmp");
         final SortedSet<LocalizedMessage> firstFileMessages =
             check.process(firstFile, new FileText(firstFile, Collections.emptyList()));
+
+        assertEquals("Invalid message", "File should not be empty.",
+            firstFileMessages.first().getMessage());
+
+        final Field field = AbstractFileSetCheck.class.getDeclaredField("MESSAGE_COLLECTOR");
+        field.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        final SortedSet<LocalizedMessage> internalMessages =
+                ((ThreadLocal<SortedSet<LocalizedMessage>>) field.get(null)).get();
+        assertTrue("Internal message should be empty, but was not", internalMessages.isEmpty());
+
         final File secondFile = new File("inputAbstractFileSetCheck.txt");
         final List<String> lines = Arrays.asList("key=value", "ext=tmp");
         final SortedSet<LocalizedMessage> secondFileMessages =
             check.process(secondFile, new FileText(secondFile, lines));
 
-        assertEquals("Invalid message", "File should not be empty.",
-            firstFileMessages.first().getMessage());
         assertTrue("Message should be empty, but was not", secondFileMessages.isEmpty());
+    }
+
+    @Test
+    public void testProcessException() throws Exception {
+        final ExceptionFileSetCheck check = new ExceptionFileSetCheck();
+        check.configure(new DefaultConfiguration("filesetcheck"));
+        check.setFileExtensions("tmp");
+        final File firstFile = new File("inputAbstractFileSetCheck.tmp");
+
+        try {
+            check.process(firstFile, new FileText(firstFile, Collections.emptyList()));
+            fail("Exception is expected");
+        }
+        catch (IllegalArgumentException ex) {
+            // exception is expected
+        }
+
+        final Field field = AbstractFileSetCheck.class.getDeclaredField("MESSAGE_COLLECTOR");
+        field.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        final SortedSet<LocalizedMessage> internalMessages =
+                ((ThreadLocal<SortedSet<LocalizedMessage>>) field.get(null)).get();
+        assertEquals("Internal message should only have 1", 1, internalMessages.size());
+
+        // again to prove only 1 violation exists
+        final File secondFile = new File("inputAbstractFileSetCheck.tmp");
+        try {
+            check.process(secondFile, new FileText(secondFile, Collections.emptyList()));
+            fail("Exception is expected");
+        }
+        catch (IllegalArgumentException ex) {
+            // exception is expected
+        }
+
+        @SuppressWarnings("unchecked")
+        final SortedSet<LocalizedMessage> internalMessages2 =
+            ((ThreadLocal<SortedSet<LocalizedMessage>>) field.get(null)).get();
+        assertEquals("Internal message should only have 1 again", 1, internalMessages2.size());
     }
 
     @Test
@@ -98,6 +146,18 @@ public class AbstractFileSetCheckTest {
             if (fileText.size() == 0) {
                 log(1, MSG_KEY);
             }
+        }
+    }
+
+    private static class ExceptionFileSetCheck extends AbstractFileSetCheck {
+        private static final String MSG_KEY = "Test.";
+        private int count = 1;
+
+        @Override
+        protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
+            log(count, MSG_KEY);
+            count++;
+            throw new IllegalArgumentException("Test");
         }
     }
 }
