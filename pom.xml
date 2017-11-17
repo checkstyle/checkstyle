@@ -1350,7 +1350,6 @@
             <excludedLink>http://git-scm.com*</excludedLink>
 
             <!-- reason described at https://github.com/checkstyle/checkstyle/issues/3080 -->
-            <excludedLink>https://gratipay.com/checkstyle/</excludedLink>
             <excludedLink>https://www.scm-manager.org/</excludedLink>
             <!-- linkcheck plugin can not resolve &amps; inside url -->
             <excludedLink>https://flattr.com/submit/</excludedLink>
