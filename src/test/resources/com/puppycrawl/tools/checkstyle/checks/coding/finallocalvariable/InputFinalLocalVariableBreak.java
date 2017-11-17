@@ -5,8 +5,8 @@ public class InputFinalLocalVariableBreak {
 
     void foo1() throws Exception {
         Exception e; // violation
-        final int a = (int) Math.random();
-        final int b = (int) Math.random();
+        final int a = (int) (Math.random() * 4);
+        final int b = (int) (Math.random() * 2);
 
         switch (a) {
         case 0:
