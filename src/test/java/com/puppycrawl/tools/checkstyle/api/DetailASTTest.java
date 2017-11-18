@@ -20,8 +20,10 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -138,6 +140,25 @@ public class DetailASTTest extends AbstractModuleTestSupport {
         setParentMethod.invoke(firstLevelC, root);
 
         assertEquals("Invalid next sibling", firstLevelC, firstLevelA.getNextSibling());
+    }
+
+    @Test
+    public void testBranchContains() {
+        final DetailAST root = createToken(null, TokenTypes.CLASS_DEF);
+        final DetailAST modifiers = createToken(root, TokenTypes.MODIFIERS);
+        createToken(modifiers, TokenTypes.LITERAL_PUBLIC);
+
+        assertTrue("invalid result", root.branchContains(TokenTypes.LITERAL_PUBLIC));
+        assertFalse("invalid result", root.branchContains(TokenTypes.OBJBLOCK));
+    }
+
+    private static DetailAST createToken(DetailAST root, int type) {
+        final DetailAST result = new DetailAST();
+        result.setType(type);
+        if (root != null) {
+            root.addChild(result);
+        }
+        return result;
     }
 
     @Test

@@ -1147,7 +1147,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         @Override
         public void visitToken(DetailAST ast) {
-            if (ast.branchContains(TokenTypes.BLOCK_COMMENT_BEGIN)) {
+            if (ast.findFirstToken(TokenTypes.MODIFIERS).findFirstToken(
+                    TokenTypes.BLOCK_COMMENT_BEGIN) != null) {
                 log(ast, "AST has incorrect structure structure."
                     + " The check does not require comment nodes but there were comment nodes"
                     + " in the AST.");
@@ -1204,7 +1205,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         @Override
         public void visitToken(DetailAST ast) {
-            if (!ast.branchContains(TokenTypes.BLOCK_COMMENT_BEGIN)) {
+            if (ast.findFirstToken(TokenTypes.MODIFIERS).findFirstToken(
+                    TokenTypes.BLOCK_COMMENT_BEGIN) == null) {
                 log(ast, "Incorrect AST structure.");
             }
             final int childCount = ast.getChildCount();
