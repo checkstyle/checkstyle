@@ -22,19 +22,15 @@ package com.google.checkstyle.test.chapter5naming.rule521packagenames;
 import java.io.File;
 import java.io.IOException;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class PackageNameTest extends AbstractModuleTestSupport {
 
     private static final String MSG_KEY = "name.invalidPattern";
-    private static Configuration checkConfig;
-    private static String format;
 
     @Override
     protected String getPackageLocation() {
@@ -45,15 +41,10 @@ public class PackageNameTest extends AbstractModuleTestSupport {
         return getPath("rule521" + packageName + File.separator + fileName);
     }
 
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        checkConfig = getModuleConfig("PackageName");
-        format = checkConfig.getAttribute("format");
-    }
-
     @Test
     public void testGoodPackageName() throws Exception {
 
+        final Configuration checkConfig = getModuleConfig("PackageName");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final String filePath = getPath("packagenames", "InputPackageNameGood.java");
@@ -67,6 +58,8 @@ public class PackageNameTest extends AbstractModuleTestSupport {
 
         final String packagePath =
                 "com.google.checkstyle.test.chapter5naming.rule521packageNamesCamelCase";
+        final Configuration checkConfig = getModuleConfig("PackageName");
+        final String format = checkConfig.getAttribute("format");
         final String msg = getCheckMessage(checkConfig.getMessages(), MSG_KEY, packagePath, format);
 
         final String[] expected = {
@@ -83,6 +76,8 @@ public class PackageNameTest extends AbstractModuleTestSupport {
     public void testBadPackageName2() throws Exception {
 
         final String packagePath = "com.google.checkstyle.test.chapter5naming.rule521_packagenames";
+        final Configuration checkConfig = getModuleConfig("PackageName");
+        final String format = checkConfig.getAttribute("format");
         final String msg = getCheckMessage(checkConfig.getMessages(), MSG_KEY, packagePath, format);
 
         final String[] expected = {
@@ -99,6 +94,8 @@ public class PackageNameTest extends AbstractModuleTestSupport {
     public void testBadPackageName3() throws Exception {
 
         final String packagePath = "com.google.checkstyle.test.chapter5naming.rule521$packagenames";
+        final Configuration checkConfig = getModuleConfig("PackageName");
+        final String format = checkConfig.getAttribute("format");
         final String msg = getCheckMessage(checkConfig.getMessages(), MSG_KEY, packagePath, format);
 
         final String[] expected = {

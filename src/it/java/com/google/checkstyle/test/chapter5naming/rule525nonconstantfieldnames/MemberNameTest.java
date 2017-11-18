@@ -19,33 +19,25 @@
 
 package com.google.checkstyle.test.chapter5naming.rule525nonconstantfieldnames;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class MemberNameTest extends AbstractModuleTestSupport {
 
     private static final String MSG_KEY = "name.invalidPattern";
-    private static Configuration checkConfig;
-    private static String format;
 
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter5naming/rule525nonconstantfieldnames";
     }
 
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        checkConfig = getModuleConfig("MemberName");
-        format = checkConfig.getAttribute("format");
-    }
-
     @Test
     public void testMemberName() throws Exception {
 
+        final Configuration checkConfig = getModuleConfig("MemberName");
+        final String format = checkConfig.getAttribute("format");
         final String[] expected = {
             "5:16: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "mPublic", format),
             "6:19: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "mProtected", format),
@@ -71,6 +63,8 @@ public class MemberNameTest extends AbstractModuleTestSupport {
     @Test
     public void testSimple() throws Exception {
 
+        final Configuration checkConfig = getModuleConfig("MemberName");
+        final String format = checkConfig.getAttribute("format");
         final String[] expected = {
             "12:17: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "bad$Static", format),
             "17:17: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "bad_Member", format),
