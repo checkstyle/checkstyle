@@ -191,6 +191,18 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testContainerCaseInsensitive() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("option", "top");
+        checkConfig.addAttribute("caseSensitive", "false");
+        checkConfig.addAttribute("useContainerOrderingForStatic", "true");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getNonCompilablePath("InputImportOrderEclipseStaticCaseSensitive.java"),
+            expected);
+    }
+
+    @Test
     public void testInvalidOption() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ImportOrderCheck.class);
@@ -296,6 +308,17 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         };
 
         verify(checkConfig, getPath("InputImportOrder_Bottom.java"), expected);
+    }
+
+    @Test
+    public void testGetGroupNumber() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("groups", "/javax/, sun, /^java/, org, /java/");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig,
+            getNonCompilablePath("InputImportOrderGetGroupNumber.java"), expected);
     }
 
     @Test
