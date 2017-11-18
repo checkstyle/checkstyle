@@ -19,31 +19,22 @@
 
 package com.google.checkstyle.test.chapter5naming.rule51identifiernames;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class CatchParameterNameTest extends AbstractModuleTestSupport {
-    private static Configuration checkConfig;
-    private static String format;
-
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter5naming/rule51identifiernames";
     }
 
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        checkConfig = getModuleConfig("CatchParameterName");
-        format = checkConfig.getAttribute("format");
-    }
-
     @Test
     public void testCatchParameterName() throws Exception {
         final String msgKey = "name.invalidPattern";
+        final Configuration checkConfig = getModuleConfig("CatchParameterName");
+        final String format = checkConfig.getAttribute("format");
 
         final String[] expected = {
             "47:28: " + getCheckMessage(checkConfig.getMessages(), msgKey, "iException", format),
