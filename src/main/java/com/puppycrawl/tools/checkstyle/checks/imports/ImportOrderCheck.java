@@ -638,20 +638,22 @@ public class ImportOrderCheck
      */
     private int getGroupNumber(String name) {
         int bestIndex = groups.length;
-        int bestLength = -1;
-        int bestPos = 0;
+        int bestEnd = -1;
+        int bestPos = Integer.MAX_VALUE;
 
         // find out what group this belongs in
         // loop over groups and get index
         for (int i = 0; i < groups.length; i++) {
             final Matcher matcher = groups[i].matcher(name);
-            while (matcher.find()) {
-                final int length = matcher.end() - matcher.start();
-                if (length > bestLength
-                    || length == bestLength && matcher.start() < bestPos) {
+            if (matcher.find()) {
+                if (matcher.start() < bestPos) {
                     bestIndex = i;
-                    bestLength = length;
+                    bestEnd = matcher.end();
                     bestPos = matcher.start();
+                }
+                else if (matcher.start() == bestPos && matcher.end() > bestEnd) {
+                    bestIndex = i;
+                    bestEnd = matcher.end();
                 }
             }
         }
