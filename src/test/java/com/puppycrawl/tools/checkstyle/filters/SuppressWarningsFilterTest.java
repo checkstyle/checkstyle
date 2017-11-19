@@ -21,13 +21,11 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -98,54 +96,52 @@ public class SuppressWarningsFilterTest
         verifySuppressed(filterConfig, suppressed);
     }
 
-    private void verifySuppressed(Configuration aFilterConfig,
-            String... aSuppressed) throws Exception {
-        verify(createChecker(aFilterConfig),
-            getPath("InputSuppressWarningsFilter.java"),
-            removeSuppressed(ALL_MESSAGES, aSuppressed));
+    private void verifySuppressed(Configuration moduleConfig,
+            String... aSuppressed)
+            throws Exception {
+        verifySuppressed(moduleConfig, getPath("InputSuppressWarningsFilter.java"),
+               ALL_MESSAGES, aSuppressed);
     }
 
-    @Override
-    public Checker createChecker(Configuration moduleConfig)
-            throws Exception {
-        final DefaultConfiguration checkerConfig =
-            new DefaultConfiguration("configuration");
-        final DefaultConfiguration checksConfig =
-            createModuleConfig(TreeWalker.class);
+    private void verifySuppressed(Configuration moduleConfig, String fileName,
+            String[] expectedViolations, String... suppressedViolations) throws Exception {
         final DefaultConfiguration holderConfig =
             createModuleConfig(SuppressWarningsHolder.class);
         holderConfig.addAttribute("aliasList",
             "com.puppycrawl.tools.checkstyle.checks.sizes."
                 + "ParameterNumberCheck=paramnum");
-        checksConfig.addChild(holderConfig);
+
         final DefaultConfiguration memberNameCheckConfig =
                 createModuleConfig(MemberNameCheck.class);
         memberNameCheckConfig.addAttribute("id", "ignore");
-        checksConfig.addChild(memberNameCheckConfig);
+
         final DefaultConfiguration constantNameCheckConfig =
             createModuleConfig(ConstantNameCheck.class);
         constantNameCheckConfig.addAttribute("id", "");
-        checksConfig.addChild(constantNameCheckConfig);
-        checksConfig.addChild(createModuleConfig(ParameterNumberCheck.class));
-        checksConfig.addChild(createModuleConfig(IllegalCatchCheck.class));
+
         final DefaultConfiguration uncommentedMainCheckConfig =
             createModuleConfig(UncommentedMainCheck.class);
         uncommentedMainCheckConfig.addAttribute("id", "ignore");
-        checksConfig.addChild(uncommentedMainCheckConfig);
-        checksConfig.addChild(createModuleConfig(JavadocTypeCheck.class));
-        checkerConfig.addChild(checksConfig);
+
+        final DefaultConfiguration treewalkerConfig =
+                createModuleConfig(TreeWalker.class);
+        treewalkerConfig.addChild(holderConfig);
+        treewalkerConfig.addChild(memberNameCheckConfig);
+        treewalkerConfig.addChild(constantNameCheckConfig);
+        treewalkerConfig.addChild(createModuleConfig(ParameterNumberCheck.class));
+        treewalkerConfig.addChild(createModuleConfig(IllegalCatchCheck.class));
+        treewalkerConfig.addChild(uncommentedMainCheckConfig);
+        treewalkerConfig.addChild(createModuleConfig(JavadocTypeCheck.class));
+
+        final DefaultConfiguration checkerConfig =
+                createRootConfig(treewalkerConfig);
         if (moduleConfig != null) {
             checkerConfig.addChild(moduleConfig);
         }
-        final Checker checker = new Checker();
-        final Locale locale = Locale.ROOT;
-        checker.setLocaleCountry(locale.getCountry());
-        checker.setLocaleLanguage(locale.getLanguage());
-        checker.setModuleClassLoader(Thread.currentThread()
-            .getContextClassLoader());
-        checker.configure(checkerConfig);
-        checker.addListener(getBriefUtLogger());
-        return checker;
+
+        verify(checkerConfig,
+                fileName,
+            removeSuppressed(expectedViolations, suppressedViolations));
     }
 
     private static String[] removeSuppressed(String[] from, String... remove) {
@@ -168,8 +164,7 @@ public class SuppressWarningsFilterTest
             "8: Uncommented main method found.",
         };
 
-        verify(createChecker(filterConfig),
-            getPath("InputSuppressWarningsFilterById.java"),
-            removeSuppressed(expectedViolationMessages, suppressedViolationMessages));
+        verifySuppressed(filterConfig, getPath("InputSuppressWarningsFilterById.java"),
+                expectedViolationMessages, suppressedViolationMessages);
     }
 }

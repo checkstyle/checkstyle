@@ -35,7 +35,6 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -335,15 +334,20 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     public void testCacheWhenFileExternalResourceContentDoesNotChange() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
         checkConfig.addAttribute("file", getPath("InputImportControlOneRegExp.xml"));
+
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        treeWalkerConfig.addChild(checkConfig);
+
+        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
         final File cacheFile = temporaryFolder.newFile();
-        final Checker checker = createMockCheckerWithCache(checkConfig, cacheFile);
+        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
 
         final String filePath = temporaryFolder.newFile("EmptyFile.java").getPath();
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checker, filePath, filePath, expected);
+        verify(checkerConfig, filePath, expected);
         // One more time to use cache.
-        verify(checker, filePath, filePath, expected);
+        verify(checkerConfig, filePath, expected);
 
         assertTrue("External resourse is not present in cache",
                 new String(Files.readAllBytes(cacheFile.toPath()),
@@ -388,22 +392,6 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputImportControl.java"), expected);
-    }
-
-    private Checker createMockCheckerWithCache(DefaultConfiguration checkConfig,
-                                               File cacheFile) throws CheckstyleException {
-        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
-        treeWalkerConfig.addChild(checkConfig);
-
-        final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyle_checks");
-        checkerConfig.addChild(treeWalkerConfig);
-        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
-
-        final Checker checker = new Checker();
-        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        checker.configure(checkerConfig);
-        checker.addListener(getBriefUtLogger());
-        return checker;
     }
 
     /**
