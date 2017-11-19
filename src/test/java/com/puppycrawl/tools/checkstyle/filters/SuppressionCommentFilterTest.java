@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
@@ -41,6 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
+import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
@@ -49,23 +51,53 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 public class SuppressionCommentFilterTest
     extends AbstractModuleTestSupport {
     private static final String[] ALL_MESSAGES = {
-        "13:17: Name 'I' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-        "16:17: Name 'J' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-        "19:17: Name 'K' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-        "22:17: Name 'L' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-        "23:30: Name 'm' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-        "27:17: Name 'M2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-        "28:30: Name 'n' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-        "32:17: Name 'P' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-        "35:17: Name 'Q' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-        "38:17: Name 'R' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-        "39:30: Name 's' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-        "43:17: Name 'T' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-        "64:23: Catching 'Exception' is not allowed.",
-        "71:11: Catching 'Exception' is not allowed.",
-        "77:11: Catching 'RuntimeException' is not allowed.",
-        "78:11: Catching 'Exception' is not allowed.",
-        "86:31: Catching 'Exception' is not allowed.",
+        "13:17: "
+            + getCheckMessage(AbstractNameCheck.class,
+                MSG_INVALID_PATTERN, "I", "^[a-z][a-zA-Z0-9]*$"),
+        "16:17: "
+            + getCheckMessage(AbstractNameCheck.class,
+                MSG_INVALID_PATTERN, "J", "^[a-z][a-zA-Z0-9]*$"),
+        "19:17: "
+            + getCheckMessage(AbstractNameCheck.class,
+                MSG_INVALID_PATTERN, "K", "^[a-z][a-zA-Z0-9]*$"),
+        "22:17: "
+            + getCheckMessage(AbstractNameCheck.class,
+                MSG_INVALID_PATTERN, "L", "^[a-z][a-zA-Z0-9]*$"),
+        "23:30: "
+            + getCheckMessage(AbstractNameCheck.class,
+                MSG_INVALID_PATTERN, "m", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+        "27:17: "
+            + getCheckMessage(AbstractNameCheck.class,
+                MSG_INVALID_PATTERN, "M2", "^[a-z][a-zA-Z0-9]*$"),
+        "28:30: "
+            + getCheckMessage(AbstractNameCheck.class,
+                MSG_INVALID_PATTERN, "n", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+        "32:17: "
+            + getCheckMessage(AbstractNameCheck.class,
+                MSG_INVALID_PATTERN, "P", "^[a-z][a-zA-Z0-9]*$"),
+        "35:17: "
+            + getCheckMessage(AbstractNameCheck.class,
+                MSG_INVALID_PATTERN, "Q", "^[a-z][a-zA-Z0-9]*$"),
+        "38:17: "
+            + getCheckMessage(AbstractNameCheck.class,
+                MSG_INVALID_PATTERN, "R", "^[a-z][a-zA-Z0-9]*$"),
+        "39:30: "
+            + getCheckMessage(AbstractNameCheck.class,
+                MSG_INVALID_PATTERN, "s", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+        "43:17: "
+            + getCheckMessage(AbstractNameCheck.class,
+                MSG_INVALID_PATTERN, "T", "^[a-z][a-zA-Z0-9]*$"),
+        "64:23: "
+            + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
+        "71:11: "
+            + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
+        "77:11: "
+            + getCheckMessage(IllegalCatchCheck.class,
+                IllegalCatchCheck.MSG_KEY, "RuntimeException"),
+        "78:11: "
+            + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
+        "86:31: "
+            + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
     };
 
     @Override
@@ -86,11 +118,18 @@ public class SuppressionCommentFilterTest
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressionCommentFilter.class);
         final String[] suppressed = {
-            "16:17: Name 'J' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "43:17: Name 'T' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "64:23: Catching 'Exception' is not allowed.",
-            "71:11: Catching 'Exception' is not allowed.",
-            "86:31: Catching 'Exception' is not allowed.",
+            "16:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "J", "^[a-z][a-zA-Z0-9]*$"),
+            "43:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "T", "^[a-z][a-zA-Z0-9]*$"),
+            "64:23: "
+                + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
+            "71:11: "
+                + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
+            "86:31: "
+                + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
         };
         verifySuppressed(filterConfig, suppressed);
     }
@@ -101,9 +140,13 @@ public class SuppressionCommentFilterTest
             createModuleConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("checkC", "false");
         final String[] suppressed = {
-            "43:17: Name 'T' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "64:23: Catching 'Exception' is not allowed.",
-            "71:11: Catching 'Exception' is not allowed.",
+            "43:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "T", "^[a-z][a-zA-Z0-9]*$"),
+            "64:23: "
+                + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
+            "71:11: "
+                + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
         };
         verifySuppressed(filterConfig, suppressed);
     }
@@ -114,8 +157,11 @@ public class SuppressionCommentFilterTest
             createModuleConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("checkCPP", "false");
         final String[] suppressed = {
-            "16:17: Name 'J' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "86:31: Catching 'Exception' is not allowed.",
+            "16:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "J", "^[a-z][a-zA-Z0-9]*$"),
+            "86:31: "
+                + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
         };
         verifySuppressed(filterConfig, suppressed);
     }
@@ -128,10 +174,18 @@ public class SuppressionCommentFilterTest
         filterConfig.addAttribute("offCommentFormat", "CS_OFF");
         filterConfig.addAttribute("onCommentFormat", "CS_ON");
         final String[] suppressed = {
-            "32:17: Name 'P' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "38:17: Name 'R' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "39:30: Name 's' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "42:17: Name 'T' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "32:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "P", "^[a-z][a-zA-Z0-9]*$"),
+            "38:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "R", "^[a-z][a-zA-Z0-9]*$"),
+            "39:30: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "s", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+            "42:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "T", "^[a-z][a-zA-Z0-9]*$"),
         };
         verifySuppressed(filterConfig, suppressed);
     }
@@ -146,7 +200,9 @@ public class SuppressionCommentFilterTest
         filterConfig.addAttribute("onCommentFormat", "CS_ON");
         filterConfig.addAttribute("checkFormat", "ConstantNameCheck");
         final String[] suppressed = {
-            "39:30: Name 's' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "39:30: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "s", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
         };
         verifySuppressed(filterConfig, suppressed);
     }
@@ -158,9 +214,12 @@ public class SuppressionCommentFilterTest
         filterConfig.addAttribute("offCommentFormat", "IllegalCatchCheck OFF\\: (\\w+)");
         filterConfig.addAttribute("onCommentFormat", "IllegalCatchCheck ON\\: (\\w+)");
         filterConfig.addAttribute("checkFormat", "IllegalCatchCheck");
-        filterConfig.addAttribute("messageFormat", "^Catching '$1' is not allowed.*$");
+        filterConfig.addAttribute("messageFormat",
+                "^" + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "$1")
+                        + "*$");
         final String[] suppressed = {
-            "78:11: Catching 'Exception' is not allowed.",
+            "78:11: "
+                + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
         };
         verifySuppressed(filterConfig, suppressed);
     }
@@ -173,9 +232,15 @@ public class SuppressionCommentFilterTest
         filterConfig.addAttribute("onCommentFormat", "CSON\\: ([\\w\\|]+)");
         filterConfig.addAttribute("checkFormat", "$1");
         final String[] suppressed = {
-            "22:17: Name 'L' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "23:30: Name 'm' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "28:30: Name 'n' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "22:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "L", "^[a-z][a-zA-Z0-9]*$"),
+            "23:30: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "m", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+            "28:30: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "n", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
         };
         verifySuppressed(filterConfig, suppressed);
     }
@@ -188,9 +253,7 @@ public class SuppressionCommentFilterTest
         filterConfig.addAttribute("offCommentFormat", "UNUSED OFF\\: (\\w+)");
         filterConfig.addAttribute("checkFormat", "Unused");
         filterConfig.addAttribute("messageFormat", "^Unused \\w+ '$1'.$");
-        final String[] suppressed = {
-            "47:34: Unused parameter 'aInt'.",
-        };
+        final String[] suppressed = CommonUtils.EMPTY_STRING_ARRAY;
         verifySuppressed(filterConfig, suppressed);
     }
 
@@ -302,14 +365,26 @@ public class SuppressionCommentFilterTest
         filterConfig.addAttribute("onCommentFormat", "CSON (\\w+)");
         filterConfig.addAttribute("checkFormat", "$1");
         final String[] suppressedViolationMessages = {
-            "6:17: Name 'A1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "12:9: Name 'line_length' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "6:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
+            "12:9: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "line_length", "^[a-z][a-zA-Z0-9]*$"),
             };
         final String[] expectedViolationMessages = {
-            "6:17: Name 'A1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "9:30: Name 'abc' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "12:9: Name 'line_length' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "15:18: Name 'ID' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "6:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
+            "9:30: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "abc", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+            "12:9: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "line_length", "^[a-z][a-zA-Z0-9]*$"),
+            "15:18: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "ID", "^[a-z][a-zA-Z0-9]*$"),
             };
 
         verifySuppressed(filterConfig, getPath("InputSuppressionCommentFilterSuppressById.java"),
