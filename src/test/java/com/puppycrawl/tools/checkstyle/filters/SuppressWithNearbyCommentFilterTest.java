@@ -26,14 +26,12 @@ import static org.junit.Assert.fail;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 import org.junit.Test;
 import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
@@ -195,41 +193,37 @@ public class SuppressWithNearbyCommentFilterTest
         EqualsVerifier.forClass(SuppressWithNearbyCommentFilter.Tag.class).usingGetClass().verify();
     }
 
-    private void verifySuppressed(Configuration filterConfig,
-            String... suppressed)
+    private void verifySuppressed(Configuration moduleConfig,
+            String... aSuppressed)
             throws Exception {
-        verify(createChecker(filterConfig),
-               getPath("InputSuppressWithNearbyCommentFilter.java"),
-               removeSuppressed(ALL_MESSAGES, suppressed));
+        verifySuppressed(moduleConfig, getPath("InputSuppressWithNearbyCommentFilter.java"),
+               ALL_MESSAGES, aSuppressed);
     }
 
-    @Override
-    public Checker createChecker(Configuration moduleConfig)
-            throws CheckstyleException {
-        final DefaultConfiguration checkerConfig =
-            new DefaultConfiguration("configuration");
-        final DefaultConfiguration checksConfig = createModuleConfig(TreeWalker.class);
+    private void verifySuppressed(Configuration moduleConfig, String fileName,
+            String[] expectedViolations, String... suppressedViolations) throws Exception {
         final DefaultConfiguration memberNameCheckConfig =
                 createModuleConfig(MemberNameCheck.class);
         memberNameCheckConfig.addAttribute("id", "ignore");
-        checksConfig.addChild(memberNameCheckConfig);
+
         final DefaultConfiguration constantNameCheckConfig =
             createModuleConfig(ConstantNameCheck.class);
         constantNameCheckConfig.addAttribute("id", null);
-        checksConfig.addChild(constantNameCheckConfig);
-        checksConfig.addChild(createModuleConfig(IllegalCatchCheck.class));
-        checkerConfig.addChild(checksConfig);
+
+        final DefaultConfiguration treewalkerConfig = createModuleConfig(TreeWalker.class);
+        treewalkerConfig.addChild(memberNameCheckConfig);
+        treewalkerConfig.addChild(constantNameCheckConfig);
+        treewalkerConfig.addChild(createModuleConfig(IllegalCatchCheck.class));
+
         if (moduleConfig != null) {
-            checksConfig.addChild(moduleConfig);
+            treewalkerConfig.addChild(moduleConfig);
         }
-        final Checker checker = new Checker();
-        final Locale locale = Locale.ROOT;
-        checker.setLocaleCountry(locale.getCountry());
-        checker.setLocaleLanguage(locale.getLanguage());
-        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        checker.configure(checkerConfig);
-        checker.addListener(getBriefUtLogger());
-        return checker;
+
+        final DefaultConfiguration checkerConfig = createRootConfig(treewalkerConfig);
+
+        verify(checkerConfig,
+                fileName,
+                removeSuppressed(expectedViolations, suppressedViolations));
     }
 
     private static String[] removeSuppressed(String[] from, String... remove) {
@@ -339,9 +333,9 @@ public class SuppressWithNearbyCommentFilterTest
             "11:18: Name 'ID' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         };
 
-        verify(createChecker(filterConfig),
+        verifySuppressed(filterConfig,
             getPath("InputSuppressWithNearbyCommentFilterById.java"),
-            removeSuppressed(expectedViolationMessages, suppressedViolationMessages));
+            expectedViolationMessages, suppressedViolationMessages);
     }
 
     @Test
