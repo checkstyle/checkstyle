@@ -7,7 +7,6 @@
 
       - use "mvn versions:display-dependency-updates" to see what dependencies
         have updates available.
-
       - use "mvn versions:display-plugin-updates" to see what plugins have
         updates available.
   -->
