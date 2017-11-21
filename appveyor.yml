@@ -71,14 +71,14 @@ environment:
     - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
       DESC: "checkstyle and sevntu.checkstyle"
       CMD1: "mvn -e verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dxml.skip=true"
-    # verify without checkstyle
-    - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
-      DESC: "verify without checkstyle"
-      CMD1: "mvn -e verify -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true"
     # site, without verify
     - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
       DESC: "site, without verify"
       CMD1: "mvn -e -Pno-validations site"
+    # verify without checkstyle
+    - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
+      DESC: "verify without checkstyle"
+      CMD1: "mvn -e verify cobertura:cobertura -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true"
 
 build_script:
   - ps: >
@@ -96,6 +96,6 @@ build_script:
   - ps: get-content appveyor.cmd
   # We need to use cmd there as ps1 is failing each time error output appear from any command line
   - appveyor.cmd
-  - ps: echo $LASTEXITCODE
-  - mvn compile cobertura:cobertura
-  - ps: Get-ChildItem -recurse -Path target/site/cobertura -Exclude @("*JavadocLexer*","*JavadocParser*","*Generated*","source-viewer.css") | Select-String -pattern "nbHitsUncovered" -context 1
+  - ps: echo %errorlevel%
+  #- mvn compile cobertura:cobertura
+  - ps: Get-ChildItem -recurse -Path target/site/cobertura -Exclude @("*JavadocLexer*","*JavadocParser*","*Generated*","source-viewer.css") | Select-String -pattern "nbHitsUncovered" -SimpleMatch
