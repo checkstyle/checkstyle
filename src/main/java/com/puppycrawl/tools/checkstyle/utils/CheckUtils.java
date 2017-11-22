@@ -412,8 +412,12 @@ public final class CheckUtils {
      * @return true if the parameter is a receiver.
      */
     public static boolean isReceiverParameter(DetailAST parameterDefAst) {
-        return parameterDefAst.getType() == TokenTypes.PARAMETER_DEF
-                && parameterDefAst.findFirstToken(TokenTypes.IDENT) == null;
+        boolean returnValue = false;
+        if (parameterDefAst.getType() == TokenTypes.PARAMETER_DEF
+                && parameterDefAst.findFirstToken(TokenTypes.IDENT) == null) {
+            returnValue = parameterDefAst.branchContains(TokenTypes.LITERAL_THIS);
+        }
+        return returnValue;
     }
 
     /**

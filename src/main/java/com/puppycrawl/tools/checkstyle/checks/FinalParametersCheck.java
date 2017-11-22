@@ -183,8 +183,7 @@ public class FinalParametersCheck extends AbstractCheck {
      * @param param parameter to check.
      */
     private void checkParam(final DetailAST param) {
-        if (param.findFirstToken(TokenTypes.MODIFIERS).findFirstToken(TokenTypes.FINAL) == null
-                && !isIgnoredParam(param)
+        if (!param.branchContains(TokenTypes.FINAL) && !isIgnoredParam(param)
                 && !CheckUtils.isReceiverParameter(param)) {
             final DetailAST paramName = param.findFirstToken(TokenTypes.IDENT);
             final DetailAST firstNode = CheckUtils.getFirstNode(param);
