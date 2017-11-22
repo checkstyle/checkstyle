@@ -78,7 +78,7 @@ environment:
     # verify without checkstyle
     - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
       DESC: "verify without checkstyle"
-      CMD1: "mvn -e cobertura:cobertura cobertura:check -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true"
+      CMD1: "mvn -X -e cobertura:cobertura cobertura:check -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true"
 
 build_script:
   - ps: >
