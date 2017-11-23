@@ -69,5 +69,20 @@ public enum LeftCurlyOption {
      *     ...
      * </pre>
      */
-    NL
+    NL,
+    
+    /**
+     * Represents the policy that the brace must either be on a new line, or the end brace must be on the same line. For
+     * example:
+     * <pre>
+     * if (condition)
+     * {
+     *     ...
+     * </pre>
+     * or
+     * <pre>
+     * if (condition) {...}
+     * </pre>
+     */
+    NL_OR_SINGLELINE
 }
