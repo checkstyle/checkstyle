@@ -47,6 +47,8 @@ build:
           echo CS_version: ${CS_POM_VERSION}
           for i in 1 2 3 4 5; do git clone https://github.com/pgjdbc/pgjdbc.git && break || sleep 15; done
           cd pgjdbc/pgjdbc
+          # special checkout till https://github.com/checkstyle/checkstyle/issues/5286
+          git checkout 279fb435b392114c45266ecef901bfd59470842a
           wget https://gist.githubusercontent.com/timurt/a981d094cbbbe746ecd400424f5f3af8/raw/6e5d28a83b0d63a880f897d839f7f536b64f0979/pgjdbc.patch
           git apply pgjdbc.patch
           mvn compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
