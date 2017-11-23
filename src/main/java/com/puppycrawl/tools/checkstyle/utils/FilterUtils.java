@@ -55,8 +55,7 @@ public final class FilterUtils {
             suppressionSourceExists = false;
         }
         finally {
-            final boolean closed = closeQuietlyWithResult(sourceInput);
-            suppressionSourceExists = suppressionSourceExists && closed;
+            suppressionSourceExists = closeQuietlyWithResult(sourceInput, suppressionSourceExists);
         }
         return suppressionSourceExists;
     }
@@ -65,10 +64,12 @@ public final class FilterUtils {
      * Close input.
      * This method is required till https://github.com/cobertura/cobertura/issues/170
      * @param sourceInput stream to close
+     * @param suppressionSourceExists previous state of flag
      * @return result of close operation
      */
-    private static boolean closeQuietlyWithResult(InputStream sourceInput) {
-        boolean closed = true;
+    private static boolean closeQuietlyWithResult(InputStream sourceInput,
+                                                  boolean suppressionSourceExists) {
+        boolean closed = suppressionSourceExists;
         if (sourceInput != null) {
             try {
                 sourceInput.close();
