@@ -424,8 +424,13 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      */
     private static int getDistToVariableUsageInChildNode(DetailAST childNode, DetailAST varIdent,
                                                          int currentDistToVarUsage) {
+        DetailAST examineNode = childNode;
+        if (examineNode.getType() == TokenTypes.LABELED_STAT) {
+            examineNode = examineNode.getFirstChild().getNextSibling();
+        }
+
         int resultDist = currentDistToVarUsage;
-        switch (childNode.getType()) {
+        switch (examineNode.getType()) {
             case TokenTypes.VARIABLE_DEF:
                 resultDist++;
                 break;
@@ -437,7 +442,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
             case TokenTypes.LITERAL_DO:
             case TokenTypes.LITERAL_IF:
             case TokenTypes.LITERAL_SWITCH:
-                if (isVariableInOperatorExpr(childNode, varIdent)) {
+                if (isVariableInOperatorExpr(examineNode, varIdent)) {
                     resultDist++;
                 }
                 else {
@@ -447,11 +452,11 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 }
                 break;
             default:
-                if (childNode.branchContains(TokenTypes.SLIST)) {
-                    resultDist = 0;
+                if (examineNode.findFirstToken(TokenTypes.SLIST) == null) {
+                    resultDist++;
                 }
                 else {
-                    resultDist++;
+                    resultDist = 0;
                 }
         }
         return resultDist;
