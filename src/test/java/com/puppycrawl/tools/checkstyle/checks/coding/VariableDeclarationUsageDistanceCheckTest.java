@@ -27,6 +27,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class VariableDeclarationUsageDistanceCheckTest extends
         AbstractModuleTestSupport {
@@ -239,7 +240,27 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "542: " + getCheckMessage(MSG_KEY_EXT, "parentId", 4, 3),
         };
 
-        createChecker(checkConfig);
         verify(checkConfig, getPath("InputVariableDeclarationUsageDistance.java"), expected);
+    }
+
+    @Test
+    public void testAnonymousClass() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(VariableDeclarationUsageDistanceCheck.class);
+        final String[] expected = {
+            "9: " + getCheckMessage(MSG_KEY_EXT, "prefs", 4, 3),
+        };
+
+        verify(checkConfig, getPath("InputVariableDeclarationUsageDistanceAnonymous.java"),
+                expected);
+    }
+
+    @Test
+    public void testLabels() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(VariableDeclarationUsageDistanceCheck.class);
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getPath("InputVariableDeclarationUsageDistanceLabels.java"), expected);
     }
 }
