@@ -92,5 +92,7 @@ build:
            echo "Survived items found in reports, build will be failed"
            exit 1
         fi
-
+      else
+        echo "Build is skipped, changed files:"
+        git diff --name-only HEAD HEAD~1
       fi
