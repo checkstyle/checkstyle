@@ -214,6 +214,7 @@ public class SuppressionCommentFilterTest
         filterConfig.addAttribute("offCommentFormat", "IllegalCatchCheck OFF\\: (\\w+)");
         filterConfig.addAttribute("onCommentFormat", "IllegalCatchCheck ON\\: (\\w+)");
         filterConfig.addAttribute("checkFormat", "IllegalCatchCheck");
+        // -@cs[CheckstyleTestMakeup] need to test dynamic property
         filterConfig.addAttribute("messageFormat",
                 "^" + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "$1")
                         + "*$");
