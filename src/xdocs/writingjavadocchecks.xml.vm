@@ -41,8 +41,8 @@ public class MyClass {
       ]]></source>
       </p>
       Attention that java comment starts with <code>/*</code>, following with Identificator of comment type. Javadoc Identificator is <code>*</code>. All symbols after Javadoc Identificator till <code>*/</code> are part of javadoc comment.
-      <p>Please not that javadoc-like comment inside a method is not a javadoc comment and skipped by
-         Sun/Oracle javadoc tool and by our parser.
+      <p>Please note that javadoc-like(miltiline comment with javdoc identificator) comment inside a method is not a javadoc comment and skipped by
+         Sun/Oracle javadoc tool and by our javadoc comment matcher, but such comment will be in AST.
       </p>
       <p>In internet you can find different types of documentation
       generation tools similar to javadoc. Such tools rely on specific Identificator: "!", "#", "$".
