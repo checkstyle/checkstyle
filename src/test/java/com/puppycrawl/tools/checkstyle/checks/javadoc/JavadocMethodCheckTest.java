@@ -135,8 +135,10 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "254:8: " + getCheckMessage(MSG_UNUSED_TAG, "@throws", "java.io.FileNotFoundException"),
             "256:28: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IOException"),
             "262:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "aParam"),
-            "320:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "329:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "305: " + getCheckMessage(MSG_RETURN_EXPECTED),
+            "305:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aParam"),
+            "328:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "337:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
 
         verify(checkConfig, getPath("InputJavadocMethodTags.java"), expected);
@@ -171,8 +173,10 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "254:8: " + getCheckMessage(MSG_UNUSED_TAG, "@throws", "java.io.FileNotFoundException"),
             "256:28: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IOException"),
             "262:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "aParam"),
-            "320:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "329:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "305: " + getCheckMessage(MSG_RETURN_EXPECTED),
+            "305:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aParam"),
+            "328:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "337:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputJavadocMethodTags.java"), expected);
     }
@@ -287,8 +291,10 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "179:8: " + getCheckMessage(MSG_UNUSED_TAG, "@throws", "ArrayStoreException"),
             "256:28: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IOException"),
             "262:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "aParam"),
-            "320:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "329:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "305: " + getCheckMessage(MSG_RETURN_EXPECTED),
+            "305:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aParam"),
+            "328:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "337:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputJavadocMethodTags.java"), expected);
     }
