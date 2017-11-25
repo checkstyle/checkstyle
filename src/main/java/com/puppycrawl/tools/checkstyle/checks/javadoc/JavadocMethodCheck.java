@@ -100,12 +100,12 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     public static final String MSG_DUPLICATE_TAG = "javadoc.duplicateTag";
 
     /** Compiled regexp to match Javadoc tags that take an argument. */
-    private static final Pattern MATCH_JAVADOC_ARG =
-            CommonUtils.createPattern("@(throws|exception|param)\\s+(\\S+)\\s+\\S*");
+    private static final Pattern MATCH_JAVADOC_ARG = CommonUtils.createPattern(
+            "^\\s*(?>\\*|\\/\\*\\*)?\\s*@(throws|exception|param)\\s+(\\S+)\\s+\\S*");
 
     /** Compiled regexp to match first part of multilineJavadoc tags. */
-    private static final Pattern MATCH_JAVADOC_ARG_MULTILINE_START =
-            CommonUtils.createPattern("@(throws|exception|param)\\s+(\\S+)\\s*$");
+    private static final Pattern MATCH_JAVADOC_ARG_MULTILINE_START = CommonUtils.createPattern(
+            "^\\s*(?>\\*|\\/\\*\\*)?\\s*@(throws|exception|param)\\s+(\\S+)\\s*$");
 
     /** Compiled regexp to look for a continuation of the comment. */
     private static final Pattern MATCH_JAVADOC_MULTILINE_CONT =
@@ -118,10 +118,10 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
 
     /** Compiled regexp to match Javadoc tags with no argument. */
     private static final Pattern MATCH_JAVADOC_NOARG =
-            CommonUtils.createPattern("@(return|see)\\s+\\S");
+            CommonUtils.createPattern("^\\s*(?>\\*|\\/\\*\\*)?\\s*@(return|see)\\s+\\S");
     /** Compiled regexp to match first part of multilineJavadoc tags. */
     private static final Pattern MATCH_JAVADOC_NOARG_MULTILINE_START =
-            CommonUtils.createPattern("@(return|see)\\s*$");
+            CommonUtils.createPattern("^\\s*(?>\\*|\\/\\*\\*)?\\s*@(return|see)\\s*$");
     /** Compiled regexp to match Javadoc tags with no argument and {}. */
     private static final Pattern MATCH_JAVADOC_NOARG_CURLY =
             CommonUtils.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");

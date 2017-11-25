@@ -297,6 +297,14 @@ class InputJavadocMethodTags1
 
         return 1;
     }
+
+    /**
+     * misplaced @param aParam
+     * misplaced @return something very important.
+     */
+    int method29(int aParam)
+    { return 0;
+    }
 }
 
 enum InputJavadocMethodTagsEnum
