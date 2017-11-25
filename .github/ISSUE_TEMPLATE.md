@@ -1,18 +1,26 @@
-/var/tmp $ javac YOUR_FILE.java
+`/var/tmp $ javac YOUR_FILE.java`:
 
+```
 [[PLACE YOUR OUTPUT HERE]]
+```
 
-/var/tmp $ cat YOUR_FILE.java
+`/var/tmp $ cat YOUR_FILE.java`:
 
+```
 [[PLACE YOU OUTPUT HERE]]
+```
 
-/var/tmp $ cat config.xml
+`/var/tmp $ cat config.xml`:
 
+```
 [[PLACE YOUR OUTPUT HERE]]
+```
 
-/var/tmp $ java -Duser.language=en -Duser.country=US -jar checkstyle-X.XX-all.jar -c config.xml YOUR_FILE.java
+`/var/tmp $ java -Duser.language=en -Duser.country=US -jar checkstyle-X.XX-all.jar -c config.xml YOUR_FILE.java`:
 
+```
 [[PLACE YOUR OUTPUT HERE]]
+```
 
 ---------------
 
