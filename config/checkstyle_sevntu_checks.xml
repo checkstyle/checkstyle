@@ -207,5 +207,6 @@
           <property name="ignoreEmptyReturns" value="false"/>
         </module>
         <module name="MoveVariableInsideIfCheck" />
+        <module name="CheckstyleTestMakeupCheck" />
     </module>
 </module>
