@@ -73,9 +73,8 @@ build:
           cd ../
           for i in 1 2 3 4 5; do git clone https://github.com/CS-SI/Orekit.git && break || sleep 15; done
           cd Orekit
-          git checkout f7abe7ea0c7fbf6d138ed7eaf9487510dfbbcaac
-          wget https://gist.githubusercontent.com/timurt/7c45454a233ce775a7e5acaa1231d845/raw/225ef24f84e671b501caeef8279dc1363869d5ae/orekit.patch
-          git apply orekit.patch
+          # Orekit use 'develop' branch as target for PullRequest merges
+          git checkout develop
           mvn compile checkstyle:check -Dorekit.checkstyle.version=${CS_POM_VERSION}
           cd ../
           rm -rf hipparchus Orekit
