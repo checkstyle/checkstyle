@@ -15,6 +15,70 @@
 
   <body>
     <!-- placeholder for a new section -->
+
+    <section name="Release 8.5">
+      <p>New:</p>
+        <ul>
+          <li>
+            Try to load class from all of packages as classpath scanning doesn't work in Eclipse runtime environment. Author: kazachka <a href="https://github.com/checkstyle/checkstyle/issues/4916">#4916</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            RegexpOnFilenameCheck: NullPointerException when relative path is used to run checkstyle CLI . Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5278">#5278</a>
+          </li>
+          <li>
+            JavadocPackage: NullPointerException when relative path is used to run checkstyle CLI. Author: Artem Dudkin <a href="https://github.com/checkstyle/checkstyle/issues/5127">#5127</a>
+          </li>
+          <li>
+            Checker.destroy doesn't erase fileSets but erases everything else. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5264">#5264</a>
+          </li>
+          <li>
+            TranslationCheck prints violations from previous AbstractFileSetCheck run. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5263">#5263</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Fix violations from new sevntu check - CheckstyleTestMakeupCheck. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5228">#5228</a>
+          </li>
+          <li>
+            doc: typo fix and extension for 'what is javadoc'. Author: Roman Ivanov
+          </li>
+          <li>
+            Checkstyle UTs shouldn't create custom configuration methods. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5157">#5157</a>
+          </li>
+          <li>
+            adjacent static import groups ones became impossible in 8.3. Author: BBG <a href="https://github.com/checkstyle/checkstyle/issues/5176">#5176</a>
+          </li>
+          <li>
+            cobertura coverage check failing on jdk 152. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5283">#5283</a>
+          </li>
+          <li>
+            Remove usage of DetailAST.branchContains. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5124">#5124</a>
+          </li>
+          <li>
+            Reorganize token methods of all Checks. Author: Subbu Dantu <a href="https://github.com/checkstyle/checkstyle/issues/4581">#4581</a>
+          </li>
+          <li>
+            ImportControl: unable to disallow static import. Author: Jochen Van de Velde, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/4284">#4284</a>
+          </li>
+          <li>
+            doc: Removed maxLineLength property from javadoc, the property itself had been removed earlier. Author: Balazs Nemeth
+          </li>
+          <li>
+            wercker build is unstable for htmlunit project due to SNAPSHOT dependency . Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5251">#5251</a>
+          </li>
+          <li>
+            Fix plural agreement grammar in documentation for DesignForExtension. Author: Jake Gage <a href="https://github.com/checkstyle/checkstyle/issues/5249">#5249</a>
+          </li>
+          <li>
+            Mark all checks with appropriate interface so that they could be used in the MT mode. Author: Andrew Kuchev <a href="https://github.com/checkstyle/checkstyle/issues/4870">#4870</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 8.4">
       <p>Breaking backward compatibility:</p>
         <ul>
