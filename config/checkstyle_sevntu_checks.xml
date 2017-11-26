@@ -207,6 +207,7 @@
           <property name="ignoreEmptyReturns" value="false"/>
         </module>
         <module name="MoveVariableInsideIfCheck" />
+        <module name="RequireFailForTryCatchInJunit" />
         <module name="CheckstyleTestMakeupCheck" />
     </module>
 </module>
