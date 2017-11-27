@@ -232,6 +232,16 @@ public class RedundantModifierCheckTest
     }
 
     @Test
+    public void testEnumStaticMethodsInPublicClass() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RedundantModifierCheck.class);
+        final String[] expected = {
+            "12:23: " + getCheckMessage(MSG_KEY, "final"),
+        };
+        verify(checkConfig,
+            getPath("InputRedundantModifierFinalInEnumStaticMethods.java"), expected);
+    }
+
+    @Test
     public void testAnnotationOnEnumConstructor() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RedundantModifierCheck.class);
         final String[] expected = {

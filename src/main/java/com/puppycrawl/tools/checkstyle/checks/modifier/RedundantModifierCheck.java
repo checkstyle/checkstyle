@@ -289,16 +289,20 @@ public class RedundantModifierCheck
             modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) != null;
         // declared in a final class?
         DetailAST parent = ast.getParent();
-        while (parent != null) {
+        while (parent != null && !checkFinal) {
             if (parent.getType() == TokenTypes.CLASS_DEF) {
                 final DetailAST classModifiers =
                     parent.findFirstToken(TokenTypes.MODIFIERS);
-                checkFinal = checkFinal || classModifiers.findFirstToken(TokenTypes.FINAL) != null;
+                checkFinal = classModifiers.findFirstToken(TokenTypes.FINAL) != null;
                 parent = null;
             }
             else if (parent.getType() == TokenTypes.LITERAL_NEW
                     || parent.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
                 checkFinal = true;
+                parent = null;
+            }
+            else if (parent.getType() == TokenTypes.ENUM_DEF) {
+                checkFinal = modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
                 parent = null;
             }
             else {
