@@ -9,6 +9,8 @@ import java.util.Date; //indent:0 exp:0
         }) //indent:8 exp:0 warn
 @AssociationOverrides( { //indent:0 exp:0
     @AssociationOverride(name = "id.channel", joinColumns = @JoinColumn(name = "chan_id", nullable = false)), //indent:4 exp:4
+    @AssociationOverride(name = "id.tenant", //indent:4 exp:4
+        joinColumns = @JoinColumn(name = "tenant_id", nullable = false)), //indent:8 exp:8
     @AssociationOverride(name = "id.presenter", joinColumns = @JoinColumn(name = "presenter_name", nullable = false))}) //indent:4 exp:4
 public class InputIndentationAnnotationScopeIndentationCheck { //indent:0 exp:0
     @EmbeddedId //indent:4 exp:4

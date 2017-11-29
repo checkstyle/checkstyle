@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
@@ -134,7 +133,11 @@ public class LineWrappingHandler {
                             getNextNodeLine(firstNodesOnLines, node),
                             true
                         );
-                    checkAnnotationIndentation(atNode, annotationLines, indentLevel);
+                    checkAnnotationIndentation(
+                        atNode,
+                        annotationLines,
+                        getLineStart(atNode),
+                        indentLevel);
                 }
                 node = node.getNextSibling();
             }
@@ -241,34 +244,44 @@ public class LineWrappingHandler {
      * @param atNode at-clause node.
      * @param firstNodesOnLines map which contains
      *     first nodes as values and line numbers as keys.
+     * @param firstNodeIndent indentation of first node.
      * @param indentLevel line wrapping indentation.
      */
-    private void checkAnnotationIndentation(DetailAST atNode,
-            NavigableMap<Integer, DetailAST> firstNodesOnLines, int indentLevel) {
-        final int firstNodeIndent = getLineStart(atNode);
+    private void checkAnnotationIndentation(
+            DetailAST atNode,
+            NavigableMap<Integer, DetailAST> firstNodesOnLines,
+            int firstNodeIndent,
+            int indentLevel) {
         final int currentIndent = firstNodeIndent + indentLevel;
         final Collection<DetailAST> values = firstNodesOnLines.values();
         final DetailAST lastAnnotationNode = atNode.getParent().getLastChild();
         final int lastAnnotationLine = lastAnnotationNode.getLineNo();
 
-        final Iterator<DetailAST> itr = values.iterator();
         while (firstNodesOnLines.size() > 1) {
-            final DetailAST node = itr.next();
+            final DetailAST node = values.iterator().next();
 
-            final DetailAST parentNode = node.getParent();
             final boolean isCurrentNodeCloseAnnotationAloneInLine =
                 node.getLineNo() == lastAnnotationLine
                     && isEndOfScope(lastAnnotationNode, node);
-            if (isCurrentNodeCloseAnnotationAloneInLine
-                    || node.getType() == TokenTypes.AT
-                    && (parentNode.getParent().getType() == TokenTypes.MODIFIERS
-                        || parentNode.getParent().getType() == TokenTypes.ANNOTATIONS)) {
+            if (node != atNode && node.getType() == TokenTypes.AT) {
+                final DetailAST parentNode = node.getParent();
+                final NavigableMap<Integer, DetailAST> annotationLines =
+                        firstNodesOnLines.subMap(
+                            parentNode.getLineNo(),
+                            true,
+                            getNextNodeLine(firstNodesOnLines, parentNode),
+                            true
+                        );
+                checkAnnotationIndentation(
+                    node, annotationLines, currentIndent, indentLevel);
+            }
+            else if (isCurrentNodeCloseAnnotationAloneInLine || node.getType() == TokenTypes.AT) {
                 logWarningMessage(node, firstNodeIndent);
             }
             else {
                 logWarningMessage(node, currentIndent);
             }
-            itr.remove();
+            firstNodesOnLines.remove(node.getLineNo());
         }
     }
 

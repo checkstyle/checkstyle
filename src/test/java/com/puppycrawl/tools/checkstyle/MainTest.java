@@ -517,16 +517,10 @@ public class MainTest {
                     Definitions.CHECKSTYLE_BUNDLE, Main.LOAD_PROPERTIES_EXCEPTION,
                     new String[] {""}, null, getClass(), null);
             final String causeMessage = ex.getCause().getLocalizedMessage();
-            final String localizedMessage = loadPropertiesMessage.getMessage();
-            final boolean samePrefix = causeMessage.substring(0, causeMessage.indexOf(' '))
-                    .equals(localizedMessage
-                            .substring(0, localizedMessage.indexOf(' ')));
-            final boolean sameSufix =
-                    causeMessage.substring(causeMessage.lastIndexOf(' '), causeMessage.length())
-                    .equals(localizedMessage
-                            .substring(localizedMessage.lastIndexOf(' '),
-                                    localizedMessage.length()));
-            assertTrue("Invalid error message", samePrefix || sameSufix);
+            assertTrue("Invalid error message",
+                    causeMessage.substring(0, causeMessage.lastIndexOf(' '))
+                            .startsWith(loadPropertiesMessage.getMessage()
+                                    .substring(0, causeMessage.lastIndexOf(' '))));
             assertTrue("Invalid error message",
                     causeMessage.contains(":invalid"));
         }
