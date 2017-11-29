@@ -3367,6 +3367,25 @@ r = 5; int t; //violation here
         </p>
       </subsection>
 
+        <subsection name="Properties">
+            <table>
+                <tr>
+                    <th>name</th>
+                    <th>description</th>
+                    <th>type</th>
+                    <th>default value</th>
+                    <th>since</th>
+                </tr>
+                <tr>
+                    <td>modifierGroups</td>
+                    <td>custom overload groups, allows for the definitions of multiple overloading method groups. can repeat</td>
+                    <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                    <td><code>.*</code></td>
+                    <th>5.8</th>
+                </tr>
+            </table>
+        </subsection>
+
       <subsection name="Examples">
         <p>
           Example of incorrect grouping overload methods:
