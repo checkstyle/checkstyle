@@ -13,6 +13,23 @@ nondex)
   if [[ $RESULT != 0 ]]; then false; fi
   ;;
 
+versions)
+  if [[ $TRAVIS_EVENT_TYPE != "cron" ]]; then exit 0; fi
+  mvn clean versions:dependency-updates-report versions:plugin-updates-report
+  if [ $(grep "<nextVersion>" target/*-updates-report.xml | cat | wc -l) -gt 0 ]; then
+    echo "Version reports (dependency-updates-report.xml):"
+    cat target/dependency-updates-report.xml
+    echo "Version reports (plugin-updates-report.xml):"
+    cat target/plugin-updates-report.xml
+    echo "New versions:"
+    grep -B 7 "<nextVersion>" target/dependency-updates-report.xml
+    grep -B 4 "<nextVersion>" target/plugin-updates-report.xml
+    exit 1
+  else
+    echo "No new versions found"
+  fi
+  ;;
+
 assembly-run-all-jar)
   mvn clean package -Passembly
   CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)

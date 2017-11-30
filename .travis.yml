@@ -175,6 +175,12 @@ matrix:
         - DESC="no error test on simple-binary-encoding"
         - CMD="./.ci/travis/travis.sh no-error-test-sbe"
 
+    # versions to update
+    - jdk: oraclejdk8
+      env:
+        - DESC="print versions to update"
+        - CMD="./.ci/travis/travis.sh versions"
+
 script:
   - SKIP_FILES=".github|appveyor.yml|circle.yml|distelli-manifest.yml|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr|shippable.yml|wercker.yml|intellij-idea-inspections.xml"
   - SKIP_CI=$(if [[ $(git diff --name-only HEAD HEAD~1 | grep -vE "$SKIP_FILES" | cat | wc -c | sed 's/^ *//' ) > 0 ]]; then echo false; else echo true; fi;)
