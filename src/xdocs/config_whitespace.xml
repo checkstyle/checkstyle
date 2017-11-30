@@ -259,11 +259,19 @@ for (Iterator foo = very.long.line.iterator();
                 <td>6.18</td>
             </tr>
           <tr>
+             <td>treatStaticImportAsImport</td>
+             <td>Allows no empty line between import and static import.</td>
+             <td><a href="property_types.html#boolean">Boolean</a></td>
+             <td>false</td>
+             <td>8.1</td>
+          </tr>
+          <tr>
             <td>tokens</td>
             <td>tokens to check</td>
             <td>subset of tokens
             <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">PACKAGE_DEF</a>,
             <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">IMPORT</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">STATIC_IMPORT</a>,
             <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
             <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
             <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
@@ -276,6 +284,7 @@ for (Iterator foo = very.long.line.iterator();
           <td>
             <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">PACKAGE_DEF</a>,
             <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">IMPORT</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">STATIC_IMPORT</a>,
             <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
             <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
             <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
@@ -387,6 +396,14 @@ class Foo
                   System.out.println(1); // violation since method has 2 empty lines subsequently
               }
           }
+      </source>
+      <p>
+        An example how to allow no empty line between import and static import:
+      </p>
+      <source>
+&lt;module name="EmptyLineSeparator"&gt;
+&lt;property name="treatStaticImportAsImport" value="true"/&gt;
+&lt;/module&gt;
       </source>
       </subsection>
 

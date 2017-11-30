@@ -229,6 +229,11 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     private boolean allowMultipleEmptyLinesInsideClassMembers = true;
 
     /**
+     * Allows no empty line between import and static import.
+     */
+    private boolean treatStaticImportAsImport;
+
+    /**
      * Allow no empty line between fields.
      * @param allow
      *        User's value.
@@ -253,6 +258,14 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         allowMultipleEmptyLinesInsideClassMembers = allow;
     }
 
+    /**
+     * Allow no empty line between import and static import.
+     * @param allow User's value.
+     */
+    public void setTreatStaticImportAsImport(boolean allow) {
+        treatStaticImportAsImport = allow;
+    }
+
     @Override
     public boolean isCommentNodesRequired() {
         return true;
@@ -268,6 +281,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         return new int[] {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
+            TokenTypes.STATIC_IMPORT,
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
@@ -304,7 +318,10 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
                     processVariableDef(ast, nextToken);
                     break;
                 case TokenTypes.IMPORT:
-                    processImport(ast, nextToken, astType);
+                    processImport(ast, nextToken);
+                    break;
+                case TokenTypes.STATIC_IMPORT:
+                    processStaticImport(ast, nextToken);
                     break;
                 case TokenTypes.PACKAGE_DEF:
                     processPackage(ast, nextToken);
@@ -436,12 +453,46 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * Process Import.
      * @param ast token
      * @param nextToken next token
-     * @param astType token Type
      */
-    private void processImport(DetailAST ast, DetailAST nextToken, int astType) {
-        if (astType != nextToken.getType() && !hasEmptyLineAfter(ast)) {
+    private void processImport(DetailAST ast, DetailAST nextToken) {
+        if (!isImport(nextToken) && !hasEmptyLineAfter(ast)) {
             log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
         }
+    }
+
+    /**
+     * Process Static Import.
+     * @param ast token
+     * @param nextToken next token
+     */
+    private void processStaticImport(DetailAST ast, DetailAST nextToken) {
+        if (!isStaticImport(nextToken) && !hasEmptyLineAfter(ast)) {
+            log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
+        }
+    }
+
+    /**
+     * Checks if ast is import statement.
+     * @param ast ast to check
+     * @return true when ast is import statement,
+     *         false otherwise
+     */
+    private boolean isImport(DetailAST ast) {
+        return ast.getType() == TokenTypes.IMPORT
+                || treatStaticImportAsImport
+                    && ast.getType() == TokenTypes.STATIC_IMPORT;
+    }
+
+    /**
+     * Checks if ast is static import statement.
+     * @param ast ast to check
+     * @return true when ast is static import statement,
+     *         false otherwise
+     */
+    private boolean isStaticImport(DetailAST ast) {
+        return ast.getType() == TokenTypes.STATIC_IMPORT
+                || treatStaticImportAsImport
+                    && ast.getType() == TokenTypes.IMPORT;
     }
 
     /**

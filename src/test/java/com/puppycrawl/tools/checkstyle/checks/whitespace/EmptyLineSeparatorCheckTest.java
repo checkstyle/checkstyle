@@ -144,6 +144,7 @@ public class EmptyLineSeparatorCheckTest
         final int[] expected = {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
+            TokenTypes.STATIC_IMPORT,
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
@@ -253,6 +254,43 @@ public class EmptyLineSeparatorCheckTest
         };
         verify(checkConfig,
                 getPath("package-info/test4/package-info.java"),
+                expected);
+    }
+
+    @Test
+    public void testNoStaticImportsViolations() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addAttribute("treatStaticImportAsImport", "true");
+        final String[] expected = {
+            "16: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+        };
+        verify(checkConfig,
+                getPath("InputEmptyLineSeparatorNoStaticImportsViolation.java"),
+                expected);
+    }
+
+    @Test
+    public void testNotAllowStaticImportsBetweenImports() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        final String[] expected = {
+            "4: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
+            "5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
+            "15: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+        };
+        verify(checkConfig,
+                getPath("InputEmptyLineSeparatorStaticImports.java"),
+                expected);
+    }
+
+    @Test
+    public void testAllowStaticImportsBetweenImports() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addAttribute("treatStaticImportAsImport", "true");
+        final String[] expected = {
+            "15: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+        };
+        verify(checkConfig,
+                getPath("InputEmptyLineSeparatorStaticImports.java"),
                 expected);
     }
 }
