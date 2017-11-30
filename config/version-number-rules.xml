@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset xmlns="http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    comparisonMethod="maven" xsi:schemaLocation="http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0 https://mojo.codehaus.org/versions-maven-plugin/xsd/rule-2.0.0.xsd">
+
+    <ignoreVersions>
+        <ignoreVersion type="regex">.*[-_\.](alpha|Alpha|ALPHA|beta|Beta|BETA|rc|RC|M|EA)[-_\.]?[0-9]?.*</ignoreVersion>
+    </ignoreVersions>
+    <rules>
+        <rule groupId="com.google.guava">
+            <ignoreVersions>
+                <ignoreVersion type="regex">.*-android</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <rule groupId="antlr">
+            <ignoreVersions>
+                <!-- this is really old version before versioning become semantic -->
+                <ignoreVersion type="regex">20030911</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+    </rules>
+</ruleset>

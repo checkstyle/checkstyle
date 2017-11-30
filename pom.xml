@@ -680,6 +680,11 @@
         <version>${maven.versions.plugin.version}</version>
         <configuration>
           <generateBackupPoms>false</generateBackupPoms>
+          <rulesUri>file://${basedir}/config/version-number-rules.xml</rulesUri>
+          <formats>
+            <format>xml</format>
+            <format>html</format>
+          </formats>
         </configuration>
       </plugin>
       <plugin>
