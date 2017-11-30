@@ -219,7 +219,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         boolean available = false;
 
         if (isUrlReachable(url)) {
-            final int attemptLimit = 5;
+            final int attemptLimit = 1;
             int attemptCount = 0;
 
             while (attemptCount <= attemptLimit) {
@@ -233,7 +233,9 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
                 }
                 catch (IOException ex) {
                     // for some reason Travis CI failed some times (unstable) on reading the file
-                    if (attemptCount < attemptLimit && ex.getMessage().contains("Unable to read")) {
+                    if (attemptCount < attemptLimit
+                            && (ex.getMessage().contains("Unable to read")
+                                   || ex.getMessage().contains("timed out"))) {
                         attemptCount++;
                         available = false;
                         // wait for bad / disconnection time to pass
