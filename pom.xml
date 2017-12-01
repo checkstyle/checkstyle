@@ -1389,6 +1389,8 @@
             <!-- permanent: avax.net.ssl.SSLException : Received fatal alert: internal_error -->
             <excludedLink>https://salt.bountysource.com/teams/checkstyle</excludedLink>
             <excludedLink>https://www.bountysource.com/teams/checkstyle/issues</excludedLink>
+            <!--  javax.net.ssl.SSLHandshakeException : Received fatal alert: handshake_failure -->
+            <excludedLink>https://eclipse.org</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
