@@ -176,6 +176,14 @@
         <td>Checks for empty catch blocks with few options to skip violation.</td>
       </tr>
       <tr>
+        <td><a href="config_whitespace.html#AfterLeftCurly">AfterLeftCurly</a></td>
+        <td>Checks for a blank line at the beginning of a code block.</td>
+      </tr>
+      <tr>
+        <td><a href="config_whitespace.html#BeforeRightCurly">BeforeRightCurly</a></td>
+        <td>Checks for a blank line at the end of a code block.</td>
+      </tr>
+      <tr>
         <td><a href="config_whitespace.html#EmptyForInitializerPad">EmptyForInitializerPad</a></td>
         <td>Checks the padding of an empty for initializer; that is whether a
         space is required at an empty for initializer, or such spaces are

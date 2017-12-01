@@ -30,13 +30,9 @@ import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes;
  *
  * @author Oliver Burn
  * @author <a href="mailto:dobratzp@ele.uri.edu">Peter Dobratz</a>
+ * @noinspection ClassWithTooManyDependents
  */
 public final class TokenTypes {
-    // The following three types are never part of an AST,
-    // left here as a reminder so nobody will read them accidentally
-
-    // These are the types that can actually occur in an AST
-    // it makes sense to register Checks for these types
 
     /**
      * The end of file token.  This is the root node for the source
