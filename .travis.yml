@@ -18,11 +18,7 @@ branches:
     - master
 
 install:
-  - |
-    if [ "${TRAVIS_OS_NAME}" == "osx" ]; then
-      # https://github.com/travis-ci/travis-ci/issues/6307#issuecomment-233315824
-      rvm get head
-    fi
+  -
 
 matrix:
   fast_finish: true
