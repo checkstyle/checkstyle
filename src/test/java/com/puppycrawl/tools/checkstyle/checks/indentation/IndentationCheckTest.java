@@ -1869,10 +1869,10 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
      * {@link IndentationCheck#MSG_CHILD_ERROR}, {@link IndentationCheck#MSG_CHILD_ERROR_MULTI},
      * {@link IndentationCheck#MSG_CHILD_ERROR_MULTI} are in appropriate order.
      *
-     * In other tests, the argument 0 and text before it are chopped off and only the rest of
+     * <p>In other tests, the argument 0 and text before it are chopped off and only the rest of
      * messages are verified. Therefore, the argument 0 is required to be the first argument in
      * the messages above. If we update the messages in the future, it is required to keep the
-     * arguments in appropriate order to ensure other tests will work.
+     * arguments in appropriate order to ensure other tests will work.</p>
      *
      * @see IndentComment#getExpectedMessagePostfix(String)
      */

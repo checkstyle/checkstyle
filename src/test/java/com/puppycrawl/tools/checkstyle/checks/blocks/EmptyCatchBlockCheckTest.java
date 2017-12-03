@@ -28,11 +28,6 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-/**
- *
- * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
- *
- */
 public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
     @Override
     protected String getPackageLocation() {

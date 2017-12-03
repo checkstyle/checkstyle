@@ -28,9 +28,6 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-/**
- * Tests BlockTagUtils.
- */
 public class BlockTagUtilsTest {
 
     @Test

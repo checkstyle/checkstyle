@@ -114,7 +114,7 @@ public class AbstractFileSetCheckTest {
     }
 
     /**
-     * This javadoc exists only to suppress Intellij Idea inspection
+     * This javadoc exists only to suppress Intellij Idea inspection.
      */
     @Test
     public void testSetExtentionThrowsExceptionWhenTheyAreNull() {

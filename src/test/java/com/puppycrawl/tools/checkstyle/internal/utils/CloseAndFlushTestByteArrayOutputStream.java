@@ -22,7 +22,10 @@ package com.puppycrawl.tools.checkstyle.internal.utils;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-/** @noinspection ClassOnlyUsedInOnePackage */
+/**
+ * CloseAndFlushTestByteArrayOutputStream.
+ * @noinspection ClassOnlyUsedInOnePackage
+ */
 public final class CloseAndFlushTestByteArrayOutputStream extends ByteArrayOutputStream {
 
     private int closeCount;

@@ -292,7 +292,7 @@ public class XdocsPagesTest {
     }
 
     /**
-     * Test contains asserts in callstack, but idea does not see them
+     * Test contains asserts in callstack, but idea does not see them.
      * @noinspection JUnitTestMethodWithNoAssertions
      */
     @Test
@@ -646,7 +646,14 @@ public class XdocsPagesTest {
                         .replaceAll("\\s+", " ").trim());
     }
 
-    /** @noinspection IfStatementWithTooManyBranches */
+    /**
+     * Get's the name of the bean property's type for the class.
+     * @param clss The bean property's defined type.
+     * @param instance The class instance to work with.
+     * @param propertyName The property name to work with.
+     * @return String form of property's type.
+     * @noinspection IfStatementWithTooManyBranches
+     */
     private static String getModulePropertyExpectedTypeName(Class<?> clss, Object instance,
             String propertyName) {
         final String instanceName = instance.getClass().getSimpleName();

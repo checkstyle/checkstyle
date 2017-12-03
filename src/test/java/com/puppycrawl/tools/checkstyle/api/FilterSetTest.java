@@ -27,7 +27,6 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.filters.SeverityMatchFilter;
 import nl.jqno.equalsverifier.EqualsVerifier;
 
-/** Tests SuppressElementFilter. */
 public class FilterSetTest {
     @Test
     public void testEqualsAndHashCode() {

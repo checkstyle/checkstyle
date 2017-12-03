@@ -28,10 +28,6 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-/**
- * The unit-test for the {@code NestedForDepthCheck}-checkstyle enhancement.
- * @see NestedForDepthCheck
- */
 public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
     @Override
     protected String getPackageLocation() {

@@ -56,7 +56,7 @@ public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
     }
 
     /** Converts lineToPosition from multicharacter to one character line separator
-      * needs to support crossplatform line separators
+      * needs to support crossplatform line separators.
       * @param systemLinesToPosition lines to position mapping for current system
       * @return lines to position mapping with one character line separator
       */

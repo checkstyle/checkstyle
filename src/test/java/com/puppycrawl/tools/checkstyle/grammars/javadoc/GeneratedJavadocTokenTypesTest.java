@@ -23,7 +23,10 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-/** @noinspection ClassIndependentOfModule */
+/**
+ * GeneratedJavadocTokenTypesTest.
+ * @noinspection ClassIndependentOfModule
+ */
 public class GeneratedJavadocTokenTypesTest {
 
     private static final String MSG = "Ensure that token numbers generated for the elements"

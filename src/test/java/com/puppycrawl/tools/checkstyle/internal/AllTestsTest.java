@@ -32,7 +32,10 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 
-/** @noinspection ClassIndependentOfModule */
+/**
+ * AllTestsTest.
+ * @noinspection ClassIndependentOfModule
+ */
 public class AllTestsTest {
     @Test
     public void testAllInputsHaveTest() throws Exception {

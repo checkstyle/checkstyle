@@ -666,7 +666,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
             Whitebox.getInternalState(antTask, "classpath"));
     }
 
-    /** This test is created to satisfy pitest, it is hard to emulate Referece by Id */
+    /** This test is created to satisfy pitest, it is hard to emulate Referece by Id. */
     @Test
     public void testSetClasspathRef1() {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();

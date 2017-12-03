@@ -49,24 +49,24 @@ import org.junit.Test;
 /**
  * Validate commit message has proper structure.
  *
- * Commits to check are resolved from different places according
+ * <p>Commits to check are resolved from different places according
  * to type of commit in current HEAD. If current HEAD commit is
  * non-merge commit , previous commits are resolved due to current
  * HEAD commit. Otherwise if it is a merge commit, it will invoke
- * resolving previous commits due to commits which was merged.
+ * resolving previous commits due to commits which was merged.</p>
  *
- * After calculating commits to start with ts resolves previous
+ * <p>After calculating commits to start with ts resolves previous
  * commits according to COMMITS_RESOLUTION_MODE variable.
  * At default(BY_LAST_COMMIT_AUTHOR) it checks first commit author
  * and return all consecutive commits with same author. Second
  * mode(BY_COUNTER) makes returning first PREVIOUS_COMMITS_TO_CHECK_COUNT
- * commits after starter commit.
+ * commits after starter commit.</p>
  *
- * Resolved commits are filtered according to author. If commit author
+ * <p>Resolved commits are filtered according to author. If commit author
  * belong to list USERS_EXCLUDED_FROM_VALIDATION then this commit will
- * not be validated.
+ * not be validated.</p>
  *
- * Filtered commit list is checked if their messages has proper structure.
+ * <p>Filtered commit list is checked if their messages has proper structure.</p>
  *
  * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
  */

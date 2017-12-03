@@ -27,7 +27,6 @@ import org.junit.Test;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 
-/** Tests CsvFilter. */
 public class CsvFilterTest {
     @Test
     public void testDecideSingle() {

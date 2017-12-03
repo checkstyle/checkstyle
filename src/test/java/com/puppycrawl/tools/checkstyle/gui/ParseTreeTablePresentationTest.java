@@ -202,7 +202,8 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     }
 
     /**
-     * The path to class name in InputJavadocAttributesAndMethods.java
+     * The path to class name in InputJavadocAttributesAndMethods.java.
+     * <pre>
      * CLASS_DEF
      *  - MODIFIERS
      *  - Comment node
@@ -210,6 +211,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
      *  - IDENT -> this is the node that holds the class name
      *  Line number 4 - first three lines are taken by javadoc
      *  Column 6 - first five columns taken by 'class '
+     *  </pre>
      */
     @Test
     public void testGetValueAt() {

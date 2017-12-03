@@ -150,7 +150,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * based on the given {@link Configuration} instance.
      * @param config {@link Configuration} instance.
      * @return {@link DefaultConfiguration} for the {@link TreeWalker}
-     * based on the given {@link Configuration} instance.
+     *     based on the given {@link Configuration} instance.
      */
     protected static DefaultConfiguration createTreeWalkerConfig(Configuration config) {
         final DefaultConfiguration dc =
@@ -257,8 +257,13 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
-     *  We keep two verify methods with separate logic only for convenience of debugging
-     *  We have minimum amount of multi-file test cases
+     *  We keep two verify methods with separate logic only for convenience of debugging.
+     *  We have minimum amount of multi-file test cases.
+     *  @param checker {@link Checker} instance.
+     *  @param processedFiles list of files to verify.
+     *  @param messageFileName message file name.
+     *  @param expected an array of expected messages.
+     *  @throws Exception if exception occurs during verification process.
      */
     protected void verify(Checker checker,
                           File[] processedFiles,
@@ -383,6 +388,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      *
      * @param messageKey the key of message in 'messages.properties' file.
      * @param arguments  the arguments of message in 'messages.properties' file.
+     * @return The message of the check with the arguments applied.
      */
     protected final String getCheckMessage(String messageKey, Object... arguments) {
         return internalGetCheckMessage(getMessageBundle(), messageKey, arguments);
@@ -395,6 +401,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param clazz the related check class.
      * @param messageKey the key of message in 'messages.properties' file.
      * @param arguments the arguments of message in 'messages.properties' file.
+     * @return The message of the check with the arguments applied.
      */
     protected static String getCheckMessage(
             Class<?> clazz, String messageKey, Object... arguments) {
@@ -408,6 +415,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param messageBundle the bundle name.
      * @param messageKey the key of message in 'messages.properties' file.
      * @param arguments the arguments of message in 'messages.properties' file.
+     * @return The message of the check with the arguments applied.
      */
     private static String internalGetCheckMessage(
             String messageBundle, String messageKey, Object... arguments) {

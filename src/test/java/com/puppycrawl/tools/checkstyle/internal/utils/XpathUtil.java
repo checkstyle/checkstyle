@@ -29,6 +29,7 @@ import net.sf.saxon.sxpath.XPathExpression;
 import net.sf.saxon.trans.XPathException;
 
 /**
+ * XpathUtil.
  * @noinspection ClassOnlyUsedInOnePackage
  */
 public final class XpathUtil {

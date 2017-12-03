@@ -29,9 +29,6 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-/**
- * Tests InlineTagUtils
- */
 public class InlineTagUtilsTest {
 
     @Test

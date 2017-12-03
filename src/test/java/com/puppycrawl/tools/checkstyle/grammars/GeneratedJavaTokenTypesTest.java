@@ -22,7 +22,10 @@ package com.puppycrawl.tools.checkstyle.grammars;
 import org.junit.Assert;
 import org.junit.Test;
 
-/** @noinspection ClassIndependentOfModule */
+/**
+ * GeneratedJavaTokenTypesTest.
+ * @noinspection ClassIndependentOfModule
+ */
 public class GeneratedJavaTokenTypesTest {
     /**
      * <p>
@@ -30,6 +33,7 @@ public class GeneratedJavaTokenTypesTest {
      * old tokens must remain and keep their current numbering. Old token
      * numberings are not allowed to change.
      * </p>
+     *
      * <p>
      * The reason behind this is Java inlines static final field values directly
      * into the compiled Java code. This loses all connections with the original
@@ -37,7 +41,9 @@ public class GeneratedJavaTokenTypesTest {
      * up in user-created checks and causes conflicts.
      * </p>
      *
+     * <p>
      * Issue: https://github.com/checkstyle/checkstyle/issues/505
+     * </p>
      */
     @Test
     public void testTokenNumbering() {

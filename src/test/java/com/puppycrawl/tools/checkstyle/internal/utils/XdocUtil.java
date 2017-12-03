@@ -37,7 +37,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-/** @noinspection ClassOnlyUsedInOnePackage */
+/**
+ * XdocUtil.
+ * @noinspection ClassOnlyUsedInOnePackage
+ */
 public final class XdocUtil {
     public static final String DIRECTORY_PATH = "src/xdocs";
 

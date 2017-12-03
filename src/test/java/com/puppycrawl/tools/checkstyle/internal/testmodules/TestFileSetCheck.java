@@ -26,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
+ * TestFileSetCheck.
  * @noinspection ClassOnlyUsedInOnePackage
  */
 public class TestFileSetCheck extends AbstractFileSetCheck {
