@@ -91,13 +91,6 @@
         <Bug pattern="NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE" />
     </Match>
     <Match>
-        <!-- Temporary disabled. Have to deal with Javadoc nodes as well
-         See https://github.com/checkstyle/checkstyle/issues/3432-->
-        <Class name="com.puppycrawl.tools.checkstyle.gui.TreeTable" />
-        <Method name="makeCodeSelection"/>
-        <Bug pattern="RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT"/>
-    </Match>
-    <Match>
         <!-- false-positive. Bugs reported even though casting is done only after verification using instanceof -->
         <Class name="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser"/>
         <Method name="parseJavadocAsDetailNode"/>
