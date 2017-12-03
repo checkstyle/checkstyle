@@ -262,7 +262,8 @@ public class LineWrappingHandler {
             if (isCurrentNodeCloseAnnotationAloneInLine
                     || node.getType() == TokenTypes.AT
                     && (parentNode.getParent().getType() == TokenTypes.MODIFIERS
-                        || parentNode.getParent().getType() == TokenTypes.ANNOTATIONS)) {
+                        || parentNode.getParent().getType() == TokenTypes.ANNOTATIONS)
+                    || node.getLineNo() == atNode.getLineNo()) {
                 logWarningMessage(node, firstNodeIndent);
             }
             else {

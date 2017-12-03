@@ -1746,6 +1746,39 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testMethodPrecedeByAnnotationsWithParameterOnSeparateLine() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("basicOffset", "2");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("caseIndent", "2");
+        checkConfig.addAttribute("throwsIndent", "4");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        checkConfig.addAttribute("arrayInitIndent", "2");
+        final String fileName =
+            getPath("InputIndentationMethodPrecededByAnnotationWithParameterOnSeparateLine.java");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testAnnotationIncorrect() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        final String fileName =
+            getPath("InputIndentationAnnotationIncorrect.java");
+        final String[] expected = {
+            "11: " + getCheckMessage(MSG_ERROR, "(", 4, 8),
+            "14: " + getCheckMessage(MSG_ERROR, "(", 8, 12),
+            "19: " + getCheckMessage(MSG_ERROR, "(", 4, 8),
+        };
+        verify(checkConfig, fileName, expected);
+    }
+
+    @Test
     public void testInputAnnotationScopeIndentationCheck() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addAttribute("tabWidth", "4");
