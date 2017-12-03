@@ -2091,8 +2091,6 @@ isolated classes and we cannot put them to separate package as it will affect us
                      See https://github.com/checkstyle/checkstyle/issues/2285-->
                 <option value="ProhibitedExceptionThrown" />
                 <option value="MismatchedQueryAndUpdateOfCollection" />
-                <!-- Till https://github.com/checkstyle/checkstyle/issues/3066 -->
-                <option value="ProhibitedExceptionCaught" />
                 <!-- No way to split apart huge if/else branches in test. -->
                 <option value="IfStatementWithTooManyBranches" />
                 <!-- we have to catch Exception in Checker and rethrow it -->

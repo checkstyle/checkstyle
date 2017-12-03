@@ -143,7 +143,6 @@ public class AllTestsTest {
 
             // until https://github.com/checkstyle/checkstyle/issues/5105
             if (!path.contains(File.separatorChar + "grammars" + File.separatorChar)
-                    // until https://github.com/checkstyle/checkstyle/issues/5104
                     && !path.contains(File.separatorChar + "foo" + File.separatorChar)
                     && !path.contains(File.separatorChar + "bar" + File.separatorChar)) {
                 String fileName = file.getName();
