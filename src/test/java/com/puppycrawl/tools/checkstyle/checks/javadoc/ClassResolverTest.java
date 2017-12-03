@@ -158,7 +158,7 @@ public class ClassResolverTest {
     /**
      * This test exists to prevent any possible regression and let of
      * https://github.com/checkstyle/checkstyle/issues/1192 to be persistent
-     * event is not very obvious
+     * event is not very obvious.
      *
      * @throws Exception when smth is not expected
      */

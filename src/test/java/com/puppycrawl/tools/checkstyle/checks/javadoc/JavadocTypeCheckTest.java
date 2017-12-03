@@ -34,9 +34,6 @@ import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-/**
- * @author Oliver.Burn
- */
 public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Override
     protected String getPackageLocation() {

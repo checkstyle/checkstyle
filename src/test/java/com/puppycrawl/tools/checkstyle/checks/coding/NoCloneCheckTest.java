@@ -27,9 +27,6 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
-/**
- * NoCloneCheck test.
- */
 public class NoCloneCheckTest
     extends AbstractModuleTestSupport {
     @Override

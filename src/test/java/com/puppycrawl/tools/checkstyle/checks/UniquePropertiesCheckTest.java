@@ -54,9 +54,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-/**
- * JUnit tests for Unique Properties check.
- */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(Closeables.class)
 public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {

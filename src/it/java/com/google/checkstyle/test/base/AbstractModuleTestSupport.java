@@ -151,7 +151,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param moduleCreationOption {@code IN_TREEWALKER} if the {@code moduleConfig} should be added
      *                                                  under {@link TreeWalker}.
      * @return {@link Checker} instance.
-     * @throws CheckstyleException if an exception occurs during checker configuration.
+     * @throws Exception if an exception occurs during checker configuration.
      */
     protected final Checker createChecker(Configuration moduleConfig,
                                     ModuleCreationOption moduleCreationOption)
@@ -281,8 +281,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * Gets the check message 'as is' from appropriate 'messages.properties'
      * file.
      *
+     * @param aClass The package the message is located in.
      * @param messageKey the key of message in 'messages.properties' file.
      * @param arguments  the arguments of message in 'messages.properties' file.
+     * @return The message of the check with the arguments applied.
      */
     protected static String getCheckMessage(Class<? extends AbstractViolationReporter> aClass,
             String messageKey, Object... arguments) {
@@ -302,8 +304,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
 
     /**
      * Gets the check message 'as is' from appropriate 'messages.properties' file.
+     * @param messages The map of messages to scan.
      * @param messageKey the key of message in 'messages.properties' file.
      * @param arguments the arguments of message in 'messages.properties' file.
+     * @return The message of the check with the arguments applied.
      */
     protected static String getCheckMessage(Map<String, String> messages, String messageKey,
             Object... arguments) {
@@ -333,6 +337,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * Returns {@link Configuration} instance for the given module name.
      * This implementation uses {@link AbstractModuleTestSupport#getConfiguration()} method inside.
      * @param moduleName module name.
+     * @param moduleId module id.
      * @return {@link Configuration} instance for the given module name.
      * @throws CheckstyleException if exception occurs during configuration loading.
      */

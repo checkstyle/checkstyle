@@ -147,7 +147,10 @@ public class ModuleReflectionUtilsTest {
         assertEquals("should use field", 1, test.getField());
     }
 
-    /** @noinspection SuperClassHasFrequentlyUsedInheritors */
+    /**
+     * ValidCheckstyleClass.
+     * @noinspection SuperClassHasFrequentlyUsedInheritors
+     */
     private static class ValidCheckstyleClass extends AutomaticBean {
         // empty, use default constructor
     }
@@ -156,7 +159,10 @@ public class ModuleReflectionUtilsTest {
         // empty, use default constructor
     }
 
-    /** @noinspection AbstractClassNeverImplemented */
+    /**
+     * AbstractInvalidClass.
+     * @noinspection AbstractClassNeverImplemented
+     */
     private abstract static class AbstractInvalidClass extends AutomaticBean {
         public abstract void method();
     }

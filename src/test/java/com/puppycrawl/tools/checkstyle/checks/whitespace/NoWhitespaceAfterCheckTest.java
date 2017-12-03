@@ -234,7 +234,7 @@ public class NoWhitespaceAfterCheckTest
     }
 
     /**
-     * Creates MOCK lexical token and returns AST node for this token
+     * Creates MOCK lexical token and returns AST node for this token.
      * @param tokenType type of token
      * @param tokenText text of token
      * @param tokenFileName file name of token

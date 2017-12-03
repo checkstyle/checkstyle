@@ -27,7 +27,6 @@ import org.junit.Test;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 
-/** Tests IntMatchFilter. */
 public class IntMatchFilterTest {
     @Test
     public void testDecide() {

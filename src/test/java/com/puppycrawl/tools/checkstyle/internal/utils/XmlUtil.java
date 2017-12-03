@@ -34,7 +34,10 @@ import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-/** @noinspection ClassOnlyUsedInOnePackage */
+/**
+ * XmlUtil.
+ * @noinspection ClassOnlyUsedInOnePackage
+ */
 public final class XmlUtil {
     private XmlUtil() {
     }

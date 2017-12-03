@@ -33,7 +33,6 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.Warning;
 
-/** Tests SuppressElementFilter. */
 public class SuppressElementTest {
     private SuppressElement filter;
 
