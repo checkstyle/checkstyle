@@ -24,7 +24,7 @@ versions)
     echo "New versions:"
     grep -B 7 "<nextVersion>" target/dependency-updates-report.xml
     grep -B 4 "<nextVersion>" target/plugin-updates-report.xml
-    exit 1
+    false
   else
     echo "No new versions found"
   fi
@@ -238,16 +238,15 @@ cobertura-check)
   if [[ -s missed_classes_without_excludes.log ]] ; then
     echo "Classes which are missed in Cobertura coverage report:"
     cat missed_classes_without_excludes.log
-    exit 1;
+    false
   else
     echo "All classes are present in Cobertura coverage report."
-    exit 0;
   fi
   ;;
 
 *)
   echo "Unexpected argument: $1"
-  exit 1
+  false
   ;;
 
 esac
