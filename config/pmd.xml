@@ -184,7 +184,7 @@
     <properties>
      <!-- Can not change API -->
     <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AbstractFileSetCheck'
-    or @Image='AbstractCheck' or @Image='AbstractJavadocCheck' or @Image='AbstractNode']"/>
+    or @Image='AbstractCheck' or @Image='AbstractJavadocCheck' or @Image='AbstractNode' or @Image='AbstractViolationReporter']"/>
     </properties>
   </rule>
 
@@ -264,7 +264,7 @@
   <rule ref="rulesets/java/naming.xml/AbstractNaming">
     <properties>
      <!-- We can not brake compatibility with previous versions -->
-     <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AbstractClassNameCheck']"/>
+     <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AbstractClassNameCheck' or @Image='AutomaticBean']"/>
     </properties>
   </rule>
   <rule ref="rulesets/java/naming.xml/LongVariable">

@@ -83,6 +83,11 @@ public final class BeforeExecutionExclusionFileFilter extends AutomaticBean
     }
 
     @Override
+    protected void finishLocalSetup() {
+        // No code by default
+    }
+
+    @Override
     public boolean accept(String uri) {
         return fileNamePattern == null || !fileNamePattern.matcher(uri).find();
     }

@@ -3,8 +3,7 @@
     <option name="myName" value="Checkstyle" />
     <inspection_tool class="AbsoluteAlignmentInUserInterface" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="AbstractBeanReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true" />
-    <!-- till https://github.com/checkstyle/checkstyle/issues/4716 -->
-    <inspection_tool class="AbstractClassExtendsConcreteClass" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="AbstractClassExtendsConcreteClass" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="AbstractClassNamingConvention" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="m_regex" value="[A-Z][A-Za-z\d]*|Check" />
         <option name="m_minLength" value="5" />
@@ -2149,6 +2148,8 @@ isolated classes and we cannot put them to separate package as it will affect us
                 <option value="ClassIndependentOfModule" />
                 <!-- till #4870, used in MT check markers -->
                 <option value="unused" />
+                <!-- till https://github.com/checkstyle/checkstyle/issues/5338 -->
+                <option value="AbstractClassExtendsConcreteClass" />
             </list>
         </option>
     </inspection_tool>

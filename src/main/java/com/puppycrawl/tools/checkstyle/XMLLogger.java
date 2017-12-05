@@ -35,6 +35,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -99,6 +100,11 @@ public class XMLLogger
     public XMLLogger(OutputStream outputStream, OutputStreamOptions outputStreamOptions) {
         writer = new PrintWriter(new OutputStreamWriter(outputStream, StandardCharsets.UTF_8));
         closeStream = outputStreamOptions == OutputStreamOptions.CLOSE;
+    }
+
+    @Override
+    protected void finishLocalSetup() throws CheckstyleException {
+        // No code by default
     }
 
     @Override

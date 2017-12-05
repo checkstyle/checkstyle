@@ -413,7 +413,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
     }
 
     @Override
-    public void finishLocalSetup() throws CheckstyleException {
+    protected void finishLocalSetup() throws CheckstyleException {
         final Locale locale = new Locale(localeLanguage, localeCountry);
         LocalizedMessage.setLocale(locale);
 

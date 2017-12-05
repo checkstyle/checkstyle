@@ -32,6 +32,7 @@ import java.util.regex.PatternSyntaxException;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
@@ -176,6 +177,11 @@ public class SuppressionCommentFilter
      */
     public void setCheckC(boolean checkC) {
         this.checkC = checkC;
+    }
+
+    @Override
+    protected void finishLocalSetup() throws CheckstyleException {
+        // No code by default
     }
 
     @Override
