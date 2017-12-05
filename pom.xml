@@ -271,7 +271,7 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>23.3-jre</version>
+      <version>23.4-jre</version>
     </dependency>
     <dependency>
       <groupId>org.apache.ant</groupId>
