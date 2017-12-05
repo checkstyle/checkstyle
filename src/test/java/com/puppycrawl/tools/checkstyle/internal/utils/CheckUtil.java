@@ -139,7 +139,7 @@ public final class CheckUtil {
                 .getContextClassLoader();
         final String packageName = "com.puppycrawl.tools.checkstyle";
         return getCheckstyleModulesRecursive(packageName, loader).stream()
-                .filter(ModuleReflectionUtils::isCheckstyleCheck)
+                .filter(ModuleReflectionUtils::isCheckstyleTreeWalkerCheck)
                 .collect(Collectors.toSet());
     }
 
