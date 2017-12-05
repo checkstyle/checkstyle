@@ -121,8 +121,12 @@ public class XpathFilter implements TreeWalkerFilter {
      * @return true is matching
      */
     private boolean isXpathQueryMatching(TreeWalkerAuditEvent event) {
-        boolean isMatching = false;
-        if (xpathExpression != null) {
+        boolean isMatching;
+        if (xpathExpression == null) {
+            isMatching = true;
+        }
+        else {
+            isMatching = false;
             final List<Item> items = getItems(event);
             for (Item item : items) {
                 final AbstractNode abstractNode = (AbstractNode) item;

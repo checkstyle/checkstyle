@@ -135,7 +135,7 @@ public class XpathFilterTest extends AbstractModuleTestSupport {
                 TokenTypes.VARIABLE_DEF);
         final XpathFilter filter =
                 new XpathFilter("InputXpathFilterSuppressByXpath", "Test", null, null);
-        assertTrue("Event should be accepted", filter.accept(event));
+        assertFalse("Event should be rejected", filter.accept(event));
     }
 
     @Test
