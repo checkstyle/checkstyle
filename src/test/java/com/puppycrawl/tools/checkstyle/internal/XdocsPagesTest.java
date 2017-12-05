@@ -450,6 +450,9 @@ public class XdocsPagesTest {
         if (hasParentModule(sectionName)) {
             if (AbstractJavadocCheck.class.isAssignableFrom(clss)) {
                 properties.removeAll(JAVADOC_CHECK_PROPERTIES);
+
+                // override
+                properties.add("violateExecutionOnNonTightHtml");
             }
             else if (AbstractCheck.class.isAssignableFrom(clss)) {
                 properties.removeAll(CHECK_PROPERTIES);
