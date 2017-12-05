@@ -312,6 +312,12 @@
                   <td>Part of the standard JDEE distribution - <a href="https://github.com/jdee-emacs/jdee"/></td>
                   <td><a href="https://github.com/jdee-emacs/jdee/blob/master/jdee-checkstyle.el">configuration could be seen at jdee-checkstyle.el</a></td>
               </tr>
+              <tr>
+                  <td><a href="https://code.visualstudio.com/">Visual Studio Code</a></td>
+                  <td>Sheng Chen</td>
+                  <td><a href="https://marketplace.visualstudio.com/items?itemName=shengchen.vscode-checkstyle">vscode-checkstyle</a></td>
+                  <td>Checkstyle for Microsoft Visual Studio Code</td>
+              </tr>
           </table>
       </subsection>
 
