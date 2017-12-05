@@ -209,5 +209,10 @@ public class AutomaticBeanTest {
             throw new IllegalStateException(privateField + "," + wrong + "," + val + "," + value);
         }
 
+        @Override
+        protected void finishLocalSetup() throws CheckstyleException {
+            // No code by default
+        }
+
     }
 }

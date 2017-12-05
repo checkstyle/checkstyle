@@ -46,7 +46,7 @@ import org.xml.sax.helpers.DefaultHandler;
  * </p>
  *
  * @author Oliver Burn
- * @noinspection ThisEscapedInObjectConstruction
+ * @noinspection ThisEscapedInObjectConstruction, AbstractClassExtendsConcreteClass
  */
 public abstract class AbstractLoader
     extends DefaultHandler {

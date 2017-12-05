@@ -27,6 +27,7 @@ import java.util.Map;
  * {@link LocalizedMessage localized messages} that are created by the module.
  *
  * @author lkuehne
+ * @noinspection NoopMethodInAbstractClass
  */
 public abstract class AbstractViolationReporter
     extends AutomaticBean {
@@ -132,6 +133,11 @@ public abstract class AbstractViolationReporter
             messageBundle = packageName + "." + messages;
         }
         return messageBundle;
+    }
+
+    @Override
+    protected void finishLocalSetup() throws CheckstyleException {
+        // No code by default
     }
 
     /**

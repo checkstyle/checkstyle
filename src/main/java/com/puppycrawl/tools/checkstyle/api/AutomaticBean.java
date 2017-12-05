@@ -53,7 +53,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * calling the bean's setters for all configuration attributes.
  * @author lkuehne
  */
-public class AutomaticBean
+// -@cs[AbstractClassName] We can not brake compatibility with previous versions.
+public abstract class AutomaticBean
     implements Configurable, Contextualizable {
 
     /**
@@ -76,6 +77,16 @@ public class AutomaticBean
 
     /** The configuration of this bean. */
     private Configuration configuration;
+
+    /**
+     * Provides a hook to finish the part of this component's setup that
+     * was not handled by the bean introspection.
+     * <p>
+     * The default implementation does nothing.
+     * </p>
+     * @throws CheckstyleException if there is a configuration error.
+     */
+    protected abstract void finishLocalSetup() throws CheckstyleException;
 
     /**
      * Creates a BeanUtilsBean that is configured to use
@@ -256,18 +267,6 @@ public class AutomaticBean
      */
     protected final Configuration getConfiguration() {
         return configuration;
-    }
-
-    /**
-     * Provides a hook to finish the part of this component's setup that
-     * was not handled by the bean introspection.
-     * <p>
-     * The default implementation does nothing.
-     * </p>
-     * @throws CheckstyleException if there is a configuration error.
-     */
-    protected void finishLocalSetup() throws CheckstyleException {
-        // No code by default, should be overridden only by demand at subclasses
     }
 
     /**

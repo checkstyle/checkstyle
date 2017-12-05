@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
@@ -33,6 +34,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -113,5 +115,16 @@ public class DefaultLoggerTest {
         dl.auditFinished(new AuditEvent(6000, "myfile"));
         assertTrue("Message should contain exception info, but was " + infoStream,
                 infoStream.toString().contains("java.lang.IllegalStateException: upsss"));
+    }
+
+    @Test
+    public void testFinishLocalSetup() throws CheckstyleException {
+        final OutputStream infoStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(infoStream,
+                AutomaticBean.OutputStreamOptions.CLOSE);
+        dl.finishLocalSetup();
+        dl.auditStarted(null);
+        dl.auditFinished(null);
+        assertNotNull("instance should not be null", dl);
     }
 }
