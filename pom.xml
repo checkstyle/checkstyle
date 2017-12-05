@@ -1237,7 +1237,7 @@
         <artifactId>maven-report</artifactId>
         <version>0.1</version>
         <configuration>
-          <sonarHostURL>https://sonarqube.com</sonarHostURL>
+          <sonarHostURL>https://sonarcloud.io</sonarHostURL>
         </configuration>
       </plugin>
 
@@ -1341,7 +1341,7 @@
             by sonar's developers. It is not allowed to open issue against sonar's maven report plugin
             at sonar's issue tracker: http://jira.codehaus.org/browse/MSONAR
             Sonar's mailing lists: http://www.mojohaus.org/sonar-maven-plugin/mail-lists.html-->
-            <excludedLink>https://sonarqube.com/project/index/com.puppycrawl.tools:checkstyle</excludedLink>
+            <excludedLink>https://sonarcloud.io/project/index/com.puppycrawl.tools:checkstyle</excludedLink>
             <!-- SSL error, skip validating released "-all" jar on sourceforge as it is uploaded after site generation-->
             <excludedLink>http://downloads.sourceforge.net/project/checkstyle/checkstyle/*/checkstyle-*-all.jar</excludedLink>
 

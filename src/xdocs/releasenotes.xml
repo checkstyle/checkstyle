@@ -3818,7 +3818,7 @@
           Remove usage of deprecated methods from MainTest. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1325">#1325</a>
         </li>
         <li>
-          Restore checkstyle validation on https://sonarqube.com. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1319">#1319</a>
+          Restore checkstyle validation on https://sonarcloud.io. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1319">#1319</a>
         </li>
         <li>
           Update Maven Shade Plugin, EqualsVerifier, antlr, system-rules and Maven PMD Plugin to latest versions. Author: Michal Kordas

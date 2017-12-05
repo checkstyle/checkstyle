@@ -159,10 +159,10 @@ matrix:
         - DESC="MacOS verify, site, assembly"
         - CMD="export JAVA_HOME=$(/usr/libexec/java_home) && mvn package -Dlinkcheck.skip=true && mvn package -Passembly "
 
-    # https://sonarqube.com (oraclejdk8)
+    # https://sonarcloud.io (oraclejdk8)
     - jdk: oraclejdk8
       env:
-        - DESC="sonarqube.com"
+        - DESC="sonarcloud.io"
         - CMD="./.ci/travis/travis.sh sonarqube"
 
     # No error testing - simple-binary-encoding

@@ -46,7 +46,7 @@ sonarqube)
   if [[ $TRAVIS_PULL_REQUEST && $TRAVIS_PULL_REQUEST =~ ^([0-9]*)$ ]]; then exit 0; fi
   export MAVEN_OPTS='-Xmx2000m'
   mvn clean package cobertura:cobertura sonar:sonar \
-       -Dsonar.host.url=https://sonarqube.com \
+       -Dsonar.host.url=https://sonarcloud.io \
        -Dsonar.login=$SONAR_TOKEN \
        -Dcobertura.report.format=xml -Dmaven.test.failure.ignore=true \
        -Dcheckstyle.skip=true -Dpmd.skip=true -Dcheckstyle.ant.skip=true

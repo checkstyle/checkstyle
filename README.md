@@ -73,8 +73,8 @@ directory.
 [appveyor]:https://ci.appveyor.com/project/checkstyle/checkstyle/history
 [appveyor img]:https://ci.appveyor.com/api/projects/status/rw6bw3dl9kph6ucc?svg=true
 
-[sonar]:https://sonarqube.com/dashboard?id=com.puppycrawl.tools%3Acheckstyle
-[sonar img]:https://sonarqube.com/api/badges/measure?key=com.puppycrawl.tools:checkstyle&metric=sqale_debt_ratio
+[sonar]:https://sonarcloud.io/dashboard?id=com.puppycrawl.tools%3Acheckstyle
+[sonar img]:https://sonarcloud.io/api/badges/measure?key=com.puppycrawl.tools:checkstyle&metric=sqale_debt_ratio
 
 [codacy]:https://www.codacy.com/app/checkstyle/checkstyle
 [codacy img]:https://api.codacy.com/project/badge/3adf12d434314ba8b38277ea46d3c44b
