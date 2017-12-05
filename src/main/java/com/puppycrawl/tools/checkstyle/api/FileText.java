@@ -37,7 +37,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.google.common.io.Closeables;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Represents the text contents of a file of arbitrary plain text type.
@@ -139,7 +139,7 @@ public final class FileText {
             lines = textLines.toArray(new String[textLines.size()]);
         }
         finally {
-            Closeables.closeQuietly(reader);
+            CommonUtils.close(reader);
         }
     }
 
@@ -209,7 +209,7 @@ public final class FileText {
             }
         }
         finally {
-            Closeables.closeQuietly(reader);
+            CommonUtils.close(reader);
         }
         return buf.toString();
     }

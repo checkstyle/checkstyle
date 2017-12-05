@@ -95,11 +95,6 @@
            local-only="true"/>
     <allow pkg="org.antlr.v4.runtime" local-only="true"/>
 
-    <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
-    <allow class="com.google.common.io.Closeables" local-only="true"/>
-    <allow class="com.google.common.collect.ImmutableCollection" local-only="true"/>
-    <allow class="com.google.common.collect.ImmutableMap" local-only="true"/>
-
     <allow class="com.puppycrawl.tools.checkstyle.Checker" local-only="true"/>
     <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3817 -->
     <allow pkg="com.puppycrawl.tools.checkstyle.utils"/>

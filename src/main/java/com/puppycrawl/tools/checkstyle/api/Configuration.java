@@ -20,8 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import java.io.Serializable;
-
-import com.google.common.collect.ImmutableMap;
+import java.util.Map;
 
 /**
  * A Configuration is used to configure a Configurable component.  The general
@@ -61,5 +60,5 @@ public interface Configuration extends Serializable {
      * for this configuration.
      * @return unmodifiable map containing custom messages
      */
-    ImmutableMap<String, String> getMessages();
+    Map<String, String> getMessages();
 }

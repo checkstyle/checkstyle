@@ -38,11 +38,11 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(Closeables.class)
+@PrepareForTest(CommonUtils.class)
 public class FileTextTest extends AbstractPathTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -67,9 +67,9 @@ public class FileTextTest extends AbstractPathTestSupport {
     @Test
     public void testSupportedCharset() throws IOException {
         //check if reader finally closed
-        mockStatic(Closeables.class);
-        doNothing().when(Closeables.class);
-        Closeables.closeQuietly(any(Reader.class));
+        mockStatic(CommonUtils.class);
+        doNothing().when(CommonUtils.class);
+        CommonUtils.close(any(Reader.class));
 
         final String charsetName = StandardCharsets.ISO_8859_1.name();
         final FileText fileText = new FileText(new File(getPath("InputFileTextImportControl.xml")),
@@ -77,7 +77,7 @@ public class FileTextTest extends AbstractPathTestSupport {
         assertEquals("Invalid charset name", charsetName, fileText.getCharset().name());
 
         verifyStatic(times(2));
-        Closeables.closeQuietly(any(Reader.class));
+        CommonUtils.close(any(Reader.class));
     }
 
     @Test

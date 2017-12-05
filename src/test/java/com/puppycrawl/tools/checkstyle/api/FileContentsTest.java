@@ -34,8 +34,6 @@ import java.util.Map;
 import org.junit.Test;
 import org.powermock.reflect.Whitebox;
 
-import com.google.common.collect.ImmutableMap;
-
 public class FileContentsTest {
 
     @Test
@@ -101,7 +99,7 @@ public class FileContentsTest {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Collections.singletonList("  //   ")));
         fileContents.reportCComment(1, 2, 1, 2);
-        final ImmutableMap<Integer, List<TextBlock>> comments = fileContents.getCComments();
+        final Map<Integer, List<TextBlock>> comments = fileContents.getCComments();
 
         assertEquals("Invalid comment",
                 new Comment(new String[] {"/"}, 2, 1, 2).toString(),
@@ -158,7 +156,7 @@ public class FileContentsTest {
                 new FileText(new File("filename"), Arrays.asList("   ", "    ", "  /* test   ",
                         "  */  ", "   ")));
         fileContents.reportCComment(3, 2, 4, 2);
-        final ImmutableMap<Integer, List<TextBlock>> blockComments =
+        final Map<Integer, List<TextBlock>> blockComments =
             fileContents.getBlockComments();
         final String[] text = blockComments.get(3).get(0).getText();
 

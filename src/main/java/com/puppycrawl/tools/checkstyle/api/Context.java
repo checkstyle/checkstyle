@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import com.google.common.collect.ImmutableCollection;
+import java.util.Collection;
 
 /**
  * A context to be used in subcomponents. The general idea of
@@ -40,5 +40,5 @@ public interface Context {
      * Returns the names of all attributes of this context.
      * @return the names of all attributes of this context.
      */
-    ImmutableCollection<String> getAttributeNames();
+    Collection<String> getAttributeNames();
 }
