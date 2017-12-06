@@ -19,4 +19,17 @@ public class InputParameterAssignmentWithUnchecked {
     void foo3(String field, int field1) {
         this.field = (field1 += field.length());
     }
+
+    void foo4() {
+        String hidden = "";
+        new NestedClass() {
+            public void test(String hidden) {
+            }
+        };
+        hidden += "test";
+    }
+
+    public static abstract class NestedClass {
+        public abstract void test(String hidden);
+    }
 }

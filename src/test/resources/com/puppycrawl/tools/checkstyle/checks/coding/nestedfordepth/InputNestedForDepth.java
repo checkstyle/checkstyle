@@ -44,6 +44,9 @@ public class InputNestedForDepth {
             for (i5 = 0; i5 < 10; i5++) {
               i += 1;
             }
+            for (int i5a = 0; i5a < 10; i5a++) {
+                i += 1;
+              }
           }
         }
       }

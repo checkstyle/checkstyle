@@ -95,6 +95,8 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "81:11: " + getCheckMessage(MSG_ASSIGN),
             "81:16: " + getCheckMessage(MSG_LITERAL, "3"),
             "82:39: " + getCheckMessage(MSG_ASSIGN),
+            "93:11: " + getCheckMessage(MSG_ASSIGN),
+            "93:14: " + getCheckMessage(MSG_STRING, "\"12345678901234567890123\""),
         };
 
         verify(checkConfig, getPath("InputUnnecessaryParenthesesOperatorsAndCasts.java"), expected);

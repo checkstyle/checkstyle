@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextChec
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,6 +31,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 public class IllegalTokenTextCheckTest
@@ -120,6 +122,19 @@ public class IllegalTokenTextCheckTest
             "35:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
         verify(checkConfig, getPath("InputIllegalTokenTextTokens.java"), expected);
+    }
+
+    @Test
+    public void testOrderOfProperties() throws Exception {
+        // pure class must be used as configuration doesn't guarantee order of
+        // attributes
+        final IllegalTokenTextCheck check = new IllegalTokenTextCheck();
+        check.setFormat("test");
+        check.setIgnoreCase(true);
+        final Pattern actual = (Pattern) TestUtil.getClassDeclaredField(
+                IllegalTokenTextCheck.class, "regexp").get(check);
+        Assert.assertEquals("should match", Pattern.CASE_INSENSITIVE, actual.flags());
+        Assert.assertEquals("should match", "test", actual.pattern());
     }
 
     @Test

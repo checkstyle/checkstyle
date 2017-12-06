@@ -72,6 +72,29 @@ public final class TestUtil {
     }
 
     /**
+     * Retrieves the specified field by it's name in the class or it's direct super.
+     *
+     * @param clss The class to retrieve the field for.
+     * @param fieldName The name of the field to retrieve.
+     * @return The class' field.
+     * @throws NoSuchFieldException if the requested field cannot be found in the class.
+     */
+    public static Field getClassDeclaredField(Class<?> clss, String fieldName)
+            throws NoSuchFieldException {
+        final Optional<Field> classField = Arrays.stream(clss.getDeclaredFields())
+                .filter(field -> fieldName.equals(field.getName())).findFirst();
+        final Field resultField;
+        if (classField.isPresent()) {
+            resultField = classField.get();
+        }
+        else {
+            resultField = clss.getSuperclass().getDeclaredField(fieldName);
+        }
+        resultField.setAccessible(true);
+        return resultField;
+    }
+
+    /**
      * Checks if stateful field is cleared during {@link AbstractCheck#beginTree} in check.
      *
      * @param check      check object which field is to be verified
@@ -91,16 +114,7 @@ public final class TestUtil {
         check.beginTree(astToVisit);
         check.visitToken(astToVisit);
         check.beginTree(null);
-        final Optional<Field> classField = Arrays.stream(check.getClass().getDeclaredFields())
-            .filter(field -> fieldName.equals(field.getName())).findFirst();
-        final Field resultField;
-        if (classField.isPresent()) {
-            resultField = classField.get();
-        }
-        else {
-            resultField = check.getClass().getSuperclass().getDeclaredField(fieldName);
-        }
-        resultField.setAccessible(true);
+        final Field resultField = getClassDeclaredField(check.getClass(), fieldName);
         return isClear.test(resultField.get(check));
     }
 

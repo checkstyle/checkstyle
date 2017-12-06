@@ -238,4 +238,11 @@ public class InputOneStatementPerLineSingleLine {
      */
     for (;;) { one = 5; }
   }
+
+  public void foo6() {
+      bar(() -> {
+          return;}, () -> {return;});
+  }
+
+  void bar(Runnable r1, Runnable r2) { }
 }
