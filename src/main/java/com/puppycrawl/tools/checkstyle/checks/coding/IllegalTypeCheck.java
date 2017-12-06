@@ -98,8 +98,6 @@ public final class IllegalTypeCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "illegal.type";
 
-    /** Abstract classes legal by default. */
-    private static final String[] DEFAULT_LEGAL_ABSTRACT_NAMES = {};
     /** Types illegal by default. */
     private static final String[] DEFAULT_ILLEGAL_TYPES = {
         "HashSet",
@@ -144,7 +142,6 @@ public final class IllegalTypeCheck extends AbstractCheck {
     /** Creates new instance of the check. */
     public IllegalTypeCheck() {
         setIllegalClassNames(DEFAULT_ILLEGAL_TYPES);
-        setLegalAbstractClassNames(DEFAULT_LEGAL_ABSTRACT_NAMES);
         setIgnoredMethodNames(DEFAULT_IGNORED_METHOD_NAMES);
     }
 

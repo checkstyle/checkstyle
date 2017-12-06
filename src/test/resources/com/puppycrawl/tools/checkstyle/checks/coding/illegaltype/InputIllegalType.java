@@ -21,4 +21,6 @@ public class InputIllegalType {
     
     InputIllegalType(Integer i) {}
     private void table2(Integer i) {}
+
+    private void getInitialContext(java.util.TreeSet v) {} // ignore method by default
 }

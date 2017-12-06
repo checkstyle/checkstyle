@@ -87,6 +87,14 @@ public class InputUnnecessaryParenthesesOperatorsAndCasts {
         System.identityHashCode("arg = " + arg);
     }
 
+    private int f7() {
+        String f;
+
+        f = ("12345678901234567890123");
+
+        return 0;
+    }
+
     static class TypeParameterized<T> {}
     static class TypeA extends TypeParameterized<String> {}
     static class TypeB extends TypeA {}

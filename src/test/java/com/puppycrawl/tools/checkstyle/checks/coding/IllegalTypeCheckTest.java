@@ -82,6 +82,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
                 "com.puppycrawl.tools.checkstyle.checks.coding.illegaltype."
                     + "InputIllegalType.AbstractClass"),
             "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
+            "25:36: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
         };
 
         verify(checkConfig, getPath("InputIllegalType.java"), expected);
