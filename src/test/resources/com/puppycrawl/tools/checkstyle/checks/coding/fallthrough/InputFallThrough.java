@@ -547,4 +547,17 @@ public class InputFallThrough
                break;
        }
     }
+
+    void multipleCasesOnOneLine() {
+        int i = 0;
+        switch (i) {
+        case 0: case 1: i *= i; // fall through
+        case 2: case 3: i *= i; // fall through
+        case 4: case 5: i *= i; // fall through
+        case 6: case 7: i *= i;
+            break;
+        default:
+            throw new RuntimeException();
+        }
+    }
 }

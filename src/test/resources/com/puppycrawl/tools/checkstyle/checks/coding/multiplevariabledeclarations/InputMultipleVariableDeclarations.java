@@ -30,4 +30,8 @@ public class InputMultipleVariableDeclarations
             int k = 7;
         }
     }
+
+    void method3() {
+        java.lang.Object obj; Object obj1; Object obj2; Object obj3;
+    }
 }

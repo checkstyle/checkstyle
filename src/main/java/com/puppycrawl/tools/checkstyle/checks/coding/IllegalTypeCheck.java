@@ -447,7 +447,6 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * @noinspection WeakerAccess
      */
     public void setLegalAbstractClassNames(String... classNames) {
-        legalAbstractClassNames.clear();
         Collections.addAll(legalAbstractClassNames, classNames);
     }
 

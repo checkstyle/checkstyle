@@ -973,5 +973,16 @@ class New {
         }
         catch(Exception e){}
     }
+
+    void m() {
+        final int a = 1;
+        int b = 0;
+
+        if (b == 1) {
+            System.lineSeparator();
+        }
+
+        final int c = a + 1;
+    }
     
 }
