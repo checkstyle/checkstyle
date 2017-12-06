@@ -58,6 +58,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "121:13: " + getCheckMessage(MSG_METHOD, "instanceMethod", "Issue2240."),
             "122:13: " + getCheckMessage(MSG_VARIABLE, "i", "Issue2240."),
             "134:9: " + getCheckMessage(MSG_METHOD, "foo", ""),
+            "142:9: " + getCheckMessage(MSG_VARIABLE, "s", ""),
         };
         verify(checkConfig,
                getPath("InputRequireThisEnumInnerClassesAndBugs.java"),
@@ -95,6 +96,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "113:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
             "114:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
             "122:13: " + getCheckMessage(MSG_VARIABLE, "i", "Issue2240."),
+            "142:9: " + getCheckMessage(MSG_VARIABLE, "s", ""),
         };
         verify(checkConfig,
                getPath("InputRequireThisEnumInnerClassesAndBugs.java"),

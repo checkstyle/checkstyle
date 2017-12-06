@@ -527,15 +527,16 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                     variableUsageAst = exprWithVariableUsage;
                 }
             }
+
+            // If there's no any variable usage, then distance = 0.
+            else if (variableUsageExpressions.isEmpty()) {
+                variableUsageAst = null;
+            }
             // If variable usage exists in different scopes, then distance =
             // distance until variable first usage.
-            else if (variableUsageExpressions.size() > 1) {
+            else {
                 dist++;
                 variableUsageAst = variableUsageExpressions.get(0);
-            }
-            // If there's no any variable usage, then distance = 0.
-            else {
-                variableUsageAst = null;
             }
         }
         return new SimpleEntry<>(variableUsageAst, dist);

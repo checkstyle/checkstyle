@@ -70,6 +70,13 @@ class InputModifiedControlVariableBothForLoops
         for (int i = 0,j = 0 ; i <10; i++) {
             j++;
         }
+        
+        for (String v : sa) {
+            new NestedClass() {
+                public void method() {}
+            };
+            v = "bad";
+        }
     }
     private int i;
 }
@@ -82,4 +89,7 @@ class VariableDeclaredBeforeTheFirstBlockBegins {
             String eventData;
         }
     }
+}
+abstract class NestedClass {
+    public abstract void method();
 }

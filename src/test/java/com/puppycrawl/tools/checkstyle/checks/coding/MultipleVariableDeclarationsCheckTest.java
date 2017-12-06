@@ -46,6 +46,9 @@ public class MultipleVariableDeclarationsCheckTest extends AbstractModuleTestSup
             "9:9: " + getCheckMessage(MSG_MULTIPLE),
             "13:5: " + getCheckMessage(MSG_MULTIPLE),
             "16:5: " + getCheckMessage(MSG_MULTIPLE),
+            "35:9: " + getCheckMessage(MSG_MULTIPLE),
+            "35:31: " + getCheckMessage(MSG_MULTIPLE),
+            "35:44: " + getCheckMessage(MSG_MULTIPLE),
         };
 
         verify(checkConfig,

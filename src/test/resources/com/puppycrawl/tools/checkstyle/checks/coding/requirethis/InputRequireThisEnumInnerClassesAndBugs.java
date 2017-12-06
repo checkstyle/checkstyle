@@ -134,3 +134,19 @@ class Issue2539{
         foo();
     }
 }
+class NestedRechange {
+    final String s = "";
+
+    NestedRechange() {
+        String s = "t";
+        s = s.substring(0);
+    }
+
+    private static class NestedStatic {
+        static final String s = "";
+
+        public void method() {
+            s.substring(0);
+        }
+    }
+}

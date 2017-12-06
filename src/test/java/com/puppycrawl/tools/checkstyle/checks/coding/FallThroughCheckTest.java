@@ -53,7 +53,9 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "424:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "436:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "446:9: " + getCheckMessage(MSG_FALL_THROUGH),
-
+            "555:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "556:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "557:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
         verify(checkConfig,
                getPath("InputFallThrough.java"),
@@ -82,6 +84,9 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "424:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "436:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "446:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "555:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "556:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "557:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
         verify(checkConfig,
                getPath("InputFallThrough.java"),
@@ -133,6 +138,9 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "507:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "514:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "546:12: " + getCheckMessage(MSG_FALL_THROUGH),
+            "555:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "556:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "557:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
         verify(checkConfig,
                getPath("InputFallThrough.java"),

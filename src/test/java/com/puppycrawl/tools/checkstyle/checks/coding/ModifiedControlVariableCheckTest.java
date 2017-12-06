@@ -57,6 +57,7 @@ public class ModifiedControlVariableCheckTest
             "56:14: " + getCheckMessage(MSG_KEY, "m"),
             "67:15: " + getCheckMessage(MSG_KEY, "i"),
             "68:15: " + getCheckMessage(MSG_KEY, "k"),
+            "78:15: " + getCheckMessage(MSG_KEY, "v"),
         };
         verify(checkConfig, getPath("InputModifiedControlVariableBothForLoops.java"), expected);
     }
