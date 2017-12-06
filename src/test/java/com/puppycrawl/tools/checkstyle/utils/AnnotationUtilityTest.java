@@ -173,10 +173,38 @@ public class AnnotationUtilityTest {
         final DetailAST annotationName = new DetailAST();
         annotations.setType(TokenTypes.ANNOTATIONS);
         annotation.setType(TokenTypes.ANNOTATION);
+        annotationNameHolder.setType(TokenTypes.AT);
         annotationName.setText("Annotation");
 
         annotationNameHolder.setNextSibling(annotationName);
         annotation.setFirstChild(annotationNameHolder);
+        annotations.setFirstChild(annotation);
+        child.setNextSibling(annotations);
+        astForTest.setFirstChild(child);
+
+        assertTrue("Annotation should contain " + astForTest,
+                AnnotationUtility.containsAnnotation(astForTest, "Annotation"));
+    }
+
+    @Test
+    public void testContainsAnnotationWithComment() {
+        final DetailAST astForTest = new DetailAST();
+        astForTest.setType(TokenTypes.PACKAGE_DEF);
+        final DetailAST child = new DetailAST();
+        final DetailAST annotations = new DetailAST();
+        final DetailAST annotation = new DetailAST();
+        final DetailAST annotationNameHolder = new DetailAST();
+        final DetailAST annotationName = new DetailAST();
+        final DetailAST comment = new DetailAST();
+        annotations.setType(TokenTypes.ANNOTATIONS);
+        annotation.setType(TokenTypes.ANNOTATION);
+        annotationNameHolder.setType(TokenTypes.AT);
+        comment.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
+        annotationName.setText("Annotation");
+
+        annotationNameHolder.setNextSibling(annotationName);
+        annotation.setFirstChild(comment);
+        comment.setNextSibling(annotationNameHolder);
         annotations.setFirstChild(annotation);
         child.setNextSibling(annotations);
         astForTest.setFirstChild(child);
