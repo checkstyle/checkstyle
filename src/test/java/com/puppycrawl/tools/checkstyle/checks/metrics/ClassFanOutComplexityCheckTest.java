@@ -217,4 +217,15 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
         verify(moduleConfig,
                 getPath("InputClassFanOutComplexityMultiDimensionalArray.java"), expected);
     }
+
+    @Test
+    public void testPackageName() throws Exception {
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(ClassFanOutComplexityCheck.class);
+        moduleConfig.addAttribute("max", "0");
+
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(moduleConfig,
+                getPath("InputClassFanOutComplexityPackageName.java"), expected);
+    }
 }

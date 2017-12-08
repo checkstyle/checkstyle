@@ -62,6 +62,9 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
             "76:5: " + getCheckMessage(MSG_KEY, 3, 0),
             "88:5: " + getCheckMessage(MSG_KEY, 3, 0),
             "104:13: " + getCheckMessage(MSG_KEY, 2, 0),
+            "113:5: " + getCheckMessage(MSG_KEY, 48, 0),
+            "123:5: " + getCheckMessage(MSG_KEY, 1, 0),
+            "124:5: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
         verify(checkConfig, getPath("InputNPathComplexityDefault.java"), expected);
@@ -246,6 +249,31 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         final SortedSet<LocalizedMessage> messages2 = npathComplexityCheckObj.getMessages();
 
         Assert.assertEquals("No exception messages expected", 0, messages2.size());
+    }
+
+    /**
+     * This must be a reflection test as it is too difficult to hit normally and
+     * the responsible code can't be removed without failing tests.
+     * TokenEnd is only used for processingTokenEnd and it is only set during visitConditional
+     * and visitUnitaryOperator. For it to be the same line/column, it must be the exact same
+     * token or a token who has the same line/column as it's child and we visit. We never
+     * visit the same token twice and we are only visiting on very specific tokens.
+     * The line can't be removed or reworked as other tests fail, and regression shows us no
+     * use cases to create a UT for.
+     * @throws Exception if there is an error.
+     */
+    @Test
+    public void testTokenEndIsAfterSameLineColumn() throws Exception {
+        final NPathComplexityCheck check = new NPathComplexityCheck();
+        final Object tokenEnd = TestUtil.getClassDeclaredField(NPathComplexityCheck.class,
+                "processingTokenEnd").get(check);
+        final DetailAST token = new DetailAST();
+        token.setLineNo(0);
+        token.setColumnNo(0);
+
+        Assert.assertTrue("isAfter must be true for same line/column",
+                (Boolean) TestUtil.getClassDeclaredMethod(tokenEnd.getClass(), "isAfter")
+                    .invoke(tokenEnd, token));
     }
 
     @Test
