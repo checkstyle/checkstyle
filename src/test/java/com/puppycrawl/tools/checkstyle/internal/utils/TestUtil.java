@@ -25,6 +25,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -92,6 +93,29 @@ public final class TestUtil {
         }
         resultField.setAccessible(true);
         return resultField;
+    }
+
+    /**
+     * Retrieves the specified method by it's name in the class or it's direct super.
+     *
+     * @param clss The class to retrieve the field for.
+     * @param methodName The name of the method to retrieve.
+     * @return The class' field.
+     * @throws NoSuchMethodException if the requested method cannot be found in the class.
+     */
+    public static Method getClassDeclaredMethod(Class<?> clss, String methodName)
+            throws NoSuchMethodException {
+        final Optional<Method> classMethod = Arrays.stream(clss.getDeclaredMethods())
+                .filter(method -> methodName.equals(method.getName())).findFirst();
+        final Method resultMethod;
+        if (classMethod.isPresent()) {
+            resultMethod = classMethod.get();
+        }
+        else {
+            resultMethod = clss.getSuperclass().getDeclaredMethod(methodName);
+        }
+        resultMethod.setAccessible(true);
+        return resultMethod;
     }
 
     /**

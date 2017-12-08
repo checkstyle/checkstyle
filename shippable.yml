@@ -10,7 +10,7 @@ env:
     - PROFILE="-Ppitest-checkstyle-filters,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checks-javadoc,no-validations"
     - PROFILE="-Ppitest-checks-imports,no-validations"; POST_ACTION=check_survived_imports
-    - PROFILE="-Ppitest-checks-metrics,no-validations"
+    - PROFILE="-Ppitest-checks-metrics,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checks-regexp,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checks-sizes,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checks-whitespace,no-validations"; POST_ACTION=check_survived_whitespace

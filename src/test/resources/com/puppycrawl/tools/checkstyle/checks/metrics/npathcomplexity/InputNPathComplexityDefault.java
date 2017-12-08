@@ -109,4 +109,17 @@ public class InputNPathComplexityDefault {
         };
         new Thread(runnable).start();       
     }
+
+    public void InputNestedTernaryCheck() {
+        double x = (getSmth() || Math.random() == 5) ? null : (int) Math
+                .cos(400 * (10 + 40)); // good
+        double y = (0.2 == Math.random()) ? (0.3 == Math.random()) ? null : (int) Math
+                .cos(400 * (10 + 40)) : 6; // bad (nested in first position)
+        double z = (Integer) ((0.2 == Math.random()) ? (Integer) null + apply(null)
+                : (0.3 == Math.random()) ? (Integer) null : (int) Math
+                        .sin(300 * (12 + 30))); // bad (nested in second
+                                                // position)
+    }
+    public boolean getSmth() { return true; }; 
+    public int apply(Object o) { return 0; }
 }
