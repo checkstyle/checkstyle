@@ -87,7 +87,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * Returns test logger.
      * @return logger test logger
      */
-    public BriefUtLogger getBriefUtLogger() {
+    public final BriefUtLogger getBriefUtLogger() {
         return new BriefUtLogger(stream);
     }
 
@@ -122,7 +122,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @return {@link Checker} instance based on the given {@link Configuration} instance.
      * @throws Exception if an exception occurs during checker configuration.
      */
-    public Checker createChecker(Configuration moduleConfig)
+    public final Checker createChecker(Configuration moduleConfig)
             throws Exception {
         if (checkstyleModules == null) {
             checkstyleModules = CheckUtil.getCheckstyleModules();
@@ -153,7 +153,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @return {@link Checker} instance.
      * @throws CheckstyleException if an exception occurs during checker configuration.
      */
-    protected Checker createChecker(Configuration moduleConfig,
+    protected final Checker createChecker(Configuration moduleConfig,
                                     ModuleCreationOption moduleCreationOption)
             throws Exception {
         final DefaultConfiguration dc;
@@ -183,7 +183,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param config {@link Configuration} instance.
      * @return {@link DefaultConfiguration} for the {@link Checker}.
      */
-    protected DefaultConfiguration createTreeWalkerConfig(Configuration config) {
+    protected static DefaultConfiguration createTreeWalkerConfig(Configuration config) {
         final DefaultConfiguration dc =
                 new DefaultConfiguration("configuration");
         final DefaultConfiguration twConf = createModuleConfig(TreeWalker.class);
@@ -199,7 +199,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param config {@link Configuration} instance.
      * @return {@link DefaultConfiguration} for the given {@link Configuration} instance.
      */
-    protected DefaultConfiguration createRootConfig(Configuration config) {
+    protected static DefaultConfiguration createRootConfig(Configuration config) {
         final DefaultConfiguration dc = new DefaultConfiguration("root");
         dc.addChild(config);
         return dc;
@@ -218,7 +218,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param warnsExpected an array of expected warning numbers.
      * @throws Exception if exception occurs during verification process.
      */
-    protected void verify(Configuration config, String fileName, String[] expected,
+    protected final void verify(Configuration config, String fileName, String[] expected,
             Integer... warnsExpected) throws Exception {
         verify(createChecker(config),
                 new File[] {new File(fileName)},
@@ -234,7 +234,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param warnsExpected an array of expected warning line numbers.
      * @throws Exception if exception occurs during verification process.
      */
-    protected void verify(Checker checker,
+    protected final void verify(Checker checker,
             File[] processedFiles,
             String messageFileName,
             String[] expected,
@@ -284,7 +284,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param messageKey the key of message in 'messages.properties' file.
      * @param arguments  the arguments of message in 'messages.properties' file.
      */
-    protected String getCheckMessage(Class<? extends AbstractViolationReporter> aClass,
+    protected static String getCheckMessage(Class<? extends AbstractViolationReporter> aClass,
             String messageKey, Object... arguments) {
         String checkMessage;
         try {
@@ -305,7 +305,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param messageKey the key of message in 'messages.properties' file.
      * @param arguments the arguments of message in 'messages.properties' file.
      */
-    protected String getCheckMessage(Map<String, String> messages, String messageKey,
+    protected static String getCheckMessage(Map<String, String> messages, String messageKey,
             Object... arguments) {
         String checkMessage = null;
         for (Map.Entry<String, String> entry : messages.entrySet()) {

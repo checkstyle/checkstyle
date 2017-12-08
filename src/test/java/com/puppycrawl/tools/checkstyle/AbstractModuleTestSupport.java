@@ -81,7 +81,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * Returns test logger.
      * @return logger for tests
      */
-    public BriefUtLogger getBriefUtLogger() {
+    public final BriefUtLogger getBriefUtLogger() {
         return new BriefUtLogger(stream);
     }
 
@@ -95,7 +95,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @return {@link Checker} instance based on the given {@link Configuration} instance.
      * @throws Exception if an exception occurs during checker configuration.
      */
-    public Checker createChecker(Configuration moduleConfig)
+    public final Checker createChecker(Configuration moduleConfig)
             throws Exception {
         ModuleCreationOption moduleCreationOption = ModuleCreationOption.IN_CHECKER;
 
@@ -124,7 +124,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @return {@link Checker} instance based on the given {@link Configuration} instance.
      * @throws Exception if an exception occurs during checker configuration.
      */
-    public Checker createChecker(Configuration moduleConfig,
+    public final Checker createChecker(Configuration moduleConfig,
                                  ModuleCreationOption moduleCreationOption)
             throws Exception {
         final Checker checker = new Checker();
@@ -152,7 +152,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @return {@link DefaultConfiguration} for the {@link TreeWalker}
      * based on the given {@link Configuration} instance.
      */
-    protected DefaultConfiguration createTreeWalkerConfig(Configuration config) {
+    protected static DefaultConfiguration createTreeWalkerConfig(Configuration config) {
         final DefaultConfiguration dc =
                 new DefaultConfiguration("configuration");
         final DefaultConfiguration twConf = createModuleConfig(TreeWalker.class);
@@ -168,7 +168,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param config {@link Configuration} instance.
      * @return {@link DefaultConfiguration} for the given {@link Configuration} instance.
      */
-    protected DefaultConfiguration createRootConfig(Configuration config) {
+    protected static DefaultConfiguration createRootConfig(Configuration config) {
         final DefaultConfiguration dc = new DefaultConfiguration(ROOT_MODULE_NAME);
         if (config != null) {
             dc.addChild(config);
@@ -198,7 +198,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param filename file name.
      * @return URI-representation of the path for the file with the given file name.
      */
-    protected String getUriString(String filename) {
+    protected final String getUriString(String filename) {
         return new File("src/test/resources/" + getPackageLocation() + "/" + filename).toURI()
                 .toString();
     }
@@ -213,7 +213,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param expected an array of expected messages.
      * @throws Exception if exception occurs during verification process.
      */
-    protected void verify(Configuration aConfig, String fileName, String... expected)
+    protected final void verify(Configuration aConfig, String fileName, String... expected)
             throws Exception {
         verify(createChecker(aConfig), fileName, fileName, expected);
     }
@@ -246,7 +246,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param expected an array of expected messages.
      * @throws Exception if exception occurs during verification process.
      */
-    protected void verify(Checker checker,
+    protected final void verify(Checker checker,
                           String processedFilename,
                           String messageFileName,
                           String... expected)
@@ -299,7 +299,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param expectedViolations a map of expected violations per files.
      * @throws Exception if exception occurs during verification process.
      */
-    protected void verify(Checker checker,
+    protected final void verify(Checker checker,
                           File[] processedFiles,
                           Map<String, List<String>> expectedViolations)
             throws Exception {
@@ -384,7 +384,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param messageKey the key of message in 'messages.properties' file.
      * @param arguments  the arguments of message in 'messages.properties' file.
      */
-    protected String getCheckMessage(String messageKey, Object... arguments) {
+    protected final String getCheckMessage(String messageKey, Object... arguments) {
         return internalGetCheckMessage(getMessageBundle(), messageKey, arguments);
     }
 
