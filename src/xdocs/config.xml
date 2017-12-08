@@ -14,13 +14,12 @@
   </head>
 
   <body>
-<!-- till https://issues.apache.org/jira/browse/MSITE-748
     <section name="Content">
       <macro name="toc">
         <param name="fromDepth" value="1"/>
         <param name="toDepth" value="1"/>
       </macro>
-    </section> -->
+    </section>
 
     <section name="Overview">
       <p>
@@ -823,7 +822,7 @@
       </source>
 
       <div class="tip">
-        <h4>Note</h4>
+        <b>Note</b>
         <p>
           As of Checkstyle 5.0 it is unnecessary to repeat the
           <code>package</code> elements for Checkstyle's packages in
@@ -835,7 +834,7 @@
 
     <section name="XML Structure">
 
-      <h4>Configuration XML Document</h4>
+      <b>Configuration XML Document</b>
       <p>
         The following DTD for a configuration XML document specifies the
         hierarchy of modules and their properties:
@@ -880,7 +879,7 @@
         conventions.
       </p>
 
-      <h4>Package Names XML Document</h4>
+      <b>Package Names XML Document</b>
       <p>
         This is a DTD for a package names XML document:
       </p>
@@ -907,7 +906,7 @@
 &quot;http://checkstyle.sourceforge.net/dtds/packages_1_1.dtd&quot;&gt;
       </source>
 
-      <h4>Suppressions XML Document</h4>
+      <b>Suppressions XML Document</b>
       <p>
         This is a DTD for a suppressions XML document:
       </p>
