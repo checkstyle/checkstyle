@@ -29,6 +29,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.apache.commons.beanutils.BeanUtilsBean;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -57,7 +58,8 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         EqualsVerifier
                 .forClass(SuppressionFilter.class)
                 .usingGetClass()
-                .withIgnoredFields("file", "optional", "configuration")
+                .withIgnoredFields("file", "optional", "configuration", "beanUtils")
+                .withPrefabValues(BeanUtilsBean.class, new BeanUtilsBean(), new BeanUtilsBean())
                 .suppress(Warning.NONFINAL_FIELDS)
                 .verify();
     }

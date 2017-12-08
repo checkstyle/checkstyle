@@ -487,9 +487,46 @@ public class MethodLimitCheck extends AbstractCheck
         configuration file. It doesn&#39;t get any simpler than that. The secret is
         that Checkstyle uses <a href="https://docs.oracle.com/javase/tutorial/reflect/member/fieldValues.html">
         JavaBean reflection to set the JavaBean properties</a>. That works for all primitive types like boolean,
-        int, long, etc., plus Strings, plus arrays of these types.
+        int, long, etc., plus Strings, Paterns, URIs, and arrays of these types.
       </p>
 
+      <p>
+        Checkstyle doesn't support all types for these properties, especially for custom classes
+        that you have created for your own project. To implement these conversion utilities you
+        must override the <code>getPropertyTypeConverters</code> and give Checkstyle your
+        classes for the module and how to convert it with the JavaBean utility.
+      </p>
+
+      <source>
+import org.apache.commons.beanutils.Converter;
+
+    // some code omitted for brevity
+
+    private MyCustomProperty myProperty;
+
+    public void setMyProperty(MyCustomProperty input) {
+        myProperty = input;
+    }
+
+    @Override
+    protected Map&lt;Class&lt;?&gt;, Converter&gt; getPropertyTypeConverters() {
+        return Collections.singletonMap(MyCustomProperty.class, new Converter() {
+            @Override
+            public Object convert(Class type, Object value) {
+                return new MyCustomProperty(value.toString());
+            }
+        });
+    }
+      </source>
+
+      <p>
+        Please note that even though the method implemented by the <code>Converter</code> takes
+        the value to convert as an <code>Object</code>, Checkstyle will only provide <code>String</code>s
+        as these values are directly read from the configuration file. It is also good practice to
+        always name your setters after the internal field for the property so it is clear the 2 are
+        connected. Checkstyle will not require this. The name of the setter is what Checkstyle sees
+        as the name of the property which you can customize in your configuration.
+      </p>
     </section>
 
     <section name="Logging errors">

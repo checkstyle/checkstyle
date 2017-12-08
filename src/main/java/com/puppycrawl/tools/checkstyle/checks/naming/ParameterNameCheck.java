@@ -20,7 +20,11 @@
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Map;
 import java.util.Optional;
+
+import org.apache.commons.beanutils.Converter;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -118,6 +122,11 @@ public class ParameterNameCheck extends AbstractNameCheck {
     @Override
     public int[] getRequiredTokens() {
         return new int[] {TokenTypes.PARAMETER_DEF};
+    }
+
+    @Override
+    protected Map<Class<?>, Converter> getPropertyTypeConverters() {
+        return Collections.singletonMap(AccessModifier[].class, AccessModifier.getBeanConverter());
     }
 
     @Override
