@@ -59,14 +59,7 @@ public final class ClassDataAbstractionCouplingCheck
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {
-            TokenTypes.PACKAGE_DEF,
-            TokenTypes.IMPORT,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.LITERAL_NEW,
-        };
+        return getRequiredTokens();
     }
 
     // -@cs[SimpleAccessorNameNotation] Overrides method from the base class.

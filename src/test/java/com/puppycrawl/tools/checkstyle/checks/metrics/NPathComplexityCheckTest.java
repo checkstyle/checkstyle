@@ -21,7 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import static com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck.MSG_KEY;
 
+import java.io.File;
 import java.util.Collection;
+import java.util.Optional;
 import java.util.SortedSet;
 
 import org.junit.Assert;
@@ -136,6 +138,35 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         Assert.assertTrue("Stateful field is not cleared after beginTree",
             TestUtil.isStatefulFieldClearedDuringBeginTree(check, ast, "isAfterValues",
                 isAfterValues -> ((Collection<Context>) isAfterValues).isEmpty()));
+    }
+
+    @Test
+    public void testStatefulFieldsClearedOnBeginTree3() throws Exception {
+        final NPathComplexityCheck check = new NPathComplexityCheck();
+        final Optional<DetailAST> question = TestUtil.findTokenInAstByPredicate(
+            TestUtil.parseFile(new File(getPath("InputNPathComplexity.java"))),
+            ast -> ast.getType() == TokenTypes.QUESTION);
+
+        Assert.assertTrue("Ast should contain QUESTION", question.isPresent());
+
+        Assert.assertTrue("State is not cleared on beginTree",
+            TestUtil.isStatefulFieldClearedDuringBeginTree(
+                check,
+                question.get(),
+                "processingTokenEnd",
+                processingTokenEnd -> {
+                    try {
+                        return (Integer) TestUtil.getClassDeclaredField(
+                            processingTokenEnd.getClass(), "endLineNo").get(
+                            processingTokenEnd) == 0
+                            && (Integer) TestUtil.getClassDeclaredField(
+                                processingTokenEnd.getClass(), "endColumnNo").get(
+                                processingTokenEnd) == 0;
+                    }
+                    catch (IllegalAccessException | NoSuchFieldException ex) {
+                        throw new IllegalStateException(ex);
+                    }
+                }));
     }
 
     @Test

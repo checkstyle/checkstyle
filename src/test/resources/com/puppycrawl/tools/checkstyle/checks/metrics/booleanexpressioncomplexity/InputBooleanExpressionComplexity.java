@@ -24,6 +24,13 @@ public class InputBooleanExpressionComplexity {
     }
 
     public boolean equals(Object object) {
+        new NestedClass() {
+            public void method() {
+                new Settings(Settings.FALSE || Settings.FALSE || Settings.FALSE || Settings.FALSE || Settings.FALSE);
+            }
+            public void method2() {
+            }
+        };
         return (((_a && (_b & _c)) || (_c ^ _d) || (_a && _d)));
     }
     
@@ -67,5 +74,10 @@ public class InputBooleanExpressionComplexity {
         public Settings(boolean flag)
         {
         }
+    }
+
+    abstract class NestedClass {
+        public abstract void method();
+        public abstract void method2();
     }
 }
