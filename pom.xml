@@ -1353,6 +1353,8 @@
             <excludedLink>https://github.com/search*</excludedLink>
             <!-- till https://github.com/apache/maven-plugins/pull/81 -->
             <excludedLink>http://git-scm.com*</excludedLink>
+            <!-- links works but not in linkcheck -->
+            <excludedLink>https://marketplace.visualstudio.com/items?itemName=shengchen.vscode-checkstyle</excludedLink>
 
             <!-- reason described at https://github.com/checkstyle/checkstyle/issues/3080 -->
             <excludedLink>https://www.scm-manager.org/</excludedLink>
