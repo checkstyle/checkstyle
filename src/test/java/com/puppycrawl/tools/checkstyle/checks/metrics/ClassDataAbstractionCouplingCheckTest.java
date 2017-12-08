@@ -20,7 +20,9 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -38,6 +40,17 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling";
+    }
+
+    @Test
+    public void testTokens() {
+        final ClassDataAbstractionCouplingCheck check = new ClassDataAbstractionCouplingCheck();
+        assertNotNull("Required tokens should not be null", check.getRequiredTokens());
+        assertNotNull("Acceptable tokens should not be null", check.getAcceptableTokens());
+        assertArrayEquals("Invalid default tokens", check.getDefaultTokens(),
+                check.getAcceptableTokens());
+        assertArrayEquals("Invalid acceptable tokens", check.getDefaultTokens(),
+                check.getRequiredTokens());
     }
 
     @Test
