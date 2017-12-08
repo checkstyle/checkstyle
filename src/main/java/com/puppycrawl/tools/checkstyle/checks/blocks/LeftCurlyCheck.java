@@ -313,6 +313,12 @@ public class LeftCurlyCheck
                     log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
                 }
             }
+            else if (option == LeftCurlyOption.NL_OR_SINGLELINE) {
+            		if (!CommonUtils.hasWhitespaceBefore(brace.getColumnNo(), braceLine) &&
+            			!bracesOnSameLine(brace.getColumnNo(), braceLine)) {
+                    log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
+                }
+            }
             else if (option == LeftCurlyOption.EOL) {
 
                 validateEol(brace, braceLine);
@@ -382,4 +388,40 @@ public class LeftCurlyCheck
                 || nextToken.getType() == TokenTypes.RCURLY
                 || leftCurly.getLineNo() != nextToken.getLineNo();
     }
+    
+	/**
+	 * Checks if left curly on same line is matched with a right curly.
+     * @param index
+     *            index to check up to
+     * @param line
+     *            the line to check
+     * @return whether the brace is paired
+     */
+	private boolean bracesOnSameLine(int index, String line)
+	{
+		char[] chars = line.toCharArray();
+		int level = 1;
+		boolean inQuote1 = false, inQuote2 = false;
+		for (int n = index + 1; n < chars.length; n++) {
+			if (chars[n] == '\\' && n < chars.length - 1) {
+				n++;
+			}
+			else if (chars[n] == '\'' && !inQuote2) {
+				inQuote1 = !inQuote1;
+			}
+			else if (chars[n] == '"' && !inQuote1) {
+				inQuote2 = !inQuote2;
+			}
+			else if (!inQuote1 && !inQuote2) {
+				if (chars[n] == '{') {
+					level++;
+				}
+				else if (chars[n] == '}') {
+					level--;
+					if (level == 0) return true;
+				}
+			}
+		}
+		return false;
+	}
 }
