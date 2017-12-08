@@ -77,17 +77,17 @@ build:
            exit 1
         fi
         if [[ $POST_ACTION == 'check_survived_coding'
-              && $(grep -RE "class='survived'"  --exclude="AbstractSuperCheck.*" --exclude="DeclarationOrderCheck.*" --exclude="EqualsAvoidNullCheck.*" \
-              --exclude="EqualsHashCodeCheck.*" --exclude="FallThroughCheck.*" --exclude="HiddenFieldCheck.*" --exclude="IllegalInstantiationCheck.*" \
-              --exclude="IllegalTokenTextCheck.*" --exclude="IllegalTypeCheck.*" --exclude="MagicNumberCheck.*" --exclude="ModifiedControlVariableCheck.*" \
-              --exclude="MultipleStringLiteralsCheck.*" --exclude="MultipleVariableDeclarationsCheck.*" --exclude="NestedForDepthCheck.*" \
-              --exclude="OneStatementPerLineCheck.*" --exclude="ParameterAssignmentCheck.*" --exclude="RequireThisCheck.*" --exclude="ReturnCountCheck.*" \
+              && $(grep -RE "class='survived'"  --exclude="EqualsAvoidNullCheck.*" \
+              --exclude="FallThroughCheck.*" --exclude="HiddenFieldCheck.*" --exclude="IllegalInstantiationCheck.*" \
+              --exclude="IllegalTypeCheck.*" \
+              --exclude="MultipleVariableDeclarationsCheck.*" \
+              --exclude="RequireThisCheck.*" \
               --exclude="UnnecessaryParenthesesCheck.*" --exclude="VariableDeclarationUsageDistanceCheck.*"   target/ | cat | wc -l) > 0 ]]; then
-           echo "Survived items:"$(grep -RE "class='survived'"  --exclude="AbstractSuperCheck.*" --exclude="DeclarationOrderCheck.*" --exclude="EqualsAvoidNullCheck.*" \
-              --exclude="EqualsHashCodeCheck.*" --exclude="FallThroughCheck.*" --exclude="HiddenFieldCheck.*" --exclude="IllegalInstantiationCheck.*" \
-              --exclude="IllegalTokenTextCheck.*" --exclude="IllegalTypeCheck.*" --exclude="MagicNumberCheck.*" --exclude="ModifiedControlVariableCheck.*" \
-              --exclude="MultipleStringLiteralsCheck.*" --exclude="MultipleVariableDeclarationsCheck.*" --exclude="NestedForDepthCheck.*" \
-              --exclude="OneStatementPerLineCheck.*" --exclude="ParameterAssignmentCheck.*" --exclude="RequireThisCheck.*" --exclude="ReturnCountCheck.*" \
+           echo "Survived items:"$(grep -RE "class='survived'"  --exclude="EqualsAvoidNullCheck.*" \
+              --exclude="FallThroughCheck.*" --exclude="HiddenFieldCheck.*" --exclude="IllegalInstantiationCheck.*" \
+              --exclude="IllegalTypeCheck.*" \
+              --exclude="MultipleVariableDeclarationsCheck.*" \
+              --exclude="RequireThisCheck.*" \
               --exclude="UnnecessaryParenthesesCheck.*" --exclude="VariableDeclarationUsageDistanceCheck.*"  target/ | cat)
            echo "Survived items found in reports, build will be failed"
            exit 1
