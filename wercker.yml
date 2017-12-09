@@ -93,7 +93,7 @@ build:
   - script:
       name: NoErrorTest - checkstyle's sevntu
       code: |
-        if [[ $SKIP_CI == 'false' ]]; then
+        if [[ 'true' == 'false' ]]; then
           ./.ci/wercker.sh no-error-checkstyles-sevntu
         else
           echo "build is skipped ..."
