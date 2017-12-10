@@ -103,6 +103,14 @@ public class InputNoWhitespaceAfterArrayDeclarations2
         if(someStuff15 instanceof Object[][]) {
           
         }
+        Object[] a = null;
+
+        if(a instanceof Object  []) {//incorrect
+          
+        }
+        if(a instanceof Object[][]) {
+          
+        }
     }
 
 }

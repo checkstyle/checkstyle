@@ -58,6 +58,7 @@ public class NoWhitespaceAfterCheckTest
             "289:6: " + getCheckMessage(MSG_KEY, "@"),
             "290:6: " + getCheckMessage(MSG_KEY, "@"),
             "291:6: " + getCheckMessage(MSG_KEY, "@"),
+            "296:27: " + getCheckMessage(MSG_KEY, "int"),
         };
         verify(checkConfig, getPath("InputNoWhitespaceAfter.java"), expected);
     }
@@ -164,6 +165,7 @@ public class NoWhitespaceAfterCheckTest
             "94:45: " + getCheckMessage(MSG_KEY, ")"),
             "97:41: " + getCheckMessage(MSG_KEY, "Object"),
             "100:43: " + getCheckMessage(MSG_KEY, "]"),
+            "108:31: " + getCheckMessage(MSG_KEY, "Object"),
         };
         verify(checkConfig, getPath("InputNoWhitespaceAfterArrayDeclarations2.java"), expected);
     }
