@@ -401,6 +401,10 @@ public class ImportOrderCheck
             }
             doVisitToken(ident, isStatic, isLastImportAndNonStatic);
 
+            if (isLastImportAndNonStatic) {
+                log(ident.getLineNo(), MSG_ORDERING, ident.getText());
+            }
+
         }
         else if (option == ImportOrderOption.ABOVE) {
             // previous non-static but current is static
