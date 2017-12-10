@@ -1321,10 +1321,20 @@ import java.util.stream.IntStream;
             <td>sortStaticImportsAlphabetically</td>
             <td>whether <b>static imports</b> grouped by <b>top</b> or <b>bottom</b> option
                 are sorted alphabetically or not.
-                Attention: It is applied to all static imports as one group.</td>>
+                Attention: It is applied to all static imports as one group
+                when the value of separatedStaticImports is false.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
             <td>6.5</td>
+          </tr>
+          <tr>
+            <td>separatedStaticImports</td>
+              <td>whether <b>static imports</b> grouped by <b>top</b> or <b>bottom</b> option
+                    should be separated by, at least, one blank line or
+                  comment and aren't separated internally.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td>false</td>
+              <td>8.6</td>
           </tr>
           <tr>
             <td>useContainerOrderingForStatic</td>
