@@ -80,6 +80,27 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFormat() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(TrailingCommentCheck.class);
+        checkConfig.addAttribute("format", "NOT MATCH");
+        final String[] expected = {
+            "4: " + getCheckMessage(MSG_KEY),
+            "5: " + getCheckMessage(MSG_KEY),
+            "6: " + getCheckMessage(MSG_KEY),
+            "7: " + getCheckMessage(MSG_KEY),
+            "8: " + getCheckMessage(MSG_KEY),
+            "13: " + getCheckMessage(MSG_KEY),
+            "14: " + getCheckMessage(MSG_KEY),
+            "15: " + getCheckMessage(MSG_KEY),
+            "18: " + getCheckMessage(MSG_KEY),
+            "19: " + getCheckMessage(MSG_KEY),
+            "26: " + getCheckMessage(MSG_KEY),
+            "29: " + getCheckMessage(MSG_KEY),
+        };
+        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+    }
+
+    @Test
     public void testCallVisitToken() {
         final TrailingCommentCheck check = new TrailingCommentCheck();
         try {
