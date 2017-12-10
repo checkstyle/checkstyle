@@ -291,4 +291,8 @@ class SpecialCasesInForLoop
     @
     interface BAD3{}
     @interface Ok{}
+
+    static {
+        int[]err = new int [50];
+    }
 }

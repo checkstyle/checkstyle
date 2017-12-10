@@ -13,7 +13,7 @@ env:
     - PROFILE="-Ppitest-checks-metrics,no-validations"; POST_ACTION=check_survived_uncovered
     - PROFILE="-Ppitest-checks-regexp,no-validations"; POST_ACTION=check_survived_uncovered
     - PROFILE="-Ppitest-checks-sizes,no-validations"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checks-whitespace,no-validations"; POST_ACTION=check_survived_whitespace
+    - PROFILE="-Ppitest-checks-whitespace,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checks-misc,no-validations"; POST_ACTION=check_survived_misc
     - PROFILE="-Ppitest-checks-blocks,no-validations"; POST_ACTION=check_survived_blocks
     - PROFILE="-Ppitest-checks-coding,no-validations"; POST_ACTION=check_survived_coding
@@ -61,11 +61,6 @@ build:
         fi
         if [[ $POST_ACTION == 'check_survived' && $(grep -RE "class='survived'" target/ | cat | wc -l) > 0 ]]; then
            echo "Survived items:"$(grep -RE "class='survived'" target/ | cat)
-           echo "Survived items found in reports, build will be failed"
-           exit 1
-        fi
-        if [[ $POST_ACTION == 'check_survived_whitespace' && $(grep -RE "class='survived'" --exclude="NoWhitespaceAfterCheck.*" --exclude="ParenPadCheck.*" --exclude="SingleSpaceSeparatorCheck.*" target/ | cat | wc -l) > 0 ]]; then
-           echo "Survived items:"$(grep -RE "class='survived'" --exclude="NoWhitespaceAfterCheck.*" --exclude="ParenPadCheck.*" --exclude="SingleSpaceSeparatorCheck.*" target/ | cat)
            echo "Survived items found in reports, build will be failed"
            exit 1
         fi

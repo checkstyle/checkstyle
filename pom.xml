@@ -2102,7 +2102,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.whitespace.*</param>
               </targetTests>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>99</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
