@@ -310,6 +310,21 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testGetFirstNode2() {
+        final DetailAST child = new DetailAST();
+        child.setLineNo(6);
+        child.setColumnNo(5);
+
+        final DetailAST root = new DetailAST();
+        root.setLineNo(5);
+        root.setColumnNo(6);
+
+        root.addChild(child);
+
+        assertEquals("Unexpected node", root, CheckUtils.getFirstNode(root));
+    }
+
+    @Test
     public void testIsReceiverParameter() throws Exception {
         final DetailAST objBlock = getNodeFromFile(TokenTypes.OBJBLOCK);
         final DetailAST methodWithReceiverParameter = objBlock.getLastChild().getPreviousSibling();
@@ -344,11 +359,14 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
 
     @Test
     public void testParseClassNames() {
-        final String className = "I.am.class.name.with.dot.in.the.end.";
-        final Set<String> result = CheckUtils.parseClassNames(className);
+        final Set<String> actual = CheckUtils.parseClassNames(
+                "I.am.class.name.with.dot.in.the.end.", "ClassOnly", "my.Class");
         final Set<String> expected = new HashSet<>();
-        expected.add(className);
-        assertEquals("Result is not expected", expected, result);
+        expected.add("I.am.class.name.with.dot.in.the.end.");
+        expected.add("ClassOnly");
+        expected.add("my.Class");
+        expected.add("Class");
+        assertEquals("Result is not expected", expected, actual);
     }
 
     private DetailAST getNodeFromFile(int type) throws Exception {

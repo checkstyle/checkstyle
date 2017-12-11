@@ -39,51 +39,46 @@ public class ScopeUtilsTest {
     }
 
     @Test
-    public void testInEnumOnRoot() {
+    public void testInEnumBlock() {
         assertFalse("Should return false when passed is not enum",
                 ScopeUtils.isInEnumBlock(new DetailAST()));
-    }
-
-    @Test
-    public void testInEnumBlockInNew() {
         assertFalse("Should return false when passed is not enum",
                 ScopeUtils.isInEnumBlock(getNode(TokenTypes.LITERAL_NEW,
                         TokenTypes.MODIFIERS)));
-    }
-
-    @Test
-    public void testInEnumBlockWithEnum() {
         assertTrue("Should return true when passed is enum",
                 ScopeUtils.isInEnumBlock(getNode(TokenTypes.OBJBLOCK, TokenTypes.ENUM_DEF,
                         TokenTypes.MODIFIERS)));
-    }
-
-    @Test
-    public void testInEnumBlockInInterface() {
         assertFalse("Should return false when passed is not enum",
-                ScopeUtils.isInEnumBlock(getNode(TokenTypes.INTERFACE_DEF,
+                ScopeUtils.isInEnumBlock(getNode(TokenTypes.ENUM_DEF, TokenTypes.INTERFACE_DEF,
                         TokenTypes.MODIFIERS)));
-    }
-
-    @Test
-    public void testInEnumBlockInAnnotation() {
         assertFalse("Should return false when passed is not enum",
-                ScopeUtils.isInEnumBlock(getNode(TokenTypes.ANNOTATION_DEF,
+                ScopeUtils.isInEnumBlock(getNode(TokenTypes.ENUM_DEF, TokenTypes.ANNOTATION_DEF,
                         TokenTypes.MODIFIERS)));
-    }
-
-    @Test
-    public void testInEnumBlockInClass() {
         assertFalse("Should return false when passed is not enum",
-                ScopeUtils.isInEnumBlock(getNode(TokenTypes.CLASS_DEF,
+                ScopeUtils.isInEnumBlock(getNode(TokenTypes.ENUM_DEF, TokenTypes.CLASS_DEF,
                         TokenTypes.MODIFIERS)));
-    }
-
-    @Test
-    public void testInEnumBlockInLiteralNew() {
         assertFalse("Should return false when passed is not enum",
-                ScopeUtils.isInEnumBlock(getNode(TokenTypes.LITERAL_NEW,
+                ScopeUtils.isInEnumBlock(getNode(TokenTypes.ENUM_DEF, TokenTypes.LITERAL_NEW,
                         TokenTypes.IDENT)));
+        assertFalse("Should return false when passed is not expected",
+                ScopeUtils.isInEnumBlock(getNode(TokenTypes.PACKAGE_DEF, TokenTypes.DOT)));
+    }
+
+    @Test
+    public void testIsInCodeBlock() {
+        assertFalse("invalid result", ScopeUtils.isInCodeBlock(getNode(TokenTypes.CLASS_DEF)));
+        assertFalse("invalid result",
+                ScopeUtils.isInCodeBlock(getNode(TokenTypes.ASSIGN, TokenTypes.VARIABLE_DEF)));
+        assertTrue("invalid result",
+                ScopeUtils.isInCodeBlock(getNode(TokenTypes.METHOD_DEF, TokenTypes.OBJBLOCK)));
+        assertTrue("invalid result",
+                ScopeUtils.isInCodeBlock(getNode(TokenTypes.CTOR_DEF, TokenTypes.OBJBLOCK)));
+        assertTrue("invalid result",
+                ScopeUtils.isInCodeBlock(getNode(TokenTypes.INSTANCE_INIT, TokenTypes.OBJBLOCK)));
+        assertTrue("invalid result",
+                ScopeUtils.isInCodeBlock(getNode(TokenTypes.STATIC_INIT, TokenTypes.OBJBLOCK)));
+        assertTrue("invalid result",
+                ScopeUtils.isInCodeBlock(getNode(TokenTypes.LAMBDA, TokenTypes.ASSIGN)));
     }
 
     @Test
@@ -113,6 +108,12 @@ public class ScopeUtilsTest {
     }
 
     @Test
+    public void testIsOuterMostTypePackageDef() {
+        assertTrue("Should return false when passed is not outer most type",
+                ScopeUtils.isOuterMostType(getNode(TokenTypes.PACKAGE_DEF, TokenTypes.DOT)));
+    }
+
+    @Test
     public void testIsLocalVariableDefCatch() {
         assertTrue("Should return true when passed is variable def",
                 ScopeUtils.isLocalVariableDef(getNode(TokenTypes.LITERAL_CATCH,
@@ -123,6 +124,26 @@ public class ScopeUtilsTest {
     public void testIsLocalVariableDefUnexpected() {
         assertFalse("Should return false when passed is not variable def",
                 ScopeUtils.isLocalVariableDef(getNode(TokenTypes.LITERAL_CATCH)));
+        assertFalse("Should return false when passed is not variable def",
+                ScopeUtils.isLocalVariableDef(getNode(TokenTypes.COMMA, TokenTypes.PARAMETER_DEF)));
+    }
+
+    @Test
+    public void testIsLocalVariableDefResource() {
+        assertTrue("invalid result",
+                ScopeUtils.isLocalVariableDef(getNode(TokenTypes.RESOURCE)));
+    }
+
+    @Test
+    public void testIsLocalVariableDefVariable() {
+        assertTrue("invalid result",
+                ScopeUtils.isLocalVariableDef(getNode(TokenTypes.SLIST, TokenTypes.VARIABLE_DEF)));
+        assertTrue("invalid result", ScopeUtils.isLocalVariableDef(getNode(TokenTypes.FOR_INIT,
+                TokenTypes.VARIABLE_DEF)));
+        assertTrue("invalid result", ScopeUtils.isLocalVariableDef(getNode(
+                TokenTypes.FOR_EACH_CLAUSE, TokenTypes.VARIABLE_DEF)));
+        assertFalse("invalid result", ScopeUtils.isLocalVariableDef(getNode(TokenTypes.CLASS_DEF,
+                TokenTypes.VARIABLE_DEF)));
     }
 
     @Test
@@ -130,6 +151,11 @@ public class ScopeUtilsTest {
         assertTrue("Should return true when passed is class field def",
                 ScopeUtils.isClassFieldDef(getNode(TokenTypes.CLASS_DEF,
                         TokenTypes.OBJBLOCK, TokenTypes.VARIABLE_DEF)));
+        assertFalse("Should return false when passed is unexpected",
+                ScopeUtils.isClassFieldDef(getNode(TokenTypes.CLASS_DEF)));
+        assertFalse("Should return false when passed is method variable def",
+                ScopeUtils.isClassFieldDef(getNode(TokenTypes.METHOD_DEF,
+                        TokenTypes.SLIST, TokenTypes.VARIABLE_DEF)));
     }
 
     @Test

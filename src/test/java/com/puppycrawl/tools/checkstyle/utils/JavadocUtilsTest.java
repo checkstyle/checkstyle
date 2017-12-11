@@ -361,4 +361,11 @@ public class JavadocUtilsTest {
         assertEquals("Unexpected token name",
             "WBR_TAG", JavadocUtils.getTokenName(10079));
     }
+
+    @Test
+    public void testEscapeAllControlChars() {
+        assertEquals("invalid result", "abc", JavadocUtils.escapeAllControlChars("abc"));
+        assertEquals("invalid result", "1\\r2\\n3\\t",
+                JavadocUtils.escapeAllControlChars("1\\r2\\n3\\t"));
+    }
 }
