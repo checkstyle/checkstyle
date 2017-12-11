@@ -2318,22 +2318,16 @@
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.utils.*</param>
+                <!-- 10% mutation in CommonUtils -->
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.*</param>
+                <!-- 2% mutation in CommonUtils, 3% coverage in CommonUtils, 2% coverage in JavadocUtils -->
                 <param>com.puppycrawl.tools.checkstyle.AstTreeStringPrinterTest</param>
-                <param>com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest</param>
+                <!-- 2% mutation in CommonUtils -->
                 <param>com.puppycrawl.tools.checkstyle.DetailNodeTreeStringPrinterTest</param>
+                <!-- ModuleReflectionUtils -->
                 <param>com.puppycrawl.tools.checkstyle.PackageObjectFactoryTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.FinalParametersCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.TranslationCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheckTest</param>
+                <!-- 3% mutation in BlockCommentPosition, 11% mutation in JavadocUtils, 10% coverage in JavadocUtils, ScopeUtils -->
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.whitespace.*</param>
-                <param>com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter</param>
-                <param>com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilterTest</param>
-                <param>com.puppycrawl.tools.checkstyle.internal.AllChecksTest</param>
               </targetTests>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>100</mutationThreshold>

@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.util.Arrays;
@@ -34,6 +35,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class BlockCommentPositionTest extends AbstractPathTestSupport {
+
+    @Test
+    public void testPrivateConstr() throws Exception {
+        assertTrue("Constructor is not private",
+                TestUtil.isUtilsClassHasPrivateConstructor(BlockCommentPosition.class, true));
+    }
 
     @Test
     public void testJavaDocsRecognition() throws Exception {
