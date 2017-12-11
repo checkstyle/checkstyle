@@ -155,16 +155,14 @@ public class InputNPathComplexity {
     // NP = (if-expression[1]=5) * (if-expression[2]=5) = 25
     void testSimpleTernaryBadFormatting() {
         // NP(if-expression) = (if-range=2) + 1 + (expr=2) = 5
-        if(
-           true ? true : true
-                ) { boolean a = true ? true
-                        : true;
+        if (true ? true : true) { 
+            boolean a = true ? true : true;
         }
         // NP(if-expression) = (if-range=2) + 1 + (expr=2) = 5
-        if(
-                true ? true : true) { boolean b = true ? true : true;
-             }
-    }
+        if (true ? true : true) { 
+            boolean b = true ? true : true;
+        }
+}
 
     //Calculation for try-catch is wrong now
     //See issue #3814 https://github.com/checkstyle/checkstyle/issues/3814
