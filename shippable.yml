@@ -6,26 +6,26 @@ jdk:
 
 env:
   matrix:
-    - PROFILE="-Ppitest-checkstyle-xpath,no-validations"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checkstyle-filters,no-validations"; POST_ACTION=check_survived
+    - PROFILE="-Ppitest-checkstyle-xpath,no-validations"; POST_ACTION=check_survived_uncovered
+    - PROFILE="-Ppitest-checkstyle-filters,no-validations"; POST_ACTION=check_survived_uncovered
     - PROFILE="-Ppitest-checks-javadoc,no-validations"
     - PROFILE="-Ppitest-checks-imports,no-validations"; POST_ACTION=check_survived_imports
-    - PROFILE="-Ppitest-checks-metrics,no-validations"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checks-regexp,no-validations"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checks-sizes,no-validations"; POST_ACTION=check_survived
+    - PROFILE="-Ppitest-checks-metrics,no-validations"; POST_ACTION=check_survived_uncovered
+    - PROFILE="-Ppitest-checks-regexp,no-validations"; POST_ACTION=check_survived_uncovered
+    - PROFILE="-Ppitest-checks-sizes,no-validations"; POST_ACTION=check_survived_uncovered
     - PROFILE="-Ppitest-checks-whitespace,no-validations"; POST_ACTION=check_survived_whitespace
     - PROFILE="-Ppitest-checks-misc,no-validations"; POST_ACTION=check_survived_misc
     - PROFILE="-Ppitest-checks-blocks,no-validations"; POST_ACTION=check_survived_blocks
     - PROFILE="-Ppitest-checks-coding,no-validations"; POST_ACTION=check_survived_coding
-    - PROFILE="-Ppitest-checks-design,no-validations"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checks-annotation,no-validations"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checks-header,no-validations"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checks-modifier,no-validations"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checks-naming,no-validations"; POST_ACTION=check_survived
+    - PROFILE="-Ppitest-checks-design,no-validations"; POST_ACTION=check_survived_uncovered
+    - PROFILE="-Ppitest-checks-annotation,no-validations"; POST_ACTION=check_survived_uncovered
+    - PROFILE="-Ppitest-checks-header,no-validations"; POST_ACTION=check_survived_uncovered
+    - PROFILE="-Ppitest-checks-modifier,no-validations"; POST_ACTION=check_survived_uncovered
+    - PROFILE="-Ppitest-checks-naming,no-validations"; POST_ACTION=check_survived_uncovered
     - PROFILE="-Ppitest-checks-indentation,no-validations"
-    - PROFILE="-Ppitest-checkstyle-tree-walker,no-validations"; POST_ACTION=check_survived
+    - PROFILE="-Ppitest-checkstyle-tree-walker,no-validations"; POST_ACTION=check_survived_uncovered
     - PROFILE="-Ppitest-checkstyle-common,no-validations"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checkstyle-main,no-validations"; POST_ACTION=check_survived
+    - PROFILE="-Ppitest-checkstyle-main,no-validations"; POST_ACTION=check_survived_uncovered
     - PROFILE="-Ppitest-checkstyle-api,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checkstyle-utils,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checkstyle-gui,no-validations"
@@ -51,6 +51,14 @@ build:
       then
         mvn $PROFILE clean verify org.pitest:pitest-maven:mutationCoverage;
 
+        if [[ $POST_ACTION == 'check_survived_uncovered' \
+                && ( $(grep -RE "class='survived'" target/ | cat | wc -l) > 0 \
+                    || $(grep -RE "class='uncovered'" target/ | cat | wc -l) > 0) ]]; then
+           echo "Survived items:"$(grep -RE "class='survived'" target/ | cat)
+           echo "Uncovered items:"$(grep -RE "class='uncovered'" target/ | cat)
+           echo "Survived/Uncovered items found in reports, build will be failed"
+           exit 1
+        fi
         if [[ $POST_ACTION == 'check_survived' && $(grep -RE "class='survived'" target/ | cat | wc -l) > 0 ]]; then
            echo "Survived items:"$(grep -RE "class='survived'" target/ | cat)
            echo "Survived items found in reports, build will be failed"
