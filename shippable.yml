@@ -24,10 +24,10 @@ env:
     - PROFILE="-Ppitest-checks-naming,no-validations"; POST_ACTION=check_survived_uncovered
     - PROFILE="-Ppitest-checks-indentation,no-validations"
     - PROFILE="-Ppitest-checkstyle-tree-walker,no-validations"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checkstyle-common,no-validations"; POST_ACTION=check_survived_uncovered
+    - PROFILE="-Ppitest-checkstyle-common,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checkstyle-main,no-validations"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checkstyle-api,no-validations"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checkstyle-utils,no-validations"; POST_ACTION=check_survived_uncovered
+    - PROFILE="-Ppitest-checkstyle-api,no-validations"; POST_ACTION=check_survived
+    - PROFILE="-Ppitest-checkstyle-utils,no-validations"; POST_ACTION=check_survived
     - PROFILE="-Ppitest-checkstyle-gui,no-validations"
 
 branches:
