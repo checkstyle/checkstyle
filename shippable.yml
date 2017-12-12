@@ -62,7 +62,7 @@ build:
            exit 1
         fi
         if [[ $POST_ACTION == 'check_survived_imports' && $(grep -RE "class='survived'" --exclude="CustomImportOrderCheck.*" target/ | cat | wc -l) > 0 ]]; then
-           echo "Survived items:"$(grep -RE "class='survived'" --exclude="CustomImportOrderCheck.*" --exclude="ImportOrderCheck.*" target/ | cat)
+           echo "Survived items:"$(grep -RE "class='survived'" --exclude="CustomImportOrderCheck.*" target/ | cat)
            echo "Survived items found in reports, build will be failed"
            exit 1
         fi
