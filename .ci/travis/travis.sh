@@ -25,6 +25,7 @@ versions)
     grep -B 7 -A 7 "<nextVersion>" target/dependency-updates-report.xml | cat
     echo "New plugin versions:"
     grep -B 4 -A 7 "<nextVersion>" target/plugin-updates-report.xml | cat
+    echo "Verification is failed."
     sleep 5s
     false
   else
