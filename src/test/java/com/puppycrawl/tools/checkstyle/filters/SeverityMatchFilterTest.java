@@ -20,11 +20,14 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
@@ -85,5 +88,11 @@ public class SeverityMatchFilterTest {
             null, getClass(), null);
         final AuditEvent ev3 = new AuditEvent(this, "ATest.java", infoMessage);
         assertFalse("level:" + infoLevel, filter.accept(ev3));
+    }
+
+    @Test
+    public void testConfigure() throws CheckstyleException {
+        filter.configure(new DefaultConfiguration("test"));
+        assertNotNull("object exists", filter);
     }
 }
