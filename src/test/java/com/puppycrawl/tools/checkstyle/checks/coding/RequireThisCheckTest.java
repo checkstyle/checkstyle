@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck.MSG_METHOD;
 import static com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck.MSG_VARIABLE;
 
+import java.lang.reflect.Constructor;
 import java.util.SortedSet;
 
 import org.junit.Assert;
@@ -33,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class RequireThisCheckTest extends AbstractModuleTestSupport {
@@ -296,6 +298,16 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCatchVariables() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RequireThisCheck.class);
+        checkConfig.addAttribute("validateOnlyOverlapping", "false");
+        final String[] expected = {
+            "29:21: " + getCheckMessage(MSG_VARIABLE, "ex", ""),
+        };
+        verify(checkConfig, getPath("InputRequireThisCatchVariables.java"), expected);
+    }
+
+    @Test
     public void test() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RequireThisCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -308,5 +320,19 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("validateOnlyOverlapping", "false");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRequireThisExtendedMethod.java"), expected);
+    }
+
+    @Test
+    public void testUnusedMethod() throws Exception {
+        final DetailAST ident = new DetailAST();
+        ident.setText("testName");
+
+        final Class<?> cls = Class.forName(RequireThisCheck.class.getName() + "$CatchFrame");
+        final Constructor<?> constructor = cls.getDeclaredConstructors()[0];
+        constructor.setAccessible(true);
+        final Object o = constructor.newInstance(null, ident);
+
+        Assert.assertEquals("expected ident token", ident,
+                TestUtil.getClassDeclaredMethod(cls, "getFrameNameIdent").invoke(o));
     }
 }

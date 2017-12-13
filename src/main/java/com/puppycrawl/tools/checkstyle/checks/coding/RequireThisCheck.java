@@ -336,7 +336,8 @@ public class RequireThisCheck extends AbstractCheck {
                 break;
             case TokenTypes.PARAMETER_DEF :
                 if (!CheckUtils.isReceiverParameter(ast)
-                        && !isLambdaParameter(ast)) {
+                        && !isLambdaParameter(ast)
+                        && ast.getParent().getType() != TokenTypes.LITERAL_CATCH) {
                     final DetailAST parameterIdent = ast.findFirstToken(TokenTypes.IDENT);
                     frame.addIdent(parameterIdent);
                 }
@@ -365,6 +366,12 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.CTOR_DEF :
                 final DetailAST ctorFrameNameIdent = ast.findFirstToken(TokenTypes.IDENT);
                 frameStack.addFirst(new ConstructorFrame(frame, ctorFrameNameIdent));
+                break;
+            case TokenTypes.LITERAL_CATCH:
+                final AbstractFrame catchFrame = new CatchFrame(frame, ast);
+                catchFrame.addIdent(ast.findFirstToken(TokenTypes.PARAMETER_DEF).findFirstToken(
+                        TokenTypes.IDENT));
+                frameStack.addFirst(catchFrame);
                 break;
             case TokenTypes.LITERAL_NEW:
                 if (isAnonymousClassDef(ast)) {
@@ -414,6 +421,7 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.SLIST :
             case TokenTypes.METHOD_DEF :
             case TokenTypes.CTOR_DEF :
+            case TokenTypes.LITERAL_CATCH :
                 frames.put(ast, frameStack.poll());
                 break;
             case TokenTypes.LITERAL_NEW :
@@ -952,6 +960,8 @@ public class RequireThisCheck extends AbstractCheck {
         METHOD_FRAME,
         /** Block frame type. */
         BLOCK_FRAME,
+        /** Catch frame type. */
+        CATCH_FRAME,
     }
 
     /**
@@ -1355,6 +1365,26 @@ public class RequireThisCheck extends AbstractCheck {
         @Override
         protected FrameType getType() {
             return FrameType.BLOCK_FRAME;
+        }
+    }
+
+    /**
+     * A frame initiated on entering a catch block; holds local catch variable names.
+     * @author Richard Veach
+     */
+    public static class CatchFrame extends AbstractFrame {
+        /**
+         * Creates catch frame.
+         * @param parent parent frame.
+         * @param ident ident frame name ident.
+         */
+        protected CatchFrame(AbstractFrame parent, DetailAST ident) {
+            super(parent, ident);
+        }
+
+        @Override
+        public FrameType getType() {
+            return FrameType.CATCH_FRAME;
         }
     }
 }
