@@ -1110,8 +1110,7 @@
           <!-- generated classes, unfortunately use problematic api -->
           <exclude>**/GeneratedJavaLexer.class</exclude>
           <exclude>**/JavadocParser.class</exclude>
-          <!-- excluded till https://github.com/policeman-tools/forbidden-apis/issues/108-->
-          <exclude>**/checks/annotation/annotationlocation/InputAnnotationLocationDeprecatedAndCustom*</exclude>
+          <exclude>**/Input*</exclude>
         </excludes>
       </configuration>
       <executions>
