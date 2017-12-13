@@ -21,9 +21,11 @@ versions)
     cat target/dependency-updates-report.xml
     echo "Version reports (plugin-updates-report.xml):"
     cat target/plugin-updates-report.xml
-    echo "New versions:"
+    echo "New dependency versions:"
     grep -B 7 -A 7 "<nextVersion>" target/dependency-updates-report.xml | cat
+    echo "New plugin versions:"
     grep -B 4 -A 7 "<nextVersion>" target/plugin-updates-report.xml | cat
+    sleep 5s
     false
   else
     echo "No new versions found"
