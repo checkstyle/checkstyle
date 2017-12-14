@@ -346,7 +346,7 @@
   <build>
     <pluginManagement>
       <plugins>
-        <!-- from super-pom BEGIN -->
+        <!-- from super-pom http://maven.apache.org/ref/3.5.2/maven-model-builder/super-pom.html BEGIN -->
         <!-- we need to override just make "mvn versions:plugin-updates-report" see no old versions -->
         <plugin>
           <artifactId>maven-antrun-plugin</artifactId>
@@ -362,9 +362,30 @@
         </plugin>
         <plugin>
           <artifactId>maven-release-plugin</artifactId>
+          <!-- version is same as in supper-pom as it is better to use same version as in sonatype-nexus-staging -->
           <version>2.1</version>
         </plugin>
         <!-- from super-pom END -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>cobertura-maven-plugin</artifactId>
+          <version>2.7</version>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>sonar-maven-plugin</artifactId>
+          <version>3.3.0.603</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-shade-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.pitest</groupId>
+          <artifactId>pitest-maven</artifactId>
+          <version>${pitest.plugin.version}</version>
+        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
@@ -1171,7 +1192,6 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>cobertura-maven-plugin</artifactId>
-        <version>2.7</version>
         <reportSets>
           <reportSet>
             <reports>
@@ -1328,6 +1348,7 @@
             <excludedLink>http://search.maven.org/*</excludedLink>
             <!-- codehaus does not exists anymore -->
             <excludedLink>http://sonar-plugins.codehaus.org/maven-report</excludedLink>
+            <excludedLink>http://www.mojohaus.org/sonar-maven-plugin/sonar-maven-plugin</excludedLink>
             <!-- this plugin does not have site at all -->
             <excludedLink>http://hazendaz.github.io/findbugs-maven-plugin/</excludedLink>
             <!-- SSLHandshakeException but page is opening -->
@@ -1515,7 +1536,6 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-shade-plugin</artifactId>
-            <version>3.1.0</version>
             <executions>
               <execution>
                 <phase>package</phase>
@@ -1548,7 +1568,6 @@
           <!-- Creates the binary and source distributions -->
           <plugin>
             <artifactId>maven-assembly-plugin</artifactId>
-            <version>3.1.0</version>
             <configuration>
               <descriptors>
                 <descriptor>config/assembly-bin.xml</descriptor>
@@ -1578,7 +1597,6 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>sonar-maven-plugin</artifactId>
-            <version>3.3.0.603</version>
           </plugin>
         </plugins>
       </build>
@@ -1594,7 +1612,6 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>cobertura-maven-plugin</artifactId>
-            <version>2.7</version>
             <configuration>
               <quiet>true</quiet>
               <formats>
