@@ -17,15 +17,5 @@
                 <ignoreVersion type="regex">20030911</ignoreVersion>
             </ignoreVersions>
         </rule>
-        <rule groupId="org.apache.maven.plugins" artifactId="maven-release-plugin">
-            <ignoreVersions>
-                <!-- we use 2.1 version that is defined at our parent
-                http://central.maven.org/maven2/org/sonatype/oss/oss-parent/9/oss-parent-9.pom
-                It is better to use same version as in parent, we have to use such parent
-                to use nexus-staging-maven-plugin to deploy maven central
-                -->
-                <ignoreVersion type="regex">.*</ignoreVersion>
-            </ignoreVersions>
-        </rule>
     </rules>
 </ruleset>
