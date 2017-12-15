@@ -10,7 +10,7 @@ nondex)
   RESULT=$(cat output.txt | wc -c)
   cat output.txt
   echo 'Size of output:'$RESULT
-  if [[ $RESULT != 0 ]]; then false; fi
+  if [[ $RESULT != 0 ]]; then sleep 5s; false; fi
   ;;
 
 versions)
@@ -241,6 +241,7 @@ cobertura-check)
   if [[ -s missed_classes_without_excludes.log ]] ; then
     echo "Classes which are missed in Cobertura coverage report:"
     cat missed_classes_without_excludes.log
+    sleep 5s
     false
   else
     echo "All classes are present in Cobertura coverage report."
@@ -249,6 +250,7 @@ cobertura-check)
 
 *)
   echo "Unexpected argument: $1"
+  sleep 5s
   false
   ;;
 
