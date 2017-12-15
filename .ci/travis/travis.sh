@@ -14,7 +14,7 @@ nondex)
   ;;
 
 versions)
-  if [[ $TRAVIS_EVENT_TYPE != "cron" ]]; then exit 0; fi
+  if [[ -v TRAVIS_EVENT_TYPE && $TRAVIS_EVENT_TYPE != "cron" ]]; then exit 0; fi
   mvn clean versions:dependency-updates-report versions:plugin-updates-report
   if [ $(grep "<nextVersion>" target/*-updates-report.xml | cat | wc -l) -gt 0 ]; then
     echo "Version reports (dependency-updates-report.xml):"
@@ -46,7 +46,8 @@ assembly-run-all-jar)
 sonarqube)
   # token could be generated at https://sonarcloud.io/account/security/
   # executon on local: SONAR_TOKEN=xxxxxxxxxx ./.ci/travis/travis.sh sonarqube
-  if [[ $TRAVIS_PULL_REQUEST && $TRAVIS_PULL_REQUEST =~ ^([0-9]*)$ ]]; then exit 0; fi
+  if [[ -v TRAVIS_PULL_REQUEST && $TRAVIS_PULL_REQUEST && $TRAVIS_PULL_REQUEST =~ ^([0-9]*)$ ]]; then exit 0; fi
+  if [[ -z $SONAR_TOKEN ]]; then echo "SONAR_TOKEN is not set"; sleep 5s; exit 1; fi
   export MAVEN_OPTS='-Xmx2000m'
   mvn clean package cobertura:cobertura sonar:sonar \
        -Dsonar.host.url=https://sonarcloud.io \
