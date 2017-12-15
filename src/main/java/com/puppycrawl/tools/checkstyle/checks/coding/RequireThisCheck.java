@@ -367,6 +367,10 @@ public class RequireThisCheck extends AbstractCheck {
                 final DetailAST ctorFrameNameIdent = ast.findFirstToken(TokenTypes.IDENT);
                 frameStack.addFirst(new ConstructorFrame(frame, ctorFrameNameIdent));
                 break;
+            case TokenTypes.ENUM_CONSTANT_DEF :
+                final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
+                ((ClassFrame) frame).addStaticMember(ident);
+                break;
             case TokenTypes.LITERAL_CATCH:
                 final AbstractFrame catchFrame = new CatchFrame(frame, ast);
                 catchFrame.addIdent(ast.findFirstToken(TokenTypes.PARAMETER_DEF).findFirstToken(
