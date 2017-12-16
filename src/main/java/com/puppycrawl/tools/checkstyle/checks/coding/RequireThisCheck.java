@@ -113,6 +113,7 @@ public class RequireThisCheck extends AbstractCheck {
             TokenTypes.METHOD_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
+            TokenTypes.ANNOTATION_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.PARAMETER_DEF,
             TokenTypes.TYPE_ARGUMENT,
@@ -193,6 +194,7 @@ public class RequireThisCheck extends AbstractCheck {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
+            TokenTypes.ANNOTATION_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.SLIST,
@@ -252,7 +254,12 @@ public class RequireThisCheck extends AbstractCheck {
      * @param ast IDENT to check.
      */
     private void processIdent(DetailAST ast) {
-        final int parentType = ast.getParent().getType();
+        int parentType = ast.getParent().getType();
+        if (parentType == TokenTypes.EXPR
+                && ast.getParent().getParent().getParent().getType()
+                    == TokenTypes.ANNOTATION_FIELD_DEF) {
+            parentType = TokenTypes.ANNOTATION_FIELD_DEF;
+        }
         switch (parentType) {
             case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR:
             case TokenTypes.ANNOTATION:
@@ -870,14 +877,7 @@ public class RequireThisCheck extends AbstractCheck {
      */
     private static AbstractFrame findFrame(AbstractFrame frame, DetailAST name,
             boolean lookForMethod) {
-        final AbstractFrame result;
-        if (frame == null) {
-            result = null;
-        }
-        else {
-            result = frame.getIfContains(name, lookForMethod);
-        }
-        return result;
+        return frame.getIfContains(name, lookForMethod);
     }
 
     /**
