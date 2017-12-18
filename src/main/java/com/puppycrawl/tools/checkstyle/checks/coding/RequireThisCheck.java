@@ -146,11 +146,11 @@ public class RequireThisCheck extends AbstractCheck {
             TokenTypes.BXOR_ASSIGN,
         }).collect(Collectors.toSet()));
 
+    /** Frame for the currently processed AST. */
+    private final Deque<AbstractFrame> current = new ArrayDeque<>();
+
     /** Tree of all the parsed frames. */
     private Map<DetailAST, AbstractFrame> frames;
-
-    /** Frame for the currently processed AST. */
-    private AbstractFrame current;
 
     /** Whether we should check fields usage. */
     private boolean checkFields = true;
@@ -210,7 +210,7 @@ public class RequireThisCheck extends AbstractCheck {
     @Override
     public void beginTree(DetailAST rootAST) {
         frames = new HashMap<>();
-        current = null;
+        current.clear();
 
         final Deque<AbstractFrame> frameStack = new LinkedList<>();
         DetailAST curNode = rootAST;
@@ -241,7 +241,24 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.SLIST :
             case TokenTypes.METHOD_DEF :
             case TokenTypes.CTOR_DEF :
-                current = frames.get(ast);
+                current.push(frames.get(ast));
+                break;
+            default :
+                // do nothing
+        }
+    }
+
+    @Override
+    public void leaveToken(DetailAST ast) {
+        switch (ast.getType()) {
+            case TokenTypes.CLASS_DEF :
+            case TokenTypes.INTERFACE_DEF :
+            case TokenTypes.ENUM_DEF :
+            case TokenTypes.ANNOTATION_DEF :
+            case TokenTypes.SLIST :
+            case TokenTypes.METHOD_DEF :
+            case TokenTypes.CTOR_DEF :
+                current.pop();
                 break;
             default :
                 // do nothing
@@ -843,7 +860,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @return AbstractFrame containing declaration or null.
      */
     private AbstractFrame findClassFrame(DetailAST name, boolean lookForMethod) {
-        AbstractFrame frame = current;
+        AbstractFrame frame = current.peek();
 
         while (true) {
             frame = findFrame(frame, name, lookForMethod);
@@ -865,7 +882,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @return AbstractFrame containing declaration or null.
      */
     private AbstractFrame findFrame(DetailAST name, boolean lookForMethod) {
-        return findFrame(current, name, lookForMethod);
+        return findFrame(current.peek(), name, lookForMethod);
     }
 
     /**
@@ -912,7 +929,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @return the name of the nearest parent ClassFrame.
      */
     private String getNearestClassFrameName() {
-        AbstractFrame frame = current;
+        AbstractFrame frame = current.peek();
         while (frame.getType() != FrameType.CLASS_FRAME) {
             frame = frame.getParent();
         }
