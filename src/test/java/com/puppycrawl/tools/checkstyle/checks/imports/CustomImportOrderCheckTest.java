@@ -29,11 +29,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.File;
 import java.lang.reflect.Method;
 
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -333,6 +335,59 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         };
 
         verify(checkConfig, getPath("InputCustomImportOrderThirdPartyAndSpecial.java"), expected);
+    }
+
+    @Test
+    public void testCompareImports() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("specialImportsRegExp", "com");
+        checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
+        checkConfig.addAttribute("customImportOrderRules",
+            "STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS");
+        final String[] expected = {
+            "4: " + getCheckMessage(MSG_LEX, "java.util.Map",
+                "java.util.Map.Entry"),
+        };
+
+        verify(checkConfig, getPath("InputCustomImportOrderCompareImports.java"), expected);
+    }
+
+    @Test
+    public void testFindBetterPatternMatch() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("standardPackageRegExp", "java|javax|event.*");
+        checkConfig.addAttribute("specialImportsRegExp", "An|lang|java|collect|event");
+        checkConfig.addAttribute("thirdPartyPackageRegExp", "com");
+        checkConfig.addAttribute("separateLineBetweenGroups", "true");
+        checkConfig.addAttribute("customImportOrderRules",
+            "STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE");
+        final String[] expected = {
+            "8: " + getCheckMessage(MSG_ORDER, THIRD, SPECIAL,
+                "com.google.common.annotations.Beta"),
+        };
+
+        verify(checkConfig, getPath("InputCustomImportOrderFindBetterPatternMatch.java"), expected);
+    }
+
+    @Test
+    public void testBeginTreeClear() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("specialImportsRegExp", "com");
+        checkConfig.addAttribute("separateLineBetweenGroups", "false");
+        checkConfig.addAttribute("customImportOrderRules",
+            "STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final Checker checker = createChecker(checkConfig);
+        final String fileName1 = getPath("InputCustomImportOrderImportsContainingJava.java");
+        final String fileName2 = getPath("InputCustomImportOrderNoValid.java");
+        final File[] files = {
+            new File(fileName1),
+            new File(fileName2),
+        };
+        verify(checker, files, fileName1, expected);
     }
 
     @Test
