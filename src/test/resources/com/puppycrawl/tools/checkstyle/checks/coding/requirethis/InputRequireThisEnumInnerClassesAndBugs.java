@@ -150,3 +150,20 @@ class NestedRechange {
         }
     }
 }
+class NestedFrames {
+    int a = 0;
+
+    public int oneReturnInMethod2() {
+        for (int i = 0; i < 10; i++) {
+            int a = 1;
+            if (a != 2 && true) {
+                if (true | false) {
+                    if (a - a != 0) {
+                        a += 1;
+                    }
+                }
+            }
+        }
+        return a + a * a;
+    }
+}
