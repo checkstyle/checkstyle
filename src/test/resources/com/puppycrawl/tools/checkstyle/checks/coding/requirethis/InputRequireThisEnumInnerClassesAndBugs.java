@@ -152,6 +152,7 @@ class NestedRechange {
 }
 class NestedFrames {
     int a = 0;
+    int b = 0;
 
     public int oneReturnInMethod2() {
         for (int i = 0; i < 10; i++) {
@@ -165,5 +166,11 @@ class NestedFrames {
             }
         }
         return a + a * a;
+    }
+
+    public int oneReturnInMethod3() {
+        for (int b = 0; b < 10; b++) {
+        }
+        return b + b * b;
     }
 }
