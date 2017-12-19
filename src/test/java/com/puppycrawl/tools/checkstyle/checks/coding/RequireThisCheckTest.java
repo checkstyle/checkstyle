@@ -61,8 +61,10 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "122:13: " + getCheckMessage(MSG_VARIABLE, "i", "Issue2240."),
             "134:9: " + getCheckMessage(MSG_METHOD, "foo", ""),
             "142:9: " + getCheckMessage(MSG_VARIABLE, "s", ""),
-            "167:16: " + getCheckMessage(MSG_VARIABLE, "a", ""),
-            "167:20: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "168:16: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "168:20: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "174:16: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "174:20: " + getCheckMessage(MSG_VARIABLE, "b", ""),
         };
         verify(checkConfig,
                getPath("InputRequireThisEnumInnerClassesAndBugs.java"),
@@ -101,8 +103,10 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "114:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
             "122:13: " + getCheckMessage(MSG_VARIABLE, "i", "Issue2240."),
             "142:9: " + getCheckMessage(MSG_VARIABLE, "s", ""),
-            "167:16: " + getCheckMessage(MSG_VARIABLE, "a", ""),
-            "167:20: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "168:16: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "168:20: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "174:16: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "174:20: " + getCheckMessage(MSG_VARIABLE, "b", ""),
         };
         verify(checkConfig,
                getPath("InputRequireThisEnumInnerClassesAndBugs.java"),
@@ -325,6 +329,17 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("validateOnlyOverlapping", "false");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRequireThisAnnotationInterface.java"), expected);
+    }
+
+    @Test
+    public void testFor() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RequireThisCheck.class);
+        checkConfig.addAttribute("validateOnlyOverlapping", "false");
+        final String[] expected = {
+            "13:13: " + getCheckMessage(MSG_VARIABLE, "bottom", ""),
+            "21:34: " + getCheckMessage(MSG_VARIABLE, "name", ""),
+        };
+        verify(checkConfig, getPath("InputRequireThisFor.java"), expected);
     }
 
     @Test

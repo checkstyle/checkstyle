@@ -91,6 +91,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * @author o_sukhodolsky
  * @author Andrei Selkin
  */
+// -@cs[ClassDataAbstractionCoupling] This check requires to work with and identify many frames.
 @FileStatefulCheck
 public class RequireThisCheck extends AbstractCheck {
 
@@ -197,6 +198,7 @@ public class RequireThisCheck extends AbstractCheck {
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
+            TokenTypes.LITERAL_FOR,
             TokenTypes.SLIST,
             TokenTypes.IDENT,
         };
@@ -241,6 +243,7 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.SLIST :
             case TokenTypes.METHOD_DEF :
             case TokenTypes.CTOR_DEF :
+            case TokenTypes.LITERAL_FOR :
                 current.push(frames.get(ast));
                 break;
             default :
@@ -258,6 +261,7 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.SLIST :
             case TokenTypes.METHOD_DEF :
             case TokenTypes.CTOR_DEF :
+            case TokenTypes.LITERAL_FOR:
                 current.pop();
                 break;
             default :
@@ -352,6 +356,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @param frameStack stack containing the FrameTree being built.
      * @param ast AST to parse.
      */
+    // -@cs[JavaNCSS] This method is a big switch and is too hard to remove.
     private static void collectDeclarations(Deque<AbstractFrame> frameStack, DetailAST ast) {
         final AbstractFrame frame = frameStack.peek();
         switch (ast.getType()) {
@@ -400,6 +405,10 @@ public class RequireThisCheck extends AbstractCheck {
                 catchFrame.addIdent(ast.findFirstToken(TokenTypes.PARAMETER_DEF).findFirstToken(
                         TokenTypes.IDENT));
                 frameStack.addFirst(catchFrame);
+                break;
+            case TokenTypes.LITERAL_FOR:
+                final AbstractFrame forFrame = new ForFrame(frame, ast);
+                frameStack.addFirst(forFrame);
                 break;
             case TokenTypes.LITERAL_NEW:
                 if (isAnonymousClassDef(ast)) {
@@ -450,6 +459,7 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.METHOD_DEF :
             case TokenTypes.CTOR_DEF :
             case TokenTypes.LITERAL_CATCH :
+            case TokenTypes.LITERAL_FOR :
                 frames.put(ast, frameStack.poll());
                 break;
             case TokenTypes.LITERAL_NEW :
@@ -617,7 +627,8 @@ public class RequireThisCheck extends AbstractCheck {
     private boolean canBeReferencedFromStaticContext(DetailAST ident) {
         AbstractFrame variableDeclarationFrame = findFrame(ident, false);
         boolean staticInitializationBlock = false;
-        while (variableDeclarationFrame.getType() == FrameType.BLOCK_FRAME) {
+        while (variableDeclarationFrame.getType() == FrameType.BLOCK_FRAME
+                || variableDeclarationFrame.getType() == FrameType.FOR_FRAME) {
             final DetailAST blockFrameNameIdent = variableDeclarationFrame.getFrameNameIdent();
             final DetailAST definitionToken = blockFrameNameIdent.getParent();
             if (definitionToken.getType() == TokenTypes.STATIC_INIT) {
@@ -983,6 +994,8 @@ public class RequireThisCheck extends AbstractCheck {
         BLOCK_FRAME,
         /** Catch frame type. */
         CATCH_FRAME,
+        /** Lambda frame type. */
+        FOR_FRAME,
     }
 
     /**
@@ -1406,6 +1419,26 @@ public class RequireThisCheck extends AbstractCheck {
         @Override
         public FrameType getType() {
             return FrameType.CATCH_FRAME;
+        }
+    }
+
+    /**
+     * A frame initiated on entering a for block; holds local for variable names.
+     * @author Richard Veach
+     */
+    public static class ForFrame extends AbstractFrame {
+        /**
+         * Creates for frame.
+         * @param parent parent frame.
+         * @param ident ident frame name ident.
+         */
+        protected ForFrame(AbstractFrame parent, DetailAST ident) {
+            super(parent, ident);
+        }
+
+        @Override
+        public FrameType getType() {
+            return FrameType.FOR_FRAME;
         }
     }
 }
