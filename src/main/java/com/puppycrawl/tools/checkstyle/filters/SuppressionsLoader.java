@@ -36,7 +36,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
-import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
+import com.puppycrawl.tools.checkstyle.XmlLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
@@ -46,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author Rick Giles
  */
 public final class SuppressionsLoader
-    extends AbstractLoader {
+    extends XmlLoader {
     /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_0 =
         "-//Puppy Crawl//DTD Suppressions 1.0//EN";

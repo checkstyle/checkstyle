@@ -2148,8 +2148,6 @@ isolated classes and we cannot put them to separate package as it will affect us
                 <option value="ClassIndependentOfModule" />
                 <!-- till #4870, used in MT check markers -->
                 <option value="unused" />
-                <!-- till https://github.com/checkstyle/checkstyle/issues/5338 -->
-                <option value="AbstractClassExtendsConcreteClass" />
             </list>
         </option>
     </inspection_tool>

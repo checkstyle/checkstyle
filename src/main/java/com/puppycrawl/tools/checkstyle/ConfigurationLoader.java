@@ -40,7 +40,6 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
@@ -580,7 +579,7 @@ public final class ConfigurationLoader {
      * appear in the public API of the ConfigurationLoader.
      */
     private final class InternalLoader
-        extends AbstractLoader {
+        extends XmlLoader {
         /** Module elements. */
         private static final String MODULE = "module";
         /** Name attribute. */

@@ -2300,7 +2300,7 @@
               </excludedMethods>
               <avoidCallsTo>
                 <!--cause of https://github.com/checkstyle/checkstyle/issues/3605-->
-                <avoidCallsTo>com.puppycrawl.tools.checkstyle.api.AbstractLoader$FeaturesForVerySecureJavaInstallations</avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.XmlLoader$FeaturesForVerySecureJavaInstallations</avoidCallsTo>
               </avoidCallsTo>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>100</mutationThreshold>

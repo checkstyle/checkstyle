@@ -34,14 +34,14 @@ import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
+import com.puppycrawl.tools.checkstyle.XmlLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
  * Responsible for loading the contents of an import control configuration file.
  * @author Oliver Burn
  */
-final class ImportControlLoader extends AbstractLoader {
+final class ImportControlLoader extends XmlLoader {
     /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_0 =
         "-//Puppy Crawl//DTD Import Control 1.0//EN";

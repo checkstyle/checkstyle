@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.api;
+package com.puppycrawl.tools.checkstyle;
 
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.Assert.assertEquals;
@@ -35,7 +35,7 @@ import org.xml.sax.XMLReader;
 
 import com.sun.org.apache.xerces.internal.impl.Constants;
 
-public class AbstractLoaderTest {
+public class XmlLoaderTest {
 
     private static final String NAMESPACES_FEATURE =
             Constants.SAX_FEATURE_PREFIX + Constants.NAMESPACES_FEATURE;
@@ -51,10 +51,10 @@ public class AbstractLoaderTest {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertTrue("Constructor is not private", isUtilsClassHasPrivateConstructor(
-                AbstractLoader.FeaturesForVerySecureJavaInstallations.class, true));
+                XmlLoader.FeaturesForVerySecureJavaInstallations.class, true));
     }
 
-    private static final class DummyLoader extends AbstractLoader {
+    private static final class DummyLoader extends XmlLoader {
 
         DummyLoader(Map<String, String> publicIdToResourceNameMap)
                 throws SAXException, ParserConfigurationException {
