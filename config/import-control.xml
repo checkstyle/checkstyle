@@ -120,6 +120,9 @@
     <allow class="com.google.common.collect.Multiset.Entry" local-only="true"/>
     <allow class="com.google.common.collect.SetMultimap" local-only="true"/>
 
+    <subpackage name="imports">
+      <allow class="com.puppycrawl.tools.checkstyle.XmlLoader" local-only="true"/>
+    </subpackage>
     <subpackage name="indentation">
       <allow pkg="java.lang.reflect"/>
     </subpackage>
@@ -154,6 +157,7 @@
     <allow class="java.lang.ref.WeakReference" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerFilter" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.XmlLoader" local-only="true"/>
     <disallow pkg="com\.puppycrawl\.tools\.checkstyle\.checks\.[^.]+" regex="true"/>
     <allow pkg="com.puppycrawl.tools.checkstyle.utils"/>
     <allow pkg="com.puppycrawl.tools.checkstyle.xpath"/>

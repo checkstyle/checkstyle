@@ -21,7 +21,7 @@
               files="AbstractClassNameCheck.java"/>
     <!-- test should be named as their main class -->
     <suppress checks="AbstractClassNameCheck"
-              files="AbstractCheckTest.java|AbstractClassNameCheckTest.java|AbstractTypeAwareCheckTest.java|AbstractJavadocCheckTest.java|AbstractViolationReporterTest.java|AbstractFileSetCheckTest.java|AbstractLoaderTest.java|AbstractNodeTest.java"/>
+              files="AbstractCheckTest.java|AbstractClassNameCheckTest.java|AbstractTypeAwareCheckTest.java|AbstractJavadocCheckTest.java|AbstractViolationReporterTest.java|AbstractFileSetCheckTest.java|AbstractNodeTest.java"/>
 
     <!-- Tone down the checking for test code -->
     <suppress checks="CyclomaticComplexity" files="[\\/]XdocsPagesTest\.java"/>
