@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck.MSG_KEY_VOID;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
@@ -48,9 +49,9 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ReturnCountCheck.class);
         final String[] expected = {
-            "18:5: " + getCheckMessage(MSG_KEY, 7, 1),
-            "30:5: " + getCheckMessage(MSG_KEY, 2, 1),
-            "35:17: " + getCheckMessage(MSG_KEY, 6, 1),
+            "18:5: " + getCheckMessage(MSG_KEY_VOID, 7, 1),
+            "30:5: " + getCheckMessage(MSG_KEY_VOID, 2, 1),
+            "35:17: " + getCheckMessage(MSG_KEY_VOID, 6, 1),
             "49:5: " + getCheckMessage(MSG_KEY, 7, 2),
         };
         verify(checkConfig, getPath("InputReturnCountSwitches.java"), expected);
@@ -63,9 +64,9 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("format", "^$");
         final String[] expected = {
             "5:5: " + getCheckMessage(MSG_KEY, 7, 2),
-            "18:5: " + getCheckMessage(MSG_KEY, 7, 1),
-            "30:5: " + getCheckMessage(MSG_KEY, 2, 1),
-            "35:17: " + getCheckMessage(MSG_KEY, 6, 1),
+            "18:5: " + getCheckMessage(MSG_KEY_VOID, 7, 1),
+            "30:5: " + getCheckMessage(MSG_KEY_VOID, 2, 1),
+            "35:17: " + getCheckMessage(MSG_KEY_VOID, 6, 1),
             "49:5: " + getCheckMessage(MSG_KEY, 7, 2),
         };
         verify(checkConfig, getPath("InputReturnCountSwitches.java"), expected);
@@ -146,10 +147,11 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("max", "2");
         checkConfig.addAttribute("maxForVoid", "0");
         final String[] expected = {
-            "4:5: " + getCheckMessage(MSG_KEY, 1, 0),
-            "8:5: " + getCheckMessage(MSG_KEY, 1, 0),
-            "14:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "4:5: " + getCheckMessage(MSG_KEY_VOID, 1, 0),
+            "8:5: " + getCheckMessage(MSG_KEY_VOID, 1, 0),
+            "14:5: " + getCheckMessage(MSG_KEY_VOID, 2, 0),
             "30:5: " + getCheckMessage(MSG_KEY, 3, 2),
+            "41:5: " + getCheckMessage(MSG_KEY_VOID, 2, 0),
         };
         verify(checkConfig, getPath("InputReturnCountVoid.java"), expected);
     }
