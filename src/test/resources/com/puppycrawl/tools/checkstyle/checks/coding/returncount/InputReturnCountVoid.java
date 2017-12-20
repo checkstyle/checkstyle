@@ -37,4 +37,12 @@ class InputReturnCountVoid {
 
         return 0;
     }
+
+    void method5() {
+        if (true) {
+            return;
+        }
+
+        return;
+    }
 }
