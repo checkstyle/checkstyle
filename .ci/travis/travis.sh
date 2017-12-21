@@ -218,7 +218,9 @@ no-exception-test-alot-of-project1)
 
 cobertura-check)
   set +e
-  mvn clean compile cobertura:cobertura cobertura:check -DargLine='-Xms1024m -Xmx2048m' > mvn-log.log
+  echo "Output and Error output will be redirected to mvn-log.log file ..."
+  mvn clean compile cobertura:cobertura cobertura:check -DargLine='-Xms1024m -Xmx2048m' &> mvn-log.log
+  echo "Printing mvn-log.log file:"
   cat mvn-log.log
   set -e
   echo "Grep for hidden errors (due to quiet=true mode in pom.xml):"
@@ -237,7 +239,7 @@ cobertura-check)
   sed -i'' "s/com\/puppycrawl\/tools\/checkstyle\/gui\/BaseCellEditor/\ncom\/puppycrawl\/tools\/checkstyle\/gui\/BaseCellEditor/" cobertura_excluded_classes.log
   grep -Fxvf cobertura_classes.log target_classes.log > missed_classes_with_excludes.log
   grep -Fvf cobertura_excluded_classes.log missed_classes_with_excludes.log > missed_classes_without_excludes.log | cat > output.log
-  echo "output.log"
+  echo "output.log content:"
   cat output.log
 
   if [[ -s missed_classes_without_excludes.log ]] ; then
