@@ -225,7 +225,8 @@ cobertura-check)
   grep -R "<td class=\"nbHitsUncovered\"" target/site/cobertura/* --exclude=*grammars* | cat > mvn-log-grep.log
   cat mvn-log-grep.log
   if [[ $(cat mvn-log-grep.log | wc -l) -gt 0 ]]; then
-    exit 1
+    sleep 5s
+    false
   fi
   echo "Checking that all classes are covered:"
   xmlstarlet sel -t -m "//class" -v "@name" -n target/site/cobertura/coverage.xml | sed "s/\./\//g" | sed "/^$/d" | sort | uniq > cobertura_classes.log
