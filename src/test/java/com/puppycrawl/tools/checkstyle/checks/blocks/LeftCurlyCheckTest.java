@@ -264,6 +264,18 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testLineBreakAfterSwitch() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
+        checkConfig.addAttribute("option", LeftCurlyOption.EOL.toString());
+        final String[] expected = {
+            "9:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
+            "13:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
+            "20:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
+        };
+        verify(checkConfig, getPath("InputLeftCurlyLineBreakSwitch.java"), expected);
+    }
+
+    @Test
     public void testIgnoreEnumsOptionTrue() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
         checkConfig.addAttribute("option", LeftCurlyOption.EOL.toString());
@@ -322,6 +334,8 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
             TokenTypes.LITERAL_WHILE,
             TokenTypes.LITERAL_TRY,
             TokenTypes.LITERAL_CATCH,
+            TokenTypes.LITERAL_CASE,
+            TokenTypes.LITERAL_DEFAULT,
             TokenTypes.LITERAL_FINALLY,
             TokenTypes.LITERAL_SYNCHRONIZED,
             TokenTypes.LITERAL_SWITCH,
