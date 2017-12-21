@@ -222,6 +222,7 @@ cobertura-check)
   mvn clean compile cobertura:cobertura cobertura:check -DargLine='-Xms1024m -Xmx2048m' &> mvn-log.log
   echo "Printing mvn-log.log file:"
   cat mvn-log.log
+  sleep 5s
   set -e
   echo "Grep for hidden errors (due to quiet=true mode in pom.xml):"
   grep -R "<td class=\"nbHitsUncovered\"" target/site/cobertura/* --exclude=*grammars* | cat > mvn-log-grep.log
