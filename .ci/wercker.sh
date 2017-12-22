@@ -129,11 +129,9 @@ no-exception-hibernate-orm)
   cd contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#hibernate-orm/hibernate-orm/' projects-to-test-on.properties
+  groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
   cd ../../
-  mvn clean install -Pno-validations
-  cd contribution/checkstyle-tester
-  export MAVEN_OPTS="-Xmx2048m"
-  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config checks-nonjavadoc-error.xml
+  rm -rf contribution
   ;;
 
 no-exception-findbugs)
@@ -141,11 +139,9 @@ no-exception-findbugs)
   cd contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#findbugs/findbugs/' projects-to-test-on.properties
-  cd ../../
-  mvn clean install -Pno-validations
-  cd contribution/checkstyle-tester
-  export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config checks-nonjavadoc-error.xml
+  cd ../../
+  rm -rf contribution
   ;;
 
 no-exception-spring-framework)
@@ -153,11 +149,9 @@ no-exception-spring-framework)
   cd contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spring-framework/spring-framework/' projects-to-test-on.properties
-  cd ../../
-  mvn clean install -Pno-validations
-  cd contribution/checkstyle-tester
-  export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config checks-nonjavadoc-error.xml
+  cd ../../
+  rm -rf contribution
   ;;
 
 no-exception-hbase)
@@ -165,11 +159,9 @@ no-exception-hbase)
   cd contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#Hbase/Hbase/' projects-to-test-on.properties
-  cd ../../
-  mvn clean install -Pno-validations
-  cd contribution/checkstyle-tester
-  export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config checks-nonjavadoc-error.xml
+  cd ../../
+  rm -rf contribution
   ;;
 
 no-exception-Pmd-elasticsearch-lombok-ast)
@@ -179,11 +171,9 @@ no-exception-Pmd-elasticsearch-lombok-ast)
   sed -i.'' 's/#pmd/pmd/' projects-to-test-on.properties
   sed -i.'' 's/#elasticsearch/elasticsearch/' projects-to-test-on.properties
   sed -i.'' 's/#lombok-ast/lombok-ast/' projects-to-test-on.properties
-  cd ../../
-  mvn clean install -Pno-validations
-  cd contribution/checkstyle-tester
-  export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config checks-nonjavadoc-error.xml
+  cd ../../
+  rm -rf contribution
   ;;
 
 no-exception-alot-of-projects)
@@ -196,11 +186,9 @@ no-exception-alot-of-projects)
   sed -i.'' 's/#apache-ant/apache-ant/' projects-to-test-on.properties
   sed -i.'' 's/#apache-jsecurity/apache-jsecurity/' projects-to-test-on.properties
   sed -i.'' 's/#android-launcher/android-launcher/' projects-to-test-on.properties
-  cd ../../
-  mvn clean install -Pno-validations
-  cd contribution/checkstyle-tester
-  export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config checks-nonjavadoc-error.xml
+  cd ../../
+  rm -rf contribution
   ;;
 
 *)
