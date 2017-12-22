@@ -24,7 +24,6 @@ build:
          PATH=$GROOVY_HOME/bin:$PATH
          groovy -v
 
-  # Build Checkstyle
   - script:
       name: Build Checkstyle
       code: |
@@ -37,316 +36,160 @@ build:
           echo "build is skipped ..."
         fi
 
-  # NoErrorTest - Postgresql JDBC Driver (oraclejdk8)
   - script:
       name: NoErrorTest - Postgresql JDBC Driver
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
-          set -e
-          CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
-          echo CS_version: ${CS_POM_VERSION}
-          for i in 1 2 3 4 5; do git clone https://github.com/pgjdbc/pgjdbc.git && break || sleep 15; done
-          cd pgjdbc/pgjdbc
-          # special checkout till https://github.com/checkstyle/checkstyle/issues/5286
-          git checkout 279fb435b392114c45266ecef901bfd59470842a
-          wget https://gist.githubusercontent.com/timurt/a981d094cbbbe746ecd400424f5f3af8/raw/6e5d28a83b0d63a880f897d839f7f536b64f0979/pgjdbc.patch
-          git apply pgjdbc.patch
-          mvn compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
-          cd ../../
-          rm -rf pgjdbc
+          ./.ci/wercker.sh no-error-pgjdbc
         else
           echo "build is skipped ..."
         fi
 
-  # NoErrorTest - Orekit (oraclejdk8)
   - script:
       name: NoErrorTest - Orekit
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
-          set -e
-          CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
-          echo CS_version: ${CS_POM_VERSION}
-          for i in 1 2 3 4 5; do git clone https://github.com/Hipparchus-Math/hipparchus.git && break || sleep 15; done
-          cd hipparchus
-          git checkout 905006092493e350dcd68dd7b2ec1dedaf4983b7
-          mvn clean install -DskipTests
-          cd ../
-          for i in 1 2 3 4 5; do git clone https://github.com/CS-SI/Orekit.git && break || sleep 15; done
-          cd Orekit
-          # Orekit use 'develop' branch as target for PullRequest merges
-          git checkout develop
-          mvn compile checkstyle:check -Dorekit.checkstyle.version=${CS_POM_VERSION}
-          cd ../
-          rm -rf hipparchus Orekit
+          ./.ci/wercker.sh no-error-orekit
         else
           echo "build is skipped ..."
         fi
 
-  # NoErrorTest - XWiki (oraclejdk8)
   - script:
       name: NoErrorTest - XWiki
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
-          set -e
-          CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
-          echo CS_version: ${CS_POM_VERSION}
-          for i in 1 2 3 4 5; do git clone https://github.com/xwiki/xwiki-commons/ && break || sleep 15; done
-          cd xwiki-commons
-          git checkout 44b0c0048c516dae20cf5f8a71181af836549484
-          mvn install -DskipTests -Dxwiki.clirr.skip=true checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
-          cd ../../
-          rm -rf xwiki-commons
+          ./.ci/wercker.sh no-error-xwiki
         else
           echo "build is skipped ..."
         fi
 
-  # NoErrorTest - Apache Apex (oraclejdk8)
   - script:
       name: NoErrorTest - Apache Apex
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
-          set -e
-          CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
-          echo CS_version: ${CS_POM_VERSION}
-          for i in 1 2 3 4 5; do git clone https://github.com/apache/incubator-apex-core/ && break || sleep 15; done
-          cd incubator-apex-core
-          mvn compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
-          cd ../
-          rm -rf incubator-apex-core
+          ./.ci/wercker.sh no-error-apex-core
         else
           echo "build is skipped ..."
         fi
 
-  # NoErrorTest - Hibernate Search (oraclejdk8)
   - script:
       name: NoErrorTest - Hibernate Search
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
-          set -e
-          CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
-          echo CS_version: ${CS_POM_VERSION}
-          for i in 1 2 3 4 5; do git clone https://github.com/hibernate/hibernate-search.git && break || sleep 15; done
-          cd hibernate-search
-          mvn -s settings-example.xml clean install -DskipTests=true -Dtest.elasticsearch.host.provided=true -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION}
-          mvn -s settings-example.xml checkstyle:check  -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION}
-          cd ../
-          rm -rf hibernate-search
+          ./.ci/wercker.sh no-error-hibernate-search
         else
           echo "build is skipped ..."
         fi
 
-  # NoErrorTest - HtmlUnit (oraclejdk8)
   - script:
       name: NoErrorTest - HtmlUnit
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
-          set -e
-          CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
-          echo CS_version: ${CS_POM_VERSION}
-          echo "checkouting project sources ..."
-          svn -q export https://svn.code.sf.net/p/htmlunit/code/trunk/htmlunit@r14923 htmlunit
-          cd htmlunit
-          sed -i "s/            <version>2.28-SNAPSHOT/            <version>2.28-20171106.080245-12/" pom.xml
-          echo "Running checkstyle validation ..."
-          mvn compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
-          cd ../
-          rm -rf htmlunit
+          ./.ci/wercker.sh no-error-htmlunit
         else
           echo "build is skipped ..."
         fi
 
-  # NoErrorTest - checkstyle's sevntu
   - script:
       name: NoErrorTest - checkstyle's sevntu
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
-          set -e
-          CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
-          echo CS_version: ${CS_POM_VERSION}
-          mvn compile verify -Dmaven.sevntu-checkstyle-check.checkstyle.version=${CS_POM_VERSION} -Dmaven.test.skip=true -Dcheckstyle.ant.skip=true -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dforbiddenapis.skip=true -Dxml.skip=true
+          ./.ci/wercker.sh no-error-checkstyles-sevntu
         else
           echo "build is skipped ..."
         fi
 
-  # NoErrorTest - sevntu-checks
   - script:
       name: NoErrorTest - sevntu-checks
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
-          set -e
-          CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
-          echo CS_version: ${CS_POM_VERSION}
-          for i in 1 2 3 4 5; do git clone https://github.com/sevntu-checkstyle/sevntu.checkstyle && break || sleep 15; done
-          cd sevntu.checkstyle/sevntu-checks
-          mvn -Pno-validations verify  -Dcheckstyle.skip=false -Dcheckstyle.version=${CS_POM_VERSION} -Dcheckstyle.configLocation=../../config/checkstyle_checks.xml
+          ./.ci/wercker.sh no-error-sevntu-checks
         else
           echo "build is skipped ..."
         fi
 
-  # NoExceptiontest - Apache Struts (oraclejdk8)
   - script:
       name: NoExceptiontest - Apache Struts
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
-          set -e
-          for i in 1 2 3 4 5; do git clone https://github.com/checkstyle/contribution && break || sleep 15; done
-          cd contribution/checkstyle-tester
-          sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
-          sed -i'' 's/#apache-struts/apache-struts/' projects-for-wercker.properties
-          groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
-          cd ../../
-          rm -rf contribution
+          ./.ci/wercker.sh no-exception-guava-struts
         else
           echo "build is skipped ..."
         fi
 
-  # NoExceptiontest - Checkstyle ,sevntu-checkstyle (oraclejdk8)
   - script:
       name: NoExceptiontest - Checkstyle ,sevntu-checkstyle
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
-          set -e
-          for i in 1 2 3 4 5; do git clone https://github.com/checkstyle/contribution && break || sleep 15; done
-          cd contribution/checkstyle-tester
-          sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
-          sed -i'' 's/#checkstyle/checkstyle/' projects-for-wercker.properties
-          sed -i'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-for-wercker.properties
-          groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
-          cd ../../
-          rm -rf contribution
+          ./.ci/wercker.sh no-exception-checkstyle-sevntu
         else
           echo "build is skipped ..."
         fi
 
-  # NoExceptiontest - Guava (oraclejdk8)
   - script:
       name: NoExceptiontest - Guava
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
-          set -e
-          for i in 1 2 3 4 5; do git clone https://github.com/checkstyle/contribution && break || sleep 15; done
-          cd contribution/checkstyle-tester
-          sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
-          sed -i'' 's/#guava/guava/' projects-for-wercker.properties
-          groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
-          cd ../../
-          rm -rf contribution
+          ./.ci/wercker.sh no-exception-guava
         else
           echo "build is skipped ..."
         fi
 
-  # NoExceptiontest - Hibernate (oraclejdk8)
   - script:
       name: NoExceptiontest - Hibernate
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
-          set -e
-          for i in 1 2 3 4 5; do git clone https://github.com/checkstyle/contribution && break || sleep 15; done
-          cd contribution/checkstyle-tester
-          sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
-          sed -i'' 's/#hibernate-orm/hibernate-orm/' projects-for-wercker.properties
-          groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
-          cd ../../
-          rm -rf contribution
+          ./.ci/wercker.sh no-exception-hibernate-orm
         else
           echo "build is skipped ..."
         fi
 
 
-  # NoExceptiontest - Findbugs (oraclejdk8)
   - script:
       name: NoExceptiontest - findbugs
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
-          set -e
-          for i in 1 2 3 4 5; do git clone https://github.com/checkstyle/contribution && break || sleep 15; done
-          cd contribution/checkstyle-tester
-          sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
-          sed -i'' 's/#findbugs/findbugs/' projects-for-wercker.properties
-          groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
-          cd ../../
-          rm -rf contribution
+          ./.ci/wercker.sh no-exception-findbugs
         else
           echo "build is skipped ..."
         fi
 
-  # NoExceptiontest - spring-framework (oraclejdk8)
   - script:
       name: NoExceptiontest - spring-framework
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
-          set -e
-          for i in 1 2 3 4 5; do git clone https://github.com/checkstyle/contribution && break || sleep 15; done
-          cd contribution/checkstyle-tester
-          sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
-          sed -i'' 's/#spring-framework/spring-framework/' projects-for-wercker.properties
-          groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
-          cd ../../
-          rm -rf contribution
+          ./.ci/wercker.sh no-exception-spring-framework
         else
           echo "build is skipped ..."
         fi
 
-  # NoExceptiontest - Hbase (oraclejdk8)
   - script:
       name: NoExceptiontest - Hbase
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
-          set -e
-          for i in 1 2 3 4 5; do git clone https://github.com/checkstyle/contribution  && break || sleep 15; done
-          cd contribution/checkstyle-tester
-          sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
-          sed -i'' 's/#Hbase/Hbase/' projects-for-wercker.properties
-          groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
-          cd ../../
-          rm -rf contribution
+          ./.ci/wercker.sh no-exception-hbase
         else
           echo "build is skipped ..."
         fi
 
-  # NoExceptiontest - pmd elasticsearch lombok-ast (oraclejdk8)
   - script:
       name: NoExceptiontest - pmd elasticsearch lombok-ast
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
-          set -e
-          for i in 1 2 3 4 5; do git clone https://github.com/checkstyle/contribution && break || sleep 15; done
-          cd contribution/checkstyle-tester
-          sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
-          sed -i'' 's/#pmd/pmd/' projects-for-wercker.properties
-          sed -i'' 's/#elasticsearch/elasticsearch/' projects-for-wercker.properties
-          sed -i'' 's/#lombok-ast/lombok-ast/' projects-for-wercker.properties
-          groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
-          cd ../../
-          rm -rf contribution
+          ./.ci/wercker.sh no-exception-Pmd-elasticsearch-lombok-ast
         else
           echo "build is skipped ..."
         fi
 
-  # NoExceptiontest - RxJava java-design-patterns MaterialDesignLibrary apache-ant apache-jsecurity android-launcher (oraclejdk8)
   - script:
       name: NoExceptiontest - RxJava java-design-patterns MaterialDesignLibrary apache-ant apache-jsecurity android-launcher
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
-          set -e
-          for i in 1 2 3 4 5; do git clone https://github.com/checkstyle/contribution && break || sleep 15; done
-          cd contribution/checkstyle-tester
-          sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
-          sed -i'' 's/#RxJava/RxJava/' projects-for-wercker.properties
-          sed -i'' 's/#Vavr/Vavr/' projects-for-wercker.properties
-          sed -i'' 's/#java-design-patterns/java-design-patterns/' projects-for-wercker.properties
-          sed -i'' 's/#MaterialDesignLibrary/MaterialDesignLibrary/' projects-for-wercker.properties
-          sed -i'' 's/#apache-ant/apache-ant/' projects-for-wercker.properties
-          sed -i'' 's/#apache-jsecurity/apache-jsecurity/' projects-for-wercker.properties
-          sed -i'' 's/#android-launcher/android-launcher/' projects-for-wercker.properties
-          groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
-          cd ../../
-          rm -rf contribution
+          ./.ci/wercker.sh no-exception-alot-of-projects
         else
           echo "build is skipped ..."
         fi
 
-  # Cleanup
   - script:
       name: Cleanup maven local repo
       code: |

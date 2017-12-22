@@ -14,7 +14,8 @@ skip_commits:
     - release.sh
     - RIGHTS.antlr
     - shippable.yml
-     -wercker.yml
+    - wercker.yml
+    - wercker.sh
 clone_depth: 10
 branches:
   only:
