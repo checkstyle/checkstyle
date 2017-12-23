@@ -78,7 +78,7 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
      * Creates a new {@code DefaultLogger} instance.
      * @param outputStream where to log infos and errors
      * @param closeStreamsAfterUse if oS should be closed in auditFinished()
-     * @deprecated in order to fullfil demands of BooleanParameter IDEA check.
+     * @deprecated in order to fulfill demands of BooleanParameter IDEA check.
      * @noinspection BooleanParameter
      */
     @Deprecated
@@ -93,7 +93,7 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
      * @param closeInfoAfterUse auditFinished should close infoStream.
      * @param errorStream the {@code OutputStream} for error messages.
      * @param closeErrorAfterUse auditFinished should close errorStream
-     * @deprecated in order to fullfil demands of BooleanParameter IDEA check.
+     * @deprecated in order to fulfill demands of BooleanParameter IDEA check.
      * @noinspection BooleanParameter
      */
     @Deprecated
@@ -113,7 +113,7 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
      * @param errorStream the {@code OutputStream} for error messages
      * @param closeErrorAfterUse auditFinished should close errorStream
      * @param messageFormatter formatter for the log message.
-     * @deprecated in order to fullfil demands of BooleanParameter IDEA check.
+     * @deprecated in order to fulfill demands of BooleanParameter IDEA check.
      * @noinspection BooleanParameter, WeakerAccess
      */
     @Deprecated

@@ -35,7 +35,7 @@ import java.lang.annotation.Target;
  * The check methods and fields should be thread safe, because they may be accessed from others
  * threads at the same time.
  * Checker guarantees that there will be exactly one check instance
- * This is simular to multi-file validation, which checkstyle does not support fully yet.
+ * This is similar to multi-file validation, which checkstyle does not support fully yet.
  * Please refer to https://github.com/checkstyle/checkstyle/issues/3540 for details.
  * @author Andrew Kuchev
  * @noinspection AnnotationClass, ClassIndependentOfModule, unused

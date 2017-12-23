@@ -140,7 +140,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     }
 
     /**
-     * Sets user-excluded pakcages to ignore. All exlcuded packages should end with a period,
+     * Sets user-excluded packages to ignore. All excluded packages should end with a period,
      * so it also appends a dot to a package name.
      * @param excludedPackages the list of packages to ignore.
      */

@@ -42,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtils;
  */
 public class SuppressionFilter extends AutomaticBean implements Filter, ExternalResourceHolder {
 
-    /** Filename of supression file. */
+    /** Filename of suppression file. */
     private String file;
     /** Tells whether config file existence is optional. */
     private boolean optional;
@@ -50,7 +50,7 @@ public class SuppressionFilter extends AutomaticBean implements Filter, External
     private FilterSet filters = new FilterSet();
 
     /**
-     * Sets name of the supression file.
+     * Sets name of the suppression file.
      * @param fileName name of the suppressions file.
      */
     public void setFile(String fileName) {

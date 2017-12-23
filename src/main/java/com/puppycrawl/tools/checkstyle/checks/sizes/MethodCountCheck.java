@@ -112,7 +112,7 @@ public final class MethodCountCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.METHOD_DEF) {
-            if (isInLastestScopeDefinition(ast)) {
+            if (isInLatestScopeDefinition(ast)) {
                 raiseCounter(ast);
             }
         }
@@ -134,11 +134,11 @@ public final class MethodCountCheck extends AbstractCheck {
      * Checks if there is a scope definition to check and that the method is found inside that scope
      * (class, enum, etc.).
      * @param methodDef
-     *        The method to analzye.
+     *        The method to analyze.
      * @return {@code true} if the method is part of the latest scope definition and should be
      *         counted.
      */
-    private boolean isInLastestScopeDefinition(DetailAST methodDef) {
+    private boolean isInLatestScopeDefinition(DetailAST methodDef) {
         boolean result = false;
 
         if (!counters.isEmpty()) {
