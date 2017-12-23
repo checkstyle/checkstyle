@@ -483,7 +483,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
         // The minimal distance between objCalledOn and field (of type String) initialization
         // is calculated as follows:
         // String(6) + space(1) + variableName(1) + assign(1) +
-        // anotherStringVariableName(1) + semicolumn(1) = 11
+        // anotherStringVariableName(1) + semicolon(1) = 11
         // Example: length of "String s=d;" is 11 symbols.
         final int minimumSymbolsBetween = 11;
         if (field.getLineNo() < objCalledOn.getLineNo()

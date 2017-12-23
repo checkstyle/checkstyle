@@ -223,7 +223,7 @@ public final class ConfigurationLoader {
      *            'ignore' should be omitted, {@code false} otherwise
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
-     * @deprecated in order to fullfil demands of BooleanParameter IDEA check.
+     * @deprecated in order to fulfill demands of BooleanParameter IDEA check.
      * @noinspection BooleanParameter
      */
     @Deprecated
@@ -244,7 +244,7 @@ public final class ConfigurationLoader {
      * @param threadModeSettings the thread mode configuration
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
-     * @deprecated in order to fullfil demands of BooleanParameter IDEA check.
+     * @deprecated in order to fulfill demands of BooleanParameter IDEA check.
      * @noinspection BooleanParameter, WeakerAccess
      */
     @Deprecated
@@ -296,7 +296,7 @@ public final class ConfigurationLoader {
      *            'ignore' should be omitted, {@code false} otherwise
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
-     * @deprecated in order to fullfil demands of BooleanParameter IDEA check.
+     * @deprecated in order to fulfill demands of BooleanParameter IDEA check.
      * @noinspection BooleanParameter
      */
     @Deprecated
@@ -319,7 +319,7 @@ public final class ConfigurationLoader {
      * @param threadModeSettings the thread mode configuration
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
-     * @deprecated in order to fullfil demands of BooleanParameter IDEA check.
+     * @deprecated in order to fulfill demands of BooleanParameter IDEA check.
      * @noinspection BooleanParameter, WeakerAccess
      */
     @Deprecated

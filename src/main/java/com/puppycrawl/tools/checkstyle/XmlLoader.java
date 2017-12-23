@@ -145,9 +145,9 @@ public class XmlLoader
         }
 
         /**
-         * Configures SAXParserFactory with features requered
-         * for exectution on very secured environments.
-         * @param factory factory to be configured with spectial features
+         * Configures SAXParserFactory with features required
+         * for execution on very secured environments.
+         * @param factory factory to be configured with special features
          * @throws SAXException if an error occurs
          * @throws ParserConfigurationException if an error occurs
          */

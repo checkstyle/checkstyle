@@ -82,7 +82,7 @@ public class XMLLogger
      * Sets the output to a defined stream.
      * @param outputStream the stream to write logs to.
      * @param closeStream close oS in auditFinished
-     * @deprecated in order to fullfil demands of BooleanParameter IDEA check.
+     * @deprecated in order to fulfill demands of BooleanParameter IDEA check.
      * @noinspection BooleanParameter
      */
     @Deprecated
@@ -200,7 +200,7 @@ public class XMLLogger
     }
 
     /**
-     * Outputs the given envet to the writer.
+     * Outputs the given event to the writer.
      * @param event An event to print.
      */
     private void writeFileError(AuditEvent event) {

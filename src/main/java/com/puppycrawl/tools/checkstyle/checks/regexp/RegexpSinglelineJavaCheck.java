@@ -62,15 +62,15 @@ public class RegexpSinglelineJavaCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        MatchSuppressor supressor = null;
+        MatchSuppressor suppressor = null;
         if (ignoreComments) {
-            supressor = new CommentSuppressor(getFileContents());
+            suppressor = new CommentSuppressor(getFileContents());
         }
 
         final DetectorOptions options = DetectorOptions.newBuilder()
             .reporter(this)
             .compileFlags(0)
-            .suppressor(supressor)
+            .suppressor(suppressor)
             .format(format)
             .message(message)
             .minimum(minimum)

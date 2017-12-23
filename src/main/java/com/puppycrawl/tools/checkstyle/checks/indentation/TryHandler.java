@@ -129,9 +129,9 @@ public class TryHandler extends BlockParentHandler {
      */
     private void checkTryResources(final DetailAST resourcesSpecAst) {
         final DetailAST resourcesAst = resourcesSpecAst.findFirstToken(TokenTypes.RESOURCES);
-        final int indetation = getIndent().getFirstIndentLevel()
+        final int indentation = getIndent().getFirstIndentLevel()
             + getIndentCheck().getLineWrappingIndentation();
-        final IndentLevel expectedResourceIndent = new IndentLevel(indetation);
+        final IndentLevel expectedResourceIndent = new IndentLevel(indentation);
 
         final String subType = "resource";
 

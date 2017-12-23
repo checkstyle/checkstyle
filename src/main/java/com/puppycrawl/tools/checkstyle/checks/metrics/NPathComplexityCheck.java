@@ -337,7 +337,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
     }
 
     /**
-     * Calculates number of conditional operators, including inline ternary operatior, for a token.
+     * Calculates number of conditional operators, including inline ternary operator, for a token.
      * @param ast inspected token.
      * @return number of conditional operators.
      * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.23">

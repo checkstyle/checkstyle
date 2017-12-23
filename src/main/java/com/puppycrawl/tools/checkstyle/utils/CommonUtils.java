@@ -129,7 +129,7 @@ public final class CommonUtils {
         commentContent.setText("*" + content);
         commentContent.setLineNo(0);
         // javadoc should starts at 0 column, so COMMENT_CONTENT node
-        // that contains javadoc identificator has -1 column
+        // that contains javadoc identifier has -1 column
         commentContent.setColumnNo(-1);
 
         final DetailAST blockCommentEnd = new DetailAST();

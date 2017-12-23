@@ -34,7 +34,7 @@ import java.lang.annotation.Target;
  * Checker guarantees that each check instance processes only one file at the same time.
  * Checker guarantees that all check instances have equal (but not the same) configuration.
  * It means, that if a check holds a property of type "array of strings",
- * the property value will not be shared accross check instances.
+ * the property value will not be shared across check instances.
  * Instead, each check instance will hold its own array instance.
  * Checker does not guarantee that each file will have it's own thread -
  * there might be a list of files, which will be executed on the same thread.

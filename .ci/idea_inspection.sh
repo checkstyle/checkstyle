@@ -42,7 +42,7 @@ echo $IDEA_OUTPUT
 if [[ $IDEA_OUTPUT == "Already running" ]]; then
     echo "It might be that Intellij Idea is running, please close it."
     exit 1;
-else
+fi
 
 echo "Checking results ..."
 if [[ $(grep -R "<problems" $RESULTS_DIR/ | cat | wc -l ) > 0 ]]; then

@@ -239,7 +239,7 @@ final class PropertyCacheFile {
 
     /**
      * Serializes object to output stream.
-     * @param object object to be erialized
+     * @param object object to be serialized
      * @param outputStream serialization stream
      * @throws IOException if an error occurs
      */

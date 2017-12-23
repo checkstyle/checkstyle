@@ -177,8 +177,8 @@ public final class JavadocUtils {
         boolean result = false;
 
         if (!commentContent.isEmpty()) {
-            final char docCommentIdentificator = commentContent.charAt(0);
-            result = docCommentIdentificator == '*';
+            final char docCommentIdentifier = commentContent.charAt(0);
+            result = docCommentIdentifier == '*';
         }
 
         return result;
