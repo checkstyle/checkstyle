@@ -111,7 +111,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
 
     @Test
     public void testAttributeOr() throws Exception {
-        final String xpath = "//METHOD_DEF[@text='getSomeMethod' or @text='nonExistingMethod']";
+        final String xpath = "//METHOD_DEF[@text='getSomeMethod' or @text='nonExistentMethod']";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedClassDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
@@ -413,7 +413,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testQueryNonExistingAttribute() throws Exception {
+    public void testQueryNonExistentAttribute() throws Exception {
         final String xpath = "/CLASS_DEF[@text='InputXpathMapperAst']";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<Item> nodes = getXpathItems(xpath, rootNode);
@@ -450,7 +450,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testQueryNonExistingAnnotation() throws Exception {
+    public void testQueryNonExistentAnnotation() throws Exception {
         final String xpath = "//ANNOTATION[@text='SpringBootApplication']";
         final RootNode rootNode = getRootNode("InputXpathMapperAnnotation.java");
         final List<Item> nodes = getXpathItems(xpath, rootNode);

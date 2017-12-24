@@ -511,16 +511,16 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testNonExistingPropertyName() throws Exception {
+    public void testNonExistentPropertyName() throws Exception {
         try {
-            loadConfiguration("InputConfigurationLoaderNonexistingProperty.xml");
+            loadConfiguration("InputConfigurationLoaderNonexistentProperty.xml");
             fail("exception in expected");
         }
         catch (CheckstyleException ex) {
             assertEquals("Invalid exception message",
                 "unable to parse configuration stream", ex.getMessage());
             assertEquals("Invalid exception cause message",
-                "Property ${nonexisting} has not been set",
+                "Property ${nonexistent} has not been set",
                     ex.getCause().getMessage());
         }
     }

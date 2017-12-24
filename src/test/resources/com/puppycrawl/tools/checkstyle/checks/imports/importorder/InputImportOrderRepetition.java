@@ -8,5 +8,5 @@ import java.awt.event.ActionEvent;    //Repetitive import
 import javax.swing.JComponent;
 import javax.swing.JTable;
 
-public class InputImportOrderRepetiton {
+public class InputImportOrderRepetition {
 }

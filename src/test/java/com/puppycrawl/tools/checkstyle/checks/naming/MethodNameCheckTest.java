@@ -81,8 +81,8 @@ public class MethodNameCheckTest
                     "InputMethodNameEqualClassName", pattern),
             "47:9: " + getCheckMessage(MSG_KEY, "SweetInterface"),
             "47:9: " + getCheckMessage(MSG_INVALID_PATTERN, "SweetInterface", pattern),
-            "53:17: " + getCheckMessage(MSG_KEY, "Outter"),
-            "53:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outter", pattern),
+            "53:17: " + getCheckMessage(MSG_KEY, "Outer"),
+            "53:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outer", pattern),
         };
 
         verify(checkConfig, getPath("InputMethodNameEqualClassName.java"), expected);
@@ -109,7 +109,7 @@ public class MethodNameCheckTest
             "37:24: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "InputMethodNameEqualClassName", pattern),
             "47:9: " + getCheckMessage(MSG_INVALID_PATTERN, "SweetInterface", pattern),
-            "53:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outter", pattern),
+            "53:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outer", pattern),
         };
 
         verify(checkConfig, getPath("InputMethodNameEqualClassName.java"), expected);
@@ -137,7 +137,7 @@ public class MethodNameCheckTest
             "37:24: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "InputMethodNameEqualClassName", pattern),
             "47:9: " + getCheckMessage(MSG_INVALID_PATTERN, "SweetInterface", pattern),
-            "53:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outter", pattern),
+            "53:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outer", pattern),
         };
 
         verify(checkConfig, getPath("InputMethodNameEqualClassName.java"), expected);
@@ -165,7 +165,7 @@ public class MethodNameCheckTest
             "20:20: " + getCheckMessage(MSG_INVALID_PATTERN, "PROTECTEDfoo", pattern),
         };
 
-        verify(checkConfig, getPath("InputMethodNameOverridenMethods.java"), expected);
+        verify(checkConfig, getPath("InputMethodNameOverriddenMethods.java"), expected);
     }
 
     @Test

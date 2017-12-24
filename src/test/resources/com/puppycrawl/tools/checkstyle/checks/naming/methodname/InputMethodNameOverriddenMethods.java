@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
 
-public class InputMethodNameOverridenMethods extends SomeClass 
+public class InputMethodNameOverriddenMethods extends SomeClass
 {
     @Override
     public void PUBLICfoo() { //Ignored due to impossibility of change by developer

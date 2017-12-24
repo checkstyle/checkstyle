@@ -86,8 +86,8 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonExistingSuppressionFileWithFalseOptional() throws Exception {
-        final String fileName = getPath("non_existing_suppression_file.xml");
+    public void testNonExistentSuppressionFileWithFalseOptional() throws Exception {
+        final String fileName = getPath("non_existent_suppression_file.xml");
         try {
             final boolean optional = false;
             createSuppressionXpathFilter(fileName, optional);
@@ -128,9 +128,9 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonExistingSuppressionFileWithTrueOptional() throws Exception {
+    public void testNonExistentSuppressionFileWithTrueOptional() throws Exception {
         final String fileName = "src/test/resources/com/puppycrawl/tools/checkstyle/filters/"
-                + "non_existing_suppression_file.xml";
+                + "non_existent_suppression_file.xml";
         final boolean optional = true;
         final SuppressionXpathFilter filter = createSuppressionXpathFilter(fileName, optional);
 

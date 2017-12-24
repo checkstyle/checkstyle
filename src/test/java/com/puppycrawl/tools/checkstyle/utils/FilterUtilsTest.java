@@ -58,9 +58,9 @@ public class FilterUtilsTest {
     }
 
     @Test
-    public void testNonExistingFile() {
+    public void testNonExistentFile() {
         assertFalse("Suppression file does not exist",
-                FilterUtils.isFileExists("non-existing.xml"));
+                FilterUtils.isFileExists("non-existent.xml"));
     }
 
     @Test

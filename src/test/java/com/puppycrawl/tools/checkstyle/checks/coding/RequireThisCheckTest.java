@@ -264,7 +264,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "15:9: " + getCheckMessage(MSG_VARIABLE, "tags", ""),
         };
-        verify(checkConfig, getPath("InputRequireThisMetodReferences.java"), expected);
+        verify(checkConfig, getPath("InputRequireThisMethodReferences.java"), expected);
     }
 
     @Test

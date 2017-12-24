@@ -77,7 +77,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testNoUnnecessaryTextinJavadocAst() throws Exception {
+    public void testNoUnnecessaryTextInJavadocAst() throws Exception {
         verifyJavadocTree(
                 getPath("ExpectedDetailNodeTreeStringPrinterNoUnnecessaryTextInJavadocAst.txt"),
                 getPath("InputDetailNodeTreeStringPrinterNoUnnecessaryTextInJavadocAst.javadoc"));

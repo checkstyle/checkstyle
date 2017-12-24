@@ -71,7 +71,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testExludedPackageDirectPackages() throws Exception {
+    public void testExcludedPackageDirectPackages() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ClassDataAbstractionCouplingCheck.class);
 
@@ -91,7 +91,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testExludedPackageCommonPackages() throws Exception {
+    public void testExcludedPackageCommonPackages() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ClassDataAbstractionCouplingCheck.class);
 
@@ -110,7 +110,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testExludedPackageWithEndingDot() throws Exception {
+    public void testExcludedPackageWithEndingDot() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ClassDataAbstractionCouplingCheck.class);
 
@@ -136,7 +136,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testExludedPackageCommonPackagesAllIgnored() throws Exception {
+    public void testExcludedPackageCommonPackagesAllIgnored() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ClassDataAbstractionCouplingCheck.class);
 

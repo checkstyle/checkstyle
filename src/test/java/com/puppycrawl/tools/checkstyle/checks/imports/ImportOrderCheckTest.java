@@ -133,7 +133,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
             "7: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "org.junit.Assert.assertEquals"),
         };
 
-        verify(checkConfig, getPath("InputImportOrderStaticGroupSeperated.java"), expected);
+        verify(checkConfig, getPath("InputImportOrderStaticGroupSeparated.java"), expected);
     }
 
     @Test
@@ -430,7 +430,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "6: " + getCheckMessage(MSG_ORDERING, "java.awt.event.ActionEvent"),
         };
-        verify(checkConfig, getPath("InputImportOrderRepetiton.java"), expected);
+        verify(checkConfig, getPath("InputImportOrderRepetition.java"), expected);
     }
 
     @Test

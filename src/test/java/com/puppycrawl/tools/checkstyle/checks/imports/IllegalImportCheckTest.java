@@ -112,7 +112,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIllegalClassessRegularExpression()
+    public void testIllegalClassesRegularExpression()
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(IllegalImportCheck.class);

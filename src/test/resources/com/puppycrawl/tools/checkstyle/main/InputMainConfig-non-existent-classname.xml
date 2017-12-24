@@ -6,7 +6,7 @@
 
 <module name="Checker">
     <module name="TreeWalker">
-        <module name="NonExistingClass">
+        <module name="NonExistentClass">
             <property name="severity" value="warning"/>
         </module>
     </module>

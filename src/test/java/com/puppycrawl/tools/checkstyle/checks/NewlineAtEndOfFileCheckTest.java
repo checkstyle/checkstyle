@@ -80,7 +80,7 @@ public class NewlineAtEndOfFileCheckTest
 
     /**
      * Pitest requires all closes of streams and readers to be verified. Using PowerMock
-     * is almost only posibility to check it without rewriting production code.
+     * is almost only possibility to check it without rewriting production code.
      *
      * @throws Exception when code tested throws some exception
      */
@@ -230,7 +230,7 @@ public class NewlineAtEndOfFileCheckTest
         final File impossibleFile = new File("");
         final FileText fileText = new FileText(impossibleFile, lines);
         final Set<LocalizedMessage> messages = check.process(impossibleFile, fileText);
-        assertEquals("Ammount of messages is unexpected",
+        assertEquals("Amount of messages is unexpected",
                 1, messages.size());
         final Iterator<LocalizedMessage> iterator = messages.iterator();
         assertEquals("Violation message differs from expected",

@@ -88,9 +88,9 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonExistingHeaderFile() throws Exception {
+    public void testNonExistentHeaderFile() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
-        checkConfig.addAttribute("headerFile", getPath("nonExisting.file"));
+        checkConfig.addAttribute("headerFile", getPath("nonExistent.file"));
         try {
             createChecker(checkConfig);
             fail("CheckstyleException is expected");

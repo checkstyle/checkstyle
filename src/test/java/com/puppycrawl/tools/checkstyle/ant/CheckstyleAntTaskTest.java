@@ -200,7 +200,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 filesToCheck.size(), is(9));
         assertThat("The path of file differs from expected",
                 filesToCheck.get(5).getAbsolutePath(), is(getPath(FLAWLESS_INPUT)));
-        assertEquals("Amount of logged messages in unxexpected",
+        assertEquals("Amount of logged messages in unexpected",
                 9, antTask.getLoggedMessages().size());
     }
 
@@ -250,7 +250,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void testNonExistingConfig() throws IOException {
+    public final void testNonExistentConfig() throws IOException {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
         antTask.setConfig(getPath(NOT_EXISTING_FILE));
         antTask.setProject(new Project());
@@ -491,7 +491,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void testSetPropertiesNonExistingFile() throws IOException {
+    public final void testSetPropertiesNonExistentFile() throws IOException {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
         antTask.setProperties(new File(getPath(NOT_EXISTING_FILE)));
@@ -666,7 +666,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
             Whitebox.getInternalState(antTask, "classpath"));
     }
 
-    /** This test is created to satisfy pitest, it is hard to emulate Referece by Id. */
+    /** This test is created to satisfy pitest, it is hard to emulate Reference by Id. */
     @Test
     public void testSetClasspathRef1() {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();

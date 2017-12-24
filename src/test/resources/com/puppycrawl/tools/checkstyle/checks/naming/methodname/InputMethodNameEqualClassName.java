@@ -47,10 +47,10 @@ interface SweetInterface {
     int SweetInterface();
 }
 
-class Outter {
+class Outer {
 	
 	//illegal name
-    public void Outter() {
+    public void Outer() {
 		
 	}
 }

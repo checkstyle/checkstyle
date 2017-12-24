@@ -401,7 +401,7 @@ public class SuppressionCommentFilterTest
         final TreeWalkerAuditEvent dummyEvent = new TreeWalkerAuditEvent(contents, "filename",
                 new LocalizedMessage(1, null, null, null, null, Object.class, null), null);
         final boolean result = suppressionCommentFilter.accept(dummyEvent);
-        assertFalse("Fileter should not accept event", result);
+        assertFalse("Filter should not accept event", result);
     }
 
     @Test

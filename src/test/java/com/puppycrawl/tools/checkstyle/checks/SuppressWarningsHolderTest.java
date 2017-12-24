@@ -85,9 +85,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
     @Test
     public void testGetDefaultAlias() {
-        assertEquals("Diffault alias differs from expected",
+        assertEquals("Default alias differs from expected",
                 "somename", SuppressWarningsHolder.getDefaultAlias("SomeName"));
-        assertEquals("Diffault alias differs from expected",
+        assertEquals("Default alias differs from expected",
                 "somename", SuppressWarningsHolder.getDefaultAlias("SomeNameCheck"));
     }
 

@@ -187,7 +187,7 @@ public class JavadocUtilsTest {
     @Test
     public void testEmptyJavadocComment() {
         final String emptyJavadocComment = "*";
-        assertTrue("Should return true when empty jabadoc comment is passed",
+        assertTrue("Should return true when empty javadoc comment is passed",
                 JavadocUtils.isJavadocComment(emptyJavadocComment));
     }
 

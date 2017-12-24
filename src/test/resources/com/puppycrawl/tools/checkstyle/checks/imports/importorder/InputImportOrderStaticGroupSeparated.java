@@ -7,7 +7,7 @@ import static java.lang.Math.cos;;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-public class InputImportOrderStaticGroupSeperated {
+public class InputImportOrderStaticGroupSeparated {
     void method() {
     }
 }
