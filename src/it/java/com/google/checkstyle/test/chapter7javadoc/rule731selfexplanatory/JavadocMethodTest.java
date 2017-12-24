@@ -34,7 +34,6 @@ public class JavadocMethodTest extends AbstractModuleTestSupport {
 
     @Test
     public void testJavadocMethod() throws Exception {
-
         final String msg = getCheckMessage(JavadocMethodCheck.class, "javadoc.missing");
 
         final String[] expected = {
@@ -47,4 +46,5 @@ public class JavadocMethodTest extends AbstractModuleTestSupport {
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class EmptyStatementCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/emptystatement";
@@ -63,10 +64,10 @@ public class EmptyStatementCheckTest
 
     @Test
     public void testTokensNotNull() {
-
         final EmptyStatementCheck check = new EmptyStatementCheck();
         Assert.assertNotNull("Acceptable tokens should not be null", check.getAcceptableTokens());
         Assert.assertNotNull("Default tokens should not be null", check.getDefaultTokens());
         Assert.assertNotNull("Required tokens should not be null", check.getRequiredTokens());
     }
+
 }

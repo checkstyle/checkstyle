@@ -34,7 +34,6 @@ public class NoWhitespaceBeforeTest extends AbstractModuleTestSupport {
 
     @Test
     public void testEmptyForLoop() throws Exception {
-
         final Class<NoWhitespaceBeforeCheck> clazz = NoWhitespaceBeforeCheck.class;
         final String messageKeyPreceded = "ws.preceded";
 
@@ -48,5 +47,6 @@ public class NoWhitespaceBeforeTest extends AbstractModuleTestSupport {
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }
 

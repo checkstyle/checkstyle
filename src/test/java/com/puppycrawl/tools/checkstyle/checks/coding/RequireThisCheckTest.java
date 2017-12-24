@@ -38,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class RequireThisCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/requirethis";
@@ -355,4 +356,5 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         Assert.assertEquals("expected ident token", ident,
                 TestUtil.getClassDeclaredMethod(cls, "getFrameNameIdent").invoke(o));
     }
+
 }

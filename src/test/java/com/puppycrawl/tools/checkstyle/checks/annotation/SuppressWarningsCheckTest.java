@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarnings";
@@ -363,7 +364,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
         };
 
         verify(checkConfig, getPath("InputSuppressWarningsCompact.java"), expected);
-
     }
 
     /**
@@ -603,7 +603,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "82:192: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "foo"),
             "82:200: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "   "),
             "82:208: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
-
         };
 
         verify(checkConfig, getPath("InputSuppressWarningsExpanded.java"), expected);
@@ -819,4 +818,5 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
 
         verify(checkConfig, getPath("InputSuppressWarningsHolder.java"), expected);
     }
+
 }

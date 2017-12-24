@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class TodoCommentCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/todocomment";
@@ -68,4 +69,5 @@ public class TodoCommentCheckTest
         assertArrayEquals("Acceptable tokens differs from expected",
                 expected, actual);
     }
+
 }

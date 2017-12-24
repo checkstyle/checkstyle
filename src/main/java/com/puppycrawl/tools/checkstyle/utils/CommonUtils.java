@@ -75,7 +75,6 @@ public final class CommonUtils {
 
     /** Stop instances being created. **/
     private CommonUtils() {
-
     }
 
     /**
@@ -661,4 +660,5 @@ public final class CommonUtils {
         }
         return isInt;
     }
+
 }

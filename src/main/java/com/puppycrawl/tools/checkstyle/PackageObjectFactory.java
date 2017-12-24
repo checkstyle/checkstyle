@@ -54,16 +54,19 @@ public class PackageObjectFactory implements ModuleFactory {
      * Enum class to define loading options.
      */
     public enum ModuleLoadOption {
+
         /**
          * Searching from registered checkstyle modules and from packages given in constructor.
          **/
         SEARCH_REGISTERED_PACKAGES,
+
         /**
          * As SEARCH_REGISTERED_PACKAGES and also try to load class from all of packages given in
          * constructor.
          * Required for eclipse-cs plugin.
          **/
         TRY_IN_ALL_REGISTERED_PACKAGES,
+
     }
 
     /** Base package of checkstyle modules checks. */

@@ -25,10 +25,12 @@ package com.puppycrawl.tools.checkstyle.api;
  */
 @FunctionalInterface
 public interface Filter {
+
     /**
      * Determines whether or not a filtered AuditEvent is accepted.
      * @param event the AuditEvent to filter.
      * @return true if the event is accepted.
      */
     boolean accept(AuditEvent event);
+
 }

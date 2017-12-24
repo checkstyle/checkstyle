@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * @author unknown
  */
 public class CodeSelectorPresentation {
+
     /** DetailAST or DetailNode node. */
     private final Object node;
     /** Mapping. */
@@ -152,4 +153,5 @@ public class CodeSelectorPresentation {
         }
         return lastPosition;
     }
+
 }

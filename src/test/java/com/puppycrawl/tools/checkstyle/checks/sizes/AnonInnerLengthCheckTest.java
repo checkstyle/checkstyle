@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Lars Kühne
  */
 public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/anoninnerlength";
@@ -78,4 +79,5 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputAnonInnerLength.java"), expected);
     }
+
 }

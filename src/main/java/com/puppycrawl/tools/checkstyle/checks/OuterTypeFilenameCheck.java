@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 @FileStatefulCheck
 public class OuterTypeFilenameCheck extends AbstractCheck {
+
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -126,4 +127,5 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
         name = FILE_EXTENSION_PATTERN.matcher(name).replaceAll("");
         return name;
     }
+
 }

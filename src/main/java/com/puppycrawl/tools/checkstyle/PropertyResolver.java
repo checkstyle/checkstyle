@@ -31,10 +31,12 @@ package com.puppycrawl.tools.checkstyle;
  */
 @FunctionalInterface
 public interface PropertyResolver {
+
     /**
      * Resolves a property name to it's value.
      * @param name the name of the property.
      * @return the value that is associated with {@code propertyName}.
      */
     String resolve(String name);
+
 }

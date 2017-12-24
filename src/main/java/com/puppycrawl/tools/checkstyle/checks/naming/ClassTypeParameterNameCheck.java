@@ -49,6 +49,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class ClassTypeParameterNameCheck
     extends AbstractNameCheck {
+
     /** Creates a new {@code ClassTypeParameterNameCheck} instance. */
     public ClassTypeParameterNameCheck() {
         super("^[A-Z]$");
@@ -77,4 +78,5 @@ public class ClassTypeParameterNameCheck
             ast.getParent().getParent();
         return location.getType() == TokenTypes.CLASS_DEF;
     }
+
 }

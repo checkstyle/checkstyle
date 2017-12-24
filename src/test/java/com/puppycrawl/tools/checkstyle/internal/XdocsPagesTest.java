@@ -69,6 +69,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
 
 public class XdocsPagesTest {
+
     private static final Path AVAILABLE_CHECKS_PATH = Paths.get("src/xdocs/checks.xml");
     private static final String LINK_TEMPLATE =
             "(?s).*<a href=\"config_\\w+\\.html#%1$s\">%1$s</a>.*";
@@ -1111,4 +1112,5 @@ public class XdocsPagesTest {
         Assert.assertFalse(fileName + " rule '" + ruleName + "' has too many configs",
                 itrConfigs.hasNext());
     }
+
 }

@@ -36,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class MethodParamPadCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/methodparampad";
@@ -167,4 +168,5 @@ public class MethodParamPadCheckTest
                 ex.getMessage().startsWith(messageStart));
         }
     }
+
 }

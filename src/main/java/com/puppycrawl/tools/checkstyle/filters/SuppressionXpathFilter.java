@@ -114,4 +114,5 @@ public class SuppressionXpathFilter extends AutomaticBean implements
             }
         }
     }
+
 }

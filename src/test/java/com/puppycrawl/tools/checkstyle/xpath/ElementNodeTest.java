@@ -71,4 +71,5 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         assertTrue("Should return true, because selected node is RootNode",
                 root instanceof RootNode);
     }
+
 }

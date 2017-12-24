@@ -28,6 +28,7 @@ import org.junit.Test;
 import nl.jqno.equalsverifier.EqualsVerifier;
 
 public class IntMatchFilterTest {
+
     @Test
     public void testDecide() {
         final IntFilter filter = new IntMatchFilter(0);
@@ -46,4 +47,5 @@ public class IntMatchFilterTest {
         final IntFilter filter = new IntMatchFilter(6);
         assertEquals("Invalid toString result", "IntMatchFilter[6]", filter.toString());
     }
+
 }

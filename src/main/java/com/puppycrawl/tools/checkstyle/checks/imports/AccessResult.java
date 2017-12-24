@@ -25,10 +25,12 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
  * @author Oliver Burn
  */
 enum AccessResult {
+
     /** Represents that access is allowed. */
     ALLOWED,
     /** Represents that access is disallowed. */
     DISALLOWED,
     /** Represents that access is unknown. */
     UNKNOWN
+
 }

@@ -212,4 +212,5 @@ public class TrailingCommentCheck extends AbstractCheck {
         }
         return legal;
     }
+
 }

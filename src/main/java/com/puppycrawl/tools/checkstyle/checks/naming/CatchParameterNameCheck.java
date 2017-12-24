@@ -88,4 +88,5 @@ public class CatchParameterNameCheck extends AbstractNameCheck {
     protected boolean mustCheckName(DetailAST ast) {
         return ast.getParent().getType() == TokenTypes.LITERAL_CATCH;
     }
+
 }

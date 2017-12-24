@@ -34,7 +34,6 @@ public class ParenPadTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMethodParen() throws Exception {
-
         final Class<ParenPadCheck> clazz = ParenPadCheck.class;
         final String messageKeyPreceded = "ws.preceded";
         final String messageKeyFollowed = "ws.followed";
@@ -167,4 +166,5 @@ public class ParenPadTest extends AbstractModuleTestSupport {
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

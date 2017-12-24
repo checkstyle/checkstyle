@@ -38,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author Oliver Burn
  */
 public final class FileContents implements CommentListener {
+
     /**
      * The pattern to match a single line comment containing only the comment
      * itself -- no code.
@@ -399,4 +400,5 @@ public final class FileContents implements CommentListener {
         }
         return hasIntersection;
     }
+
 }

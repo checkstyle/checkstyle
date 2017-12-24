@@ -53,16 +53,19 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * Enum to specify options for checker creation.
      */
     public enum ModuleCreationOption {
+
         /**
          * Points that the module configurations
          * has to be added under {@link TreeWalker}.
          */
         IN_TREEWALKER,
+
         /**
          * Points that checker will be created as
          * a root of default configuration.
          */
-        IN_CHECKER
+        IN_CHECKER,
+
     }
 
     private static final String ROOT_MODULE_NAME = "root";
@@ -280,7 +283,6 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 new ByteArrayInputStream(stream.toByteArray());
         try (LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-
             final List<String> actuals = lnr.lines().limit(expected.length)
                     .sorted().collect(Collectors.toList());
             Arrays.sort(expected);
@@ -359,7 +361,6 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
 
         try (LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-
             final Map<String, List<String>> actualViolations = new HashMap<>();
             for (String line = lnr.readLine(); line != null && lnr.getLineNumber() <= errorCount;
                  line = lnr.readLine()) {
@@ -447,4 +448,5 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         }
         return messageBundle;
     }
+
 }

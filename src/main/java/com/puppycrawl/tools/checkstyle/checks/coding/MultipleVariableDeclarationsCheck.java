@@ -132,4 +132,5 @@ public class MultipleVariableDeclarationsCheck extends AbstractCheck {
 
         return currentNode;
     }
+
 }

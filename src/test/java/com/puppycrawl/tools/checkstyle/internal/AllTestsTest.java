@@ -37,6 +37,7 @@ import org.junit.Test;
  * @noinspection ClassIndependentOfModule
  */
 public class AllTestsTest {
+
     @Test
     public void testAllInputsHaveTest() throws Exception {
         final Map<String, List<String>> allTests = new HashMap<>();
@@ -259,4 +260,5 @@ public class AllTestsTest {
     private static String getSimplePath(String path) {
         return path.substring(path.lastIndexOf("com" + File.separator + "puppycrawl"));
     }
+
 }

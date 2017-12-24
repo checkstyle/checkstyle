@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class SingleLineJavadocCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/singlelinejavadoc";
@@ -82,4 +83,5 @@ public class SingleLineJavadocCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputSingleLineJavadoc.java"), expected);
     }
+
 }

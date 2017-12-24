@@ -894,4 +894,5 @@ public class VisibilityModifierCheck
 
         return matchingAnnotation;
     }
+
 }

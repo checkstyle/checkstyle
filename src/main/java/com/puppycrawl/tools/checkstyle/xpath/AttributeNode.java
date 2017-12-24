@@ -30,6 +30,7 @@ import net.sf.saxon.type.Type;
  * @author Timur Tibeyev
  */
 public class AttributeNode extends AbstractNode {
+
     /** The name of the attribute. */
     private final String name;
 
@@ -170,4 +171,5 @@ public class AttributeNode extends AbstractNode {
     private static UnsupportedOperationException throwUnsupportedOperationException() {
         return new UnsupportedOperationException("Operation is not supported");
     }
+
 }

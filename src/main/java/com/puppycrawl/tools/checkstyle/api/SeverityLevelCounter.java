@@ -28,6 +28,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author lkuehne
  */
 public final class SeverityLevelCounter implements AuditListener {
+
     /** The severity level to watch out for. */
     private final SeverityLevel level;
 
@@ -86,4 +87,5 @@ public final class SeverityLevelCounter implements AuditListener {
     public int getCount() {
         return count.get();
     }
+
 }

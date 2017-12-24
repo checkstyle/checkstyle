@@ -36,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle";
@@ -282,7 +283,6 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputAnnotationUseStyle.java"), expected);
-
     }
 
 }

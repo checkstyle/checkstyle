@@ -38,6 +38,7 @@ import java.util.List;
  * @see TokenTypes#IDENT
  **/
 public final class FullIdent {
+
     /** The list holding subsequent elements of identifier. **/
     private final List<String> elements = new ArrayList<>();
     /** The line number. **/
@@ -146,4 +147,5 @@ public final class FullIdent {
             columnNo = Math.min(columnNo, ast.getColumnNo());
         }
     }
+
 }

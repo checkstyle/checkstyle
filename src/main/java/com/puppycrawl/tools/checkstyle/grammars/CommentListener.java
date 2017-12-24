@@ -27,6 +27,7 @@ package com.puppycrawl.tools.checkstyle.grammars;
  * @noinspection ClassOnlyUsedInOnePackage
  */
 public interface CommentListener {
+
     /**
      * Report the location of a single line comment that extends from the
      * given point to the end of the line. The type of comment is identified
@@ -55,4 +56,5 @@ public interface CommentListener {
     void reportBlockComment(String type,
                             int startLineNo, int startColNo,
                             int endLineNo, int endColNo);
+
 }

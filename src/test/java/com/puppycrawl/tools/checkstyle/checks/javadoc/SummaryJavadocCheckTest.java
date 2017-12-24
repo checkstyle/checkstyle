@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc";
@@ -134,4 +135,5 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
 
         verify(checkConfig, getPath("InputSummaryJavadocPeriodAtEnd.java"), expected);
     }
+
 }

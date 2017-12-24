@@ -50,4 +50,5 @@ public class AccessResultTest {
         };
         assertArrayEquals("Invalid access result values", expected, actual);
     }
+
 }

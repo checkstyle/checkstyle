@@ -50,6 +50,7 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 
 public class SuppressionCommentFilterTest
     extends AbstractModuleTestSupport {
+
     private static final String[] ALL_MESSAGES = {
         "13:17: "
             + getCheckMessage(AbstractNameCheck.class,
@@ -347,7 +348,6 @@ public class SuppressionCommentFilterTest
             assertEquals("Invalid exception message",
                 "unable to parse expanded comment e[l", cause.getMessage());
         }
-
     }
 
     @Test
@@ -423,4 +423,5 @@ public class SuppressionCommentFilterTest
                 Whitebox.getInternalState(suppressionCommentFilter, "tags");
         assertEquals("Invalid tags size", 1, tags.size());
     }
+
 }

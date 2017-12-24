@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AvoidNestedBlocksCheckTest
         extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/blocks/avoidnestedblocks";
@@ -79,4 +80,5 @@ public class AvoidNestedBlocksCheckTest
         final int[] expected = {TokenTypes.SLIST };
         assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
+
 }

@@ -43,6 +43,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
  * @noinspection NoopMethodInAbstractClass
  */
 public abstract class AbstractJavadocCheck extends AbstractCheck {
+
     /**
      * Message key of error message. Missed close HTML tag breaks structure
      * of parse tree, so parser stops parsing and generates such error
@@ -316,7 +317,6 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
                         parseErrorMessage.getMessageArguments());
             }
         }
-
     }
 
     /**
@@ -353,7 +353,6 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
             }
             DetailNode toVisit = JavadocUtils.getFirstChild(curNode);
             while (curNode != null && toVisit == null) {
-
                 if (waitsForProcessing) {
                     leaveJavadocToken(curNode);
                 }
@@ -383,6 +382,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      * The file context holder.
      */
     private static class FileContext {
+
         /**
          * Parses content of Javadoc comment as DetailNode tree.
          */
@@ -393,5 +393,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
          * in Java language syntax tree.
          */
         private DetailAST blockCommentAst;
+
     }
+
 }

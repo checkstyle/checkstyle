@@ -36,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @noinspection NoopMethodInAbstractClass
  */
 public abstract class AbstractCheck extends AbstractViolationReporter {
+
     /** Default tab width for column reporting. */
     private static final int DEFAULT_TAB_WIDTH = 8;
 
@@ -246,7 +247,6 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * @param args arguments to format
      */
     public final void log(DetailAST ast, String key, Object... args) {
-
         // CommonUtils.lengthExpandedTabs returns column number considering tabulation
         // characters, it takes line from the file by line number, ast column number and tab
         // width as arguments. Returned value is 0-based, but user must see column number starting
@@ -306,10 +306,13 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * The actual context holder.
      */
     private static class FileContext {
+
         /** The sorted set for collecting messages. */
         private final SortedSet<LocalizedMessage> messages = new TreeSet<>();
 
         /** The current file contents. */
         private FileContents fileContents;
+
     }
+
 }

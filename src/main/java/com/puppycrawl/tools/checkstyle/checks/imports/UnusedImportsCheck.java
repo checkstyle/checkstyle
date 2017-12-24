@@ -310,4 +310,5 @@ public class UnusedImportsCheck extends AbstractCheck {
         }
         return topLevelType;
     }
+
 }

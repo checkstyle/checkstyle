@@ -60,6 +60,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @noinspection UseOfSystemOutOrSystemErr
  **/
 public final class Main {
+
     /**
      * A key pointing to the error counter
      * message in the "messages.properties" file.
@@ -514,14 +515,12 @@ public final class Main {
         final RootModule rootModule = getRootModule(config.getName(), moduleClassLoader);
 
         try {
-
             rootModule.setModuleClassLoader(moduleClassLoader);
             rootModule.configure(config);
             rootModule.addListener(listener);
 
             // run RootModule
             errorCounter = rootModule.process(cliOptions.files);
-
         }
         finally {
             rootModule.destroy();
@@ -589,7 +588,6 @@ public final class Main {
     private static AuditListener createListener(String format,
                                                 String outputLocation)
             throws FileNotFoundException {
-
         // setup the output stream
         final OutputStream out;
         final AutomaticBean.OutputStreamOptions closeOutputStream;
@@ -606,12 +604,10 @@ public final class Main {
         final AuditListener listener;
         if (XML_FORMAT_NAME.equals(format)) {
             listener = new XMLLogger(out, closeOutputStream);
-
         }
         else if (PLAIN_FORMAT_NAME.equals(format)) {
             listener = new DefaultLogger(out, closeOutputStream, out,
                     AutomaticBean.OutputStreamOptions.NONE);
-
         }
         else {
             if (closeOutputStream == AutomaticBean.OutputStreamOptions.CLOSE) {
@@ -742,6 +738,7 @@ public final class Main {
 
     /** Helper structure to clear show what is required for Checker to run. **/
     private static class CliOptions {
+
         /** Properties file location. */
         private String propertiesLocation;
         /** Config file location. */
@@ -758,5 +755,7 @@ public final class Main {
         private int checkerThreadsNumber;
         /** The tree walker threads number. */
         private int treeWalkerThreadsNumber;
+
     }
+
 }

@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  */
 public class Java7DiamondTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/grammars";
@@ -45,4 +46,5 @@ public class Java7DiamondTest
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputJava7Diamond.java"), expected);
     }
+
 }

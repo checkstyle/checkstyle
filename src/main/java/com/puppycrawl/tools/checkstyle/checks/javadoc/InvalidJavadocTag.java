@@ -24,6 +24,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
  * @author Oliver Burn
  */
 public final class InvalidJavadocTag {
+
     /** The line in which the invalid tag occurs. */
     private final int line;
     /** The column in which the invalid tag occurs. */
@@ -66,4 +67,5 @@ public final class InvalidJavadocTag {
     public String getName() {
         return name;
     }
+
 }

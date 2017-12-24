@@ -42,6 +42,7 @@ import org.xml.sax.SAXException;
  * @noinspection ClassOnlyUsedInOnePackage
  */
 public final class XdocUtil {
+
     public static final String DIRECTORY_PATH = "src/xdocs";
 
     private XdocUtil() {
@@ -148,4 +149,5 @@ public final class XdocUtil {
         }
         return modulesNamesWhichHaveXdoc;
     }
+
 }

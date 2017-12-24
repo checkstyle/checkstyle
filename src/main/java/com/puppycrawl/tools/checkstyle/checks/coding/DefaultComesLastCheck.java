@@ -95,7 +95,6 @@ public class DefaultComesLastCheck extends AbstractCheck {
         //interested in
         if (defaultGroupAST.getType() != TokenTypes.ANNOTATION_FIELD_DEF
                 && defaultGroupAST.getType() != TokenTypes.MODIFIERS) {
-
             if (skipIfLastAndSharedWithCase) {
                 if (Objects.nonNull(findNextSibling(ast, TokenTypes.LITERAL_CASE))) {
                     log(ast, MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE);
@@ -132,4 +131,5 @@ public class DefaultComesLastCheck extends AbstractCheck {
         }
         return token;
     }
+
 }

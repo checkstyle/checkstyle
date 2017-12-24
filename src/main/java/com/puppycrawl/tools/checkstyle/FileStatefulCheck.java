@@ -49,5 +49,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Inherited
 public @interface FileStatefulCheck {
+
     // this annotation does not have properties
+
 }

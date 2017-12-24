@@ -804,10 +804,10 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
             assertEquals("Log messages were expected",
                     expected.getLevel(), actual.getLevel());
         }
-
     }
 
     private static class CheckstyleAntTaskStub extends CheckstyleAntTask {
+
         @Override
         protected List<File> scanFileSets() {
             final File mock = PowerMockito.mock(File.class);
@@ -818,6 +818,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
             list.add(mock);
             return list;
         }
+
     }
 
     private static class CheckstyleAntTaskLogStub extends CheckstyleAntTask {
@@ -832,15 +833,16 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         @Override
         public void log(String msg, Throwable t, int msgLevel) {
             loggedMessages.add(new MessageLevelPair(msg, msgLevel));
-
         }
 
         public List<MessageLevelPair> getLoggedMessages() {
             return Collections.unmodifiableList(loggedMessages);
         }
+
     }
 
     private static final class MessageLevelPair {
+
         private final String msg;
         private final int level;
 
@@ -856,6 +858,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         public int getLevel() {
             return level;
         }
+
     }
 
 }

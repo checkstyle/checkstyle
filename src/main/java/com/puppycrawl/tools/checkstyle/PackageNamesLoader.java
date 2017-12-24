@@ -46,6 +46,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  */
 public final class PackageNamesLoader
     extends XmlLoader {
+
     /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID =
         "-//Puppy Crawl//DTD Package Names 1.0//EN";
@@ -113,7 +114,6 @@ public final class PackageNamesLoader
                            String localName,
                            String qName) {
         if (PACKAGE_ELEMENT_NAME.equals(qName)) {
-
             packageNames.add(getPackageName());
             packageStack.pop();
         }
@@ -130,7 +130,6 @@ public final class PackageNamesLoader
      */
     public static Set<String> getPackageNames(ClassLoader classLoader)
             throws CheckstyleException {
-
         final Set<String> result;
         try {
             //create the loader outside the loop to prevent PackageObjectFactory
@@ -177,4 +176,5 @@ public final class PackageNamesLoader
             Closeables.closeQuietly(stream);
         }
     }
+
 }

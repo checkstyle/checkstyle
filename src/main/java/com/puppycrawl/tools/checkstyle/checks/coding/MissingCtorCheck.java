@@ -71,4 +71,5 @@ public class MissingCtorCheck extends AbstractCheck {
             log(ast.getLineNo(), MSG_KEY);
         }
     }
+
 }

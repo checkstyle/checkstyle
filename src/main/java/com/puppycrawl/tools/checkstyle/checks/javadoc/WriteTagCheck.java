@@ -210,4 +210,5 @@ public class WriteTagCheck
 
         setSeverity(originalSeverity);
     }
+
 }

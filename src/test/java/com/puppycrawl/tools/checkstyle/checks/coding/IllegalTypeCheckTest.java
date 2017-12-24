@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/illegaltype";
@@ -239,4 +240,5 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             // it is OK
         }
     }
+
 }

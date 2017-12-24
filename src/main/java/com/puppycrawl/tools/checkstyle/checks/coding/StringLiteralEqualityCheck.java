@@ -73,4 +73,5 @@ public class StringLiteralEqualityCheck extends AbstractCheck {
                     MSG_KEY, ast.getText());
         }
     }
+
 }

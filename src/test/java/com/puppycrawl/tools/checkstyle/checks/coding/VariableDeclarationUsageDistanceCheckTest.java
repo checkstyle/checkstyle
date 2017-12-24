@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class VariableDeclarationUsageDistanceCheckTest extends
         AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance";
@@ -265,4 +266,5 @@ public class VariableDeclarationUsageDistanceCheckTest extends
 
         verify(checkConfig, getPath("InputVariableDeclarationUsageDistanceLabels.java"), expected);
     }
+
 }

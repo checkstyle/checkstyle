@@ -36,6 +36,7 @@ import javax.swing.tree.TreeModel;
  */
 class TreeTableCellRenderer extends JTree implements
         TableCellRenderer {
+
     /**
      * Serial ID.
      */
@@ -131,4 +132,5 @@ class TreeTableCellRenderer extends JTree implements
         visibleRow = row;
         return this;
     }
+
 }

@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class SuperFinalizeCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/superfinalize";
@@ -43,4 +44,5 @@ public class SuperFinalizeCheckTest
         };
         verify(checkConfig, getPath("InputSuperFinalizeVariations.java"), expected);
     }
+
 }

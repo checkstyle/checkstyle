@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author jrichard
  */
 public class IfHandler extends BlockParentHandler {
+
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -112,4 +113,5 @@ public class IfHandler extends BlockParentHandler {
     private static DetailAST getIfStatementRightParen(DetailAST literalIfAst) {
         return literalIfAst.findFirstToken(TokenTypes.RPAREN);
     }
+
 }

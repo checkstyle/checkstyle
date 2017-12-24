@@ -96,4 +96,5 @@ public final class NestedForDepthCheck extends AbstractCheck {
     public void leaveToken(DetailAST ast) {
         --depth;
     }
+
 }

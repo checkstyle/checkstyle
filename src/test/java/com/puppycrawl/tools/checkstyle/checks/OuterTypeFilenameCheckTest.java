@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class OuterTypeFilenameCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/outertypefilename";
@@ -123,4 +124,5 @@ public class OuterTypeFilenameCheckTest extends AbstractModuleTestSupport {
 
         verify(checkConfig, getNonCompilablePath("package-info.java"), expected);
     }
+
 }

@@ -35,7 +35,6 @@ public class JavadocParagraphTest extends AbstractModuleTestSupport {
 
     @Test
     public void testJavadocParagraphCorrect() throws Exception {
-
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("JavadocParagraph");
@@ -47,7 +46,6 @@ public class JavadocParagraphTest extends AbstractModuleTestSupport {
 
     @Test
     public void testJavadocParagraphIncorrect() throws Exception {
-
         final String msgBefore = getCheckMessage(JavadocParagraphCheck.class,
                 "javadoc.paragraph.line.before");
         final String msgRed = getCheckMessage(JavadocParagraphCheck.class,
@@ -94,4 +92,5 @@ public class JavadocParagraphTest extends AbstractModuleTestSupport {
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

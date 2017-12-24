@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class ParameterNumberCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber";
@@ -115,4 +116,5 @@ public class ParameterNumberCheckTest
         };
         verify(checkConfig, getPath("InputParameterNumber.java"), expected);
     }
+
 }

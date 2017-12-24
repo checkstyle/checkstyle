@@ -38,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod";
@@ -97,7 +98,6 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void allowedAnnotationsTest() throws Exception {
-
         final DefaultConfiguration config = createModuleConfig(JavadocMethodCheck.class);
         config.addAttribute("allowedAnnotations", "Override,ThisIsOk, \t\n\t ThisIsOkToo");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -623,4 +623,5 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputJavadocMethodReceiverParameter.java"), expected);
     }
+
 }

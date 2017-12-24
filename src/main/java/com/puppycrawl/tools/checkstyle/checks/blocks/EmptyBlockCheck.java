@@ -67,6 +67,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 @StatelessCheck
 public class EmptyBlockCheck
     extends AbstractCheck {
+
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -252,4 +253,5 @@ public class EmptyBlockCheck
         }
         return leftCurly;
     }
+
 }

@@ -91,7 +91,6 @@ public class FinalClassCheck
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
 
         switch (ast.getType()) {
-
             case TokenTypes.PACKAGE_DEF:
                 packageName = extractQualifiedName(ast);
                 break;
@@ -269,6 +268,7 @@ public class FinalClassCheck
 
     /** Maintains information about class' ctors. */
     private static final class ClassDesc {
+
         /** Qualified class name(with package). */
         private final String qualifiedName;
 
@@ -363,5 +363,7 @@ public class FinalClassCheck
         private boolean isDeclaredAsAbstract() {
             return declaredAsAbstract;
         }
+
     }
+
 }

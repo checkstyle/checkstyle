@@ -114,6 +114,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
      * Details of class that are required for validation.
      */
     private static class Details {
+
         /** Class ast. */
         private final DetailAST ast;
         /** Result of details gathering. */
@@ -216,10 +217,11 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
                         // for the purpose of this Check
                         hasPublicCtor = true;
                     }
-
                 }
                 child = child.getNextSibling();
             }
         }
+
     }
+
 }

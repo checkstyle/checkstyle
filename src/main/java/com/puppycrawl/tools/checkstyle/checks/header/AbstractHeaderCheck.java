@@ -48,6 +48,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  */
 public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     implements ExternalResourceHolder {
+
     /** Pattern to detect occurrences of '\n' in text. */
     private static final Pattern ESCAPED_LINE_FEED_PATTERN = Pattern.compile("\\\\n");
 
@@ -185,7 +186,6 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
         finally {
             Closeables.closeQuietly(lnr);
         }
-
     }
 
     @Override
@@ -208,4 +208,5 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
 
         return result;
     }
+
 }

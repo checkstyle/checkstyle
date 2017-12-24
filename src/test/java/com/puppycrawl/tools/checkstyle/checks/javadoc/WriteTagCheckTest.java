@@ -46,6 +46,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author Daniel Grenner
  */
 public class WriteTagCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/writetag";
@@ -220,7 +221,6 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
             new ByteArrayInputStream(getStream().toByteArray());
         try (LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(localStream, StandardCharsets.UTF_8))) {
-
             for (int i = 0; i < expected.length; i++) {
                 final String expectedResult = messageFileName + ":" + expected[i];
                 final String actual = lnr.readLine();
@@ -232,4 +232,5 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         }
         checker.destroy();
     }
+
 }

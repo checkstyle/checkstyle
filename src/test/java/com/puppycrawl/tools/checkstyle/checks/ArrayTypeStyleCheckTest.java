@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ArrayTypeStyleCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/arraytypestyle";
@@ -82,4 +83,5 @@ public class ArrayTypeStyleCheckTest
         assertArrayEquals("Acceptable tokens differs from expected",
                 expected, actual);
     }
+
 }

@@ -38,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class DeclarationOrderCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/declarationorder";
@@ -198,4 +199,5 @@ public class DeclarationOrderCheckTest
                 getPath("InputDeclarationOrderAvoidDuplicatesInStaticFinalFields.java"),
                 expected);
     }
+
 }

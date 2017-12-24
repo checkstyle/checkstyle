@@ -152,4 +152,5 @@ public class ScopeTest {
         assertFalse("Invalid subscope", Scope.PRIVATE.isIn(Scope.NOTHING));
         assertFalse("Invalid subscope", Scope.ANONINNER.isIn(Scope.NOTHING));
     }
+
 }

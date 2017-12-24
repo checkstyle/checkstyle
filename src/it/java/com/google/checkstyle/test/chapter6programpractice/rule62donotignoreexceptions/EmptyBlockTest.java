@@ -34,7 +34,6 @@ public class EmptyBlockTest extends AbstractModuleTestSupport {
 
     @Test
     public void testEmptyBlockCatch() throws Exception {
-
         final String[] expected = {
             "29:17: " + getCheckMessage(EmptyBlockCheck.class, "block.empty", "finally"),
             "50:21: " + getCheckMessage(EmptyBlockCheck.class, "block.empty", "finally"),
@@ -47,4 +46,5 @@ public class EmptyBlockTest extends AbstractModuleTestSupport {
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

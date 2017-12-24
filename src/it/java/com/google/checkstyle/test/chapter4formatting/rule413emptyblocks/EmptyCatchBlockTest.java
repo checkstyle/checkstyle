@@ -35,7 +35,6 @@ public class EmptyCatchBlockTest extends AbstractModuleTestSupport {
 
     @Test
     public void testEmptyBlockCatch() throws Exception {
-
         final String[] expected = {
             "28: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
             "49: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
@@ -53,7 +52,6 @@ public class EmptyCatchBlockTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNoViolations() throws Exception {
-
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("EmptyCatchBlock");
@@ -65,7 +63,6 @@ public class EmptyCatchBlockTest extends AbstractModuleTestSupport {
 
     @Test
     public void testViolationsByComment() throws Exception {
-
         final String[] expected = {
             "19: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
             "27: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
@@ -93,4 +90,5 @@ public class EmptyCatchBlockTest extends AbstractModuleTestSupport {
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

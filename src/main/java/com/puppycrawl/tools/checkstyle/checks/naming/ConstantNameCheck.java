@@ -55,6 +55,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  */
 public class ConstantNameCheck
     extends AbstractAccessControlNameCheck {
+
     /** Creates a new {@code ConstantNameCheck} instance. */
     public ConstantNameCheck() {
         super("^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$");
@@ -99,4 +100,5 @@ public class ConstantNameCheck
 
         return returnValue;
     }
+
 }

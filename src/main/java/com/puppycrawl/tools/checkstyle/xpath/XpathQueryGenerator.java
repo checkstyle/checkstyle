@@ -71,6 +71,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * @author Timur Tibeyev.
  */
 public class XpathQueryGenerator {
+
     /** The root ast. */
     private final DetailAST rootAst;
     /** The line number of the element for which the query should be generated. */
@@ -257,4 +258,5 @@ public class XpathQueryGenerator {
         return ast.findFirstToken(TokenTypes.IDENT) != null
             || !hasAtLeastOneSiblingWithSameTokenType(ast);
     }
+
 }

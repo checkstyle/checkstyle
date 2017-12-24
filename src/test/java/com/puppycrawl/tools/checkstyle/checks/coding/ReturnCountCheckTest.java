@@ -39,6 +39,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class ReturnCountCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/returncount";
@@ -177,4 +178,5 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
                 "contextStack",
                 contextStack -> ((Collection<Set<String>>) contextStack).isEmpty()));
     }
+
 }

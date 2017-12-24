@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class StaticVariableNameCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/staticvariablename";
@@ -91,4 +92,5 @@ public class StaticVariableNameCheckTest
         };
         assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
+
 }

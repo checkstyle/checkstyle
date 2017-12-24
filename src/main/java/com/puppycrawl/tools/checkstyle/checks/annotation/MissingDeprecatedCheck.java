@@ -99,6 +99,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  */
 @StatelessCheck
 public final class MissingDeprecatedCheck extends AbstractCheck {
+
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -241,7 +242,6 @@ public final class MissingDeprecatedCheck extends AbstractCheck {
      */
     private boolean checkTagAtTheRestOfComment(String[] lines, boolean foundBefore,
             int currentLine, int index) {
-
         boolean found = false;
         int reindex = index + 1;
         while (reindex <= lines.length - 1) {
@@ -270,4 +270,5 @@ public final class MissingDeprecatedCheck extends AbstractCheck {
         }
         return found;
     }
+
 }

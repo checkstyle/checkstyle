@@ -124,4 +124,5 @@ public class InlineTagUtilsTest {
         assertEquals("Unexpected tags position", line, tag.getPosition().getLine());
         assertEquals("Unexpected tags position", col, tag.getPosition().getColumn());
     }
+
 }

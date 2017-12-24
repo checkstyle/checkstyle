@@ -33,7 +33,6 @@ public class UpperEllTest extends AbstractModuleTestSupport {
 
     @Test
     public void testUpperEll() throws Exception {
-
         final String[] expected = {
             "6:36: Should use uppercase 'L'.",
             "12:27: Should use uppercase 'L'.",
@@ -67,4 +66,5 @@ public class UpperEllTest extends AbstractModuleTestSupport {
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

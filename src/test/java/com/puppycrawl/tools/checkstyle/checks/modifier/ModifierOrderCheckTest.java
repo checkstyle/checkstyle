@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class ModifierOrderCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/modifier/modifierorder";
@@ -126,4 +127,5 @@ public class ModifierOrderCheckTest
         };
         verify(checkConfig, getPath("InputModifierOrderAnnotationDeclaration.java"), expected);
     }
+
 }

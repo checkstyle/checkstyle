@@ -29,6 +29,7 @@ import com.google.common.collect.ImmutableCollection;
  * @see Contextualizable
  */
 public interface Context {
+
     /**
      * Searches for the value with the specified attribute key in this context.
      * @param key the attribute key.
@@ -41,4 +42,5 @@ public interface Context {
      * @return the names of all attributes of this context.
      */
     ImmutableCollection<String> getAttributeNames();
+
 }

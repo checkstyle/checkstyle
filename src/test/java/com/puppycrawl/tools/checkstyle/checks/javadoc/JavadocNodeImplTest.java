@@ -50,4 +50,5 @@ public class JavadocNodeImplTest {
 
         assertEquals("Invalid column number", 1, result);
     }
+
 }

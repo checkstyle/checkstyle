@@ -85,7 +85,6 @@ public final class IllegalThrowsCheck extends AbstractCheck {
         illegalClassNames.clear();
         illegalClassNames.addAll(
                 CheckUtils.parseClassNames(classNames));
-
     }
 
     @Override
@@ -158,4 +157,5 @@ public final class IllegalThrowsCheck extends AbstractCheck {
     public void setIgnoreOverriddenMethods(boolean ignoreOverriddenMethods) {
         this.ignoreOverriddenMethods = ignoreOverriddenMethods;
     }
+
 }

@@ -35,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype";
@@ -394,4 +395,5 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
                 getPath("InputJavadocTypeBadTag.java"),
                 expected);
     }
+
 }

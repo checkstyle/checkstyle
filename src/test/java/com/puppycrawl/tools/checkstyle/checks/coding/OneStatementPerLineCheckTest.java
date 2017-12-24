@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/onestatementperline";
@@ -92,4 +93,5 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
 
         verify(checkConfig, getNonCompilablePath("InputOneStatementPerLine.java"), expected);
     }
+
 }

@@ -45,7 +45,6 @@ public class CustomImportOrderTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCustomImport1() throws Exception {
-
         final String[] expected = {
             "4: " + getCheckMessage(clazz, MSG_LEX, "java.awt.Button.ABORT",
                 "java.io.File.createTempFile"),
@@ -68,7 +67,6 @@ public class CustomImportOrderTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCustomImport2() throws Exception {
-
         final String[] expected = {
             "4: " + getCheckMessage(clazz, MSG_LEX, "java.awt.Button.ABORT",
                 "java.io.File.createTempFile"),
@@ -93,7 +91,6 @@ public class CustomImportOrderTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCustomImport3() throws Exception {
-
         final String[] expected = {
             "4: " + getCheckMessage(clazz, MSG_LINE_SEPARATOR, "java.awt.Dialog"),
             "5: " + getCheckMessage(clazz, MSG_NONGROUP_EXPECTED, STATIC,
@@ -120,7 +117,6 @@ public class CustomImportOrderTest extends AbstractModuleTestSupport {
 
     @Test
     public void testValid() throws Exception {
-
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("CustomImportOrder");
@@ -140,4 +136,5 @@ public class CustomImportOrderTest extends AbstractModuleTestSupport {
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

@@ -109,7 +109,6 @@ public final class PackageDeclarationCheck extends AbstractCheck {
         defined = true;
 
         if (matchDirectoryStructure) {
-
             final DetailAST packageNameAst = ast.getLastChild().getPreviousSibling();
             final FullIdent fullIdent = FullIdent.createFullIdent(packageNameAst);
             final String packageName = fullIdent.getText().replace('.', File.separatorChar);
@@ -131,4 +130,5 @@ public final class PackageDeclarationCheck extends AbstractCheck {
         final int lastSeparatorPos = fileName.lastIndexOf(File.separatorChar);
         return fileName.substring(0, lastSeparatorPos);
     }
+
 }

@@ -98,4 +98,5 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
 
         return found;
     }
+
 }

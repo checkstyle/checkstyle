@@ -235,4 +235,5 @@ public class GeneratedJavadocTokenTypesTest {
         assertEquals(MSG, 78, JavadocParser.RULE_trackTag);
         assertEquals(MSG, 79, JavadocParser.RULE_wbrTag);
     }
+
 }

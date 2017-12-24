@@ -55,6 +55,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(Closeables.class)
 public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/header/regexpheader";
@@ -392,4 +393,5 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         verifyStatic(times(2));
         Closeables.closeQuietly(any(InputStreamReader.class));
     }
+
 }

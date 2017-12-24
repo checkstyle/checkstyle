@@ -122,5 +122,7 @@ public class BlockCommentPositionTest extends AbstractPathTestSupport {
         public int getMatchesNum() {
             return matchesNum;
         }
+
     }
+
 }

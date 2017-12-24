@@ -39,6 +39,7 @@ import org.xml.sax.SAXException;
  * @noinspection ClassOnlyUsedInOnePackage
  */
 public final class XmlUtil {
+
     private XmlUtil() {
     }
 
@@ -100,4 +101,5 @@ public final class XmlUtil {
 
         return result;
     }
+
 }

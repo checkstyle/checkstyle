@@ -148,16 +148,20 @@ public class ModuleReflectionUtilsTest {
     }
 
     private static class ValidCheckstyleClass extends AutomaticBean {
+
         // empty, use default constructor
 
         @Override
         protected void finishLocalSetup() throws CheckstyleException {
             //dummy method
         }
+
     }
 
     private static class InvalidNonAutomaticBeanClass {
+
         // empty, use default constructor
+
     }
 
     /**
@@ -165,10 +169,13 @@ public class ModuleReflectionUtilsTest {
      * @noinspection AbstractClassNeverImplemented
      */
     private abstract static class AbstractInvalidClass extends AutomaticBean {
+
         public abstract void method();
+
     }
 
     private static class CheckClass extends AbstractCheck {
+
         @Override
         public int[] getDefaultTokens() {
             return new int[] {0};
@@ -183,16 +190,20 @@ public class ModuleReflectionUtilsTest {
         public int[] getRequiredTokens() {
             return getDefaultTokens();
         }
+
     }
 
     private static class FileSetModuleClass extends AbstractFileSetCheck {
+
         @Override
         protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
             //dummy method
         }
+
     }
 
     private static class FilterClass extends AutomaticBean implements Filter {
+
         @Override
         protected void finishLocalSetup() throws CheckstyleException {
             //dummy method
@@ -202,10 +213,12 @@ public class ModuleReflectionUtilsTest {
         public boolean accept(AuditEvent event) {
             return false;
         }
+
     }
 
     private static class FileFilterModuleClass extends AutomaticBean
             implements BeforeExecutionFileFilter {
+
         @Override
         protected void finishLocalSetup() throws CheckstyleException {
             //dummy method
@@ -215,9 +228,11 @@ public class ModuleReflectionUtilsTest {
         public boolean accept(String uri) {
             return false;
         }
+
     }
 
     private static class RootModuleClass extends AutomaticBean implements RootModule {
+
         @Override
         protected void finishLocalSetup() throws CheckstyleException {
             //dummy method
@@ -242,9 +257,11 @@ public class ModuleReflectionUtilsTest {
         public void setModuleClassLoader(ClassLoader moduleClassLoader) {
             //dummy method
         }
+
     }
 
     private static class TreeWalkerFilterClass extends AutomaticBean implements TreeWalkerFilter {
+
         @Override
         protected void finishLocalSetup() throws CheckstyleException {
             //dummy method
@@ -254,6 +271,7 @@ public class ModuleReflectionUtilsTest {
         public boolean accept(TreeWalkerAuditEvent treeWalkerAuditEvent) {
             return false;
         }
+
     }
 
     private static class AuditListenerClass extends AutomaticBean implements AuditListener {
@@ -292,13 +310,17 @@ public class ModuleReflectionUtilsTest {
         public void addException(AuditEvent event, Throwable throwable) {
             //dummy method
         }
+
     }
 
     private static class NotCheckstyleCheck {
+
         // empty, use default constructor
+
     }
 
     private static class InvalidNonDefaultConstructorClass extends AutomaticBean {
+
         private int field;
 
         protected InvalidNonDefaultConstructorClass(int data) {
@@ -322,5 +344,7 @@ public class ModuleReflectionUtilsTest {
         protected void finishLocalSetup() throws CheckstyleException {
             //dummy method
         }
+
     }
+
 }

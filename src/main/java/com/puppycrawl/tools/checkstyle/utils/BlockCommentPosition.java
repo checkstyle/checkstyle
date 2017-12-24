@@ -256,4 +256,5 @@ public final class BlockCommentPosition {
         }
         return result;
     }
+
 }

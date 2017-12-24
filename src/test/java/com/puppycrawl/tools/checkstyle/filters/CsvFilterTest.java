@@ -28,6 +28,7 @@ import org.junit.Test;
 import nl.jqno.equalsverifier.EqualsVerifier;
 
 public class CsvFilterTest {
+
     @Test
     public void testDecideSingle() {
         final IntFilter filter = new CsvFilter("0");
@@ -112,4 +113,5 @@ public class CsvFilterTest {
     public void testEqualsAndHashCode() {
         EqualsVerifier.forClass(CsvFilter.class).usingGetClass().verify();
     }
+
 }

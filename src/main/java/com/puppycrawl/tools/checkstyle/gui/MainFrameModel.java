@@ -74,6 +74,7 @@ public class MainFrameModel {
         public String toString() {
             return description;
         }
+
     }
 
     /** Parse tree model. */
@@ -270,4 +271,5 @@ public class MainFrameModel {
         return new FileText(file.getAbsoluteFile(),
                 System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
     }
+
 }

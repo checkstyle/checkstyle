@@ -197,7 +197,6 @@ public class RegexpCheck extends AbstractCheck {
 
     /** Recursive method that finds the matches. */
     private void findMatch() {
-
         final boolean foundMatch = matcher.find();
         if (foundMatch) {
             final FileText text = getFileContents().getText();
@@ -221,7 +220,6 @@ public class RegexpCheck extends AbstractCheck {
         else if (!illegalPattern && matchCount == 0) {
             logMessage(0);
         }
-
     }
 
     /**
@@ -291,4 +289,5 @@ public class RegexpCheck extends AbstractCheck {
             }
         }
     }
+
 }

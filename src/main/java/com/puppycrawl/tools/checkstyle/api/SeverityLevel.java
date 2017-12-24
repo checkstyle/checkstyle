@@ -35,6 +35,7 @@ import java.util.Locale;
  * @author Mehmet Can Cömert
  */
 public enum SeverityLevel {
+
     /** Severity level ignore. */
     IGNORE,
     /** Severity level info. */
@@ -68,4 +69,5 @@ public enum SeverityLevel {
         return valueOf(SeverityLevel.class, securityLevelName.trim()
                 .toUpperCase(Locale.ENGLISH));
     }
+
 }

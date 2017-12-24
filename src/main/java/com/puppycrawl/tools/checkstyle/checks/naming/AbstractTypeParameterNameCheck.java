@@ -75,4 +75,5 @@ public abstract class AbstractTypeParameterNameCheck
             ast.getParent().getParent();
         return location.getType() == getLocation();
     }
+
 }

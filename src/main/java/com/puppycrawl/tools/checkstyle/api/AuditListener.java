@@ -35,6 +35,7 @@ import java.util.EventListener;
  */
 public interface AuditListener
     extends EventListener {
+
     /**
      * Notify that the audit is about to start.
      * @param event the event details
@@ -71,4 +72,5 @@ public interface AuditListener
      * @param throwable details of the exception
      */
     void addException(AuditEvent event, Throwable throwable);
+
 }

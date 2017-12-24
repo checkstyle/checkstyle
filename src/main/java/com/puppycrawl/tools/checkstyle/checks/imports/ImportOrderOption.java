@@ -25,6 +25,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
  * @see ImportOrderCheck
  */
 public enum ImportOrderOption {
+
     /**
      * Represents the policy that static imports are all at the top.
      * For example:
@@ -103,4 +104,5 @@ public enum ImportOrderOption {
      * </pre>
      */
     BOTTOM
+
 }

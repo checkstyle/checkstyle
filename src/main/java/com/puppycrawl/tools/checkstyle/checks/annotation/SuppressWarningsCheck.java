@@ -92,6 +92,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  */
 @StatelessCheck
 public class SuppressWarningsCheck extends AbstractCheck {
+
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -333,4 +334,5 @@ public class SuppressWarningsCheck extends AbstractCheck {
         final DetailAST colon = cond.findFirstToken(TokenTypes.COLON);
         return colon.getNextSibling();
     }
+
 }

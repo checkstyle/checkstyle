@@ -330,7 +330,6 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @Test
     @SuppressWarnings("unchecked")
     public void testExceptionNoSuchAlgorithmException() throws Exception {
-
         final Configuration config = new DefaultConfiguration("myName");
         final String filePath = temporaryFolder.newFile().getPath();
         final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
@@ -414,7 +413,6 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @Test
     public void testPutNonExistentExternalResourceDifferentExceptionsBetweenRuns()
             throws Exception {
-
         final File cacheFile = temporaryFolder.newFile();
 
         // We invoke 'putExternalResources' twice to invalidate cache
@@ -501,4 +499,5 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         detailsAfterChangeInConfig.load(Files.newBufferedReader(cacheFile.toPath()));
         assertEquals("Invalid cache size", 1, detailsAfterChangeInConfig.size());
     }
+
 }

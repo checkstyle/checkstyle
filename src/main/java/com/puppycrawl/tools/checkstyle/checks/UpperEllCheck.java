@@ -80,4 +80,5 @@ public class UpperEllCheck extends AbstractCheck {
                 MSG_KEY);
         }
     }
+
 }

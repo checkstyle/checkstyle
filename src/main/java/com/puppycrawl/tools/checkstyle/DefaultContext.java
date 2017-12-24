@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.Context;
  * @author lkuehne
  */
 public final class DefaultContext implements Context {
+
     /** Stores the context entries. */
     private final Map<String, Object> entries = new HashMap<>();
 
@@ -52,4 +53,5 @@ public final class DefaultContext implements Context {
     public void add(String key, Object value) {
         entries.put(key, value);
     }
+
 }

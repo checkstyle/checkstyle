@@ -25,6 +25,7 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
  */
 @FunctionalInterface
 public interface MatchSuppressor {
+
     /**
      * Checks if the specified selection should be suppressed.
      * @param startLineNo the starting line number
@@ -35,4 +36,5 @@ public interface MatchSuppressor {
      **/
     boolean shouldSuppress(int startLineNo, int startColNo, int endLineNo,
             int endColNo);
+
 }

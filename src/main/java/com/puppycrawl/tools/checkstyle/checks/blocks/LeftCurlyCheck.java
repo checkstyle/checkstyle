@@ -77,6 +77,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 @StatelessCheck
 public class LeftCurlyCheck
     extends AbstractCheck {
+
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -274,7 +275,6 @@ public class LeftCurlyCheck
         while (previousAnnotation.getPreviousSibling() != null
                 && previousAnnotation.getPreviousSibling().getLineNo()
                     == lastAnnotationLineNumber) {
-
             previousAnnotation = previousAnnotation.getPreviousSibling();
         }
         return previousAnnotation;
@@ -314,13 +314,10 @@ public class LeftCurlyCheck
                 }
             }
             else if (option == LeftCurlyOption.EOL) {
-
                 validateEol(brace, braceLine);
             }
             else if (startToken.getLineNo() != brace.getLineNo()) {
-
                 validateNewLinePosition(brace, startToken, braceLine);
-
             }
         }
     }
@@ -382,4 +379,5 @@ public class LeftCurlyCheck
                 || nextToken.getType() == TokenTypes.RCURLY
                 || leftCurly.getLineNo() != nextToken.getLineNo();
     }
+
 }

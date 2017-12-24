@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  */
 public class UnicodeEscapeTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/grammars";
@@ -45,4 +46,5 @@ public class UnicodeEscapeTest
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputUnicodeEscape.java"), expected);
     }
+
 }

@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author jrichard
  */
 public class MethodCallHandler extends AbstractExpressionHandler {
+
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -205,4 +206,5 @@ public class MethodCallHandler extends AbstractExpressionHandler {
     private static DetailAST getMethodCallLastNode(DetailAST firstNode) {
         return firstNode.getLastChild();
     }
+
 }

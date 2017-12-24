@@ -26,6 +26,7 @@ package com.puppycrawl.tools.checkstyle.api;
  * @author lkuehne
  */
 public interface TextBlock {
+
     /**
      * The text content of the text block.
      * Each line is represented by one array entry.
@@ -75,4 +76,5 @@ public interface TextBlock {
      */
     boolean intersects(int startLineNo, int startColNo,
                        int endLineNo, int endColNo);
+
 }

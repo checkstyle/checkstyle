@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class InterfaceTypeParameterNameCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/interfacetypeparametername";
@@ -73,4 +74,5 @@ public class InterfaceTypeParameterNameCheckTest
         };
         verify(checkConfig, getPath("InputInterfaceTypeParameterName.java"), expected);
     }
+
 }

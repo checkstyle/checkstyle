@@ -26,6 +26,7 @@ import java.util.Objects;
  * @author Rick Giles
  */
 class IntRangeFilter implements IntFilter {
+
     /** Lower bound of the range. */
     private final Integer lowerBound;
 
@@ -66,4 +67,5 @@ class IntRangeFilter implements IntFilter {
         return Objects.equals(lowerBound, intRangeFilter.lowerBound)
                 && Objects.equals(upperBound, intRangeFilter.upperBound);
     }
+
 }

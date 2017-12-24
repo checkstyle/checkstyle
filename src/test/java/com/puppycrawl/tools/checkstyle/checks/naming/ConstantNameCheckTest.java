@@ -35,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class ConstantNameCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/constantname";
@@ -162,4 +163,5 @@ public class ConstantNameCheckTest
         Assert.assertNotNull("Default acceptable should not be null", actual);
         assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
+
 }

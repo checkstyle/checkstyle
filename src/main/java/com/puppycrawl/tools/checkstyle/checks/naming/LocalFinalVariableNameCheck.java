@@ -52,6 +52,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  */
 public class LocalFinalVariableNameCheck
     extends AbstractNameCheck {
+
     /** Creates a new {@code LocalFinalVariableNameCheck} instance. */
     public LocalFinalVariableNameCheck() {
         super("^[a-z][a-zA-Z0-9]*$");
@@ -84,4 +85,5 @@ public class LocalFinalVariableNameCheck
             || modifiersAST.findFirstToken(TokenTypes.FINAL) != null;
         return isFinal && ScopeUtils.isLocalVariableDef(ast);
     }
+
 }

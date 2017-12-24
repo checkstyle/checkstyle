@@ -32,6 +32,7 @@ import javax.swing.tree.TreePath;
  * @author unknown
  */
 class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
+
     private static final long serialVersionUID = 2267930983939339510L;
     /** TreeTable to perform updates on. */
     private final TreeTable treeTable;
@@ -123,4 +124,5 @@ class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
             }
         }
     }
+
 }

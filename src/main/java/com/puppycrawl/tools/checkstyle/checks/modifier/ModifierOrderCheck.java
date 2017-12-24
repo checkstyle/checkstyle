@@ -155,7 +155,6 @@ public class ModifierOrderCheck
 
             while (modifier != null
                     && offendingModifier == null) {
-
                 if (modifier.getType() == TokenTypes.ANNOTATION) {
                     if (!isAnnotationOnType(modifier)) {
                         //Annotation not at start of modifiers, bad
@@ -222,4 +221,5 @@ public class ModifierOrderCheck
         }
         return annotationOnType;
     }
+
 }

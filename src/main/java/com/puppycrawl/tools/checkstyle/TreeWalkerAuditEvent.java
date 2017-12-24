@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
  * @author Timur Tibeyev
  */
 public class TreeWalkerAuditEvent {
+
     /** Filename event associated with. **/
     private final String fileName;
     /** The file contents. */
@@ -136,4 +137,5 @@ public class TreeWalkerAuditEvent {
     public DetailAST getRootAst() {
         return rootAst;
     }
+
 }

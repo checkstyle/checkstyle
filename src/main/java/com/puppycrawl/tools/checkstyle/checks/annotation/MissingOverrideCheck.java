@@ -78,6 +78,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  */
 @StatelessCheck
 public final class MissingOverrideCheck extends AbstractCheck {
+
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -200,4 +201,5 @@ public final class MissingOverrideCheck extends AbstractCheck {
         }
         return javadocTag;
     }
+
 }

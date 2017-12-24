@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class SimplifyBooleanReturnCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/simplifybooleanreturn";
@@ -52,4 +53,5 @@ public class SimplifyBooleanReturnCheckTest
         Assert.assertNotNull("Default tokens should not be null", check.getDefaultTokens());
         Assert.assertNotNull("Required tokens should not be null", check.getRequiredTokens());
     }
+
 }

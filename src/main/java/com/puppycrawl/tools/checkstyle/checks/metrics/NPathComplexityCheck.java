@@ -401,6 +401,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
      * operator from being processed twice.
      */
     private static class TokenEnd {
+
         /** End line of token. */
         private int endLineNo;
 
@@ -440,6 +441,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
             }
             return isAfter;
         }
+
     }
 
     /**

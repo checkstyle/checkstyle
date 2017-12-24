@@ -238,6 +238,7 @@ public final class MethodCountCheck extends AbstractCheck {
      * methods for each class and layer.
      */
     private static class MethodCounter {
+
         /** Maintains the counts. */
         private final Map<Scope, Integer> counts = new EnumMap<>(Scope.class);
         /** Indicated is an interface, in which case all methods are public. */
@@ -299,5 +300,7 @@ public final class MethodCountCheck extends AbstractCheck {
         private int getTotal() {
             return total;
         }
+
     }
+
 }

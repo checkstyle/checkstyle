@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/outertypenumber";
@@ -89,4 +90,5 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputOuterTypeNumberEmptyInner.java"), expected);
     }
+
 }

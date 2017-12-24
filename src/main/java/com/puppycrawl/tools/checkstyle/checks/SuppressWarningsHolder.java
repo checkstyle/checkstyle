@@ -229,7 +229,6 @@ public class SuppressWarningsHolder
             identifier = identifier.substring(JAVA_LANG_PREFIX.length());
         }
         if ("SuppressWarnings".equals(identifier)) {
-
             final List<String> values = getAllAnnotationValues(ast);
             if (!isAnnotationEmpty(values)) {
                 final DetailAST targetAST = getAnnotationTarget(ast);
@@ -491,6 +490,7 @@ public class SuppressWarningsHolder
 
     /** Records a particular suppression for a region of a file. */
     private static class Entry {
+
         /** The source name of the suppressed check. */
         private final String checkName;
         /** The suppression region for the check - first line. */
@@ -558,5 +558,7 @@ public class SuppressWarningsHolder
         public int getLastColumn() {
             return lastColumn;
         }
+
     }
+
 }

@@ -49,6 +49,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Oliver Burn
  */
 public class TypecastParenPadCheck extends AbstractParenPadCheck {
+
     @Override
     public int[] getRequiredTokens() {
         return new int[] {TokenTypes.RPAREN, TokenTypes.TYPECAST};
@@ -76,4 +77,5 @@ public class TypecastParenPadCheck extends AbstractParenPadCheck {
             processRight(ast);
         }
     }
+
 }

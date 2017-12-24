@@ -34,7 +34,6 @@ public class MissingSwitchDefaultTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMissingSwitchDefault() throws Exception {
-
         final String msg = getCheckMessage(MissingSwitchDefaultCheck.class,
             "missing.switch.default");
 
@@ -53,4 +52,5 @@ public class MissingSwitchDefaultTest extends AbstractModuleTestSupport {
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

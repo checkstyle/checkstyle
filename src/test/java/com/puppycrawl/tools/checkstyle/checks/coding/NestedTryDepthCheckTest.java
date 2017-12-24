@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class NestedTryDepthCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/nestedtrydepth";
@@ -67,4 +68,5 @@ public class NestedTryDepthCheckTest extends AbstractModuleTestSupport {
         Assert.assertNotNull("Default tokens should not be null", check.getDefaultTokens());
         Assert.assertNotNull("Required tokens should not be null", check.getRequiredTokens());
     }
+
 }

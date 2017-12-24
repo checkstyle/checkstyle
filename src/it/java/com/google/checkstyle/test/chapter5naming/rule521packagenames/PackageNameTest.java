@@ -43,7 +43,6 @@ public class PackageNameTest extends AbstractModuleTestSupport {
 
     @Test
     public void testGoodPackageName() throws Exception {
-
         final Configuration checkConfig = getModuleConfig("PackageName");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -55,7 +54,6 @@ public class PackageNameTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBadPackageName() throws Exception {
-
         final String packagePath =
                 "com.google.checkstyle.test.chapter5naming.rule521packageNamesCamelCase";
         final Configuration checkConfig = getModuleConfig("PackageName");
@@ -74,7 +72,6 @@ public class PackageNameTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBadPackageName2() throws Exception {
-
         final String packagePath = "com.google.checkstyle.test.chapter5naming.rule521_packagenames";
         final Configuration checkConfig = getModuleConfig("PackageName");
         final String format = checkConfig.getAttribute("format");
@@ -92,7 +89,6 @@ public class PackageNameTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBadPackageName3() throws Exception {
-
         final String packagePath = "com.google.checkstyle.test.chapter5naming.rule521$packagenames";
         final Configuration checkConfig = getModuleConfig("PackageName");
         final String format = checkConfig.getAttribute("format");
@@ -107,4 +103,5 @@ public class PackageNameTest extends AbstractModuleTestSupport {
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

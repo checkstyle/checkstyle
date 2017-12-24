@@ -109,4 +109,5 @@ public class AnonInnerLengthCheck extends AbstractCheck {
     public void setMax(int length) {
         max = length;
     }
+
 }

@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava";
@@ -246,4 +247,5 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputRegexpSinglelineJavaSemantic.java"), expected);
     }
+
 }

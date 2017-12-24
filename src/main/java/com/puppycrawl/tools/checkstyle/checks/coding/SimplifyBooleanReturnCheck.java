@@ -154,4 +154,5 @@ public class SimplifyBooleanReturnCheck
         final boolean isFalse = tokenType == TokenTypes.LITERAL_FALSE;
         return isTrue || isFalse;
     }
+
 }

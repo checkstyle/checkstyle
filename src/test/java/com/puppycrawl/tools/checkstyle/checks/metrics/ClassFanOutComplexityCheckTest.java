@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity";
@@ -228,4 +229,5 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
         verify(moduleConfig,
                 getPath("InputClassFanOutComplexityPackageName.java"), expected);
     }
+
 }

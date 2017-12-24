@@ -43,6 +43,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
+
     /** Shortcuts to make code more compact. */
     private static final String STATIC = CustomImportOrderCheck.STATIC_RULE_GROUP;
     private static final String SAME = CustomImportOrderCheck.SAME_PACKAGE_RULE_GROUP;
@@ -735,4 +736,5 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputCustomImportOrderNoPackage2.java"),
             expected);
     }
+
 }

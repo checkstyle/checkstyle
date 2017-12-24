@@ -26,6 +26,7 @@ import java.util.SortedSet;
  * @author lkuehne
  */
 public interface MessageDispatcher {
+
     /**
      * Notify all listeners about the beginning of a file audit.
      * @param fileName the file to be audited
@@ -44,4 +45,5 @@ public interface MessageDispatcher {
      * @param errors the audit errors from the file
      */
     void fireErrors(String fileName, SortedSet<LocalizedMessage> errors);
+
 }

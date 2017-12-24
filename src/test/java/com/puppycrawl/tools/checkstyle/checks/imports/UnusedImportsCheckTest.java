@@ -35,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/imports/unusedimports";
@@ -62,7 +63,6 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
         verify(createChecker(checkConfig), inputsWithoutWarningFirst, ImmutableMap.of(
                 inputWithoutWarnings, expectedFirstInput,
                 inputWithWarnings, expectedSecondInput));
-
     }
 
     @Test
@@ -248,4 +248,5 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputUnusedImportsJavadocQualifiedName.java"), expected);
     }
+
 }

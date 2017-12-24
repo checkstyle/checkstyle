@@ -29,6 +29,7 @@ import java.util.Locale;
  * @author Mehmet Can Cömert
  */
 public enum Scope {
+
     /** Nothing scope. */
     NOTHING,
     /** Public scope. */
@@ -75,4 +76,5 @@ public enum Scope {
     public static Scope getInstance(String scopeName) {
         return valueOf(Scope.class, scopeName.trim().toUpperCase(Locale.ENGLISH));
     }
+
 }

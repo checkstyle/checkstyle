@@ -39,6 +39,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class IllegalInstantiationCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/illegalinstantiation";
@@ -198,4 +199,5 @@ public class IllegalInstantiationCheckTest
             // it is OK
         }
     }
+
 }

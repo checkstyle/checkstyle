@@ -32,6 +32,7 @@ import java.util.Set;
  */
 public class FilterSet
     implements Filter {
+
     /** Filter set. */
     private final Set<Filter> filters = new HashSet<>();
 
@@ -97,4 +98,5 @@ public class FilterSet
     public void clear() {
         filters.clear();
     }
+
 }

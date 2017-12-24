@@ -25,6 +25,7 @@ import com.google.checkstyle.test.base.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class CatchParameterNameTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter5naming/rule51identifiernames";
@@ -50,4 +51,5 @@ public class CatchParameterNameTest extends AbstractModuleTestSupport {
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

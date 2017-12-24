@@ -113,7 +113,6 @@ public class NoWhitespaceBeforeCheck
 
         if ((before == -1 || Character.isWhitespace(line.charAt(before)))
                 && !isInEmptyForInitializerOrCondition(ast)) {
-
             boolean flag = !allowLineBreaks;
             // verify all characters before '.' are whitespace
             for (int i = 0; !flag && i <= before - 1; i++) {
@@ -155,4 +154,5 @@ public class NoWhitespaceBeforeCheck
     public void setAllowLineBreaks(boolean allowLineBreaks) {
         this.allowLineBreaks = allowLineBreaks;
     }
+
 }

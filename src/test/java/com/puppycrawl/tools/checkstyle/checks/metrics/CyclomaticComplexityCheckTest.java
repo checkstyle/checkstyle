@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class CyclomaticComplexityCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/metrics/cyclomaticcomplexity";
@@ -131,4 +132,5 @@ public class CyclomaticComplexityCheckTest
 
         verify(checkConfig, getPath("InputCyclomaticComplexitySwitchBlocks.java"), expected);
     }
+
 }

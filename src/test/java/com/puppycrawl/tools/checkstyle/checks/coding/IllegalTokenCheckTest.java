@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 
 public class IllegalTokenCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/illegaltoken";
@@ -133,4 +134,5 @@ public class IllegalTokenCheckTest
         };
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }
+
 }

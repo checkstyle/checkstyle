@@ -248,7 +248,6 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         verify(checkerConfig, getPath("InputHeader.java"), expected);
         // One more time to use cache.
         verify(checkerConfig, getPath("InputHeader.java"), expected);
-
     }
 
     @Test
@@ -289,4 +288,5 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
                     + "set either header or headerFile, not both", ex.getMessage());
         }
     }
+
 }

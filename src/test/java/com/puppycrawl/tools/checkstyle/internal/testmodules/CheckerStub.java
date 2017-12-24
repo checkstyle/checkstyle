@@ -40,4 +40,5 @@ public class CheckerStub extends Checker {
     public static void reset() {
         classLoader = null;
     }
+
 }

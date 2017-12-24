@@ -273,4 +273,5 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         suppressionFilter.finishLocalSetup();
         return suppressionFilter;
     }
+
 }

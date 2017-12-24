@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class WhitespaceAroundCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound";
@@ -445,4 +446,5 @@ public class WhitespaceAroundCheckTest
         };
         verify(checkConfig, getPath("InputWhitespaceAroundVarargs.java"), expected);
     }
+
 }

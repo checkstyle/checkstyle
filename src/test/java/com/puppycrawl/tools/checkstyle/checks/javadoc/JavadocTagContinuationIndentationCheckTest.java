@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class JavadocTagContinuationIndentationCheckTest
         extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctagcontinuationindentation";
@@ -90,4 +91,5 @@ public class JavadocTagContinuationIndentationCheckTest
         verify(checkConfig, getPath("InputJavadocTagContinuationIndentationOffset3.java"),
                 expected);
     }
+
 }

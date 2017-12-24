@@ -232,7 +232,6 @@ public class JavadocDetailNodeParser {
                     ParseTree tempParseTreeParent = parseTreeParent.getParent();
 
                     while (nextJavadocSibling == null && tempJavadocParent != null) {
-
                         nextJavadocSibling = (JavadocNodeImpl) JavadocUtils
                                 .getNextSibling(tempJavadocParent);
 
@@ -601,6 +600,7 @@ public class JavadocDetailNodeParser {
                         MSG_JAVADOC_PARSE_RULE_ERROR, charPositionInLine, msg, upperCaseRuleName);
             }
         }
+
     }
 
     /**
@@ -608,6 +608,7 @@ public class JavadocDetailNodeParser {
      * error message.
      */
     public static class ParseStatus {
+
         /**
          * DetailNode tree (is null if parsing fails).
          */
@@ -687,6 +688,7 @@ public class JavadocDetailNodeParser {
      * Contains information about parse error message.
      */
     public static class ParseErrorMessage {
+
         /**
          * Line number where parse error occurred.
          */
@@ -738,6 +740,7 @@ public class JavadocDetailNodeParser {
         public Object[] getMessageArguments() {
             return messageArguments.clone();
         }
+
     }
 
     /**
@@ -755,11 +758,13 @@ public class JavadocDetailNodeParser {
      *     ANTLRErrorStrategy</a>
      */
     private static class JavadocParserErrorStrategy extends BailErrorStrategy {
+
         @Override
         public Token recoverInline(Parser recognizer) {
             reportError(recognizer, new InputMismatchException(recognizer));
             return super.recoverInline(recognizer);
         }
+
     }
 
 }

@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class LocalFinalVariableNameCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/localfinalvariablename";
@@ -113,4 +114,5 @@ public class LocalFinalVariableNameCheckTest
         };
         verify(checkConfig, getPath("InputLocalFinalVariableNameTryResources.java"), expected);
     }
+
 }

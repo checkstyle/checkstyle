@@ -171,4 +171,5 @@ public final class MutableExceptionCheck extends AbstractCheck {
         }
         return result;
     }
+
 }

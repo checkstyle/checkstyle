@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class HiddenFieldCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield";
@@ -401,4 +402,5 @@ public class HiddenFieldCheckTest
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputHiddenFieldReceiver.java"), expected);
     }
+
 }

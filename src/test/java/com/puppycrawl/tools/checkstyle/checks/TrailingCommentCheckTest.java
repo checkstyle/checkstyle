@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/trailingcomment";
@@ -112,4 +113,5 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
                     "visitToken() shouldn't be called.", ex.getMessage());
         }
     }
+
 }

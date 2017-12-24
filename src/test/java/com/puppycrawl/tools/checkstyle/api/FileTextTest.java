@@ -44,6 +44,7 @@ import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(Closeables.class)
 public class FileTextTest extends AbstractPathTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/api/filetext";
@@ -61,7 +62,6 @@ public class FileTextTest extends AbstractPathTestSupport {
             assertEquals("Invalid exception message",
                     "Unsupported charset: " + charsetName, ex.getMessage());
         }
-
     }
 
     @Test
@@ -116,4 +116,5 @@ public class FileTextTest extends AbstractPathTestSupport {
         assertEquals("Invalid line", 1, lineColumn.getLine());
         assertEquals("Invalid column", 0, lineColumn.getColumn());
     }
+
 }

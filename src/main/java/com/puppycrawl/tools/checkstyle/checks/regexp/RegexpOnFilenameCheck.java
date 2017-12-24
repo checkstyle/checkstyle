@@ -186,6 +186,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  */
 @StatelessCheck
 public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
+
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -361,4 +362,5 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
 
         return result;
     }
+
 }

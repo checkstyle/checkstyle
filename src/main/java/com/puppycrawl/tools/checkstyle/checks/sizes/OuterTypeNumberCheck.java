@@ -93,4 +93,5 @@ public class OuterTypeNumberCheck extends AbstractCheck {
     public void setMax(int max) {
         this.max = max;
     }
+
 }

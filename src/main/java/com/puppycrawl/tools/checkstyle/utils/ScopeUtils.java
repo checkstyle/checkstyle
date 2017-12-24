@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Oliver Burn
  */
 public final class ScopeUtils {
+
     /** Prevent instantiation. */
     private ScopeUtils() {
     }
@@ -136,7 +137,6 @@ public final class ScopeUtils {
                 || type == TokenTypes.LITERAL_NEW) {
                 break;
             }
-
         }
 
         return returnValue;
@@ -283,4 +283,5 @@ public final class ScopeUtils {
         final Scope surroundingScopeOfAstToken = getSurroundingScope(ast);
         return surroundingScopeOfAstToken == scope;
     }
+
 }

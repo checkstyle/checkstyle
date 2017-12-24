@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/catchparametername";
@@ -96,4 +97,5 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
 
         verify(checkConfig, getPath("InputCatchParameterName.java"), expected);
     }
+
 }

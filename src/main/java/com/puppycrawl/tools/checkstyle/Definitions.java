@@ -24,6 +24,7 @@ package com.puppycrawl.tools.checkstyle;
  * @author Oliver Burn
  **/
 public final class Definitions {
+
     /** Name of resource bundle for Checkstyle. */
     public static final String CHECKSTYLE_BUNDLE =
             "com.puppycrawl.tools.checkstyle.messages";
@@ -33,4 +34,5 @@ public final class Definitions {
      **/
     private Definitions() {
     }
+
 }

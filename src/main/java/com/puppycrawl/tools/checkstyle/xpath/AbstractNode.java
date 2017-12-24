@@ -383,4 +383,5 @@ public abstract class AbstractNode implements NodeInfo {
     private static UnsupportedOperationException throwUnsupportedOperationException() {
         return new UnsupportedOperationException("Operation is not supported");
     }
+
 }

@@ -49,6 +49,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class InterfaceTypeParameterNameCheck
     extends AbstractNameCheck {
+
     /** Creates a new {@code InterfaceTypeParameterNameCheck} instance. */
     public InterfaceTypeParameterNameCheck() {
         super("^[A-Z]$");
@@ -77,4 +78,5 @@ public class InterfaceTypeParameterNameCheck
             ast.getParent().getParent();
         return location.getType() == TokenTypes.INTERFACE_DEF;
     }
+
 }

@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class FinalParametersCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/finalparameters";
@@ -133,4 +134,5 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputFinalParametersReceiver.java"), expected);
     }
+
 }

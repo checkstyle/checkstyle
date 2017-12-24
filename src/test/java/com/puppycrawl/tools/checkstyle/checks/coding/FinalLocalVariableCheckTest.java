@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class FinalLocalVariableCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable";
@@ -263,4 +264,5 @@ public class FinalLocalVariableCheckTest
         };
         verify(checkConfig, getPath("InputFinalLocalVariableAnonymousClass.java"), expected);
     }
+
 }

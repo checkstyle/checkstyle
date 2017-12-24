@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/design/throwscount";
@@ -116,4 +117,5 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputThrowsCountMethodWithAnnotation.java"), expected);
     }
+
 }

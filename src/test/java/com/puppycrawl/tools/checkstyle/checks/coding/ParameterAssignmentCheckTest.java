@@ -38,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/parameterassignment";
@@ -118,4 +119,5 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
                 "parameterNamesStack",
                 parameterNamesStack -> ((Collection<Set<String>>) parameterNamesStack).isEmpty()));
     }
+
 }

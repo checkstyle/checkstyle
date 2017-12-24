@@ -68,6 +68,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
  * @noinspection ClassLoaderInstantiation
  */
 public class CheckstyleAntTask extends Task {
+
     /** Poor man's enum for an xml formatter. */
     private static final String E_XML = "xml";
     /** Poor man's enum for an plain formatter. */
@@ -618,6 +619,7 @@ public class CheckstyleAntTask extends Task {
      * @author Oliver Burn
      */
     public static class FormatterType extends EnumeratedAttribute {
+
         /** My possible values. */
         private static final String[] VALUES = {E_XML, E_PLAIN};
 
@@ -625,6 +627,7 @@ public class CheckstyleAntTask extends Task {
         public String[] getValues() {
             return VALUES.clone();
         }
+
     }
 
     /**
@@ -632,6 +635,7 @@ public class CheckstyleAntTask extends Task {
      * @author Oliver Burn
      */
     public static class Formatter {
+
         /** The formatter type. */
         private FormatterType type;
         /** The file to output to. */
@@ -725,12 +729,14 @@ public class CheckstyleAntTask extends Task {
             }
             return xmlLogger;
         }
+
     }
 
     /**
      * Represents a property that consists of a key and value.
      */
     public static class Property {
+
         /** The property key. */
         private String key;
         /** The property value. */
@@ -775,10 +781,12 @@ public class CheckstyleAntTask extends Task {
         public void setFile(File file) {
             value = file.getAbsolutePath();
         }
+
     }
 
     /** Represents a custom listener. */
     public static class Listener {
+
         /** Class name of the listener class. */
         private String className;
 
@@ -797,5 +805,7 @@ public class CheckstyleAntTask extends Task {
         public void setClassname(String name) {
             className = name;
         }
+
     }
+
 }

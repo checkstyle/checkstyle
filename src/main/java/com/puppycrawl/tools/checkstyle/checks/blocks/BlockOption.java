@@ -25,6 +25,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
  * @see EmptyBlockCheck
  */
 public enum BlockOption {
+
     /**
      * Represents the policy that there is some text in the block. For example:
      *
@@ -47,4 +48,5 @@ public enum BlockOption {
      * </pre>
      */
     STATEMENT
+
 }

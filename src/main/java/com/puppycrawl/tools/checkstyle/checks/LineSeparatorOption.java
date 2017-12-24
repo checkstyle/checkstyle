@@ -29,6 +29,7 @@ import java.util.Arrays;
  * @see NewlineAtEndOfFileCheck
  */
 public enum LineSeparatorOption {
+
     /** Windows-style line separators. **/
     CRLF("\r\n"),
 
@@ -87,4 +88,5 @@ public enum LineSeparatorOption {
     public int length() {
         return lineSeparator.length;
     }
+
 }

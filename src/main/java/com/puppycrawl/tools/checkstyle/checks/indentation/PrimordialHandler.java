@@ -25,6 +25,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
  * @author jrichard
  */
 public class PrimordialHandler extends AbstractExpressionHandler {
+
     /**
      * Construct an instance of this handler with the given indentation check.
      *
@@ -48,4 +49,5 @@ public class PrimordialHandler extends AbstractExpressionHandler {
     protected IndentLevel getIndentImpl() {
         return new IndentLevel(0);
     }
+
 }

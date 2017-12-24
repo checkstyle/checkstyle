@@ -29,6 +29,7 @@ import java.util.Locale;
  * @author Andrei Selkin
  */
 public enum AccessModifier {
+
     /** Public access modifier. */
     PUBLIC,
     /** Protected access modifier. */
@@ -60,4 +61,5 @@ public enum AccessModifier {
     public static AccessModifier getInstance(String modifierName) {
         return valueOf(AccessModifier.class, modifierName.trim().toUpperCase(Locale.ENGLISH));
     }
+
 }

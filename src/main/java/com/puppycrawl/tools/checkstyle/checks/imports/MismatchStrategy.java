@@ -25,6 +25,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
  * @see ImportControlCheck
  */
 public enum MismatchStrategy {
+
     /**
      * In a case if matching allow/disallow rule was not found,
      * decision should be delegated to the parent and continue checking.
@@ -42,4 +43,5 @@ public enum MismatchStrategy {
      * import will be disallowed by default.
      */
     DISALLOWED
+
 }

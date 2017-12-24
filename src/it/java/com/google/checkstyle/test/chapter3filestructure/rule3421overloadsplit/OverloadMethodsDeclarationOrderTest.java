@@ -34,7 +34,6 @@ public class OverloadMethodsDeclarationOrderTest extends AbstractModuleTestSuppo
 
     @Test
     public void testOverloadMethods() throws Exception {
-
         final Class<OverloadMethodsDeclarationOrderCheck> clazz =
             OverloadMethodsDeclarationOrderCheck.class;
         final String messageKey = "overload.methods.declaration";
@@ -52,4 +51,5 @@ public class OverloadMethodsDeclarationOrderTest extends AbstractModuleTestSuppo
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

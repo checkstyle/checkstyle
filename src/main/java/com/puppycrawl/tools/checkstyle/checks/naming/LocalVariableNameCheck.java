@@ -72,6 +72,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  */
 public class LocalVariableNameCheck
     extends AbstractNameCheck {
+
     /** Regexp for one-char loop variables. */
     private static final Pattern SINGLE_CHAR = Pattern.compile("^[a-z]$");
 
@@ -136,4 +137,5 @@ public class LocalVariableNameCheck
         return parentType == TokenTypes.FOR_INIT
                 || parentType == TokenTypes.FOR_EACH_CLAUSE;
     }
+
 }

@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  */
 public class Java7TryWithResourcesTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/grammars";
@@ -45,4 +46,5 @@ public class Java7TryWithResourcesTest
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputJava7TryWithResources.java"), expected);
     }
+
 }

@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class MethodLengthCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/methodlength";
@@ -96,4 +97,5 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodLengthModifier.java"), expected);
     }
+
 }

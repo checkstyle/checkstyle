@@ -315,4 +315,5 @@ public class ParenPadCheck extends AbstractParenPadCheck {
         }
         return result;
     }
+
 }

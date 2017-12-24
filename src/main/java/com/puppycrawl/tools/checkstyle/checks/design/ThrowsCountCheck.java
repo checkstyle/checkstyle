@@ -185,4 +185,5 @@ public final class ThrowsCountCheck extends AbstractCheck {
         final DetailAST methodModifiers = ast.getParent().findFirstToken(TokenTypes.MODIFIERS);
         return methodModifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) != null;
     }
+
 }

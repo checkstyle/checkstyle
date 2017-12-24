@@ -297,10 +297,15 @@ public class CommitValidationTest {
     }
 
     private enum CommitsResolutionMode {
-        BY_COUNTER, BY_LAST_COMMIT_AUTHOR
+
+        BY_COUNTER,
+
+        BY_LAST_COMMIT_AUTHOR,
+
     }
 
     private static class RevCommitsPair {
+
         private final Iterator<RevCommit> first;
         private final Iterator<RevCommit> second;
 
@@ -321,6 +326,7 @@ public class CommitValidationTest {
         public Iterator<RevCommit> getSecond() {
             return second;
         }
+
     }
 
     private static class OmitMergeCommitsIterator implements Iterator<RevCommit> {
@@ -349,5 +355,7 @@ public class CommitValidationTest {
         public void remove() {
             throw new UnsupportedOperationException("remove");
         }
+
     }
+
 }

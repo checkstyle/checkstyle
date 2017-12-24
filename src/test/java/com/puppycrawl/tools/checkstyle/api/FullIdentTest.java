@@ -72,4 +72,5 @@ public class FullIdentTest {
 
         return FullIdent.createFullIdent(ast);
     }
+
 }
