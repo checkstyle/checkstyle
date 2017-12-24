@@ -41,11 +41,11 @@ public class XmlLoaderTest {
             Constants.SAX_FEATURE_PREFIX + Constants.NAMESPACES_FEATURE;
 
     @Test
-    public void testParserConfiguratedSuccefully() throws Exception {
+    public void testParserConfiguredSuccessfully() throws Exception {
         final DummyLoader dummyLoader = new DummyLoader(new HashMap<>(1));
         final XMLReader parser = Whitebox.getInternalState(dummyLoader, "parser");
         assertTrue("Invalid feature state", parser.getFeature(NAMESPACES_FEATURE));
-        assertEquals("Invalid entity resoler", dummyLoader, parser.getEntityResolver());
+        assertEquals("Invalid entity resolver", dummyLoader, parser.getEntityResolver());
     }
 
     @Test

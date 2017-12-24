@@ -191,13 +191,13 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         int index = 0;
         while (ithChild != null) {
-            Assert.assertEquals("Invalud child index",
+            Assert.assertEquals("Invalid child index",
                     index, parseTree.getIndexOfChild(tree, ithChild));
             ithChild = ithChild.getNextSibling();
             index++;
         }
 
-        Assert.assertEquals("Invalud child index",
+        Assert.assertEquals("Invalid child index",
                 -1, parseTree.getIndexOfChild(tree, new DetailAST()));
     }
 

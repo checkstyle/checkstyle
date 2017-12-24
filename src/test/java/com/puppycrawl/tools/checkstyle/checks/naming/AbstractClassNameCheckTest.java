@@ -130,7 +130,7 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
         final int[] expected = {
             TokenTypes.CLASS_DEF,
         };
-        Assert.assertArrayEquals("Invalid accaptable tokens", expected, actual);
+        Assert.assertArrayEquals("Invalid acceptable tokens", expected, actual);
     }
 
     @Test

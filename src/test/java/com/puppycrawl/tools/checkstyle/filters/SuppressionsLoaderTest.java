@@ -105,7 +105,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testLoadFromNonExistingUrl() {
+    public void testLoadFromNonExistentUrl() {
         try {
             SuppressionsLoader.loadSuppressions("http://^%$^* %&% %^&");
             fail("exception expected");

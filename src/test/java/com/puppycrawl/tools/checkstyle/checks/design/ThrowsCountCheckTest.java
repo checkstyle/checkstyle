@@ -114,6 +114,6 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "18:26: " + getCheckMessage(MSG_KEY, 5, 4),
         };
-        verify(checkConfig, getPath("InputThrowsCountMwthodWithAnnotation.java"), expected);
+        verify(checkConfig, getPath("InputThrowsCountMethodWithAnnotation.java"), expected);
     }
 }

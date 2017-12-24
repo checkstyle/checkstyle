@@ -476,7 +476,7 @@ public class ParenPadCheckTest
         final Method method = Whitebox.getMethod(ParenPadCheck.class,
             "isAcceptableToken", DetailAST.class);
         final DetailAST ast = new DetailAST();
-        final String message = "Expected that all accaptable tokens will pass isAccaptableToken "
+        final String message = "Expected that all acceptable tokens will pass isAcceptableToken "
             + "method, but some token don't: ";
 
         for (int token : check.getAcceptableTokens()) {

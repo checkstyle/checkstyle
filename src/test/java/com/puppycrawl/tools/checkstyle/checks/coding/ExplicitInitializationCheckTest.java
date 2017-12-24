@@ -72,7 +72,7 @@ public class ExplicitInitializationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testonlyObjectReferences() throws Exception {
+    public void testOnlyObjectReferences() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ExplicitInitializationCheck.class);
         checkConfig.addAttribute("onlyObjectReferences", "true");

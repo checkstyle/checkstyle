@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.nio.file.FileAlreadyExistsException;
 import java.sql.SQLException;
 
-public class InputThrowsCountMwthodWithAnnotation extends ParentClass {
+public class InputThrowsCountMethodWithAnnotation extends ParentClass {
     @Override
     public void method() throws AWTException, SQLException, FileNotFoundException,
             EOFException, FileAlreadyExistsException {

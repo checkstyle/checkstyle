@@ -37,10 +37,10 @@ public class InputNoWhitespaceAfterArrayDeclarations
         };
     }
     int ar [] = new int [] {1, 2}; //Incorrect (2 warnings)
-    private int [][][] getMultArray() { //Incorrect
+    private int [][][] getMultiArray() { //Incorrect
         return null;
     }
-    private long getLongMultArray(int someParam, String value) [][][] { //Incorrect
+    private long getLongMultiArray(int someParam, String value) [][][] { //Incorrect
         return null;
     }
     int aa = new int[]{1}[0];//Correct

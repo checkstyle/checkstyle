@@ -450,7 +450,7 @@ public class VisibilityModifierCheckTest
      * class with name "", but in this case internal collection will have short names
      * as "" that will not make problems, but will be weird in debug.
      *
-     * @throws Exception when exception occured during execution.
+     * @throws Exception when exception occurred during execution.
      */
     @Test
     public void testIsStarImportNullAst() throws Exception {

@@ -32,18 +32,18 @@ public class DefaultConfigurationTest {
     public void testRemoveChild() {
         final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
         final DefaultConfiguration configChild = new DefaultConfiguration("childConfig");
-        assertEquals("Invalid cildren count", 0, config.getChildren().length);
+        assertEquals("Invalid children count", 0, config.getChildren().length);
         config.addChild(configChild);
-        assertEquals("Invalid cildren count", 1, config.getChildren().length);
+        assertEquals("Invalid children count", 1, config.getChildren().length);
         config.removeChild(configChild);
-        assertEquals("Invalid cildren count", 0, config.getChildren().length);
+        assertEquals("Invalid children count", 0, config.getChildren().length);
     }
 
     @Test
-    public void testExceptionForNonExistingAttribute() {
+    public void testExceptionForNonExistentAttribute() {
         final String name = "MyConfig";
         final DefaultConfiguration config = new DefaultConfiguration(name);
-        final String attributeName = "NonExisting#$%";
+        final String attributeName = "NonExistent#$%";
         try {
             config.getAttribute(attributeName);
             fail("Exception is expected");

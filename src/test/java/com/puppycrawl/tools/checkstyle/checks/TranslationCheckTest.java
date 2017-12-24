@@ -369,7 +369,7 @@ public class TranslationCheckTest extends AbstractModuleTestSupport {
 
     /**
      * Pitest requires all closes of streams and readers to be verified. Using PowerMock
-     * is almost only posibility to check it without rewriting production code.
+     * is almost only possibility to check it without rewriting production code.
      *
      * @throws Exception when code tested throws some exception
      */

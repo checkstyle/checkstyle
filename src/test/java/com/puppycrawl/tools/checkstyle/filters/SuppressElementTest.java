@@ -169,7 +169,7 @@ public class SuppressElementTest {
                 new LocalizedMessage(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
         final SuppressElement myFilter =
-                new SuppressElement("Test", "NON_EXISTING_CHECK", null, "MyModule", null, null);
+                new SuppressElement("Test", "NON_EXISTENT_CHECK", null, "MyModule", null, null);
         assertTrue("Filter should accept valid event", myFilter.accept(ev));
     }
 

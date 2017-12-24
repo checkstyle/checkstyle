@@ -68,92 +68,92 @@ public class ImportControlTest {
 
     @Test
     public void testLocateFinest() {
-        assertEquals("Unxpected response", icRoot, icRoot
+        assertEquals("Unexpected response", icRoot, icRoot
                 .locateFinest("com.kazgroup.courtlink.domain"));
-        assertEquals("Unxpected response", icCommon, icRoot
+        assertEquals("Unexpected response", icCommon, icRoot
                 .locateFinest("com.kazgroup.courtlink.common.api"));
-        assertNull("Unxpected response", icRoot.locateFinest("com"));
+        assertNull("Unexpected response", icRoot.locateFinest("com"));
     }
 
     @Test
     public void testEnsureTrailingDot() {
-        assertNull("Unxpected response", icRoot.locateFinest("com.kazgroup.courtlinkkk"));
-        assertNull("Unxpected response",
+        assertNull("Unexpected response", icRoot.locateFinest("com.kazgroup.courtlinkkk"));
+        assertNull("Unexpected response",
                 icRoot.locateFinest("com.kazgroup.courtlink/common.api"));
     }
 
     @Test
     public void testCheckAccess() {
-        assertEquals("Unxpected access result", AccessResult.DISALLOWED, icCommon.checkAccess(
+        assertEquals("Unexpected access result", AccessResult.DISALLOWED, icCommon.checkAccess(
                 "com.kazgroup.courtlink.common",
                 "org.springframework.something"));
-        assertEquals("Unxpected access result", AccessResult.ALLOWED, icCommon
+        assertEquals("Unexpected access result", AccessResult.ALLOWED, icCommon
                 .checkAccess("com.kazgroup.courtlink.common",
                         "org.apache.commons.something"));
-        assertEquals("Unxpected access result", AccessResult.DISALLOWED, icCommon.checkAccess(
+        assertEquals("Unexpected access result", AccessResult.DISALLOWED, icCommon.checkAccess(
                 "com.kazgroup.courtlink.common", "org.apache.commons"));
-        assertEquals("Unxpected access result", AccessResult.ALLOWED, icCommon.checkAccess(
+        assertEquals("Unexpected access result", AccessResult.ALLOWED, icCommon.checkAccess(
                 "com.kazgroup.courtlink.common", "org.hibernate.something"));
-        assertEquals("Unxpected access result", AccessResult.DISALLOWED, icCommon.checkAccess(
+        assertEquals("Unexpected access result", AccessResult.DISALLOWED, icCommon.checkAccess(
                 "com.kazgroup.courtlink.common", "com.badpackage.something"));
-        assertEquals("Unxpected access result", AccessResult.DISALLOWED, icRoot.checkAccess(
+        assertEquals("Unexpected access result", AccessResult.DISALLOWED, icRoot.checkAccess(
                 "com.kazgroup.courtlink", "org.hibernate.something"));
     }
 
     @Test
     public void testUnknownPkg() {
-        assertNull("Unxpected response", icRoot.locateFinest("net.another"));
+        assertNull("Unexpected response", icRoot.locateFinest("net.another"));
     }
 
     @Test
     public void testRegExpChildLocateFinest() {
-        assertEquals("Unxpected response", icRootRegexpChild, icRootRegexpChild
+        assertEquals("Unexpected response", icRootRegexpChild, icRootRegexpChild
                 .locateFinest("com.kazgroup.courtlink.domain"));
-        assertEquals("Unxpected response", icCommonRegexpChild, icRootRegexpChild
+        assertEquals("Unexpected response", icCommonRegexpChild, icRootRegexpChild
                 .locateFinest("com.kazgroup.courtlink.common.api"));
-        assertNull("Unxpected response", icRootRegexpChild.locateFinest("com"));
+        assertNull("Unexpected response", icRootRegexpChild.locateFinest("com"));
     }
 
     @Test
     public void testRegExpChildCheckAccess() {
-        assertEquals("Unxpected access result", AccessResult.DISALLOWED,
+        assertEquals("Unexpected access result", AccessResult.DISALLOWED,
                 icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common",
                         "org.springframework.something"));
-        assertEquals("Unxpected access result", AccessResult.DISALLOWED,
+        assertEquals("Unexpected access result", AccessResult.DISALLOWED,
                 icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common",
                         "org.luiframework.something"));
-        assertEquals("Unxpected access result", AccessResult.DISALLOWED,
+        assertEquals("Unexpected access result", AccessResult.DISALLOWED,
                 icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common",
                         "de.springframework.something"));
-        assertEquals("Unxpected access result", AccessResult.DISALLOWED,
+        assertEquals("Unexpected access result", AccessResult.DISALLOWED,
                 icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common",
                 "de.luiframework.something"));
-        assertEquals("Unxpected access result", AccessResult.ALLOWED,
+        assertEquals("Unexpected access result", AccessResult.ALLOWED,
                 icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common",
                         "org.apache.commons.something"));
-        assertEquals("Unxpected access result", AccessResult.ALLOWED,
+        assertEquals("Unexpected access result", AccessResult.ALLOWED,
                 icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common",
                         "org.lui.commons.something"));
-        assertEquals("Unxpected access result", AccessResult.DISALLOWED,
+        assertEquals("Unexpected access result", AccessResult.DISALLOWED,
                 icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common",
                         "org.apache.commons"));
-        assertEquals("Unxpected access result", AccessResult.DISALLOWED,
+        assertEquals("Unexpected access result", AccessResult.DISALLOWED,
                 icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common",
                         "org.lui.commons"));
-        assertEquals("Unxpected access result", AccessResult.ALLOWED,
+        assertEquals("Unexpected access result", AccessResult.ALLOWED,
                 icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common",
                         "org.hibernate.something"));
-        assertEquals("Unxpected access result", AccessResult.DISALLOWED,
+        assertEquals("Unexpected access result", AccessResult.DISALLOWED,
                 icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common",
                         "com.badpackage.something"));
-        assertEquals("Unxpected access result", AccessResult.DISALLOWED,
+        assertEquals("Unexpected access result", AccessResult.DISALLOWED,
                 icRootRegexpChild.checkAccess("com.kazgroup.courtlink",
                         "org.hibernate.something"));
     }
 
     @Test
     public void testRegExpChildUnknownPkg() {
-        assertNull("Unxpected response", icRootRegexpChild.locateFinest("net.another"));
+        assertNull("Unexpected response", icRootRegexpChild.locateFinest("net.another"));
     }
 
     @Test

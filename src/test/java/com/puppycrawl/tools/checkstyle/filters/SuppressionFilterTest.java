@@ -85,8 +85,8 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonExistingSuppressionFileWithFalseOptional() {
-        final String fileName = "non_existing_suppression_file.xml";
+    public void testNonExistentSuppressionFileWithFalseOptional() {
+        final String fileName = "non_existent_suppression_file.xml";
         try {
             final boolean optional = false;
             createSuppressionFilter(fileName, optional);
@@ -126,8 +126,8 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonExistingSuppressionFileWithTrueOptional() throws Exception {
-        final String fileName = "non_existing_suppression_file.xml";
+    public void testNonExistentSuppressionFileWithTrueOptional() throws Exception {
+        final String fileName = "non_existent_suppression_file.xml";
         final boolean optional = true;
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 
@@ -138,9 +138,9 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonExistingSuppressionUrlWithTrueOptional() throws Exception {
+    public void testNonExistentSuppressionUrlWithTrueOptional() throws Exception {
         final String fileName =
-                "http://checkstyle.sourceforge.net/non_existing_suppression.xml";
+                "http://checkstyle.sourceforge.net/non_existent_suppression.xml";
         final boolean optional = true;
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 

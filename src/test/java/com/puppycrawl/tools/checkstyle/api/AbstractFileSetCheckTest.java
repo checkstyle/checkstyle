@@ -104,20 +104,20 @@ public class AbstractFileSetCheckTest {
     }
 
     @Test
-    public void testGetFileExtention() {
+    public void testGetFileExtension() {
         final DummyFileSetCheck check = new DummyFileSetCheck();
         check.setFileExtensions("tmp", ".java");
-        final String[] expectedExtentions = {".tmp", ".java"};
+        final String[] expectedExtensions = {".tmp", ".java"};
 
         Assert.assertArrayEquals("Invalid extensions",
-                expectedExtentions, check.getFileExtensions());
+                expectedExtensions, check.getFileExtensions());
     }
 
     /**
      * This javadoc exists only to suppress Intellij Idea inspection.
      */
     @Test
-    public void testSetExtentionThrowsExceptionWhenTheyAreNull() {
+    public void testSetExtensionThrowsExceptionWhenTheyAreNull() {
         final DummyFileSetCheck check = new DummyFileSetCheck();
         try {
             check.setFileExtensions((String[]) null);

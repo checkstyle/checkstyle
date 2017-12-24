@@ -109,11 +109,11 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         final String filePath = temporaryFolder.newFile().getPath();
         final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
         cache.put("myFile", 1);
-        assertTrue("Should return true wnen file is in cache",
+        assertTrue("Should return true when file is in cache",
                 cache.isInCache("myFile", 1));
-        assertFalse("Should return false wnen file is not in cache",
+        assertFalse("Should return false when file is not in cache",
                 cache.isInCache("myFile", 2));
-        assertFalse("Should return false wnen file is not in cache",
+        assertFalse("Should return false when file is not in cache",
                 cache.isInCache("myFile1", 1));
     }
 
@@ -216,7 +216,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testExternalResourseIsSavedInCache() throws Exception {
+    public void testExternalResourceIsSavedInCache() throws Exception {
         final Configuration config = new DefaultConfiguration("myName");
         final String filePath = temporaryFolder.newFile().getPath();
         final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
@@ -250,7 +250,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
      */
     @SuppressWarnings("unchecked")
     @Test
-    public void testNonExistingResource() throws IOException {
+    public void testNonExistentResource() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
         final String filePath = temporaryFolder.newFile().getPath();
         final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
@@ -358,10 +358,10 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testPutNonExsistingExternalResourceSameExceptionBetweenRuns() throws Exception {
+    public void testPutNonExistentExternalResourceSameExceptionBetweenRuns() throws Exception {
         final File cacheFile = temporaryFolder.newFile();
 
-        // We mock getUriByFilename method of CommonUtils to garantee that it will
+        // We mock getUriByFilename method of CommonUtils to guarantee that it will
         // throw CheckstyleException with the specific content.
         mockStatic(CommonUtils.class);
         final CheckstyleException mockException =
@@ -370,7 +370,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
             .thenThrow(mockException);
 
         // We invoke 'putExternalResources' twice to invalidate cache
-        // and have two identical exceptions whith the equal content
+        // and have two identical exceptions which the equal content
         final int numberOfRuns = 2;
         final String[] configHashes = new String[numberOfRuns];
         final String[] externalResourceHashes = new String[numberOfRuns];
@@ -382,10 +382,10 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
             configHashes[i] = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
             assertNotNull("Config hash key should not be null", configHashes[i]);
 
-            final Set<String> nonExistingExternalResources = new HashSet<>();
-            final String externalResourceFileName = "non_existing_file.xml";
-            nonExistingExternalResources.add(externalResourceFileName);
-            cache.putExternalResources(nonExistingExternalResources);
+            final Set<String> nonExistentExternalResources = new HashSet<>();
+            final String externalResourceFileName = "non_existent_file.xml";
+            nonExistentExternalResources.add(externalResourceFileName);
+            cache.putExternalResources(nonExistentExternalResources);
 
             externalResourceHashes[i] = cache.get(PropertyCacheFile.EXTERNAL_RESOURCE_KEY_PREFIX
                     + externalResourceFileName);
@@ -412,7 +412,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
      * @noinspection InstanceMethodNamingConvention
      */
     @Test
-    public void testPutNonExsistingExternalResourceDifferentExceptionsBetweenRuns()
+    public void testPutNonExistentExternalResourceDifferentExceptionsBetweenRuns()
             throws Exception {
 
         final File cacheFile = temporaryFolder.newFile();
@@ -426,7 +426,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
             final Configuration config = new DefaultConfiguration("myConfig");
             final PropertyCacheFile cache = new PropertyCacheFile(config, cacheFile.getPath());
 
-            // We mock getUriByFilename method of CommonUtils to garantee that it will
+            // We mock getUriByFilename method of CommonUtils to guarantee that it will
             // throw CheckstyleException with the specific content.
             mockStatic(CommonUtils.class);
             final CheckstyleException mockException = new CheckstyleException("Exception #" + i);
@@ -438,10 +438,10 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
             configHashes[i] = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
             assertNotNull("Config hash key should not be null", configHashes[i]);
 
-            final Set<String> nonExistingExternalResources = new HashSet<>();
-            final String externalResourceFileName = "non_existing_file.xml";
-            nonExistingExternalResources.add(externalResourceFileName);
-            cache.putExternalResources(nonExistingExternalResources);
+            final Set<String> nonExistentExternalResources = new HashSet<>();
+            final String externalResourceFileName = "non_existent_file.xml";
+            nonExistentExternalResources.add(externalResourceFileName);
+            cache.putExternalResources(nonExistentExternalResources);
 
             externalResourceHashes[i] = cache.get(PropertyCacheFile.EXTERNAL_RESOURCE_KEY_PREFIX
                     + externalResourceFileName);

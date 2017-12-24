@@ -349,7 +349,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
         // One more time to use cache.
         verify(checkerConfig, filePath, expected);
 
-        assertTrue("External resourse is not present in cache",
+        assertTrue("External resource is not present in cache",
                 new String(Files.readAllBytes(cacheFile.toPath()),
                         StandardCharsets.UTF_8).contains("InputImportControlOneRegExp.xml"));
     }

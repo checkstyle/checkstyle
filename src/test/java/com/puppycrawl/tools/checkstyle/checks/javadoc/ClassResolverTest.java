@@ -150,7 +150,7 @@ public class ClassResolverTest {
             final String expected = "expected exception";
             assertTrue("Invalid exception cause, should be: ClassNotFoundException",
                     ex.getCause() instanceof ClassNotFoundException);
-            assertTrue("Invalid excpetion message, should end with: " + expected,
+            assertTrue("Invalid exception message, should end with: " + expected,
                     ex.getMessage().endsWith(expected));
         }
     }

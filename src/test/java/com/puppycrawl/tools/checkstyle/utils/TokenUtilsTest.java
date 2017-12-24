@@ -145,7 +145,7 @@ public class TokenUtilsTest {
 
     @Test
     public void testTokenIdIncorrect() {
-        final String id = "NON_EXISTING_VALUE";
+        final String id = "NON_EXISTENT_VALUE";
         try {
             TokenUtils.getTokenId(id);
             fail("IllegalArgumentException is expected");
@@ -158,7 +158,7 @@ public class TokenUtilsTest {
 
     @Test
     public void testShortDescriptionIncorrect() {
-        final String id = "NON_EXISTING_VALUE";
+        final String id = "NON_EXISTENT_VALUE";
         try {
             TokenUtils.getShortDescription(id);
             fail("IllegalArgumentException is expected");
@@ -184,7 +184,7 @@ public class TokenUtilsTest {
     }
 
     @Test
-    public void tetsGetTokenTypesTotalNumber() {
+    public void testGetTokenTypesTotalNumber() {
         final int tokenTypesTotalNumber = TokenUtils.getTokenTypesTotalNumber();
 
         assertEquals("Invalid token total number", 169, tokenTypesTotalNumber);

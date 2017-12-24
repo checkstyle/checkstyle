@@ -5,5 +5,5 @@
     "http://checkstyle.sourceforge.net/dtds/configuration_1_3.dtd">
 
 <module name="Checker">
-    <property name="tabWidth" value="${nonexisting}" />
+    <property name="tabWidth" value="${nonexistent}" />
 </module>

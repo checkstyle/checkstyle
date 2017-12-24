@@ -132,14 +132,14 @@ public class CommonUtilsTest {
         assertEquals("Invalid line number", 0, testCommentBlock.getLineNo());
 
         final DetailAST contentCommentBlock = testCommentBlock.getFirstChild();
-        assertEquals("Invalid tiken type",
+        assertEquals("Invalid token type",
                 TokenTypes.COMMENT_CONTENT, contentCommentBlock.getType());
         assertEquals("Invalid text", "*test_comment", contentCommentBlock.getText());
         assertEquals("Invalid line number", 0, contentCommentBlock.getLineNo());
         assertEquals("Invalid column number", -1, contentCommentBlock.getColumnNo());
 
         final DetailAST endCommentBlock = contentCommentBlock.getNextSibling();
-        assertEquals("Invalid tiken type", TokenTypes.BLOCK_COMMENT_END, endCommentBlock.getType());
+        assertEquals("Invalid token type", TokenTypes.BLOCK_COMMENT_END, endCommentBlock.getType());
         assertEquals("Invalid text", "*/", endCommentBlock.getText());
     }
 
@@ -229,7 +229,7 @@ public class CommonUtilsTest {
     }
 
     @Test
-    public void testGetNonExistingConstructor() {
+    public void testGetNonExistentConstructor() {
         try {
             CommonUtils.getConstructor(Math.class);
             fail("IllegalStateException is expected");

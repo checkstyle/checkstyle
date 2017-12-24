@@ -48,6 +48,6 @@ public class AccessResultTest {
             AccessResult.DISALLOWED,
             AccessResult.UNKNOWN,
         };
-        assertArrayEquals("Invalid aaccess result values", expected, actual);
+        assertArrayEquals("Invalid access result values", expected, actual);
     }
 }

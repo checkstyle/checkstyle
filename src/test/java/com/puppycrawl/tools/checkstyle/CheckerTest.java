@@ -415,7 +415,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         assertEquals("Charset was different than expected",
                 System.getProperty("file.encoding", StandardCharsets.UTF_8.name()),
                 context.get("charset"));
-        assertEquals("Was used unsufficient classloader",
+        assertEquals("Was used insufficient classloader",
                 contextClassLoader, context.get("classLoader"));
         assertEquals("Severity is set to unexpected value",
                 "error", context.get("severity"));
@@ -1079,7 +1079,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         @Override
         public Set<String> getExternalResourceLocations() {
             final Set<String> externalResourceLocation = new HashSet<>(1);
-            externalResourceLocation.add("non_existing_external_resource.xml");
+            externalResourceLocation.add("non_existent_external_resource.xml");
             return externalResourceLocation;
         }
     }

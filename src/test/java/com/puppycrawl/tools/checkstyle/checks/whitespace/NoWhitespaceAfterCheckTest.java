@@ -108,7 +108,7 @@ public class NoWhitespaceAfterCheckTest
             "39:11: " + getCheckMessage(MSG_KEY, "ar"),
             "39:24: " + getCheckMessage(MSG_KEY, "int"),
             "40:16: " + getCheckMessage(MSG_KEY, "int"),
-            "43:63: " + getCheckMessage(MSG_KEY, "getLongMultArray"),
+            "43:64: " + getCheckMessage(MSG_KEY, "getLongMultiArray"),
             "47:26: " + getCheckMessage(MSG_KEY, "}"),
             "49:22: " + getCheckMessage(MSG_KEY, "int"),
             "50:24: " + getCheckMessage(MSG_KEY, "]"),

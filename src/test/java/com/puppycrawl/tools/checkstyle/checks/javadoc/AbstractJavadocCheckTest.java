@@ -224,7 +224,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         Assert.assertNotNull("Default tokens should not be null", check.getDefaultTokens());
         Assert.assertArrayEquals("Acceptable tokens should be equal to default",
                 check.getDefaultTokens(), check.getAcceptableTokens());
-        Assert.assertArrayEquals("REquired tokens should be equal to default",
+        Assert.assertArrayEquals("Required tokens should be equal to default",
                 check.getDefaultTokens(), check.getRequiredTokens());
         Assert.assertArrayEquals("Invalid default javadoc tokens",
                 defaultJavadocTokens, check.getDefaultJavadocTokens());
