@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+    "-//Puppy Crawl//DTD Suppressions Xpath Experimental 1.2//EN"
+    "http://checkstyle.sourceforge.net/dtds/suppressions_1_2_xpath_experimental.dtd">
+
+<suppressions>
+    <!-- Tone down the checking for test code -->
+    <suppress-xpath checks="NPathComplexity"
+                    query="/CLASS_DEF[@text='XdocsPagesTest']
+                    //METHOD_DEF[@text='validateCheckSection']"/>
+
+    <suppress-xpath checks="CyclomaticComplexity"
+                    query="/CLASS_DEF[@text='XdocsPagesTest']//METHOD_DEF"/>
+
+    <!-- Suppressions from PMD configuration-->
+    <!-- JavadocMethodCheck, JavadocStyleCheck, JavadocUtils.getJavadocTags() - deprecated -->
+    <suppress-xpath checks="CyclomaticComplexity"
+                    query="/CLASS_DEF[@text='JavadocMethodCheck' or @text='JavadocStyleCheck'
+                    or @text='CustomImportOrderCheck']//METHOD_DEF"/>
+</suppressions>

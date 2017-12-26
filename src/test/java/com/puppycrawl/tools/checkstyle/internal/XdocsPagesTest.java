@@ -215,6 +215,7 @@ public class XdocsPagesTest {
         // can't process non-existent examples, or out of context snippets
         if (!code.contains("com.mycompany") && !code.contains("checkstyle-packages")
                 && !code.contains("MethodLimit") && !code.contains("<suppress ")
+                && !code.contains("<suppress-xpath ")
                 && !code.contains("<import-control ")
                 && !unserializedSource.startsWith("<property ")
                 && !unserializedSource.startsWith("<taskdef ")) {

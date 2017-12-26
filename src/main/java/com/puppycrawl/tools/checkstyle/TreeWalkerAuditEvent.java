@@ -105,6 +105,14 @@ public class TreeWalkerAuditEvent {
     }
 
     /**
+     * Gets the column char index associated with the message.
+     * @return the column char index associated with the message
+     */
+    public int getColumnCharIndex() {
+        return localizedMessage.getColumnCharIndex();
+    }
+
+    /**
      * Returns id of module.
      * @return the identifier of the module that generated the event. Can return
      *         null.

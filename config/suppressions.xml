@@ -24,8 +24,6 @@
               files="AbstractCheckTest.java|AbstractClassNameCheckTest.java|AbstractTypeAwareCheckTest.java|AbstractJavadocCheckTest.java|AbstractViolationReporterTest.java|AbstractFileSetCheckTest.java|AbstractNodeTest.java"/>
 
     <!-- Tone down the checking for test code -->
-    <suppress checks="CyclomaticComplexity" files="[\\/]XdocsPagesTest\.java"/>
-    <suppress checks="NPathComplexity" files="[\\/]XdocsPagesTest\.java"/>
     <suppress checks="IllegalCatch" files="[\\/]internal[\\/].*[\\/]\w+Util\.java"/>
     <suppress checks="EmptyBlock" files=".*[\\/]src[\\/]test[\\/]"/>
     <suppress message="Missing a Javadoc comment|Missing package-info.java file|Expected @throws tag for|missing an @author tag" files=".*[\\/]src[\\/](test|it)[\\/]"/>
@@ -84,12 +82,6 @@
 
     <!-- Should be fixed after moving https://github.com/sevntu-checkstyle/sevntu.checkstyle/blob/master/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/ReturnCountExtendedCheck.java into the main repo, to allow skip guard sentences(or by topLinesToIgnoreCount) -->
     <suppress checks="ReturnCount" files="(ConfigurationLoader|LambdaHandler)\.java"/>
-
-    <!-- Suppressions from PMD configuration-->
-    <!-- JavadocMethodCheck, JavadocStyleCheck, JavadocUtils.getJavadocTags() - deprecated -->
-    <suppress checks="CyclomaticComplexity" files="JavadocMethodCheck\.java"/>
-    <suppress checks="CyclomaticComplexity" files="JavadocStyleCheck\.java"/>
-    <suppress checks="CyclomaticComplexity" files="CustomImportOrderCheck\.java"/>
 
     <!-- HandlerFactory crosses allowed limit for executable statements -->
     <suppress checks="ExecutableStatementCount" files="HandlerFactory\.java"/>
