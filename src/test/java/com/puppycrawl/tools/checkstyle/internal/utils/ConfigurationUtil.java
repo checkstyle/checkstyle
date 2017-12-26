@@ -38,6 +38,7 @@ public final class ConfigurationUtil {
         props.setProperty("checkstyle.basedir", "basedir");
         props.setProperty("checkstyle.cache.file", "file");
         props.setProperty("checkstyle.suppressions.file", "file");
+        props.setProperty("checkstyle.suppressions-xpath.file", "file");
         props.setProperty("checkstyle.header.file", "file");
         props.setProperty("checkstyle.regexp.header.file", "file");
         props.setProperty("checkstyle.importcontrol.file", "file");

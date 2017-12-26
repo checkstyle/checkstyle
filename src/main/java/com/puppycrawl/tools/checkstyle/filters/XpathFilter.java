@@ -161,7 +161,7 @@ public class XpathFilter implements TreeWalkerFilter {
                 final AbstractNode abstractNode = (AbstractNode) item;
                 isMatching = abstractNode.getTokenType() == event.getTokenType()
                         && abstractNode.getLineNumber() == event.getLine()
-                        && abstractNode.getColumnNumber() == event.getColumn();
+                        && abstractNode.getColumnNumber() == event.getColumnCharIndex();
                 if (isMatching) {
                     break;
                 }

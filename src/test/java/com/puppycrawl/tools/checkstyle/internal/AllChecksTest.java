@@ -330,8 +330,6 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     public void testAllModulesAreReferencedInConfigFile() throws Exception {
         final Set<String> modulesReferencedInConfig = CheckUtil.getConfigCheckStyleModules();
         final Set<String> moduleNames = CheckUtil.getSimpleNames(CheckUtil.getCheckstyleModules());
-        //Issue: https://github.com/checkstyle/checkstyle/issues/4421
-        moduleNames.remove("SuppressionXpathFilter");
 
         moduleNames.stream().filter(check -> !modulesReferencedInConfig.contains(check))
             .forEach(check -> {
@@ -428,8 +426,6 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         // these are documented on non-'config_' pages
         checkstyleModulesNames.remove("TreeWalker");
         checkstyleModulesNames.remove("Checker");
-        //Issue: https://github.com/checkstyle/checkstyle/issues/4421
-        checkstyleModulesNames.remove("SuppressionXpathFilter");
 
         checkstyleModulesNames.stream()
             .filter(moduleName -> !modulesNamesWhichHaveXdocs.contains(moduleName))
@@ -445,8 +441,6 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     public void testAllCheckstyleModulesInCheckstyleConfig() throws Exception {
         final Set<String> configChecks = CheckUtil.getConfigCheckStyleModules();
         final Set<String> moduleNames = CheckUtil.getSimpleNames(CheckUtil.getCheckstyleModules());
-        //Issue: https://github.com/checkstyle/checkstyle/issues/4421
-        moduleNames.remove("SuppressionXpathFilter");
 
         for (String moduleName : moduleNames) {
             Assert.assertTrue("checkstyle_checks.xml is missing module: " + moduleName,

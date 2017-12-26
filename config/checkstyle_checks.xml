@@ -312,6 +312,9 @@
       <property name="offCommentFormat" value="CSOFF\: .*"/>
       <property name="onCommentFormat" value="CSON\: .*"/>
     </module>
+    <module name="SuppressionXpathFilter">
+      <property name="file" value="${checkstyle.suppressions-xpath.file}"/>
+    </module>
     <module name="SuppressWithNearbyCommentFilter">
       <property name="commentFormat" value="-@cs\[(\w{8,}(\|\w{8,})*)\] \w[\(\)\-\.\'\`\,\:\;\w ]{10,}"/>
       <property name="checkFormat" value="$1"/>
