@@ -39,5 +39,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Inherited
 public @interface StatelessCheck {
+
     // this annotation does not have properties
+
 }

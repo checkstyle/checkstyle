@@ -28,6 +28,7 @@ import java.util.TreeMap;
  * @author jrichard
  */
 public class LineSet {
+
     /**
      * Maps line numbers to their start column.
      */
@@ -95,4 +96,5 @@ public class LineSet {
     public String toString() {
         return "LineSet[firstLine=" + lines.firstKey() + ", lastLine=" + lines.lastKey() + "]";
     }
+
 }

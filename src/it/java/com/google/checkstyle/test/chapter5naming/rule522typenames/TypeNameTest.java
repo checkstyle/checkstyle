@@ -33,7 +33,6 @@ public class TypeNameTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTypeName() throws Exception {
-
         final Configuration checkConfig = getModuleConfig("TypeName");
         final String msgKey = "name.invalidPattern";
         final String format = "^[A-Z][a-zA-Z0-9]*$";
@@ -82,4 +81,5 @@ public class TypeNameTest extends AbstractModuleTestSupport {
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

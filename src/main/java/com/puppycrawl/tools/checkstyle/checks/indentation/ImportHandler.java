@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author jrichard
  */
 public class ImportHandler extends AbstractExpressionHandler {
+
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -53,4 +54,5 @@ public class ImportHandler extends AbstractExpressionHandler {
 
         checkWrappingIndentation(getMainAst(), semi);
     }
+
 }

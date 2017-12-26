@@ -90,6 +90,27 @@ public abstract class AbstractSuperCheck
     }
 
     /**
+     * Determines whether a super call in overriding method.
+     *
+     * @param ast The AST node of a 'dot operator' in 'super' call.
+     * @return true if super call in overriding method.
+     */
+    private boolean isSuperCallInOverridingMethod(DetailAST ast) {
+        boolean inOverridingMethod = false;
+        DetailAST dotAst = ast;
+
+        while (dotAst.getType() != TokenTypes.CTOR_DEF
+            && dotAst.getType() != TokenTypes.INSTANCE_INIT) {
+            if (dotAst.getType() == TokenTypes.METHOD_DEF) {
+                inOverridingMethod = isOverridingMethod(dotAst);
+                break;
+            }
+            dotAst = dotAst.getParent();
+        }
+        return inOverridingMethod;
+    }
+
+    /**
      * Determines whether a 'super' literal is a call to the super method
      * for this check.
      * @param literalSuperAst the AST node of a 'super' literal.
@@ -111,29 +132,6 @@ public abstract class AbstractSuperCheck
     }
 
     /**
-     * Determines whether a super call in overriding method.
-     *
-     * @param ast The AST node of a 'dot operator' in 'super' call.
-     * @return true if super call in overriding method.
-     */
-    private boolean isSuperCallInOverridingMethod(DetailAST ast) {
-        boolean inOverridingMethod = false;
-        DetailAST dotAst = ast;
-
-        while (dotAst.getType() != TokenTypes.CTOR_DEF
-                && dotAst.getType() != TokenTypes.INSTANCE_INIT) {
-
-            if (dotAst.getType() == TokenTypes.METHOD_DEF) {
-                inOverridingMethod = isOverridingMethod(dotAst);
-                break;
-            }
-            dotAst = dotAst.getParent();
-
-        }
-        return inOverridingMethod;
-    }
-
-    /**
      * Does method have any arguments.
      * @param methodCallDotAst DOT DetailAST
      * @return true if any parameters found
@@ -149,7 +147,6 @@ public abstract class AbstractSuperCheck
      * @return true if method name is the same
      */
     private boolean isSameNameMethod(DetailAST ast) {
-
         AST sibling = ast.getNextSibling();
         // ignore type parameters
         if (sibling != null
@@ -204,6 +201,7 @@ public abstract class AbstractSuperCheck
      * @author Rick Giles
      */
     private static class MethodNode {
+
         /** Method definition. */
         private final DetailAST method;
 
@@ -242,5 +240,7 @@ public abstract class AbstractSuperCheck
         public DetailAST getMethod() {
             return method;
         }
+
     }
+
 }

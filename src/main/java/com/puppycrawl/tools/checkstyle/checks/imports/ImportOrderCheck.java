@@ -385,7 +385,6 @@ public class ImportOrderCheck
         // using set of IF instead of SWITCH to analyze Enum options to satisfy coverage.
         // https://github.com/checkstyle/checkstyle/issues/1387
         if (option == ImportOrderOption.TOP) {
-
             if (isLastImportAndNonStatic) {
                 lastGroup = Integer.MIN_VALUE;
                 lastImport = "";
@@ -395,10 +394,8 @@ public class ImportOrderCheck
             if (isStaticAndNotLastImport && !beforeFirstImport) {
                 log(ident.getLineNo(), MSG_ORDERING, ident.getText());
             }
-
         }
         else if (option == ImportOrderOption.BOTTOM) {
-
             if (isStaticAndNotLastImport) {
                 lastGroup = Integer.MIN_VALUE;
                 lastImport = "";
@@ -408,25 +405,20 @@ public class ImportOrderCheck
             if (isLastImportAndNonStatic) {
                 log(ident.getLineNo(), MSG_ORDERING, ident.getText());
             }
-
         }
         else if (option == ImportOrderOption.ABOVE) {
             // previous non-static but current is static
             doVisitToken(ident, isStatic, isStaticAndNotLastImport);
-
         }
         else if (option == ImportOrderOption.UNDER) {
             doVisitToken(ident, isStatic, isLastImportAndNonStatic);
-
         }
         else if (option == ImportOrderOption.INFLOW) {
             // "previous" argument is useless here
             doVisitToken(ident, isStatic, true);
-
         }
         else {
-            throw new IllegalStateException(
-                    "Unexpected option for static imports: " + option);
+            throw new IllegalStateException("Unexpected option for static imports: " + option);
         }
 
         lastImportLine = ast.findFirstToken(TokenTypes.SEMI).getLineNo();
@@ -696,4 +688,5 @@ public class ImportOrderCheck
 
         return result;
     }
+
 }

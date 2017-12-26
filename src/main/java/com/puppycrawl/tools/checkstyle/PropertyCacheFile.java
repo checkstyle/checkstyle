@@ -363,6 +363,7 @@ final class PropertyCacheFile {
      * @author Andrei Selkin
      */
     private static class ExternalResource {
+
         /** Location of resource. */
         private final String location;
         /** Hash sum which is calculated based on resource content. */
@@ -377,5 +378,7 @@ final class PropertyCacheFile {
             this.location = location;
             this.contentHashSum = contentHashSum;
         }
+
     }
+
 }

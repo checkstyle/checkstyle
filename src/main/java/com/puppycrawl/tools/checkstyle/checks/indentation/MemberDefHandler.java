@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author o_sukhodolsky
  */
 public class MemberDefHandler extends AbstractExpressionHandler {
+
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -107,4 +108,5 @@ public class MemberDefHandler extends AbstractExpressionHandler {
         }
         return lastNode;
     }
+
 }

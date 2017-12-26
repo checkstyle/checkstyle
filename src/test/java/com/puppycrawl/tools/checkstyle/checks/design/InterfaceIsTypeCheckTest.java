@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class InterfaceIsTypeCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/design/interfaceistype";
@@ -74,4 +75,5 @@ public class InterfaceIsTypeCheckTest
         assertArrayEquals("Default required tokens are invalid",
             expected, obj.getRequiredTokens());
     }
+
 }

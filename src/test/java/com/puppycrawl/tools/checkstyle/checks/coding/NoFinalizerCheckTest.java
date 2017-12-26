@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  */
 public class NoFinalizerCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/nofinalizer";
@@ -58,4 +59,5 @@ public class NoFinalizerCheckTest
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputNoFinalizerFallThrough.java"), expected);
     }
+
 }

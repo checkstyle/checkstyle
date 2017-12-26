@@ -35,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class EmptyForIteratorPadCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/emptyforiteratorpad";
@@ -98,4 +99,5 @@ public class EmptyForIteratorPadCheckTest
                 ex.getMessage().startsWith(messageStart));
         }
     }
+
 }

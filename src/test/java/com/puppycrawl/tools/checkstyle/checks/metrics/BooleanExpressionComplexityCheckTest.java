@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/metrics/booleanexpressioncomplexity";
@@ -91,4 +92,5 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
                 "Unknown type: interface[0x-1]", ex.getMessage());
         }
     }
+
 }

@@ -47,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  */
 public final class SuppressionsLoader
     extends XmlLoader {
+
     /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_0 =
         "-//Puppy Crawl//DTD Suppressions 1.0//EN";
@@ -290,4 +291,5 @@ public final class SuppressionsLoader
         map.put(DTD_PUBLIC_ID_1_2_XPATH, DTD_SUPPRESSIONS_NAME_1_2_XPATH);
         return map;
     }
+
 }

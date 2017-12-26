@@ -79,4 +79,5 @@ public class TypeNameCheck
     public int[] getRequiredTokens() {
         return CommonUtils.EMPTY_INT_ARRAY;
     }
+
 }

@@ -37,6 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling";
@@ -216,4 +217,5 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
 
         verify(checkConfig, getPath("InputClassDataAbstractionCoupling.java"), expected);
     }
+
 }

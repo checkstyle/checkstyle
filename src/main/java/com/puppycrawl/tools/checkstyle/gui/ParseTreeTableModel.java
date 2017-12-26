@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
  * @author Lars Kühne
  */
 public class ParseTreeTableModel implements TreeModel {
+
     /** Presentation model. */
     private final ParseTreeTablePresentation pModel;
 
@@ -192,4 +193,5 @@ public class ParseTreeTableModel implements TreeModel {
     public boolean isCellEditable(int column) {
         return pModel.isCellEditable(column);
     }
+
 }

@@ -102,4 +102,5 @@ public class NoLineWrapCheck extends AbstractCheck {
             log(ast.getLineNo(), MSG_KEY, ast.getText());
         }
     }
+
 }

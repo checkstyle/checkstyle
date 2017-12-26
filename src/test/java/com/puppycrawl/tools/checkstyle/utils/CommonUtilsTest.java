@@ -183,7 +183,6 @@ public class CommonUtilsTest {
 
     @Test
     public void testBaseClassNameForSimpleName() {
-
         assertEquals("Invalid base class name", "Set",
             CommonUtils.baseClassName("Set"));
     }
@@ -469,11 +468,14 @@ public class CommonUtilsTest {
     }
 
     private static class TestCloseable implements Closeable {
+
         private boolean closed;
 
         @Override
         public void close() {
             closed = true;
         }
+
     }
+
 }

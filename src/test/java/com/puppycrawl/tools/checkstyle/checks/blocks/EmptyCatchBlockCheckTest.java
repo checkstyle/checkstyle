@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock";
@@ -79,4 +80,5 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
         final int[] expected = {TokenTypes.LITERAL_CATCH };
         assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
+
 }

@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class MethodCountCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/methodcount";
@@ -172,4 +173,5 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
 
         verify(checkConfig, getPath("InputMethodCount7.java"), expected);
     }
+
 }

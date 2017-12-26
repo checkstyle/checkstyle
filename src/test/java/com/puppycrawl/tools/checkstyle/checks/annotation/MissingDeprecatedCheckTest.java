@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated";
@@ -82,7 +83,6 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testBadDeprecatedJavadoc() throws Exception {
-
         final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
@@ -105,7 +105,6 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testSpecialCaseDeprecated() throws Exception {
-
         final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
@@ -132,7 +131,6 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testGoodDeprecated() throws Exception {
-
         final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -142,7 +140,6 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTwoInJavadocWithoutAnnotation() throws Exception {
-
         final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
@@ -156,7 +153,6 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testEmptyJavadocLine() throws Exception {
-
         final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
@@ -179,4 +175,5 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
 
         verify(checkConfig, getPath("InputMissingDeprecatedSkipNoJavadoc.java"), expected);
     }
+
 }

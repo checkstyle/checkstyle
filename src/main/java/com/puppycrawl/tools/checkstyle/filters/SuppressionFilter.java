@@ -108,4 +108,5 @@ public class SuppressionFilter extends AutomaticBean implements Filter, External
     public Set<String> getExternalResourceLocations() {
         return Collections.singleton(file);
     }
+
 }

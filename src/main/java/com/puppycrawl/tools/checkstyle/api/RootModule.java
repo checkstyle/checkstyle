@@ -28,6 +28,7 @@ import java.util.List;
  * @author Richard Veach
  */
 public interface RootModule extends Configurable {
+
     /** Cleans up the object. **/
     void destroy();
 
@@ -56,4 +57,5 @@ public interface RootModule extends Configurable {
      * @param moduleClassLoader the classloader used to load module classes
      */
     void setModuleClassLoader(ClassLoader moduleClassLoader);
+
 }

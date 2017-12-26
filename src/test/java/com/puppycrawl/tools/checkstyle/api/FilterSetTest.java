@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.filters.SeverityMatchFilter;
 import nl.jqno.equalsverifier.EqualsVerifier;
 
 public class FilterSetTest {
+
     @Test
     public void testEqualsAndHashCode() {
         EqualsVerifier.forClass(FilterSet.class).usingGetClass().verify();
@@ -58,4 +59,5 @@ public class FilterSetTest {
 
         assertEquals("Invalid filter set size", 0, filterSet.getFilters().size());
     }
+
 }

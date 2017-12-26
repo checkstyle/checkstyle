@@ -34,7 +34,6 @@ public class MethodParamPadTest extends AbstractModuleTestSupport {
 
     @Test
     public void testOperatorWrap() throws Exception {
-
         final Class<MethodParamPadCheck> clazz = MethodParamPadCheck.class;
         final String messageKeyPrevious = "line.previous";
         final String messageKeyPreceded = "ws.preceded";
@@ -52,4 +51,5 @@ public class MethodParamPadTest extends AbstractModuleTestSupport {
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

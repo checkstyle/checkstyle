@@ -140,4 +140,5 @@ public class SlistHandler extends BlockParentHandler {
         return parentNode.getType() == TokenTypes.CASE_GROUP
             && getMainAst().getLineNo() == parentNode.getLineNo();
     }
+
 }

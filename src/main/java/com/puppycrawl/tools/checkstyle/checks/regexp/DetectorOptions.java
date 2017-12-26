@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
  * @author Oliver Burn
  */
 public final class DetectorOptions {
+
     /**
      * Flags to compile a regular expression with.
      * See {@link Pattern#flags()}.
@@ -229,5 +230,7 @@ public final class DetectorOptions {
             suppressor = Optional.ofNullable(suppressor).orElse(NeverSuppress.INSTANCE);
             return DetectorOptions.this;
         }
+
     }
+
 }

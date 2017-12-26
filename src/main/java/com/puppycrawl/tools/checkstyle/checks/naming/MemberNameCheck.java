@@ -51,6 +51,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  */
 public class MemberNameCheck
     extends AbstractAccessControlNameCheck {
+
     /** Creates a new {@code MemberNameCheck} instance. */
     public MemberNameCheck() {
         super("^[a-z][a-zA-Z0-9]*$");
@@ -81,4 +82,5 @@ public class MemberNameCheck
             && !ScopeUtils.isLocalVariableDef(ast)
                 && shouldCheckInScope(modifiersAST);
     }
+
 }

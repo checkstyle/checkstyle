@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class UncommentedMainCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/uncommentedmain";
@@ -122,6 +123,6 @@ public class UncommentedMainCheckTest
             assertEquals("Error message is unexpected",
                     ast.toString(), ex.getMessage());
         }
-
     }
+
 }

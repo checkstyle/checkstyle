@@ -65,6 +65,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author Andrei Selkin
  */
 public class Checker extends AutomaticBean implements MessageDispatcher, RootModule {
+
     /** Message to use when an exception occurs and should be printed as a violation. */
     public static final String EXCEPTION_MSG = "general.exception";
 
@@ -418,7 +419,6 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
         LocalizedMessage.setLocale(locale);
 
         if (moduleFactory == null) {
-
             if (moduleClassLoader == null) {
                 throw new CheckstyleException(
                         "if no custom moduleFactory is set, "
@@ -623,4 +623,5 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
             cache.reset();
         }
     }
+
 }

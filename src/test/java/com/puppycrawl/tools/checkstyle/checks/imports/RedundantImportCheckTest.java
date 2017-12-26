@@ -38,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class RedundantImportCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/imports/redundantimport";
@@ -118,4 +119,5 @@ public class RedundantImportCheckTest
 
         assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
+
 }

@@ -54,6 +54,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author Oliver Burn
  */
 public class DetailASTTest extends AbstractModuleTestSupport {
+
     @Rule
     public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
@@ -348,4 +349,5 @@ public class DetailASTTest extends AbstractModuleTestSupport {
         final String badPrevMsg = badPrevFormatter.format(params);
         assertEquals(badPrevMsg, prev, node.getPreviousSibling());
     }
+
 }

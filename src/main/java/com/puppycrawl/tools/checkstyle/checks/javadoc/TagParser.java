@@ -45,6 +45,7 @@ import java.util.List;
  * @author Chris Stillwell
  */
 class TagParser {
+
     /** List of HtmlTags found on the input line of text. */
     private final List<HtmlTag> tags = new LinkedList<>();
 
@@ -173,7 +174,6 @@ class TagParser {
         int column = tagStart.getColumnNo() + 1;
         String text = javadocText[tagStart.getLineNo()];
         if (column < text.length()) {
-
             if (text.charAt(column) == '/') {
                 column++;
             }
@@ -277,6 +277,7 @@ class TagParser {
      * @author o_sukholsky
      */
     private static final class Point {
+
         /** Line number. */
         private final int lineNo;
         /** Column number.*/
@@ -307,5 +308,7 @@ class TagParser {
         public int getColumnNo() {
             return columnNo;
         }
+
     }
+
 }

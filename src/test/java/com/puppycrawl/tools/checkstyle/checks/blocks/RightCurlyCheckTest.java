@@ -35,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class RightCurlyCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly";
@@ -227,7 +228,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "204:77: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 77),
             "208:76: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 76),
             "216:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
-
         };
         verify(checkConfig, getPath("InputRightCurlyAnnotations.java"), expected);
     }
@@ -417,4 +417,5 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig,
             getPath("InputRightCurlySameLambda.java"), expected);
     }
+
 }

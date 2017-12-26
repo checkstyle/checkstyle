@@ -121,4 +121,5 @@ public class CovariantEqualsCheck extends AbstractCheck {
         final String name = fullIdent.getText();
         return "Object".equals(name) || "java.lang.Object".equals(name);
     }
+
 }

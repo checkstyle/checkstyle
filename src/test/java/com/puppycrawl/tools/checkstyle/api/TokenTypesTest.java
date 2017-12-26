@@ -28,6 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 public class TokenTypesTest {
+
     @Test
     public void testGetShortDescription() {
         assertEquals("short description for EQUAL",
@@ -60,4 +61,5 @@ public class TokenTypesTest {
         assertTrue("Constructor is not private",
                 isUtilsClassHasPrivateConstructor(TokenTypes.class, true));
     }
+
 }

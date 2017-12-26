@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class OperatorWrapCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/operatorwrap";
@@ -120,4 +121,5 @@ public class OperatorWrapCheckTest
                 ex.getMessage().startsWith(messageStart));
         }
     }
+
 }

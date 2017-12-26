@@ -244,4 +244,5 @@ public class InnerAssignmentCheck
         }
         return found;
     }
+
 }

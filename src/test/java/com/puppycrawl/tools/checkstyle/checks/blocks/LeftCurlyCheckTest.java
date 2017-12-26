@@ -36,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly";
@@ -56,7 +57,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
         final LeftCurlyCheck checkObj = new LeftCurlyCheck();
         assertArrayEquals("LeftCurlyCheck#getRequiredTockens should return empty array by default",
             CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
-
     }
 
     @Test
@@ -381,4 +381,5 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
                 ex.getMessage().startsWith(messageStart));
         }
     }
+
 }

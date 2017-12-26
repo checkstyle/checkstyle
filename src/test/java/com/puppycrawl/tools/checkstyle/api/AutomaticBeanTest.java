@@ -183,6 +183,7 @@ public class AutomaticBeanTest {
         public int getRegisterCount() {
             return registerCount;
         }
+
     }
 
     private static class TestBean extends AutomaticBean {
@@ -215,4 +216,5 @@ public class AutomaticBeanTest {
         }
 
     }
+
 }

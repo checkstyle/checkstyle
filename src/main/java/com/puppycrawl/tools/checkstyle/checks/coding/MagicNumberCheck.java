@@ -451,4 +451,5 @@ public class MagicNumberCheck extends AbstractCheck {
 
         return result;
     }
+
 }

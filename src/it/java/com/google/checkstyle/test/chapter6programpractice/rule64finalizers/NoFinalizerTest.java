@@ -34,7 +34,6 @@ public class NoFinalizerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNoFinalizerBasic() throws Exception {
-
         final String msg = getCheckMessage(NoFinalizerCheck.class, "avoid.finalizer.method");
 
         final String[] expected = {
@@ -50,7 +49,6 @@ public class NoFinalizerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNoFinalizerExtended() throws Exception {
-
         final String msg = getCheckMessage(NoFinalizerCheck.class, "avoid.finalizer.method");
 
         final String[] expected = {
@@ -71,4 +69,5 @@ public class NoFinalizerTest extends AbstractModuleTestSupport {
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class DesignForExtensionCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/design/designforextension";
@@ -53,7 +54,6 @@ public class DesignForExtensionCheckTest
             "100:9: " + getCheckMessage(MSG_KEY, "anotherNonFinalClass", "someMethod"),
         };
         verify(checkConfig, getPath("InputDesignForExtension.java"), expected);
-
     }
 
     @Test
@@ -119,4 +119,5 @@ public class DesignForExtensionCheckTest
         };
         verify(checkConfig, getPath("InputDesignForExtensionNativeMethods.java"), expected);
     }
+
 }

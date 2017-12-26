@@ -86,4 +86,5 @@ public class SynchronizedHandler extends BlockParentHandler {
     private static DetailAST getSynchronizedStatementRightParen(DetailAST syncStatementAST) {
         return syncStatementAST.findFirstToken(TokenTypes.RPAREN);
     }
+
 }

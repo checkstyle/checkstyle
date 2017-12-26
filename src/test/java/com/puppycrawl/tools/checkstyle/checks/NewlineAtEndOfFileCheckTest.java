@@ -61,6 +61,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 @PrepareForTest(Closeables.class)
 public class NewlineAtEndOfFileCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/newlineatendoffile";
@@ -265,4 +266,5 @@ public class NewlineAtEndOfFileCheckTest
             }
         }
     }
+
 }

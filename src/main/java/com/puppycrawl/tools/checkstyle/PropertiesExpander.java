@@ -32,6 +32,7 @@ import java.util.Properties;
  */
 public final class PropertiesExpander
     implements PropertyResolver {
+
     /** The underlying values. */
     private final Map<String, String> values;
 
@@ -56,4 +57,5 @@ public final class PropertiesExpander
     public String resolve(String name) {
         return values.get(name);
     }
+
 }

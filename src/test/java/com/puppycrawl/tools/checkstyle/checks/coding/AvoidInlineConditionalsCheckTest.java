@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class AvoidInlineConditionalsCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/avoidinlineconditionals";
@@ -54,4 +55,5 @@ public class AvoidInlineConditionalsCheckTest
         Assert.assertNotNull("Default tokens should not be null", check.getDefaultTokens());
         Assert.assertNotNull("Required tokens should not be null", check.getRequiredTokens());
     }
+
 }

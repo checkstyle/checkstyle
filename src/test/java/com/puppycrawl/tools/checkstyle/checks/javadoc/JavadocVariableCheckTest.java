@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class JavadocVariableCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadocvariable";
@@ -345,4 +346,5 @@ public class JavadocVariableCheckTest
                 getPath("InputJavadocVariableNoJavadocNeededInLambda.java"),
                 expected);
     }
+
 }

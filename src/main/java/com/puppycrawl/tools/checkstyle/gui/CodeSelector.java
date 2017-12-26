@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode;
  * @author unknown
  */
 public class CodeSelector {
+
     /** Editor. */
     private final JTextArea editor;
     /** Presentation model. */
@@ -67,4 +68,5 @@ public class CodeSelector {
         editor.setCaretPosition(pModel.getSelectionStart());
         editor.moveCaretPosition(pModel.getSelectionEnd());
     }
+
 }

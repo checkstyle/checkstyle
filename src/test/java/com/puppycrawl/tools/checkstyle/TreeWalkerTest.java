@@ -595,6 +595,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     }
 
     private static class BadJavaDocCheck extends AbstractCheck {
+
         @Override
         public int[] getDefaultTokens() {
             return getAcceptableTokens();
@@ -609,9 +610,11 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         public int[] getRequiredTokens() {
             return getAcceptableTokens();
         }
+
     }
 
     private static class VerifyInitCheck extends AbstractCheck {
+
         private static boolean initWasCalled;
 
         @Override
@@ -638,9 +641,11 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         public static boolean isInitWasCalled() {
             return initWasCalled;
         }
+
     }
 
     private static class VerifyDestroyCheck extends AbstractCheck {
+
         private static boolean destroyWasCalled;
 
         @Override
@@ -671,16 +676,20 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         public static boolean isDestroyWasCalled() {
             return destroyWasCalled;
         }
+
     }
 
     private static class VerifyDestroyCommentCheck extends VerifyDestroyCheck {
+
         @Override
         public boolean isCommentNodesRequired() {
             return true;
         }
+
     }
 
     private static class RequiredTokenIsNotInDefaultsCheck extends AbstractCheck {
+
         @Override
         public int[] getRequiredTokens() {
             return new int[] {TokenTypes.ASSIGN};
@@ -695,9 +704,11 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         public int[] getAcceptableTokens() {
             return CommonUtils.EMPTY_INT_ARRAY;
         }
+
     }
 
     private static class RequiredTokenIsEmptyIntArray extends AbstractCheck {
+
         @Override
         public int[] getRequiredTokens() {
             return CommonUtils.EMPTY_INT_ARRAY;
@@ -712,5 +723,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         public int[] getAcceptableTokens() {
             return CommonUtils.EMPTY_INT_ARRAY;
         }
+
     }
+
 }

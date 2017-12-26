@@ -214,9 +214,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-
         if (!isIgnoreSituation(ast)) {
-
             final DetailAST nameAst = ast.findFirstToken(TokenTypes.IDENT);
             final String typeName = nameAst.getText();
 

@@ -125,4 +125,5 @@ public class ArrayTrailingCommaCheck extends AbstractCheck {
             log(rcurly.getLineNo(), MSG_KEY);
         }
     }
+
 }

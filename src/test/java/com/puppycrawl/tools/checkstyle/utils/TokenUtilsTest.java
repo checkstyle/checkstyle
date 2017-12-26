@@ -139,7 +139,6 @@ public class TokenUtilsTest {
 
             assertEquals("Invalid exception message",
                     "given id " + id, expected.getMessage());
-
         }
     }
 
@@ -212,7 +211,6 @@ public class TokenUtilsTest {
         final String id = "EOF";
 
         assertEquals("Invalid token id", TokenTypes.EOF, TokenUtils.getTokenId(id));
-
     }
 
     @Test
@@ -242,4 +240,5 @@ public class TokenUtilsTest {
 
         assertEquals("Invalid second sibling", secondSibling, result.get());
     }
+
 }

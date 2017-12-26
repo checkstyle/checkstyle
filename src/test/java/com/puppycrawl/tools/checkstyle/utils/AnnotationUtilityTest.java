@@ -212,4 +212,5 @@ public class AnnotationUtilityTest {
         assertTrue("Annotation should contain " + astForTest,
                 AnnotationUtility.containsAnnotation(astForTest, "Annotation"));
     }
+
 }

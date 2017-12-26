@@ -41,6 +41,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class VisibilityModifierCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier";
@@ -463,4 +464,5 @@ public class VisibilityModifierCheckTest
         assertTrue("Should return true when star import is passed",
             (boolean) isStarImport.invoke(check, importAst));
     }
+
 }

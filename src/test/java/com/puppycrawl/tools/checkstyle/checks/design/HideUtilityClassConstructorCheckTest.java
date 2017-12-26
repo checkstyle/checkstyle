@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class HideUtilityClassConstructorCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/design/hideutilityclassconstructor";
@@ -145,4 +146,5 @@ public class HideUtilityClassConstructorCheckTest
         assertArrayEquals("Default acceptable tokens are invalid",
             expected, obj.getAcceptableTokens());
     }
+
 }

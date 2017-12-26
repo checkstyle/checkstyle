@@ -41,6 +41,7 @@ import net.sf.saxon.trans.XPathException;
  * @author Timur Tibeyev.
  */
 public class XpathFilter implements TreeWalkerFilter {
+
     /** The regexp to match file names against. */
     private final Pattern fileRegexp;
 
@@ -216,4 +217,5 @@ public class XpathFilter implements TreeWalkerFilter {
                 && Objects.equals(moduleId, xpathFilter.moduleId)
                 && Objects.equals(xpathQuery, xpathFilter.xpathQuery);
     }
+
 }

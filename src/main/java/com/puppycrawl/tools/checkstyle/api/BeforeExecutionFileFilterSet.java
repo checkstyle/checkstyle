@@ -31,6 +31,7 @@ import java.util.Set;
  */
 public final class BeforeExecutionFileFilterSet
     implements BeforeExecutionFileFilter {
+
     /** Filter set. */
     private final Set<BeforeExecutionFileFilter> beforeExecutionFileFilters = new HashSet<>();
 
@@ -79,4 +80,5 @@ public final class BeforeExecutionFileFilterSet
     public void clear() {
         beforeExecutionFileFilters.clear();
     }
+
 }

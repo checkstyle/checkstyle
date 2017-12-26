@@ -47,6 +47,7 @@ import com.sun.tools.javadoc.Messager;
 import com.sun.tools.javadoc.ModifierFilter;
 
 public class TokenTypesDocletTest extends AbstractPathTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/doclets/tokentypesdoclet";
@@ -160,7 +161,6 @@ public class TokenTypesDocletTest extends AbstractPathTestSupport {
                         StandardCharsets.UTF_8);
         assertTrue("File content is not expected",
                 fileContent.startsWith("EOF=The end of file token."));
-
     }
 
     @Test
@@ -234,5 +234,7 @@ public class TokenTypesDocletTest extends AbstractPathTestSupport {
         public void printError(String message) {
             messages.add(message);
         }
+
     }
+
 }

@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * @noinspection ClassOnlyUsedInOnePackage
  */
 public class TestFileSetCheck extends AbstractFileSetCheck {
+
     private boolean called;
 
     @Override
@@ -51,4 +52,5 @@ public class TestFileSetCheck extends AbstractFileSetCheck {
     public void resetCheck() {
         called = false;
     }
+
 }

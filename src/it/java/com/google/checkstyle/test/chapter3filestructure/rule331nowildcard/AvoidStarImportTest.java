@@ -33,7 +33,6 @@ public class AvoidStarImportTest extends AbstractModuleTestSupport {
 
     @Test
     public void testStarImport() throws Exception {
-
         final String[] expected = {
             "3: Using the '.*' form of import should be avoided - java.io.*.",
             "4: Using the '.*' form of import should be avoided - java.lang.*.",
@@ -47,4 +46,5 @@ public class AvoidStarImportTest extends AbstractModuleTestSupport {
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

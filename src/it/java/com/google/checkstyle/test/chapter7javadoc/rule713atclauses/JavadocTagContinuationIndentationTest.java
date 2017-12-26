@@ -58,4 +58,5 @@ public class JavadocTagContinuationIndentationTest extends AbstractModuleTestSup
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

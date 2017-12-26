@@ -173,4 +173,5 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
     private boolean isTagIgnored(DetailNode javadocTagSection) {
         return ignoredTags.contains(JavadocUtils.getTagName(javadocTagSection));
     }
+
 }

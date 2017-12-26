@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class LambdaTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/grammars/java8";
@@ -39,7 +40,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLambda1.java"), expected);
-
     }
 
     @Test
@@ -49,7 +49,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLambda2.java"), expected);
-
     }
 
     @Test
@@ -59,7 +58,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLambda3.java"), expected);
-
     }
 
     @Test
@@ -69,7 +67,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLambda4.java"), expected);
-
     }
 
     @Test
@@ -79,7 +76,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLambda5.java"), expected);
-
     }
 
     @Test
@@ -89,7 +85,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLambda6.java"), expected);
-
     }
 
     @Test
@@ -99,7 +94,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLambda7.java"), expected);
-
     }
 
     @Test
@@ -109,7 +103,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLambda8.java"), expected);
-
     }
 
     @Test
@@ -119,7 +112,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLambda9.java"), expected);
-
     }
 
     @Test
@@ -129,7 +121,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLambda10.java"), expected);
-
     }
 
     @Test
@@ -139,7 +130,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLambda11.java"), expected);
-
     }
 
     @Test
@@ -149,7 +139,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLambda12.java"), expected);
-
     }
 
     @Test
@@ -159,7 +148,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLambda13.java"), expected);
-
     }
 
     @Test
@@ -169,7 +157,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLambda14.java"), expected);
-
     }
 
     @Test
@@ -179,7 +166,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLambda15.java"), expected);
-
     }
 
     @Test
@@ -189,7 +175,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLambda16.java"), expected);
-
     }
 
     @Test
@@ -199,7 +184,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLambda17.java"), expected);
-
     }
 
     @Test
@@ -209,7 +193,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLambda18.java"), expected);
-
     }
 
 }

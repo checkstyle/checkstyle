@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class NonEmptyAtclauseDescriptionCheckTest
         extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/nonemptyatclausedescription";
@@ -85,4 +86,5 @@ public class NonEmptyAtclauseDescriptionCheckTest
         };
         verify(checkConfig, getPath("InputNonEmptyAtclauseDescription.java"), expected);
     }
+
 }

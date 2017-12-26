@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author jrichard
  */
 public class HandlerFactory {
+
     /**
      * Registered handlers.
      */
@@ -181,4 +182,5 @@ public class HandlerFactory {
     public void clearCreatedHandlers() {
         createdHandlers.clear();
     }
+
 }

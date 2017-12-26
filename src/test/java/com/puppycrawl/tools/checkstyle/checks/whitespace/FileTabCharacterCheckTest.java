@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
 public class FileTabCharacterCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/filetabcharacter";
@@ -94,4 +95,5 @@ public class FileTabCharacterCheckTest
         };
         verify(createChecker(checkConfig), files, path, expected);
     }
+
 }

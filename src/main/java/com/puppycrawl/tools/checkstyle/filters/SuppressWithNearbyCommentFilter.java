@@ -284,6 +284,7 @@ public class SuppressWithNearbyCommentFilter
      * A Tag holds a suppression comment and its location.
      */
     public static class Tag {
+
         /** The text of the tag. */
         private final String text;
 
@@ -425,5 +426,7 @@ public class SuppressWithNearbyCommentFilter
                     + ", tagMessageRegexp=" + tagMessageRegexp
                     + ']';
         }
+
     }
+
 }

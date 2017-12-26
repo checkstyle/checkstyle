@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class ArrayTrailingCommaCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/arraytrailingcomma";
@@ -53,4 +54,5 @@ public class ArrayTrailingCommaCheckTest
         Assert.assertNotNull("Invalid default tokens", check.getDefaultTokens());
         Assert.assertNotNull("Invalid required tokens", check.getRequiredTokens());
     }
+
 }

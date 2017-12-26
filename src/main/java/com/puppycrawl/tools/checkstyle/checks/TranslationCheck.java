@@ -519,6 +519,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
 
     /** Class which represents a resource bundle. */
     private static class ResourceBundle {
+
         /** Bundle base name. */
         private final String baseName;
         /** Common extension of files which are included in the resource bundle. */
@@ -580,5 +581,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
             }
             return containsFile;
         }
+
     }
+
 }

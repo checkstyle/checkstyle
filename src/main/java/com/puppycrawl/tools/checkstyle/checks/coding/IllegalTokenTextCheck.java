@@ -169,4 +169,5 @@ public class IllegalTokenTextCheck
     private void updateRegexp() {
         regexp = CommonUtils.createPattern(format, compileFlags);
     }
+
 }

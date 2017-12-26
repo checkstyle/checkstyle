@@ -36,6 +36,7 @@ import net.sf.saxon.type.Type;
  * @author Timur Tibeyev
  */
 public class RootNode extends AbstractNode {
+
     /** Name of the root element. */
     private static final String ROOT_NAME = "ROOT";
 
@@ -218,4 +219,5 @@ public class RootNode extends AbstractNode {
     private static UnsupportedOperationException throwUnsupportedOperationException() {
         return new UnsupportedOperationException("Operation is not supported");
     }
+
 }

@@ -46,6 +46,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public abstract class AbstractAccessControlNameCheck
     extends AbstractNameCheck {
+
     /** If true, applies the check be public members. */
     private boolean applyToPublic = true;
 
@@ -130,4 +131,5 @@ public abstract class AbstractAccessControlNameCheck
     public void setApplyToPrivate(boolean applyTo) {
         applyToPrivate = applyTo;
     }
+
 }

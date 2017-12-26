@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class AllBlockCommentsTest extends AbstractModuleTestSupport {
+
     private static final Set<String> ALL_COMMENTS = new LinkedHashSet<>();
 
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
@@ -53,6 +54,7 @@ public class AllBlockCommentsTest extends AbstractModuleTestSupport {
     }
 
     private static class BlockCommentListenerCheck extends AbstractCheck {
+
         @Override
         public boolean isCommentNodesRequired() {
             return true;
@@ -93,5 +95,7 @@ public class AllBlockCommentsTest extends AbstractModuleTestSupport {
                 Assert.fail("Unexpected comment: " + commentContent);
             }
         }
+
     }
+
 }

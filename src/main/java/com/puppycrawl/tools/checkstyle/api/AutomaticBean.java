@@ -61,6 +61,7 @@ public abstract class AutomaticBean
      * Enum to specify behaviour regarding ignored modules.
      */
     public enum OutputStreamOptions {
+
         /**
          * Close stream in the end.
          */
@@ -69,7 +70,8 @@ public abstract class AutomaticBean
         /**
          * Do nothing in the end.
          */
-        NONE
+        NONE,
+
     }
 
     /** Comma separator for StringTokenizer. */
@@ -208,7 +210,6 @@ public abstract class AutomaticBean
      */
     private void tryCopyProperty(String moduleName, String key, Object value, boolean recheck)
             throws CheckstyleException {
-
         final BeanUtilsBean beanUtils = createBeanUtilsBean();
 
         try {
@@ -251,7 +252,6 @@ public abstract class AutomaticBean
     @Override
     public final void contextualize(Context context)
             throws CheckstyleException {
-
         final Collection<String> attributes = context.getAttributeNames();
 
         for (final String key : attributes) {
@@ -292,33 +292,40 @@ public abstract class AutomaticBean
 
     /** A converter that converts strings to patterns. */
     private static class PatternConverter implements Converter {
+
         @SuppressWarnings({"unchecked", "rawtypes"})
         @Override
         public Object convert(Class type, Object value) {
             return CommonUtils.createPattern(value.toString());
         }
+
     }
 
     /** A converter that converts strings to severity level. */
     private static class SeverityLevelConverter implements Converter {
+
         @SuppressWarnings({"unchecked", "rawtypes"})
         @Override
         public Object convert(Class type, Object value) {
             return SeverityLevel.getInstance(value.toString());
         }
+
     }
 
     /** A converter that converts strings to scope. */
     private static class ScopeConverter implements Converter {
+
         @SuppressWarnings({"unchecked", "rawtypes"})
         @Override
         public Object convert(Class type, Object value) {
             return Scope.getInstance(value.toString());
         }
+
     }
 
     /** A converter that converts strings to uri. */
     private static class UriConverter implements Converter {
+
         @SuppressWarnings({"unchecked", "rawtypes"})
         @Override
         public Object convert(Class type, Object value) {
@@ -336,6 +343,7 @@ public abstract class AutomaticBean
 
             return result;
         }
+
     }
 
     /**
@@ -344,6 +352,7 @@ public abstract class AutomaticBean
      * with this characters.
      */
     private static class RelaxedStringArrayConverter implements Converter {
+
         @SuppressWarnings({"unchecked", "rawtypes"})
         @Override
         public Object convert(Class type, Object value) {
@@ -359,6 +368,7 @@ public abstract class AutomaticBean
 
             return result.toArray(new String[result.size()]);
         }
+
     }
 
     /**
@@ -383,5 +393,7 @@ public abstract class AutomaticBean
 
             return result.toArray(new AccessModifier[result.size()]);
         }
+
     }
+
 }

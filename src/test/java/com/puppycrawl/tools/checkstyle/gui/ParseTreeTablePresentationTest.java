@@ -215,7 +215,6 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
      */
     @Test
     public void testGetValueAt() {
-
         final DetailAST node = tree.getFirstChild()
             .getNextSibling()
             .getNextSibling()
@@ -245,7 +244,6 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         catch (IllegalStateException ex) {
             Assert.assertEquals("Invalid error message", "Unknown column", ex.getMessage());
         }
-
     }
 
     @Test
@@ -284,7 +282,6 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         catch (IllegalStateException ex) {
             Assert.assertEquals("Invalid error message", "Unknown column", ex.getMessage());
         }
-
     }
 
     @Test
@@ -312,7 +309,6 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         Assert.assertEquals("Invalid column name", "Line", parseTree.getColumnName(2));
         Assert.assertEquals("Invalid column name", "Column", parseTree.getColumnName(3));
         Assert.assertEquals("Invalid column name", "Text", parseTree.getColumnName(4));
-
     }
 
 }

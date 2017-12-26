@@ -37,7 +37,6 @@ public class AbbreviationAsWordInNameTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAbbreviationAsWordInName() throws Exception {
-
         final int maxCapitalCount = 2;
 
         final String[] expected = {
@@ -62,4 +61,5 @@ public class AbbreviationAsWordInNameTest extends AbstractModuleTestSupport {
     private String getWarningMessage(String typeName, int expectedCapitalCount) {
         return getCheckMessage(clazz, MSG_KEY, typeName, expectedCapitalCount);
     }
+
 }

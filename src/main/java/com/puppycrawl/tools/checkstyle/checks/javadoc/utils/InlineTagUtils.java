@@ -144,4 +144,5 @@ public final class InlineTagUtils {
         final Matcher matcher = JAVADOC_PREFIX_PATTERN.matcher(source);
         return matcher.replaceAll("");
     }
+
 }

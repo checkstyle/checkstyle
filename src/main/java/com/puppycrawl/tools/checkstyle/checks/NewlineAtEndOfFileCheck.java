@@ -152,4 +152,5 @@ public class NewlineAtEndOfFileCheck
         }
         return result;
     }
+
 }

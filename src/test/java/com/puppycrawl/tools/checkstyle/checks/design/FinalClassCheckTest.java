@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class FinalClassCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/design/finalclass";
@@ -106,4 +107,5 @@ public class FinalClassCheckTest
         assertArrayEquals("Default acceptable tokens are invalid",
             expected, obj.getAcceptableTokens());
     }
+
 }

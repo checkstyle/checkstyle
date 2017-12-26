@@ -37,7 +37,6 @@ public class OuterTypeFilenameTest extends AbstractModuleTestSupport {
 
     @Test
     public void testOuterTypeFilename1() throws Exception {
-
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("OuterTypeFilename");
@@ -49,7 +48,6 @@ public class OuterTypeFilenameTest extends AbstractModuleTestSupport {
 
     @Test
     public void testOuterTypeFilename2() throws Exception {
-
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("OuterTypeFilename");
@@ -61,7 +59,6 @@ public class OuterTypeFilenameTest extends AbstractModuleTestSupport {
 
     @Test
     public void testOuterTypeFilename3() throws Exception {
-
         final String[] expected = {
             "3: " + getCheckMessage(OuterTypeFilenameCheck.class, MSG_KEY),
         };
@@ -72,4 +69,5 @@ public class OuterTypeFilenameTest extends AbstractModuleTestSupport {
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

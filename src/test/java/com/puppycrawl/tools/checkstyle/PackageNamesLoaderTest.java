@@ -66,6 +66,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({PackageNamesLoader.class, Closeables.class})
 public class PackageNamesLoaderTest extends AbstractPathTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/packagenamesloader";
@@ -137,7 +138,6 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
     @Test
     @SuppressWarnings("unchecked")
     public void testPackagesWithDots() throws Exception {
-
         final Constructor<PackageNamesLoader> constructor =
                 PackageNamesLoader.class.getDeclaredConstructor();
         constructor.setAccessible(true);
@@ -157,7 +157,6 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
     @Test
     @SuppressWarnings("unchecked")
     public void testPackagesWithSaxException() throws Exception {
-
         final URLConnection mockConnection = Mockito.mock(URLConnection.class);
         when(mockConnection.getInputStream()).thenReturn(
                 new ByteArrayInputStream(EMPTY_BYTE_ARRAY));
@@ -183,7 +182,6 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
     @Test
     @SuppressWarnings("unchecked")
     public void testPackagesWithIoException() throws Exception {
-
         final URLConnection mockConnection = Mockito.mock(URLConnection.class);
         when(mockConnection.getInputStream()).thenReturn(null);
 
@@ -210,7 +208,6 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
     @Test
     @SuppressWarnings("unchecked")
     public void testPackagesWithIoExceptionGetResources() throws Exception {
-
         final ClassLoader classLoader = mock(ClassLoader.class);
         when(classLoader.getResources("checkstyle_packages.xml")).thenThrow(IOException.class);
 

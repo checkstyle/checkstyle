@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.RootModule;
 
 public class TestRootModuleChecker implements RootModule {
+
     private static boolean processed;
     private static List<File> filesToCheck;
     private static Configuration config;
@@ -91,4 +92,5 @@ public class TestRootModuleChecker implements RootModule {
     public static Configuration getConfig() {
         return config;
     }
+
 }

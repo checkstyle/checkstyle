@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 @StatelessCheck
 public class ArrayTypeStyleCheck extends AbstractCheck {
+
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -85,4 +86,5 @@ public class ArrayTypeStyleCheck extends AbstractCheck {
     public void setJavaStyle(boolean javaStyle) {
         this.javaStyle = javaStyle;
     }
+
 }

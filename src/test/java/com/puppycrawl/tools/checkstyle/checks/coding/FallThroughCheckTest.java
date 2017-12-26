@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class FallThroughCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/fallthrough";
@@ -145,7 +146,6 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig,
                getPath("InputFallThrough.java"),
                expected);
-
     }
 
     @Test
@@ -174,4 +174,5 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             getPath("InputFallThrough2.java"),
             expected);
     }
+
 }

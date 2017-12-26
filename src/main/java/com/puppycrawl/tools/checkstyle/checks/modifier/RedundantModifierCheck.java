@@ -255,7 +255,6 @@ public class RedundantModifierCheck
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
         DetailAST modifier = modifiers.getFirstChild();
         while (modifier != null) {
-
             // javac does not allow final or static in interface methods
             // order annotation fields hence no need to check that this
             // is not a method or annotation field
@@ -469,4 +468,5 @@ public class RedundantModifierCheck
         }
         return annotationsList;
     }
+
 }

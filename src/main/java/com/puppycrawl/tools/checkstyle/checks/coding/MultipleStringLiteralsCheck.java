@@ -189,6 +189,7 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
      * This class contains information about where a string was found.
      */
     private static final class StringInfo {
+
         /**
          * Line of finding.
          */
@@ -223,6 +224,7 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
         private int getCol() {
             return col;
         }
+
     }
 
 }

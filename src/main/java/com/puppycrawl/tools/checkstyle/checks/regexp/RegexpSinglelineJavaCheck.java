@@ -128,4 +128,5 @@ public class RegexpSinglelineJavaCheck extends AbstractCheck {
     public void setIgnoreComments(boolean ignore) {
         ignoreComments = ignore;
     }
+
 }

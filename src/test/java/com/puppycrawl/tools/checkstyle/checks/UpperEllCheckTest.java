@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class UpperEllCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/upperell";
@@ -63,4 +64,5 @@ public class UpperEllCheckTest
         assertEquals("Invalid size of tokens", 1, actual.length);
         assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
+
 }

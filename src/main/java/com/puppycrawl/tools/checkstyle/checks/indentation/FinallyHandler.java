@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * @author jrichard
  */
 public class FinallyHandler extends BlockParentHandler {
+
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -44,4 +45,5 @@ public class FinallyHandler extends BlockParentHandler {
     protected boolean shouldTopLevelStartLine() {
         return false;
     }
+
 }

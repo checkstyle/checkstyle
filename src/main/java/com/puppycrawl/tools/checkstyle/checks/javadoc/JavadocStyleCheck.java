@@ -542,4 +542,5 @@ public class JavadocStyleCheck
     public void setCheckEmptyJavadoc(boolean flag) {
         checkEmptyJavadoc = flag;
     }
+
 }

@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class MethodNameCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/methodname";
@@ -177,4 +178,5 @@ public class MethodNameCheckTest
         };
         assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
+
 }

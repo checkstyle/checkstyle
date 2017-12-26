@@ -52,6 +52,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 public class XMLLogger
     extends AutomaticBean
     implements AuditListener {
+
     /** Decimal radix. */
     private static final int BASE_10 = 10;
 
@@ -346,6 +347,7 @@ public class XMLLogger
      * The registered file messages.
      */
     private static class FileMessages {
+
         /** The file error events. */
         private final List<AuditEvent> errors = Collections.synchronizedList(new ArrayList<>());
 
@@ -383,5 +385,7 @@ public class XMLLogger
         public void addException(Throwable throwable) {
             exceptions.add(throwable);
         }
+
     }
+
 }

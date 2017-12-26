@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
 public class SeverityMatchFilterTest {
+
     private final SeverityMatchFilter filter = new SeverityMatchFilter();
 
     @Test
@@ -95,4 +96,5 @@ public class SeverityMatchFilterTest {
         filter.configure(new DefaultConfiguration("test"));
         assertNotNull("object exists", filter);
     }
+
 }

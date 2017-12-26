@@ -36,7 +36,6 @@ public class AvoidEscapedUnicodeCharactersTest extends AbstractModuleTestSupport
 
     @Test
     public void testUnicodeEscapes() throws Exception {
-
         final String[] expected = {
             "5: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
             "15: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
@@ -52,4 +51,5 @@ public class AvoidEscapedUnicodeCharactersTest extends AbstractModuleTestSupport
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

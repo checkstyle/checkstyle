@@ -70,4 +70,5 @@ public class GeneratedJava14LexerTest
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath("InputSemicolonBetweenImports.java"), expected);
     }
+
 }

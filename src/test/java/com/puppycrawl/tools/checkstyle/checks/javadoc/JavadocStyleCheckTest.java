@@ -39,6 +39,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class JavadocStyleCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle";
@@ -421,4 +422,5 @@ public class JavadocStyleCheckTest
                 "HtmlTag[id='id', lineNo=3, position=5, text='<a href=\"URL\"/>', "
                 + "closedTag=true, incompleteTag=false]", tag.toString());
     }
+
 }

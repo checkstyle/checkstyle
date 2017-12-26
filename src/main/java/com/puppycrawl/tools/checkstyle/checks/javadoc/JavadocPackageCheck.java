@@ -104,4 +104,5 @@ public class JavadocPackageCheck extends AbstractFileSetCheck {
     public void setAllowLegacy(boolean allowLegacy) {
         this.allowLegacy = allowLegacy;
     }
+
 }

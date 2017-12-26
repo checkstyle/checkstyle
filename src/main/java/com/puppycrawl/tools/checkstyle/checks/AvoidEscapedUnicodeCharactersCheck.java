@@ -112,6 +112,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 @FileStatefulCheck
 public class AvoidEscapedUnicodeCharactersCheck
     extends AbstractCheck {
+
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -234,7 +235,6 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-
         final String literal = ast.getText();
 
         if (hasUnicodeChar(literal) && !(allowByTailComment && hasTrailComment(ast)
@@ -330,4 +330,5 @@ public class AvoidEscapedUnicodeCharactersCheck
                 && ALL_ESCAPED_CHARS.matcher(literal.substring(1,
                         literal.length() - 1)).find();
     }
+
 }

@@ -163,4 +163,5 @@ public class SeparatorWrapCheck
             log(lineNo, colNo, MSG_LINE_NEW, text);
         }
     }
+
 }

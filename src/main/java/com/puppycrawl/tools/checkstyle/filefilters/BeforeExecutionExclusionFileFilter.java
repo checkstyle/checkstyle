@@ -91,4 +91,5 @@ public final class BeforeExecutionExclusionFileFilter extends AutomaticBean
     public boolean accept(String uri) {
         return fileNamePattern == null || !fileNamePattern.matcher(uri).find();
     }
+
 }

@@ -102,4 +102,5 @@ public class RegexpSinglelineCheck extends AbstractFileSetCheck {
     public void setIgnoreCase(boolean ignoreCase) {
         this.ignoreCase = ignoreCase;
     }
+
 }

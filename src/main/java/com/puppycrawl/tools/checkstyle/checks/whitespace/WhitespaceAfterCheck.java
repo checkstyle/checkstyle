@@ -143,4 +143,5 @@ public class WhitespaceAfterCheck
         }
         return followedByWhitespace;
     }
+
 }

@@ -38,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  */
 // -@cs[AbbreviationAsWordInName] Test should be named as its main class.
 public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/metrics/javancss";
@@ -167,4 +168,5 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
         Assert.assertNotNull("Required tokens should not be null", actual);
         Assert.assertArrayEquals("Invalid required tokens", expected, actual);
     }
+
 }

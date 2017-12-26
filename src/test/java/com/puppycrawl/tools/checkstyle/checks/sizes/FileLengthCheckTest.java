@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class FileLengthCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/filelength";
@@ -119,4 +120,5 @@ public class FileLengthCheckTest
                 "Extensions array can not be null", ex.getMessage());
         }
     }
+
 }

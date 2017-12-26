@@ -38,6 +38,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ ClassResolver.class, ClassResolverTest.class })
 public class ClassResolverTest {
+
     @Test
     public void testMisc() throws ClassNotFoundException {
         final Set<String> imports = new HashSet<>();
@@ -176,4 +177,5 @@ public class ClassResolverTest {
         final boolean result = classResolver.isLoadable("someClass");
         assertFalse("result should be false", result);
     }
+
 }

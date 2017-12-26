@@ -125,10 +125,15 @@ public class AuditEventDefaultFormatterTest {
     }
 
     private static class TestModuleCheck {
+
         // no code
+
     }
 
     private static class TestModule {
+
         // no code
+
     }
+
 }

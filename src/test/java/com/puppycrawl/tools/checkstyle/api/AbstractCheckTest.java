@@ -36,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class AbstractCheckTest extends AbstractPathTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/api/abstractcheck";
@@ -226,6 +227,7 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
     }
 
     private static final class DummyAbstractCheck extends AbstractCheck {
+
         private static final int[] DUMMY_ARRAY = {6};
 
         @Override
@@ -249,5 +251,7 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
             messages.put("key", "value");
             return messages;
         }
+
     }
+
 }

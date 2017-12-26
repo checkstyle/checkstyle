@@ -30,6 +30,7 @@ import com.google.common.collect.ImmutableMap;
  * @author lkuehne
  */
 public interface Configuration extends Serializable {
+
     /**
      * The set of attribute names.
      * @return The set of attribute names, never null.
@@ -62,4 +63,5 @@ public interface Configuration extends Serializable {
      * @return unmodifiable map containing custom messages
      */
     ImmutableMap<String, String> getMessages();
+
 }

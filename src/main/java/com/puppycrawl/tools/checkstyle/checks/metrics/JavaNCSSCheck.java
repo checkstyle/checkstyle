@@ -315,6 +315,7 @@ public class JavaNCSSCheck extends AbstractCheck {
      * @author Lars Ködderitzsch
      */
     private static class Counter {
+
         /** The counters internal integer. */
         private int count;
 
@@ -333,5 +334,7 @@ public class JavaNCSSCheck extends AbstractCheck {
         public int getCount() {
             return count;
         }
+
     }
+
 }

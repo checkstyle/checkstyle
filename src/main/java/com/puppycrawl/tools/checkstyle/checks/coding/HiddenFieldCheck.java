@@ -132,6 +132,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 @FileStatefulCheck
 public class HiddenFieldCheck
     extends AbstractCheck {
+
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -557,6 +558,7 @@ public class HiddenFieldCheck
      * @author Rick Giles
      */
     private static class FieldFrame {
+
         /** Name of the frame, such name of the class or enum declaration. */
         private final String frameName;
 
@@ -610,7 +612,6 @@ public class HiddenFieldCheck
                     || parent != null
                     && !staticType
                     && parent.containsInstanceField(field);
-
         }
 
         /**
@@ -654,5 +655,7 @@ public class HiddenFieldCheck
             }
             return isEmbeddedIn;
         }
+
     }
+
 }

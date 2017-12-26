@@ -85,6 +85,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  */
 @FileStatefulCheck
 public class IndentationCheck extends AbstractCheck {
+
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -353,4 +354,5 @@ public class IndentationCheck extends AbstractCheck {
     public final HandlerFactory getHandlerFactory() {
         return handlerFactory;
     }
+
 }

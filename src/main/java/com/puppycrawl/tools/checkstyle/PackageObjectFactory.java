@@ -54,16 +54,19 @@ public class PackageObjectFactory implements ModuleFactory {
      * Enum class to define loading options.
      */
     public enum ModuleLoadOption {
+
         /**
          * Searching from registered checkstyle modules and from packages given in constructor.
          **/
         SEARCH_REGISTERED_PACKAGES,
+
         /**
          * As SEARCH_REGISTERED_PACKAGES and also try to load class from all of packages given in
          * constructor.
          * Required for eclipse-cs plugin.
          **/
         TRY_IN_ALL_REGISTERED_PACKAGES,
+
     }
 
     /** Base package of checkstyle modules checks. */
@@ -734,6 +737,10 @@ public class PackageObjectFactory implements ModuleFactory {
      * Fill short-to-full module names map with Checks from whitespace package.
      */
     private static void fillChecksFromWhitespacePackage() {
+        NAME_TO_FULL_MODULE_NAME.put("AfterLeftCurly",
+                BASE_PACKAGE + ".checks.whitespace.AfterLeftCurlyCheck");
+        NAME_TO_FULL_MODULE_NAME.put("BeforeRightCurly",
+                BASE_PACKAGE + ".checks.whitespace.BeforeRightCurlyCheck");
         NAME_TO_FULL_MODULE_NAME.put("EmptyForInitializerPadCheck",
                 BASE_PACKAGE + ".checks.whitespace.EmptyForInitializerPadCheck");
         NAME_TO_FULL_MODULE_NAME.put("EmptyForIteratorPadCheck",

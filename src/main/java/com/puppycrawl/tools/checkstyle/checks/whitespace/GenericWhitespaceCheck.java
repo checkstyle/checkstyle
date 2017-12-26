@@ -157,7 +157,6 @@ public class GenericWhitespaceCheck extends AbstractCheck {
         }
 
         if (after < line.length()) {
-
             // Check if the last Generic, in which case must be a whitespace
             // or a '(),[.'.
             if (depth == 1) {
@@ -328,4 +327,5 @@ public class GenericWhitespaceCheck extends AbstractCheck {
             || charAfter == ';'
             || Character.isWhitespace(charAfter);
     }
+
 }

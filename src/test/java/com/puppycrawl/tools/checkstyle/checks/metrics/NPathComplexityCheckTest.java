@@ -41,6 +41,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 // -@cs[AbbreviationAsWordInName] Can't change check name
 public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/metrics/npathcomplexity";

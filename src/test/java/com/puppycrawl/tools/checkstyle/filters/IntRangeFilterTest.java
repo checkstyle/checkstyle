@@ -27,6 +27,7 @@ import org.junit.Test;
 import nl.jqno.equalsverifier.EqualsVerifier;
 
 public class IntRangeFilterTest {
+
     @Test
     public void testDecide() {
         final IntFilter filter = new IntRangeFilter(0, 10);
@@ -59,4 +60,5 @@ public class IntRangeFilterTest {
     public void testEqualsAndHashCode() {
         EqualsVerifier.forClass(IntRangeFilter.class).usingGetClass().verify();
     }
+
 }

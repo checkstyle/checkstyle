@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/abstractclassname";
@@ -142,4 +143,5 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
         };
         Assert.assertArrayEquals("Invalid required tokens", expected, actual);
     }
+
 }

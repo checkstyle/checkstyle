@@ -95,4 +95,5 @@ public class BlockTagUtilsTest {
         assertEquals("Invalid tag line", line, tag.getPosition().getLine());
         assertEquals("Invalid tag column", column, tag.getPosition().getColumn());
     }
+
 }

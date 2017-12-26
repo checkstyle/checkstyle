@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public final class ConfigurationUtil {
+
     private ConfigurationUtil() {
     }
 
@@ -77,4 +78,5 @@ public final class ConfigurationUtil {
 
         return result;
     }
+
 }

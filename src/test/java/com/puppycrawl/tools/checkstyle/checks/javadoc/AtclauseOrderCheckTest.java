@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/atclauseorder";
@@ -111,7 +112,6 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIncorrectCustom() throws Exception {
-
         final DefaultConfiguration checkConfig = createModuleConfig(AtclauseOrderCheck.class);
         checkConfig.addAttribute("target", "CLASS_DEF");
         checkConfig.addAttribute("tagOrder", " @since,  @version, @param,@return,@throws, "
@@ -124,4 +124,5 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputAtclauseOrderIncorrect.java"), expected);
     }
+
 }

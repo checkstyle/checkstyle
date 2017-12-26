@@ -365,7 +365,6 @@ public class XpathMapperTest extends AbstractPathTestSupport {
         try {
             getXpathItems(xpath, rootNode);
             fail("Exception is excepted");
-
         }
         catch (XPathException ex) {
             assertEquals("Invalid number of nodes", "Operation is not supported", ex.getMessage());
@@ -421,7 +420,6 @@ public class XpathMapperTest extends AbstractPathTestSupport {
         try {
             classDefNode.getAttributeValue("", "noneExistingAttribute");
             fail("Exception is excepted");
-
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Invalid number of nodes", "Operation is not supported", ex.getMessage());
@@ -552,4 +550,5 @@ public class XpathMapperTest extends AbstractPathTestSupport {
         }
         return returnValue;
     }
+
 }

@@ -31,6 +31,7 @@ import java.util.Map;
  */
 public abstract class AbstractViolationReporter
     extends AutomaticBean {
+
     /** The severity level of any violations found. */
     private SeverityLevel severityLevel = SeverityLevel.ERROR;
 
@@ -167,4 +168,5 @@ public abstract class AbstractViolationReporter
     // overloaded methods. See https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/414
     public abstract void log(int line, int col, String key,
             Object... args);
+
 }

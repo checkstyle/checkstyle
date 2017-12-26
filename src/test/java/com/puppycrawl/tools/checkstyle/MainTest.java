@@ -74,6 +74,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({Main.class, CommonUtils.class, Closeables.class})
 public class MainTest {
+
     private static final String USAGE = String.format(Locale.ROOT,
           "usage: java com.puppycrawl.tools.checkstyle.Main [options] -c <config.xml>"
         + " file...%n"
@@ -171,7 +172,6 @@ public class MainTest {
     @Test
     public void testVersionPrint()
             throws Exception {
-
         exit.checkAssertionAfterwards(() -> {
             assertEquals("Unexpected output log",
                     "Checkstyle version: null" + System.lineSeparator(),
@@ -263,7 +263,6 @@ public class MainTest {
 
     @Test
     public void testExistingTargetFile() throws Exception {
-
         exit.checkAssertionAfterwards(() -> {
             assertEquals("Unexpected output log", auditStartMessage.getMessage() + EOL
                     + auditFinishMessage.getMessage() + EOL,
@@ -276,7 +275,6 @@ public class MainTest {
 
     @Test
     public void testExistingTargetFileXmlOutput() throws Exception {
-
         exit.checkAssertionAfterwards(() -> {
             final String expectedPath = getFilePath("InputMain.java");
             final ResourceBundle compilationProperties =
@@ -297,7 +295,6 @@ public class MainTest {
 
     @Test
     public void testExistingTargetFilePlainOutput() throws Exception {
-
         exit.checkAssertionAfterwards(() -> {
             assertEquals("Unexpected output log", auditStartMessage.getMessage() + EOL
                     + auditFinishMessage.getMessage() + EOL, systemOut.getLog());
@@ -368,7 +365,6 @@ public class MainTest {
     @Test
     public void testExistentTargetFilePlainOutputToNonExistentFile()
             throws Exception {
-
         exit.checkAssertionAfterwards(() -> {
             assertEquals("Unexpected output log", "", systemOut.getLog());
             assertEquals("Unexpected system error log", "", systemErr.getLog());
@@ -587,7 +583,6 @@ public class MainTest {
 
     @Test
     public void testExistingDirectoryWithViolations() throws Exception {
-
         // we just reference there all violations
         final String[][] outputValues = {
                 {"InputMainComplexityOverflow", "1", "172"},
@@ -675,7 +670,6 @@ public class MainTest {
 
     @Test
     public void testPrintTreeOnMoreThanOneFile() throws Exception {
-
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(() -> {
             assertEquals("Unexpected output log", "Printing AST is allowed for only one file."
@@ -794,7 +788,6 @@ public class MainTest {
 
     @Test
     public void testConflictingOptionsTvsC() throws Exception {
-
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(() -> {
             assertEquals("Unexpected output log", "Option '-t' cannot be used with other options."
@@ -807,7 +800,6 @@ public class MainTest {
 
     @Test
     public void testConflictingOptionsTvsP() throws Exception {
-
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(() -> {
             assertEquals("Unexpected output log", "Option '-t' cannot be used with other options."
@@ -820,7 +812,6 @@ public class MainTest {
 
     @Test
     public void testConflictingOptionsTvsF() throws Exception {
-
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(() -> {
             assertEquals("Unexpected output log", "Option '-t' cannot be used with other options."
@@ -1069,4 +1060,5 @@ public class MainTest {
                 ex.getMessage());
         }
     }
+
 }

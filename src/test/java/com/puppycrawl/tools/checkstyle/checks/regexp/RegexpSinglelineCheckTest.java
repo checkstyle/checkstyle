@@ -35,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.internal.testmodules.TestLoggingReporter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
+
     private static final String[] EMPTY = {};
 
     @Override
@@ -142,4 +143,5 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
         Assert.assertEquals("Logged unexpected amount of issues",
                 0, reporter.getLogCount());
     }
+
 }

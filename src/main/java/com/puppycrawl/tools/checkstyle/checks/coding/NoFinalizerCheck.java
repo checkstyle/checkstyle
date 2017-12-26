@@ -62,7 +62,6 @@ public class NoFinalizerCheck extends AbstractCheck {
         final String name = mid.getText();
 
         if ("finalize".equals(name)) {
-
             final DetailAST params = aAST.findFirstToken(TokenTypes.PARAMETERS);
             final boolean hasEmptyParamList =
                 params.findFirstToken(TokenTypes.PARAMETER_DEF) == null;
@@ -72,4 +71,5 @@ public class NoFinalizerCheck extends AbstractCheck {
             }
         }
     }
+
 }

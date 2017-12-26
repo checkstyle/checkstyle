@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Ilja Dubinin
  */
 public class NewHandler extends AbstractExpressionHandler {
+
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -71,4 +72,5 @@ public class NewHandler extends AbstractExpressionHandler {
     protected boolean shouldIncreaseIndent() {
         return false;
     }
+
 }

@@ -127,4 +127,5 @@ public enum RightCurlyOption {
      * </pre>
      **/
     SAME
+
 }

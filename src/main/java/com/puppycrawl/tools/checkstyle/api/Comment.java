@@ -27,6 +27,7 @@ import java.util.Arrays;
  * @author o_sukhodolsky
  */
 public class Comment implements TextBlock {
+
     /** Text of the comment. */
     private final String[] text;
 
@@ -106,4 +107,5 @@ public class Comment implements TextBlock {
                 + ", startColNo=" + startColNo
                 + ", endColNo=" + endColNo + ']';
     }
+
 }

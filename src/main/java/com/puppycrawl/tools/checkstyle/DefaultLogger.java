@@ -267,4 +267,5 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
             errorWriter.close();
         }
     }
+
 }

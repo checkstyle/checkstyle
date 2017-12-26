@@ -60,16 +60,19 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * Enum to specify options for checker creation.
      */
     public enum ModuleCreationOption {
+
         /**
          * Points that the module configurations
          * has to be added under {@link TreeWalker}.
          */
         IN_TREEWALKER,
+
         /**
          * Points that checker will be created as
          * a root of default configuration.
          */
         IN_CHECKER
+
     }
 
     private static final Pattern WARN_PATTERN = CommonUtils
@@ -252,7 +255,6 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 new ByteArrayInputStream(stream.toByteArray());
         try (LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-
             int previousLineNumber = 0;
             for (int i = 0; i < expected.length; i++) {
                 final String expectedResult = messageFileName + ":" + expected[i];
@@ -425,4 +427,5 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         }
         return result.toArray(new Integer[result.size()]);
     }
+
 }

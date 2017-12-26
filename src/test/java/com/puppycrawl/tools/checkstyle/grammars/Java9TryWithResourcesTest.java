@@ -44,4 +44,5 @@ public class Java9TryWithResourcesTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath("InputJava9TryWithResources.java"), expected);
     }
+
 }

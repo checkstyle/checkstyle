@@ -41,6 +41,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 @RunWith(PowerMockRunner.class)
 public class FilterUtilsTest {
+
     @Rule
     public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
@@ -83,4 +84,5 @@ public class FilterUtilsTest {
         assertFalse("Should be false, because error on close",
                 FilterUtils.isFileExists(fileName));
     }
+
 }

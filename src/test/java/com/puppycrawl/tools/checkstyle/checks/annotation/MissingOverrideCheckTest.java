@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/annotation/missingoverride";
@@ -240,4 +241,5 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
         assertEquals("Invalid acceptable token size", 1, actual.length);
         Assert.assertArrayEquals("Default required tokens are invalid", expectedTokens, actual);
     }
+
 }

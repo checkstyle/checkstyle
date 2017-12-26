@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class EmptyLineSeparatorCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator";
@@ -67,7 +68,6 @@ public class EmptyLineSeparatorCheckTest
 
     @Test
     public void testAllowNoEmptyLineBetweenFields() throws Exception {
-
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
         checkConfig.addAttribute("allowNoEmptyLineBetweenFields", "true");
 
@@ -255,4 +255,5 @@ public class EmptyLineSeparatorCheckTest
                 getPath("package-info/test4/package-info.java"),
                 expected);
     }
+
 }

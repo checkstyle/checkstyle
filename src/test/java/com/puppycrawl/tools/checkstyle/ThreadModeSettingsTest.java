@@ -31,6 +31,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
 public class ThreadModeSettingsTest {
+
     @Test
     public void testProperties() {
         final ThreadModeSettings config = new ThreadModeSettings(1, 2);
@@ -106,4 +107,5 @@ public class ThreadModeSettingsTest {
                     multiThreadModeSettings.resolveName(moduleName), is(moduleName));
         }
     }
+
 }

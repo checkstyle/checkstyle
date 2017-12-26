@@ -34,6 +34,7 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public abstract class AbstractIndentationTestSupport extends AbstractModuleTestSupport {
+
     private static final int TAB_WIDTH = 4;
 
     private static final Pattern NONEMPTY_LINE_REGEX =
@@ -142,7 +143,6 @@ public abstract class AbstractIndentationTestSupport extends AbstractModuleTestS
 
             default:
                 throw new IllegalStateException("Cannot determine comment is consistent");
-
         }
         return result;
     }
@@ -213,6 +213,15 @@ public abstract class AbstractIndentationTestSupport extends AbstractModuleTestS
     }
 
     private enum CommentType {
-        MULTILEVEL, SINGLE_LEVEL, NON_STRICT_LEVEL, UNKNOWN
+
+        MULTILEVEL,
+
+        SINGLE_LEVEL,
+
+        NON_STRICT_LEVEL,
+
+        UNKNOWN,
+
     }
+
 }

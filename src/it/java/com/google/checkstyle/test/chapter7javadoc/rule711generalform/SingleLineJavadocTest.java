@@ -34,7 +34,6 @@ public class SingleLineJavadocTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSingleLineJavadoc() throws Exception {
-
         final String msg = getCheckMessage(SingleLineJavadocCheck.class, "singleline.javadoc");
 
         final String[] expected = {
@@ -53,4 +52,5 @@ public class SingleLineJavadocTest extends AbstractModuleTestSupport {
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

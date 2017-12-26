@@ -416,4 +416,5 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
         }
         return foundExpressions;
     }
+
 }

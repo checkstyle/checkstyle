@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AstTreeStringPrinter;
 import com.puppycrawl.tools.checkstyle.api.Comment;
 
 public class CommentsTest extends AbstractTreeTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/grammars/comments";
@@ -81,4 +82,5 @@ public class CommentsTest extends AbstractTreeTestSupport {
         Assert.assertFalse("Invalid intersection result", comment.intersects(90, 7, 91, 20));
         Assert.assertFalse("Invalid intersection result", comment.intersects(89, 56, 89, 80));
     }
+
 }

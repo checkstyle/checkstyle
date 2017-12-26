@@ -139,6 +139,7 @@ public class AbstractFileSetCheckTest {
     }
 
     private static class DummyFileSetCheck extends AbstractFileSetCheck {
+
         private static final String MSG_KEY = "File should not be empty.";
 
         @Override
@@ -147,9 +148,11 @@ public class AbstractFileSetCheckTest {
                 log(1, MSG_KEY);
             }
         }
+
     }
 
     private static class ExceptionFileSetCheck extends AbstractFileSetCheck {
+
         private static final String MSG_KEY = "Test.";
         private int count = 1;
 
@@ -159,5 +162,7 @@ public class AbstractFileSetCheckTest {
             count++;
             throw new IllegalArgumentException("Test");
         }
+
     }
+
 }

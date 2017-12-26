@@ -50,6 +50,7 @@ import java.util.ResourceBundle.Control;
  */
 public final class LocalizedMessage
     implements Comparable<LocalizedMessage>, Serializable {
+
     private static final long serialVersionUID = 5675176836184862150L;
 
     /**
@@ -498,6 +499,7 @@ public final class LocalizedMessage
      * @noinspection IOResourceOpenedButNotSafelyClosed
      */
     public static class Utf8Control extends Control {
+
         @Override
         public ResourceBundle newBundle(String aBaseName, Locale aLocale, String aFormat,
                  ClassLoader aLoader, boolean aReload) throws IOException {
@@ -532,5 +534,7 @@ public final class LocalizedMessage
             }
             return resourceBundle;
         }
+
     }
+
 }

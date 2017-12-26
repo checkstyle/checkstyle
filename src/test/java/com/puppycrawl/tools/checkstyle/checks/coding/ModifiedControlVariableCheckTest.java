@@ -39,6 +39,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class ModifiedControlVariableCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/modifiedcontrolvariable";
@@ -152,4 +153,5 @@ public class ModifiedControlVariableCheckTest
                 "variableStack",
                 variableStack -> ((Collection<Set<String>>) variableStack).isEmpty()));
     }
+
 }

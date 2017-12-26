@@ -52,4 +52,5 @@ public class PropertiesExpanderTest {
         Assert.assertEquals("Invalid checkstyle property",
                 "checkstyle", expander.resolve("test"));
     }
+
 }

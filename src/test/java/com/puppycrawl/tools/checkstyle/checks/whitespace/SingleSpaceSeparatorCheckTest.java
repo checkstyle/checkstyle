@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/singlespaceseparator";
@@ -154,4 +155,5 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
 
         verify(checkConfig, getPath("InputSingleSpaceSeparatorComments.java"), expected);
     }
+
 }

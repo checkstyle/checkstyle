@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class TypeNameCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/typename";
@@ -114,4 +115,5 @@ public class TypeNameCheckTest
         };
         verify(checkConfig, getPath("InputTypeName.java"), expected);
     }
+
 }

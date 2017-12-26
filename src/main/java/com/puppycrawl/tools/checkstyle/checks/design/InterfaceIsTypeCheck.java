@@ -84,7 +84,6 @@ public final class InterfaceIsTypeCheck
         if (methodDef == null && methodRequired) {
             log(ast.getLineNo(), MSG_KEY);
         }
-
     }
 
     /**
@@ -94,4 +93,5 @@ public final class InterfaceIsTypeCheck
     public void setAllowMarkerInterfaces(boolean flag) {
         allowMarkerInterfaces = flag;
     }
+
 }

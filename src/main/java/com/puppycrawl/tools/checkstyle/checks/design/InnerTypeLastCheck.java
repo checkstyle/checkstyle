@@ -87,4 +87,5 @@ public class InnerTypeLastCheck extends AbstractCheck {
             rootClass = true;
         }
     }
+
 }
