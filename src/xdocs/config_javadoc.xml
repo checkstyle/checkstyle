@@ -1463,12 +1463,14 @@ public boolean isSomething()
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#PARAM_LITERAL">PARAM_LITERAL</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#RETURN_LITERAL">RETURN_LITERAL</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#THROWS_LITERAL">THROWS_LITERAL</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#TEXCEPTION_LITERAL">EXCEPTION_LITERAL</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#DEPRECATED_LITERAL">DEPRECATED_LITERAL</a>.
             </td>
             <td>
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#PARAM_LITERAL">PARAM_LITERAL</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#RETURN_LITERAL">RETURN_LITERAL</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#THROWS_LITERAL">THROWS_LITERAL</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#TEXCEPTION_LITERAL">EXCEPTION_LITERAL</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#DEPRECATED_LITERAL">DEPRECATED_LITERAL</a>.
             </td>
             <td>7.3</td>
