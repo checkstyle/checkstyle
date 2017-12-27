@@ -327,7 +327,6 @@ public class TranslationCheck extends AbstractFileSetCheck {
     private void logMissingTranslation(String filePath, String fileName) {
         log(0, MSG_KEY_MISSING_TRANSLATION_FILE, fileName);
         fireErrors(filePath);
-        getMessageDispatcher().fireFileFinished(filePath);
     }
 
     /**
