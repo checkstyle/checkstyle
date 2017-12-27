@@ -117,16 +117,18 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
     private static void verifyXmlNode(Node expected, Node actual, String path,
             BiPredicate<Node, Node> ordered) {
         if (expected == null) {
-            Assert.assertNull("no node should exist: " + path, actual);
+            if (actual != null) {
+                Assert.fail("no node should exist: " + path + actual.getNodeName() + "/");
+            }
         }
         else {
-            Assert.assertNotNull("node should exist: " + path, actual);
-            Assert.assertEquals("node should have same name: " + path, expected.getNodeName(),
-                    actual.getNodeName());
-            Assert.assertEquals("node should have same type: " + path, expected.getNodeType(),
-                    actual.getNodeType());
-
             final String newPath = path + expected.getNodeName() + "/";
+
+            Assert.assertNotNull("node should exist: " + newPath, actual);
+            Assert.assertEquals("node should have same name: " + newPath, expected.getNodeName(),
+                    actual.getNodeName());
+            Assert.assertEquals("node should have same type: " + newPath, expected.getNodeType(),
+                    actual.getNodeType());
 
             verifyXmlAttributes(expected.getAttributes(), actual.getAttributes(), newPath);
 
