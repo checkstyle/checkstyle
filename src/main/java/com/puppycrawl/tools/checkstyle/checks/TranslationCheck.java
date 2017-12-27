@@ -47,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
@@ -325,8 +326,11 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * @param fileName file name.
      */
     private void logMissingTranslation(String filePath, String fileName) {
+        final MessageDispatcher dispatcher = getMessageDispatcher();
+        dispatcher.fireFileStarted(filePath);
         log(0, MSG_KEY_MISSING_TRANSLATION_FILE, fileName);
         fireErrors(filePath);
+        dispatcher.fireFileFinished(filePath);
     }
 
     /**
@@ -453,6 +457,9 @@ public class TranslationCheck extends AbstractFileSetCheck {
     private void checkFilesForConsistencyRegardingTheirKeys(SetMultimap<File, String> fileKeys,
                                                             Set<String> keysThatMustExist) {
         for (File currentFile : fileKeys.keySet()) {
+            final MessageDispatcher dispatcher = getMessageDispatcher();
+            final String path = currentFile.getPath();
+            dispatcher.fireFileStarted(path);
             final Set<String> currentFileKeys = fileKeys.get(currentFile);
             final Set<String> missingKeys = keysThatMustExist.stream()
                 .filter(e -> !currentFileKeys.contains(e)).collect(Collectors.toSet());
@@ -461,9 +468,8 @@ public class TranslationCheck extends AbstractFileSetCheck {
                     log(0, MSG_KEY, key);
                 }
             }
-            final String path = currentFile.getPath();
             fireErrors(path);
-            getMessageDispatcher().fireFileFinished(path);
+            dispatcher.fireFileFinished(path);
         }
     }
 

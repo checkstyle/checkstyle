@@ -121,8 +121,6 @@ public class XMLLogger
 
     @Override
     public void auditFinished(AuditEvent event) {
-        fileMessages.forEach(this::writeFileMessages);
-
         writer.println("</checkstyle>");
         if (closeStream) {
             writer.close();
@@ -186,14 +184,13 @@ public class XMLLogger
     public void addError(AuditEvent event) {
         if (event.getSeverityLevel() != SeverityLevel.IGNORE) {
             final String fileName = event.getFileName();
-            if (fileName == null) {
+            if (fileName == null || !fileMessages.containsKey(fileName)) {
                 synchronized (writerLock) {
                     writeFileError(event);
                 }
             }
             else {
-                final FileMessages messages = fileMessages.computeIfAbsent(
-                        fileName, name -> new FileMessages());
+                final FileMessages messages = fileMessages.get(fileName);
                 messages.addError(event);
             }
         }
@@ -227,14 +224,13 @@ public class XMLLogger
     @Override
     public void addException(AuditEvent event, Throwable throwable) {
         final String fileName = event.getFileName();
-        if (fileName == null) {
+        if (fileName == null || !fileMessages.containsKey(fileName)) {
             synchronized (writerLock) {
                 writeException(throwable);
             }
         }
         else {
-            final FileMessages messages = fileMessages.computeIfAbsent(
-                    fileName, name -> new FileMessages());
+            final FileMessages messages = fileMessages.get(fileName);
             messages.addException(throwable);
         }
     }

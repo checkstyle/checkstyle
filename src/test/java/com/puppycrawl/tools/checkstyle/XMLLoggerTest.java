@@ -146,6 +146,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         logger.auditStarted(null);
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         logger.fileStarted(ev);
+        logger.fileFinished(ev);
         logger.auditFinished(null);
         verifyXml(getPath("ExpectedXMLLogger.xml"), outStream);
     }
@@ -170,7 +171,9 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
                 "messages.properties", "key", null, SeverityLevel.ERROR, null,
                     getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "Test.java", message);
+        logger.fileStarted(ev);
         logger.addError(ev);
+        logger.fileFinished(ev);
         logger.auditFinished(null);
         verifyXml(getPath("ExpectedXMLLoggerError.xml"), outStream, message.getMessage());
     }
@@ -213,7 +216,9 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
                         "messages.properties", "key", null, SeverityLevel.ERROR, null,
                         getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "Test.java", message);
+        logger.fileStarted(ev);
         logger.addError(ev);
+        logger.fileFinished(ev);
         logger.auditFinished(null);
         verifyXml(getPath("ExpectedXMLLoggerErrorZeroColumn.xml"), outStream,
                 message.getMessage());
@@ -278,8 +283,9 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         final AuditEvent ev = new AuditEvent(this, "Test.java", message);
         logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
 
+        logger.fileFinished(ev);
         logger.auditFinished(null);
-        verifyXml(getPath("ExpectedXMLLoggerException.xml"), outStream);
+        verifyXml(getPath("ExpectedXMLLoggerException2.xml"), outStream);
         assertEquals("Invalid close count", 1, outStream.getCloseCount());
     }
 
@@ -296,7 +302,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         final AuditEvent fileFinishedEvent = new AuditEvent(this, "Test.java");
         logger.fileFinished(fileFinishedEvent);
         logger.auditFinished(null);
-        verifyXml(getPath("ExpectedXMLLoggerException.xml"), outStream);
+        verifyXml(getPath("ExpectedXMLLoggerException3.xml"), outStream);
         assertEquals("Invalid close count", 1, outStream.getCloseCount());
     }
 
@@ -315,7 +321,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         final AuditEvent fileFinishedEvent = new AuditEvent(this, "Test.java");
         logger.fileFinished(fileFinishedEvent);
         logger.auditFinished(null);
-        verifyXml(getPath("ExpectedXMLLoggerException.xml"), outStream);
+        verifyXml(getPath("ExpectedXMLLoggerException2.xml"), outStream);
         assertEquals("Invalid close count", 1, outStream.getCloseCount());
     }
 
@@ -333,6 +339,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         final AuditEvent errorEvent = new AuditEvent(this, "Test.java", message);
         logger.addError(errorEvent);
 
+        logger.fileFinished(errorEvent);
         logger.auditFinished(null);
         verifyXml(getPath("ExpectedXMLLoggerError.xml"), outStream, message.getMessage());
     }
