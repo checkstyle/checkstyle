@@ -132,7 +132,7 @@ public class IllegalTokenTextCheckTest
         check.setFormat("test");
         check.setIgnoreCase(true);
         final Pattern actual = (Pattern) TestUtil.getClassDeclaredField(
-                IllegalTokenTextCheck.class, "regexp").get(check);
+                IllegalTokenTextCheck.class, "format").get(check);
         Assert.assertEquals("should match", Pattern.CASE_INSENSITIVE, actual.flags());
         Assert.assertEquals("should match", "test", actual.pattern());
     }

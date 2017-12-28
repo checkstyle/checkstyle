@@ -53,7 +53,7 @@
               automatically excluded.
             </td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>empty list</code></td>
+            <td><code>{}</code></td>
             <td>3.2</td>
           </tr>
           <tr>
@@ -175,7 +175,7 @@
               individually like <code>java.lang.Math.PI</code>.
             </td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>empty list</code></td>
+            <td><code>{}</code></td>
             <td>5.0</td>
           </tr>
         </table>
@@ -342,8 +342,8 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
           <tr>
             <td>customImportOrderRules</td>
             <td>List of order declaration customizing by user.</td>
-            <td><a href="property_types.html#string">string</a></td>
-            <td><code>null</code></td>
+            <td><a href="property_types.html#string">String</a></td>
+            <td><code>{}</code></td>
             <td>5.8</td>
           </tr>
           <tr>
@@ -1274,7 +1274,7 @@ import java.util.stream.IntStream;
           <tr>
             <td>option</td>
             <td>policy on the relative order between regular imports and static imports</td>
-            <td><a href="property_types.html#importOrder">import order</a></td>
+            <td><a href="property_types.html#importOrder">Import Order Policy</a></td>
             <td><code>under</code></td>
             <td>5.0</td>
           </tr>
@@ -1285,8 +1285,8 @@ import java.util.stream.IntStream;
               common prefix string, or by a regular expression enclosed
               in forward slashes (e.g. <code>/regexp/</code>)
             </td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>empty list</code></td>
+            <td><a href="property_types.html#regexp">Regular Expressions</a></td>
+            <td><code>{}</code></td>
             <td>3.2</td>
           </tr>
           <tr>

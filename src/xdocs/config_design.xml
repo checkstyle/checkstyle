@@ -157,7 +157,7 @@ public abstract class Plant {
                         Annotations which allow the check to skip the method from validation.
                     </td>
                     <td><a href="property_types.html#stringSet">String Set</a></td>
-                    <td><code>Test, Before, After, BeforeClass, AfterClass</code></td>
+                    <td><code>Before, BeforeClass, Test, After, AfterClass</code></td>
                     <td>7.2</td>
                 </tr>
             </table>
@@ -970,7 +970,7 @@ public class Foo{
             java.lang.Short, java.lang.Boolean, java.lang.Long, java.lang.Double, java.lang.Float,
             java.lang.StackTraceElement, java.math.BigInteger, java.math.BigDecimal, java.io.File,
             java.util.Locale, java.util.UUID, java.net.URL, java.net.URI,
-            java.net.Inet4Address, java.net.Inet6Address, java.net.InetSocketAddress,</td>
+            java.net.Inet4Address, java.net.Inet6Address, java.net.InetSocketAddress</td>
             <td>6.4.1</td>
           </tr>
           <tr>

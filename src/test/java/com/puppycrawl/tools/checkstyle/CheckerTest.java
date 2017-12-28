@@ -302,7 +302,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         // comparing to 1 as there is only one legal file in input
         final int numLegalFiles = 1;
         final PropertyCacheFile cache =
-                (PropertyCacheFile) Whitebox.getInternalState(checker, "cache");
+                (PropertyCacheFile) Whitebox.getInternalState(checker, "cacheFile");
         assertEquals("There were more legal files than expected",
                 numLegalFiles, counter);
         assertEquals("Audit was started on larger amount of files than expected",
@@ -619,7 +619,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.clearCache();
         // invoke destroy to persist cache
         final PropertyCacheFile cache =
-                (PropertyCacheFile) Whitebox.getInternalState(checker, "cache");
+                (PropertyCacheFile) Whitebox.getInternalState(checker, "cacheFile");
         cache.persist();
 
         final Properties cacheAfterClear = new Properties();
@@ -646,7 +646,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Checker checker = new Checker();
         checker.clearCache();
         assertNull("If cache file is not set the cache should default to null",
-            Whitebox.getInternalState(checker, "cache"));
+            Whitebox.getInternalState(checker, "cacheFile"));
     }
 
     @Test

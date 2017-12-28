@@ -69,13 +69,13 @@ public class IllegalTokenTextCheck
     private String message = "";
 
     /** The format string of the regexp. */
-    private String format = "$^";
+    private String formatString = "$^";
 
     /** The regexp to match against. */
-    private Pattern regexp = Pattern.compile(format);
+    private Pattern format = Pattern.compile(formatString);
 
-    /** The flags to use with the regexp. */
-    private int compileFlags;
+    /** {@code true} if the casing should be ignored. */
+    private boolean ignoreCase;
 
     @Override
     public int[] getDefaultTokens() {
@@ -109,7 +109,7 @@ public class IllegalTokenTextCheck
     @Override
     public void visitToken(DetailAST ast) {
         final String text = ast.getText();
-        if (regexp.matcher(text).find()) {
+        if (format.matcher(text).find()) {
             String customMessage = message;
             if (customMessage.isEmpty()) {
                 customMessage = MSG_KEY;
@@ -118,7 +118,7 @@ public class IllegalTokenTextCheck
                 ast.getLineNo(),
                 ast.getColumnNo(),
                 customMessage,
-                format);
+                formatString);
         }
     }
 
@@ -142,7 +142,7 @@ public class IllegalTokenTextCheck
      * @throws org.apache.commons.beanutils.ConversionException unable to parse format
      */
     public void setFormat(String format) {
-        this.format = format;
+        formatString = format;
         updateRegexp();
     }
 
@@ -152,21 +152,22 @@ public class IllegalTokenTextCheck
      * @noinspection BooleanParameter
      */
     public void setIgnoreCase(boolean caseInsensitive) {
-        if (caseInsensitive) {
+        ignoreCase = caseInsensitive;
+        updateRegexp();
+    }
+
+    /**
+     * Updates the {@link #format} based on the values from {@link #formatString} and
+     * {@link #ignoreCase}.
+     */
+    private void updateRegexp() {
+        final int compileFlags;
+        if (ignoreCase) {
             compileFlags = Pattern.CASE_INSENSITIVE;
         }
         else {
             compileFlags = 0;
         }
-
-        updateRegexp();
-    }
-
-    /**
-     * Updates the {@link #regexp} based on the values from {@link #format} and
-     * {@link #compileFlags}.
-     */
-    private void updateRegexp() {
-        regexp = CommonUtils.createPattern(format, compileFlags);
+        format = CommonUtils.createPattern(formatString, compileFlags);
     }
 }

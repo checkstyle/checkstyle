@@ -118,6 +118,40 @@
       </p>
     </section>
 
+    <section name="lineSeparator">
+      <p>
+        This property represents the policy for line returns. The
+        following table describes the valid options:
+      </p>
+
+      <table summary="line separator options">
+        <tr>
+          <td>Option</td>
+          <td>Definition</td>
+        </tr>
+        <tr>
+          <td><code>crlf</code></td>
+          <td>Windows-style</td>
+        </tr>
+        <tr>
+          <td><code>cr</code></td>
+          <td>Mac-style</td>
+        </tr>
+        <tr>
+          <td><code>lf</code></td>
+          <td>Unix-style</td>
+        </tr>
+        <tr>
+          <td><code>lf_cr_crlf</code></td>
+          <td>lf, cr or crlf</td>
+        </tr>
+        <tr>
+          <td><code>system</code></td>
+          <td>system default</td>
+        </tr>
+      </table>
+    </section>
+
     <section name="parenPad">
       <p>
         This property represents the policy for padding with white space. The

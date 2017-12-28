@@ -2148,6 +2148,9 @@ isolated classes and we cannot put them to separate package as it will affect us
                 <option value="ClassIndependentOfModule" />
                 <!-- till #4870, used in MT check markers -->
                 <option value="unused" />
+                <!-- XDocs UT is very long and complex -->
+                <option value="OverlyComplexBooleanExpression" />
+                <option value="ReuseOfLocalVariable" />
             </list>
         </option>
     </inspection_tool>

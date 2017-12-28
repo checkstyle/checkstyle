@@ -197,7 +197,7 @@ switch (a)
           <tr>
             <td>option</td>
             <td>policy on block contents</td>
-            <td><a href="property_types.html#block">block policy</a></td>
+            <td><a href="property_types.html#block">Block Policy</a></td>
             <td><code>statement</code></td>
             <td>3.0</td>
           </tr>
@@ -324,14 +324,14 @@ switch (a)
             <td>exceptionVariableName</td>
             <td>The name of variable associated with exception</td>
             <td><a href="property_types.html#string">String</a></td>
-            <td>^$</td>
+            <td>&quot;^$&quot;</td>
             <td>6.4</td>
           </tr>
           <tr>
             <td>commentFormat</td>
             <td>The format of the first comment inside empty catch</td>
             <td><a href="property_types.html#string">String</a></td>
-            <td>.*</td>
+            <td>&quot;.*&quot;</td>
             <td>6.4</td>
           </tr>
         </table>
@@ -471,7 +471,7 @@ try {
           <tr>
             <td>option</td>
             <td>policy on placement of a left curly brace (<code>'{'</code>)</td>
-            <td><a href="property_types.html#lcurly">left curly brace policy</a></td>
+            <td><a href="property_types.html#lcurly">Left Curly Brace Policy</a></td>
             <td><code>eol</code></td>
             <td>3.0</td>
           </tr>
@@ -802,7 +802,7 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
           <tr>
             <td>option</td>
             <td>policy on placement of a right curly brace (<code>'}'</code>)</td>
-            <td><a href="property_types.html#rcurly">right curly brace policy</a></td>
+            <td><a href="property_types.html#rcurly">Right Curly Brace Policy</a></td>
             <td><code>same</code></td>
             <td>3.0</td>
           </tr>

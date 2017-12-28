@@ -72,7 +72,7 @@ line 5: ////////////////////////////////////////////////////////////////////
           <tr>
             <td>charset</td>
             <td>character encoding to use when reading the headerFile</td>
-            <td><a href="property_types.html#string">string</a></td>
+            <td><a href="property_types.html#string">String</a></td>
             <td>the charset property of the parent
             <a href="config.html#Checker">Checker</a> module</td>
             <td>5.0</td>
@@ -84,7 +84,7 @@ line 5: ////////////////////////////////////////////////////////////////////
               must be separated by the string <code>&quot;\n&quot;</code> (even on platforms with a
               different line separator), see examples below.
             </td>
-            <td><a href="property_types.html#string">string</a></td>
+            <td><a href="property_types.html#string">String</a></td>
             <td><code>null</code></td>
             <td>5.0</td>
           </tr>
@@ -99,7 +99,7 @@ line 5: ////////////////////////////////////////////////////////////////////
             <td>fileExtensions</td>
             <td>file type extension of files to process</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>{}</code></td>
+            <td><code>all files</code></td>
             <td>6.9</td>
           </tr>
         </table>
@@ -278,7 +278,7 @@ line 6: ^\W*$
           <tr>
             <td>charset</td>
             <td>character encoding to use when reading the headerFile</td>
-            <td><a href="property_types.html#string">string</a></td>
+            <td><a href="property_types.html#string">String</a></td>
             <td>the charset property of the parent
             <a href="config.html#Checker">Checker</a> module</td>
             <td>5.0</td>
@@ -292,7 +292,7 @@ line 6: ^\W*$
               checkstyle will forcefully expect an empty line to exist. See examples
               below. Regular expressions must not span multiple lines.
             </td>
-            <td><a href="property_types.html#string">string</a></td>
+            <td><a href="property_types.html#string">String</a></td>
             <td><code>null</code></td>
             <td>5.0</td>
           </tr>
@@ -307,7 +307,7 @@ line 6: ^\W*$
             <td>fileExtensions</td>
             <td>file type extension of files to process</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>{}</code></td>
+            <td><code>all files</code></td>
             <td>6.9</td>
           </tr>
         </table>

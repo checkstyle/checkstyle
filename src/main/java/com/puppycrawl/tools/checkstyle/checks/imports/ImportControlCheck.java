@@ -72,7 +72,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
     private static final String UNABLE_TO_LOAD = "Unable to load ";
 
     /** Location of import control file. */
-    private String fileLocation;
+    private URI file;
 
     /** The filepath pattern this check applies to. */
     private Pattern path = Pattern.compile(".*");
@@ -139,7 +139,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
 
     @Override
     public Set<String> getExternalResourceLocations() {
-        return Collections.singleton(fileLocation);
+        return Collections.singleton(file.toString());
     }
 
     /**
@@ -182,7 +182,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
         if (uri != null) {
             try {
                 root = ImportControlLoader.load(uri);
-                fileLocation = uri.toString();
+                file = uri;
             }
             catch (CheckstyleException ex) {
                 throw new IllegalArgumentException(UNABLE_TO_LOAD + uri, ex);

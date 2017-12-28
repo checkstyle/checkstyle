@@ -357,7 +357,7 @@ public int foo() { ... }
               </p>
             </td>
             <td>
-              <a href="property_types.html#elementStyle">element style</a>
+              <a href="property_types.html#elementStyle">Element Style</a>
             </td>
             <td>
               <code>compact_no_array</code>
@@ -370,7 +370,7 @@ public int foo() { ... }
               Defines the policy for ending parenthesis.
             </td>
             <td>
-              <a href="property_types.html#closingParens">closing parens</a>
+              <a href="property_types.html#closingParens">Closing Parens</a>
             </td>
             <td>
               <code>never</code>
@@ -383,7 +383,7 @@ public int foo() { ... }
               Defines the policy for trailing comma in arrays.
             </td>
             <td>
-              <a href="property_types.html#trailingArrayComma">trailing comma</a>
+              <a href="property_types.html#trailingArrayComma">Trailing Comma</a>
             </td>
             <td>
               <code>never</code>

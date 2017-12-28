@@ -49,7 +49,7 @@ for (
           <tr>
             <td>option</td>
             <td>policy on how to pad an empty for iterator</td>
-            <td><a href="property_types.html#parenPad">pad policy</a></td>
+            <td><a href="property_types.html#parenPad">Pad Policy</a></td>
             <td><code>nospace</code></td>
             <td>3.4</td>
           </tr>
@@ -144,7 +144,7 @@ for (Iterator foo = very.long.line.iterator();
           <tr>
             <td>option</td>
             <td>policy on how to pad an empty for iterator</td>
-            <td><a href="property_types.html#parenPad">pad policy</a></td>
+            <td><a href="property_types.html#parenPad">Pad Policy</a></td>
             <td><code>nospace</code></td>
             <td>3.0</td>
           </tr>
@@ -486,7 +486,7 @@ class Foo
             <td>fileExtensions</td>
             <td>file type extension of files to process</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>{}</code></td>
+            <td><code>all files</code></td>
             <td>5.0</td>
           </tr>
         </table>
@@ -698,7 +698,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
             <td>option</td>
             <td>policy on how to pad method parameter</td>
             <td>
-              <a href="property_types.html#parenPad">pad policy</a>
+              <a href="property_types.html#parenPad">Pad Policy</a>
             </td>
             <td><code>nospace</code></td>
             <td>3.4</td>
@@ -1262,7 +1262,7 @@ public void foo(final char @NotNull [] param) {} // No violation
             <td>option</td>
             <td>policy on how to wrap lines</td>
             <td>
-              <a href="property_types.html#wrapOp">wrap operator policy</a>
+              <a href="property_types.html#wrapOp">Wrap Operator Policy</a>
             </td>
             <td><code>nl</code></td>
             <td>3.0</td>
@@ -1442,7 +1442,7 @@ public void foo(final char @NotNull [] param) {} // No violation
           <tr>
             <td>option</td>
             <td>policy on how to pad parentheses</td>
-            <td><a href="property_types.html#parenPad">pad policy</a></td>
+            <td><a href="property_types.html#parenPad">Pad Policy</a></td>
             <td><code>nospace</code></td>
             <td>3.0</td>
           </tr>
@@ -1651,7 +1651,7 @@ try (Closeable resource = acquire(); ) // no check before right parenthesis
             <td>option</td>
             <td>policy on how to wrap lines</td>
             <td>
-              <a href="property_types.html#wrapOp">wrap operator policy</a>
+              <a href="property_types.html#wrapOp">Wrap Operator Policy</a>
             </td>
             <td><code>eol</code></td>
             <td>5.8</td>
@@ -1921,7 +1921,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
           <tr>
             <td>option</td>
             <td>policy on how to pad parentheses</td>
-            <td><a href="property_types.html#parenPad">pad policy</a></td>
+            <td><a href="property_types.html#parenPad">Pad Policy</a></td>
             <td><code>nospace</code></td>
             <td>3.2</td>
           </tr>

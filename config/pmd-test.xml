@@ -49,10 +49,12 @@
             <!-- 'testTokenNumbering' method is simple but long as it recheck each token one by one -->
             <!-- 'testNospaceWithComplexInput' it is intended to keep all in one method. -->
             <!--Method `testTokenValues` in JavadocTokenTypes contains several asserts as it checks each token explicitly-->
+            <!-- XdocsPagesTest is a complicated list of different checks -->
             <property name="violationSuppressXPath" value="
             //ClassOrInterfaceDeclaration[@Image='GeneratedJavaTokenTypesTest']//MethodDeclarator[@Image='testTokenNumbering']
             | //ClassOrInterfaceDeclaration[@Image='ParenPadCheckTest']//MethodDeclarator[@Image='testNospaceWithComplexInput']
-            | //MethodDeclaration[@Name='testTokenValues' and ../../..[@Image='JavadocTokenTypesTest']]"/>
+            | //MethodDeclaration[@Name='testTokenValues' and ../../..[@Image='JavadocTokenTypesTest']]
+            | //MethodDeclaration[@Name='getModulePropertyExpectedValue' and ../../..[@Image='XdocsPagesTest']]"/>
         </properties>
     </rule>
 
@@ -61,11 +63,13 @@
             <!-- 'testTokenNumbering' method is simple but long as it recheck each token one by one -->
             <!-- 'testNospaceWithComplexInput' it is intended to keep all in one method. -->
             <!--Method `testTokenValues` in JavadocTokenTypes contains several asserts as it checks each token explicitly-->
+            <!-- XdocsPagesTest is a complicated list of different checks -->
             <property name="violationSuppressXPath" value="
             //ClassOrInterfaceDeclaration[@Image='GeneratedJavaTokenTypesTest']//MethodDeclarator[@Image='testTokenNumbering']
             | //ClassOrInterfaceDeclaration[@Image='ParenPadCheckTest']//MethodDeclarator[@Image='testNospaceWithComplexInput']
             | //ClassOrInterfaceDeclaration[@Image='ParenPadTest']//MethodDeclarator[@Image='testMethodParen']
-            | //MethodDeclaration[@Name='testTokenValues' and ../../..[@Image='JavadocTokenTypesTest']]"/>
+            | //MethodDeclaration[@Name='testTokenValues' and ../../..[@Image='JavadocTokenTypesTest']]
+            | //MethodDeclaration[@Name='getModulePropertyExpectedTypeName' and ../../..[@Image='XdocsPagesTest']]"/>
         </properties>
     </rule>
 
