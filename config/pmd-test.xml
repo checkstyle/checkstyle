@@ -94,6 +94,7 @@
             | //ClassOrInterfaceDeclaration[@Image='AstRegressionTest']//MethodDeclarator[@Image='testImpossibleValid']
             | //ClassOrInterfaceDeclaration[@Image='AllChecksTest']//MethodDeclarator[@Image='testAllModulesAreReferencedInConfigFile']
             | //ClassOrInterfaceDeclaration[@Image='DetailASTTest']//MethodDeclarator[@Image='testTreeStructure']
+            | //ClassOrInterfaceDeclaration[@Image='SuppressWithPlainTextCommentFilterTest']//MethodDeclarator[@Image='testEqualsAndHashCodeOfTagClass']
             "/>
         </properties>
     </rule>

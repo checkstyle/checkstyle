@@ -35,6 +35,15 @@
     <property name="file" value="${checkstyle.suppressions.file}"/>
   </module>
   <module name="SuppressWarningsFilter"/>
+  <module name="SuppressWithPlainTextCommentFilter">
+    <!--
+      Use suppressions.xml for suppressions, this is only example.
+      checkFormat will prevent suppression comments from being valid.
+    -->
+    <property name="checkFormat" value="IGNORETHIS"/>
+    <property name="offCommentFormat" value="CSOFF\: .*"/>
+    <property name="onCommentFormat" value="CSON\: .*"/>
+  </module>
 
   <!-- Headers -->
   <module name="Header">
