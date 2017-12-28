@@ -161,6 +161,7 @@
     <disallow pkg="com\.puppycrawl\.tools\.checkstyle\.checks\.[^.]+" regex="true"/>
     <allow pkg="com.puppycrawl.tools.checkstyle.utils"/>
     <allow pkg="com.puppycrawl.tools.checkstyle.xpath"/>
+    <allow class="java.nio.charset.StandardCharsets" local-only="true"/>
   </subpackage>
 
   <subpackage name="gui" strategyOnMismatch="disallowed">

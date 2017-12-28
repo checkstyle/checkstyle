@@ -820,6 +820,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".filters.IntRangeFilter");
         NAME_TO_FULL_MODULE_NAME.put("SeverityMatchFilter",
                 BASE_PACKAGE + ".filters.SeverityMatchFilter");
+        NAME_TO_FULL_MODULE_NAME.put("SuppressWithPlainTextCommentFilter",
+            BASE_PACKAGE + ".filters.SuppressWithPlainTextCommentFilter");
         NAME_TO_FULL_MODULE_NAME.put("SuppressionCommentFilter",
                 BASE_PACKAGE + ".filters.SuppressionCommentFilter");
         NAME_TO_FULL_MODULE_NAME.put("SuppressionFilter",
