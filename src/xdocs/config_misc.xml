@@ -557,7 +557,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
              subset of tokens
              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
             </td>
-            <td>empty set</td>
+            <td/>
             <td>3.2</td>
           </tr>
           <tr>
@@ -602,14 +602,14 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
             <td>minimumMessage</td>
             <td>error message when the minimum count is not reached</td>
             <td><a href="property_types.html#string">String</a></td>
-            <td>&quot;descendant.token.min&quot;</td>
+            <td>null</td>
             <td>3.2</td>
           </tr>
           <tr>
             <td>maximumMessage</td>
             <td>error message when the maximum count is exceeded</td>
             <td><a href="property_types.html#string">String</a></td>
-            <td>&quot;descendant.token.max&quot;</td>
+            <td>null</td>
             <td>3.2</td>
           </tr>
         </table>
@@ -1178,12 +1178,8 @@ void foo(String aFooString,
           <tr>
             <td>lineSeparator</td>
             <td>type of line separator</td>
-            <td>
-              One of &quot;system&quot; (system default),
-              &quot;crlf&quot; (Windows-style), &quot;cr&quot;
-              (Mac-style), &quot;lf&quot; (Unix-style) and &quot;lf_cr_crlf&quot; (lf, cr or crlf).
-            </td>
-            <td>&quot;system&quot;</td>
+            <td><a href="property_types.html#lineSeparator">Line Separator Policy</a></td>
+            <td>system</td>
             <td>3.1</td>
           </tr>
           <tr>
@@ -1630,7 +1626,7 @@ messages.properties: Key 'ok' missing.
               do not have the extension <code>.properties</code>
             </td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>properties</code></td>
+            <td><code>.properties</code></td>
             <td>3.0</td>
           </tr>
           <tr>
@@ -1657,7 +1653,7 @@ messages.properties: Key 'ok' missing.
               will rise violation that the language code is incorrect.
             </td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>empty String Set</code></td>
+            <td><code>{}</code></td>
             <td>6.11</td>
           </tr>
         </table>
@@ -1885,7 +1881,7 @@ messages_home_fr_CA_UNIX.properties
             <td>fileExtensions</td>
             <td>file type extension of the files to check.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>properties</td>
+            <td>.properties</td>
             <td>5.7</td>
           </tr>
         </table>

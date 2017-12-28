@@ -24,6 +24,7 @@
               files="AbstractCheckTest.java|AbstractClassNameCheckTest.java|AbstractTypeAwareCheckTest.java|AbstractJavadocCheckTest.java|AbstractViolationReporterTest.java|AbstractFileSetCheckTest.java|AbstractNodeTest.java"/>
 
     <!-- Tone down the checking for test code -->
+    <suppress checks="ExecutableStatementCount|JavaNCSS|BooleanExpressionComplexity|NestedIfDepth|MethodLength" files="[\\/]XdocsPagesTest\.java"/>
     <suppress checks="IllegalCatch" files="[\\/]internal[\\/].*[\\/]\w+Util\.java"/>
     <suppress checks="EmptyBlock" files=".*[\\/]src[\\/]test[\\/]"/>
     <suppress message="Missing a Javadoc comment|Missing package-info.java file|Expected @throws tag for|missing an @author tag" files=".*[\\/]src[\\/](test|it)[\\/]"/>

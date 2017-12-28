@@ -76,7 +76,7 @@
             <td>list of abbreviations that must be skipped for checking.
             Abbreviations should be separated by comma, no spaces are allowed.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>null</td>
+            <td>{}</td>
             <td>5.8</td>
           </tr>
           <tr>

@@ -87,7 +87,7 @@ public class RegexpCheck extends AbstractCheck {
         + "the check is aborting, there may be more unreported errors.";
 
     /** Custom message for report. */
-    private String message = "";
+    private String message;
 
     /** Ignore matches within comments?. **/
     private boolean ignoreComments;
@@ -268,7 +268,7 @@ public class RegexpCheck extends AbstractCheck {
     private void logMessage(int lineNumber) {
         String msg;
 
-        if (message.isEmpty()) {
+        if (message == null || message.isEmpty()) {
             msg = format.pattern();
         }
         else {

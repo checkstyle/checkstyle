@@ -298,7 +298,7 @@
           <tr>
             <td>basedir</td>
             <td>base directory name; stripped off in messages about files</td>
-            <td><a href="property_types.html#string">string</a></td>
+            <td><a href="property_types.html#string">String</a></td>
             <td><code>null</code></td>
             <td>3.0</td>
           </tr>
@@ -306,23 +306,23 @@
             <td>cacheFile</td>
             <td>caches information about files that have checked OK; used
                 to avoid repeated checks of the same files</td>
-            <td><a href="property_types.html#string">string</a></td>
+            <td><a href="property_types.html#file">File</a></td>
             <td><code>null</code> (no cache file)</td>
             <td>6.16</td>
           </tr>
           <tr>
             <td>localeCountry</td>
             <td>locale country for messages</td>
-            <td><a href="property_types.html#string">string</a>: either
-            the empty string or an uppercase ISO 3166 2-letter code</td>
+            <td><a href="property_types.html#string">String</a> (either
+            the empty string or an uppercase ISO 3166 2-letter code)</td>
             <td>default locale country for the Java Virtual Machine</td>
             <td>3.0</td>
           </tr>
           <tr>
             <td>localeLanguage</td>
             <td>locale language for messages</td>
-            <td><a href="property_types.html#string">string</a>: either
-            the empty string or a lowercase ISO 639 code</td>
+            <td><a href="property_types.html#string">String</a> (either
+            the empty string or a lowercase ISO 639 code)</td>
             <td>default locale language for the Java Virtual Machine</td>
             <td>3.0</td>
           </tr>
@@ -337,7 +337,7 @@
             <td>fileExtensions</td>
             <td>file extensions that are accepted</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>null</code></td>
+            <td><code>all files</code></td>
             <td>6.3</td>
           </tr>
           <tr>
@@ -471,7 +471,7 @@
             is preprocessed before compilation and the original files do
             not have the extension <code>.java</code></td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>java</code></td>
+            <td><code>.java</code></td>
             <td>3.0</td>
           </tr>
         </table>

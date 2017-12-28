@@ -229,25 +229,20 @@
             <td>excludedClasses</td>
             <td>User-configured class names to ignore</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>boolean, byte, char, double, float, int,
-                long, short, void, Boolean, Byte, Character, Double, Float,
-                Integer, Long, Short, Void,
-                Object, Class, String, StringBuffer, StringBuilder,
-                ArrayIndexOutOfBoundsException, Exception,
-                RuntimeException, IllegalArgumentException,
-                IllegalStateException, IndexOutOfBoundsException,
-                NullPointerException, Throwable, SecurityException,
-                UnsupportedOperationException,
-                List, ArrayList, Deque, Queue, LinkedList,
-                Set, HashSet, SortedSet, TreeSet,
-                Map, HashMap, SortedMap, TreeMap</td>
+            <td>IllegalStateException, Set, StringBuilder, HashMap, ArrayList,
+                String, float, SortedSet, long, RuntimeException, NullPointerException,
+                TreeSet, List, Boolean, Void, Queue, Short, IllegalArgumentException,
+                UnsupportedOperationException, HashSet, void, Character, IndexOutOfBoundsException,
+                byte, double, SecurityException, TreeMap, Double, Deque, int, Exception, LinkedList,
+                Integer, Float, StringBuffer, boolean, Byte, SortedMap, char, Long, short,
+                Throwable, Object, Class, ArrayIndexOutOfBoundsException, Map</td>
             <td>5.7</td>
           </tr>
           <tr>
             <td>excludeClassesRegexps</td>
             <td>User-configured regular expressions to ignore classes</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>"^$"</code></td>
+            <td><a href="property_types.html#regexp">Regular Expressions</a></td>
+            <td><code>^$</code></td>
             <td>7.7</td>
           </tr>
           <tr>
@@ -542,25 +537,20 @@ public class Foo {
             <td>excludedClasses</td>
             <td>User-configured class names to ignore</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>boolean, byte, char, double, float, int,
-                long, short, void, Boolean, Byte, Character, Double, Float,
-                Integer, Long, Short, Void,
-                Object, Class, String, StringBuffer, StringBuilder,
-                ArrayIndexOutOfBoundsException, Exception,
-                RuntimeException, IllegalArgumentException,
-                IllegalStateException, IndexOutOfBoundsException,
-                NullPointerException, Throwable, SecurityException,
-                UnsupportedOperationException,
-                List, ArrayList, Deque, Queue, LinkedList,
-                Set, HashSet, SortedSet, TreeSet,
-                Map, HashMap, SortedMap, TreeMap</td>
+            <td>IllegalStateException, Set, StringBuilder, HashMap, ArrayList,
+                String, float, SortedSet, long, RuntimeException, NullPointerException,
+                TreeSet, List, Boolean, Void, Queue, Short, IllegalArgumentException,
+                UnsupportedOperationException, HashSet, void, Character, IndexOutOfBoundsException,
+                byte, double, SecurityException, TreeMap, Double, Deque, int, Exception, LinkedList,
+                Integer, Float, StringBuffer, boolean, Byte, SortedMap, char, Long, short,
+                Throwable, Object, Class, ArrayIndexOutOfBoundsException, Map</td>
             <td>5.7</td>
           </tr>
           <tr>
             <td>excludeClassesRegexps</td>
             <td>User-configured regular expressions to ignore classes</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>"^$"</code></td>
+            <td><a href="property_types.html#regexp">Regular Expressions</a></td>
+            <td><code>^$</code></td>
             <td>7.7</td>
           </tr>
           <tr>

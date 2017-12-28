@@ -1512,8 +1512,7 @@ class SomeClass
             <td>illegalClassNames</td>
             <td>exception class names to reject</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>&quot;java.lang.Exception,
-            java.lang.Throwable, java.lang.RuntimeException&quot;</code></td>
+            <td><code>java.lang.Throwable, RuntimeException, Error, Throwable, java.lang.Error, java.lang.RuntimeException, Exception, java.lang.Exception</code></td>
             <td>3.2</td>
           </tr>
         </table>
@@ -1707,8 +1706,7 @@ class SomeClass
             <td>throw class names to reject</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td>
-              <code>&quot;java.lang.Throwable,
-              java.lang.Error, java.lang.RuntimeException&quot;</code>
+              <code>java.lang.Throwable, RuntimeException, Error, Throwable, java.lang.Error, java.lang.RuntimeException</code>
             </td>
             <td>4.0</td>
           </tr>
@@ -1920,7 +1918,7 @@ class SomeClass
             <td>Message which is used to notify about violations;
             if empty then the default message is used.</td>
             <td><a href="property_types.html#string">String</a></td>
-            <td><code>&quot;&quot;</code>(empty)</td>
+            <td><code>&quot;&quot;</code></td>
             <td>3.2</td>
           </tr>
           <tr>
@@ -2043,23 +2041,23 @@ class SomeClass
             <td>Classes that should not be used as types in variable
             declarations, return values or parameters</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>&quot;java.util.HashSet, java.util.HashMap, java.util.LinkedHashMap,
-            java.util.LinkedHashSet, java.util.TreeSet,
-            java.util.TreeMap&quot;</td>
+            <td>LinkedHashSet, java.util.HashSet, java.util.LinkedHashMap,
+            java.util.TreeMap, HashMap, TreeSet, java.util.HashMap, TreeMap,
+            java.util.LinkedHashSet, java.util.TreeSet, HashSet, LinkedHashMap</td>
             <td>3.2</td>
           </tr>
           <tr>
           <td>legalAbstractClassNames</td>
           <td>Abstract classes that may be used as types. </td>
           <td><a href="property_types.html#stringSet">String Set</a></td>
-          <td/>
+          <td>{}</td>
           <td>4.2</td>
         </tr>
         <tr>
             <td>ignoredMethodNames</td>
             <td>Methods that should not be checked.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>&quot;getInitialContext, getEnvironment&quot; </td>
+            <td>getInitialContext, getEnvironment</td>
             <td>3.2</td>
           </tr>
           <tr>
@@ -2072,8 +2070,9 @@ class SomeClass
           <tr>
             <td>memberModifiers</td>
             <td>Check methods and fields with only corresponding modifiers.</td>
-            <td><a href="property_types.html#stringSet">List of tokens</a></td>
-            <td><code>null</code></td>
+            <td>subset of tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
+            <td/>
             <td>6.3</td>
           </tr>
           <tr>
@@ -2302,19 +2301,19 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
               </td>
               <td>
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_INIT">ARRAY_INIT</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXPR">EXPR</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_PLUS">UNARY_PLUS</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_MINUS">UNARY_MINUS</a>,
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPECAST">TYPECAST</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELIST">ELIST</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">LITERAL_NEW</a>,
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">METHOD_CALL</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXPR">EXPR</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_INIT">ARRAY_INIT</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_MINUS">UNARY_MINUS</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_PLUS">UNARY_PLUS</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELIST">ELIST</a>,
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR">STAR</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV">DIV</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">ASSIGN</a>,
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS">PLUS</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS">MINUS</a>.
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS">MINUS</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV">DIV</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">LITERAL_NEW</a>
               </td>
               <td>6.11</td>
           </tr>
@@ -2755,7 +2754,6 @@ class MyClass {
             </td>
             <td>
               <code>ANNOTATION</code>
-              (ignore strings inside the context of an annotation)
             </td>
             <td>4.4</td>
           </tr>
