@@ -96,4 +96,64 @@
         <Method name="parseJavadocAsDetailNode"/>
         <Bug pattern="BC_UNCONFIRMED_CAST_OF_RETURN_VALUE"/>
     </Match>
+    <Match>
+        <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/5403 -->
+        <Class name="com.puppycrawl.tools.checkstyle.Main"/>
+        <Method name="loadProperties"/>
+        <Bug pattern="NP_NULL_PARAM_DEREF"/>
+    </Match>
+    <Match>
+        <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/5403 -->
+        <Class name="com.puppycrawl.tools.checkstyle.PackageNamesLoader"/>
+        <Method name="processFile"/>
+        <Bug pattern="NP_NULL_PARAM_DEREF"/>
+    </Match>
+    <Match>
+        <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/5403 -->
+        <Class name="com.puppycrawl.tools.checkstyle.PropertyCacheFile"/>
+        <Method name="flushAndCloseOutStream"/>
+        <Bug pattern="NP_NULL_PARAM_DEREF"/>
+    </Match>
+    <Match>
+        <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/5403 -->
+        <Class name="com.puppycrawl.tools.checkstyle.PropertyCacheFile"/>
+        <Method name="load"/>
+        <Bug pattern="NP_NULL_PARAM_DEREF"/>
+    </Match>
+    <Match>
+        <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/5403 -->
+        <Class name="com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck"/>
+        <Method name="loadHeaderFile"/>
+        <Bug pattern="NP_NULL_PARAM_DEREF"/>
+    </Match>
+    <Match>
+        <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/5403 -->
+        <Class name="com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask"/>
+        <Method name="createOverridingProperties"/>
+        <Bug pattern="NP_NULL_PARAM_DEREF"/>
+    </Match>
+    <Match>
+        <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/5403 -->
+        <Class name="com.puppycrawl.tools.checkstyle.PropertyCacheFile"/>
+        <Method name="persist"/>
+        <Bug pattern="NP_GUARANTEED_DEREF_ON_EXCEPTION_PATH"/>
+    </Match>
+    <Match>
+        <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/5403 -->
+        <Class name="com.puppycrawl.tools.checkstyle.PropertyCacheFile"/>
+        <Method name="persist"/>
+        <Bug pattern="NP_NULL_PARAM_DEREF"/>
+    </Match>
+    <Match>
+        <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/5403 -->
+        <Class name="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"/>
+        <Method name="getTranslationKeys"/>
+        <Bug pattern="NP_GUARANTEED_DEREF_ON_EXCEPTION_PATH"/>
+    </Match>
+    <Match>
+        <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/5403 -->
+        <Class name="com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck"/>
+        <Method name="processFiltered"/>
+        <Bug pattern="NP_GUARANTEED_DEREF_ON_EXCEPTION_PATH"/>
+    </Match>
 </FindBugsFilter>
