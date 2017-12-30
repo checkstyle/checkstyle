@@ -1,0 +1,288 @@
+////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code for adherence to a set of rules.
+// Copyright (C) 2001-2018 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
+import java.nio.charset.StandardCharsets;
+import java.util.Locale;
+
+import antlr.CommonHiddenStreamToken;
+import antlr.RecognitionException;
+import antlr.Token;
+import antlr.TokenStreamException;
+import antlr.TokenStreamHiddenTokenFilter;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer;
+import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+
+/**
+ * Helper methods to parse java source files.
+ *
+ * @author Oliver Burn
+ * @author Pavel Bludov
+ */
+public final class Parser {
+
+    /**
+     * Enum to be used for test if comments should be used.
+     */
+    public enum Options {
+
+        /**
+         * Comments nodes should be processed.
+         */
+        WITH_COMMENTS,
+
+        /**
+         * Comments nodes should be ignored.
+         */
+        WITHOUT_COMMENTS
+
+    }
+
+    /** Stop instances being created. **/
+    private Parser() {
+
+    }
+
+    /**
+     * Static helper method to parses a Java source file.
+     * @param contents contains the contents of the file
+     * @return the root of the AST
+     * @throws CheckstyleException if the contents is not a valid Java source
+     */
+    public static DetailAST parse(FileContents contents)
+            throws CheckstyleException {
+        final String fullText = contents.getText().getFullText().toString();
+        final Reader reader = new StringReader(fullText);
+        final GeneratedJavaLexer lexer = new GeneratedJavaLexer(reader);
+        lexer.setCommentListener(contents);
+        lexer.setTokenObjectClass("antlr.CommonHiddenStreamToken");
+
+        final TokenStreamHiddenTokenFilter filter =
+                new TokenStreamHiddenTokenFilter(lexer);
+        filter.hide(TokenTypes.SINGLE_LINE_COMMENT);
+        filter.hide(TokenTypes.BLOCK_COMMENT_BEGIN);
+
+        final GeneratedJavaRecognizer parser =
+            new GeneratedJavaRecognizer(filter);
+        parser.setFilename(contents.getFileName());
+        parser.setASTNodeClass(DetailAST.class.getName());
+        try {
+            parser.compilationUnit();
+        }
+        catch (RecognitionException | TokenStreamException ex) {
+            final String exceptionMsg = String.format(Locale.ROOT,
+                "%s occurred during the analysis of file %s.",
+                ex.getClass().getSimpleName(), contents.getFileName());
+            throw new CheckstyleException(exceptionMsg, ex);
+        }
+
+        return (DetailAST) parser.getAST();
+    }
+
+    /**
+     * Parses Java source file.
+     * @param file the file to parse.
+     * @param withComments {@link Options#WITH_COMMENTS} to include comment nodes to the tree
+     * @return DetailAST tree
+     * @throws IOException if the file could not be read
+     * @throws CheckstyleException if the file is not a valid Java source file
+     */
+    public static DetailAST parseFile(File file, Options withComments)
+            throws IOException, CheckstyleException {
+        final FileText text = new FileText(file.getAbsoluteFile(),
+            System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
+        return parseFileText(text, withComments);
+    }
+
+    /**
+     * Parses Java source file. Result AST does not contains comment nodes.
+     * @param file the file to parse.
+     * @return DetailAST tree
+     * @throws IOException if the file could not be read
+     * @throws CheckstyleException if the file is not a valid Java source file
+     */
+    public static DetailAST parseFile(File file)
+            throws IOException, CheckstyleException {
+        return parseFile(file, Options.WITHOUT_COMMENTS);
+    }
+
+    /**
+     * Parses Java source file. Result AST contains comment nodes.
+     * @param file the file to parse.
+     * @return DetailAST tree
+     * @throws IOException if the file could not be read
+     * @throws CheckstyleException if the file is not a valid Java source file
+     */
+    public static DetailAST parseFileWithComments(File file)
+            throws IOException, CheckstyleException {
+        return parseFile(file, Options.WITH_COMMENTS);
+    }
+
+    /**
+     * Parse a text and return the parse tree.
+     * @param text the text to parse.
+     * @param withComments {@link Options#WITH_COMMENTS} to include comment nodes to the tree
+     * @return the root node of the parse tree
+     * @throws CheckstyleException if the text is not a valid Java source
+     */
+    public static DetailAST parseFileText(FileText text, Options withComments)
+            throws CheckstyleException {
+        final FileContents contents = new FileContents(text);
+        DetailAST ast = parse(contents);
+        if (withComments == Options.WITH_COMMENTS) {
+            ast = appendHiddenCommentNodes(ast);
+        }
+        return ast;
+    }
+
+    /**
+     * Appends comment nodes to existing AST.
+     * It traverses each node in AST, looks for hidden comment tokens
+     * and appends found comment tokens as nodes in AST.
+     * @param root
+     *        root of AST.
+     * @return root of AST with comment nodes.
+     */
+    public static DetailAST appendHiddenCommentNodes(DetailAST root) {
+        DetailAST result = root;
+        DetailAST curNode = root;
+        DetailAST lastNode = root;
+
+        while (curNode != null) {
+            if (isPositionGreater(curNode, lastNode)) {
+                lastNode = curNode;
+            }
+
+            CommonHiddenStreamToken tokenBefore = curNode.getHiddenBefore();
+            DetailAST currentSibling = curNode;
+            while (tokenBefore != null) {
+                final DetailAST newCommentNode =
+                         createCommentAstFromToken(tokenBefore);
+
+                currentSibling.addPreviousSibling(newCommentNode);
+
+                if (currentSibling == result) {
+                    result = newCommentNode;
+                }
+
+                currentSibling = newCommentNode;
+                tokenBefore = tokenBefore.getHiddenBefore();
+            }
+
+            DetailAST toVisit = curNode.getFirstChild();
+            while (curNode != null && toVisit == null) {
+                toVisit = curNode.getNextSibling();
+                if (toVisit == null) {
+                    curNode = curNode.getParent();
+                }
+            }
+            curNode = toVisit;
+        }
+        if (lastNode != null) {
+            CommonHiddenStreamToken tokenAfter = lastNode.getHiddenAfter();
+            DetailAST currentSibling = lastNode;
+            while (tokenAfter != null) {
+                final DetailAST newCommentNode =
+                        createCommentAstFromToken(tokenAfter);
+
+                currentSibling.addNextSibling(newCommentNode);
+
+                currentSibling = newCommentNode;
+                tokenAfter = tokenAfter.getHiddenAfter();
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Checks if position of first DetailAST is greater than position of
+     * second DetailAST. Position is line number and column number in source
+     * file.
+     * @param ast1
+     *        first DetailAST node.
+     * @param ast2
+     *        second DetailAST node.
+     * @return true if position of ast1 is greater than position of ast2.
+     */
+    private static boolean isPositionGreater(DetailAST ast1, DetailAST ast2) {
+        boolean isGreater = ast1.getLineNo() > ast2.getLineNo();
+        if (!isGreater && ast1.getLineNo() == ast2.getLineNo()) {
+            isGreater = ast1.getColumnNo() > ast2.getColumnNo();
+        }
+        return isGreater;
+    }
+
+    /**
+     * Create comment AST from token. Depending on token type
+     * SINGLE_LINE_COMMENT or BLOCK_COMMENT_BEGIN is created.
+     * @param token
+     *        Token object.
+     * @return DetailAST of comment node.
+     */
+    private static DetailAST createCommentAstFromToken(Token token) {
+        final DetailAST commentAst;
+        if (token.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
+            commentAst = createSlCommentNode(token);
+        }
+        else {
+            commentAst = CommonUtils.createBlockCommentNode(token);
+        }
+        return commentAst;
+    }
+
+    /**
+     * Create single-line comment from token.
+     * @param token
+     *        Token object.
+     * @return DetailAST with SINGLE_LINE_COMMENT type.
+     */
+    private static DetailAST createSlCommentNode(Token token) {
+        final DetailAST slComment = new DetailAST();
+        slComment.setType(TokenTypes.SINGLE_LINE_COMMENT);
+        slComment.setText("//");
+
+        // column counting begins from 0
+        slComment.setColumnNo(token.getColumn() - 1);
+        slComment.setLineNo(token.getLine());
+
+        final DetailAST slCommentContent = new DetailAST();
+        slCommentContent.setType(TokenTypes.COMMENT_CONTENT);
+
+        // column counting begins from 0
+        // plus length of '//'
+        slCommentContent.setColumnNo(token.getColumn() - 1 + 2);
+        slCommentContent.setLineNo(token.getLine());
+        slCommentContent.setText(token.getText());
+
+        slComment.addChild(slCommentContent);
+        return slComment;
+    }
+
+}

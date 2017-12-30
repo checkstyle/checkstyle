@@ -32,11 +32,11 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.Parser;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.Warning;
 
@@ -149,7 +149,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
         final LocalizedMessage message = new LocalizedMessage(3, 0, TokenTypes.CLASS_DEF, "", "",
                 null, null, "777", getClass(), null);
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(null, "file1.java",
-                message, TestUtil.parseFile(file));
+                message, Parser.parseFile(file));
 
         assertFalse("TreeWalker audit event should be rejected",
                 filter.accept(ev));
