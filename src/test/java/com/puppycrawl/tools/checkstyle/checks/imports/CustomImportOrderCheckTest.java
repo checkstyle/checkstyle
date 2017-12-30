@@ -320,7 +320,8 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "4: " + getCheckMessage(MSG_LINE_SEPARATOR, "org.junit.*"),
         };
 
-        verify(checkConfig, getPath("InputCustomImportOrderThirdPartyPackage.java"), expected);
+        verify(checkConfig,
+            getNonCompilablePath("InputCustomImportOrderThirdPartyPackage.java"), expected);
     }
 
     @Test
@@ -335,7 +336,8 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                 "com.google.common.collect.HashMultimap"),
         };
 
-        verify(checkConfig, getPath("InputCustomImportOrderThirdPartyAndSpecial.java"), expected);
+        verify(checkConfig,
+            getNonCompilablePath("InputCustomImportOrderThirdPartyAndSpecial.java"), expected);
     }
 
     @Test
