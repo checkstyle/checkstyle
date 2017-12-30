@@ -9,7 +9,7 @@ no-error-pgjdbc)
   echo CS_version: ${CS_POM_VERSION}
   for i in 1 2 3 4 5; do git clone https://github.com/pgjdbc/pgjdbc.git && break || sleep 15; done
   cd pgjdbc/pgjdbc
-  mvn checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+  mvn checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION} -e
   cd ../../
   rm -rf pgjdbc
   ;;
@@ -26,7 +26,7 @@ no-error-orekit)
   cd Orekit
   # Orekit use 'develop' branch as target for PullRequest merges
   git checkout develop
-  mvn compile checkstyle:check -Dorekit.checkstyle.version=${CS_POM_VERSION}
+  mvn compile checkstyle:check -Dorekit.checkstyle.version=${CS_POM_VERSION} -e
   cd ../
   rm -rf hipparchus Orekit
   ;;
@@ -37,7 +37,7 @@ no-error-xwiki)
   for i in 1 2 3 4 5; do git clone https://github.com/xwiki/xwiki-commons/ && break || sleep 15; done
   cd xwiki-commons
   git checkout 44b0c0048c516dae20cf5f8a71181af836549484
-  mvn install -DskipTests -Dxwiki.clirr.skip=true checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+  mvn install -DskipTests -Dxwiki.clirr.skip=true checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION} -e
   cd ../../
   rm -rf xwiki-commons
   ;;
@@ -47,7 +47,7 @@ no-error-apex-core)
   echo CS_version: ${CS_POM_VERSION}
   for i in 1 2 3 4 5; do git clone https://github.com/apache/incubator-apex-core/ && break || sleep 15; done
   cd incubator-apex-core
-  mvn compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+  mvn compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION} -e
   cd ../
   rm -rf incubator-apex-core
   ;;
@@ -57,8 +57,8 @@ no-error-hibernate-search)
   echo CS_version: ${CS_POM_VERSION}
   for i in 1 2 3 4 5; do git clone https://github.com/hibernate/hibernate-search.git && break || sleep 15; done
   cd hibernate-search
-  mvn -s settings-example.xml clean install -DskipTests=true -Dtest.elasticsearch.host.provided=true -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION}
-  mvn -s settings-example.xml checkstyle:check  -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION}
+  mvn -s settings-example.xml clean install -DskipTests=true -Dtest.elasticsearch.host.provided=true -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION} -e
+  mvn -s settings-example.xml checkstyle:check  -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION} -e
   cd ../
   rm -rf hibernate-search
   ;;
@@ -71,7 +71,7 @@ no-error-htmlunit)
   cd htmlunit
   sed -i "s/            <version>2.28-SNAPSHOT/            <version>2.28-20171106.080245-12/" pom.xml
   echo "Running checkstyle validation ..."
-  mvn compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+  mvn compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION} -e
   cd ../
   rm -rf htmlunit
   ;;
@@ -80,7 +80,7 @@ no-error-checkstyles-sevntu)
   set -e
   CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  mvn compile verify -Dmaven.sevntu-checkstyle-check.checkstyle.version=${CS_POM_VERSION} -Dmaven.test.skip=true -Dcheckstyle.ant.skip=true -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dforbiddenapis.skip=true -Dxml.skip=true
+  mvn compile verify -Dmaven.sevntu-checkstyle-check.checkstyle.version=${CS_POM_VERSION} -Dmaven.test.skip=true -Dcheckstyle.ant.skip=true -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dforbiddenapis.skip=true -Dxml.skip=true -e
   ;;
 
 no-error-sevntu-checks)
@@ -89,7 +89,7 @@ no-error-sevntu-checks)
   echo CS_version: ${CS_POM_VERSION}
   for i in 1 2 3 4 5; do git clone https://github.com/sevntu-checkstyle/sevntu.checkstyle && break || sleep 15; done
   cd sevntu.checkstyle/sevntu-checks
-  mvn -Pno-validations verify  -Dcheckstyle.skip=false -Dcheckstyle.version=${CS_POM_VERSION} -Dcheckstyle.configLocation=../../config/checkstyle_checks.xml
+  mvn -Pno-validations verify  -Dcheckstyle.skip=false -Dcheckstyle.version=${CS_POM_VERSION} -Dcheckstyle.configLocation=../../config/checkstyle_checks.xml -e
   ;;
 
 no-exception-struts)
