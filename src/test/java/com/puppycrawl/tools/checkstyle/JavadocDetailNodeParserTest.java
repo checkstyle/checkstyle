@@ -30,6 +30,7 @@ import java.nio.file.Paths;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.DetailNode;
 
 public class JavadocDetailNodeParserTest extends AbstractModuleTestSupport {
 
@@ -46,8 +47,8 @@ public class JavadocDetailNodeParserTest extends AbstractModuleTestSupport {
                 .parseFileWithComments(new File(getPath("InputJavadocDetailNodeParser.java")))
                 .getNextSibling().getFirstChild().getFirstChild();
         final JavadocDetailNodeParser parser = new JavadocDetailNodeParser();
-        final JavadocDetailNodeParser.ParseStatus status = parser.parseJavadocAsDetailNode(ast);
-        final String actual = DetailNodeTreeStringPrinter.printTree(status.getTree(), "", "");
+        final DetailNode node = parser.parseJavadocAsDetailNode(ast);
+        final String actual = DetailNodeTreeStringPrinter.printTree(node, "", "");
         final String expected;
 
         // line separators in the input file while running this test on Windows are different,

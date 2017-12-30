@@ -42,7 +42,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     // DetailNodeTreeStringPrinter#getParseErrorMessage is used for creating error messages
     // for validating those obtained in UTs against the ones created.
     private static final Method GET_PARSE_ERROR_MESSAGE = Whitebox.getMethod(
-            DetailNodeTreeStringPrinter.class, "getParseErrorMessage", ParseErrorMessage.class);
+            JavadocDetailNodeParser.class, "getParseErrorMessage", ParseErrorMessage.class);
 
     @Override
     protected String getPackageLocation() {
