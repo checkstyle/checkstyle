@@ -141,10 +141,14 @@
   </subpackage>
 
   <subpackage name="doclets" strategyOnMismatch="disallowed">
-    <allow class="java.nio.charset.StandardCharsets"/>
-    <allow pkg="com.sun.javadoc"/>
-    <allow pkg="java.io"/>
-    <allow pkg="java.util"/>
+    <allow pkg="com.puppycrawl.tools.checkstyle.api" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.Parser" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.utils.JavadocUtils" local-only="true"/>
+    <allow pkg="java.io" local-only="true"/>
+    <allow class="java.nio.charset.StandardCharsets" local-only="true"/>
+    <allow pkg="java.util.regex" local-only="true"/>
+    <allow pkg="org.apache.commons.cli" local-only="true"/>
   </subpackage>
 
   <subpackage name="filters">
