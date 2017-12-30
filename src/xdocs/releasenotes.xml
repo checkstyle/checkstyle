@@ -16,6 +16,129 @@
   <body>
     <!-- placeholder for a new section -->
 
+    <section name="Release 8.6">
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            AbstractLoader: move out of api, rename, and remove abstract modifier . Author: Roman_Zhigunov <a href="https://github.com/checkstyle/checkstyle/issues/5338">#5338</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            new Checker filter SuppressWithPlainTextCommentFilter as akin to Treewalker's SuppressionCommentFilter. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/4841">#4841</a>
+          </li>
+          <li>
+            Add @exception JavaDoc block tag to NonEmptyAtclauseDescriptionCheck. Author: Lev_Sikhovets <a href="https://github.com/checkstyle/checkstyle/issues/5388">#5388</a>
+          </li>
+          <li>
+            Support suppression-xpath element in SuppressionLoader. Author: Timur Tibeyev <a href="https://github.com/checkstyle/checkstyle/issues/4421">#4421</a>
+          </li>
+          <li>
+            add ANNOTATION_DEF to RequireThisCheck. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5363">#5363</a>
+          </li>
+          <li>
+            SuppressionFilter: add suppression by message. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2804">#2804</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            TranslationCheck: should fire file started/finished when invoking errors. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5057">#5057</a>
+          </li>
+          <li>
+            fixed RequireThisCheck and for loop variable handling. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5392">#5392</a>
+          </li>
+          <li>
+            changed RequireThis kept track of the frame being examined. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5364">#5364</a>
+          </li>
+          <li>
+            ImportOrder with option=bottom should not allow non-static import after static import. Author: Julian Hyde <a href="https://github.com/checkstyle/checkstyle/issues/4981">#4981</a>
+          </li>
+          <li>
+            ReturnCount: unclear message when only max property is specified. Author: vaano94 <a href="https://github.com/checkstyle/checkstyle/issues/5306">#5306</a>
+          </li>
+          <li>
+            Incorrect indentation check for method preceded by annotation, with method parameter on separate line. Author: BBG <a href="https://github.com/checkstyle/checkstyle/issues/5154">#5154</a>
+          </li>
+          <li>
+            fixed RequireThisCheck and enum constants handling. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5361">#5361</a>
+          </li>
+          <li>
+            fixed RequireThisCheck and catch variable handling. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5351">#5351</a>
+          </li>
+          <li>
+            AnnotationUtility.getAnnotation fails when there is an comment in the annotation. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5327">#5327</a>
+          </li>
+          <li>
+            False RedundantModifier violation for final method of enum inside final class. Author: BBG <a href="https://github.com/checkstyle/checkstyle/issues/5268">#5268</a>
+          </li>
+          <li>
+            fixed bug on matching xpath when no xpath given. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5321">#5321</a>
+          </li>
+          <li>
+            Checkstyle ignores javadoc that placed over Annotation type elements . Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/4169">#4169</a>
+          </li>
+          <li>
+            JavadocMethod: No error for a misplaced javadoc tag. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/4701">#4701</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            pitest: increase mutation coverage for pitest-checks-misc profile to 100%. Author: rnveach, vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4675">#4675</a>
+          </li>
+          <li>
+            Some contents in messages_zh.properties for imports check are not well translated. Author: zhangduo <a href="https://github.com/checkstyle/checkstyle/issues/5393">#5393</a>
+          </li>
+          <li>
+            TranslationCheckTest.testLogOutput is failed . Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5141">#5141</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checks-imports profile to 100%. Author: BBG <a href="https://github.com/checkstyle/checkstyle/issues/5004">#5004</a>
+          </li>
+          <li>
+            Indentaion problem in pjdbc project. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5286">#5286</a>
+          </li>
+          <li>
+            Use versions-maven-plugin to report versions to update. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5208">#5208</a>
+          </li>
+          <li>
+            minimize pitest-checkstyle-utils profile execution. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/4605">#4605</a>
+          </li>
+          <li>
+            api: abstract classes that extending concrete class. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/4716">#4716</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checks-whitespace profile to 100%. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5003">#5003</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checks-metrics profile to 100%. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5005">#5005</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checks-coding profile to 100%. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5008">#5008</a>
+          </li>
+          <li>
+            internal code: terminolozy problems in ModuleReflectionUtils. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/4876">#4876</a>
+          </li>
+          <li>
+            Add violateExecutionOnNonTightHtml property of AbstractJavadocCheck to xdoc. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5002">#5002</a>
+          </li>
+          <li>
+            change all sonarqube.com to sonarcloud.io. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5290">#5290</a>
+          </li>
+          <li>
+            doc: add 'Checkstyle for Microsoft Visual Studio Code' in known tools. Author: Roman Ivanov
+          </li>
+          <li>
+            Revert "infra: fix for travis:osx problem with 'shell_session_update: command not found'". Author: Roman Ivanov
+          </li>
+          <li>
+            Remove usage of DetailAST.branchContains. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5124">#5124</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 8.5">
       <p>New:</p>
         <ul>
