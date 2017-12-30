@@ -430,7 +430,7 @@
     </module>
     <module name="TrailingComment"/>
     <module name="UncommentedMain">
-      <property name="excludedClasses" value="\.Main$"/>
+      <property name="excludedClasses" value="\.(Main|JavadocPropertiesGenerator)$"/>
     </module>
     <module name="UpperEll"/>
 

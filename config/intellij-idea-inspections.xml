@@ -1017,10 +1017,10 @@ isolated classes and we cannot put them to separate package as it will affect us
     <inspection_tool class="IOResource" enabled="true" level="WARNING" enabled_by_default="true">
         <scope name="Production" level="WARNING" enabled="true">
             <option name="ignoredTypesString" value="java.io.ByteArrayOutputStream,java.io.ByteArrayInputStream,java.io.StringBufferInputStream,java.io.CharArrayWriter,java.io.CharArrayReader,java.io.StringWriter,java.io.StringReader" />
-            <option name="insideTryAllowed" value="false" />
+            <option name="insideTryAllowed" value="true" />
         </scope>
         <option name="ignoredTypesString" value="java.io.ByteArrayOutputStream,java.io.ByteArrayInputStream,java.io.StringBufferInputStream,java.io.CharArrayWriter,java.io.CharArrayReader,java.io.StringWriter,java.io.StringReader" />
-        <option name="insideTryAllowed" value="false" />
+        <option name="insideTryAllowed" value="true" />
     </inspection_tool>
     <!-- till we switch to jacoco we cannot use this as it conflicts with policy of 100% coverage -->
     <inspection_tool class="IfCanBeSwitch" enabled="false" level="ERROR" enabled_by_default="false" />
