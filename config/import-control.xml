@@ -167,7 +167,7 @@
     <allow pkg="java.util" exact-match="true"/>
     <allow pkg="com.puppycrawl.tools.checkstyle.api" local-only="true"/>
     <allow pkg="com.puppycrawl.tools.checkstyle.utils" local-only="true"/>
-    <allow class="com.puppycrawl.tools.checkstyle.TreeWalker" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.Parser" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode"
            local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser" local-only="true"/>

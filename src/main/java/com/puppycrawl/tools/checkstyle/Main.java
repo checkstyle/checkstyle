@@ -393,13 +393,13 @@ public final class Main {
             // print AST
             final File file = config.files.get(0);
             final String stringAst = AstTreeStringPrinter.printFileAst(file,
-                    AstTreeStringPrinter.PrintOptions.WITHOUT_COMMENTS);
+                    Parser.Options.WITHOUT_COMMENTS);
             System.out.print(stringAst);
         }
         else if (commandLine.hasOption(OPTION_CAPITAL_T_NAME)) {
             final File file = config.files.get(0);
             final String stringAst = AstTreeStringPrinter.printFileAst(file,
-                    AstTreeStringPrinter.PrintOptions.WITH_COMMENTS);
+                    Parser.Options.WITH_COMMENTS);
             System.out.print(stringAst);
         }
         else if (commandLine.hasOption(OPTION_J_NAME)) {

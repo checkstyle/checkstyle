@@ -32,6 +32,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.Parser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
@@ -143,7 +144,7 @@ public class ModifiedControlVariableCheckTest
     public void testClearState() throws Exception {
         final ModifiedControlVariableCheck check = new ModifiedControlVariableCheck();
         final Optional<DetailAST> methodDef = TestUtil.findTokenInAstByPredicate(
-            TestUtil.parseFile(new File(
+            Parser.parseFile(new File(
                 getPath("InputModifiedControlVariableEnhancedForLoopVariable.java"))),
             ast -> ast.getType() == TokenTypes.OBJBLOCK);
 
