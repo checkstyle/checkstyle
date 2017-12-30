@@ -197,7 +197,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException ex) {
             final String expectedMsg = String.format(Locale.ROOT,
-                    "NoViableAltException occurred while opening file %s.",
+                    "NoViableAltException occurred while parsing file %s.",
                     nonCompilableFile.getPath());
 
             assertEquals("Invalid exception message", expectedMsg, ex.getMessage());

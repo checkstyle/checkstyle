@@ -45,7 +45,7 @@ import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -293,10 +293,8 @@ public class DetailASTTest extends AbstractModuleTestSupport {
     }
 
     private static void checkFile(String filename) throws Exception {
-        final FileText text = new FileText(new File(filename),
-                           System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
-        final FileContents contents = new FileContents(text);
-        final DetailAST rootAST = TreeWalker.parse(contents);
+        final DetailAST rootAST =
+            JavaParser.parseFile(new File(filename), JavaParser.Options.WITHOUT_COMMENTS);
         if (rootAST != null) {
             checkTree(filename, rootAST);
         }

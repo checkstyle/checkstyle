@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -30,7 +29,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -38,7 +36,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -52,7 +49,6 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
@@ -64,7 +60,6 @@ import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter;
-import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class TreeWalkerTest extends AbstractModuleTestSupport {
@@ -228,7 +223,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException ex) {
             assertEquals("Invalid exception message",
-                "MismatchedTokenException occurred during the analysis of file input.java.",
+                "MismatchedTokenException occurred while parsing file input.java.",
                 ex.getMessage());
         }
     }
@@ -277,7 +272,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         catch (CheckstyleException exception) {
             assertTrue("Error message is unexpected",
                     exception.getMessage().contains(
-                    "occurred during the analysis of file"));
+                    "occurred while parsing file"));
         }
     }
 
@@ -300,7 +295,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         catch (CheckstyleException exception) {
             assertTrue("Error message is unexpected",
                     exception.getMessage().contains(
-                    "TokenStreamRecognitionException occurred during the analysis of file"));
+                    "TokenStreamRecognitionException occurred while parsing file"));
         }
     }
 
@@ -368,7 +363,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException exception) {
             final String message =
-                    "TokenStreamRecognitionException occurred during the analysis of file";
+                    "TokenStreamRecognitionException occurred while parsing file";
             assertTrue("Error message is unexpected",
                     exception.getMessage().contains(message));
         }
@@ -393,7 +388,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException exception) {
             final String message =
-                    "TokenStreamRecognitionException occurred during the analysis of file";
+                    "TokenStreamRecognitionException occurred while parsing file";
             assertTrue("Error message is unexpected",
                     exception.getMessage().contains(message));
         }
@@ -420,7 +415,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException exception) {
             final String message =
-                    "TokenStreamRecognitionException occurred during the analysis of file";
+                    "TokenStreamRecognitionException occurred while parsing file";
             assertTrue("Error message is unexpected",
                     exception.getMessage().contains(message));
         }
@@ -450,43 +445,6 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         verify(checkerConfig,
                 file.getPath(),
                 expected);
-    }
-
-    @Test
-    public void testAppendHiddenBlockCommentNodes() throws Exception {
-        final DetailAST root =
-            TestUtil.parseFile(new File(getPath("InputTreeWalkerHiddenComments.java")));
-
-        final Optional<DetailAST> blockComment = TestUtil.findTokenInAstByPredicate(root,
-            ast -> ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN);
-
-        assertTrue("Block comment should be present", blockComment.isPresent());
-
-        final DetailAST commentContent = blockComment.get().getFirstChild();
-        final DetailAST commentEnd = blockComment.get().getLastChild();
-
-        assertEquals("Unexpected line number", 3, commentContent.getLineNo());
-        assertEquals("Unexpected column number", 2, commentContent.getColumnNo());
-        assertEquals("Unexpected line number", 9, commentEnd.getLineNo());
-        assertEquals("Unexpected column number", 1, commentEnd.getColumnNo());
-    }
-
-    @Test
-    public void testAppendHiddenSingleLineCommentNodes() throws Exception {
-        final DetailAST root =
-            TestUtil.parseFile(new File(getPath("InputTreeWalkerHiddenComments.java")));
-
-        final Optional<DetailAST> singleLineComment = TestUtil.findTokenInAstByPredicate(root,
-            ast -> ast.getType() == TokenTypes.SINGLE_LINE_COMMENT);
-        assertTrue("Single line comment should be present", singleLineComment.isPresent());
-
-        final DetailAST commentContent = singleLineComment.get().getFirstChild();
-
-        assertEquals("Unexpected token type", TokenTypes.COMMENT_CONTENT, commentContent.getType());
-        assertEquals("Unexpected line number", 13, commentContent.getLineNo());
-        assertEquals("Unexpected column number", 2, commentContent.getColumnNo());
-        assertTrue("Unexpected comment content",
-            commentContent.getText().startsWith(" inline comment"));
     }
 
     @Test
@@ -561,37 +519,6 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                 new String(Files.readAllBytes(cacheFile.toPath()),
                         StandardCharsets.UTF_8).contains(
                                 "InputTreeWalkerSuppressionXpathFilter.xml"));
-    }
-
-    /**
-     * Could not find proper test case to test pitest mutations functionally.
-     * Should be rewritten during grammar update.
-     *
-     * @throws Exception when code tested throws exception
-     */
-    @Test
-    public void testIsPositionGreater() throws Exception {
-        final DetailAST ast1 = createAst(1, 3);
-        final DetailAST ast2 = createAst(1, 2);
-        final DetailAST ast3 = createAst(2, 2);
-
-        final TreeWalker treeWalker = new TreeWalker();
-        final Method isPositionGreater = Whitebox.getMethod(TreeWalker.class,
-                "isPositionGreater", DetailAST.class, DetailAST.class);
-
-        assertTrue("Should return true when lines are equal and column is greater",
-                (boolean) isPositionGreater.invoke(treeWalker, ast1, ast2));
-        assertFalse("Should return false when lines are equal columns are equal",
-                (boolean) isPositionGreater.invoke(treeWalker, ast1, ast1));
-        assertTrue("Should return true when line is greater",
-                (boolean) isPositionGreater.invoke(treeWalker, ast3, ast1));
-    }
-
-    private static DetailAST createAst(int line, int column) {
-        final DetailAST ast = new DetailAST();
-        ast.setLineNo(line);
-        ast.setColumnNo(column);
-        return ast;
     }
 
     private static class BadJavaDocCheck extends AbstractCheck {

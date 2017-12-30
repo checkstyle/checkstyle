@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.treewalker;
+package com.puppycrawl.tools.checkstyle.javaparser;
 
 /**
  * Some Javadoc.
@@ -7,7 +7,7 @@ package com.puppycrawl.tools.checkstyle.treewalker;
  *
  * @since 8.0
  */
-public class InputTreeWalkerHiddenComments {
+public class InputJavaParserHiddenComments {
 
 }
 // inline comment

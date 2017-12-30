@@ -34,9 +34,9 @@ import org.powermock.reflect.Whitebox;
 import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class VisibilityModifierCheckTest
@@ -455,8 +455,9 @@ public class VisibilityModifierCheckTest
      */
     @Test
     public void testIsStarImportNullAst() throws Exception {
-        final DetailAST importAst = TestUtil.parseFile(new File(getPath(
-            "InputVisibilityModifierIsStarImport.java"))).getNextSibling();
+        final DetailAST importAst = JavaParser.parseFile(
+            new File(getPath("InputVisibilityModifierIsStarImport.java")),
+            JavaParser.Options.WITHOUT_COMMENTS).getNextSibling();
         final VisibilityModifierCheck check = new VisibilityModifierCheck();
         final Method isStarImport = Whitebox.getMethod(VisibilityModifierCheck.class,
             "isStarImport", DetailAST.class);
