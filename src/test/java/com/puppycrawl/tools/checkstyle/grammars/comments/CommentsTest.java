@@ -23,7 +23,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractTreeTestSupport;
-import com.puppycrawl.tools.checkstyle.AstTreeStringPrinter;
+import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.Comment;
 
 public class CommentsTest extends AbstractTreeTestSupport {
@@ -36,13 +36,13 @@ public class CommentsTest extends AbstractTreeTestSupport {
     @Test
     public void testCompareExpectedTreeWithInput1() throws Exception {
         verifyAst(getPath("InputComments1Ast.txt"), getPath("InputComments1.java"),
-                AstTreeStringPrinter.PrintOptions.WITH_COMMENTS);
+                JavaParser.Options.WITH_COMMENTS);
     }
 
     @Test
     public void testCompareExpectedTreeWithInput2() throws Exception {
         verifyAst(getPath("InputComments2Ast.txt"), getPath("InputComments2.java"),
-                AstTreeStringPrinter.PrintOptions.WITH_COMMENTS);
+                JavaParser.Options.WITH_COMMENTS);
     }
 
     @Test

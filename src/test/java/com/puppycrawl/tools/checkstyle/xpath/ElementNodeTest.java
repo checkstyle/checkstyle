@@ -30,9 +30,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import net.sf.saxon.om.Item;
 import net.sf.saxon.om.NodeInfo;
 
@@ -48,7 +48,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
     @Before
     public void init() throws Exception {
         final File file = new File(getPath("InputXpathMapperAst.java"));
-        final DetailAST rootAst = TestUtil.parseFile(file);
+        final DetailAST rootAst = JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS);
         rootNode = new RootNode(rootAst);
     }
 

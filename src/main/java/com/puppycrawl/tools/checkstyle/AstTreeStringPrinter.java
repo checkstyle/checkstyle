@@ -21,16 +21,11 @@ package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.Locale;
 import java.util.regex.Pattern;
 
-import antlr.RecognitionException;
-import antlr.TokenStreamException;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
@@ -41,22 +36,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * @author Vladislav Lisetskii
  */
 public final class AstTreeStringPrinter {
-
-    /**
-     * Enum to be used for test if comments should be printed.
-     */
-    public enum PrintOptions {
-
-        /**
-         * Comments has to be printed.
-         */
-        WITH_COMMENTS,
-        /**
-         * Comments has NOT to be printed.
-         */
-        WITHOUT_COMMENTS
-
-    }
 
     /** Newline pattern. */
     private static final Pattern NEWLINE = Pattern.compile("\n");
@@ -76,14 +55,14 @@ public final class AstTreeStringPrinter {
     /**
      * Parse a file and print the parse tree.
      * @param file the file to print.
-     * @param withComments true to include comments to AST
+     * @param options {@link JavaParser.Options} to control the inclusion of comment nodes.
      * @return the AST of the file in String form.
      * @throws IOException if the file could not be read.
      * @throws CheckstyleException if the file is not a Java source.
      */
-    public static String printFileAst(File file, PrintOptions withComments)
+    public static String printFileAst(File file, JavaParser.Options options)
             throws IOException, CheckstyleException {
-        return printTree(parseFile(file, withComments));
+        return printTree(JavaParser.parseFile(file, options));
     }
 
     /**
@@ -95,7 +74,7 @@ public final class AstTreeStringPrinter {
      */
     public static String printJavaAndJavadocTree(File file)
             throws IOException, CheckstyleException {
-        final DetailAST tree = parseFile(file, PrintOptions.WITH_COMMENTS);
+        final DetailAST tree = JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS);
         return printJavaAndJavadocTree(tree);
     }
 
@@ -143,13 +122,14 @@ public final class AstTreeStringPrinter {
     /**
      * Parse a file and print the parse tree.
      * @param text the text to parse.
-     * @param withComments true to include comments to AST
+     * @param options {@link JavaParser.Options} to control the inclusion of comment nodes.
      * @return the AST of the file in String form.
      * @throws CheckstyleException if the file is not a Java source.
      */
-    public static String printAst(FileText text,
-                                  PrintOptions withComments) throws CheckstyleException {
-        return printTree(parseFileText(text, withComments));
+    public static String printAst(FileText text, JavaParser.Options options)
+            throws CheckstyleException {
+        final DetailAST ast = JavaParser.parseFileText(text, options);
+        return printTree(ast);
     }
 
     /**
@@ -224,50 +204,6 @@ public final class AstTreeStringPrinter {
         final String textWithoutNewlines = NEWLINE.matcher(text).replaceAll("\\\\n");
         final String textWithoutReturns = RETURN.matcher(textWithoutNewlines).replaceAll("\\\\r");
         return TAB.matcher(textWithoutReturns).replaceAll("\\\\t");
-    }
-
-    /**
-     * Parse a file and return the parse tree.
-     * @param file the file to parse.
-     * @param withComments true to include comment nodes to the tree
-     * @return the root node of the parse tree.
-     * @throws IOException if the file could not be read.
-     * @throws CheckstyleException if the file is not a Java source.
-     */
-    private static DetailAST parseFile(File file, PrintOptions withComments)
-            throws IOException, CheckstyleException {
-        final FileText text = new FileText(file.getAbsoluteFile(),
-            System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
-        return parseFileText(text, withComments);
-    }
-
-    /**
-     * Parse a text and return the parse tree.
-     * @param text the text to parse.
-     * @param withComments true to include comment nodes to the tree
-     * @return the root node of the parse tree.
-     * @throws CheckstyleException if the file is not a Java source.
-     */
-    private static DetailAST parseFileText(FileText text, PrintOptions withComments)
-            throws CheckstyleException {
-        final FileContents contents = new FileContents(text);
-        final DetailAST result;
-        try {
-            if (withComments == PrintOptions.WITH_COMMENTS) {
-                result = TreeWalker.parseWithComments(contents);
-            }
-            else {
-                result = TreeWalker.parse(contents);
-            }
-        }
-        catch (RecognitionException | TokenStreamException ex) {
-            final String exceptionMsg = String.format(Locale.ROOT,
-                "%s occurred during the analysis of file %s.",
-                ex.getClass().getSimpleName(), text.getFile().getPath());
-            throw new CheckstyleException(exceptionMsg, ex);
-        }
-
-        return result;
     }
 
 }

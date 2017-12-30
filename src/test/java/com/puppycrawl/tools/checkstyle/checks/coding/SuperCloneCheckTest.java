@@ -32,6 +32,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
@@ -86,7 +87,8 @@ public class SuperCloneCheckTest
     public void testClearState() throws Exception {
         final AbstractSuperCheck check = new SuperCloneCheck();
         final Optional<DetailAST> methodDef = TestUtil.findTokenInAstByPredicate(
-            TestUtil.parseFile(new File(getPath("InputSuperCloneWithoutWarnings.java"))),
+            JavaParser.parseFile(new File(getPath("InputSuperCloneWithoutWarnings.java")),
+                JavaParser.Options.WITHOUT_COMMENTS),
             ast -> ast.getType() == TokenTypes.METHOD_DEF);
 
         assertTrue("Ast should contain METHOD_DEF", methodDef.isPresent());
