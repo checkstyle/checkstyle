@@ -26,6 +26,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -454,6 +455,16 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
             removeSuppressed(violationMessages, suppressed),
             filterCfg, fileTabCheckCfg, regexpCheckCfg
         );
+    }
+
+    @Test
+    public void testFilterWithDirectory() throws IOException {
+        final SuppressWithPlainTextCommentFilter filter = new SuppressWithPlainTextCommentFilter();
+        final AuditEvent event = new AuditEvent(this, getPath(""), new LocalizedMessage(1, 1,
+                "bundle", "key", null, SeverityLevel.ERROR, "moduleId", getClass(),
+                "customMessage"));
+
+        assertTrue("filter should accept directory", filter.accept(event));
     }
 
     private void verifySuppressed(String fileNameWithExtension, String[] violationMessages,
