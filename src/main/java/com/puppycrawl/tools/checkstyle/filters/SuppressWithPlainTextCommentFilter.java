@@ -117,8 +117,10 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
         boolean accepted = true;
         if (event.getLocalizedMessage() != null) {
             final FileText fileText = getFileText(event.getFileName());
-            final List<Suppression> suppressions = getSuppressions(fileText);
-            accepted = getNearestSuppression(suppressions, event) == null;
+            if (fileText != null) {
+                final List<Suppression> suppressions = getSuppressions(fileText);
+                accepted = getNearestSuppression(suppressions, event) == null;
+            }
         }
         return accepted;
     }
@@ -134,12 +136,20 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
      * @return {@link FileText} instance.
      */
     private static FileText getFileText(String fileName) {
-        try {
-            return new FileText(new File(fileName), StandardCharsets.UTF_8.name());
+        final File file = new File(fileName);
+        FileText result = null;
+
+        // some violations can be on a directory, instead of a file
+        if (!file.isDirectory()) {
+            try {
+                result = new FileText(file, StandardCharsets.UTF_8.name());
+            }
+            catch (IOException ex) {
+                throw new IllegalStateException("Cannot read source file: " + fileName, ex);
+            }
         }
-        catch (IOException ex) {
-            throw new IllegalStateException("Cannot read source file: " + fileName, ex);
-        }
+
+        return result;
     }
 
     /**
