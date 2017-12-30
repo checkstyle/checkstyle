@@ -99,14 +99,14 @@ build:
           echo "build is skipped ..."
         fi
 
-  - script:
-      name: NoErrorTest - sevntu-checks
-      code: |
-        if [[ $SKIP_CI == 'false' ]]; then
-          ./.ci/wercker.sh no-error-sevntu-checks
-        else
-          echo "build is skipped ..."
-        fi
+#  - script:
+#      name: NoErrorTest - sevntu-checks
+#      code: |
+#        if [[ $SKIP_CI == 'false' ]]; then
+#          ./.ci/wercker.sh no-error-sevntu-checks
+#        else
+#          echo "build is skipped ..."
+#        fi
 
   - script:
       name: NoExceptiontest - Apache Struts
