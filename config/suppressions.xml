@@ -75,6 +75,7 @@
     <suppress checks="ClassDataAbstractionCoupling" files="(CheckerTest|TreeWalkerTest|AbstractModuleTestSupport|XdocsPagesTest|CheckstyleAntTaskTest)\.java"/>
     <suppress checks="ClassDataAbstractionCoupling" files="PropertyCacheFile\.java"/>
     <suppress checks="ClassDataAbstractionCoupling" files="PropertyCacheFileTest\.java"/>
+    <suppress checks="ClassDataAbstractionCoupling" files="JavadocPropertiesGenerator\.java"/>
     <suppress checks="ClassFanOutComplexity" files="[\\/]Main\.java"/>
     <suppress checks="ClassFanOutComplexity" files="CheckstyleAntTask\.java"/>
     <suppress checks="ClassFanOutComplexity" files="CheckerTest\.java"/>

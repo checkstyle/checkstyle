@@ -74,7 +74,6 @@
     <allow pkg="com.puppycrawl.tools.checkstyle"/>
     <disallow pkg="com.puppycrawl.tools.checkstyle.checks"/>
     <disallow pkg="com.puppycrawl.tools.checkstyle.filters"/>
-    <disallow pkg="com.puppycrawl.tools.checkstyle.doclets"/>
     <disallow pkg="com.puppycrawl.tools.checkstyle.gui"/>
 
     <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
@@ -138,13 +137,6 @@
       <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
       <allow class="com.google.common.base.CharMatcher" local-only="true"/>
     </subpackage>
-  </subpackage>
-
-  <subpackage name="doclets" strategyOnMismatch="disallowed">
-    <allow class="java.nio.charset.StandardCharsets"/>
-    <allow pkg="com.sun.javadoc"/>
-    <allow pkg="java.io"/>
-    <allow pkg="java.util"/>
   </subpackage>
 
   <subpackage name="filters">

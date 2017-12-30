@@ -1004,7 +1004,6 @@ public class InputIllegalImport { }
     &lt;disallow pkg=&quot;com\.puppycrawl\.tools\.checkstyle\.checks\.[^.]+&quot;
       regex=&quot;true&quot;/&gt;
     &lt;disallow pkg=&quot;com.puppycrawl.tools.checkstyle.ant&quot;/&gt;
-    &lt;disallow pkg=&quot;com.puppycrawl.tools.checkstyle.doclets&quot;/&gt;
     &lt;disallow pkg=&quot;com.puppycrawl.tools.checkstyle.gui&quot;/&gt;
   &lt;/subpackage&gt;
   &lt;subpackage name=&quot;dao&quot;&gt;
