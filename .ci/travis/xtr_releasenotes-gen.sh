@@ -5,7 +5,7 @@ set -e
 if [[ $TRAVIS_PULL_REQUEST =~ ^([0-9]*)$ ]]; then exit 0; fi
 git clone https://github.com/checkstyle/contribution
 cd contribution/releasenotes-builder
-mvn clean compile package
+mvn clean compile package -e
 cd ../../
 # we need to do full clone as Travis do "git clone --depth=50"
 git clone https://github.com/checkstyle/checkstyle
