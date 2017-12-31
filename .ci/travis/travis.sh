@@ -5,7 +5,7 @@ set -e
 case $1 in
 
 nondex)
-  mvn --fail-never clean nondex:nondex -DargLine='-Xms1024m -Xmx2048m'
+  mvn -e --fail-never clean nondex:nondex -DargLine='-Xms1024m -Xmx2048m'
   cat `grep -RlE 'td class=.x' .nondex/ | cat` < /dev/null > output.txt
   RESULT=$(cat output.txt | wc -c)
   cat output.txt
@@ -15,7 +15,7 @@ nondex)
 
 versions)
   if [[ -v TRAVIS_EVENT_TYPE && $TRAVIS_EVENT_TYPE != "cron" ]]; then exit 0; fi
-  mvn clean versions:dependency-updates-report versions:plugin-updates-report
+  mvn -e clean versions:dependency-updates-report versions:plugin-updates-report
   if [ $(grep "<nextVersion>" target/*-updates-report.xml | cat | wc -l) -gt 0 ]; then
     echo "Version reports (dependency-updates-report.xml):"
     cat target/dependency-updates-report.xml
@@ -34,8 +34,8 @@ versions)
   ;;
 
 assembly-run-all-jar)
-  mvn clean package -Passembly
-  CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  mvn -e clean package -Passembly
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo version:$CS_POM_VERSION
   java -jar target/checkstyle-$CS_POM_VERSION-all.jar -c /google_checks.xml \
         src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule332nolinewrap/InputNoLineWrapGood.java > output.log
@@ -49,7 +49,7 @@ sonarqube)
   if [[ -v TRAVIS_PULL_REQUEST && $TRAVIS_PULL_REQUEST && $TRAVIS_PULL_REQUEST =~ ^([0-9]*)$ ]]; then exit 0; fi
   if [[ -z $SONAR_TOKEN ]]; then echo "SONAR_TOKEN is not set"; sleep 5s; exit 1; fi
   export MAVEN_OPTS='-Xmx2000m'
-  mvn clean package cobertura:cobertura sonar:sonar \
+  mvn -e clean package cobertura:cobertura sonar:sonar \
        -Dsonar.host.url=https://sonarcloud.io \
        -Dsonar.login=$SONAR_TOKEN \
        -Dcobertura.report.format=xml -Dmaven.test.failure.ignore=true \
@@ -58,7 +58,7 @@ sonarqube)
 
 release-dry-run)
   if [ $(git log -1 | grep -E "\[maven-release-plugin\] prepare release" | cat | wc -l) -lt 1 ]; then
-    mvn release:prepare -DdryRun=true --batch-mode -Darguments='-DskipTests -DskipITs \
+    mvn -e release:prepare -DdryRun=true --batch-mode -Darguments='-DskipTests -DskipITs \
       -Dcobertura.skip=true -Dpmd.skip=true -Dfindbugs.skip=true  -Dxml.skip=true \
       -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dgpg.skip=true'
   fi
@@ -89,9 +89,9 @@ all-sevntu-checks)
   ;;
 
 no-error-test-sbe)
-  CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo version:$CS_POM_VERSION
-  mvn clean install -Pno-validations
+  mvn -e clean install -Pno-validations
   git clone https://github.com/real-logic/simple-binary-encoding.git
   cd simple-binary-encoding
   git checkout 963814f8ca1456de9daaf67e78663e7d877871a9
@@ -106,7 +106,7 @@ no-exception-test-checkstyle-sevntu-checkstyle)
   sed -i.'' 's/#checkstyle/checkstyle/' projects-to-test-on.properties
   sed -i.'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-to-test-on.properties
   cd ../../
-  mvn clean install -Pno-validations
+  mvn -e clean install -Pno-validations
   cd contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config checks-nonjavadoc-error.xml
@@ -118,7 +118,7 @@ no-exception-test-guava)
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#guava|/guava|/' projects-to-test-on.properties
   cd ../../
-  mvn clean install -Pno-validations
+  mvn -e clean install -Pno-validations
   cd contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config checks-nonjavadoc-error.xml
@@ -130,7 +130,7 @@ no-exception-test-guava-with-google-checks)
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#guava|/guava|/' projects-to-test-on.properties
   cd ../../
-  mvn clean install -Pno-validations
+  mvn -e clean install -Pno-validations
   sed -i.'' 's/warning/ignore/' src/main/resources/google_checks.xml
   cd contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
@@ -143,7 +143,7 @@ no-exception-test-hibernate)
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#hibernate-orm/hibernate-orm/' projects-to-test-on.properties
   cd ../../
-  mvn clean install -Pno-validations
+  mvn -e clean install -Pno-validations
   cd contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config checks-nonjavadoc-error.xml
@@ -155,7 +155,7 @@ no-exception-test-findbugs)
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#findbugs/findbugs/' projects-to-test-on.properties
   cd ../../
-  mvn clean install -Pno-validations
+  mvn -e clean install -Pno-validations
   cd contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config checks-nonjavadoc-error.xml
@@ -167,7 +167,7 @@ no-exception-test-spring-framework)
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spring-framework/spring-framework/' projects-to-test-on.properties
   cd ../../
-  mvn clean install -Pno-validations
+  mvn -e clean install -Pno-validations
   cd contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config checks-nonjavadoc-error.xml
@@ -179,7 +179,7 @@ no-exception-test-hbase)
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#Hbase/Hbase/' projects-to-test-on.properties
   cd ../../
-  mvn clean install -Pno-validations
+  mvn -e clean install -Pno-validations
   cd contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config checks-nonjavadoc-error.xml
@@ -193,7 +193,7 @@ no-exception-test-Pmd-elasticsearch-lombok-ast)
   sed -i.'' 's/#elasticsearch/elasticsearch/' projects-to-test-on.properties
   sed -i.'' 's/#lombok-ast/lombok-ast/' projects-to-test-on.properties
   cd ../../
-  mvn clean install -Pno-validations
+  mvn -e clean install -Pno-validations
   cd contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config checks-nonjavadoc-error.xml
@@ -210,7 +210,7 @@ no-exception-test-alot-of-project1)
   sed -i.'' 's/#apache-jsecurity/apache-jsecurity/' projects-to-test-on.properties
   sed -i.'' 's/#android-launcher/android-launcher/' projects-to-test-on.properties
   cd ../../
-  mvn clean install -Pno-validations
+  mvn -e clean install -Pno-validations
   cd contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config checks-nonjavadoc-error.xml
@@ -219,7 +219,7 @@ no-exception-test-alot-of-project1)
 cobertura-check)
   set +e
   echo "Output and Error output will be redirected to mvn-log.log file ..."
-  mvn clean compile cobertura:cobertura cobertura:check -DargLine='-Xms1024m -Xmx2048m' &> mvn-log.log
+  mvn -e clean compile cobertura:cobertura cobertura:check -DargLine='-Xms1024m -Xmx2048m' &> mvn-log.log
   echo "Printing mvn-log.log file:"
   cat mvn-log.log
   sleep 5s

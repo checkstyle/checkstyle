@@ -3,7 +3,7 @@ box: maven:3.3.9-jdk-8
 build:
   steps:
   - script:
-      name: setup mvn local repo
+      name: setup maven local repo
       code: |
         export MAVEN_OPTS="-Dmaven.repo.local=${WERCKER_CACHE_DIR}"
         mvn -version
@@ -31,7 +31,7 @@ build:
         export SKIP_CI=$(if [[ $(git diff --name-only HEAD HEAD~1 | grep -vE "$SKIP_FILES" | cat | wc -c) > 0 ]]; then echo false; else echo true; fi;)
         echo "SKIP_CI="$SKIP_CI
         if [[ $SKIP_CI == 'false' ]]; then
-          mvn clean install -Pno-validations
+          mvn -e clean install -Pno-validations
         else
           echo "build is skipped ..."
         fi

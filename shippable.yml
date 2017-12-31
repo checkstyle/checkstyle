@@ -49,7 +49,7 @@ build:
       echo "POST_ACTION="$POST_ACTION
       if [[ $SKIP_CI == 'false' ]];
       then
-        mvn $PROFILE clean verify org.pitest:pitest-maven:mutationCoverage;
+        mvn -e $PROFILE clean verify org.pitest:pitest-maven:mutationCoverage;
 
         if [[ $POST_ACTION == 'check_survived_uncovered' \
                 && ( $(grep -RE "class='survived'" target/ | cat | wc -l) > 0 \

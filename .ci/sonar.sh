@@ -4,7 +4,7 @@
 curl -X POST -u admin:admin -F 'backup=@config/default_sonar_profile.xml' -v http://localhost:9000/api/profiles/restore
 
 #execute inspection
-mvn sonar:sonar -P sonar -Dsonar.language=java -Dsonar.profile=checksyle-profile
+mvn -e sonar:sonar -P sonar -Dsonar.language=java -Dsonar.profile=checksyle-profile
 
 # Uncomment following to get HTML report.
 # mvn sonar:sonar -Dsonar.analysis.mode=preview -Dsonar.issuesReport.html.enable=true \
