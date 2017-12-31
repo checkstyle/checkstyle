@@ -32,14 +32,14 @@ matrix:
     - jdk: oraclejdk8
       env:
         - DESC="tests and deploy"
-        - CMD="mvn clean integration-test failsafe:verify -DargLine='-Xms1024m -Xmx2048m'"
+        - CMD="mvn -e clean integration-test failsafe:verify -DargLine='-Xms1024m -Xmx2048m'"
         - DEPLOY="true"
 
     # checkstyle (oraclejdk8)
     - jdk: oraclejdk8
       env:
         - DESC="checkstyle and sevntu-checkstyle"
-        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true"
+        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true"
 
     # cobertura and codecov (oraclejdk8)
     - jdk: oraclejdk8
@@ -52,13 +52,13 @@ matrix:
     - jdk: oraclejdk8
       env:
         - DESC="findbugs,spotbugs,pmd"
-        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn clean compile pmd:check findbugs:check spotbugs:check"
+        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean compile pmd:check findbugs:check spotbugs:check"
 
     # eclipse static analysis
     - jdk: oraclejdk8
       env:
         - DESC="eclipse static analysis"
-        - CMD="mvn clean compile exec:exec -Peclipse-compiler"
+        - CMD="mvn -e clean compile exec:exec -Peclipse-compiler"
 
     # Releasenotes generation - validaton
     - jdk: oraclejdk8
@@ -77,7 +77,7 @@ matrix:
     #- jdk: oraclejdk8
     #  env:
     #    - DESC="site"
-    #    - CMD1="mvn clean site -Dlinkcheck.skip=true -DskipTests -DskipITs "
+    #    - CMD1="mvn -e clean site -Dlinkcheck.skip=true -DskipTests -DskipITs "
     #    - CMD2=" -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true "
     #    - CMD3=" -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true"
     #    - CMD=$CMD1$CMD2$CMD3
@@ -87,42 +87,42 @@ matrix:
     - jdk: oraclejdk8
       env:
         - DESC="tests de"
-        - CMD="mvn clean integration-test failsafe:verify -DargLine='-Duser.language=de -Duser.country=DE -Xms1024m -Xmx2048m'"
+        - CMD="mvn -e clean integration-test failsafe:verify -DargLine='-Duser.language=de -Duser.country=DE -Xms1024m -Xmx2048m'"
     # unit tests in Spanish locale (oraclejdk8)
     - jdk: oraclejdk8
       env:
         - DESC="tests es"
-        - CMD="mvn clean integration-test failsafe:verify -DargLine='-Duser.language=es -Duser.country=ES -Xms1024m -Xmx2048m'"
+        - CMD="mvn -e clean integration-test failsafe:verify -DargLine='-Duser.language=es -Duser.country=ES -Xms1024m -Xmx2048m'"
     # unit tests in Finnish locale (oraclejdk8)
     - jdk: oraclejdk8
       env:
         - DESC="tests fi"
-        - CMD="mvn clean integration-test failsafe:verify -DargLine='-Duser.language=fi -Duser.country=FI -Xms1024m -Xmx2048m'"
+        - CMD="mvn -e clean integration-test failsafe:verify -DargLine='-Duser.language=fi -Duser.country=FI -Xms1024m -Xmx2048m'"
     # unit tests in French locale (oraclejdk8)
     - jdk: oraclejdk8
       env:
         - DESC="tests fr"
-        - CMD="mvn clean integration-test failsafe:verify -DargLine='-Duser.language=fr -Duser.country=FR -Xms1024m -Xmx2048m'"
+        - CMD="mvn -e clean integration-test failsafe:verify -DargLine='-Duser.language=fr -Duser.country=FR -Xms1024m -Xmx2048m'"
     # unit tests in Chinese locale (oraclejdk8)
     - jdk: oraclejdk8
       env:
         - DESC="tests zh"
-        - CMD="mvn clean integration-test failsafe:verify -DargLine='-Duser.language=zh -Duser.country=CN -Xms1024m -Xmx2048m'"
+        - CMD="mvn -e clean integration-test failsafe:verify -DargLine='-Duser.language=zh -Duser.country=CN -Xms1024m -Xmx2048m'"
     # unit tests in Japanese locale (oraclejdk8)
     - jdk: oraclejdk8
       env:
         - DESC="tests ja"
-        - CMD="mvn clean integration-test failsafe:verify -DargLine='-Duser.language=ja -Duser.country=JP -Xms1024m -Xmx2048m'"
+        - CMD="mvn -e clean integration-test failsafe:verify -DargLine='-Duser.language=ja -Duser.country=JP -Xms1024m -Xmx2048m'"
     # unit tests in Portuguese locale (oraclejdk8)
     - jdk: oraclejdk8
       env:
         - DESC="tests pt"
-        - CMD="mvn clean integration-test failsafe:verify -DargLine='-Duser.language=pt -Duser.country=PT -Xms1024m -Xmx2048m'"
+        - CMD="mvn -e clean integration-test failsafe:verify -DargLine='-Duser.language=pt -Duser.country=PT -Xms1024m -Xmx2048m'"
     # unit tests in Turkish locale (oraclejdk8)
     - jdk: oraclejdk8
       env:
         - DESC="tests tr"
-        - CMD="mvn clean integration-test failsafe:verify -DargLine='-Duser.language=tr -Duser.country=TR -Xms1024m -Xmx2048m'"
+        - CMD="mvn -e clean integration-test failsafe:verify -DargLine='-Duser.language=tr -Duser.country=TR -Xms1024m -Xmx2048m'"
 
     # assembly (oraclejdk8)
     - jdk: oraclejdk8
@@ -157,7 +157,7 @@ matrix:
     - os: osx
       env:
         - DESC="MacOS verify, site, assembly"
-        - CMD="export JAVA_HOME=$(/usr/libexec/java_home) && mvn package -Dlinkcheck.skip=true && mvn package -Passembly "
+        - CMD="export JAVA_HOME=$(/usr/libexec/java_home) && mvn -e package -Dlinkcheck.skip=true && mvn -e package -Passembly "
 
     # https://sonarcloud.io (oraclejdk8)
     - jdk: oraclejdk8
@@ -210,6 +210,6 @@ after_success:
             && $SKIP_DEPLOY == 'false'
        ]];
     then
-        mvn -s config/deploy-settings.xml -Pno-validations deploy;
+        mvn -e -s config/deploy-settings.xml -Pno-validations deploy;
         echo "deploy to maven snapshot repository is finished";
     fi

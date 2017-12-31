@@ -7,7 +7,7 @@ set -e
 
 uname -a
 mvn --version
-mvn clean install -Pno-validations
+mvn -e clean install -Pno-validations
 git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester
 sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
 sed -i.'' 's/#spring-framework/spring-framework/' projects-to-test-on.properties

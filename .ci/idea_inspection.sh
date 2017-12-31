@@ -29,7 +29,7 @@ if [[ -z $IDEA_PATH ]]; then
 fi
 
 #Execute compilation of Checkstyle to generate all source files
-mvn compile
+mvn -e compile
 
 mkdir -p $RESULTS_DIR
 rm -rf $RESULTS_DIR/*
