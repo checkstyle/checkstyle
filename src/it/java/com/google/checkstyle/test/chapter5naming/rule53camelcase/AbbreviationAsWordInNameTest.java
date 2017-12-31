@@ -19,6 +19,8 @@
 
 package com.google.checkstyle.test.chapter5naming.rule53camelcase;
 
+import java.io.IOException;
+
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.AbstractModuleTestSupport;
@@ -58,7 +60,8 @@ public class AbbreviationAsWordInNameTest extends AbstractModuleTestSupport {
         verify(checkConfig, filePath, expected, warnList);
     }
 
-    private String getWarningMessage(String typeName, int expectedCapitalCount) {
+    private String getWarningMessage(String typeName, int expectedCapitalCount)
+            throws IOException {
         return getCheckMessage(clazz, MSG_KEY, typeName, expectedCapitalCount);
     }
 
