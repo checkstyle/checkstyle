@@ -16,6 +16,21 @@
   <body>
     <!-- placeholder for a new section -->
 
+    <section name="Release 8.7">
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Removed guava from api code. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3455">#3455</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            SuppressWithPlainTextCommentFilter: should not fail when violation is reported on directory. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5405">#5405</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 8.6">
       <p>Breaking backward compatibility:</p>
         <ul>
