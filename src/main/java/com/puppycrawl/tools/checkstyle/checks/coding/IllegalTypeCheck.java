@@ -325,8 +325,20 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * @param ast node to check.
      */
     private void checkClassName(DetailAST ast) {
-        final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
-        final FullIdent ident = CheckUtils.createFullType(type);
+        final List<DetailAST> types = CheckUtils.getChildsByTypes(ast, TokenTypes.TYPE,
+                TokenTypes.TYPE_LOWER_BOUNDS, TokenTypes.TYPE_UPPER_BOUNDS,
+                TokenTypes.TYPE_ARGUMENT);
+        for (final DetailAST type: types) {
+            checkName(type);
+        }
+    }
+
+    /**
+     * Checks name of given method, parameter, variable.
+     * @param ast node to check.
+     */
+    private void checkName(DetailAST ast) {
+        final FullIdent ident = CheckUtils.createFullType(ast);
 
         if (isMatchingClassName(ident.getText())) {
             log(ident.getLineNo(), ident.getColumnNo(),

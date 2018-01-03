@@ -152,6 +152,50 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testGenerics() throws Exception {
+        checkConfig.addAttribute("illegalClassNames", "Boolean, Foo");
+        final String[] expected = {
+            "4:22: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "5:37: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "13:18: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "16:23: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "18:50: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "22:12: " + getCheckMessage(MSG_KEY, "Foo"),
+            "22:26: " + getCheckMessage(MSG_KEY, "Foo"),
+        };
+        verify(checkConfig, getPath("InputIllegalTypeGenerics.java"), expected);
+    }
+
+    @Test
+    public void testGenericsMemberModifier() throws Exception {
+        checkConfig.addAttribute("memberModifiers", "LITERAL_PUBLIC, LITERAL_PROTECTED");
+        checkConfig.addAttribute("illegalClassNames",
+            "Boolean, Foo");
+        final String[] expected = {
+            "16:23: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "18:50: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "22:12: " + getCheckMessage(MSG_KEY, "Foo"),
+            "22:26: " + getCheckMessage(MSG_KEY, "Foo"),
+        };
+        verify(checkConfig, getPath("InputIllegalTypeGenerics.java"), expected);
+    }
+
+    @Test
+    public void testGenericIgnoreMethodNames() throws Exception {
+        checkConfig.addAttribute("ignoredMethodNames", "foo");
+        checkConfig.addAttribute("illegalClassNames", "Boolean, Foo");
+        final String[] expected = {
+            "4:22: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "5:37: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "18:50: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "22:12: " + getCheckMessage(MSG_KEY, "Foo"),
+            "22:26: " + getCheckMessage(MSG_KEY, "Foo"),
+        };
+
+        verify(checkConfig, getPath("InputIllegalTypeGenerics.java"), expected);
+    }
+
+    @Test
     public void testStarImports() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
         checkConfig.addAttribute("illegalClassNames", "List");

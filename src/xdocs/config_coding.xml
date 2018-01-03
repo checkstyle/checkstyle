@@ -2114,6 +2114,42 @@ class SomeClass
      LITERAL_PROTECTED, LITERAL_STATIC&quot;/&gt;
 &lt;/module&gt;
         </source>
+          <p>
+            To configure the check so that it ignores generics of type Boolean and Foo:
+          </p>
+        <source>
+&lt;module name="IllegalType"&gt;
+          &lt;property name=&quot;illegalClassNames&quot; value=&quot;Boolean, Foo&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <source>
+class Test {
+    private MyClass1 &lt;Boolean&gt; b; //violation
+    private java.util.List&lt;MyClass1&lt;Boolean&gt;&gt; lb; //violation
+    private class MyClass1&lt;T&gt; {}
+
+    private void foo(){
+        Bounded.&lt;Boolean&gt;foo(); //violation
+    }
+
+    public &lt;T extends Boolean&gt; void foo(T a) {} //violation
+
+    public void foo2(java.util.ArrayList&lt;? super Boolean&gt; a) {} //violation
+
+    private class MyClass2&lt;T extends Boolean&gt; {}
+
+    public Foo&lt;? extends Foo&gt; foo3() { //2 violations
+        return new Foo&lt;&gt;();
+    }
+}
+
+class Bounded {
+    public static &lt;T&gt; void foo() {}
+}
+
+class Foo&lt;T extends Foo&gt; {}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage">

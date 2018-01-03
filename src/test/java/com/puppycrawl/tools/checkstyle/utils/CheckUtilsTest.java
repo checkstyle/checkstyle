@@ -369,6 +369,35 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
         assertEquals("Result is not expected", expected, actual);
     }
 
+    @Test
+    public void testChildsByTypes() {
+        final DetailAST root = new DetailAST();
+        root.setType(TokenTypes.METHOD_DEF);
+        root.setText("root");
+
+        final DetailAST son = new DetailAST();
+        son.setType(TokenTypes.TYPE);
+        root.addChild(son);
+
+        final DetailAST grandson1 = new DetailAST();
+        grandson1.setType(TokenTypes.TYPE_ARGUMENT);
+        son.addChild(grandson1);
+
+        final DetailAST grandson2 = new DetailAST();
+        grandson2.setType(TokenTypes.GENERIC_START);
+        son.addChild(grandson2);
+
+        final DetailAST son2 = new DetailAST();
+        son2.setType(TokenTypes.TYPE_UPPER_BOUNDS);
+        root.addChild(son2);
+
+        final List<DetailAST> childs = CheckUtils.getChildsByTypes(root,
+                TokenTypes.TYPE_ARGUMENT, TokenTypes.TYPE);
+
+        assertEquals("Invalid getChildsByTypes", 2,
+                childs.size());
+    }
+
     private DetailAST getNodeFromFile(int type) throws Exception {
         return getNode(parseFile(new File(getPath("InputCheckUtilsTest.java"))), type);
     }

@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -464,5 +465,38 @@ public final class CheckUtils {
             }
         }
         return illegalClassNames;
+    }
+
+    /**
+     * Create list with all childs equals {@link TokenTypes} for AST node.
+     *
+     * @param nodeAST the node AST
+     * @param tokenTypes array {@link TokenTypes}
+     * @return list childs of nodeAST by {@link TokenTypes}
+     */
+    public static List<DetailAST> getChildsByTypes(final DetailAST nodeAST,
+                                                   final Integer... tokenTypes) {
+        final List<DetailAST> childByTypes = new ArrayList<>();
+        final Set<Integer> setTokenTypes = new HashSet<>(Arrays.asList(tokenTypes));
+        getAllChildsByTypes(nodeAST, setTokenTypes, childByTypes);
+        return childByTypes;
+    }
+
+    /**
+     * Recursively extract a child ast by {@link TokenTypes}.
+     *
+     * @param ast the node AST
+     * @param types set {@link TokenTypes}
+     * @param answer list childs of nodeAST by {@link TokenTypes}
+     */
+    private static void getAllChildsByTypes(DetailAST ast, final Set<Integer> types,
+                                            List<DetailAST> answer) {
+        if (types.contains(ast.getType())) {
+            answer.add(ast);
+        }
+
+        for (DetailAST child = ast.getFirstChild(); child != null; child = child.getNextSibling()) {
+            getAllChildsByTypes(child, types, answer);
+        }
     }
 }
