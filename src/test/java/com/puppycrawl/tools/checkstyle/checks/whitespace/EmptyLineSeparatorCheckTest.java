@@ -256,4 +256,5 @@ public class EmptyLineSeparatorCheckTest
                 getPath("package-info/test4/package-info.java"),
                 expected);
     }
+
 }

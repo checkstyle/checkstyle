@@ -234,4 +234,5 @@ public class EmptyBlockCheckTest
         final String path = getPath("InputEmptyBlockAnnotationDefaultKeyword.java");
         verify(checkConfig, path, expected);
     }
+
 }

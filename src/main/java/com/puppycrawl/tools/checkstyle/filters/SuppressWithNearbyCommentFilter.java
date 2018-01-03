@@ -426,5 +426,7 @@ public class SuppressWithNearbyCommentFilter
                     + ", tagMessageRegexp=" + tagMessageRegexp
                     + ']';
         }
+
     }
+
 }

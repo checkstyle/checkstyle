@@ -116,4 +116,5 @@ public class ParameterNumberCheckTest
         };
         verify(checkConfig, getPath("InputParameterNumber.java"), expected);
     }
+
 }

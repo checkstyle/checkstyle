@@ -98,4 +98,5 @@ public class ThreadModeSettings implements Serializable {
 
         return name;
     }
+
 }

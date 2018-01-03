@@ -309,4 +309,5 @@ public class DesignForExtensionCheck extends AbstractCheck {
 
         return hasDefaultConstructor || hasExplicitNonPrivateCtor;
     }
+
 }

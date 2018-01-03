@@ -107,4 +107,5 @@ public class Comment implements TextBlock {
                 + ", startColNo=" + startColNo
                 + ", endColNo=" + endColNo + ']';
     }
+
 }

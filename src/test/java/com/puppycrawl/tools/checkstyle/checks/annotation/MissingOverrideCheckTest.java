@@ -241,4 +241,5 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
         assertEquals("Invalid acceptable token size", 1, actual.length);
         Assert.assertArrayEquals("Default required tokens are invalid", expectedTokens, actual);
     }
+
 }

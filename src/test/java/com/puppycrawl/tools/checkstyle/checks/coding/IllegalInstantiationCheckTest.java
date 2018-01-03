@@ -199,4 +199,5 @@ public class IllegalInstantiationCheckTest
             // it is OK
         }
     }
+
 }

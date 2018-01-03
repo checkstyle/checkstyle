@@ -62,4 +62,5 @@ public class AbbreviationAsWordInNameTest extends AbstractModuleTestSupport {
     private String getWarningMessage(String typeName, int expectedCapitalCount) {
         return getCheckMessage(clazz, MSG_KEY, typeName, expectedCapitalCount);
     }
+
 }

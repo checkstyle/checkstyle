@@ -97,4 +97,5 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
 
         verify(checkConfig, getPath("InputCatchParameterName.java"), expected);
     }
+
 }

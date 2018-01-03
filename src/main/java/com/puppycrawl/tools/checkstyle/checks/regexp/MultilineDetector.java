@@ -139,4 +139,5 @@ class MultilineDetector {
     private void resetState() {
         currentMatches = 0;
     }
+
 }

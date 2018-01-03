@@ -1066,6 +1066,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         public boolean accept(AuditEvent event) {
             return false;
         }
+
     }
 
     private static class DummyFileSetViolationCheck extends AbstractFileSetCheck
@@ -1082,6 +1083,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             externalResourceLocation.add("non_existent_external_resource.xml");
             return externalResourceLocation;
         }
+
     }
 
     private static class DummyFilterSet extends FilterSet implements ExternalResourceHolder {
@@ -1092,6 +1094,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             strings.add("test");
             return strings;
         }
+
     }
 
     private static class DynamicalResourceHolderCheck extends AbstractFileSetCheck
@@ -1123,6 +1126,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             }
             return locations;
         }
+
     }
 
     private static class CheckWhichDoesNotRequireCommentNodes extends AbstractCheck {
@@ -1176,6 +1180,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 log(ast, msg);
             }
         }
+
     }
 
     private static class CheckWhichRequiresCommentNodes extends AbstractCheck {
@@ -1232,6 +1237,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 log(ast, msg);
             }
         }
+
     }
 
     private static class CheckWhichThrowsError extends AbstractCheck {
@@ -1255,6 +1261,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         public void visitToken(DetailAST ast) {
             throw new IndexOutOfBoundsException("test");
         }
+
     }
 
     private static class DummyFileSet extends AbstractFileSetCheck {
@@ -1303,5 +1310,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         public MessageDispatcher getInternalMessageDispatcher() {
             return getMessageDispatcher();
         }
+
     }
+
 }

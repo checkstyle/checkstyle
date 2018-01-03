@@ -873,6 +873,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
         public boolean isStaticImport() {
             return staticImport;
         }
+
     }
 
     /**
@@ -902,5 +903,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
             matchLength = length;
             matchPosition = position;
         }
+
     }
+
 }

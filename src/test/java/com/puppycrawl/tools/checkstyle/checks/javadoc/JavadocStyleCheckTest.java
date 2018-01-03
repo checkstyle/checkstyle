@@ -422,4 +422,5 @@ public class JavadocStyleCheckTest
                 "HtmlTag[id='id', lineNo=3, position=5, text='<a href=\"URL\"/>', "
                 + "closedTag=true, incompleteTag=false]", tag.toString());
     }
+
 }

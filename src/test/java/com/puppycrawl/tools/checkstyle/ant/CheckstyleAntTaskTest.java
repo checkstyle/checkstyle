@@ -819,6 +819,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
             list.add(mock);
             return list;
         }
+
     }
 
     private static class CheckstyleAntTaskLogStub extends CheckstyleAntTask {
@@ -839,6 +840,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         public List<MessageLevelPair> getLoggedMessages() {
             return Collections.unmodifiableList(loggedMessages);
         }
+
     }
 
     private static final class MessageLevelPair {
@@ -858,6 +860,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         public int getLevel() {
             return level;
         }
+
     }
 
 }

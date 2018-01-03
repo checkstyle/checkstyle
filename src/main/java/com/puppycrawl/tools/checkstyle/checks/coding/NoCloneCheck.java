@@ -157,4 +157,5 @@ public class NoCloneCheck extends AbstractCheck {
             }
         }
     }
+
 }

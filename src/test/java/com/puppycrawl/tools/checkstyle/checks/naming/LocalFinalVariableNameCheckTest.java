@@ -114,4 +114,5 @@ public class LocalFinalVariableNameCheckTest
         };
         verify(checkConfig, getPath("InputLocalFinalVariableNameTryResources.java"), expected);
     }
+
 }

@@ -120,4 +120,5 @@ public class DesignForExtensionCheckTest
         };
         verify(checkConfig, getPath("InputDesignForExtensionNativeMethods.java"), expected);
     }
+
 }

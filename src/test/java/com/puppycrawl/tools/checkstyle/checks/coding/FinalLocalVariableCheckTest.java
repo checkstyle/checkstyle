@@ -264,4 +264,5 @@ public class FinalLocalVariableCheckTest
         };
         verify(checkConfig, getPath("InputFinalLocalVariableAnonymousClass.java"), expected);
     }
+
 }

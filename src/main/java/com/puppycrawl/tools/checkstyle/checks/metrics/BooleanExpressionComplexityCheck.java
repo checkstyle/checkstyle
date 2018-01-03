@@ -254,5 +254,7 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
                     MSG_KEY, count, max);
             }
         }
+
     }
+
 }

@@ -353,4 +353,5 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         }
         return result;
     }
+
 }

@@ -46,4 +46,5 @@ public class SuperFinalizeCheck extends AbstractSuperCheck {
     protected String getMethodName() {
         return "finalize";
     }
+
 }

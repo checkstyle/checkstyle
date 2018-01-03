@@ -224,4 +224,5 @@ public class ImportControlTest {
     public void testRegExpParentUnknownPkg() {
         assertNull("Package should not be null", icRootRegexpParent.locateFinest("net.another"));
     }
+
 }

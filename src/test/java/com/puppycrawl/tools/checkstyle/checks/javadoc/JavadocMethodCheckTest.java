@@ -624,4 +624,5 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputJavadocMethodReceiverParameter.java"), expected);
     }
+
 }

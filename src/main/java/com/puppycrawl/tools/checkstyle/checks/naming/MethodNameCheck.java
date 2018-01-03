@@ -149,4 +149,5 @@ public class MethodNameCheck
     public void setAllowClassName(boolean allowClassName) {
         this.allowClassName = allowClassName;
     }
+
 }

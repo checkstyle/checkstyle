@@ -101,4 +101,5 @@ public class PkgImportRuleTest {
         assertEquals("Invalid access result", AccessResult.UNKNOWN, rule.verifyImport("hallo.a.b"));
         assertEquals("Invalid access result", AccessResult.UNKNOWN, rule.verifyImport("hallo"));
     }
+
 }

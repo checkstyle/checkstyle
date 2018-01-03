@@ -57,4 +57,5 @@ public final class PropertiesExpander
     public String resolve(String name) {
         return values.get(name);
     }
+
 }

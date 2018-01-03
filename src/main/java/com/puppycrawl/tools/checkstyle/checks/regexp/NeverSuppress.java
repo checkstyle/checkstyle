@@ -38,4 +38,5 @@ public final class NeverSuppress implements MatchSuppressor {
             int endLineNo, int endColNo) {
         return false;
     }
+
 }

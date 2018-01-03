@@ -67,4 +67,5 @@ public final class InvalidJavadocTag {
     public String getName() {
         return name;
     }
+
 }

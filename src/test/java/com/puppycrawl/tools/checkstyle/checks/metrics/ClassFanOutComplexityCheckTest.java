@@ -229,4 +229,5 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
         verify(moduleConfig,
                 getPath("InputClassFanOutComplexityPackageName.java"), expected);
     }
+
 }

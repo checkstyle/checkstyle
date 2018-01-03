@@ -87,4 +87,5 @@ public final class SeverityLevelCounter implements AuditListener {
     public int getCount() {
         return count.get();
     }
+
 }

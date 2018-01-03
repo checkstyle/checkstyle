@@ -349,4 +349,5 @@ public class DetailASTTest extends AbstractModuleTestSupport {
         final String badPrevMsg = badPrevFormatter.format(params);
         assertEquals(badPrevMsg, prev, node.getPreviousSibling());
     }
+
 }

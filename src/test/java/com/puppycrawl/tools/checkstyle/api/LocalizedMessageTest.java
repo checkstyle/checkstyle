@@ -258,4 +258,5 @@ public class LocalizedMessageTest {
         LocalizedMessage.clearCache();
         LocalizedMessage.setLocale(DEFAULT_LOCALE);
     }
+
 }

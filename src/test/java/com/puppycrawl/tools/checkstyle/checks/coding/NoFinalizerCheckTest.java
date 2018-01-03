@@ -59,4 +59,5 @@ public class NoFinalizerCheckTest
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputNoFinalizerFallThrough.java"), expected);
     }
+
 }

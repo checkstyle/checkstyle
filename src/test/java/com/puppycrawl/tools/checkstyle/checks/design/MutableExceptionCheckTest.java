@@ -128,4 +128,5 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
             //expected
         }
     }
+
 }

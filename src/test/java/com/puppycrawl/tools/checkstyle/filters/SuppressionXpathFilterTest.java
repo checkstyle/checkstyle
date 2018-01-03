@@ -184,4 +184,5 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
         suppressionXpathFilter.finishLocalSetup();
         return suppressionXpathFilter;
     }
+
 }

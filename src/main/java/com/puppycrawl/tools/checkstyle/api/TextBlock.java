@@ -76,4 +76,5 @@ public interface TextBlock {
      */
     boolean intersects(int startLineNo, int startColNo,
                        int endLineNo, int endColNo);
+
 }

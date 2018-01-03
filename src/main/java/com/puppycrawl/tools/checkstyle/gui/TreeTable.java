@@ -297,5 +297,7 @@ public class TreeTable extends JTable {
 
             return false;
         }
+
     }
+
 }

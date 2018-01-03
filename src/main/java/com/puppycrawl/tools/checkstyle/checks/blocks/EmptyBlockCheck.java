@@ -253,4 +253,5 @@ public class EmptyBlockCheck
         }
         return leftCurly;
     }
+
 }

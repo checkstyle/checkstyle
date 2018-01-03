@@ -245,4 +245,5 @@ public class MemberNameCheckTest
         };
         assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
+
 }

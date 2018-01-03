@@ -64,4 +64,5 @@ public class UpperEllCheckTest
         assertEquals("Invalid size of tokens", 1, actual.length);
         assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
+
 }

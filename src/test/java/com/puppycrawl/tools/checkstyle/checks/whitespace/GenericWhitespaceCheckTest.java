@@ -170,4 +170,5 @@ public class GenericWhitespaceCheckTest
                 "Unknown type interface[0x-1]", ex.getMessage());
         }
     }
+
 }

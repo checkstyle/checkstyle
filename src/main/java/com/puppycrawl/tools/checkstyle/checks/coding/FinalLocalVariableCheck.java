@@ -723,6 +723,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             }
             return result;
         }
+
     }
 
     /**Represents information about final local variable candidate. */
@@ -742,5 +743,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         FinalVariableCandidate(DetailAST variableIdent) {
             this.variableIdent = variableIdent;
         }
+
     }
+
 }

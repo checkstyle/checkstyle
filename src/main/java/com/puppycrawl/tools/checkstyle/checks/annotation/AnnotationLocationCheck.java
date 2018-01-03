@@ -439,4 +439,5 @@ public class AnnotationLocationCheck extends AbstractCheck {
         }
         return returnValue;
     }
+
 }

@@ -82,4 +82,5 @@ public class CommentsTest extends AbstractTreeTestSupport {
         Assert.assertFalse("Invalid intersection result", comment.intersects(90, 7, 91, 20));
         Assert.assertFalse("Invalid intersection result", comment.intersects(89, 56, 89, 80));
     }
+
 }

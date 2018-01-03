@@ -997,6 +997,7 @@ public class RequireThisCheck extends AbstractCheck {
         CATCH_FRAME,
         /** Lambda frame type. */
         FOR_FRAME,
+
     }
 
     /**
@@ -1126,6 +1127,7 @@ public class RequireThisCheck extends AbstractCheck {
             }
             return result;
         }
+
     }
 
     /**
@@ -1148,6 +1150,7 @@ public class RequireThisCheck extends AbstractCheck {
         protected FrameType getType() {
             return FrameType.METHOD_FRAME;
         }
+
     }
 
     /**
@@ -1169,6 +1172,7 @@ public class RequireThisCheck extends AbstractCheck {
         protected FrameType getType() {
             return FrameType.CTOR_FRAME;
         }
+
     }
 
     /**
@@ -1358,6 +1362,7 @@ public class RequireThisCheck extends AbstractCheck {
             }
             return result;
         }
+
     }
 
     /**
@@ -1382,6 +1387,7 @@ public class RequireThisCheck extends AbstractCheck {
         protected String getFrameName() {
             return frameName;
         }
+
     }
 
     /**
@@ -1403,6 +1409,7 @@ public class RequireThisCheck extends AbstractCheck {
         protected FrameType getType() {
             return FrameType.BLOCK_FRAME;
         }
+
     }
 
     /**
@@ -1424,6 +1431,7 @@ public class RequireThisCheck extends AbstractCheck {
         public FrameType getType() {
             return FrameType.CATCH_FRAME;
         }
+
     }
 
     /**
@@ -1445,5 +1453,7 @@ public class RequireThisCheck extends AbstractCheck {
         public FrameType getType() {
             return FrameType.FOR_FRAME;
         }
+
     }
+
 }

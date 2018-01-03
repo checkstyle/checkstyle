@@ -251,5 +251,7 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
             messages.put("key", "value");
             return messages;
         }
+
     }
+
 }

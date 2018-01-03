@@ -445,4 +445,5 @@ public class RootNodeTest extends AbstractPathTestSupport {
         assertFalse("Should return false, because object does not equal null",
                 rootNode.isSameNodeInfo(null));
     }
+
 }

@@ -401,4 +401,5 @@ public class FallThroughCheck extends AbstractCheck {
         }
         return matches;
     }
+
 }

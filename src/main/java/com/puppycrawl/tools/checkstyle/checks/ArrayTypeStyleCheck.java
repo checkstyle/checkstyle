@@ -86,4 +86,5 @@ public class ArrayTypeStyleCheck extends AbstractCheck {
     public void setJavaStyle(boolean javaStyle) {
         this.javaStyle = javaStyle;
     }
+
 }

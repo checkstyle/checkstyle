@@ -60,4 +60,5 @@ class ClassImportRule extends AbstractImportRule {
 
         return calculateResult(classMatch);
     }
+
 }

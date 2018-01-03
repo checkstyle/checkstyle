@@ -46,4 +46,5 @@ public class Java7NumericalLiteralsTest
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputJava7NumericalLiterals.java"), expected);
     }
+
 }

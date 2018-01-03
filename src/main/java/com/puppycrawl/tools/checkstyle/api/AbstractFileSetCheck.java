@@ -179,4 +179,5 @@ public abstract class AbstractFileSetCheck
         MESSAGE_COLLECTOR.get().clear();
         messageDispatcher.fireErrors(fileName, errors);
     }
+
 }

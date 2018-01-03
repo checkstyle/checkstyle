@@ -76,4 +76,5 @@ public enum Scope {
     public static Scope getInstance(String scopeName) {
         return valueOf(Scope.class, scopeName.trim().toUpperCase(Locale.ENGLISH));
     }
+
 }

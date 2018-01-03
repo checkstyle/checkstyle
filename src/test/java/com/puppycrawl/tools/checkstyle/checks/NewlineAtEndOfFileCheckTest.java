@@ -266,4 +266,5 @@ public class NewlineAtEndOfFileCheckTest
             }
         }
     }
+
 }

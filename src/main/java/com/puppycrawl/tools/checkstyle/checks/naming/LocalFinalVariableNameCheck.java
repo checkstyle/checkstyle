@@ -85,4 +85,5 @@ public class LocalFinalVariableNameCheck
             || modifiersAST.findFirstToken(TokenTypes.FINAL) != null;
         return isFinal && ScopeUtils.isLocalVariableDef(ast);
     }
+
 }

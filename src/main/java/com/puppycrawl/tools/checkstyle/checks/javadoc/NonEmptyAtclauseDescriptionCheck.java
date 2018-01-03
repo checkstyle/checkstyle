@@ -70,4 +70,5 @@ public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck {
                 JavadocUtils.findFirstToken(tagNode, JavadocTokenTypes.DESCRIPTION);
         return tagDescription == null;
     }
+
 }

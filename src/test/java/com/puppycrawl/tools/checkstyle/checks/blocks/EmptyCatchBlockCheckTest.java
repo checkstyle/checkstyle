@@ -80,4 +80,5 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
         final int[] expected = {TokenTypes.LITERAL_CATCH };
         assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
+
 }

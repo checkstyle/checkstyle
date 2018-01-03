@@ -303,4 +303,5 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     private int getLineWrappingIndent() {
         return getIndentCheck().getLineWrappingIndentation();
     }
+
 }

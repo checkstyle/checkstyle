@@ -91,4 +91,5 @@ public class JavadocTagContinuationIndentationCheckTest
         verify(checkConfig, getPath("InputJavadocTagContinuationIndentationOffset3.java"),
                 expected);
     }
+
 }

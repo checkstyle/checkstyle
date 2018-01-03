@@ -68,4 +68,5 @@ public class AvoidInlineConditionalsCheck extends AbstractCheck {
 
         log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
     }
+
 }

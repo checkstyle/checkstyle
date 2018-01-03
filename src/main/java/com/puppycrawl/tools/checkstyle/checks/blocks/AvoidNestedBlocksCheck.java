@@ -134,4 +134,5 @@ public class AvoidNestedBlocksCheck extends AbstractCheck {
     public void setAllowInSwitchCase(boolean allowInSwitchCase) {
         this.allowInSwitchCase = allowInSwitchCase;
     }
+
 }

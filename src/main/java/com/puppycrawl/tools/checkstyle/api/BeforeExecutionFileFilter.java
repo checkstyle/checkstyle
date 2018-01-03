@@ -32,4 +32,5 @@ public interface BeforeExecutionFileFilter {
      * @return true if the event is accepted.
      */
     boolean accept(String uri);
+
 }

@@ -47,4 +47,5 @@ public class IntMatchFilterTest {
         final IntFilter filter = new IntMatchFilter(6);
         assertEquals("Invalid toString result", "IntMatchFilter[6]", filter.toString());
     }
+
 }

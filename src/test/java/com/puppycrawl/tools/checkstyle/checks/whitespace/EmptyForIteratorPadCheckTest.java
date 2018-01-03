@@ -99,4 +99,5 @@ public class EmptyForIteratorPadCheckTest
                 ex.getMessage().startsWith(messageStart));
         }
     }
+
 }

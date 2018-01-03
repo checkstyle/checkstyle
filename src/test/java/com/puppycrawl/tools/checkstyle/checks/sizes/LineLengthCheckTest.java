@@ -102,4 +102,5 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getNonCompilablePath("InputLineLengthLongPackageStatement.java"),
                 expected);
     }
+
 }

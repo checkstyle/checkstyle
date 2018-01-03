@@ -334,5 +334,7 @@ public class JavaNCSSCheck extends AbstractCheck {
         public int getCount() {
             return count;
         }
+
     }
+
 }

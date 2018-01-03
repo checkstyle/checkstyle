@@ -82,4 +82,5 @@ public abstract class AbstractNameCheck
             }
         }
     }
+
 }

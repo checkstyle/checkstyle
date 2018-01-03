@@ -229,4 +229,5 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
             parameterDefAST = parameterDefAST.getNextSibling();
         }
     }
+
 }

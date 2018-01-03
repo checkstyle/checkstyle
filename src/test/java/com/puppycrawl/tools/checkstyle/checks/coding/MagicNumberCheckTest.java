@@ -438,4 +438,5 @@ public class MagicNumberCheckTest
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
+
 }

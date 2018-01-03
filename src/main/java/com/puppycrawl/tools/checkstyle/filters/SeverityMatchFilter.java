@@ -70,4 +70,5 @@ public class SeverityMatchFilter
         final boolean severityMatches = severity == event.getSeverityLevel();
         return acceptOnMatch == severityMatches;
     }
+
 }

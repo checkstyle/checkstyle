@@ -140,4 +140,5 @@ public class LineLengthCheck extends AbstractCheck {
     public final void setIgnorePattern(Pattern pattern) {
         ignorePattern = pattern;
     }
+
 }

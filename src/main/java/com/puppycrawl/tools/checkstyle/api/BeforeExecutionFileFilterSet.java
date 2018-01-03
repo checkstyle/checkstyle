@@ -80,4 +80,5 @@ public final class BeforeExecutionFileFilterSet
     public void clear() {
         beforeExecutionFileFilters.clear();
     }
+
 }

@@ -253,4 +253,5 @@ public class NoWhitespaceAfterCheckTest
         astSemi.initialize(tokenImportSemi);
         return astSemi;
     }
+
 }

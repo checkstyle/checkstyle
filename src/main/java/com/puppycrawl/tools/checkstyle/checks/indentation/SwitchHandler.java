@@ -82,4 +82,5 @@ public class SwitchHandler extends BlockParentHandler {
         checkSwitchExpr();
         super.checkIndentation();
     }
+
 }

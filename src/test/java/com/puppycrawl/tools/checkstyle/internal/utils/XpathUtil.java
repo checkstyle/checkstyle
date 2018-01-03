@@ -51,4 +51,5 @@ public final class XpathUtil {
                 .createDynamicContext(rootNode);
         return xpathExpression.evaluate(xpathDynamicContext);
     }
+
 }

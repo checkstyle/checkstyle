@@ -217,4 +217,5 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
 
         verify(checkConfig, getPath("InputClassDataAbstractionCoupling.java"), expected);
     }
+
 }

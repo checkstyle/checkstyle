@@ -461,6 +461,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         public void visitJavadocToken(DetailNode ast) {
             // do nothing
         }
+
     }
 
     private static class JavadocCatchCheck extends AbstractJavadocCheck {
@@ -484,6 +485,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             assertEquals(ast.toString(), "Javadoc", text.getText());
             javadocsNumber++;
         }
+
     }
 
     private static class RequiredTokenIsNotInDefaultsJavadocCheck extends AbstractJavadocCheck {
@@ -507,6 +509,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         public void visitJavadocToken(DetailNode ast) {
             // not used
         }
+
     }
 
     private static class TokenIsNotInAcceptablesJavadocCheck extends AbstractJavadocCheck {
@@ -530,6 +533,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         public void visitJavadocToken(DetailNode ast) {
             // not used
         }
+
     }
 
     private static class JavadocVisitLeaveCheck extends AbstractJavadocCheck {
@@ -566,6 +570,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         public void leaveJavadocToken(DetailNode ast) {
             leaveCount++;
         }
+
     }
 
     public static class NonTightHtmlTagIntolerantCheck extends AbstractJavadocCheck {
@@ -596,6 +601,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         public boolean acceptJavadocWithNonTightHtml() {
             return false;
         }
+
     }
 
     public static class NonTightHtmlTagTolerantCheck extends AbstractJavadocCheck {
@@ -621,5 +627,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
                 log(ast.getLineNumber(), ast.getColumnNumber(), MSG_SUMMARY_FIRST_SENTENCE);
             }
         }
+
     }
+
 }

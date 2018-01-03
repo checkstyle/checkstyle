@@ -114,4 +114,5 @@ public class GenericWhitespaceTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputGenericWhitespaceEndsTheLine.java"),
                 expected);
     }
+
 }

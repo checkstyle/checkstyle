@@ -66,6 +66,7 @@ public class LineWrappingHandler {
             }
             return option;
         }
+
     }
 
     /**
@@ -370,4 +371,5 @@ public class LineWrappingHandler {
             }
         }
     }
+
 }

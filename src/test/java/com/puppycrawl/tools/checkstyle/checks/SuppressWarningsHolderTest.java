@@ -356,4 +356,5 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
                 moduleId, MemberNameCheck.class, "message");
         return new AuditEvent(source, "filename", message);
     }
+
 }

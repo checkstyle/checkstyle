@@ -586,5 +586,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
             }
             return containsFile;
         }
+
     }
+
 }

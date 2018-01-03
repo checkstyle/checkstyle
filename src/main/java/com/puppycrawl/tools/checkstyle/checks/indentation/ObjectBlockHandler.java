@@ -102,4 +102,5 @@ public class ObjectBlockHandler extends BlockParentHandler {
     private int getLineWrappingIndentation() {
         return getIndentCheck().getLineWrappingIndentation();
     }
+
 }

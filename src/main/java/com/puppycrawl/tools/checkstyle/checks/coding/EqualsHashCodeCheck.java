@@ -171,4 +171,5 @@ public class EqualsHashCodeCheck
             log(equalsAST.getLineNo(), equalsAST.getColumnNo(), MSG_KEY_EQUALS);
         });
     }
+
 }

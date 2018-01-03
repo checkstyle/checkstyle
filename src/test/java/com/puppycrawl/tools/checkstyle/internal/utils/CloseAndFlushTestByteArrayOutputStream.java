@@ -50,4 +50,5 @@ public final class CloseAndFlushTestByteArrayOutputStream extends ByteArrayOutpu
     public int getFlushCount() {
         return flushCount;
     }
+
 }

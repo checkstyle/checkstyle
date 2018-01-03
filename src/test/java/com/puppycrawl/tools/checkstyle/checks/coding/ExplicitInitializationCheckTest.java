@@ -91,4 +91,5 @@ public class ExplicitInitializationCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputExplicitInitialization.java"), expected);
     }
+
 }

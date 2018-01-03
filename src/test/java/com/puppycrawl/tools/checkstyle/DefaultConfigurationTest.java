@@ -72,4 +72,5 @@ public class DefaultConfigurationTest {
         final DefaultConfiguration config = new DefaultConfiguration(name, multiThreadMode);
         assertEquals("Invalid thread mode", multiThreadMode, config.getThreadModeSettings());
     }
+
 }

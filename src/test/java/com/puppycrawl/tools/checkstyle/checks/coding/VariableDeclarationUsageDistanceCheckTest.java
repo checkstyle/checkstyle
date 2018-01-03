@@ -266,4 +266,5 @@ public class VariableDeclarationUsageDistanceCheckTest extends
 
         verify(checkConfig, getPath("InputVariableDeclarationUsageDistanceLabels.java"), expected);
     }
+
 }

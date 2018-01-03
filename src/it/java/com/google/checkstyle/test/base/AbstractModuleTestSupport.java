@@ -71,6 +71,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
          * a root of default configuration.
          */
         IN_CHECKER
+
     }
 
     private static final Pattern WARN_PATTERN = CommonUtils
@@ -426,4 +427,5 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         }
         return result.toArray(new Integer[result.size()]);
     }
+
 }

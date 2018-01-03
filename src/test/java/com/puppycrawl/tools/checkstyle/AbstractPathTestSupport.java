@@ -65,4 +65,5 @@ public abstract class AbstractPathTestSupport {
                 Paths.get(filename)), StandardCharsets.UTF_8)
                 .replaceAll(CRLF_REGEX, LF_REGEX);
     }
+
 }

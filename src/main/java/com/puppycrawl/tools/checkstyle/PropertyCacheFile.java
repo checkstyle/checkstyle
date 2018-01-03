@@ -378,5 +378,7 @@ final class PropertyCacheFile {
             this.location = location;
             this.contentHashSum = contentHashSum;
         }
+
     }
+
 }

@@ -73,4 +73,5 @@ public class FileTabCharacterCheck extends AbstractFileSetCheck {
     public void setEachLine(boolean eachLine) {
         this.eachLine = eachLine;
     }
+
 }

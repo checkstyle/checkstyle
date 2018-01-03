@@ -92,4 +92,5 @@ public class TestRootModuleChecker implements RootModule {
     public static Configuration getConfig() {
         return config;
     }
+
 }

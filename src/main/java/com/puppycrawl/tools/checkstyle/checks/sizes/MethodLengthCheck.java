@@ -143,4 +143,5 @@ public class MethodLengthCheck extends AbstractCheck {
     public void setCountEmpty(boolean countEmpty) {
         this.countEmpty = countEmpty;
     }
+
 }

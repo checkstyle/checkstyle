@@ -142,4 +142,5 @@ public class ArrayInitHandler extends BlockParentHandler {
     private int getLineWrappingIndentation() {
         return getIndentCheck().getLineWrappingIndentation();
     }
+
 }

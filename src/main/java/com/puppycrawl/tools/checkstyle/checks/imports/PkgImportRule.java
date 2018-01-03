@@ -79,4 +79,5 @@ class PkgImportRule extends AbstractImportRule {
 
         return calculateResult(pkgMatch);
     }
+
 }

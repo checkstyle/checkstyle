@@ -262,4 +262,5 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         javadocText = CharMatcher.whitespace().trimAndCollapseFrom(javadocText, ' ');
         return forbiddenSummaryFragments.matcher(javadocText).find();
     }
+
 }

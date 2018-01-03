@@ -211,4 +211,5 @@ public class JavadocTokenTypesTest {
                 + " `JavadocTokenTypes.java` has a value of 10000",
                 10000, ruleTypesOffset.getInt(null));
     }
+
 }

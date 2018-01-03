@@ -170,4 +170,5 @@ public class IllegalTokenTextCheck
         }
         format = CommonUtils.createPattern(formatString, compileFlags);
     }
+
 }

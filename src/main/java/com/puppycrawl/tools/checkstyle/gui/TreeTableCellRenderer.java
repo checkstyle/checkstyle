@@ -132,4 +132,5 @@ class TreeTableCellRenderer extends JTree implements
         visibleRow = row;
         return this;
     }
+
 }

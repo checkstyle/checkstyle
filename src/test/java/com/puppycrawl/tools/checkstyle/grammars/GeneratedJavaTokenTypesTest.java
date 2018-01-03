@@ -257,4 +257,5 @@ public class GeneratedJavaTokenTypesTest {
                 + " that their old numbering didn't change", 196,
                 GeneratedJavaTokenTypes.class.getDeclaredFields().length);
     }
+
 }

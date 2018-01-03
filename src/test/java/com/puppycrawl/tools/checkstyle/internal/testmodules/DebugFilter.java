@@ -39,4 +39,5 @@ public final class DebugFilter implements Filter {
     public void resetFilter() {
         called = false;
     }
+
 }

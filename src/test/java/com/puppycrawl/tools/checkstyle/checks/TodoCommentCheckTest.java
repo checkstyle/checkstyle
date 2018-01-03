@@ -69,4 +69,5 @@ public class TodoCommentCheckTest
         assertArrayEquals("Acceptable tokens differs from expected",
                 expected, actual);
     }
+
 }

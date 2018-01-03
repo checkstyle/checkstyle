@@ -624,4 +624,5 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
             cacheFile.reset();
         }
     }
+
 }

@@ -42,4 +42,5 @@ public class BriefUtLogger extends DefaultLogger {
     public void auditStarted(AuditEvent event) {
         //has to NOT log audit started event
     }
+
 }

@@ -868,4 +868,5 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         final Matcher matcher = ignoreVariablePattern.matcher(variable);
         return matcher.matches();
     }
+
 }

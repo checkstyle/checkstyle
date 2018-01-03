@@ -364,5 +364,7 @@ public class FinalClassCheck
         private boolean isDeclaredAsAbstract() {
             return declaredAsAbstract;
         }
+
     }
+
 }

@@ -113,4 +113,5 @@ public class IfHandler extends BlockParentHandler {
     private static DetailAST getIfStatementRightParen(DetailAST literalIfAst) {
         return literalIfAst.findFirstToken(TokenTypes.RPAREN);
     }
+
 }

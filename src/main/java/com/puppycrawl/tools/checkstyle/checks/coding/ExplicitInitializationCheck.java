@@ -208,4 +208,5 @@ public class ExplicitInitializationCheck extends AbstractCheck {
         }
         return isZero;
     }
+
 }

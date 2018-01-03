@@ -39,4 +39,5 @@ public interface Contextualizable {
      * @throws CheckstyleException if there is a contextualization error.
      */
     void contextualize(Context context) throws CheckstyleException;
+
 }

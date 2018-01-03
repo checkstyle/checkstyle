@@ -193,4 +193,5 @@ public class ParseTreeTableModel implements TreeModel {
     public boolean isCellEditable(int column) {
         return pModel.isCellEditable(column);
     }
+
 }

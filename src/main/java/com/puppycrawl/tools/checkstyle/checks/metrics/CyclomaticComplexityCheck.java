@@ -226,4 +226,5 @@ public class CyclomaticComplexityCheck
     private void visitMethodDef() {
         pushValue();
     }
+
 }

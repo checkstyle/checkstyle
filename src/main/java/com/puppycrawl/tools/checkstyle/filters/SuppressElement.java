@@ -187,4 +187,5 @@ public class SuppressElement
                 && Objects.equals(linesCsv, suppressElement.linesCsv)
                 && Objects.equals(columnsCsv, suppressElement.columnsCsv);
     }
+
 }

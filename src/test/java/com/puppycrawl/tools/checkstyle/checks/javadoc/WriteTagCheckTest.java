@@ -233,4 +233,5 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         }
         checker.destroy();
     }
+
 }

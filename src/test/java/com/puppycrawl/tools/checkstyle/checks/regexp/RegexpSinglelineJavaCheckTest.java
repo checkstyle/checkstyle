@@ -247,4 +247,5 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputRegexpSinglelineJavaSemantic.java"), expected);
     }
+
 }

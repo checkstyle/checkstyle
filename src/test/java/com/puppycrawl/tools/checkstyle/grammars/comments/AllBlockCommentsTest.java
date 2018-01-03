@@ -95,5 +95,7 @@ public class AllBlockCommentsTest extends AbstractModuleTestSupport {
                 Assert.fail("Unexpected comment: " + commentContent);
             }
         }
+
     }
+
 }

@@ -382,4 +382,5 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
                 ex.getMessage().startsWith(messageStart));
         }
     }
+
 }

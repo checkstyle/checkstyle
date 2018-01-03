@@ -111,4 +111,5 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
         assertEquals("Generated tree from the javadoc file should match the pre-defined tree",
                 expectedContents, actualContents);
     }
+
 }

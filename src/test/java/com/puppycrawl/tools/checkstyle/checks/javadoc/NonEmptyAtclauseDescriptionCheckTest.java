@@ -87,4 +87,5 @@ public class NonEmptyAtclauseDescriptionCheckTest
         };
         verify(checkConfig, getPath("InputNonEmptyAtclauseDescription.java"), expected);
     }
+
 }

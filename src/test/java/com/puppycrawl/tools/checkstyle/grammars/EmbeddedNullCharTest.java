@@ -46,4 +46,5 @@ public class EmbeddedNullCharTest
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputEmbeddedNullChar.java"), expected);
     }
+
 }

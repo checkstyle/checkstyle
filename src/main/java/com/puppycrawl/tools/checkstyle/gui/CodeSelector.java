@@ -68,4 +68,5 @@ public class CodeSelector {
         editor.setCaretPosition(pModel.getSelectionStart());
         editor.moveCaretPosition(pModel.getSelectionEnd());
     }
+
 }

@@ -326,4 +326,5 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
         verify(checkConfig, getPath("InputAbbreviationAsWordInNameReceiver.java"),
                 expected);
     }
+
 }

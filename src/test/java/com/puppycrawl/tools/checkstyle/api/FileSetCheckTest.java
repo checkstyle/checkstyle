@@ -87,5 +87,7 @@ public class FileSetCheckTest
         public void finishProcessing() {
             fileContentAvailable = contents != null;
         }
+
     }
+
 }

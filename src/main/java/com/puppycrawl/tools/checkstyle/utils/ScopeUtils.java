@@ -284,4 +284,5 @@ public final class ScopeUtils {
         final Scope surroundingScopeOfAstToken = getSurroundingScope(ast);
         return surroundingScopeOfAstToken == scope;
     }
+
 }

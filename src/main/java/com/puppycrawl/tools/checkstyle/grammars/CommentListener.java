@@ -56,4 +56,5 @@ public interface CommentListener {
     void reportBlockComment(String type,
                             int startLineNo, int startColNo,
                             int endLineNo, int endColNo);
+
 }

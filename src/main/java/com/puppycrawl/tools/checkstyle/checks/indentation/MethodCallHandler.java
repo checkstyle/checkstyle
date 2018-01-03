@@ -206,4 +206,5 @@ public class MethodCallHandler extends AbstractExpressionHandler {
     private static DetailAST getMethodCallLastNode(DetailAST firstNode) {
         return firstNode.getLastChild();
     }
+
 }

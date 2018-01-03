@@ -82,4 +82,5 @@ public class StaticVariableNameCheck
                 && shouldCheckInScope(modifiersAST)
                 && !ScopeUtils.isInInterfaceOrAnnotationBlock(ast);
     }
+
 }

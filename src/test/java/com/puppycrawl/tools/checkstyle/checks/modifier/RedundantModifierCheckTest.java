@@ -251,4 +251,5 @@ public class RedundantModifierCheckTest
         verify(checkConfig, getPath("InputRedundantModifierAnnotationOnEnumConstructor.java"),
                 expected);
     }
+
 }

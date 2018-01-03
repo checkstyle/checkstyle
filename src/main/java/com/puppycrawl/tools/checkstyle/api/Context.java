@@ -42,4 +42,5 @@ public interface Context {
      * @return the names of all attributes of this context.
      */
     Collection<String> getAttributeNames();
+
 }

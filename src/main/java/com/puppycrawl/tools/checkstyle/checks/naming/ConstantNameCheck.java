@@ -100,4 +100,5 @@ public class ConstantNameCheck
 
         return returnValue;
     }
+
 }

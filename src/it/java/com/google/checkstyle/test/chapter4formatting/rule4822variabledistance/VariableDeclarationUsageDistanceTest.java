@@ -53,4 +53,5 @@ public class VariableDeclarationUsageDistanceTest extends AbstractModuleTestSupp
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

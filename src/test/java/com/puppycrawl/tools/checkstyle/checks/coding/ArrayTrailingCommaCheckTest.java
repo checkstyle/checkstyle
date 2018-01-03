@@ -54,4 +54,5 @@ public class ArrayTrailingCommaCheckTest
         Assert.assertNotNull("Invalid default tokens", check.getDefaultTokens());
         Assert.assertNotNull("Invalid required tokens", check.getRequiredTokens());
     }
+
 }

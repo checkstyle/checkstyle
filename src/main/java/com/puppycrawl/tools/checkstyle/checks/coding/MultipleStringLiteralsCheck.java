@@ -224,6 +224,7 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
         private int getCol() {
             return col;
         }
+
     }
 
 }

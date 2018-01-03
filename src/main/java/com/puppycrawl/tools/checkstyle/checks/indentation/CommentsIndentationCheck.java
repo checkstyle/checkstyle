@@ -959,4 +959,5 @@ public class CommentsIndentationCheck extends AbstractCheck {
         return !CommonUtils.hasWhitespaceBefore(commentColumnNo, commentLine)
             || nextSibling != null && nextSibling.getLineNo() == blockComment.getLineNo();
     }
+
 }

@@ -72,4 +72,5 @@ public interface AuditListener
      * @param throwable details of the exception
      */
     void addException(AuditEvent event, Throwable throwable);
+
 }

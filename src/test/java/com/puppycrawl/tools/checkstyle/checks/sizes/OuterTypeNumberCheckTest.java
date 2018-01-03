@@ -90,4 +90,5 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputOuterTypeNumberEmptyInner.java"), expected);
     }
+
 }

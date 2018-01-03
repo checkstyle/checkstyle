@@ -60,6 +60,7 @@ public class XmlLoaderTest {
                 throws SAXException, ParserConfigurationException {
             super(publicIdToResourceNameMap);
         }
+
     }
 
 }

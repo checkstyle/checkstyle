@@ -197,4 +197,5 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
     public void setPath(Pattern pattern) {
         path = pattern;
     }
+
 }

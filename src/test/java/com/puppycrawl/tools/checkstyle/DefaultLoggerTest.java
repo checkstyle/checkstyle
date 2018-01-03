@@ -127,4 +127,5 @@ public class DefaultLoggerTest {
         dl.auditFinished(null);
         assertNotNull("instance should not be null", dl);
     }
+
 }

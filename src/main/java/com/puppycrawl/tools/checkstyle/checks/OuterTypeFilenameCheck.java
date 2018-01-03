@@ -127,4 +127,5 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
         name = FILE_EXTENSION_PATTERN.matcher(name).replaceAll("");
         return name;
     }
+
 }

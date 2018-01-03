@@ -590,5 +590,7 @@ public class RightCurlyCheck extends AbstractCheck {
             }
             return CheckUtils.getFirstNode(next);
         }
+
     }
+
 }

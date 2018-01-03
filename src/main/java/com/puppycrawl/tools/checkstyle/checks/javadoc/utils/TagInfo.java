@@ -79,5 +79,6 @@ public final class TagInfo {
     public LineColumn getPosition() {
         return position;
     }
+
 }
 

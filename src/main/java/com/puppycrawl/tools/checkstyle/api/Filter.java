@@ -32,4 +32,5 @@ public interface Filter {
      * @return true if the event is accepted.
      */
     boolean accept(AuditEvent event);
+
 }

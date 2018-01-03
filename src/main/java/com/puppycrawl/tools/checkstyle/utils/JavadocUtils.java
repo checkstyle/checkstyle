@@ -56,6 +56,7 @@ public final class JavadocUtils {
         INLINE,
         /** All validTags. */
         ALL
+
     }
 
     /** Maps from a token name to value. */
@@ -438,4 +439,5 @@ public final class JavadocUtils {
             && (BlockCommentPosition.isOnType(blockComment)
                 || BlockCommentPosition.isOnMember(blockComment));
     }
+
 }

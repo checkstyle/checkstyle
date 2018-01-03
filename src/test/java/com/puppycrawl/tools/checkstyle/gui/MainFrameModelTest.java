@@ -225,4 +225,5 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
 
         assertNotNull("ParseTree table model should not be null", model.getParseTreeTableModel());
     }
+
 }

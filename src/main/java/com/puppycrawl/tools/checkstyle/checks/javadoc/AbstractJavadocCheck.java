@@ -395,5 +395,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
          * in Java language syntax tree.
          */
         private DetailAST blockCommentAst;
+
     }
+
 }

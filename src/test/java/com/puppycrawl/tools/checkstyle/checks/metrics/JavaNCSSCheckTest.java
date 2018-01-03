@@ -168,4 +168,5 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
         Assert.assertNotNull("Required tokens should not be null", actual);
         Assert.assertArrayEquals("Invalid required tokens", expected, actual);
     }
+
 }

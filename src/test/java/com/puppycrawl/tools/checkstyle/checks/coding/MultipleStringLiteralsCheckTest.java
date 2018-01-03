@@ -167,4 +167,5 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
             getPath("InputMultipleStringLiterals.java"),
             expected);
     }
+
 }

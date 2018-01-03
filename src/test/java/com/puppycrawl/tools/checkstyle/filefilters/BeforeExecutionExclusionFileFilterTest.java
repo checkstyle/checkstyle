@@ -85,4 +85,5 @@ public class BeforeExecutionExclusionFileFilterTest extends AbstractModuleTestSu
         }
         return exclusionBeforeExecutionFileFilter;
     }
+
 }

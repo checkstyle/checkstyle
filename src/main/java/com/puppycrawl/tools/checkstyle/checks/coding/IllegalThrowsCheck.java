@@ -158,4 +158,5 @@ public final class IllegalThrowsCheck extends AbstractCheck {
     public void setIgnoreOverriddenMethods(boolean ignoreOverriddenMethods) {
         this.ignoreOverriddenMethods = ignoreOverriddenMethods;
     }
+
 }

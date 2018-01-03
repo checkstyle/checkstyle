@@ -44,4 +44,5 @@ public class MultiDimensionalArraysInGenericsTest
                 getPath("InputMultiDimensionalArraysInGenerics.java"),
                 expected);
     }
+
 }

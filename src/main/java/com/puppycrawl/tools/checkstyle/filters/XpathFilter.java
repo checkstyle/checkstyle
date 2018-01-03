@@ -217,4 +217,5 @@ public class XpathFilter implements TreeWalkerFilter {
                 && Objects.equals(moduleId, xpathFilter.moduleId)
                 && Objects.equals(xpathQuery, xpathFilter.xpathQuery);
     }
+
 }

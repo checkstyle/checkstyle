@@ -94,4 +94,5 @@ public final class InterfaceIsTypeCheck
     public void setAllowMarkerInterfaces(boolean flag) {
         allowMarkerInterfaces = flag;
     }
+
 }

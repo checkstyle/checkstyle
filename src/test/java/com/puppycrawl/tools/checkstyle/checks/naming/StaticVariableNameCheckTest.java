@@ -92,4 +92,5 @@ public class StaticVariableNameCheckTest
         };
         assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
+
 }

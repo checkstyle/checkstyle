@@ -61,4 +61,5 @@ public enum AccessModifier {
     public static AccessModifier getInstance(String modifierName) {
         return valueOf(AccessModifier.class, modifierName.trim().toUpperCase(Locale.ENGLISH));
     }
+
 }

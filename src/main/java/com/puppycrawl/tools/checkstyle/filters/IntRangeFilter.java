@@ -67,4 +67,5 @@ class IntRangeFilter implements IntFilter {
         return Objects.equals(lowerBound, intRangeFilter.lowerBound)
                 && Objects.equals(upperBound, intRangeFilter.upperBound);
     }
+
 }

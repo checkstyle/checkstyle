@@ -71,4 +71,5 @@ public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck
     protected String getLogMessageId() {
         return MSG_KEY;
     }
+
 }

@@ -289,4 +289,5 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
                     + "set either header or headerFile, not both", ex.getMessage());
         }
     }
+
 }

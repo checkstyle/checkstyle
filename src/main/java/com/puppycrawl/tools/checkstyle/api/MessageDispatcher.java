@@ -45,4 +45,5 @@ public interface MessageDispatcher {
      * @param errors the audit errors from the file
      */
     void fireErrors(String fileName, SortedSet<LocalizedMessage> errors);
+
 }

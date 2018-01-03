@@ -402,4 +402,5 @@ public class HiddenFieldCheckTest
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputHiddenFieldReceiver.java"), expected);
     }
+
 }

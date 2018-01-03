@@ -45,4 +45,5 @@ public class StaticInitHandler extends BlockParentHandler {
     protected boolean shouldTopLevelStartLine() {
         return false;
     }
+
 }

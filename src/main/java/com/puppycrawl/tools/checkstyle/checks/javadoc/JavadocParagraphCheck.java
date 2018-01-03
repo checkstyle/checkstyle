@@ -267,4 +267,5 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
                 || nextSibling.getType() == JavadocTokenTypes.EOF
                 || CommonUtils.startsWithChar(nextSibling.getText(), ' ');
     }
+
 }

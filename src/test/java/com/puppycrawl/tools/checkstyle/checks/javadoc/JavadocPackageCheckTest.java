@@ -175,4 +175,5 @@ public class JavadocPackageCheckTest
                     expectedExceptionMessage, ex.getMessage());
         }
     }
+
 }

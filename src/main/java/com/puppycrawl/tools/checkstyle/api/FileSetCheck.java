@@ -80,4 +80,5 @@ public interface FileSetCheck
      * method, the implementation is responsible for the logging of messages.
      */
     void finishProcessing();
+
 }

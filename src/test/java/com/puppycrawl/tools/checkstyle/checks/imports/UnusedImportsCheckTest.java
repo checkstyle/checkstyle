@@ -249,4 +249,5 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputUnusedImportsJavadocQualifiedName.java"), expected);
     }
+
 }

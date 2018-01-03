@@ -78,4 +78,5 @@ public class InnerAssignmentCheckTest
         Assert.assertNotNull("Unexpected default tokens", check.getDefaultTokens());
         Assert.assertNotNull("Unexpected required tokens", check.getRequiredTokens());
     }
+
 }

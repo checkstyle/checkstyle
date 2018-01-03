@@ -32,4 +32,5 @@ interface IntFilter {
      * @return true if the intValue is accepted.
      */
     boolean accept(int intValue);
+
 }

@@ -35,4 +35,5 @@ public class LineSetTest {
 
         assertEquals("Invalid toString result", "LineSet[firstLine=0, lastLine=2]", result);
     }
+
 }

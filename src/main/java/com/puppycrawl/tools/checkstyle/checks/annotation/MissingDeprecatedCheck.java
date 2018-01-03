@@ -271,4 +271,5 @@ public final class MissingDeprecatedCheck extends AbstractCheck {
         }
         return found;
     }
+
 }

@@ -237,4 +237,5 @@ public class SuppressElementTest {
                 .suppress(Warning.NONFINAL_FIELDS)
                 .verify();
     }
+
 }

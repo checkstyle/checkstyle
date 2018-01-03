@@ -96,4 +96,5 @@ public class SeverityMatchFilterTest {
         filter.configure(new DefaultConfiguration("test"));
         assertNotNull("object exists", filter);
     }
+
 }

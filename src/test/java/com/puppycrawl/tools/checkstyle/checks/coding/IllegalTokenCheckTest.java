@@ -134,4 +134,5 @@ public class IllegalTokenCheckTest
         };
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }
+
 }

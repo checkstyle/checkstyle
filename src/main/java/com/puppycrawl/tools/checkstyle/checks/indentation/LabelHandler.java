@@ -74,4 +74,5 @@ public class LabelHandler extends AbstractExpressionHandler {
 
         checkExpressionSubtree(parent, expected, true, false);
     }
+
 }

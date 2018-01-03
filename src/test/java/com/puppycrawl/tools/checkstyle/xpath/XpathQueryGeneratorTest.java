@@ -394,4 +394,5 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
                         + "/VARIABLE_DEF[@text='endLineTab']/SEMI");
         assertEquals("Generated queries do not match expected ones", expected, actual);
     }
+
 }

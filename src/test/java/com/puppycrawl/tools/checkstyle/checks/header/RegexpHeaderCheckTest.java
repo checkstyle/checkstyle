@@ -393,4 +393,5 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         verifyStatic(times(2));
         Closeables.closeQuietly(any(InputStreamReader.class));
     }
+
 }

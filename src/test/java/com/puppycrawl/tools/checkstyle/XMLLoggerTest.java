@@ -366,5 +366,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         public void printStackTrace(PrintWriter printWriter) {
             printWriter.print("stackTrace\r\nexample");
         }
+
     }
+
 }

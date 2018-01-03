@@ -627,6 +627,7 @@ public class CheckstyleAntTask extends Task {
         public String[] getValues() {
             return VALUES.clone();
         }
+
     }
 
     /**
@@ -728,6 +729,7 @@ public class CheckstyleAntTask extends Task {
             }
             return xmlLogger;
         }
+
     }
 
     /**
@@ -779,6 +781,7 @@ public class CheckstyleAntTask extends Task {
         public void setFile(File file) {
             value = file.getAbsolutePath();
         }
+
     }
 
     /** Represents a custom listener. */
@@ -802,5 +805,7 @@ public class CheckstyleAntTask extends Task {
         public void setClassname(String name) {
             className = name;
         }
+
     }
+
 }

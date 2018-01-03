@@ -69,4 +69,5 @@ public enum SeverityLevel {
         return valueOf(SeverityLevel.class, securityLevelName.trim()
                 .toUpperCase(Locale.ENGLISH));
     }
+
 }

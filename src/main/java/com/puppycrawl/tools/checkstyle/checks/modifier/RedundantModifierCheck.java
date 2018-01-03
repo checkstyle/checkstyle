@@ -469,4 +469,5 @@ public class RedundantModifierCheck
         }
         return annotationsList;
     }
+
 }

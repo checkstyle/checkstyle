@@ -60,4 +60,5 @@ public class IntRangeFilterTest {
     public void testEqualsAndHashCode() {
         EqualsVerifier.forClass(IntRangeFilter.class).usingGetClass().verify();
     }
+
 }

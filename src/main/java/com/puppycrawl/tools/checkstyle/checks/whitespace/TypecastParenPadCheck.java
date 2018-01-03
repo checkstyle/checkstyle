@@ -77,4 +77,5 @@ public class TypecastParenPadCheck extends AbstractParenPadCheck {
             processRight(ast);
         }
     }
+
 }

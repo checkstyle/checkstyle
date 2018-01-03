@@ -74,4 +74,5 @@ public class InterfaceTypeParameterNameCheckTest
         };
         verify(checkConfig, getPath("InputInterfaceTypeParameterName.java"), expected);
     }
+
 }

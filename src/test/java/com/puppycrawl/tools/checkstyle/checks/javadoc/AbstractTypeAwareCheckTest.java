@@ -181,4 +181,5 @@ public class AbstractTypeAwareCheckTest extends AbstractModuleTestSupport {
 
         verify(checkConfig, getPath("InputAbstractTypeAwareLoadErrors.java"), expected);
     }
+
 }

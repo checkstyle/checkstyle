@@ -395,4 +395,5 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
                 getPath("InputJavadocTypeBadTag.java"),
                 expected);
     }
+
 }

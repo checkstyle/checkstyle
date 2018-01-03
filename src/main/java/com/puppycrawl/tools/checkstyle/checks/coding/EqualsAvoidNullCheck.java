@@ -644,5 +644,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
         private static String getFieldName(DetailAST field) {
             return field.findFirstToken(TokenTypes.IDENT).getText();
         }
+
     }
+
 }

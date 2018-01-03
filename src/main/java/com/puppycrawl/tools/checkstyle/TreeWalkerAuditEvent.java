@@ -145,4 +145,5 @@ public class TreeWalkerAuditEvent {
     public DetailAST getRootAst() {
         return rootAst;
     }
+
 }

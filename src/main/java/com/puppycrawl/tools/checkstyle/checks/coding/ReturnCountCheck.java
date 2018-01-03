@@ -263,5 +263,7 @@ public final class ReturnCountCheck extends AbstractCheck {
                 }
             }
         }
+
     }
+
 }

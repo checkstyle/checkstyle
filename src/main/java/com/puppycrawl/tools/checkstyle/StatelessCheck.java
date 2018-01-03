@@ -41,4 +41,5 @@ import java.lang.annotation.Target;
 public @interface StatelessCheck {
 
     // this annotation does not have properties
+
 }

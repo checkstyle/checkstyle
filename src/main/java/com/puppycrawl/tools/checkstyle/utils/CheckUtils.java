@@ -466,4 +466,5 @@ public final class CheckUtils {
         }
         return illegalClassNames;
     }
+
 }

@@ -88,4 +88,5 @@ public enum LineSeparatorOption {
     public int length() {
         return lineSeparator.length;
     }
+
 }

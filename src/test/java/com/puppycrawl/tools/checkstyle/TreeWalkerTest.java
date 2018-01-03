@@ -610,6 +610,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         public int[] getRequiredTokens() {
             return getAcceptableTokens();
         }
+
     }
 
     private static class VerifyInitCheck extends AbstractCheck {
@@ -640,6 +641,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         public static boolean isInitWasCalled() {
             return initWasCalled;
         }
+
     }
 
     private static class VerifyDestroyCheck extends AbstractCheck {
@@ -674,6 +676,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         public static boolean isDestroyWasCalled() {
             return destroyWasCalled;
         }
+
     }
 
     private static class VerifyDestroyCommentCheck extends VerifyDestroyCheck {
@@ -682,6 +685,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         public boolean isCommentNodesRequired() {
             return true;
         }
+
     }
 
     private static class RequiredTokenIsNotInDefaultsCheck extends AbstractCheck {
@@ -700,6 +704,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         public int[] getAcceptableTokens() {
             return CommonUtils.EMPTY_INT_ARRAY;
         }
+
     }
 
     private static class RequiredTokenIsEmptyIntArray extends AbstractCheck {
@@ -718,5 +723,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         public int[] getAcceptableTokens() {
             return CommonUtils.EMPTY_INT_ARRAY;
         }
+
     }
+
 }

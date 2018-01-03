@@ -124,4 +124,5 @@ public class OuterTypeFilenameCheckTest extends AbstractModuleTestSupport {
 
         verify(checkConfig, getNonCompilablePath("package-info.java"), expected);
     }
+
 }

@@ -534,5 +534,7 @@ public final class LocalizedMessage
             }
             return resourceBundle;
         }
+
     }
+
 }

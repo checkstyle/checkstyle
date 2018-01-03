@@ -158,5 +158,7 @@ public class XmlLoader
             factory.setFeature(LOAD_EXTERNAL_DTD, true);
             factory.setFeature(EXTERNAL_GENERAL_ENTITIES, true);
         }
+
     }
+
 }

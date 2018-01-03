@@ -125,4 +125,5 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputAtclauseOrderIncorrect.java"), expected);
     }
+
 }

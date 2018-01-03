@@ -138,5 +138,7 @@ public class AbstractViolationReporterTest {
         public int[] getRequiredTokens() {
             return CommonUtils.EMPTY_INT_ARRAY;
         }
+
     }
+
 }

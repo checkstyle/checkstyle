@@ -163,4 +163,5 @@ public class ConstantNameCheckTest
         Assert.assertNotNull("Default acceptable should not be null", actual);
         assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
+
 }

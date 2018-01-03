@@ -383,4 +383,5 @@ public class LeftCurlyCheck
                 || nextToken.getType() == TokenTypes.RCURLY
                 || leftCurly.getLineNo() != nextToken.getLineNo();
     }
+
 }

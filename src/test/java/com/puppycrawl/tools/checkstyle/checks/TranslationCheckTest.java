@@ -565,4 +565,5 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
                     exceptionMessage, endsWith("[TranslationCheck]"));
         }
     }
+
 }

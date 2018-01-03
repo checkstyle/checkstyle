@@ -354,4 +354,5 @@ public class JavadocTypeCheck
         }
         return typeParamName;
     }
+
 }

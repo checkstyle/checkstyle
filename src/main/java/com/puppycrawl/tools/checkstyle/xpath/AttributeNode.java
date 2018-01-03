@@ -171,4 +171,5 @@ public class AttributeNode extends AbstractNode {
     private static UnsupportedOperationException throwUnsupportedOperationException() {
         return new UnsupportedOperationException("Operation is not supported");
     }
+
 }

@@ -79,4 +79,5 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputAnonInnerLength.java"), expected);
     }
+
 }

@@ -120,4 +120,5 @@ public class FileLengthCheckTest
                 "Extensions array can not be null", ex.getMessage());
         }
     }
+
 }

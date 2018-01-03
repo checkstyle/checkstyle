@@ -559,5 +559,7 @@ public class SuppressWarningsHolder
         public int getLastColumn() {
             return lastColumn;
         }
+
     }
+
 }

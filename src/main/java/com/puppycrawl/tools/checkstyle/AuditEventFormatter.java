@@ -34,4 +34,5 @@ public interface AuditEventFormatter {
      * @return string representation of error message.
      */
     String format(AuditEvent event);
+
 }

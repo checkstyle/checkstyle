@@ -177,4 +177,5 @@ public class ClassResolverTest {
         final boolean result = classResolver.isLoadable("someClass");
         assertFalse("result should be false", result);
     }
+
 }

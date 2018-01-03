@@ -127,4 +127,5 @@ public class ModifierOrderCheckTest
         };
         verify(checkConfig, getPath("InputModifierOrderAnnotationDeclaration.java"), expected);
     }
+
 }
