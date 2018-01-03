@@ -26,6 +26,7 @@ import java.util.SortedSet;
  * @author lkuehne
  */
 public interface MessageDispatcher {
+
     /**
      * Notify all listeners about the beginning of a file audit.
      * @param fileName the file to be audited

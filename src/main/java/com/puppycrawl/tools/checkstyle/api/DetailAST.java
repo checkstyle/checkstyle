@@ -35,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * @noinspection FieldNotUsedInToString, SerializableHasSerializationMethods
  */
 public final class DetailAST extends CommonASTWithHiddenTokens {
+
     private static final long serialVersionUID = -2580884815577559874L;
 
     /** Constant to indicate if not calculated the child count. */

@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser;
  * javadoc - The Java API Documentation Generator</a>
  */
 public final class JavadocTokenTypes {
+
     //--------------------------------------------------------------------------------------------//
     //------------------        JAVADOC TAGS          --------------------------------------------//
     //--------------------------------------------------------------------------------------------//

@@ -26,6 +26,7 @@ package com.puppycrawl.tools.checkstyle;
  */
 @FunctionalInterface
 public interface TreeWalkerFilter {
+
     /**
      * Determines whether or not a filtered {@code TreeWalkerAuditEvent} is accepted.
      * @param treeWalkerAuditEvent the TreeWalkerAuditEvent to filter.

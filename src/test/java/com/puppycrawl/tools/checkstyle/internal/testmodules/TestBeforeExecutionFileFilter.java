@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.internal.testmodules;
 import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
 
 public final class TestBeforeExecutionFileFilter implements BeforeExecutionFileFilter {
+
     private boolean called;
 
     @Override

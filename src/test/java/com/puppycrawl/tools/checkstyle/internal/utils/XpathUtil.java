@@ -33,6 +33,7 @@ import net.sf.saxon.trans.XPathException;
  * @noinspection ClassOnlyUsedInOnePackage
  */
 public final class XpathUtil {
+
     private XpathUtil() {
     }
 

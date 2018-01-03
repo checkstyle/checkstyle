@@ -211,6 +211,7 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
      * @author o_sukhodolsky
      */
     private class Context {
+
         /**
          * Should we perform check in current context or not.
          * Usually false if we are inside equals() method.

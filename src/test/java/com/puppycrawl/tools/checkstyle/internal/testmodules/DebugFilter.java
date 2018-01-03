@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 
 public final class DebugFilter implements Filter {
+
     private boolean called;
 
     @Override

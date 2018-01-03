@@ -32,6 +32,7 @@ import java.util.Set;
  */
 public class FilterSet
     implements Filter {
+
     /** Filter set. */
     private final Set<Filter> filters = new HashSet<>();
 

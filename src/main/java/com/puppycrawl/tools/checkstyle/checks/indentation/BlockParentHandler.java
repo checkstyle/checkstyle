@@ -42,6 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author jrichard
  */
 public class BlockParentHandler extends AbstractExpressionHandler {
+
     /**
      * Children checked by parent handlers.
      */

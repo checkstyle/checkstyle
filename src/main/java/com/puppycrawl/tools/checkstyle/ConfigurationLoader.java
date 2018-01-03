@@ -56,6 +56,7 @@ public final class ConfigurationLoader {
      * Enum to specify behaviour regarding ignored modules.
      */
     public enum IgnoredModulesOptions {
+
         /**
          * Omit ignored modules.
          */
@@ -580,6 +581,7 @@ public final class ConfigurationLoader {
      */
     private final class InternalLoader
         extends XmlLoader {
+
         /** Module elements. */
         private static final String MODULE = "module";
         /** Name attribute. */

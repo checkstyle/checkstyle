@@ -29,6 +29,7 @@ import java.util.Map;
  * @author lkuehne
  */
 public interface Configuration extends Serializable {
+
     /**
      * The set of attribute names.
      * @return The set of attribute names, never null.

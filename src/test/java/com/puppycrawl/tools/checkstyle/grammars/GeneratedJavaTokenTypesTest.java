@@ -27,6 +27,7 @@ import org.junit.Test;
  * @noinspection ClassIndependentOfModule
  */
 public class GeneratedJavaTokenTypesTest {
+
     /**
      * <p>
      * New tokens must be added onto the end of the list with new numbers, and

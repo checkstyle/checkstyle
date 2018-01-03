@@ -24,6 +24,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
  * @author Oliver Burn
  */
 public class JavadocTag {
+
     /** The line number of the tag. **/
     private final int lineNo;
     /** The column number of the tag. **/

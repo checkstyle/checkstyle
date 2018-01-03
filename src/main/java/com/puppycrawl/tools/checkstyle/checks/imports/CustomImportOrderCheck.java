@@ -810,6 +810,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
      * @author max
      */
     private static class ImportDetails {
+
         /** Import full path. */
         private final String importFullPath;
 
@@ -880,6 +881,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
      * @author ivanov-alex
      */
     private static class RuleMatchForImport {
+
         /** Position of matching string for current best match. */
         private final int matchPosition;
         /** Length of matching string for current best match. */

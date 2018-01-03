@@ -46,6 +46,7 @@ public final class AstTreeStringPrinter {
      * Enum to be used for test if comments should be printed.
      */
     public enum PrintOptions {
+
         /**
          * Comments has to be printed.
          */

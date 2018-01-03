@@ -31,6 +31,7 @@ import java.util.Map;
  */
 public abstract class AbstractViolationReporter
     extends AutomaticBean {
+
     /** The severity level of any violations found. */
     private SeverityLevel severityLevel = SeverityLevel.ERROR;
 

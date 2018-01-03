@@ -38,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class SuperCloneCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/superclone";

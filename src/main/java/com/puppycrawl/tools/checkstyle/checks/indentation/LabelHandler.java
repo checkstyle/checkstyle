@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author jrichard
  */
 public class LabelHandler extends AbstractExpressionHandler {
+
     /**
      * The types of expressions that are children of a label.
      */

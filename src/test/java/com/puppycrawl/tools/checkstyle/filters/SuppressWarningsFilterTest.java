@@ -44,6 +44,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class SuppressWarningsFilterTest
     extends AbstractModuleTestSupport {
+
     private static final String[] ALL_MESSAGES = {
         "16: " + getCheckMessage(JavadocTypeCheck.class, MSG_JAVADOC_MISSING),
         "17: " + getCheckMessage(JavadocTypeCheck.class, MSG_JAVADOC_MISSING),

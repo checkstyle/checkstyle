@@ -40,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
  */
 public class SuppressElement
     implements Filter {
+
     /** The regexp to match file names against. */
     private final Pattern fileRegexp;
 

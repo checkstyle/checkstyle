@@ -31,6 +31,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilter;
 
 public class BeforeExecutionFileFilterSetTest {
+
     @Test
     public void testAccept() {
         final String fileName = "BAD";

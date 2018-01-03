@@ -29,6 +29,7 @@ import java.util.Locale;
  * @author Andrei Selkin
  */
 public enum AccessModifier {
+
     /** Public access modifier. */
     PUBLIC,
     /** Protected access modifier. */

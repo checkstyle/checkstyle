@@ -66,6 +66,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({PackageNamesLoader.class, Closeables.class})
 public class PackageNamesLoaderTest extends AbstractPathTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/packagenamesloader";

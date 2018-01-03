@@ -52,6 +52,7 @@ import com.puppycrawl.tools.checkstyle.api.FilterSet;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ SuppressionsLoader.class, SuppressionsLoaderTest.class })
 public class SuppressionsLoaderTest extends AbstractPathTestSupport {
+
     @Rule
     public final ExpectedException thrown = ExpectedException.none();
 

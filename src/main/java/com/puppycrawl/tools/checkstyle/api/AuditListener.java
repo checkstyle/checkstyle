@@ -35,6 +35,7 @@ import java.util.EventListener;
  */
 public interface AuditListener
     extends EventListener {
+
     /**
      * Notify that the audit is about to start.
      * @param event the event details

@@ -25,6 +25,7 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
  * @author oliver
  */
 public final class NeverSuppress implements MatchSuppressor {
+
     /** The shared instance. */
     public static final MatchSuppressor INSTANCE = new NeverSuppress();
 

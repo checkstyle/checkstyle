@@ -491,6 +491,7 @@ public class SuppressWarningsHolder
 
     /** Records a particular suppression for a region of a file. */
     private static class Entry {
+
         /** The source name of the suppressed check. */
         private final String checkName;
         /** The suppression region for the check - first line. */

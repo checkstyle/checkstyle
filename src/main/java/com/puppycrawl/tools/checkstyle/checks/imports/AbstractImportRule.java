@@ -24,6 +24,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
  * @author Jochen Van de Velde
  */
 abstract class AbstractImportRule {
+
     /** Indicates whether to allow access or not. */
     private final boolean allowed;
 

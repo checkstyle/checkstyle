@@ -39,6 +39,7 @@ import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier;
  * @author o_sukhodolsky
  */
 public final class CheckUtils {
+
     // constants for parseDouble()
     /** Octal radix. */
     private static final int BASE_8 = 8;

@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder;
 public class SuppressWarningsFilter
     extends AutomaticBean
     implements Filter {
+
     @Override
     protected void finishLocalSetup() throws CheckstyleException {
         // No code by default

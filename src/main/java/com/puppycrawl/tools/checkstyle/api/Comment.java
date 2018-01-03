@@ -27,6 +27,7 @@ import java.util.Arrays;
  * @author o_sukhodolsky
  */
 public class Comment implements TextBlock {
+
     /** Text of the comment. */
     private final String[] text;
 

@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class FileSetCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/api/fileset";
@@ -59,6 +60,7 @@ public class FileSetCheckTest
     }
 
     private static class TestFileSetCheck extends AbstractFileSetCheck {
+
         private static boolean destroyed;
         private static boolean fileContentAvailable;
         private static FileContents contents;

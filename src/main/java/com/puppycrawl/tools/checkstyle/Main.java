@@ -60,6 +60,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @noinspection UseOfSystemOutOrSystemErr
  **/
 public final class Main {
+
     /**
      * A key pointing to the error counter
      * message in the "messages.properties" file.
@@ -742,6 +743,7 @@ public final class Main {
 
     /** Helper structure to clear show what is required for Checker to run. **/
     private static class CliOptions {
+
         /** Properties file location. */
         private String propertiesLocation;
         /** Config file location. */

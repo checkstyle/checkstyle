@@ -204,6 +204,7 @@ public abstract class AbstractSuperCheck
      * @author Rick Giles
      */
     private static class MethodNode {
+
         /** Method definition. */
         private final DetailAST method;
 

@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author jrichard
  */
 public abstract class AbstractExpressionHandler {
+
     /**
      * The instance of {@code IndentationCheck} using this handler.
      */

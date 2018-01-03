@@ -26,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
  * @noinspection ClassOnlyUsedInOnePackage
  */
 public final class TestLoggingReporter extends AbstractViolationReporter {
+
     private int logCount;
 
     @Override

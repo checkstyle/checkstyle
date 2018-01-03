@@ -139,6 +139,7 @@ public class AbstractFileSetCheckTest {
     }
 
     private static class DummyFileSetCheck extends AbstractFileSetCheck {
+
         private static final String MSG_KEY = "File should not be empty.";
 
         @Override
@@ -150,6 +151,7 @@ public class AbstractFileSetCheckTest {
     }
 
     private static class ExceptionFileSetCheck extends AbstractFileSetCheck {
+
         private static final String MSG_KEY = "Test.";
         private int count = 1;
 

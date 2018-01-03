@@ -50,6 +50,7 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public class XmlLoader
     extends DefaultHandler {
+
     /** Maps public id to resolve to resource name for the DTD. */
     private final Map<String, String> publicIdToResourceNameMap;
     /** Parser to read XML files. **/
@@ -133,6 +134,7 @@ public class XmlLoader
      * Pulled out as a separate class in order to suppress Pitest mutations.
      */
     public static final class FeaturesForVerySecureJavaInstallations {
+
         /** Feature that enables loading external DTD when loading XML files. */
         private static final String LOAD_EXTERNAL_DTD =
                 "http://apache.org/xml/features/nonvalidating/load-external-dtd";

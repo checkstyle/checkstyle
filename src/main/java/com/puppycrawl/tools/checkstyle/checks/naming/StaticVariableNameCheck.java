@@ -49,6 +49,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  */
 public class StaticVariableNameCheck
     extends AbstractAccessControlNameCheck {
+
     /** Creates a new {@code StaticVariableNameCheck} instance. */
     public StaticVariableNameCheck() {
         super("^[a-z][a-zA-Z0-9]*$");

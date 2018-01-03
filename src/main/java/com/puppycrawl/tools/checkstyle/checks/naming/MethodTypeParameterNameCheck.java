@@ -49,6 +49,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class MethodTypeParameterNameCheck
     extends AbstractNameCheck {
+
     /** Creates a new {@code MethodTypeParameterNameCheck} instance. */
     public MethodTypeParameterNameCheck() {
         super("^[A-Z]$");

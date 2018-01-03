@@ -28,6 +28,7 @@ package com.puppycrawl.tools.checkstyle.api;
  * @see com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck
  */
 public interface DetailNode {
+
     /**
      * Node type.
      * @return node type.

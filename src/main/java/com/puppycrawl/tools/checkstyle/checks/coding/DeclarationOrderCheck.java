@@ -383,6 +383,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
      * Private class to encapsulate the state.
      */
     private static class ScopeState {
+
         /** The state the check is in. */
         private int currentScopeState = STATE_STATIC_VARIABLE_DEF;
 

@@ -27,6 +27,7 @@ import org.junit.Test;
 import nl.jqno.equalsverifier.EqualsVerifier;
 
 public class IntRangeFilterTest {
+
     @Test
     public void testDecide() {
         final IntFilter filter = new IntRangeFilter(0, 10);

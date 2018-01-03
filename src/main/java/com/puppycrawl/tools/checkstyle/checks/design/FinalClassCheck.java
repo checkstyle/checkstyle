@@ -269,6 +269,7 @@ public class FinalClassCheck
 
     /** Maintains information about class' ctors. */
     private static final class ClassDesc {
+
         /** Qualified class name(with package). */
         private final String qualifiedName;
 

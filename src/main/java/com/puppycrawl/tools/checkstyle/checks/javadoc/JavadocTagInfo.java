@@ -71,6 +71,7 @@ public enum JavadocTagInfo {
      * {@code @author}.
      */
     AUTHOR("@author", "author", Type.BLOCK) {
+
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
@@ -86,6 +87,7 @@ public enum JavadocTagInfo {
      * {@code {@code}}.
      */
     CODE("{@code}", "code", Type.INLINE) {
+
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
@@ -98,6 +100,7 @@ public enum JavadocTagInfo {
      * {@code {@docRoot}}.
      */
     DOC_ROOT("{@docRoot}", "docRoot", Type.INLINE) {
+
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
@@ -110,6 +113,7 @@ public enum JavadocTagInfo {
      * {@code @deprecated}.
      */
     DEPRECATED("@deprecated", "deprecated", Type.BLOCK) {
+
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
@@ -122,6 +126,7 @@ public enum JavadocTagInfo {
      * {@code @exception}.
      */
     EXCEPTION("@exception", "exception", Type.BLOCK) {
+
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
@@ -133,6 +138,7 @@ public enum JavadocTagInfo {
      * {@code {@inheritDoc}}.
      */
     INHERIT_DOC("{@inheritDoc}", "inheritDoc", Type.INLINE) {
+
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
@@ -149,6 +155,7 @@ public enum JavadocTagInfo {
      * {@code {@link}}.
      */
     LINK("{@link}", "link", Type.INLINE) {
+
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
@@ -161,6 +168,7 @@ public enum JavadocTagInfo {
      * {@code {@linkplain}}.
      */
     LINKPLAIN("{@linkplain}", "linkplain", Type.INLINE) {
+
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
@@ -173,6 +181,7 @@ public enum JavadocTagInfo {
      * {@code {@literal}}.
      */
     LITERAL("{@literal}", "literal", Type.INLINE) {
+
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
@@ -185,6 +194,7 @@ public enum JavadocTagInfo {
      * {@code @param}.
      */
     PARAM("@param", "param", Type.BLOCK) {
+
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
@@ -199,6 +209,7 @@ public enum JavadocTagInfo {
      * {@code @return}.
      */
     RETURN("@return", "return", Type.BLOCK) {
+
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
@@ -214,6 +225,7 @@ public enum JavadocTagInfo {
      * {@code @see}.
      */
     SEE("@see", "see", Type.BLOCK) {
+
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
@@ -226,6 +238,7 @@ public enum JavadocTagInfo {
      * {@code @serial}.
      */
     SERIAL("@serial", "serial", Type.BLOCK) {
+
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
@@ -239,6 +252,7 @@ public enum JavadocTagInfo {
      * {@code @serialData}.
      */
     SERIAL_DATA("@serialData", "serialData", Type.BLOCK) {
+
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
@@ -259,6 +273,7 @@ public enum JavadocTagInfo {
      * {@code @serialField}.
      */
     SERIAL_FIELD("@serialField", "serialField", Type.BLOCK) {
+
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
@@ -274,6 +289,7 @@ public enum JavadocTagInfo {
      * {@code @since}.
      */
     SINCE("@since", "since", Type.BLOCK) {
+
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
@@ -286,6 +302,7 @@ public enum JavadocTagInfo {
      * {@code @throws}.
      */
     THROWS("@throws", "throws", Type.BLOCK) {
+
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
@@ -298,6 +315,7 @@ public enum JavadocTagInfo {
      * {@code {@value}}.
      */
     VALUE("{@value}", "value", Type.INLINE) {
+
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
@@ -310,6 +328,7 @@ public enum JavadocTagInfo {
      * {@code @version}.
      */
     VERSION("@version", "version", Type.BLOCK) {
+
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
@@ -492,6 +511,7 @@ public enum JavadocTagInfo {
      * @author Travis Schneeberger
      */
     public enum Type {
+
         /** Block type. **/
         BLOCK,
 

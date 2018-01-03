@@ -166,6 +166,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 @StatelessCheck
 public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
+
     /**
      * Warning message key.
      */

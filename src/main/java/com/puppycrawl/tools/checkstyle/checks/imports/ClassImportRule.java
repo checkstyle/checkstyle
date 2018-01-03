@@ -24,6 +24,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
  * @author Oliver Burn
  */
 class ClassImportRule extends AbstractImportRule {
+
     /** Package to control access to. */
     private final String className;
 

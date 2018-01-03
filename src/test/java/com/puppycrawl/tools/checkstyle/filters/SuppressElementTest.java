@@ -34,6 +34,7 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.Warning;
 
 public class SuppressElementTest {
+
     private SuppressElement filter;
 
     @Before

@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
  * @author Lars Kühne
  */
 public class ParseTreeTableModel implements TreeModel {
+
     /** Presentation model. */
     private final ParseTreeTablePresentation pModel;
 

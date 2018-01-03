@@ -74,6 +74,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(Closeables.class)
 public class TranslationCheckTest extends AbstractXmlTestSupport {
+
     @Captor
     private ArgumentCaptor<SortedSet<LocalizedMessage>> captor;
 

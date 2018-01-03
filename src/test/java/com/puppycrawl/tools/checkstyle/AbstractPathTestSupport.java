@@ -26,6 +26,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public abstract class AbstractPathTestSupport {
+
     protected static final String LF_REGEX = "\\\\n";
 
     protected static final String CRLF_REGEX = "\\\\r\\\\n";

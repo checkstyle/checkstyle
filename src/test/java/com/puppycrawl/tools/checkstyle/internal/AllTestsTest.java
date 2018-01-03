@@ -37,6 +37,7 @@ import org.junit.Test;
  * @noinspection ClassIndependentOfModule
  */
 public class AllTestsTest {
+
     @Test
     public void testAllInputsHaveTest() throws Exception {
         final Map<String, List<String>> allTests = new HashMap<>();
