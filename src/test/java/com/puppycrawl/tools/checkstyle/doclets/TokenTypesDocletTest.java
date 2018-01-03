@@ -161,7 +161,6 @@ public class TokenTypesDocletTest extends AbstractPathTestSupport {
                         StandardCharsets.UTF_8);
         assertTrue("File content is not expected",
                 fileContent.startsWith("EOF=The end of file token."));
-
     }
 
     @Test

@@ -804,7 +804,6 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
             assertEquals("Log messages were expected",
                     expected.getLevel(), actual.getLevel());
         }
-
     }
 
     private static class CheckstyleAntTaskStub extends CheckstyleAntTask {
@@ -834,7 +833,6 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         @Override
         public void log(String msg, Throwable t, int msgLevel) {
             loggedMessages.add(new MessageLevelPair(msg, msgLevel));
-
         }
 
         public List<MessageLevelPair> getLoggedMessages() {

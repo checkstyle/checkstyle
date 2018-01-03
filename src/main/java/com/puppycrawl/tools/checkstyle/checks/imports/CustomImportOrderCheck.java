@@ -748,7 +748,6 @@ public class CustomImportOrderCheck extends AbstractCheck {
                 || STANDARD_JAVA_PACKAGE_RULE_GROUP.equals(ruleStr)
                 || SPECIAL_IMPORTS_RULE_GROUP.equals(ruleStr)) {
             customImportOrderRules.add(ruleStr);
-
         }
         else if (ruleStr.startsWith(SAME_PACKAGE_RULE_GROUP)) {
             final String rule = ruleStr.substring(ruleStr.indexOf('(') + 1,
@@ -759,7 +758,6 @@ public class CustomImportOrderCheck extends AbstractCheck {
                         "SAME_PACKAGE rule parameter should be positive integer: " + ruleStr);
             }
             customImportOrderRules.add(SAME_PACKAGE_RULE_GROUP);
-
         }
         else {
             throw new IllegalStateException("Unexpected rule: " + ruleStr);

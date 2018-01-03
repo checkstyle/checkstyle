@@ -317,7 +317,6 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
                         parseErrorMessage.getMessageArguments());
             }
         }
-
     }
 
     /**

@@ -446,7 +446,6 @@ public class RightCurlyCheck extends AbstractCheck {
                     shouldCheckLastRcurly = true;
                     nextToken = getNextToken(ast);
                 }
-
             }
             else {
                 shouldCheckLastRcurly = true;
@@ -481,7 +480,6 @@ public class RightCurlyCheck extends AbstractCheck {
                 if (lcurly.getType() == TokenTypes.SLIST) {
                     rcurly = lcurly.getLastChild();
                 }
-
             }
             else {
                 shouldCheckLastRcurly = true;

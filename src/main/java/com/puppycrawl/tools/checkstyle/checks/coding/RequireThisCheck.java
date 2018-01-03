@@ -519,7 +519,6 @@ public class RequireThisCheck extends AbstractCheck {
                      && canBeReferencedFromStaticContext(ast)
                      && canAssignValueToClassField(ast)) {
                 frameWhereViolationIsFound = findFrame(ast, true);
-
             }
         }
         else if (variableDeclarationFrameType == FrameType.CTOR_FRAME

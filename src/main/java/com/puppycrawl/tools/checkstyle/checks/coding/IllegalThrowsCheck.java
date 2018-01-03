@@ -85,7 +85,6 @@ public final class IllegalThrowsCheck extends AbstractCheck {
         illegalClassNames.clear();
         illegalClassNames.addAll(
                 CheckUtils.parseClassNames(classNames));
-
     }
 
     @Override

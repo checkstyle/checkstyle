@@ -192,7 +192,6 @@ public class OperatorWrapCheck
             TokenTypes.BOR_ASSIGN,        // "|="
             TokenTypes.BAND_ASSIGN,       // "&="
             TokenTypes.METHOD_REF,        // "::"
-
         };
     }
 

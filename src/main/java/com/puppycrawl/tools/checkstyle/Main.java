@@ -521,7 +521,6 @@ public final class Main {
 
             // run RootModule
             errorCounter = rootModule.process(cliOptions.files);
-
         }
         finally {
             rootModule.destroy();
@@ -605,12 +604,10 @@ public final class Main {
         final AuditListener listener;
         if (XML_FORMAT_NAME.equals(format)) {
             listener = new XMLLogger(out, closeOutputStream);
-
         }
         else if (PLAIN_FORMAT_NAME.equals(format)) {
             listener = new DefaultLogger(out, closeOutputStream, out,
                     AutomaticBean.OutputStreamOptions.NONE);
-
         }
         else {
             if (closeOutputStream == AutomaticBean.OutputStreamOptions.CLOSE) {

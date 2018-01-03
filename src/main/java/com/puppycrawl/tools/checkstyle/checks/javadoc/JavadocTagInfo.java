@@ -227,7 +227,6 @@ public enum JavadocTagInfo {
 
             return astType == TokenTypes.METHOD_DEF
                 && returnType.getFirstChild().getType() != TokenTypes.LITERAL_VOID;
-
         }
 
     },

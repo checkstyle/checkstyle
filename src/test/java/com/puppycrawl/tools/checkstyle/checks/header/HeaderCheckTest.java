@@ -248,7 +248,6 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         verify(checkerConfig, getPath("InputHeader.java"), expected);
         // One more time to use cache.
         verify(checkerConfig, getPath("InputHeader.java"), expected);
-
     }
 
     @Test

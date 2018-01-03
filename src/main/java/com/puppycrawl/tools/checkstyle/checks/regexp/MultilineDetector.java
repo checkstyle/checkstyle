@@ -117,7 +117,6 @@ class MultilineDetector {
             //        209099/is-it-ever-okay-to-catch-stackoverflowerror-in-java
             options.getReporter().log(0, MSG_STACKOVERFLOW, matcher.pattern().toString());
         }
-
     }
 
     /** Perform processing at the end of a set of lines. */

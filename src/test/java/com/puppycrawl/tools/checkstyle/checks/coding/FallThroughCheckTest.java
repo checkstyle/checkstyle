@@ -146,7 +146,6 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig,
                getPath("InputFallThrough.java"),
                expected);
-
     }
 
     @Test

@@ -217,7 +217,6 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
                         // for the purpose of this Check
                         hasPublicCtor = true;
                     }
-
                 }
                 child = child.getNextSibling();
             }

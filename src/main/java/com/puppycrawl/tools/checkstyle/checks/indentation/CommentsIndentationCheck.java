@@ -506,7 +506,6 @@ public class CommentsIndentationCheck extends AbstractCheck {
                         comment.getColumnNo(), getLineStart(prevStmtLineNo));
             }
         }
-
     }
 
     /**

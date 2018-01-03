@@ -394,7 +394,6 @@ public class ImportOrderCheck
             if (isStaticAndNotLastImport && !beforeFirstImport) {
                 log(ident.getLineNo(), MSG_ORDERING, ident.getText());
             }
-
         }
         else if (option == ImportOrderOption.BOTTOM) {
             if (isStaticAndNotLastImport) {
@@ -406,21 +405,17 @@ public class ImportOrderCheck
             if (isLastImportAndNonStatic) {
                 log(ident.getLineNo(), MSG_ORDERING, ident.getText());
             }
-
         }
         else if (option == ImportOrderOption.ABOVE) {
             // previous non-static but current is static
             doVisitToken(ident, isStatic, isStaticAndNotLastImport);
-
         }
         else if (option == ImportOrderOption.UNDER) {
             doVisitToken(ident, isStatic, isLastImportAndNonStatic);
-
         }
         else if (option == ImportOrderOption.INFLOW) {
             // "previous" argument is useless here
             doVisitToken(ident, isStatic, true);
-
         }
         else {
             throw new IllegalStateException(

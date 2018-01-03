@@ -134,7 +134,6 @@ public class ClassResolver {
                 if (clazz != null) {
                     break;
                 }
-
             }
         }
         return clazz;

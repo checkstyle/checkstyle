@@ -57,7 +57,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
         final LeftCurlyCheck checkObj = new LeftCurlyCheck();
         assertArrayEquals("LeftCurlyCheck#getRequiredTockens should return empty array by default",
             CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
-
     }
 
     @Test

@@ -137,7 +137,6 @@ public final class ScopeUtils {
                 || type == TokenTypes.LITERAL_NEW) {
                 break;
             }
-
         }
 
         return returnValue;
