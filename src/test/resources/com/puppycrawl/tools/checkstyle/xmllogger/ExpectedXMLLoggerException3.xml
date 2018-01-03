@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="">
-&lt;exception&gt;&#10;&lt;![CDATA[&#10;stackTrace&#10;example]]&gt;&#10;&lt;/exception&gt;&#10;
+<exception>
+<![CDATA[
+stackTrace&#10;example
+]]>
+</exception>
 <file name="Test.java">
 </file>
 </checkstyle>

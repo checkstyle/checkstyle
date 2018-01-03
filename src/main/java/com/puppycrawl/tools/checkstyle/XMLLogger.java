@@ -241,14 +241,16 @@ public class XMLLogger
      * @param throwable The
      */
     private void writeException(Throwable throwable) {
+        writer.println("<exception>");
+        writer.println("<![CDATA[");
+
         final StringWriter stringWriter = new StringWriter();
         final PrintWriter printer = new PrintWriter(stringWriter);
-        printer.println("<exception>");
-        printer.println("<![CDATA[");
         throwable.printStackTrace(printer);
-        printer.println("]]>");
-        printer.println("</exception>");
         writer.println(encode(stringWriter.toString()));
+
+        writer.println("]]>");
+        writer.println("</exception>");
     }
 
     /**
