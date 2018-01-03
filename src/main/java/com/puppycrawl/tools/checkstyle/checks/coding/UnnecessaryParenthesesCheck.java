@@ -211,7 +211,6 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         }
         else if (type != TokenTypes.ASSIGN
             || parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
-
             final boolean surrounded = isSurrounded(ast);
             // An identifier surrounded by parentheses.
             if (surrounded && type == TokenTypes.IDENT) {
@@ -250,7 +249,6 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             || parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
             // An expression is surrounded by parentheses.
             if (type == TokenTypes.EXPR) {
-
                 // If 'parentToSkip' == 'ast', then we've already logged a
                 // warning about an immediate child node in visitToken, so we don't
                 // need to log another one here.

@@ -229,7 +229,6 @@ public class SuppressWarningsHolder
             identifier = identifier.substring(JAVA_LANG_PREFIX.length());
         }
         if ("SuppressWarnings".equals(identifier)) {
-
             final List<String> values = getAllAnnotationValues(ast);
             if (!isAnnotationEmpty(values)) {
                 final DetailAST targetAST = getAnnotationTarget(ast);

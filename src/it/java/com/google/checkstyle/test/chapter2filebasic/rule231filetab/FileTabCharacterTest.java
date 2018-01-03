@@ -34,7 +34,6 @@ public class FileTabCharacterTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFileTab() throws Exception {
-
         final String[] expected = {
             "8:25: " + getCheckMessage(FileTabCharacterCheck.class, "containsTab"),
             "51:5: " + getCheckMessage(FileTabCharacterCheck.class, "containsTab"),

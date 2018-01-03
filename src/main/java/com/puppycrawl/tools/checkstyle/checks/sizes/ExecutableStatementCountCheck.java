@@ -172,7 +172,6 @@ public final class ExecutableStatementCountCheck
                 && type != TokenTypes.METHOD_DEF
                 && type != TokenTypes.INSTANCE_INIT
                 && type != TokenTypes.STATIC_INIT) {
-
                 parent = parent.getParent();
                 type = parent.getType();
             }

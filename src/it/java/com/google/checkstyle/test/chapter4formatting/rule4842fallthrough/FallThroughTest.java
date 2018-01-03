@@ -34,7 +34,6 @@ public class FallThroughTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFallThrough() throws Exception {
-
         final String msg = getCheckMessage(FallThroughCheck.class, "fall.through");
 
         final String[] expected = {

@@ -36,7 +36,6 @@ public class ArrayTypeStyleTest extends AbstractModuleTestSupport {
 
     @Test
     public void testArrayTypeStyle() throws Exception {
-
         final String[] expected = {
             "9:23: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
             "15:44: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),

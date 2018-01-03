@@ -35,7 +35,6 @@ public class AtclauseOrderTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCorrect() throws Exception {
-
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("AtclauseOrder");

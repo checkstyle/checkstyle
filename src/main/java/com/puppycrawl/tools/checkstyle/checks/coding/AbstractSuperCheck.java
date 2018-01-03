@@ -122,7 +122,6 @@ public abstract class AbstractSuperCheck
 
         while (dotAst.getType() != TokenTypes.CTOR_DEF
                 && dotAst.getType() != TokenTypes.INSTANCE_INIT) {
-
             if (dotAst.getType() == TokenTypes.METHOD_DEF) {
                 inOverridingMethod = isOverridingMethod(dotAst);
                 break;
@@ -149,7 +148,6 @@ public abstract class AbstractSuperCheck
      * @return true if method name is the same
      */
     private boolean isSameNameMethod(DetailAST ast) {
-
         AST sibling = ast.getNextSibling();
         // ignore type parameters
         if (sibling != null

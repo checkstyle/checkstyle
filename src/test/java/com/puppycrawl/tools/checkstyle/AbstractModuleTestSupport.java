@@ -282,7 +282,6 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 new ByteArrayInputStream(stream.toByteArray());
         try (LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-
             final List<String> actuals = lnr.lines().limit(expected.length)
                     .sorted().collect(Collectors.toList());
             Arrays.sort(expected);
@@ -361,7 +360,6 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
 
         try (LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-
             final Map<String, List<String>> actualViolations = new HashMap<>();
             for (String line = lnr.readLine(); line != null && lnr.getLineNumber() <= errorCount;
                  line = lnr.readLine()) {

@@ -235,7 +235,6 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-
         final String literal = ast.getText();
 
         if (hasUnicodeChar(literal) && !(allowByTailComment && hasTrailComment(ast)

@@ -300,7 +300,6 @@ public class VisibilityModifierCheck
 
     /** Contains explicit access modifiers. */
     private static final String[] EXPLICIT_MODS = {
-
         PUBLIC_ACCESS_MODIFIER,
         PRIVATE_ACCESS_MODIFIER,
         PROTECTED_ACCESS_MODIFIER,
@@ -371,7 +370,6 @@ public class VisibilityModifierCheck
      *        pattern for public members to ignore.
      */
     public void setPublicMemberPattern(Pattern pattern) {
-
         publicMemberPattern = pattern;
     }
 

@@ -201,7 +201,6 @@ public class LineWrappingHandler {
         DetailAST curNode = firstNode.getFirstChild();
 
         while (curNode != lastNode) {
-
             if (curNode.getType() == TokenTypes.OBJBLOCK
                     || curNode.getType() == TokenTypes.SLIST) {
                 curNode = curNode.getLastChild();

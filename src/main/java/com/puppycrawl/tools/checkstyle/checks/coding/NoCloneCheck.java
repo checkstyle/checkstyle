@@ -147,7 +147,6 @@ public class NoCloneCheck extends AbstractCheck {
         final String name = mid.getText();
 
         if ("clone".equals(name)) {
-
             final DetailAST params = aAST.findFirstToken(TokenTypes.PARAMETERS);
             final boolean hasEmptyParamList =
                 params.findFirstToken(TokenTypes.PARAMETER_DEF) == null;

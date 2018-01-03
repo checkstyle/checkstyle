@@ -530,7 +530,6 @@ public final class ConfigurationLoader {
         //search for the next instance of $ from the 'prev' position
         int pos = value.indexOf(DOLLAR_SIGN, prev);
         while (pos >= 0) {
-
             //if there was any text before this, add it as a fragment
             if (pos > 0) {
                 fragments.add(value.substring(prev, pos));
@@ -677,7 +676,6 @@ public final class ConfigurationLoader {
                                String localName,
                                String qName) throws SAXException {
             if (qName.equals(MODULE)) {
-
                 final Configuration recentModule =
                     configStack.pop();
 

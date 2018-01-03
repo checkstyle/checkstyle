@@ -34,7 +34,6 @@ public class NeedBracesTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNeedBraces() throws Exception {
-
         final Class<NeedBracesCheck> clazz = NeedBracesCheck.class;
         final String messageKey = "needBraces";
 

@@ -102,7 +102,6 @@ public class UncommentedMainCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-
         switch (ast.getType()) {
             case TokenTypes.PACKAGE_DEF:
                 visitPackageDef(ast);

@@ -74,7 +74,6 @@ public final class TokenTypesDoclet {
             for (final FieldDoc field : fields) {
                 if (field.isStatic() && field.isPublic() && field.isFinal()
                         && "int".equals(field.type().qualifiedTypeName())) {
-
                     final String firstSentence;
 
                     if (field.firstSentenceTags().length == 1) {

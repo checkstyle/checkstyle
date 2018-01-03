@@ -210,7 +210,6 @@ public abstract class AutomaticBean
      */
     private void tryCopyProperty(String moduleName, String key, Object value, boolean recheck)
             throws CheckstyleException {
-
         final BeanUtilsBean beanUtils = createBeanUtilsBean();
 
         try {
@@ -253,7 +252,6 @@ public abstract class AutomaticBean
     @Override
     public final void contextualize(Context context)
             throws CheckstyleException {
-
         final Collection<String> attributes = context.getAttributeNames();
 
         for (final String key : attributes) {

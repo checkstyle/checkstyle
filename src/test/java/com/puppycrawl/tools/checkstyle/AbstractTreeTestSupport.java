@@ -83,7 +83,6 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
      */
     protected static void verifyJavaAndJavadocAst(String expectedTextPrintFilename,
                                                   String actualJavaFilename) throws Exception {
-
         final String expectedContents = readFile(expectedTextPrintFilename);
 
         final String actualContents = AstTreeStringPrinter.printJavaAndJavadocTree(
@@ -102,7 +101,6 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
      */
     protected static void verifyJavadocTree(String expectedTextPrintFilename,
                                             String actualJavadocFilename) throws Exception {
-
         final String expectedContents = readFile(expectedTextPrintFilename);
 
         final String actualContents = DetailNodeTreeStringPrinter.printFileAst(

@@ -34,7 +34,6 @@ public class JavadocMethodTest extends AbstractModuleTestSupport {
 
     @Test
     public void testJavadocMethod() throws Exception {
-
         final String msg = getCheckMessage(JavadocMethodCheck.class, "javadoc.missing");
 
         final String[] expected = {

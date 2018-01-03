@@ -327,9 +327,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         while (result
                 && !isUsedVariableDeclarationFound
                 && currentSiblingAst != null) {
-
             switch (currentSiblingAst.getType()) {
-
                 case TokenTypes.EXPR:
                     final DetailAST methodCallAst = currentSiblingAst.getFirstChild();
 
@@ -395,7 +393,6 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         while (!firstUsageFound && currentAst != null
                 && currentAst.getType() != TokenTypes.RCURLY) {
             if (currentAst.getFirstChild() != null) {
-
                 if (isChild(currentAst, variableIdentAst)) {
                     dist = getDistToVariableUsageInChildNode(currentAst, variableIdentAst, dist);
                     variableUsageAst = currentAst;
@@ -689,7 +686,6 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      */
     private static DetailAST getFirstNodeInsideSwitchBlock(
             DetailAST block, DetailAST variable) {
-
         DetailAST currentNode = block
                 .findFirstToken(TokenTypes.CASE_GROUP);
         final List<DetailAST> variableUsageExpressions =
@@ -801,7 +797,6 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
 
         // Look if variable is in operator expression
         while (exprBetweenBrackets.getType() != TokenTypes.RPAREN) {
-
             if (isChild(exprBetweenBrackets, variable)) {
                 isVarInOperatorDeclaration = true;
                 break;
@@ -845,7 +840,6 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
             DetailAST astParent = astNode.getParent();
 
             while (astParent != null) {
-
                 if (astParent.equals(parent)
                         && astParent.getLineNo() == parent.getLineNo()) {
                     isChild = true;

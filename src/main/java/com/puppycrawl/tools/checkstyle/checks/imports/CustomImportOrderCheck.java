@@ -486,7 +486,6 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
     @Override
     public void finishTree(DetailAST rootAST) {
-
         if (!importToGroupList.isEmpty()) {
             finishImportList();
         }
@@ -752,7 +751,6 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
         }
         else if (ruleStr.startsWith(SAME_PACKAGE_RULE_GROUP)) {
-
             final String rule = ruleStr.substring(ruleStr.indexOf('(') + 1,
                     ruleStr.indexOf(')'));
             samePackageMatchingDepth = Integer.parseInt(rule);

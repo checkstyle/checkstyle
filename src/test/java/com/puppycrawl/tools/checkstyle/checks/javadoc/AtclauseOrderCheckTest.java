@@ -112,7 +112,6 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIncorrectCustom() throws Exception {
-
         final DefaultConfiguration checkConfig = createModuleConfig(AtclauseOrderCheck.class);
         checkConfig.addAttribute("target", "CLASS_DEF");
         checkConfig.addAttribute("tagOrder", " @since,  @version, @param,@return,@throws, "

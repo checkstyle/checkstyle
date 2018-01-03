@@ -183,7 +183,6 @@ public class CommonUtilsTest {
 
     @Test
     public void testBaseClassNameForSimpleName() {
-
         assertEquals("Invalid base class name", "Set",
             CommonUtils.baseClassName("Set"));
     }

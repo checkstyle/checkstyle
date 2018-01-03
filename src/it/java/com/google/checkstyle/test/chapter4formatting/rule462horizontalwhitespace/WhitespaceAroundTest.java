@@ -34,7 +34,6 @@ public class WhitespaceAroundTest extends AbstractModuleTestSupport {
 
     @Test
     public void testWhitespaceAroundBasic() throws Exception {
-
         final Configuration checkConfig = getModuleConfig("WhitespaceAround");
         final String msgPreceded = "ws.notPreceded";
         final String msgFollowed = "ws.notFollowed";
@@ -73,7 +72,6 @@ public class WhitespaceAroundTest extends AbstractModuleTestSupport {
 
     @Test
     public void testWhitespaceAroundEmptyTypesCycles() throws Exception {
-
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("WhitespaceAround");

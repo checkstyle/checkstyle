@@ -114,7 +114,6 @@ public final class PackageNamesLoader
                            String localName,
                            String qName) {
         if (PACKAGE_ELEMENT_NAME.equals(qName)) {
-
             packageNames.add(getPackageName());
             packageStack.pop();
         }
@@ -131,7 +130,6 @@ public final class PackageNamesLoader
      */
     public static Set<String> getPackageNames(ClassLoader classLoader)
             throws CheckstyleException {
-
         final Set<String> result;
         try {
             //create the loader outside the loop to prevent PackageObjectFactory

@@ -174,7 +174,6 @@ class TagParser {
         int column = tagStart.getColumnNo() + 1;
         String text = javadocText[tagStart.getLineNo()];
         if (column < text.length()) {
-
             if (text.charAt(column) == '/') {
                 column++;
             }

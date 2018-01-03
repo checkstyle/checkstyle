@@ -98,7 +98,6 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void allowedAnnotationsTest() throws Exception {
-
         final DefaultConfiguration config = createModuleConfig(JavadocMethodCheck.class);
         config.addAttribute("allowedAnnotations", "Override,ThisIsOk, \t\n\t ThisIsOkToo");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;

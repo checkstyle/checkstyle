@@ -327,7 +327,6 @@ public final class CheckUtils {
         // exceptions.
         if (ast.getType() == TokenTypes.METHOD_DEF
                 && ast.getChildCount() == SETTER_GETTER_MAX_CHILDREN) {
-
             final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
             final String name = type.getNextSibling().getText();
             final boolean matchesSetterFormat = SETTER_PATTERN.matcher(name).matches();
@@ -365,7 +364,6 @@ public final class CheckUtils {
         // exceptions.
         if (ast.getType() == TokenTypes.METHOD_DEF
                 && ast.getChildCount() == SETTER_GETTER_MAX_CHILDREN) {
-
             final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
             final String name = type.getNextSibling().getText();
             final boolean matchesGetterFormat = GETTER_PATTERN.matcher(name).matches();
@@ -432,7 +430,6 @@ public final class CheckUtils {
         AccessModifier accessModifier = AccessModifier.PACKAGE;
         for (AST token = modifiersToken.getFirstChild(); token != null;
              token = token.getNextSibling()) {
-
             final int tokenType = token.getType();
             if (tokenType == TokenTypes.LITERAL_PUBLIC) {
                 accessModifier = AccessModifier.PUBLIC;

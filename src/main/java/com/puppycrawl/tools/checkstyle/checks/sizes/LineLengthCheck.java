@@ -113,7 +113,6 @@ public class LineLengthCheck extends AbstractCheck {
     public void beginTree(DetailAST rootAST) {
         final String[] lines = getLines();
         for (int i = 0; i < lines.length; i++) {
-
             final String line = lines[i];
             final int realLength = CommonUtils.lengthExpandedTabs(
                 line, line.length(), getTabWidth());

@@ -33,7 +33,6 @@ public class GenericWhitespaceTest extends AbstractModuleTestSupport {
 
     @Test
     public void testWhitespaceAroundGenerics() throws Exception {
-
         final String msgPreceded = "ws.preceded";
         final String msgFollowed = "ws.followed";
         final Configuration checkConfig = getModuleConfig("GenericWhitespace");

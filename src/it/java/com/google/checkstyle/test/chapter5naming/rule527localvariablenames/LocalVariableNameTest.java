@@ -35,7 +35,6 @@ public class LocalVariableNameTest extends AbstractModuleTestSupport {
 
     @Test
     public void testLocalVariableName() throws Exception {
-
         final Configuration checkConfig = getModuleConfig("LocalVariableName");
         final String format = checkConfig.getAttribute("format");
         final String[] expected = {
@@ -59,7 +58,6 @@ public class LocalVariableNameTest extends AbstractModuleTestSupport {
 
     @Test
     public void testOneChar() throws Exception {
-
         final Configuration checkConfig = getModuleConfig("LocalVariableName");
         final String format = checkConfig.getAttribute("format");
         final String[] expected = {

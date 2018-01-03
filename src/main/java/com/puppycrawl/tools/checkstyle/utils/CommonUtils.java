@@ -75,7 +75,6 @@ public final class CommonUtils {
 
     /** Stop instances being created. **/
     private CommonUtils() {
-
     }
 
     /**

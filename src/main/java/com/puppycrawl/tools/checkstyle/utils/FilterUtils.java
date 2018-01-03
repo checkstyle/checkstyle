@@ -35,7 +35,6 @@ public final class FilterUtils {
 
     /** Stop instances being created. **/
     private FilterUtils() {
-
     }
 
     /**

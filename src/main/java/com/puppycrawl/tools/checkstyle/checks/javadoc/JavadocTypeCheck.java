@@ -324,7 +324,6 @@ public class JavadocTypeCheck
         for (int i = tags.size() - 1; i >= 0; i--) {
             final JavadocTag tag = tags.get(i);
             if (tag.isParamTag()) {
-
                 final String typeParamName = extractTypeParamNameFromTag(tag);
 
                 if (!typeParamNames.contains(typeParamName)) {

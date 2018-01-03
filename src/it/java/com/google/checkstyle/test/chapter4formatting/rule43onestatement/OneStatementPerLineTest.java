@@ -36,7 +36,6 @@ public class OneStatementPerLineTest extends AbstractModuleTestSupport {
 
     @Test
     public void testOneStatement() throws Exception {
-
         final String msg = getCheckMessage(OneStatementPerLineCheck.class,
             "multiple.statements.line");
 
@@ -73,7 +72,6 @@ public class OneStatementPerLineTest extends AbstractModuleTestSupport {
 
     @Test
     public void testOneStatementNonCompilableInput() throws Exception {
-
         final String msg = getCheckMessage(OneStatementPerLineCheck.class,
             "multiple.statements.line");
 

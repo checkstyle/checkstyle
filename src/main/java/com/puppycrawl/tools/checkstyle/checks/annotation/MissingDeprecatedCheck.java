@@ -242,7 +242,6 @@ public final class MissingDeprecatedCheck extends AbstractCheck {
      */
     private boolean checkTagAtTheRestOfComment(String[] lines, boolean foundBefore,
             int currentLine, int index) {
-
         boolean found = false;
         int reindex = index + 1;
         while (reindex <= lines.length - 1) {

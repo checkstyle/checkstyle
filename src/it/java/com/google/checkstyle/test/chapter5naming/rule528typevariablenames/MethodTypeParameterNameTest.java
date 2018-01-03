@@ -43,7 +43,6 @@ public class MethodTypeParameterNameTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMethodDefault() throws Exception {
-
         final Configuration checkConfig = getModuleConfig("MethodTypeParameterName");
 
         final String[] expected = {

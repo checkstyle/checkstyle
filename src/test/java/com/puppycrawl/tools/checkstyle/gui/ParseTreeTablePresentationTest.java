@@ -215,7 +215,6 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
      */
     @Test
     public void testGetValueAt() {
-
         final DetailAST node = tree.getFirstChild()
             .getNextSibling()
             .getNextSibling()

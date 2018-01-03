@@ -515,7 +515,6 @@ public final class Main {
         final RootModule rootModule = getRootModule(config.getName(), moduleClassLoader);
 
         try {
-
             rootModule.setModuleClassLoader(moduleClassLoader);
             rootModule.configure(config);
             rootModule.addListener(listener);
@@ -590,7 +589,6 @@ public final class Main {
     private static AuditListener createListener(String format,
                                                 String outputLocation)
             throws FileNotFoundException {
-
         // setup the output stream
         final OutputStream out;
         final AutomaticBean.OutputStreamOptions closeOutputStream;
