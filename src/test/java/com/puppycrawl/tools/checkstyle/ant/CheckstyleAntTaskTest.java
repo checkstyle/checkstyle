@@ -808,6 +808,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     private static class CheckstyleAntTaskStub extends CheckstyleAntTask {
+
         @Override
         protected List<File> scanFileSets() {
             final File mock = PowerMockito.mock(File.class);
@@ -841,6 +842,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     private static final class MessageLevelPair {
+
         private final String msg;
         private final int level;
 

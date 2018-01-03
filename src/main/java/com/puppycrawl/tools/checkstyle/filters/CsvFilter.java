@@ -34,6 +34,7 @@ import java.util.StringTokenizer;
  * @author o_sukhodolsky
  */
 class CsvFilter implements IntFilter {
+
     /** Filter set. */
     private final Set<IntFilter> filters = new HashSet<>();
 

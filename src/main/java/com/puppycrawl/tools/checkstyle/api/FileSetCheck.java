@@ -30,6 +30,7 @@ import java.util.SortedSet;
  */
 public interface FileSetCheck
     extends Configurable, Contextualizable {
+
     /**
      * Sets the MessageDispatcher that is used to dispatch error
      * messages to AuditListeners during processing.

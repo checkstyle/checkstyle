@@ -84,6 +84,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 public class XdocsPagesTest {
+
     private static final Path AVAILABLE_CHECKS_PATH = Paths.get("src/xdocs/checks.xml");
     private static final String LINK_TEMPLATE =
             "(?s).*<a href=\"config_\\w+\\.html#%1$s\">%1$s</a>.*";

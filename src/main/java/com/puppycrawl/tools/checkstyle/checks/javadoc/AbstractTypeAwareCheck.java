@@ -47,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 @Deprecated
 @FileStatefulCheck
 public abstract class AbstractTypeAwareCheck extends AbstractCheck {
+
     /** Stack of maps for type params. */
     private final Deque<Map<String, AbstractClassInfo>> typeParams = new ArrayDeque<>();
 
@@ -405,6 +406,7 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
      * @noinspection ProtectedInnerClass
      */
     protected abstract static class AbstractClassInfo {
+
         /** {@code FullIdent} associated with this class. */
         private final Token name;
 
@@ -438,6 +440,7 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
 
     /** Represents regular classes/enums. */
     private static final class RegularClass extends AbstractClassInfo {
+
         /** Name of surrounding class. */
         private final String surroundingClass;
         /** The check we use to resolve classes. */
@@ -491,6 +494,7 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
 
     /** Represents type param which is "alias" for real type. */
     private static class ClassAlias extends AbstractClassInfo {
+
         /** Class information associated with the alias. */
         private final AbstractClassInfo classInfo;
 
@@ -520,6 +524,7 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
      * @noinspection ProtectedInnerClass
      */
     protected static class Token {
+
         /** Token's column number. */
         private final int columnNo;
         /** Token's line number. */

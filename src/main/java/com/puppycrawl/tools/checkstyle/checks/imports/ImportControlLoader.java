@@ -42,6 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  * @author Oliver Burn
  */
 final class ImportControlLoader extends XmlLoader {
+
     /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_0 =
         "-//Puppy Crawl//DTD Import Control 1.0//EN";

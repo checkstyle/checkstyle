@@ -46,6 +46,7 @@ import com.sun.javadoc.Tag;
  * @author o_sukhodolsky
  */
 public final class TokenTypesDoclet {
+
     /** Command line option to specify file to write output of the doclet. */
     private static final String DEST_FILE_OPT = "-destfile";
 

@@ -717,6 +717,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      * Indicates whether tree contains certain nodes.
      */
     private enum AstState {
+
         /**
          * Ordinary tree.
          */

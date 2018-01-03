@@ -469,6 +469,7 @@ public class CommonUtilsTest {
     }
 
     private static class TestCloseable implements Closeable {
+
         private boolean closed;
 
         @Override

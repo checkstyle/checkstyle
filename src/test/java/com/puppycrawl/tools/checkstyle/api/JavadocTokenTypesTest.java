@@ -28,6 +28,7 @@ import java.lang.reflect.Field;
 import org.junit.Test;
 
 public class JavadocTokenTypesTest {
+
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertTrue("Constructor is not private",

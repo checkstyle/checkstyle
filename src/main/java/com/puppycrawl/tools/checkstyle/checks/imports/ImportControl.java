@@ -33,6 +33,7 @@ import java.util.regex.Pattern;
  * @author Oliver Burn
  */
 class ImportControl {
+
     /** The package separator: "." */
     private static final String DOT = ".";
     /** A pattern matching the package separator: "." */

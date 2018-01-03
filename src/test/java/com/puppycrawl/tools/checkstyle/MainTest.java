@@ -74,6 +74,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({Main.class, CommonUtils.class, Closeables.class})
 public class MainTest {
+
     private static final String USAGE = String.format(Locale.ROOT,
           "usage: java com.puppycrawl.tools.checkstyle.Main [options] -c <config.xml>"
         + " file...%n"

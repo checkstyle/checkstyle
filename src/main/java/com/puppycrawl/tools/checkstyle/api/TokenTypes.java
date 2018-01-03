@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes;
  * @noinspection ClassWithTooManyDependents
  */
 public final class TokenTypes {
+
     // The following three types are never part of an AST,
     // left here as a reminder so nobody will read them accidentally
 

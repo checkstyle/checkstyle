@@ -984,6 +984,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /** An AbstractFrame type. */
     private enum FrameType {
+
         /** Class frame type. */
         CLASS_FRAME,
         /** Constructor frame type. */
@@ -1004,6 +1005,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @author Andrei Selkin
      */
     private abstract static class AbstractFrame {
+
         /** Set of name of variables declared in this frame. */
         private final Set<DetailAST> varIdents;
 
@@ -1175,6 +1177,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @author Andrei Selkin
      */
     private static class ClassFrame extends AbstractFrame {
+
         /** Set of idents of instance members declared in this frame. */
         private final Set<DetailAST> instanceMembers;
         /** Set of idents of instance methods declared in this frame. */
@@ -1407,6 +1410,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @author Richard Veach
      */
     public static class CatchFrame extends AbstractFrame {
+
         /**
          * Creates catch frame.
          * @param parent parent frame.
@@ -1427,6 +1431,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @author Richard Veach
      */
     public static class ForFrame extends AbstractFrame {
+
         /**
          * Creates for frame.
          * @param parent parent frame.

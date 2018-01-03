@@ -26,6 +26,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ImportControlTest {
+
     private final ImportControl icRoot = new ImportControl("com.kazgroup.courtlink", false);
     private final ImportControl icCommon = new ImportControl(icRoot, "common", false);
 

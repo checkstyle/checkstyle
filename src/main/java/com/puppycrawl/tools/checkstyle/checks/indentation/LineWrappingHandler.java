@@ -42,6 +42,7 @@ public class LineWrappingHandler {
      * Enum to be used for test if first line's indentation should be checked or not.
      */
     public enum LineWrappingOptions {
+
         /**
          * First line's indentation should NOT be checked.
          */

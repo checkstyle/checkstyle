@@ -977,6 +977,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
 
     /** Stores useful information about declared exception. */
     private static class ExceptionInfo {
+
         /** Class information associated with this exception. */
         private final AbstractClassInfo classInfo;
         /** Does the exception have throws tag associated with. */

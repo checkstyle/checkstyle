@@ -35,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class ConstantNameCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/constantname";

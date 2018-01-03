@@ -56,6 +56,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author  jrichard
  */
 public class IndentationCheckTest extends AbstractModuleTestSupport {
+
     private static final Pattern LINE_WITH_COMMENT_REGEX =
                     Pattern.compile(".*?//indent:(\\d+)(?: ioffset:(\\d+))?"
                         + " exp:(>=)?(\\d+(?:,\\d+)*?)( warn)?$");
@@ -1939,6 +1940,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     private static final class IndentAudit implements AuditListener {
+
         private final IndentComment[] comments;
         private int position;
 
@@ -1997,6 +1999,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     private static final class IndentComment {
+
         /** Used to locate the index of argument zero of error messages. */
         private static final String FAKE_ARGUMENT_ZERO = "##0##";
         private final int lineNumber;

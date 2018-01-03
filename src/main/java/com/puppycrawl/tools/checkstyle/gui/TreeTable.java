@@ -55,6 +55,7 @@ import com.google.common.collect.ImmutableList;
  * @noinspection ThisEscapedInObjectConstruction
  */
 public class TreeTable extends JTable {
+
     private static final long serialVersionUID = -8493693409423365387L;
     /** A subclass of JTree. */
     private final TreeTableCellRenderer tree;
@@ -245,6 +246,7 @@ public class TreeTable extends JTable {
      */
     private class TreeTableCellEditor extends BaseCellEditor implements
             TableCellEditor {
+
         @Override
         public Component getTableCellEditorComponent(JTable table,
                 Object value,

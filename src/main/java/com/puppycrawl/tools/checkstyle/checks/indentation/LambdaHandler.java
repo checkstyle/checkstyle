@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * @author pietern
  */
 public class LambdaHandler extends AbstractExpressionHandler {
+
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.

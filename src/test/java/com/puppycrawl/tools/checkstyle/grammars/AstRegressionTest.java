@@ -43,6 +43,7 @@ import com.puppycrawl.tools.checkstyle.AstTreeStringPrinter;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
 public class AstRegressionTest extends AbstractTreeTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/grammars";
@@ -231,6 +232,7 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     private static final class AssertGeneratedJavaLexer extends GeneratedJavaLexer {
+
         private int laPosition;
         private char[] laResults;
 

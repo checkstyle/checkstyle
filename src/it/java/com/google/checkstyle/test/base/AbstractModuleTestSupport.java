@@ -60,6 +60,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * Enum to specify options for checker creation.
      */
     public enum ModuleCreationOption {
+
         /**
          * Points that the module configurations
          * has to be added under {@link TreeWalker}.

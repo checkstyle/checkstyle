@@ -25,6 +25,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
  * @author Chris Stillwell
  */
 class HtmlTag {
+
     /** The maximum length of text to display with this tag. */
     private static final int MAX_TEXT_LEN = 60;
 

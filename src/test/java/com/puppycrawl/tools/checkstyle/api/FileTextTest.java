@@ -44,6 +44,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(CommonUtils.class)
 public class FileTextTest extends AbstractPathTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/api/filetext";

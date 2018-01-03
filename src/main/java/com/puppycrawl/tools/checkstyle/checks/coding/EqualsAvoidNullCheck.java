@@ -513,6 +513,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
      * Holds the names of fields of a type.
      */
     private static class FieldFrame {
+
         /** Parent frame. */
         private final FieldFrame parent;
 

@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class EmptyBlockCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/blocks/emptyblock";

@@ -52,6 +52,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ImportControlLoader.class, URI.class})
 public class ImportControlLoaderTest {
+
     private static String getPath(String filename) {
         return "src/test/resources/com/puppycrawl/tools/"
                 + "checkstyle/checks/imports/importcontrolloader/" + filename;

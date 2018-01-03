@@ -49,6 +49,7 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 
 public class SuppressWithNearbyCommentFilterTest
     extends AbstractModuleTestSupport {
+
     private static final String[] ALL_MESSAGES = {
         "14:17: "
             + getCheckMessage(AbstractNameCheck.class,

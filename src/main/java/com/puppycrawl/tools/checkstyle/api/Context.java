@@ -29,6 +29,7 @@ import java.util.Collection;
  * @see Contextualizable
  */
 public interface Context {
+
     /**
      * Searches for the value with the specified attribute key in this context.
      * @param key the attribute key.

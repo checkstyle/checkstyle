@@ -28,6 +28,7 @@ import org.junit.Test;
 import nl.jqno.equalsverifier.EqualsVerifier;
 
 public class CsvFilterTest {
+
     @Test
     public void testDecideSingle() {
         final IntFilter filter = new CsvFilter("0");

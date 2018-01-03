@@ -29,6 +29,7 @@ import java.util.Locale;
  * @author Mehmet Can Cömert
  */
 public enum Scope {
+
     /** Nothing scope. */
     NOTHING,
     /** Public scope. */

@@ -28,6 +28,7 @@ import java.util.List;
  * @author Richard Veach
  */
 public interface RootModule extends Configurable {
+
     /** Cleans up the object. **/
     void destroy();
 

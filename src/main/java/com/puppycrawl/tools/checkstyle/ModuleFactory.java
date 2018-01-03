@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  */
 @FunctionalInterface
 public interface ModuleFactory {
+
     /**
      * Creates a new instance of a class from a given name.
      * If the provided module name is a class name an instance of that class

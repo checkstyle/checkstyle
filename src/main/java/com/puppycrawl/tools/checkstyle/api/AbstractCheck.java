@@ -36,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @noinspection NoopMethodInAbstractClass
  */
 public abstract class AbstractCheck extends AbstractViolationReporter {
+
     /** Default tab width for column reporting. */
     private static final int DEFAULT_TAB_WIDTH = 8;
 
@@ -306,6 +307,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * The actual context holder.
      */
     private static class FileContext {
+
         /** The sorted set for collecting messages. */
         private final SortedSet<LocalizedMessage> messages = new TreeSet<>();
 

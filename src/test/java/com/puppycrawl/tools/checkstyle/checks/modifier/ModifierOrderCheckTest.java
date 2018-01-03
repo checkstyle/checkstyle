@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class ModifierOrderCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/modifier/modifierorder";

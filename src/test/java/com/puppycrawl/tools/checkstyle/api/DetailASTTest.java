@@ -54,6 +54,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author Oliver Burn
  */
 public class DetailASTTest extends AbstractModuleTestSupport {
+
     @Rule
     public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 

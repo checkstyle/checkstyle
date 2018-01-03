@@ -49,6 +49,7 @@ public final class JavadocUtils {
      * The type of Javadoc tag we want returned.
      */
     public enum JavadocTagType {
+
         /** Block type. */
         BLOCK,
         /** Inline type. */

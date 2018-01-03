@@ -29,6 +29,7 @@ import java.util.List;
  * @author Oliver Burn
  */
 public final class JavadocTags {
+
     /** Valid validTags. */
     private final List<JavadocTag> validTags;
     /** Invalid validTags. */

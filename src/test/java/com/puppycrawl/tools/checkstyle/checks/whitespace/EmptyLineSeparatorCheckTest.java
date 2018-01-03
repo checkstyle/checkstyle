@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class EmptyLineSeparatorCheckTest
     extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator";

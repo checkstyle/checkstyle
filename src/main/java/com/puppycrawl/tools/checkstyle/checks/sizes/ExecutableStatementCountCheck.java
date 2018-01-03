@@ -187,6 +187,7 @@ public final class ExecutableStatementCountCheck
      * @author Simon Harris
      */
     private static class Context {
+
         /** Member AST node. */
         private final DetailAST ast;
 

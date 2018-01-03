@@ -54,6 +54,7 @@ public class PackageObjectFactory implements ModuleFactory {
      * Enum class to define loading options.
      */
     public enum ModuleLoadOption {
+
         /**
          * Searching from registered checkstyle modules and from packages given in constructor.
          **/

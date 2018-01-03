@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * @author oliver
  */
 class SinglelineDetector {
+
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.

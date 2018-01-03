@@ -55,6 +55,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
 @FileStatefulCheck
 public class EqualsHashCodeCheck
         extends AbstractCheck {
+
     // implementation note: we have to use the following members to
     // keep track of definitions in different inner classes
 

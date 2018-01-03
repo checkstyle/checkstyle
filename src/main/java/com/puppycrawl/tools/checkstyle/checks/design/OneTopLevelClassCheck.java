@@ -120,6 +120,7 @@ public class OneTopLevelClassCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
+
         publicTypeFound = false;
         lineNumberTypeMap.clear();
 

@@ -45,6 +45,7 @@ import java.util.List;
  * @author Chris Stillwell
  */
 class TagParser {
+
     /** List of HtmlTags found on the input line of text. */
     private final List<HtmlTag> tags = new LinkedList<>();
 
@@ -277,6 +278,7 @@ class TagParser {
      * @author o_sukholsky
      */
     private static final class Point {
+
         /** Line number. */
         private final int lineNo;
         /** Column number.*/

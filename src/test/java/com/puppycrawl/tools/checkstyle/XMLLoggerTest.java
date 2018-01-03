@@ -42,6 +42,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArray
  */
 // -@cs[AbbreviationAsWordInName] Test should be named as its main class.
 public class XMLLoggerTest extends AbstractXmlTestSupport {
+
     private final CloseAndFlushTestByteArrayOutputStream outStream =
         new CloseAndFlushTestByteArrayOutputStream();
 

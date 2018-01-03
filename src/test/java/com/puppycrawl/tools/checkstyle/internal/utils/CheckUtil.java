@@ -47,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtils;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 public final class CheckUtil {
+
     private CheckUtil() {
     }
 

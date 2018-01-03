@@ -695,6 +695,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * Holder for the scope data.
      */
     private static class ScopeData {
+
         /** Contains variable definitions. */
         private final Map<String, FinalVariableCandidate> scope = new HashMap<>();
 
@@ -726,6 +727,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
 
     /**Represents information about final local variable candidate. */
     private static class FinalVariableCandidate {
+
         /** Identifier token. */
         private final DetailAST variableIdent;
         /** Whether the variable is assigned. */

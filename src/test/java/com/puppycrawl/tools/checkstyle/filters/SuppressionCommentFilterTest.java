@@ -50,6 +50,7 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 
 public class SuppressionCommentFilterTest
     extends AbstractModuleTestSupport {
+
     private static final String[] ALL_MESSAGES = {
         "13:17: "
             + getCheckMessage(AbstractNameCheck.class,

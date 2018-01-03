@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author jrichard
  */
 public class HandlerFactory {
+
     /**
      * Registered handlers.
      */

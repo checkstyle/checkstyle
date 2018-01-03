@@ -37,6 +37,7 @@ import net.sf.saxon.type.Type;
  * @author Timur Tibeyev
  */
 public class ElementNode extends AbstractNode {
+
     /** String literal for text attribute. */
     private static final String TEXT_ATTRIBUTE_NAME = "text";
 

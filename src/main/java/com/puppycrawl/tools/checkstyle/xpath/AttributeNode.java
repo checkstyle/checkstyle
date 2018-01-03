@@ -30,6 +30,7 @@ import net.sf.saxon.type.Type;
  * @author Timur Tibeyev
  */
 public class AttributeNode extends AbstractNode {
+
     /** The name of the attribute. */
     private final String name;
 

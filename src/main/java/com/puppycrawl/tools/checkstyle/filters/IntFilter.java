@@ -25,6 +25,7 @@ package com.puppycrawl.tools.checkstyle.filters;
  */
 @FunctionalInterface
 interface IntFilter {
+
     /**
      * Determines whether or not a filtered Integer is accepted.
      * @param intValue the Integer to filter.

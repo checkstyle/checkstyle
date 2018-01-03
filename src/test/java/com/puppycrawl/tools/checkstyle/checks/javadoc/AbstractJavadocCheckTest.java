@@ -464,6 +464,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     private static class JavadocCatchCheck extends AbstractJavadocCheck {
+
         private static int javadocsNumber;
 
         public static void clearCounter() {
@@ -486,6 +487,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     private static class RequiredTokenIsNotInDefaultsJavadocCheck extends AbstractJavadocCheck {
+
         @Override
         public int[] getRequiredJavadocTokens() {
             return new int[] {JavadocTokenTypes.RETURN_LITERAL};
@@ -508,6 +510,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     private static class TokenIsNotInAcceptablesJavadocCheck extends AbstractJavadocCheck {
+
         @Override
         public int[] getRequiredJavadocTokens() {
             return new int[] {JavadocTokenTypes.DEPRECATED_LITERAL};
@@ -530,6 +533,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     private static class JavadocVisitLeaveCheck extends AbstractJavadocCheck {
+
         private static int visitCount;
         private static int leaveCount;
 

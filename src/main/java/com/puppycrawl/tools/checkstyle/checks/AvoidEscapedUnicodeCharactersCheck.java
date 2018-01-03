@@ -112,6 +112,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 @FileStatefulCheck
 public class AvoidEscapedUnicodeCharactersCheck
     extends AbstractCheck {
+
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.

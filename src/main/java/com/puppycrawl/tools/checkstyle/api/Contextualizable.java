@@ -32,6 +32,7 @@ package com.puppycrawl.tools.checkstyle.api;
  */
 @FunctionalInterface
 public interface Contextualizable {
+
     /**
      * Sets the context for this Component.
      * @param context the context.

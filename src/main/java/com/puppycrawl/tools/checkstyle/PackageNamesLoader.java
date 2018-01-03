@@ -46,6 +46,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  */
 public final class PackageNamesLoader
     extends XmlLoader {
+
     /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID =
         "-//Puppy Crawl//DTD Package Names 1.0//EN";

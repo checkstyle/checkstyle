@@ -608,6 +608,7 @@ public class JavadocDetailNodeParser {
      * error message.
      */
     public static class ParseStatus {
+
         /**
          * DetailNode tree (is null if parsing fails).
          */
@@ -687,6 +688,7 @@ public class JavadocDetailNodeParser {
      * Contains information about parse error message.
      */
     public static class ParseErrorMessage {
+
         /**
          * Line number where parse error occurred.
          */
@@ -755,6 +757,7 @@ public class JavadocDetailNodeParser {
      *     ANTLRErrorStrategy</a>
      */
     private static class JavadocParserErrorStrategy extends BailErrorStrategy {
+
         @Override
         public Token recoverInline(Parser recognizer) {
             reportError(recognizer, new InputMismatchException(recognizer));

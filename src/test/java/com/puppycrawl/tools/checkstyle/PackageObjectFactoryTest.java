@@ -356,6 +356,7 @@ public class PackageObjectFactoryTest {
     }
 
     private static final class FailConstructorFileSet extends AbstractFileSetCheck {
+
         private FailConstructorFileSet() {
             throw new IllegalArgumentException("Test");
         }

@@ -52,6 +52,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ SuppressWarningsHolder.class, SuppressWarningsHolderTest.class })
 public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/suppresswarningsholder";

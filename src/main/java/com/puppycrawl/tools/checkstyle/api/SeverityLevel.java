@@ -35,6 +35,7 @@ import java.util.Locale;
  * @author Mehmet Can Cömert
  */
 public enum SeverityLevel {
+
     /** Severity level ignore. */
     IGNORE,
     /** Severity level info. */

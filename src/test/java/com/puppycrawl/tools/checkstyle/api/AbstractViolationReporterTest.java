@@ -36,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author lkuehne
  */
 public class AbstractViolationReporterTest {
+
     private final AbstractCheck emptyCheck = new EmptyCheck();
 
     private static Method getGetMessageBundleMethod() throws Exception {
@@ -122,6 +123,7 @@ public class AbstractViolationReporterTest {
     }
 
     private static class EmptyCheck extends AbstractCheck {
+
         @Override
         public int[] getDefaultTokens() {
             return CommonUtils.EMPTY_INT_ARRAY;

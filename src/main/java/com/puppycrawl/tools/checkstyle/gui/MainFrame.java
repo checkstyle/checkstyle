@@ -156,6 +156,7 @@ public class MainFrame extends JFrame {
      * Handler for file selection action events.
      */
     private class FileSelectionAction extends AbstractAction {
+
         private static final long serialVersionUID = 1762396148873280589L;
 
         @Override
@@ -176,6 +177,7 @@ public class MainFrame extends JFrame {
      * Handler for reload action events.
      */
     private class ReloadAction extends AbstractAction {
+
         private static final long serialVersionUID = -890320994114628011L;
 
         @Override
@@ -188,6 +190,7 @@ public class MainFrame extends JFrame {
      * Filter for Java files.
      */
     private static class JavaFileFilter extends FileFilter {
+
         @Override
         public boolean accept(File file) {
             return MainFrameModel.shouldAcceptFile(file);
