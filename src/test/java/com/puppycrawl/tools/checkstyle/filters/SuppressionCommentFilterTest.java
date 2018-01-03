@@ -348,7 +348,6 @@ public class SuppressionCommentFilterTest
             assertEquals("Invalid exception message",
                 "unable to parse expanded comment e[l", cause.getMessage());
         }
-
     }
 
     @Test

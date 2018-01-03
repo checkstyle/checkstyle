@@ -473,7 +473,6 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
             method.invoke(obj, "", "", "hello", null);
 
             fail("Exception is expected");
-
         }
         catch (InvocationTargetException ex) {
             assertTrue("Invalid exception cause",

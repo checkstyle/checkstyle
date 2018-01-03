@@ -54,7 +54,6 @@ public class DesignForExtensionCheckTest
             "100:9: " + getCheckMessage(MSG_KEY, "anotherNonFinalClass", "someMethod"),
         };
         verify(checkConfig, getPath("InputDesignForExtension.java"), expected);
-
     }
 
     @Test

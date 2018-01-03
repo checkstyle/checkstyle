@@ -186,7 +186,6 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
         finally {
             Closeables.closeQuietly(lnr);
         }
-
     }
 
     @Override

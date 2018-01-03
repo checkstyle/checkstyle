@@ -62,7 +62,6 @@ public class FileTextTest extends AbstractPathTestSupport {
             assertEquals("Invalid exception message",
                     "Unsupported charset: " + charsetName, ex.getMessage());
         }
-
     }
 
     @Test

@@ -123,7 +123,6 @@ public class UncommentedMainCheckTest
             assertEquals("Error message is unexpected",
                     ast.toString(), ex.getMessage());
         }
-
     }
 
 }

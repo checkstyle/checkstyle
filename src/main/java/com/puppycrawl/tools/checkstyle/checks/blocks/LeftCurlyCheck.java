@@ -318,7 +318,6 @@ public class LeftCurlyCheck
             }
             else if (startToken.getLineNo() != brace.getLineNo()) {
                 validateNewLinePosition(brace, startToken, braceLine);
-
             }
         }
     }

@@ -228,7 +228,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "204:77: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 77),
             "208:76: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 76),
             "216:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
-
         };
         verify(checkConfig, getPath("InputRightCurlyAnnotations.java"), expected);
     }

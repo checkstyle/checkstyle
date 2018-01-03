@@ -764,7 +764,6 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
             if (CommonUtils.startsWithChar(arg1, '<') && CommonUtils.endsWithChar(arg1, '>')) {
                 found = searchMatchingTypeParameter(typeParams,
                         arg1.substring(1, arg1.length() - 1));
-
             }
 
             // Handle extra JavadocTag
@@ -913,7 +912,6 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
                     log(tag.getLineNo(), tag.getColumnNo(),
                         MSG_UNUSED_TAG,
                         JavadocTagInfo.THROWS.getText(), tag.getFirstArg());
-
                 }
             }
         }

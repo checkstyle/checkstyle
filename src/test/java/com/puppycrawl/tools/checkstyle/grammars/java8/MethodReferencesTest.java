@@ -40,7 +40,6 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodReferences.java"), expected);
-
     }
 
     @Test
@@ -50,7 +49,6 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodReferences2.java"), expected);
-
     }
 
     @Test
@@ -60,7 +58,6 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodReferences3.java"), expected);
-
     }
 
     @Test
@@ -69,7 +66,6 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodReferences4.java"), expected);
-
     }
 
     @Test
@@ -78,7 +74,6 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodReferences5.java"), expected);
-
     }
 
     @Test
@@ -96,7 +91,6 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodReferences7.java"), expected);
-
     }
 
 }

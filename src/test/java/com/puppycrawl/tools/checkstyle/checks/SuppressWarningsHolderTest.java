@@ -120,7 +120,6 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
             assertEquals("Error message is unexpected",
                     "'=' expected in alias list item: =SomeAlias", ex.getMessage());
         }
-
     }
 
     @Test
@@ -313,7 +312,6 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
             assertEquals("Error message is unexpected",
                     "Identifier AST expected, but get null.", ex.getMessage());
         }
-
     }
 
     @Test

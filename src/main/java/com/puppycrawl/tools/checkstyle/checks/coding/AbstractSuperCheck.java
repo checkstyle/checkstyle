@@ -127,7 +127,6 @@ public abstract class AbstractSuperCheck
                 break;
             }
             dotAst = dotAst.getParent();
-
         }
         return inOverridingMethod;
     }

@@ -143,7 +143,6 @@ public abstract class AbstractIndentationTestSupport extends AbstractModuleTestS
 
             default:
                 throw new IllegalStateException("Cannot determine comment is consistent");
-
         }
         return result;
     }

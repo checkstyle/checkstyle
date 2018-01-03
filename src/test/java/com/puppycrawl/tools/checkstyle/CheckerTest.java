@@ -212,7 +212,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.fireErrors("Some File Name", messages);
         assertTrue("Checker.fireErrors() doesn't call listener", aa2.wasCalled());
         assertFalse("Checker.fireErrors() does call removed listener", auditAdapter.wasCalled());
-
     }
 
     @Test
@@ -273,7 +272,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.fireErrors("Some File Name", messages);
         assertTrue("Checker.fireErrors() doesn't call filter", f2.wasCalled());
         assertFalse("Checker.fireErrors() does call removed filter", filter.wasCalled());
-
     }
 
     @Test
@@ -462,7 +460,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
             (List<AuditListener>) Whitebox.getInternalState(checker, "listeners");
         assertTrue("Invalid child listener class",
             listeners.get(listeners.size() - 1) instanceof DebugAuditAdapter);
-
     }
 
     @Test

@@ -220,7 +220,6 @@ public class RegexpCheck extends AbstractCheck {
         else if (!illegalPattern && matchCount == 0) {
             logMessage(0);
         }
-
     }
 
     /**

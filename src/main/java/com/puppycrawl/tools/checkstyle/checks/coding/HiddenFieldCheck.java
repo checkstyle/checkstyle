@@ -612,7 +612,6 @@ public class HiddenFieldCheck
                     || parent != null
                     && !staticType
                     && parent.containsInstanceField(field);
-
         }
 
         /**

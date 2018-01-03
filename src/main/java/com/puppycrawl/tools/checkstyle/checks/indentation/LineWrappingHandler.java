@@ -297,9 +297,7 @@ public class LineWrappingHandler {
                     break;
                 default:
                     endOfScope = false;
-
             }
-
         }
         return endOfScope;
     }

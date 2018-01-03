@@ -63,7 +63,6 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
         verify(createChecker(checkConfig), inputsWithoutWarningFirst, ImmutableMap.of(
                 inputWithoutWarnings, expectedFirstInput,
                 inputWithWarnings, expectedSecondInput));
-
     }
 
     @Test
