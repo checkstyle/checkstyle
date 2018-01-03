@@ -418,4 +418,5 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig,
             getPath("InputRightCurlySameLambda.java"), expected);
     }
+
 }

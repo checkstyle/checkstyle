@@ -126,4 +126,5 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputJavadocParagraphIncorrect.java"), expected);
     }
+
 }

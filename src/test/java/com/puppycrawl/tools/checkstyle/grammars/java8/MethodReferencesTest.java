@@ -98,4 +98,5 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputMethodReferences7.java"), expected);
 
     }
+
 }

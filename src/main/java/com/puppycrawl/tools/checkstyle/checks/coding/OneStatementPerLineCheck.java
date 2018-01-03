@@ -239,4 +239,5 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
         }
         return multiline;
     }
+
 }

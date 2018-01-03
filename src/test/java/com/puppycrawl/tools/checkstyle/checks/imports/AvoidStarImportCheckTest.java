@@ -113,4 +113,5 @@ public class AvoidStarImportCheckTest
 
         assertArrayEquals("Default required tokens are invalid", expected, actual);
     }
+
 }

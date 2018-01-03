@@ -115,4 +115,5 @@ public class IndentationTest extends AbstractIndentationTestSupport {
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

@@ -381,5 +381,7 @@ public class XMLLogger
         public void addException(Throwable throwable) {
             exceptions.add(throwable);
         }
+
     }
+
 }

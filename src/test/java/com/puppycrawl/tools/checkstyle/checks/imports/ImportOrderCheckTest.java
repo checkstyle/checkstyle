@@ -796,4 +796,5 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getNonCompilablePath("InputImportOrder_MultiplePatternMatches.java"),
                 expected);
     }
+
 }

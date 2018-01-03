@@ -104,4 +104,5 @@ public class RegexpMultilineCheck extends AbstractFileSetCheck {
     public void setIgnoreCase(boolean ignoreCase) {
         this.ignoreCase = ignoreCase;
     }
+
 }

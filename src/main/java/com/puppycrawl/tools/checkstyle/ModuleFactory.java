@@ -45,4 +45,5 @@ public interface ModuleFactory {
      * @throws CheckstyleException if no module can be instantiated from name
      */
     Object createModule(String name) throws CheckstyleException;
+
 }

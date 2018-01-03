@@ -273,4 +273,5 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
                 new File[] {fileWithoutParent},
                 getPath("package-info.java"), expected);
     }
+
 }

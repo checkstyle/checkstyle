@@ -201,4 +201,5 @@ public final class MissingOverrideCheck extends AbstractCheck {
         }
         return javadocTag;
     }
+
 }

@@ -39,4 +39,5 @@ public enum PadOption {
      * and preceding a right one.
      */
     SPACE
+
 }

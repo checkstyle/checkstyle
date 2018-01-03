@@ -196,4 +196,5 @@ public class WhitespaceAfterCheckTest
         verify(checkConfig, getPath("InputWhitespaceAfterAround.java"),
                expected);
     }
+
 }

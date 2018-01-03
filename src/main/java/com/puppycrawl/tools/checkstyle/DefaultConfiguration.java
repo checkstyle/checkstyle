@@ -155,4 +155,5 @@ public final class DefaultConfiguration implements Configuration {
     public ThreadModeSettings getThreadModeSettings() {
         return threadModeSettings;
     }
+
 }

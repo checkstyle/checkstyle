@@ -331,4 +331,5 @@ public class AvoidEscapedUnicodeCharactersCheck
                 && ALL_ESCAPED_CHARS.matcher(literal.substring(1,
                         literal.length() - 1)).find();
     }
+
 }

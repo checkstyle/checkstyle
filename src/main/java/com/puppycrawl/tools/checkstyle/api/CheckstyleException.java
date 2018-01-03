@@ -49,4 +49,5 @@ public class CheckstyleException extends Exception {
     public CheckstyleException(String message, Throwable cause) {
         super(message, cause);
     }
+
 }

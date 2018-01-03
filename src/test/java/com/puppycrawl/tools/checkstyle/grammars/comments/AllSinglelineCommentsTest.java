@@ -90,5 +90,7 @@ public class AllSinglelineCommentsTest extends AbstractModuleTestSupport {
                 Assert.fail("Unexpected comment: " + commentContent);
             }
         }
+
     }
+
 }

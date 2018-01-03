@@ -146,4 +146,5 @@ public class HideUtilityClassConstructorCheckTest
         assertArrayEquals("Default acceptable tokens are invalid",
             expected, obj.getAcceptableTokens());
     }
+
 }

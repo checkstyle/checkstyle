@@ -52,4 +52,5 @@ public class OverloadMethodsDeclarationOrderTest extends AbstractModuleTestSuppo
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

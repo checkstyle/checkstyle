@@ -155,4 +155,5 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
 
         verify(checkConfig, getPath("InputSingleSpaceSeparatorComments.java"), expected);
     }
+
 }

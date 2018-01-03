@@ -68,4 +68,5 @@ public final class ClassDataAbstractionCouplingCheck
     protected String getLogMessageId() {
         return MSG_KEY;
     }
+
 }

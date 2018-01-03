@@ -476,5 +476,7 @@ public class CommonUtilsTest {
         public void close() {
             closed = true;
         }
+
     }
+
 }

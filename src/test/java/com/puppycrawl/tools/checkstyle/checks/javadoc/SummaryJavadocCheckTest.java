@@ -135,4 +135,5 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
 
         verify(checkConfig, getPath("InputSummaryJavadocPeriodAtEnd.java"), expected);
     }
+
 }

@@ -601,6 +601,7 @@ public class JavadocDetailNodeParser {
                         MSG_JAVADOC_PARSE_RULE_ERROR, charPositionInLine, msg, upperCaseRuleName);
             }
         }
+
     }
 
     /**
@@ -740,6 +741,7 @@ public class JavadocDetailNodeParser {
         public Object[] getMessageArguments() {
             return messageArguments.clone();
         }
+
     }
 
     /**
@@ -763,6 +765,7 @@ public class JavadocDetailNodeParser {
             reportError(recognizer, new InputMismatchException(recognizer));
             return super.recoverInline(recognizer);
         }
+
     }
 
 }

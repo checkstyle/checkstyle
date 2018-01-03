@@ -155,4 +155,5 @@ public class NoWhitespaceBeforeCheck
     public void setAllowLineBreaks(boolean allowLineBreaks) {
         this.allowLineBreaks = allowLineBreaks;
     }
+
 }

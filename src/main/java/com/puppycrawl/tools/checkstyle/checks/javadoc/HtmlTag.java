@@ -135,4 +135,5 @@ class HtmlTag {
         final int endOfText = Math.min(startOfText + MAX_TEXT_LEN, text.length());
         return text.substring(startOfText, endOfText);
     }
+
 }

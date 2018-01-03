@@ -68,4 +68,5 @@ public class NoLineWrapCheckTest
         };
         verify(checkConfig, getPath("InputNoLineWrapBad.java"), expected);
     }
+
 }

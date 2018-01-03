@@ -163,4 +163,5 @@ public class IllegalTokenTextCheckTest
                 + " such cases).", tokenTypesWithMutableText.contains(tokenType));
         }
     }
+
 }

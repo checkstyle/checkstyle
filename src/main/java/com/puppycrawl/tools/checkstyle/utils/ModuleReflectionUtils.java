@@ -181,4 +181,5 @@ public final class ModuleReflectionUtils {
     public static boolean isTreeWalkerFilterModule(Class<?> clazz) {
         return TreeWalkerFilter.class.isAssignableFrom(clazz);
     }
+
 }

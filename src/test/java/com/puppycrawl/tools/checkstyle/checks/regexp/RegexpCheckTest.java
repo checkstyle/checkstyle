@@ -341,4 +341,5 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputRegexpTrailingComment.java"), expected);
     }
+
 }

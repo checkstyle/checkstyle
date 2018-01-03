@@ -552,4 +552,5 @@ public class XpathMapperTest extends AbstractPathTestSupport {
         }
         return returnValue;
     }
+
 }

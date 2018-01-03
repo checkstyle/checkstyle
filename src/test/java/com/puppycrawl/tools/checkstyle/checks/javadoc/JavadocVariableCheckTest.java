@@ -346,4 +346,5 @@ public class JavadocVariableCheckTest
                 getPath("InputJavadocVariableNoJavadocNeededInLambda.java"),
                 expected);
     }
+
 }

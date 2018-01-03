@@ -153,4 +153,5 @@ public class ModifiedControlVariableCheckTest
                 "variableStack",
                 variableStack -> ((Collection<Set<String>>) variableStack).isEmpty()));
     }
+
 }

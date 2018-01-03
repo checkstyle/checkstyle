@@ -54,4 +54,5 @@ public class PackageDefHandler extends AbstractExpressionHandler {
 
         checkWrappingIndentation(getMainAst(), semi);
     }
+
 }

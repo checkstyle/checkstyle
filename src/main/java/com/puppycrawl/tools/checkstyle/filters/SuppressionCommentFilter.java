@@ -70,6 +70,7 @@ public class SuppressionCommentFilter
          * Switch reporting off.
          */
         OFF
+
     }
 
     /** Turns checkstyle reporting off. */
@@ -473,5 +474,7 @@ public class SuppressionCommentFilter
                     + ", tagCheckRegexp=" + tagCheckRegexp
                     + ", tagMessageRegexp=" + tagMessageRegexp + ']';
         }
+
     }
+
 }

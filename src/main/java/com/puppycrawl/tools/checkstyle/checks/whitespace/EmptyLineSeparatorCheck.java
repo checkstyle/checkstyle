@@ -592,4 +592,5 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         final int parentType = variableDef.getParent().getParent().getType();
         return parentType == TokenTypes.CLASS_DEF;
     }
+
 }

@@ -71,4 +71,5 @@ public interface DetailNode {
      * @return index
      */
     int getIndex();
+
 }

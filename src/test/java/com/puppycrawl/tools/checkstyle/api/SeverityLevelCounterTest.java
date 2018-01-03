@@ -71,4 +71,5 @@ public class SeverityLevelCounterTest {
         counter.auditStarted(secondEvent);
         assertEquals("Invalid severity level count", 0, counter.getCount());
     }
+
 }

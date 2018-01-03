@@ -433,4 +433,5 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
             prevParent = prevParent.parent;
         }
     }
+
 }

@@ -138,6 +138,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
          * Mixed styles.
          */
         IGNORE,
+
     }
 
     /**
@@ -166,6 +167,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
          * Mixed styles.
          */
         IGNORE,
+
     }
 
     /**
@@ -194,6 +196,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
          * Mixed styles.
          */
         IGNORE,
+
     }
 
     /**
@@ -502,4 +505,5 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
             }
         }
     }
+
 }

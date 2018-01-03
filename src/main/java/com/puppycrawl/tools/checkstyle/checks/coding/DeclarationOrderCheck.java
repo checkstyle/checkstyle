@@ -389,5 +389,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
 
         /** The sub-state the check is in. */
         private Scope declarationAccess = Scope.PUBLIC;
+
     }
+
 }

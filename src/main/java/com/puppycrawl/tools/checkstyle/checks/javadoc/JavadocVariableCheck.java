@@ -149,4 +149,5 @@ public class JavadocVariableCheck
         }
         return result;
     }
+
 }

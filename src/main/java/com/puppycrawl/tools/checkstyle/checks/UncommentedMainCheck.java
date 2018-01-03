@@ -236,4 +236,5 @@ public class UncommentedMainCheck
         return "String".equals(type.getText())
             || "java.lang.String".equals(type.getText());
     }
+
 }

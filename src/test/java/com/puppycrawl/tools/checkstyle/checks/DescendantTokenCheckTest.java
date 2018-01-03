@@ -377,4 +377,5 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputDescendantTokenLastTokenType.java"), expected);
     }
+
 }

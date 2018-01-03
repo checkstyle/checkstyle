@@ -222,4 +222,5 @@ public class ModifierOrderCheck
         }
         return annotationOnType;
     }
+
 }

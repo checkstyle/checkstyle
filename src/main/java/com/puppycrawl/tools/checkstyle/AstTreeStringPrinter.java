@@ -55,6 +55,7 @@ public final class AstTreeStringPrinter {
          * Comments has NOT to be printed.
          */
         WITHOUT_COMMENTS
+
     }
 
     /** Newline pattern. */
@@ -268,4 +269,5 @@ public final class AstTreeStringPrinter {
 
         return result;
     }
+
 }

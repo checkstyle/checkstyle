@@ -1429,4 +1429,5 @@ public class XdocsPagesTest {
         Assert.assertFalse(fileName + " rule '" + ruleName + "' has too many configs",
                 itrConfigs.hasNext());
     }
+
 }

@@ -62,4 +62,5 @@ public final class JavadocTags {
     public List<InvalidJavadocTag> getInvalidTags() {
         return Collections.unmodifiableList(invalidTags);
     }
+
 }

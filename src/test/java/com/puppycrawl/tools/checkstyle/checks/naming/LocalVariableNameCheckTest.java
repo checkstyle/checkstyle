@@ -77,4 +77,5 @@ public class LocalVariableNameCheckTest
         };
         verify(checkConfig, getPath("InputLocalVariableNameOneCharInitVarName.java"), expected);
     }
+
 }

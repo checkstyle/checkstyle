@@ -162,4 +162,5 @@ public class FileContentsTest {
 
         assertArrayEquals("Invalid comment text", new String[] {"/* test   ", "  *"}, text);
     }
+
 }

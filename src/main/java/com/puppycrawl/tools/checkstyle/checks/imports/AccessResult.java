@@ -32,4 +32,5 @@ enum AccessResult {
     DISALLOWED,
     /** Represents that access is unknown. */
     UNKNOWN
+
 }

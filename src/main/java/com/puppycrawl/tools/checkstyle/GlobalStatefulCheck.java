@@ -46,4 +46,5 @@ import java.lang.annotation.Target;
 public @interface GlobalStatefulCheck {
 
     // this annotation does not have properties
+
 }

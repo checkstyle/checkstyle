@@ -178,4 +178,5 @@ public class MethodNameCheckTest
         };
         assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
+
 }

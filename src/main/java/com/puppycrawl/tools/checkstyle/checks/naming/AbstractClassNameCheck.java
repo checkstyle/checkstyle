@@ -150,4 +150,5 @@ public final class AbstractClassNameCheck extends AbstractCheck {
     private boolean isMatchingClassName(String className) {
         return format.matcher(className).find();
     }
+
 }

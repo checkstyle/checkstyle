@@ -167,4 +167,5 @@ public class OneTopLevelClassCheck extends AbstractCheck {
                 typeDef.findFirstToken(TokenTypes.MODIFIERS);
         return modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null;
     }
+
 }

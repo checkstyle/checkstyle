@@ -291,4 +291,5 @@ public final class SuppressionsLoader
         map.put(DTD_PUBLIC_ID_1_2_XPATH, DTD_SUPPRESSIONS_NAME_1_2_XPATH);
         return map;
     }
+
 }

@@ -134,4 +134,5 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputFinalParametersReceiver.java"), expected);
     }
+
 }

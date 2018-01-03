@@ -178,4 +178,5 @@ public final class PackageNamesLoader
             Closeables.closeQuietly(stream);
         }
     }
+
 }

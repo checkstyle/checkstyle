@@ -80,4 +80,5 @@ public final class DebugAuditAdapter implements AuditListener {
         called = true;
         numFilesFinished++;
     }
+
 }

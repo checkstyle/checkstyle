@@ -143,4 +143,5 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
         Assert.assertEquals("Logged unexpected amount of issues",
                 0, reporter.getLogCount());
     }
+
 }

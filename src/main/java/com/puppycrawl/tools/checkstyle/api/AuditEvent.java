@@ -149,4 +149,5 @@ public final class AuditEvent
     public LocalizedMessage getLocalizedMessage() {
         return localizedMessage;
     }
+
 }

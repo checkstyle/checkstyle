@@ -109,4 +109,5 @@ public class HeaderCheck extends AbstractHeaderCheck {
     protected void postProcessHeaderLines() {
         // no code
     }
+
 }

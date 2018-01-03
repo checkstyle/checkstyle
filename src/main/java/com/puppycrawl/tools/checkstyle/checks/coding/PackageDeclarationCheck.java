@@ -131,4 +131,5 @@ public final class PackageDeclarationCheck extends AbstractCheck {
         final int lastSeparatorPos = fileName.lastIndexOf(File.separatorChar);
         return fileName.substring(0, lastSeparatorPos);
     }
+
 }

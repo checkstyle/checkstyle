@@ -683,4 +683,5 @@ public class WhitespaceAroundCheck extends AbstractCheck {
             && ast.getParent().getParent().getNextSibling().getType() == TokenTypes.RCURLY;
         return classBeginBeforeInitializerBegin || initalizerEndsBeforeClassEnds;
     }
+
 }

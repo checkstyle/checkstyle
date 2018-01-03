@@ -83,4 +83,5 @@ public class MethodTypeParameterNameCheckTest
         };
         verify(checkConfig, getPath("InputMethodTypeParameterName.java"), expected);
     }
+
 }

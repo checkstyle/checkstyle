@@ -172,5 +172,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
         public Multiset<String> getDuplicatedKeys() {
             return ImmutableMultiset.copyOf(duplicatedKeys);
         }
+
     }
+
 }

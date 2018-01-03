@@ -424,4 +424,5 @@ public class SuppressionCommentFilterTest
                 Whitebox.getInternalState(suppressionCommentFilter, "tags");
         assertEquals("Invalid tags size", 1, tags.size());
     }
+
 }

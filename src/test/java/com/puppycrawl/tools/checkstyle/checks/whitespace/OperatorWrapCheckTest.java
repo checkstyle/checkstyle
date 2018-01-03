@@ -121,4 +121,5 @@ public class OperatorWrapCheckTest
                 ex.getMessage().startsWith(messageStart));
         }
     }
+
 }

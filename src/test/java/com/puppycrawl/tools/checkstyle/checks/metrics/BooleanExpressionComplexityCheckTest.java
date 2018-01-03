@@ -92,4 +92,5 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
                 "Unknown type: interface[0x-1]", ex.getMessage());
         }
     }
+
 }

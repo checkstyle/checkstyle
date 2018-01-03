@@ -87,4 +87,5 @@ public class ClassTypeParameterNameCheckTest
         };
         assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
+
 }

@@ -43,4 +43,5 @@ public abstract class AbstractPathTestSupport {
         return new File("src/it/resources/" + getPackageLocation() + "/" + filename)
                 .getCanonicalPath();
     }
+
 }

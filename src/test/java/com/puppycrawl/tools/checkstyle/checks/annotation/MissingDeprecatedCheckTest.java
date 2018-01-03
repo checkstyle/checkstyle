@@ -180,4 +180,5 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
 
         verify(checkConfig, getPath("InputMissingDeprecatedSkipNoJavadoc.java"), expected);
     }
+
 }

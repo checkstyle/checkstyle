@@ -291,4 +291,5 @@ public class RegexpCheck extends AbstractCheck {
             }
         }
     }
+
 }

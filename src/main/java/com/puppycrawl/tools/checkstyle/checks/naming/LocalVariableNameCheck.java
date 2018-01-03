@@ -137,4 +137,5 @@ public class LocalVariableNameCheck
         return parentType == TokenTypes.FOR_INIT
                 || parentType == TokenTypes.FOR_EACH_CLAUSE;
     }
+
 }

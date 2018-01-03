@@ -143,4 +143,5 @@ public class ParameterNumberCheck
                 && (AnnotationUtility.containsAnnotation(ast, OVERRIDE)
                 || AnnotationUtility.containsAnnotation(ast, CANONICAL_OVERRIDE));
     }
+
 }

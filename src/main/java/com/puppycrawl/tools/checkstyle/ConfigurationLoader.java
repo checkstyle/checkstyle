@@ -66,6 +66,7 @@ public final class ConfigurationLoader {
          * Execute ignored modules.
          */
         EXECUTE
+
     }
 
     /** Format of message for sax parse exception. */
@@ -721,5 +722,7 @@ public final class ConfigurationLoader {
                     .filter(name -> name.equals(attributeName)).findFirst();
             return result.isPresent();
         }
+
     }
+
 }

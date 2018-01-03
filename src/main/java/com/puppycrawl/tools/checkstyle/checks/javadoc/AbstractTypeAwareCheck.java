@@ -436,6 +436,7 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
         public final Token getName() {
             return name;
         }
+
     }
 
     /** Represents regular classes/enums. */
@@ -490,6 +491,7 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
                     + ", class=" + classObj
                     + ']';
         }
+
     }
 
     /** Represents type param which is "alias" for real type. */
@@ -517,6 +519,7 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
         public String toString() {
             return "ClassAlias[alias " + getName() + " for " + classInfo.getName() + "]";
         }
+
     }
 
     /**
@@ -583,5 +586,7 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
             return "Token[" + text + "(" + lineNo
                 + "x" + columnNo + ")]";
         }
+
     }
+
 }

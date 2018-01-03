@@ -175,4 +175,5 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             getPath("InputFallThrough2.java"),
             expected);
     }
+
 }

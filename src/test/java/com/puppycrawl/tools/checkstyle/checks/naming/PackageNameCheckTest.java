@@ -79,4 +79,5 @@ public class PackageNameCheckTest
         };
         assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
+
 }

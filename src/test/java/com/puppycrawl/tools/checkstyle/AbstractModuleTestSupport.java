@@ -64,6 +64,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
          * a root of default configuration.
          */
         IN_CHECKER
+
     }
 
     private static final String ROOT_MODULE_NAME = "root";
@@ -448,4 +449,5 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         }
         return messageBundle;
     }
+
 }

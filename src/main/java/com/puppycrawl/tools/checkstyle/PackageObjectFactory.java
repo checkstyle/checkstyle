@@ -65,6 +65,7 @@ public class PackageObjectFactory implements ModuleFactory {
          * Required for eclipse-cs plugin.
          **/
         TRY_IN_ALL_REGISTERED_PACKAGES,
+
     }
 
     /** Base package of checkstyle modules checks. */

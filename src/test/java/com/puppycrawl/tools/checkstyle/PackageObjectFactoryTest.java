@@ -365,5 +365,7 @@ public class PackageObjectFactoryTest {
         protected void processFiltered(File file, FileText fileText) {
             // not used
         }
+
     }
+
 }

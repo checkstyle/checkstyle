@@ -278,4 +278,5 @@ public class XpathFilterTest extends AbstractModuleTestSupport {
         return new TreeWalkerAuditEvent(fileContents, file.getName(), message,
                 TestUtil.parseFile(file));
     }
+
 }

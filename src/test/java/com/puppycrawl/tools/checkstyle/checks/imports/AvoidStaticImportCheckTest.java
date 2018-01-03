@@ -170,4 +170,5 @@ public class AvoidStaticImportCheckTest
 
         assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
+
 }

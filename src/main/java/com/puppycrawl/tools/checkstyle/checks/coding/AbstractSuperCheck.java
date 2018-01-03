@@ -243,5 +243,7 @@ public abstract class AbstractSuperCheck
         public DetailAST getMethod() {
             return method;
         }
+
     }
+
 }

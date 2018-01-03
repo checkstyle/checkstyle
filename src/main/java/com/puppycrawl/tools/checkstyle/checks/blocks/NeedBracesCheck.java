@@ -496,4 +496,5 @@ public class NeedBracesCheck extends AbstractCheck {
         }
         return result;
     }
+
 }

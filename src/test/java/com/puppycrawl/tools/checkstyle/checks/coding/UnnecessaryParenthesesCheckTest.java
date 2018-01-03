@@ -136,4 +136,5 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
         Assert.assertNotNull("Default tokens should not be null", check.getDefaultTokens());
         Assert.assertNotNull("Required tokens should not be null", check.getRequiredTokens());
     }
+
 }

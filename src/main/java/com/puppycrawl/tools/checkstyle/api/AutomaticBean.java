@@ -71,6 +71,7 @@ public abstract class AutomaticBean
          * Do nothing in the end.
          */
         NONE
+
     }
 
     /** Comma separator for StringTokenizer. */
@@ -299,6 +300,7 @@ public abstract class AutomaticBean
         public Object convert(Class type, Object value) {
             return CommonUtils.createPattern(value.toString());
         }
+
     }
 
     /** A converter that converts strings to severity level. */
@@ -309,6 +311,7 @@ public abstract class AutomaticBean
         public Object convert(Class type, Object value) {
             return SeverityLevel.getInstance(value.toString());
         }
+
     }
 
     /** A converter that converts strings to scope. */
@@ -319,6 +322,7 @@ public abstract class AutomaticBean
         public Object convert(Class type, Object value) {
             return Scope.getInstance(value.toString());
         }
+
     }
 
     /** A converter that converts strings to uri. */
@@ -341,6 +345,7 @@ public abstract class AutomaticBean
 
             return result;
         }
+
     }
 
     /**
@@ -365,6 +370,7 @@ public abstract class AutomaticBean
 
             return result.toArray(new String[result.size()]);
         }
+
     }
 
     /**
@@ -389,5 +395,7 @@ public abstract class AutomaticBean
 
             return result.toArray(new AccessModifier[result.size()]);
         }
+
     }
+
 }

@@ -253,4 +253,5 @@ public class ScopeUtilsTest {
         ast.getParent().getParent().addChild(ast2);
         return ast;
     }
+
 }

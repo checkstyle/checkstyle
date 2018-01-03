@@ -344,6 +344,7 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
         private boolean isInScopeOfSuppression(AuditEvent event) {
             return lineNo <= event.getLine();
         }
+
     }
 
 }

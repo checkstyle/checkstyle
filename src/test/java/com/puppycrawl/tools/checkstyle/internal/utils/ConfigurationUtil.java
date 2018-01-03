@@ -79,4 +79,5 @@ public final class ConfigurationUtil {
 
         return result;
     }
+
 }

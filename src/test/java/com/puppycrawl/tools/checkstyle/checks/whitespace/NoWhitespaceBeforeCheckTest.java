@@ -125,4 +125,5 @@ public class NoWhitespaceBeforeCheckTest
         };
         verify(checkConfig, getPath("InputNoWhitespaceBeforeEmptyForLoop.java"), expected);
     }
+
 }

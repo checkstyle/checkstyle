@@ -46,4 +46,5 @@ public class UnicodeEscapeTest
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputUnicodeEscape.java"), expected);
     }
+
 }

@@ -115,4 +115,5 @@ class CsvFilter implements IntFilter {
     public int hashCode() {
         return Objects.hash(filters);
     }
+
 }

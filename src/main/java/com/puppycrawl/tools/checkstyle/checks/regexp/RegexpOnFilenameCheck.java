@@ -362,4 +362,5 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
 
         return result;
     }
+
 }

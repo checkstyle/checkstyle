@@ -150,4 +150,5 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputIllegalImportDefault.java"), expected);
     }
+
 }

@@ -94,4 +94,5 @@ public class SeverityLevelTest {
             Locale.setDefault(defaultLocale);
         }
     }
+
 }

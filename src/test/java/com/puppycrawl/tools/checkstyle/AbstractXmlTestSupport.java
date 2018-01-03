@@ -168,4 +168,5 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
                     expected.getNodeValue(), actual.getNodeValue());
         }
     }
+
 }

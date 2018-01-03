@@ -258,4 +258,5 @@ public class XpathQueryGenerator {
         return ast.findFirstToken(TokenTypes.IDENT) != null
             || !hasAtLeastOneSiblingWithSameTokenType(ast);
     }
+
 }

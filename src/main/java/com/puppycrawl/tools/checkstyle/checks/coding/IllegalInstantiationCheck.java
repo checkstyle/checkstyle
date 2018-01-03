@@ -355,4 +355,5 @@ public class IllegalInstantiationCheck
     public void setClasses(String... names) {
         classes = Arrays.stream(names).collect(Collectors.toSet());
     }
+
 }

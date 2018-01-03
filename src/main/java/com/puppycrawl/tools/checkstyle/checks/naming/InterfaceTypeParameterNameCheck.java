@@ -78,4 +78,5 @@ public class InterfaceTypeParameterNameCheck
             ast.getParent().getParent();
         return location.getType() == TokenTypes.INTERFACE_DEF;
     }
+
 }

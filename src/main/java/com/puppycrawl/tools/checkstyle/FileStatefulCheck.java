@@ -51,4 +51,5 @@ import java.lang.annotation.Target;
 public @interface FileStatefulCheck {
 
     // this annotation does not have properties
+
 }

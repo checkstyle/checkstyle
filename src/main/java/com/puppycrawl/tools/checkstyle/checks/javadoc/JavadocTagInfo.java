@@ -81,6 +81,7 @@ public enum JavadocTagInfo {
                 || astType == TokenTypes.ENUM_DEF
                 || astType == TokenTypes.ANNOTATION_DEF;
         }
+
     },
 
     /**
@@ -94,6 +95,7 @@ public enum JavadocTagInfo {
             return Arrays.binarySearch(DEF_TOKEN_TYPES, astType) >= 0
                 && !ScopeUtils.isLocalVariableDef(ast);
         }
+
     },
 
     /**
@@ -107,6 +109,7 @@ public enum JavadocTagInfo {
             return Arrays.binarySearch(DEF_TOKEN_TYPES, astType) >= 0
                 && !ScopeUtils.isLocalVariableDef(ast);
         }
+
     },
 
     /**
@@ -120,6 +123,7 @@ public enum JavadocTagInfo {
             return Arrays.binarySearch(DEF_TOKEN_TYPES_DEPRECATED, astType) >= 0
                 && !ScopeUtils.isLocalVariableDef(ast);
         }
+
     },
 
     /**
@@ -132,6 +136,7 @@ public enum JavadocTagInfo {
             final int astType = ast.getType();
             return astType == TokenTypes.METHOD_DEF || astType == TokenTypes.CTOR_DEF;
         }
+
     },
 
     /**
@@ -149,6 +154,7 @@ public enum JavadocTagInfo {
                 && ScopeUtils.getScopeFromMods(ast
                     .findFirstToken(TokenTypes.MODIFIERS)) != Scope.PRIVATE;
         }
+
     },
 
     /**
@@ -162,6 +168,7 @@ public enum JavadocTagInfo {
             return Arrays.binarySearch(DEF_TOKEN_TYPES, astType) >= 0
                 && !ScopeUtils.isLocalVariableDef(ast);
         }
+
     },
 
     /**
@@ -175,6 +182,7 @@ public enum JavadocTagInfo {
             return Arrays.binarySearch(DEF_TOKEN_TYPES, astType) >= 0
                 && !ScopeUtils.isLocalVariableDef(ast);
         }
+
     },
 
     /**
@@ -188,6 +196,7 @@ public enum JavadocTagInfo {
             return Arrays.binarySearch(DEF_TOKEN_TYPES, astType) >= 0
                 && !ScopeUtils.isLocalVariableDef(ast);
         }
+
     },
 
     /**
@@ -203,6 +212,7 @@ public enum JavadocTagInfo {
                 || astType == TokenTypes.METHOD_DEF
                 || astType == TokenTypes.CTOR_DEF;
         }
+
     },
 
     /**
@@ -219,6 +229,7 @@ public enum JavadocTagInfo {
                 && returnType.getFirstChild().getType() != TokenTypes.LITERAL_VOID;
 
         }
+
     },
 
     /**
@@ -232,6 +243,7 @@ public enum JavadocTagInfo {
             return Arrays.binarySearch(DEF_TOKEN_TYPES, astType) >= 0
                 && !ScopeUtils.isLocalVariableDef(ast);
         }
+
     },
 
     /**
@@ -246,6 +258,7 @@ public enum JavadocTagInfo {
             return astType == TokenTypes.VARIABLE_DEF
                 && !ScopeUtils.isLocalVariableDef(ast);
         }
+
     },
 
     /**
@@ -267,6 +280,7 @@ public enum JavadocTagInfo {
                     || "writeReplace".equals(methodName)
                     || "readResolve".equals(methodName));
         }
+
     },
 
     /**
@@ -283,6 +297,7 @@ public enum JavadocTagInfo {
                 && varType.getFirstChild().getType() == TokenTypes.ARRAY_DECLARATOR
                 && "ObjectStreamField".equals(varType.getFirstChild().getText());
         }
+
     },
 
     /**
@@ -296,6 +311,7 @@ public enum JavadocTagInfo {
             return Arrays.binarySearch(DEF_TOKEN_TYPES, astType) >= 0
                 && !ScopeUtils.isLocalVariableDef(ast);
         }
+
     },
 
     /**
@@ -309,6 +325,7 @@ public enum JavadocTagInfo {
             return astType == TokenTypes.METHOD_DEF
                 || astType == TokenTypes.CTOR_DEF;
         }
+
     },
 
     /**
@@ -322,6 +339,7 @@ public enum JavadocTagInfo {
             return Arrays.binarySearch(DEF_TOKEN_TYPES, astType) >= 0
                 && !ScopeUtils.isLocalVariableDef(ast);
         }
+
     },
 
     /**
@@ -338,6 +356,7 @@ public enum JavadocTagInfo {
                 || astType == TokenTypes.ENUM_DEF
                 || astType == TokenTypes.ANNOTATION_DEF;
         }
+
     };
 
     /** Default token types for DEPRECATED Javadoc tag.*/
@@ -517,5 +536,7 @@ public enum JavadocTagInfo {
 
         /** Inline type. **/
         INLINE
+
     }
+
 }

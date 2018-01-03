@@ -78,4 +78,5 @@ public class MethodTypeParameterNameCheck
             ast.getParent().getParent();
         return location.getType() == TokenTypes.METHOD_DEF;
     }
+
 }

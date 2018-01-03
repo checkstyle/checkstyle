@@ -36,4 +36,5 @@ public interface MatchSuppressor {
      **/
     boolean shouldSuppress(int startLineNo, int startColNo, int endLineNo,
             int endColNo);
+
 }

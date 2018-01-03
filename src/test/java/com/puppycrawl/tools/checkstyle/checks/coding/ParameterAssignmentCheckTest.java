@@ -119,4 +119,5 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
                 "parameterNamesStack",
                 parameterNamesStack -> ((Collection<Set<String>>) parameterNamesStack).isEmpty()));
     }
+
 }

@@ -75,4 +75,5 @@ public class PackageAnnotationCheckTest extends AbstractModuleTestSupport {
 
         verify(checkConfig, getNonCompilablePath("InputPackageAnnotation2.java"), expected);
     }
+
 }

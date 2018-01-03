@@ -91,4 +91,5 @@ public class TypecastParenPadCheckTest
         };
         Assert.assertArrayEquals("Invalid acceptable tokens", expected, actual);
     }
+
 }

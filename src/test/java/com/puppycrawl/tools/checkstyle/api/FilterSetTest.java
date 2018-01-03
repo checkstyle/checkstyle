@@ -59,4 +59,5 @@ public class FilterSetTest {
 
         assertEquals("Invalid filter set size", 0, filterSet.getFilters().size());
     }
+
 }

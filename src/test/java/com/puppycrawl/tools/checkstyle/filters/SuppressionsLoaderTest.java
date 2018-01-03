@@ -372,4 +372,5 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
 
         assertEquals("Invalid number of filters", 1, filterSet.size());
     }
+
 }

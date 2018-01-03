@@ -52,4 +52,5 @@ public class TestFileSetCheck extends AbstractFileSetCheck {
     public void resetCheck() {
         called = false;
     }
+
 }

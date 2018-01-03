@@ -122,4 +122,5 @@ public class EmptyForInitializerPadCheckTest
                 ex.getMessage().startsWith(messageStart));
         }
     }
+
 }

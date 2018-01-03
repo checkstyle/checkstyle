@@ -1996,6 +1996,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         public void addException(AuditEvent event, Throwable throwable) {
             // No code needed
         }
+
     }
 
     private static final class IndentComment {
@@ -2072,5 +2073,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         public boolean isWarning() {
             return warning;
         }
+
     }
+
 }

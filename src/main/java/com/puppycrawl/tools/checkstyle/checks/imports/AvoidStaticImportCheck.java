@@ -158,4 +158,5 @@ public class AvoidStaticImportCheck
         }
         return result;
     }
+
 }

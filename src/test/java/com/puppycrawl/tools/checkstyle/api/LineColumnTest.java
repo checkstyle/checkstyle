@@ -67,4 +67,5 @@ public class LineColumnTest {
         assertEquals("Invalid LineColumn comparison result",
                 3, lineColumn.getColumn());
     }
+
 }

@@ -222,5 +222,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
                 child = child.getNextSibling();
             }
         }
+
     }
+
 }

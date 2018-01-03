@@ -72,4 +72,5 @@ public class NoFinalizerCheck extends AbstractCheck {
             }
         }
     }
+
 }

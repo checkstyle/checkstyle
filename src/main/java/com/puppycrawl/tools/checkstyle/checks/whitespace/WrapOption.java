@@ -30,4 +30,5 @@ public enum WrapOption {
     NL,
     /** Require that the token is at the end of the line. */
     EOL
+
 }

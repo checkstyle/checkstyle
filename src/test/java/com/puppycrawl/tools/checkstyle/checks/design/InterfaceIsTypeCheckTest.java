@@ -75,4 +75,5 @@ public class InterfaceIsTypeCheckTest
         assertArrayEquals("Default required tokens are invalid",
             expected, obj.getRequiredTokens());
     }
+
 }

@@ -435,4 +435,5 @@ public class DescendantTokenCheck extends AbstractCheck {
     public void setSumTokenCounts(boolean sum) {
         sumTokenCounts = sum;
     }
+
 }

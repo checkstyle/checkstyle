@@ -354,4 +354,5 @@ public class IndentationCheck extends AbstractCheck {
     public final HandlerFactory getHandlerFactory() {
         return handlerFactory;
     }
+
 }

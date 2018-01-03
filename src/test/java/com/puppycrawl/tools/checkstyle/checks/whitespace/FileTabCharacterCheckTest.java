@@ -95,4 +95,5 @@ public class FileTabCharacterCheckTest
         };
         verify(createChecker(checkConfig), files, path, expected);
     }
+
 }

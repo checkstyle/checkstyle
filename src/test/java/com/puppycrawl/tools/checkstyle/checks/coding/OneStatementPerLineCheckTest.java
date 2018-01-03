@@ -93,4 +93,5 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
 
         verify(checkConfig, getNonCompilablePath("InputOneStatementPerLine.java"), expected);
     }
+
 }

@@ -188,4 +188,5 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputNeedBracesEmptyDefault.java"), expected);
     }
+
 }

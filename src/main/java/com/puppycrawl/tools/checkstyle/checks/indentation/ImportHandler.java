@@ -54,4 +54,5 @@ public class ImportHandler extends AbstractExpressionHandler {
 
         checkWrappingIndentation(getMainAst(), semi);
     }
+
 }

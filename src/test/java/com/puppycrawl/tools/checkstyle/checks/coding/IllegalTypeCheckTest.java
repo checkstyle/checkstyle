@@ -240,4 +240,5 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             // it is OK
         }
     }
+
 }

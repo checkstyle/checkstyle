@@ -132,4 +132,5 @@ public class CyclomaticComplexityCheckTest
 
         verify(checkConfig, getPath("InputCyclomaticComplexitySwitchBlocks.java"), expected);
     }
+
 }

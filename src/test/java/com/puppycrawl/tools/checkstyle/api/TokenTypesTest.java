@@ -61,4 +61,5 @@ public class TokenTypesTest {
         assertTrue("Constructor is not private",
                 isUtilsClassHasPrivateConstructor(TokenTypes.class, true));
     }
+
 }

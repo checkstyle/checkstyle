@@ -49,4 +49,5 @@ public class PrimordialHandler extends AbstractExpressionHandler {
     protected IndentLevel getIndentImpl() {
         return new IndentLevel(0);
     }
+
 }

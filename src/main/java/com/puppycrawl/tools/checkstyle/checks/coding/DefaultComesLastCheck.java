@@ -132,4 +132,5 @@ public class DefaultComesLastCheck extends AbstractCheck {
         }
         return token;
     }
+
 }

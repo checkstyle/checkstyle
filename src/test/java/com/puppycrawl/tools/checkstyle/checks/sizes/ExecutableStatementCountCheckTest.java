@@ -186,4 +186,5 @@ public class ExecutableStatementCountCheckTest
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputExecutableStatementCount.java"), expected);
     }
+
 }

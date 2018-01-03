@@ -134,6 +134,7 @@ public class TreeTableModelAdapter extends AbstractTableModel {
         public void treeCollapsed(TreeExpansionEvent event) {
             fireTableDataChanged();
         }
+
     }
 
     /**
@@ -160,5 +161,7 @@ public class TreeTableModelAdapter extends AbstractTableModel {
         public void treeStructureChanged(TreeModelEvent event) {
             delayedFireTableDataChanged();
         }
+
     }
+
 }

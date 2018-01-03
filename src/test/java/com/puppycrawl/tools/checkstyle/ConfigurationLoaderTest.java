@@ -687,4 +687,5 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         final Configuration[] children = configuration1.getChildren();
         assertEquals("Unexpected children size", 1, children[0].getChildren().length);
     }
+
 }

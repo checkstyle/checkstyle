@@ -576,4 +576,5 @@ public abstract class AbstractExpressionHandler {
             logError(lparen, "lparen", expandedTabsColumnNo(lparen));
         }
     }
+
 }

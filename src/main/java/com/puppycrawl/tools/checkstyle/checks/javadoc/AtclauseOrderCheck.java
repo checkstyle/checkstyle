@@ -186,4 +186,5 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
         }
         return type;
     }
+
 }

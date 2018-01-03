@@ -82,4 +82,5 @@ public class MemberNameCheck
             && !ScopeUtils.isLocalVariableDef(ast)
                 && shouldCheckInScope(modifiersAST);
     }
+
 }

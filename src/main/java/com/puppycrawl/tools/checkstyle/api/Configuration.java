@@ -62,4 +62,5 @@ public interface Configuration extends Serializable {
      * @return unmodifiable map containing custom messages
      */
     Map<String, String> getMessages();
+
 }

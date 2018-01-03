@@ -113,4 +113,5 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
                     "visitToken() shouldn't be called.", ex.getMessage());
         }
     }
+
 }

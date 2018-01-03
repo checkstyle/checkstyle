@@ -158,4 +158,5 @@ public class RedundantImportCheck
         final String front = importName.substring(0, index);
         return front.equals(pkg);
     }
+
 }

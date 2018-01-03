@@ -230,5 +230,7 @@ public final class DetectorOptions {
             suppressor = Optional.ofNullable(suppressor).orElse(NeverSuppress.INSTANCE);
             return DetectorOptions.this;
         }
+
     }
+
 }

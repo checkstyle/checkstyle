@@ -736,4 +736,5 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputCustomImportOrderNoPackage2.java"),
             expected);
     }
+
 }

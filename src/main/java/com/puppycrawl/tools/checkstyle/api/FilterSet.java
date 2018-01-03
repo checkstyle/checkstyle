@@ -98,4 +98,5 @@ public class FilterSet
     public void clear() {
         filters.clear();
     }
+
 }

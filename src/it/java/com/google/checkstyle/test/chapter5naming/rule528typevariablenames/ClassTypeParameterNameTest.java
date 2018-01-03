@@ -49,4 +49,5 @@ public class ClassTypeParameterNameTest extends AbstractModuleTestSupport {
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(configuration, filePath, expected, warnList);
     }
+
 }

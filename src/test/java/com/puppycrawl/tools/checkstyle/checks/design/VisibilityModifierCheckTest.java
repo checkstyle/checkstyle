@@ -464,4 +464,5 @@ public class VisibilityModifierCheckTest
         assertTrue("Should return true when star import is passed",
             (boolean) isStarImport.invoke(check, importAst));
     }
+
 }

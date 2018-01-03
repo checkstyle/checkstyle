@@ -95,4 +95,5 @@ public class SuperCloneCheckTest
                 "methodStack",
                 methodStack -> ((Collection<Set<String>>) methodStack).isEmpty()));
     }
+
 }

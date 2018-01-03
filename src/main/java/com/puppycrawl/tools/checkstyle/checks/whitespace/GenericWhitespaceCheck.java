@@ -328,4 +328,5 @@ public class GenericWhitespaceCheck extends AbstractCheck {
             || charAfter == ';'
             || Character.isWhitespace(charAfter);
     }
+
 }

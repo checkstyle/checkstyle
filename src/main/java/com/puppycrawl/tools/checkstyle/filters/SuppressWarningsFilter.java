@@ -43,4 +43,5 @@ public class SuppressWarningsFilter
     public boolean accept(AuditEvent event) {
         return !SuppressWarningsHolder.isSuppressed(event);
     }
+
 }

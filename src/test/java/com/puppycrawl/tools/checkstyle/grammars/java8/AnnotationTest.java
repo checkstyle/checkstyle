@@ -142,4 +142,5 @@ public class AnnotationTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputAnnotations11.java"), expected);
 
     }
+
 }

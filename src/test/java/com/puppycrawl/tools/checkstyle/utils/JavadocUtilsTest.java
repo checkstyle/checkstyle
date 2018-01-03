@@ -368,4 +368,5 @@ public class JavadocUtilsTest {
         assertEquals("invalid result", "1\\r2\\n3\\t",
                 JavadocUtils.escapeAllControlChars("1\\r2\\n3\\t"));
     }
+
 }

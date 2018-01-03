@@ -53,4 +53,5 @@ public final class Main {
             mainFrame.setVisible(true);
         });
     }
+
 }

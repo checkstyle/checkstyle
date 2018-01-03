@@ -484,4 +484,5 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         coll.removeAll(Arrays.asList(remove));
         return coll.toArray(new String[coll.size()]);
     }
+
 }

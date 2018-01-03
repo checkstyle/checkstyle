@@ -235,5 +235,7 @@ public class TokenTypesDocletTest extends AbstractPathTestSupport {
         public void printError(String message) {
             messages.add(message);
         }
+
     }
+
 }

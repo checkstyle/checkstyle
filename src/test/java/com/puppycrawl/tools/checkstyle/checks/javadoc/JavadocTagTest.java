@@ -64,4 +64,5 @@ public class JavadocTagTest {
         assertEquals("Invalid toString result",
                 "JavadocTag[tag='author' lineNo=0, columnNo=1, firstArg='firstArg']", result);
     }
+
 }

@@ -760,5 +760,7 @@ public final class Main {
         private int checkerThreadsNumber;
         /** The tree walker threads number. */
         private int treeWalkerThreadsNumber;
+
     }
+
 }

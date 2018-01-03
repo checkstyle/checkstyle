@@ -31,4 +31,5 @@ public class DefinitionsTest {
         assertTrue("Constructor is not private",
                 isUtilsClassHasPrivateConstructor(Definitions.class, true));
     }
+
 }

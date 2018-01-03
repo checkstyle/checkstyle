@@ -117,4 +117,5 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputThrowsCountMethodWithAnnotation.java"), expected);
     }
+
 }

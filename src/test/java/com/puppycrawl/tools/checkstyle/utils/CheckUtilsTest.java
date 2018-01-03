@@ -383,4 +383,5 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
 
         return node.get();
     }
+
 }

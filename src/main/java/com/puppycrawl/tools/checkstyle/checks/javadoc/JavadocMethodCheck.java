@@ -1020,5 +1020,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         private Class<?> getClazz() {
             return classInfo.getClazz();
         }
+
     }
+
 }

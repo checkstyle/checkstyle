@@ -211,4 +211,5 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
             return ex.getLocalizedMessage();
         }
     }
+
 }

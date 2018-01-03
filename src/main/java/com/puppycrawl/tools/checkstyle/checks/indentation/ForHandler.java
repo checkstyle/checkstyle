@@ -85,4 +85,5 @@ public class ForHandler extends BlockParentHandler {
     private static DetailAST getForLoopRightParen(DetailAST literalForAst) {
         return literalForAst.findFirstToken(TokenTypes.RPAREN);
     }
+
 }

@@ -83,4 +83,5 @@ public class SingleLineJavadocCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputSingleLineJavadoc.java"), expected);
     }
+
 }

@@ -328,6 +328,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
         public void visitLiteralThrows(DetailAST ast) {
             classContext.visitLiteralThrows(ast);
         }
+
     }
 
     /**
@@ -468,5 +469,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
             }
             return isFromExcludedPackage;
         }
+
     }
+
 }

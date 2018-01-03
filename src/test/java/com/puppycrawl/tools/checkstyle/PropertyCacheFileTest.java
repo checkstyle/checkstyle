@@ -501,4 +501,5 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         detailsAfterChangeInConfig.load(Files.newBufferedReader(cacheFile.toPath()));
         assertEquals("Invalid cache size", 1, detailsAfterChangeInConfig.size());
     }
+
 }

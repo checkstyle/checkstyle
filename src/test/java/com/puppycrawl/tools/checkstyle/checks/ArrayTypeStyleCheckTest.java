@@ -83,4 +83,5 @@ public class ArrayTypeStyleCheckTest
         assertArrayEquals("Acceptable tokens differs from expected",
                 expected, actual);
     }
+
 }

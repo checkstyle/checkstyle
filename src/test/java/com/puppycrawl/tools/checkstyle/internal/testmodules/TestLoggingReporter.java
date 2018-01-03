@@ -42,4 +42,5 @@ public final class TestLoggingReporter extends AbstractViolationReporter {
     public int getLogCount() {
         return logCount;
     }
+
 }

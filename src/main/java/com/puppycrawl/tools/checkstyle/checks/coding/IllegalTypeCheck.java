@@ -461,4 +461,5 @@ public final class IllegalTypeCheck extends AbstractCheck {
         }
         memberModifiers = modifiersList;
     }
+
 }

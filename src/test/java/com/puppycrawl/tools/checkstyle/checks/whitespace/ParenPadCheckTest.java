@@ -485,4 +485,5 @@ public class ParenPadCheckTest
                     (boolean) method.invoke(check, ast));
         }
     }
+
 }

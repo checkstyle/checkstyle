@@ -38,4 +38,5 @@ public interface Configurable {
      * @throws CheckstyleException if there is a configuration error.
      */
     void configure(Configuration configuration) throws CheckstyleException;
+
 }

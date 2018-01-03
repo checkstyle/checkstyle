@@ -313,5 +313,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
 
         /** The current file contents. */
         private FileContents fileContents;
+
     }
+
 }

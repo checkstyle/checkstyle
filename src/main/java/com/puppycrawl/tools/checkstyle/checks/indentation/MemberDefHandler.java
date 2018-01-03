@@ -108,4 +108,5 @@ public class MemberDefHandler extends AbstractExpressionHandler {
         }
         return lastNode;
     }
+
 }

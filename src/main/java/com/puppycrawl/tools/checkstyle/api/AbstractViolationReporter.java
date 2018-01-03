@@ -168,4 +168,5 @@ public abstract class AbstractViolationReporter
     // overloaded methods. See https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/414
     public abstract void log(int line, int col, String key,
             Object... args);
+
 }

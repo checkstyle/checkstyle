@@ -820,4 +820,5 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
 
         verify(checkConfig, getPath("InputSuppressWarningsHolder.java"), expected);
     }
+
 }

@@ -421,4 +421,5 @@ public class JavadocTagInfoTest {
         assertEquals("Invalid fromText result",
                 JavadocTagInfo.VERSION, JavadocTagInfo.fromText("@version"));
     }
+
 }

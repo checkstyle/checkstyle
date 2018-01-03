@@ -260,4 +260,5 @@ public class AllTestsTest {
     private static String getSimplePath(String path) {
         return path.substring(path.lastIndexOf("com" + File.separator + "puppycrawl"));
     }
+
 }

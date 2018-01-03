@@ -143,4 +143,5 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
         };
         Assert.assertArrayEquals("Invalid required tokens", expected, actual);
     }
+
 }

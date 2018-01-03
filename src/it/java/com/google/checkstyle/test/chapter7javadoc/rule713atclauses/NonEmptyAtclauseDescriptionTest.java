@@ -93,4 +93,5 @@ public class NonEmptyAtclauseDescriptionTest extends AbstractModuleTestSupport {
         }
         return result;
     }
+
 }

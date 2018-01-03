@@ -78,4 +78,5 @@ public class ClassTypeParameterNameCheck
             ast.getParent().getParent();
         return location.getType() == TokenTypes.CLASS_DEF;
     }
+
 }

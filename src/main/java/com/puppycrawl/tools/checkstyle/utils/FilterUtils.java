@@ -80,4 +80,5 @@ public final class FilterUtils {
         }
         return closed;
     }
+
 }

@@ -72,4 +72,5 @@ public class CaseHandler extends AbstractExpressionHandler {
     public void checkIndentation() {
         checkCase();
     }
+
 }

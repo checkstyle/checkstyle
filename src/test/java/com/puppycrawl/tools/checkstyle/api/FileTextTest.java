@@ -117,4 +117,5 @@ public class FileTextTest extends AbstractPathTestSupport {
         assertEquals("Invalid line", 1, lineColumn.getLine());
         assertEquals("Invalid column", 0, lineColumn.getColumn());
     }
+
 }

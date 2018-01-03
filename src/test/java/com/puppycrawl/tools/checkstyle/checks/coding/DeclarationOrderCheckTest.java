@@ -199,4 +199,5 @@ public class DeclarationOrderCheckTest
                 getPath("InputDeclarationOrderAvoidDuplicatesInStaticFinalFields.java"),
                 expected);
     }
+
 }

@@ -441,6 +441,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
             }
             return isAfter;
         }
+
     }
 
     /**

@@ -80,4 +80,5 @@ public class AvoidNestedBlocksCheckTest
         final int[] expected = {TokenTypes.SLIST };
         assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
+
 }

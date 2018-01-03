@@ -38,4 +38,5 @@ public final class TestBeforeExecutionFileFilter implements BeforeExecutionFileF
     public void resetFilter() {
         called = false;
     }
+
 }

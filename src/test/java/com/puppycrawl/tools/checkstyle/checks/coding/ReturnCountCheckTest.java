@@ -178,4 +178,5 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
                 "contextStack",
                 contextStack -> ((Collection<Set<String>>) contextStack).isEmpty()));
     }
+
 }

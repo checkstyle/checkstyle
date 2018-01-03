@@ -84,4 +84,5 @@ public class FilterUtilsTest {
         assertFalse("Should be false, because error on close",
                 FilterUtils.isFileExists(fileName));
     }
+
 }

@@ -82,4 +82,5 @@ public class PackageAnnotationCheck extends AbstractCheck {
             log(ast.getLine(), MSG_KEY);
         }
     }
+
 }

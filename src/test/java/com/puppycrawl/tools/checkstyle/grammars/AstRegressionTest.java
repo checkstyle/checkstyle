@@ -305,5 +305,7 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
         public int mark() {
             return 1;
         }
+
     }
+
 }

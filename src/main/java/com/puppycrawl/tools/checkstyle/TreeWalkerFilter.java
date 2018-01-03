@@ -33,4 +33,5 @@ public interface TreeWalkerFilter {
      * @return true if the event is accepted.
      */
     boolean accept(TreeWalkerAuditEvent treeWalkerAuditEvent);
+
 }

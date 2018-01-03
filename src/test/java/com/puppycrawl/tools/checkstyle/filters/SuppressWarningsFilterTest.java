@@ -203,4 +203,5 @@ public class SuppressWarningsFilterTest
         verifySuppressed(filterConfig, getPath("InputSuppressWarningsFilterById.java"),
                 expectedViolationMessages, suppressedViolationMessages);
     }
+
 }

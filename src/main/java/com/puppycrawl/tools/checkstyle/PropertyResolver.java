@@ -38,4 +38,5 @@ public interface PropertyResolver {
      * @return the value that is associated with {@code propertyName}.
      */
     String resolve(String name);
+
 }

@@ -131,4 +131,5 @@ public abstract class AbstractAccessControlNameCheck
     public void setApplyToPrivate(boolean applyTo) {
         applyToPrivate = applyTo;
     }
+
 }

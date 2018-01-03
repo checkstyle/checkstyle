@@ -50,4 +50,5 @@ public class AuditEventUtFormatter implements AuditEventFormatter {
 
         return sb.toString();
     }
+
 }

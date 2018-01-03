@@ -260,4 +260,5 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
     private static boolean isBlockCommentEnd(String line, int columnNo) {
         return line.substring(0, columnNo).trim().endsWith("*/");
     }
+
 }

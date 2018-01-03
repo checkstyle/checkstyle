@@ -179,4 +179,5 @@ public class JavadocNodeImpl implements DetailNode {
                 + ", children=" + Objects.hashCode(children)
                 + ", parent=" + parent + ']';
     }
+
 }

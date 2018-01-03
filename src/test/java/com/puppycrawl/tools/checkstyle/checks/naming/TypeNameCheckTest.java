@@ -115,4 +115,5 @@ public class TypeNameCheckTest
         };
         verify(checkConfig, getPath("InputTypeName.java"), expected);
     }
+
 }

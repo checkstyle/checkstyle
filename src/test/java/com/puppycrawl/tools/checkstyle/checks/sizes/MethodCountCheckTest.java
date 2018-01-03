@@ -173,4 +173,5 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
 
         verify(checkConfig, getPath("InputMethodCount7.java"), expected);
     }
+
 }

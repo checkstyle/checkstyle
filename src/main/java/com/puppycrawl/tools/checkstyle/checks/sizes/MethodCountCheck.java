@@ -300,5 +300,7 @@ public final class MethodCountCheck extends AbstractCheck {
         private int getTotal() {
             return total;
         }
+
     }
+
 }

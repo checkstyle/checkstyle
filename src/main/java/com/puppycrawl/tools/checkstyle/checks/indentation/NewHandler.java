@@ -72,4 +72,5 @@ public class NewHandler extends AbstractExpressionHandler {
     protected boolean shouldIncreaseIndent() {
         return false;
     }
+
 }

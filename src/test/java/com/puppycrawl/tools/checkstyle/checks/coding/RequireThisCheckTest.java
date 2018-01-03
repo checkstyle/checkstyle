@@ -371,4 +371,5 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         Assert.assertEquals("expected ident token", ident,
                 TestUtil.getClassDeclaredMethod(cls, "getFrameNameIdent").invoke(o));
     }
+
 }

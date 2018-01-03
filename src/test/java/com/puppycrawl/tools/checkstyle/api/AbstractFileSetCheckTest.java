@@ -148,6 +148,7 @@ public class AbstractFileSetCheckTest {
                 log(1, MSG_KEY);
             }
         }
+
     }
 
     private static class ExceptionFileSetCheck extends AbstractFileSetCheck {
@@ -161,5 +162,7 @@ public class AbstractFileSetCheckTest {
             count++;
             throw new IllegalArgumentException("Test");
         }
+
     }
+
 }

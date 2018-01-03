@@ -334,4 +334,5 @@ public class SuppressWarningsCheck extends AbstractCheck {
         final DetailAST colon = cond.findFirstToken(TokenTypes.COLON);
         return colon.getNextSibling();
     }
+
 }

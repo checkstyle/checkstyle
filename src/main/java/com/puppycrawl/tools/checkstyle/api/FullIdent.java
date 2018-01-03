@@ -147,4 +147,5 @@ public final class FullIdent {
             columnNo = Math.min(columnNo, ast.getColumnNo());
         }
     }
+
 }

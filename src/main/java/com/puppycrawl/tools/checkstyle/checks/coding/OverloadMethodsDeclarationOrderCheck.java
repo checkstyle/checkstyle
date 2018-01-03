@@ -117,4 +117,5 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
             currentToken = currentToken.getNextSibling();
         }
     }
+
 }

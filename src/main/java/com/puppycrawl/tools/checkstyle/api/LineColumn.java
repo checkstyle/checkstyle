@@ -89,4 +89,5 @@ public class LineColumn implements Comparable<LineColumn> {
     public int hashCode() {
         return Objects.hash(line, column);
     }
+
 }

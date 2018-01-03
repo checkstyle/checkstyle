@@ -81,4 +81,5 @@ public class BeforeExecutionFileFilterSetTest {
         assertEquals("Invalid filter set size",
                 0, filterSet.getBeforeExecutionFileFilters().size());
     }
+
 }

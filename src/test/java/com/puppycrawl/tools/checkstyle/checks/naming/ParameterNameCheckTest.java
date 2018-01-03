@@ -173,4 +173,5 @@ public class ParameterNameCheckTest
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputParameterNameReceiver.java"), expected);
     }
+
 }

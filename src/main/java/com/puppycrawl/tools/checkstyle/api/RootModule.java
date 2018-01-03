@@ -57,4 +57,5 @@ public interface RootModule extends Configurable {
      * @param moduleClassLoader the classloader used to load module classes
      */
     void setModuleClassLoader(ClassLoader moduleClassLoader);
+
 }

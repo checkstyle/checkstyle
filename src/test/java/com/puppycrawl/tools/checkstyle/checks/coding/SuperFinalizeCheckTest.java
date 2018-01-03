@@ -44,4 +44,5 @@ public class SuperFinalizeCheckTest
         };
         verify(checkConfig, getPath("InputSuperFinalizeVariations.java"), expected);
     }
+
 }

@@ -400,4 +400,5 @@ public final class FileContents implements CommentListener {
         }
         return hasIntersection;
     }
+
 }

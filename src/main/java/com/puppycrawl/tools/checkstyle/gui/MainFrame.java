@@ -171,6 +171,7 @@ public class MainFrame extends JFrame {
                 openFile(file);
             }
         }
+
     }
 
     /**
@@ -184,6 +185,7 @@ public class MainFrame extends JFrame {
         public void actionPerformed(ActionEvent event) {
             openFile(model.getCurrentFile());
         }
+
     }
 
     /**
@@ -200,5 +202,7 @@ public class MainFrame extends JFrame {
         public String getDescription() {
             return "Java Source File";
         }
+
     }
+
 }

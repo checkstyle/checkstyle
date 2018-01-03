@@ -446,4 +446,5 @@ public class WhitespaceAroundCheckTest
         };
         verify(checkConfig, getPath("InputWhitespaceAroundVarargs.java"), expected);
     }
+
 }

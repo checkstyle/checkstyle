@@ -73,4 +73,5 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
         assertArrayEquals("Default acceptable tokens are invalid",
             expected, obj.getAcceptableTokens());
     }
+
 }

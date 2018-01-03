@@ -107,4 +107,5 @@ public class ThreadModeSettingsTest {
                     multiThreadModeSettings.resolveName(moduleName), is(moduleName));
         }
     }
+
 }

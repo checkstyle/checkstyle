@@ -46,4 +46,5 @@ public class SuperCloneCheck extends AbstractSuperCheck {
     protected String getMethodName() {
         return "clone";
     }
+
 }

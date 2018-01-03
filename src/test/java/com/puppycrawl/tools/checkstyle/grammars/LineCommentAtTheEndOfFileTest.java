@@ -49,4 +49,5 @@ public class LineCommentAtTheEndOfFileTest
         verify(checkConfig, getPath("InputLineCommentAtTheEndOfFile.java"),
             expected);
     }
+
 }

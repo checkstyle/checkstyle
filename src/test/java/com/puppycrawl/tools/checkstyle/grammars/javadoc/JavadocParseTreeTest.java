@@ -326,4 +326,5 @@ public class JavadocParseTreeTest extends AbstractTreeTestSupport {
         verifyJavadocTree(getHtmlPath("expectedParagraphAst.txt"),
                 getHtmlPath("InputParagraph.javadoc"));
     }
+
 }

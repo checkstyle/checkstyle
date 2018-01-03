@@ -122,4 +122,5 @@ public final class IllegalCatchCheck extends AbstractCheck {
         }
         return exceptionTypes;
     }
+
 }

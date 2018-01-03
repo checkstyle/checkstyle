@@ -383,4 +383,5 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
                 || Arrays.binarySearch(C1_CONTROL_CHARACTER_INDICES, character) >= 0
                 || Arrays.binarySearch(OTHER_CONTROL_CHARACTER_INDICES, character) >= 0;
     }
+
 }
