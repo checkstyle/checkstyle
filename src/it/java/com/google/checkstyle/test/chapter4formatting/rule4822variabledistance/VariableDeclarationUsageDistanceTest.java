@@ -34,7 +34,6 @@ public class VariableDeclarationUsageDistanceTest extends AbstractModuleTestSupp
 
     @Test
     public void testArrayTypeStyle() throws Exception {
-
         final String msgExt = "variable.declaration.usage.distance.extend";
         final Class<VariableDeclarationUsageDistanceCheck> clazz =
                 VariableDeclarationUsageDistanceCheck.class;

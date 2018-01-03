@@ -186,7 +186,6 @@ final class ImportControlLoader extends XmlLoader {
      * @throws CheckstyleException if an error occurs.
      */
     public static ImportControl load(URI uri) throws CheckstyleException {
-
         InputStream inputStream = null;
         try {
             inputStream = uri.toURL().openStream();

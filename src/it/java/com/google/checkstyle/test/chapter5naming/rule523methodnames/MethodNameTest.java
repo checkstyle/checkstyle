@@ -33,7 +33,6 @@ public class MethodNameTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMethodName() throws Exception {
-
         final Configuration checkConfig = getModuleConfig("MethodName");
         final String msgKey = "name.invalidPattern";
         final String format = "^[a-z][a-z0-9][a-zA-Z0-9_]*$";

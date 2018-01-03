@@ -230,7 +230,6 @@ public class DeclarationOrderCheck extends AbstractCheck {
      * @param ast constructor AST.
      */
     private void processConstructor(DetailAST ast) {
-
         final ScopeState state = scopeStates.peek();
         if (state.currentScopeState > STATE_CTOR_DEF) {
             if (!ignoreConstructors) {

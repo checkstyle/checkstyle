@@ -419,7 +419,6 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
         LocalizedMessage.setLocale(locale);
 
         if (moduleFactory == null) {
-
             if (moduleClassLoader == null) {
                 throw new CheckstyleException(
                         "if no custom moduleFactory is set, "

@@ -69,7 +69,6 @@ public class TreeTable extends JTable {
      * @param treeTableModel Tree table model
      */
     public TreeTable(ParseTreeTableModel treeTableModel) {
-
         // Create the tree. It will be used as a renderer and editor.
         tree = new TreeTableCellRenderer(this, treeTableModel);
 

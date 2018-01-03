@@ -91,7 +91,6 @@ public class FinalClassCheck
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
 
         switch (ast.getType()) {
-
             case TokenTypes.PACKAGE_DEF:
                 packageName = extractQualifiedName(ast);
                 break;

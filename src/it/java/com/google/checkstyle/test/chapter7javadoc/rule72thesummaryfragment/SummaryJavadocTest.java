@@ -35,7 +35,6 @@ public class SummaryJavadocTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCorrect() throws Exception {
-
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("SummaryJavadoc");
@@ -47,7 +46,6 @@ public class SummaryJavadocTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIncorrect() throws Exception {
-
         final String msgFirstSentence = getCheckMessage(SummaryJavadocCheck.class,
             "summary.first.sentence");
         final String msgForbiddenFragment = getCheckMessage(SummaryJavadocCheck.class,

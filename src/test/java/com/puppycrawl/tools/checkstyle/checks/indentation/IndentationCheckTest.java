@@ -640,7 +640,6 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testInvalidSwitchWithChecker()
             throws Exception {
-
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -1324,7 +1323,6 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testValidCommaWithChecker()
             throws Exception {
-
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");

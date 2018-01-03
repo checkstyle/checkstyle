@@ -34,7 +34,6 @@ public class EmptyLineSeparatorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testEmptyLineSeparator() throws Exception {
-
         final Class<EmptyLineSeparatorCheck> clazz = EmptyLineSeparatorCheck.class;
         final String messageKey = "empty.line.separator";
 

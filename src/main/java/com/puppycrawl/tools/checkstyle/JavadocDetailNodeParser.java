@@ -232,7 +232,6 @@ public class JavadocDetailNodeParser {
                     ParseTree tempParseTreeParent = parseTreeParent.getParent();
 
                     while (nextJavadocSibling == null && tempJavadocParent != null) {
-
                         nextJavadocSibling = (JavadocNodeImpl) JavadocUtils
                                 .getNextSibling(tempJavadocParent);
 

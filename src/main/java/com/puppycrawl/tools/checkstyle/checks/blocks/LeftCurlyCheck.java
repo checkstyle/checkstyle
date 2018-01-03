@@ -275,7 +275,6 @@ public class LeftCurlyCheck
         while (previousAnnotation.getPreviousSibling() != null
                 && previousAnnotation.getPreviousSibling().getLineNo()
                     == lastAnnotationLineNumber) {
-
             previousAnnotation = previousAnnotation.getPreviousSibling();
         }
         return previousAnnotation;
@@ -315,11 +314,9 @@ public class LeftCurlyCheck
                 }
             }
             else if (option == LeftCurlyOption.EOL) {
-
                 validateEol(brace, braceLine);
             }
             else if (startToken.getLineNo() != brace.getLineNo()) {
-
                 validateNewLinePosition(brace, startToken, braceLine);
 
             }

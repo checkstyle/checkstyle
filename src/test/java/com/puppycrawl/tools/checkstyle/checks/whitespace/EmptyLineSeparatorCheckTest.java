@@ -68,7 +68,6 @@ public class EmptyLineSeparatorCheckTest
 
     @Test
     public void testAllowNoEmptyLineBetweenFields() throws Exception {
-
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
         checkConfig.addAttribute("allowNoEmptyLineBetweenFields", "true");
 

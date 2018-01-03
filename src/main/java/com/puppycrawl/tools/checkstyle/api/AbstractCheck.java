@@ -247,7 +247,6 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * @param args arguments to format
      */
     public final void log(DetailAST ast, String key, Object... args) {
-
         // CommonUtils.lengthExpandedTabs returns column number considering tabulation
         // characters, it takes line from the file by line number, ast column number and tab
         // width as arguments. Returned value is 0-based, but user must see column number starting

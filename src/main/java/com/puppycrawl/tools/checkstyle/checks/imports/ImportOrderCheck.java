@@ -385,7 +385,6 @@ public class ImportOrderCheck
         // using set of IF instead of SWITCH to analyze Enum options to satisfy coverage.
         // https://github.com/checkstyle/checkstyle/issues/1387
         if (option == ImportOrderOption.TOP) {
-
             if (isLastImportAndNonStatic) {
                 lastGroup = Integer.MIN_VALUE;
                 lastImport = "";
@@ -398,7 +397,6 @@ public class ImportOrderCheck
 
         }
         else if (option == ImportOrderOption.BOTTOM) {
-
             if (isStaticAndNotLastImport) {
                 lastGroup = Integer.MIN_VALUE;
                 lastImport = "";

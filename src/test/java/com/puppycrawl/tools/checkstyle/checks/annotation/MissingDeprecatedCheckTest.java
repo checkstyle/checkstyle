@@ -83,7 +83,6 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testBadDeprecatedJavadoc() throws Exception {
-
         final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
@@ -106,7 +105,6 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testSpecialCaseDeprecated() throws Exception {
-
         final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
@@ -133,7 +131,6 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testGoodDeprecated() throws Exception {
-
         final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -143,7 +140,6 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTwoInJavadocWithoutAnnotation() throws Exception {
-
         final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
@@ -157,7 +153,6 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testEmptyJavadocLine() throws Exception {
-
         final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {

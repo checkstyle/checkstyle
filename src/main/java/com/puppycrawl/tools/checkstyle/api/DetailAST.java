@@ -346,7 +346,6 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
     private BitSet getBranchTokenTypes() {
         // lazy init
         if (branchTokenTypes == null) {
-
             branchTokenTypes = new BitSet();
             branchTokenTypes.set(getType());
 

@@ -48,7 +48,6 @@ public class FileSetCheckTest
 
     @Test
     public void testProcessCallsFinishBeforeCallingDestroy() throws Exception {
-
         final Configuration checkConfig =
             createModuleConfig(TestFileSetCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;

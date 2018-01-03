@@ -34,7 +34,6 @@ public class IndentationTest extends AbstractIndentationTestSupport {
 
     @Test
     public void testCorrectClass() throws Exception {
-
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("Indentation");
@@ -46,7 +45,6 @@ public class IndentationTest extends AbstractIndentationTestSupport {
 
     @Test
     public void testCorrectField() throws Exception {
-
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("Indentation");
@@ -58,7 +56,6 @@ public class IndentationTest extends AbstractIndentationTestSupport {
 
     @Test
     public void testCorrectFor() throws Exception {
-
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("Indentation");
@@ -70,7 +67,6 @@ public class IndentationTest extends AbstractIndentationTestSupport {
 
     @Test
     public void testCorrectIf() throws Exception {
-
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("Indentation");
@@ -82,7 +78,6 @@ public class IndentationTest extends AbstractIndentationTestSupport {
 
     @Test
     public void testCorrect() throws Exception {
-
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("Indentation");
@@ -94,7 +89,6 @@ public class IndentationTest extends AbstractIndentationTestSupport {
 
     @Test
     public void testCorrectReturn() throws Exception {
-
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("Indentation");
@@ -106,7 +100,6 @@ public class IndentationTest extends AbstractIndentationTestSupport {
 
     @Test
     public void testCorrectWhile() throws Exception {
-
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("Indentation");

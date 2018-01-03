@@ -209,7 +209,6 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testTokens() {
         final int[] defaultJavadocTokens = {JavadocTokenTypes.JAVADOC};
         final AbstractJavadocCheck check = new AbstractJavadocCheck() {
-
             @Override
             public void visitJavadocToken(DetailNode ast) {
                 // no code necessary

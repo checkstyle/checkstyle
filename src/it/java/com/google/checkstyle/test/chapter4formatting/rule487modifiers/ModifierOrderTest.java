@@ -34,7 +34,6 @@ public class ModifierOrderTest extends AbstractModuleTestSupport {
 
     @Test
     public void testModifierOrder() throws Exception {
-
         final Class<ModifierOrderCheck> clazz = ModifierOrderCheck.class;
         final String msgMod = "mod.order";
         final String msgAnnotation = "annotation.order";

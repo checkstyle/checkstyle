@@ -422,7 +422,6 @@ public class CommentsIndentationCheck extends AbstractCheck {
      */
     private void handleCommentInEmptyCaseBlock(DetailAST prevStmt, DetailAST comment,
                                                DetailAST nextStmt) {
-
         if (comment.getColumnNo() < prevStmt.getColumnNo()
                 || comment.getColumnNo() < nextStmt.getColumnNo()) {
             logMultilineIndentation(prevStmt, comment, nextStmt);
@@ -464,7 +463,6 @@ public class CommentsIndentationCheck extends AbstractCheck {
      */
     private void handleFallThroughComment(DetailAST prevStmt, DetailAST comment,
                                           DetailAST nextStmt) {
-
         if (!areSameLevelIndented(comment, prevStmt, nextStmt)) {
             logMultilineIndentation(prevStmt, comment, nextStmt);
         }
@@ -890,7 +888,6 @@ public class CommentsIndentationCheck extends AbstractCheck {
      */
     private boolean areSameLevelIndented(DetailAST comment, DetailAST prevStmt,
                                                 DetailAST nextStmt) {
-
         return comment.getColumnNo() == getLineStart(nextStmt.getLineNo())
             || comment.getColumnNo() == getLineStart(prevStmt.getLineNo());
     }

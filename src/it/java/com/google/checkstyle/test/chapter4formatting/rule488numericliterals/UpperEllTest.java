@@ -33,7 +33,6 @@ public class UpperEllTest extends AbstractModuleTestSupport {
 
     @Test
     public void testUpperEll() throws Exception {
-
         final String[] expected = {
             "6:36: Should use uppercase 'L'.",
             "12:27: Should use uppercase 'L'.",

@@ -732,7 +732,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testCacheAndCheckWhichAddsNewResourceLocationButKeepsSameCheckerInstance()
             throws Exception {
-
         // Use case (https://github.com/checkstyle/checkstyle/pull/3092#issuecomment-218162436):
         // Imagine that cache exists in a file. New version of Checkstyle appear.
         // New release contains update to a some check to have additional external resource.

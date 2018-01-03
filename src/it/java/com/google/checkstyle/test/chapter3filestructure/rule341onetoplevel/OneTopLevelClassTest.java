@@ -35,7 +35,6 @@ public class OneTopLevelClassTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBad() throws Exception {
-
         final Class<OneTopLevelClassCheck> clazz = OneTopLevelClassCheck.class;
         final String messageKey = "one.top.level.class";
 
@@ -57,7 +56,6 @@ public class OneTopLevelClassTest extends AbstractModuleTestSupport {
 
     @Test
     public void testGood() throws Exception {
-
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("OneTopLevelClass");
@@ -69,7 +67,6 @@ public class OneTopLevelClassTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBad1() throws Exception {
-
         final Class<OneTopLevelClassCheck> clazz = OneTopLevelClassCheck.class;
         final String messageKey = "one.top.level.class";
 
@@ -86,7 +83,6 @@ public class OneTopLevelClassTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBad2() throws Exception {
-
         final Class<OneTopLevelClassCheck> clazz = OneTopLevelClassCheck.class;
         final String messageKey = "one.top.level.class";
 

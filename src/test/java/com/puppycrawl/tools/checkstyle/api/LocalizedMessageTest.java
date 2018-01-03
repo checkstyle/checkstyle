@@ -111,7 +111,6 @@ public class LocalizedMessageTest {
 
     @Test
     public void testBundleReloadUrlNotNullStreamNull() throws IOException {
-
         final ClassLoader classloader = mock(ClassLoader.class);
         final String resource =
             "com/puppycrawl/tools/checkstyle/checks/coding/messages_en.properties";

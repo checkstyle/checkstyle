@@ -144,7 +144,6 @@ public class DesignForExtensionCheck extends AbstractCheck {
                 && (isNativeMethod(ast)
                     || !hasEmptyImplementation(ast))
                 && !hasIgnoredAnnotation(ast, ignoredAnnotations)) {
-
             final DetailAST classDef = getNearestClassOrEnumDefinition(ast);
             if (canBeSubclassed(classDef)) {
                 final String className = classDef.findFirstToken(TokenTypes.IDENT).getText();

@@ -527,7 +527,6 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
     @Test
     public void testConfigWithIgnore() throws Exception {
-
         final DefaultConfiguration config =
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
                         getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml"),
@@ -539,7 +538,6 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
     @Test
     public void testConfigWithIgnoreUsingInputSource() throws Exception {
-
         final DefaultConfiguration config =
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(new InputSource(
                         new File(getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml"))
@@ -552,7 +550,6 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
     @Test
     public void testConfigCheckerWithIgnore() throws Exception {
-
         final DefaultConfiguration config =
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
                         getPath("InputConfigurationLoaderCheckerIgnoreSeverity.xml"),
@@ -625,7 +622,6 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     @SuppressWarnings("unchecked")
     @Test
     public void testConfigWithIgnoreExceptionalAttributes() throws Exception {
-
         // emulate exception from unrelated code, but that is same try-catch
         final DefaultConfiguration tested = PowerMockito.mock(DefaultConfiguration.class);
         when(tested.getAttributeNames()).thenReturn(new String[] {"severity"});

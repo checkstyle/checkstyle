@@ -35,7 +35,6 @@ public class ParameterNameTest extends AbstractModuleTestSupport {
 
     @Test
     public void testGeneralParameterName() throws Exception {
-
         final Configuration config = getModuleConfig("ParameterName");
         final String format = config.getAttribute("format");
         final String[] expected = {
