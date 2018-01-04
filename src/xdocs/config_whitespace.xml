@@ -1836,7 +1836,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
           </tr>
           <tr>
             <td>validateComments</td>
-            <td>If set to true, whitespaces surrounding comments will be ignored.</td>
+            <td>If set to true, whitespaces surrounding comments will be validated.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>6.19</td>
