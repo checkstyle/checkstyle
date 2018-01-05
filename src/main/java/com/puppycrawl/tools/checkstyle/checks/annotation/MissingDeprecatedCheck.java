@@ -156,11 +156,16 @@ public final class MissingDeprecatedCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
+        return getRequiredTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
         return new int[] {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.CLASS_DEF,
@@ -172,11 +177,6 @@ public final class MissingDeprecatedCheck extends AbstractCheck {
             TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.ANNOTATION_FIELD_DEF,
         };
-    }
-
-    @Override
-    public int[] getRequiredTokens() {
-        return getAcceptableTokens();
     }
 
     @Override

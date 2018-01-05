@@ -37,7 +37,17 @@ public class MethodTypeParameterNameCheckTest
     }
 
     @Test
-    public void testGetMethodRequiredTokens() {
+    public void testGetAcceptableTokens() {
+        final MethodTypeParameterNameCheck methodTypeParameterNameCheck =
+            new MethodTypeParameterNameCheck();
+        final int[] expected = {TokenTypes.TYPE_PARAMETER};
+
+        assertArrayEquals("Default acceptable tokens are invalid",
+                expected, methodTypeParameterNameCheck.getAcceptableTokens());
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
         final MethodTypeParameterNameCheck checkObj =
             new MethodTypeParameterNameCheck();
         final int[] expected = {TokenTypes.TYPE_PARAMETER};

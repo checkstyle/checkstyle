@@ -20,11 +20,13 @@
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class LocalVariableNameCheckTest
@@ -33,6 +35,15 @@ public class LocalVariableNameCheckTest
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/localvariablename";
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        final LocalVariableNameCheck localVariableNameCheck = new LocalVariableNameCheck();
+        final int[] expected = {TokenTypes.VARIABLE_DEF};
+
+        assertArrayEquals("Default acceptable tokens are invalid",
+                expected, localVariableNameCheck.getAcceptableTokens());
     }
 
     @Test

@@ -37,7 +37,17 @@ public class InterfaceTypeParameterNameCheckTest
     }
 
     @Test
-    public void testGetInterfaceRequiredTokens() {
+    public void testGetAcceptableTokens() {
+        final InterfaceTypeParameterNameCheck interfaceTypeParameterNameCheck =
+            new InterfaceTypeParameterNameCheck();
+        final int[] expected = {TokenTypes.TYPE_PARAMETER};
+
+        assertArrayEquals("Default acceptable tokens are invalid",
+                expected, interfaceTypeParameterNameCheck.getAcceptableTokens());
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
         final InterfaceTypeParameterNameCheck checkObj =
             new InterfaceTypeParameterNameCheck();
         final int[] expected = {TokenTypes.TYPE_PARAMETER};

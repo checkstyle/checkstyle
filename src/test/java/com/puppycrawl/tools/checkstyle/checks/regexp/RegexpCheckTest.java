@@ -38,10 +38,18 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testGetAcceptableTokens() {
+        final RegexpCheck regexpCheck = new RegexpCheck();
+        assertArrayEquals(
+                "RegexpCheck#getAcceptableTokens should return empty array by default",
+                CommonUtils.EMPTY_INT_ARRAY, regexpCheck.getAcceptableTokens());
+    }
+
+    @Test
     public void testGetRequiredTokens() {
         final RegexpCheck checkObj = new RegexpCheck();
         assertArrayEquals(
-            "RegexpCheck#getRequiredTockens should return empty array by default",
+            "RegexpCheck#getRequiredTokens should return empty array by default",
             CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
