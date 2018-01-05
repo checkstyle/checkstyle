@@ -20,9 +20,10 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 /**
- * Represents the options for placing the right curly brace {@code '}'}.
+ * Represents the options for placing the right curly brace <code>'}'</code>.
  *
  * @author Oliver Burn
+ * @noinspection HtmlTagCanBeJavadocTag
  */
 public enum RightCurlyOption {
 

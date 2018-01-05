@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * <p>
  * Restrict using <a href =
  * "https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.3">
- * Unicode escapes</a> (such as {@code &#92;u221e}).
+ * Unicode escapes</a> (such as <code>&#92;u221e</code>).
  * It is possible to allow using escapes for
  * <a href="https://en.wiktionary.org/wiki/Appendix:Control_characters">
  * non-printable(control) characters</a>.
@@ -107,7 +107,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * </pre>
  *
  * @author maxvetrenko
- *
+ * @noinspection HtmlTagCanBeJavadocTag
  */
 @FileStatefulCheck
 public class AvoidEscapedUnicodeCharactersCheck
