@@ -39,6 +39,26 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testGetAcceptableTokens() {
+        final MissingDeprecatedCheck missingDeprecatedCheck =
+                new MissingDeprecatedCheck();
+        final int[] expected = {
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
+        };
+
+        assertArrayEquals("Default acceptable tokens are invalid",
+                expected, missingDeprecatedCheck.getAcceptableTokens());
+    }
+
+    @Test
     public void testGetRequiredTokens() {
         final MissingDeprecatedCheck checkObj = new MissingDeprecatedCheck();
         final int[] expected = {

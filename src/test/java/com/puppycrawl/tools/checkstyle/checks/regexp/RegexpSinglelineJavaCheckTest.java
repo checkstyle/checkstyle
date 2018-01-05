@@ -37,6 +37,14 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testGetAcceptableTokens() {
+        final RegexpSinglelineJavaCheck regexpSinglelineJavaCheck =
+            new RegexpSinglelineJavaCheck();
+        assertArrayEquals("Default acceptable tokens are invalid",
+            CommonUtils.EMPTY_INT_ARRAY, regexpSinglelineJavaCheck.getAcceptableTokens());
+    }
+
+    @Test
     public void testGetRequiredTokens() {
         final RegexpSinglelineJavaCheck checkObj = new RegexpSinglelineJavaCheck();
         assertArrayEquals("Default required tokens are invalid",

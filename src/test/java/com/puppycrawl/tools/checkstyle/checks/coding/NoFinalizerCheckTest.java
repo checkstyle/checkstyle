@@ -20,11 +20,13 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
@@ -38,6 +40,16 @@ public class NoFinalizerCheckTest
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/nofinalizer";
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        final NoFinalizerCheck noFinalizerCheck =
+                new NoFinalizerCheck();
+        final int[] expected = {TokenTypes.METHOD_DEF};
+
+        assertArrayEquals("Default acceptable tokens are invalid",
+                expected, noFinalizerCheck.getAcceptableTokens());
     }
 
     @Test

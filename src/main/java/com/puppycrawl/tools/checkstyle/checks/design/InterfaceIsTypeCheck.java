@@ -57,17 +57,17 @@ public final class InterfaceIsTypeCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.INTERFACE_DEF};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getDefaultTokens();
+        return new int[] {TokenTypes.INTERFACE_DEF};
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.INTERFACE_DEF};
+        return getRequiredTokens();
     }
 
     @Override
