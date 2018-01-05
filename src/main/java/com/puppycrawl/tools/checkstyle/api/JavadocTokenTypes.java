@@ -225,7 +225,7 @@ public final class JavadocTokenTypes {
     public static final int SEE_LITERAL = JavadocParser.SEE_LITERAL;
 
     /**
-     * '@see' literal in @see Javadoc tag.
+     * '@serial' literal in @serial Javadoc tag.
      *
      * <p>Such Javadoc tag can have one argument - {@link #REFERENCE} or {@link #LITERAL_EXCLUDE}
      * or {@link #LITERAL_INCLUDE}</p>
@@ -376,16 +376,18 @@ public final class JavadocTokenTypes {
      * First child of {@link #JAVADOC_INLINE_TAG} that represents left curly brace '{'.
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code {&#64;code Comparable&lt;E&gt;}}</pre>
+     * <pre><code>{&#64;code Comparable&lt;E&gt;}</code></pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code |--JAVADOC_INLINE_TAG[3x0] : [{&#64;code Comparable&lt;E&gt;}]
+     * <code> |--JAVADOC_INLINE_TAG[3x0] : [{&#64;code Comparable&lt;E&gt;}]
      *         |--JAVADOC_INLINE_TAG_START[3x0] : [{]
      *         |--CODE_LITERAL[3x1] : [@code]
      *         |--WS[3x6] : [ ]
      *         |--TEXT[3x7] : [Comparable&lt;E&gt;]
      *         |--JAVADOC_INLINE_TAG_END[3x21] : [}]
-     * }</pre>
+     * </code>
+     * </pre>
+     * @noinspection HtmlTagCanBeJavadocTag
      */
     public static final int JAVADOC_INLINE_TAG_START = JavadocParser.JAVADOC_INLINE_TAG_START;
 
@@ -393,17 +395,18 @@ public final class JavadocTokenTypes {
      * Last child of {@link #JAVADOC_INLINE_TAG} that represents right curly brace '}'.
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code {&#64;code Comparable&lt;E&gt;}}</pre>
+     * <pre><code>{&#64;code Comparable&lt;E&gt;}</code></pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code |--JAVADOC_INLINE_TAG[3x0] : [{&#64;code Comparable&lt;E&gt;}]
+     * <code> |--JAVADOC_INLINE_TAG[3x0] : [{&#64;code Comparable&lt;E&gt;}]
      *         |--JAVADOC_INLINE_TAG_START[3x0] : [{]
      *         |--CODE_LITERAL[3x1] : [@code]
      *         |--WS[3x6] : [ ]
      *         |--TEXT[3x7] : [Comparable&lt;E&gt;]
      *         |--JAVADOC_INLINE_TAG_END[3x21] : [}]
-     * }
+     * </code>
      * </pre>
+     * @noinspection HtmlTagCanBeJavadocTag
      */
     public static final int JAVADOC_INLINE_TAG_END = JavadocParser.JAVADOC_INLINE_TAG_END;
 
@@ -418,22 +421,23 @@ public final class JavadocTokenTypes {
      * </ul>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code {&#64;code Comparable&lt;E&gt;}}</pre>
+     * <pre><code>{&#64;code Comparable&lt;E&gt;}</code></pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code |--JAVADOC_INLINE_TAG[3x0] : [{&#64;code Comparable&lt;E&gt;}]
+     * <code> |--JAVADOC_INLINE_TAG[3x0] : [{&#64;code Comparable&lt;E&gt;}]
      *         |--JAVADOC_INLINE_TAG_START[3x0] : [{]
      *         |--CODE_LITERAL[3x1] : [@code]
      *         |--WS[3x6] : [ ]
      *         |--TEXT[3x7] : [Comparable&lt;E&gt;]
      *         |--JAVADOC_INLINE_TAG_END[3x21] : [}]
-     * }
+     * </code>
      * </pre>
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDFHHBB">
      * Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
+     * @noinspection HtmlTagCanBeJavadocTag
      */
     public static final int CODE_LITERAL = JavadocParser.CODE_LITERAL;
 
@@ -447,34 +451,35 @@ public final class JavadocTokenTypes {
      * </ul>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code {&#64;docRoot}}</pre>
+     * <pre><code>{&#64;docRoot}</code></pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code  |--JAVADOC_INLINE_TAG[1x0] : [{&#64;docRoot \n}]
+     * <code>  |--JAVADOC_INLINE_TAG[1x0] : [{&#64;docRoot}]
      *            |--JAVADOC_INLINE_TAG_START[1x0] : [{]
      *            |--DOC_ROOT_LITERAL[1x1] : [@docRoot]
      *            |--JAVADOC_INLINE_TAG_END[2x0] : [}]
-     * }
+     * </code>
      * </pre>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code {&#64;docRoot
-     *}}</pre>
+     * <pre><code>{&#64;docRoot
+     *}</code></pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code  |--JAVADOC_INLINE_TAG[1x0] : [{&#64;docRoot \n}]
+     * <code>  |--JAVADOC_INLINE_TAG[1x0] : [{&#64;docRoot \n}]
      *            |--JAVADOC_INLINE_TAG_START[1x0] : [{]
      *            |--DOC_ROOT_LITERAL[1x1] : [@docRoot]
      *            |--WS[1x9] : [ ]
      *            |--NEWLINE[1x10] : [\n]
      *            |--JAVADOC_INLINE_TAG_END[2x0] : [}]
-     * }
+     * </code>
      * </pre>
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDBACBF">
      * Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
+     * @noinspection HtmlTagCanBeJavadocTag
      */
     public static final int DOC_ROOT_LITERAL = JavadocParser.DOC_ROOT_LITERAL;
 
@@ -482,10 +487,10 @@ public final class JavadocTokenTypes {
      * '@link' literal in {&#64;link} Javadoc inline tag.
      * <p>Such Javadoc inline tag can have one argument - {@link #REFERENCE}</p>
      * <p><b>Example:</b></p>
-     * <pre>{@code {&#64;link org.apache.utils.Lists.Comparator#compare(Object)}}</pre>
+     * <pre><code>{&#64;link org.apache.utils.Lists.Comparator#compare(Object)}</code></pre>
      * <p><b>Tree:</b></p>
      * <pre>
-     * {@code |--JAVADOC_INLINE_TAG[1x0] :
+     * <code> |--JAVADOC_INLINE_TAG[1x0] :
      *               [{&#64;link org.apache.utils.Lists.Comparator#compare(Object)}]
      *        |--JAVADOC_INLINE_TAG_START[1x0] : [{]
      *        |--LINK_LITERAL[1x1] : [@link]
@@ -503,13 +508,14 @@ public final class JavadocTokenTypes {
      *                |--ARGUMENT[1x49] : [Object]
      *                |--RIGHT_BRACE[1x55] : [)]
      *        |--JAVADOC_INLINE_TAG_END[1x56] : [}]
-     * }
+     * </code>
      * </pre>
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDDIECH">
      * Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
+     * @noinspection HtmlTagCanBeJavadocTag
      */
     public static final int LINK_LITERAL = JavadocParser.LINK_LITERAL;
 
@@ -523,20 +529,21 @@ public final class JavadocTokenTypes {
      * </ul>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code {&#64;inheritDoc}}</pre>
+     * <pre><code>{&#64;inheritDoc}</code></pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code  |--JAVADOC_INLINE_TAG[1x0] : [{&#64;inheritDoc}]
+     * <code>  |--JAVADOC_INLINE_TAG[1x0] : [{&#64;inheritDoc}]
      *            |--JAVADOC_INLINE_TAG_START[1x0] : [{]
      *            |--INHERIT_DOC_LITERAL[1x1] : [@inheritDoc]
      *            |--JAVADOC_INLINE_TAG_END[1x12] : [}]
-     * }
+     * </code>
      * </pre>
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDGJCHC">
      * Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
+     * @noinspection HtmlTagCanBeJavadocTag
      */
     public static final int INHERIT_DOC_LITERAL = JavadocParser.INHERIT_DOC_LITERAL;
 
@@ -546,10 +553,11 @@ public final class JavadocTokenTypes {
      * <p>Such Javadoc inline tag can have one argument - {@link #REFERENCE}</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code {&#64;linkplain org.apache.utils.Lists.Comparator#compare(Object) compare}}</pre>
+     * <pre><code>{&#64;linkplain org.apache.utils.Lists.Comparator#compare(Object) compare}</code>
+     * </pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code |--JAVADOC_INLINE_TAG[1x0] :
+     * <code> |--JAVADOC_INLINE_TAG[1x0] :
      *               [{&#64;linkplain org.apache.utils.Lists.Comparator#compare(Object) compare}]
      *        |--JAVADOC_INLINE_TAG_START[1x0] : [{]
      *        |--LINKPLAIN_LITERAL[1x1] : [@linkplain]
@@ -569,13 +577,14 @@ public final class JavadocTokenTypes {
      *        |--DESCRIPTION[1x61] : [ compare]
      *            |--TEXT[1x61] : [ compare]
      *        |--JAVADOC_INLINE_TAG_END[1x69] : [}]
-     * }
+     * </code>
      * </pre>
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDGBICD">
      * Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
+     * @noinspection HtmlTagCanBeJavadocTag
      */
     public static final int LINKPLAIN_LITERAL = JavadocParser.LINKPLAIN_LITERAL;
 
@@ -590,22 +599,23 @@ public final class JavadocTokenTypes {
      * </ul>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code {&#64;literal #compare(Object)}}</pre>
+     * <pre><code>{&#64;literal #compare(Object)}</code></pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code |--JAVADOC_INLINE_TAG[1x0] : [{&#64;literal #compare(Object)}]
+     * <code> |--JAVADOC_INLINE_TAG[1x0] : [{&#64;literal #compare(Object)}]
      *        |--JAVADOC_INLINE_TAG_START[1x0] : [{]
      *        |--LITERAL_LITERAL[1x1] : [@literal]
      *        |--WS[1x9] : [ ]
      *        |--TEXT[1x10] : [#compare(Object)]
      *        |--JAVADOC_INLINE_TAG_END[1x27] : [}]
-     * }
+     * </code>
      * </pre>
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCFJDG">
      * Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
+     * @noinspection HtmlTagCanBeJavadocTag
      */
     public static final int LITERAL_LITERAL = JavadocParser.LITERAL_LITERAL;
 
@@ -620,10 +630,10 @@ public final class JavadocTokenTypes {
      * </ul>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code {&#64;value Integer#MAX_VALUE}}</pre>
+     * <pre><code>{&#64;value Integer#MAX_VALUE}</code></pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code |--JAVADOC_INLINE_TAG[1x0] : [{&#64;value Integer#MAX_VALUE}]
+     * <code> |--JAVADOC_INLINE_TAG[1x0] : [&#64;value Integer#MAX_VALUE}]
      *        |--JAVADOC_INLINE_TAG_START[1x0] : [{]
      *        |--VALUE_LITERAL[1x1] : [@value]
      *        |--WS[1x7] : [ ]
@@ -632,13 +642,14 @@ public final class JavadocTokenTypes {
      *            |--HASH[1x15] : [#]
      *            |--MEMBER[1x16] : [MAX_VALUE]
      *        |--JAVADOC_INLINE_TAG_END[1x25] : [}]
-     * }
+     * </code>
      * </pre>
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDDCDHH">
      * Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
+     * @noinspection HtmlTagCanBeJavadocTag
      */
     public static final int VALUE_LITERAL = JavadocParser.VALUE_LITERAL;
 
@@ -1142,7 +1153,7 @@ public final class JavadocTokenTypes {
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * HTML comment start symbol '&lt;!--'.
+     * HTML comment start symbol '&lt;&#33;--'.
      */
     public static final int HTML_COMMENT_START = JavadocParser.HTML_COMMENT_START;
 
@@ -1152,7 +1163,7 @@ public final class JavadocTokenTypes {
     public static final int HTML_COMMENT_END = JavadocParser.HTML_COMMENT_END;
 
     /**
-     * &lt;![CDATA[...]]&gt; block.
+     * &lt;&#33;[CDATA[&#46;&#46;&#46;]]&gt; block.
      */
     public static final int CDATA = JavadocParser.CDATA;
 
@@ -1280,18 +1291,19 @@ public final class JavadocTokenTypes {
      * </ul>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code {&#64;link String}}</pre>
+     * <pre><code>{&#64;link String}</code></pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code |--JAVADOC_INLINE_TAG[4x3] : [{&#64;link String}]
+     * <code> |--JAVADOC_INLINE_TAG[4x3] : [&#64;link String}]
      *        |--JAVADOC_INLINE_TAG_START[4x3] : [{]
      *        |--LINK_LITERAL[4x4] : [@link]
      *        |--WS[4x9] : [ ]
      *        |--REFERENCE[4x10] : [String]
      *            |--CLASS[4x10] : [String]
      *        |--JAVADOC_INLINE_TAG_END[4x16] : [}]
-     * }
+     * </code>
      * </pre>
+     * @noinspection HtmlTagCanBeJavadocTag
      */
     public static final int JAVADOC_INLINE_TAG = JavadocParser.RULE_javadocInlineTag
             + RULE_TYPES_OFFSET;
@@ -1348,29 +1360,28 @@ public final class JavadocTokenTypes {
      * <p>It is argument for many Javadoc tags and inline tags.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code @throws IOException if &lt;b&gt;connection&lt;/b&gt; problems occur}</pre>
+     * <pre>{@code @throws IOException if <b>connection</b> problems occur}</pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code |--JAVADOC_TAG[1x0] :
-     *               [@throws IOException if &lt;b&gt;connection&lt;/b&gt; problems occur]
+     * {@code |--JAVADOC_TAG[1x0] : [@throws IOException if <b>connection</b> problems occur]
      *        |--THROWS_LITERAL[1x0] : [@throws]
      *        |--WS[1x7] : [ ]
      *        |--CLASS_NAME[1x8] : [IOException]
      *        |--WS[1x19] : [ ]
-     *        |--DESCRIPTION[1x20] : [if &lt;b&gt;connection&lt;/b&gt; problems occur]
+     *        |--DESCRIPTION[1x20] : [if <b>connection</b> problems occur]
      *            |--TEXT[1x20] : [if ]
-     *            |--HTML_ELEMENT[1x23] : [&lt;b&gt;connection&lt;/b&gt;]
-     *                |--HTML_TAG[1x23] : [&lt;b&gt;connection&lt;/b&gt;]
-     *                    |--HTML_ELEMENT_START[1x23] : [&lt;b&gt;]
-     *                        |--START[1x23] : [&lt;]
+     *            |--HTML_ELEMENT[1x23] : [<b>connection</b>]
+     *                |--HTML_TAG[1x23] : [<b>connection</b>]
+     *                    |--HTML_ELEMENT_START[1x23] : [<b>]
+     *                        |--START[1x23] : [<]
      *                        |--HTML_TAG_NAME[1x24] : [b]
-     *                        |--END[1x25] : [&gt;]
+     *                        |--END[1x25] : [>]
      *                    |--TEXT[1x26] : [connection]
-     *                    |--HTML_ELEMENT_END[1x36] : [&lt;/b&gt;]
-     *                        |--START[1x36] : [&lt;]
+     *                    |--HTML_ELEMENT_END[1x36] : [</b>]
+     *                        |--START[1x36] : [<]
      *                        |--SLASH[1x37] : [/]
      *                        |--HTML_TAG_NAME[1x38] : [b]
-     *                        |--END[1x39] : [&gt;]
+     *                        |--END[1x39] : [>]
      *            |--TEXT[1x40] : [ problems occur]
      * }
      * </pre>
@@ -1591,7 +1602,9 @@ public final class JavadocTokenTypes {
     /**
      * HTML void element {@code <source>}.
      * @see #SINGLETON_ELEMENT
-     * @see "https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-media-source"
+     * @see <a href=
+     *     "https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-media-source">
+     *     W3 docs</a>
      */
     public static final int SOURCE_TAG = JavadocParser.RULE_sourceTag + RULE_TYPES_OFFSET;
 
@@ -1614,7 +1627,9 @@ public final class JavadocTokenTypes {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
-    /** Html comment: {@code <!-- -->}. */
+    /** Html comment: <code>&lt;&#33;-- --&gt;</code>.
+     * @noinspection HtmlTagCanBeJavadocTag
+     */
     public static final int HTML_COMMENT = JavadocParser.RULE_htmlComment
             + RULE_TYPES_OFFSET;
     /**

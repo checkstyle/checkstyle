@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
+ * Checks the ordering/grouping of imports. Features are:
  * <ul>
  * <li>groups imports: ensures that groups of imports come in a specific order
  * (e.g., java. comes first, javax. comes second, then everything else)</li>

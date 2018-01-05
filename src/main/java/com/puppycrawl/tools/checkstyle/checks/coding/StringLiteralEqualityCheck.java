@@ -27,15 +27,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>Checks that string literals are not used with
- * {@code ==} or {@code &#33;=}.
+ * {@code ==} or <code>&#33;=</code>.
  * </p>
  * <p>
  * Rationale: Novice Java programmers often use code like
- * {@code if (x == &quot;something&quot;)} when they mean
- * {@code if (&quot;something&quot;.equals(x))}.
+ * {@code if (x == "something")} when they mean
+ * {@code if ("something".equals(x))}.
  * </p>
  *
  * @author Lars K&uuml;hne
+ * @noinspection HtmlTagCanBeJavadocTag
  */
 @StatelessCheck
 public class StringLiteralEqualityCheck extends AbstractCheck {

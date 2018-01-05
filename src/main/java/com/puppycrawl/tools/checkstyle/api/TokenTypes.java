@@ -34,12 +34,6 @@ import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes;
  */
 public final class TokenTypes {
 
-    // The following three types are never part of an AST,
-    // left here as a reminder so nobody will read them accidentally
-
-    // These are the types that can actually occur in an AST
-    // it makes sense to register Checks for these types
-
     /**
      * The end of file token.  This is the root node for the source
      * file.  It's children are an optional package definition, zero
@@ -1203,9 +1197,10 @@ public final class TokenTypes {
      **/
     public static final int IDENT = GeneratedJavaTokenTypes.IDENT;
     /**
-     * The {@code &#46;} (dot) operator.
+     * The <code>&#46;</code> (dot) operator.
      *
      * @see FullIdent
+     * @noinspection HtmlTagCanBeJavadocTag
      **/
     public static final int DOT = GeneratedJavaTokenTypes.DOT;
     /**
@@ -1361,19 +1356,21 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_interface;
 
     /**
-     * A left (curly) brace ({@code &#123;}).
+     * A left curly brace (<code>{</code>).
      *
      * @see #OBJBLOCK
      * @see #ARRAY_INIT
      * @see #SLIST
+     * @noinspection HtmlTagCanBeJavadocTag
      **/
     public static final int LCURLY = GeneratedJavaTokenTypes.LCURLY;
     /**
-     * A right (curly) brace ({@code &#125;}).
+     * A right curly brace (<code>}</code>).
      *
      * @see #OBJBLOCK
      * @see #ARRAY_INIT
      * @see #SLIST
+     * @noinspection HtmlTagCanBeJavadocTag
      **/
     public static final int RCURLY = GeneratedJavaTokenTypes.RCURLY;
     /**
@@ -1897,7 +1894,7 @@ public final class TokenTypes {
 
     /**
      * The {@code case} keyword.  The first child is a constant
-     * expression that evaluates to a integer.
+     * expression that evaluates to an integer.
      *
      * @see #CASE_GROUP
      * @see #EXPR
@@ -2209,7 +2206,7 @@ public final class TokenTypes {
      **/
     public static final int MOD_ASSIGN = GeneratedJavaTokenTypes.MOD_ASSIGN;
     /**
-     * The {@code &gt;&gt;=} (signed right shift assignment)
+     * The {@code >>=} (signed right shift assignment)
      * operator.
      *
      * @see <a
@@ -2219,7 +2216,7 @@ public final class TokenTypes {
      **/
     public static final int SR_ASSIGN = GeneratedJavaTokenTypes.SR_ASSIGN;
     /**
-     * The {@code &gt;&gt;&gt;=} (unsigned right shift assignment)
+     * The {@code >>>=} (unsigned right shift assignment)
      * operator.
      *
      * @see <a
@@ -2229,7 +2226,7 @@ public final class TokenTypes {
      **/
     public static final int BSR_ASSIGN = GeneratedJavaTokenTypes.BSR_ASSIGN;
     /**
-     * The {@code &lt;&lt;=} (left shift assignment) operator.
+     * The {@code <<=} (left shift assignment) operator.
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
@@ -2238,7 +2235,7 @@ public final class TokenTypes {
      **/
     public static final int SL_ASSIGN = GeneratedJavaTokenTypes.SL_ASSIGN;
     /**
-     * The {@code &amp;=} (bitwise AND assignment) operator.
+     * The {@code &=} (bitwise AND assignment) operator.
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
@@ -2265,7 +2262,7 @@ public final class TokenTypes {
      **/
     public static final int BOR_ASSIGN = GeneratedJavaTokenTypes.BOR_ASSIGN;
     /**
-     * The {@code &#63;} (conditional) operator.  Technically,
+     * The <code>&#63;</code> (conditional) operator.  Technically,
      * the colon is also part of this operator, but it appears as a
      * separate token.
      *
@@ -2295,6 +2292,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.25</a>
      * @see #EXPR
      * @see #COLON
+     * @noinspection HtmlTagCanBeJavadocTag
      **/
     public static final int QUESTION = GeneratedJavaTokenTypes.QUESTION;
     /**
@@ -2307,7 +2305,7 @@ public final class TokenTypes {
      **/
     public static final int LOR = GeneratedJavaTokenTypes.LOR;
     /**
-     * The {@code &amp;&amp;} (conditional AND) operator.
+     * The {@code &&} (conditional AND) operator.
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.23">Java
@@ -2334,7 +2332,7 @@ public final class TokenTypes {
      **/
     public static final int BXOR = GeneratedJavaTokenTypes.BXOR;
     /**
-     * The {@code &amp;} (bitwise AND) operator.
+     * The {@code &} (bitwise AND) operator.
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.22.1">Java
@@ -2343,9 +2341,10 @@ public final class TokenTypes {
      **/
     public static final int BAND = GeneratedJavaTokenTypes.BAND;
     /**
-     * The {@code &#33;=} (not equal) operator.
+     * The <code>&#33;=</code> (not equal) operator.
      *
      * @see #EXPR
+     * @noinspection HtmlTagCanBeJavadocTag
      **/
     public static final int NOT_EQUAL = GeneratedJavaTokenTypes.NOT_EQUAL;
     /**
@@ -2355,25 +2354,25 @@ public final class TokenTypes {
      **/
     public static final int EQUAL = GeneratedJavaTokenTypes.EQUAL;
     /**
-     * The {@code &lt;} (less than) operator.
+     * The {@code <} (less than) operator.
      *
      * @see #EXPR
      **/
     public static final int LT = GeneratedJavaTokenTypes.LT;
     /**
-     * The {@code &gt;} (greater than) operator.
+     * The {@code >} (greater than) operator.
      *
      * @see #EXPR
      **/
     public static final int GT = GeneratedJavaTokenTypes.GT;
     /**
-     * The {@code &lt;=} (less than or equal) operator.
+     * The {@code <=} (less than or equal) operator.
      *
      * @see #EXPR
      **/
     public static final int LE = GeneratedJavaTokenTypes.LE;
     /**
-     * The {@code &gt;=} (greater than or equal) operator.
+     * The {@code >=} (greater than or equal) operator.
      *
      * @see #EXPR
      **/
@@ -2397,7 +2396,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_instanceof;
 
     /**
-     * The {@code &lt;&lt;} (shift left) operator.
+     * The {@code <<} (shift left) operator.
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.19">Java
@@ -2406,7 +2405,7 @@ public final class TokenTypes {
      **/
     public static final int SL = GeneratedJavaTokenTypes.SL;
     /**
-     * The {@code &gt;&gt;} (signed shift right) operator.
+     * The {@code >>} (signed shift right) operator.
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.19">Java
@@ -2415,7 +2414,7 @@ public final class TokenTypes {
      **/
     public static final int SR = GeneratedJavaTokenTypes.SR;
     /**
-     * The {@code &gt;&gt;&gt;} (unsigned shift right) operator.
+     * The {@code >>>} (unsigned shift right) operator.
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.19">Java
@@ -2489,12 +2488,13 @@ public final class TokenTypes {
      **/
     public static final int BNOT = GeneratedJavaTokenTypes.BNOT;
     /**
-     * The {@code &#33;} (logical complement) operator.
+     * The <code>&#33;</code> (logical complement) operator.
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.6">Java
      * Language Specification, &sect;15.15.6</a>
      * @see #EXPR
+     * @noinspection HtmlTagCanBeJavadocTag
      **/
     public static final int LNOT = GeneratedJavaTokenTypes.LNOT;
     /**
@@ -3160,7 +3160,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.ANNOTATION;
 
     /**
-     * An initialisation of an annotation member with a value.
+     * An initialization of an annotation member with a value.
      * Its children are the name of the member, the assignment literal
      * and the (compile-time constant conditional expression) value.
      *
@@ -3173,9 +3173,9 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.ANNOTATION_MEMBER_VALUE_PAIR;
 
     /**
-     * An annotation array member initialisation.
+     * An annotation array member initialization.
      * Initializers can not be nested.
-     * Am initializer may be present as a default to a annotation
+     * An initializer may be present as a default to an annotation
      * member, as the single default value to an annotation
      * (e.g. @Annotation({1,2})) or as the value of an annotation
      * member value pair.
@@ -3403,7 +3403,7 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.TYPE_LOWER_BOUNDS;
 
     /**
-     * An 'at' symbol - signifying an annotation instance or the prefix
+     * An {@code @} symbol - signifying an annotation instance or the prefix
      * to the interface literal signifying the definition of an annotation
      * declaration.
      *
@@ -3422,26 +3422,26 @@ public final class TokenTypes {
     public static final int ELLIPSIS = GeneratedJavaTokenTypes.ELLIPSIS;
 
     /**
-     * '&amp;' symbol when used in a generic upper or lower bounds constrain
-     * e.g. {@code Comparable&lt;<? extends Serializable, CharSequence>}.
+     * The {@code &} symbol when used in a generic upper or lower bounds constrain
+     * e.g&#46; <code>Comparable&lt;T extends Serializable &amp; CharSequence&gt;</code>.
+     * @noinspection HtmlTagCanBeJavadocTag
      */
     public static final int TYPE_EXTENSION_AND =
         GeneratedJavaTokenTypes.TYPE_EXTENSION_AND;
 
     /**
-     * '&lt;' symbol signifying the start of type arguments or type
-     * parameters.
+     * A {@code <} symbol signifying the start of type arguments or type parameters.
      */
     public static final int GENERIC_START =
         GeneratedJavaTokenTypes.GENERIC_START;
 
     /**
-     * '&gt;' symbol signifying the end of type arguments or type parameters.
+     * A {@code >} symbol signifying the end of type arguments or type parameters.
      */
     public static final int GENERIC_END = GeneratedJavaTokenTypes.GENERIC_END;
 
     /**
-     * Special lambda symbol '-&gt;'.
+     * Special lambda symbol {@code ->}.
      */
     public static final int LAMBDA = GeneratedJavaTokenTypes.LAMBDA;
 
@@ -3471,7 +3471,7 @@ public final class TokenTypes {
             GeneratedJavaTokenTypes.BLOCK_COMMENT_BEGIN;
 
     /**
-     * End of block comment: '* /'.
+     * End of block comment: '&#42;/'.
      *
      * <pre>
      * +--BLOCK_COMMENT_BEGIN
