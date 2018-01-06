@@ -190,6 +190,23 @@ public class InputDesignForExtensionOverridableMethods {
         @Deprecated /** */
         public void foo39() {return; }
 
+        void foo40() { // no violation: empty body
+            /** */
+        }
+
+        void foo41() { // violation: no javadoc comment, but method designed for extension
+            return;
+        }
+
+        /** */
+        void foo42() { // no violation: has javadoc comment
+        }
+
+        /** */
+        void foo43() {
+            return;
+        }
+
         /**
          * @param indent indentation to check.
          * @return true if {@code indent} less then minimal of
