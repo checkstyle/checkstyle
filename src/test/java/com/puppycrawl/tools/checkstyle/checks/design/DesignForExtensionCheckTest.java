@@ -80,6 +80,7 @@ public class DesignForExtensionCheckTest
             "96:9: " + getCheckMessage(MSG_KEY, "A", "foo23"),
             "110:9: " + getCheckMessage(MSG_KEY, "A", "foo26"),
             "117:9: " + getCheckMessage(MSG_KEY, "A", "foo27"),
+            "197:9: " + getCheckMessage(MSG_KEY, "A", "foo41"),
         };
         verify(checkConfig, getPath("InputDesignForExtensionOverridableMethods.java"), expected);
     }
