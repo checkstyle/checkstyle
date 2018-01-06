@@ -54,7 +54,7 @@ import com.google.common.collect.ImmutableList;
  * @author Lars Kühne
  * @noinspection ThisEscapedInObjectConstruction
  */
-public class TreeTable extends JTable {
+public final class TreeTable extends JTable {
 
     private static final long serialVersionUID = -8493693409423365387L;
     /** A subclass of JTree. */
@@ -207,7 +207,7 @@ public class TreeTable extends JTable {
      * Overridden to pass the new rowHeight to the tree.
      */
     @Override
-    public final void setRowHeight(int newRowHeight) {
+    public void setRowHeight(int newRowHeight) {
         super.setRowHeight(newRowHeight);
         if (tree != null && tree.getRowHeight() != newRowHeight) {
             tree.setRowHeight(getRowHeight());

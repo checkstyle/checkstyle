@@ -156,11 +156,9 @@ public class JavadocPackageCheckTest
     /**
      * Using direct call to check here because there is no other way
      * to reproduce exception with invalid canonical path.
-     *
-     * @throws Exception if error occurs
      */
     @Test
-    public void testCheckstyleExceptionIfFailedToGetCanonicalPathToFile() throws Exception {
+    public void testCheckstyleExceptionIfFailedToGetCanonicalPathToFile() {
         final JavadocPackageCheck check = new JavadocPackageCheck();
         final File fileWithInvalidPath = new File("\u0000\u0000\u0000");
         final FileText mockFileText = new FileText(fileWithInvalidPath, Collections.emptyList());
