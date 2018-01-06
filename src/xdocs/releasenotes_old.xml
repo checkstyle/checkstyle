@@ -2279,20 +2279,27 @@
       </p>
 
       <ul>
-        <li>Completely new architecture based around pluggable modules. This means that users can now write their own checks without changing the source code of checkstyle itself (request 578712).</li>
-        <li>Users can specify the Java token types for which a check must be performed. For example users can now control that there should be whitespace after 'synchronized' but not after 'if' (request 536385).</li>
+        <li>Completely new architecture based around pluggable modules. This means that users can
+        now write their own checks without changing the source code of checkstyle itself (request
+        578712).</li>
+        <li>Users can specify the Java token types for which a check must be performed. For example
+        users can now control that there should be whitespace after 'synchronized' but not after
+        'if' (request 536385).</li>
         <li>Detect classes that override 'equals()' but not 'hashCode()' (request 554373).</li>
-        <li>Detect inner assignments, e.g. 'this.add(label = new JLabel("yes, I'm a C hacker"));' (request 521325).</li>
+        <li>Detect inner assignments, e.g. 'this.add(label = new JLabel("yes, I'm a C hacker"));'
+        (request 521325).</li>
         <li>Detect matches of generic regular expressions (requests 595254, 621247, 630536).</li>
         <li>Find empty blocks (not only empty catch blocks, request 609523).</li>
         <li>Check spaces at empty for iterators (requests 565666, 583725).</li>
         <li>Detect missing property file keys in internationalized applications (request 634966).</li>
         <li>Check content of @author and @version tag against a regular expression.</li>
-        <li>Detect hiding of fields by parameters or local variables with the same name (request 471897).</li>
+        <li>Detect hiding of fields by parameters or local variables with the same name (request
+        471897).</li>
         <li>Detect obsolete final modifier in interfaces (request 651121).</li>
         <li>Detect whitespace before ';' (request 521323).</li>
         <li>Added DTD for XML output (request 622157).</li>
-        <li>Added an XSL stylesheet to convert XML output to plain text, contributed by Jon Scott Stevens.</li>
+        <li>Added an XSL stylesheet to convert XML output to plain text, contributed by Jon Scott
+        Stevens.</li>
         <li>Added a Portuguese localization, contributed by Pedro Morais.</li>
         <li>Added a Finnish localization, contributed by Ville SkyttÃ¤.</li>
         <li>Added a French localization, contributed by Pierre Dittgen.</li>
@@ -2323,7 +2330,9 @@
         API changes (only relevant for IDE plugin authors):
       </p>
       <ul>
-        <li>Configuration is not based on Properties any more. Instead a Configuration interface is used, IDE plugins can define their own way of creating Configurations or they can reuse the provided ConfigurationLoader to read checkstyle's standard XML config files.</li>
+        <li>Configuration is not based on Properties any more. Instead a Configuration interface is
+        used, IDE plugins can define their own way of creating Configurations or they can reuse the
+        provided ConfigurationLoader to read checkstyle's standard XML config files.</li>
       </ul>
 
       <p>
@@ -2339,15 +2348,24 @@
         New features:
       </p>
       <ul>
-        <li>Major refactoring on the way Checkstyle is configured. It is now completely based around properties. Big thanks to Vincent Massol for the suggestion on how to refactor the ANT task (bug 605141).</li>
-        <li>Check the package name against a pattern (request 597787). Patch provided by Simon Langford.</li>
-        <li>Detect the number of parameters in a declaration exceeding a specified amount (request 582144).</li>
+        <li>Major refactoring on the way Checkstyle is configured. It is now completely based
+        around properties. Big thanks to Vincent Massol for the suggestion on how to refactor the
+        ANT task (bug 605141).</li>
+        <li>Check the package name against a pattern (request 597787). Patch provided by Simon
+        Langford.</li>
+        <li>Detect the number of parameters in a declaration exceeding a specified amount (request
+        582144).</li>
         <li>Inspired by patch 580410 from Shinya Ohnuma, now the error messages are localised.</li>
-        <li>Support checking to determine if an unused <code>@throws</code> exception is a subclass of <code>java.lang.Error</code> (request 583719).</li>
-        <li>Incorporate patch 555878 from Rick Giles to allow pattern for local final variables to be specified.</li>
-        <li>Incorporate patch 566855 from Rob Worth to optionally check that parenthesis are padded with spaces.</li>
-        <li>Incorporate patch 590931 from Vijay Aravamudhan to improve documentation of the build.xml file.</li>
-        <li>Incorporate patch from Vijay Aravamudhan to enforce requiring @version tag (request 543964).</li>
+        <li>Support checking to determine if an unused <code>@throws</code> exception is a subclass
+        of <code>java.lang.Error</code> (request 583719).</li>
+        <li>Incorporate patch 555878 from Rick Giles to allow pattern for local final variables to be
+        specified.</li>
+        <li>Incorporate patch 566855 from Rob Worth to optionally check that parenthesis are padded
+        with spaces.</li>
+        <li>Incorporate patch 590931 from Vijay Aravamudhan to improve documentation of the build.xml
+        file.</li>
+        <li>Incorporate patch from Vijay Aravamudhan to enforce requiring @version tag (request
+        543964).</li>
         <li>Incorporate patch 607481 from Ville SkyttÃ¤ to enforce wrap on operator at EOL.</li>
       </ul>
 
@@ -2355,7 +2373,8 @@
         Resolved bugs:
       </p>
       <ul>
-        <li>Incorporate a patch from Ronald Hastings (Boeing) to correctly handle C++ style comments being between Javadoc comments and declarations.</li>
+        <li>Incorporate a patch from Ronald Hastings (Boeing) to correctly handle C++ style
+        comments being between Javadoc comments and declarations.</li>
       </ul>
 
       <p>
@@ -2371,9 +2390,12 @@
         New features:
       </p>
       <ul>
-        <li>Support checking to determine if an unused <code>@throws</code> exception is a subclass of <code>java.lang.RuntimeException</code> (request 540382).</li>
-        <li>Detect instantiations of classes that should not be instantiated (e.g. java.lang.Boolean) (request 550205).</li>
-        <li>Added ability to specify the base directory for reporting file names (request 571161).</li>
+        <li>Support checking to determine if an unused <code>@throws</code> exception is a subclass
+        of <code>java.lang.RuntimeException</code> (request 540382).</li>
+        <li>Detect instantiations of classes that should not be instantiated (e.g.
+        java.lang.Boolean) (request 550205).</li>
+        <li>Added ability to specify the base directory for reporting file names (request
+        571161).</li>
         <li>Check for line wrapping on operators (request 553160).</li>
         <li>Detect empty <code>try</code> blocks.</li>
         <li>Detect empty <code>catch</code> blocks (request 516255).</li>
@@ -2400,8 +2422,11 @@
         API changes (only relevant for IDE plugin authors):
       </p>
       <ul>
-        <li>The get/setOutputStream methods have been removed from the AuditListener interface. The XMLLogger and DefaultLogger implementations now expect OutputStreams to be provided as a constructor argument.</li>
-        <li>The DefaultLogger now differentiates between info messages ("started checking file ...", etc.)  and error messages (style errors found by checkstyle).</li>
+        <li>The get/setOutputStream methods have been removed from the AuditListener interface.
+        The XMLLogger and DefaultLogger implementations now expect OutputStreams to be provided
+        as a constructor argument.</li>
+        <li>The DefaultLogger now differentiates between info messages ("started checking
+        file ...", etc.)  and error messages (style errors found by checkstyle).</li>
       </ul>
     </section>
 
@@ -2413,9 +2438,13 @@
         <li>The cache was not invalidated upon parameter change (Bug 522282).</li>
         <li>Tabs were not counted correctly in line length checks (Bug 524671).</li>
         <li>Problem when a Checker could not be created (Bug 528358).</li>
-        <li>The documentation of the command line property names did not list the property checkstyle.allow.tabs (Bug 529975).</li>
-        <li>The default regular expression for constant names allowed consecutive '_' characters to occur (Bug 540358).</li>
-        <li>Checkstyle reported unused @throws tag for multiple declarations of the same Exception. According to the Java BugParade this is incorrect, multiple @throws tags for the same exception are OK (Bug 540384).</li>
+        <li>The documentation of the command line property names did not list the property
+        checkstyle.allow.tabs (Bug 529975).</li>
+        <li>The default regular expression for constant names allowed consecutive '_' characters to
+        occur (Bug 540358).</li>
+        <li>Checkstyle reported unused @throws tag for multiple declarations of the same Exception.
+        According to the Java BugParade this is incorrect, multiple @throws tags for the same
+        exception are OK (Bug 540384).</li>
       </ul>
 
       <p>
@@ -2435,12 +2464,17 @@
         <!--(Feature request 534038)-->
         <li>added failureProperty to ANT task</li>
         <!--(Feature request 537107)-->
-        <li>added check for 'public' modifier in interface method declarations, following the recommendation in chapter 9.4 of the Java Language Specification</li>
+        <li>added check for 'public' modifier in interface method declarations, following the
+        recommendation in chapter 9.4 of the Java Language Specification</li>
         <!--(Feature request 545128)-->
-        <li>added -r "dir" option to the commandline frontend, checkstyle will find all Java files contained in the specified directory</li>
+        <li>added -r "dir" option to the commandline frontend, checkstyle will find all Java files
+        contained in the specified directory</li>
         <!--(Patch 531230 + enhancements)-->
-        <li>incorporated patch from Warner Onstine to configure the ANT task by means of a property file</li>
-        <li>added 'contrib' directory, contains XSL stylesheets for formatting checkstyle's XML output (contributions by Ingmar Stein, Stephane Bailliez, Scott McCrory and Gray Herter)</li>
+        <li>incorporated patch from Warner Onstine to configure the ANT task by means of a property
+        file</li>
+        <li>added 'contrib' directory, contains XSL stylesheets for formatting checkstyle's XML
+        output (contributions by Ingmar Stein, Stephane Bailliez, Scott McCrory and Gray
+        Herter)</li>
       </ul>
     </section>
 
@@ -2455,7 +2489,8 @@
         <li>added support for specifying the file header by means of regular expressions</li>
         <li>added whitespace checks around '.', e.g. System . out . println()</li>
         <li>added check for names of methods and local variables</li>
-        <li>check the order of modifiers (public, static, etc.) against the recommendation in the Java Language specification</li>
+        <li>check the order of modifiers (public, static, etc.) against the recommendation in the
+            Java Language specification</li>
         <li>added checks for curly braces placement</li>
         <li>incorporated patch from Andrew Lang for more robust Javadoc parsing</li>
       </ul>

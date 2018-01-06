@@ -118,8 +118,8 @@
 
       <ol>
         <li>
-          Load a class directly according to a package-qualified <code>name</code>, such as loading class <code>com.puppycrawl.tools.checkstyle.TreeWalker</code>
-          for element:
+          Load a class directly according to a package-qualified <code>name</code>, such as loading
+          class <code>com.puppycrawl.tools.checkstyle.TreeWalker</code> for element:
 
           <source>
 &lt;module name=&quot;com.puppycrawl.tools.checkstyle.TreeWalker&quot;/&gt;
@@ -165,7 +165,8 @@
         Each module property has a default value, and you are not
         required to define a property in the configuration document if
         the default value is satisfactory.  To assign a non-default
-        value to a module's property, define a child <code>property</code> element of the <code>module</code> element in the configuration XML
+        value to a module's property, define a child <code>property</code> element
+        of the <code>module</code> element in the configuration XML
         document. Also provide appropriate <code>name</code> and <code>value</code>
         attributes for the <code>property</code> element.
         For example, property <code>max</code> of module
@@ -457,8 +458,8 @@
           </tr>
           <tr>
             <td>tabWidth</td>
-            <td>number of expanded spaces for a tab character (<code>'\t'</code>); used in messages and Checks that
-            require a tab width, such as <a
+            <td>number of expanded spaces for a tab character (<code>'\t'</code>); used in
+            messages and Checks that require a tab width, such as <a
             href="config_sizes.html#LineLength"><code>LineLength</code></a></td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>8</code></td>
@@ -573,14 +574,15 @@
       <p>
         The default token set for <code>MethodLength</code>
         is <code>{METHOD_DEF, CTOR_DEF}</code>, method
-        definition and constructor definition tokens, so <code>TreeWalker</code> invokes <code>MethodLength</code> whenever it visits a node with
-        a <code>METHOD_DEF</code> or a <code>CTOR_DEF</code> token.
+        definition and constructor definition tokens, so <code>TreeWalker</code> invokes
+        <code>MethodLength</code> whenever it visits a node with a <code>METHOD_DEF</code>
+        or a <code>CTOR_DEF</code> token.
       </p>
 
       <p>
-        You specify the trigger tokens for a Check with property <code>tokens</code>.  The value of <code>tokens</code> is a list that denotes a subset of
-        the Check's tokens, as in the following element that configures
-        Check <code>MethodLength</code> to check the number
+        You specify the trigger tokens for a Check with property <code>tokens</code>.  The value
+        of <code>tokens</code> is a list that denotes a subset of the Check's tokens, as in the
+        following element that configures Check <code>MethodLength</code> to check the number
         of lines of methods only:
       </p>
 
@@ -667,8 +669,8 @@
       </source>
 
       <p>
-        Each check configuration element can have zero or more <code>message</code> elements. Every check uses one or
-        more distinct message keys to log violations. If you want to
+        Each check configuration element can have zero or more <code>message</code> elements.
+        Every check uses one or more distinct message keys to log violations. If you want to
         customize a certain message you need to specify the message key
         in the <code>key</code> attribute of the <code>message</code> element.
       </p>
@@ -751,7 +753,8 @@
         for a loadable class.  By default, Checkstyle applies packages
         <code> com.puppycrawl.tools.checkstyle</code>,
         <code>
-        com.puppycrawl.tools.checkstyle.filters</code>, and <code> com.puppycrawl.tools.checkstyle.checks</code> as
+        com.puppycrawl.tools.checkstyle.filters</code>, and
+        <code>com.puppycrawl.tools.checkstyle.checks</code> as
         well as any sub-packages of <code>com.puppycrawl.tools.checkstyle.checks</code> that
         are distributed with Checkstyle. However standard checkstyle modules are loaded
         with the help of inner map of their names to fully qualified names.
@@ -812,9 +815,9 @@
       </source>
 
       <p>
-        Now you can configure a module of package <code>com.mycompany.checks</code>, say <code>com.mycompany.checks.MethodLimitCheck</code>, with
-        a shortened <code>module</code> element in the
-        configuration document:
+        Now you can configure a module of package <code>com.mycompany.checks</code>, say
+        <code>com.mycompany.checks.MethodLimitCheck</code>, with a shortened <code>module</code>
+        element in the configuration document:
       </p>
 
       <source>

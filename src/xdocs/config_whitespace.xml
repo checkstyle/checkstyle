@@ -578,7 +578,8 @@ class Foo
         </p>
         <ul>
           <li> should not be preceded with whitespace in all cases.</li>
-          <li> should be followed with whitespace in almost all cases, except diamond operators and when preceding method name.</li>
+          <li> should be followed with whitespace in almost all cases, except diamond operators
+               and when preceding method name.</li>
         </ul>
 
         <p>

@@ -294,7 +294,8 @@ private int array1 []; // CHECKSTYLE_ON: ALMOST_ALL
   &lt;property name=&quot;offCommentFormat&quot; value=&quot;stop&quot;/&gt;
   &lt;property name=&quot;onCommentFormat&quot; value=&quot;resume&quot;/&gt;
   &lt;property name=&quot;checkFormat&quot; value=&quot;IllegalTypeCheck&quot;/&gt;
-  &lt;property name=&quot;messageFormat&quot; value=&quot;^Declaring variables, return values or parameters of type 'GregorianCalendar' is not allowed.$&quot;/&gt;
+  &lt;property name=&quot;messageFormat&quot;
+      value=&quot;^Declaring variables, return values or parameters of type 'GregorianCalendar' is not allowed.$&quot;/&gt;
 &lt;/module&gt;
           </source>
           <p>
@@ -1096,9 +1097,9 @@ catch (Throwable th) { ... }
 . . .
             </source>
             <p>
-                To configure a filter so that <code>CHECKSTYLE IGNORE <i>check</i> FOR NEXT <i>var</i> LINES</code>
-                avoids triggering any audits for the given check for the current line and the next <i>var</i> lines
-                (for a total of <i>var</i>+1 lines):
+                To configure a filter so that <code>CHECKSTYLE IGNORE <i>check</i> FOR NEXT
+                <i>var</i> LINES</code> avoids triggering any audits for the given check for
+                the current line and the next <i>var</i> lines (for a total of <i>var</i>+1 lines):
             </p>
             <source>
 &lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
@@ -1423,7 +1424,8 @@ private int array1 [];
     &lt;property name=&quot;offCommentFormat&quot; value=&quot;stop&quot;/&gt;
     &lt;property name=&quot;onCommentFormat&quot; value=&quot;resume&quot;/&gt;
     &lt;property name=&quot;checkFormat&quot; value=&quot;FileTabCharacterCheck&quot;/&gt;
-    &lt;property name=&quot;messageFormat&quot; value=&quot;^File contains tab characters (this is the first instance)\.$&quot;/&gt;
+    &lt;property name=&quot;messageFormat&quot;
+        value=&quot;^File contains tab characters (this is the first instance)\.$&quot;/&gt;
   &lt;/module&gt;
 &lt;/module>
               </source>

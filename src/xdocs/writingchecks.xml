@@ -116,7 +116,8 @@
     </section>
       <section name="Tool to print Java tree structure">
           <p>
-              Checkstyle can print Abstract Syntax Tree for Java trees. You need to run checkstyle jar file with <b>-t</b> or <b>-T</b> argument, providing java file.
+              Checkstyle can print Abstract Syntax Tree for Java trees. You need to run checkstyle
+              jar file with <b>-t</b> or <b>-T</b> argument, providing java file.
           </p>
           <p>For example, here is MyClass.java file:</p>
           <source><![CDATA[
@@ -173,7 +174,9 @@ CLASS_DEF -> CLASS_DEF [5:0]
               </tr>
           </table>
           <p>
-            As you can see very small java file transforms to a huge Abstract Syntax Tree, because that is the most detailed tree including all components of the java file: object block, comments, modifiers, etc.
+            As you can see very small java file transforms to a huge Abstract Syntax Tree, because
+            that is the most detailed tree including all components of the java file: object block,
+            comments, modifiers, etc.
           </p>
       </section>
 
@@ -229,10 +232,10 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
       </p>
 
       <p>
-        We&#39;ll get back to the details in the other columns later, they
-        are important for implementing Checks but not for understanding
-        the basic concepts. For now it is sufficient to know that the
-        gui is a tool that lets you look at the structure of a Java file, i.e. you can see the Java grammar &#39;in action&#39;.
+        We&#39;ll get back to the details in the other columns later, they are important for
+        implementing Checks but not for understanding the basic concepts. For now it is sufficient
+        to know that the gui is a tool that lets you look at the structure of a Java file, i.e. you
+        can see the Java grammar &#39;in action&#39;.
       </p>
 
       <p> If you use <a href="https://eclipse.org">Eclipse</a> you can install
@@ -399,23 +402,31 @@ public class MethodLimitCheck extends AbstractCheck
     <section name="Comment Tokens in AST">
 
       <p>
-        Before <a href="releasenotes.html#Release_6.0">Checkstyle 6.0</a>, there was no comments in AST tree
-        as comments are not a code and ignored by compiler, so it was not a primary focus of Checkstyle.
+        Before <a href="releasenotes.html#Release_6.0">Checkstyle 6.0</a>, there was no comments
+        in AST tree as comments are not a code and ignored by compiler, so it was not a primary
+        focus of Checkstyle.
         But more and more requests appear to do validation of code vs javadoc or comments.
-        So there was a simple solution to receive plain text of file in Check, do own parsing and searching for required comments in file.
+        So there was a simple solution to receive plain text of file in Check, do own parsing and
+        searching for required comments in file.
       </p>
       <p>
-        Since 6.0, there is a new method in AbstractCheck class that allow you to see or not comment nodes in AST Tree -
-        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#isCommentNodesRequired--">
-        isCommentNodesRequired()</a>. It should return TRUE if Check want to see comments in AST Tree.
+        Since 6.0, there is a new method in AbstractCheck class that allow you to see or not
+        comment nodes in AST Tree - <a
+        href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#isCommentNodesRequired--">
+        isCommentNodesRequired()</a>. It should return TRUE if Check want to see comments in AST
+        Tree.
       </p>
       <p>
-        It is done as optional because it is change for a AST Tree structure, and non of existing Checks ready for this.
-        Checkstyle does not do re-parse file one more time, comments were already in grammar and parsed, but skipped during AST nodes creation.
+        It is done as optional because it is change for a AST Tree structure, and non of existing
+        Checks ready for this.
+        Checkstyle does not do re-parse file one more time, comments were already in grammar and
+        parsed, but skipped during AST nodes creation.
       </p>
       <p>
-        Before execution, all Checks are divided into 2 groups (base on isCommentNodesRequired method): "java only Checks", "comments Checks".
-        Checkstyle execute "java only Checks" first, as all them finish, append to AST Tree missed comment AST nodes and call "comments Checks".
+        Before execution, all Checks are divided into 2 groups (base on isCommentNodesRequired
+        method): "java only Checks", "comments Checks".
+        Checkstyle execute "java only Checks" first, as all them finish, append to AST Tree missed
+        comment AST nodes and call "comments Checks".
         All Javadoc Checks that are child of AbstractJavadocCheck are "comments Checks".
       </p>
       <p>
@@ -599,7 +610,8 @@ java -classpath mycompanychecks.jar;checkstyle-${projectVersion}-all.jar com.pup
       <p>
         Please consult the <a href="config.html#Packages">Checkstyle
         configuration manual</a> to learn how to integrate your Checks
-        into the package configuration so that you can use <code>MethodLimit</code> instead of the full class name.
+        into the package configuration so that you can use <code>MethodLimit</code> instead of the
+        full class name.
       </p>
 
     </section>
@@ -619,11 +631,16 @@ java -classpath mycompanychecks.jar;checkstyle-${projectVersion}-all.jar com.pup
         There are basically only few of them:
       </p>
       <ul>
-        <li>Java code should be written with <a href="https://en.wikipedia.org/wiki/ASCII">ASCII</a> characters only, no UTF-8 support.</li>
-        <li>To get valid violations, code have to be compilable, in other case you can get not easy to understand parse errors.</li>
-        <li>You cannot determine the type of an expression. Example: "getValue() + getValue2()"</li>
+        <li>Java code should be written with
+        <a href="https://en.wikipedia.org/wiki/ASCII">ASCII</a> characters only, no UTF-8
+        support.</li>
+        <li>To get valid violations, code have to be compilable, in other case you can get not easy
+        to understand parse errors.</li>
+        <li>You cannot determine the type of an expression.
+        Example: "getValue() + getValue2()"</li>
         <li>You cannot determine the full inheritance hierarchy of type.</li>
-        <li>You cannot see the content of other files. You have content of one file only during all Checks execution. All files are processed one by one.</li>
+        <li>You cannot see the content of other files. You have content of one file only during all
+        Checks execution. All files are processed one by one.</li>
       </ul>
       <p>
         This means that you cannot implement some of the code inspection

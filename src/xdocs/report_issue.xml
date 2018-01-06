@@ -62,7 +62,8 @@
       </p>
 
       <p>
-        Example of report that we expect (you can skip <code>-Duser.language=en -Duser.country=US</code> if your default locale is English):
+        Example of report that we expect (you can skip <code>-Duser.language=en
+        -Duser.country=US</code> if your default locale is English):
 
         <source><![CDATA[
 /var/tmp $ javac Test.java
@@ -114,7 +115,8 @@ Audit done.
       </p>
 
       <p>
-        Imagine that everything is possible and propose name of the new option and its behaviour. Do not think that your issue is so obvious.
+        Imagine that everything is possible and propose name of the new option and its behaviour.
+        Do not think that your issue is so obvious.
       </p>
     </section>
 

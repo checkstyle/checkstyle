@@ -611,10 +611,12 @@ public boolean isSomething()
         </p>
         <ul>
           <li>
-            There is one blank line between each of two paragraphs and one blank line before the at-clauses block if it is present.
+            There is one blank line between each of two paragraphs and one blank line before the
+            at-clauses block if it is present.
           </li>
           <li>
-            Each paragraph but the first has &lt;p&gt; immediately before the first word, with no space after.
+            Each paragraph but the first has &lt;p&gt; immediately before the first word, with
+            no space after.
           </li>
         </ul>
       </subsection>
@@ -913,7 +915,8 @@ public boolean isSomething()
         </source>
 
         <p>
-          To configure the check for javadoc which is in <code>private</code>, but not in <code>package</code> scope:
+          To configure the check for javadoc which is in <code>private</code>, but not in
+          <code>package</code> scope:
         </p>
 
         <source>
@@ -1369,7 +1372,8 @@ public boolean isSomething()
         </source>
 
         <p>
-          To configure the check for members which are in <code>private</code>, but not in <code>protected</code> scope:
+          To configure the check for members which are in <code>private</code>, but not in
+          <code>protected</code> scope:
         </p>
 
         <source>
@@ -1380,7 +1384,8 @@ public boolean isSomething()
         </source>
 
         <p>
-            To ignore absence of Javadoc comments for variables with names <code>log</code> or <code>logger</code>:
+            To ignore absence of Javadoc comments for variables with names <code>log</code> or
+            <code>logger</code>:
         </p>
 
         <source>
@@ -1658,9 +1663,11 @@ public boolean isSomething()
       <subsection name="Description">
         <p>Since Checkstyle 6.0</p>
         <p>
-          Checks that <a href="http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html#firstsentence">
-          Javadoc summary sentence</a> does not contain phrases that are not recommended to use. Summaries that contain
-          only the <code>{@inheritDoc}</code> tag are skipped. Check also violate javadoc that does not contain first sentence.
+          Checks that <a
+          href="http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html#firstsentence">
+          Javadoc summary sentence</a> does not contain phrases that are not recommended to use.
+          Summaries that contain only the <code>{@inheritDoc}</code> tag are skipped. Check also
+          violate javadoc that does not contain first sentence.
         </p>
       </subsection>
 

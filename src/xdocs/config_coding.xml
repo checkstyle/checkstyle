@@ -1512,7 +1512,8 @@ class SomeClass
             <td>illegalClassNames</td>
             <td>exception class names to reject</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>java.lang.Throwable, RuntimeException, Error, Throwable, java.lang.Error, java.lang.RuntimeException, Exception, java.lang.Exception</code></td>
+            <td><code>java.lang.Throwable, RuntimeException, Error, Throwable, java.lang.Error,
+                java.lang.RuntimeException, Exception, java.lang.Exception</code></td>
             <td>3.2</td>
           </tr>
         </table>
@@ -1706,7 +1707,8 @@ class SomeClass
             <td>throw class names to reject</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td>
-              <code>java.lang.Throwable, RuntimeException, Error, Throwable, java.lang.Error, java.lang.RuntimeException</code>
+              <code>java.lang.Throwable, RuntimeException, Error, Throwable, java.lang.Error,
+              java.lang.RuntimeException</code>
             </td>
             <td>4.0</td>
           </tr>
@@ -3835,14 +3837,15 @@ class C {
         </p>
 
         <p>
-          <b>max</b> property will only check returns in methods and lambdas that return a specific value (Ex: 'return 1;').
+          <b>max</b> property will only check returns in methods and lambdas that return a specific
+          value (Ex: 'return 1;').
         </p>
 
         <p>
-          <b>maxForVoid</b> property will only check returns in methods, constructors, and lambdas that have no return type (IE
-          'return;').
-          It will only count visible return statements. Return statements not normally written, but implied, at
-          the end of the method/constructor definition will not be taken into account.
+          <b>maxForVoid</b> property will only check returns in methods, constructors, and lambdas
+          that have no return type (IE 'return;').
+          It will only count visible return statements. Return statements not normally written, but
+          implied, at the end of the method/constructor definition will not be taken into account.
           To disallow "return;" in void return type methods, use a value of 0.
         </p>
 
@@ -4492,7 +4495,8 @@ if (&quot;something&quot;.equals(x))
 
           <tr>
             <td>allowedDistance</td>
-            <td>A distance between declaration of variable and its first usage. Values should be greater than 0.</td>
+            <td>A distance between declaration of variable and its first usage.
+                Values should be greater than 0.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>3</td>
             <td>5.8</td>
@@ -4508,7 +4512,8 @@ if (&quot;something&quot;.equals(x))
 
           <tr>
             <td>validateBetweenScopes</td>
-            <td>Allows to calculate the distance between declaration of variable and its first usage in the different scopes.</td>
+            <td>Allows to calculate the distance between declaration of variable and its
+                first usage in the different scopes.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>5.8</td>

@@ -678,7 +678,8 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </source>
 
         <p>
-          The initialiser in <code>for</code> performs no setup (where a <code>while</code> statement could be used instead):
+          The initialiser in <code>for</code> performs no setup (where a <code>while</code>
+          statement could be used instead):
         </p>
         <source>
 &lt;module name="DescendantToken"&gt;
@@ -1038,7 +1039,8 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
           <tr>
             <td>forceStrictCondition</td>
             <td>force strict indent level in line wrapping case. If value is true, line wrap indent
-                have to be same as lineWrappingIndentation parameter. If value is false, line wrap indent could be bigger on any value user would like.</td>
+                have to be same as lineWrappingIndentation parameter. If value is false, line wrap
+                indent could be bigger on any value user would like.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
             <td>6.3</td>
