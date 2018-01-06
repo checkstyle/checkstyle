@@ -251,7 +251,8 @@
         </p>
         <p>
           2) SAME_PACKAGE(n) group. This group sets the ordering of the same package imports.
-          Imports are considered on SAME_PACKAGE group if <b>n</b> first domains in package name and import name are identical. For example:
+          Imports are considered on SAME_PACKAGE group if <b>n</b> first domains in package
+          name and import name are identical. For example:
         </p>
         <source>
 package java.util.concurrent.locks;
@@ -266,7 +267,12 @@ import java.util.regex.Pattern; //#7
 import java.util.regex.Matcher; //#8
         </source>
         <p>
-          If we have SAME_PACKAGE(3) on configuration file, imports #4-6 will be considered as a SAME_PACKAGE group (java.util.concurrent.*, java.util.concurrent.AbstractExecutorService, java.util.concurrent.locks.LockSupport). SAME_PACKAGE(2) will include #1-8. SAME_PACKAGE(4) will include only #6. SAME_PACKAGE(5) will result in no imports assigned to SAME_PACKAGE group because actual package java.util.concurrent.locks has only 4 domains.
+          If we have SAME_PACKAGE(3) on configuration file, imports #4-6 will be considered as a
+          SAME_PACKAGE group (java.util.concurrent.*, java.util.concurrent.AbstractExecutorService,
+          java.util.concurrent.locks.LockSupport). SAME_PACKAGE(2) will include #1-8.
+          SAME_PACKAGE(4) will include only #6. SAME_PACKAGE(5) will result in no imports assigned
+          to SAME_PACKAGE group because actual package java.util.concurrent.locks has only 4
+          domains.
         </p>
         <p>
           3) THIRD_PARTY_PACKAGE group. This group sets ordering of third party imports.
@@ -605,8 +611,9 @@ import android.*;
           Checks for imports from a set of illegal packages. By default, the
           check rejects all <code>sun.*</code> packages since
           programs that contain direct calls to the <code>sun.*</code> packages are <a
-          href="http://www.oracle.com/technetwork/java/faq-sun-packages-142232.html">"not guaranteed
-          to work on all Java-compatible platforms"</a>. To reject other packages, set property <code> illegalPkgs</code> to a list of the illegal packages.
+          href="http://www.oracle.com/technetwork/java/faq-sun-packages-142232.html">"not
+          guaranteed to work on all Java-compatible platforms"</a>. To reject other packages,
+          set property <code> illegalPkgs</code> to a list of the illegal packages.
         </p>
       </subsection>
 
@@ -621,23 +628,28 @@ import android.*;
           </tr>
           <tr>
             <td>illegalPkgs</td>
-            <td>Packages to reject, if <b>regexp</b> variable is not set, checks if import is the part of package. If <b>regexp</b> variable is set, then list of packages will be
-                interpreted as regular expressions. Note, all properties for match will be used.</td>
+            <td>Packages to reject, if <b>regexp</b> variable is not set, checks if import is the
+                part of package. If <b>regexp</b> variable is set, then list of packages will be
+                interpreted as regular expressions. Note, all properties for match will be
+                used.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>sun</code></td>
             <td>3.0</td>
           </tr>
           <tr>
             <td>illegalClasses</td>
-            <td>Class names to reject, if <b>regexp</b> variable is not set, checks if import equals class name. If <b>regexp</b> variable is set, then list of class name will be
-                interpreted as regular expressions. Note, all properties for match will be used.</td>
+            <td>Class names to reject, if <b>regexp</b> variable is not set, checks if import
+                equals class name. If <b>regexp</b> variable is set, then list of class name will
+                be interpreted as regular expressions. Note, all properties for match will be
+                used.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>{}</code></td>
             <td>7.8</td>
           </tr>
           <tr>
             <td>regexp</td>
-            <td>Whether the <b>illegalPkgs</b> and <b>illegalClasses</b> should be interpreted as regular expressions</td>
+            <td>Whether the <b>illegalPkgs</b> and <b>illegalClasses</b> should be interpreted as
+                regular expressions</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>7.8</td>
@@ -694,11 +706,13 @@ public class InputIllegalImport { }
         </source>
 
         <p>
-          To configure the check so that it rejects classes <code>java.util.Date</code> and <code>java.sql.Connection</code>:
+          To configure the check so that it rejects classes <code>java.util.Date</code> and
+          <code>java.sql.Connection</code>:
         </p>
         <source>
 &lt;module name=&quot;IllegalImport&quot;&gt;
-    &lt;property name=&quot;illegalClasses&quot; value=&quot;java.util.Date, java.sql.Connection&quot;/&gt;
+    &lt;property name=&quot;illegalClasses&quot;
+        value=&quot;java.util.Date, java.sql.Connection&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -778,7 +792,9 @@ public class InputIllegalImport { }
         </source>
 
         <p>
-          To configure the check so that it rejects class names not satisfying to regular expression <code>^java\.util\.(List|Arrays)</code> and <code>^java\.sql\.Connection</code>:
+          To configure the check so that it rejects class names not satisfying to regular
+          expression <code>^java\.util\.(List|Arrays)</code> and
+          <code>^java\.sql\.Connection</code>:
         </p>
         <source>
 &lt;module name=&quot;IllegalImport&quot;&gt;
@@ -871,10 +887,15 @@ public class InputIllegalImport { }
         <p>
           Short description of the behaviour:
           <ul>
-              <li>Check starts checking from the longest matching subpackage (later 'current subpackage') described inside import control file to package defined in class file.</li>
-              <li>If there is matching allow/disallow rule inside the current subpackage then the Check returns "allowed" or "disallowed" message.</li>
-              <li>If there is no matching allow/disallow rule inside the current subpackage then it continues checking in the parent subpackage.</li>
-              <li>If there is no matching allow/disallow rule in any of the subpackages, including the root level (import-control), then the import is disallowed by default.</li>
+              <li>Check starts checking from the longest matching subpackage (later 'current
+                  subpackage') described inside import control file to package defined in class
+                  file.</li>
+              <li>If there is matching allow/disallow rule inside the current subpackage then the
+                  Check returns "allowed" or "disallowed" message.</li>
+              <li>If there is no matching allow/disallow rule inside the current subpackage then it
+                  continues checking in the parent subpackage.</li>
+              <li>If there is no matching allow/disallow rule in any of the subpackages, including
+                  the root level (import-control), then the import is disallowed by default.</li>
           </ul>
         </p>
 
@@ -1014,22 +1035,32 @@ public class InputIllegalImport { }
         <p>
           In the next examples usage of <code>strategyOnMismatch</code> property is shown.
           This property defines strategy in a case when no matching allow/disallow rule was found.
-          Property <code>strategyOnMismatch</code> is attribute of <code>import-control</code> and <code>subpackage</code> tags.
+          Property <code>strategyOnMismatch</code> is attribute of <code>import-control</code> and
+          <code>subpackage</code> tags.
           Property can have following values for <code>import-control</code> tag:
           <ul>
-            <li>disallowed (default value) - if there is no matching allow/disallow rule in any of the subpackages, including the root level (import-control), then the import is disallowed.</li>
-            <li>allowed - if there is no matching allow/disallow rule in any of the subpackages, including the root level, then the import is allowed.</li>
+            <li>disallowed (default value) - if there is no matching allow/disallow rule in any of
+                the subpackages, including the root level (import-control), then the import is
+                disallowed.</li>
+            <li>allowed - if there is no matching allow/disallow rule in any of the subpackages,
+                including the root level, then the import is allowed.</li>
           </ul>
           And following values for <code>subpackage</code> tags:
           <ul>
-            <li>delegateToParent (default value) - if there is no matching allow/disallow rule inside the current subpackage, then it continues checking in the parent subpackage.</li>
-            <li>allowed - if there is no matching allow/disallow rule inside the current subpackage, then the import is allowed.</li>
-            <li>disallowed - if there is no matching allow/disallow rule inside the current subpackage, then the import is disallowed.</li>
+            <li>delegateToParent (default value) - if there is no matching allow/disallow rule
+                inside the current subpackage, then it continues checking in the parent
+                subpackage.</li>
+            <li>allowed - if there is no matching allow/disallow rule inside the current
+                subpackage, then the import is allowed.</li>
+            <li>disallowed - if there is no matching allow/disallow rule inside the current
+                subpackage, then the import is disallowed.</li>
           </ul>
         </p>
 
         <p>
-          The following example demonstrates usage of <code>strategyOnMismatch</code> property for <code>import-control</code> tag. Here all imports are allowed except <code>java.awt.Image</code> and <code>java.io.File</code> classes.
+          The following example demonstrates usage of <code>strategyOnMismatch</code> property for
+          <code>import-control</code> tag. Here all imports are allowed except
+          <code>java.awt.Image</code> and <code>java.io.File</code> classes.
         </p>
         <source>
 &lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot; strategyOnMismatch=&quot;allowed&quot;&gt;
@@ -1039,8 +1070,11 @@ public class InputIllegalImport { }
         </source>
 
         <p>
-          In the example below, any import is disallowed inside <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package except imports from package <code>javax.swing</code> and class <code>java.io.File</code>.
-          However, any import is allowed in the classes outside of <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package.
+          In the example below, any import is disallowed inside
+          <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package except imports from
+          package <code>javax.swing</code> and class <code>java.io.File</code>.
+          However, any import is allowed in the classes outside of
+          <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package.
         </p>
         <source>
 &lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot; strategyOnMismatch=&quot;allowed&quot;&gt;
@@ -1052,8 +1086,14 @@ public class InputIllegalImport { }
         </source>
 
         <p>
-          When <code>strategyOnMismatch</code> has <code>allowed</code> or <code>disallowed</code> value for <code>subpackage</code> tag, it makes <code>subpackage</code> isolated from parent rules.
-          In the next example, if no matching rule was found inside <code>com.puppycrawl.tools.checkstyle.checks.filters</code> then it continues checking in the parent subpackage, while for <code>com.puppycrawl.tools.checkstyle.checks.imports</code> import will be allowed by default.
+          When <code>strategyOnMismatch</code> has <code>allowed</code> or <code>disallowed</code>
+          value for <code>subpackage</code> tag, it makes <code>subpackage</code> isolated from
+          parent rules.
+          In the next example, if no matching rule was found inside
+          <code>com.puppycrawl.tools.checkstyle.checks.filters</code> then it continues checking
+          in the parent subpackage, while for
+          <code>com.puppycrawl.tools.checkstyle.checks.imports</code> import will be allowed by
+          default.
         </p>
         <source>
 &lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;&gt;
@@ -1061,7 +1101,8 @@ public class InputIllegalImport { }
     &lt;allow class=&quot;java\..*\.File&quot; local-only=&quot;true&quot; regex=&quot;true&quot;/&gt;
     &lt;subpackage name=&quot;imports&quot; strategyOnMismatch=&quot;allowed&quot;&gt;
         &lt;allow pkg=&quot;javax\.swing&quot; regex=&quot;true&quot;/&gt;
-        &lt;allow pkg=&quot;java\.io&quot; exact-match=&quot;true&quot; local-only=&quot;true&quot; regex=&quot;true&quot;/&gt;
+        &lt;allow pkg=&quot;java\.io&quot; exact-match=&quot;true&quot;
+            local-only=&quot;true&quot; regex=&quot;true&quot;/&gt;
     &lt;/subpackage&gt;
     &lt;subpackage name=&quot;filters&quot;&gt;
         &lt;allow class=&quot;javax.util.Date&quot;/&gt;
@@ -1077,8 +1118,17 @@ public class InputIllegalImport { }
         </p>
 
         <h4 id="blacklist-example">Example of blacklist mode</h4>
-        <p>To have a <b>blacklist mode</b>, it is required to have disallows inside subpackage and to have allow rule inside parent of the current subpackage to catch classes and packages those are not in the blacklist.</p>
-        <p>In the example below any import from <code>java.util</code> (<code>java.util.List</code>, <code>java.util.Date</code>) package is allowed except <code>java.util.Map</code> inside subpackage <code>com.puppycrawl.tools.checkstyle.filters</code>.</p>
+        <p>
+          To have a <b>blacklist mode</b>, it is required to have disallows inside subpackage
+          and to have allow rule inside parent of the current subpackage to catch classes and
+          packages those are not in the blacklist.
+        </p>
+        <p>
+          In the example below any import from <code>java.util</code>
+          (<code>java.util.List</code>, <code>java.util.Date</code>) package is allowed except
+          <code>java.util.Map</code> inside subpackage
+          <code>com.puppycrawl.tools.checkstyle.filters</code>.
+        </p>
         <source>
 &lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
     &lt;allow pkg=&quot;java.util&quot;/&gt;
@@ -1088,8 +1138,11 @@ public class InputIllegalImport { }
 &lt;/import-control&gt;
         </source>
         <p>
-          In the next example imports <code>java.util.stream.Stream</code> and <code>java.util.stream.Collectors</code> are disallowed inside <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package,
-          but because of <code>&lt;allow pkg=&quot;java.util.stream&quot;/&gt;</code> every import from <code>java.util.stream</code> is allowed except described ones.
+          In the next example imports <code>java.util.stream.Stream</code> and
+          <code>java.util.stream.Collectors</code> are disallowed inside
+          <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package,
+          but because of <code>&lt;allow pkg=&quot;java.util.stream&quot;/&gt;</code> every import
+          from <code>java.util.stream</code> is allowed except described ones.
         </p>
         <source>
 &lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;&gt;
@@ -1109,7 +1162,8 @@ import java.util.stream.Collectors; // violation here
 import java.util.stream.IntStream;
         </source>
         <p>
-          In the following example, all imports are allowed except the classes <code>java.util.Date</code>, <code>java.util.List</code> and package <code>sun</code>.
+          In the following example, all imports are allowed except the classes
+          <code>java.util.Date</code>, <code>java.util.List</code> and package <code>sun</code>.
         </p>
         <source>
 &lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;&gt;

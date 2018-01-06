@@ -17,7 +17,8 @@
 
     <section name="Overview">
       <p>
-        A Checkstyle listener monitors the progress of a <code>Checker</code> during the audit of files. The <code>Checker</code> notifies its attached listeners of
+        A Checkstyle listener monitors the progress of a <code>Checker</code> during the audit
+        of files. The <code>Checker</code> notifies its attached listeners of
         significant events such as the start of the audit of a file and
         the logging of a Check error, and the listeners respond
         appropriately.  Any number of listeners can be attached to a
@@ -62,8 +63,9 @@
         error logging has a message, a severity level, a message source
         such as the name of a <code>Check</code>, and file
         line and column numbers that may be relevant to the error. The
-        notification of an exception to a <code>AuditListener</code> includes an error <code>AuditEvent</code> and the details of the
-        exception. Here is a UML diagram for classes <code>AuditListener</code> and <code>AuditEvent</code>.
+        notification of an exception to a <code>AuditListener</code> includes an error
+        <code>AuditEvent</code> and the details of the exception. Here is a UML diagram for
+        classes <code>AuditListener</code> and <code>AuditEvent</code>.
       </p>
 
       <img src="images/AuditListener.gif" width="381" height="488"
@@ -86,8 +88,10 @@
         The custom listener that we demonstrate here is a verbose
         listener that simply prints each event notification to an output
         stream, and reports the number of errors per audited file and
-        the total number of errors. The default output stream is <code>System.out</code>. In order to enable the
-        specification of output to a file through property <code>file</code>, the class extends <code>AutomaticBean</code> and defines method <code>setFile(String)</code>.
+        the total number of errors. The default output stream is <code>System.out</code>.
+        In order to enable the specification of output to a file through property
+        <code>file</code>, the class extends <code>AutomaticBean</code> and defines method
+        <code>setFile(String)</code>.
       </p>
 
       <source>
@@ -233,7 +237,8 @@ Audit finished. Total errors: 1
         listener, <code> CommonsLoggingListener</code>,
         hands off events to the <a
         href="http://commons.apache.org/proper/commons-logging/">Apache
-        Commons Logging</a> facade and the second, <code>MailLogger</code>, sends a report of an audit via
+        Commons Logging</a> facade and the second, <code>MailLogger</code>,
+        sends a report of an audit via
         e-mail. The discussion of these examples and how to use them is
         derived from material in <a
         href="https://www.manning.com/books/java-development-with-ant">&quot;Java Development
@@ -250,8 +255,8 @@ Audit finished. Total errors: 1
         Commons Logging</a> provides a facade for logging tools
         <a
         href="http://logging.apache.org/log4j/2.x/index.html">log4j</a>,
-        , J2SE 1.4, and others. Checkstyle listener <code> CommonsLoggingListener</code> responds to an
-        AuditEvent by handing it off to the current Commons Logging Log.
+        J2SE 1.4, and others. Checkstyle listener <code>CommonsLoggingListener</code>
+        responds to an AuditEvent by handing it off to the current Commons Logging Log.
       </p>
 
       <p>
@@ -265,7 +270,8 @@ Audit finished. Total errors: 1
       </p>
 
       <p>
-        The easiest way to use <code>CommonsLoggingListener</code> is to include <code>checkstyle-${projectVersion}-all.jar</code>
+        The easiest way to use <code>CommonsLoggingListener</code> is to include
+        <code>checkstyle-${projectVersion}-all.jar</code>
         in the classpath because that jar file contains all the Commons
         Logging classes.  The default Log under J2SE 1.4 is wrapper
         class <a

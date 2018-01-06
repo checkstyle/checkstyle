@@ -976,7 +976,8 @@
         <p>
           This class is variation on <a
           href="#RegexpSingleline">RegexpSingleline</a> for detecting
-          single lines that match a supplied regular expression in Java files. It supports suppressing matches in Java comments.
+          single lines that match a supplied regular expression in Java files. It supports
+          suppressing matches in Java comments.
         </p>
       </subsection>
 

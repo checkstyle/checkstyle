@@ -23,18 +23,24 @@
 
     <section name="Overview">
       <p>
-        A <code>Checker</code> has a set of <code>BeforeExecutionFileFilter</code>s that decide which files the <code>Checker</code> processes.  Interface
-        <code>BeforeExecutionFileFilter</code> and class <code>BeforeExecutionFileFilterSet</code> are intended to support general file uri filtering using a set of <code>BeforeExecutionFileFilter</code>s.
+        A <code>Checker</code> has a set of <code>BeforeExecutionFileFilter</code>s that decide
+        which files the <code>Checker</code> processes.  Interface
+        <code>BeforeExecutionFileFilter</code> and class <code>BeforeExecutionFileFilterSet</code>
+        are intended to support general file uri filtering using a set of
+        <code>BeforeExecutionFileFilter</code>s.
       </p>
 
       <p>
-        A <code>BeforeExecutionFileFilter</code> has <code>boolean</code> method <code>accept(String uri)</code> that returns <code>true</code> if the <code>BeforeExecutionFileFilter</code>
-        accepts the <code>file uri</code> parameter and returns
-        <code>false</code> if the <code>file uri</code> rejects it.
+        A <code>BeforeExecutionFileFilter</code> has <code>boolean</code> method
+        <code>accept(String uri)</code> that returns <code>true</code> if the
+        <code>BeforeExecutionFileFilter</code> accepts the <code>file uri</code> parameter and
+        returns <code>false</code> if the <code>file uri</code> rejects it.
       </p>
 
       <p>
-        A <code>BeforeExecutionFileFilterSet</code> is a particular <code>BeforeExecutionFileFilter</code> that contains a set of <code>BeforeExecutionFileFilter</code>s. A <code>BeforeExecutionFileFilterSet</code>
+        A <code>BeforeExecutionFileFilterSet</code> is a particular
+        <code>BeforeExecutionFileFilter</code> that contains a set of
+        <code>BeforeExecutionFileFilter</code>s. A <code>BeforeExecutionFileFilterSet</code>
         accepts an <code>file uri</code> if and only if all
         <code>BeforeExecutionFileFilter</code>s in the set accept the <code>file uri</code>.
       </p>

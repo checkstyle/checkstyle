@@ -225,10 +225,14 @@
                   <td/>
               </tr>
               <tr>
-                  <td><a href="https://wiki.jenkins.io/display/JENKINS/Checkstyle+Plugin">Jenkins Checkstyle plug-in</a></td>
+                  <td><a href="https://wiki.jenkins.io/display/JENKINS/Checkstyle+Plugin">Jenkins
+                  Checkstyle plug-in</a></td>
                   <td/>
-                  <td><a href="https://wiki.jenkins.io/display/JENKINS/Checkstyle+Plugin">Jenkins Checkstyle plug-in Home Page</a></td>
-                  <td>This plug-in is supported by the Static Analysis Collector plug-in that collects different analysis results and shows the results in aggregated trend graphs.</td>
+                  <td><a href="https://wiki.jenkins.io/display/JENKINS/Checkstyle+Plugin">Jenkins
+                  Checkstyle plug-in Home Page</a></td>
+                  <td>This plug-in is supported by the Static Analysis Collector plug-in that
+                  collects different analysis results and shows the results in aggregated trend
+                  graphs.</td>
               </tr>
               <tr>
                   <td><a href="http://maven.apache.org/">Maven</a></td>
@@ -304,7 +308,8 @@
                   <td><a href="https://github.com/nidi3/code-assert">code-assert</a></td>
                   <td>Stefan Niederhauser</td>
                   <td><a href="https://github.com/nidi3/code-assert#checkstyle-checks">code-assert</a></td>
-                  <td>Assert that the java code of a project satisfies certain checks. Launch checkstyle validation from UTs</td>
+                  <td>Assert that the java code of a project satisfies certain checks. Launch
+                      checkstyle validation from UTs</td>
               </tr>
               <tr>
                   <td><a href="http://jdee.sourceforge.net/">Emacs JDE</a></td>

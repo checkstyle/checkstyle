@@ -131,12 +131,15 @@
         feature of <a href="https://github.com/">Github</a>.<br/>
         Please provide wide description of update with detailed explanation of problem
         and how you propose to resolve it.
-        <b>ATTENTION:</b> Please recheck that in your Pull Request there is ONLY your changes and all of them are rebased from most recent HEAD of our master branch.
+        <b>ATTENTION:</b> Please recheck that in your Pull Request there is ONLY your changes and
+        all of them are rebased from most recent HEAD of our master branch.
       </p>
 
       <p>
-        <b>ATTENTION:</b> Please provide single-line meaningful message for commit with reference to github issue or Pull Request for more details.<br/>
-        Ideal format for message is "Issue #Number: Brief single-line message ..... .". Where NUMBER is Issue or Pull Request number at github.
+        <b>ATTENTION:</b> Please provide single-line meaningful message for commit with reference
+        to github issue or Pull Request for more details.<br/>
+        Ideal format for message is "Issue #Number: Brief single-line message ..... .". Where
+        NUMBER is Issue or Pull Request number at github.
         <a href="https://github.com/checkstyle/checkstyle/commit/9303fd9d971eb55cdfd62686ba2f5698edb2c83e">Good example</a>
       </p>
 

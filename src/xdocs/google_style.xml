@@ -983,7 +983,8 @@
                                 <a
                                     href="config_coding.html#MissingSwitchDefault">MissingSwitchDefault</a>
                                 <br />
-                                "Exception: enum type may omit the default statement group" requirement can not be covered as we can not distinguish types,
+                                "Exception: enum type may omit the default statement group"
+                                requirement can not be covered as we can not distinguish types,
                                 enum values may look the same as static final String constants.
                             </td>
                             <td>
@@ -1168,7 +1169,8 @@
                                     src="images/ok_blue.png"
                                     alt="" />
                                 <a href="config_naming.html#MethodName">MethodName</a>
-                                <br/> No ability to distinguish verb at the beginning of name, no way distinguish Test method from others so "_" is allowed in names
+                                <br/> No ability to distinguish verb at the beginning of name, no
+                                way distinguish Test method from others so "_" is allowed in names
                             </td>
                             <td>
                                 <a
@@ -1188,7 +1190,8 @@
                                 <img
                                     src="images/ban_red.png"
                                     alt="" />
-                                Every constant is a static final field, but not all static final fields are constants - impossible to check such rule.
+                                Every constant is a static final field, but not all static final
+                                fields are constants - impossible to check such rule.
                             </td>
                             <td/>
                         </tr>
@@ -1318,8 +1321,9 @@
                                     alt="" />
                                 <a href="config_naming.html#AbbreviationAsWordInName">AbbreviationAsWordInName</a>
                                 <br />
-                                Non covered: Some words are ambiguously hyphenated in the English language. No way to
-                                distinguish "YouTubeImporter" or "YoutubeImporter".
+                                Non covered: Some words are ambiguously hyphenated in the English
+                                language. No way to distinguish "YouTubeImporter" or
+                                "YoutubeImporter".
                             </td>
                             <td>
                                 <a

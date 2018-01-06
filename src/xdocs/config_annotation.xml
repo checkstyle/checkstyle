@@ -26,12 +26,14 @@
         <p>Since Checkstyle 6.0</p>
         <p>
           Check location of annotation on language elements.
-          By default, Check enforce to locate annotations immediately
-          after documentation block and before target element, annotation should be located on separate line from target element.
+          By default, Check enforce to locate annotations immediately after documentation block
+          and before target element, annotation should be located on separate line from target
+          element.
         </p>
         <p>
           Attention: Annotations among modifiers are ignored (looks like false-negative)
-          as there might be a problem with annotations for return types <source>public @Nullable Long getStartTimeOrNull() { ... }</source>
+          as there might be a problem with annotations for return types
+          <source>public @Nullable Long getStartTimeOrNull() { ... }</source>
           Such annotations are better to keep close to type.
           Due to limitations Checkstyle can not examine target of annotation.
         </p>
@@ -70,7 +72,8 @@ public String getNameIfPresent() { ... }
           </tr>
           <tr>
             <td>allowSamelineParameterizedAnnotation</td>
-            <td>To allow one and only parameterized annotation to be located on the same line as target element.</td>
+            <td>To allow one and only parameterized annotation to be located on the same line as
+                target element.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>6.4</td>
@@ -890,9 +893,12 @@ public static final int COUNTER = 10; // violation as javadoc exists
           </source>
         </p>
 
-        <p>The general rule is that the argument of the <code>@SuppressWarnings</code> will be matched against class name of the checker in lower case
-          and without <code>Check</code> suffix if present</p>
-          <p>If <code>aliasList</code> property was provided you can use your own names e.g below code will work if there was provided a <code>ParameterNumberCheck=paramnum</code> in the <code>aliasList</code>
+        <p>The general rule is that the argument of the <code>@SuppressWarnings</code> will be
+          matched against class name of the checker in lower case and without <code>Check</code>
+          suffix if present</p>
+          <p>If <code>aliasList</code> property was provided you can use your own names e.g below
+             code will work if there was provided a <code>ParameterNumberCheck=paramnum</code> in
+             the <code>aliasList</code>
           <source>
             @SuppressWarnings("paramnum")
             public void needsLotsOfParameters(@SuppressWarnings("unused") int a,

@@ -436,7 +436,8 @@
     &lt;fileset dir=&quot;src&quot; includes=&quot;**/*.java&quot;/&gt;
   &lt;/checkstyle&gt;
 
-  &lt;style in=&quot;checkstyle_report.xml&quot; out=&quot;checkstyle_report.html&quot; style=&quot;checkstyle.xsl&quot;/&gt;
+  &lt;style in=&quot;checkstyle_report.xml&quot; out=&quot;checkstyle_report.html&quot;
+      style=&quot;checkstyle.xsl&quot;/&gt;
 
 &lt;/target&gt;
 
