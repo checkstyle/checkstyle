@@ -79,11 +79,27 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
 
     private static final String XML_NAME = "/google_checks.xml";
 
-    private static Configuration configuration;
+    private static final Configuration CONFIGURATION;
 
-    private static Set<Class<?>> checkstyleModules;
+    private static final Set<Class<?>> CHECKSTYLE_MODULES;
 
     private final ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+    static {
+        try {
+            CONFIGURATION = ConfigurationLoader.loadConfiguration(XML_NAME,
+                    new PropertiesExpander(System.getProperties()));
+        }
+        catch (CheckstyleException ex) {
+            throw new IllegalStateException(ex);
+        }
+        try {
+            CHECKSTYLE_MODULES = CheckUtil.getCheckstyleModules();
+        }
+        catch (IOException ex) {
+            throw new IllegalStateException(ex);
+        }
+    }
 
     /**
      * Returns test logger.
@@ -91,22 +107,6 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      */
     public final BriefUtLogger getBriefUtLogger() {
         return new BriefUtLogger(stream);
-    }
-
-    /**
-     * Returns {@link Configuration} based on Google's checks xml-configuration (google_checks.xml).
-     * This implementation uses {@link ConfigurationLoader} in order to load configuration
-     * from xml-file.
-     * @return {@link Configuration} based on Google's checks xml-configuration (google_checks.xml).
-     * @throws CheckstyleException if exception occurs during configuration loading.
-     */
-    protected static Configuration getConfiguration() throws CheckstyleException {
-        if (configuration == null) {
-            configuration = ConfigurationLoader.loadConfiguration(XML_NAME, new PropertiesExpander(
-                    System.getProperties()));
-        }
-
-        return configuration;
     }
 
     /**
@@ -126,14 +126,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      */
     public final Checker createChecker(Configuration moduleConfig)
             throws Exception {
-        if (checkstyleModules == null) {
-            checkstyleModules = CheckUtil.getCheckstyleModules();
-        }
-
         final String name = moduleConfig.getName();
         ModuleCreationOption moduleCreationOption = ModuleCreationOption.IN_CHECKER;
 
-        for (Class<?> moduleClass : checkstyleModules) {
+        for (Class<?> moduleClass : CHECKSTYLE_MODULES) {
             if (moduleClass.getSimpleName().equals(name)
                     || moduleClass.getSimpleName().equals(name + "Check")) {
                 if (ModuleReflectionUtils.isCheckstyleTreeWalkerCheck(moduleClass)
@@ -322,9 +318,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * This implementation uses {@link AbstractModuleTestSupport#getConfiguration()} method inside.
      * @param moduleName module name.
      * @return {@link Configuration} instance for the given module name.
-     * @throws CheckstyleException if exception occurs during configuration loading.
      */
-    protected static Configuration getModuleConfig(String moduleName) throws CheckstyleException {
+    protected static Configuration getModuleConfig(String moduleName) {
         return getModuleConfig(moduleName, null);
     }
 
@@ -336,8 +331,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @return {@link Configuration} instance for the given module name.
      * @throws CheckstyleException if exception occurs during configuration loading.
      */
-    protected static Configuration getModuleConfig(String moduleName, String moduleId)
-            throws CheckstyleException {
+    protected static Configuration getModuleConfig(String moduleName, String moduleId) {
         final Configuration result;
         final List<Configuration> configs = getModuleConfigs(moduleName);
         if (configs.size() == 1) {
@@ -366,12 +360,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * This implementation uses {@link AbstractModuleTestSupport#getConfiguration()} method inside.
      * @param moduleName module name.
      * @return {@link Configuration} instance for the given module name.
-     * @throws CheckstyleException if exception occurs during configuration loading.
      */
-    protected static List<Configuration> getModuleConfigs(String moduleName)
-            throws CheckstyleException {
+    protected static List<Configuration> getModuleConfigs(String moduleName) {
         final List<Configuration> result = new ArrayList<>();
-        for (Configuration currentConfig : getConfiguration().getChildren()) {
+        for (Configuration currentConfig : CONFIGURATION.getChildren()) {
             if ("TreeWalker".equals(currentConfig.getName())) {
                 for (Configuration moduleConfig : currentConfig.getChildren()) {
                     if (moduleName.equals(moduleConfig.getName())) {
