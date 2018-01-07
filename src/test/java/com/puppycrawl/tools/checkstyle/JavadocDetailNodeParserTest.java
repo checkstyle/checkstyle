@@ -19,6 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_MISSED_HTML_CLOSE;
+import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_PARSE_RULE_ERROR;
+import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_WRONG_SINGLETON_TAG;
 import static java.util.Locale.ENGLISH;
 import static org.junit.Assert.assertEquals;
 
@@ -29,7 +32,9 @@ import java.nio.file.Paths;
 
 import org.junit.Test;
 
+import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseErrorMessage;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class JavadocDetailNodeParserTest extends AbstractModuleTestSupport {
@@ -66,6 +71,57 @@ public class JavadocDetailNodeParserTest extends AbstractModuleTestSupport {
         }
 
         assertEquals("Invalid parse result", expected, actual);
+    }
+
+    @Test
+    public void testMissedHtmlTagParseErrorMessage() {
+        final String actual =
+                new ParseErrorMessage(35, MSG_JAVADOC_MISSED_HTML_CLOSE, 7, "xyz").toString();
+        final LocalizedMessage localizedMessage = new LocalizedMessage(
+                35,
+                "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
+                MSG_JAVADOC_MISSED_HTML_CLOSE,
+                new Object[] {7, "xyz"},
+                "",
+                ParseErrorMessage.class,
+                null);
+        final String expected = "[ERROR:35] " + localizedMessage.getMessage();
+        assertEquals("Javadoc parse error message for missed HTML tag doesn't meet expectations",
+                expected, actual);
+    }
+
+    @Test
+    public void testParseErrorMessage() {
+        final String actual =
+                new ParseErrorMessage(10, MSG_JAVADOC_PARSE_RULE_ERROR, 9,
+                    "no viable alternative at input ' xyz'", "SOME_JAVADOC_ELEMENT").toString();
+        final LocalizedMessage localizedMessage = new LocalizedMessage(
+                10,
+                "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
+                MSG_JAVADOC_PARSE_RULE_ERROR,
+                new Object[] {9, "no viable alternative at input ' xyz'", "SOME_JAVADOC_ELEMENT"},
+                "",
+                ParseErrorMessage.class,
+                null);
+        final String expected = "[ERROR:10] " + localizedMessage.getMessage();
+        assertEquals("Javadoc parse error message doesn't meet expectations", expected, actual);
+    }
+
+    @Test
+    public void testWrongSingletonParseErrorMessage() {
+        final String actual =
+                new ParseErrorMessage(100, MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "tag").toString();
+        final LocalizedMessage localizedMessage = new LocalizedMessage(
+                100,
+                "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
+                MSG_JAVADOC_WRONG_SINGLETON_TAG,
+                new Object[] {9, "tag"},
+                "",
+                ParseErrorMessage.class,
+                null);
+        final String expected = "[ERROR:100] " + localizedMessage.getMessage();
+        assertEquals("Javadoc parse error message for void elements with close tag "
+                + "doesn't meet expectations", expected, actual);
     }
 
 }

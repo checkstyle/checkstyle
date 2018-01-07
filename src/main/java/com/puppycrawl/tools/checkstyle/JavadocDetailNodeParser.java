@@ -46,6 +46,7 @@ import com.google.common.base.CaseFormat;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
 import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocLexer;
 import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser;
@@ -741,6 +742,22 @@ public class JavadocDetailNodeParser {
             return messageArguments.clone();
         }
 
+        /**
+         * Builds a localized error message based on the message key, its arguments, etc.
+         * @return error message.
+         */
+        @Override
+        public String toString() {
+            final LocalizedMessage localizedMessage = new LocalizedMessage(
+                    lineNumber,
+                    "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
+                    messageKey,
+                    messageArguments,
+                    "",
+                    ParseErrorMessage.class,
+                    null);
+            return "[ERROR:" + lineNumber + "] " + localizedMessage.getMessage();
+        }
     }
 
     /**
