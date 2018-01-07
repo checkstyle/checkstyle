@@ -502,6 +502,39 @@
       <property name="allowNoEmptyLineBetweenFields" value="true"/>
       <property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/>
     </module>
+    <module name="BeforeRightCurly">
+      <property name="tokens" value="ANNOTATION_DEF"/>
+      <property name="tokens" value="CLASS_DEF"/>
+      <property name="tokens" value="ENUM_CONSTANT_DEF"/>
+      <property name="tokens" value="ENUM_DEF"/>
+      <property name="tokens" value="INTERFACE_DEF"/>
+      <property name="blankLine" value="true"/>
+    </module>
+    <module name="BeforeRightCurly">
+      <property name="tokens" value="ANNOTATION_ARRAY_INIT"/>
+      <property name="tokens" value="ARRAY_INIT"/>
+      <property name="tokens" value="CASE_GROUP"/>
+      <property name="tokens" value="CTOR_DEF"/>
+      <property name="tokens" value="INSTANCE_INIT"/>
+      <property name="tokens" value="LAMBDA"/>
+      <property name="tokens" value="LITERAL_CASE"/>
+      <property name="tokens" value="LITERAL_CATCH"/>
+      <property name="tokens" value="LITERAL_DEFAULT"/>
+      <property name="tokens" value="LITERAL_DO"/>
+      <property name="tokens" value="LITERAL_ELSE"/>
+      <property name="tokens" value="LITERAL_FINALLY"/>
+      <property name="tokens" value="LITERAL_FOR"/>
+      <property name="tokens" value="LITERAL_IF"/>
+      <property name="tokens" value="LITERAL_NEW"/>
+      <property name="tokens" value="LITERAL_SWITCH"/>
+      <property name="tokens" value="LITERAL_SYNCHRONIZED"/>
+      <property name="tokens" value="LITERAL_TRY"/>
+      <property name="tokens" value="LITERAL_WHILE"/>
+      <property name="tokens" value="METHOD_DEF"/>
+      <property name="tokens" value="STATIC_INIT"/>
+      <property name="tokens" value="SLIST"/>
+      <property name="blankLine" value="false"/>
+    </module>
     <module name="GenericWhitespace"/>
     <module name="MethodParamPad"/>
     <module name="NoLineWrap"/>
