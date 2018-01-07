@@ -49,7 +49,8 @@
       </tr>
       <tr>
         <td><a href="config_annotation.html#AnnotationOnSameLine">AnnotationOnSameLine</a></td>
-        <td>The check does verifying that annotations are located on the same line with their targets.</td>
+        <td>The check does verifying that annotations are located on the same line with their
+            targets.</td>
       </tr>
       <tr>
         <td><a href="config_annotation.html#AnnotationUseStyle">AnnotationUseStyle</a></td>
@@ -104,7 +105,8 @@
       </tr>
       <tr>
         <td><a href="config_metrics.html#ClassDataAbstractionCoupling">ClassDataAbstractionCoupling</a></td>
-        <td>This metric measures the number of instantiations of other classes within the given class.</td>
+        <td>This metric measures the number of instantiations of other classes within the given
+            class.</td>
       </tr>
       <tr>
         <td><a href="config_metrics.html#ClassFanOutComplexity">ClassFanOutComplexity</a></td>
@@ -707,7 +709,8 @@
       <tr>
         <td><a href="config_javadoc.html#SummaryJavadoc">SummaryJavadoc</a></td>
         <td>
-        Checks that Javadoc summary sentence does not contain phrases that are not recommended to use.</td>
+        Checks that Javadoc summary sentence does not contain phrases that are not recommended
+        to use.</td>
       </tr>
       <tr>
         <td><a href="config_coding.html#SuperClone">SuperClone</a></td>

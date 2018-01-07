@@ -55,7 +55,8 @@
         To change formatter settings please go to Tools->Options in menu.<br/>
         On Options page go to Editor->Formatting->Java->Imports (follow numbers on a
         picture) and apply settings highlighted:<br/><br/>
-        <img alt="Organize Imports settings in NetBeans" src="images/gui_screenshot_organize_imports_netbeans.jpg"/>
+        <img alt="Organize Imports settings in NetBeans"
+          src="images/gui_screenshot_organize_imports_netbeans.jpg"/>
         <br/>
       </p>
     </section>

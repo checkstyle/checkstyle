@@ -433,7 +433,8 @@
           license agreement you entered into\n \*   with ACME\.&amp;lt;/I&amp;gt;\n
           \* &amp;lt;/P&amp;gt;\n \*\n \* &amp;#169; copyright \d\d\d\d ACME\n
           \*\n \* @author .*)(\n\s\*.*)*/\n[\w|\s]*( class | interface )&quot;/&gt;
-          &lt;property name=&quot;message&quot; value=&quot;Copyright in class/interface Javadoc&quot;/&gt;
+          &lt;property name=&quot;message&quot;
+              value=&quot;Copyright in class/interface Javadoc&quot;/&gt;
           &lt;property name=&quot;duplicateLimit&quot; value=&quot;0&quot;/&gt;
           &lt;/module&gt;
         </source>
@@ -733,7 +734,8 @@
 &lt;/module&gt;
         </source>
         <p>
-          To configure the check to only allow property and xml files to be located in the resource folder:
+          To configure the check to only allow property and xml files to be located
+          in the resource folder:
         </p>
         <source>
 &lt;module name=&quot;RegexpOnFilename&quot;&gt;

@@ -1082,8 +1082,8 @@ public class ImmutableClass
         <source>
 &lt;module name=&quot;VisibilityModifier&quot;&gt;
   &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;immutableClassCanonicalNames&quot; value=&quot;
-  com.google.common.collect.ImmutableSet, com.google.common.collect.ImmutableMap,java.lang.String&quot;/&gt;
+  &lt;property name=&quot;immutableClassCanonicalNames&quot;
+    value=&quot;com.google.common.collect.ImmutableSet, com.google.common.collect.ImmutableMap,java.lang.String&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>

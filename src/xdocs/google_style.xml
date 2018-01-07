@@ -367,8 +367,8 @@
                                     src="images/ban_red.png"
                                     alt="" />
                                 That validation could not be checked by Checkstyle. It's
-                                need infromation from another class(java file). But Checkstyle have no way to
-                                open or look at another java file.
+                                need infromation from another class(java file). But Checkstyle
+                                have no way to open or look at another java file.
                             </td>
                             <td/>
                         </tr>
@@ -549,9 +549,10 @@
                                 <a
                                     href="config_misc.html#Indentation">Indentation</a>
                                 <br />
-                                The rule "A line is never broken adjacent to the arrow in a lambda, except that a
-                                break may come immediately after the arrow if the body of the lambda consists
-                                of a single unbraced expression" will be addressed in the issue
+                                The rule "A line is never broken adjacent to the arrow in a lambda,
+                                except that a break may come immediately after the arrow if the body
+                                of the lambda consists of a single unbraced expression" will be
+                                addressed in the issue
                                 <a href="https://github.com/checkstyle/checkstyle/issues/4006">#4006</a>.
                             </td>
                             <td>
@@ -1392,7 +1393,8 @@
                                 <img
                                     src="images/ban_red.png"
                                     alt="" />
-                                    Proper validation require parsing other files, sources are not always available.
+                                    Proper validation require parsing other files, sources
+                                    are not always available.
                             </td>
                             <td/>
                         </tr>
@@ -1589,8 +1591,8 @@
                                 <img
                                     src="images/ok_blue.png"
                                     alt="" />
-                                <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
-                                <br/> Overrides are checked by presence of "@Override" annotation on method.
+                                <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a><br/>
+                                Overrides are checked by presence of "@Override" annotation on method.
                             </td>
                             <td>
                                 <a

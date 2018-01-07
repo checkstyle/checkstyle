@@ -100,7 +100,8 @@
         </li>
         <li>
           Module <code>TreeWalker</code> has submodules
-          <code>AvoidStarImport</code>, <code>ConstantName</code>, and <code>EmptyBlock</code>.  (Modules <a
+          <code>AvoidStarImport</code>, <code>ConstantName</code>,
+          and <code>EmptyBlock</code>.  (Modules <a
           href="config_imports.html"><code>AvoidStarImport</code></a>, <a
           href="config_naming.html"><code>ConstantName</code></a>, and <a
           href="config_blocks.html"><code>EmptyBlock</code></a> check that a Java source
@@ -138,7 +139,8 @@
 
           Checkstyle applies packages <code>
           com.puppycrawl.tools.checkstyle</code>, <code>
-          com.puppycrawl.tools.checkstyle.filters</code>, and <code> com.puppycrawl.tools.checkstyle.checks</code>
+          com.puppycrawl.tools.checkstyle.filters</code>, and
+          <code>com.puppycrawl.tools.checkstyle.checks</code>
           and its sub-packages (only those included in the Checkstyle
           distribution). You can specify other packages in a <a
           href="#Packages"><em>package names XML document</em></a>
@@ -191,7 +193,8 @@
         are inherited in the module hierarchy. These features make it
         easy to define one property value that applies to many
         modules. For example, the following configuration fragment
-        specifies that a <code>tabWidth</code> of <code>4</code> applies to <code>TreeWalker</code> and its submodules:
+        specifies that a <code>tabWidth</code> of <code>4</code>
+        applies to <code>TreeWalker</code> and its submodules:
       </p>
 
       <source>
@@ -551,7 +554,8 @@
         <em>Checks</em>, during a walk, or traversal, of the nodes of
         the tree.  Every node of the syntax tree has a token. A visit to
         a node during the traversal triggers all Checks that are
-        configured for its token.  For example, if Check <code>MethodLength</code> has been configured as a
+        configured for its token.  For example, if Check
+        <code>MethodLength</code> has been configured as a
         submodule of <code>TreeWalker</code>, then a visit
         to a node with a method or a constructor definition token
         triggers <code>MethodLength</code> to check the
@@ -629,7 +633,8 @@
         You can use the severity property to control the output of the
         plain formatter for the <a href="cmdline.html">command line
         tool</a> and the <a href="anttask.html">ANT task</a>. The plain
-        formatter does not report violations with severity level <code>ignore</code>, and notes violations with
+        formatter does not report violations with severity level
+        <code>ignore</code>, and notes violations with
         severity level <code>warning</code>. For
         example, according to the following configuration fragment, the
         plain formatter outputs warnings for translation violations:
@@ -731,7 +736,8 @@
         Checker can have <a href="writinglisteners.html">custom
         AuditListeners</a> that handle audit events. In order to use a
         custom listener, add a <code>Checker</code> submodule for the
-        listener and its properties.  For example, to configure a <code>Checker</code> so that it uses custom listener <a
+        listener and its properties.  For example, to configure a
+        <code>Checker</code> so that it uses custom listener <a
         href="writinglisteners.html#Writing_Listeners">VerboseListener</a> to
         print audit messages to a file named &quot;audit.txt&quot;,
         include the following module in the configuration file:

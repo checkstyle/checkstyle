@@ -494,11 +494,12 @@ public class MethodLimitCheck extends AbstractCheck
       </source>
 
       <p>
-        With this code added, you can set the property <code>max</code> for the MethodLimitCheck module in the
-        configuration file. It doesn&#39;t get any simpler than that. The secret is
-        that Checkstyle uses <a href="https://docs.oracle.com/javase/tutorial/reflect/member/fieldValues.html">
-        JavaBean reflection to set the JavaBean properties</a>. That works for all primitive types like boolean,
-        int, long, etc., plus Strings, plus arrays of these types.
+        With this code added, you can set the property <code>max</code> for the
+        MethodLimitCheck module in the configuration file. It doesn&#39;t get any
+        simpler than that. The secret is that Checkstyle uses
+        <a href="https://docs.oracle.com/javase/tutorial/reflect/member/fieldValues.html">
+        JavaBean reflection to set the JavaBean properties</a>. That works for all
+        primitive types like boolean, int, long, etc., plus Strings, plus arrays of these types.
       </p>
 
     </section>
@@ -509,7 +510,8 @@ public class MethodLimitCheck extends AbstractCheck
         Detecting errors is one thing, presenting them to the user is
         another. To do that, the Check base class provides several log
         methods, the simplest of them being <code>Check.log(String)</code>. In your
-        Check you can simply use a verbatim error string like in <code>log(&quot;Too many methods, only &quot; + mMax +
+        Check you can simply use a verbatim error string like in
+        <code>log(&quot;Too many methods, only &quot; + mMax +
         &quot; are allowed&quot;);</code> as the argument. That will
         work, but it&#39;s not the best possible solution if your Check is
         intended for a wider audience.
@@ -593,12 +595,14 @@ public class MethodLimitCheck extends AbstractCheck
 
       <p>For Linux/Unix OS:</p>
       <source class="wrap-content">
-java -classpath mycompanychecks.jar:checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.Main-c config.xml myproject
+java -classpath mycompanychecks.jar:checkstyle-${projectVersion}-all.jar \
+    com.puppycrawl.tools.checkstyle.Main-c config.xml myproject
       </source>
 
       <p>For Windows OS:</p>
       <source class="wrap-content">
-java -classpath mycompanychecks.jar;checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.Main-c config.xml myproject
+java -classpath mycompanychecks.jar;checkstyle-${projectVersion}-all.jar ^
+    com.puppycrawl.tools.checkstyle.Main-c config.xml myproject
       </source>
 
       <p>

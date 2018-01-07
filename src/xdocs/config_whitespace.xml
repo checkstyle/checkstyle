@@ -224,7 +224,8 @@ for (Iterator foo = very.long.line.iterator();
           static initializers and instance initializers.
         </p>
         <p>
-          ATTENTION: empty line separator is required between AST siblings, not after line where token is found.
+          ATTENTION: empty line separator is required between AST siblings,
+          not after line where token is found.
         </p>
       </subsection>
 
@@ -350,7 +351,8 @@ class Foo
 &lt;/module&gt;
       </source>
       <p>
-          An example how to disallow multiple empty lines inside constructor, initialization block and method:
+          An example how to disallow multiple empty lines inside constructor,
+          initialization block and method:
       </p>
       <source>
           &lt;module name="EmptyLineSeparator"&gt;
@@ -570,7 +572,8 @@ class Foo
         </p>
         <ul>
           <li> should be preceded with whitespace only in generic methods definitions.</li>
-          <li> should not be preceded with whitespace when it is precede method name or following type name.</li>
+          <li> should not be preceded with whitespace when it is precede method name
+               or following type name.</li>
           <li> should not be followed with whitespace in all cases.</li>
         </ul>
         <p>
@@ -1128,9 +1131,9 @@ public void foo(final char @NotNull [] param) {} // No violation
           Checks that there is no whitespace before a token. More
           specifically, it checks that it is not preceded with whitespace, or
           (if linebreaks are allowed) all characters on the line before are
-          whitespace. To allow linebreaks before a token, set property <code>allowLineBreaks</code> to <code>
-          true</code>. No check occurs before semi-colons in empty for loop
-          initializers or conditions.
+          whitespace. To allow linebreaks before a token, set property
+          <code>allowLineBreaks</code> to <code>true</code>. No check occurs
+          before semi-colons in empty for loop initializers or conditions.
         </p>
       </subsection>
 

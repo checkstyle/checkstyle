@@ -45,8 +45,8 @@
 
     <section name="boolean">
       <p>
-        This property represents a boolean. The default value is <code>false</code>. The following string representations will
-        map to <code>true</code>:
+        This property represents a boolean. The default value is <code>false</code>.
+        The following string representations will map to <code>true</code>:
       </p>
 
       <ul>
@@ -378,7 +378,8 @@
        @Override
        public void run() {
                   ...
-       <b>}</b> // this is NOT OK, brace is not on the same line as the next part of a multi-block statement
+       <b>}</b> // this is NOT OK, brace is not on the same line as the next part
+         // of a multi-block statement
     <b>}</b>); // this is OK, allowed for better code readability
 
     if (a &#62; 0) { ... <b>}</b> // OK, single-line multi-block statement

@@ -65,7 +65,8 @@ public String getNameIfPresent() { ... }
           </tr>
           <tr>
             <td>allowSamelineSingleParameterlessAnnotation</td>
-            <td>To allow single parameterless annotation to be located on the same line as target element.</td>
+            <td>To allow single parameterless annotation to be located on the same line as
+                target element.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
             <td>6.1</td>
@@ -885,8 +886,9 @@ public static final int COUNTER = 10; // violation as javadoc exists
            </source>
         </p>
 
-        <p>You can also use a <code>checkstyle</code> prefix to prevent compiler from processing this annotations.
-        For example this will prevent ConstantNameCheck
+        <p>You can also use a <code>checkstyle</code> prefix to prevent compiler from
+           processing this annotations.
+           For example this will prevent ConstantNameCheck
           <source>
             @SuppressWarnings("checkstyle:constantname")
             private static final int m = 0;
