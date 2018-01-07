@@ -30,6 +30,7 @@ import java.util.function.Function;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.Parser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
@@ -67,9 +68,8 @@ public class BlockCommentPositionTest extends AbstractPathTestSupport {
         );
 
         for (BlockCommentPositionTestMetadata metadata : metadataList) {
-            final DetailAST ast = TestUtil.parseFile(
-                    new File(getPath(metadata.getFileName()))
-            );
+            final DetailAST ast = Parser.parseFileWithComments(
+                new File(getPath(metadata.getFileName())));
             final int matches = getJavadocsCount(ast, metadata.getAssertion());
             assertEquals("Invalid javadoc count", metadata.getMatchesNum(), matches);
         }

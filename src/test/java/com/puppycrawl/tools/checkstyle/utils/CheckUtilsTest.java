@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.findTokenInAstByPredicate;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.parseFile;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -37,6 +36,7 @@ import java.util.Set;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.Parser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier;
@@ -370,7 +370,8 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
     }
 
     private DetailAST getNodeFromFile(int type) throws Exception {
-        return getNode(parseFile(new File(getPath("InputCheckUtilsTest.java"))), type);
+        return getNode(Parser.parseFileWithComments(
+            new File(getPath("InputCheckUtilsTest.java"))), type);
     }
 
     private static DetailAST getNode(DetailAST root, int type) {

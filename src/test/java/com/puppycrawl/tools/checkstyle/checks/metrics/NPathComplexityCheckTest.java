@@ -32,6 +32,7 @@ import org.junit.Test;
 import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.Parser;
 import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
@@ -148,7 +149,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
     public void testStatefulFieldsClearedOnBeginTree3() throws Exception {
         final NPathComplexityCheck check = new NPathComplexityCheck();
         final Optional<DetailAST> question = TestUtil.findTokenInAstByPredicate(
-            TestUtil.parseFile(new File(getPath("InputNPathComplexity.java"))),
+            Parser.parseFile(new File(getPath("InputNPathComplexity.java"))),
             ast -> ast.getType() == TokenTypes.QUESTION);
 
         Assert.assertTrue("Ast should contain QUESTION", question.isPresent());

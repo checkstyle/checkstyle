@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.gui;
 
 import java.io.File;
-import java.nio.charset.StandardCharsets;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -28,11 +27,9 @@ import org.junit.Test;
 
 import antlr.collections.AST;
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
-import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.Parser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
-import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
@@ -47,18 +44,10 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         return "com/puppycrawl/tools/checkstyle/gui/parsetreetablepresentation";
     }
 
-    private static DetailAST parseFile(File file) throws Exception {
-        final FileContents contents = new FileContents(
-                new FileText(file.getAbsoluteFile(),
-                        System.getProperty("file.encoding",
-                        StandardCharsets.UTF_8.name())));
-        return TreeWalker.parseWithComments(contents);
-    }
-
     @Before
     public void loadTree() throws Exception {
-        tree = parseFile(
-                new File(getPath("InputParseTreeTablePresentation.java")));
+        tree = Parser.parseFileWithComments(
+            new File(getPath("InputParseTreeTablePresentation.java")));
     }
 
     @Test

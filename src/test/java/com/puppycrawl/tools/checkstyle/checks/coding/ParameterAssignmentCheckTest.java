@@ -32,6 +32,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.Parser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
@@ -110,7 +111,7 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
     public void testClearState() throws Exception {
         final ParameterAssignmentCheck check = new ParameterAssignmentCheck();
         final Optional<DetailAST> methodDef = TestUtil.findTokenInAstByPredicate(
-            TestUtil.parseFile(new File(getPath("InputParameterAssignmentReceiver.java"))),
+            Parser.parseFile(new File(getPath("InputParameterAssignmentReceiver.java"))),
             ast -> ast.getType() == TokenTypes.METHOD_DEF);
 
         assertTrue("Ast should contain METHOD_DEF", methodDef.isPresent());

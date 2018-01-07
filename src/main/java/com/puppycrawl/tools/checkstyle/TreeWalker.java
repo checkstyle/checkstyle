@@ -20,8 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
-import java.io.Reader;
-import java.io.StringReader;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -30,12 +28,6 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import antlr.CommonHiddenStreamToken;
-import antlr.RecognitionException;
-import antlr.Token;
-import antlr.TokenStreamException;
-import antlr.TokenStreamHiddenTokenFilter;
-import antlr.TokenStreamRecognitionException;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -49,9 +41,6 @@ import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer;
-import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
@@ -61,9 +50,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  *
  * @author Oliver Burn
  */
-// -@cs[ClassFanOutComplexity] To resolve issue 4714, new classes were imported. Number of
-// classes current class relies on currently is 27, which is above threshold 25.
-// see https://github.com/checkstyle/checkstyle/issues/4714.
 public final class TreeWalker extends AbstractFileSetCheck implements ExternalResourceHolder {
 
     /** Default distance between tab stops. */
@@ -189,45 +175,27 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     @Override
     protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
         // check if already checked and passed the file
-        if (CommonUtils.matchesFileExtension(file, getFileExtensions())) {
-            final String msg = "%s occurred during the analysis of file %s.";
-            final String fileName = file.getPath();
+        if (CommonUtils.matchesFileExtension(file, getFileExtensions())
+                && (!ordinaryChecks.isEmpty() || !commentChecks.isEmpty())) {
+            final FileContents contents = new FileContents(fileText);
+            final DetailAST rootAST = Parser.parse(contents);
 
-            try {
-                if (!ordinaryChecks.isEmpty()
-                        || !commentChecks.isEmpty()) {
-                    final FileContents contents = new FileContents(fileText);
-                    final DetailAST rootAST = parse(contents);
-
-                    if (!ordinaryChecks.isEmpty()) {
-                        walk(rootAST, contents, AstState.ORDINARY);
-                    }
-                    if (!commentChecks.isEmpty()) {
-                        final DetailAST astWithComments = appendHiddenCommentNodes(rootAST);
-
-                        walk(astWithComments, contents, AstState.WITH_COMMENTS);
-                    }
-                    if (filters.isEmpty()) {
-                        addMessages(messages);
-                    }
-                    else {
-                        final SortedSet<LocalizedMessage> filteredMessages =
-                            getFilteredMessages(fileName, contents, rootAST);
-                        addMessages(filteredMessages);
-                    }
-                    messages.clear();
-                }
+            if (!ordinaryChecks.isEmpty()) {
+                walk(rootAST, contents, AstState.ORDINARY);
             }
-            catch (final TokenStreamRecognitionException tre) {
-                final String exceptionMsg = String.format(Locale.ROOT, msg,
-                        "TokenStreamRecognitionException", fileName);
-                throw new CheckstyleException(exceptionMsg, tre);
+            if (!commentChecks.isEmpty()) {
+                final DetailAST astWithComments = Parser.appendHiddenCommentNodes(rootAST);
+                walk(astWithComments, contents, AstState.WITH_COMMENTS);
             }
-            catch (RecognitionException | TokenStreamException ex) {
-                final String exceptionMsg = String.format(Locale.ROOT, msg,
-                        ex.getClass().getSimpleName(), fileName);
-                throw new CheckstyleException(exceptionMsg, ex);
+            if (filters.isEmpty()) {
+                addMessages(messages);
             }
+            else {
+                final SortedSet<LocalizedMessage> filteredMessages =
+                    getFilteredMessages(file.getPath(), contents, rootAST);
+                addMessages(filteredMessages);
+            }
+            messages.clear();
         }
     }
 
@@ -467,51 +435,6 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
         return visitors;
     }
 
-    /**
-     * Static helper method to parses a Java source file.
-     *
-     * @param contents
-     *                contains the contents of the file
-     * @return the root of the AST
-     * @throws TokenStreamException
-     *                 if lexing failed
-     * @throws RecognitionException
-     *                 if parsing failed
-     */
-    public static DetailAST parse(FileContents contents)
-            throws RecognitionException, TokenStreamException {
-        final String fullText = contents.getText().getFullText().toString();
-        final Reader reader = new StringReader(fullText);
-        final GeneratedJavaLexer lexer = new GeneratedJavaLexer(reader);
-        lexer.setCommentListener(contents);
-        lexer.setTokenObjectClass("antlr.CommonHiddenStreamToken");
-
-        final TokenStreamHiddenTokenFilter filter =
-                new TokenStreamHiddenTokenFilter(lexer);
-        filter.hide(TokenTypes.SINGLE_LINE_COMMENT);
-        filter.hide(TokenTypes.BLOCK_COMMENT_BEGIN);
-
-        final GeneratedJavaRecognizer parser =
-            new GeneratedJavaRecognizer(filter);
-        parser.setFilename(contents.getFileName());
-        parser.setASTNodeClass(DetailAST.class.getName());
-        parser.compilationUnit();
-
-        return (DetailAST) parser.getAST();
-    }
-
-    /**
-     * Parses Java source file. Result AST contains comment nodes.
-     * @param contents source file content
-     * @return DetailAST tree
-     * @throws RecognitionException if parser failed
-     * @throws TokenStreamException if lexer failed
-     */
-    public static DetailAST parseWithComments(FileContents contents)
-            throws RecognitionException, TokenStreamException {
-        return appendHiddenCommentNodes(parse(contents));
-    }
-
     @Override
     public void destroy() {
         ordinaryChecks.forEach(AbstractCheck::destroy);
@@ -587,129 +510,6 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
             }
             curNode = toVisit;
         }
-    }
-
-    /**
-     * Appends comment nodes to existing AST.
-     * It traverses each node in AST, looks for hidden comment tokens
-     * and appends found comment tokens as nodes in AST.
-     * @param root
-     *        root of AST.
-     * @return root of AST with comment nodes.
-     */
-    private static DetailAST appendHiddenCommentNodes(DetailAST root) {
-        DetailAST result = root;
-        DetailAST curNode = root;
-        DetailAST lastNode = root;
-
-        while (curNode != null) {
-            if (isPositionGreater(curNode, lastNode)) {
-                lastNode = curNode;
-            }
-
-            CommonHiddenStreamToken tokenBefore = curNode.getHiddenBefore();
-            DetailAST currentSibling = curNode;
-            while (tokenBefore != null) {
-                final DetailAST newCommentNode =
-                         createCommentAstFromToken(tokenBefore);
-
-                currentSibling.addPreviousSibling(newCommentNode);
-
-                if (currentSibling == result) {
-                    result = newCommentNode;
-                }
-
-                currentSibling = newCommentNode;
-                tokenBefore = tokenBefore.getHiddenBefore();
-            }
-
-            DetailAST toVisit = curNode.getFirstChild();
-            while (curNode != null && toVisit == null) {
-                toVisit = curNode.getNextSibling();
-                if (toVisit == null) {
-                    curNode = curNode.getParent();
-                }
-            }
-            curNode = toVisit;
-        }
-        if (lastNode != null) {
-            CommonHiddenStreamToken tokenAfter = lastNode.getHiddenAfter();
-            DetailAST currentSibling = lastNode;
-            while (tokenAfter != null) {
-                final DetailAST newCommentNode =
-                        createCommentAstFromToken(tokenAfter);
-
-                currentSibling.addNextSibling(newCommentNode);
-
-                currentSibling = newCommentNode;
-                tokenAfter = tokenAfter.getHiddenAfter();
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Checks if position of first DetailAST is greater than position of
-     * second DetailAST. Position is line number and column number in source
-     * file.
-     * @param ast1
-     *        first DetailAST node.
-     * @param ast2
-     *        second DetailAST node.
-     * @return true if position of ast1 is greater than position of ast2.
-     */
-    private static boolean isPositionGreater(DetailAST ast1, DetailAST ast2) {
-        boolean isGreater = ast1.getLineNo() > ast2.getLineNo();
-        if (!isGreater && ast1.getLineNo() == ast2.getLineNo()) {
-            isGreater = ast1.getColumnNo() > ast2.getColumnNo();
-        }
-        return isGreater;
-    }
-
-    /**
-     * Create comment AST from token. Depending on token type
-     * SINGLE_LINE_COMMENT or BLOCK_COMMENT_BEGIN is created.
-     * @param token
-     *        Token object.
-     * @return DetailAST of comment node.
-     */
-    private static DetailAST createCommentAstFromToken(Token token) {
-        final DetailAST commentAst;
-        if (token.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
-            commentAst = createSlCommentNode(token);
-        }
-        else {
-            commentAst = CommonUtils.createBlockCommentNode(token);
-        }
-        return commentAst;
-    }
-
-    /**
-     * Create single-line comment from token.
-     * @param token
-     *        Token object.
-     * @return DetailAST with SINGLE_LINE_COMMENT type.
-     */
-    private static DetailAST createSlCommentNode(Token token) {
-        final DetailAST slComment = new DetailAST();
-        slComment.setType(TokenTypes.SINGLE_LINE_COMMENT);
-        slComment.setText("//");
-
-        // column counting begins from 0
-        slComment.setColumnNo(token.getColumn() - 1);
-        slComment.setLineNo(token.getLine());
-
-        final DetailAST slCommentContent = new DetailAST();
-        slCommentContent.setType(TokenTypes.COMMENT_CONTENT);
-
-        // column counting begins from 0
-        // plus length of '//'
-        slCommentContent.setColumnNo(token.getColumn() - 1 + 2);
-        slCommentContent.setLineNo(token.getLine());
-        slCommentContent.setText(token.getText());
-
-        slComment.addChild(slCommentContent);
-        return slComment;
     }
 
     /**
