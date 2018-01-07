@@ -4,6 +4,12 @@ import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes;
 
 public class InputTokenTypesDocletEmptyJavadoc {
 
+    // Singleline comment
+
+    /**
+     * Not a javadoc comment.
+     */
+
     /**
      *
      */

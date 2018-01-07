@@ -360,8 +360,7 @@ public class ParseTreeTablePresentation {
     private DetailNode getJavadocTree(DetailAST blockComment) {
         DetailNode javadocTree = blockCommentToJavadocTree.get(blockComment);
         if (javadocTree == null) {
-            javadocTree = new JavadocDetailNodeParser().parseJavadocAsDetailNode(blockComment)
-                    .getTree();
+            javadocTree = new JavadocDetailNodeParser().parseJavadocAsDetailNode(blockComment);
             blockCommentToJavadocTree.put(blockComment, javadocTree);
         }
         return javadocTree;

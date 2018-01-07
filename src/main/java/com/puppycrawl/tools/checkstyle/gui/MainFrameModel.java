@@ -26,12 +26,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import antlr.ANTLRException;
 import com.google.common.collect.ImmutableList;
-import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.Parser;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
@@ -199,11 +197,11 @@ public class MainFrameModel {
 
                 switch (parseMode) {
                     case PLAIN_JAVA:
-                        parseTree = parseFile(file);
+                        parseTree = Parser.parseFile(file);
                         break;
                     case JAVA_WITH_COMMENTS:
                     case JAVA_WITH_JAVADOC_AND_COMMENTS:
-                        parseTree = parseFileWithComments(file);
+                        parseTree = Parser.parseFileWithComments(file);
                         break;
                     default:
                         throw new IllegalArgumentException("Unknown mode: " + parseMode);
@@ -226,39 +224,13 @@ public class MainFrameModel {
                 linesToPosition = ImmutableList.copyOf(linesToPositionTemp);
                 text = sb.toString();
             }
-            catch (IOException | ANTLRException ex) {
+            catch (IOException ex) {
                 final String exceptionMsg = String.format(Locale.ROOT,
                     "%s occurred while opening file %s.",
                     ex.getClass().getSimpleName(), file.getPath());
                 throw new CheckstyleException(exceptionMsg, ex);
             }
         }
-    }
-
-    /**
-     * Parse a file and return the parse tree.
-     * @param file the file to parse.
-     * @return the root node of the parse tree.
-     * @throws IOException if the file could not be read.
-     * @throws ANTLRException if the file is not a Java source.
-     */
-    private static DetailAST parseFile(File file) throws IOException, ANTLRException {
-        final FileText fileText = getFileText(file);
-        final FileContents contents = new FileContents(fileText);
-        return TreeWalker.parse(contents);
-    }
-
-    /**
-     * Parse a file and return the parse tree with comment nodes.
-     * @param file the file to parse.
-     * @return the root node of the parse tree.
-     * @throws IOException if the file could not be read.
-     * @throws ANTLRException if the file is not a Java source.
-     */
-    private static DetailAST parseFileWithComments(File file) throws IOException, ANTLRException {
-        final FileText fileText = getFileText(file);
-        final FileContents contents = new FileContents(fileText);
-        return TreeWalker.parseWithComments(contents);
     }
 
     /**

@@ -46,6 +46,7 @@ import com.google.common.base.CaseFormat;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
 import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocLexer;
 import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser;
@@ -102,7 +103,7 @@ public class JavadocDetailNodeParser {
      *        DetailAST of Javadoc comment
      * @return DetailNode tree of Javadoc comment
      */
-    public ParseStatus parseJavadocAsDetailNode(DetailAST javadocCommentAst) {
+    public ParseStatus parseJavadoc(DetailAST javadocCommentAst) {
         blockCommentLineNumber = javadocCommentAst.getLineNo();
 
         final String javadocComment = JavadocUtils.getJavadocCommentContent(javadocCommentAst);
@@ -159,6 +160,36 @@ public class JavadocDetailNodeParser {
         }
 
         return result;
+    }
+
+    /**
+     * Parse block comment DetailAST as Javadoc DetailNode tree.
+     * @param blockComment DetailAST
+     * @return DetailNode tree
+     */
+    public DetailNode parseJavadocAsDetailNode(DetailAST blockComment) {
+        final ParseStatus status = parseJavadoc(blockComment);
+        if (status.getParseErrorMessage() != null) {
+            throw new IllegalArgumentException(getParseErrorMessage(status.getParseErrorMessage()));
+        }
+        return status.getTree();
+    }
+
+    /**
+     * Builds error message base on ParseErrorMessage's message key, its arguments, etc.
+     * @param parseErrorMessage ParseErrorMessage
+     * @return error message
+     */
+    private static String getParseErrorMessage(ParseErrorMessage parseErrorMessage) {
+        final LocalizedMessage lmessage = new LocalizedMessage(
+                parseErrorMessage.getLineNumber(),
+                "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
+                parseErrorMessage.getMessageKey(),
+                parseErrorMessage.getMessageArguments(),
+                "",
+                JavadocDetailNodeParser.class,
+                null);
+        return "[ERROR:" + parseErrorMessage.getLineNumber() + "] " + lmessage.getMessage();
     }
 
     /**
@@ -508,7 +539,7 @@ public class JavadocDetailNodeParser {
     /**
      * This method is used to get the first non-tight HTML tag encountered while parsing javadoc.
      * This shall eventually be reflected by the {@link ParseStatus} object returned by
-     * {@link #parseJavadocAsDetailNode(DetailAST)} method via the instance member
+     * {@link #parseJavadoc(DetailAST)} method via the instance member
      * {@link ParseStatus#firstNonTightHtmlTag}, and checks not supposed to process non-tight HTML
      * or the ones which are supposed to log violation for non-tight javadocs can utilize that.
      *

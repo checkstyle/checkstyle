@@ -22,4 +22,11 @@ public final class InputTokenTypesDocletNotConstants {
      * A list of statements.
      **/
     public static final double SLIST = GeneratedJavaTokenTypes.SLIST; // must be int
+
+    /**
+     * Not a field.
+     **/
+    public final int method() {
+        return 0;
+    }
 }

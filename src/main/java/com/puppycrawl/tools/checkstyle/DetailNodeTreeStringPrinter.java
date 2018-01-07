@@ -23,13 +23,10 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseErrorMessage;
-import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseStatus;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 
@@ -64,11 +61,7 @@ public final class DetailNodeTreeStringPrinter {
      */
     public static DetailNode parseJavadocAsDetailNode(DetailAST blockComment) {
         final JavadocDetailNodeParser parser = new JavadocDetailNodeParser();
-        final ParseStatus status = parser.parseJavadocAsDetailNode(blockComment);
-        if (status.getParseErrorMessage() != null) {
-            throw new IllegalArgumentException(getParseErrorMessage(status.getParseErrorMessage()));
-        }
-        return status.getTree();
+        return parser.parseJavadocAsDetailNode(blockComment);
     }
 
     /**
@@ -79,23 +72,6 @@ public final class DetailNodeTreeStringPrinter {
     private static DetailNode parseJavadocAsDetailNode(String javadocComment) {
         final DetailAST blockComment = CommonUtils.createBlockCommentNode(javadocComment);
         return parseJavadocAsDetailNode(blockComment);
-    }
-
-    /**
-     * Builds error message base on ParseErrorMessage's message key, its arguments, etc.
-     * @param parseErrorMessage ParseErrorMessage
-     * @return error message
-     */
-    private static String getParseErrorMessage(ParseErrorMessage parseErrorMessage) {
-        final LocalizedMessage lmessage = new LocalizedMessage(
-                parseErrorMessage.getLineNumber(),
-                "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
-                parseErrorMessage.getMessageKey(),
-                parseErrorMessage.getMessageArguments(),
-                "",
-                DetailNodeTreeStringPrinter.class,
-                null);
-        return "[ERROR:" + parseErrorMessage.getLineNumber() + "] " + lmessage.getMessage();
     }
 
     /**

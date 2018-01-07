@@ -22,7 +22,7 @@
       <property name="showClassesComplexity" value="false"/>
       <property name="reportLevel" value="11"/>
       <!-- DeclarationOrder - 'visitToken' has just big SWITCH block which contains IF blocks.
-           If we split the block to several methods it will demage readibility.
+           If we split the block to several methods it will damage readability.
            validateCli is not reasonable to split as encapsulation of logic will be damaged
            getDetails - huge Switch, it has to be monolithic
            JavadocMethodCheck, JavadocStyleCheck, JavadocUtils.getJavadocTags() - deprecated
@@ -133,9 +133,9 @@
   </rule>
   <rule ref="rulesets/java/coupling.xml/ExcessiveImports">
     <properties>
-      <!-- TreeWalker integrates Checkstyle and antlr and CheckstyleAntTask integrates Checkstyle
+      <!-- JavadocDetailNodeParser integrates Checkstyle and antlr and CheckstyleAntTask integrates Checkstyle
        with Ant. Checker collects external resource locations and setup configuration. -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='TreeWalker' or @Image='CheckstyleAntTask' or @Image='Checker' or @Image='Main']"/>
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocDetailNodeParser' or @Image='CheckstyleAntTask' or @Image='Checker' or @Image='Main']"/>
     </properties>
   </rule>
   <rule ref="rulesets/java/coupling.xml/CouplingBetweenObjects">
@@ -222,20 +222,20 @@
   <rule ref="rulesets/java/logging-java.xml/SystemPrintln">
     <properties>
       <!-- it is ok to use println in CLI class -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main']"/>
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main' or @Image='TokenTypesDoclet']"/>
     </properties>
   </rule>
   <rule ref="rulesets/java/logging-java.xml/AvoidPrintStackTrace">
     <properties>
       <!-- it is ok to use print stack trace in CLI class -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main']"/>
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main' or @Image='TokenTypesDoclet']"/>
     </properties>
   </rule>
 
   <rule ref="rulesets/java/migrating.xml"/>
 
   <rule ref="rulesets/java/naming.xml">
-    <!-- we use CheckstyleCustomShortVariable, to control lenght (will be fixed in PMD 5.4) and skip Override methods -->
+    <!-- we use CheckstyleCustomShortVariable, to control length (will be fixed in PMD 5.4) and skip Override methods -->
     <exclude name="ShortVariable"/>
   </rule>
 <rule name="CheckstyleCustomShortVariable"
