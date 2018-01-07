@@ -196,10 +196,11 @@
               </ul>
             </li>
             <li>
-              If a class was imported with direct import (i.e. <code>import java.math.BigDecimal</code>),
-              or the class was referenced with the package name (i.e. <code>java.math.BigDecimal value</code>)
-              and the package was added to the <code>excludedPackages</code> parameter,
-              the class does not increase complexity.
+              If a class was imported with direct import (i.e.
+              <code>import java.math.BigDecimal</code>), or the class was referenced with the
+              package name (i.e. <code>java.math.BigDecimal value</code>) and the package was
+              added to the <code>excludedPackages</code> parameter, the class does not
+              increase complexity.
             </li>
             <li>
               If a class name was added to the <code>excludedClasses</code> parameter,
@@ -282,11 +283,13 @@
         </source>
 
         <p>
-          To configure the check with two regular expressions <code>^Array.*</code> and <code>.*Exception$</code>:
+          To configure the check with two regular expressions <code>^Array.*</code> and
+          <code>.*Exception$</code>:
         </p>
         <source>
           &lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
-          &lt;property name=&quot;excludeClassesRegexps&quot; value=&quot;^Array.*, .*Exception$&quot;/&gt;
+          &lt;property name=&quot;excludeClassesRegexps&quot;
+              value=&quot;^Array.*, .*Exception$&quot;/&gt;
           &lt;/module&gt;
         </source>
 
@@ -322,7 +325,8 @@
         </source>
 
         <p>
-          To configure the check with two regular expressions <code>^Array.*</code> and <code>.*Exception$</code>:
+          To configure the check with two regular expressions <code>^Array.*</code> and
+          <code>.*Exception$</code>:
         </p>
         <source>
 &lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
@@ -369,8 +373,9 @@ public class InputClassCoupling {
           </ul>
         </p>
         <p>
-          Note, that checkstyle will ignore all classes from the <code>java.lang</code> package and its subpackages,
-          even if the <code>java.lang</code> was not listed in the <code>excludedPackages</code> parameter.
+          Note, that checkstyle will ignore all classes from the <code>java.lang</code>
+          package and its subpackages, even if the <code>java.lang</code> was not listed
+          in the <code>excludedPackages</code> parameter.
         </p>
         <p>
           Also node, that <code>excludedPackages</code> will not exclude classes, imported via wildcard
@@ -411,7 +416,8 @@ public class Foo {
           since the <code>a.b</code> added to the <code>excludedPackages</code>.
           The <code>baz</code> member will be counted,
           since the <code>a.b.c</code> was not added to the <code>excludedPackages</code>.
-          The <code>data</code> and <code>foo</code> members will be counted, as they are inside same file.
+          The <code>data</code> and <code>foo</code> members will be counted, as they are
+          inside same file.
         </p>
         <p>
           Example of usage:
@@ -507,10 +513,11 @@ public class Foo {
               </ul>
             </li>
             <li>
-              If a class was imported with direct import (i.e. <code>import java.math.BigDecimal</code>),
-              or the class was referenced with the package name (i.e. <code>java.math.BigDecimal value</code>)
-              and the package was added to the <code>excludedPackages</code> parameter,
-              the class does not increase complexity.
+              If a class was imported with direct import (i.e.
+              <code>import java.math.BigDecimal</code>), or the class was referenced with the
+              package name (i.e. <code>java.math.BigDecimal value</code>) and the package was
+              added to the <code>excludedPackages</code> parameter, the class does not increase
+              complexity.
             </li>
             <li>
               If a class name was added to the <code>excludedClasses</code> parameter,
@@ -600,8 +607,9 @@ public class Foo {
           </ul>
         </p>
         <p>
-          Note, that checkstyle will ignore all classes from the <code>java.lang</code> package and its subpackages,
-          even if the <code>java.lang</code> was not listed in the <code>excludedPackages</code> parameter.
+          Note, that checkstyle will ignore all classes from the <code>java.lang</code>
+          package and its subpackages, even if the <code>java.lang</code> was not listed in
+          the <code>excludedPackages</code> parameter.
         </p>
         <p>
           Also node, that <code>excludedPackages</code> will not exclude classes, imported via wildcard
@@ -642,7 +650,8 @@ public class Foo {
           since the <code>a.b</code> added to the <code>excludedPackages</code>.
           The <code>baz</code> member will be counted,
           since the <code>a.b.c</code> was not added to the <code>excludedPackages</code>.
-          The <code>data</code> and <code>foo</code> members will be counted, as they are inside same file.
+          The <code>data</code> and <code>foo</code> members will be counted, as they are
+          inside same file.
         </p>
         <p>
           Example of usage:
@@ -1060,7 +1069,8 @@ class SwitchExample {
         Some of the most effective methods of reducing the NPATH value include<br/>
         - distributing functionality,<br/>
         - implementing multiple if statements as a switch statement<br/>
-        - creating a separate function for logical expressions with a high count of and (&amp;&amp;) and or (||) operators.
+        - creating a separate function for logical expressions with a high count of
+          and (&amp;&amp;) and or (||) operators.
         </blockquote>
 
         <blockquote>

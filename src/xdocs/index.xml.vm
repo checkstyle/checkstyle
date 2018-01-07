@@ -203,14 +203,18 @@
                       <a href="https://github.com/bjrke/JSR305CheckstylePlugin">Project Page</a>
                   </td>
                   <td>
-                      Extension for Eclipse-CS plugin which ensures nullness annotations on methods and constructors (JSR305).
+                      Extension for Eclipse-CS plugin which ensures nullness annotations on methods
+                      and constructors (JSR305).
                   </td>
               </tr>
               <tr>
-                  <td><a href="https://bitbucket.org/atlassian/bamboo-checkstyle-plugin">Bamboo Checkstyle plug-in</a></td>
+                  <td><a href="https://bitbucket.org/atlassian/bamboo-checkstyle-plugin">
+                      Bamboo Checkstyle plug-in</a></td>
                   <td>Atlassian (formerly by Ross Rowe and Stephan Paulicke)</td>
-                  <td><a href="https://bitbucket.org/atlassian/bamboo-checkstyle-plugin">Bamboo Checkstyle plug-in Home Page</a></td>
-                  <td>An add-on that will parse and record CheckStyle reports and report your style violations over time.</td>
+                  <td><a href="https://bitbucket.org/atlassian/bamboo-checkstyle-plugin">
+                      Bamboo Checkstyle plug-in Home Page</a></td>
+                  <td>An add-on that will parse and record CheckStyle reports and report your style
+                      violations over time.</td>
               </tr>
               <tr>
                   <td>

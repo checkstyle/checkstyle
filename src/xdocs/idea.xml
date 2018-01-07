@@ -64,7 +64,8 @@
         To change formatter settings please go to File->Settings in menu.<br/>
         Then in the tree go to: Editor->Code Style->Java, open Import tab (follow numbers on a
         picture) and apply settings highlighted:<br/><br/>
-        <img alt="Organize Imports settings in IDEA" src="images/gui_screenshot_organize_imports_idea.jpg"/>
+        <img alt="Organize Imports settings in IDEA"
+          src="images/gui_screenshot_organize_imports_idea.jpg"/>
         <br/>
       </p>
     </section>
@@ -81,7 +82,8 @@
         To add custom scope copy file <code>config/intellij-idea-inspection-scope.xml</code>
         to <code>.idea/scopes</code> directory.
         Command from root of repo is
-        <code>mkdir -p .idea/scopes; cp config/intellij-idea-inspection-scope.xml .idea/scopes/</code><br/>
+        <code>mkdir -p .idea/scopes; cp config/intellij-idea-inspection-scope.xml
+        .idea/scopes/</code><br/>
         Now it should be ready to use in inspect code window:<br/><br/>
         <img alt="Scope for inspections" src="images/gui_screenshot_scope_idea.png"/>
       </p>
@@ -94,7 +96,8 @@
         checkstyle files. A simple solution to this problem is by using the key combinations
         <code>Ctrl + Shift + Alt + V</code> or <code>Edit | Paste Simple</code>. However it is
         recommended that this settings be changed by default as shown below
-        <img alt="Disable Auto Indent on Paste" src="images/gui_screenshot_disable_indent_paste_idea.png"/>
+        <img alt="Disable Auto Indent on Paste"
+          src="images/gui_screenshot_disable_indent_paste_idea.png"/>
       </p>
     </section>
 

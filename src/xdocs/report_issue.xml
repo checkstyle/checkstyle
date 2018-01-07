@@ -24,8 +24,9 @@
     <section name="Introduction">
 
       <p>
-        Hey, good to see you on this page. It means that you are considering reporting an issue to the Checkstyle
-        project. We welcome anything: bug reports, feature requests to existing functionality, new Check ideas, etc.
+        Hey, good to see you on this page. It means that you are considering reporting an
+        issue to the Checkstyle project. We welcome anything: bug reports, feature requests
+        to existing functionality, new Check ideas, etc.
       </p>
 
       <p>
@@ -39,7 +40,8 @@
       <p>
         First and foremost, do not think that your issue is obvious and do not need details.<br/>
         Even tiny issue need all details
-        (Check name, config with options, source file, Checkstyle version) and context to be shared with us.
+        (Check name, config with options, source file, Checkstyle version) and context to be
+        shared with us.
       </p>
 
       <p>
@@ -55,7 +57,8 @@
       </p>
 
       <p>
-        We need minimized but compilable Java file and minimized config with one Check that cause problem.<br/>
+        We need minimized but compilable Java file and minimized config with one Check
+        that cause problem.<br/>
         We do not need real source code. Any obfuscation of your super secret code is OK.<br/>
         Link to your source code would be awesome.
         Code has to be compilable, in other case behaviour could be strange.
@@ -111,7 +114,8 @@ Audit done.
       </p>
 
       <p>
-        Please provide detailed description of problem and chunks of code and config that you currently have.
+        Please provide detailed description of problem and chunks of code and config
+        that you currently have.
       </p>
 
       <p>
@@ -125,7 +129,8 @@ Audit done.
         Please provide detailed description of problem.
       </p>
       <p>
-        You have to provide examples of code and expected violations on them. The more examples the better.
+        You have to provide examples of code and expected violations on them.
+        The more examples the better.
       </p>
       <p>
         If you have open source project, please send a link to the whole java file.

@@ -128,9 +128,10 @@ public class MyClass {
       The only exceptions are HTML 4 tags whose end tag is optional (omittable) by HTML specification (example is <a href="https://www.w3.org/TR/html5/tabular-data.html#the-tr-element">TR</a>), so, Checkstyle won't show error about missing end tag, however, it leads to broken Tight-HTML structure and as a result
       leads to not-nested content of the HTML tags in Abstract Syntax Tree of the Javadoc comment.
       <br/>
-      In other words, if HTML tags are not closed Javadoc grammar cannot determine content of these tags,
-      so structure of the parse tree will not be nested like it is while using <a href="#Tight-HTML_rules">Tight-HTML</a> code.
-      It is done just to not fail on every Javadoc comment, because there are tons of using unclosed tags, etc.
+      In other words, if HTML tags are not closed Javadoc grammar cannot determine content
+      of these tags, so structure of the parse tree will not be nested like it is while using
+      <a href="#Tight-HTML_rules">Tight-HTML</a> code. It is done just to not fail on every
+      Javadoc comment, because there are tons of using unclosed tags, etc.
       </p>
       Other rules:
       <ul>

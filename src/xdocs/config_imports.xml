@@ -183,9 +183,8 @@
 
       <subsection name="Examples">
         <p>
-          An example of how to configure the check so that the <code>java.lang.System.out</code> member and all
-          members from <code>java.lang.Math</code> are
-          allowed:
+          An example of how to configure the check so that the <code>java.lang.System.out</code>
+          member and all members from <code>java.lang.Math</code> are allowed:
         </p>
 
         <source>
@@ -320,8 +319,8 @@ import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
         </source>
         <p>
-          Result: imports will be assigned to SPECIAL_IMPORTS, because matching substring length is 16. Matching
-          substring for STANDARD_JAVA_PACKAGE is 5.
+          Result: imports will be assigned to SPECIAL_IMPORTS, because matching
+          substring length is 16. Matching substring for STANDARD_JAVA_PACKAGE is 5.
         </p>
         <p>
           2. patterns STANDARD_JAVA_PACKAGE = "Check", SPECIAL_IMPORTS="Avoid" and file:
@@ -667,7 +666,8 @@ import android.*;
         </source>
 
         <p>
-          To configure the check so that it rejects packages <code>java.io.*</code> and <code>java.sql.*</code>:
+          To configure the check so that it rejects packages <code>java.io.*</code>
+          and <code>java.sql.*</code>:
         </p>
         <source>
 &lt;module name=&quot;IllegalImport&quot;&gt;
@@ -749,7 +749,8 @@ public class InputIllegalImport { }
         </source>
 
         <p>
-          To configure the check so that it rejects packages not satisfying to regular expression <code>java\.util</code>:
+          To configure the check so that it rejects packages not satisfying to regular
+          expression <code>java\.util</code>:
         </p>
         <source>
 &lt;module name=&quot;IllegalImport&quot;&gt;
@@ -799,7 +800,8 @@ public class InputIllegalImport { }
         <source>
 &lt;module name=&quot;IllegalImport&quot;&gt;
     &lt;property name=&quot;regexp&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;illegalClasses&quot; value=&quot;^java\.util\.(List|Arrays), ^java\.sql\.Connection&quot;/&gt;
+    &lt;property name=&quot;illegalClasses&quot;
+        value=&quot;^java\.util\.(List|Arrays), ^java\.sql\.Connection&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -1063,7 +1065,8 @@ public class InputIllegalImport { }
           <code>java.awt.Image</code> and <code>java.io.File</code> classes.
         </p>
         <source>
-&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot; strategyOnMismatch=&quot;allowed&quot;&gt;
+&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;
+        strategyOnMismatch=&quot;allowed&quot;&gt;
     &lt;disallow class=&quot;java.awt.Image&quot;/&gt;
     &lt;disallow class=&quot;java.io.File&quot;/&gt;
 &lt;/import-control&gt;
@@ -1077,7 +1080,8 @@ public class InputIllegalImport { }
           <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package.
         </p>
         <source>
-&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot; strategyOnMismatch=&quot;allowed&quot;&gt;
+&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;
+        strategyOnMismatch=&quot;allowed&quot;&gt;
     &lt;subpackage name=&quot;imports&quot; strategyOnMismatch=&quot;disallowed&quot;&gt;
         &lt;allow pkg=&quot;javax.swing&quot;/&gt;
         &lt;allow class=&quot;java.io.File&quot;/&gt;
@@ -1738,8 +1742,8 @@ public class InputEclipseStaticImportsOrder { }
           member variable.
         </p>
         <p>
-          For example, in the following case the import <code>java.awt.Component</code> will not be flagged as
-          unused:
+          For example, in the following case the import <code>java.awt.Component</code>
+          will not be flagged as unused:
         </p>
         <source>
 import java.awt.Component;

@@ -418,7 +418,8 @@ public boolean isSomething()
         </source>
 
         <p>
-          To configure the check for methods which are in <code>private</code> , but not in <code>protected</code> scope:
+          To configure the check for methods which are in <code>private</code>,
+          but not in <code>protected</code> scope:
         </p>
         <source>
 &lt;module name="JavadocMethod"&gt;
@@ -1835,8 +1836,8 @@ public class TestClass {
       <subsection name="Description">
         <p>Since Checkstyle 4.2</p>
         <p>
-         Requires user defined JavaDoc tag to be present in javadoc comment with defined format. To define the
-         format for a tag, set property tagFormat to a regular
+         Requires user defined JavaDoc tag to be present in javadoc comment with
+         defined format. To define the format for a tag, set property tagFormat to a regular
          expression. Property tagSeverity is used for severity of events when the tag exists.
         </p>
       </subsection>

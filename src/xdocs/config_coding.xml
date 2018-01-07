@@ -383,7 +383,8 @@ class Test {
         </ol>
 
         <p>
-          Purpose of <b>ignore*</b> option is to ignore related violations, however it still impacts on other class members.
+          Purpose of <b>ignore*</b> option is to ignore related violations,
+          however it still impacts on other class members.
         </p>
 
         <p>
@@ -797,9 +798,9 @@ String nullString = null;
         <p>
           Rationale: The contract of <code>equals()</code> and
           <code>hashCode()</code> requires that equal objects
-          have the same hashCode. Therefore, whenever you override <code>equals()</code> you must override <code>
-          hashCode()</code> to ensure that your class can be used in
-          hash-based collections.
+          have the same hashCode. Therefore, whenever you override
+          <code>equals()</code> you must override <code>hashCode()</code>
+          to ensure that your class can be used in hash-based collections.
         </p>
       </subsection>
 
@@ -2156,7 +2157,8 @@ class SomeClass
       <subsection name="Description">
         <p>Since Checkstyle 3.0</p>
         <p>
-          Checks for assignments in subexpressions, such as in <code>String s = Integer.toString(i = 2);</code>.
+          Checks for assignments in subexpressions, such as in
+          <code>String s = Integer.toString(i = 2);</code>.
         </p>
 
         <p>
@@ -2298,7 +2300,8 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
           </tr>
           <tr>
               <td>constantWaiverParentToken</td>
-              <td>Token that are allowed in the AST path from the number literal to the enclosing constant definition.</td>
+              <td>Token that are allowed in the AST path from the number literal to the
+                  enclosing constant definition.</td>
               <td>subset of tokens
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
               </td>
@@ -2582,7 +2585,8 @@ class MyClass {
       <subsection name="Description">
         <p>Since Checkstyle 3.5</p>
         <p>
-            Check for ensuring that for loop control variables are not modified inside the for block. An example is:
+            Check for ensuring that for loop control variables are not modified inside
+            the for block. An example is:
         </p>
         <source>
            for (int i = 0; i &lt; 1; i++) {

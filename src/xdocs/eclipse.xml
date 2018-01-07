@@ -88,20 +88,24 @@
       </p>
       <br/>
       <p>
-        Next, you need to put <i>.ci/org.eclipse.jdt.core.prefs</i> file to the <i>.settings/org.eclipse.jdt.core.prefs</i>
-        to setup Eclipse compiler.
+        Next, you need to put <i>.ci/org.eclipse.jdt.core.prefs</i> file to the
+        <i>.settings/org.eclipse.jdt.core.prefs</i> to setup Eclipse compiler.
       </p>
     </section>
 
     <section name="Organize Imports">
       <p>
         One of the Checkstyle checks we run on our own code require certain order of import
-        statements. Few changes in IDE settings are required to help your IDE do it automatically.<br/>
+        statements. Few changes in IDE settings are required to help your IDE do it
+        automatically.<br/>
         To change settings of "Organize Imports" feature (Kepler, Luna &amp; Mars, other versions
         are likely to work the same way), please go to Window -> Preferences in menu.<br/>
-        In Preferences window select Java->Code Style->Organize Imports (follow numbers on a picture).<br/>
-        Default configuration should look as following (you can also try Restore Defaults button):<br/><br/>
-        <img alt="Organize Imports settings in Eclipse" src="images/gui_screenshot_organize_imports_eclipse.png"/>
+        In Preferences window select Java->Code Style->Organize Imports (follow numbers on a
+        picture).<br/>
+        Default configuration should look as following (you can also try Restore Defaults
+        button):<br/><br/>
+        <img alt="Organize Imports settings in Eclipse"
+          src="images/gui_screenshot_organize_imports_eclipse.png"/>
         <br/>
       </p>
     </section>

@@ -549,7 +549,8 @@ public class ExampleClass {
         </source>
 
         <p>
-          To configure the check to allow no more than 10 public methods per type declaration, and 40 methods in total:
+          To configure the check to allow no more than 10 public methods per
+          type declaration, and 40 methods in total:
         </p>
         <source>
 &lt;module name="MethodCount"&gt;
@@ -906,7 +907,8 @@ public class ExampleClass {
               or @java.lang.Override annotation.
           </p>
           <p>
-              Rationale: developer may need to override method with many parameters from 3-rd party library.
+              Rationale: developer may need to override method with many parameters from
+              3-rd party library.
               In this case developer has no control over number of parameters.
           </p>
           <source>
