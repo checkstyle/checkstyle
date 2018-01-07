@@ -559,11 +559,123 @@ JAVADOC -> JAVADOC [0:0]
         </td>
       </tr>
     </table>
-    </section>
 
-    <section name="Boolean flag indicating the presence of unclosed HTML tags">
-      Not implemented yet, will be named "hasUnclosedTag". See <a href="https://github.com/checkstyle/checkstyle/issues/3311">Github Issue #3311</a>.
-      For expected behavior please read <a href="#Javadoc_parser_behavior_for_current_HTML_version_and_new_HTML_version">Javadoc parser behavior</a> section.
+    <p>
+        Checks can also be configured to log violation on encoutering non-tight HTML tags.
+        <tt>violateExecutionOnNonTightHtml</tt> property can be used for this purpose in the checks
+        that support it. A custom check needs to extend <tt>AbstractJavadocCheck</tt> for having
+        this functionality readily available. Do note that a check which has this property set to
+        true will log violation only for the first not-tight HTML tag found. To allow a check to
+        skip processing of javadocs with non-tight HTML, method
+        <tt>acceptJavadocWithNonTightHtml</tt> in class <tt>AbstractJavadocCheck</tt> can be
+        overridden in the check. The following example illustrates how to use this property.
+    </p>
+
+    <p>
+    Input:
+    </p>
+
+    <source><![CDATA[
+/**
+  * <body>
+  * <p> This class is only meant for testing. </p>
+  * <p> This p tag is not closed. It is non-tight. Will lead to violations if
+  * <tt>violateExecutionOnNonTightHtml</tt> is set to true for the check.
+  * <li>tight li tag <p>non-tight p tag, but only the 1st non-tight tag is logged in violation</li>
+  * </body>
+  */
+ public class Test {
+     /**
+      <p><p>
+      paraception. Will result in a violation from the <tt>JavadocParagraph</tt> check due to
+      redundant tags.
+      </p></p>
+      */
+     private int field1;
+
+     /**<tr> Zero </p> nesting despite `tr` is closed </tr>*/
+     private int field2;
+
+     /**
+      * <p> this paragraph is closed and would be nested in javadoc tree </p>
+      * <li> this list has an <p> unclosed para, but still the list would get nested </li>
+      */
+     private int field3;
+
+     /**
+      * <li> Complete <p> nesting </p> </li>
+      */
+     private int field4;
+}
+    ]]></source>
+
+    <p>
+        Output with <tt>violateExecutionOnNonTightHtml</tt> set to false:
+    </p>
+
+    <table>
+      <tr>
+        <td>
+          <source><![CDATA[
+<!DOCTYPE module PUBLIC
+          "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+          "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
+<module name="Checker">
+    <module name="TreeWalker">
+        <module name="JavadocParagraph">
+            <property name="violateExecutionOnNonTightHtml" value="false"/>
+        </module>
+    </module>
+</module>
+          ]]></source>
+        </td>
+
+        <td>
+          <source><![CDATA[
+Starting audit...
+[ERROR] Test.java:11: Redundant <p> tag. [JavadocParagraph]
+Audit done.
+Checkstyle ends with 1 errors.
+          ]]></source>
+        </td>
+      </tr>
+    </table>
+
+    <p>
+        Output with <tt>violateExecutionOnNonTightHtml</tt> set to true:
+    </p>
+
+    <table>
+      <tr>
+        <td>
+          <source><![CDATA[
+<!DOCTYPE module PUBLIC
+          "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+          "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
+<module name="Checker">
+    <module name="TreeWalker">
+        <module name="JavadocParagraph">
+            <property name="violateExecutionOnNonTightHtml" value="true"/>
+        </module>
+    </module>
+</module>
+          ]]></source>
+        </td>
+
+        <td>
+          <source><![CDATA[
+Starting audit...
+[ERROR] Test.java:4: Unclosed HTML tag found: p [JavadocParagraph]
+[ERROR] Test.java:11: Redundant <p> tag. [JavadocParagraph]
+[ERROR] Test.java:11: Unclosed HTML tag found: p [JavadocParagraph]
+[ERROR] Test.java:18: Unclosed HTML tag found: tr [JavadocParagraph]
+[ERROR] Test.java:23: Unclosed HTML tag found: p [JavadocParagraph]
+Audit done.
+Checkstyle ends with 5 errors.
+          ]]></source>
+        </td>
+      </tr>
+    </table>
     </section>
 
     <section name="Checkstyle SDK GUI">
