@@ -677,7 +677,6 @@ public class UserService {
           <li>HiddenFieldCheck</li>
           <li>IllegalCatchCheck</li>
           <li>IllegalThrowsCheck</li>
-          <li>JavadocMethodCheck</li>
           <li>JavadocVariableCheck</li>
           <li>ImportControlCheck</li>
           <li>LeftCurlyCheck</li>
