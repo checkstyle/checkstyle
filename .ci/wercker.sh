@@ -90,6 +90,8 @@ no-error-sevntu-checks)
   for i in 1 2 3 4 5; do git clone https://github.com/sevntu-checkstyle/sevntu.checkstyle && break || sleep 15; done
   cd sevntu.checkstyle/sevntu-checks
   mvn -e -Pno-validations verify  -Dcheckstyle.skip=false -Dcheckstyle.version=${CS_POM_VERSION} -Dcheckstyle.configLocation=../../config/checkstyle_checks.xml
+  cd ../../
+  rm -rf sevntu.checkstyle
   ;;
 
 no-exception-struts)
