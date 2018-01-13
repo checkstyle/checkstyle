@@ -1359,7 +1359,8 @@ import java.util.stream.IntStream;
             <td>separated</td>
             <td>
               whether imports groups should be separated by, at least, one
-              blank line or comment and aren't separated internally
+              blank line or comment and aren't separated internally.
+              (It doesn't affect separations for static imports.)
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
@@ -1498,8 +1499,8 @@ import java.util.stream.IntStream;
         </source>
 
         <p>
-          To configure the Check allows static imports grouped to the <b>top</b>
-          being sorted alphabetically:
+          To configure the Check allows static imports grouped to the <b>top</b> being sorted
+          alphabetically:
         </p>
 
         <source>
@@ -1537,6 +1538,7 @@ public class SomeClass { ... }
 
           According to this logic, HttpHeaders.Names should come after HttpHeaders.
         </p>
+        Example for <code>useContainerOrderingForStatic=true</code>
         <source>
 &lt;module name=&quot;ImportOrder&quot;&gt;
     &lt;property name=&quot;useContainerOrderingForStatic&quot; value=&quot;true&quot;/&gt;
@@ -1554,6 +1556,7 @@ import static io.netty.handler.codec.http.HttpHeaders.Names.DATE;
 
 public class InputEclipseStaticImportsOrder { }
         </source>
+        Example for <code>useContainerOrderingForStatic=false</code>
         <source>
 &lt;module name=&quot;ImportOrder&quot;&gt;
     &lt;property name=&quot;useContainerOrderingForStatic&quot; value=&quot;false&quot;/&gt;
