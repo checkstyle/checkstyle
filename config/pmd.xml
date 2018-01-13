@@ -135,7 +135,7 @@
     <properties>
       <!-- TreeWalker integrates Checkstyle and antlr and CheckstyleAntTask integrates Checkstyle
        with Ant. Checker collects external resource locations and setup configuration. -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='TreeWalker' or @Image='CheckstyleAntTask' or @Image='Checker' or @Image='Main']"/>
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='TreeWalker' or @Image='JavadocDetailNodeParser' or @Image='CheckstyleAntTask' or @Image='Checker' or @Image='Main']"/>
     </properties>
   </rule>
   <rule ref="rulesets/java/coupling.xml/CouplingBetweenObjects">
