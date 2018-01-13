@@ -146,10 +146,37 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "27:5: " + getCheckMessage(MSG_KEY, "java.util.List"),
             "28:13: " + getCheckMessage(MSG_KEY, "ArrayList"),
             "29:13: " + getCheckMessage(MSG_KEY, "Boolean"),
-            "30:13: " + getCheckMessage(MSG_KEY, "Boolean"),
-            "31:13: " + getCheckMessage(MSG_KEY, "Boolean"),
         };
         verify(checkConfig, getPath("InputIllegalTypeSameFileName.java"), expected);
+    }
+
+    @Test
+    public void testArrayTypes() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
+        checkConfig.addAttribute("illegalClassNames", "Boolean[], Boolean[][]");
+        final String[] expected = {
+            "6:12: " + getCheckMessage(MSG_KEY, "Boolean[]"),
+            "8:12: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
+            "10:12: " + getCheckMessage(MSG_KEY, "Boolean[]"),
+            "11:9: " + getCheckMessage(MSG_KEY, "Boolean[]"),
+            "15:12: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
+            "16:9: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
+        };
+        verify(checkConfig, getPath("InputIllegalTypeArrays.java"), expected);
+    }
+
+    @Test
+    public void testPlainAndArrayTypes() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
+        checkConfig.addAttribute("illegalClassNames", "Boolean, Boolean[][]");
+        final String[] expected = {
+            "6:12: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "10:12: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
+            "12:12: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "21:12: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
+            "22:9: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
+        };
+        verify(checkConfig, getPath("InputIllegalTypePlainAndArrays.java"), expected);
     }
 
     @Test

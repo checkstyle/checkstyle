@@ -30,7 +30,6 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
@@ -326,7 +325,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
      */
     private void checkClassName(DetailAST ast) {
         final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
-        final FullIdent ident = CheckUtils.createFullType(type);
+        final FullIdent ident = FullIdent.createFullIdent(type.getFirstChild());
 
         if (isMatchingClassName(ident.getText())) {
             log(ident.getLineNo(), ident.getColumnNo(),
