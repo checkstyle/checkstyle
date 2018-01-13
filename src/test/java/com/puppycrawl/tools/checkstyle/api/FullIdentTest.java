@@ -19,10 +19,21 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.io.File;
+import java.nio.charset.StandardCharsets;
+
 import org.junit.Assert;
 import org.junit.Test;
 
-public class FullIdentTest {
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+
+public class FullIdentTest extends AbstractModuleTestSupport {
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/api/fullident/";
+    }
 
     @Test
     public void testToString() {
@@ -46,6 +57,21 @@ public class FullIdentTest {
     public void testNonValidCoordinatesWithZero() {
         final FullIdent fullIdent = prepareFullIdentWithCoordinates(0, 0);
         Assert.assertEquals("Invalid full indent", "MyTest.MyTestik[15x14]", fullIdent.toString());
+    }
+
+    @Test
+    public void testWithArrayCreateFullIdentWithArrayDeclare() throws Exception {
+        final FileText testFileText = new FileText(
+                new File(getPath("InputFullIdentTestArrayType.java")).getAbsoluteFile(),
+                System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
+        final DetailAST packageDefinitionNode = JavaParser.parse(new FileContents(testFileText));
+        final DetailAST arrayDeclarator = packageDefinitionNode.getNextSibling()
+                .findFirstToken(TokenTypes.OBJBLOCK)
+                .findFirstToken(TokenTypes.VARIABLE_DEF)
+                .findFirstToken(TokenTypes.TYPE)
+                .getFirstChild();
+        final FullIdent ident = FullIdent.createFullIdent(arrayDeclarator);
+        Assert.assertEquals("Invalid full indent", "int[][][5x12]", ident.toString());
     }
 
     private static FullIdent prepareFullIdentWithCoordinates(int columnNo, int lineNo) {
