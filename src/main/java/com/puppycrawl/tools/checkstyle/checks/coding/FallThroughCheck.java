@@ -395,9 +395,7 @@ public class FallThroughCheck extends AbstractCheck {
         boolean matches = false;
 
         if (matcher.find()) {
-            // -1 because it returns the char position beyond the match
-            matches = getFileContents().hasIntersectionWithComment(lineNo, matcher.start(),
-                    lineNo, matcher.end() - 1);
+            matches = getFileContents().hasIntersectionWithComment(lineNo, matcher.start(), lineNo, matcher.end());
         }
         return matches;
     }
