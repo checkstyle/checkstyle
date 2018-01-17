@@ -2326,11 +2326,13 @@
                 <param>com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser</param>
                 <param>com.puppycrawl.tools.checkstyle.DetailNodeTreeStringPrinter</param>
                 <param>com.puppycrawl.tools.checkstyle.AstTreeStringPrinter</param>
+                <param>com.puppycrawl.tools.checkstyle.SuppressionsStringPrinter</param>
                 <param>com.puppycrawl.tools.checkstyle.TreeWalker</param>
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.DetailNodeTreeStringPrinterTest</param>
                 <param>com.puppycrawl.tools.checkstyle.AstTreeStringPrinterTest</param>
+                <param>com.puppycrawl.tools.checkstyle.SuppressionsStringPrinterTest</param>
                 <param>com.puppycrawl.tools.checkstyle.TreeWalkerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheckTest</param>

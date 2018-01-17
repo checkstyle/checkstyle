@@ -91,10 +91,20 @@ public class MainTest {
         + " -J,--treeWithJavadoc                    Print full Abstract Syntax Tree of the file%n"
         + " -o <arg>                                Sets the output file. Defaults to stdout%n"
         + " -p <arg>                                Loads the properties file%n"
+        + " -s <arg>                                Print xpath suppressions at the file's line "
+        + "and column%n"
+        + "                                         position. Argument is the line and column "
+        + "number (separated%n"
+        + "                                         by a : ) in the file that the suppression "
+        + "should be%n"
+        + "                                         generated for%n"
         + " -t,--tree                               Print Abstract Syntax Tree(AST) of the file%n"
         + " -T,--treeWithComments                   Print Abstract Syntax Tree(AST) of the file"
         + " including%n"
         + "                                         comments%n"
+        + " -tabWidth <arg>                         Sets the length of the tab character. "
+        + "Used only with \"-s\"%n"
+        + "                                         option. Default value is 8%n"
         + " -v                                      Print product version and exit%n"
         + " -W,--tree-walker-threads-number <arg>   (experimental) The number of TreeWalker threads"
         + " (must be%n"
@@ -773,6 +783,108 @@ public class MainTest {
     }
 
     @Test
+    public void testPrintSuppressionOption() throws Exception {
+        final String expected = "/CLASS_DEF[@text='InputMainSuppressionsStringPrinter']" + EOL
+                + "/CLASS_DEF[@text='InputMainSuppressionsStringPrinter']/MODIFIERS" + EOL
+                + "/CLASS_DEF[@text='InputMainSuppressionsStringPrinter']/LITERAL_CLASS" + EOL;
+
+        exit.checkAssertionAfterwards(() -> {
+            assertEquals("Unexpected output log",
+                    expected, systemOut.getLog());
+            assertEquals("Unexpected system error log",
+                    "", systemErr.getLog());
+        });
+        Main.main(getPath("InputMainSuppressionsStringPrinter.java"),
+                "-s", "3:1");
+    }
+
+    @Test
+    public void testPrintSuppressionAndTabWidthOption() throws Exception {
+        final String expected = "/CLASS_DEF[@text='InputMainSuppressionsStringPrinter']/OBJBLOCK"
+                + "/METHOD_DEF[@text='getName']/SLIST/VARIABLE_DEF[@text='var']" + EOL
+                + "/CLASS_DEF[@text='InputMainSuppressionsStringPrinter']/OBJBLOCK"
+                + "/METHOD_DEF[@text='getName']/SLIST/VARIABLE_DEF[@text='var']/MODIFIERS" + EOL
+                + "/CLASS_DEF[@text='InputMainSuppressionsStringPrinter']/OBJBLOCK"
+                + "/METHOD_DEF[@text='getName']/SLIST/VARIABLE_DEF[@text='var']/TYPE" + EOL
+                + "/CLASS_DEF[@text='InputMainSuppressionsStringPrinter']/OBJBLOCK"
+                + "/METHOD_DEF[@text='getName']/SLIST/VARIABLE_DEF[@text='var']/TYPE/LITERAL_INT"
+                + EOL;
+
+        exit.checkAssertionAfterwards(() -> {
+            assertEquals("Unexpected output log",
+                    expected, systemOut.getLog());
+            assertEquals("Unexpected system error log",
+                    "", systemErr.getLog());
+        });
+        Main.main(getPath("InputMainSuppressionsStringPrinter.java"),
+                "-s", "7:9", "-tabWidth", "2");
+    }
+
+    @Test
+    public void testPrintSuppressionConflictingOptionsTvsC() throws Exception {
+        exit.expectSystemExitWithStatus(-1);
+        exit.checkAssertionAfterwards(() -> {
+            assertEquals("Unexpected output log", "Option '-s' cannot be used with other options."
+                    + System.lineSeparator(), systemOut.getLog());
+            assertEquals("Unexpected system error log", "", systemErr.getLog());
+        });
+
+        Main.main("-c", "/google_checks.xml",
+                getPath(""), "-s", "2:4");
+    }
+
+    @Test
+    public void testPrintSuppressionConflictingOptionsTvsP() throws Exception {
+        exit.expectSystemExitWithStatus(-1);
+        exit.checkAssertionAfterwards(() -> {
+            assertEquals("Unexpected output log", "Option '-s' cannot be used with other options."
+                    + System.lineSeparator(), systemOut.getLog());
+            assertEquals("Unexpected system error log", "", systemErr.getLog());
+        });
+
+        Main.main("-p", getPath("InputMainMycheckstyle.properties"), "-s", "2:4", getPath(""));
+    }
+
+    @Test
+    public void testPrintSuppressionConflictingOptionsTvsF() throws Exception {
+        exit.expectSystemExitWithStatus(-1);
+        exit.checkAssertionAfterwards(() -> {
+            assertEquals("Unexpected output log", "Option '-s' cannot be used with other options."
+                    + System.lineSeparator(), systemOut.getLog());
+            assertEquals("Unexpected system error log", "", systemErr.getLog());
+        });
+
+        Main.main("-f", "plain", "-s", "2:4", getPath(""));
+    }
+
+    @Test
+    public void testPrintSuppressionConflictingOptionsTvsO() throws Exception {
+        final File file = temporaryFolder.newFile("file.output");
+
+        exit.expectSystemExitWithStatus(-1);
+        exit.checkAssertionAfterwards(() -> {
+            assertEquals("Unexpected output log", "Option '-s' cannot be used with other options."
+                    + System.lineSeparator(), systemOut.getLog());
+            assertEquals("Unexpected system error log", "", systemErr.getLog());
+        });
+
+        Main.main("-o", file.getCanonicalPath(), "-s", "2:4", getPath(""));
+    }
+
+    @Test
+    public void testPrintSuppressionOnMoreThanOneFile() throws Exception {
+        exit.expectSystemExitWithStatus(-1);
+        exit.checkAssertionAfterwards(() -> {
+            assertEquals("Unexpected output log", "Printing xpath suppressions is allowed for "
+                    + "only one file."
+                    + System.lineSeparator(), systemOut.getLog());
+            assertEquals("Unexpected system error log", "", systemErr.getLog());
+        });
+
+        Main.main("-s", "2:4", getPath(""), getPath(""));
+    }
+
+    @Test
     public void testPrintFullTreeOption() throws Exception {
         final String expected = new String(Files.readAllBytes(Paths.get(
             getPath("InputMainExpectedInputAstTreeStringPrinterJavadoc.txt"))),
@@ -820,6 +932,20 @@ public class MainTest {
         });
 
         Main.main("-f", "plain", "-t", getPath(""));
+    }
+
+    @Test
+    public void testConflictingOptionsTvsS() throws Exception {
+        final File file = temporaryFolder.newFile("file.output");
+
+        exit.expectSystemExitWithStatus(-1);
+        exit.checkAssertionAfterwards(() -> {
+            assertEquals("Unexpected output log", "Option '-t' cannot be used with other options."
+                    + System.lineSeparator(), systemOut.getLog());
+            assertEquals("Unexpected system error log", "", systemErr.getLog());
+        });
+
+        Main.main("-s", file.getCanonicalPath(), "-t", getPath(""));
     }
 
     @Test

@@ -45,6 +45,7 @@
   <allow class="java.lang.annotation.Retention" local-only="true"/>
   <allow class="java.lang.annotation.RetentionPolicy" local-only="true"/>
   <allow class="java.lang.annotation.Target" local-only="true"/>
+  <allow class="com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator" local-only="true"/>
   <allow class="com.puppycrawl.tools.checkstyle.FileStatefulCheck"/>
   <allow class="com.puppycrawl.tools.checkstyle.StatelessCheck"/>
 

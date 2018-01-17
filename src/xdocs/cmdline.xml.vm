@@ -38,6 +38,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
      com.puppycrawl.tools.checkstyle.Main \
      -c &lt;configurationFile&gt; \
      [-f &lt;format&gt;] [-p &lt;propertiesFile&gt;] [-o &lt;file&gt;] \
+     [-s &lt;line:column&gt;] [-tabWidth &lt;length&gt;] \
      [-t | --tree] [-T | --treeWithComments] [-J | treeWithJavadoc] [-j | --javadocTree] [-v] \
      file...
       </source>
@@ -74,20 +75,30 @@ java -D&lt;property&gt;=&lt;value&gt;  \
           to.
         </li>
         <li>
+          <code>-s line:column</code> - print xpath suppressions at the file's line and column
+          position. Line and column numbers are integer values separated by a :, specify
+          location in the file the suppression should be generated for. The option cannot be used
+          with other options and requires exactly one file to run on to be specified.
+        </li>
+        <li>
+          <code>-tabWidth length</code> - set the length of the tab character. Used only with
+          <code>-s</code> option. Default value is 8.
+        </li>
+        <li>
           <code>-t, --tree</code> - print Abstract Syntax Tree(AST) of the checked file. The option
           cannot be used other options and requires exactly one file to run on to be specified.
         </li>
         <li>
           <code>-T, --treeWithComments</code> - print Abstract Syntax Tree(AST) with comment nodes
-          of the checked file. The option cannot be used other options and requires exactly one
-          file to run on to be specified.
+          of the checked file. The option cannot be used with other options and requires exactly
+          one file to run on to be specified.
         </li>
         <li>
           <code>-J, --treeWithJavadoc</code> - print Abstract Syntax Tree(AST) with Javadoc nodes
           and comment nodes of the checked file. Attention that line number and columns will not be
           the same as it is a file due to the fact that each javadoc comment is parsed separately
-          from java file. The option cannot be used other options and requires exactly one file to
-          run on to be specified.
+          from java file. The option cannot be used with other options and requires exactly one
+          file to run on to be specified.
         </li>
         <li>
           <code>-j, --javadocTree</code> - print Parse Tree of the Javadoc comment.
