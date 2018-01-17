@@ -307,7 +307,7 @@ public class ImportOrderCheck
      * by at least one blank line.
      *
      * @param separated
-     *            whether groups should be separated by oen blank line.
+     *            whether groups should be separated by one blank line.
      */
     public void setSeparated(boolean separated) {
         this.separated = separated;
