@@ -46,7 +46,7 @@ public class MethodParamPadCheckTest
     public void testGetRequiredTokens() {
         final MethodParamPadCheck checkObj = new MethodParamPadCheck();
         assertArrayEquals(
-            "MethodParamPadCheck#getRequiredTockens should return empty array by default",
+            "MethodParamPadCheck#getRequiredTokens should return empty array by default",
             CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 

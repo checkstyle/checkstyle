@@ -47,7 +47,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
     public void testGetAcceptableTokens() {
         final SingleSpaceSeparatorCheck check = new SingleSpaceSeparatorCheck();
 
-        assertArrayEquals("Invalid acceptable tockens",
+        assertArrayEquals("Invalid acceptable tokens",
             CommonUtils.EMPTY_INT_ARRAY, check.getAcceptableTokens());
     }
 

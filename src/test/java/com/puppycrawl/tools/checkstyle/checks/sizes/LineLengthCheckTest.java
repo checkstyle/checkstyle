@@ -39,7 +39,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     public void testGetRequiredTokens() {
         final LineLengthCheck checkObj = new LineLengthCheck();
         assertArrayEquals(
-            "LineLengthCheck#getRequiredTockens should return empty array by default",
+            "LineLengthCheck#getRequiredTokens should return empty array by default",
             CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
@@ -47,7 +47,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     public void testGetAcceptableTokens() {
         final LineLengthCheck checkObj = new LineLengthCheck();
         assertArrayEquals(
-            "LineLengthCheck#getAcceptableTockens should return empty array by default",
+            "LineLengthCheck#getAcceptabletokens should return empty array by default",
             CommonUtils.EMPTY_INT_ARRAY, checkObj.getAcceptableTokens());
     }
 

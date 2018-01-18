@@ -42,7 +42,7 @@ public class LocalFinalVariableNameCheckTest
         final LocalFinalVariableNameCheck checkObj =
             new LocalFinalVariableNameCheck();
         assertArrayEquals(
-            "LocalFinalVariableNameCheck#getRequiredTockens should return empty array by default",
+            "LocalFinalVariableNameCheck#getRequiredTokens should return empty array by default",
             CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 

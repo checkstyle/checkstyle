@@ -41,7 +41,7 @@ public class ParameterNumberCheckTest
     public void testGetRequiredTokens() {
         final ParameterNumberCheck checkObj = new ParameterNumberCheck();
         assertArrayEquals(
-            "ParameterNumberCheck#getRequiredTockens should return empty array by default",
+            "ParameterNumberCheck#getRequiredTokens should return empty array by default",
             CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 

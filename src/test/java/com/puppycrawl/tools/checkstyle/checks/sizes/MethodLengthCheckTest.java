@@ -40,7 +40,7 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
     public void testGetRequiredTokens() {
         final MethodLengthCheck checkObj = new MethodLengthCheck();
         assertArrayEquals(
-            "MethodLengthCheck#getRequiredTockens should return empty array by default",
+            "MethodLengthCheck#getRequiredTokens should return empty array by default",
             CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
