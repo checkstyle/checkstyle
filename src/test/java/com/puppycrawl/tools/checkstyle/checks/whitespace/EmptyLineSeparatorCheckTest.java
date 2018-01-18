@@ -44,7 +44,7 @@ public class EmptyLineSeparatorCheckTest
     public void testGetRequiredTokens() {
         final EmptyLineSeparatorCheck checkObj = new EmptyLineSeparatorCheck();
         assertArrayEquals(
-            "EmptyLineSeparatorCheck#getRequiredTockens should return empty array by default",
+            "EmptyLineSeparatorCheck#getRequiredTokens should return empty array by default",
             CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 

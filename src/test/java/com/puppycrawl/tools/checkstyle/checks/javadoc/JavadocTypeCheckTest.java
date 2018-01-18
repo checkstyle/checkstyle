@@ -45,7 +45,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testGetRequiredTokens() {
         final JavadocTypeCheck javadocTypeCheck = new JavadocTypeCheck();
         assertArrayEquals(
-            "JavadocTypeCheck#getRequiredTockens should return empty array by default",
+            "JavadocTypeCheck#getRequiredTokens should return empty array by default",
             CommonUtils.EMPTY_INT_ARRAY, javadocTypeCheck.getRequiredTokens());
     }
 

@@ -41,7 +41,7 @@ public class WhitespaceAfterCheckTest
     public void testGetRequiredTokens() {
         final WhitespaceAfterCheck checkObj = new WhitespaceAfterCheck();
         assertArrayEquals(
-            "WhitespaceAfterCheck#getRequiredTockens should return empty array by default",
+            "WhitespaceAfterCheck#getRequiredTokens should return empty array by default",
             CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
