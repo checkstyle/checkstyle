@@ -1434,6 +1434,8 @@
             <excludedLink>https://www.bountysource.com/teams/checkstyle/issues</excludedLink>
             <!--  javax.net.ssl.SSLHandshakeException : Received fatal alert: handshake_failure -->
             <excludedLink>https://eclipse.org</excludedLink>
+            <!-- avax.net.ssl.SSLHandshakeException : Received fatal alert: handshake_failure -->
+            <excludedLink>https://plugins.jetbrains.com/plugin/4594-qaplug</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
