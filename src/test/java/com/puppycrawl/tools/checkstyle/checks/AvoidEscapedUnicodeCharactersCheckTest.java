@@ -22,9 +22,12 @@ package com.puppycrawl.tools.checkstyle.checks;
 import static com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
@@ -34,6 +37,7 @@ import org.powermock.reflect.Whitebox;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSupport {
 
@@ -376,6 +380,58 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
         final int actual = (int) countMatches.invoke(check,
                 Pattern.compile("\\\\u[a-fA-F0-9]{4}"), "\\u1234");
         assertEquals("Unexpected matches count", 1, actual);
+    }
+
+    /**
+     * Testing, that all elements in the constant NON_PRINTABLE_CHARS are sorted.
+     * This is very convenient for the sake of maintainability.
+     *
+     * @throws Exception when code tested throws some exception
+     */
+    @Test
+    public void testNonPrintableCharsAreSorted() throws Exception {
+        // Getting Field Value via Reflection, becaues the field is private
+        final Field field = TestUtil.getClassDeclaredField(
+                AvoidEscapedUnicodeCharactersCheck.class, "NON_PRINTABLE_CHARS");
+        field.setAccessible(true);
+        String expression = ((Pattern) field.get(null)).pattern();
+
+        // Replacing expressions like "\\u000[bB]" with "\\u000B"
+        final String[] charExpressions = {"Aa", "Bb", "Cc", "Dd", "Ee", "Ff"};
+        for (String charExpression : charExpressions) {
+            final String regex = "\\[[" + charExpression + "]{2}]";
+            expression = expression.replaceAll(regex, charExpression.substring(0, 1));
+        }
+
+        // Replacing duplications like "\\uF{3}9" with "\\uFFF9"
+        for (int i = 4; i > 1; i--) {
+            final String regex = "([A-F])\\{" + i + "}";
+            String replacement = "$1$1{" + (i - 1) + "}";
+            if (i == 2) {
+                replacement = "$1$1";
+            }
+            expression = expression.replaceAll(regex, replacement);
+        }
+
+        // Verifying character order
+        final String[] expressionParts = expression.split("\\|");
+        final Pattern unicodeCharPattern = Pattern.compile("^\\\\\\\\u[0-9A-F]{4}$");
+        String lastChar = null;
+        for (int i = 0; i < expressionParts.length; i++) {
+            final String currentChar = expressionParts[i];
+            final Matcher matcher = unicodeCharPattern.matcher(currentChar);
+            if (!matcher.matches()) {
+                final String message = "Character '" + currentChar + "' (at position " + i
+                        + ") doesn't match the pattern";
+                assertTrue(message, matcher.matches());
+            }
+            if (lastChar != null) {
+                final String message = "Character '" + lastChar + "' should be after '"
+                        + currentChar + "', position: " + i;
+                assertTrue(message, lastChar.compareTo(currentChar) < 0);
+            }
+            lastChar = currentChar;
+        }
     }
 
     private static boolean isControlCharacter(final int character) {
