@@ -3,6 +3,7 @@ version: '{build}'
 skip_tags: true
 skip_commits:
   files:
+    - .ci/
     - .github/
     - travis.yml
     - circle.yml
@@ -16,6 +17,7 @@ skip_commits:
     - shippable.yml
     - wercker.yml
     - wercker.sh
+
 clone_depth: 10
 branches:
   only:
@@ -39,22 +41,16 @@ install:
   - cmd: git config --global core.autocrlf
   - cmd: mvn --version
   - cmd: java -version
-  - cmd: '%CYG_BIN% -qnNdO -R %CYG_ROOT% -s %CYG_MIRROR% -l %CYG_CACHE% -P hg'
 
 cache:
   - C:\maven\apache-maven-3.2.5
   - C:\Users\appveyor\.m2
-  - C:\cygwin\var\cache\setup
 
 matrix:
   fast_finish: true
 
 environment:
   global:
-    CYG_BIN: C:\cygwin\setup-x86.exe
-    CYG_ROOT: C:\cygwin
-    CYG_CACHE: C:\cygwin\var\cache\setup
-    CYG_MIRROR: http://cygwin.mirror.constant.com
     CMD1: " "
     CMD2: " "
     CMD3: " "
