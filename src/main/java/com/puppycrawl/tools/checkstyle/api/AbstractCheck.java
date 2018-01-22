@@ -293,6 +293,8 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
             new LocalizedMessage(
                 lineNo,
                 col,
+                colNo,
+                0,
                 getMessageBundle(),
                 key,
                 args,
