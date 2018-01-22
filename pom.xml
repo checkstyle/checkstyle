@@ -182,10 +182,6 @@
     </mailingList>
   </mailingLists>
 
-  <prerequisites>
-    <maven>3.0.1</maven>
-  </prerequisites>
-
   <scm>
     <connection>scm:git:git@github.com:checkstyle/checkstyle.git</connection>
     <developerConnection>scm:git:git@github.com:checkstyle/checkstyle.git</developerConnection>
@@ -778,6 +774,9 @@
                 <requireJavaVersion>
                   <version>1.6</version>
                 </requireJavaVersion>
+                <requireMavenVersion>
+                  <version>3.0.1</version>
+                </requireMavenVersion>
                 <!-- we can not use this as it require
                 compilation on 1.6 only, due to dependency to 'tools'
                 <enforceBytecodeVersion>
