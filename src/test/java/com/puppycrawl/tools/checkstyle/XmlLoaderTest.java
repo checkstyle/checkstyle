@@ -33,12 +33,14 @@ import org.powermock.reflect.Whitebox;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
-import com.sun.org.apache.xerces.internal.impl.Constants;
-
 public class XmlLoaderTest {
 
-    private static final String NAMESPACES_FEATURE =
-            Constants.SAX_FEATURE_PREFIX + Constants.NAMESPACES_FEATURE;
+    /**
+     * Copied from Constant. Watch section "sax features".
+     *
+     * @see com.sun.org.apache.xerces.internal.impl.Constants
+     */
+    private static final String NAMESPACES_FEATURE = "http://xml.org/sax/features/namespaces";
 
     @Test
     public void testParserConfiguredSuccessfully() throws Exception {
