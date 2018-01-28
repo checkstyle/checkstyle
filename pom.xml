@@ -22,7 +22,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>8.8-SNAPSHOT</version>
+  <version>8.8</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
