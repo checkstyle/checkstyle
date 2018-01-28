@@ -16,6 +16,69 @@
   <body>
     <!-- placeholder for a new section -->
 
+    <section name="Release 8.8">
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Split TreeWalker to TreeWalker and JavaParser. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5436">#5436</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            DesignForExtension: method javadoc is recognized if no modifier in on method. Author: Roman_Zhigunov <a href="https://github.com/checkstyle/checkstyle/issues/5255">#5255</a>
+          </li>
+          <li>
+            XmlLogger sanitizes exception tags when it shouldn't be. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5419">#5419</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            spelling: Fix German translation of 'tag'. Author: Michael Keppler
+          </li>
+          <li>
+            Fix violations in local IntelliJ 2017.3. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5409">#5409</a>
+          </li>
+          <li>
+            Resolve warning during build about prerequisites tag. Author: Andrey Mosin <a href="https://github.com/checkstyle/checkstyle/issues/5377">#5377</a>
+          </li>
+          <li>
+            JavadocMethod: "Expected an @return tag." sounds not right. Author: Varun Upadhyay <a href="https://github.com/checkstyle/checkstyle/issues/5463">#5463</a>
+          </li>
+          <li>
+            Appveyor CI build failure: Unable to get setup from cygwin.mirror.constant.com. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5474">#5474</a>
+          </li>
+          <li>
+            spelling: improve french translation. Author: Jajawah
+          </li>
+          <li>
+            spelling: fix typo in tests. Author: Pavel Bludov
+          </li>
+          <li>
+            spelling: Fix typo. Author: Tino Desjardins
+          </li>
+          <li>
+            format xdoc files to follow rule of LineLength (max ia 100) . Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5291">#5291</a>
+          </li>
+          <li>
+            Incorrect documentation for SuppressionXpathFilter. Author: Timur Tibeyev <a href="https://github.com/checkstyle/checkstyle/issues/5400">#5400</a>
+          </li>
+          <li>
+            Reorganize token methods of all Checks. Author: Subbu Dantu <a href="https://github.com/checkstyle/checkstyle/issues/4581">#4581</a>
+          </li>
+          <li>
+            TokenTypes documentation contains double encoded symbols. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5423">#5423</a>
+          </li>
+          <li>
+            Incorrect documentation for SingleSpaceSeparator. Author: Jun Lin <a href="https://github.com/checkstyle/checkstyle/issues/5401">#5401</a>
+          </li>
+          <li>
+            XDoc Config: create unit test to verify property types and default values for Strings. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3254">#3254</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 8.7">
       <p>Breaking backward compatibility:</p>
         <ul>
