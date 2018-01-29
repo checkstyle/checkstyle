@@ -57,7 +57,7 @@ no-error-hibernate-search)
   echo CS_version: ${CS_POM_VERSION}
   for i in 1 2 3 4 5; do git clone https://github.com/hibernate/hibernate-search.git && break || sleep 15; done
   cd hibernate-search
-  mvn -e clean install -DskipTests=true -Dtest.elasticsearch.host.provided=true -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION}
+  mvn -e clean install -DskipTests=true -Dtest.elasticsearch.host.provided=true -Dcheckstyle.skip=true -Dforbiddenapis.skip=true -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION}
   mvn -e checkstyle:check  -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION}
   cd ../
   rm -rf hibernate-search
