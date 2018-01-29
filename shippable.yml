@@ -6,29 +6,29 @@ jdk:
 
 env:
   matrix:
-    - PROFILE="-Ppitest-checkstyle-xpath,no-validations"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checkstyle-filters,no-validations"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checks-javadoc,no-validations"
-    - PROFILE="-Ppitest-checks-imports,no-validations"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checks-metrics,no-validations"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checks-regexp,no-validations"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checks-sizes,no-validations"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checks-whitespace,no-validations"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checks-misc,no-validations"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checks-blocks,no-validations"; POST_ACTION=check_survived_blocks
-    - PROFILE="-Ppitest-checks-coding,no-validations"; POST_ACTION=check_survived_coding
-    - PROFILE="-Ppitest-checks-design,no-validations"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checks-annotation,no-validations"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checks-header,no-validations"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checks-modifier,no-validations"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checks-naming,no-validations"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checks-indentation,no-validations"
-    - PROFILE="-Ppitest-checkstyle-tree-walker,no-validations"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checkstyle-common,no-validations"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checkstyle-main,no-validations"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checkstyle-api,no-validations"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checkstyle-utils,no-validations"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checkstyle-gui,no-validations"
+    - PROFILE="-Ppitest-checkstyle-xpath"; POST_ACTION=check_survived_uncovered
+    - PROFILE="-Ppitest-checkstyle-filters"; POST_ACTION=check_survived_uncovered
+    - PROFILE="-Ppitest-checks-javadoc"
+    - PROFILE="-Ppitest-checks-imports"; POST_ACTION=check_survived_uncovered
+    - PROFILE="-Ppitest-checks-metrics"; POST_ACTION=check_survived_uncovered
+    - PROFILE="-Ppitest-checks-regexp"; POST_ACTION=check_survived_uncovered
+    - PROFILE="-Ppitest-checks-sizes"; POST_ACTION=check_survived_uncovered
+    - PROFILE="-Ppitest-checks-whitespace"; POST_ACTION=check_survived
+    - PROFILE="-Ppitest-checks-misc"; POST_ACTION=check_survived_uncovered
+    - PROFILE="-Ppitest-checks-blocks"; POST_ACTION=check_survived_blocks
+    - PROFILE="-Ppitest-checks-coding"; POST_ACTION=check_survived_coding
+    - PROFILE="-Ppitest-checks-design"; POST_ACTION=check_survived_uncovered
+    - PROFILE="-Ppitest-checks-annotation"; POST_ACTION=check_survived_uncovered
+    - PROFILE="-Ppitest-checks-header"; POST_ACTION=check_survived_uncovered
+    - PROFILE="-Ppitest-checks-modifier"; POST_ACTION=check_survived_uncovered
+    - PROFILE="-Ppitest-checks-naming"; POST_ACTION=check_survived_uncovered
+    - PROFILE="-Ppitest-checks-indentation"
+    - PROFILE="-Ppitest-checkstyle-tree-walker"; POST_ACTION=check_survived_uncovered
+    - PROFILE="-Ppitest-checkstyle-common"; POST_ACTION=check_survived
+    - PROFILE="-Ppitest-checkstyle-main"; POST_ACTION=check_survived_uncovered
+    - PROFILE="-Ppitest-checkstyle-api"; POST_ACTION=check_survived
+    - PROFILE="-Ppitest-checkstyle-utils"; POST_ACTION=check_survived
+    - PROFILE="-Ppitest-checkstyle-gui"
 
 branches:
   only:
@@ -49,7 +49,7 @@ build:
       echo "POST_ACTION="$POST_ACTION
       if [[ $SKIP_CI == 'false' ]];
       then
-        mvn -e $PROFILE clean verify org.pitest:pitest-maven:mutationCoverage;
+        mvn -e $PROFILE clean test org.pitest:pitest-maven:mutationCoverage;
 
         if [[ $POST_ACTION == 'check_survived_uncovered' \
                 && ( $(grep -RE "class='survived'" target/ | cat | wc -l) > 0 \
