@@ -143,24 +143,24 @@
         </p>
         <p> The statement. </p>
         <source>
-          // This code is copyrighted
+// This code is copyrighted
         </source>
         <p> The check. </p>
         <source>
-          &lt;module name="Regexp"&gt;
-          &lt;property name="format" value="// This code is copyrighted"/&gt;
-          &lt;/module&gt;
+&lt;module name="Regexp"&gt;
+  &lt;property name="format" value="// This code is copyrighted"/&gt;
+&lt;/module&gt;
         </source>
         <p> Your statement may be multiline. </p>
         <source>
-          // This code is copyrighted
-          // (c) MyCompany
+// This code is copyrighted
+// (c) MyCompany
         </source>
         <p> Then the check would be. </p>
         <source>
-          &lt;module name="Regexp"&gt;
-          &lt;property name="format" value="// This code is copyrighted\n// \(c\) MyCompany"/&gt;
-          &lt;/module&gt;
+&lt;module name="Regexp"&gt;
+  &lt;property name="format" value="// This code is copyrighted\n// \(c\) MyCompany"/&gt;
+&lt;/module&gt;
         </source>
         <p><b>Note:</b> To search for parentheses () in a regular expression
           you must escape them like \(\). This is required by the regexp engine,
@@ -170,19 +170,19 @@
           And to make sure it appears only once:
         </p>
         <source>
-          &lt;module name="Regexp"&gt;
-          &lt;property name="format" value="// This code is copyrighted\n// \(c\) MyCompany"/&gt;
-          &lt;property name=&quot;duplicateLimit&quot; value=&quot;0&quot;/&gt;
-          &lt;/module&gt;
+&lt;module name="Regexp"&gt;
+  &lt;property name="format" value="// This code is copyrighted\n// \(c\) MyCompany"/&gt;
+  &lt;property name=&quot;duplicateLimit&quot; value=&quot;0&quot;/&gt;
+&lt;/module&gt;
         </source>
         <p>
           It can also be useful to attach a meaningful message to the check:
         </p>
         <source>
-          &lt;module name="Regexp"&gt;
-          &lt;property name="format" value="// This code is copyrighted\n// \(c\) MyCompany"/&gt;
-          &lt;property name=&quot;message&quot; value=&quot;Copyright&quot;/&gt;
-          &lt;/module&gt;
+&lt;module name="Regexp"&gt;
+  &lt;property name="format" value="// This code is copyrighted\n// \(c\) MyCompany"/&gt;
+  &lt;property name=&quot;message&quot; value=&quot;Copyright&quot;/&gt;
+&lt;/module&gt;
         </source>
         <p>
           <b>To use like illegal regexp check:</b>
@@ -192,42 +192,42 @@
           calls to <code>System.out.println</code>:
         </p>
         <source>
-          &lt;module name=&quot;Regexp&quot;&gt;
-          &lt;!-- . matches any character, so we need to escape it and use \. to match dots. --&gt;
-          &lt;property name="format" value="System\.out\.println"/&gt;
-          &lt;property name="illegalPattern" value="true"/&gt;
-          &lt;/module&gt;
+&lt;module name=&quot;Regexp&quot;&gt;
+  &lt;!-- . matches any character, so we need to escape it and use \. to match dots. --&gt;
+  &lt;property name="format" value="System\.out\.println"/&gt;
+  &lt;property name="illegalPattern" value="true"/&gt;
+&lt;/module&gt;
         </source>
         <p>
           You may want to make the above check ignore comments, like this:
         </p>
         <source>
-          &lt;module name=&quot;Regexp&quot;&gt;
-          &lt;property name="format" value="System\.out\.println"/&gt;
-          &lt;property name="illegalPattern" value="true"/&gt;
-          &lt;property name="ignoreComments" value="true"/&gt;
-          &lt;/module&gt;
+&lt;module name=&quot;Regexp&quot;&gt;
+  &lt;property name="format" value="System\.out\.println"/&gt;
+  &lt;property name="illegalPattern" value="true"/&gt;
+  &lt;property name="ignoreComments" value="true"/&gt;
+&lt;/module&gt;
         </source>
         <p>
           An example of how to configure the check to find trailing whitespace
           at the end of a line:
         </p>
         <source>
-          &lt;module name=&quot;Regexp&quot;&gt;
-          &lt;property name="format" value="[ \t]+$"/&gt;
-          &lt;property name="illegalPattern" value="true"/&gt;
-          &lt;property name=&quot;message&quot; value=&quot;Trailing whitespace&quot;/&gt;
-          &lt;/module&gt;
+&lt;module name=&quot;Regexp&quot;&gt;
+  &lt;property name="format" value="[ \t]+$"/&gt;
+  &lt;property name="illegalPattern" value="true"/&gt;
+  &lt;property name=&quot;message&quot; value=&quot;Trailing whitespace&quot;/&gt;
+&lt;/module&gt;
         </source>
         <p>
           An example of how to configure the check to find case-insensitive
           occurrences of &quot;debug&quot;:
         </p>
         <source>
-          &lt;module name=&quot;Regexp&quot;&gt;
-          &lt;property name="format" value="(?i)debug"/&gt;
-          &lt;property name="illegalPattern" value="true"/&gt;
-          &lt;/module&gt;
+&lt;module name=&quot;Regexp&quot;&gt;
+  &lt;property name="format" value="(?i)debug"/&gt;
+  &lt;property name="illegalPattern" value="true"/&gt;
+&lt;/module&gt;
         </source>
         <p>
           <b>Note:</b> The (?i) at the beginning of the regular expression
@@ -241,11 +241,11 @@
           the following example.
         </p>
         <source>
-          &lt;module name=&quot;Regexp&quot;&gt;
-          &lt;property name="format" value="(?i)debug"/&gt;
-          &lt;property name="illegalPattern" value="true"/&gt;
-          &lt;property name="errorLimit" value="1000"/&gt;
-          &lt;/module&gt;
+&lt;module name=&quot;Regexp&quot;&gt;
+  &lt;property name="format" value="(?i)debug"/&gt;
+  &lt;property name="illegalPattern" value="true"/&gt;
+  &lt;property name="errorLimit" value="1000"/&gt;
+&lt;/module&gt;
         </source>
         <p>
           <b>To use like <a
@@ -263,49 +263,49 @@
         </ul>
 
         <source>
-          // Copyright (C) 2004 MyCompany
-          // All rights reserved
+// Copyright (C) 2004 MyCompany
+// All rights reserved
         </source>
         <source>
-          &lt;module name=&quot;Regexp&quot;&gt;
-          &lt;property
-          name=&quot;format&quot;
-          value=&quot;\A// Copyright \(C\) \d\d\d\d MyCompany\n// All rights reserved&quot;/&gt;
-          &lt;/module&gt;
+&lt;module name=&quot;Regexp&quot;&gt;
+  &lt;property
+  name=&quot;format&quot;
+  value=&quot;\A// Copyright \(C\) \d\d\d\d MyCompany\n// All rights reserved&quot;/&gt;
+&lt;/module&gt;
         </source>
         <p>
           A more complex example. Note how the import and javadoc multilines are
           handled, there can be any number of them.
         </p>
         <source>
-          ///////////////////////////////////////////////////////////////////////
-          // checkstyle:
-          // Checks Java source code for adherence to a set of rules.
-          // Copyright (C) 2004  Oliver Burn
-          // Last modification by $Author A.N.Other$
-          ///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+// checkstyle:
+// Checks Java source code for adherence to a set of rules.
+// Copyright (C) 2004  Oliver Burn
+// Last modification by $Author A.N.Other$
+///////////////////////////////////////////////////////////////////////
 
-          package com.puppycrawl.checkstyle;
+package com.puppycrawl.checkstyle;
 
-          import java.util.thing1;
-          import java.util.thing2;
-          import java.util.thing3;
+import java.util.thing1;
+import java.util.thing2;
+import java.util.thing3;
 
-          /**
-          * javadoc line 1
-          * javadoc line 2
-          * javadoc line 3
-          */
+/**
+* javadoc line 1
+* javadoc line 2
+* javadoc line 3
+*/
         </source>
         <source>
-          &lt;module name=&quot;Regexp&quot;&gt;
-          &lt;property
-          name=&quot;format&quot;
-          value=&quot;\A/{71}\n// checkstyle:\n// Checks Java source code for
-          adherence to a set of rules\.\n// Copyright \(C\) \d\d\d\d  Oliver Burn\n
-          // Last modification by \$Author.*\$\n/{71}\n\npackage [\w\.]*;\n\n
-          (import [\w\.]*;\n)*\n/\*\*\n( \*[^/]*\n)* \*/&quot;/&gt;
-          &lt;/module&gt;
+&lt;module name=&quot;Regexp&quot;&gt;
+  &lt;property
+  name=&quot;format&quot;
+  value=&quot;\A/{71}\n// checkstyle:\n// Checks Java source code for
+  adherence to a set of rules\.\n// Copyright \(C\) \d\d\d\d  Oliver Burn\n
+  // Last modification by \$Author.*\$\n/{71}\n\npackage [\w\.]*;\n\n
+  (import [\w\.]*;\n)*\n/\*\*\n( \*[^/]*\n)* \*/&quot;/&gt;
+&lt;/module&gt;
         </source>
         <p>
           <b>More examples:</b>
@@ -314,67 +314,67 @@
           The next 2 examples deal with the following example Java source file:
         </p>
         <source>
-          /*
-          * PID.java
-          *
-          * Copyright (c) 2001 ACME
-          * 123 Some St.
-          * Somewhere.
-          *
-          * This software is the confidential and proprietary information of ACME.
-          * ("Confidential Information"). You shall not disclose such
-          * Confidential Information and shall use it only in accordance with
-          * the terms of the license agreement you entered into with ACME.
-          *
-          * $Log: config_misc.xml,v $
-          * Revision 1.7  2007/01/16 12:16:35  oburn
-          * Removing all reference to mailing lists
-          *
-          * Revision 1.6  2005/12/25 16:13:10  o_sukhodolsky
-          * Fix for rfe 1248106 (TYPECAST is now accepted by NoWhitespaceAfter)
-          *
-          * Fix for rfe 953266 (thanks to Paul Guyot (pguyot) for submitting patch)
-          * IllegalType can be configured to accept some abstract classes which
-          * matches to regexp of illegal type names (property legalAbstractClassNames)
-          *
-          * TrailingComment now can be configured to accept some trailing comments
-          * (such as NOI18N) (property legalComment, rfe 1385344).
-          *
-          * Revision 1.5  2005/11/06 11:54:12  oburn
-          * Incorporate excellent patch [ 1344344 ] Consolidation of regexp checks.
-          *
-          * Revision 1.3.8.1  2005/10/11 14:26:32  someone
-          * Fix for bug 251.  The broken bit is fixed
-          */
+/*
+* PID.java
+*
+* Copyright (c) 2001 ACME
+* 123 Some St.
+* Somewhere.
+*
+* This software is the confidential and proprietary information of ACME.
+* ("Confidential Information"). You shall not disclose such
+* Confidential Information and shall use it only in accordance with
+* the terms of the license agreement you entered into with ACME.
+*
+* $Log: config_misc.xml,v $
+* Revision 1.7  2007/01/16 12:16:35  oburn
+* Removing all reference to mailing lists
+*
+* Revision 1.6  2005/12/25 16:13:10  o_sukhodolsky
+* Fix for rfe 1248106 (TYPECAST is now accepted by NoWhitespaceAfter)
+*
+* Fix for rfe 953266 (thanks to Paul Guyot (pguyot) for submitting patch)
+* IllegalType can be configured to accept some abstract classes which
+* matches to regexp of illegal type names (property legalAbstractClassNames)
+*
+* TrailingComment now can be configured to accept some trailing comments
+* (such as NOI18N) (property legalComment, rfe 1385344).
+*
+* Revision 1.5  2005/11/06 11:54:12  oburn
+* Incorporate excellent patch [ 1344344 ] Consolidation of regexp checks.
+*
+* Revision 1.3.8.1  2005/10/11 14:26:32  someone
+* Fix for bug 251.  The broken bit is fixed
+*/
 
-          package com.acme.tools;
+package com.acme.tools;
 
-          import com.acme.thing1;
-          import com.acme.thing2;
-          import com.acme.thing3;
+import com.acme.thing1;
+import com.acme.thing2;
+import com.acme.thing3;
 
-          /**
-          *
-          * &lt;P&gt;
-          *   &lt;I&gt;This software is the confidential and proprietary information of
-          *   ACME (&lt;B&gt;"Confidential Information"&lt;/B&gt;). You shall not
-          *   disclose such Confidential Information and shall use it only in
-          *   accordance with the terms of the license agreement you entered into
-          *   with ACME.&lt;/I&gt;
-          * &lt;/P&gt;
-          *
-          * &amp;#169; copyright 2002 ACME
-          *
-          * @author   Some Body
-          */
-          public class PID extends StateMachine implements WebObject.Constants {
+/**
+*
+* &lt;P&gt;
+*   &lt;I&gt;This software is the confidential and proprietary information of
+*   ACME (&lt;B&gt;"Confidential Information"&lt;/B&gt;). You shall not
+*   disclose such Confidential Information and shall use it only in
+*   accordance with the terms of the license agreement you entered into
+*   with ACME.&lt;/I&gt;
+* &lt;/P&gt;
+*
+* &amp;#169; copyright 2002 ACME
+*
+* @author   Some Body
+*/
+public class PID extends StateMachine implements WebObject.Constants {
 
-          /** javadoc. */
-          public static final int A_SETPOINT = 1;
-          .
-          .
-          .
-          } // class PID
+/** javadoc. */
+public static final int A_SETPOINT = 1;
+.
+.
+.
+} // class PID
         </source>
         <p>
           This checks for the presence of the header, the first 16 lines.
@@ -387,56 +387,56 @@
         </ul>
 
         <source>
-          &lt;module name=&quot;Regexp&quot;&gt;
-          &lt;property
-          name=&quot;format&quot;
-          value=&quot;\A/\*\n \* (\w*)\.java\n \*\n \* Copyright \(c\)
-          \d\d\d\d ACME\n \* 123 Some St\.\n \* Somewhere\.\n \*\n
-          \* This software is the confidential and proprietary information
-          of ACME\.\n \* \(&amp;quot;Confidential Information&amp;quot;\)\. You
-          shall not disclose such\n \* Confidential Information and shall
-          use it only in accordance with\n \* the terms of the license
-          agreement you entered into with ACME\.\n \*\n
-          \* \$Log: config_misc\.xml,v $
-          \* Revision 1\.7  2007/01/16 12:16:35  oburn
-          \* Removing all reference to mailing lists
-          \* \
-          \* Revision 1.6  2005/12/25 16:13:10  o_sukhodolsky
-          \* Fix for rfe 1248106 \(TYPECAST is now accepted by NoWhitespaceAfter\)
-          \* \
-          \* Fix for rfe 953266 \(thanks to Paul Guyot \(pguyot\) for submitting patch\)
-          \* IllegalType can be configured to accept some abstract classes which
-          \* matches to regexp of illegal type names \(property legalAbstractClassNames\)
-          \*
-          \* TrailingComment now can be configured to accept some trailing comments
-          \* \(such as NOI18N\) \(property legalComment, rfe 1385344\).
-          \*
-          \* Revision 1.5  2005/11/06 11:54:12  oburn
-          \* Incorporate excellent patch \[ 1344344 \] Consolidation of regexp checks.
-          \* \\n(.*\n)*([\w|\s]*( class | interface )\1)&quot;/&gt;
-          &lt;property name=&quot;message&quot; value=&quot;Correct header not found&quot;/&gt;
-          &lt;/module&gt;
+&lt;module name=&quot;Regexp&quot;&gt;
+  &lt;property
+  name=&quot;format&quot;
+  value=&quot;\A/\*\n \* (\w*)\.java\n \*\n \* Copyright \(c\)
+  \d\d\d\d ACME\n \* 123 Some St\.\n \* Somewhere\.\n \*\n
+  \* This software is the confidential and proprietary information
+  of ACME\.\n \* \(&amp;quot;Confidential Information&amp;quot;\)\. You
+  shall not disclose such\n \* Confidential Information and shall
+  use it only in accordance with\n \* the terms of the license
+  agreement you entered into with ACME\.\n \*\n
+  \* \$Log: config_misc\.xml,v $
+  \* Revision 1\.7  2007/01/16 12:16:35  oburn
+  \* Removing all reference to mailing lists
+  \* \
+  \* Revision 1.6  2005/12/25 16:13:10  o_sukhodolsky
+  \* Fix for rfe 1248106 \(TYPECAST is now accepted by NoWhitespaceAfter\)
+  \* \
+  \* Fix for rfe 953266 \(thanks to Paul Guyot \(pguyot\) for submitting patch\)
+  \* IllegalType can be configured to accept some abstract classes which
+  \* matches to regexp of illegal type names \(property legalAbstractClassNames\)
+  \*
+  \* TrailingComment now can be configured to accept some trailing comments
+  \* \(such as NOI18N\) \(property legalComment, rfe 1385344\).
+  \*
+  \* Revision 1.5  2005/11/06 11:54:12  oburn
+  \* Incorporate excellent patch \[ 1344344 \] Consolidation of regexp checks.
+  \* \\n(.*\n)*([\w|\s]*( class | interface )\1)&quot;/&gt;
+  &lt;property name=&quot;message&quot; value=&quot;Correct header not found&quot;/&gt;
+&lt;/module&gt;
         </source>
         <p>
           This checks for the presence of a copyright notice within the class
           javadoc, lines 24 to 37.
         </p>
         <source>
-          &lt;module name=&quot;Regexp&quot;&gt;
-          &lt;property
-          name=&quot;format&quot;
-          value=&quot;(/\*\*\n)( \*.*\n)*( \* &amp;lt;P&amp;gt;\n \*   &amp;lt;I&amp;gt;
-          This software is the confidential and proprietary information of\n
-          \*   ACME \(&amp;lt;B&amp;gt;&amp;quot;Confidential Information&amp;quot;&amp;lt;/B&amp;gt;
-          \)\. You shall not\n \*   disclose such Confidential Information
-          and shall use it only in\n \*   accordance with the terms of the
-          license agreement you entered into\n \*   with ACME\.&amp;lt;/I&amp;gt;\n
-          \* &amp;lt;/P&amp;gt;\n \*\n \* &amp;#169; copyright \d\d\d\d ACME\n
-          \*\n \* @author .*)(\n\s\*.*)*/\n[\w|\s]*( class | interface )&quot;/&gt;
-          &lt;property name=&quot;message&quot;
-              value=&quot;Copyright in class/interface Javadoc&quot;/&gt;
-          &lt;property name=&quot;duplicateLimit&quot; value=&quot;0&quot;/&gt;
-          &lt;/module&gt;
+&lt;module name=&quot;Regexp&quot;&gt;
+  &lt;property
+  name=&quot;format&quot;
+  value=&quot;(/\*\*\n)( \*.*\n)*( \* &amp;lt;P&amp;gt;\n \*   &amp;lt;I&amp;gt;
+  This software is the confidential and proprietary information of\n
+  \*   ACME \(&amp;lt;B&amp;gt;&amp;quot;Confidential Information&amp;quot;&amp;lt;/B&amp;gt;
+  \)\. You shall not\n \*   disclose such Confidential Information
+  and shall use it only in\n \*   accordance with the terms of the
+  license agreement you entered into\n \*   with ACME\.&amp;lt;/I&amp;gt;\n
+  \* &amp;lt;/P&amp;gt;\n \*\n \* &amp;#169; copyright \d\d\d\d ACME\n
+  \*\n \* @author .*)(\n\s\*.*)*/\n[\w|\s]*( class | interface )&quot;/&gt;
+  &lt;property name=&quot;message&quot;
+      value=&quot;Copyright in class/interface Javadoc&quot;/&gt;
+  &lt;property name=&quot;duplicateLimit&quot; value=&quot;0&quot;/&gt;
+&lt;/module&gt;
         </source>
         <p>
           <b>Note:</b> To search for things that mean something in XML, like
