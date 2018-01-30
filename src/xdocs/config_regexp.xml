@@ -145,13 +145,13 @@
         <source>
           // This code is copyrighted
         </source>
-        <p> The check. </p>
+          <p> The check. </p>
         <source>
           &lt;module name="Regexp"&gt;
-          &lt;property name="format" value="// This code is copyrighted"/&gt;
+            &lt;property name="format" value="// This code is copyrighted"/&gt;
           &lt;/module&gt;
         </source>
-        <p> Your statement may be multiline. </p>
+          <p> Your statement may be multiline. </p>
         <source>
           // This code is copyrighted
           // (c) MyCompany
@@ -159,20 +159,20 @@
         <p> Then the check would be. </p>
         <source>
           &lt;module name="Regexp"&gt;
-          &lt;property name="format" value="// This code is copyrighted\n// \(c\) MyCompany"/&gt;
+            &lt;property name="format" value="// This code is copyrighted\n// \(c\) MyCompany"/&gt;
           &lt;/module&gt;
         </source>
-        <p><b>Note:</b> To search for parentheses () in a regular expression
+          <p><b>Note:</b> To search for parentheses () in a regular expression
           you must escape them like \(\). This is required by the regexp engine,
           otherwise it will think they are special instruction characters.
-        </p>
-        <p>
-          And to make sure it appears only once:
-        </p>
+          </p>
+          <p>
+            And to make sure it appears only once:
+          </p>
         <source>
           &lt;module name="Regexp"&gt;
-          &lt;property name="format" value="// This code is copyrighted\n// \(c\) MyCompany"/&gt;
-          &lt;property name=&quot;duplicateLimit&quot; value=&quot;0&quot;/&gt;
+            &lt;property name="format" value="// This code is copyrighted\n// \(c\) MyCompany"/&gt;
+            &lt;property name=&quot;duplicateLimit&quot; value=&quot;0&quot;/&gt;
           &lt;/module&gt;
         </source>
         <p>
@@ -180,8 +180,8 @@
         </p>
         <source>
           &lt;module name="Regexp"&gt;
-          &lt;property name="format" value="// This code is copyrighted\n// \(c\) MyCompany"/&gt;
-          &lt;property name=&quot;message&quot; value=&quot;Copyright&quot;/&gt;
+            &lt;property name="format" value="// This code is copyrighted\n// \(c\) MyCompany"/&gt;
+            &lt;property name=&quot;message&quot; value=&quot;Copyright&quot;/&gt;
           &lt;/module&gt;
         </source>
         <p>
@@ -193,9 +193,9 @@
         </p>
         <source>
           &lt;module name=&quot;Regexp&quot;&gt;
-          &lt;!-- . matches any character, so we need to escape it and use \. to match dots. --&gt;
-          &lt;property name="format" value="System\.out\.println"/&gt;
-          &lt;property name="illegalPattern" value="true"/&gt;
+            &lt;!-- . matches any character, so we need to escape it and use \. to match dots. --&gt;
+            &lt;property name="format" value="System\.out\.println"/&gt;
+            &lt;property name="illegalPattern" value="true"/&gt;
           &lt;/module&gt;
         </source>
         <p>
@@ -203,9 +203,9 @@
         </p>
         <source>
           &lt;module name=&quot;Regexp&quot;&gt;
-          &lt;property name="format" value="System\.out\.println"/&gt;
-          &lt;property name="illegalPattern" value="true"/&gt;
-          &lt;property name="ignoreComments" value="true"/&gt;
+            &lt;property name="format" value="System\.out\.println"/&gt;
+            &lt;property name="illegalPattern" value="true"/&gt;
+            &lt;property name="ignoreComments" value="true"/&gt;
           &lt;/module&gt;
         </source>
         <p>
@@ -214,9 +214,9 @@
         </p>
         <source>
           &lt;module name=&quot;Regexp&quot;&gt;
-          &lt;property name="format" value="[ \t]+$"/&gt;
-          &lt;property name="illegalPattern" value="true"/&gt;
-          &lt;property name=&quot;message&quot; value=&quot;Trailing whitespace&quot;/&gt;
+            &lt;property name="format" value="[ \t]+$"/&gt;
+            &lt;property name="illegalPattern" value="true"/&gt;
+            &lt;property name=&quot;message&quot; value=&quot;Trailing whitespace&quot;/&gt;
           &lt;/module&gt;
         </source>
         <p>
@@ -225,8 +225,8 @@
         </p>
         <source>
           &lt;module name=&quot;Regexp&quot;&gt;
-          &lt;property name="format" value="(?i)debug"/&gt;
-          &lt;property name="illegalPattern" value="true"/&gt;
+            &lt;property name="format" value="(?i)debug"/&gt;
+            &lt;property name="illegalPattern" value="true"/&gt;
           &lt;/module&gt;
         </source>
         <p>
@@ -242,9 +242,9 @@
         </p>
         <source>
           &lt;module name=&quot;Regexp&quot;&gt;
-          &lt;property name="format" value="(?i)debug"/&gt;
-          &lt;property name="illegalPattern" value="true"/&gt;
-          &lt;property name="errorLimit" value="1000"/&gt;
+            &lt;property name="format" value="(?i)debug"/&gt;
+            &lt;property name="illegalPattern" value="true"/&gt;
+            &lt;property name="errorLimit" value="1000"/&gt;
           &lt;/module&gt;
         </source>
         <p>
@@ -268,9 +268,9 @@
         </source>
         <source>
           &lt;module name=&quot;Regexp&quot;&gt;
-          &lt;property
-          name=&quot;format&quot;
-          value=&quot;\A// Copyright \(C\) \d\d\d\d MyCompany\n// All rights reserved&quot;/&gt;
+            &lt;property
+            name=&quot;format&quot;
+            value=&quot;\A// Copyright \(C\) \d\d\d\d MyCompany\n// All rights reserved&quot;/&gt;
           &lt;/module&gt;
         </source>
         <p>
@@ -299,12 +299,12 @@
         </source>
         <source>
           &lt;module name=&quot;Regexp&quot;&gt;
-          &lt;property
-          name=&quot;format&quot;
-          value=&quot;\A/{71}\n// checkstyle:\n// Checks Java source code for
-          adherence to a set of rules\.\n// Copyright \(C\) \d\d\d\d  Oliver Burn\n
-          // Last modification by \$Author.*\$\n/{71}\n\npackage [\w\.]*;\n\n
-          (import [\w\.]*;\n)*\n/\*\*\n( \*[^/]*\n)* \*/&quot;/&gt;
+            &lt;property
+            name=&quot;format&quot;
+            value=&quot;\A/{71}\n// checkstyle:\n// Checks Java source code for
+            adherence to a set of rules\.\n// Copyright \(C\) \d\d\d\d  Oliver Burn\n
+            // Last modification by \$Author.*\$\n/{71}\n\npackage [\w\.]*;\n\n
+            (import [\w\.]*;\n)*\n/\*\*\n( \*[^/]*\n)* \*/&quot;/&gt;
           &lt;/module&gt;
         </source>
         <p>
@@ -388,33 +388,33 @@
 
         <source>
           &lt;module name=&quot;Regexp&quot;&gt;
-          &lt;property
-          name=&quot;format&quot;
-          value=&quot;\A/\*\n \* (\w*)\.java\n \*\n \* Copyright \(c\)
-          \d\d\d\d ACME\n \* 123 Some St\.\n \* Somewhere\.\n \*\n
-          \* This software is the confidential and proprietary information
-          of ACME\.\n \* \(&amp;quot;Confidential Information&amp;quot;\)\. You
-          shall not disclose such\n \* Confidential Information and shall
-          use it only in accordance with\n \* the terms of the license
-          agreement you entered into with ACME\.\n \*\n
-          \* \$Log: config_misc\.xml,v $
-          \* Revision 1\.7  2007/01/16 12:16:35  oburn
-          \* Removing all reference to mailing lists
-          \* \
-          \* Revision 1.6  2005/12/25 16:13:10  o_sukhodolsky
-          \* Fix for rfe 1248106 \(TYPECAST is now accepted by NoWhitespaceAfter\)
-          \* \
-          \* Fix for rfe 953266 \(thanks to Paul Guyot \(pguyot\) for submitting patch\)
-          \* IllegalType can be configured to accept some abstract classes which
-          \* matches to regexp of illegal type names \(property legalAbstractClassNames\)
-          \*
-          \* TrailingComment now can be configured to accept some trailing comments
-          \* \(such as NOI18N\) \(property legalComment, rfe 1385344\).
-          \*
-          \* Revision 1.5  2005/11/06 11:54:12  oburn
-          \* Incorporate excellent patch \[ 1344344 \] Consolidation of regexp checks.
-          \* \\n(.*\n)*([\w|\s]*( class | interface )\1)&quot;/&gt;
-          &lt;property name=&quot;message&quot; value=&quot;Correct header not found&quot;/&gt;
+            &lt;property
+            name=&quot;format&quot;
+            value=&quot;\A/\*\n \* (\w*)\.java\n \*\n \* Copyright \(c\)
+            \d\d\d\d ACME\n \* 123 Some St\.\n \* Somewhere\.\n \*\n
+            \* This software is the confidential and proprietary information
+            of ACME\.\n \* \(&amp;quot;Confidential Information&amp;quot;\)\. You
+            shall not disclose such\n \* Confidential Information and shall
+            use it only in accordance with\n \* the terms of the license
+            agreement you entered into with ACME\.\n \*\n
+            \* \$Log: config_misc\.xml,v $
+            \* Revision 1\.7  2007/01/16 12:16:35  oburn
+            \* Removing all reference to mailing lists
+            \* \
+            \* Revision 1.6  2005/12/25 16:13:10  o_sukhodolsky
+            \* Fix for rfe 1248106 \(TYPECAST is now accepted by NoWhitespaceAfter\)
+            \* \
+            \* Fix for rfe 953266 \(thanks to Paul Guyot \(pguyot\) for submitting patch\)
+            \* IllegalType can be configured to accept some abstract classes which
+            \* matches to regexp of illegal type names \(property legalAbstractClassNames\)
+            \*
+            \* TrailingComment now can be configured to accept some trailing comments
+            \* \(such as NOI18N\) \(property legalComment, rfe 1385344\).
+            \*
+            \* Revision 1.5  2005/11/06 11:54:12  oburn
+            \* Incorporate excellent patch \[ 1344344 \] Consolidation of regexp checks.
+            \* \\n(.*\n)*([\w|\s]*( class | interface )\1)&quot;/&gt;
+            &lt;property name=&quot;message&quot; value=&quot;Correct header not found&quot;/&gt;
           &lt;/module&gt;
         </source>
         <p>
@@ -423,19 +423,19 @@
         </p>
         <source>
           &lt;module name=&quot;Regexp&quot;&gt;
-          &lt;property
-          name=&quot;format&quot;
-          value=&quot;(/\*\*\n)( \*.*\n)*( \* &amp;lt;P&amp;gt;\n \*   &amp;lt;I&amp;gt;
-          This software is the confidential and proprietary information of\n
-          \*   ACME \(&amp;lt;B&amp;gt;&amp;quot;Confidential Information&amp;quot;&amp;lt;/B&amp;gt;
-          \)\. You shall not\n \*   disclose such Confidential Information
-          and shall use it only in\n \*   accordance with the terms of the
-          license agreement you entered into\n \*   with ACME\.&amp;lt;/I&amp;gt;\n
-          \* &amp;lt;/P&amp;gt;\n \*\n \* &amp;#169; copyright \d\d\d\d ACME\n
-          \*\n \* @author .*)(\n\s\*.*)*/\n[\w|\s]*( class | interface )&quot;/&gt;
-          &lt;property name=&quot;message&quot;
-              value=&quot;Copyright in class/interface Javadoc&quot;/&gt;
-          &lt;property name=&quot;duplicateLimit&quot; value=&quot;0&quot;/&gt;
+            &lt;property
+            name=&quot;format&quot;
+            value=&quot;(/\*\*\n)( \*.*\n)*( \* &amp;lt;P&amp;gt;\n \*   &amp;lt;I&amp;gt;
+            This software is the confidential and proprietary information of\n
+            \*   ACME \(&amp;lt;B&amp;gt;&amp;quot;Confidential Information&amp;quot;&amp;lt;/B&amp;gt;
+            \)\. You shall not\n \*   disclose such Confidential Information
+            and shall use it only in\n \*   accordance with the terms of the
+            license agreement you entered into\n \*   with ACME\.&amp;lt;/I&amp;gt;\n
+            \* &amp;lt;/P&amp;gt;\n \*\n \* &amp;#169; copyright \d\d\d\d ACME\n
+            \*\n \* @author .*)(\n\s\*.*)*/\n[\w|\s]*( class | interface )&quot;/&gt;
+            &lt;property name=&quot;message&quot;
+                value=&quot;Copyright in class/interface Javadoc&quot;/&gt;
+            &lt;property name=&quot;duplicateLimit&quot; value=&quot;0&quot;/&gt;
           &lt;/module&gt;
         </source>
         <p>
@@ -563,10 +563,10 @@
           To configure the check to find calls to print to the console:
         </p>
         <source>
-&lt;module name=&quot;RegexpMultiline&quot;&gt;
-  &lt;property name=&quot;format&quot;
-   value=&quot;System\.(out)|(err)\.print(ln)?\(&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;RegexpMultiline&quot;&gt;
+            &lt;property name=&quot;format&quot;
+             value=&quot;System\.(out)|(err)\.print(ln)?\(&quot;/&gt;
+          &lt;/module&gt;
         </source>
       </subsection>
 
@@ -714,44 +714,44 @@
           To configure the check to report file names that contain a space:
         </p>
         <source>
-&lt;module name=&quot;RegexpOnFilename&quot;/&gt;
+          &lt;module name=&quot;RegexpOnFilename&quot;/&gt;
         </source>
         <p>
           To configure the check to force picture files to not be 'gif':
         </p>
         <source>
-&lt;module name=&quot;RegexpOnFilename&quot;&gt;
-  &lt;property name=&quot;fileNamePattern&quot; value=&quot;\.gif$&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;RegexpOnFilename&quot;&gt;
+            &lt;property name=&quot;fileNamePattern&quot; value=&quot;\.gif$&quot;/&gt;
+          &lt;/module&gt;
         </source>
         <p>
           OR:
         </p>
         <source>
-&lt;module name=&quot;RegexpOnFilename&quot;&gt;
-  &lt;property name=&quot;fileNamePattern&quot; value=&quot;.&quot;/&gt;
-  &lt;property name=&quot;fileExtensions&quot; value=&quot;gif&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;RegexpOnFilename&quot;&gt;
+            &lt;property name=&quot;fileNamePattern&quot; value=&quot;.&quot;/&gt;
+            &lt;property name=&quot;fileExtensions&quot; value=&quot;gif&quot;/&gt;
+          &lt;/module&gt;
         </source>
         <p>
           To configure the check to only allow property and xml files to be located
           in the resource folder:
         </p>
         <source>
-&lt;module name=&quot;RegexpOnFilename&quot;&gt;
-  &lt;property name=&quot;folderPattern&quot; value=&quot;[\\/]src[\\/]\w+[\\/]resources[\\/]&quot;/&gt;
-  &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;fileExtensions&quot; value=&quot;properties, xml&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;RegexpOnFilename&quot;&gt;
+            &lt;property name=&quot;folderPattern&quot; value=&quot;[\\/]src[\\/]\w+[\\/]resources[\\/]&quot;/&gt;
+            &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
+            &lt;property name=&quot;fileExtensions&quot; value=&quot;properties, xml&quot;/&gt;
+          &lt;/module&gt;
         </source>
         <p>
           To configure the check to only allow Java and XML files in your folders use the below.
         </p>
         <source>
-&lt;module name=&quot;RegexpOnFilename&quot;&gt;
-  &lt;property name=&quot;fileNamePattern&quot; value=&quot;\.(java|xml)$&quot;/&gt;
-  &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;RegexpOnFilename&quot;&gt;
+            &lt;property name=&quot;fileNamePattern&quot; value=&quot;\.(java|xml)$&quot;/&gt;
+            &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
+          &lt;/module&gt;
         </source>
         <p>
           To configure the check to only allow Java and XML files only in your source folder
@@ -760,21 +760,21 @@
           the normal source folder, like the 'bin' folder where class files can be located.
         </p>
         <source>
-&lt;module name=&quot;RegexpOnFilename&quot;&gt;
-  &lt;property name=&quot;folderPattern&quot; value=&quot;[\\/]src[\\/]&quot;/&gt;
-  &lt;property name=&quot;fileNamePattern&quot; value=&quot;\.(java|xml)$&quot;/&gt;
-  &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;RegexpOnFilename&quot;&gt;
+            &lt;property name=&quot;folderPattern&quot; value=&quot;[\\/]src[\\/]&quot;/&gt;
+            &lt;property name=&quot;fileNamePattern&quot; value=&quot;\.(java|xml)$&quot;/&gt;
+            &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
+          &lt;/module&gt;
         </source>
         <p>
           To configure the check to only allow file names to be camel case:
         </p>
         <source>
-&lt;module name=&quot;RegexpOnFilename&quot;&gt;
-  &lt;property name=&quot;fileNamePattern&quot; value=&quot;^([A-Z][a-z0-9]+\.?)+$&quot;/&gt;
-  &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;ignoreFileNameExtensions&quot; value=&quot;true&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;RegexpOnFilename&quot;&gt;
+            &lt;property name=&quot;fileNamePattern&quot; value=&quot;^([A-Z][a-z0-9]+\.?)+$&quot;/&gt;
+            &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
+            &lt;property name=&quot;ignoreFileNameExtensions&quot; value=&quot;true&quot;/&gt;
+          &lt;/module&gt;
         </source>
       </subsection>
 
@@ -893,10 +893,10 @@
           of a line:
         </p>
         <source>
-&lt;module name=&quot;RegexpSingleline&quot;&gt;
-  &lt;!-- \s matches whitespace character, $ matches end of line. --&gt;
-  &lt;property name=&quot;format&quot; value=&quot;\s+$&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;RegexpSingleline&quot;&gt;
+            &lt;!-- \s matches whitespace character, $ matches end of line. --&gt;
+            &lt;property name=&quot;format&quot; value=&quot;\s+$&quot;/&gt;
+          &lt;/module&gt;
         </source>
 
         <p>
@@ -905,12 +905,12 @@
           per file:
         </p>
         <source>
-&lt;module name=&quot;RegexpSingleline&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;\s+$&quot;/&gt;
-  &lt;!-- next line not required as 0 is the default --&gt;
-  &lt;property name=&quot;minimum&quot; value=&quot;0&quot;/&gt;
-  &lt;property name=&quot;maximum&quot; value=&quot;2&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;RegexpSingleline&quot;&gt;
+            &lt;property name=&quot;format&quot; value=&quot;\s+$&quot;/&gt;
+            &lt;!-- next line not required as 0 is the default --&gt;
+            &lt;property name=&quot;minimum&quot; value=&quot;0&quot;/&gt;
+            &lt;property name=&quot;maximum&quot; value=&quot;2&quot;/&gt;
+          &lt;/module&gt;
         </source>
 
         <p>
@@ -918,12 +918,12 @@
           statement is included in the file:
         </p>
         <source>
-&lt;module name=&quot;RegexpSingleline&quot;&gt;
-  &lt;property name="format" value="This file is copyrighted"/&gt;
-  &lt;property name=&quot;minimum&quot; value=&quot;1&quot;/&gt;
-  &lt;!--  Need to specify a maximum, so 10 times is more than enough. --&gt;
-  &lt;property name=&quot;maximum&quot; value=&quot;10&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;RegexpSingleline&quot;&gt;
+            &lt;property name="format" value="This file is copyrighted"/&gt;
+            &lt;property name=&quot;minimum&quot; value=&quot;1&quot;/&gt;
+            &lt;!--  Need to specify a maximum, so 10 times is more than enough. --&gt;
+            &lt;property name=&quot;maximum&quot; value=&quot;10&quot;/&gt;
+          &lt;/module&gt;
         </source>
       </subsection>
 
@@ -1043,12 +1043,12 @@
           To configure the check for calls to <code>System.out.println</code>, except in comments:
         </p>
         <source>
-&lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
-    &lt;!-- . matches any character, so we need to
-         escape it and use \. to match dots. --&gt;
-  &lt;property name=&quot;format&quot; value=&quot;System\.out\.println&quot;/&gt;
-  &lt;property name=&quot;ignoreComments&quot; value=&quot;true&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
+              &lt;!-- . matches any character, so we need to
+                   escape it and use \. to match dots. --&gt;
+            &lt;property name=&quot;format&quot; value=&quot;System\.out\.println&quot;/&gt;
+            &lt;property name=&quot;ignoreComments&quot; value=&quot;true&quot;/&gt;
+          &lt;/module&gt;
         </source>
 
         <p>
@@ -1056,10 +1056,10 @@
           &quot;debug&quot;:
         </p>
         <source>
-&lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
-    &lt;property name=&quot;format&quot; value=&quot;debug&quot;/&gt;
-    &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
+              &lt;property name=&quot;format&quot; value=&quot;debug&quot;/&gt;
+              &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
+          &lt;/module&gt;
         </source>
       </subsection>
 
