@@ -525,6 +525,20 @@ public class XpathMapperTest extends AbstractPathTestSupport {
         assertArrayEquals("Result nodes differ from expected", expected, actual);
     }
 
+    @Test
+    public void testIdent() throws Exception {
+        final String xpath = "/CLASS_DEF[@text='InputXpathMapperAst']/IDENT";
+        final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
+        final List<Item> nodes = getXpathItems(xpath, rootNode);
+        final DetailAST[] actual = convertToArray(nodes);
+        final DetailAST expectedIdentNode = getSiblingByType(rootNode.getUnderlyingNode(),
+                TokenTypes.CLASS_DEF)
+                .findFirstToken(TokenTypes.IDENT);
+
+        final DetailAST[] expected = {expectedIdentNode};
+        assertArrayEquals("Result nodes differ from expected", expected, actual);
+    }
+
     private RootNode getRootNode(String fileName) throws Exception {
         final File file = new File(getPath(fileName));
         final DetailAST rootAst = JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS);

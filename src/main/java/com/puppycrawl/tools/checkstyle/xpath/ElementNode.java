@@ -82,10 +82,8 @@ public class ElementNode extends AbstractNode {
     private void createChildren() {
         DetailAST currentChild = detailAst.getFirstChild();
         while (currentChild != null) {
-            if (currentChild.getType() != TokenTypes.IDENT) {
-                final ElementNode child = new ElementNode(root, this, currentChild);
-                addChild(child);
-            }
+            final AbstractNode child = new ElementNode(root, this, currentChild);
+            addChild(child);
             currentChild = currentChild.getNextSibling();
         }
     }
