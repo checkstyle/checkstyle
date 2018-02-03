@@ -235,14 +235,12 @@ public class XpathQueryGenerator {
     }
 
     /**
-     * Checks if the given {@code DetailAST} node is matching line and column number and
-     * it is not {@link TokenTypes#IDENT}.
+     * Checks if the given {@code DetailAST} node is matching line and column number.
      * @param ast {@code DetailAST} ast element
      * @return true if the given {@code DetailAST} node is matching
      */
     private boolean isMatchingByLineAndColumnAndNotIdent(DetailAST ast) {
-        return ast.getType() != TokenTypes.IDENT
-                && ast.getLineNo() == lineNumber
+        return ast.getLineNo() == lineNumber
                 && expandedTabColumn(ast) == columnNumber;
     }
 
