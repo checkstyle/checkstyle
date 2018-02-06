@@ -78,12 +78,12 @@
 
       <source>
 &lt;module name=&quot;Checker&quot;&gt;
-    &lt;module name=&quot;JavadocPackage&quot;/&gt;
-    &lt;module name=&quot;TreeWalker&quot;&gt;
-        &lt;module name=&quot;AvoidStarImport&quot;/&gt;
-        &lt;module name=&quot;ConstantName&quot;/&gt;
-        &lt;module name=&quot;EmptyBlock&quot;/&gt;
-    &lt;/module&gt;
+  &lt;module name=&quot;JavadocPackage&quot;/&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AvoidStarImport&quot;/&gt;
+    &lt;module name=&quot;ConstantName&quot;/&gt;
+    &lt;module name=&quot;EmptyBlock&quot;/&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
       </source>
 
@@ -182,7 +182,7 @@
 
       <source>
 &lt;module name=&quot;MethodLength&quot;&gt;
-    &lt;property name=&quot;max&quot; value=&quot;60&quot;/&gt;
+  &lt;property name=&quot;max&quot; value=&quot;60&quot;/&gt;
 &lt;/module&gt;
       </source>
 
@@ -199,13 +199,13 @@
 
       <source>
 &lt;module name=&quot;Checker&quot;&gt;
-    &lt;module name=&quot;JavadocPackage&quot;/&gt;
-    &lt;module name=&quot;TreeWalker&quot;&gt;
-        &lt;property name=&quot;tabWidth&quot; value=&quot;4&quot;/&gt;
-        &lt;module name=&quot;AvoidStarImport&quot;/&gt;
-        &lt;module name=&quot;ConstantName&quot;/&gt;
-        ...
-    &lt;/module&gt;
+  &lt;module name=&quot;JavadocPackage&quot;/&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;property name=&quot;tabWidth&quot; value=&quot;4&quot;/&gt;
+    &lt;module name=&quot;AvoidStarImport&quot;/&gt;
+    &lt;module name=&quot;ConstantName&quot;/&gt;
+    ...
+  &lt;/module&gt;
 &lt;/module&gt;
       </source>
 
@@ -222,7 +222,7 @@
 
       <source>
 &lt;module name=&quot;Header&quot;&gt;
-    &lt;property name=&quot;headerFile&quot; value=&quot;${checkstyle.header.file}&quot;/&gt;
+  &lt;property name=&quot;headerFile&quot; value=&quot;${checkstyle.header.file}&quot;/&gt;
 &lt;/module&gt;
       </source>
 
@@ -243,8 +243,8 @@
       <source>
 &lt;module name=&quot;JavadocMethod&quot;&gt;
   &lt;property name=&quot;severity&quot;
-               value=&quot;${checkstyle.javadoc.severity}&quot;
-               default=&quot;error&quot;/&gt;
+    value=&quot;${checkstyle.javadoc.severity}&quot;
+    default=&quot;error&quot;/&gt;
 &lt;/module&gt;
       </source>
 
@@ -370,16 +370,16 @@
         </p>
 
         <source>
-  &lt;module name=&quot;Checker&quot;&gt;
-      &lt;property name=&quot;basedir&quot; value=&quot;src/checkstyle&quot;/&gt;
-      &lt;property name=&quot;cacheFile&quot; value=&quot;target/cachefile&quot;/&gt;
-      &lt;property name=&quot;localeCountry&quot; value=&quot;DE&quot;/&gt;
-      &lt;property name=&quot;localeLanguage&quot; value=&quot;de&quot;/&gt;
-      &lt;module name=&quot;JavadocPackage&quot;/&gt;
-      &lt;module name=&quot;TreeWalker&quot;&gt;
-          ...
-      &lt;/module&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;property name=&quot;basedir&quot; value=&quot;src/checkstyle&quot;/&gt;
+  &lt;property name=&quot;cacheFile&quot; value=&quot;target/cachefile&quot;/&gt;
+  &lt;property name=&quot;localeCountry&quot; value=&quot;DE&quot;/&gt;
+  &lt;property name=&quot;localeLanguage&quot; value=&quot;de&quot;/&gt;
+  &lt;module name=&quot;JavadocPackage&quot;/&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+      ...
   &lt;/module&gt;
+&lt;/module&gt;
         </source>
 
         <p>
@@ -388,10 +388,10 @@
         </p>
 
         <source>
-  &lt;module name=&quot;Checker&quot;&gt;
-      &lt;property name=&quot;charset&quot; value=&quot;UTF-8&quot;/&gt;
-      ...
-  &lt;/module&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;property name=&quot;charset&quot; value=&quot;UTF-8&quot;/&gt;
+  ...
+&lt;/module&gt;
         </source>
 
         <p>
@@ -400,10 +400,10 @@
         </p>
 
         <source>
-  &lt;module name=&quot;Checker&quot;&gt;
-      &lt;property name=&quot;fileExtensions&quot; value=&quot;java, xml, properties&quot;/&gt;
-      ...
-  &lt;/module&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;property name=&quot;fileExtensions&quot; value=&quot;java, xml, properties&quot;/&gt;
+  ...
+&lt;/module&gt;
         </source>
 
         <p>
@@ -412,10 +412,10 @@
         </p>
 
         <source>
-  &lt;module name=&quot;Checker&quot;&gt;
-      &lt;property name=&quot;haltOnException&quot; value=&quot;false&quot;/&gt;
-      ...
-  &lt;/module&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;property name=&quot;haltOnException&quot; value=&quot;false&quot;/&gt;
+  ...
+&lt;/module&gt;
         </source>
 
         <p>
@@ -424,17 +424,17 @@
         </p>
 
         <source>
-  &lt;module name=&quot;Checker&quot;&gt;
-      &lt;property name=&quot;fileExtensions&quot; value=&quot;null&quot;/&gt;
-      ...
-  &lt;/module&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;property name=&quot;fileExtensions&quot; value=&quot;null&quot;/&gt;
+  ...
+&lt;/module&gt;
         </source>
           <p>OR</p>
         <source>
-  &lt;module name=&quot;Checker&quot;&gt;
-      &lt;property name=&quot;fileExtensions&quot; value=&quot;&quot;/&gt;
-      ...
-  &lt;/module&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;property name=&quot;fileExtensions&quot; value=&quot;&quot;/&gt;
+  ...
+&lt;/module&gt;
         </source>
 
       </subsection>
@@ -488,12 +488,12 @@
         </p>
 
         <source>
-  &lt;module name=&quot;Checker&quot;&gt;
-      &lt;module name=&quot;TreeWalker&quot;&gt;
-          &lt;property name=&quot;tabWidth&quot; value=&quot;4&quot;/&gt;
-          ...
-      &lt;/module&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;property name=&quot;tabWidth&quot; value=&quot;4&quot;/&gt;
+    ...
   &lt;/module&gt;
+&lt;/module&gt;
         </source>
 
         <p>
@@ -505,12 +505,12 @@
         </p>
 
         <source>
-  &lt;module name=&quot;Checker&quot;&gt;
-      &lt;module name=&quot;TreeWalker&quot;&gt;
-          &lt;property name=&quot;fileExtensions&quot; value=&quot;java,ejb,jpf&quot;/&gt;
-          ...
-      &lt;/module&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;java,ejb,jpf&quot;/&gt;
+    ...
   &lt;/module&gt;
+&lt;/module&gt;
         </source>
 
         <p>
@@ -519,10 +519,10 @@
         </p>
 
         <source>
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-      &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
-      ...
-  &lt;/module&gt;
+&lt;module name=&quot;TreeWalker&quot;&gt;
+  &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
+  ...
+&lt;/module&gt;
         </source>
 
         <p>
@@ -531,17 +531,17 @@
         </p>
 
         <source>
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-      &lt;property name=&quot;fileExtensions&quot; value=&quot;null&quot;/&gt;
-      ...
-  &lt;/module&gt;
+&lt;module name=&quot;TreeWalker&quot;&gt;
+  &lt;property name=&quot;fileExtensions&quot; value=&quot;null&quot;/&gt;
+  ...
+&lt;/module&gt;
         </source>
           <p>OR</p>
         <source>
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-      &lt;property name=&quot;fileExtensions&quot; value=&quot;&quot;/&gt;
-      ...
-  &lt;/module&gt;
+&lt;module name=&quot;TreeWalker&quot;&gt;
+  &lt;property name=&quot;fileExtensions&quot; value=&quot;&quot;/&gt;
+  ...
+&lt;/module&gt;
         </source>
       </subsection>
     </section>
@@ -592,7 +592,7 @@
 
       <source>
 &lt;module name=&quot;MethodLength&quot;&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
 &lt;/module&gt;
       </source>
 
@@ -606,11 +606,11 @@
 
       <source>
 &lt;module name=&quot;MethodLength&quot;&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
 &lt;/module&gt;
 &lt;module name=&quot;MethodLength&quot;&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
-    &lt;property name=&quot;max&quot; value=&quot;60&quot;/&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
+  &lt;property name=&quot;max&quot; value=&quot;60&quot;/&gt;
 &lt;/module&gt;
       </source>
 
@@ -642,7 +642,7 @@
 
       <source>
 &lt;module name=&quot;Translation&quot;&gt;
-    &lt;property name=&quot;severity&quot; value=&quot;warning&quot;/&gt;
+  &lt;property name=&quot;severity&quot; value=&quot;warning&quot;/&gt;
 &lt;/module&gt;
       </source>
 
@@ -666,10 +666,10 @@
 
       <source>
 &lt;module name=&quot;MemberName&quot;&gt;
-    &lt;property name=&quot;format&quot; value=&quot;^m[a-zA-Z0-9]*$&quot;/&gt;
-    &lt;message key=&quot;name.invalidPattern&quot;
-             value=&quot;Member ''{0}'' must start with a lowercase ''m'' (checked pattern ''{1}'').&quot;
-             /&gt;
+  &lt;property name=&quot;format&quot; value=&quot;^m[a-zA-Z0-9]*$&quot;/&gt;
+  &lt;message key=&quot;name.invalidPattern&quot;
+   value=&quot;Member ''{0}'' must start with a lowercase ''m'' (checked pattern ''{1}'').&quot;
+   /&gt;
 &lt;/module&gt;
       </source>
 
@@ -745,7 +745,7 @@
 
       <source>
 &lt;module name=&quot;com.mycompany.listeners.VerboseListener&quot;&gt;
-    &lt;property name=&quot;file&quot; value=&quot;audit.txt&quot;/&gt;
+  &lt;property name=&quot;file&quot; value=&quot;audit.txt&quot;/&gt;
 &lt;/module&gt;
       </source>
 
@@ -811,9 +811,9 @@
       <source>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 
-    &lt;!DOCTYPE checkstyle-packages PUBLIC
-    &quot;-//Puppy Crawl//DTD Package Names 1.0//EN&quot;
-    &quot;http://checkstyle.sourceforge.net/dtds/packages_1_0.dtd&quot;&gt;
+&lt;!DOCTYPE checkstyle-packages PUBLIC
+  &quot;-//Puppy Crawl//DTD Package Names 1.0//EN&quot;
+  &quot;http://checkstyle.sourceforge.net/dtds/packages_1_0.dtd&quot;&gt;
 
 &lt;checkstyle-packages&gt;
   &lt;package name=&quot;com.mycompany.checks&quot;/&gt;
@@ -871,8 +871,8 @@
 
       <source>
 &lt;!DOCTYPE module PUBLIC
-    &quot;-//Puppy Crawl//DTD Check Configuration 1.3//EN&quot;
-    &quot;http://checkstyle.sourceforge.net/dtds/configuration_1_3.dtd&quot;&gt;
+  &quot;-//Puppy Crawl//DTD Check Configuration 1.3//EN&quot;
+  &quot;http://checkstyle.sourceforge.net/dtds/configuration_1_3.dtd&quot;&gt;
       </source>
 
       <p>
@@ -911,8 +911,8 @@
 
       <source>
 &lt;!DOCTYPE checkstyle-packages PUBLIC
-&quot;-//Puppy Crawl//DTD Package Names 1.1//EN&quot;
-&quot;http://checkstyle.sourceforge.net/dtds/packages_1_1.dtd&quot;&gt;
+  &quot;-//Puppy Crawl//DTD Package Names 1.1//EN&quot;
+  &quot;http://checkstyle.sourceforge.net/dtds/packages_1_1.dtd&quot;&gt;
       </source>
 
       <b>Suppressions XML Document</b>
