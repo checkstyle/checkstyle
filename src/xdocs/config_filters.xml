@@ -689,7 +689,7 @@ public class UserService {
           <li>ImportControlCheck</li>
           <li>LeftCurlyCheck</li>
           <li>MethodParamPadCheck</li>
-          <li>MultipleVariableDeclarationCheck</li>
+          <li>MultipleVariableDeclarationsCheck</li>
           <li>NestedForDepthCheck</li>
           <li>NestedIfDepthCheck</li>
           <li>NestedTryDepthCheck</li>
