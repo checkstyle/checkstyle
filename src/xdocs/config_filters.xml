@@ -682,9 +682,6 @@ public class UserService {
           <li>DefaultComesLastCheck</li>
           <li>ExplicitInitializationCheck</li>
           <li>FallThroughCheck</li>
-          <li>HiddenFieldCheck</li>
-          <li>IllegalCatchCheck</li>
-          <li>IllegalThrowsCheck</li>
           <li>JavadocVariableCheck</li>
           <li>ImportControlCheck</li>
           <li>LeftCurlyCheck</li>
