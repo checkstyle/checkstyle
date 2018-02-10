@@ -41,6 +41,12 @@ matrix:
         - DESC="checkstyle and sevntu-checkstyle"
         - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dspotbugs.skip=true -Dcobertura.skip=true"
 
+    # jacoco (oraclejdk8)
+    - jdk: oraclejdk8
+      env:
+        - DESC="jacoco"
+        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean verify -Pno-validations -Pjacoco-check -DskipTests=false"
+
     # cobertura and codecov (oraclejdk8)
     - jdk: oraclejdk8
       env:
