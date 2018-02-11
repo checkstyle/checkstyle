@@ -124,9 +124,9 @@ public String getNameIfPresent() { ... }
         </p>
         <source>
 &lt;module name=&quot;AnnotationLocation&quot;&gt;
-    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;false&quot;/&gt;
-    &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -141,9 +141,9 @@ public String getNameIfPresent() { ... }
         </p>
         <source>
 &lt;module name=&quot;AnnotationLocation&quot;&gt;
-    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
-    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -158,9 +158,9 @@ public String getNameIfPresent() { ... }
         </p>
         <source>
 &lt;module name=&quot;AnnotationLocation&quot;&gt;
-    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
-    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;false&quot;/&gt;
-    &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
        <p>
@@ -170,10 +170,10 @@ public String getNameIfPresent() { ... }
        <p>Configuration:</p>
        <source>
 &lt;module name=&quot;AnnotationLocation&quot;&gt;
-    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
-    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;false&quot;/&gt;
-    &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF, PARAMETER_DEF&quot;/&gt;
+  &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF, PARAMETER_DEF&quot;/&gt;
  &lt;/module&gt;
        </source>
        <p>Code example:</p>
@@ -398,7 +398,8 @@ public int foo() { ... }
       </subsection>
       <subsection name="Examples">
         <p> To configure the check:</p>
-        <source> &lt;module name=&quot;AnnotationUseStyle&quot;/&gt;
+        <source>
+&lt;module name=&quot;AnnotationUseStyle&quot;/&gt;
         </source>
 
         <p>
@@ -410,9 +411,9 @@ public int foo() { ... }
         </p>
         <source>
 &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
-    &lt;property name=&quot;elementStyle&quot; value=&quot;expanded&quot;/&gt;
-    &lt;property name=&quot;trailingArrayComma&quot; value=&quot;never&quot;/&gt;
-    &lt;property name=&quot;closingParens&quot; value=&quot;always&quot;/&gt;
+  &lt;property name=&quot;elementStyle&quot; value=&quot;expanded&quot;/&gt;
+  &lt;property name=&quot;trailingArrayComma&quot; value=&quot;never&quot;/&gt;
+  &lt;property name=&quot;closingParens&quot; value=&quot;always&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -501,7 +502,7 @@ public int foo() { ... }
         <p> In addition you can configure this check with skipNoJavadoc option: </p>
         <source>
 &lt;module name=&quot;MissingDeprecated&quot;&gt;
-    &lt;property name="skipNoJavadoc" value="true" /&gt;
+  &lt;property name="skipNoJavadoc" value="true" /&gt;
 &lt;/module&gt;
         </source>
         <p>Examples of validating source code with skipNoJavadoc:</p>
@@ -592,7 +593,8 @@ public static final int COUNTER = 10; // violation as javadoc exists
       </subsection>
       <subsection name="Examples">
         <p> To configure the check:</p>
-        <source> &lt;module name=&quot;MissingOverride&quot;/&gt;
+        <source>
+&lt;module name=&quot;MissingOverride&quot;/&gt;
         </source>
 
         <p>
@@ -600,10 +602,10 @@ public static final int COUNTER = 10; // violation as javadoc exists
           mode:
         </p>
         <source>
-   &lt;module name=&quot;MissingOverride&quot;&gt;
-      &lt;property name=&quot;javaFiveCompatibility&quot;
-          value=&quot;true&quot;/&gt;
-   &lt;/module&gt;
+&lt;module name=&quot;MissingOverride&quot;&gt;
+  &lt;property name=&quot;javaFiveCompatibility&quot;
+      value=&quot;true&quot;/&gt;
+&lt;/module&gt;
         </source>
       </subsection>
 
@@ -793,16 +795,16 @@ public static final int COUNTER = 10; // violation as javadoc exists
           but variable and parameter declarations.
         </p>
         <source>
-   &lt;module name=&quot;SuppressWarnings&quot;&gt;
-      &lt;property name=&quot;format&quot;
-          value=&quot;^unchecked$|^unused$&quot;/&gt;
-      &lt;property name=&quot;tokens&quot;
-          value=&quot;
-          CLASS_DEF,INTERFACE_DEF,ENUM_DEF,
-          ANNOTATION_DEF,ANNOTATION_FIELD_DEF,
-          ENUM_CONSTANT_DEF,METHOD_DEF,CTOR_DEF
-          &quot;/&gt;
-   &lt;/module&gt;
+&lt;module name=&quot;SuppressWarnings&quot;&gt;
+  &lt;property name=&quot;format&quot;
+      value=&quot;^unchecked$|^unused$&quot;/&gt;
+  &lt;property name=&quot;tokens&quot;
+    value=&quot;
+    CLASS_DEF,INTERFACE_DEF,ENUM_DEF,
+    ANNOTATION_DEF,ANNOTATION_FIELD_DEF,
+    ENUM_CONSTANT_DEF,METHOD_DEF,CTOR_DEF
+    &quot;/&gt;
+&lt;/module&gt;
         </source>
       </subsection>
 
@@ -873,16 +875,16 @@ public static final int COUNTER = 10; // violation as javadoc exists
       <subsection name="Examples">
         <p>To prevent <code>FooCheck</code> errors from being reported write:</p>
         <source>
-        @SuppressWarnings("foo") interface I { }
-        @SuppressWarnings("foo") enum E { }
-        @SuppressWarnings("foo") InputSuppressWarningsFilter() { }
+@SuppressWarnings("foo") interface I { }
+@SuppressWarnings("foo") enum E { }
+@SuppressWarnings("foo") InputSuppressWarningsFilter() { }
         </source>
         <br />
         <p>Some real check examples:</p>
         <p>This will prevent from invocation of the MemberNameCheck:
           <source>
-         @SuppressWarnings({"membername"})
-         private int J;
+@SuppressWarnings({"membername"})
+private int J;
            </source>
         </p>
 
@@ -890,8 +892,8 @@ public static final int COUNTER = 10; // violation as javadoc exists
            processing this annotations.
            For example this will prevent ConstantNameCheck
           <source>
-            @SuppressWarnings("checkstyle:constantname")
-            private static final int m = 0;
+@SuppressWarnings("checkstyle:constantname")
+private static final int m = 0;
           </source>
         </p>
 
@@ -902,20 +904,20 @@ public static final int COUNTER = 10; // violation as javadoc exists
              code will work if there was provided a <code>ParameterNumberCheck=paramnum</code> in
              the <code>aliasList</code>
           <source>
-            @SuppressWarnings("paramnum")
-            public void needsLotsOfParameters(@SuppressWarnings("unused") int a,
-              int b, int c, int d, int e, int f, int g, int h) {
-              ...
-            }
+@SuppressWarnings("paramnum")
+public void needsLotsOfParameters(@SuppressWarnings("unused") int a,
+  int b, int c, int d, int e, int f, int g, int h) {
+  ...
+}
           </source>
       </p>
 
       <p>It is possible to suppress all the checkstyle warnings with the argument <code>"all"</code>:
           <source>
-            @SuppressWarnings("all")
-            public void someFunctionWithInvalidStyle() {
-              //...
-            }
+@SuppressWarnings("all")
+public void someFunctionWithInvalidStyle() {
+  //...
+}
           </source>
       </p>
 
