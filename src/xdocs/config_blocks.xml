@@ -39,11 +39,11 @@
         <source>
 public void guessTheOutput()
 {
-    int whichIsWhich = 0;
-    {
-        int whichIsWhich = 2;
-    }
-    System.out.println("value = " + whichIsWhich);
+  int whichIsWhich = 0;
+  {
+      int whichIsWhich = 2;
+  }
+  System.out.println("value = " + whichIsWhich);
 }
         </source>
 
@@ -51,7 +51,7 @@ public void guessTheOutput()
         <source>
 // if (conditionThatIsNotUsedAnyLonger)
 {
-    System.out.println("unconditional");
+  System.out.println("unconditional");
 }
         </source>
 
@@ -65,26 +65,26 @@ public void guessTheOutput()
         <source>
 switch (a)
 {
-    case 0:
-        // Never OK, break outside block
-        {
-            x = 1;
-        }
-        break;
-    case 1:
-        // Never OK, statement outside block
-        System.out.println("Hello");
-        {
-            x = 2;
-            break;
-        }
-    case 1:
-        // OK if allowInSwitchCase is true
-        {
-            System.out.println("Hello");
-            x = 2;
-            break;
-        }
+  case 0:
+    // Never OK, break outside block
+    {
+      x = 1;
+    }
+    break;
+  case 1:
+    // Never OK, statement outside block
+    System.out.println("Hello");
+    {
+      x = 2;
+      break;
+    }
+  case 1:
+    // OK if allowInSwitchCase is true
+    {
+      System.out.println("Hello");
+      x = 2;
+      break;
+    }
 }
         </source>
       </subsection>
@@ -157,12 +157,12 @@ switch (a)
 
         <p> Sequential blocks won't be checked. Also, no violations for fallthrough: </p>
         <source>
-            switch (a) {
-            case 1:                          // no violation
-            case 2:                          // no violation
-            case 3: someMethod(); { }        // no violation
-            default: break;
-            }
+switch (a) {
+  case 1:                          // no violation
+  case 2:                          // no violation
+  case 3: someMethod(); { }        // no violation
+  default: break;
+}
         </source>
 
         <p>
@@ -173,15 +173,15 @@ switch (a)
         <p> Configuration: </p>
         <source>
 &lt;module name=&quot;EmptyBlock&quot;&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p> Result: </p>
         <source>
-              switch (a) {
-              default:        // no violation for "default:" as empty block belong to "case 1:"
-              case 1: { }
-              }
+switch (a) {
+  default:        // no violation for "default:" as empty block belong to "case 1:"
+  case 1: { }
+}
         </source>
       </subsection>
 
@@ -253,8 +253,8 @@ switch (a)
         </p>
         <source>
 &lt;module name=&quot;EmptyBlock&quot;&gt;
-    &lt;property name=&quot;option&quot; value=&quot;text&quot;/&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_TRY&quot;/&gt;
+  &lt;property name=&quot;option&quot; value=&quot;text&quot;/&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_TRY&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -344,7 +344,7 @@ switch (a)
         </p>
         <source>
 &lt;module name=&quot;EmptyCatchBlock&quot;&gt;
-    &lt;property name=&quot;exceptionVariableName&quot; value=&quot;expected|ignore&quot;/&gt;
+  &lt;property name=&quot;exceptionVariableName&quot; value=&quot;expected|ignore&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -353,7 +353,7 @@ switch (a)
         </p>
         <source>
 &lt;module name=&quot;EmptyCatchBlock&quot;&gt;
-    &lt;property name=&quot;commentFormat&quot; value=&quot;This is expected&quot;/&gt;
+  &lt;property name=&quot;commentFormat&quot; value=&quot;This is expected&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -363,8 +363,8 @@ switch (a)
         </p>
         <source>
 &lt;module name=&quot;EmptyCatchBlock&quot;&gt;
-    &lt;property name=&quot;commentFormat&quot; value=&quot;This is expected&quot;/&gt;
-    &lt;property name=&quot;exceptionVariableName&quot; value=&quot;myException&quot;/&gt;
+  &lt;property name=&quot;commentFormat&quot; value=&quot;This is expected&quot;/&gt;
+  &lt;property name=&quot;exceptionVariableName&quot; value=&quot;myException&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -372,42 +372,42 @@ switch (a)
         </p>
         <source>
 try {
-    throw new RuntimeException();
+  throw new RuntimeException();
 } catch (RuntimeException e) {
-    //This is expected
+  //This is expected
 }
 ...
 try {
-    throw new RuntimeException();
+  throw new RuntimeException();
 } catch (RuntimeException e) {
-    //   This is expected
+  //   This is expected
 }
 ...
 try {
-    throw new RuntimeException();
+  throw new RuntimeException();
 } catch (RuntimeException e) {
-    // This is expected
-    // some another comment
+  // This is expected
+  // some another comment
 }
 ...
 try {
-    throw new RuntimeException();
+  throw new RuntimeException();
 } catch (RuntimeException e) {
-    /* This is expected */
+  /* This is expected */
 }
 ...
 try {
-    throw new RuntimeException();
+  throw new RuntimeException();
 } catch (RuntimeException e) {
-    /*
-    *
-    * This is expected
-    * some another comment
-    */
+  /*
+  *
+  * This is expected
+  * some another comment
+  */
 }
 ...
 try {
-    throw new RuntimeException();
+  throw new RuntimeException();
 } catch (RuntimeException myException) {
 
 }
@@ -547,8 +547,8 @@ try {
         </p>
         <source>
 &lt;module name=&quot;LeftCurly&quot;&gt;
-    &lt;property name=&quot;option&quot; value=&quot;nl&quot;/&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF,INTERFACE_DEF&quot;/&gt;
+  &lt;property name=&quot;option&quot; value=&quot;nl&quot;/&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF,INTERFACE_DEF&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -556,7 +556,7 @@ try {
         </p>
         <source>
 &lt;module name="LeftCurly"&gt;
-    &lt;property name="ignoreEnums" value="false"/&gt;
+  &lt;property name="ignoreEnums" value="false"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -676,7 +676,7 @@ try {
         </p>
         <source>
 &lt;module name=&quot;NeedBraces&quot;&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_IF, LITERAL_ELSE&quot;/&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_IF, LITERAL_ELSE&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -686,7 +686,7 @@ try {
         </p>
         <source>
 &lt;module name=&quot;NeedBraces&quot;&gt;
-    &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -706,8 +706,8 @@ for (int i = 0; ; ) this.notify(); // OK
         </p>
         <source>
 &lt;module name=&quot;NeedBraces&quot;&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_CASE, LITERAL_DEFAULT&quot;/&gt;
-    &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_CASE, LITERAL_DEFAULT&quot;/&gt;
+  &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -716,9 +716,9 @@ for (int i = 0; ; ) this.notify(); // OK
         </p>
         <source>
 switch (num) {
-    case 1: counter++; break; // OK
-    case 6: counter += 10; break; // OK
-    default: counter = 100; break; // OK
+  case 1: counter++; break; // OK
+  case 6: counter += 10; break; // OK
+  default: counter = 100; break; // OK
 }
         </source>
         <p>
@@ -726,7 +726,7 @@ switch (num) {
         </p>
           <source>
 &lt;module name=&quot;NeedBraces&quot;&gt;
-    &lt;property name=&quot;allowEmptyLoopBody&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;allowEmptyLoopBody&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
           </source>
 
@@ -875,8 +875,8 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
         </p>
         <source>
 &lt;module name=&quot;RightCurly&quot;&gt;
-    &lt;property name=&quot;option&quot; value=&quot;alone&quot;/&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_ELSE, METHOD_DEF&quot;/&gt;
+  &lt;property name=&quot;option&quot; value=&quot;alone&quot;/&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_ELSE, METHOD_DEF&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
