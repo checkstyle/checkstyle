@@ -1435,6 +1435,8 @@
             <excludedLink>https://eclipse.org</excludedLink>
             <!-- avax.net.ssl.SSLHandshakeException : Received fatal alert: handshake_failure -->
             <excludedLink>https://plugins.jetbrains.com/plugin/4594-qaplug</excludedLink>
+            <!-- avax.net.ssl.SSLHandshakeException : Received fatal alert: handshake_failure -->
+            <excludedLink>https://www.scala-sbt.org/</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
