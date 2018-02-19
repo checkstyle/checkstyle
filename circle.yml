@@ -11,11 +11,6 @@ dependencies:
     - if [ ! -d groovy-2.4.7 ]; then wget https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip && unzip apache-groovy-binary-2.4.7.zip; fi
     - if [ ! -d apache-maven-3.5.2 ]; then wget ftp://mirror.reverse.net/pub/apache/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.zip && unzip apache-maven-3.5.2-bin.zip; fi
     - pwd
-    - ls -la
-    - echo $BASH_ENV
-    - echo 'export M2_HOME=/home/ubuntu/checkstyle/apache-maven-3.5.2' >> $BASH_ENV
-    - echo 'export PATH=$M2_HOME/bin:$PATH' >> $BASH_ENV
-    - mvn --version
 
   # we to override as 'mvn -e dependecy:go-ofline' does not download all dependencies
   override:
@@ -25,7 +20,7 @@ machine:
   java:
     version: oraclejdk8
   environment:
-    BASH_ENV: "/home/ubuntu/checkstyle/.bashrc"
+    PATH: "/home/ubuntu/checkstyle/apache-maven-3.5.2/bin:$PATH"
     CMD1: " && cd contribution/checkstyle-tester"
     DEP1: " && sed -i'' 's/^guava/#guava/' projects-to-test-on.properties"
     # we need this to let pass 'mvn site' on no-projects mode to download all dependecies
