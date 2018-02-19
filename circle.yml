@@ -12,6 +12,7 @@ dependencies:
     - if [ ! -d apache-maven-3.5.2 ]; then wget ftp://mirror.reverse.net/pub/apache/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.zip && unzip apache-maven-3.5.2-bin.zip; fi
     - export M2_HOME=/home/ubuntu/checkstyle/apache-maven-3.5.2
     - export PATH=$M2_HOME/bin:$PATH
+    - mvn --version
 
   # we to override as 'mvn -e dependecy:go-ofline' does not download all dependencies
   override:
