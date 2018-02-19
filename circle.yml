@@ -1,3 +1,4 @@
+version: 1
 checkout:
   post:
     - git clone https://github.com/checkstyle/contribution
@@ -21,7 +22,7 @@ machine:
     version: oraclejdk8
   environment:
     PATH: "/home/ubuntu/checkstyle/apache-maven-3.5.2/bin:$PATH"
-    CMD1: " && cd contribution/checkstyle-tester"
+    CMD1: "cd contribution/checkstyle-tester"
     DEP1: " && sed -i'' 's/^guava/#guava/' projects-to-test-on.properties"
     # we need this to let pass 'mvn site' on no-projects mode to download all dependecies
     DEP2: " && echo 'class ClassEmpty{}' > src/main/java/EmptyClass.java"
