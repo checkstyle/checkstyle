@@ -14,9 +14,7 @@ dependencies:
 
   # we to override as 'mvn -e dependecy:go-ofline' does not download all dependencies
   override:
-    - export M2_HOME=/home/ubuntu/checkstyle/apache-maven-3.5.2
-    - export PATH=$M2_HOME/bin:$PATH
-    - mvn -e install -Pno-validations
+    - eval $CMD0" && mvn -e install -Pno-validations"
     - eval $TESTER_DEPENDENCIES
 machine:
   java:
@@ -28,7 +26,7 @@ machine:
     # we need this to let pass 'mvn site' on no-projects mode to download all dependecies
     DEP2: " && echo 'class ClassEmpty{}' > src/main/java/EmptyClass.java"
     DEP3: " && /home/ubuntu/checkstyle/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-to-test-on.properties --config my_check.xml"
-    TESTER_DEPENDENCIES: $CMD0$CMD1$DEP1$DEP2$DEP3
+    TESTER_DEPENDENCIES: $CMD1$DEP1$DEP2$DEP3
     CMD2: " && sed -i'' 's/^openjdk/#openjdk/' projects-for-circle.properties"
     CMD3: " && /home/ubuntu/checkstyle/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --config checks-nonjavadoc-error.xml"
     OPENJDK7: " && sed -i'' 's/#openjdk7/openjdk7/' projects-for-circle.properties"
