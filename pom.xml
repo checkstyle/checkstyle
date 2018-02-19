@@ -1492,6 +1492,7 @@
         <checkstyle.skip>true</checkstyle.skip>
         <pmd.skip>true</pmd.skip>
         <findbugs.skip>true</findbugs.skip>
+        <spotbugs.skip>true</spotbugs.skip>
         <xml.skip>true</xml.skip>
         <forbiddenapis.skip>true</forbiddenapis.skip>
         <cobertura.skip>true</cobertura.skip>
@@ -1510,6 +1511,7 @@
         <checkstyle.skip>true</checkstyle.skip>
         <pmd.skip>true</pmd.skip>
         <findbugs.skip>true</findbugs.skip>
+        <spotbugs.skip>true</spotbugs.skip>
         <xml.skip>true</xml.skip>
         <forbiddenapis.skip>true</forbiddenapis.skip>
         <cobertura.skip>true</cobertura.skip>

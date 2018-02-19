@@ -25,7 +25,7 @@ echo "Please provide password for $SF_USER,checkstyle@shell.sourceforge.net"
 echo "exit" | ssh -t $SF_USER,checkstyle@shell.sourceforge.net create
 
 # Version bump in pom.xml - https://github.com/checkstyle/checkstyle/commits/master
-mvn -e -Pgpg release:prepare -B -Darguments="-DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dxml.skip=true"
+mvn -e -Pgpg release:prepare -B -Darguments="-DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dspotbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dxml.skip=true"
 
 # deployment of jars to maven central and publication of site to http://checkstyle.sourceforge.net/new-site/
 mvn -e -Pgpg release:perform -Darguments='-Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true'
