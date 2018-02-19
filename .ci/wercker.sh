@@ -80,7 +80,7 @@ no-error-checkstyles-sevntu)
   set -e
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  mvn -e compile verify -Dmaven.sevntu-checkstyle-check.checkstyle.version=${CS_POM_VERSION} -Dmaven.test.skip=true -Dcheckstyle.ant.skip=true -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dforbiddenapis.skip=true -Dxml.skip=true
+  mvn -e compile verify -Dmaven.sevntu-checkstyle-check.checkstyle.version=${CS_POM_VERSION} -Dmaven.test.skip=true -Dcheckstyle.ant.skip=true -Dpmd.skip=true -Dfindbugs.skip=true -Dspotbugs.skip=true -Dcobertura.skip=true -Dforbiddenapis.skip=true -Dxml.skip=true
   ;;
 
 no-error-sevntu-checks)

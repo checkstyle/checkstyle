@@ -1,3 +1,4 @@
+version: 1
 checkout:
   post:
     - git clone https://github.com/checkstyle/contribution
@@ -5,7 +6,10 @@ dependencies:
   cache_directories:
     - groovy-2.4.7
   pre:
+    - java -version
+    - mvn --version
     - if [ ! -d groovy-2.4.7 ]; then wget https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip && unzip apache-groovy-binary-2.4.7.zip; fi
+    - pwd
 
   # we to override as 'mvn -e dependecy:go-ofline' does not download all dependencies
   override:

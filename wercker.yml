@@ -1,4 +1,4 @@
-box: maven:3.3.9-jdk-8
+box: maven:3.5.2-jdk-8
 
 build:
   steps:
