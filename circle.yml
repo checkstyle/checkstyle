@@ -14,7 +14,7 @@ dependencies:
 
   # we to override as 'mvn -e dependecy:go-ofline' does not download all dependencies
   override:
-    - eval $CMD0 && mvn -e install -Pno-validations
+    - eval export M2_HOME=/home/ubuntu/checkstyle/apache-maven-3.5.2 && export PATH=$M2_HOME/bin:$PATH && mvn -e install -Pno-validations
     - eval $TESTER_DEPENDENCIES
 machine:
   java:
