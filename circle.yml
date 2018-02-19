@@ -25,6 +25,7 @@ machine:
   java:
     version: oraclejdk8
   environment:
+    BASH_ENV: "~/.bashrc"
     CMD1: " && cd contribution/checkstyle-tester"
     DEP1: " && sed -i'' 's/^guava/#guava/' projects-to-test-on.properties"
     # we need this to let pass 'mvn site' on no-projects mode to download all dependecies
