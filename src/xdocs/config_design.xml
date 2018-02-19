@@ -97,29 +97,29 @@ method will never affect the behavior of any other method.
         </p>
         <source>
 public abstract class Plant {
-    private String roots;
-    private String trunk;
+  private String roots;
+  private String trunk;
 
-    protected void validate() {
-      if (roots == null) throw new IllegalArgumentException("No roots!");
-      if (trunk == null) throw new IllegalArgumentException("No trunk!");
-    }
+  protected void validate() {
+    if (roots == null) throw new IllegalArgumentException("No roots!");
+    if (trunk == null) throw new IllegalArgumentException("No trunk!");
+  }
 
-    public abstract void grow();
+  public abstract void grow();
 }
 
 public class Tree extends Plant {
-    private List leaves;
+  private List leaves;
 
-    @Overrides
-    protected void validate() {
-      super.validate();
-      if (leaves == null) throw new IllegalArgumentException("No leaves!");
-    }
+  @Overrides
+  protected void validate() {
+    super.validate();
+    if (leaves == null) throw new IllegalArgumentException("No leaves!");
+  }
 
-    public void grow() {
-      validate();
-    }
+  public void grow() {
+    validate();
+  }
 }
         </source>
         <p>
@@ -127,18 +127,18 @@ public class Tree extends Plant {
         </p>
         <source>
 public abstract class Plant {
-    private String roots;
-    private String trunk;
+  private String roots;
+  private String trunk;
 
-    private void validate() {
-        if (roots == null) throw new IllegalArgumentException("No roots!");
-        if (trunk == null) throw new IllegalArgumentException("No trunk!");
-        validateEx();
-    }
+  private void validate() {
+    if (roots == null) throw new IllegalArgumentException("No roots!");
+    if (trunk == null) throw new IllegalArgumentException("No trunk!");
+    validateEx();
+  }
 
-    protected void validateEx() { }
+  protected void validateEx() { }
 
-    public abstract void grow();
+  public abstract void grow();
 }
         </source>
       </subsection>
@@ -209,8 +209,8 @@ public class B {
 public class FooTest {
   @Test
   public void testFoo() {
-     final B b = new A();
-     assertEquals(2, b.foo());
+    final B b = new A();
+    assertEquals(2, b.foo());
   }
 
   public int foo4() {return 4;} // violation
@@ -339,14 +339,14 @@ public class FooTest {
         <source>
 public class StringUtils // not final to allow subclassing
 {
-    protected StringUtils() {
-        // prevents calls from subclass
-        throw new UnsupportedOperationException();
-    }
+  protected StringUtils() {
+    // prevents calls from subclass
+    throw new UnsupportedOperationException();
+  }
 
-    public static int count(char c, String s) {
-        // ...
-    }
+  public static int count(char c, String s) {
+    // ...
+  }
 }
         </source>
       </subsection>
@@ -671,11 +671,11 @@ public class StringUtils // not final to allow subclassing
         </p>
         <source>
 public class Foo{
-    //methods
+  //methods
 }
 
 class Foo2{
-    //methods
+  //methods
 }
         </source>
         <p>
@@ -683,11 +683,11 @@ class Foo2{
         </p>
         <source>
 class Foo{ // top-level class
-    //methods
+  //methods
 }
 
 class Foo2{
-    //methods
+  //methods
 }
         </source>
         <p>
@@ -695,7 +695,7 @@ class Foo2{
         </p>
         <source>
 public class Foo{
-    //methods
+  //methods
 }
         </source>
       </subsection>
@@ -802,7 +802,7 @@ public class Foo{
         </p>
         <source>
 &lt;module name=&quot;ThrowsCount&quot;&gt;
-    &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+  &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -811,7 +811,7 @@ public class Foo{
         </p>
         <source>
 &lt;module name=&quot;ThrowsCount&quot;&gt;
-    &lt;property name=&quot;ignorePrivateMethods&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;ignorePrivateMethods&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -998,7 +998,7 @@ public class Foo{
         </p>
         <source>
 &lt;module name=&quot;VisibilityModifier&quot;&gt;
-    &lt;property name=&quot;packageAllowed&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;packageAllowed&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -1007,7 +1007,7 @@ public class Foo{
         </p>
         <source>
 &lt;module name=&quot;VisibilityModifier&quot;&gt;
-    &lt;property name=&quot;publicMemberPattern&quot; value=&quot;^$&quot;/&gt;
+  &lt;property name=&quot;publicMemberPattern&quot; value=&quot;^$&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -1016,38 +1016,7 @@ public class Foo{
         </p>
         <source>
 &lt;module name=&quot;VisibilityModifier&quot;&gt;
-    &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
- &lt;/module&gt;
-        </source>
-        <p>
-          Example of allowed public immutable fields:
-        </p>
-        <source>
-public class ImmutableClass
-{
-    public final ImmutableSet&lt;String&gt; includes; // No warning
-    public final ImmutableSet&lt;String&gt; excludes; // No warning
-    public final java.lang.String notes; // No warning
-    public final BigDecimal value; // No warning
-
-    public ImmutableClass(Collection&lt;String&gt; includes, Collection&lt;String&gt; excludes,
-                 BigDecimal value, String notes)
-    {
-        this.includes = ImmutableSet.copyOf(includes);
-        this.excludes = ImmutableSet.copyOf(excludes);
-        this.value = value;
-        this.notes = notes;
-    }
-}
-        </source>
-        <p>
-          To configure the Check in order to allow user specified immutable class names:
-        </p>
-        <source>
-&lt;module name=&quot;VisibilityModifier&quot;&gt;
-    &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;immutableClassCanonicalNames&quot; value=&quot;
-    com.google.common.collect.ImmutableSet&quot;/&gt;
+  &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -1056,21 +1025,52 @@ public class ImmutableClass
         <source>
 public class ImmutableClass
 {
-    public final ImmutableSet&lt;String&gt; includes; // No warning
-    public final ImmutableSet&lt;String&gt; excludes; // No warning
-    public final java.lang.String notes; // Warning here because
-                                         //'java.lang.String' wasn't specified as allowed class
-    public final int someValue; // No warning
+  public final ImmutableSet&lt;String&gt; includes; // No warning
+  public final ImmutableSet&lt;String&gt; excludes; // No warning
+  public final java.lang.String notes; // No warning
+  public final BigDecimal value; // No warning
 
-    public ImmutableClass(Collection&lt;String&gt; includes, Collection&lt;String&gt; excludes,
-                 String notes, int someValue)
-    {
-        this.includes = ImmutableSet.copyOf(includes);
-        this.excludes = ImmutableSet.copyOf(excludes);
-        this.value = value;
-        this.notes = notes;
-        this.someValue = someValue;
-    }
+  public ImmutableClass(Collection&lt;String&gt; includes, Collection&lt;String&gt; excludes,
+               BigDecimal value, String notes)
+  {
+    this.includes = ImmutableSet.copyOf(includes);
+    this.excludes = ImmutableSet.copyOf(excludes);
+    this.value = value;
+    this.notes = notes;
+  }
+}
+        </source>
+        <p>
+          To configure the Check in order to allow user specified immutable class names:
+        </p>
+        <source>
+&lt;module name=&quot;VisibilityModifier&quot;&gt;
+  &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;immutableClassCanonicalNames&quot; value=&quot;
+  com.google.common.collect.ImmutableSet&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example of allowed public immutable fields:
+        </p>
+        <source>
+public class ImmutableClass
+{
+  public final ImmutableSet&lt;String&gt; includes; // No warning
+  public final ImmutableSet&lt;String&gt; excludes; // No warning
+  public final java.lang.String notes; // Warning here because
+                                       //'java.lang.String' wasn't specified as allowed class
+  public final int someValue; // No warning
+
+  public ImmutableClass(Collection&lt;String&gt; includes, Collection&lt;String&gt; excludes,
+               String notes, int someValue)
+  {
+    this.includes = ImmutableSet.copyOf(includes);
+    this.excludes = ImmutableSet.copyOf(excludes);
+    this.value = value;
+    this.notes = notes;
+    this.someValue = someValue;
+  }
 }
         </source>
 
@@ -1091,17 +1091,17 @@ public class ImmutableClass
         </p>
         <source>
 public final class Test {
-    public final String s;
-    public final ImmutableSet&lt;String&gt; names;
-    public final ImmutableSet&lt;Object&gt; objects; // violation (Object class is mutable)
-    public final ImmutableMap&lt;String, Object&gt; links; // violation (Object class is mutable)
+  public final String s;
+  public final ImmutableSet&lt;String&gt; names;
+  public final ImmutableSet&lt;Object&gt; objects; // violation (Object class is mutable)
+  public final ImmutableMap&lt;String, Object&gt; links; // violation (Object class is mutable)
 
-    public Test() {
-        s = "Hello!";
-        names = ImmutableSet.of();
-        objects = ImmutableSet.of();
-        links = ImmutableMap.of();
-    }
+  public Test() {
+    s = "Hello!";
+    names = ImmutableSet.of();
+    objects = ImmutableSet.of();
+    links = ImmutableMap.of();
+  }
 }
         </source>
         <p>
@@ -1119,10 +1119,10 @@ public final class Test {
         <source>
 class SomeClass
 {
-    @com.annotation.CustomAnnotation
-    String annotatedString; // no warning
-    @CustomAnnotation
-    String shortCustomAnnotated; // no warning
+  @com.annotation.CustomAnnotation
+  String annotatedString; // no warning
+  @CustomAnnotation
+  String shortCustomAnnotated; // no warning
 }
         </source>
 
@@ -1139,12 +1139,12 @@ class SomeClass
         <source>
 class SomeClass
 {
-    @org.junit.Rule
-    public TemporaryFolder publicJUnitRule = new TemporaryFolder(); // no warning
-    @org.junit.ClassRule
-    public static TemporaryFolder publicJUnitClassRule = new TemporaryFolder(); // no warning
-    @com.google.common.annotations.VisibleForTesting
-    public String testString = ""; // no warning
+  @org.junit.Rule
+  public TemporaryFolder publicJUnitRule = new TemporaryFolder(); // no warning
+  @org.junit.ClassRule
+  public static TemporaryFolder publicJUnitClassRule = new TemporaryFolder(); // no warning
+  @com.google.common.annotations.VisibleForTesting
+  public String testString = ""; // no warning
 }
         </source>
 
@@ -1163,13 +1163,13 @@ class SomeClass
         <source>
 class SomeClass
 {
-    @CustomAnnotation
-    String customAnnotated; // no warning
-    @com.annotation.CustomAnnotation
-    String customAnnotated1; // no warning
-    @mypackage.annotation.CustomAnnotation
-    String customAnnotatedAnotherPackage; // another package but short name matches
-                                          // so no violation
+  @CustomAnnotation
+  String customAnnotated; // no warning
+  @com.annotation.CustomAnnotation
+  String customAnnotated1; // no warning
+  @mypackage.annotation.CustomAnnotation
+  String customAnnotatedAnotherPackage; // another package but short name matches
+                                        // so no violation
 }
         </source>
 
