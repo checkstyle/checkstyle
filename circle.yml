@@ -11,22 +11,24 @@ dependencies:
     - if [ ! -d groovy-2.4.7 ]; then wget https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip && unzip apache-groovy-binary-2.4.7.zip; fi
     - if [ ! -d apache-maven-3.5.2 ]; then wget ftp://mirror.reverse.net/pub/apache/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.zip && unzip apache-maven-3.5.2-bin.zip; fi
     - pwd
+    - echo 'export M2_HOME=/home/ubuntu/checkstyle/apache-maven-3.5.2' >> $BASH_ENV
+    - echo 'export PATH=$M2_HOME/bin:$PATH' >> $BASH_ENV
+    - mvn --version
 
   # we to override as 'mvn -e dependecy:go-ofline' does not download all dependencies
   override:
-    - eval export M2_HOME=/home/ubuntu/checkstyle/apache-maven-3.5.2 && export PATH=$M2_HOME/bin:$PATH && mvn -e install -Pno-validations
+    - mvn -e install -Pno-validations
     - eval $TESTER_DEPENDENCIES
 machine:
   java:
     version: oraclejdk8
   environment:
-    CMD0: "export M2_HOME=/home/ubuntu/checkstyle/apache-maven-3.5.2 && export PATH=$M2_HOME/bin:$PATH"
     CMD1: " && cd contribution/checkstyle-tester"
     DEP1: " && sed -i'' 's/^guava/#guava/' projects-to-test-on.properties"
     # we need this to let pass 'mvn site' on no-projects mode to download all dependecies
     DEP2: " && echo 'class ClassEmpty{}' > src/main/java/EmptyClass.java"
     DEP3: " && /home/ubuntu/checkstyle/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-to-test-on.properties --config my_check.xml"
-    TESTER_DEPENDENCIES: $CMD0$CMD1$DEP1$DEP2$DEP3
+    TESTER_DEPENDENCIES: $CMD1$DEP1$DEP2$DEP3
     CMD2: " && sed -i'' 's/^openjdk/#openjdk/' projects-for-circle.properties"
     CMD3: " && /home/ubuntu/checkstyle/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --config checks-nonjavadoc-error.xml"
     OPENJDK7: " && sed -i'' 's/#openjdk7/openjdk7/' projects-for-circle.properties"
@@ -44,13 +46,13 @@ machine:
     SCOUTER: " && sed -i'' 's/#scouter/scouter/' projects-for-circle.properties"
     GROOVY: " && sed -i'' 's/#groovy/groovy/' projects-for-circle.properties"
     # Test over openjdk7,8
-    TEST_1: $CMD0$CMD1$CMD2$OPENJDK7$OPENJDK8$CMD3
+    TEST_1: $CMD1$CMD2$OPENJDK7$OPENJDK8$CMD3
     # Test over infinispan, protonpack, jOOL, lucene-solr, openjdk9
-    TEST_2: $CMD0$CMD1$CMD2$INFINISPAN$PROTONPACK$JOOL$LUCENE$OPENJDK9$CMD3
+    TEST_2: $CMD1$CMD2$INFINISPAN$PROTONPACK$JOOL$LUCENE$OPENJDK9$CMD3
     # Test over tapestry5, storm, cassandra
-    TEST_3: $CMD0$CMD1$CMD2$TAPESTRY$STORM$CASSANDRA$CMD3
+    TEST_3: $CMD1$CMD2$TAPESTRY$STORM$CASSANDRA$CMD3
     # Test over apache-commons, hadoop, scouter, groovy
-    TEST_4: $CMD0$CMD1$CMD2$COMMONS$HADOOP$SCOUTER$GROOVY$CMD3
+    TEST_4: $CMD1$CMD2$COMMONS$HADOOP$SCOUTER$GROOVY$CMD3
     SKIP_FILES: ".github|appveyor.yml|.travis.yml|.ci|distelli-manifest.yml|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr|shippable.yml|wercker.yml|wercker.sh|intellij-idea-inspections.xml|org.eclipse.jdt.core.prefs"
 test:
   override:
