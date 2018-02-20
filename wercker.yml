@@ -81,14 +81,16 @@ build:
           echo "build is skipped ..."
         fi
 
-  - script:
-      name: NoErrorTest - HtmlUnit
-      code: |
-        if [[ $SKIP_CI == 'false' ]]; then
-          ./.ci/wercker.sh no-error-htmlunit
-        else
-          echo "build is skipped ..."
-        fi
+  # Disabled as it result in "svn: E175002: Unexpected HTTP status 429 'Too Many Requests'"
+  # even for "svn checkout -r 14923 ...."
+  # - script:
+  #     name: NoErrorTest - HtmlUnit
+  #     code: |
+  #       if [[ $SKIP_CI == 'false' ]]; then
+  #         ./.ci/wercker.sh no-error-htmlunit
+  #       else
+  #         echo "build is skipped ..."
+  #       fi
 
   - script:
       name: NoErrorTest - checkstyle's sevntu
