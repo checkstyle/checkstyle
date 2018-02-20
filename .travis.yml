@@ -39,7 +39,7 @@ matrix:
     - jdk: oraclejdk8
       env:
         - DESC="checkstyle and sevntu-checkstyle"
-        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true"
+        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dspotbugs.skip=true -Dcobertura.skip=true"
 
     # cobertura and codecov (oraclejdk8)
     - jdk: oraclejdk8
