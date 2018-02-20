@@ -27,5 +27,12 @@
                 <ignoreVersion type="regex">.*</ignoreVersion>
             </ignoreVersions>
         </rule>
+        <rule groupId="com.github.spotbugs" artifactId="spotbugs-maven-plugin">
+            <ignoreVersions>
+                <!-- till https://github.com/checkstyle/checkstyle/issues/5525 -->
+                <ignoreVersion type="regex">.*</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+
     </rules>
 </ruleset>
