@@ -214,7 +214,7 @@
     <maven.pmd.plugin.version>3.8</maven.pmd.plugin.version>
     <pmd.version>5.8.1</pmd.version>
     <maven.jacoco.plugin.version>0.8.0</maven.jacoco.plugin.version>
-    <saxon.version>9.8.0-7</saxon.version>
+    <saxon.version>9.8.0-8</saxon.version>
     <maven.checkstyle.plugin.version>3.0.0</maven.checkstyle.plugin.version>
     <maven.sevntu.checkstyle.plugin.version>1.27.0</maven.sevntu.checkstyle.plugin.version>
     <maven.sevntu-checkstyle-check.checkstyle.version>8.8</maven.sevntu-checkstyle-check.checkstyle.version>
