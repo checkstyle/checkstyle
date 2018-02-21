@@ -6,28 +6,28 @@ jdk:
 
 env:
   matrix:
-    - PROFILE="pitest-checkstyle-xpath";
-    - PROFILE="pitest-checkstyle-filters";
+    - PROFILE="pitest-checkstyle-xpath"
+    - PROFILE="pitest-checkstyle-filters"
     - PROFILE="pitest-checks-javadoc"
-    - PROFILE="pitest-checks-imports";
-    - PROFILE="pitest-checks-metrics";
-    - PROFILE="pitest-checks-regexp";
-    - PROFILE="pitest-checks-sizes";
-    - PROFILE="pitest-checks-whitespace";
-    - PROFILE="pitest-checks-misc";
-    - PROFILE="pitest-checks-blocks";
-    - PROFILE="pitest-checks-coding";
-    - PROFILE="pitest-checks-design";
-    - PROFILE="pitest-checks-annotation";
-    - PROFILE="pitest-checks-header";
-    - PROFILE="pitest-checks-modifier";
-    - PROFILE="pitest-checks-naming";
+    - PROFILE="pitest-checks-imports"
+    - PROFILE="pitest-checks-metrics"
+    - PROFILE="pitest-checks-regexp"
+    - PROFILE="pitest-checks-sizes"
+    - PROFILE="pitest-checks-whitespace"
+    - PROFILE="pitest-checks-misc"
+    - PROFILE="pitest-checks-blocks"
+    - PROFILE="pitest-checks-coding"
+    - PROFILE="pitest-checks-design"
+    - PROFILE="pitest-checks-annotation"
+    - PROFILE="pitest-checks-header"
+    - PROFILE="pitest-checks-modifier"
+    - PROFILE="pitest-checks-naming"
     - PROFILE="pitest-checks-indentation"
-    - PROFILE="pitest-checkstyle-tree-walker";
-    - PROFILE="pitest-checkstyle-common";
-    - PROFILE="pitest-checkstyle-main";
-    - PROFILE="pitest-checkstyle-api";
-    - PROFILE="pitest-checkstyle-utils";
+    - PROFILE="pitest-checkstyle-tree-walker"
+    - PROFILE="pitest-checkstyle-common"
+    - PROFILE="pitest-checkstyle-main"
+    - PROFILE="pitest-checkstyle-api"
+    - PROFILE="pitest-checkstyle-utils"
     - PROFILE="pitest-checkstyle-gui"
 
 branches:
