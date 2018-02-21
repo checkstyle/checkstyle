@@ -123,9 +123,9 @@ line 5: ////////////////////////////////////////////////////////////////////
 
         <source>
 &lt;module name=&quot;Header&quot;&gt;
-    &lt;property name=&quot;headerFile&quot; value=&quot;config/java.header&quot;/&gt;
-    &lt;property name=&quot;ignoreLines&quot; value=&quot;2, 3, 4&quot;/&gt;
-    &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
+  &lt;property name=&quot;headerFile&quot; value=&quot;config/java.header&quot;/&gt;
+  &lt;property name=&quot;ignoreLines&quot; value=&quot;2, 3, 4&quot;/&gt;
+  &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -143,8 +143,8 @@ line 5: ////////////////////////////////////////////////////////////////////
         </p>
         <source>
 &lt;module name=&quot;Header&quot;&gt;
-    &lt;property name=&quot;header&quot;
-              value=&quot;// Copyright (C) 2004 MyCompany\n// All rights reserved&quot;/&gt;
+  &lt;property name=&quot;header&quot;
+    value=&quot;// Copyright (C) 2004 MyCompany\n// All rights reserved&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -331,8 +331,8 @@ line 6: ^\W*$
         </p>
         <source>
 &lt;module name=&quot;RegexpHeader&quot;&gt;
-    &lt;property name=&quot;headerFile&quot; value=&quot;config/java.header&quot;/&gt;
-    &lt;property name=&quot;multiLines&quot; value=&quot;10, 13&quot;/&gt;
+  &lt;property name=&quot;headerFile&quot; value=&quot;config/java.header&quot;/&gt;
+  &lt;property name=&quot;multiLines&quot; value=&quot;10, 13&quot;/&gt;
 &lt;/module&gt;
         </source>
 

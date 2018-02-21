@@ -368,7 +368,7 @@ public void testMethod() { }
 
 // CSOFF systemout (debug)
 public static void foo() {
-    System.out.println("Debug info."); // should NOT fail RegexpSinglelineJava
+  System.out.println("Debug info."); // should NOT fail RegexpSinglelineJava
 }
 // CSON systemout
           </source>
@@ -1202,7 +1202,7 @@ public static void foo() {
   &lt;property name="commentFormat" value="@cs-\: ([\w\|]+) influence (\d+)"/&gt;
   &lt;property name="checkFormat" value="$1"/&gt;
   &lt;property name="influenceFormat" value="$2"/&gt;
-  &lt;/module&gt;
+&lt;/module&gt;
             </source>
             <source>
 // @cs-: ClassDataAbstractionCoupling influence 2
