@@ -1673,7 +1673,6 @@
                         <!-- Deprecated classes -->
                         <exclude>com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck</exclude>
                         <!-- Classes with their own config -->
-                        <exclude>com.puppycrawl.tools.checkstyle.checks.javadoc.ClassResolver</exclude>
                         <exclude>com.puppycrawl.tools.checkstyle.utils.JavadocUtils</exclude>
                         <exclude>com.puppycrawl.tools.checkstyle.PackageNamesLoader</exclude>
                         <exclude>com.puppycrawl.tools.checkstyle.Main</exclude>
@@ -1761,24 +1760,6 @@
                           <counter>BRANCH</counter>
                           <value>COVEREDRATIO</value>
                           <minimum>0.64</minimum>
-                        </limit>
-                      </limits>
-                    </rule>
-                    <rule>
-                      <element>CLASS</element>
-                      <includes>
-                        <include>com.puppycrawl.tools.checkstyle.checks.javadoc.ClassResolver</include>
-                      </includes>
-                      <limits>
-                        <limit>
-                          <counter>LINE</counter>
-                          <value>COVEREDRATIO</value>
-                          <minimum>0.98</minimum>
-                        </limit>
-                        <limit>
-                          <counter>BRANCH</counter>
-                          <value>COVEREDRATIO</value>
-                          <minimum>1.00</minimum>
                         </limit>
                       </limits>
                     </rule>
