@@ -11,6 +11,8 @@ function checkPitestReport() {
   B=${ignored[@]};
   if [ "$A" != "$B" ] ; then
       fail=1
+      echo "Diff:"
+      diff -u -w <( echo "$A" ) <( echo "$B" )
       echo "Actual:" ;
       grep -irE "span  class='survived|uncovered'" target/pit-reports | sed -E 's/.*\/([A-Za-z]+.java.html)/\1/'
       echo "Ignore:" ;
