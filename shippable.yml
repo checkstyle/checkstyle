@@ -6,29 +6,29 @@ jdk:
 
 env:
   matrix:
-    - PROFILE="-Ppitest-checkstyle-xpath"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checkstyle-filters"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checks-javadoc"
-    - PROFILE="-Ppitest-checks-imports"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checks-metrics"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checks-regexp"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checks-sizes"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checks-whitespace"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checks-misc"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checks-blocks"; POST_ACTION=check_survived_blocks
-    - PROFILE="-Ppitest-checks-coding"; POST_ACTION=check_survived_coding
-    - PROFILE="-Ppitest-checks-design"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checks-annotation"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checks-header"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checks-modifier"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checks-naming"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checks-indentation"
-    - PROFILE="-Ppitest-checkstyle-tree-walker"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checkstyle-common"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checkstyle-main"; POST_ACTION=check_survived_uncovered
-    - PROFILE="-Ppitest-checkstyle-api"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checkstyle-utils"; POST_ACTION=check_survived
-    - PROFILE="-Ppitest-checkstyle-gui"
+    - PROFILE="pitest-checkstyle-xpath";
+    - PROFILE="pitest-checkstyle-filters";
+    - PROFILE="pitest-checks-javadoc"
+    - PROFILE="pitest-checks-imports";
+    - PROFILE="pitest-checks-metrics";
+    - PROFILE="pitest-checks-regexp";
+    - PROFILE="pitest-checks-sizes";
+    - PROFILE="pitest-checks-whitespace";
+    - PROFILE="pitest-checks-misc";
+    - PROFILE="pitest-checks-blocks";
+    - PROFILE="pitest-checks-coding";
+    - PROFILE="pitest-checks-design";
+    - PROFILE="pitest-checks-annotation";
+    - PROFILE="pitest-checks-header";
+    - PROFILE="pitest-checks-modifier";
+    - PROFILE="pitest-checks-naming";
+    - PROFILE="pitest-checks-indentation"
+    - PROFILE="pitest-checkstyle-tree-walker";
+    - PROFILE="pitest-checkstyle-common";
+    - PROFILE="pitest-checkstyle-main";
+    - PROFILE="pitest-checkstyle-api";
+    - PROFILE="pitest-checkstyle-utils";
+    - PROFILE="pitest-checkstyle-gui"
 
 branches:
   only:
@@ -46,45 +46,9 @@ build:
       SKIP_FILES="appveyor.yml|circle.yml|distelli-manifest.yml|.travis.yml|wercker.yml|wercker.sh|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr|intellij-idea-inspections.xml|org.eclipse.jdt.core.prefs"
       SKIP_CI=$(if [[ $(git diff --name-only HEAD HEAD~1 | grep -vE "$SKIP_FILES" | cat | wc -c) > 0 ]]; then echo false; else echo true; fi;)
       echo "SKIP_CI="$SKIP_CI
-      echo "POST_ACTION="$POST_ACTION
       if [[ $SKIP_CI == 'false' ]];
       then
-        mvn -e $PROFILE clean test org.pitest:pitest-maven:mutationCoverage;
-
-        if [[ $POST_ACTION == 'check_survived_uncovered' \
-                && ( $(grep -RE "class='survived'" target/ | cat | wc -l) > 0 \
-                    || $(grep -RE "class='uncovered'" target/ | cat | wc -l) > 0) ]]; then
-           echo "Survived items:"$(grep -RE "class='survived'" target/ | cat)
-           echo "Uncovered items:"$(grep -RE "class='uncovered'" target/ | cat)
-           echo "Survived/Uncovered items found in reports, build will be failed"
-           exit 1
-        fi
-        if [[ $POST_ACTION == 'check_survived' && $(grep -RE "class='survived'" target/ | cat | wc -l) > 0 ]]; then
-           echo "Survived items:"$(grep -RE "class='survived'" target/ | cat)
-           echo "Survived items found in reports, build will be failed"
-           exit 1
-        fi
-        if [[ $POST_ACTION == 'check_survived_blocks' && $(grep -RE "class='survived'" --exclude="LeftCurlyCheck.*" target/ | cat | wc -l) > 0 ]]; then
-           echo "Survived items:"$(grep -RE "class='survived'" --exclude="LeftCurlyCheck.*" target/ | cat)
-           echo "Survived items found in reports, build will be failed"
-           exit 1
-        fi
-        if [[ $POST_ACTION == 'check_survived_coding'
-              && $(grep -RE "class='survived'"  --exclude="EqualsAvoidNullCheck.*" \
-              --exclude="FallThroughCheck.*" --exclude="HiddenFieldCheck.*" --exclude="IllegalInstantiationCheck.*" \
-              --exclude="IllegalTypeCheck.*" \
-              --exclude="MultipleVariableDeclarationsCheck.*" \
-              --exclude="RequireThisCheck.*" \
-              --exclude="UnnecessaryParenthesesCheck.*" --exclude="VariableDeclarationUsageDistanceCheck.*"   target/ | cat | wc -l) > 0 ]]; then
-           echo "Survived items:"$(grep -RE "class='survived'"  --exclude="EqualsAvoidNullCheck.*" \
-              --exclude="FallThroughCheck.*" --exclude="HiddenFieldCheck.*" --exclude="IllegalInstantiationCheck.*" \
-              --exclude="IllegalTypeCheck.*" \
-              --exclude="MultipleVariableDeclarationsCheck.*" \
-              --exclude="RequireThisCheck.*" \
-              --exclude="UnnecessaryParenthesesCheck.*" --exclude="VariableDeclarationUsageDistanceCheck.*"  target/ | cat)
-           echo "Survived items found in reports, build will be failed"
-           exit 1
-        fi
+        ./.ci/shippable.sh $PROFILE
       else
         echo "Build is skipped, changed files:"
         git diff --name-only HEAD HEAD~1
