@@ -2563,7 +2563,7 @@
                 <!--cause of https://github.com/checkstyle/checkstyle/issues/3605-->
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.XmlLoader$FeaturesForVerySecureJavaInstallations</avoidCallsTo>
               </avoidCallsTo>
-              <coverageThreshold>100</coverageThreshold>
+              <coverageThreshold>99</coverageThreshold>
               <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
@@ -2650,8 +2650,8 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.gui.*</param>
               </targetTests>
-              <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>30</mutationThreshold>
+              <coverageThreshold>40</coverageThreshold>
+              <mutationThreshold>29</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
