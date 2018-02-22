@@ -6,15 +6,16 @@ set -e
 function checkPitestReport() {
   ignored=("$@")
   fail=0
-  actual=($(grep -irE "span  class='survived|uncovered'" target/pit-reports | sed -E 's/.*\/([A-Za-z]+.java.html)/\1/'))
+  SEARCH_REGEXP="(span  class='survived'|class='uncovered'><pre>)"
+  actual=($(grep -irE "$SEARCH_REGEXP" target/pit-reports | sed -E 's/.*\/([A-Za-z]+.java.html)/\1/'))
   A=${actual[@]};
   B=${ignored[@]};
   if [ "$(diff -q -u -w <( echo "$A" ) <( echo "$B" ))" != "" ] ; then
       fail=1
       echo "Diff:"
-      diff -u -w <( echo "$A" ) <( echo "$B" )
+      diff -u -w <( echo "$A" ) <( echo "$B" ) | cat
       echo "Actual:" ;
-      grep -irE "span  class='survived|uncovered'" target/pit-reports | sed -E 's/.*\/([A-Za-z]+.java.html)/\1/'
+      grep -irE "$SEARCH_REGEXP" target/pit-reports | sed -E 's/.*\/([A-Za-z]+.java.html)/\1/'
       echo "Ignore:" ;
       printf '%s\n' "${ignored[@]}"
   fi;
@@ -81,7 +82,20 @@ pitest-checks-coding)
   checkPitestReport "${ignoredItems[@]}"
   ;;
 
-pitest-checkstyle-common|pitest-checks-whitespace|pitest-checkstyle-api|pitest-checkstyle-utils)
+pitest-checkstyle-common)
+  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  # Format of ignored items: <report_name>:<survived line>
+  declare -a ignoredItems=(
+  "Checker.java.html:<td class='uncovered'><pre><span  class=''>                throw ex;</span></pre></td></tr>"
+  "Checker.java.html:<td class='uncovered'><pre><span  class=''>        catch (final CheckstyleException ex) {</span></pre></td></tr>"
+  "Checker.java.html:<td class='uncovered'><pre><span  class=''>            throw new CheckstyleException(&#34;cannot initialize module &#34; + name</span></pre></td></tr>"
+  "Checker.java.html:<td class='uncovered'><pre><span  class=''>                    + &#34; - &#34; + ex.getMessage(), ex);</span></pre></td></tr>"
+  "DefaultConfiguration.java.html:<td class='uncovered'><pre><span  class=''>            attributeMap.put(attributeName, current + &#34;,&#34; + value);</span></pre></td></tr>"
+  );
+  checkPitestReport "${ignoredItems[@]}"
+  ;;
+
+pitest-checks-whitespace|pitest-checkstyle-api|pitest-checkstyle-utils)
   #"; POST_ACTION=check_survived
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   # Format of ignored items: <report_name>:<survived line>
