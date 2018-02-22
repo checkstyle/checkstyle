@@ -9,7 +9,7 @@ function checkPitestReport() {
   actual=($(grep -irE "span  class='survived|uncovered'" target/pit-reports | sed -E 's/.*\/([A-Za-z]+.java.html)/\1/'))
   A=${actual[@]};
   B=${ignored[@]};
-  if [ "$A" != "$B" ] ; then
+  if [ "$(diff -q -u -w <( echo "$A" ) <( echo "$B" ))" != "" ] ; then
       fail=1
       echo "Diff:"
       diff -u -w <( echo "$A" ) <( echo "$B" )
