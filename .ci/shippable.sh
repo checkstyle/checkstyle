@@ -32,7 +32,8 @@ case $1 in
 pitest-checkstyle-xpath|pitest-checkstyle-filters|pitest-checks-imports \
 |pitest-checks-metrics|pitest-checks-regexp|pitest-checks-sizes|pitest-checks-misc \
 |pitest-checks-design|pitest-checks-annotation|pitest-checks-header \
-|pitest-checks-modifier|pitest-checks-naming|pitest-checkstyle-tree-walker|pitest-checkstyle-main)
+|pitest-checks-modifier|pitest-checks-naming|pitest-checkstyle-tree-walker|pitest-checkstyle-main \
+|pitest-checks-whitespace)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   # Format of ignored items: <report_name>:<survived line>
   declare -a ignoredItems=();
@@ -95,11 +96,20 @@ pitest-checkstyle-common)
   checkPitestReport "${ignoredItems[@]}"
   ;;
 
-pitest-checks-whitespace|pitest-checkstyle-api|pitest-checkstyle-utils)
-  #"; POST_ACTION=check_survived
+pitest-checkstyle-api)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   # Format of ignored items: <report_name>:<survived line>
   declare -a ignoredItems=();
+  checkPitestReport "${ignoredItems[@]}"
+  ;;
+
+pitest-checkstyle-utils)
+  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  # Format of ignored items: <report_name>:<survived line>
+  declare -a ignoredItems=(
+  "JavadocUtils.java.html:<td class='uncovered'><pre><span  class=''>                continue;</span></pre></td></tr>"
+  "TokenUtils.java.html:<td class='uncovered'><pre><span  class=''>                continue;</span></pre></td></tr>"
+  );
   checkPitestReport "${ignoredItems[@]}"
   ;;
 
