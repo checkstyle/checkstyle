@@ -33,6 +33,12 @@
                 <ignoreVersion type="regex">.*</ignoreVersion>
             </ignoreVersions>
         </rule>
+        <rule groupId="org.apache.maven.plugins" artifactId="maven-pmd-plugin">
+            <ignoreVersions>
+                <!-- till https://issues.apache.org/jira/browse/MPMD-254 -->
+                <ignoreVersion type="regex">3.9.*</ignoreVersion>
+            </ignoreVersions>
+        </rule>
 
     </rules>
 </ruleset>
