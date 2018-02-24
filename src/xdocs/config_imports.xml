@@ -88,9 +88,9 @@
 
         <source>
 &lt;module name="AvoidStarImport"&gt;
-   &lt;property name="excludes" value="java.io,java.net,java.lang.Math"/&gt;
-   &lt;property name="allowClassImports" value="false"/&gt;
-   &lt;property name="allowStaticMemberImports" value="false"/&gt;
+  &lt;property name="excludes" value="java.io,java.net,java.lang.Math"/&gt;
+  &lt;property name="allowClassImports" value="false"/&gt;
+  &lt;property name="allowStaticMemberImports" value="false"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -188,9 +188,9 @@
         </p>
 
         <source>
-         &lt;module name="AvoidStaticImport"&gt;
-           &lt;property name="excludes" value="java.lang.System.out,java.lang.Math.*"/&gt;
-         &lt;/module&gt;
+&lt;module name="AvoidStaticImport"&gt;
+  &lt;property name="excludes" value="java.lang.System.out,java.lang.Math.*"/&gt;
+&lt;/module&gt;
         </source>
       </subsection>
 
@@ -410,11 +410,11 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </ul>
         <source>
 &lt;module name=&quot;CustomImportOrder&quot;&gt;
-    &lt;property name=&quot;customImportOrderRules&quot;
-        value=&quot;STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS&quot;/&gt;
-    &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^org\.&quot;/&gt;
-    &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;customImportOrderRules&quot;
+    value=&quot;STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS&quot;/&gt;
+  &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^org\.&quot;/&gt;
+  &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -429,12 +429,12 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </ul>
         <source>
 &lt;module name=&quot;CustomImportOrder&quot;&gt;
-    &lt;property name=&quot;customImportOrderRules&quot;
-        value=&quot;STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE&quot;/&gt;
-    &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^org\.&quot;/&gt;
-    &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;^com\.&quot;/&gt;
-    &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;customImportOrderRules&quot;
+    value=&quot;STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE&quot;/&gt;
+  &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^org\.&quot;/&gt;
+  &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;^com\.&quot;/&gt;
+  &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -456,12 +456,12 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
 
         <source>
 &lt;module name=&quot;CustomImportOrder&quot;&gt;
-    &lt;property name=&quot;customImportOrderRules&quot;
-        value=&quot;THIRD_PARTY_PACKAGE###SPECIAL_IMPORTS###STANDARD_JAVA_PACKAGE###STATIC&quot;/&gt;
-    &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^javax\.&quot;/&gt;
-    &lt;property name=&quot;standardPackageRegExp&quot; value=&quot;^java\.&quot;/&gt;
-    &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;customImportOrderRules&quot;
+    value=&quot;THIRD_PARTY_PACKAGE###SPECIAL_IMPORTS###STANDARD_JAVA_PACKAGE###STATIC&quot;/&gt;
+  &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^javax\.&quot;/&gt;
+  &lt;property name=&quot;standardPackageRegExp&quot; value=&quot;^java\.&quot;/&gt;
+  &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -483,10 +483,10 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <source>
 &lt;module name=&quot;CustomImportOrder&quot;&gt;
-    &lt;property name=&quot;customImportOrderRules&quot;
-        value=&quot;STATIC###SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE&quot;/&gt;
-    &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;^(com|org)\.&quot;/&gt;
-    &lt;property name=&quot;standardPackageRegExp&quot; value=&quot;^(java|javax)\.&quot;/&gt;
+  &lt;property name=&quot;customImportOrderRules&quot;
+    value=&quot;STATIC###SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE&quot;/&gt;
+  &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;^(com|org)\.&quot;/&gt;
+  &lt;property name=&quot;standardPackageRegExp&quot; value=&quot;^(java|javax)\.&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -495,7 +495,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <source>
 &lt;module name=&quot;CustomImportOrder&quot;&gt;
-    &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -505,7 +505,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
        <source>
 &lt;module name=&quot;CustomImportOrder&quot;&gt;
-    &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
        </source>
        <p>
@@ -541,9 +541,9 @@ import android.*;
        </p>
        <source>
 &lt;module name=&quot;CustomImportOrder&quot;&gt;
-    &lt;property name=&quot;customImportOrderRules&quot;
+  &lt;property name=&quot;customImportOrderRules&quot;
     value=&quot;SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STATIC###SPECIAL_IMPORTS&quot;/&gt;
-    &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^android\.&quot;/&gt;
+  &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^android\.&quot;/&gt;
 &lt;/module&gt;
        </source>
       </subsection>
@@ -671,7 +671,7 @@ import android.*;
         </p>
         <source>
 &lt;module name=&quot;IllegalImport&quot;&gt;
-    &lt;property name=&quot;illegalPkgs&quot; value=&quot;java.io, java.sql&quot;/&gt;
+  &lt;property name=&quot;illegalPkgs&quot; value=&quot;java.io, java.sql&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -711,8 +711,8 @@ public class InputIllegalImport { }
         </p>
         <source>
 &lt;module name=&quot;IllegalImport&quot;&gt;
-    &lt;property name=&quot;illegalClasses&quot;
-        value=&quot;java.util.Date, java.sql.Connection&quot;/&gt;
+  &lt;property name=&quot;illegalClasses&quot;
+    value=&quot;java.util.Date, java.sql.Connection&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -754,8 +754,8 @@ public class InputIllegalImport { }
         </p>
         <source>
 &lt;module name=&quot;IllegalImport&quot;&gt;
-    &lt;property name=&quot;regexp&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;illegalPkgs&quot; value=&quot;java\.util&quot;/&gt;
+  &lt;property name=&quot;regexp&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;illegalPkgs&quot; value=&quot;java\.util&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -799,9 +799,9 @@ public class InputIllegalImport { }
         </p>
         <source>
 &lt;module name=&quot;IllegalImport&quot;&gt;
-    &lt;property name=&quot;regexp&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;illegalClasses&quot;
-        value=&quot;^java\.util\.(List|Arrays), ^java\.sql\.Connection&quot;/&gt;
+  &lt;property name=&quot;regexp&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;illegalClasses&quot;
+    value=&quot;^java\.util\.(List|Arrays), ^java\.sql\.Connection&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -963,7 +963,7 @@ public class InputIllegalImport { }
 
         <source>
 &lt;module name=&quot;ImportControl&quot;&gt;
-    &lt;property name=&quot;file&quot; value=&quot;config/import-control.xml&quot;/&gt;
+  &lt;property name=&quot;file&quot; value=&quot;config/import-control.xml&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -975,8 +975,8 @@ public class InputIllegalImport { }
 
         <source>
 &lt;module name=&quot;ImportControl&quot;&gt;
-    &lt;property name=&quot;file&quot; value=&quot;config/import-control.xml&quot;/&gt;
-    &lt;property name=&quot;path&quot; value=&quot;^.*[\\/]src[\\/]main[\\/].*$&quot;/&gt;
+  &lt;property name=&quot;file&quot; value=&quot;config/import-control.xml&quot;/&gt;
+  &lt;property name=&quot;path&quot; value=&quot;^.*[\\/]src[\\/]main[\\/].*$&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -993,23 +993,23 @@ public class InputIllegalImport { }
 
         <source>
 &lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
-    &lt;disallow pkg=&quot;sun&quot;/&gt;
-    &lt;allow pkg=&quot;com.puppycrawl.tools.checkstyle.api&quot;/&gt;
-    &lt;allow pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;/&gt;
-    &lt;allow class=&quot;com.google.common.io.Files&quot;/&gt;
-    &lt;allow class=&quot;com.google.common.reflect.ClassPath&quot;/&gt;
-    &lt;subpackage name=&quot;filters&quot;&gt;
-        &lt;allow class=&quot;java\.lang\.ref\.(Weak|Soft)Reference&quot;
-            regex=&quot;true&quot;/&gt;
-        &lt;disallow pkg=&quot;com\.puppycrawl\.tools\.checkstyle\.checks\.[^.]+&quot;
-            regex=&quot;true&quot;/&gt;
-        &lt;disallow pkg=&quot;com.puppycrawl.tools.checkstyle.ant&quot;/&gt;
-        &lt;disallow pkg=&quot;com.puppycrawl.tools.checkstyle.doclets&quot;/&gt;
-        &lt;disallow pkg=&quot;com.puppycrawl.tools.checkstyle.gui&quot;/&gt;
-    &lt;/subpackage&gt;
-    &lt;subpackage name=&quot;dao&quot;&gt;
-        &lt;disallow pkg=&quot;javax.swing&quot; exact-match=&quot;true&quot;/&gt;
-    &lt;/subpackage&gt;
+  &lt;disallow pkg=&quot;sun&quot;/&gt;
+  &lt;allow pkg=&quot;com.puppycrawl.tools.checkstyle.api&quot;/&gt;
+  &lt;allow pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;/&gt;
+  &lt;allow class=&quot;com.google.common.io.Files&quot;/&gt;
+  &lt;allow class=&quot;com.google.common.reflect.ClassPath&quot;/&gt;
+  &lt;subpackage name=&quot;filters&quot;&gt;
+    &lt;allow class=&quot;java\.lang\.ref\.(Weak|Soft)Reference&quot;
+      regex=&quot;true&quot;/&gt;
+    &lt;disallow pkg=&quot;com\.puppycrawl\.tools\.checkstyle\.checks\.[^.]+&quot;
+      regex=&quot;true&quot;/&gt;
+    &lt;disallow pkg=&quot;com.puppycrawl.tools.checkstyle.ant&quot;/&gt;
+    &lt;disallow pkg=&quot;com.puppycrawl.tools.checkstyle.doclets&quot;/&gt;
+    &lt;disallow pkg=&quot;com.puppycrawl.tools.checkstyle.gui&quot;/&gt;
+  &lt;/subpackage&gt;
+  &lt;subpackage name=&quot;dao&quot;&gt;
+    &lt;disallow pkg=&quot;javax.swing&quot; exact-match=&quot;true&quot;/&gt;
+  &lt;/subpackage&gt;
 &lt;/import-control&gt;
         </source>
 
@@ -1024,13 +1024,13 @@ public class InputIllegalImport { }
 
         <source>
 &lt;import-control pkg=&quot;(de.olddomain|de.newdomain)\..*&quot; regex=&quot;true&quot;&gt;
-    &lt;subpackage pkg=&quot;[^.]+\.dao&quot; regex=&quot;true&quot;&gt;
-        &lt;disallow pkg=&quot;.*\.ui&quot; regex=&quot;true&quot;/&gt;
-        &lt;disallow pkg=&quot;.*\.(awt|swing).\.*&quot; regex=&quot;true&quot;/&gt;
-    &lt;/subpackage&gt;
-    &lt;subpackage pkg=&quot;[^.]+\.ui&quot; regex=&quot;true&quot;&gt;
-        &lt;disallow pkg=&quot;.*\.(dao|service)&quot; regex=&quot;true&quot;/&gt;
-    &lt;/subpackage&gt;
+  &lt;subpackage pkg=&quot;[^.]+\.dao&quot; regex=&quot;true&quot;&gt;
+    &lt;disallow pkg=&quot;.*\.ui&quot; regex=&quot;true&quot;/&gt;
+    &lt;disallow pkg=&quot;.*\.(awt|swing).\.*&quot; regex=&quot;true&quot;/&gt;
+  &lt;/subpackage&gt;
+  &lt;subpackage pkg=&quot;[^.]+\.ui&quot; regex=&quot;true&quot;&gt;
+    &lt;disallow pkg=&quot;.*\.(dao|service)&quot; regex=&quot;true&quot;/&gt;
+  &lt;/subpackage&gt;
 &lt;/import-control&gt;
         </source>
 
@@ -1066,9 +1066,9 @@ public class InputIllegalImport { }
         </p>
         <source>
 &lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;
-        strategyOnMismatch=&quot;allowed&quot;&gt;
-    &lt;disallow class=&quot;java.awt.Image&quot;/&gt;
-    &lt;disallow class=&quot;java.io.File&quot;/&gt;
+  strategyOnMismatch=&quot;allowed&quot;&gt;
+  &lt;disallow class=&quot;java.awt.Image&quot;/&gt;
+  &lt;disallow class=&quot;java.io.File&quot;/&gt;
 &lt;/import-control&gt;
         </source>
 
@@ -1081,11 +1081,11 @@ public class InputIllegalImport { }
         </p>
         <source>
 &lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;
-        strategyOnMismatch=&quot;allowed&quot;&gt;
-    &lt;subpackage name=&quot;imports&quot; strategyOnMismatch=&quot;disallowed&quot;&gt;
-        &lt;allow pkg=&quot;javax.swing&quot;/&gt;
-        &lt;allow class=&quot;java.io.File&quot;/&gt;
-    &lt;/subpackage&gt;
+  strategyOnMismatch=&quot;allowed&quot;&gt;
+  &lt;subpackage name=&quot;imports&quot; strategyOnMismatch=&quot;disallowed&quot;&gt;
+    &lt;allow pkg=&quot;javax.swing&quot;/&gt;
+    &lt;allow class=&quot;java.io.File&quot;/&gt;
+  &lt;/subpackage&gt;
 &lt;/import-control&gt;
         </source>
 
@@ -1101,16 +1101,16 @@ public class InputIllegalImport { }
         </p>
         <source>
 &lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;&gt;
-    &lt;allow class=&quot;java\.awt\.Image&quot; regex=&quot;true&quot;/&gt;
-    &lt;allow class=&quot;java\..*\.File&quot; local-only=&quot;true&quot; regex=&quot;true&quot;/&gt;
-    &lt;subpackage name=&quot;imports&quot; strategyOnMismatch=&quot;allowed&quot;&gt;
-        &lt;allow pkg=&quot;javax\.swing&quot; regex=&quot;true&quot;/&gt;
-        &lt;allow pkg=&quot;java\.io&quot; exact-match=&quot;true&quot;
-            local-only=&quot;true&quot; regex=&quot;true&quot;/&gt;
-    &lt;/subpackage&gt;
-    &lt;subpackage name=&quot;filters&quot;&gt;
-        &lt;allow class=&quot;javax.util.Date&quot;/&gt;
-    &lt;/subpackage&gt;
+  &lt;allow class=&quot;java\.awt\.Image&quot; regex=&quot;true&quot;/&gt;
+  &lt;allow class=&quot;java\..*\.File&quot; local-only=&quot;true&quot; regex=&quot;true&quot;/&gt;
+  &lt;subpackage name=&quot;imports&quot; strategyOnMismatch=&quot;allowed&quot;&gt;
+    &lt;allow pkg=&quot;javax\.swing&quot; regex=&quot;true&quot;/&gt;
+    &lt;allow pkg=&quot;java\.io&quot; exact-match=&quot;true&quot;
+      local-only=&quot;true&quot; regex=&quot;true&quot;/&gt;
+  &lt;/subpackage&gt;
+  &lt;subpackage name=&quot;filters&quot;&gt;
+    &lt;allow class=&quot;javax.util.Date&quot;/&gt;
+  &lt;/subpackage&gt;
 &lt;/import-control&gt;
         </source>
 
@@ -1135,10 +1135,10 @@ public class InputIllegalImport { }
         </p>
         <source>
 &lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
-    &lt;allow pkg=&quot;java.util&quot;/&gt;
-    &lt;subpackage name=&quot;filters&quot; &gt;
-        &lt;disallow class=&quot;java.util.Map&quot;/&gt;
-    &lt;/subpackage&gt;
+  &lt;allow pkg=&quot;java.util&quot;/&gt;
+  &lt;subpackage name=&quot;filters&quot; &gt;
+    &lt;disallow class=&quot;java.util.Map&quot;/&gt;
+  &lt;/subpackage&gt;
 &lt;/import-control&gt;
         </source>
         <p>
@@ -1150,11 +1150,11 @@ public class InputIllegalImport { }
         </p>
         <source>
 &lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;&gt;
-    &lt;allow pkg=&quot;java.util.stream&quot;/&gt;
-    &lt;subpackage name=&quot;imports&quot;&gt;
-        &lt;disallow class=&quot;java.util.stream.Stream&quot;/&gt;
-        &lt;disallow class=&quot;java.util.stream.Collectors&quot;/&gt;
-    &lt;/subpackage&gt;
+  &lt;allow pkg=&quot;java.util.stream&quot;/&gt;
+  &lt;subpackage name=&quot;imports&quot;&gt;
+    &lt;disallow class=&quot;java.util.stream.Stream&quot;/&gt;
+    &lt;disallow class=&quot;java.util.stream.Collectors&quot;/&gt;
+  &lt;/subpackage&gt;
 &lt;/import-control&gt;
         </source>
 
@@ -1171,12 +1171,12 @@ import java.util.stream.IntStream;
         </p>
         <source>
 &lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;&gt;
-    &lt;allow pkg=&quot;.*&quot; regex=&quot;true&quot;/&gt;
-    &lt;subpackage name=&quot;imports&quot;&gt;
-        &lt;disallow class=&quot;java.util.Date&quot;/&gt;
-        &lt;disallow class=&quot;java.util.List&quot;/&gt;
-        &lt;disallow pkg=&quot;sun&quot;/&gt;
-    &lt;/subpackage&gt;
+  &lt;allow pkg=&quot;.*&quot; regex=&quot;true&quot;/&gt;
+  &lt;subpackage name=&quot;imports&quot;&gt;
+    &lt;disallow class=&quot;java.util.Date&quot;/&gt;
+    &lt;disallow class=&quot;java.util.List&quot;/&gt;
+    &lt;disallow pkg=&quot;sun&quot;/&gt;
+  &lt;/subpackage&gt;
 &lt;/import-control&gt;
         </source>
 
@@ -1237,15 +1237,15 @@ import java.util.stream.IntStream;
         </p>
         <source>
 &lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
-    &lt;allow class=&quot;java.util.Map&quot;/&gt;
-    &lt;allow class=&quot;java.util.Map.Entry&quot;/&gt;
+  &lt;allow class=&quot;java.util.Map&quot;/&gt;
+  &lt;allow class=&quot;java.util.Map.Entry&quot;/&gt;
 &lt;/import-control&gt;
         </source>
         <p>It is also possible to use a regex with a wildcard:</p>
         <source>
 &lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
-    &lt;allow class=&quot;java.util.Map&quot;/&gt;
-    &lt;allow class=&quot;java.util.Map.*&quot; regex=&quot;true&quot; /&gt;
+  &lt;allow class=&quot;java.util.Map&quot;/&gt;
+  &lt;allow class=&quot;java.util.Map.*&quot; regex=&quot;true&quot; /&gt;
 &lt;/import-control&gt;
         </source>
       </subsection>
@@ -1430,11 +1430,11 @@ import java.util.stream.IntStream;
 
         <source>
 &lt;module name=&quot;ImportOrder&quot;&gt;
-    &lt;property name=&quot;groups&quot; value=&quot;/^java\./,javax,org&quot;/&gt;
-    &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;separated&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;option&quot; value=&quot;above&quot;/&gt;
-    &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;groups&quot; value=&quot;/^java\./,javax,org&quot;/&gt;
+  &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;separated&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;option&quot; value=&quot;above&quot;/&gt;
+  &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -1450,11 +1450,11 @@ import java.util.stream.IntStream;
 
         <source>
 &lt;module name=&quot;ImportOrder&quot;&gt;
-    &lt;property name=&quot;groups&quot; value=&quot;/^java\./,javax,org,com&quot;/&gt;
-    &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;separated&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;option&quot; value=&quot;above&quot;/&gt;
-    &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;groups&quot; value=&quot;/^java\./,javax,org,com&quot;/&gt;
+  &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;separated&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;option&quot; value=&quot;above&quot;/&gt;
+  &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -1476,11 +1476,11 @@ import java.util.stream.IntStream;
 
         <source>
 &lt;module name=&quot;ImportOrder&quot;&gt;
-    &lt;property name=&quot;groups&quot; value=&quot;*,javax,java&quot;/&gt;
-    &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;separated&quot; value=&quot;false&quot;/&gt;
-    &lt;property name=&quot;option&quot; value=&quot;bottom&quot;/&gt;
-    &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;groups&quot; value=&quot;*,javax,java&quot;/&gt;
+  &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;separated&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;option&quot; value=&quot;bottom&quot;/&gt;
+  &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -1494,7 +1494,7 @@ import java.util.stream.IntStream;
 
         <source>
 &lt;module name=&quot;ImportOrder&quot;&gt;
-    &lt;property name=&quot;option&quot; value=&quot;inflow&quot;/&gt;
+  &lt;property name=&quot;option&quot; value=&quot;inflow&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -1505,8 +1505,8 @@ import java.util.stream.IntStream;
 
         <source>
 &lt;module name=&quot;ImportOrder&quot;&gt;
-    &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
+  &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -1541,11 +1541,11 @@ public class SomeClass { ... }
         Example for <code>useContainerOrderingForStatic=true</code>
         <source>
 &lt;module name=&quot;ImportOrder&quot;&gt;
-    &lt;property name=&quot;useContainerOrderingForStatic&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
-    &lt;property name=&quot;caseSensitive&quot; value=&quot;false&quot;/&gt;
-    &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;useContainerOrderingForStatic&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
+  &lt;property name=&quot;caseSensitive&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
         <source>
@@ -1559,11 +1559,11 @@ public class InputEclipseStaticImportsOrder { }
         Example for <code>useContainerOrderingForStatic=false</code>
         <source>
 &lt;module name=&quot;ImportOrder&quot;&gt;
-    &lt;property name=&quot;useContainerOrderingForStatic&quot; value=&quot;false&quot;/&gt;
-    &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
-    &lt;property name=&quot;caseSensitive&quot; value=&quot;false&quot;/&gt;
-    &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;useContainerOrderingForStatic&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
+  &lt;property name=&quot;caseSensitive&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
         <source>
@@ -1751,8 +1751,8 @@ public class InputEclipseStaticImportsOrder { }
         <source>
 import java.awt.Component;
 class FooBar {
-    private Object Component; // a bad practice in my opinion
-    ...
+  private Object Component; // a bad practice in my opinion
+  ...
 }
         </source>
       </subsection>
