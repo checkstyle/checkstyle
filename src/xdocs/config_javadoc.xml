@@ -84,11 +84,11 @@
         </p>
         <source>
 &lt;module name=&quot;AtclauseOrder&quot;&gt;
-    &lt;property name=&quot;tagOrder&quot; value=&quot;&#64;author, &#64;version, &#64;param,
-    &#64;return, &#64;throws, &#64;exception, &#64;see, &#64;since, &#64;serial,
-    &#64;serialField, &#64;serialData, &#64;deprecated&quot;/&gt;
-    &lt;property name=&quot;target&quot; value=&quot;CLASS_DEF, INTERFACE_DEF, ENUM_DEF,
-    METHOD_DEF, CTOR_DEF, VARIABLE_DEF&quot;/&gt;
+  &lt;property name=&quot;tagOrder&quot; value=&quot;&#64;author, &#64;version, &#64;param,
+  &#64;return, &#64;throws, &#64;exception, &#64;see, &#64;since, &#64;serial,
+  &#64;serialField, &#64;serialData, &#64;deprecated&quot;/&gt;
+  &lt;property name=&quot;target&quot; value=&quot;CLASS_DEF, INTERFACE_DEF, ENUM_DEF,
+  METHOD_DEF, CTOR_DEF, VARIABLE_DEF&quot;/&gt;
 &lt;/module>
         </source>
       </subsection>
@@ -398,8 +398,8 @@ public boolean isSomething()
         </p>
         <source>
 &lt;module name="JavadocMethod"&gt;
-   &lt;property name="scope" value="public"/&gt;
-   &lt;property name="allowUndeclaredRTE" value="true"/&gt;
+  &lt;property name="scope" value="public"/&gt;
+  &lt;property name="allowUndeclaredRTE" value="true"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -423,8 +423,8 @@ public boolean isSomething()
         </p>
         <source>
 &lt;module name="JavadocMethod"&gt;
-   &lt;property name="scope" value="private"/&gt;
-   &lt;property name="excludeScope" value="protected"/&gt;
+  &lt;property name="scope" value="private"/&gt;
+  &lt;property name="excludeScope" value="protected"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -432,7 +432,7 @@ public boolean isSomething()
         </p>
         <source>
 &lt;module name="JavadocMethod"&gt;
-   &lt;property name="ignoreMethodNamesRegex" value="^foo.*$"/&gt;
+  &lt;property name="ignoreMethodNamesRegex" value="^foo.*$"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -663,7 +663,7 @@ public boolean isSomething()
         </p>
         <source>
 &lt;module name=&quot;JavadocParagraph&quot;&gt;
-    &lt;property name=&quot;allowNewlineParagraph&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;allowNewlineParagraph&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -911,7 +911,7 @@ public boolean isSomething()
 
         <source>
 &lt;module name="JavadocStyle"&gt;
-   &lt;property name="scope" value="public"/&gt;
+  &lt;property name="scope" value="public"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -922,8 +922,8 @@ public boolean isSomething()
 
         <source>
 &lt;module name="JavadocStyle"&gt;
-   &lt;property name="scope" value="private"/&gt;
-   &lt;property name="excludeScope" value="package"/&gt;
+  &lt;property name="scope" value="private"/&gt;
+  &lt;property name="excludeScope" value="package"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -933,7 +933,7 @@ public boolean isSomething()
 
         <source>
 &lt;module name="JavadocStyle"&gt;
-   &lt;property name="checkFirstSentence" value="false"/&gt;
+  &lt;property name="checkFirstSentence" value="false"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -1040,7 +1040,7 @@ public boolean isSomething()
         </p>
         <source>
 &lt;module name=&quot;JavadocTagContinuationIndentation&quot;&gt;
-    &lt;property name=&quot;offset&quot; value=&quot;4&quot;/&gt;
+  &lt;property name=&quot;offset&quot; value=&quot;4&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -1208,7 +1208,7 @@ public boolean isSomething()
         </p>
         <source>
 &lt;module name="JavadocType"&gt;
-   &lt;property name="scope" value="public"/&gt;
+  &lt;property name="scope" value="public"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -1217,7 +1217,7 @@ public boolean isSomething()
         </p>
         <source>
 &lt;module name="JavadocType"&gt;
-   &lt;property name="authorFormat" value="\S"/&gt;
+  &lt;property name="authorFormat" value="\S"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -1226,7 +1226,7 @@ public boolean isSomething()
         </p>
         <source>
 &lt;module name="JavadocType"&gt;
-   &lt;property name="versionFormat" value="\$Revision.*\$"/&gt;
+  &lt;property name="versionFormat" value="\$Revision.*\$"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -1235,8 +1235,8 @@ public boolean isSomething()
         </p>
         <source>
 &lt;module name="JavadocType"&gt;
-   &lt;property name="scope" value="private"/&gt;
-   &lt;property name="excludeScope" value="package"/&gt;
+  &lt;property name="scope" value="private"/&gt;
+  &lt;property name="excludeScope" value="package"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -1368,7 +1368,7 @@ public boolean isSomething()
 
         <source>
 &lt;module name="JavadocVariable"&gt;
-   &lt;property name="scope" value="public"/&gt;
+  &lt;property name="scope" value="public"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -1379,8 +1379,8 @@ public boolean isSomething()
 
         <source>
 &lt;module name="JavadocVariable"&gt;
-   &lt;property name="scope" value="private"/&gt;
-   &lt;property name="excludeScope" value="protected"/&gt;
+  &lt;property name="scope" value="private"/&gt;
+  &lt;property name="excludeScope" value="protected"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -1391,7 +1391,7 @@ public boolean isSomething()
 
         <source>
 &lt;module name="JavadocVariable"&gt;
-    &lt;property name="ignoreNamePattern" value="log|logger"/&gt;
+  &lt;property name="ignoreNamePattern" value="log|logger"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -1603,8 +1603,8 @@ public boolean isSomething()
         </p>
         <source>
 &lt;module name=&quot;SingleLineJavadoc&quot;&gt;
-    &lt;property name=&quot;ignoredTags&quot; value=&quot;&#64;inheritDoc, &#64;see&quot;/&gt;
-    &lt;property name=&quot;ignoreInlineTags&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;ignoredTags&quot; value=&quot;&#64;inheritDoc, &#64;see&quot;/&gt;
+  &lt;property name=&quot;ignoreInlineTags&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -1719,31 +1719,31 @@ public boolean isSomething()
           Example of <code>{@inheritDoc}</code> without summary.
         </p>
         <source>
-          <![CDATA[
-  public class Test extends Exception {
-  //Valid
-    /**
-     * {@inheritDoc}
-     */
-    public String ValidFunction(){
-      return "";
-    }
-    //Violation
-    /**
-     *
-     */
-    public String InvalidFunction(){
-      return "";
-    }
+        <![CDATA[
+public class Test extends Exception {
+//Valid
+  /**
+   * {@inheritDoc}
+   */
+  public String ValidFunction(){
+    return "";
   }
-        ]]>
+  //Violation
+  /**
+   *
+   */
+  public String InvalidFunction(){
+    return "";
+  }
+}
+      ]]>
         </source>
         <p>
           To ensure that summary do not contain phrase like "This method returns" , use following config:
         </p>
         <source>
 &lt;module name=&quot;SummaryJavadocCheck&quot;&gt;
-    &lt;property name=&quot;forbiddenSummaryFragments&quot; value=&quot;^This method returns.*&quot;/&gt;
+  &lt;property name=&quot;forbiddenSummaryFragments&quot; value=&quot;^This method returns.*&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -1751,7 +1751,7 @@ public boolean isSomething()
         </p>
         <source>
 &lt;module name=&quot;SummaryJavadocCheck&quot;&gt;
-    &lt;property name=&quot;period&quot; value="。"/&gt;
+  &lt;property name=&quot;period&quot; value="。"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -1760,16 +1760,16 @@ public boolean isSomething()
 
         <source><![CDATA[
 public class TestClass {
-   /**
-    * This is invalid java doc.
-    */
-    void invalidJavaDocMethod() {
-    }
-   /**
-    * This is valid java doc。
-    */
-    void validJavaDocMethod() {
-    }
+  /**
+  * This is invalid java doc.
+  */
+  void invalidJavaDocMethod() {
+  }
+  /**
+  * This is valid java doc。
+  */
+  void validJavaDocMethod() {
+  }
 }
         ]]></source>
      </subsection>
@@ -1903,8 +1903,8 @@ public class TestClass {
 
         <source>
 &lt;module name="WriteTag"&gt;
-   &lt;property name="tag" value="@author"/&gt;
-   &lt;property name="tagFormat" value="\S"/&gt;
+  &lt;property name="tag" value="@author"/&gt;
+  &lt;property name="tagFormat" value="\S"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -1915,10 +1915,10 @@ public class TestClass {
 
         <source>
 &lt;module name="WriteTag"&gt;
-   &lt;property name="tag" value="@incomplete"/&gt;
-   &lt;property name="tagFormat" value="\S"/&gt;
-   &lt;property name="severity" value="ignore"/&gt;
-   &lt;property name="tagSeverity" value="warning"/&gt;
+  &lt;property name="tag" value="@incomplete"/&gt;
+  &lt;property name="tagFormat" value="\S"/&gt;
+  &lt;property name="severity" value="ignore"/&gt;
+  &lt;property name="tagSeverity" value="warning"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
