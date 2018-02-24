@@ -71,6 +71,12 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         return ConfigurationLoader.loadConfiguration(fName, new PropertiesExpander(props));
     }
 
+    /**
+     * Non meaningful javadoc just to contain "noinspection" tag.
+     * @return method class
+     * @throws Exception if smth wrong
+     * @noinspection JavaReflectionMemberAccess
+     */
     private static Method getReplacePropertiesMethod() throws Exception {
         final Class<?>[] params = new Class<?>[3];
         params[0] = String.class;
