@@ -15,6 +15,7 @@ skip_commits:
     - release.sh
     - RIGHTS.antlr
     - shippable.yml
+    - shippable.sh
     - wercker.yml
     - wercker.sh
 
