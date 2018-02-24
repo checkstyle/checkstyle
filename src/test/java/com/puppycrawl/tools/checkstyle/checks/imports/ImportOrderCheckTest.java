@@ -73,7 +73,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
                     "sun.tools.util.ModifierFilter.ALL_ACCESS"),
         };
 
-        verify(checkConfig, getPath("InputImportOrder.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputImportOrder.java"), expected);
     }
 
     @Test
@@ -90,7 +90,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
                     "sun.tools.util.ModifierFilter.ALL_ACCESS"),
         };
 
-        verify(checkConfig, getPath("InputImportOrder.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputImportOrder.java"), expected);
     }
 
     @Test
@@ -104,7 +104,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
                     "sun.tools.util.ModifierFilter.ALL_ACCESS"),
         };
 
-        verify(checkConfig, getPath("InputImportOrder.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputImportOrder.java"), expected);
     }
 
     @Test
@@ -119,7 +119,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
             "16: " + getCheckMessage(MSG_ORDERING, "javax.swing.WindowConstants.*"),
         };
 
-        verify(checkConfig, getPath("InputImportOrder.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputImportOrder.java"), expected);
     }
 
     @Test
@@ -700,7 +700,8 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputImportOrder_EclipseDefaultPositive.java"), expected);
+        verify(checkConfig,
+            getNonCompilablePath("InputImportOrder_EclipseDefaultPositive.java"), expected);
     }
 
     @Test
@@ -733,7 +734,8 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
             "17: " + getCheckMessage(MSG_ORDERING, "org.junit.Test"),
             };
 
-        verify(checkConfig, getPath("InputImportOrder_EclipseDefaultNegative.java"), expected);
+        verify(checkConfig,
+            getNonCompilablePath("InputImportOrder_EclipseDefaultNegative.java"), expected);
     }
 
     @Test

@@ -220,8 +220,6 @@
     <maven.sevntu-checkstyle-check.checkstyle.version>8.8</maven.sevntu-checkstyle-check.checkstyle.version>
     <maven.versions.plugin.version>2.5</maven.versions.plugin.version>
     <java.version>1.8</java.version>
-    <tools.jar.version>${java.version}.0</tools.jar.version>
-    <tools.jar.path>${java.home}/../lib/tools.jar</tools.jar.path>
     <pitest.plugin.version>1.3.2</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
@@ -366,6 +364,11 @@
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>cobertura-maven-plugin</artifactId>
           <version>2.7</version>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>1.6.0</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -705,6 +708,28 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-install-plugin</artifactId>
         <version>2.5.2</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>java</goal>
+            </goals>
+            <configuration>
+              <classpathScope>compile</classpathScope>
+              <mainClass>com.puppycrawl.tools.checkstyle.JavadocPropertiesGenerator</mainClass>
+              <arguments>
+                <argument>${project.build.sourceDirectory}/com/puppycrawl/tools/checkstyle/api/TokenTypes.java</argument>
+                <argument>--destfile</argument>
+                <argument>${project.build.outputDirectory}/com/puppycrawl/tools/checkstyle/api/tokentypes.properties</argument>
+              </arguments>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
 
       <plugin>
@@ -1129,6 +1154,7 @@
         <excludes>
           <!-- system-out is ok there, that is CLI -->
           <exclude>**/Main.class</exclude>
+          <exclude>**/JavadocPropertiesGenerator.class</exclude>
           <!-- generated classes, unfortunately use problematic api -->
           <exclude>**/GeneratedJavaLexer.class</exclude>
           <exclude>**/JavadocParser.class</exclude>
@@ -1459,28 +1485,6 @@
   </reporting>
 
   <profiles>
-
-    <!-- Bring in tools.jar for platforms which provide it
-    that is required for javadoc doclets that are in use -->
-    <profile>
-      <id>default-tools.jar-oracle</id>
-      <activation>
-        <property>
-          <name>java.vendor</name>
-          <value>Oracle Corporation</value>
-        </property>
-        <jdk>[,1.9)</jdk>
-      </activation>
-      <dependencies>
-        <dependency>
-          <groupId>com.sun</groupId>
-          <artifactId>tools</artifactId>
-          <version>${tools.jar.version}</version>
-          <scope>system</scope>
-          <systemPath>${tools.jar.path}</systemPath>
-        </dependency>
-      </dependencies>
-    </profile>
 
     <profile>
       <!-- To be used during development. Run the command-->
@@ -2431,7 +2435,6 @@
                 <param>com.puppycrawl.tools.checkstyle.PropertyCacheFile</param>
                 <param>com.puppycrawl.tools.checkstyle.Checker</param>
                 <param>com.puppycrawl.tools.checkstyle.ant.*</param>
-                <param>com.puppycrawl.tools.checkstyle.doclets.*</param>
                 <param>com.puppycrawl.tools.checkstyle.ThreadModeSettings</param>
               </targetClasses>
               <targetTests>
@@ -2447,7 +2450,6 @@
                 <param>com.puppycrawl.tools.checkstyle.PropertyCacheFileTest</param>
                 <param>com.puppycrawl.tools.checkstyle.CheckerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.ant.*</param>
-                <param>com.puppycrawl.tools.checkstyle.doclets.*</param>
                 <param>com.puppycrawl.tools.checkstyle.ThreadModeSettingsTest</param>
               </targetTests>
               <coverageThreshold>100</coverageThreshold>
@@ -2674,7 +2676,6 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>exec-maven-plugin</artifactId>
-            <version>1.6.0</version>
             <configuration>
               <executable>.ci/eclipse-compiler-javac.sh</executable>
               <classpathScope>test</classpathScope>
