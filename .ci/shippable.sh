@@ -87,11 +87,11 @@ pitest-checkstyle-common)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   # Format of ignored items: <report_name>:<survived line>
   declare -a ignoredItems=(
-  "DefaultConfiguration.java.html:<td class='uncovered'><pre><span  class=''>            attributeMap.put(attributeName, current + &#34;,&#34; + value);</span></pre></td></tr>"
-  "Checker.java.html:<td class='uncovered'><pre><span  class=''>                throw ex;</span></pre></td></tr>"
-  "Checker.java.html:<td class='uncovered'><pre><span  class=''>        catch (final CheckstyleException ex) {</span></pre></td></tr>"
-  "Checker.java.html:<td class='uncovered'><pre><span  class=''>            throw new CheckstyleException(&#34;cannot initialize module &#34; + name</span></pre></td></tr>"
   "Checker.java.html:<td class='uncovered'><pre><span  class=''>                    + &#34; - &#34; + ex.getMessage(), ex);</span></pre></td></tr>"
+  "Checker.java.html:<td class='uncovered'><pre><span  class=''>        catch (final CheckstyleException ex) {</span></pre></td></tr>"
+  "Checker.java.html:<td class='uncovered'><pre><span  class=''>                throw ex;</span></pre></td></tr>"
+  "Checker.java.html:<td class='uncovered'><pre><span  class=''>            throw new CheckstyleException(&#34;cannot initialize module &#34; + name</span></pre></td></tr>"
+  "DefaultConfiguration.java.html:<td class='uncovered'><pre><span  class=''>            attributeMap.put(attributeName, current + &#34;,&#34; + value);</span></pre></td></tr>"
   );
   checkPitestReport "${ignoredItems[@]}"
   ;;
