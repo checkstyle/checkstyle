@@ -72,7 +72,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     }
 
     /**
-     * javadoc just to contain "noinspection" tag
+     * Non meaningful javadoc just to contain "noinspection" tag.
      * @return method class
      * @throws Exception if smth wrong
      * @noinspection JavaReflectionMemberAccess

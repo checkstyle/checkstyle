@@ -125,6 +125,7 @@ public class AuditEventDefaultFormatterTest {
     }
 
     /**
+     * Non meaningful javadoc just to contain "noinspection" tag.
      * @noinspection JUnitTestClassNamingConvention
      */
     private static class TestModuleCheck {
@@ -134,6 +135,7 @@ public class AuditEventDefaultFormatterTest {
     }
 
     /**
+     * Non meaningful javadoc just to contain "noinspection" tag.
      * @noinspection JUnitTestClassNamingConvention
      */
     private static class TestModule {
