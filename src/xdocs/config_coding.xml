@@ -1221,6 +1221,32 @@ for (int number : myNumbers) { // violation
 }
          </source>
          </p>
+         <p>
+         An example of how to cofigure check on local variables and parameters
+         but do not validate loop variables:
+         </p>
+         <source>
+ &lt;module name="FinalLocalVariable"&gt;
+     &lt;property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/&gt;
+     &lt;property name="validateEnhancedForLoopVariable" value="false"/&gt;
+ &lt;/module&gt;
+         </source>
+         <p>Example:</p>
+         <p>
+         <source>
+public class MyClass {
+  static int foo(int x, int y) { //violations, parameters should be final
+    return x+y;
+  }
+  public static void main (String []args) { //violation, parameters should be final
+    for (String i : args) {
+        System.out.println(i);
+    }
+    int result=foo(1,2); // violation
+  }
+}
+         </source>
+        </p>
       </subsection>
 
       <subsection name="Example of Usage">
