@@ -39,7 +39,6 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.RootModule;
@@ -152,7 +151,7 @@ public class ModuleReflectionUtilsTest {
         // empty, use default constructor
 
         @Override
-        protected void finishLocalSetup() throws CheckstyleException {
+        protected void finishLocalSetup() {
             //dummy method
         }
 
@@ -196,7 +195,7 @@ public class ModuleReflectionUtilsTest {
     private static class FileSetModuleClass extends AbstractFileSetCheck {
 
         @Override
-        protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
+        protected void processFiltered(File file, FileText fileText) {
             //dummy method
         }
 
@@ -205,7 +204,7 @@ public class ModuleReflectionUtilsTest {
     private static class FilterClass extends AutomaticBean implements Filter {
 
         @Override
-        protected void finishLocalSetup() throws CheckstyleException {
+        protected void finishLocalSetup() {
             //dummy method
         }
 
@@ -220,7 +219,7 @@ public class ModuleReflectionUtilsTest {
             implements BeforeExecutionFileFilter {
 
         @Override
-        protected void finishLocalSetup() throws CheckstyleException {
+        protected void finishLocalSetup() {
             //dummy method
         }
 
@@ -234,7 +233,7 @@ public class ModuleReflectionUtilsTest {
     private static class RootModuleClass extends AutomaticBean implements RootModule {
 
         @Override
-        protected void finishLocalSetup() throws CheckstyleException {
+        protected void finishLocalSetup() {
             //dummy method
         }
 
@@ -244,7 +243,7 @@ public class ModuleReflectionUtilsTest {
         }
 
         @Override
-        public int process(List<File> files) throws CheckstyleException {
+        public int process(List<File> files) {
             return 0;
         }
 
@@ -263,7 +262,7 @@ public class ModuleReflectionUtilsTest {
     private static class TreeWalkerFilterClass extends AutomaticBean implements TreeWalkerFilter {
 
         @Override
-        protected void finishLocalSetup() throws CheckstyleException {
+        protected void finishLocalSetup() {
             //dummy method
         }
 
@@ -277,7 +276,7 @@ public class ModuleReflectionUtilsTest {
     private static class AuditListenerClass extends AutomaticBean implements AuditListener {
 
         @Override
-        protected void finishLocalSetup() throws CheckstyleException {
+        protected void finishLocalSetup() {
             //dummy method
         }
 
@@ -341,7 +340,7 @@ public class ModuleReflectionUtilsTest {
         }
 
         @Override
-        protected void finishLocalSetup() throws CheckstyleException {
+        protected void finishLocalSetup() {
             //dummy method
         }
 

@@ -211,7 +211,7 @@ public class AutomaticBeanTest {
         }
 
         @Override
-        protected void finishLocalSetup() throws CheckstyleException {
+        protected void finishLocalSetup() {
             // No code by default
         }
 

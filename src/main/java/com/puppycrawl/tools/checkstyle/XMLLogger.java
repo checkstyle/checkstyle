@@ -35,7 +35,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -104,7 +103,7 @@ public class XMLLogger
     }
 
     @Override
-    protected void finishLocalSetup() throws CheckstyleException {
+    protected void finishLocalSetup() {
         // No code by default
     }
 

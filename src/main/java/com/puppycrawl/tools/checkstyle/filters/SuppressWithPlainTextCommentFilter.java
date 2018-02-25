@@ -32,7 +32,6 @@ import java.util.regex.PatternSyntaxException;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
@@ -126,7 +125,7 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
     }
 
     @Override
-    protected void finishLocalSetup() throws CheckstyleException {
+    protected void finishLocalSetup() {
         // No code by default
     }
 

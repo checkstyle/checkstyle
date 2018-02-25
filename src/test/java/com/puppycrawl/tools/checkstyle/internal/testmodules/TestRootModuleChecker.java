@@ -49,7 +49,7 @@ public class TestRootModuleChecker implements RootModule {
     }
 
     @Override
-    public int process(List<File> files) throws CheckstyleException {
+    public int process(List<File> files) {
         processed = true;
         filesToCheck = new ArrayList<>(files);
         return 0;

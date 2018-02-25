@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
@@ -61,7 +60,7 @@ public class SeverityMatchFilter
     }
 
     @Override
-    protected void finishLocalSetup() throws CheckstyleException {
+    protected void finishLocalSetup() {
         // No code by default
     }
 

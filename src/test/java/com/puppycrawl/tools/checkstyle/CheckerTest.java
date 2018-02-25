@@ -1069,7 +1069,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         implements ExternalResourceHolder {
 
         @Override
-        protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
+        protected void processFiltered(File file, FileText fileText) {
             log(0, "test");
         }
 
@@ -1108,7 +1108,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
 
         @Override
-        protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
+        protected void processFiltered(File file, FileText fileText) {
             // there is no need in implementation of the method
         }
 
@@ -1285,7 +1285,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
 
         @Override
-        protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
+        protected void processFiltered(File file, FileText fileText) {
             methodCalls.add("processFiltered");
         }
 
