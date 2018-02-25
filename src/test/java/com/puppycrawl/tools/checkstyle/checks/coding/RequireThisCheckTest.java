@@ -369,7 +369,9 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         final Object o = constructor.newInstance(null, ident);
 
         Assert.assertEquals("expected ident token", ident,
-                TestUtil.getClassDeclaredMethod(cls, "getFrameNameIdent").invoke(o));
+            TestUtil.getClassDeclaredMethod(cls, "getFrameNameIdent").invoke(o));
+        Assert.assertEquals("expected catch frame type", "CATCH_FRAME",
+            TestUtil.getClassDeclaredMethod(cls, "getType").invoke(o).toString());
     }
 
 }

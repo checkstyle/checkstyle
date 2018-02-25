@@ -212,7 +212,6 @@ public class RequireThisCheck extends AbstractCheck {
     @Override
     public void beginTree(DetailAST rootAST) {
         frames = new HashMap<>();
-        current.clear();
 
         final Deque<AbstractFrame> frameStack = new LinkedList<>();
         DetailAST curNode = rootAST;
