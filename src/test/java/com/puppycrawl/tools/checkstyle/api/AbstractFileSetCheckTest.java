@@ -143,7 +143,7 @@ public class AbstractFileSetCheckTest {
         private static final String MSG_KEY = "File should not be empty.";
 
         @Override
-        protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
+        protected void processFiltered(File file, FileText fileText) {
             if (fileText.size() == 0) {
                 log(1, MSG_KEY);
             }
@@ -157,7 +157,7 @@ public class AbstractFileSetCheckTest {
         private int count = 1;
 
         @Override
-        protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
+        protected void processFiltered(File file, FileText fileText) {
             log(count, MSG_KEY);
             count++;
             throw new IllegalArgumentException("Test");
