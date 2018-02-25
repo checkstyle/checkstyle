@@ -59,7 +59,6 @@ pitest-checks-coding)
   # Format of ignored items: <report_name>:<survived line>
   declare -a ignoredItems=(
   "EqualsAvoidNullCheck.java.html:<td class='covered'><pre><span  class='survived'>                    &#38;&#38; field.getColumnNo() + minimumSymbolsBetween &#60;= objCalledOn.getColumnNo()) {</span></pre></td></tr>"
-  "FallThroughCheck.java.html:<td class='covered'><pre><span  class='survived'>                    lineNo, matcher.end() - 1);</span></pre></td></tr>"
   "HiddenFieldCheck.java.html:<td class='covered'><pre><span  class='survived'>            processVariable(ast);</span></pre></td></tr>"
   "IllegalInstantiationCheck.java.html:<td class='covered'><pre><span  class='survived'>        classNames.clear();</span></pre></td></tr>"
   "IllegalInstantiationCheck.java.html:<td class='covered'><pre><span  class='survived'>        imports.clear();</span></pre></td></tr>"
@@ -72,7 +71,6 @@ pitest-checks-coding)
   "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>                    &#38;&#38; ast1.getColumnNo() &#60; ast2.getColumnNo()) {</span></pre></td></tr>"
   "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>        current.clear();</span></pre></td></tr>"
   "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>        final boolean methodNameInMethodCall = parentType == TokenTypes.DOT</span></pre></td></tr>"
-  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>            return FrameType.CATCH_FRAME;</span></pre></td></tr>"
   "UnnecessaryParenthesesCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (type != TokenTypes.ASSIGN</span></pre></td></tr>"
   "VariableDeclarationUsageDistanceCheck.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; currentNode.getType() == TokenTypes.LITERAL_CATCH) {</span></pre></td></tr>"
   "VariableDeclarationUsageDistanceCheck.java.html:<td class='covered'><pre><span  class='survived'>                if (currentNode.getType() == TokenTypes.LITERAL_IF) {</span></pre></td></tr>"
