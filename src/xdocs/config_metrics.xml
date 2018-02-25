@@ -106,7 +106,7 @@
         </p>
         <source>
 &lt;module name=&quot;BooleanExpressionComplexity&quot;&gt;
-    &lt;property name=&quot;max&quot; value=&quot;7&quot;/&gt;
+  &lt;property name=&quot;max&quot; value=&quot;7&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -116,7 +116,7 @@
         </p>
         <source>
 &lt;module name="BooleanExpressionComplexity"&gt;
-    &lt;property name="tokens" value="BXOR,LAND,LOR"/&gt;
+  &lt;property name="tokens" value="BXOR,LAND,LOR"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -269,7 +269,7 @@
         </p>
         <source>
 &lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
-    &lt;property name=&quot;max&quot; value=&quot;5&quot;/&gt;
+  &lt;property name=&quot;max&quot; value=&quot;5&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -277,50 +277,8 @@
           To configure the check with two excluded classes <code>HashMap</code> and <code>HashSet</code>:
         </p>
         <source>
-          &lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
-          &lt;property name=&quot;excludedClasses&quot; value=&quot;HashMap, HashSet&quot;/&gt;
-          &lt;/module&gt;
-        </source>
-
-        <p>
-          To configure the check with two regular expressions <code>^Array.*</code> and
-          <code>.*Exception$</code>:
-        </p>
-        <source>
-          &lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
-          &lt;property name=&quot;excludeClassesRegexps&quot;
-              value=&quot;^Array.*, .*Exception$&quot;/&gt;
-          &lt;/module&gt;
-        </source>
-
-        <p>
-          The following example demonstrates usage of <b>excludedClasses</b> and
-          <b>excludeClassesRegexps</b> properties
-        </p>
-        <p>
-          Expected result is one class <code>Date</code>
-        </p>
-        <source>
-          &lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
-          &lt;property name=&quot;excludedClasses&quot; value=&quot;ArrayList&quot;/&gt;
-          &lt;property name=&quot;excludeClassesRegexps&quot; value=&quot;^Hash.*&quot;/&gt;
-          &lt;/module&gt;
-        </source>
-        <source>
-          public class InputClassCoupling {
-          public Set _set = new HashSet();
-          public Map _map = new HashMap();
-          public List&lt;String&gt; _list = new ArrayList&lt;&gt;();
-          public Date _date = new Date();
-          }
-        </source>
-
-        <p>
-          To configure the check with two excluded classes <code>HashMap</code> and <code>HashSet</code>:
-        </p>
-        <source>
 &lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
-    &lt;property name=&quot;excludedClasses&quot; value=&quot;HashMap, HashSet&quot;/&gt;
+  &lt;property name=&quot;excludedClasses&quot; value=&quot;HashMap, HashSet&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -330,7 +288,8 @@
         </p>
         <source>
 &lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
-    &lt;property name=&quot;excludeClassesRegexps&quot; value=&quot;^Array.*, .*Exception$&quot;/&gt;
+  &lt;property name=&quot;excludeClassesRegexps&quot;
+    value=&quot;^Array.*, .*Exception$&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -343,16 +302,57 @@
         </p>
         <source>
 &lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
-    &lt;property name=&quot;excludedClasses&quot; value=&quot;ArrayList&quot;/&gt;
-    &lt;property name=&quot;excludeClassesRegexps&quot; value=&quot;^Hash.*&quot;/&gt;
+  &lt;property name=&quot;excludedClasses&quot; value=&quot;ArrayList&quot;/&gt;
+  &lt;property name=&quot;excludeClassesRegexps&quot; value=&quot;^Hash.*&quot;/&gt;
 &lt;/module&gt;
         </source>
         <source>
 public class InputClassCoupling {
-    public Set _set = new HashSet();
-    public Map _map = new HashMap();
-    public List&lt;String&gt; _list = new ArrayList&lt;&gt;();
-    public Date _date = new Date();
+  public Set _set = new HashSet();
+  public Map _map = new HashMap();
+  public List&lt;String&gt; _list = new ArrayList&lt;&gt;();
+  public Date _date = new Date();
+}
+        </source>
+
+        <p>
+          To configure the check with two excluded classes <code>HashMap</code> and <code>HashSet</code>:
+        </p>
+        <source>
+&lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
+  &lt;property name=&quot;excludedClasses&quot; value=&quot;HashMap, HashSet&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check with two regular expressions <code>^Array.*</code> and
+          <code>.*Exception$</code>:
+        </p>
+        <source>
+&lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
+  &lt;property name=&quot;excludeClassesRegexps&quot; value=&quot;^Array.*, .*Exception$&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          The following example demonstrates usage of <b>excludedClasses</b> and
+          <b>excludeClassesRegexps</b> properties
+        </p>
+        <p>
+          Expected result is one class <code>Date</code>
+        </p>
+        <source>
+&lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
+  &lt;property name=&quot;excludedClasses&quot; value=&quot;ArrayList&quot;/&gt;
+  &lt;property name=&quot;excludeClassesRegexps&quot; value=&quot;^Hash.*&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <source>
+public class InputClassCoupling {
+  public Set _set = new HashSet();
+  public Map _map = new HashMap();
+  public List&lt;String&gt; _list = new ArrayList&lt;&gt;();
+  public Date _date = new Date();
 }
         </source>
 
@@ -389,7 +389,7 @@ public class InputClassCoupling {
 
           <source>
 &lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
-    &lt;property name=&quot;excludedPackages&quot; value=&quot;a.b&quot;/&gt;
+  &lt;property name=&quot;excludedPackages&quot; value=&quot;a.b&quot;/&gt;
 &lt;/module&gt;
           </source>
 
@@ -402,13 +402,13 @@ import a.b.Bar;
 import a.b.c.Baz;
 
 public class Foo {
-    public Bar bar; // Will be ignored, located inside ignored a.b package
-    public Baz baz; // Will not be ignored, located inside a.b.c package
-    public Data data; // Will not be ignored, same file
+  public Bar bar; // Will be ignored, located inside ignored a.b package
+  public Baz baz; // Will not be ignored, located inside a.b.c package
+  public Data data; // Will not be ignored, same file
 
-    class Data {
-        public Foo foo; // Will not be ignored, same file
-    }
+  class Data {
+    public Foo foo; // Will not be ignored, same file
+  }
 }
           </source>
 
@@ -424,7 +424,7 @@ public class Foo {
         </p>
         <source>
 &lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
-    &lt;property name=&quot;excludedPackages&quot; value=&quot;java.util, java.math&quot;/&gt;
+  &lt;property name=&quot;excludedPackages&quot; value=&quot;java.util, java.math&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -586,7 +586,7 @@ public class Foo {
         </p>
         <source>
 &lt;module name=&quot;ClassFanOutComplexity&quot;&gt;
-    &lt;property name=&quot;max&quot; value=&quot;10&quot;/&gt;
+  &lt;property name=&quot;max&quot; value=&quot;10&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -623,7 +623,7 @@ public class Foo {
 
           <source>
 &lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
-    &lt;property name=&quot;excludedPackages&quot; value=&quot;a.b&quot;/&gt;
+  &lt;property name=&quot;excludedPackages&quot; value=&quot;a.b&quot;/&gt;
 &lt;/module&gt;
           </source>
 
@@ -636,13 +636,13 @@ import a.b.Bar;
 import a.b.c.Baz;
 
 public class Foo {
-    public Bar bar; // Will be ignored, located inside ignored a.b package
-    public Baz baz; // Will not be ignored, located inside a.b.c package
-    public Data data; // Will not be ignored, same file
+  public Bar bar; // Will be ignored, located inside ignored a.b package
+  public Baz baz; // Will not be ignored, located inside a.b.c package
+  public Data data; // Will not be ignored, same file
 
-    class Data {
-        public Foo foo; // Will not be ignored, same file
-    }
+  class Data {
+    public Foo foo; // Will not be ignored, same file
+  }
 }
           </source>
 
@@ -658,7 +658,7 @@ public class Foo {
         </p>
         <source>
 &lt;module name=&quot;ClassFanOutComplexity&quot;&gt;
-    &lt;property name=&quot;excludedPackages&quot; value=&quot;java.util, java.math&quot;/&gt;
+  &lt;property name=&quot;excludedPackages&quot; value=&quot;java.util, java.math&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -801,7 +801,7 @@ public class Foo {
         </p>
         <source>
 &lt;module name=&quot;CyclomaticComplexity&quot;&gt;
-    &lt;property name=&quot;max&quot; value=&quot;15&quot;/&gt;
+  &lt;property name=&quot;max&quot; value=&quot;15&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -809,67 +809,67 @@ public class Foo {
         </p>
         <source>
 class CC {
-   // Cyclomatic Complexity = 12
-   public void doSmth()  {               // 1
-       if (a == b)  {                    // 2
-            if (a1 == b1                 // 3
-                &amp;&amp; c1 == d1) {   // 4
-               fiddle();
-            }
-            else if (a2 == b2            // 5
-                      || c1 &lt; d1) {   // 6
-                fiddle();
-            }
-            else {
-                fiddle();
-            }
-       }
-        else if (c == d) {               // 7
-            while (c == d) {             // 8
-                fiddle();
-            }
-        }
-         else if (e == f) {
-            for (n = 0; n &lt; h         // 9
-                    || n &lt; 6; n++) {  // 10
-                fiddle();
-            }
-        }
-        else {
-            switch (z) {
-              case 1:                    // 11
-                    fiddle();
-                    break;
-              case 2:                    // 12
-                    fiddle();
-                    break;
-              default:
-                    fiddle();
-                    break;
-            }
-        }
+  // Cyclomatic Complexity = 12
+  public void doSmth()  {         // 1
+    if (a == b)  {                // 2
+      if (a1 == b1                // 3
+        &amp;&amp; c1 == d1) {            // 4
+        fiddle();
+      }
+      else if (a2 == b2           // 5
+              || c1 &lt; d1) {       // 6
+        fiddle();
+      }
+      else {
+        fiddle();
+      }
     }
+    else if (c == d) {            // 7
+      while (c == d) {            // 8
+        fiddle();
+      }
+    }
+    else if (e == f) {
+      for (n = 0; n &lt; h            // 9
+            || n &lt; 6; n++) {       // 10
+        fiddle();
+      }
+    }
+      else {
+        switch (z) {
+          case 1:                  // 11
+            fiddle();
+            break;
+          case 2:                  // 12
+            fiddle();
+            break;
+          default:
+            fiddle();
+            break;
+      }
+    }
+  }
 }        </source>
         <p>
           Explanation on how complexity is calculated (switchBlockAsSingleDecisionPoint is set to true):
         </p>
         <source>
 class SwitchExample {
-   // Cyclomatic Complexity = 2
-   public void doSmth()  {            // 1
-       int z = 1;
-       switch (z) {                   // 2
-           case 1:
-               foo1();
-               break;
-           case 2:
-               foo2();
-               break;
-           default:
-               fooDefault();
-               break;
-       }
-   }
+  // Cyclomatic Complexity = 2
+  public void doSmth()  {          // 1
+    int z = 1;
+    switch (z) {                   // 2
+      case 1:
+        foo1();
+        break;
+      case 2:
+        foo2();
+        break;
+      default:
+        fooDefault();
+        break;
+     }
+  }
 }        </source>
       </subsection>
 
@@ -993,7 +993,7 @@ class SwitchExample {
         </p>
         <source>
 &lt;module name=&quot;JavaNCSS&quot;&gt;
-    &lt;property name=&quot;methodMaximum&quot; value=&quot;40&quot;/&gt;
+  &lt;property name=&quot;methodMaximum&quot; value=&quot;40&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -1151,7 +1151,7 @@ class SwitchExample {
         </p>
         <source>
 &lt;module name=&quot;NPathComplexity&quot;&gt;
-    &lt;property name=&quot;max&quot; value=&quot;1000&quot;/&gt;
+  &lt;property name=&quot;max&quot; value=&quot;1000&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
