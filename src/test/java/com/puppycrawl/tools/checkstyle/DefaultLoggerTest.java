@@ -118,7 +118,7 @@ public class DefaultLoggerTest {
     }
 
     @Test
-    public void testFinishLocalSetup() throws CheckstyleException {
+    public void testFinishLocalSetup() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream,
                 AutomaticBean.OutputStreamOptions.CLOSE);

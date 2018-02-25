@@ -346,7 +346,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     }
 
     @Test
-    public void testFinishLocalSetup() throws CheckstyleException {
+    public void testFinishLocalSetup() {
         final XMLLogger logger = new XMLLogger(outStream, true);
         logger.finishLocalSetup();
         logger.auditStarted(null);
