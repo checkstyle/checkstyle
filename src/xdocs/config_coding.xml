@@ -1221,6 +1221,35 @@ for (int number : myNumbers) { // violation
 }
          </source>
          </p>
+         <p>
+         An example of how to cofigure check on local variables and parameters
+         </p>
+         <p>
+         so that it also validates Enhanced For Loop Variable is:
+         </p>
+         <source>
+ &lt;module name="FinalLocalVariable"&gt;
+     &lt;property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/&gt;
+     &lt;property name="validateEnhancedForLoopVariable" value="true"/&gt;
+ &lt;/module&gt;
+         </source>
+         <p>Example:</p>
+         <p>
+         <source>
+public class myclass {
+    static int foo( int x, int y) {
+        return x+y;
+    }
+    public static void main (String []args) {
+        for (int i : numbers) { // violation
+            System.out.println(i);
+        }
+        final int result=foo(1,2);
+        result+=result;   // violation since result is set to final
+    }
+}
+         </source>
+         </p>
       </subsection>
 
       <subsection name="Example of Usage">
