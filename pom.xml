@@ -210,7 +210,7 @@
     <antlr4.version>4.7.1</antlr4.version>
     <maven.site.plugin.version>3.7</maven.site.plugin.version>
     <maven.findbugs.plugin.version>3.0.5</maven.findbugs.plugin.version>
-    <maven.spotbugs.plugin.version>3.1.0-RC8</maven.spotbugs.plugin.version>
+    <maven.spotbugs.plugin.version>3.1.2</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.8</maven.pmd.plugin.version>
     <pmd.version>5.8.1</pmd.version>
     <maven.jacoco.plugin.version>0.8.0</maven.jacoco.plugin.version>
