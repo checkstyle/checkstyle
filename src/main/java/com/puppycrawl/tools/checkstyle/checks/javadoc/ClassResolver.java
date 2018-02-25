@@ -90,9 +90,7 @@ public class ClassResolver {
                         clazz = resolveByStarImports(name);
                         // -@cs[NestedIfDepth] it is better to have single return point from method
                         if (clazz == null) {
-                            // Giving up, the type is unknown, so load the class to generate an
-                            // exception
-                            clazz = safeLoad(name);
+                            throw new ClassNotFoundException(name);
                         }
                     }
                 }
