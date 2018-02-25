@@ -469,6 +469,7 @@ public class CommonUtilsTest {
 
     /**
      * Non meaningful javadoc just to contain "noinspection" tag.
+     * Till https://youtrack.jetbrains.com/issue/IDEA-187210
      * @noinspection JUnitTestClassNamingConvention
      */
     private static class TestCloseable implements Closeable {

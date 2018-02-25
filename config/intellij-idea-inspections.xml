@@ -2500,7 +2500,7 @@ isolated classes and we cannot put them to separate package as it will affect us
     <inspection_tool class="WaitOrAwaitWithoutTimeout" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="WaitWhileHoldingTwoLocks" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="WaitWithoutCorrespondingNotify" enabled="true" level="WARNING" enabled_by_default="true" />
-    <!-- till -->
+    <!-- till https://youtrack.jetbrains.com/issue/IDEA-187208 -->
     <inspection_tool class="WeakerAccess" enabled="false" level="WARNING" enabled_by_default="false">
         <scope name="Production" level="WARNING" enabled="true">
           <option name="SUGGEST_PACKAGE_LOCAL_FOR_MEMBERS" value="false" />
