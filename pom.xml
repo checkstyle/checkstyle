@@ -2554,7 +2554,9 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest</param>
+                <param>com.puppycrawl.tools.checkstyle.CheckerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.TranslationCheckTest</param>
               </targetTests>
               <excludedMethods>
