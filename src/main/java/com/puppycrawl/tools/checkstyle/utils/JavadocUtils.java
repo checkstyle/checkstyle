@@ -19,13 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
-import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
@@ -60,7 +58,7 @@ public final class JavadocUtils {
     }
 
     /** Maps from a token name to value. */
-    private static final ImmutableMap<String, Integer> TOKEN_NAME_TO_VALUE;
+    private static final Map<String, Integer> TOKEN_NAME_TO_VALUE;
     /** Maps from a token value to name. */
     private static final String[] TOKEN_VALUE_TO_NAME;
 
@@ -77,40 +75,10 @@ public final class JavadocUtils {
     /** Tab pattern. */
     private static final Pattern TAB = Pattern.compile("\t");
 
-    // Using reflection gets all token names and values from JavadocTokenTypes class
-    // and saves to TOKEN_NAME_TO_VALUE and TOKEN_VALUE_TO_NAME collections.
+    // initialise the constants
     static {
-        final ImmutableMap.Builder<String, Integer> builder = ImmutableMap.builder();
-
-        final Field[] fields = JavadocTokenTypes.class.getDeclaredFields();
-
-        String[] tempTokenValueToName = CommonUtils.EMPTY_STRING_ARRAY;
-
-        for (final Field field : fields) {
-            // Only process public int fields.
-            if (Modifier.isPublic(field.getModifiers())
-                    && field.getType() == Integer.TYPE) {
-
-                final String name = field.getName();
-
-                final int tokenValue = TokenUtils.getIntFromField(field, name);
-                builder.put(name, tokenValue);
-                if (tokenValue > tempTokenValueToName.length - 1) {
-                    final String[] temp = new String[tokenValue + 1];
-                    System.arraycopy(tempTokenValueToName, 0, temp, 0, tempTokenValueToName.length);
-                    tempTokenValueToName = temp;
-                }
-                if (tokenValue == -1) {
-                    tempTokenValueToName[0] = name;
-                }
-                else {
-                    tempTokenValueToName[tokenValue] = name;
-                }
-            }
-        }
-
-        TOKEN_NAME_TO_VALUE = builder.build();
-        TOKEN_VALUE_TO_NAME = tempTokenValueToName;
+        TOKEN_NAME_TO_VALUE = TokenUtils.nameToValueMapFromPublicIntFields(JavadocTokenTypes.class);
+        TOKEN_VALUE_TO_NAME = TokenUtils.valueToNameArrayFromNameToValueMap(TOKEN_NAME_TO_VALUE);
     }
 
     /** Prevent instantiation. */
