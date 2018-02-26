@@ -153,6 +153,9 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
         final List<String> headerLines = getHeaderLines();
         for (String line : headerLines) {
             try {
+                if (line.isEmpty()) {
+                    line = "^$";
+                }
                 headerRegexps.add(Pattern.compile(line));
             }
             catch (final PatternSyntaxException ex) {

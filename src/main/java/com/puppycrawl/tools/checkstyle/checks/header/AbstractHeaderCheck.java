@@ -176,9 +176,6 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
                 if (line == null) {
                     break;
                 }
-                if (line.isEmpty()) {
-                    line = "^$";
-                }
                 readerLines.add(line);
             }
             postProcessHeaderLines();
