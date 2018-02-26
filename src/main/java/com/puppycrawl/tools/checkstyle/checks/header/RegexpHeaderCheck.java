@@ -151,7 +151,8 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
     @Override
     protected void postProcessHeaderLines() {
         final List<String> headerLines = getHeaderLines();
-        for (String line : headerLines) {
+        for (int i = 0; i < headerLines.size(); i++) {
+            String line = headerLines.get(i);
             try {
                 if (line.isEmpty()) {
                     line = "^$";
