@@ -88,25 +88,24 @@ public final class JavadocUtils {
 
         for (final Field field : fields) {
             // Only process public int fields.
-            if (!Modifier.isPublic(field.getModifiers())
-                    || field.getType() != Integer.TYPE) {
-                continue;
-            }
+            if (Modifier.isPublic(field.getModifiers())
+                    && field.getType() == Integer.TYPE) {
 
-            final String name = field.getName();
+                final String name = field.getName();
 
-            final int tokenValue = TokenUtils.getIntFromField(field, name);
-            builder.put(name, tokenValue);
-            if (tokenValue > tempTokenValueToName.length - 1) {
-                final String[] temp = new String[tokenValue + 1];
-                System.arraycopy(tempTokenValueToName, 0, temp, 0, tempTokenValueToName.length);
-                tempTokenValueToName = temp;
-            }
-            if (tokenValue == -1) {
-                tempTokenValueToName[0] = name;
-            }
-            else {
-                tempTokenValueToName[tokenValue] = name;
+                final int tokenValue = TokenUtils.getIntFromField(field, name);
+                builder.put(name, tokenValue);
+                if (tokenValue > tempTokenValueToName.length - 1) {
+                    final String[] temp = new String[tokenValue + 1];
+                    System.arraycopy(tempTokenValueToName, 0, temp, 0, tempTokenValueToName.length);
+                    tempTokenValueToName = temp;
+                }
+                if (tokenValue == -1) {
+                    tempTokenValueToName[0] = name;
+                }
+                else {
+                    tempTokenValueToName[tokenValue] = name;
+                }
             }
         }
 
