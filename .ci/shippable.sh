@@ -29,7 +29,7 @@ function checkPitestReport() {
 
 case $1 in
 
-pitest-checkstyle-xpath|pitest-checkstyle-filters|pitest-checks-imports \
+pitest-checkstyle-xpath|pitest-checkstyle-filters|pitest-checks-imports|pitest-checkstyle-api \
 |pitest-checks-metrics|pitest-checks-regexp|pitest-checks-sizes|pitest-checks-misc \
 |pitest-checks-design|pitest-checks-annotation|pitest-checks-header \
 |pitest-checks-modifier|pitest-checks-naming|pitest-checkstyle-tree-walker|pitest-checkstyle-main \
@@ -90,19 +90,6 @@ pitest-checkstyle-common)
   "Checker.java.html:<td class='uncovered'><pre><span  class=''>                throw ex;</span></pre></td></tr>"
   "Checker.java.html:<td class='uncovered'><pre><span  class=''>            throw new CheckstyleException(&#34;cannot initialize module &#34; + name</span></pre></td></tr>"
   "DefaultConfiguration.java.html:<td class='uncovered'><pre><span  class=''>            attributeMap.put(attributeName, current + &#34;,&#34; + value);</span></pre></td></tr>"
-  );
-  checkPitestReport "${ignoredItems[@]}"
-  ;;
-
-pitest-checkstyle-api)
-  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
-  # Format of ignored items: <report_name>:<survived line>
-  declare -a ignoredItems=(
-  "BeforeExecutionFileFilterSet.java.html:<td class='uncovered'><pre><span  class=''>        beforeExecutionFileFilters.remove(filter);</span></pre></td></tr>"
-  "BeforeExecutionFileFilterSet.java.html:<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>"
-  "FileText.java.html:<td class='uncovered'><pre><span  class=''>                lineBreakPositions[lineNo] = fullText.length();</span></pre></td></tr>"
-  "FilterSet.java.html:<td class='uncovered'><pre><span  class=''>        filters.remove(filter);</span></pre></td></tr>"
-  "FilterSet.java.html:<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>"
   );
   checkPitestReport "${ignoredItems[@]}"
   ;;
