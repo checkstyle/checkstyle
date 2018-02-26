@@ -58,20 +58,19 @@ public final class TokenUtils {
         String[] tempTokenValueToName = CommonUtils.EMPTY_STRING_ARRAY;
         for (final Field field : fields) {
             // Only process the int declarations.
-            if (field.getType() != Integer.TYPE) {
-                continue;
-            }
+            if (field.getType() == Integer.TYPE) {
 
-            final String name = field.getName();
-            final int tokenValue = getIntFromField(field, name);
-            builder.put(name, tokenValue);
-            if (tokenValue > tempTokenValueToName.length - 1) {
-                final String[] temp = new String[tokenValue + 1];
-                System.arraycopy(tempTokenValueToName, 0,
-                        temp, 0, tempTokenValueToName.length);
-                tempTokenValueToName = temp;
+                final String name = field.getName();
+                final int tokenValue = getIntFromField(field, name);
+                builder.put(name, tokenValue);
+                if (tokenValue > tempTokenValueToName.length - 1) {
+                    final String[] temp = new String[tokenValue + 1];
+                    System.arraycopy(tempTokenValueToName, 0,
+                            temp, 0, tempTokenValueToName.length);
+                    tempTokenValueToName = temp;
+                }
+                tempTokenValueToName[tokenValue] = name;
             }
-            tempTokenValueToName[tokenValue] = name;
         }
 
         TOKEN_NAME_TO_VALUE = builder.build();
