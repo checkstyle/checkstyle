@@ -1061,4 +1061,22 @@ public class MainTest {
         }
     }
 
+    /**
+     * This test is a workaround for the Jacoco limitations. A call to {@link System#exit(int)}
+     * will never return, so Jacoco coverage probe will be missing. By mocking the {@code System}
+     * class we turn {@code System.exit()} to noop and the Jacoco coverage probe should succeed.
+     *
+     * @throws Exception if error occurs
+     * @see <a href="https://github.com/jacoco/jacoco/issues/117">Jacoco issue 117</a>
+     */
+    @Test
+    public void testJacocoWorkaround() throws Exception {
+        final String expected = "Files to process must be specified, found 0."
+            + System.lineSeparator();
+        mockStatic(System.class);
+        Main.main();
+        assertEquals("Unexpected output log", expected, systemOut.getLog());
+        assertEquals("Unexpected system error log", "", systemErr.getLog());
+    }
+
 }
