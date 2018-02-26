@@ -65,7 +65,7 @@
         </p>
         <source>
 &lt;module name=&quot;ArrayTypeStyle&quot;&gt;
-    &lt;property name=&quot;javaStyle&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;javaStyle&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -193,7 +193,7 @@ return '\ufeff' + content; // byte order mark
         </p>
         <source>
 &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
-    &lt;property name="allowEscapesForControlCharacters" value="true"/&gt;
+  &lt;property name="allowEscapesForControlCharacters" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -208,7 +208,7 @@ String unitAbbrev = "\u03bcs"; // Greek letter mu, "s"
         </p>
         <source>
 &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
-    &lt;property name="allowByTailComment" value="true"/&gt;
+  &lt;property name="allowByTailComment" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -223,7 +223,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </p>
         <source>
 &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
-    &lt;property name="allowIfAllCharactersEscaped" value="true"/&gt;
+  &lt;property name="allowIfAllCharactersEscaped" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -231,7 +231,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </p>
         <source>
 &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
-    &lt;property name="allowNonPrintableEscapes" value="true"/&gt;
+  &lt;property name="allowNonPrintableEscapes" value="true"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -302,13 +302,13 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         <p>Example #2: Comment is placed at the end of the block and has previous statement.</p>
         <source>
 1   public void foo1() {
-2       foo2();
-3       // it is OK
+2     foo2();
+3     // it is OK
 4   }
 5
 6   public void foo2() {
-7       foo3();
-8          // violation (comment should have the same indentation level as line 7)
+7     foo3();
+8       // violation (comment should have the same indentation level as line 7)
 9   }
         </source>
         <p>Example #3: Comment is used as a single line border to separate groups of methods.</p>
@@ -316,7 +316,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 1   /////////////////////////////// it is OK
 2
 3   public void foo7() {
-4      int a = 0;
+4     int a = 0;
 5   }
 6
 7     /////////////////////////////// violation (should have the same indentation level as line 9)
@@ -326,19 +326,19 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         <p>Example #4: Comment has distributed previous statement.</p>
         <source>
 1   public void foo11() {
-2       CheckUtils
-3           .getFirstNode(new DetailAST())
-4           .getFirstChild()
-5           .getNextSibling();
-6       // it is OK
+2     CheckUtils
+3       .getFirstNode(new DetailAST())
+4       .getFirstChild()
+5       .getNextSibling();
+6     // it is OK
 7   }
 8
 9   public void foo12() {
-10       CheckUtils
-11          .getFirstNode(new DetailAST())
-12          .getFirstChild()
-13          .getNextSibling();
-14                // violation (should have the same indentation level as line 10)
+10    CheckUtils
+11      .getFirstNode(new DetailAST())
+12      .getFirstChild()
+13      .getNextSibling();
+14              // violation (should have the same indentation level as line 10)
 15  }
         </source>
         <p>
@@ -351,9 +351,9 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </p>
         <source>
 1   public void foo46() {
-2       // comment
-3       // block
-4       // it is OK (we cannot clearly detect user intention of explanation target)
+2     // comment
+3     // block
+4     // it is OK (we cannot clearly detect user intention of explanation target)
 5   }
 6
 7   public void foo46() {
@@ -366,24 +366,24 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         <source>
 0   switch(a) {
 1     case "1":
-2        int k = 7;
-3        // it is OK
+2       int k = 7;
+3       // it is OK
 4     case "2":
-5        int k = 7;
+5       int k = 7;
 6     // it is OK
 7     case "3":
-8        if (true) {}
+8       if (true) {}
 9           // violation (should have the same indentation level as line 8 or 10)
 10    case "4":
 11    case "5": {
-12        int a;
+12      int a;
 13    }
 14    // fall through (it is OK)
 15    case "12": {
-16        int a;
+16      int a;
 17    }
 18    default:
-19        // it is OK
+19      // it is OK
 20  }
         </source>
         <p>Example #7: Comment is placed within a distributed statement.</p>
@@ -431,16 +431,16 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         <p>Example #10: Comment within the block tries to describe the next code block.</p>
         <source>
 1   public void foo42() {
-2      int a = 5;
-3      if (a == 5) {
-4         int b;
-5         // it is OK
+2     int a = 5;
+3     if (a == 5) {
+4       int b;
+5       // it is OK
 6      } else if (a ==6) { ... }
 7   }
 8
 9   public void foo43() {
-10     try {
-11        int a;
+10    try {
+11      int a;
 12     // Why do we catch exception here? - violation (should have the same indentation as line 11)
 13     } catch (Exception e) { ... }
 14  }
@@ -620,10 +620,10 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         <p>Switch with no default:</p>
         <source>
 &lt;module name="DescendantToken"&gt;
-    &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
-    &lt;property name="maximumDepth" value="2"/&gt;
-    &lt;property name="limitedTokens" value="LITERAL_DEFAULT"/&gt;
-    &lt;property name="minimumNumber" value="1"/&gt;
+  &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
+  &lt;property name="maximumDepth" value="2"/&gt;
+  &lt;property name="limitedTokens" value="LITERAL_DEFAULT"/&gt;
+  &lt;property name="minimumNumber" value="1"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -632,9 +632,9 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </p>
         <source>
 &lt;module name="DescendantToken"&gt;
-    &lt;property name="tokens" value="FOR_CONDITION"/&gt;
-    &lt;property name="limitedTokens" value="EXPR"/&gt;
-    &lt;property name="minimumNumber" value="1"/&gt;
+  &lt;property name="tokens" value="FOR_CONDITION"/&gt;
+  &lt;property name="limitedTokens" value="EXPR"/&gt;
+  &lt;property name="minimumNumber" value="1"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -644,21 +644,21 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </p>
         <source>
 &lt;module name="DescendantToken"&gt;
-    &lt;property name="tokens" value="EQUAL,NOT_EQUAL"/&gt;
-    &lt;property name="limitedTokens" value="LITERAL_THIS,LITERAL_NULL"/&gt;
-    &lt;property name="maximumNumber" value="1"/&gt;
-    &lt;property name="maximumDepth" value="1"/&gt;
-    &lt;property name="sumTokenCounts" value="true"/&gt;
+  &lt;property name="tokens" value="EQUAL,NOT_EQUAL"/&gt;
+  &lt;property name="limitedTokens" value="LITERAL_THIS,LITERAL_NULL"/&gt;
+  &lt;property name="maximumNumber" value="1"/&gt;
+  &lt;property name="maximumDepth" value="1"/&gt;
+  &lt;property name="sumTokenCounts" value="true"/&gt;
 &lt;/module&gt;
         </source>
 
         <p>String literal equality check:</p>
         <source>
 &lt;module name="DescendantToken"&gt;
-    &lt;property name="tokens" value="EQUAL,NOT_EQUAL"/&gt;
-    &lt;property name="limitedTokens" value="STRING_LITERAL"/&gt;
-    &lt;property name="maximumNumber" value="0"/&gt;
-    &lt;property name="maximumDepth" value="1"/&gt;
+  &lt;property name="tokens" value="EQUAL,NOT_EQUAL"/&gt;
+  &lt;property name="limitedTokens" value="STRING_LITERAL"/&gt;
+  &lt;property name="maximumNumber" value="0"/&gt;
+  &lt;property name="maximumDepth" value="1"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -668,12 +668,12 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </p>
         <source>
 &lt;module name="DescendantToken"&gt;
-    &lt;property name="tokens" value="LITERAL_ASSERT"/&gt;
-    &lt;property name="limitedTokens" value="ASSIGN,DEC,INC,POST_DEC,
-        POST_INC,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,DIV_ASSIGN,MOD_ASSIGN,
-        BSR_ASSIGN,SR_ASSIGN,SL_ASSIGN,BAND_ASSIGN,BXOR_ASSIGN,BOR_ASSIGN,
-        METHOD_CALL"/&gt;
-    &lt;property name="maximumNumber" value="0"/&gt;
+  &lt;property name="tokens" value="LITERAL_ASSERT"/&gt;
+  &lt;property name="limitedTokens" value="ASSIGN,DEC,INC,POST_DEC,
+    POST_INC,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,DIV_ASSIGN,MOD_ASSIGN,
+    BSR_ASSIGN,SR_ASSIGN,SL_ASSIGN,BAND_ASSIGN,BXOR_ASSIGN,BOR_ASSIGN,
+    METHOD_CALL"/&gt;
+  &lt;property name="maximumNumber" value="0"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -683,9 +683,9 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </p>
         <source>
 &lt;module name="DescendantToken"&gt;
-    &lt;property name="tokens" value="FOR_INIT"/&gt;
-    &lt;property name="limitedTokens" value="EXPR"/&gt;
-    &lt;property name="minimumNumber" value="1"/&gt;
+  &lt;property name="tokens" value="FOR_INIT"/&gt;
+  &lt;property name="limitedTokens" value="EXPR"/&gt;
+  &lt;property name="minimumNumber" value="1"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -694,107 +694,107 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </p>
         <source>
 &lt;module name="DescendantToken"&gt;
-    &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
-    &lt;property name="limitedTokens" value="LITERAL_SWITCH"/&gt;
-    &lt;property name="maximumNumber" value="0"/&gt;
-    &lt;property name="minimumDepth" value="1"/&gt;
+  &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
+  &lt;property name="limitedTokens" value="LITERAL_SWITCH"/&gt;
+  &lt;property name="maximumNumber" value="0"/&gt;
+  &lt;property name="minimumDepth" value="1"/&gt;
 &lt;/module&gt;
         </source>
 
         <p>A return statement from within a catch or finally block:</p>
         <source>
 &lt;module name="DescendantToken"&gt;
-    &lt;property name="tokens" value="LITERAL_FINALLY,LITERAL_CATCH"/&gt;
-    &lt;property name="limitedTokens" value="LITERAL_RETURN"/&gt;
-    &lt;property name="maximumNumber" value="0"/&gt;
+  &lt;property name="tokens" value="LITERAL_FINALLY,LITERAL_CATCH"/&gt;
+  &lt;property name="limitedTokens" value="LITERAL_RETURN"/&gt;
+  &lt;property name="maximumNumber" value="0"/&gt;
 &lt;/module&gt;
         </source>
 
         <p>A try statement within a catch or finally block:</p>
         <source>
 &lt;module name="DescendantToken"&gt;
-    &lt;property name="tokens" value="LITERAL_CATCH,LITERAL_FINALLY"/&gt;
-    &lt;property name="limitedTokens" value="LITERAL_TRY"/&gt;
-    &lt;property name="maximumNumber" value="0"/&gt;
+  &lt;property name="tokens" value="LITERAL_CATCH,LITERAL_FINALLY"/&gt;
+  &lt;property name="limitedTokens" value="LITERAL_TRY"/&gt;
+  &lt;property name="maximumNumber" value="0"/&gt;
 &lt;/module&gt;
         </source>
 
         <p>Too many cases within a switch:</p>
         <source>
 &lt;module name="DescendantToken"&gt;
-    &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
-    &lt;property name="limitedTokens" value="LITERAL_CASE"/&gt;
-    &lt;property name="maximumDepth" value="2"/&gt;
-    &lt;property name="maximumNumber" value="10"/&gt;
+  &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
+  &lt;property name="limitedTokens" value="LITERAL_CASE"/&gt;
+  &lt;property name="maximumDepth" value="2"/&gt;
+  &lt;property name="maximumNumber" value="10"/&gt;
 &lt;/module&gt;
         </source>
 
         <p>Too many local variables within a method:</p>
         <source>
 &lt;module name="DescendantToken"&gt;
-    &lt;property name="tokens" value="METHOD_DEF"/&gt;
-    &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
-    &lt;property name="maximumDepth" value="2"/&gt;
-    &lt;property name="maximumNumber" value="10"/&gt;
+  &lt;property name="tokens" value="METHOD_DEF"/&gt;
+  &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
+  &lt;property name="maximumDepth" value="2"/&gt;
+  &lt;property name="maximumNumber" value="10"/&gt;
 &lt;/module&gt;
         </source>
 
         <p>Too many returns from within a method:</p>
         <source>
 &lt;module name="DescendantToken"&gt;
-    &lt;property name="tokens" value="METHOD_DEF"/&gt;
-    &lt;property name="limitedTokens" value="LITERAL_RETURN"/&gt;
-    &lt;property name="maximumNumber" value="3"/&gt;
+  &lt;property name="tokens" value="METHOD_DEF"/&gt;
+  &lt;property name="limitedTokens" value="LITERAL_RETURN"/&gt;
+  &lt;property name="maximumNumber" value="3"/&gt;
 &lt;/module&gt;
         </source>
 
         <p>Too many fields within an interface:</p>
         <source>
 &lt;module name="DescendantToken"&gt;
-    &lt;property name="tokens" value="INTERFACE_DEF"/&gt;
-    &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
-    &lt;property name="maximumDepth" value="2"/&gt;
-    &lt;property name="maximumNumber" value="0"/&gt;
+  &lt;property name="tokens" value="INTERFACE_DEF"/&gt;
+  &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
+  &lt;property name="maximumDepth" value="2"/&gt;
+  &lt;property name="maximumNumber" value="0"/&gt;
 &lt;/module&gt;
         </source>
 
         <p>Limits the number of exceptions a method can throw:</p>
         <source>
 &lt;module name="DescendantToken"&gt;
-    &lt;property name="tokens" value="LITERAL_THROWS"/&gt;
-    &lt;property name="limitedTokens" value="IDENT"/&gt;
-    &lt;property name="maximumNumber" value="1"/&gt;
+  &lt;property name="tokens" value="LITERAL_THROWS"/&gt;
+  &lt;property name="limitedTokens" value="IDENT"/&gt;
+  &lt;property name="maximumNumber" value="1"/&gt;
 &lt;/module&gt;
         </source>
 
         <p>Limits the number of expressions in a method:</p>
         <source>
 &lt;module name="DescendantToken"&gt;
-    &lt;property name="tokens" value="METHOD_DEF"/&gt;
-    &lt;property name="limitedTokens" value="EXPR"/&gt;
-    &lt;property name="maximumNumber" value="200"/&gt;
+  &lt;property name="tokens" value="METHOD_DEF"/&gt;
+  &lt;property name="limitedTokens" value="EXPR"/&gt;
+  &lt;property name="maximumNumber" value="200"/&gt;
 &lt;/module&gt;
         </source>
 
         <p>Disallows empty statements:</p>
         <source>
 &lt;module name="DescendantToken"&gt;
-    &lt;property name="tokens" value="EMPTY_STAT"/&gt;
-    &lt;property name="limitedTokens" value="EMPTY_STAT"/&gt;
-    &lt;property name="maximumNumber" value="0"/&gt;
-    &lt;property name="maximumDepth" value="0"/&gt;
-    &lt;property name="maximumMessage"
-        value="Empty statement is not allowed."/&gt;
+  &lt;property name="tokens" value="EMPTY_STAT"/&gt;
+  &lt;property name="limitedTokens" value="EMPTY_STAT"/&gt;
+  &lt;property name="maximumNumber" value="0"/&gt;
+  &lt;property name="maximumDepth" value="0"/&gt;
+  &lt;property name="maximumMessage"
+    value="Empty statement is not allowed."/&gt;
 &lt;/module&gt;
         </source>
 
         <p>Too many fields within a class:</p>
         <source>
 &lt;module name="DescendantToken"&gt;
-    &lt;property name="tokens" value="CLASS_DEF"/&gt;
-    &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
-    &lt;property name="maximumDepth" value="2"/&gt;
-    &lt;property name="maximumNumber" value="10"/&gt;
+  &lt;property name="tokens" value="CLASS_DEF"/&gt;
+  &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
+  &lt;property name="maximumDepth" value="2"/&gt;
+  &lt;property name="maximumNumber" value="10"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -914,7 +914,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </p>
         <source>
 &lt;module name=&quot;FinalParameters&quot;&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -924,7 +924,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </p>
         <source>
 &lt;module name=&quot;FinalParameters&quot;&gt;
-    &lt;property name=&quot;ignorePrimitiveTypes&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;ignorePrimitiveTypes&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -1063,7 +1063,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 
         <source>
 &lt;module name=&quot;Indentation&quot;&gt;
-    &lt;property name=&quot;caseIndent&quot; value=&quot;0&quot;/&gt;
+  &lt;property name=&quot;caseIndent&quot; value=&quot;0&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -1071,7 +1071,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </p>
         <source>
 &lt;module name=&quot;Indentation&quot;&gt;
-    &lt;property name=&quot;forceStrictCondition&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;forceStrictCondition&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -1208,7 +1208,7 @@ void foo(String aFooString,
         </p>
         <source>
 &lt;module name=&quot;NewlineAtEndOfFile&quot;&gt;
-    &lt;property name=&quot;lineSeparator&quot; value=&quot;lf&quot;/&gt;
+  &lt;property name=&quot;lineSeparator&quot; value=&quot;lf&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -1217,7 +1217,7 @@ void foo(String aFooString,
           </p>
           <source>
 &lt;module name=&quot;NewlineAtEndOfFile&quot;&gt;
-    &lt;property name=&quot;fileExtensions&quot; value=&quot;java, xml, py&quot;/&gt;
+  &lt;property name=&quot;fileExtensions&quot; value=&quot;java, xml, py&quot;/&gt;
 &lt;/module&gt;
           </source>
       </subsection>
@@ -1376,7 +1376,7 @@ void foo(String aFooString,
         </p>
         <source>
 &lt;module name=&quot;TodoComment&quot;&gt;
-    &lt;property name=&quot;format&quot; value=&quot;(TODO)|(FIXME)&quot;/&gt;
+  &lt;property name=&quot;format&quot; value=&quot;(TODO)|(FIXME)&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -1526,8 +1526,8 @@ d = e / f;        // Another comment for this line
         </p>
         <source>
 &lt;module name=&quot;TrailingComment&quot;&gt;
-    &lt;property name=&quot;format&quot; value=&quot;^\\s*$&quot;/&gt;
- &lt;/module&gt;
+  &lt;property name=&quot;format&quot; value=&quot;^\\s*$&quot;/&gt;
+&lt;/module&gt;
         </source>
       </subsection>
 
@@ -1668,7 +1668,7 @@ messages.properties: Key 'ok' missing.
         </p>
         <source>
 &lt;module name=&quot;Translation&quot;&gt;
-    &lt;property name=&quot;fileExtensions&quot; value=&quot;properties, translations&quot;/&gt;
+  &lt;property name=&quot;fileExtensions&quot; value=&quot;properties, translations&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -1681,7 +1681,7 @@ messages.properties: Key 'ok' missing.
         </p>
         <source>
 &lt;module name=&quot;Translation&quot;&gt;
-    &lt;property name=&quot;baseName&quot; value=&quot;^ButtonLabels.*$&quot;/&gt;
+  &lt;property name=&quot;baseName&quot; value=&quot;^ButtonLabels.*$&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -1690,7 +1690,7 @@ messages.properties: Key 'ok' missing.
         </p>
         <source>
 &lt;module name=&quot;Translation&quot;&gt;
-    &lt;property name=&quot;requiredTranslations&quot; value=&quot;ja, fr&quot;/&gt;
+  &lt;property name=&quot;requiredTranslations&quot; value=&quot;ja, fr&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -1700,7 +1700,7 @@ messages.properties: Key 'ok' missing.
         </p>
         <source>
 &lt;module name=&quot;Translation&quot;&gt;
-    &lt;property name=&quot;requiredTranslations&quot; value=&quot;es, fr, de&quot;/&gt;
+  &lt;property name=&quot;requiredTranslations&quot; value=&quot;es, fr, de&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -1815,7 +1815,7 @@ messages_home_fr_CA_UNIX.properties
         </p>
         <source>
 &lt;module name=&quot;UncommentedMain&quot;&gt;
-    &lt;property name=&quot;excludedClasses&quot; value=&quot;\.Main$&quot;/&gt;
+  &lt;property name=&quot;excludedClasses&quot; value=&quot;\.Main$&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -1895,7 +1895,7 @@ messages_home_fr_CA_UNIX.properties
         </p>
         <source>
 &lt;module name=&quot;UniqueProperties&quot;&gt;
-    &lt;property name=&quot;fileExtensions&quot; value=&quot;properties&quot; /&gt;
+  &lt;property name=&quot;fileExtensions&quot; value=&quot;properties&quot; /&gt;
 &lt;/module&gt;
         </source>
       </subsection>
