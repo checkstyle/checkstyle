@@ -172,12 +172,9 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
         final LineNumberReader lnr = new LineNumberReader(headerReader);
         try {
             while (true) {
-                String line = lnr.readLine();
+                final String line = lnr.readLine();
                 if (line == null) {
                     break;
-                }
-                if (line.isEmpty()) {
-                    line = "^$";
                 }
                 readerLines.add(line);
             }
