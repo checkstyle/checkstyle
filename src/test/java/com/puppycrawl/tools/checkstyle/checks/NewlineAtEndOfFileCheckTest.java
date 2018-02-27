@@ -25,8 +25,8 @@ import static java.util.Locale.ENGLISH;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyBoolean;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.Mockito.times;
 import static org.powermock.api.mockito.PowerMockito.doNothing;
 import static org.powermock.api.mockito.PowerMockito.mock;
@@ -100,7 +100,7 @@ public class NewlineAtEndOfFileCheckTest
                 getPath("InputNewlineAtEndOfFileLf.java"),
                 expected);
 
-        verifyStatic(times(1));
+        verifyStatic(Closeables.class, times(1));
         Closeables.close(any(RandomAccessFile.class), anyBoolean());
     }
 

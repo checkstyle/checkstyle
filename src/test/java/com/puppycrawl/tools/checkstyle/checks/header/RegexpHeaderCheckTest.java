@@ -24,13 +24,12 @@ import static com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck.MS
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.powermock.api.mockito.PowerMockito.doNothing;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 
-import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.List;
 import java.util.Locale;
@@ -38,9 +37,9 @@ import java.util.regex.Pattern;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.internal.util.reflection.Whitebox;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.reflect.Whitebox;
 
 import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -65,15 +64,13 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
      * Test of setHeader method, of class RegexpHeaderCheck.
      */
     @Test
-    @SuppressWarnings("unchecked")
     public void testSetHeaderNull() {
         // check null passes
         final RegexpHeaderCheck instance = new RegexpHeaderCheck();
         // recreate for each test because multiple invocations fail
         final String header = null;
         instance.setHeader(header);
-        final List<Pattern> headerRegexps =
-            (List<Pattern>) Whitebox.getInternalState(instance, "headerRegexps");
+        final List<Pattern> headerRegexps = Whitebox.getInternalState(instance, "headerRegexps");
 
         assertTrue("When header is null regexps should not be set", headerRegexps.isEmpty());
     }
@@ -82,15 +79,13 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
      * Test of setHeader method, of class RegexpHeaderCheck.
      */
     @Test
-    @SuppressWarnings("unchecked")
     public void testSetHeaderEmpty() {
         // check null passes
         final RegexpHeaderCheck instance = new RegexpHeaderCheck();
         // check empty string passes
         final String header = "";
         instance.setHeader(header);
-        final List<Pattern> headerRegexps =
-            (List<Pattern>) Whitebox.getInternalState(instance, "headerRegexps");
+        final List<Pattern> headerRegexps = Whitebox.getInternalState(instance, "headerRegexps");
 
         assertTrue("When header is empty regexps should not be set", headerRegexps.isEmpty());
     }
@@ -110,7 +105,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final String header = "abc.*";
         instance.setHeader(header);
 
-        verifyStatic(times(2));
+        verifyStatic(Closeables.class, times(2));
         Closeables.closeQuietly(any(Reader.class));
     }
 
@@ -383,15 +378,15 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
     public void testReaderClosedAfterHeaderRead() throws Exception {
         mockStatic(Closeables.class);
         doNothing().when(Closeables.class);
-        Closeables.closeQuietly(any(InputStreamReader.class));
+        Closeables.closeQuietly(any(Reader.class));
 
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("InputRegexpHeader.header"));
         createChecker(checkConfig);
 
         //check if reader finally closed
-        verifyStatic(times(2));
-        Closeables.closeQuietly(any(InputStreamReader.class));
+        verifyStatic(Closeables.class, times(2));
+        Closeables.closeQuietly(any(Reader.class));
     }
 
 }

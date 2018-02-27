@@ -26,7 +26,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.powermock.api.mockito.PowerMockito.doNothing;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
@@ -57,7 +57,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
-import org.mockito.Matchers;
+import org.mockito.ArgumentMatchers;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
@@ -132,20 +132,20 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     public void testCloseAndFlushOutputStreamAfterCreatingHashCode() throws IOException {
         mockStatic(Closeables.class);
         doNothing().when(Closeables.class);
-        Closeables.close(any(ObjectOutputStream.class), Matchers.eq(false));
+        Closeables.close(any(ObjectOutputStream.class), ArgumentMatchers.eq(false));
         mockStatic(Flushables.class);
         doNothing().when(Flushables.class);
-        Flushables.flush(any(ObjectOutputStream.class), Matchers.eq(false));
+        Flushables.flush(any(ObjectOutputStream.class), ArgumentMatchers.eq(false));
 
         final Configuration config = new DefaultConfiguration("myName");
         final PropertyCacheFile cache = new PropertyCacheFile(config, "fileDoesNotExist.txt");
         cache.load();
 
-        verifyStatic(times(1));
+        verifyStatic(Closeables.class, times(1));
+        Closeables.close(any(ObjectOutputStream.class), ArgumentMatchers.eq(false));
 
-        Closeables.close(any(ObjectOutputStream.class), Matchers.eq(false));
-        verifyStatic(times(1));
-        Flushables.flush(any(ObjectOutputStream.class), Matchers.eq(false));
+        verifyStatic(Flushables.class, times(1));
+        Flushables.flush(any(ObjectOutputStream.class), ArgumentMatchers.eq(false));
     }
 
     @Test
@@ -170,7 +170,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         assertNotNull("Config hash key should not be null",
                 cache.get(PropertyCacheFile.CONFIG_HASH_KEY));
 
-        verifyStatic(times(2));
+        verifyStatic(Closeables.class, times(2));
         Closeables.closeQuietly(any(FileInputStream.class));
     }
 
@@ -248,7 +248,6 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
      * "Unchecked generics array creation for varargs parameter" during mock.
      * @throws IOException when smth wrong with file creation or cache.load
      */
-    @SuppressWarnings("unchecked")
     @Test
     public void testNonExistentResource() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
@@ -284,10 +283,10 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     public void testFlushAndCloseCacheFileOutputStream() throws IOException {
         mockStatic(Closeables.class);
         doNothing().when(Closeables.class);
-        Closeables.close(any(FileOutputStream.class), Matchers.eq(false));
+        Closeables.close(any(FileOutputStream.class), ArgumentMatchers.eq(false));
         mockStatic(Flushables.class);
         doNothing().when(Flushables.class);
-        Flushables.flush(any(FileOutputStream.class), Matchers.eq(false));
+        Flushables.flush(any(FileOutputStream.class), ArgumentMatchers.eq(false));
 
         final Configuration config = new DefaultConfiguration("myName");
         final PropertyCacheFile cache = new PropertyCacheFile(config,
@@ -296,10 +295,10 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         cache.put("CheckedFileName.java", System.currentTimeMillis());
         cache.persist();
 
-        verifyStatic(times(1));
-        Closeables.close(any(FileOutputStream.class), Matchers.eq(false));
-        verifyStatic(times(1));
-        Flushables.flush(any(FileOutputStream.class), Matchers.eq(false));
+        verifyStatic(Closeables.class, times(1));
+        Closeables.close(any(FileOutputStream.class), ArgumentMatchers.eq(false));
+        verifyStatic(Flushables.class, times(1));
+        Flushables.flush(any(FileOutputStream.class), ArgumentMatchers.eq(false));
     }
 
     @Test
@@ -328,7 +327,6 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     }
 
     @Test
-    @SuppressWarnings("unchecked")
     public void testExceptionNoSuchAlgorithmException() throws Exception {
         final Configuration config = new DefaultConfiguration("myName");
         final String filePath = temporaryFolder.newFile().getPath();

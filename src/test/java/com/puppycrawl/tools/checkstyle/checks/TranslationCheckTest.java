@@ -27,7 +27,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.powermock.api.mockito.PowerMockito.doNothing;
@@ -36,7 +36,6 @@ import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
@@ -409,8 +408,8 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
             propertyFiles,
             getPath(""),
             expected);
-        verifyStatic(times(2));
-        Closeables.closeQuietly(any(FileInputStream.class));
+        verifyStatic(Closeables.class, times(2));
+        Closeables.closeQuietly(any(InputStream.class));
     }
 
     @Test

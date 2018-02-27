@@ -620,12 +620,6 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
             0, children[0].getChildren().length);
     }
 
-    /**
-     * This SuppressWarning("unchecked") required to suppress
-     * "Unchecked generics array creation for varargs parameter" during mock.
-     * @throws Exception could happen from PowerMokito calls and getAttribute
-     */
-    @SuppressWarnings("unchecked")
     @Test
     public void testConfigWithIgnoreExceptionalAttributes() throws Exception {
         // emulate exception from unrelated code, but that is same try-catch

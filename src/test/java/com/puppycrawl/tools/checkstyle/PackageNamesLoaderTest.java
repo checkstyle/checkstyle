@@ -24,7 +24,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.powermock.api.mockito.PowerMockito.doNothing;
 import static org.powermock.api.mockito.PowerMockito.mock;
@@ -131,7 +131,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
                 new HashSet<>(Arrays.asList(expectedPackageNames));
         assertEquals("Invalid names set.", checkstylePackagesSet, actualPackageNames);
 
-        verifyStatic(times(1));
+        verifyStatic(Closeables.class, times(1));
         Closeables.closeQuietly(any(InputStream.class));
     }
 
@@ -206,7 +206,6 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
-    @SuppressWarnings("unchecked")
     public void testPackagesWithIoExceptionGetResources() throws Exception {
         final ClassLoader classLoader = mock(ClassLoader.class);
         when(classLoader.getResources("checkstyle_packages.xml")).thenThrow(IOException.class);

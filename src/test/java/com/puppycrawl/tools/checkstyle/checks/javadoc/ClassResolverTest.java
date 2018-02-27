@@ -24,7 +24,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.mockito.Matchers.anyObject;
+import static org.mockito.ArgumentMatchers.any;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -139,8 +139,8 @@ public class ClassResolverTest {
                 .currentThread().getContextClassLoader(), "", imports));
 
         PowerMockito.doThrow(new ClassNotFoundException("expected exception"))
-                .when(classResolver, "safeLoad", anyObject());
-        PowerMockito.doReturn(true).when(classResolver, "isLoadable", anyObject());
+                .when(classResolver, "safeLoad", any());
+        PowerMockito.doReturn(true).when(classResolver, "isLoadable", any());
 
         try {
             classResolver.resolve("someClass", "");
@@ -172,7 +172,7 @@ public class ClassResolverTest {
                 .currentThread().getContextClassLoader(), "", imports));
 
         PowerMockito.doThrow(new NoClassDefFoundError("expected exception"))
-                .when(classResolver, "safeLoad", anyObject());
+                .when(classResolver, "safeLoad", any());
 
         final boolean result = classResolver.isLoadable("someClass");
         assertFalse("result should be false", result);

@@ -25,7 +25,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.powermock.api.mockito.PowerMockito.doNothing;
 import static org.powermock.api.mockito.PowerMockito.mock;
@@ -416,7 +416,7 @@ public class MainTest {
                 "-p", getPath("InputMainMycheckstyle.properties"),
                 getPath("InputMain.java"));
 
-        verifyStatic(times(1));
+        verifyStatic(Closeables.class, times(1));
         Closeables.closeQuietly(any(InputStream.class));
     }
 
@@ -571,7 +571,7 @@ public class MainTest {
                     ex.getCause() instanceof IllegalStateException);
         }
         finally {
-            verifyStatic(times(1));
+            verifyStatic(CommonUtils.class, times(1));
             final ArgumentCaptor<OutputStream> out =
                     ArgumentCaptor.forClass(OutputStream.class);
             CommonUtils.close(out.capture());
