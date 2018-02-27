@@ -430,7 +430,6 @@ public class CommonUtilsTest {
 
     @Test
     @PrepareForTest({ CommonUtils.class, CommonUtilsTest.class })
-    @SuppressWarnings("unchecked")
     public void testLoadSuppressionsUriSyntaxException() throws Exception {
         final URL configUrl = mock(URL.class);
 

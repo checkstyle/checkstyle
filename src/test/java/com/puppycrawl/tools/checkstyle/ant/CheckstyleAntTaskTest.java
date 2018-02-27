@@ -25,7 +25,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 import static org.powermock.api.mockito.PowerMockito.doNothing;
@@ -53,10 +53,10 @@ import org.apache.tools.ant.types.Reference;
 import org.apache.tools.ant.types.resources.FileResource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.internal.util.reflection.Whitebox;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.reflect.Whitebox;
 
 import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
@@ -486,7 +486,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
         assertEquals("Property is not set",
                 "ignore", TestRootModuleChecker.getProperty());
-        verifyStatic(times(1));
+        verifyStatic(Closeables.class, times(1));
         Closeables.closeQuietly(any(InputStream.class));
     }
 
@@ -652,7 +652,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
         assertNotNull("Classpath should not be null",
                 Whitebox.getInternalState(antTask, "classpath"));
-        final Path classpath = (Path) Whitebox.getInternalState(antTask, "classpath");
+        final Path classpath = Whitebox.getInternalState(antTask, "classpath");
         assertTrue("Classpath contain provided path", classpath.toString().contains(path1));
         assertTrue("Classpath contain provided path", classpath.toString().contains(path2));
     }
@@ -677,7 +677,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         try {
             assertNotNull("Classpath should not be null",
                     Whitebox.getInternalState(antTask, "classpath"));
-            final Path classpath = (Path) Whitebox.getInternalState(antTask, "classpath");
+            final Path classpath = Whitebox.getInternalState(antTask, "classpath");
             classpath.list();
             fail("Exception is expected");
         }
