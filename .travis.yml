@@ -183,6 +183,12 @@ matrix:
         - DESC="print versions to update"
         - CMD="./.ci/travis/travis.sh versions"
 
+    # JDK9 build
+    - jdk: oraclejdk9
+      env:
+        - DESC="build with JDK9"
+        - CMD="mvn -e package -Passembly"
+
 script:
   - SKIP_FILES=".github|appveyor.yml|circle.yml|distelli-manifest.yml|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr|shippable.yml|shippable.sh|wercker.yml|wercker.sh|intellij-idea-inspections.xml"
   - SKIP_CI=$(if [[ $(git diff --name-only HEAD HEAD~1 | grep -vE "$SKIP_FILES" | cat | wc -c | sed 's/^ *//' ) > 0 ]]; then echo false; else echo true; fi;)
