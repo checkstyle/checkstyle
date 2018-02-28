@@ -1362,6 +1362,8 @@
           <excludedLinks>
             <excludedLink>reports/google-style/guava</excludedLink>
             <excludedLink>reports/javadoc/openjdk8</excludedLink>
+            <!-- temporal suppress till plugin update link in his source -->
+            <excludedLink>http://www.mojohaus.org/exec-maven-plugin</excludedLink>
             <!-- temporal suppress till javadoc tool starts generating links to https -->
             <excludedLink>http://docs.oracle.com/javase</excludedLink>
             <!-- SSL -->
