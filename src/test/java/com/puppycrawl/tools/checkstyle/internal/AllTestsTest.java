@@ -49,11 +49,11 @@ public class AllTestsTest {
 
         Assert.assertTrue("found tests", !allTests.keySet().isEmpty());
 
-        Files.walk(Paths.get("src/test/resources"))
+        Files.walk(Paths.get("src/test/resources/com/puppycrawl"))
             .forEach(filePath -> {
                 verifyInputFile(allTests, filePath.toFile());
             });
-        Files.walk(Paths.get("src/test/resources-noncompilable"))
+        Files.walk(Paths.get("src/test/resources-noncompilable/com/puppycrawl"))
             .forEach(filePath -> {
                 verifyInputFile(allTests, filePath.toFile());
             });
