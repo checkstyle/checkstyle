@@ -16,6 +16,63 @@
   <body>
     <!-- placeholder for a new section -->
 
+    <section name="Release 8.8.1">
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            IllegalType: support arrays as types. Author: kazachka <a href="https://github.com/checkstyle/checkstyle/issues/4429">#4429</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            fix indentation in all sources of xdoc. Author: Varun Upadhyay <a href="https://github.com/checkstyle/checkstyle/issues/5489">#5489</a>
+          </li>
+          <li>
+            Explicitly throw an exception from ClassResolver. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5546">#5546</a>
+          </li>
+          <li>
+            Strive for 100% mutation coverage. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3708">#3708</a>
+          </li>
+          <li>
+            minimize pitest-checkstyle-utils profile execution. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/4605">#4605</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checks-coding profile to 100%. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5008">#5008</a>
+          </li>
+          <li>
+            doc: extend examples for FinalLocalVariable. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5239">#5239</a>
+          </li>
+          <li>
+            Remove dependency on tools.jar. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5431">#5431</a>
+          </li>
+          <li>
+            Fix violations in local IntelliJ 2017.3. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5409">#5409</a>
+          </li>
+          <li>
+            Intellij Idea inspection violations from 2017.2.4 or 2017.2.6. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5069">#5069</a>
+          </li>
+          <li>
+            Jacoco coverage report. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5516">#5516</a>
+          </li>
+          <li>
+            upgrade to spotbugs 3.1.1 cause problems with execution on maven 3.3.9. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5525">#5525</a>
+          </li>
+          <li>
+            Use StringBuilder instead of StringBuffer as it offers high performanâ€¦. Author: reudismam <a href="https://github.com/checkstyle/checkstyle/issues/5505">#5505</a>
+          </li>
+          <li>
+            AvoidEscapedUnicodeCharactersCheck: re-organize regular expressions. Author: SunriseCoder <a href="https://github.com/checkstyle/checkstyle/issues/5427">#5427</a>
+          </li>
+          <li>
+            investigate and resolve compilation warnings. Author: Andrey Mosin <a href="https://github.com/checkstyle/checkstyle/issues/5480">#5480</a>
+          </li>
+          <li>
+            wercker build problem with hibernate-search. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5499">#5499</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 8.8">
       <p>Breaking backward compatibility:</p>
         <ul>
