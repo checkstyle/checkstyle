@@ -59,10 +59,13 @@ public class TokenUtilsTest {
             fail("IllegalStateException is expected");
         }
         catch (IllegalStateException expected) {
-            assertTrue("Invalid exception message: " + expected.getMessage(),
-                    expected.getMessage().startsWith("java.lang.IllegalAccessException: Class"
-                + " com.puppycrawl.tools.checkstyle.utils.TokenUtils"
-                + " can not access a member of class java.lang.Integer with modifiers "));
+            // The exception message may vary depending on the version of the JDK.
+            // It will definitely contain the TokenUtils class name and the Integer class name.
+            final String message = expected.getMessage();
+            assertTrue("Invalid exception message: " + message,
+                    message.startsWith("java.lang.IllegalAccessException: ")
+                        && message.contains("com.puppycrawl.tools.checkstyle.utils.TokenUtils")
+                        && message.contains("access a member of class java.lang.Integer"));
         }
     }
 
