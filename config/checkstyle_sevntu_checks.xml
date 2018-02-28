@@ -209,5 +209,9 @@
         <module name="MoveVariableInsideIfCheck" />
         <module name="RequireFailForTryCatchInJunit" />
         <module name="CheckstyleTestMakeupCheck" />
+        <module name="com.github.sevntu.checkstyle.checks.coding.ForbidCertainMethodCheck">
+          <property name="methodName" value="assert(True|False)"/>
+          <property name="argumentCount" value="1"/>
+        </module>
     </module>
 </module>
