@@ -146,10 +146,10 @@
         </p>
         <source>
 &lt;module name="AbbreviationAsWordInName"&gt;
-    &lt;property name="tokens" value="VARIABLE_DEF,CLASS_DEF"/&gt;
-    &lt;property name="ignoreStatic" value="false"/&gt;
-    &lt;property name="allowedAbbreviationLength" value="1"/&gt;
-    &lt;property name="allowedAbbreviations" value="XML,URL"/&gt;
+  &lt;property name="tokens" value="VARIABLE_DEF,CLASS_DEF"/&gt;
+  &lt;property name="ignoreStatic" value="false"/&gt;
+  &lt;property name="allowedAbbreviationLength" value="1"/&gt;
+  &lt;property name="allowedAbbreviations" value="XML,URL"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -340,7 +340,7 @@
         </p>
         <source>
 &lt;module name="CatchParameterName"&gt;
-    &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
+  &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -521,8 +521,8 @@
 
         <source>
 &lt;module name=&quot;ConstantName&quot;&gt;
-    &lt;property name=&quot;format&quot;
-              value=&quot;^log(ger)?|[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$&quot;/&gt;
+  &lt;property name=&quot;format&quot;
+    value=&quot;^log(ger)?|[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -777,7 +777,7 @@ for (int i = 1; i &lt; 10; i++) {}
         </p>
         <source>
 &lt;module name="LocalVariableName"&gt;
-    &lt;property name="allowOneCharVarInForLoop" value="true"/&gt;
+  &lt;property name="allowOneCharVarInForLoop" value="true"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -1172,8 +1172,8 @@ class MyClass {
 
         <source>
 &lt;module name=&quot;PackageName&quot;&gt;
-    &lt;property name=&quot;format&quot;
-              value=&quot;^[a-z]+(\.[a-z][a-z0-9]*)*$&quot;/&gt;
+  &lt;property name=&quot;format&quot;
+    value=&quot;^[a-z]+(\.[a-z][a-z0-9]*)*$&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -1283,7 +1283,7 @@ public boolean equals(Object o) {
           </p>
           <source>
 &lt;module name="ParameterName"&gt;
-    &lt;property name="ignoreOverridden" value="true"/&gt;
+  &lt;property name="ignoreOverridden" value="true"/&gt;
 &lt;/module&gt;
           </source>
         <p>
@@ -1292,7 +1292,7 @@ public boolean equals(Object o) {
         </p>
         <source>
 &lt;module name="ParameterName"&gt;
-    &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
+  &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -1308,10 +1308,10 @@ public boolean equals(Object o) {
     value=&quot;Parameter name ''{0}'' must match pattern ''{1}''&quot;/&gt;
 &lt;/module&gt;
 &lt;module name=&quot;ParameterName&quot;&gt;
-&lt;property name=&quot;format&quot; value=&quot;^[a-z][a-z0-9][a-zA-Z0-9]*$&quot;/&gt;
-    &lt;property name=&quot;accessModifiers&quot; value=&quot;public&quot;/&gt;
-    &lt;message key=&quot;name.invalidPattern&quot;
-        value=&quot;Parameter name ''{0}'' must match pattern ''{1}''&quot;/&gt;
+  &lt;property name=&quot;format&quot; value=&quot;^[a-z][a-z0-9][a-zA-Z0-9]*$&quot;/&gt;
+  &lt;property name=&quot;accessModifiers&quot; value=&quot;public&quot;/&gt;
+  &lt;message key=&quot;name.invalidPattern&quot;
+    value=&quot;Parameter name ''{0}'' must match pattern ''{1}''&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -1548,10 +1548,10 @@ public boolean equals(Object o) {
 
         <source>
 &lt;module name=&quot;TypeName&quot;&gt;
-    &lt;property name=&quot;format&quot;
-              value=&quot;^I_[a-zA-Z0-9]*$&quot;/&gt;
-    &lt;property name=&quot;tokens&quot;
-              value=&quot;INTERFACE_DEF&quot;/&gt;
+  &lt;property name=&quot;format&quot;
+    value=&quot;^I_[a-zA-Z0-9]*$&quot;/&gt;
+  &lt;property name=&quot;tokens&quot;
+    value=&quot;INTERFACE_DEF&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
