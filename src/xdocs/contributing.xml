@@ -83,15 +83,15 @@
         do take this one step further and measure the coverage of our
         unit tests using
 
-        <a href="http://cobertura.github.io/cobertura/">Cobertura</a>.
+        <a href="http://www.eclemma.org/jacoco/">JaCoCo</a>.
 
         This means it is not sufficient to pass all tests, but the tests
         should ideally execute each line in the code, code coverage should be 100%. To generate the
-        Cobertura report, run the Maven command
+        JaCoCo report, run the Maven command
 
-        <code>mvn cobertura:cobertura</code>.
+        <code>mvn test jacoco:restore-instrumented-classes jacoco:report@default-report</code>.
 
-        Check results on report target/site/cobertura/index.html in project home folder.
+        Check results on report target/site/jacoco/index.html in project home folder.
       </p>
 
       <p>

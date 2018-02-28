@@ -49,17 +49,17 @@ sonarqube)
   if [[ -v TRAVIS_PULL_REQUEST && $TRAVIS_PULL_REQUEST && $TRAVIS_PULL_REQUEST =~ ^([0-9]*)$ ]]; then exit 0; fi
   if [[ -z $SONAR_TOKEN ]]; then echo "SONAR_TOKEN is not set"; sleep 5s; exit 1; fi
   export MAVEN_OPTS='-Xmx2000m'
-  mvn -e clean package cobertura:cobertura sonar:sonar \
+  mvn -e clean package sonar:sonar \
        -Dsonar.host.url=https://sonarcloud.io \
        -Dsonar.login=$SONAR_TOKEN \
-       -Dcobertura.report.format=xml -Dmaven.test.failure.ignore=true \
+       -Dmaven.test.failure.ignore=true \
        -Dcheckstyle.skip=true -Dpmd.skip=true -Dcheckstyle.ant.skip=true
   ;;
 
 release-dry-run)
   if [ $(git log -1 | grep -E "\[maven-release-plugin\] prepare release" | cat | wc -l) -lt 1 ]; then
     mvn -e release:prepare -DdryRun=true --batch-mode -Darguments='-DskipTests -DskipITs \
-      -Dcobertura.skip=true -Dpmd.skip=true -Dfindbugs.skip=true -Dspotbugs.skip=true -Dxml.skip=true \
+      -Djacoco.skip=true -Dpmd.skip=true -Dfindbugs.skip=true -Dspotbugs.skip=true -Dxml.skip=true \
       -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dgpg.skip=true'
   fi
   ;;
@@ -214,43 +214,6 @@ no-exception-test-alot-of-project1)
   cd contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config checks-nonjavadoc-error.xml
-  ;;
-
-cobertura-check)
-  set +e
-  echo "Output and Error output will be redirected to mvn-log.log file ..."
-  mvn -e clean compile cobertura:cobertura cobertura:check -DargLine='-Xms1024m -Xmx2048m' &> mvn-log.log
-  echo "Printing mvn-log.log file:"
-  cat mvn-log.log
-  sleep 5s
-  set -e
-  echo "Grep for hidden errors (due to quiet=true mode in pom.xml):"
-  grep -R "<td class=\"nbHitsUncovered\"" target/site/cobertura/* --exclude=*grammars* | cat > mvn-log-grep.log
-  cat mvn-log-grep.log
-  if [[ $(cat mvn-log-grep.log | wc -l) -gt 0 ]]; then
-    sleep 5s
-    false
-  fi
-  echo "Checking that all classes are covered:"
-  xmlstarlet sel -t -m "//class" -v "@name" -n target/site/cobertura/coverage.xml | sed "s/\./\//g" | sed "/^$/d" | sort | uniq > cobertura_classes.log
-  find target/classes -type f -name "*.class" | grep -vE ".*\\$.*" | sed "s/target\/classes\///g" | sed "s/.class//g" | sed "/^$/d" | sort | uniq > target_classes.log
-  xmlstarlet sel -N pom=http://maven.apache.org/POM/4.0.0 -t -m "//pom:instrumentation/pom:excludes" -v "pom:exclude" -n pom.xml | sed "s/*//g" | sed "s/.class//g" | sed "/^$/d" | sort | uniq > cobertura_excluded_classes.log
-  # xmlstarlet has an issue. It concatenates this line with the previous one and removes new line character,
-  # so we need to split them apart. We use the command till update of xmlstarlet to higher version.
-  sed -i'' "s/com\/puppycrawl\/tools\/checkstyle\/gui\/BaseCellEditor/\ncom\/puppycrawl\/tools\/checkstyle\/gui\/BaseCellEditor/" cobertura_excluded_classes.log
-  grep -Fxvf cobertura_classes.log target_classes.log > missed_classes_with_excludes.log
-  grep -Fvf cobertura_excluded_classes.log missed_classes_with_excludes.log > missed_classes_without_excludes.log | cat > output.log
-  echo "output.log content:"
-  cat output.log
-
-  if [[ -s missed_classes_without_excludes.log ]] ; then
-    echo "Classes which are missed in Cobertura coverage report:"
-    cat missed_classes_without_excludes.log
-    sleep 5s
-    false
-  else
-    echo "All classes are present in Cobertura coverage report."
-  fi
   ;;
 
 *)

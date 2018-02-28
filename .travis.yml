@@ -39,19 +39,13 @@ matrix:
     - jdk: oraclejdk8
       env:
         - DESC="checkstyle and sevntu-checkstyle"
-        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dspotbugs.skip=true -Dcobertura.skip=true"
+        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dspotbugs.skip=true -Djacoco.skip=true"
 
-    # jacoco (oraclejdk8)
+    # jacoco and codecov (oraclejdk8)
     - jdk: oraclejdk8
       env:
-        - DESC="jacoco"
-        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean verify -Pno-validations -Pjacoco-check -DskipTests=false"
-
-    # cobertura and codecov (oraclejdk8)
-    - jdk: oraclejdk8
-      env:
-        - DESC="cobertura and codecov"
-        - CMD="./.ci/travis/travis.sh cobertura-check"
+        - DESC="jacoco and codecov"
+        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean test jacoco:restore-instrumented-classes jacoco:report@default-report"
         - CMD_AFTER_SUCCESS="bash <(curl -s https://codecov.io/bash)"
 
     # findbugs, spotbugs and pmd (oraclejdk8)
@@ -84,7 +78,7 @@ matrix:
     #  env:
     #    - DESC="site"
     #    - CMD1="mvn -e clean site -Dlinkcheck.skip=true -DskipTests -DskipITs "
-    #    - CMD2=" -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true "
+    #    - CMD2=" -Dpmd.skip=true -Dfindbugs.skip=true -Djacoco.skip=true "
     #    - CMD3=" -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true"
     #    - CMD=$CMD1$CMD2$CMD3
     #    - COVERAGE_CMD=""

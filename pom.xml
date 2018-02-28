@@ -363,11 +363,6 @@
         <!-- from super-pom END -->
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
-          <artifactId>cobertura-maven-plugin</artifactId>
-          <version>2.7</version>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
           <artifactId>exec-maven-plugin</artifactId>
           <version>1.6.0</version>
         </plugin>
@@ -751,6 +746,184 @@
           </formats>
         </configuration>
       </plugin>
+
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>${maven.jacoco.plugin.version}</version>
+        <executions>
+          <execution>
+            <id>default-instrument</id>
+            <goals>
+              <goal>instrument</goal>
+            </goals>
+            <phase>test-compile</phase>
+          </execution>
+          <execution>
+            <id>default-restore-instrumented-classes</id>
+            <goals>
+              <goal>restore-instrumented-classes</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>default-report</id>
+            <phase>site</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+            <configuration>
+              <excludes>
+                <!-- Parser related classes -->
+                <exclude>com/puppycrawl/tools/checkstyle/grammars/*.class</exclude>
+                <exclude>com/puppycrawl/tools/checkstyle/grammars/javadoc/*.class</exclude>
+                <exclude>com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser$JavadocParserErrorStrategy.class</exclude>
+                <!-- Swing related classes -->
+                <exclude>com/puppycrawl/tools/checkstyle/gui/*.class</exclude>
+                <!-- Deprecated classes -->
+                <exclude>com/puppycrawl/tools/checkstyle/checks/naming/AbstractTypeParameterNameCheck.class</exclude>
+                <!-- Suppressed till https://github.com/jacoco/jacoco/issues/660 -->
+                <exclude>com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationUseStyleCheck$1.class</exclude>
+              </excludes>
+            </configuration>
+          </execution>
+          <execution>
+            <id>default-check</id>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <rule>
+                  <element>CLASS</element>
+                  <excludes>
+                    <!-- Parser related classes -->
+                    <exclude>com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser*</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocLexer</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.JavadocParserErrorStrategy</exclude>
+                    <!-- Swing related classes -->
+                    <exclude>com.puppycrawl.tools.checkstyle.gui.BaseCellEditor*</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.gui.CodeSelector</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.gui.TreeTable*</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper*</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.gui.Main*</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.gui.MainFrame*</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.gui.ParseTreeTableModel*</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.gui.TreeTableCellRenderer*</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter*</exclude>
+                    <!-- Deprecated classes -->
+                    <exclude>com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck</exclude>
+                  </excludes>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>1.00</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>1.00</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+                <rule>
+                  <element>CLASS</element>
+                  <includes>
+                    <include>com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer</include>
+                  </includes>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.96</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.73</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+                <rule>
+                  <element>CLASS</element>
+                  <includes>
+                    <include>com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer</include>
+                  </includes>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.96</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.79</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+                <rule>
+                  <element>CLASS</element>
+                  <includes>
+                    <include>com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser</include>
+                  </includes>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.54</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.44</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+                <rule>
+                  <element>CLASS</element>
+                  <includes>
+                    <include>com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocLexer</include>
+                  </includes>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.84</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.64</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+                <rule>
+                  <element>CLASS</element>
+                  <includes>
+                    <include>com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.JavadocParserErrorStrategy</include>
+                  </includes>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.50</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>1.00</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
       <plugin>
           <groupId>org.sonatype.plugins</groupId>
           <artifactId>nexus-staging-maven-plugin</artifactId>
@@ -955,7 +1128,7 @@
         <version>2.20.1</version>
         <configuration>
           <systemPropertyVariables>
-            <jacoco-agent.destfile>${project.build.directory}/jacoco/jacoco.exec</jacoco-agent.destfile>
+            <jacoco-agent.destfile>${project.build.directory}/jacoco.exec</jacoco-agent.destfile>
           </systemPropertyVariables>
           <additionalClasspathElements>
             <additionalClasspathElement>src/test/resources-noncompilable</additionalClasspathElement>
@@ -1216,48 +1389,6 @@
       </plugin>
 
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>cobertura-maven-plugin</artifactId>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <report>cobertura</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-        <configuration>
-          <quiet>true</quiet>
-          <formats>
-            <format>xml</format>
-            <format>html</format>
-          </formats>
-          <check />
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <version>${maven.jacoco.plugin.version}</version>
-        <configuration>
-          <dataFile>${project.build.directory}/jacoco/jacoco.exec</dataFile>
-          <excludes>
-            <exclude>com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask*.class</exclude>
-            <exclude>com/puppycrawl/tools/checkstyle/grammars/*.class</exclude>
-            <exclude>com/puppycrawl/tools/checkstyle/grammars/javadoc/*.class</exclude>
-            <exclude>com/puppycrawl/tools/checkstyle/gui/*.class</exclude>
-          </excludes>
-        </configuration>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <report>report</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
-
-      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jxr-plugin</artifactId>
         <version>2.5</version>
@@ -1345,7 +1476,7 @@
           -->
           <excludedPages>
             <excludedPage>dependencies.html</excludedPage>
-            <excludedPage>cobertura/**</excludedPage>
+            <excludedPage>jacoco/**</excludedPage>
             <excludedPage>dsm/**</excludedPage>
             <excludedPage>xref/**</excludedPage>
             <excludedPage>xref-test/**</excludedPage>
@@ -1387,8 +1518,6 @@
             <excludedLink>http://mojo.codehaus.org/antlr-maven-plugin</excludedLink>
             <!-- Excluded due to Maven Build Helper Plugin's issue #3: https://github.com/mojohaus/build-helper-maven-plugin/issues/3-->
             <excludedLink>http://mojo.codehaus.org/build-helper-maven-plugin</excludedLink>
-            <!-- Excluded due to Maven Cobertura Plugin's issue #5: https://github.com/mojohaus/cobertura-maven-plugin/issues/5-->
-            <excludedLink>http://mojo.codehaus.org/cobertura-maven-plugin/</excludedLink>
             <!-- Excluded due to Maven JDepend Plugin's issue #2: https://github.com/mojohaus/jdepend-maven-plugin/issues/2-->
             <excludedLink>http://mojo.codehaus.org/jdepend-maven-plugin</excludedLink>
             <!-- Excluded due to Maven Taglist Plugin's issue #3: https://github.com/mojohaus/taglist-maven-plugin/issues/3-->
@@ -1500,7 +1629,7 @@
         <spotbugs.skip>true</spotbugs.skip>
         <xml.skip>true</xml.skip>
         <forbiddenapis.skip>true</forbiddenapis.skip>
-        <cobertura.skip>true</cobertura.skip>
+        <jacoco.skip>true</jacoco.skip>
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <linkcheck.skip>true</linkcheck.skip>
       </properties>
@@ -1519,7 +1648,7 @@
         <spotbugs.skip>true</spotbugs.skip>
         <xml.skip>true</xml.skip>
         <forbiddenapis.skip>true</forbiddenapis.skip>
-        <cobertura.skip>true</cobertura.skip>
+        <jacoco.skip>true</jacoco.skip>
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <linkcheck.skip>true</linkcheck.skip>
         <!-- difference from "no-validations" -->
@@ -1609,266 +1738,6 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>sonar-maven-plugin</artifactId>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <profile>
-      <id>jacoco-check</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.jacoco</groupId>
-            <artifactId>jacoco-maven-plugin</artifactId>
-            <version>${maven.jacoco.plugin.version}</version>
-            <executions>
-              <execution>
-                <id>default-instrument</id>
-                <goals>
-                  <goal>instrument</goal>
-                </goals>
-                <phase>test-compile</phase>
-              </execution>
-              <execution>
-                <id>default-restore-instrumented-classes</id>
-                <goals>
-                  <goal>restore-instrumented-classes</goal>
-                </goals>
-              </execution>
-              <execution>
-                <id>default-report</id>
-                <phase>site</phase>
-                <goals>
-                  <goal>report</goal>
-                </goals>
-              </execution>
-              <execution>
-                <id>default-check</id>
-                <goals>
-                  <goal>check</goal>
-                </goals>
-                <configuration>
-                  <dataFile>${project.build.directory}/jacoco/jacoco.exec</dataFile>
-                  <rules>
-                    <rule>
-                      <element>CLASS</element>
-                      <excludes>
-                        <!-- Terence Parr, The Definitive ANTLR 4 Reference, 2.4 Building Language Applications Using Parse Trees:
-                             "To better support access to the elements within specific nodes, ANTLR generates
-                             a RuleNode subclass for each rule. ... Given this description of the concrete types, we could write
-                             code by hand to perform a depth-first walk of the tree. We could perform whatever actions we
-                             wanted as we discovered and finished nodes. Typical operations are things such as
-                             computing results, updating data structures, or generating output."
-                             We don't need these classes as we use only ParseTree methods for walking. -->
-                        <exclude>com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer</exclude>
-                        <exclude>com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer</exclude>
-                        <exclude>com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser*</exclude>
-                        <exclude>com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocLexer</exclude>
-                        <!-- Swing related classes -->
-                        <exclude>com.puppycrawl.tools.checkstyle.gui.BaseCellEditor*</exclude>
-                        <exclude>com.puppycrawl.tools.checkstyle.gui.CodeSelector</exclude>
-                        <exclude>com.puppycrawl.tools.checkstyle.gui.TreeTable*</exclude>
-                        <exclude>com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper*</exclude>
-                        <exclude>com.puppycrawl.tools.checkstyle.gui.Main*</exclude>
-                        <exclude>com.puppycrawl.tools.checkstyle.gui.MainFrame*</exclude>
-                        <exclude>com.puppycrawl.tools.checkstyle.gui.ParseTreeTableModel*</exclude>
-                        <exclude>com.puppycrawl.tools.checkstyle.gui.TreeTableCellRenderer*</exclude>
-                        <exclude>com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter*</exclude>
-                        <!-- Deprecated classes -->
-                        <exclude>com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck</exclude>
-                        <!-- Classes with their own config -->
-                        <exclude>com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.JavadocParserErrorStrategy</exclude>
-                      </excludes>
-                      <limits>
-                        <limit>
-                          <counter>LINE</counter>
-                          <value>COVEREDRATIO</value>
-                          <minimum>1.00</minimum>
-                        </limit>
-                        <limit>
-                          <counter>BRANCH</counter>
-                          <value>COVEREDRATIO</value>
-                          <minimum>1.00</minimum>
-                        </limit>
-                      </limits>
-                    </rule>
-                    <rule>
-                      <element>CLASS</element>
-                      <includes>
-                        <include>com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer</include>
-                      </includes>
-                      <limits>
-                        <limit>
-                          <counter>LINE</counter>
-                          <value>COVEREDRATIO</value>
-                          <minimum>0.96</minimum>
-                        </limit>
-                        <limit>
-                          <counter>BRANCH</counter>
-                          <value>COVEREDRATIO</value>
-                          <minimum>0.73</minimum>
-                        </limit>
-                      </limits>
-                    </rule>
-                    <rule>
-                      <element>CLASS</element>
-                      <includes>
-                        <include>com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer</include>
-                      </includes>
-                      <limits>
-                        <limit>
-                          <counter>LINE</counter>
-                          <value>COVEREDRATIO</value>
-                          <minimum>0.96</minimum>
-                        </limit>
-                        <limit>
-                          <counter>BRANCH</counter>
-                          <value>COVEREDRATIO</value>
-                          <minimum>0.79</minimum>
-                        </limit>
-                      </limits>
-                    </rule>
-                    <rule>
-                      <element>CLASS</element>
-                      <includes>
-                        <include>com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser</include>
-                      </includes>
-                      <limits>
-                        <limit>
-                          <counter>LINE</counter>
-                          <value>COVEREDRATIO</value>
-                          <minimum>0.54</minimum>
-                        </limit>
-                        <limit>
-                          <counter>BRANCH</counter>
-                          <value>COVEREDRATIO</value>
-                          <minimum>0.44</minimum>
-                        </limit>
-                      </limits>
-                    </rule>
-                    <rule>
-                      <element>CLASS</element>
-                      <includes>
-                        <include>com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocLexer</include>
-                      </includes>
-                      <limits>
-                        <limit>
-                          <counter>LINE</counter>
-                          <value>COVEREDRATIO</value>
-                          <minimum>0.84</minimum>
-                        </limit>
-                        <limit>
-                          <counter>BRANCH</counter>
-                          <value>COVEREDRATIO</value>
-                          <minimum>0.64</minimum>
-                        </limit>
-                      </limits>
-                    </rule>
-                    <rule>
-                      <element>CLASS</element>
-                      <includes>
-                        <include>com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.JavadocParserErrorStrategy</include>
-                      </includes>
-                      <limits>
-                        <limit>
-                          <counter>LINE</counter>
-                          <value>COVEREDRATIO</value>
-                          <minimum>0.50</minimum>
-                        </limit>
-                        <limit>
-                          <counter>BRANCH</counter>
-                          <value>COVEREDRATIO</value>
-                          <minimum>1.00</minimum>
-                        </limit>
-                      </limits>
-                    </rule>
-                  </rules>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <profile>
-      <id>cobertura-check</id>
-      <activation>
-        <jdk>[1.8,)</jdk>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>cobertura-maven-plugin</artifactId>
-            <configuration>
-              <quiet>true</quiet>
-              <formats>
-                <format>xml</format>
-                <format>html</format>
-              </formats>
-              <check>
-                <haltOnFailure>true</haltOnFailure>
-                <branchRate>100</branchRate>
-                <lineRate>100</lineRate>
-                <totalBranchRate>84</totalBranchRate>
-                <totalLineRate>89</totalLineRate>
-                <regexes>
-                  <regex>
-                    <pattern>com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer</pattern>
-                    <branchRate>72</branchRate>
-                    <lineRate>96</lineRate>
-                  </regex>
-                  <regex>
-                    <pattern>com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer</pattern>
-                    <branchRate>79</branchRate>
-                    <lineRate>96</lineRate>
-                  </regex>
-                  <regex>
-                    <pattern>com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser</pattern>
-                    <branchRate>42</branchRate>
-                    <lineRate>53</lineRate>
-                  </regex>
-                  <regex>
-                    <pattern>com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocLexer</pattern>
-                    <branchRate>64</branchRate>
-                    <lineRate>84</lineRate>
-                  </regex>
-                </regexes>
-              </check>
-              <instrumentation>
-                <excludes>
-                  <!-- Terence Parr, The Definitive ANTLR 4 Reference, 2.4 Building Language Applications Using Parse Trees:
-                       "To better support access to the elements within specific nodes, ANTLR generates
-                       a RuleNode subclass for each rule. ... Given this description of the concrete types, we could write
-                       code by hand to perform a depth-first walk of the tree. We could perform whatever actions we
-                       wanted as we discovered and finished nodes. Typical operations are things such as
-                       computing results, updating data structures, or generating output."
-                       We don't need these classes as we use only ParseTree methods for walking. -->
-                  <exclude>com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$*.class</exclude>
-                  <!-- Swing related classes -->
-                  <exclude>com/puppycrawl/tools/checkstyle/gui/BaseCellEditor*.class</exclude>
-                  <exclude>com/puppycrawl/tools/checkstyle/gui/CodeSelector.class</exclude>
-                  <exclude>com/puppycrawl/tools/checkstyle/gui/TreeTable*.class</exclude>
-                  <exclude>com/puppycrawl/tools/checkstyle/gui/ListToTreeSelectionModelWrapper*.class</exclude>
-                  <exclude>com/puppycrawl/tools/checkstyle/gui/Main*.class</exclude>
-                  <exclude>com/puppycrawl/tools/checkstyle/gui/MainFrame*.class</exclude>
-                  <exclude>com/puppycrawl/tools/checkstyle/gui/ParseTreeTableModel*.class</exclude>
-                  <exclude>com/puppycrawl/tools/checkstyle/gui/TreeTableCellRenderer*.class</exclude>
-                  <exclude>com/puppycrawl/tools/checkstyle/gui/TreeTableModelAdapter*.class</exclude>
-                  <!-- deprecated classes -->
-                  <exclude>com/puppycrawl/tools/checkstyle/checks/naming/AbstractTypeParameterNameCheck.class</exclude>
-                </excludes>
-              </instrumentation>
-            </configuration>
-            <executions>
-              <execution>
-                <goals>
-                  <goal>check</goal>
-                </goals>
-              </execution>
-            </executions>
           </plugin>
         </plugins>
       </build>
