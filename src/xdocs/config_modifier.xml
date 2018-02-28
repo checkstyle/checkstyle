@@ -195,16 +195,16 @@
         </p>
 
         <source>
-          public enum EnumClass {
-             FIELD_1,
-             FIELD_2 {
-                 &#64;Override
-                 public final void method1() {} // violation expected
-             };
+public enum EnumClass {
+  FIELD_1,
+  FIELD_2 {
+    &#64;Override
+    public final void method1() {} // violation expected
+  };
 
-             public void method1() {}
-             public final void method2() {} // no violation expected
-          }
+  public void method1() {}
+  public final void method2() {} // no violation expected
+}
         </source>
 
         <p>
@@ -227,13 +227,13 @@
         </p>
 
         <source>
-          public class PublicClass {
-            public PublicClass() {} // OK
-          }
+public class PublicClass {
+  public PublicClass() {} // OK
+}
 
-          class PackagePrivateClass {
-            public PackagePrivateClass() {} // violation expected
-          }
+class PackagePrivateClass {
+  public PackagePrivateClass() {} // violation expected
+}
         </source>
 
         <p>There is no violation in the following example,
@@ -242,18 +242,18 @@
         </p>
 
         <source>
-          package a;
-          public class ClassExample {
-            protected class ProtectedInnerClass {
-              public ProtectedInnerClass () {}
-            }
-          }
+package a;
+public class ClassExample {
+  protected class ProtectedInnerClass {
+    public ProtectedInnerClass () {}
+  }
+}
 
-          package b;
-          import a.ClassExample;
-          public class ClassExtending extends ClassExample {
-            ProtectedInnerClass pc = new ProtectedInnerClass();
-          }
+package b;
+import a.ClassExample;
+public class ClassExtending extends ClassExample {
+  ProtectedInnerClass pc = new ProtectedInnerClass();
+}
         </source>
       </subsection>
 
