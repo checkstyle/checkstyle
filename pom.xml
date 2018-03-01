@@ -1944,6 +1944,10 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <mutators>
+                <mutator>DEFAULTS</mutator>
+                <mutator>REMOVE_SWITCH</mutator>
+              </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</param>
@@ -1998,6 +2002,10 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <mutators>
+                <mutator>DEFAULTS</mutator>
+                <mutator>REMOVE_SWITCH</mutator>
+              </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationOnSameLineCheck</param>
@@ -2038,6 +2046,10 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <mutators>
+                <mutator>DEFAULTS</mutator>
+                <mutator>REMOVE_SWITCH</mutator>
+              </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.checks.blocks.*</param>
               </targetClasses>
@@ -2066,6 +2078,10 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <mutators>
+                <mutator>DEFAULTS</mutator>
+                <mutator>REMOVE_SWITCH</mutator>
+              </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.*</param>
               </targetClasses>
@@ -2094,6 +2110,10 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <mutators>
+                <mutator>DEFAULTS</mutator>
+                <mutator>REMOVE_SWITCH</mutator>
+              </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.checks.design.*</param>
               </targetClasses>
@@ -2122,6 +2142,10 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <mutators>
+                <mutator>DEFAULTS</mutator>
+                <mutator>REMOVE_SWITCH</mutator>
+              </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.checks.header.*</param>
               </targetClasses>
@@ -2150,6 +2174,10 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <mutators>
+                <mutator>DEFAULTS</mutator>
+                <mutator>REMOVE_SWITCH</mutator>
+              </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.checks.imports.*</param>
               </targetClasses>
@@ -2178,6 +2206,10 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <mutators>
+                <mutator>DEFAULTS</mutator>
+                <mutator>REMOVE_SWITCH</mutator>
+              </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.checks.indentation.*</param>
               </targetClasses>
@@ -2206,6 +2238,10 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <mutators>
+                <mutator>DEFAULTS</mutator>
+                <mutator>REMOVE_SWITCH</mutator>
+              </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.*</param>
               </targetClasses>
@@ -2234,6 +2270,10 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <mutators>
+                <mutator>DEFAULTS</mutator>
+                <mutator>REMOVE_SWITCH</mutator>
+              </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.checks.metrics.*</param>
               </targetClasses>
@@ -2262,6 +2302,10 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <mutators>
+                <mutator>DEFAULTS</mutator>
+                <mutator>REMOVE_SWITCH</mutator>
+              </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.checks.modifier.*</param>
               </targetClasses>
@@ -2290,6 +2334,10 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <mutators>
+                <mutator>DEFAULTS</mutator>
+                <mutator>REMOVE_SWITCH</mutator>
+              </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.checks.naming.*</param>
               </targetClasses>
@@ -2322,6 +2370,10 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <mutators>
+                <mutator>DEFAULTS</mutator>
+                <mutator>REMOVE_SWITCH</mutator>
+              </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.checks.regexp.*</param>
               </targetClasses>
@@ -2350,6 +2402,10 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <mutators>
+                <mutator>DEFAULTS</mutator>
+                <mutator>REMOVE_SWITCH</mutator>
+              </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.checks.sizes.*</param>
               </targetClasses>
@@ -2378,6 +2434,10 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <mutators>
+                <mutator>DEFAULTS</mutator>
+                <mutator>REMOVE_SWITCH</mutator>
+              </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.checks.whitespace.*</param>
               </targetClasses>
@@ -2404,6 +2464,10 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <mutators>
+                <mutator>DEFAULTS</mutator>
+                <mutator>REMOVE_SWITCH</mutator>
+              </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.AuditEventDefaultFormatter</param>
                 <param>com.puppycrawl.tools.checkstyle.ConfigurationLoader*</param>
@@ -2454,6 +2518,10 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <mutators>
+                <mutator>DEFAULTS</mutator>
+                <mutator>REMOVE_SWITCH</mutator>
+              </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.Main</param>
               </targetClasses>
@@ -2479,6 +2547,10 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <mutators>
+                <mutator>DEFAULTS</mutator>
+                <mutator>REMOVE_SWITCH</mutator>
+              </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser</param>
                 <param>com.puppycrawl.tools.checkstyle.DetailNodeTreeStringPrinter</param>
@@ -2525,6 +2597,10 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <mutators>
+                <mutator>DEFAULTS</mutator>
+                <mutator>REMOVE_SWITCH</mutator>
+              </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.api.*</param>
               </targetClasses>
@@ -2569,6 +2645,10 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <mutators>
+                <mutator>DEFAULTS</mutator>
+                <mutator>REMOVE_SWITCH</mutator>
+              </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.filefilters.*</param>
                 <param>com.puppycrawl.tools.checkstyle.filters.*</param>
@@ -2596,6 +2676,10 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <mutators>
+                <mutator>DEFAULTS</mutator>
+                <mutator>REMOVE_SWITCH</mutator>
+              </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.utils.*</param>
               </targetClasses>
@@ -2631,6 +2715,10 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <mutators>
+                <mutator>DEFAULTS</mutator>
+                <mutator>REMOVE_SWITCH</mutator>
+              </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.gui.*</param>
               </targetClasses>
@@ -2681,6 +2769,10 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <mutators>
+                <mutator>DEFAULTS</mutator>
+                <mutator>REMOVE_SWITCH</mutator>
+              </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.xpath.*</param>
               </targetClasses>
