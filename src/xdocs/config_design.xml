@@ -463,9 +463,9 @@ public class StringUtils // not final to allow subclassing
         <p>
           According to Bloch, an interface should describe a <em>type</em>.
           It is therefore inappropriate to define an interface that does not
-          contain any methods but only constants. The Standard class <a
+          contain any methods but only constants. The Standard interface <a
           href="https://docs.oracle.com/javase/8/docs/api/javax/swing/SwingConstants.html">javax.swing.SwingConstants</a>
-          is an example of a class that would be flagged by this check.
+          is an example of an interface that would be flagged by this check.
         </p>
 
         <p>
