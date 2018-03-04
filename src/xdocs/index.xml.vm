@@ -85,20 +85,20 @@
       </p>
     </section>
 
-    <section name="Development Circle">
+    <section name="Development Cycle">
       <p>
         <b>Releases will happen at the end of each month</b>
-        if functional changes exists in <a href="https://github.com/checkstyle/checkstyle/commits/master">master branch of our repo</a>.
-        For exact day pelase follow our <a href="https://github.com/checkstyle/checkstyle/milestones">milestones</a>.
+        if functional changes exist in the <a href="https://github.com/checkstyle/checkstyle/commits/master">master branch of our repo</a>.
+        For the exact day, please follow our <a href="https://github.com/checkstyle/checkstyle/milestones">milestones</a>.
       </p>
       <p>
-        Explanation why we do not follow Semantic Versioning is in <a href="https://github.com/checkstyle/checkstyle/issues/3709">issue #3709</a>
+        Checkstyle is not using Semantic Versioning (<a href="https://github.com/checkstyle/checkstyle/issues/3709">reasons in issue #3709</a>)
       </p>
     </section>
 
     <section name="Related Tools">
       <p>
-        Checkstyle is most useful if you integrate it in your build process or
+        Checkstyle is most useful if you integrate it into your build process or
         your development environment. The distribution includes:
       </p>
 
