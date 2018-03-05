@@ -970,7 +970,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-antrun-plugin</artifactId>
-        <version>1.8</version>
         <executions>
           <execution>
             <id>ant-phase-compile</id>
@@ -1073,7 +1072,6 @@
       <plugin>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
-        <version>${maven.spotbugs.plugin.version}</version>
         <executions>
           <execution>
             <goals>
