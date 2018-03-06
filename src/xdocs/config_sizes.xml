@@ -62,7 +62,7 @@
         </p>
         <source>
 &lt;module name="AnonInnerLength"&gt;
-      &lt;property name="max" value="60"/&gt;
+  &lt;property name="max" value="60"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -161,8 +161,8 @@
         </p>
         <source>
 &lt;module name=&quot;ExecutableStatementCount&quot;&gt;
-    &lt;property name=&quot;max&quot; value=&quot;20&quot;/&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF,METHOD_DEF&quot;/&gt;
+  &lt;property name=&quot;max&quot; value=&quot;20&quot;/&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF,METHOD_DEF&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -248,7 +248,7 @@
         </p>
         <source>
 &lt;module name="FileLength"&gt;
-      &lt;property name="max" value="1500"/&gt;
+  &lt;property name="max" value="1500"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -339,7 +339,7 @@
         </p>
         <source>
 &lt;module name="LineLength"&gt;
-    &lt;property name="max" value="120"/&gt;
+  &lt;property name="max" value="120"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -349,7 +349,7 @@
         </p>
         <source>
 &lt;module name="LineLength"&gt;
-   &lt;property name="ignorePattern" value="^ *\* *[^ ]+$"/&gt;
+  &lt;property name="ignorePattern" value="^ *\* *[^ ]+$"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -448,7 +448,7 @@ public class ExampleClass {
 
   public void example() { // counted towards ExampleClass
     Runnable r = (new Runnable() {
-        public void run() { ... } // NOT counted towards ExampleClass and won't produce any violations
+      public void run() { ... } // NOT counted towards ExampleClass and won't produce any violations
     });
   }
 
@@ -544,7 +544,7 @@ public class ExampleClass {
         </p>
         <source>
 &lt;module name="MethodCount"&gt;
-      &lt;property name="maxTotal" value="30"/&gt;
+  &lt;property name="maxTotal" value="30"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -554,8 +554,8 @@ public class ExampleClass {
         </p>
         <source>
 &lt;module name="MethodCount"&gt;
-      &lt;property name="maxPublic" value="10"/&gt;
-      &lt;property name="maxTotal" value="40"/&gt;
+  &lt;property name="maxPublic" value="10"/&gt;
+  &lt;property name="maxTotal" value="40"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -688,8 +688,8 @@ public class ExampleClass {
         </p>
         <source>
 &lt;module name="MethodLength"&gt;
-   &lt;property name="tokens" value="METHOD_DEF"/&gt;
-   &lt;property name="max" value="60"/&gt;
+  &lt;property name="tokens" value="METHOD_DEF"/&gt;
+  &lt;property name="max" value="60"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -699,9 +699,9 @@ public class ExampleClass {
         </p>
         <source>
 &lt;module name="MethodLength"&gt;
-   &lt;property name="tokens" value="METHOD_DEF"/&gt;
-   &lt;property name="max" value="60"/&gt;
-   &lt;property name="countEmpty" value="false"/&gt;
+  &lt;property name="tokens" value="METHOD_DEF"/&gt;
+  &lt;property name="max" value="60"/&gt;
+  &lt;property name="countEmpty" value="false"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -791,7 +791,7 @@ public class ExampleClass {
         </p>
         <source>
 &lt;module name="OuterTypeNumber"&gt;
-      &lt;property name="max" value="2"/&gt;
+  &lt;property name="max" value="2"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -898,8 +898,8 @@ public class ExampleClass {
         </p>
         <source>
 &lt;module name="ParameterNumber"&gt;
-   &lt;property name="max" value="10"/&gt;
-   &lt;property name="tokens" value="METHOD_DEF"/&gt;
+  &lt;property name="max" value="10"/&gt;
+  &lt;property name="tokens" value="METHOD_DEF"/&gt;
 &lt;/module&gt;
         </source>
           <p>
@@ -913,8 +913,8 @@ public class ExampleClass {
           </p>
           <source>
 &lt;module name="ParameterNumber"&gt;
-    &lt;property name="ignoreOverriddenMethods" value="true"/&gt;
-    &lt;property name="tokens" value="METHOD_DEF"/&gt;
+  &lt;property name="ignoreOverriddenMethods" value="true"/&gt;
+  &lt;property name="tokens" value="METHOD_DEF"/&gt;
 &lt;/module&gt;
           </source>
           <p>

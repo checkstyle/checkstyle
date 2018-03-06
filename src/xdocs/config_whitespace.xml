@@ -70,7 +70,7 @@ for (
         </p>
         <source>
 &lt;module name=&quot;EmptyForInitializerPad&quot;&gt;
-    &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
+  &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -165,7 +165,7 @@ for (Iterator foo = very.long.line.iterator();
         </p>
         <source>
 &lt;module name=&quot;EmptyForIteratorPad&quot;&gt;
-    &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
+  &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -303,8 +303,8 @@ package com.puppycrawl.tools.checkstyle.whitespace;
 import java.io.Serializable;
 class Foo
 {
-    public static final int FOO_CONST = 1;
-    public void foo() {} //should be separated from previous statement.
+  public static final int FOO_CONST = 1;
+  public void foo() {} //should be separated from previous statement.
 }
       </source>
       <p>
@@ -327,9 +327,9 @@ import java.io.Serializable;
 
 class Foo
 {
-    public static final int FOO_CONST = 1;
+  public static final int FOO_CONST = 1;
 
-    public void foo() {} //should be separated from previous statement.
+  public void foo() {} //should be separated from previous statement.
 }
       </source>
       <p>
@@ -339,7 +339,7 @@ class Foo
       </p>
       <source>
 &lt;module name="EmptyLineSeparator"&gt;
-    &lt;property name="tokens" value="VARIABLE_DEF, METHOD_DEF"/&gt;
+  &lt;property name="tokens" value="VARIABLE_DEF, METHOD_DEF"/&gt;
 &lt;/module&gt;
       </source>
       <p>
@@ -347,7 +347,7 @@ class Foo
       </p>
       <source>
 &lt;module name="EmptyLineSeparator"&gt;
-    &lt;property name="allowNoEmptyLineBetweenFields" value="true"/&gt;
+  &lt;property name="allowNoEmptyLineBetweenFields" value="true"/&gt;
 &lt;/module&gt;
       </source>
       <p>
@@ -355,9 +355,9 @@ class Foo
           initialization block and method:
       </p>
       <source>
-          &lt;module name="EmptyLineSeparator"&gt;
-          &lt;property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/&gt;
-          &lt;/module&gt;
+&lt;module name="EmptyLineSeparator"&gt;
+  &lt;property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/&gt;
+&lt;/module&gt;
       </source>
 
       <p>
@@ -374,21 +374,21 @@ class Foo
           Example of declarations with multiple empty lines inside method:
       </p>
       <source>
-          ///////////////////////////////////////////////////
-          //HEADER
-          ///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+//HEADER
+///////////////////////////////////////////////////
 
-          package com.puppycrawl.tools.checkstyle.whitespace;
+package com.puppycrawl.tools.checkstyle.whitespace;
 
-          class Foo
-          {
+class Foo
+{
 
-              public void foo() {
-              <br/>
+  public void foo() {
+  <br/>
 
-                  System.out.println(1); // violation since method has 2 empty lines subsequently
-              }
-          }
+    System.out.println(1); // violation since method has 2 empty lines subsequently
+  }
+}
       </source>
       </subsection>
 
@@ -507,7 +507,7 @@ class Foo
         </p>
         <source>
 &lt;module name=&quot;FileTabCharacter&quot;&gt;
-    &lt;property name=&quot;eachLine&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;eachLine&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -760,9 +760,9 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
         </p>
         <source>
 &lt;module name=&quot;MethodParamPad&quot;&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
-    &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
-    &lt;property name=&quot;allowLineBreaks&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+  &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
+  &lt;property name=&quot;allowLineBreaks&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -896,7 +896,7 @@ import static java.math. //violation
       </p>
       <source>
 &lt;module name=&quot;NoLineWrap&quot;&gt;
-    &lt;property name="tokens" value="IMPORT"/&gt;
+  &lt;property name="tokens" value="IMPORT"/&gt;
 &lt;/module&gt;
       </source>
       <p>
@@ -1073,8 +1073,8 @@ import static java.math.BigInteger.ZERO;
         </p>
         <source>
 &lt;module name=&quot;NoWhitespaceAfter&quot;&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;DOT&quot;/&gt;
-    &lt;property name=&quot;allowLineBreaks&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;DOT&quot;/&gt;
+  &lt;property name=&quot;allowLineBreaks&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -1196,8 +1196,8 @@ public void foo(final char @NotNull [] param) {} // No violation
         </p>
         <source>
 &lt;module name=&quot;NoWhitespaceBefore&quot;&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;DOT&quot;/&gt;
-    &lt;property name=&quot;allowLineBreaks&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;DOT&quot;/&gt;
+  &lt;property name=&quot;allowLineBreaks&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -1358,8 +1358,8 @@ public void foo(final char @NotNull [] param) {} // No violation
         </p>
         <source>
 &lt;module name=&quot;OperatorWrap&quot;&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;ASSIGN&quot;/&gt;
-    &lt;property name=&quot;option&quot; value=&quot;eol&quot;/&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;ASSIGN&quot;/&gt;
+  &lt;property name=&quot;option&quot; value=&quot;eol&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -1562,9 +1562,9 @@ public void foo(final char @NotNull [] param) {} // No violation
         </p>
         <source>
 &lt;module name=&quot;ParenPad&quot;&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;CTOR_CALL, METHOD_CALL,
+  &lt;property name=&quot;tokens&quot; value=&quot;CTOR_CALL, METHOD_CALL,
     SUPER_CTOR_CALL&quot;/&gt;
-    &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
+  &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -1738,8 +1738,8 @@ Arrays.sort(stringArray, String
         </p>
         <source>
 &lt;module name="SeparatorWrap"&gt;
-    &lt;property name="tokens" value="METHOD_REF"/&gt;
-    &lt;property name="option" value="nl"/&gt;
+  &lt;property name="tokens" value="METHOD_REF"/&gt;
+  &lt;property name="option" value="nl"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -1747,8 +1747,8 @@ Arrays.sort(stringArray, String
         </p>
         <source>
 &lt;module name="SeparatorWrap"&gt;
-    &lt;property name="tokens" value="COMMA"/&gt;
-    &lt;property name="option" value="nl"/&gt;
+  &lt;property name="tokens" value="COMMA"/&gt;
+  &lt;property name="option" value="nl"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -1945,7 +1945,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
         </p>
         <source>
 &lt;module name=&quot;TypecastParenPad&quot;&gt;
-    &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
+  &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -2082,7 +2082,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
         </p>
         <source>
 &lt;module name=&quot;WhitespaceAfter&quot;&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;COMMA, SEMI&quot;/&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;COMMA, SEMI&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -2372,7 +2372,7 @@ try {
         </p>
         <source>
 &lt;module name=&quot;WhitespaceAround&quot;&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;ASSIGN&quot;/&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;ASSIGN&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
