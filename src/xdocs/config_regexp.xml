@@ -269,8 +269,8 @@
         <source>
 &lt;module name=&quot;Regexp&quot;&gt;
   &lt;property
-  name=&quot;format&quot;
-  value=&quot;\A// Copyright \(C\) \d\d\d\d MyCompany\n// All rights reserved&quot;/&gt;
+    name=&quot;format&quot;
+    value=&quot;\A// Copyright \(C\) \d\d\d\d MyCompany\n// All rights reserved&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -300,11 +300,11 @@ import java.util.thing3;
         <source>
 &lt;module name=&quot;Regexp&quot;&gt;
   &lt;property
-  name=&quot;format&quot;
-  value=&quot;\A/{71}\n// checkstyle:\n// Checks Java source code for
-  adherence to a set of rules\.\n// Copyright \(C\) \d\d\d\d  Oliver Burn\n
-  // Last modification by \$Author.*\$\n/{71}\n\npackage [\w\.]*;\n\n
-  (import [\w\.]*;\n)*\n/\*\*\n( \*[^/]*\n)* \*/&quot;/&gt;
+    name=&quot;format&quot;
+    value=&quot;\A/{71}\n// checkstyle:\n// Checks Java source code for
+    adherence to a set of rules\.\n// Copyright \(C\) \d\d\d\d  Oliver Burn\n
+    // Last modification by \$Author.*\$\n/{71}\n\npackage [\w\.]*;\n\n
+    (import [\w\.]*;\n)*\n/\*\*\n( \*[^/]*\n)* \*/&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -389,31 +389,31 @@ public static final int A_SETPOINT = 1;
         <source>
 &lt;module name=&quot;Regexp&quot;&gt;
   &lt;property
-  name=&quot;format&quot;
-  value=&quot;\A/\*\n \* (\w*)\.java\n \*\n \* Copyright \(c\)
-  \d\d\d\d ACME\n \* 123 Some St\.\n \* Somewhere\.\n \*\n
-  \* This software is the confidential and proprietary information
-  of ACME\.\n \* \(&amp;quot;Confidential Information&amp;quot;\)\. You
-  shall not disclose such\n \* Confidential Information and shall
-  use it only in accordance with\n \* the terms of the license
-  agreement you entered into with ACME\.\n \*\n
-  \* \$Log: config_misc\.xml,v $
-  \* Revision 1\.7  2007/01/16 12:16:35  oburn
-  \* Removing all reference to mailing lists
-  \* \
-  \* Revision 1.6  2005/12/25 16:13:10  o_sukhodolsky
-  \* Fix for rfe 1248106 \(TYPECAST is now accepted by NoWhitespaceAfter\)
-  \* \
-  \* Fix for rfe 953266 \(thanks to Paul Guyot \(pguyot\) for submitting patch\)
-  \* IllegalType can be configured to accept some abstract classes which
-  \* matches to regexp of illegal type names \(property legalAbstractClassNames\)
-  \*
-  \* TrailingComment now can be configured to accept some trailing comments
-  \* \(such as NOI18N\) \(property legalComment, rfe 1385344\).
-  \*
-  \* Revision 1.5  2005/11/06 11:54:12  oburn
-  \* Incorporate excellent patch \[ 1344344 \] Consolidation of regexp checks.
-  \* \\n(.*\n)*([\w|\s]*( class | interface )\1)&quot;/&gt;
+    name=&quot;format&quot;
+    value=&quot;\A/\*\n \* (\w*)\.java\n \*\n \* Copyright \(c\)
+    \d\d\d\d ACME\n \* 123 Some St\.\n \* Somewhere\.\n \*\n
+    \* This software is the confidential and proprietary information
+    of ACME\.\n \* \(&amp;quot;Confidential Information&amp;quot;\)\. You
+    shall not disclose such\n \* Confidential Information and shall
+    use it only in accordance with\n \* the terms of the license
+    agreement you entered into with ACME\.\n \*\n
+    \* \$Log: config_misc\.xml,v $
+    \* Revision 1\.7  2007/01/16 12:16:35  oburn
+    \* Removing all reference to mailing lists
+    \* \
+    \* Revision 1.6  2005/12/25 16:13:10  o_sukhodolsky
+    \* Fix for rfe 1248106 \(TYPECAST is now accepted by NoWhitespaceAfter\)
+    \* \
+    \* Fix for rfe 953266 \(thanks to Paul Guyot \(pguyot\) for submitting patch\)
+    \* IllegalType can be configured to accept some abstract classes which
+    \* matches to regexp of illegal type names \(property legalAbstractClassNames\)
+    \*
+    \* TrailingComment now can be configured to accept some trailing comments
+    \* \(such as NOI18N\) \(property legalComment, rfe 1385344\).
+    \*
+    \* Revision 1.5  2005/11/06 11:54:12  oburn
+    \* Incorporate excellent patch \[ 1344344 \] Consolidation of regexp checks.
+    \* \\n(.*\n)*([\w|\s]*( class | interface )\1)&quot;/&gt;
   &lt;property name=&quot;message&quot; value=&quot;Correct header not found&quot;/&gt;
 &lt;/module&gt;
         </source>
@@ -424,17 +424,17 @@ public static final int A_SETPOINT = 1;
         <source>
 &lt;module name=&quot;Regexp&quot;&gt;
   &lt;property
-  name=&quot;format&quot;
-  value=&quot;(/\*\*\n)( \*.*\n)*( \* &amp;lt;P&amp;gt;\n \*   &amp;lt;I&amp;gt;
-  This software is the confidential and proprietary information of\n
-  \*   ACME \(&amp;lt;B&amp;gt;&amp;quot;Confidential Information&amp;quot;&amp;lt;/B&amp;gt;
-  \)\. You shall not\n \*   disclose such Confidential Information
-  and shall use it only in\n \*   accordance with the terms of the
-  license agreement you entered into\n \*   with ACME\.&amp;lt;/I&amp;gt;\n
-  \* &amp;lt;/P&amp;gt;\n \*\n \* &amp;#169; copyright \d\d\d\d ACME\n
-  \*\n \* @author .*)(\n\s\*.*)*/\n[\w|\s]*( class | interface )&quot;/&gt;
+    name=&quot;format&quot;
+    value=&quot;(/\*\*\n)( \*.*\n)*( \* &amp;lt;P&amp;gt;\n \*   &amp;lt;I&amp;gt;
+    This software is the confidential and proprietary information of\n
+    \*   ACME \(&amp;lt;B&amp;gt;&amp;quot;Confidential Information&amp;quot;&amp;lt;/B&amp;gt;
+    \)\. You shall not\n \*   disclose such Confidential Information
+    and shall use it only in\n \*   accordance with the terms of the
+    license agreement you entered into\n \*   with ACME\.&amp;lt;/I&amp;gt;\n
+    \* &amp;lt;/P&amp;gt;\n \*\n \* &amp;#169; copyright \d\d\d\d ACME\n
+    \*\n \* @author .*)(\n\s\*.*)*/\n[\w|\s]*( class | interface )&quot;/&gt;
   &lt;property name=&quot;message&quot;
-      value=&quot;Copyright in class/interface Javadoc&quot;/&gt;
+    value=&quot;Copyright in class/interface Javadoc&quot;/&gt;
   &lt;property name=&quot;duplicateLimit&quot; value=&quot;0&quot;/&gt;
 &lt;/module&gt;
         </source>
@@ -565,7 +565,7 @@ public static final int A_SETPOINT = 1;
         <source>
 &lt;module name=&quot;RegexpMultiline&quot;&gt;
   &lt;property name=&quot;format&quot;
-   value=&quot;System\.(out)|(err)\.print(ln)?\(&quot;/&gt;
+    value=&quot;System\.(out)|(err)\.print(ln)?\(&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -1044,8 +1044,8 @@ public static final int A_SETPOINT = 1;
         </p>
         <source>
 &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
-    &lt;!-- . matches any character, so we need to
-         escape it and use \. to match dots. --&gt;
+  &lt;!-- . matches any character, so we need to
+       escape it and use \. to match dots. --&gt;
   &lt;property name=&quot;format&quot; value=&quot;System\.out\.println&quot;/&gt;
   &lt;property name=&quot;ignoreComments&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
@@ -1057,8 +1057,8 @@ public static final int A_SETPOINT = 1;
         </p>
         <source>
 &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
-    &lt;property name=&quot;format&quot; value=&quot;debug&quot;/&gt;
-    &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;format&quot; value=&quot;debug&quot;/&gt;
+  &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
