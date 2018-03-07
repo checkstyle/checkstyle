@@ -5,7 +5,6 @@ import java.util.List; //indent:0 exp:0
 import java.util.Set; //indent:0 exp:0
 import java.util.concurrent.ConcurrentMap; //indent:0 exp:0
 
-import javax.xml.bind.annotation.XmlElement; //indent:0 exp:0
 
 
 /**                                                                           //indent:0 exp:0
@@ -283,4 +282,8 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
   private static class StrongEntry<T1, T2> { //indent:2 exp:2
 
   } //indent:2 exp:2
+
+  public @interface XmlElement { //indent:2 exp:2
+  } //indent:2 exp:2
+
 } //indent:0 exp:0
