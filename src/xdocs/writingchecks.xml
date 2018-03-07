@@ -327,31 +327,31 @@ import com.puppycrawl.tools.checkstyle.api.*;
 
 public class MethodLimitCheck extends AbstractCheck
 {
-    private static final int DEFAULT_MAX = 30;
-    private int max = DEFAULT_MAX;
+  private static final int DEFAULT_MAX = 30;
+  private int max = DEFAULT_MAX;
 
-    @Override
-    public int[] getDefaultTokens()
-    {
-        return new int[]{TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
+  @Override
+  public int[] getDefaultTokens()
+  {
+    return new int[]{TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
+  }
+
+  @Override
+  public void visitToken(DetailAST ast)
+  {
+    // find the OBJBLOCK node below the CLASS_DEF/INTERFACE_DEF
+    DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
+
+    // count the number of direct children of the OBJBLOCK
+    // that are METHOD_DEFS
+    int methodDefs = objBlock.getChildCount(TokenTypes.METHOD_DEF);
+
+    // report error if limit is reached
+    if (methodDefs > this.max) {
+      String message = "too many methods, only " + this.max + " are allowed";
+      log(ast.getLineNo(), message);
     }
-
-    @Override
-    public void visitToken(DetailAST ast)
-    {
-        // find the OBJBLOCK node below the CLASS_DEF/INTERFACE_DEF
-        DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
-
-        // count the number of direct children of the OBJBLOCK
-        // that are METHOD_DEFS
-        int methodDefs = objBlock.getChildCount(TokenTypes.METHOD_DEF);
-
-        // report error if limit is reached
-        if (methodDefs > this.max) {
-            String message = "too many methods, only " + this.max + " are allowed";
-            log(ast.getLineNo(), message);
-        }
-   }
+  }
 }
       </source>
 
@@ -485,11 +485,11 @@ public class MethodLimitCheck extends AbstractCheck
       <source>
 public class MethodLimitCheck extends AbstractCheck
 {
-    // code from above omitted for brevity
-    public void setMax(int limit)
-    {
-        max = limit;
-    }
+  // code from above omitted for brevity
+  public void setMax(int limit)
+  {
+    max = limit;
+  }
 }
       </source>
 
@@ -686,35 +686,35 @@ import com.puppycrawl.tools.checkstyle.api.*;
 
 public class LimitImplementationFiles extends AbstractFileSetCheck
 {
-    private static final int DEFAULT_MAX = 100;
-    private int fileCount;
-    private int max = DEFAULT_MAX;
-    public void setMax(int aMax)
-    {
-        this.max = aMax;
+  private static final int DEFAULT_MAX = 100;
+  private int fileCount;
+  private int max = DEFAULT_MAX;
+  public void setMax(int aMax)
+  {
+    this.max = aMax;
+  }
+
+  @Override
+  public void beginProcessing(String aCharset)
+  {
+    super.beginProcessing(aCharset);
+
+    //reset the file count
+    this.fileCount = 0;
+  }
+
+  @Override
+  public void processFiltered(File file, List&lt;String&gt; aLines)
+  {
+    this.fileCount++;
+
+    if (this.fileCount > this.max) {
+      // log the message
+      log(0, "max.files.exceeded", Integer.valueOf(this.max));
+      // you can call log() multiple times to flag multiple
+      // errors in the same file
     }
-
-    @Override
-    public void beginProcessing(String aCharset)
-    {
-        super.beginProcessing(aCharset);
-
-        //reset the file count
-        this.fileCount = 0;
-    }
-
-    @Override
-    public void processFiltered(File file, List&lt;String&gt; aLines)
-    {
-        this.fileCount++;
-
-        if (this.fileCount > this.max) {
-            // log the message
-            log(0, "max.files.exceeded", Integer.valueOf(this.max));
-            // you can call log() multiple times to flag multiple
-            // errors in the same file
-        }
-    }
+  }
 }
       </source>
 
