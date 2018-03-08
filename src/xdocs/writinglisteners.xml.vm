@@ -111,74 +111,74 @@ public class VerboseListener
     extends AutomaticBean
     implements AuditListener
 {
-    private PrintWriter mWriter = new PrintWriter(System.out);
-    private boolean mCloseOut = false;
-    private int mTotalErrors;
-    private int mErrors;
+  private PrintWriter mWriter = new PrintWriter(System.out);
+  private boolean mCloseOut = false;
+  private int mTotalErrors;
+  private int mErrors;
 
-    public void setFile(String aFileName)
-        throws FileNotFoundException
-    {
-        final OutputStream out = new FileOutputStream(aFileName);
-        mWriter = new PrintWriter(out);
-        mCloseOut = true;
-    }
+  public void setFile(String aFileName)
+      throws FileNotFoundException
+  {
+    final OutputStream out = new FileOutputStream(aFileName);
+    mWriter = new PrintWriter(out);
+    mCloseOut = true;
+  }
 
-    public void auditStarted(AuditEvent aEvt)
-    {
-        mTotalErrors = 0;
-        mWriter.println("Audit started.");
-    }
+  public void auditStarted(AuditEvent aEvt)
+  {
+    mTotalErrors = 0;
+    mWriter.println("Audit started.");
+  }
 
-    public void auditFinished(AuditEvent aEvt)
-    {
-        mWriter.println("Audit finished. Total errors: " + mTotalErrors);
-        mWriter.flush();
-        if (mCloseOut) {
-            mWriter.close();
-        }
+  public void auditFinished(AuditEvent aEvt)
+  {
+    mWriter.println("Audit finished. Total errors: " + mTotalErrors);
+    mWriter.flush();
+    if (mCloseOut) {
+      mWriter.close();
     }
+  }
 
-    public void fileStarted(AuditEvent aEvt)
-    {
-        mErrors = 0;
-        mWriter.println(
-            "Started checking file '" + aEvt.getFileName() + "'.");
-    }
+  public void fileStarted(AuditEvent aEvt)
+  {
+    mErrors = 0;
+    mWriter.println(
+        "Started checking file '" + aEvt.getFileName() + "'.");
+  }
 
-    public void fileFinished(AuditEvent aEvt)
-    {
-        mWriter.println("Finished checking file '" + aEvt.getFileName()
-            + "'. Errors: " + mErrors);
-    }
+  public void fileFinished(AuditEvent aEvt)
+  {
+    mWriter.println("Finished checking file '" + aEvt.getFileName()
+        + "'. Errors: " + mErrors);
+  }
 
-    public void addError(AuditEvent aEvt)
-    {
-        printEvent(aEvt);
-        if (SeverityLevel.ERROR.equals(aEvt.getSeverityLevel())) {
-            mErrors++;
-            mTotalErrors++;
-        }
+  public void addError(AuditEvent aEvt)
+  {
+    printEvent(aEvt);
+    if (SeverityLevel.ERROR.equals(aEvt.getSeverityLevel())) {
+      mErrors++;
+      mTotalErrors++;
     }
+  }
 
-    public void addException(AuditEvent aEvt, Throwable aThrowable)
-    {
-        printEvent(aEvt);
-        aThrowable.printStackTrace(System.out);
-        mErrors++;
-        mTotalErrors++;
-    }
+  public void addException(AuditEvent aEvt, Throwable aThrowable)
+  {
+    printEvent(aEvt);
+    aThrowable.printStackTrace(System.out);
+    mErrors++;
+    mTotalErrors++;
+  }
 
-    private void printEvent(AuditEvent aEvt)
-    {
-        mWriter.println("Logging error -"
-            + " file: '" + aEvt.getFileName() + "'"
-            + " line: " + aEvt.getLine()
-            + " column: " + aEvt.getColumn()
-            + " severity: " + aEvt.getSeverityLevel()
-            + " message: " + aEvt.getMessage()
-            + " source: " + aEvt.getSourceName());
-    }
+  private void printEvent(AuditEvent aEvt)
+  {
+    mWriter.println("Logging error -"
+        + " file: '" + aEvt.getFileName() + "'"
+        + " line: " + aEvt.getLine()
+        + " column: " + aEvt.getColumn()
+        + " severity: " + aEvt.getSeverityLevel()
+        + " message: " + aEvt.getMessage()
+        + " source: " + aEvt.getSourceName());
+  }
 }
       </source>
 
@@ -209,7 +209,7 @@ public class VerboseListener
 
       <source>
 &lt;module name=&quot;com.mycompany.listeners.VerboseListener&quot;&gt;
-    &lt;property name=&quot;file&quot; value=&quot;audit.txt&quot;/&gt;
+  &lt;property name=&quot;file&quot; value=&quot;audit.txt&quot;/&gt;
 &lt;/module&gt;
       </source>
 
