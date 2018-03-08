@@ -621,11 +621,11 @@ JAVADOC -> JAVADOC [0:0]
           "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
           "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
 <module name="Checker">
-    <module name="TreeWalker">
-        <module name="JavadocParagraph">
-            <property name="violateExecutionOnNonTightHtml" value="false"/>
-        </module>
+  <module name="TreeWalker">
+    <module name="JavadocParagraph">
+      <property name="violateExecutionOnNonTightHtml" value="false"/>
     </module>
+  </module>
 </module>
           ]]></source>
         </td>
@@ -653,11 +653,11 @@ Checkstyle ends with 1 errors.
           "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
           "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
 <module name="Checker">
-    <module name="TreeWalker">
-        <module name="JavadocParagraph">
-            <property name="violateExecutionOnNonTightHtml" value="true"/>
-        </module>
+  <module name="TreeWalker">
+    <module name="JavadocParagraph">
+      <property name="violateExecutionOnNonTightHtml" value="true"/>
     </module>
+  </module>
 </module>
           ]]></source>
         </td>
