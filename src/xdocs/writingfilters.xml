@@ -78,25 +78,25 @@ public class FilesFilter
     extends AutomaticBean
     implements Filter
 {
-    private Pattern mFileRegexp;
+  private Pattern mFileRegexp;
 
-    public FilesFilter()
-        throws PatternSyntaxException
-    {
-        setFiles("^$");
-    }
+  public FilesFilter()
+      throws PatternSyntaxException
+  {
+    setFiles("^$");
+  }
 
-    public boolean accept(AuditEvent aEvent)
-    {
-        final String fileName = aEvent.getFileName();
-        return ((fileName == null) || !mFileRegexp.matcher(fileName).find());
-    }
+  public boolean accept(AuditEvent aEvent)
+  {
+    final String fileName = aEvent.getFileName();
+    return ((fileName == null) || !mFileRegexp.matcher(fileName).find());
+  }
 
-    public void setFiles(String aFilesPattern)
-        throws PatternSyntaxException
-    {
-        mFileRegexp = Utils.getPattern(aFilesPattern);
-    }
+  public void setFiles(String aFilesPattern)
+      throws PatternSyntaxException
+  {
+    mFileRegexp = Utils.getPattern(aFilesPattern);
+  }
 }
       </source>
     </section>
@@ -121,7 +121,7 @@ public class FilesFilter
 
       <source>
 &lt;module name=&quot;com.mycompany.filters.FilesFilter&quot;&gt;
-    &lt;property name=&quot;files&quot; value=&quot;Generated&quot;/&gt;
+  &lt;property name=&quot;files&quot; value=&quot;Generated&quot;/&gt;
 &lt;/module&gt;
       </source>
     </section>

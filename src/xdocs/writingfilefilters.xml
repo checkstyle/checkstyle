@@ -74,24 +74,24 @@ public class FilesBeforeExecutionFileFilter
     extends AutomaticBean
     implements BeforeExecutionFileFilter
 {
-    private Pattern mFileRegexp;
+  private Pattern mFileRegexp;
 
-    public FilesBeforeExecutionFileFilter()
-        throws PatternSyntaxException
-    {
-        setFiles("^$");
-    }
+  public FilesBeforeExecutionFileFilter()
+      throws PatternSyntaxException
+  {
+    setFiles("^$");
+  }
 
-    public boolean accept(String uri)
-    {
-        return ((uri == null) || !mFileRegexp.matcher(uri).find());
-    }
+  public boolean accept(String uri)
+  {
+    return ((uri == null) || !mFileRegexp.matcher(uri).find());
+  }
 
-    public void setFiles(String aFilesPattern)
-        throws PatternSyntaxException
-    {
-        mFileRegexp = Utils.getPattern(aFilesPattern);
-    }
+  public void setFiles(String aFilesPattern)
+      throws PatternSyntaxException
+  {
+    mFileRegexp = Utils.getPattern(aFilesPattern);
+  }
 }
       </source>
     </section>
@@ -110,7 +110,7 @@ public class FilesBeforeExecutionFileFilter
 
       <source>
 &lt;module name=&quot;com.mycompany.filters.FilesBeforeExecutionFileFilter&quot;&gt;
-    &lt;property name=&quot;files&quot; value=&quot;Generated&quot;/&gt;
+  &lt;property name=&quot;files&quot; value=&quot;Generated&quot;/&gt;
 &lt;/module&gt;
       </source>
     </section>
