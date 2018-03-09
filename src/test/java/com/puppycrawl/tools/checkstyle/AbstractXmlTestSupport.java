@@ -60,6 +60,10 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
                 expectedContents);
         final Document actualDocument = getOutputStreamXml(actualOutputStream);
 
+        Assert.assertEquals("xml encoding should be the same", expectedDocument.getXmlEncoding(),
+                actualDocument.getXmlEncoding());
+        Assert.assertEquals("xml version should be the same", expectedDocument.getXmlVersion(),
+                actualDocument.getXmlVersion());
         verifyXmlNode(expectedDocument, actualDocument, "/", ordered);
     }
 
