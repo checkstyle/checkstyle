@@ -24,6 +24,8 @@ env:
     - PROFILE="pitest-checks-naming"
     - PROFILE="pitest-checks-indentation"
     - PROFILE="pitest-checkstyle-tree-walker"
+    - PROFILE="pitest-checkstyle-ant"
+    - PROFILE="pitest-checkstyle-packagenamesloader"
     - PROFILE="pitest-checkstyle-common"
     - PROFILE="pitest-checkstyle-main"
     - PROFILE="pitest-checkstyle-api"
