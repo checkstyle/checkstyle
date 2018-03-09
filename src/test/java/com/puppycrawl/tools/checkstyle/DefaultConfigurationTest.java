@@ -19,14 +19,42 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+
+import java.util.Map;
+import java.util.TreeMap;
 
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public class DefaultConfigurationTest {
+
+    @Test
+    public void testGetAttributeNames() {
+        final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
+        config.addAttribute("attribute", "value");
+        final String[] actual = config.getAttributeNames();
+        final String[] expected = {"attribute"};
+        assertArrayEquals("Invalid attribute names", expected, actual);
+    }
+
+    @Test
+    public void testAddAttributeAndGetAttribute() throws CheckstyleException {
+        final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
+        config.addAttribute("attribute", "first");
+        assertEquals("Invalid attribute value", "first", config.getAttribute("attribute"));
+        config.addAttribute("attribute", "second");
+        assertEquals("Invalid attribute value", "first,second", config.getAttribute("attribute"));
+    }
+
+    @Test
+    public void testGetName() {
+        final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
+        assertEquals("Invalid configuration name", "MyConfig", config.getName());
+    }
 
     @Test
     public void testRemoveChild() {
@@ -37,6 +65,15 @@ public class DefaultConfigurationTest {
         assertEquals("Invalid children count", 1, config.getChildren().length);
         config.removeChild(configChild);
         assertEquals("Invalid children count", 0, config.getChildren().length);
+    }
+
+    @Test
+    public void testAddMessageAndGetMessages() {
+        final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
+        config.addMessage("key", "value");
+        final Map<String, String> expected = new TreeMap<>();
+        expected.put("key", "value");
+        assertEquals("Invalid message map", expected, config.getMessages());
     }
 
     @Test
