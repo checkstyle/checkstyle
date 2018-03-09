@@ -33,7 +33,7 @@ pitest-checkstyle-xpath|pitest-checkstyle-filters|pitest-checks-imports|pitest-c
 |pitest-checks-metrics|pitest-checks-regexp|pitest-checks-sizes|pitest-checks-misc \
 |pitest-checks-design|pitest-checks-annotation|pitest-checks-header \
 |pitest-checks-modifier|pitest-checks-naming|pitest-checkstyle-tree-walker|pitest-checkstyle-main \
-|pitest-checks-whitespace|pitest-checkstyle-utils)
+|pitest-checks-whitespace|pitest-checkstyle-utils|pitest-checkstyle-common)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=();
   checkPitestReport "${ignoredItems[@]}"
@@ -73,14 +73,6 @@ pitest-checks-coding)
   "VariableDeclarationUsageDistanceCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (elseBlock.getType() == TokenTypes.LITERAL_ELSE) {</span></pre></td></tr>"
   "VariableDeclarationUsageDistanceCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (!isVarInOperatorDeclaration &#38;&#38; operator.getType() == TokenTypes.LITERAL_IF) {</span></pre></td></tr>"
   "VariableDeclarationUsageDistanceCheck.java.html:<td class='covered'><pre><span  class='survived'>        while (currentNode != null</span></pre></td></tr>"
-  );
-  checkPitestReport "${ignoredItems[@]}"
-  ;;
-
-pitest-checkstyle-common)
-  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
-  declare -a ignoredItems=(
-  "DefaultConfiguration.java.html:<td class='uncovered'><pre><span  class=''>            attributeMap.put(attributeName, current + &#34;,&#34; + value);</span></pre></td></tr>"
   );
   checkPitestReport "${ignoredItems[@]}"
   ;;
