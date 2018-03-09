@@ -444,6 +444,22 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testSetupChildInvalidProperty() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(HiddenFieldCheck.class);
+        checkConfig.addAttribute("$$No such property", null);
+        try {
+            createChecker(checkConfig);
+            fail("Exception is expected");
+        }
+        catch (CheckstyleException ex) {
+            assertEquals("Error message is not expected",
+                    "cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker"
+                        + " - Property '$$No such property' in module " + checkConfig.getName()
+                        + " does not exist, please check the documentation", ex.getMessage());
+        }
+    }
+
+    @Test
     public void testSetupChildListener() throws Exception {
         final Checker checker = new Checker();
         final PackageObjectFactory factory = new PackageObjectFactory(
@@ -838,6 +854,21 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
             assertNotNull("suppressed violation file saved in cache",
                     details.getProperty(fileViolationPath));
+        }
+    }
+
+    @Test
+    public void testHaltOnException() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(CheckWhichThrowsError.class);
+        final String filePath = getPath("InputChecker.java");
+        try {
+            verify(checkConfig, filePath);
+            fail("Exception is expected");
+        }
+        catch (CheckstyleException ex) {
+            assertEquals("Error message is not expected",
+                    "Exception was thrown while processing " + filePath, ex.getMessage());
         }
     }
 
