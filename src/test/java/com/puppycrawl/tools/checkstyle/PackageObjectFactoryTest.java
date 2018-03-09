@@ -190,6 +190,31 @@ public class PackageObjectFactoryTest {
     }
 
     @Test
+    public void testCreateStandardModuleObjectFromMap() throws Exception {
+        final String moduleName = "TreeWalker";
+        final String packageName = BASE_PACKAGE + ".packageobjectfactory.bar";
+        final String fullName = BASE_PACKAGE + PACKAGE_SEPARATOR + moduleName;
+        final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        final PackageObjectFactory objectFactory =
+                new PackageObjectFactory(packageName, classLoader);
+        final Object instance = objectFactory.createModule(moduleName);
+        assertEquals("Invalid canonical name", fullName, instance.getClass().getCanonicalName());
+    }
+
+    @Test
+    public void testCreateStandardCheckModuleObjectFromMap() throws Exception {
+        final String moduleName = "TypeName";
+        final String packageName = BASE_PACKAGE + ".packageobjectfactory.bar";
+        final String fullName = BASE_PACKAGE + PACKAGE_SEPARATOR + "checks" + PACKAGE_SEPARATOR
+            + "naming" + PACKAGE_SEPARATOR + moduleName + CHECK_SUFFIX;
+        final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        final PackageObjectFactory objectFactory =
+                new PackageObjectFactory(packageName, classLoader);
+        final Object instance = objectFactory.createModule(moduleName);
+        assertEquals("Invalid canonical name", fullName, instance.getClass().getCanonicalName());
+    }
+
+    @Test
     public void testCreateObjectFromFullModuleNamesWithAmbiguousException() {
         final String barPackage = BASE_PACKAGE + ".packageobjectfactory.bar";
         final String fooPackage = BASE_PACKAGE + ".packageobjectfactory.foo";
