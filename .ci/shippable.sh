@@ -29,11 +29,12 @@ function checkPitestReport() {
 
 case $1 in
 
-pitest-checkstyle-xpath|pitest-checkstyle-filters|pitest-checks-imports|pitest-checkstyle-api \
-|pitest-checks-metrics|pitest-checks-regexp|pitest-checks-sizes|pitest-checks-misc \
-|pitest-checks-design|pitest-checks-annotation|pitest-checks-header \
-|pitest-checks-modifier|pitest-checks-naming|pitest-checkstyle-tree-walker|pitest-checkstyle-main \
-|pitest-checks-whitespace|pitest-checkstyle-utils|pitest-checkstyle-common)
+pitest-checks-annotation|pitest-checks-design|pitest-checks-header|pitest-checks-imports \
+|pitest-checks-metrics|pitest-checks-misc|pitest-checks-modifier|pitest-checks-naming \
+|pitest-checks-regexp|pitest-checks-sizes|pitest-checks-whitespace|pitest-checkstyle-ant \
+|pitest-checkstyle-api|pitest-checkstyle-common|pitest-checkstyle-filters|pitest-checkstyle-main \
+|pitest-checkstyle-packagenamesloader|pitest-checkstyle-tree-walker|pitest-checkstyle-utils \
+|pitest-checkstyle-xpath)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=();
   checkPitestReport "${ignoredItems[@]}"
