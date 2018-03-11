@@ -74,7 +74,7 @@ directory.
 [appveyor img]:https://ci.appveyor.com/api/projects/status/rw6bw3dl9kph6ucc?svg=true
 
 [sonar]:https://sonarcloud.io/dashboard?id=com.puppycrawl.tools%3Acheckstyle
-[sonar img]:https://sonarcloud.io/images/project_badges/sonarcloud-white.svg
+[sonar img]:https://sonarcloud.io/api/project_badges/measure?project=com.puppycrawl.tools%3Acheckstyle&metric=sqale_index
 
 [codacy]:https://www.codacy.com/app/checkstyle/checkstyle
 [codacy img]:https://api.codacy.com/project/badge/3adf12d434314ba8b38277ea46d3c44b
