@@ -35,14 +35,12 @@ pitest-checkstyle-xpath|pitest-checkstyle-filters|pitest-checks-imports|pitest-c
 |pitest-checks-modifier|pitest-checks-naming|pitest-checkstyle-tree-walker|pitest-checkstyle-main \
 |pitest-checks-whitespace|pitest-checkstyle-utils)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
-  # Format of ignored items: <report_name>:<survived line>
   declare -a ignoredItems=();
   checkPitestReport "${ignoredItems[@]}"
   ;;
 
 pitest-checks-blocks)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
-  # Format of ignored items: <report_name>:<survived line>
   declare -a ignoredItems=(
   "LeftCurlyCheck.java.html:<td class='covered'><pre><span  class='survived'>               &#38;&#38; annotation.getNextSibling().getType() == TokenTypes.ANNOTATION) {</span></pre></td></tr>"
   "LeftCurlyCheck.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; previousAnnotation.getPreviousSibling().getLineNo()</span></pre></td></tr>"
@@ -54,9 +52,7 @@ pitest-checks-blocks)
   ;;
 
 pitest-checks-coding)
-  # POST_ACTION=check_survived_coding
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
-  # Format of ignored items: <report_name>:<survived line>
   declare -a ignoredItems=(
   "EqualsAvoidNullCheck.java.html:<td class='covered'><pre><span  class='survived'>                    &#38;&#38; field.getColumnNo() + minimumSymbolsBetween &#60;= objCalledOn.getColumnNo()) {</span></pre></td></tr>"
   "HiddenFieldCheck.java.html:<td class='covered'><pre><span  class='survived'>            processVariable(ast);</span></pre></td></tr>"
@@ -83,7 +79,6 @@ pitest-checks-coding)
 
 pitest-checkstyle-common)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
-  # Format of ignored items: <report_name>:<survived line>
   declare -a ignoredItems=(
   "DefaultConfiguration.java.html:<td class='uncovered'><pre><span  class=''>            attributeMap.put(attributeName, current + &#34;,&#34; + value);</span></pre></td></tr>"
   );
