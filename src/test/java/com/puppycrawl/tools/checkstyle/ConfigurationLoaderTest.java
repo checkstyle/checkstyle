@@ -27,7 +27,6 @@ import static org.powermock.api.mockito.PowerMockito.when;
 import java.io.File;
 import java.io.FileInputStream;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -487,33 +486,6 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
             assertEquals("Invalid exception cause message",
                 "Unknown name:" + "hello" + ".", ex.getCause().getMessage());
         }
-    }
-
-    @Test
-    public void testPrivateConstructorWithPropertyResolverAndOmitIgnoreModules() throws Exception {
-        final Class<?> configurationLoaderClass = ConfigurationLoader.class;
-        final Constructor<?> configurationLoaderCtor =
-                configurationLoaderClass.getDeclaredConstructor(
-                        PropertyResolver.class, boolean.class);
-        configurationLoaderCtor.setAccessible(true);
-
-        final Properties properties = new Properties();
-        final PropertyResolver propertyResolver = new PropertiesExpander(properties);
-        final ConfigurationLoader configurationLoader =
-                (ConfigurationLoader) configurationLoaderCtor.newInstance(
-                        propertyResolver, true);
-
-        final Field overridePropsResolverField =
-                configurationLoaderClass.getDeclaredField("overridePropsResolver");
-        overridePropsResolverField.setAccessible(true);
-        assertEquals("Invalid property resolver",
-            propertyResolver, overridePropsResolverField.get(configurationLoader));
-
-        final Field omitIgnoredModulesField =
-                configurationLoaderClass.getDeclaredField("omitIgnoredModules");
-        omitIgnoredModulesField.setAccessible(true);
-        assertEquals("omitIgnoredModules should be set to true",
-            true, omitIgnoredModulesField.get(configurationLoader));
     }
 
     @Test

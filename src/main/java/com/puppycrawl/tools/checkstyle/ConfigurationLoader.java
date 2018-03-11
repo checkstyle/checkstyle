@@ -133,20 +133,6 @@ public final class ConfigurationLoader {
      * @param overrideProps resolver for overriding properties
      * @param omitIgnoredModules {@code true} if ignored modules should be
      *         omitted
-     * @throws ParserConfigurationException if an error occurs
-     * @throws SAXException if an error occurs
-     */
-    private ConfigurationLoader(final PropertyResolver overrideProps,
-                                final boolean omitIgnoredModules)
-            throws ParserConfigurationException, SAXException {
-        this(overrideProps, omitIgnoredModules, ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE);
-    }
-
-    /**
-     * Creates a new {@code ConfigurationLoader} instance.
-     * @param overrideProps resolver for overriding properties
-     * @param omitIgnoredModules {@code true} if ignored modules should be
-     *         omitted
      * @param threadModeSettings the thread mode configuration
      * @throws ParserConfigurationException if an error occurs
      * @throws SAXException if an error occurs
