@@ -339,33 +339,9 @@
                   <th>Remarks</th>
               </tr>
               <tr>
-                  <td><a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a></td>
-                  <td>Mark Lussier</td>
-                  <td>
-                      <a href="http://jetstyle.sourceforge.net/">JetStyle Project Page</a>
-                  </td>
-                  <td/>
-              </tr>
-              <tr>
-                  <td/>
-                  <td><a href="http://jcoderz.github.io/">jCoderZ</a></td>
-                  <td>
-                      <a href="https://github.com/jCoderZ/fawkez-code-report">fawkez-code-report</a>
-                  </td>
-                  <td>Combines multiple tools (CheckStyle, findbugs, PMD, Cobertura, etc.)</td>
-              </tr>
-              <tr>
                   <td><a href="https://www.bluej.org/">BlueJ</a></td>
                   <td>Rick Giles</td>
                   <td><a href="http://bluejcheckstyle.sourceforge.net/">bluejcheckstyle home page</a></td>
-                  <td/>
-              </tr>
-              <tr>
-                  <td><a href="https://eclipse.org">Eclipse/RAD/RDz</a></td>
-                  <td>Marco van Meegen</td>
-                  <td>
-                      <a href="http://www.mvmsoft.de/content/plugins/checkclipse/checkclipse.htm">Checklipse Home Page</a>
-                  </td>
                   <td/>
               </tr>
               <tr>
@@ -373,12 +349,6 @@
                   <td>Benoit Xhenseval</td>
                   <td><a href="http://qalab.sourceforge.net/">QALab Home Page</a></td>
                   <td>Supports tracking Checkstyle statistics over time.</td>
-              </tr>
-              <tr>
-                  <td><a href="https://netbeans.org/">NetBeans</a></td>
-                  <td>Paul Goulbourn</td>
-                  <td><a href="http://nbcheckstyle.sourceforge.net">nbCheckStyle</a></td>
-                  <td/>
               </tr>
               <tr>
                   <td><a href="https://vim.sourceforge.io/">Vim editor</a></td>
