@@ -128,7 +128,7 @@
 
       <p>
         Please create a <a href="https://help.github.com/articles/using-pull-requests/">Pull Request</a>
-        for your contribution. In the Pull Request description, add explanation of the implementation
+        for your contribution. In the Pull Request description, add any explanation of the implementation
         nuances. Please read the Pull Request template for more requirements.
         <b>ATTENTION:</b> Please verify that the Pull Request contains ONLY your intended changes and
         is based on the most recent HEAD of our master branch.
