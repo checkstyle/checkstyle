@@ -410,13 +410,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     }
 
     /**
-     * The JavadocMethodCheck is about to report a missing Javadoc.
-     * This hook can be used by derived classes to allow a missing javadoc
-     * in some situations.  The default implementation checks
-     * {@code allowMissingJavadoc} and
-     * {@code allowMissingPropertyJavadoc} properties, do not forget
-     * to call {@code super.isMissingJavadocAllowed(ast)} in case
-     * you want to keep this logic.
+     * Checks if a missing Javadoc is allowed by the check's configuration.
      * @param ast the tree node for the method or constructor.
      * @return True if this method or constructor doesn't need Javadoc.
      */
