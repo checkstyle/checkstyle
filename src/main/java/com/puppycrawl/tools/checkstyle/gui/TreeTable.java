@@ -284,7 +284,7 @@ public final class TreeTable extends JTable {
                     if (getColumnClass(counter) == ParseTreeTableModel.class) {
                         final MouseEvent mouseEvent = (MouseEvent) event;
                         final MouseEvent newMouseEvent = new MouseEvent(tree, mouseEvent.getID(),
-                                mouseEvent.getWhen(), mouseEvent.getModifiers(),
+                                mouseEvent.getWhen(), mouseEvent.getModifiersEx(),
                                 mouseEvent.getX() - getCellRect(0, counter, true).x,
                                 mouseEvent.getY(), mouseEvent.getClickCount(),
                                 mouseEvent.isPopupTrigger());
