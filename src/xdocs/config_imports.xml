@@ -1379,7 +1379,7 @@ import java.util.stream.IntStream;
             <td>sortStaticImportsAlphabetically</td>
             <td>whether <b>static imports</b> grouped by <b>top</b> or <b>bottom</b> option
                 are sorted alphabetically or not.
-                Attention: It is applied to all static imports as one group.</td>>
+                Attention: It is applied to all static imports as one group.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
             <td>6.5</td>
