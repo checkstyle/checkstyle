@@ -27,6 +27,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class IllegalImportCheckTest extends AbstractModuleTestSupport {
 
@@ -62,10 +63,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(IllegalImportCheck.class);
-        final String[] expected = {
-            "15:1: " + getCheckMessage(MSG_KEY, "sun.applet.*"),
-            "28:1: " + getCheckMessage(MSG_KEY, "sun.*"),
-        };
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputIllegalImportDefault.java"), expected);
     }
 
@@ -87,8 +85,6 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("illegalClasses", "java.sql.Connection");
         final String[] expected = {
             "11:1: " + getCheckMessage(MSG_KEY, "java.sql.Connection"),
-            "15:1: " + getCheckMessage(MSG_KEY, "sun.applet.*"),
-            "28:1: " + getCheckMessage(MSG_KEY, "sun.*"),
         };
         verify(checkConfig, getPath("InputIllegalImportDefault.java"), expected);
     }

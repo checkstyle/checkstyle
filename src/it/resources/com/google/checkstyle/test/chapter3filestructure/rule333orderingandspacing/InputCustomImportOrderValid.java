@@ -6,7 +6,6 @@ import static com.puppycrawl.tools.checkstyle.utils.AnnotationUtility.getAnnotat
 import com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck;
 import com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck;
 import com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck;
-import com.sun.accessibility.internal.resources.*;
 import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Map;
