@@ -17,7 +17,7 @@ dependencies:
     - eval $TESTER_DEPENDENCIES
 machine:
   java:
-    version: oraclejdk8
+    version: oraclejdk9
   environment:
     CMD1: "cd contribution/checkstyle-tester"
     DEP1: " && sed -i'' 's/^guava/#guava/' projects-to-test-on.properties"

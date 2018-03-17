@@ -10,5 +10,5 @@ checkstyle/checkstyle:
         echo "[INFO] Build is skipped by SKIP_CI"
         exit 0;
       fi
-    - command -v jdk_switcher > /dev/null && jdk_switcher use oraclejdk8
+    - command -v jdk_switcher > /dev/null && jdk_switcher use oraclejdk9
     - .ci/check-only-javadoc-error.sh

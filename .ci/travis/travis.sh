@@ -92,9 +92,8 @@ no-error-test-sbe)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo version:$CS_POM_VERSION
   mvn -e clean install -Pno-validations
-  git clone https://github.com/real-logic/simple-binary-encoding.git
+  git clone -b 1.7.9 https://github.com/real-logic/simple-binary-encoding.git
   cd simple-binary-encoding
-  git checkout 963814f8ca1456de9daaf67e78663e7d877871a9
   sed -i'' "s/'com.puppycrawl.tools:checkstyle:.*'/'com.puppycrawl.tools:checkstyle:$CS_POM_VERSION'/" build.gradle
   ./gradlew build
   ;;
