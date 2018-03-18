@@ -388,7 +388,7 @@
             IllegalType does not seem to handle multidimensional array types. Author: Ruslan Iagudin <a href="https://github.com/checkstyle/checkstyle/issues/4425">#4425</a>
           </li>
           <li>
-            No violation before or after changes for static import list. Author: BBG <a href="https://github.com/checkstyle/checkstyle/issues/5065">#5065</a>
+            ImportOrder: No violation before or after changes for static import list. Author: BBG <a href="https://github.com/checkstyle/checkstyle/issues/5065">#5065</a>
           </li>
           <li>
             whitespace after Array type when using a type annotation. Author: Ruslan Iagudin <a href="https://github.com/checkstyle/checkstyle/issues/3300">#3300</a>
