@@ -67,6 +67,8 @@
     <suppress checks="MethodCount" files="[\\/]VisibilityModifierCheck.java$"/>
     <!--RequireThisCheck has a hierarchy of nested classes which contains a lot of methods. -->
     <suppress checks="MethodCount" files="[\\/]RequireThisCheck.java$"/>
+    <!--There are a lot of methods inherited from NodeInfo interface. -->
+    <suppress checks="MethodCount" files="[\\/]AbstractNode.java$"/>
 
     <!-- we need that set of converters -->
     <suppress checks="ClassDataAbstractionCoupling" files="AutomaticBean\.java"/>

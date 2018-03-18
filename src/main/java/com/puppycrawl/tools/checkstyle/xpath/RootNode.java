@@ -21,7 +21,9 @@ package com.puppycrawl.tools.checkstyle.xpath;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import net.sf.saxon.Configuration;
 import net.sf.saxon.om.AxisInfo;
+import net.sf.saxon.om.GenericTreeInfo;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.tree.iter.ArrayIterator;
 import net.sf.saxon.tree.iter.AxisIterator;
@@ -49,7 +51,9 @@ public class RootNode extends AbstractNode {
      * @param detailAst reference to {@code DetailAST}
      */
     public RootNode(DetailAST detailAst) {
+        super(new GenericTreeInfo(Configuration.newConfiguration()));
         this.detailAst = detailAst;
+
         if (detailAst != null) {
             createChildren();
         }

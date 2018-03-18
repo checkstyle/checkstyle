@@ -145,20 +145,6 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetTreeInfo() {
-        try {
-            rootNode.getTreeInfo();
-            fail("Exception is excepted");
-        }
-        catch (UnsupportedOperationException ex) {
-            assertEquals(
-                "Invalid exception message",
-                "Operation is not supported",
-                ex.getMessage());
-        }
-    }
-
-    @Test
     public void testIsId() {
         try {
             rootNode.isId();

@@ -110,6 +110,51 @@ public class XpathMapperTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testComplexQueryOne() throws Exception {
+        final String xpath = "/CLASS_DEF | /CLASS_DEF/OBJBLOCK";
+        final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
+        final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
+        final DetailAST expectedClassDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
+                TokenTypes.CLASS_DEF);
+        final DetailAST expectedObjblockNode = expectedClassDefNode
+                .findFirstToken(TokenTypes.OBJBLOCK);
+        final DetailAST[] expected = {expectedClassDefNode, expectedObjblockNode};
+        assertArrayEquals("Result nodes differ from expected", expected, actual);
+    }
+
+    @Test
+    public void testComplexQueryTwo() throws Exception {
+        final String xpath = "/PACKAGE_DEF | /PACKAGE_DEF/ANNOTATIONS";
+        final RootNode rootNode = getRootNode("InputXpathMapperAnnotation.java");
+        final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
+        final DetailAST expectedPackageDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
+                TokenTypes.PACKAGE_DEF);
+        final DetailAST expectedAnnotationsNode = expectedPackageDefNode
+                .findFirstToken(TokenTypes.ANNOTATIONS);
+        final DetailAST[] expected = {expectedAnnotationsNode, expectedPackageDefNode};
+        assertArrayEquals("Result nodes differ from expected", expected, actual);
+    }
+
+    @Test
+    public void testComplexQueryThree() throws Exception {
+        final String xpath = "//CLASS_DEF | //CLASS_DEF//METHOD_DEF | /CLASS_DEF/OBJBLOCK";
+        final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
+        final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
+        final DetailAST expectedClassDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
+                TokenTypes.CLASS_DEF);
+        final DetailAST expectedObjblockNode = expectedClassDefNode
+                .findFirstToken(TokenTypes.OBJBLOCK);
+        final DetailAST expectedMethodDefNode = expectedObjblockNode
+                .findFirstToken(TokenTypes.METHOD_DEF);
+        final DetailAST expectedMethodDefNode2 = expectedObjblockNode
+                .findFirstToken(TokenTypes.METHOD_DEF)
+                .getNextSibling();
+        final DetailAST[] expected = {expectedClassDefNode, expectedMethodDefNode,
+            expectedMethodDefNode2, expectedObjblockNode};
+        assertArrayEquals("Result nodes differ from expected", expected, actual);
+    }
+
+    @Test
     public void testAttributeOr() throws Exception {
         final String xpath = "//METHOD_DEF[@text='getSomeMethod' or @text='nonExistentMethod']";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
