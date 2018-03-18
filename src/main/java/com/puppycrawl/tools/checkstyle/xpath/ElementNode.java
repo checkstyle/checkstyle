@@ -67,6 +67,7 @@ public class ElementNode extends AbstractNode {
      * @param detailAst reference to {@code DetailAST}
      */
     public ElementNode(AbstractNode root, AbstractNode parent, DetailAST detailAst) {
+        super(root.getTreeInfo());
         this.parent = parent;
         this.root = root;
         this.detailAst = detailAst;
