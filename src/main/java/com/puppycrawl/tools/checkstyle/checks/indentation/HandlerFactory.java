@@ -67,6 +67,7 @@ public class HandlerFactory {
         register(TokenTypes.ARRAY_INIT, ArrayInitHandler.class);
         register(TokenTypes.METHOD_CALL, MethodCallHandler.class);
         register(TokenTypes.CTOR_CALL, MethodCallHandler.class);
+        register(TokenTypes.SUPER_CTOR_CALL, MethodCallHandler.class);
         register(TokenTypes.LABELED_STAT, LabelHandler.class);
         register(TokenTypes.STATIC_INIT, StaticInitHandler.class);
         register(TokenTypes.INSTANCE_INIT, SlistHandler.class);

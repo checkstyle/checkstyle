@@ -449,6 +449,34 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCtorCall() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("basicOffset", "2");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        checkConfig.addAttribute("tabWidth", "4");
+        final String[] expected = {
+            "28: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
+            "29: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
+            "30: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
+            "34: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
+            "35: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
+            "39: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
+            "40: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "41: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "45: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
+            "46: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "50: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
+            "51: " + getCheckMessage(MSG_ERROR, "(", 4, 8),
+            "52: " + getCheckMessage(MSG_ERROR, "x", 4, 8),
+            "56: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
+            "57: " + getCheckMessage(MSG_ERROR, "method call lparen", 4, 6),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationCtorCall.java"), expected);
+    }
+
+    @Test
     public void testMembers() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
