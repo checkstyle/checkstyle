@@ -1369,18 +1369,14 @@
         </reportSets>
       </plugin>
 
-      <!--
-       dsm-maven plugin does not support Java 1.8
-       Deactivated until https://github.com/sevntu-checkstyle/dsm-maven-plugin/issues/31
-       -->
-      <!--<plugin>-->
-        <!--<groupId>com.github.sevntu-checkstyle</groupId>-->
-        <!--<artifactId>dsm-maven-plugin</artifactId>-->
-        <!--<version>2.1.4</version>-->
-        <!--<configuration>-->
-          <!--<obfuscatePackageNames>true</obfuscatePackageNames>-->
-        <!--</configuration>-->
-      <!--</plugin>-->
+      <plugin>
+        <groupId>com.github.sevntu-checkstyle</groupId>
+        <artifactId>dsm-maven-plugin</artifactId>
+        <version>2.1.4</version>
+        <configuration>
+          <obfuscatePackageNames>true</obfuscatePackageNames>
+        </configuration>
+      </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
