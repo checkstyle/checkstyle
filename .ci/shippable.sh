@@ -29,18 +29,18 @@ function checkPitestReport() {
 
 case $1 in
 
-pitest-checks-annotation|pitest-checks-design|pitest-checks-header|pitest-checks-imports \
-|pitest-checks-metrics|pitest-checks-misc|pitest-checks-modifier|pitest-checks-naming \
-|pitest-checks-regexp|pitest-checks-sizes|pitest-checks-whitespace|pitest-checkstyle-ant \
-|pitest-checkstyle-api|pitest-checkstyle-common|pitest-checkstyle-filters|pitest-checkstyle-main \
-|pitest-checkstyle-packagenamesloader|pitest-checkstyle-tree-walker|pitest-checkstyle-utils \
-|pitest-checkstyle-xpath)
+pitest-annotation|pitest-design|pitest-header|pitest-imports \
+|pitest-metrics|pitest-misc|pitest-modifier|pitest-naming \
+|pitest-regexp|pitest-sizes|pitest-whitespace|pitest-ant \
+|pitest-api|pitest-common|pitest-filters|pitest-main \
+|pitest-packagenamesloader|pitest-tree-walker|pitest-utils \
+|pitest-xpath)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=();
   checkPitestReport "${ignoredItems[@]}"
   ;;
 
-pitest-checks-blocks)
+pitest-blocks)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
   "LeftCurlyCheck.java.html:<td class='covered'><pre><span  class='survived'>               &#38;&#38; annotation.getNextSibling().getType() == TokenTypes.ANNOTATION) {</span></pre></td></tr>"
@@ -52,7 +52,7 @@ pitest-checks-blocks)
   checkPitestReport "${ignoredItems[@]}"
   ;;
 
-pitest-checks-coding)
+pitest-coding)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
   "EqualsAvoidNullCheck.java.html:<td class='covered'><pre><span  class='survived'>                    &#38;&#38; field.getColumnNo() + minimumSymbolsBetween &#60;= objCalledOn.getColumnNo()) {</span></pre></td></tr>"
@@ -78,7 +78,7 @@ pitest-checks-coding)
   checkPitestReport "${ignoredItems[@]}"
   ;;
 
-pitest-checks-indentation)
+pitest-indentation)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
   "AbstractExpressionHandler.java.html:<td class='covered'><pre><span  class='survived'>            if (colNum == null || thisLineColumn &#60; colNum) {</span></pre></td></tr>"
@@ -131,7 +131,7 @@ pitest-checks-indentation)
   checkPitestReport "${ignoredItems[@]}"
   ;;
 
-pitest-checks-javadoc)
+pitest-javadoc)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
   "AbstractJavadocCheck.java.html:<td class='covered'><pre><span  class='survived'>            Arrays.sort(acceptableJavadocTokens);</span></pre></td></tr>"
@@ -174,10 +174,10 @@ pitest-checks-javadoc)
   checkPitestReport "${ignoredItems[@]}"
   ;;
 
-pitest-checkstyle-gui)
-  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
-  # post validation is skipped, we do not test gui throughly
-  ;;
+# pitesttyle-gui)
+#   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+#   # post validation is skipped, we do not test gui throughly
+#   ;;
 
 *)
   echo "Unexpected argument: $1"

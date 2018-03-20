@@ -1703,7 +1703,7 @@
     </profile>
 
     <profile>
-      <id>pitest-checks-misc</id>
+      <id>pitest-misc</id>
       <properties>
         <skipTests>true</skipTests>
       </properties>
@@ -1757,7 +1757,7 @@
       </build>
     </profile>
     <profile>
-      <id>pitest-checks-annotation</id>
+      <id>pitest-annotation</id>
       <properties>
         <skipTests>true</skipTests>
       </properties>
@@ -1797,7 +1797,7 @@
       </build>
     </profile>
     <profile>
-      <id>pitest-checks-blocks</id>
+      <id>pitest-blocks</id>
       <properties>
         <skipTests>true</skipTests>
       </properties>
@@ -1825,7 +1825,7 @@
       </build>
     </profile>
     <profile>
-      <id>pitest-checks-coding</id>
+      <id>pitest-coding</id>
       <properties>
         <skipTests>true</skipTests>
       </properties>
@@ -1853,7 +1853,7 @@
       </build>
     </profile>
     <profile>
-      <id>pitest-checks-design</id>
+      <id>pitest-design</id>
       <properties>
         <skipTests>true</skipTests>
       </properties>
@@ -1881,7 +1881,7 @@
       </build>
     </profile>
     <profile>
-      <id>pitest-checks-header</id>
+      <id>pitest-header</id>
       <properties>
         <skipTests>true</skipTests>
       </properties>
@@ -1909,7 +1909,7 @@
       </build>
     </profile>
     <profile>
-      <id>pitest-checks-imports</id>
+      <id>pitest-imports</id>
       <properties>
         <skipTests>true</skipTests>
       </properties>
@@ -1937,7 +1937,7 @@
       </build>
     </profile>
     <profile>
-      <id>pitest-checks-indentation</id>
+      <id>pitest-indentation</id>
       <properties>
         <skipTests>true</skipTests>
       </properties>
@@ -1965,7 +1965,7 @@
       </build>
     </profile>
     <profile>
-      <id>pitest-checks-javadoc</id>
+      <id>pitest-javadoc</id>
       <properties>
         <skipTests>true</skipTests>
       </properties>
@@ -1993,7 +1993,7 @@
       </build>
     </profile>
     <profile>
-      <id>pitest-checks-metrics</id>
+      <id>pitest-metrics</id>
       <properties>
         <skipTests>true</skipTests>
       </properties>
@@ -2021,7 +2021,7 @@
       </build>
     </profile>
     <profile>
-      <id>pitest-checks-modifier</id>
+      <id>pitest-modifier</id>
       <properties>
         <skipTests>true</skipTests>
       </properties>
@@ -2049,7 +2049,7 @@
       </build>
     </profile>
     <profile>
-      <id>pitest-checks-naming</id>
+      <id>pitest-naming</id>
       <properties>
         <skipTests>true</skipTests>
       </properties>
@@ -2081,7 +2081,7 @@
       </build>
     </profile>
     <profile>
-      <id>pitest-checks-regexp</id>
+      <id>pitest-regexp</id>
       <properties>
         <skipTests>true</skipTests>
       </properties>
@@ -2109,7 +2109,7 @@
       </build>
     </profile>
     <profile>
-      <id>pitest-checks-sizes</id>
+      <id>pitest-sizes</id>
       <properties>
         <skipTests>true</skipTests>
       </properties>
@@ -2137,7 +2137,7 @@
       </build>
     </profile>
     <profile>
-      <id>pitest-checks-whitespace</id>
+      <id>pitest-whitespace</id>
       <properties>
         <skipTests>true</skipTests>
       </properties>
@@ -2166,7 +2166,7 @@
     </profile>
    <!-- Non-checks code profiles -->
     <profile>
-      <id>pitest-checkstyle-ant</id>
+      <id>pitest-ant</id>
       <build>
         <plugins>
           <plugin>
@@ -2191,7 +2191,7 @@
       </build>
     </profile>
     <profile>
-      <id>pitest-checkstyle-packagenamesloader</id>
+      <id>pitest-packagenamesloader</id>
       <build>
         <plugins>
           <plugin>
@@ -2216,7 +2216,7 @@
       </build>
     </profile>
     <profile>
-      <id>pitest-checkstyle-common</id>
+      <id>pitest-common</id>
       <build>
         <plugins>
           <plugin>
@@ -2262,7 +2262,7 @@
       </build>
     </profile>
     <profile>
-      <id>pitest-checkstyle-main</id>
+      <id>pitest-main</id>
       <build>
         <plugins>
           <plugin>
@@ -2287,7 +2287,7 @@
       </build>
     </profile>
     <profile>
-      <id>pitest-checkstyle-tree-walker</id>
+      <id>pitest-tree-walker</id>
       <build>
         <plugins>
           <plugin>
@@ -2333,7 +2333,7 @@
       </build>
     </profile>
     <profile>
-      <id>pitest-checkstyle-api</id>
+      <id>pitest-api</id>
       <build>
         <plugins>
           <plugin>
@@ -2377,7 +2377,7 @@
       </build>
     </profile>
     <profile>
-      <id>pitest-checkstyle-filters</id>
+      <id>pitest-filters</id>
       <build>
         <plugins>
           <plugin>
@@ -2404,7 +2404,7 @@
       </build>
     </profile>
     <profile>
-      <id>pitest-checkstyle-utils</id>
+      <id>pitest-utils</id>
       <build>
         <plugins>
           <plugin>
@@ -2439,7 +2439,7 @@
       </build>
     </profile>
     <profile>
-      <id>pitest-checkstyle-gui</id>
+      <id>pitest-gui</id>
       <build>
         <plugins>
           <plugin>
@@ -2489,7 +2489,7 @@
       </build>
     </profile>
     <profile>
-      <id>pitest-checkstyle-xpath</id>
+      <id>pitest-xpath</id>
       <build>
         <plugins>
           <plugin>
