@@ -394,6 +394,19 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputImportControl.java"), expected);
     }
 
+    @Test
+    public void testDisallowClassOfAllowPackage() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
+        checkConfig.addAttribute("file",
+                getPath("InputImportControlDisallowClassOfAllowPackage.xml"));
+        final String[] expected = {
+            "4:1: " + getCheckMessage(MSG_DISALLOWED, "java.util.Date"),
+        };
+
+        verify(checkConfig, getPath("InputImportControlDisallowClassOfAllowPackage.java"),
+                expected);
+    }
+
     /**
      * Returns String message of original exception that was thrown in
      * ImportControlCheck.setUrl or ImportControlCheck.setFile

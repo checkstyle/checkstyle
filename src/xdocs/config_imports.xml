@@ -892,8 +892,10 @@ public class InputIllegalImport { }
               <li>Check starts checking from the longest matching subpackage (later 'current
                   subpackage') described inside import control file to package defined in class
                   file.</li>
+              <li>Order of rules in the same subpackage/root are defined by the order of
+                  declaration in the XML file, which is from top (first) to bottom (last).</li>
               <li>If there is matching allow/disallow rule inside the current subpackage then the
-                  Check returns "allowed" or "disallowed" message.</li>
+                  Check returns the first "allowed" or "disallowed" message.</li>
               <li>If there is no matching allow/disallow rule inside the current subpackage then it
                   continues checking in the parent subpackage.</li>
               <li>If there is no matching allow/disallow rule in any of the subpackages, including
@@ -1176,6 +1178,17 @@ import java.util.stream.IntStream;
     &lt;disallow class=&quot;java.util.List&quot;/&gt;
     &lt;disallow pkg=&quot;sun&quot;/&gt;
   &lt;/subpackage&gt;
+&lt;/import-control&gt;
+        </source>
+        <p>
+          In the following example, all imports of the <code>java.util</code> package are allowed
+          except the <code>java.util.Date</code> class.
+        </p>
+        <source>
+&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;&gt;
+  &lt;disallow class=&quot;java.util.Date&quot;/&gt;
+
+  &lt;allow pkg=&quot;java.util&quot;/&gt;
 &lt;/import-control&gt;
         </source>
 
