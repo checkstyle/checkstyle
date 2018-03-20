@@ -148,10 +148,10 @@ build:
 
 
   - script:
-      name: NoExceptiontest - findbugs
+      name: NoExceptiontest - spotbugs
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
-          ./.ci/wercker.sh no-exception-findbugs
+          ./.ci/wercker.sh no-exception-spotbugs
         else
           echo "build is skipped ..."
         fi

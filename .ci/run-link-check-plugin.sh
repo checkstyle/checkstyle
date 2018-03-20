@@ -8,7 +8,7 @@ set -e
 uname -a
 mvn --version
 curl -I https://sourceforge.net/projects/checkstyle/
-mvn -e clean site -Dcheckstyle.ant.skip=true -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dcheckstyle.skip=true
+mvn -e clean site -Dcheckstyle.ant.skip=true -DskipTests -DskipITs -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dcheckstyle.skip=true
 echo "------------ grep of linkcheck.html--BEGIN"
 # "grep ... | cat" is required command is running in "set -e" mode and grep could return exit code 1 if nothing is matching
 grep externalLink target/site/linkcheck.html | cat
