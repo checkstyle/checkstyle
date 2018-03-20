@@ -212,7 +212,7 @@ class ImportControl {
      * @param rule the rule to be added.
      */
     protected void addImportRule(AbstractImportRule rule) {
-        rules.addFirst(rule);
+        rules.addLast(rule);
     }
 
     /**
