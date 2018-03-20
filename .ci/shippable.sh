@@ -32,7 +32,7 @@ case $1 in
 pitest-annotation|pitest-design|pitest-header|pitest-imports \
 |pitest-metrics|pitest-misc|pitest-modifier|pitest-naming \
 |pitest-regexp|pitest-sizes|pitest-whitespace|pitest-ant \
-|pitest-api|pitestcommon|pitest-filters|pitest-main \
+|pitest-api|pitest-common|pitest-filters|pitest-main \
 |pitest-packagenamesloader|pitest-tree-walker|pitest-utils \
 |pitest-xpath)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
