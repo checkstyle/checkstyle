@@ -209,7 +209,6 @@
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.7.1</antlr4.version>
     <maven.site.plugin.version>3.7</maven.site.plugin.version>
-    <maven.findbugs.plugin.version>3.0.5</maven.findbugs.plugin.version>
     <maven.spotbugs.plugin.version>3.1.3</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.9.0</maven.pmd.plugin.version>
     <pmd.version>6.1.0</pmd.version>
@@ -443,25 +442,14 @@
           </dependencies>
         </plugin>
         <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>findbugs-maven-plugin</artifactId>
-          <version>${maven.findbugs.plugin.version}</version>
-          <configuration>
-            <effort>Max</effort>
-            <threshold>Low</threshold>
-            <excludeFilterFile>config/findbugs-exclude.xml</excludeFilterFile>
-          </configuration>
-        </plugin>
-
-        <plugin>
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
           <version>${maven.spotbugs.plugin.version}</version>
           <configuration>
             <effort>Max</effort>
             <threshold>Low</threshold>
-            <excludeFilterFile>config/findbugs-exclude.xml</excludeFilterFile>
-            <findbugsXmlOutputDirectory>target/spotbugsreports</findbugsXmlOutputDirectory>
+            <excludeFilterFile>config/spotbugs-exclude.xml</excludeFilterFile>
+            <spotbugsXmlOutputDirectory>target/spotbugsreports</spotbugsXmlOutputDirectory>
           </configuration>
         </plugin>
 
@@ -1232,18 +1220,6 @@
       </plugin>
 
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
         <executions>
@@ -1446,12 +1422,6 @@
       </plugin>
 
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>
-        <version>${maven.findbugs.plugin.version}</version>
-      </plugin>
-
-      <plugin>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
         <version>${maven.spotbugs.plugin.version}</version>
@@ -1477,7 +1447,6 @@
             <excludedPage>xref/**</excludedPage>
             <excludedPage>xref-test/**</excludedPage>
             <excludedPage>pmd.html</excludedPage>
-            <excludedPage>findbugs.html</excludedPage>
             <excludedPage>surefire-report.html</excludedPage>
             <!-- Excluded due to checkstyle's issue #549 until http://jira.codehaus.org/browse/MTAGLIST-69 will be fixed -->
             <excludedPage>taglist.html</excludedPage>
@@ -1504,8 +1473,6 @@
             <!-- codehaus does not exists anymore -->
             <excludedLink>http://sonar-plugins.codehaus.org/maven-report</excludedLink>
             <excludedLink>http://www.mojohaus.org/sonar-maven-plugin/sonar-maven-plugin</excludedLink>
-            <!-- this plugin does not have site at all -->
-            <excludedLink>http://hazendaz.github.io/findbugs-maven-plugin/</excludedLink>
             <!-- SSLHandshakeException but page is opening -->
             <excludedLink>http://www.sickboy.cz/checkstyle/</excludedLink>
             <!-- Excluded due to Maven Enforcer Plugin's issue #234: https://issues.apache.org/jira/browse/MENFORCER-234-->
@@ -1570,8 +1537,6 @@
             <excludedLink>https://button.flattr.com/flattr-badge-large.png</excludedLink>
             <!-- permanent SSLException -->
             <excludedLink>https://git-scm.com</excludedLink>
-            <!-- till https://github.com/gleclaire/findbugs-maven-plugin/pull/69 merged and released -->
-            <excludedLink>http://gleclaire.github.io/findbugs-maven-plugin/</excludedLink>
             <!-- I do not know how to resolve this "302 Found" responce -->
             <excludedLink>https://plus.google.com/+CheckstyleJava</excludedLink>
             <!-- it permanently gives 404, but image is opening in browser without problems -->
@@ -1621,7 +1586,6 @@
         <checkstyle.ant.skip>true</checkstyle.ant.skip>
         <checkstyle.skip>true</checkstyle.skip>
         <pmd.skip>true</pmd.skip>
-        <findbugs.skip>true</findbugs.skip>
         <spotbugs.skip>true</spotbugs.skip>
         <xml.skip>true</xml.skip>
         <forbiddenapis.skip>true</forbiddenapis.skip>
@@ -1640,7 +1604,6 @@
         <checkstyle.ant.skip>true</checkstyle.ant.skip>
         <checkstyle.skip>true</checkstyle.skip>
         <pmd.skip>true</pmd.skip>
-        <findbugs.skip>true</findbugs.skip>
         <spotbugs.skip>true</spotbugs.skip>
         <xml.skip>true</xml.skip>
         <forbiddenapis.skip>true</forbiddenapis.skip>

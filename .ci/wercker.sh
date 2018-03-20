@@ -80,7 +80,7 @@ no-error-checkstyles-sevntu)
   set -e
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  mvn -e compile verify -Dmaven.sevntu-checkstyle-check.checkstyle.version=${CS_POM_VERSION} -Dmaven.test.skip=true -Dcheckstyle.ant.skip=true -Dpmd.skip=true -Dfindbugs.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dforbiddenapis.skip=true -Dxml.skip=true
+  mvn -e compile verify -Dmaven.sevntu-checkstyle-check.checkstyle.version=${CS_POM_VERSION} -Dmaven.test.skip=true -Dcheckstyle.ant.skip=true -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dforbiddenapis.skip=true -Dxml.skip=true
   ;;
 
 no-error-sevntu-checks)
@@ -136,11 +136,11 @@ no-exception-hibernate-orm)
   rm -rf contribution
   ;;
 
-no-exception-findbugs)
+no-exception-spotbugs)
   git clone https://github.com/checkstyle/contribution
   cd contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
-  sed -i.'' 's/#findbugs/findbugs/' projects-to-test-on.properties
+  sed -i.'' 's/#spotbugs/spotbugs/' projects-to-test-on.properties
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config checks-nonjavadoc-error.xml
   cd ../../
   rm -rf contribution

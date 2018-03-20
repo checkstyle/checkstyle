@@ -59,7 +59,7 @@ sonarqube)
 release-dry-run)
   if [ $(git log -1 | grep -E "\[maven-release-plugin\] prepare release" | cat | wc -l) -lt 1 ]; then
     mvn -e release:prepare -DdryRun=true --batch-mode -Darguments='-DskipTests -DskipITs \
-      -Djacoco.skip=true -Dpmd.skip=true -Dfindbugs.skip=true -Dspotbugs.skip=true -Dxml.skip=true \
+      -Djacoco.skip=true -Dpmd.skip=true -Dspotbugs.skip=true -Dxml.skip=true \
       -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dgpg.skip=true'
   fi
   ;;
@@ -149,11 +149,11 @@ no-exception-test-hibernate)
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config checks-nonjavadoc-error.xml
   ;;
 
-no-exception-test-findbugs)
+no-exception-test-spotbugs)
   git clone https://github.com/checkstyle/contribution
   cd contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
-  sed -i.'' 's/#findbugs/findbugs/' projects-to-test-on.properties
+  sed -i.'' 's/#spotbugs/spotbugs/' projects-to-test-on.properties
   cd ../../
   mvn -e clean install -Pno-validations
   cd contribution/checkstyle-tester

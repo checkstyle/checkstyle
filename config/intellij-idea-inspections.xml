@@ -2284,7 +2284,7 @@ isolated classes and we cannot put them to separate package as it will affect us
     </inspection_tool>
     <inspection_tool class="TrailingSpacesInProperty" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="TransientFieldInNonSerializableClass" enabled="true" level="ERROR" enabled_by_default="true" />
-    <!-- conflicts with FindBugs -->
+    <!-- conflicts with SpotBugs -->
     <inspection_tool class="TransientFieldNotInitialized" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="TrivialConditionalJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="TrivialIf" enabled="true" level="ERROR" enabled_by_default="true" />

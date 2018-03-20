@@ -39,7 +39,7 @@ matrix:
     - jdk: oraclejdk8
       env:
         - DESC="checkstyle and sevntu-checkstyle"
-        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dspotbugs.skip=true -Djacoco.skip=true"
+        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true"
 
     # jacoco and codecov (oraclejdk8)
     - jdk: oraclejdk8
@@ -48,11 +48,11 @@ matrix:
         - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean test jacoco:restore-instrumented-classes jacoco:report@default-report"
         - CMD_AFTER_SUCCESS="bash <(curl -s https://codecov.io/bash)"
 
-    # findbugs, spotbugs and pmd (oraclejdk8)
+    # spotbugs and pmd (oraclejdk8)
     - jdk: oraclejdk8
       env:
-        - DESC="findbugs,spotbugs,pmd"
-        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean compile pmd:check findbugs:check spotbugs:check"
+        - DESC="spotbugs,pmd"
+        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean compile pmd:check spotbugs:check"
 
     # eclipse static analysis
     - jdk: oraclejdk8
@@ -78,7 +78,7 @@ matrix:
     #  env:
     #    - DESC="site"
     #    - CMD1="mvn -e clean site -Dlinkcheck.skip=true -DskipTests -DskipITs "
-    #    - CMD2=" -Dpmd.skip=true -Dfindbugs.skip=true -Djacoco.skip=true "
+    #    - CMD2=" -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true "
     #    - CMD3=" -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true"
     #    - CMD=$CMD1$CMD2$CMD3
     #    - COVERAGE_CMD=""
