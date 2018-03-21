@@ -42,6 +42,12 @@ build:
   cache_dir_list:
     - /root/.m2
 
+  # defaul is drydock/u14javall with jdk 1.8.0.25 that make pitest make different results with latest jdk builds,
+  # "v5.9.4" is latest jdk8_144, versions above 5.9.4 use jdk9
+  pre_ci_boot:
+    image_name: drydock/u16javall
+    image_tag: v5.9.4
+
   ci:
     # we skip PRs and commits that are not for Issues, as pitest is too time consuming
     - |
