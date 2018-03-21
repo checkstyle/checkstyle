@@ -2,18 +2,9 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-  <!--
-      TIPS:
-
-      - use "mvn versions:display-dependency-updates" to see what dependencies
-        have updates available.
-
-      - use "mvn versions:display-plugin-updates" to see what plugins have
-        updates available.
-  -->
   <modelVersion>4.0.0</modelVersion>
 
-  <!-- Used for making releases. -->
+  <!-- This parent is requrements for deploy of artifacts to maven central -->
   <parent>
     <artifactId>oss-parent</artifactId>
     <groupId>org.sonatype.oss</groupId>
