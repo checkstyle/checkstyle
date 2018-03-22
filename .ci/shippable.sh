@@ -20,7 +20,8 @@ function checkPitestReport() {
       printf '%s\n' "${ignored[@]}"
   fi;
   if [ "$fail" -ne "0" ]; then
-    echo "Survived items found in reports, build will be failed"
+    echo "Difference between 'Actual' and 'Ignore' lists is detected, lists should be equal, build will be failed."
+    echo "To find what is different copy content of 'Actual' and 'Ignore' to https://www.diffchecker.com/"
   fi
   sleep 5s
   exit $fail
