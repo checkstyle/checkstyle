@@ -17,10 +17,38 @@
     <exclude name="StdCyclomaticComplexity"/>
   </rule>
 
+  <rule ref="rulesets/java/codesize.xml/NcssCount">
+    <properties>
+      <property name="methodReportLevel" value="32"/>
+      <!-- The classes Main, PackageObjectFactory, CheckstyleAntTask, RequireThisCheck,
+             VariableDeclarationUsageDistanceCheck, CommentsIndentationCheck, JavadocMethodCheck,
+             HandlerFactory are big and should not be split without a good reason.
+           The test classes should be one whole piece of code.
+           The methods visitToken/leaveToken are a big SWITCH block with a nuber of IF blocks.
+             If we split the block to several methods it will damage the readability.
+           The methods XMLLogger.encode, FallThroughCheck.isTerminated, ElementNode.iterateAxis,
+             NoWhitespaceAfterCheck.getArrayDeclaratorPreviousElement are also huge switches,
+             they has to be monolithic. -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main'
+        or @Image='PackageObjectFactory' or @Image='CheckstyleAntTask' or @Image='RequireThisCheck'
+        or @Image='VariableDeclarationUsageDistanceCheck' or @Image='CommentsIndentationCheck'
+        or @Image='JavadocMethodCheck' or @Image='HandlerFactory' or ends-with(@Image,'Test')]
+      | //ClassOrInterfaceDeclaration[@Image='XMLLogger']//MethodDeclaration[@Name='encode']
+      | //ClassOrInterfaceDeclaration[@Image='LeftCurlyCheck' or @Image='FinalLocalVariableCheck'
+        or @Image='ImportOrderCheck' or @Image='NPathComplexityCheck']//MethodDeclaration[@Name='visitToken']
+      | //ClassOrInterfaceDeclaration[@Image='FallThroughCheck']//MethodDeclaration[@Name='isTerminated']
+      | //ClassOrInterfaceDeclaration[@Image='ModifiedControlVariableCheck'
+        or @Image='NPathComplexityCheck']//MethodDeclaration[@Name='leaveToken']
+      | //ClassOrInterfaceDeclaration[@Image='NoWhitespaceAfterCheck']//MethodDeclaration[@Name='getArrayDeclaratorPreviousElement']
+      | //ClassOrInterfaceDeclaration[@Image='ElementNode']//MethodDeclaration[@Name='iterateAxis']
+      "/>
+    </properties>
+  </rule>
+
   <rule ref="rulesets/java/codesize.xml/CyclomaticComplexity">
     <properties>
-      <property name="showClassesComplexity" value="false"/>
-      <property name="reportLevel" value="11"/>
+      <property name="classReportLevel" value="76"/>
+      <property name="methodReportLevel" value="11"/>
       <!-- DeclarationOrder - 'visitToken' has just big SWITCH block which contains IF blocks.
            If we split the block to several methods it will damage readability.
            validateCli is not reasonable to split as encapsulation of logic will be damaged
@@ -83,6 +111,8 @@
     <!-- <exclude name="CommentRequired"/> -->
     <!-- we use class comments as source for xdoc files, so content is big and that is by design -->
     <exclude name="CommentSize"/>
+    <!-- Till https://github.com/checkstyle/checkstyle/issues/5665 -->
+    <exclude name="CommentDefaultAccessModifier"/>
   </rule>
   <rule ref="rulesets/java/comments.xml/CommentRequired">
     <properties>
@@ -159,6 +189,25 @@
     <!--we do not care about this minor overhead, we are not Android application and we do not want to change
      visibility of methods. Package-private visibility should be avoid almost always.-->
     <exclude name="AccessorMethodGeneration"/>
+    <!-- Conflicts with the ToArrayCallWithZeroLengthArrayArgument check from the Idea
+         This rule is based on a study by Aleksey Shipilёv
+         https://shipilev.net/blog/2016/arrays-wisdom-ancients/
+         However, in modern JVM the result is different:
+         Benchmark (size)  (type)   Mode  Cnt Score    Error  Units
+         simple     1000  arraylist avgt  15  400.156   4.154 ns/op
+         sized      1000  arraylist avgt  15 1051.462  26.820 ns/op
+         zero       1000  arraylist avgt  15  743.794  27.400 ns/op
+         simple     1000  hashset   avgt  15 4728.179 130.822 ns/op
+         sized      1000  hashset   avgt  15 4960.655 179.637 ns/op
+         zero       1000  hashset   avgt  15 5101.816 159.180 ns/op
+         The advantages of this rule are questionable, and the flaws are obvious.
+     -->
+    <exclude name="OptimizableToArrayCall"/>
+    <!-- Too much "false-positives" on the Checks classes.
+         We do not follow the philosophy of complete encapsulation, we like data classes
+         (preferable immutable) to transfer content from one part to another.
+         There is no way to configure the rule (it has no properties). -->
+    <exclude name="DataClass"/>
   </rule>
 
   <rule ref="rulesets/java/design.xml/ConfusingTernary">
@@ -216,9 +265,16 @@
     <!-- too many false-positives -->
     <exclude name="BeanMembersShouldSerialize"/>
   </rule>
-  <rule ref="rulesets/java/logging-jakarta-commons.xml"/>
 
-  <rule ref="rulesets/java/logging-java.xml"/>
+  <!-- Manually adding these rules from the rulesets logging-jakarta-commons and logging-java
+       until all deprecated rulesets will be replaced with categories. See
+       https://pmd.github.io/pmd-6.0.0/pmd_release_notes.html#rule-categories -->
+  <rule ref="category/java/errorprone.xml/ProperLogger"/>
+  <rule ref="category/java/errorprone.xml/UseCorrectExceptionLogging"/>
+  <rule ref="category/java/errorprone.xml/InvalidSlf4jMessageFormat"/>
+  <rule ref="category/java/errorprone.xml/LoggerIsNotStaticFinal"/>
+  <rule ref="category/java/errorprone.xml/MoreThanOneLogger"/>
+
   <rule ref="rulesets/java/logging-java.xml/SystemPrintln">
     <properties>
       <!-- it is ok to use println in CLI class -->

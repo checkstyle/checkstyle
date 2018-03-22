@@ -77,28 +77,30 @@
         <!-- pmd cannot find assert if it is located in private method of this class called from the test
         method or method of another class -->
         <properties>
-            <!-- in SuppressionCommentFilterTest, SuppressWithNearbyCommentFilterTest, SuppressionFilterTest,
-            SuppressionXpathFilterTest, XpathFilterTest pmd does not accept nl.jqno.equalsverifier.EqualsVerifier#.verify()
-            as correctness check method -->
-            <!-- in AbstractJavadocCheckTest pmd does not find asserts in another class methods called from the test method -->
-            <!-- in ImportControlCheckTest, DetailASTTest
+            <!-- in AllChecksTest, AstRegressionTest, DetailASTTest and ImportControlCheckTest
                  pmd does not find asserts in private methods of the test class called from the test method -->
+            <!-- in MainTest pmd does not find asserts in lambdas called in the method exit.checkAssertionAfterwards -->
+            <!-- in FilterSetTest, LineColumnTest, LocalizedMessageTest, CsvFilterTest, IntMatchFilterTest
+                 IntRangeFilterTest, SuppressElementTest, SuppressWithNearbyCommentFilterTest
+                 SuppressWithPlainTextCommentFilterTest, SuppressionCommentFilterTest, SuppressionFilterTest
+                 SuppressionXpathFilterTest, XpathFilterTest pmd does not accept
+                 nl.jqno.equalsverifier.EqualsVerifier#.verify() as correctness check method -->
             <!-- in AstRegressionTest pmd does not find asserts in inner classes methods called from the test method -->
-            <!-- in AllChecksTest pmd does not find asserts in lambdas -->
-            <!-- in DetailASTTest pmd does not find asserts in lambdas -->
-            <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='SuppressionFilterTest']//MethodDeclarator[@Image='testEqualsAndHashCode']
-            | //ClassOrInterfaceDeclaration[@Image='SuppressionCommentFilterTest']//MethodDeclarator[@Image='testEqualsAndHashCodeOfTagClass']
-            | //ClassOrInterfaceDeclaration[@Image='SuppressWithNearbyCommentFilterTest']//MethodDeclarator[@Image='testEqualsAndHashCodeOfTagClass']
-            | //ClassOrInterfaceDeclaration[@Image='SuppressionXpathFilterTest']//MethodDeclarator[@Image='testEqualsAndHashCode']
-            | //ClassOrInterfaceDeclaration[@Image='XpathFilterTest']//MethodDeclarator[@Image='testEqualsAndHashCode']
-            | //ClassOrInterfaceDeclaration[@Image='AbstractJavadocCheckTest']//MethodDeclarator[@Image='testBlockCommentPositionHasPrivateConstr']
-            | //ClassOrInterfaceDeclaration[@Image='ImportControlCheckTest']//MethodDeclarator[@Image='testPkgRegExpInChild']
-            | //ClassOrInterfaceDeclaration[@Image='ImportControlCheckTest']//MethodDeclarator[@Image='testPkgRegExpInParent']
-            | //ClassOrInterfaceDeclaration[@Image='ImportControlCheckTest']//MethodDeclarator[@Image='testPkgRegExpInBoth']
-            | //ClassOrInterfaceDeclaration[@Image='AstRegressionTest']//MethodDeclarator[@Image='testImpossibleValid']
-            | //ClassOrInterfaceDeclaration[@Image='AllChecksTest']//MethodDeclarator[@Image='testAllModulesAreReferencedInConfigFile']
-            | //ClassOrInterfaceDeclaration[@Image='DetailASTTest']//MethodDeclarator[@Image='testTreeStructure']
-            | //ClassOrInterfaceDeclaration[@Image='SuppressWithPlainTextCommentFilterTest']//MethodDeclarator[@Image='testEqualsAndHashCodeOfTagClass']
+            <!-- in XdocsPagesTest pmd does not find asserts in lambdas -->
+            <!-- PackageObjectFactoryTest.testCreateModuleWithNonExistName pmd does not find asserts
+                 in methods called from the test method -->
+            <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AllChecksTest'
+              or @Image='AstRegressionTest' or @Image='DetailASTTest'
+              or @Image='ImportControlCheckTest']//PrimaryPrefix/Name[@Image='verify']
+            | //ClassOrInterfaceDeclaration[@Image='MainTest']//PrimaryPrefix//Name[starts-with(@Image, 'assert')]
+            | //ClassOrInterfaceDeclaration[@Image='FilterSetTest' or @Image='LineColumnTest'
+              or @Image='LocalizedMessageTest' or @Image='CsvFilterTest' or @Image='IntMatchFilterTest'
+              or @Image='IntRangeFilterTest' or @Image='SuppressElementTest'
+              or @Image='SuppressWithNearbyCommentFilterTest' or @Image='SuppressionCommentFilterTest'
+              or @Image='SuppressionFilterTest' or @Image='SuppressionXpathFilterTest'
+              or @Image='SuppressWithPlainTextCommentFilterTest' or @Image='XpathFilterTest']//PrimarySuffix[@Image='verify']
+            | //ClassOrInterfaceDeclaration[@Image='PackageObjectFactoryTest']//MethodDeclarator[@Image='testCreateModuleWithNonExistName']
+            | //ClassOrInterfaceDeclaration[@Image='XdocsPagesTest']//MethodDeclarator[@Image='testAllChecksPresentOnAvailableChecksPage']
             "/>
         </properties>
     </rule>
