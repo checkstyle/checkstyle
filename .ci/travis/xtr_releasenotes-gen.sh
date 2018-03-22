@@ -1,9 +1,13 @@
 #!/bin/bash
 # Attention, there is no "-x" to avoid problem on Travis
+# to run on local: export READ_ONLY_TOKEN=9ffd28f && export TRAVIS_PULL_REQUEST="master" && ./.ci/travis/travis.sh releasenotes-gen
+
 set -e
 
-if [[ $TRAVIS_PULL_REQUEST =~ ^([0-9]*)$ ]]; then exit 0; fi
-git clone https://github.com/checkstyle/contribution
+echo "TRAVIS_PULL_REQUEST:"$TRAVIS_PULL_REQUEST
+if [[ $TRAVIS_PULL_REQUEST =~ ^([0-9]*)$ ]]; then echo "Build is not for Pull Request"; sleep 5; exit 0; fi
+
+git clone /home/rivanov/java/github/checkstyle/contribution/
 cd contribution/releasenotes-builder
 mvn -e clean compile package
 cd ../../
