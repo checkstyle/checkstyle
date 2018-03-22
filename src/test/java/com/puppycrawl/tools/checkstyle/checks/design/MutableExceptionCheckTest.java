@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import static com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -125,7 +126,8 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
             fail("IllegalStateException is expected");
         }
         catch (IllegalStateException ex) {
-            //expected
+            // exception is expected
+            assertEquals("Invalid exception message", "interface[0x-1]", ex.getMessage());
         }
     }
 

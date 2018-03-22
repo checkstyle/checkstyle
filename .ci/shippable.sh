@@ -143,7 +143,6 @@ pitest-javadoc)
   "AbstractTypeAwareCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (dotIdx == -1) {</span></pre></td></tr>"
   "AbstractTypeAwareCheck.java.html:<td class='covered'><pre><span  class='survived'>        imports.clear();</span></pre></td></tr>"
   "AbstractTypeAwareCheck.java.html:<td class='covered'><pre><span  class='survived'>        typeParams.clear();</span></pre></td></tr>"
-  "ClassResolver.java.html:<td class='covered'><pre><span  class='survived'>                if (clazz != null) {</span></pre></td></tr>"
   "JavadocMethodCheck.java.html:<td class='covered'><pre><span  class='survived'>        final int col = noargMultilineStart.start(1) - 1;</span></pre></td></tr>"
   "JavadocMethodCheck.java.html:<td class='covered'><pre><span  class='survived'>        return (ast.getType() == TokenTypes.METHOD_DEF || ast.getType() == TokenTypes.CTOR_DEF)</span></pre></td></tr>"
   "JavadocMethodCheck.java.html:<td class='covered'><pre><span  class='survived'>        return true;</span></pre></td></tr>"

@@ -484,13 +484,14 @@ public class JavadocDetailNodeParser {
         final List<Token> tokenList = ((BufferedTokenStream) exception.getInputStream())
                 .getTokens(sourceInterval.a, sourceInterval.b);
         final Deque<Token> stack = new ArrayDeque<>();
-        for (int i = 0; i < tokenList.size(); i++) {
-            final Token token = tokenList.get(i);
-            if (token.getType() == JavadocTokenTypes.HTML_TAG_NAME
-                    && tokenList.get(i - 1).getType() == JavadocTokenTypes.START) {
+        int prevTokenType = JavadocTokenTypes.EOF;
+        for (final Token token : tokenList) {
+            final int tokenType = token.getType();
+            if (tokenType == JavadocTokenTypes.HTML_TAG_NAME
+                    && prevTokenType == JavadocTokenTypes.START) {
                 stack.push(token);
             }
-            else if (token.getType() == JavadocTokenTypes.HTML_TAG_NAME && !stack.isEmpty()) {
+            else if (tokenType == JavadocTokenTypes.HTML_TAG_NAME && !stack.isEmpty()) {
                 if (stack.peek().getText().equals(token.getText())) {
                     stack.pop();
                 }
@@ -498,6 +499,7 @@ public class JavadocDetailNodeParser {
                     htmlTagNameStart = stack.pop();
                 }
             }
+            prevTokenType = tokenType;
         }
         if (htmlTagNameStart == null) {
             htmlTagNameStart = stack.pop();
