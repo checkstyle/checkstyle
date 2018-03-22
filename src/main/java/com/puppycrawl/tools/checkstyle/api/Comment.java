@@ -52,9 +52,8 @@ public class Comment implements TextBlock {
      */
     public Comment(final String[] text, final int firstCol,
             final int lastLine, final int lastCol) {
-        this.text = new String[text.length];
-        System.arraycopy(text, 0, this.text, 0, this.text.length);
-        startLineNo = lastLine - this.text.length + 1;
+        this.text = text.clone();
+        startLineNo = lastLine - text.length + 1;
         endLineNo = lastLine;
         startColNo = firstCol;
         endColNo = lastCol;

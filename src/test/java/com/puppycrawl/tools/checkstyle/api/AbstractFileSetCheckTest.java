@@ -78,6 +78,7 @@ public class AbstractFileSetCheckTest {
         }
         catch (IllegalArgumentException ex) {
             // exception is expected
+            assertEquals("Invalid exception message", "Test", ex.getMessage());
         }
 
         final Field field = AbstractFileSetCheck.class.getDeclaredField("MESSAGE_COLLECTOR");
@@ -95,6 +96,7 @@ public class AbstractFileSetCheckTest {
         }
         catch (IllegalArgumentException ex) {
             // exception is expected
+            assertEquals("Invalid exception message", "Test", ex.getMessage());
         }
 
         @SuppressWarnings("unchecked")

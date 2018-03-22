@@ -40,49 +40,38 @@ import org.powermock.modules.junit4.PowerMockRunner;
 public class ClassResolverTest {
 
     @Test
-    public void testMisc() throws ClassNotFoundException {
+    public void testResolveInPackage() throws ClassNotFoundException {
         final Set<String> imports = new HashSet<>();
-        imports.add("java.io.File");
-        imports.add("nothing.will.match.*");
-        imports.add("java.applet.*");
-        final ClassResolver classResolver =
-            new ClassResolver(Thread.currentThread().getContextClassLoader(),
-                null, imports);
-        assertNotNull("Class resolver should not be null", classResolver);
-        try {
-            classResolver.resolve("who.will.win.the.world.cup", "");
-            fail("Should not resolve class");
-        }
-        catch (ClassNotFoundException ex) {
-            // expected
-        }
-        classResolver.resolve("java.lang.String", "");
-        classResolver.resolve("StringBuffer", "");
-        classResolver.resolve("AppletContext", "");
-
-        try {
-            classResolver.resolve("ChoiceFormat", "");
-            fail("ClassNotFoundException is expected");
-        }
-        catch (ClassNotFoundException ex) {
-            // expected
-        }
-
-        imports.add("java.text.ChoiceFormat");
-        final ClassResolver newClassResolver = new ClassResolver(
-                Thread.currentThread().getContextClassLoader(), null, imports);
-        newClassResolver.resolve("ChoiceFormat", "");
-
-        final ClassResolver javaUtilClassResolver = new ClassResolver(
+        final ClassResolver classResolver = new ClassResolver(
                 Thread.currentThread().getContextClassLoader(), "java.util", imports);
-        javaUtilClassResolver.resolve("List", "");
+        assertNotNull("Class should be resolved", classResolver.resolve("List", ""));
         try {
-            javaUtilClassResolver.resolve("two.nil.england", "");
+            classResolver.resolve("NoSuchClass", "");
             fail("ClassNotFoundException is expected");
         }
         catch (ClassNotFoundException ex) {
-            // expected
+            // exception is expected
+            assertEquals("Invalid exception message", "NoSuchClass", ex.getMessage());
         }
+    }
+
+    @Test
+    public void testResolveMatchingExplicitImport() throws ClassNotFoundException {
+        final Set<String> imports = new HashSet<>();
+        imports.add("java.text.ChoiceFormat");
+        imports.add("no.such.package.ChoiceFormat");
+        final ClassResolver classResolver = new ClassResolver(
+                Thread.currentThread().getContextClassLoader(), null, imports);
+        assertNotNull("Class should be resolved", classResolver.resolve("ChoiceFormat", ""));
+    }
+
+    @Test
+    public void testResolveByStarImports() throws ClassNotFoundException {
+        final Set<String> imports = new HashSet<>();
+        imports.add("no.such.package.*");
+        final ClassResolver classResolver = new ClassResolver(
+                Thread.currentThread().getContextClassLoader(), null, imports);
+        assertNotNull("Class should be resolved", classResolver.resolve("StringBuffer", ""));
     }
 
     @Test
@@ -95,10 +84,10 @@ public class ClassResolverTest {
 
         try {
             classResolver.resolve("someClass", "");
-            fail("Exception expected");
+            fail("ClassNotFoundException is expected");
         }
         catch (ClassNotFoundException ex) {
-            // expected
+            // exception is expected
             assertEquals("Invalid exception message", "someClass", ex.getMessage());
         }
     }
@@ -123,9 +112,10 @@ public class ClassResolverTest {
 
         try {
             classResolver.resolve("Entry", "Map");
-            fail("Exception is expected");
+            fail("ClassNotFoundException is expected");
         }
         catch (ClassNotFoundException ex) {
+            // exception is expected
             assertEquals("Invalid exception message", "Entry", ex.getMessage());
         }
     }
@@ -144,10 +134,10 @@ public class ClassResolverTest {
 
         try {
             classResolver.resolve("someClass", "");
-            fail("Exception expected");
+            fail("IllegalStateException is expected");
         }
         catch (IllegalStateException ex) {
-            // expected
+            // exception is expected
             final String expected = "expected exception";
             assertTrue("Invalid exception cause, should be: ClassNotFoundException",
                     ex.getCause() instanceof ClassNotFoundException);
