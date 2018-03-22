@@ -27,11 +27,5 @@
                 <ignoreVersion type="regex">.*</ignoreVersion>
             </ignoreVersions>
         </rule>
-        <rule groupId="org.apache.maven.plugins" artifactId="maven-pmd-plugin">
-            <ignoreVersions>
-                <!-- till https://github.com/checkstyle/checkstyle/issues/5603 -->
-                <ignoreVersion type="regex">3.9.*</ignoreVersion>
-            </ignoreVersions>
-        </rule>
     </rules>
 </ruleset>
