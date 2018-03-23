@@ -20,10 +20,10 @@
 package com.google.checkstyle.test.base;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -64,8 +64,8 @@ public abstract class AbstractIndentationTestSupport extends AbstractModuleTestS
             final int tabWidth)
                     throws IOException {
         final List<Integer> result = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(
-                new FileInputStream(aFileName), StandardCharsets.UTF_8))) {
+        try (BufferedReader br = Files.newBufferedReader(
+                Paths.get(aFileName), StandardCharsets.UTF_8)) {
             int lineNumber = 1;
             for (String line = br.readLine(); line != null; line = br.readLine()) {
                 final Matcher match = LINE_WITH_COMMENT_REGEX.matcher(line);

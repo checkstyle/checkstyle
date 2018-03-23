@@ -20,10 +20,10 @@
 package com.puppycrawl.tools.checkstyle.ant;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -444,9 +444,9 @@ public class CheckstyleAntTask extends Task {
 
         // Load the properties file if specified
         if (properties != null) {
-            FileInputStream inStream = null;
+            InputStream inStream = null;
             try {
-                inStream = new FileInputStream(properties);
+                inStream = Files.newInputStream(properties.toPath());
                 returnValue.load(inStream);
             }
             catch (final IOException ex) {
@@ -703,7 +703,7 @@ public class CheckstyleAntTask extends Task {
                 );
             }
             else {
-                final FileOutputStream infoStream = new FileOutputStream(toFile);
+                final OutputStream infoStream = Files.newOutputStream(toFile.toPath());
                 defaultLogger =
                         new DefaultLogger(infoStream, AutomaticBean.OutputStreamOptions.CLOSE,
                                 infoStream, AutomaticBean.OutputStreamOptions.NONE);
@@ -724,7 +724,7 @@ public class CheckstyleAntTask extends Task {
                         AutomaticBean.OutputStreamOptions.CLOSE);
             }
             else {
-                xmlLogger = new XMLLogger(new FileOutputStream(toFile),
+                xmlLogger = new XMLLogger(Files.newOutputStream(toFile.toPath()),
                         AutomaticBean.OutputStreamOptions.CLOSE);
             }
             return xmlLogger;

@@ -21,9 +21,9 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
@@ -31,6 +31,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CodingErrorAction;
 import java.nio.charset.UnsupportedCharsetException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -196,7 +197,7 @@ public final class FileText {
             throw new FileNotFoundException(inputFile.getPath() + " (No such file or directory)");
         }
         final StringBuilder buf = new StringBuilder(1024);
-        final FileInputStream stream = new FileInputStream(inputFile);
+        final InputStream stream = Files.newInputStream(inputFile.toPath());
         final Reader reader = new InputStreamReader(stream, decoder);
         try {
             final char[] chars = new char[READ_BUFFER_SIZE];

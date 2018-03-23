@@ -22,9 +22,8 @@ package com.puppycrawl.tools.checkstyle;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
@@ -115,10 +114,11 @@ final class PropertyCacheFile {
         // get the current config so if the file isn't found
         // the first time the hash will be added to output file
         configHash = getHashCodeBasedOnObjectContent(config);
-        if (new File(fileName).exists()) {
-            FileInputStream inStream = null;
+        final File file = new File(fileName);
+        if (file.exists()) {
+            InputStream inStream = null;
             try {
-                inStream = new FileInputStream(fileName);
+                inStream = Files.newInputStream(file.toPath());
                 details.load(inStream);
                 final String cachedConfigHash = details.getProperty(CONFIG_HASH_KEY);
                 if (!configHash.equals(cachedConfigHash)) {
@@ -141,13 +141,14 @@ final class PropertyCacheFile {
      * @throws IOException  when there is a problems with file save
      */
     public void persist() throws IOException {
-        final Path directory = Paths.get(fileName).getParent();
+        final Path path = Paths.get(fileName);
+        final Path directory = path.getParent();
         if (directory != null) {
             Files.createDirectories(directory);
         }
-        FileOutputStream out = null;
+        OutputStream out = null;
         try {
-            out = new FileOutputStream(fileName);
+            out = Files.newOutputStream(path);
             details.store(out, null);
         }
         finally {

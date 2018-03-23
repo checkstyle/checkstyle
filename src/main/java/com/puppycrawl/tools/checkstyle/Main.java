@@ -20,11 +20,11 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -472,13 +472,13 @@ public final class Main {
      * @param cliOptions
      *        pojo object that contains all options
      * @return number of violations of ERROR level
-     * @throws FileNotFoundException
+     * @throws IOException
      *         when output file could not be found
      * @throws CheckstyleException
      *         when properties file could not be loaded
      */
     private static int runCheckstyle(CliOptions cliOptions)
-            throws CheckstyleException, FileNotFoundException {
+            throws CheckstyleException, IOException {
         // setup the properties
         final Properties props;
 
@@ -558,9 +558,9 @@ public final class Main {
             throws CheckstyleException {
         final Properties properties = new Properties();
 
-        FileInputStream fis = null;
+        InputStream fis = null;
         try {
-            fis = new FileInputStream(file);
+            fis = Files.newInputStream(file.toPath());
             properties.load(fis);
         }
         catch (final IOException ex) {
@@ -582,12 +582,11 @@ public final class Main {
      * @param format format of the audit listener
      * @param outputLocation the location of output
      * @return a fresh new {@code AuditListener}
-     * @exception FileNotFoundException when provided output location is not found
-     * @noinspection IOResourceOpenedButNotSafelyClosed
+     * @exception IOException when provided output location is not found
      */
     private static AuditListener createListener(String format,
                                                 String outputLocation)
-            throws FileNotFoundException {
+            throws IOException {
         // setup the output stream
         final OutputStream out;
         final AutomaticBean.OutputStreamOptions closeOutputStream;
@@ -596,7 +595,7 @@ public final class Main {
             closeOutputStream = AutomaticBean.OutputStreamOptions.NONE;
         }
         else {
-            out = new FileOutputStream(outputLocation);
+            out = Files.newOutputStream(Paths.get(outputLocation));
             closeOutputStream = AutomaticBean.OutputStreamOptions.CLOSE;
         }
 

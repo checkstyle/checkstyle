@@ -212,7 +212,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         final Method loadKeys =
             check.getClass().getDeclaredMethod("getTranslationKeys", File.class);
         loadKeys.setAccessible(true);
-        final Set<String> keys = (Set<String>) loadKeys.invoke(check, new File(""));
+        final Set<String> keys = (Set<String>) loadKeys.invoke(check, new File(".no.such.file"));
         assertTrue("Translation keys should be empty when File is not found", keys.isEmpty());
         assertEquals("Invalid error count", 1, counter.getCount());
     }

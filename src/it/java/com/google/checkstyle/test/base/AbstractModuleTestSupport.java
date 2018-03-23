@@ -26,11 +26,12 @@ import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -396,8 +397,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      */
     protected Integer[] getLinesWithWarn(String fileName) throws IOException {
         final List<Integer> result = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(
-                new FileInputStream(fileName), StandardCharsets.UTF_8))) {
+        try (BufferedReader br = Files.newBufferedReader(
+                Paths.get(fileName), StandardCharsets.UTF_8)) {
             int lineNumber = 1;
             while (true) {
                 final String line = br.readLine();

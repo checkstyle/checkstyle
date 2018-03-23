@@ -33,7 +33,6 @@ import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.io.ByteArrayInputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
@@ -41,6 +40,8 @@ import java.lang.reflect.Field;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLStreamHandler;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashSet;
@@ -97,7 +98,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
 
         final URLConnection mockConnection = Mockito.mock(URLConnection.class);
         when(mockConnection.getInputStream()).thenReturn(
-            new FileInputStream(getPath("InputPackageNamesLoaderFile.xml")));
+            Files.newInputStream(Paths.get(getPath("InputPackageNamesLoaderFile.xml"))));
 
         final URL url = getMockUrl(mockConnection);
 
