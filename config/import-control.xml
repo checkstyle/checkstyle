@@ -5,6 +5,11 @@
 
 <import-control pkg="com.puppycrawl.tools.checkstyle">
 
+  <!-- java.io.FileInputStream and java.io.FileOutputStream are disallowed in favor of
+         Files.newInputStream and Files.newOutputStream.
+         See https://github.com/checkstyle/checkstyle/issues/5638 -->
+  <disallow class="java.io.FileInputStream"/>
+  <disallow class="java.io.FileOutputStream"/>
   <!--Disallowed till https://github.com/mojohaus/cobertura-maven-plugin/issues/29-->
   <disallow class="java.util.stream.Stream"/>
   <disallow class="java.util.stream.Stream.Builder"/>
@@ -79,6 +84,7 @@
 
     <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
     <allow class="com.google.common.io.Closeables" local-only="true"/>
+    <allow class="java.nio.file.Files" local-only="true"/>
   </subpackage>
 
   <subpackage name="api">
@@ -86,6 +92,7 @@
     <allow pkg="java.lang.reflect" local-only="true"/>
     <allow pkg="java.nio.charset" local-only="true"/>
     <allow class="java.beans.PropertyDescriptor" local-only="true"/>
+    <allow class="java.nio.file.Files" local-only="true"/>
     <allow class="java.text.MessageFormat" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.grammars.CommentListener"
            local-only="true"/>
@@ -104,6 +111,8 @@
     <allow pkg="java.math"/>
     <allow pkg="com.puppycrawl.tools.checkstyle.utils"/>
     <allow class="java.nio.charset.StandardCharsets" local-only="true"/>
+    <allow class="java.nio.file.Files" local-only="true"/>
+    <allow class="java.nio.file.NoSuchFileException" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.Definitions" local-only="true"/>
 
     <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->

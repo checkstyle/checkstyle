@@ -29,11 +29,12 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -100,14 +101,14 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
     public void testCloseInputStream() throws Exception {
         mockStatic(Closeables.class);
         doNothing().when(Closeables.class);
-        Closeables.closeQuietly(any(FileInputStream.class));
+        Closeables.closeQuietly(any(InputStream.class));
 
         final DefaultConfiguration checkConfig = createModuleConfig(UniquePropertiesCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputUniquePropertiesWithoutErrors.properties"), expected);
 
         verifyStatic(Closeables.class, times(1));
-        Closeables.closeQuietly(any(FileInputStream.class));
+        Closeables.closeQuietly(any(InputStream.class));
     }
 
     /**
@@ -194,20 +195,17 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Method generates FileNotFound exception details. It tries to open file,
-     * that does not exist.
+     * Method generates NoSuchFileException details. It tries to a open file that does not exist.
      * @param file to be opened
-     * @return detail message of {@link FileNotFoundException}
+     * @return localized detail message of {@link NoSuchFileException}
      */
-    private static String getFileNotFoundDetail(File file) throws Exception {
+    private static String getFileNotFoundDetail(File file) {
         // Create exception to know detail message we should wait in
         // LocalisedMessage
-        try {
-            final InputStream stream = new FileInputStream(file);
-            stream.close();
+        try (InputStream stream = Files.newInputStream(file.toPath())) {
             throw new IllegalStateException("File " + file.getPath() + " should not exist");
         }
-        catch (FileNotFoundException ex) {
+        catch (IOException ex) {
             return ex.getLocalizedMessage();
         }
     }

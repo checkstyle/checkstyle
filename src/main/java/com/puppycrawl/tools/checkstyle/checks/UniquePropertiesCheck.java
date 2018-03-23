@@ -20,8 +20,9 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -68,17 +69,17 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
     @Override
     protected void processFiltered(File file, FileText fileText) {
         final UniqueProperties properties = new UniqueProperties();
-        FileInputStream fileInputStream = null;
+        InputStream inputStream = null;
         try {
-            fileInputStream = new FileInputStream(file);
-            properties.load(fileInputStream);
+            inputStream = Files.newInputStream(file.toPath());
+            properties.load(inputStream);
         }
         catch (IOException ex) {
             log(0, MSG_IO_EXCEPTION_KEY, file.getPath(),
                     ex.getLocalizedMessage());
         }
         finally {
-            Closeables.closeQuietly(fileInputStream);
+            Closeables.closeQuietly(inputStream);
         }
 
         for (Entry<String> duplication : properties

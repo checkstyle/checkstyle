@@ -25,10 +25,11 @@ import static org.junit.Assert.fail;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -560,8 +561,8 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     public void testLoadConfigurationDeprecated() throws Exception {
         final DefaultConfiguration config =
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
-                        new FileInputStream(
-                            getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml")),
+                        Files.newInputStream(Paths.get(
+                            getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml"))),
                         new PropertiesExpander(new Properties()), true);
 
         final Configuration[] children = config.getChildren();
@@ -647,8 +648,8 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
         final DefaultConfiguration configuration1 =
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
-                        new InputSource(new FileInputStream(
-                            getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml"))),
+                        new InputSource(Files.newInputStream(Paths.get(
+                            getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml")))),
                         new PropertiesExpander(new Properties()),
                         ConfigurationLoader.IgnoredModulesOptions.EXECUTE);
 

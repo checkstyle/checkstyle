@@ -25,12 +25,11 @@ import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.BitSet;
@@ -243,8 +242,7 @@ public class DetailASTTest extends AbstractModuleTestSupport {
     public void testManyComments() throws Exception {
         final File file = temporaryFolder.newFile("InputDetailASTManyComments.java");
 
-        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(file), StandardCharsets.UTF_8))) {
+        try (Writer bw = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8)) {
             bw.write("class C {\n");
             for (int i = 0; i <= 30000; i++) {
                 bw.write("// " + i + "\n");

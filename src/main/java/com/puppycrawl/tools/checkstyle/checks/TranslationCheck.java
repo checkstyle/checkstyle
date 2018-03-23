@@ -20,10 +20,10 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -482,7 +482,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
         Set<String> keys = new HashSet<>();
         InputStream inStream = null;
         try {
-            inStream = new FileInputStream(file);
+            inStream = Files.newInputStream(file.toPath());
             final Properties translations = new Properties();
             translations.load(inStream);
             keys = translations.stringPropertyNames();
@@ -504,7 +504,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
     private void logIoException(IOException exception, File file) {
         String[] args = null;
         String key = "general.fileNotFound";
-        if (!(exception instanceof FileNotFoundException)) {
+        if (!(exception instanceof NoSuchFileException)) {
             args = new String[] {exception.getMessage()};
             key = "general.exception";
         }

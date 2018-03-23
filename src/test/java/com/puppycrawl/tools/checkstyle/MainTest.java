@@ -488,18 +488,7 @@ public class MainTest {
         final Method method = Main.class.getDeclaredMethod("loadProperties", param);
         method.setAccessible(true);
         try {
-            if (System.getProperty("os.name").toLowerCase(Locale.ENGLISH).startsWith("windows")) {
-                // https://support.microsoft.com/en-us/kb/177506 but this only for NTFS
-                // WindowsServer 2012 use Resilient File System (ReFS), so any name is ok
-                final File file = new File(File.separator + ":invalid");
-                if (file.exists()) {
-                    file.delete();
-                }
-                method.invoke(null, new File(file.getAbsolutePath()));
-            }
-            else {
-                method.invoke(null, new File(File.separator + "\0:invalid"));
-            }
+            method.invoke(null, new File("."));
             fail("Exception was expected");
         }
         catch (InvocationTargetException ex) {
@@ -522,8 +511,7 @@ public class MainTest {
                             .substring(localizedMessage.lastIndexOf(' '),
                                     localizedMessage.length()));
             assertTrue("Invalid error message", samePrefix || sameSuffix);
-            assertTrue("Invalid error message",
-                    causeMessage.contains(":invalid"));
+            assertTrue("Invalid error message", causeMessage.contains(".'"));
         }
     }
 
