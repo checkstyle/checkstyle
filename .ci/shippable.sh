@@ -36,13 +36,13 @@ pitest-annotation|pitest-design|pitest-header|pitest-imports \
 |pitest-api|pitest-common|pitest-filters|pitest-main \
 |pitest-packagenamesloader|pitest-tree-walker|pitest-utils \
 |pitest-xpath)
-  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  mvn -e -Pno-validations -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=();
   checkPitestReport "${ignoredItems[@]}"
   ;;
 
 pitest-blocks)
-  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  mvn -e -Pno-validations -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
   "LeftCurlyCheck.java.html:<td class='covered'><pre><span  class='survived'>               &#38;&#38; annotation.getNextSibling().getType() == TokenTypes.ANNOTATION) {</span></pre></td></tr>"
   "LeftCurlyCheck.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; previousAnnotation.getPreviousSibling().getLineNo()</span></pre></td></tr>"
@@ -54,7 +54,7 @@ pitest-blocks)
   ;;
 
 pitest-coding)
-  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  mvn -e -Pno-validations -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
   "EqualsAvoidNullCheck.java.html:<td class='covered'><pre><span  class='survived'>                    &#38;&#38; field.getColumnNo() + minimumSymbolsBetween &#60;= objCalledOn.getColumnNo()) {</span></pre></td></tr>"
   "HiddenFieldCheck.java.html:<td class='covered'><pre><span  class='survived'>            processVariable(ast);</span></pre></td></tr>"
@@ -80,7 +80,7 @@ pitest-coding)
   ;;
 
 pitest-indentation)
-  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  mvn -e -Pno-validations -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
   "AbstractExpressionHandler.java.html:<td class='covered'><pre><span  class='survived'>            if (colNum == null || thisLineColumn &#60; colNum) {</span></pre></td></tr>"
   "AbstractExpressionHandler.java.html:<td class='covered'><pre><span  class='survived'>        if (currLine &#60; realStart) {</span></pre></td></tr>"
@@ -131,7 +131,7 @@ pitest-indentation)
   ;;
 
 pitest-javadoc)
-  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  mvn -e -Pno-validations -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
   "AbstractJavadocCheck.java.html:<td class='covered'><pre><span  class='survived'>            Arrays.sort(acceptableJavadocTokens);</span></pre></td></tr>"
   "AbstractJavadocCheck.java.html:<td class='covered'><pre><span  class='survived'>            Arrays.sort(defaultJavadocTokens);</span></pre></td></tr>"
@@ -159,6 +159,8 @@ pitest-javadoc)
   "JavadocStyleCheck.java.html:<td class='covered'><pre><span  class='survived'>                trimTail(builder);</span></pre></td></tr>"
   "JavadocTagContinuationIndentationCheck.java.html:<td class='covered'><pre><span  class='survived'>                            &#38;&#38; (text.length() &#60;= offset</span></pre></td></tr>"
   "JavadocTagContinuationIndentationCheck.java.html:<td class='covered'><pre><span  class='survived'>        while (inlineTag != null) {</span></pre></td></tr>"
+  "JavadocTagInfo.java.html:<td class='covered'><pre><span  class='survived'>            .collect(Collectors.toMap(JavadocTagInfo::getName, tagName -&#62; tagName)));</span></pre></td></tr>"
+  "JavadocTagInfo.java.html:<td class='covered'><pre><span  class='survived'>            .collect(Collectors.toMap(JavadocTagInfo::getText, tagText -&#62; tagText)));</span></pre></td></tr>"
   "JavadocTag.java.html:<td class='uncovered'><pre><span  class='survived'>        return tagInfo == JavadocTagInfo.SEE</span></pre></td></tr>"
   "JavadocTypeCheck.java.html:<td class='covered'><pre><span  class='survived'>                    tagCount++;</span></pre></td></tr>"
   "SummaryJavadocCheck.java.html:<td class='covered'><pre><span  class='survived'>        for (int i = 0; !found &#38;&#38; i &#60; children.length - 1; i++) {</span></pre></td></tr>"
@@ -173,7 +175,7 @@ pitest-javadoc)
   ;;
 
 # pitesttyle-gui)
-#   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+#   mvn -e -Pno-validations -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
 #   # post validation is skipped, we do not test gui throughly
 #   ;;
 
