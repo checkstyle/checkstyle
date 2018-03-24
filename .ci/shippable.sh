@@ -159,6 +159,8 @@ pitest-javadoc)
   "JavadocStyleCheck.java.html:<td class='covered'><pre><span  class='survived'>                trimTail(builder);</span></pre></td></tr>"
   "JavadocTagContinuationIndentationCheck.java.html:<td class='covered'><pre><span  class='survived'>                            &#38;&#38; (text.length() &#60;= offset</span></pre></td></tr>"
   "JavadocTagContinuationIndentationCheck.java.html:<td class='covered'><pre><span  class='survived'>        while (inlineTag != null) {</span></pre></td></tr>"
+  "JavadocTagInfo.java.html:<td class='covered'><pre><span  class='survived'>            .collect(Collectors.toMap(JavadocTagInfo::getName, tagName -&#62; tagName)));</span></pre></td></tr>"
+  "JavadocTagInfo.java.html:<td class='covered'><pre><span  class='survived'>            .collect(Collectors.toMap(JavadocTagInfo::getText, tagText -&#62; tagText)));</span></pre></td></tr>"
   "JavadocTag.java.html:<td class='uncovered'><pre><span  class='survived'>        return tagInfo == JavadocTagInfo.SEE</span></pre></td></tr>"
   "JavadocTypeCheck.java.html:<td class='covered'><pre><span  class='survived'>                    tagCount++;</span></pre></td></tr>"
   "SummaryJavadocCheck.java.html:<td class='covered'><pre><span  class='survived'>        for (int i = 0; !found &#38;&#38; i &#60; children.length - 1; i++) {</span></pre></td></tr>"
