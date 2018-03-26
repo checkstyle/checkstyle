@@ -37,6 +37,15 @@ build:
         fi
 
   - script:
+      name: NoExceptiontest - Apache Struts
+      code: |
+        if [[ $SKIP_CI == 'false' ]]; then
+          ./.ci/wercker.sh no-exception-struts
+        else
+          echo "build is skipped ..."
+        fi
+
+  - script:
       name: NoErrorTest - Postgresql JDBC Driver
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
@@ -109,15 +118,6 @@ build:
 #        else
 #          echo "build is skipped ..."
 #        fi
-
-  - script:
-      name: NoExceptiontest - Apache Struts
-      code: |
-        if [[ $SKIP_CI == 'false' ]]; then
-          ./.ci/wercker.sh no-exception-struts
-        else
-          echo "build is skipped ..."
-        fi
 
   - script:
       name: NoExceptiontest - Checkstyle ,sevntu-checkstyle
