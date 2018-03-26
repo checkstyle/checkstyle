@@ -63,7 +63,7 @@ of these packages are in the file named "LICENSE.apache20" in this
 directory.
 
 The software uses the Google Guava Libraries
-(https://code.google.com/p/guava-libraries/). The license terms of
+(https://github.com/google/guava/). The license terms of
 these packages are in the file named "LICENSE.apache20" in this
 directory.
 
