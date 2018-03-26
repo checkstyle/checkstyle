@@ -22,7 +22,7 @@ class InputCorrectJavaDocParagraphCheck1 {
      *
      * <p>Some Javadoc.
      *
-     * @see <a href="http://code.google.com/webtoolkit/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
+     * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
      *     Documentation about GWT emulated source</a>
      */
     boolean emulated() {return false;}
@@ -47,7 +47,7 @@ class InputCorrectJavaDocParagraphCheck1 {
          * /^WARN/
          * <p> //warn
          *  /^WARN/ Some Javadoc.<p> //warn
-         * @see <a href="http://code.google.com/webtoolkit/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
+         * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
          *     Documentation about GWT emulated source</a>
          */
         boolean emulated() {return false;}
@@ -69,7 +69,7 @@ class InputCorrectJavaDocParagraphCheck1 {
          *
          *  <p>  Some Javadoc. //warn
          *
-         * @see <a href="http://code.google.com/webtoolkit/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
+         * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
          *     Documentation about <p> GWT emulated source</a> //warn
          */
         boolean emulated() {return false;}
