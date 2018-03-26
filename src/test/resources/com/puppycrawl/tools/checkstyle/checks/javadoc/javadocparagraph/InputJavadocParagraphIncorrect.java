@@ -24,7 +24,7 @@ class InputJavadocParagraphIncorrect {
      *
      * <p>    Some Javadoc.//WARN
      *
-     * @see <a href="http://code.google.com/webtoolkit/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
+     * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
      *     Documentation about GWT emulated source</a>
      */
     boolean emulated() {return false;}
@@ -49,7 +49,7 @@ class InputJavadocParagraphIncorrect {
          * /^WARN/
          * <p> //WARN
          *  /^WARN/ Some Javadoc.<p> //WARN
-         * @see <a href="http://code.google.com/webtoolkit/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
+         * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
          *     Documentation about GWT emulated source</a>
          */
         boolean emulated() {return false;}
@@ -71,7 +71,7 @@ class InputJavadocParagraphIncorrect {
          *
          *  <p>  Some Javadoc. //WARN
          *
-         * @see <a href="http://code.google.com/webtoolkit/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
+         * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
          *     Documentation about <p> GWT emulated source</a> //WARN
          */
         boolean emulated() {return false;}
