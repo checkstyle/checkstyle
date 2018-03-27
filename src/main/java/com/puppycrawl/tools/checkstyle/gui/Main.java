@@ -35,7 +35,7 @@ public final class Main {
     private Main() {
         // no code
     }
-
+    int breaking = "X";
     /**
      * Entry point.
      * @param args the command line arguments.
