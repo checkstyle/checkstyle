@@ -58,7 +58,8 @@ public final class FilterUtils {
         }
         return suppressionSourceExists;
     }
-
+    // Adding an errored statement to intentionally break the build
+    int t = "Taher";
     /**
      * Close input.
      * This method is required till https://github.com/cobertura/cobertura/issues/170
