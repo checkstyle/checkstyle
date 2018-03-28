@@ -62,7 +62,7 @@ environment:
     CMD8: " "
     CMD9: " "
     CMD10: " "
-  # We do matrix as Appveyor could fail to finish simple "mvn verify"
+  # We do matrix as AppVeyor could fail to finish simple "mvn verify"
   #    if he loose maven cache (happens from time to time)
   matrix:
     # checkstyle and sevntu.checkstyle

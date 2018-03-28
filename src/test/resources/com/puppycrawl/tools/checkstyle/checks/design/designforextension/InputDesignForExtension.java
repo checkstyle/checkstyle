@@ -60,7 +60,7 @@ public abstract class InputDesignForExtension
 
     // tries to trigger bug #884035
     // MyComparator is a private class, so there cannot be subclasses
-    // and it should not be neccessary to declare compare() as final
+    // and it should not be necessary to declare compare() as final
     private class MyComparator implements java.util.Comparator
     {
         public int compare(Object o1, Object o2)

@@ -1,4 +1,4 @@
-PELASE READ before removing!!
+PLEASE READ before removing!!
 
 Rules:
 1) The issue you are trying to fix/resolve has to have the "approved" label.

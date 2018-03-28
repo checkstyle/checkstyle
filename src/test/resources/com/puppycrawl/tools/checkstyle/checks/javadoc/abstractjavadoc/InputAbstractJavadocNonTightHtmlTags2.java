@@ -48,7 +48,7 @@ public class InputAbstractJavadocNonTightHtmlTags2 {
     /**
      * <p>This is a setter method.
      * And paraTag shall be nested in parse tree </p>
-     * @param field2 <p> settter
+     * @param field2 <p> setter
      */
     void setField2(int field2) {this.field2 = field2;}
 

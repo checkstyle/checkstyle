@@ -41,7 +41,7 @@ public class InputStringLiteralEquality
 
         if ("Rick".toUpperCase(java.util.Locale.getDefault()) == "Rick".toLowerCase(java.util.Locale.getDefault()))
         {
-            // completly dynamic, don't flag
+            // completely dynamic, don't flag
         }
     }
 }

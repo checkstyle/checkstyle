@@ -5,7 +5,7 @@ public class InputEqualsAvoidNull {
     public boolean equals(Object o) {
     return false;
     }
-    // antoher comment
+    // another comment
     /**
      * methods that should get flagged
      * @return

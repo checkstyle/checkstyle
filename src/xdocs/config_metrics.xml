@@ -383,7 +383,7 @@ public class InputClassCoupling {
           (e.g. <code>import java.math.BigDecimal</code>).
         </p>
         <p>
-          Also note, that checkstyle will not exlude classes within the same file
+          Also note, that checkstyle will not exclude classes within the same file
           even if it was listed in the <code>excludedPackages</code> parameter. For example,
           assuming the config is
 
@@ -617,7 +617,7 @@ public class Foo {
           (e.g. <code>import java.math.BigDecimal</code>).
         </p>
         <p>
-          Also note, that checkstyle will not exlude classes within the same file
+          Also note, that checkstyle will not exclude classes within the same file
           even if it was listed in the <code>excludedPackages</code> parameter. For example,
           assuming the config is
 

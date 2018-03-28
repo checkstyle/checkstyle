@@ -220,6 +220,6 @@ enum InputLocalVariableNameEnum1
     /** XYZ constant */
     XYZ;
 
-    /** Should be mSomeMemeber */
+    /** Should be mSomeMember */
     private int someMember;
 }

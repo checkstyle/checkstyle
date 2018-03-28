@@ -81,7 +81,7 @@
     </Match>
     <Match>
         <!--
-         False-positive. ExtedrnalResource cannot be null there.
+         False-positive. ExternalResource cannot be null there.
          FindBugs rise violation due to @Nullable annotation on 'apply' method.
          See https://stevewall123.wordpress.com/2014/12/18/findbugs-warning-with-guavas-predicate-interface/
          See http://stackoverflow.com/questions/12422473/nullable-input-in-google-guava-function-interface-triggers-findbugs-warning

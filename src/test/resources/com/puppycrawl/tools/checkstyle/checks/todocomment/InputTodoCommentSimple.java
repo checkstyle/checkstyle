@@ -220,7 +220,7 @@ enum MyEnum1
     /** XYZ constant */
     XYZ;
 
-    /** Should be mSomeMemeber */
+    /** Should be mSomeMember */
     private int someMember;
 
     public final int blah = 5;

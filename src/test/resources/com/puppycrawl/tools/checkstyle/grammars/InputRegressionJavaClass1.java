@@ -274,7 +274,7 @@ public class InputRegressionJavaClass1 {
         vmap = new HashMap<String, String[]>();
         Object anonymous = new InputRegressionJavaClass1() {};
 
-        // stataments
+        // statements
         ;
         this.f1 = 0;
         

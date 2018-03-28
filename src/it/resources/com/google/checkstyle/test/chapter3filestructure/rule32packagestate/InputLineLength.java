@@ -34,7 +34,7 @@ final class InputLineLength
     public void fooMethod() {}
     
     /**
-     * Long url without wraping: http://ftp.dlink.ru/pub/D-Link_Solutions/D-Link_Solutions_for_Business.pdf
+     * Long url without wrapping: http://ftp.dlink.ru/pub/D-Link_Solutions/D-Link_Solutions_for_Business.pdf
      */
     public void fooMethodLongFtp() {}
     

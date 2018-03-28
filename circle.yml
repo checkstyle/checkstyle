@@ -11,7 +11,7 @@ dependencies:
     - if [ ! -d groovy-2.4.7 ]; then wget https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip && unzip apache-groovy-binary-2.4.7.zip; fi
     - pwd
 
-  # we to override as 'mvn -e dependecy:go-ofline' does not download all dependencies
+  # we to override as 'mvn -e dependency:go-offline' does not download all dependencies
   override:
     - mvn -e install -Pno-validations
     - eval $TESTER_DEPENDENCIES
@@ -21,7 +21,7 @@ machine:
   environment:
     CMD1: "cd contribution/checkstyle-tester"
     DEP1: " && sed -i'' 's/^guava/#guava/' projects-to-test-on.properties"
-    # we need this to let pass 'mvn site' on no-projects mode to download all dependecies
+    # we need this to let pass 'mvn site' on no-projects mode to download all dependencies
     DEP2: " && echo 'class ClassEmpty{}' > src/main/java/EmptyClass.java"
     DEP3: " && /home/ubuntu/checkstyle/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-to-test-on.properties --config my_check.xml"
     TESTER_DEPENDENCIES: $CMD1$DEP1$DEP2$DEP3

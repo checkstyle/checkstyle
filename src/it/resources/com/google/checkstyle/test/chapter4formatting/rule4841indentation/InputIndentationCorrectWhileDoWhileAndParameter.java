@@ -96,7 +96,7 @@ class FooWhileClass { //indent:0 exp:0
               new InnerClassFoo())) {} //indent:14 exp:>=10
 
       do { //indent:6 exp:6
-        /* Do somethig*/ //indent:8 exp:8
+        /* Do something*/ //indent:8 exp:8
       } while (conditionFirst("Loooooooooooooooooong", new //indent:6 exp:6
           SecondWhileClassWithVeryVeryVeryLongName("Loooooooooooooooooog"). //indent:10 exp:10
               getInteger(new FooWhileClass(), "Loooooooooooooooooog"), //indent:14 exp:>=10

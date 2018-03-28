@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; //no violation: trainling comment
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; //no violation: trailing comment
 import java.io.Serializable;
 import java.util.ArrayList; /*no violation: trailing comment*/
 import java.util.HashMap;

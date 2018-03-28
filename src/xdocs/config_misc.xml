@@ -359,7 +359,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 7   public void foo46() {
 8  // comment
 9  // block
-10 // violation (comment hould have the same indentation level as line 11)
+10 // violation (comment should have the same indentation level as line 11)
 11  }
         </source>
         <p>Example #6: 'fallthrough' comments and similar.</p>

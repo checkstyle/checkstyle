@@ -18,7 +18,7 @@ import java.util.Arrays; //indent:0 exp:0
  */                                                                           //indent:1 exp:1
 public class InputIndentationInvalidMethodIndent { //indent:0 exp:0
 
-    /** Creates a new instance of InputInalidMethodIndent */ //indent:4 exp:4
+    /** Creates a new instance of InputInvalidMethodIndent */ //indent:4 exp:4
     public InputIndentationInvalidMethodIndent() { //indent:4 exp:4
       } //indent:6 exp:4 warn
 
@@ -171,7 +171,7 @@ public class InputIndentationInvalidMethodIndent { //indent:0 exp:0
     } //indent:4 exp:4
 
     void method8() { //indent:4 exp:4
-        // thow invorrectly indented //indent:8 exp:8
+        // thow incorrectly indented //indent:8 exp:8
     throw new RuntimeException(""); //indent:4 exp:8 warn
     } //indent:4 exp:4
 

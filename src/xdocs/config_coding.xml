@@ -1222,7 +1222,7 @@ for (int number : myNumbers) { // violation
          </source>
          </p>
          <p>
-         An example of how to cofigure check on local variables and parameters
+         An example of how to configure check on local variables and parameters
          but do not validate loop variables:
          </p>
          <source>

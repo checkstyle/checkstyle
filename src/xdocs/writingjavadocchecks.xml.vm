@@ -92,7 +92,7 @@ public class MyClass {
       comment type. Javadoc Identificator is <code>*</code>. All symbols after Javadoc
       Identificator till <code>*/</code> are part of javadoc comment.
       </p>
-      <p>Please note that javadoc-like (miltiline comment with javdoc identificator) comment inside
+      <p>Please note that javadoc-like (multiline comment with javadoc identificator) comment inside
       a method is not a javadoc comment and skipped by Sun/Oracle javadoc tool and by our javadoc
       comment matcher, but such comment will be in AST.
       </p>
@@ -561,7 +561,7 @@ JAVADOC -> JAVADOC [0:0]
     </table>
 
     <p>
-        Checks can also be configured to log violation on encoutering non-tight HTML tags.
+        Checks can also be configured to log violation on encountering non-tight HTML tags.
         <tt>violateExecutionOnNonTightHtml</tt> property can be used for this purpose in the checks
         that support it. A custom check needs to extend <tt>AbstractJavadocCheck</tt> for having
         this functionality readily available. Do note that a check which has this property set to

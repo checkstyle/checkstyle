@@ -63,7 +63,7 @@ class CloneWithTypeArgumentsAndNoSuper<T>
     }
 }
 
-//Check that super keword isn't snagged here
+//Check that super keyword isn't snagged here
 class MyClassWithGenericSuperMethod
 {
     void someMethod(java.util.List<? super java.util.Map<Object, Object>> l)

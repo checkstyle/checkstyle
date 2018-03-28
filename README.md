@@ -27,7 +27,7 @@ Documentation is available in HTML format, see http://checkstyle.sourceforge.net
 Continuous integration and Quality reports
 ======================
 Travis (Linux & MacOS build): [![][travis img]][travis]
-Appveyor (Windows build): [![][appveyor img]][appveyor]
+AppVeyor (Windows build): [![][appveyor img]][appveyor]
 [Distelli CI](https://www.distelli.com/checkstyle/builds)
 
 Quality reports: http://checkstyle.sourceforge.net/project-reports.html

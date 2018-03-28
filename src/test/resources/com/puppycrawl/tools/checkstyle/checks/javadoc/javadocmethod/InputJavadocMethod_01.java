@@ -5,7 +5,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 public class InputJavadocMethod_01 {
 
     /** Do 1.
-     * @throws TestException1 when error occurrs.
+     * @throws TestException1 when error occurs.
      */
     public void doStuff1() throws TestException1 {
         try {
@@ -14,7 +14,7 @@ public class InputJavadocMethod_01 {
         throw new InputJavadocMethod_01().new TestException1("");
     }
     /** Do 2.
-     * @throws TestException2 when error occurrs.
+     * @throws TestException2 when error occurs.
      */
     private static void doStuff2() throws TestException2 {
         throw new TestException2("");
