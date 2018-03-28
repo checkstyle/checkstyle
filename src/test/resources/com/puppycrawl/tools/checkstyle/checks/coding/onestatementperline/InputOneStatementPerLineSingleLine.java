@@ -33,7 +33,7 @@ public class InputOneStatementPerLineSingleLine {
   /**
    * Dummy innerclass to test the behaviour in the case of a smalltalk-style
    * statements (<code>myObject.firstMethod().secondMethod().thirdMethod()</code>).
-   * For this programming style each method must return the obejct itself <code>this</code>.
+   * For this programming style each method must return the object itself <code>this</code>.
    */
   class SmallTalkStyle {
     SmallTalkStyle doSomething1() {
@@ -68,7 +68,7 @@ public class InputOneStatementPerLineSingleLine {
   }
 
   /**
-   * The illegal format is used in a coment. Therefor the whole method is legal.
+   * The illegal format is used in a comment. Therefor the whole method is legal.
    */
   public void doLegalComment() {
     one = 1;

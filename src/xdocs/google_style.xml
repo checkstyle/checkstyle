@@ -367,7 +367,7 @@
                                     src="images/ban_red.png"
                                     alt="" />
                                 That validation could not be checked by Checkstyle. It's
-                                need infromation from another class(java file). But Checkstyle
+                                need information from another class(java file). But Checkstyle
                                 have no way to open or look at another java file.
                             </td>
                             <td/>

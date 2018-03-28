@@ -274,7 +274,7 @@ class TagParser {
 
     /**
      * Represents current position in the text.
-     * @author o_sukholsky
+     * @author o_sukhodolsky
      */
     private static final class Point {
 

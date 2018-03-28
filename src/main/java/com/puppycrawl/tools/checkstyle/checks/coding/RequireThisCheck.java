@@ -1016,7 +1016,7 @@ public class RequireThisCheck extends AbstractCheck {
         private final DetailAST frameNameIdent;
 
         /**
-         * Constructor -- invokable only via super() from subclasses.
+         * Constructor -- invocable only via super() from subclasses.
          * @param parent parent frame.
          * @param ident frame name ident.
          */

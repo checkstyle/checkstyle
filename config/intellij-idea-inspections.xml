@@ -230,7 +230,7 @@
     <inspection_tool class="CastThatLosesPrecision" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="ignoreIntegerCharCasts" value="false" />
     </inspection_tool>
-    <!-- this is valid but there are many false-positvies as we use reflection to load modules after recheck
+    <!-- this is valid but there are many false-positives as we use reflection to load modules after recheck
      by instanceof and we restricted in by existing api types, but some cases are valid, inspection lack of
      properties to make it less demanding -->
     <inspection_tool class="CastToConcreteClass" enabled="false" level="ERROR" enabled_by_default="false" />
@@ -337,11 +337,11 @@ isolated classes and we cannot put them to separate package as it will affect us
     <inspection_tool class="ClassWithTooManyDependents" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="limit" value="300" />
     </inspection_tool>
-    <!-- suppressed till prolem is resolved .... -->
+    <!-- suppressed till problem is resolved .... -->
     <inspection_tool class="ClassWithTooManyTransitiveDependencies" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="limit" value="75" />
     </inspection_tool>
-    <!-- suppressed till prolem is resolved .... -->
+    <!-- suppressed till problem is resolved .... -->
     <inspection_tool class="ClassWithTooManyTransitiveDependents" enabled="true" level="ERROR" enabled_by_default="false">
         <option name="limit" value="500" />
     </inspection_tool>
@@ -1105,7 +1105,7 @@ isolated classes and we cannot put them to separate package as it will affect us
         <option name="m_minLength" value="2" />
         <option name="m_maxLength" value="64" />
     </inspection_tool>
-    <!-- this is valid but there are many false-positvies as we use reflection to load modules after recheck by instanceof -->
+    <!-- this is valid but there are many false-positives as we use reflection to load modules after recheck by instanceof -->
     <inspection_tool class="InstanceVariableOfConcreteClass" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="InstanceVariableUninitializedUse" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="m_ignorePrimitives" value="false" />
@@ -1196,7 +1196,7 @@ isolated classes and we cannot put them to separate package as it will affect us
     <inspection_tool class="JSUnfilteredForInLoop" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="JSUnnecessarySemicolon" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="JSUnresolvedFunction" enabled="true" level="ERROR" enabled_by_default="true" />
-    <!-- it produce false positives on references of globally availbale libraries -->
+    <!-- it produce false positives on references of globally available libraries -->
     <inspection_tool class="JSUnresolvedLibraryURL" enabled="false" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="JSUnresolvedVariable" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="JSUnusedAssignment" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -2094,7 +2094,7 @@ isolated classes and we cannot put them to separate package as it will affect us
                 <option value="IfStatementWithTooManyBranches" />
                 <!-- we have to catch Exception in Checker and rethrow it -->
                 <option value="ProhibitedExceptionThrown" />
-                <!-- we have to use it when pass null argument in test purporses -->
+                <!-- we have to use it when pass null argument in test purposes -->
                 <option value="NullArgumentToVariableArgMethod" />
                 <option value="ChainOfInstanceofChecks"/>
                 <option value="MagicNumber"/>

@@ -45,7 +45,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  *
  * @author Oliver Burn
  * @author Rick Giles
- * @author o_sukhodoslky
+ * @author o_sukhodolsky
  *
  * @noinspection deprecation
  */

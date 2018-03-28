@@ -23,7 +23,7 @@ public class InputJavadocStyle
    /**
     * We don't want {@link com.puppycrawl.tools.checkstyle.checks.JavadocStyleCheck} 
     * tags to stop the scan for the end of sentence. 
-    * @see Somthing
+    * @see Something
     */
    public InputJavadocStyle()
    {
@@ -99,7 +99,7 @@ public class InputJavadocStyle
    }
 
     
-    // Testcases to excercize the Tag parser (bug 843887)
+    // Testcases to exercise the Tag parser (bug 843887)
 
     /**
      * Real men don't use XHTML.
@@ -196,7 +196,7 @@ public class InputJavadocStyle
      */
 
     private void method15()
-    { // should report unended first sentance (check line number of the error)
+    { // should report unended first sentence (check line number of the error)
     }
 
     /** Description of field: {@value}. */
@@ -216,7 +216,7 @@ public class InputJavadocStyle
     }
 
     /**
-     * @exception RuntimeException shoul be thrown
+     * @exception RuntimeException should be thrown
      */
     void method18(String a)
     { // should report empty javadoc (no text before exception)

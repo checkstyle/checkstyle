@@ -38,6 +38,6 @@ class Foo{
     /** <h1> Some header </h1> {@inheritDoc} {@code bar1} text*/ //warn
     void bar2() {}
 
-    /** @customTag <a> href="https://github.com/checkstyle/chestyle/"</a> text*/ //warn
+    /** @customTag <a> href="https://github.com/checkstyle/checkstyle/"</a> text*/ //warn
     void bar3() {}
 }

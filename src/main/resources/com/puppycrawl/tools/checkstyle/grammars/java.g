@@ -52,7 +52,7 @@ tokens {
     STRICTFP="strictfp"; SUPER_CTOR_CALL; CTOR_CALL;
 
     //ANTLR-generated pre-1.4 tokens now listed here to preserve their numerical
-    //order so as to make all future version of this grammar backwardly compatibile
+    //order so as to make all future version of this grammar backwardly compatible
     LITERAL_package="package";SEMI;LITERAL_import="import";LBRACK;RBRACK;
     LITERAL_void="void";LITERAL_boolean="boolean";LITERAL_byte="byte";
     LITERAL_char="char";LITERAL_short="short";LITERAL_int="int";
@@ -531,7 +531,7 @@ annotationExpression
 // Definition of a Java class
 classDefinition![AST modifiers]
     :    c:"class" IDENT
-        // it _might_ have type paramaters
+        // it _might_ have type parameters
         (tp:typeParameters)?
         // it _might_ have a superclass...
         sc:superClassClause
@@ -551,7 +551,7 @@ superClassClause
 // Definition of a Java Interface
 interfaceDefinition![AST modifiers]
     :    i:"interface" IDENT
-        // it _might_ have type paramaters
+        // it _might_ have type parameters
         (tp:typeParameters)?
         // it might extend some other interfaces
         ie:interfaceExtends
@@ -619,7 +619,7 @@ typeParameterBounds
     ;
 
 // This is the body of an annotation. You can have annotation fields and extra semicolons,
-// That's about it (until you see what an annoation field is...)
+// That's about it (until you see what an annotation field is...)
 annotationBlock
     :    LCURLY
         ( annotationField | SEMI )*
@@ -699,7 +699,7 @@ enumConstantBlock
     ;
 
 //An enum constant field is just like a class field but without
-//the posibility of a constructor definition or a static initializer
+//the possibility of a constructor definition or a static initializer
 enumConstantField!
     :   mods:modifiers
         (    td:typeDefinitionInternal[#mods]
@@ -976,7 +976,7 @@ variableLengthParameterDeclaration!
 
 parameterModifier
     //final can appear amongst annotations in any order - greedily consume any preceding
-    //annotations to shut nond-eterminism warnings off
+    //annotations to shut non-determinism warnings off
     :    (options{greedy=true;} : annotation)* (f:"final")?
          (options {warnWhenFollowAmbig=false;}: annotation)*
         {#parameterModifier = #(#[MODIFIERS,"MODIFIERS"], #parameterModifier);}
@@ -1156,7 +1156,7 @@ aCase
 caseSList
     :
         (
-            //Here was nondeterministic warnig between default block into switch
+            //Here was nondeterministic warning between default block into switch
             // and default modifier on methods (Java8). But we have semantic check for this.
             options {
                 warnWhenFollowAmbig = false;
@@ -1258,7 +1258,7 @@ finallyHandler
 //
 // the last two are not usually on a precedence chart; I put them in
 // to point out that new has a higher precedence than '.', so you
-// can validy use
+// can validly use
 //     new Frame().show()
 //
 // Note that the above precedence levels map to the rules below...
@@ -1943,7 +1943,7 @@ IDENT
         }
     ;
 
-//overriden definition of this lexer rule to recognize the ... token - for
+//overridden definition of this lexer rule to recognize the ... token - for
 //variable argument length
 NUM_INT
       :   (ELLIPSIS)=>ELLIPSIS {$setType(ELLIPSIS);}

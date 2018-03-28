@@ -147,7 +147,7 @@ public String getNameIfPresent() { ... }
 &lt;/module&gt;
         </source>
         <p>
-          Example to allow only one and only pametrized annotation on the same line
+          Example to allow only one and only parameterized annotation on the same line
         </p>
         <source>
 @SuppressWarnings("deprecation") DataLoader loader; // no violations

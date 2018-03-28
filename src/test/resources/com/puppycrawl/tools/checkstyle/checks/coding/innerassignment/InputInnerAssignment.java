@@ -17,10 +17,10 @@ public class InputInnerAssignment
 
         String s = Integer.toString(b = 2); // flag inner assignment
 
-        Integer i = new Integer(a += 5); // flag inner assigment
+        Integer i = new Integer(a += 5); // flag inner assignment
 
         c = b++; // common practice, don't flag
-                 // even though technically an assigment to b
+                 // even though technically an assignment to b
 
         for (int j = 0; j < 6; j += 2) { // common practice, don't flag
             a += j;
@@ -59,7 +59,7 @@ public class InputInnerAssignment
     {
         // code that doesn't contain braces around conditional code
         // results in a parse tree without SLISTs
-        // no assignement should be flagged here
+        // no assignment should be flagged here
         int sum = 0;
 
         for (int i = 0; i < 3; i++)

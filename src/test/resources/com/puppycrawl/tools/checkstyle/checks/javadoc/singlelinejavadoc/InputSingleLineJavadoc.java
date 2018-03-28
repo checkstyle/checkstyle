@@ -46,6 +46,6 @@ class InputSingleLineJavadoc {
     /** <h1> Some header </h1> {@inheritDoc} {@code bar1} text*/
     void bar2() {}
 
-    /** @customTag <a> href="https://github.com/checkstyle/chestyle/"</a> text*/
+    /** @customTag <a> href="https://github.com/checkstyle/checkstyle/"</a> text*/
     void bar3() {}
 }

@@ -390,7 +390,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
      */
     @Test
     public void testNonPrintableCharsAreSorted() throws Exception {
-        // Getting Field Value via Reflection, becaues the field is private
+        // Getting Field Value via Reflection, because the field is private
         final Field field = TestUtil.getClassDeclaredField(
                 AvoidEscapedUnicodeCharactersCheck.class, "NON_PRINTABLE_CHARS");
         field.setAccessible(true);

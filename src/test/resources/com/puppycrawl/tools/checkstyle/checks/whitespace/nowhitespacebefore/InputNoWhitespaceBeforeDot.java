@@ -227,7 +227,7 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDot
 	}
 
         // bug 895072
-	// avoid confilct between ParenPad(space) and NoWhiteSpace before ';'
+	// avoid conflict between ParenPad(space) and NoWhiteSpace before ';'
 	int i = 0;
 	for ( ; i < 5; i++ ) {
 	//   ^ whitespace

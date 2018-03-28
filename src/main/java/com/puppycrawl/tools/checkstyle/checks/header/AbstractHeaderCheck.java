@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 /**
  * Abstract super class for header checks.
  * Provides support for header and headerFile properties.
- * @author o_sukhosolsky
+ * @author o_sukhodolsky
  */
 public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     implements ExternalResourceHolder {
