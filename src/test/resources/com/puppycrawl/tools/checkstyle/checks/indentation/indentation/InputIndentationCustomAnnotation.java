@@ -47,7 +47,7 @@ String author() default "author"; //indent:0 exp:4 warn
 
 @interface Ann {} //indent:0 exp:0
 
-class InnerAnnonClass { //indent:0 exp:0
+class InnerAnonClass { //indent:0 exp:0
     @interface MyInnerAnno { //indent:4 exp:4
         String author(); //indent:8 exp:8
     } //indent:4 exp:4

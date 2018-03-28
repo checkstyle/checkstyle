@@ -30,7 +30,7 @@ class OverloadInput
         //some foo code
     }
     
-    OverloadInput anonynous = new OverloadInput()
+    OverloadInput anonymous = new OverloadInput()
     {
         public void overloadMethod(int i)
         {

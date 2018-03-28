@@ -27,7 +27,7 @@ public class //indent:0 exp:0
   void foo2(StrangeInstance instance) {} //indent:2 exp:2
 } //indent:0 exp:0
 
-class WithAnonnymousClass { //indent:0 exp:0
+class WithAnonymousClass { //indent:0 exp:0
   public static final InputIndentationAnonymousClasses anon = new InputIndentationAnonymousClasses("Looooooooooooooooong", //indent:2 exp:2
       "SecondLoooooooooooong") { //indent:6 exp:6
     @Override public boolean foo() { //indent:4 exp:4
@@ -41,7 +41,7 @@ class WithAnonnymousClass { //indent:0 exp:0
           @Override public boolean foo() { //indent:10 exp:10
             InputIndentationAnonymousClasses InputIndentationAnonymousClasses = new InputIndentationAnonymousClasses("", ""); //indent:12 exp:12
             InputIndentationAnonymousClasses.equals(new StrangeInstance(new InputIndentationAnonymousClasses("", "")) { //indent:12 exp:12
-              @Override void foo (String loongString, String secondLongString) {} //indent:14 exp:14
+              @Override void foo (String longString, String secondLongString) {} //indent:14 exp:14
             }); //indent:12 exp:12
             return false; //indent:12 exp:12
           } //indent:10 exp:10
@@ -51,7 +51,7 @@ class WithAnonnymousClass { //indent:0 exp:0
 
 class StrangeInstance { //indent:0 exp:0
   public StrangeInstance(InputIndentationAnonymousClasses InputIndentationAnonymousClasses) {} //indent:2 exp:2
-  void foo (String loongString, String secondLongString) {} //indent:2 exp:2
+  void foo (String longString, String secondLongString) {} //indent:2 exp:2
 } //indent:0 exp:0
 
 @interface MyAnnotation1 {} //indent:0 exp:0

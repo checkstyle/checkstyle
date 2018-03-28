@@ -7,7 +7,7 @@ class InputNoWhitespaceAfterSynchronized {
         }
     }
 
-    public void synchronzed() {
+    public void synchronized_() {
         synchronized(this) {}
         synchronized
             (this) {}

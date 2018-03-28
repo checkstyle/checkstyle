@@ -27,7 +27,7 @@ public class InputDeclarationOrderForwardReference {
     public static final String FIRST = COMMON_PART + "2";
 
     private static final String SECOND = String.valueOf(TokenTypes.ELIST) + FIRST;
-    public static final String THIDRD = FIRST;
+    public static final String THIRD = FIRST;
 
     private static int ID = 5;
     public static final String FOURTH = "1"

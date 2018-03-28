@@ -20,7 +20,7 @@ public class InputUnnecessaryParenthesesLambdas {
         return y;
     }
 
-    static <T> CheckedFunction1<T, T> identitity() {
+    static <T> CheckedFunction1<T, T> identity() {
         return t -> t;
     }
 
