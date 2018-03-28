@@ -5,7 +5,7 @@ https://www.sonarsource.com/products/codeanalyzers/sonarjava/rules.html#RSPEC-37
 e.g. - provided link corresponds to rule S3776 (add to the end of the URL the <key> value without 'S').
 -->
 <profile>
-    <name>checksyle-profile</name>
+    <name>checkstyle-profile</name>
     <language>java</language>
     <rules>
         <!--till #4912-->
