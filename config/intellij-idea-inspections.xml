@@ -963,7 +963,7 @@ isolated classes and we cannot put them to separate package as it will affect us
     <inspection_tool class="GroovyWaitCallNotInLoop" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="GroovyWaitWhileNotSynchronized" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="GroovyWhileLoopSpinsOnField" enabled="true" level="ERROR" enabled_by_default="true">
-        <option name="ignoreNonEmtpyLoops" value="false" />
+        <option name="ignoreNonEmptyLoops" value="false" />
     </inspection_tool>
     <inspection_tool class="Guava" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="GuavaFluentIterable" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -1926,7 +1926,7 @@ isolated classes and we cannot put them to separate package as it will affect us
     <inspection_tool class="SpringBeanAttributesInspection" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SpringBeanAutowiringInspection" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SpringBeanConstructorArgInspection" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="SpringBeanDepedencyCheckInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="SpringBeanDependencyCheckInspection" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SpringBeanInstantiationInspection" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SpringBeanLookupMethodInspection" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SpringBeanNameConventionInspection" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -2300,7 +2300,7 @@ isolated classes and we cannot put them to separate package as it will affect us
         <option name="useRighthandTypeAsWeakestTypeInAssignments" value="true" />
         <option name="useParameterizedTypeForCollectionMethods" value="true" />
         <option name="doNotWeakenToJavaLangObject" value="true" />
-        <option name="onlyWeakentoInterface" value="true" />
+        <option name="onlyWeakenToInterface" value="true" />
     </inspection_tool>
     <inspection_tool class="TypeParameterExtendsFinalClass" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="TypeParameterExtendsObject" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -2519,13 +2519,13 @@ isolated classes and we cannot put them to separate package as it will affect us
     <inspection_tool class="WebflowSetupInspection" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="WhileCanBeForeach" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="WhileLoopSpinsOnField" enabled="true" level="WARNING" enabled_by_default="true">
-        <option name="ignoreNonEmtpyLoops" value="false" />
+        <option name="ignoreNonEmptyLoops" value="false" />
     </inspection_tool>
     <inspection_tool class="WithStatementJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="WrongPackageStatement" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="WrongPropertyKeyValueDelimiter" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="WsdlHighlightingInspection" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="XHTMLIncompatabilitiesJS" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="XHTMLIncompatibilitiesJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="XmlDuplicatedId" enabled="true" level="WARNING" enabled_by_default="true" />
     <!-- there is not xsd or DTD for ant files https://ant.apache.org/faq.html#dtd,
     some other config files also do not have schemes too -->
