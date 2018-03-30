@@ -843,7 +843,7 @@ thead: theadTagStart[false]
     ;
 
 //////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////  SINLETON HTML TAGS  //////////////////////////////////////
+//////////////////////////  SINGLETON HTML TAGS  /////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
 singletonElement: emptyTag
             | areaTag
@@ -864,7 +864,7 @@ singletonElement: emptyTag
             | sourceTag
             | trackTag
             | wbrTag
-            | wrongSinletonTag
+            | wrongSingletonTag
             ;
 
 emptyTag: START
@@ -911,7 +911,7 @@ metaTag: START META_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
 paramTag: START PARAM_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
          (SLASH_END | END);
 
-wrongSinletonTag: START SLASH singletonTagName
+wrongSingletonTag: START SLASH singletonTagName
                   END {notifyErrorListeners($singletonTagName.start,
                              "javadoc.wrong.singleton.html.tag", null);}
                   ;
