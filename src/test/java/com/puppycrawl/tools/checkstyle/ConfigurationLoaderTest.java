@@ -210,7 +210,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
             assertTrue("Invalid exception message: " + ex.getMessage(),
                     ex.getMessage().contains("\"property\""));
             assertTrue("Invalid exception message: " + ex.getMessage(),
-                    ex.getMessage().endsWith(":8:41"));
+                    ex.getMessage().endsWith(":8:43"));
         }
     }
 
