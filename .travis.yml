@@ -177,11 +177,17 @@ matrix:
         - DESC="print versions to update"
         - CMD="./.ci/travis/travis.sh versions"
 
-    # JDK9 build
+    # OpenJDK8 build
+    - jdk: openjdk8
+      env:
+        - DESC="build with OpenJDK8"
+        - CMD="mvn -e package -Passembly && mvn -e site -Dlinkcheck.skip=true"
+
+    # OracleJDK9 build
     - jdk: oraclejdk9
       env:
-        - DESC="build with JDK9"
-        - CMD="mvn -e package -Passembly"
+        - DESC="build with OracleJDK9"
+        - CMD="mvn -e package -Passembly && mvn -e site -Dlinkcheck.skip=true"
 
 script:
   - SKIP_FILES=".github|appveyor.yml|circle.yml|distelli-manifest.yml|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr|shippable.yml|shippable.sh|wercker.yml|wercker.sh|intellij-idea-inspections.xml"
