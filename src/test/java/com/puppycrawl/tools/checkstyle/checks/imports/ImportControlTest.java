@@ -37,8 +37,8 @@ public class ImportControlTest {
 
     private final ImportControl icRootRegexpParent = new ImportControl("com\\.[^.]+\\.courtlink",
             true);
-    private final ImportControl icCommonRegexpParen = new ImportControl(icRootRegexpParent,
-            "com+on", true);
+    private final ImportControl icBootRegexpParen = new ImportControl(icRootRegexpParent,
+            "bo+t", true);
 
     @Before
     public void setUp() {
@@ -64,7 +64,7 @@ public class ImportControlTest {
         icCommonRegexpChild.addImportRule(
             new PkgImportRule(true, false, "org\\.h.*", false, true));
 
-        icRootRegexpParent.addChild(icCommonRegexpParen);
+        icRootRegexpParent.addChild(icBootRegexpParen);
     }
 
     @Test
@@ -172,10 +172,10 @@ public class ImportControlTest {
 
     @Test
     public void testRegExpParentInSubpackageIsConsidered() {
-        assertEquals("Invalid package", icCommonRegexpParen, icRootRegexpParent
-                .locateFinest("com.kazgroup.courtlink.common.api"));
-        assertEquals("Invalid package", icCommonRegexpParen, icRootRegexpParent
-                .locateFinest("com.kazgroup.courtlink.comon.api"));
+        assertEquals("Invalid package", icBootRegexpParen, icRootRegexpParent
+                .locateFinest("com.kazgroup.courtlink.boot.api"));
+        assertEquals("Invalid package", icBootRegexpParen, icRootRegexpParent
+                .locateFinest("com.kazgroup.courtlink.bot.api"));
     }
 
     @Test
