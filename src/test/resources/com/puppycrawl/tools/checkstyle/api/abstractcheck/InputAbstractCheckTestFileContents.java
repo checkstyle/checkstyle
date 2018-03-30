@@ -3,10 +3,10 @@ package com.puppycrawl.tools.checkstyle.api.abstractcheck;
 /**
  * I'm a javadoc
  */
-public class InputAbstractCheckTestFileContence {
+public class InputAbstractCheckTestFileContents {
     private int variable;
 
-    public InputAbstractCheckTestFileContence(int variable) {
+    public InputAbstractCheckTestFileContents(int variable) {
         this.variable = variable;
     }
 

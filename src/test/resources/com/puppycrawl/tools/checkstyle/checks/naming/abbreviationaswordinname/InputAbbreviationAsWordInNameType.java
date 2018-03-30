@@ -49,7 +49,7 @@ interface Directions {
   int DOWN=4;
 }
 
-interface BadNameForInterfeis
+interface BadNameForInterface
 {
    void interfaceMethod();
 }

@@ -132,7 +132,7 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
             }
         };
         check.setFileContents(new FileContents(new FileText(
-            new File(getPath("InputAbstractCheckTestFileContence.java")),
+            new File(getPath("InputAbstractCheckTestFileContents.java")),
             Charset.defaultCharset().name())));
 
         Assert.assertEquals("Invalid line content", " * I'm a javadoc", check.getLine(3));

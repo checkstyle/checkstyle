@@ -10,7 +10,7 @@ public class InputThrowsCount {
     {
     }
 
-    void methdo2() throws java.awt.AWTException
+    void method2() throws java.awt.AWTException
     {
     }
 

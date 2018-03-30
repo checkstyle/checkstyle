@@ -233,7 +233,7 @@ public class InputEmptyCatchBlockDefault
         }
     }
     
-    private void emptyMultilineComent() {
+    private void emptyMultilineComment() {
         try {
             throw new IOException();
         } catch (IOException e) {

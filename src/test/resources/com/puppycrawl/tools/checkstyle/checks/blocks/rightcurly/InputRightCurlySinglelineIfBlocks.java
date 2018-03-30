@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
-public class InputRightCurlySingelineIfBlocks {
+public class InputRightCurlySinglelineIfBlocks {
     void foo1() {
         if (true) { int a = 5; } // violation
 
