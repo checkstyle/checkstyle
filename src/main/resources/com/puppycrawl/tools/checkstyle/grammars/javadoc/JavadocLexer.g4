@@ -122,7 +122,7 @@ XmlTagOpen1: '<' -> type(START), pushMode(xmlTagDefinition);
 STRING: '"' .*? '"' {referenceCatched = false;} -> mode(DEFAULT_MODE);
 PACKAGE_CLASS: Identifier ('.' Identifier)* {referenceCatched = true;};
 DOT: '.';
-HASH: '#' {referenceCatched = true;} -> mode(classMemeber);
+HASH: '#' {referenceCatched = true;} -> mode(classMember);
 CLASS: [A-Z] [a-zA-Z0-9_$]* {referenceCatched = true;};
 End20: JAVADOC_INLINE_TAG_END
       {
@@ -140,7 +140,7 @@ Char2: .
       } -> skip, mode(DEFAULT_MODE);
 
 //////////////////////////////////////////////////////////////////////////////////////
-mode classMemeber;
+mode classMember;
 MEMBER: [a-zA-Z0-9_$]+ {!insideReferenceArguments}?;
 LEFT_BRACE: '(' {insideReferenceArguments=true;};
 RIGHT_BRACE: ')' {insideReferenceArguments=false;};
@@ -254,7 +254,7 @@ Leading_asterisk2: LEADING_ASTERISK -> type(LEADING_ASTERISK);
 Space6: WS -> type(WS);
 Newline4: NEWLINE -> type(NEWLINE);
 Package_Class2: PACKAGE_CLASS -> type(PACKAGE_CLASS);
-Hash2: HASH -> type(HASH), mode(classMemeber);
+Hash2: HASH -> type(HASH), mode(classMember);
 End1: JAVADOC_INLINE_TAG_END
       {insideJavadocInlineTag--; recognizeXmlTags=true;}
       -> type(JAVADOC_INLINE_TAG_END), mode(DEFAULT_MODE)
