@@ -1,4 +1,4 @@
-package com.google.checkstyle.test.chapter4formatting.rule42blockindentaion; //indent:0 exp:0
+package com.google.checkstyle.test.chapter4formatting.rule42blockindentation; //indent:0 exp:0
 
 class FooReturnClass { //indent:0 exp:0
 
@@ -135,7 +135,7 @@ class SecondClassReturnWithVeryVeryVeryLongName { //indent:0 exp:0
     return false; //indent:4 exp:4
   } //indent:2 exp:2
 
-  SecondClassReturnWithVeryVeryVeryLongName getInstanse() { //indent:2 exp:2
+  SecondClassReturnWithVeryVeryVeryLongName getInstance() { //indent:2 exp:2
     return new SecondClassReturnWithVeryVeryVeryLongName("VeryLoooooooooo" //indent:4 exp:4
         + "oongString"); //indent:8 exp:8
   } //indent:2 exp:2

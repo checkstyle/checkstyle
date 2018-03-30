@@ -1,4 +1,4 @@
-package com.google.checkstyle.test.chapter4formatting.rule42blockindentaion; //indent:0 exp:0
+package com.google.checkstyle.test.chapter4formatting.rule42blockindentation; //indent:0 exp:0
 
 import java.util.Map; //indent:0 exp:0
 import java.util.ArrayList;//indent:0 exp:0
