@@ -220,7 +220,7 @@ public class GeneratedJavadocTokenTypesTest {
         assertEquals(MSG, 63, JavadocParser.RULE_linkTag);
         assertEquals(MSG, 64, JavadocParser.RULE_metaTag);
         assertEquals(MSG, 65, JavadocParser.RULE_paramTag);
-        assertEquals(MSG, 66, JavadocParser.RULE_wrongSinletonTag);
+        assertEquals(MSG, 66, JavadocParser.RULE_wrongSingletonTag);
         assertEquals(MSG, 67, JavadocParser.RULE_singletonTagName);
         assertEquals(MSG, 68, JavadocParser.RULE_description);
         assertEquals(MSG, 69, JavadocParser.RULE_reference);
