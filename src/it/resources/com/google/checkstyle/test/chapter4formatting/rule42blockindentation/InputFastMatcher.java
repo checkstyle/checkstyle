@@ -1,4 +1,4 @@
-package com.google.checkstyle.test.chapter4formatting.rule42blockindentaion;
+package com.google.checkstyle.test.chapter4formatting.rule42blockindentation;
 
 public class InputFastMatcher
 {

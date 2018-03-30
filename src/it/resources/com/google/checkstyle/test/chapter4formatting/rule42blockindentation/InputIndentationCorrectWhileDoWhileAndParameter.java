@@ -1,4 +1,4 @@
-package com.google.checkstyle.test.chapter4formatting.rule42blockindentaion; //indent:0 exp:0
+package com.google.checkstyle.test.chapter4formatting.rule42blockindentation; //indent:0 exp:0
 
 class FooWhileClass { //indent:0 exp:0
 
@@ -96,7 +96,7 @@ class FooWhileClass { //indent:0 exp:0
               new InnerClassFoo())) {} //indent:14 exp:>=10
 
       do { //indent:6 exp:6
-        /* Do somethig*/ //indent:8 exp:8
+        /* Do something*/ //indent:8 exp:8
       } while (conditionFirst("Loooooooooooooooooong", new //indent:6 exp:6
           SecondWhileClassWithVeryVeryVeryLongName("Loooooooooooooooooog"). //indent:10 exp:10
               getInteger(new FooWhileClass(), "Loooooooooooooooooog"), //indent:14 exp:>=10
@@ -213,7 +213,7 @@ class SecondWhileClassWithVeryVeryVeryLongName { //indent:0 exp:0
     return false; //indent:4 exp:4
   } //indent:2 exp:2
 
-  SecondWhileClassWithVeryVeryVeryLongName getInstanse() { //indent:2 exp:2
+  SecondWhileClassWithVeryVeryVeryLongName getInstance() { //indent:2 exp:2
     return new SecondWhileClassWithVeryVeryVeryLongName("VeryLoooooooooo" //indent:4 exp:4
         + "oongString"); //indent:8 exp:8
   } //indent:2 exp:2

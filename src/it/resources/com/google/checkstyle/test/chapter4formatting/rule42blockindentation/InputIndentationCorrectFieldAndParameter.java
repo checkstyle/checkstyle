@@ -1,4 +1,4 @@
-package com.google.checkstyle.test.chapter4formatting.rule42blockindentaion; //indent:0 exp:0
+package com.google.checkstyle.test.chapter4formatting.rule42blockindentation; //indent:0 exp:0
 
 class FooFieldClass { //indent:0 exp:0
 
@@ -119,7 +119,7 @@ class SecondFieldClassWithVeryVeryVeryLongName { //indent:0 exp:0
     return false; //indent:4 exp:4
   } //indent:2 exp:2
 
-  SecondFieldClassWithVeryVeryVeryLongName getInstanse() { //indent:2 exp:2
+  SecondFieldClassWithVeryVeryVeryLongName getInstance() { //indent:2 exp:2
     return new SecondFieldClassWithVeryVeryVeryLongName("VeryLoooooooooo" //indent:4 exp:4
         + "oongString"); //indent:8 exp:8
   } //indent:2 exp:2
