@@ -5,10 +5,10 @@ import java.lang.annotation.Target;
 
 public class InputNoWhitespaceAfterArrayDeclarations3
 {
-    public void testWithAnnotationInMidle1(final char @AnnotationAfterTest [] a) {}//Correct
-    public void testWithAnnotationInMidle2(final char@AnnotationAfterTest [] a) {}//Correct
-    public void testWithAnnotationInMidle3(final char @AnnotationAfterTest[] a) {}//Correct
-    public void testWithAnnotationInMidle4(final char@AnnotationAfterTest[]a) {}//Correct
+    public void testWithAnnotationInMiddle1(final char @AnnotationAfterTest [] a) {}//Correct
+    public void testWithAnnotationInMiddle2(final char@AnnotationAfterTest [] a) {}//Correct
+    public void testWithAnnotationInMiddle3(final char @AnnotationAfterTest[] a) {}//Correct
+    public void testWithAnnotationInMiddle4(final char@AnnotationAfterTest[]a) {}//Correct
 
     @Target(ElementType.TYPE_USE)
     @interface AnnotationAfterTest {

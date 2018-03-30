@@ -368,7 +368,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "7:45: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 45),
             "7:47: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 47),
         };
-        verify(checkConfig, getPath("InputRightCurlySingelineIfBlocks.java"), expected);
+        verify(checkConfig, getPath("InputRightCurlySinglelineIfBlocks.java"), expected);
     }
 
     @Test

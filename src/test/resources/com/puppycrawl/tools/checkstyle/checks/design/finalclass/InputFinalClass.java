@@ -66,13 +66,13 @@ abstract class Operation
 
 // Typesafe enum with operation
 // abstract classes cannot be final, see bug #837012
-interface Evaluatable
+interface Evaluable
 {
     double eval(double a, double b);
 }
 
 // abstract class without it's own abstract method decl
-abstract class Operation2 implements Evaluatable 
+abstract class Operation2 implements Evaluable 
 {
     
     public static final Operation2 PLUS =

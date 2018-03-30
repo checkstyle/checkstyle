@@ -8,32 +8,32 @@ import java.util.Map;
 
 public class InputSuppressWarningsHolder5{
 
-    public static Object foo1(@SuppressWarnings("unsused") Object str) {
-        String myString = (@SuppressWarnings("unsused") String) str;
-        Object object = new @SuppressWarnings("unsused") Object();
+    public static Object foo1(@SuppressWarnings("unused") Object str) {
+        String myString = (@SuppressWarnings("unused") String) str;
+        Object object = new @SuppressWarnings("unused") Object();
         try {
             return null;
             
-        } catch (@SuppressWarnings("unsused") Exception ex) {
+        } catch (@SuppressWarnings("unused") Exception ex) {
             return "";
         }
     }
 
-    void foo2() throws @SuppressWarnings("unsused") Exception {  }
+    void foo2() throws @SuppressWarnings("unused") Exception {  }
 
     public void foo3() {
-        Map.@SuppressWarnings("unsused") Entry entry;
+        Map.@SuppressWarnings("unused") Entry entry;
         MyObject myObject = new MyObject();
-        myObject.<@SuppressWarnings("unsused") String>myMethod();
-        myObject.new @SuppressWarnings("unsused") MyObject2();
+        myObject.<@SuppressWarnings("unused") String>myMethod();
+        myObject.new @SuppressWarnings("unused") MyObject2();
     }
 
     public static <T> void foo4(Object str) {
-        List<@SuppressWarnings("unsused") ? extends Comparable<T>> unchangeable;
+        List<@SuppressWarnings("unused") ? extends Comparable<T>> unchangeable;
     }
 
     abstract class UnmodifiableList<T>
-    implements @SuppressWarnings("unsused") List<@SuppressWarnings("unsused") T> {
+    implements @SuppressWarnings("unused") List<@SuppressWarnings("unused") T> {
     }
 
     class MyObject{

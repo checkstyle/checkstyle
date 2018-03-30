@@ -504,7 +504,7 @@ public class InputVariableDeclarationUsageDistance {
         int count = 0;
         String[] files = {};
 
-        System.identityHashCode("Data archivation started");
+        System.identityHashCode("Data archival started");
         files.notify();
         System.identityHashCode("sss");
 
