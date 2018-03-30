@@ -677,11 +677,11 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     private static boolean isPartOfDoubleBraceInitializerForNextToken(DetailAST ast) {
         final boolean classBeginBeforeInitializerBegin = ast.getType() == TokenTypes.LCURLY
             && ast.getNextSibling().getType() == TokenTypes.INSTANCE_INIT;
-        final boolean initalizerEndsBeforeClassEnds = ast.getType() == TokenTypes.RCURLY
+        final boolean initializerEndsBeforeClassEnds = ast.getType() == TokenTypes.RCURLY
             && ast.getParent().getType() == TokenTypes.SLIST
             && ast.getParent().getParent().getType() == TokenTypes.INSTANCE_INIT
             && ast.getParent().getParent().getNextSibling().getType() == TokenTypes.RCURLY;
-        return classBeginBeforeInitializerBegin || initalizerEndsBeforeClassEnds;
+        return classBeginBeforeInitializerBegin || initializerEndsBeforeClassEnds;
     }
 
 }
