@@ -16,6 +16,168 @@
   <body>
     <!-- placeholder for a new section -->
 
+    <section name="Release 8.8.1">
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Indentaton: super() is ignored. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/3808">#3808</a>
+          </li>
+          <li>
+            IllegalType: support arrays as types. Author: kazachka <a href="https://github.com/checkstyle/checkstyle/issues/4429">#4429</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            spelling: block indentation. Author: Josh Soref
+          </li>
+          <li>
+            spelling: code. Author: Josh Soref
+          </li>
+          <li>
+            spelling: grammar. Author: Josh Soref
+          </li>
+          <li>
+            spelling: comments. Author: Josh Soref
+          </li>
+          <li>
+            spelling: checkstyle profile. Author: Josh Soref
+          </li>
+          <li>
+            wercker is failing with uncler message after release on non-rebased branches. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/5452">#5452</a>
+          </li>
+          <li>
+            Add openjdk8/9 to Travis/AppVeyor. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5663">#5663</a>
+          </li>
+          <li>
+            Remove usage of com.oracle.net package. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5660">#5660</a>
+          </li>
+          <li>
+            generated jacoco.exec file needs to be moved out of base directory. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5640">#5640</a>
+          </li>
+          <li>
+            doc: fixed improper dtd comment examples. Author: rnveach
+          </li>
+          <li>
+            Fix PMD6 violations (bestpractices). Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5633">#5633</a>
+          </li>
+          <li>
+            spelling: Correct some words in the German translation. Author: Matthias Ronge
+          </li>
+          <li>
+            Revert config: bump pmd plugin to 3.9.0 version. Author: Roman Ivanov
+          </li>
+          <li>
+            Drop findbugs. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5622">#5622</a>
+          </li>
+          <li>
+            Replace java.awt.event.InputEvent#getModifiers() with getModifiersEx(). Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5613">#5613</a>
+          </li>
+          <li>
+            doc: fixed improper private method documentation. Author: rnveach
+          </li>
+          <li>
+            Use Jacoco instead of Cobertura for coverage check. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5586">#5586</a>
+          </li>
+          <li>
+            doc: clearly explain commit message requirements. Author: Roman Ivanov
+          </li>
+          <li>
+            Jacoco workaround for MainTest. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5553">#5553</a>
+          </li>
+          <li>
+            Split pitest-checkstyle-common. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5592">#5592</a>
+          </li>
+          <li>
+            Resolve all violations from SonarQube at sonarcloud.io. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5604">#5604</a>
+          </li>
+          <li>
+            100% Coverage for com.puppycrawl.tools.checkstyle.DefaultConfiguration. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5591">#5591</a>
+          </li>
+          <li>
+            100% coverage for com.puppycrawl.tools.checkstyle.XMLLogger. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5597">#5597</a>
+          </li>
+          <li>
+            100% coverage for com.puppycrawl.tools.checkstyle.Checker. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5599">#5599</a>
+          </li>
+          <li>
+            New project badges at sonarcloud.io. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5605">#5605</a>
+          </li>
+          <li>
+            100% coverage for com.puppycrawl.tools.checkstyle.PackageObjectFactory. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5595">#5595</a>
+          </li>
+          <li>
+            Switch to Powermock 2.0. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5584">#5584</a>
+          </li>
+          <li>
+            fix indentation in all sources of xdoc. Author: Varun Upadhyay <a href="https://github.com/checkstyle/checkstyle/issues/5489">#5489</a>
+          </li>
+          <li>
+            doc: typos and grammar fixes on website main page. Author: Michael Keppler
+          </li>
+          <li>
+            PackageNamesLoaderTest refactoring. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5551">#5551</a>
+          </li>
+          <li>
+            Remove usage of javax.xml.bind.XmlElement (deprecated in JDK9). Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5582">#5582</a>
+          </li>
+          <li>
+            Refactoring of JavadocUtils static init. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5555">#5555</a>
+          </li>
+          <li>
+            Switch to powermock-api-mockito2. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5558">#5558</a>
+          </li>
+          <li>
+            IllegalStateException message text was changed in JDK9. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5561">#5561</a>
+          </li>
+          <li>
+            upgrade to spotbugs 3.1.1 cause problems with execution on maven 3.3.9. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5525">#5525</a>
+          </li>
+          <li>
+            doc: InterfaceIsType description, SwingConstants is an interface, not a class.. Author: Tobias Weimer
+          </li>
+          <li>
+            Explicitly throw an exception from ClassResolver. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5546">#5546</a>
+          </li>
+          <li>
+            Strive for 100% mutation coverage. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3708">#3708</a>
+          </li>
+          <li>
+            minimize pitest-checkstyle-utils profile execution. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/4605">#4605</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checks-coding profile to 100%. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5008">#5008</a>
+          </li>
+          <li>
+            doc: extend examples for FinalLocalVariable. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5239">#5239</a>
+          </li>
+          <li>
+            Remove dependency on tools.jar. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5431">#5431</a>
+          </li>
+          <li>
+            Fix violations in local IntelliJ 2017.3. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5409">#5409</a>
+          </li>
+          <li>
+            Intellij Idea inspection violations from 2017.2.4 or 2017.2.6. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5069">#5069</a>
+          </li>
+          <li>
+            Jacoco coverage report. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5516">#5516</a>
+          </li>
+          <li>
+            Use StringBuilder instead of StringBuffer as it offers high performanâ€¦. Author: reudismam <a href="https://github.com/checkstyle/checkstyle/issues/5505">#5505</a>
+          </li>
+          <li>
+            AvoidEscapedUnicodeCharactersCheck: re-organize regular expressions. Author: SunriseCoder <a href="https://github.com/checkstyle/checkstyle/issues/5427">#5427</a>
+          </li>
+          <li>
+            investigate and resolve compilation warnings. Author: Andrey Mosin <a href="https://github.com/checkstyle/checkstyle/issues/5480">#5480</a>
+          </li>
+          <li>
+            wercker build problem with hibernate-search. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5499">#5499</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 8.8">
       <p>Breaking backward compatibility:</p>
         <ul>
