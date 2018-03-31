@@ -57,6 +57,18 @@ class InputIndentationCtorCall { //indent:0 exp:0
     (); //indent:4 exp:6 warn
     } //indent:4 exp:4
 
+    public Invalid(InputIndentationCtorCall obj, int arg) { //indent:4 exp:4
+      obj //indent:6 exp:6
+    .super( //indent:4 exp:10 warn
+    arg); //indent:4 exp:8 warn
+    } //indent:4 exp:4
+
+    public Invalid(InputIndentationCtorCall obj, char arg) { //indent:4 exp:4
+      obj. //indent:6 exp:6
+    super( //indent:4 exp:10 warn
+    arg); //indent:4 exp:8 warn
+    } //indent:4 exp:4
+
   } //indent:2 exp:2
 
   class Valid extends Base { //indent:2 exp:2
@@ -83,9 +95,27 @@ class InputIndentationCtorCall { //indent:0 exp:0
           arg); //indent:10 exp:10
     } //indent:4 exp:4
 
-    public Valid(InputIndentationCtorCall arg) { //indent:4 exp:4
-      arg.super( //indent:6 exp:6
-          x -> x); //indent:10 exp:10
+    public Valid(InputIndentationCtorCall obj, char arg) { //indent:4 exp:4
+      obj.super( //indent:6 exp:6
+          x -> arg); //indent:10 exp:10
+    } //indent:4 exp:4
+
+    public Valid(InputIndentationCtorCall obj, int arg) { //indent:4 exp:4
+      obj //indent:6 exp:6
+          .super( //indent:10 exp:10
+            arg); //indent:12 exp:12
+    } //indent:4 exp:4
+
+    public Valid(InputIndentationCtorCall obj, float arg) { //indent:4 exp:4
+      obj. //indent:6 exp:6
+          super( //indent:10 exp:10
+              x -> arg); //indent:14 exp:14
+    } //indent:4 exp:4
+
+    public Valid(InputIndentationCtorCall obj, double arg) { //indent:4 exp:4
+      obj. //indent:6 exp:6
+          super( //indent:10 exp:10
+            x -> arg); //indent:12 exp:12
     } //indent:4 exp:4
 
   } //indent:2 exp:2

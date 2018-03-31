@@ -1,5 +1,7 @@
 package com.puppycrawl.tools.checkstyle.checks.indentation.indentation; //indent:0 exp:0
 
+import java.util.List; //indent:0 exp:0
+import java.util.function.Function; //indent:0 exp:0
 
 /**                                                                           //indent:0 exp:0
  * This test-input is intended to be checked using following configuration:   //indent:1 exp:1
@@ -61,5 +63,15 @@ public class InputIndentationMethodCallLineWrap { //indent:0 exp:0
                     "a" //indent:20 exp:20
             )//indent:12 exp:12
         ); //indent:8 exp:8
+    } //indent:4 exp:4
+
+    <U> void chainingWithLambda(Function<?, ? extends U> f) { //indent:4 exp:4
+        this.<Function<List<?>, Boolean>> //indent:8 exp:8
+            chainingWithLambda( //indent:12 exp:12
+                x -> //indent:16 exp:16
+                    y -> y.contains(0)); //indent:20 exp:20
+        this. //indent:8 exp:8
+            chainingWithLambda( //indent:12 exp:12
+            x -> x); //indent:12 exp:16 warn
     } //indent:4 exp:4
 } //indent:0 exp:0

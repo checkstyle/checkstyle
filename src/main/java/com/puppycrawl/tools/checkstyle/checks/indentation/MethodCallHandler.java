@@ -141,6 +141,23 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         return astNode;
     }
 
+    /**
+     * Returns method or constructor name. For {@code foo(arg)} it is `foo`, for
+     *     {@code foo.bar(arg)} it is `bar` for {@code super(arg)} it is 'super'.
+     *
+     * @return TokenTypes.IDENT node for a method call, TokenTypes.SUPER_CTOR_CALL otherwise.
+     */
+    private DetailAST getMethodIdentAst() {
+        DetailAST ast = getMainAst();
+        if (ast.getType() != TokenTypes.SUPER_CTOR_CALL) {
+            ast = ast.getFirstChild();
+            if (ast.getType() == TokenTypes.DOT) {
+                ast = ast.getLastChild();
+            }
+        }
+        return ast;
+    }
+
     @Override
     public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
         // for whatever reason a method that crosses lines, like asList
@@ -149,10 +166,9 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         //                new String[] {"method"}).toString());
         // will not have the right line num, so just get the child name
 
-        final DetailAST first = getMainAst().getFirstChild();
-        IndentLevel suggestedLevel = new IndentLevel(getLineStart(first));
-        if (!areOnSameLine(child.getMainAst().getFirstChild(),
-                           getMainAst().getFirstChild())) {
+        final DetailAST ident = getMethodIdentAst();
+        IndentLevel suggestedLevel = new IndentLevel(getLineStart(ident));
+        if (!areOnSameLine(child.getMainAst().getFirstChild(), ident)) {
             suggestedLevel = new IndentLevel(suggestedLevel,
                     getBasicOffset(),
                     getIndentCheck().getLineWrappingIndentation());

@@ -288,8 +288,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = {
-            "51: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 18, 20),
-            "52: " + getCheckMessage(MSG_ERROR, "method call rparen", 14, 16),
+            "53: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 18, 20),
+            "54: " + getCheckMessage(MSG_ERROR, "method call rparen", 14, 16),
+            "75: " + getCheckMessage(MSG_ERROR, "lambda arguments", 12, 16),
         };
         verifyWarns(checkConfig, getPath("InputIndentationMethodCallLineWrap.java"), expected);
     }
@@ -472,6 +473,10 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "52: " + getCheckMessage(MSG_ERROR, "x", 4, 8),
             "56: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
             "57: " + getCheckMessage(MSG_ERROR, "method call lparen", 4, 6),
+            "62: " + getCheckMessage(MSG_ERROR, ".", 4, 10),
+            "63: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "68: " + getCheckMessage(MSG_ERROR, "super", 4, 10),
+            "69: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
         };
         verifyWarns(checkConfig, getPath("InputIndentationCtorCall.java"), expected);
     }
