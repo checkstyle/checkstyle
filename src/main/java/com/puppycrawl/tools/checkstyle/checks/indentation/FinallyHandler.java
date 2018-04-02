@@ -41,9 +41,4 @@ public class FinallyHandler extends BlockParentHandler {
         super(indentCheck, "finally", ast, parent);
     }
 
-    @Override
-    protected boolean shouldTopLevelStartLine() {
-        return false;
-    }
-
 }

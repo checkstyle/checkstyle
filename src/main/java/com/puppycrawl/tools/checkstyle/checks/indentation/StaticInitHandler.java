@@ -41,9 +41,4 @@ public class StaticInitHandler extends BlockParentHandler {
         super(indentCheck, "static initialization", ast, parent);
     }
 
-    @Override
-    protected boolean shouldTopLevelStartLine() {
-        return false;
-    }
-
 }

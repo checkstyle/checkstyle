@@ -42,18 +42,13 @@ public class CatchHandler extends BlockParentHandler {
         super(indentCheck, "catch", ast, parent);
     }
 
-    @Override
-    protected boolean shouldTopLevelStartLine() {
-        return false;
-    }
-
     /**
      * Check the indentation level of the conditional expression.
      */
     private void checkCondExpr() {
         final DetailAST condAst = getMainAst().findFirstToken(TokenTypes.LPAREN)
             .getNextSibling();
-        checkExpressionSubtree(condAst, getIndent(), true, false);
+        checkExpressionSubtree(condAst, getIndent(), true, true);
     }
 
     @Override
