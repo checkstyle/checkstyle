@@ -7,9 +7,40 @@
   <description>
     PMD common ruleset for Checkstyle main/test sourcesets
   </description>
+  <rule ref="category/java/errorprone.xml">
+    <!-- That rule is not practical, no options to allow some magic numbers,
+         we will use our implementation. -->
+    <exclude name="AvoidLiteralsInIfCondition"/>
+    <!-- It is not our goal for now to keep all Serializable, maybe in the future. -->
+    <exclude name="BeanMembersShouldSerialize"/>
+    <!-- We need compare by ref as Tree structure is immutable, we can easily
+         rely on refs. -->
+    <exclude name="CompareObjectsWithEquals"/>
+    <!-- Too many false positives. -->
+    <exclude name="DataflowAnomalyAnalysis"/>
+    <!-- This rule does not have any option, unreasonable to use. -->
+    <exclude name="MissingBreakInSwitch"/>
+    <!-- We reuse Check instances between java files, we need to clear state of
+         class in beginTree() methods. -->
+    <exclude name="NullAssignment"/>
+    <!-- Till https://github.com/checkstyle/checkstyle/issues/5680 -->
+    <exclude name="UseProperClassLoader"/>
+  </rule>
+  <rule ref="category/java/errorprone.xml/EmptyCatchBlock">
+    <properties>
+      <property name="allowCommentedBlocks" value="true"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/errorprone.xml/DoNotCallSystemExit">
+    <properties>
+      <!-- There is no alternative to using System.exit in the CLI class
+           to report the return code. -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main']"/>
+    </properties>
+  </rule>
+
   <rule ref="rulesets/java/basic.xml"/>
   <rule ref="rulesets/java/braces.xml"/>
-  <rule ref="rulesets/java/clone.xml"/>
   <rule ref="rulesets/java/codesize.xml">
     <!-- we are using CyclomaticComplexity -->
     <exclude name="ModifiedCyclomaticComplexity"/>
@@ -252,28 +283,7 @@
     </properties>
   </rule>
 
-  <rule ref="rulesets/java/empty.xml"/>
-  <rule ref="rulesets/java/empty.xml/EmptyCatchBlock">
-    <properties>
-      <property name="allowCommentedBlocks" value="true"/>
-    </properties>
-  </rule>
-
-  <rule ref="rulesets/java/finalizers.xml"/>
   <rule ref="rulesets/java/imports.xml"/>
-  <rule ref="rulesets/java/javabeans.xml">
-    <!-- too many false-positives -->
-    <exclude name="BeanMembersShouldSerialize"/>
-  </rule>
-
-  <!-- Manually adding these rules from the rulesets logging-jakarta-commons and logging-java
-       until all deprecated rulesets will be replaced with categories. See
-       https://pmd.github.io/pmd-6.0.0/pmd_release_notes.html#rule-categories -->
-  <rule ref="category/java/errorprone.xml/ProperLogger"/>
-  <rule ref="category/java/errorprone.xml/UseCorrectExceptionLogging"/>
-  <rule ref="category/java/errorprone.xml/InvalidSlf4jMessageFormat"/>
-  <rule ref="category/java/errorprone.xml/LoggerIsNotStaticFinal"/>
-  <rule ref="category/java/errorprone.xml/MoreThanOneLogger"/>
 
   <rule ref="rulesets/java/logging-java.xml/SystemPrintln">
     <properties>
