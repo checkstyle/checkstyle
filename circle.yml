@@ -20,7 +20,8 @@ machine:
     version: oraclejdk8
   environment:
     BASHRC: ~/.bashrc
-    CMD1: "${BASHRC} && cd contribution/checkstyle-tester"
+    CMD0: "${BASHRC} && "
+    CMD1: "cd contribution/checkstyle-tester"
     DEP1: " && sed -i'' 's/^guava/#guava/' projects-to-test-on.properties"
     # we need this to let pass 'mvn site' on no-projects mode to download all dependecies
     DEP2: " && echo 'class ClassEmpty{}' > src/main/java/EmptyClass.java"
@@ -43,13 +44,13 @@ machine:
     SCOUTER: " && sed -i'' 's/#scouter/scouter/' projects-for-circle.properties"
     GROOVY: " && sed -i'' 's/#groovy/groovy/' projects-for-circle.properties"
     # Test over openjdk7,8
-    TEST_1: $CMD1$CMD2$OPENJDK7$OPENJDK8$CMD3
+    TEST_1: $CMD0$CMD1$CMD2$OPENJDK7$OPENJDK8$CMD3
     # Test over infinispan, protonpack, jOOL, lucene-solr, openjdk9
-    TEST_2: $CMD1$CMD2$INFINISPAN$PROTONPACK$JOOL$LUCENE$OPENJDK9$CMD3
+    TEST_2: $CMD0$CMD1$CMD2$INFINISPAN$PROTONPACK$JOOL$LUCENE$OPENJDK9$CMD3
     # Test over tapestry5, storm, cassandra
-    TEST_3: $CMD1$CMD2$TAPESTRY$STORM$CASSANDRA$CMD3
+    TEST_3: $CMD0$CMD1$CMD2$TAPESTRY$STORM$CASSANDRA$CMD3
     # Test over apache-commons, hadoop, scouter, groovy
-    TEST_4: $CMD1$CMD2$COMMONS$HADOOP$SCOUTER$GROOVY$CMD3
+    TEST_4: $CMD0$CMD1$CMD2$COMMONS$HADOOP$SCOUTER$GROOVY$CMD3
     SKIP_FILES: ".github|appveyor.yml|.travis.yml|.ci|distelli-manifest.yml|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr|shippable.yml|shippable.sh|wercker.yml|wercker.sh|intellij-idea-inspections.xml|org.eclipse.jdt.core.prefs"
 test:
   override:
