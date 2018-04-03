@@ -24,7 +24,7 @@
              VariableDeclarationUsageDistanceCheck, CommentsIndentationCheck, JavadocMethodCheck,
              HandlerFactory are big and should not be split without a good reason.
            The test classes should be one whole piece of code.
-           The methods visitToken/leaveToken are a big SWITCH block with a nuber of IF blocks.
+           The methods visitToken/leaveToken are a big SWITCH block with a number of IF blocks.
              If we split the block to several methods it will damage the readability.
            The methods XMLLogger.encode, FallThroughCheck.isTerminated, ElementNode.iterateAxis,
              NoWhitespaceAfterCheck.getArrayDeclaratorPreviousElement are also huge switches,
