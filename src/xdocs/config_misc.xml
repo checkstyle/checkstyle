@@ -1479,7 +1479,7 @@ d = e / f;        // Another comment for this line
         </ul>
 
         <p>
-          McConnel's comments on being hard to maintain when the size of the line
+          McConnell's comments on being hard to maintain when the size of the line
           changes are even more important in the age of automated
           refactorings.
         </p>
