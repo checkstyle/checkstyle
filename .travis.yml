@@ -60,7 +60,7 @@ matrix:
         - DESC="eclipse static analysis"
         - CMD="mvn -e clean compile exec:exec -Peclipse-compiler"
 
-    # Releasenotes generation - validaton
+    # Releasenotes generation - validation
     - jdk: oraclejdk8
       env:
         - DESC="Releasenotes generation"
