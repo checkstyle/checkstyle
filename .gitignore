@@ -36,3 +36,6 @@ replay_pid*
 
 # NonDex files
 .nondex
+
+# spell checker whitelist
+.ci-temp
