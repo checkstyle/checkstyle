@@ -43,7 +43,7 @@
             PMD 6: migrate configuration to pmd 6.X version. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5603">#5603</a>
           </li>
           <li>
-            wercker is failing with uncler message after release on non-rebased branches. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/5452">#5452</a>
+            wercker is failing with unclear message after release on non-rebased branches. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/5452">#5452</a>
           </li>
           <li>
             Add openjdk8/9 to Travis/AppVeyor. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5663">#5663</a>
