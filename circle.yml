@@ -11,7 +11,7 @@ dependencies:
     - if [ ! -d groovy-2.4.7 ]; then wget https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip && unzip apache-groovy-binary-2.4.7.zip; fi
     - pwd
 
-  # we to override as 'mvn -e dependency:go-offline' does not download all dependencies
+  # we need override as 'mvn -e dependency:go-offline' does not download all dependencies
   override:
     - mvn -e install -Pno-validations
     - eval $TESTER_DEPENDENCIES
