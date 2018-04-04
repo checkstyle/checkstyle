@@ -28,7 +28,7 @@
             Indentation: wrapped method name. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5655">#5655</a>
           </li>
           <li>
-            Indentaton: super() is ignored. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/3808">#3808</a>
+            Indentation: super() is ignored. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/3808">#3808</a>
           </li>
           <li>
             IllegalType: support arrays as types. Author: kazachka <a href="https://github.com/checkstyle/checkstyle/issues/4429">#4429</a>
