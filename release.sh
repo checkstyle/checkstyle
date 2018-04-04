@@ -66,3 +66,20 @@ scp target/*.zip target/*.tar.gz target/*.jar $SF_USER@frs.sourceforge.net:$FRS_
 cd ../../
 
 ##############################
+
+#update github.io
+if [ -d "../checkstyle.github.io" ] ; then
+  cd ../checkstyle.github.io
+else
+  cd ../
+  # clone by ssh only to avoid passwords on push
+  git clone git@github.com:checkstyle/checkstyle.github.io.git
+  cd checkstyle.github.io
+fi
+git rm -rf *
+git checkout HEAD -- CNAME
+cp -R ../checkstyle/target/checkout/target/site/* .
+git add .
+git commit -m "release $RELEASE"
+# we do force to avoid history changes, we do not need history as github.io shows only HEAD.
+git push origin --force
