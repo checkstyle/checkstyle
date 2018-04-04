@@ -60,4 +60,4 @@ test:
           2) eval $TEST_3 ;;
           3) eval $TEST_4 ;;
         esac;
-      fi
+      fi: parallel: true
