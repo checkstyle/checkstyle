@@ -18,12 +18,12 @@ jobs:
           key: goovy-binaries
           paths:
             - groovy-2.4.7
-  test:
-    machine: true
-    parallelism: 4
-    steps:
-      - run:
-        command: |
-            echo $(circleci tests glob ".ci/*.sh")
-            circleci tests glob ".ci/*.sh" | xargs -n 1 echo
+  # test:
+  #   machine: true
+  #   parallelism: 4
+  #   steps:
+  #     - run:
+  #       command: |
+  #           echo $(circleci tests glob ".ci/*.sh")
+  #           circleci tests glob ".ci/*.sh" | xargs -n 1 echo
 
