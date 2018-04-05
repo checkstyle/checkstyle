@@ -1,9 +1,9 @@
 version: 2
 jobs:
   build:
+    machine: true
     java:
       version: oraclejdk8
-    machine: true
     steps:
       - checkout:
         - git clone https://github.com/checkstyle/contribution
