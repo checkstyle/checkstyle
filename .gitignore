@@ -4,6 +4,8 @@
 .classpath
 .project
 
+#bla
+
 # m2e-code-quality Eclipse IDE plugin temporary configuration files for Eclipse CS Checkstyle / PMD / FindBugs Plug-Ins
 .checkstyle
 .pmd
