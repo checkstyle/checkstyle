@@ -37,9 +37,9 @@ jobs:
       - run: pwd
       - run: mvn -e install -Pno-validations
       - run:
-        command: |
-          echo $(circleci tests glob ".ci/*.sh")
-          circleci tests glob ".ci/*.sh" | xargs -n 1 echo
+          command: |
+            echo $(circleci tests glob ".ci/*.sh")
+            circleci tests glob ".ci/*.sh" | xargs -n 1 echo
       - save_cache:
           key: goovy-binaries
           paths:
