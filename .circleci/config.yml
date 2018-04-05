@@ -13,13 +13,16 @@ jobs:
             ls -la
             java -version
             mvn --version
-            git clone https://github.com/checkstyle/contribution /home/circleci/contribution
+            git clone https://github.com/checkstyle/contribution
             if [ ! -d groovy-2.4.7 ]; then
               wget https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip
               unzip apache-groovy-binary-2.4.7.zip;
             fi
+            ls -la
       - run:
           command: |
+            pwd
+            ls -la
             cd contribution/checkstyle-tester
             sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
             echo 'class ClassEmpty{}' > src/main/java/EmptyClass.java
