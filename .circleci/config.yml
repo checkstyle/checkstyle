@@ -21,8 +21,7 @@ jobs:
             ls -la
       - run:
           command: |
-            pwd
-            ls -la
+            cd ../
             cd contribution/checkstyle-tester
             sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
             echo 'class ClassEmpty{}' > src/main/java/EmptyClass.java
