@@ -35,21 +35,21 @@ jobs:
       - run: mvn --version
       - run: if [ ! -d groovy-2.4.7 ]; then wget https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip && unzip apache-groovy-binary-2.4.7.zip; fi
       - run: pwd
-      - run: mvn -e install -Pno-validations
+      - run: mvn --version
       - run:
           command: |
-            echo $(circleci tests glob ".ci/*.sh")
-            circleci tests glob ".ci/*.sh" | xargs -n 1 echo
+            echo $(circleci tests glob ".ci/*.sh" | circleci tests split < $(ls -1 .ci/*.sh))
+            eval $(circleci tests glob ".ci/*.sh" | circleci tests split < $(ls -1 .ci/*.sh))
       - save_cache:
           key: goovy-binaries
           paths:
             - groovy-2.4.7
-  test:
-    machine: true
-    parallelism: 4
-    steps:
-      - run:
-        command: |
-            echo $(circleci tests glob ".ci/*.sh")
-            circleci tests glob ".ci/*.sh" | xargs -n 1 echo
+  # test:
+  #   machine: true
+  #   parallelism: 4
+  #   steps:
+  #     - run:
+  #       command: |
+  #           echo $(circleci tests glob ".ci/*.sh" | circleci tests split < $(ls -1 .ci/*.sh))
+  #           eval $(circleci tests glob ".ci/*.sh" | circleci tests split < $(ls -1 .ci/*.sh))
 
