@@ -9,7 +9,7 @@ jobs:
       - restore_cache:
           key: m2-cache
       - restore_cache:
-          key: groovy-binaries-2.4.7
+          key: groovy-2.4.7
 
       - checkout
       - run:
@@ -43,7 +43,7 @@ jobs:
               /home/circleci/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --config my_check.xml
             fi
       - save_cache:
-          key: groovy-binaries-2.4.7
+          key: groovy-2.4.7
           paths:
             - /home/circleci/groovy-2.4.7
       - save_cache:
@@ -68,7 +68,7 @@ jobs:
       - restore_cache:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
-          key: groovy-binaries-2.4.7
+          key: groovy-2.4.7
       - run:
           command: |
             if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
@@ -90,7 +90,7 @@ jobs:
       - restore_cache:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
-          key: groovy-binaries-2.4.7
+          key: groovy-2.4.7
       - run:
           command: |
             if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
@@ -115,7 +115,7 @@ jobs:
       - restore_cache:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
-          key: groovy-binaries-2.4.7
+          key: groovy-2.4.7
       - run:
           command: |
             if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
@@ -138,7 +138,7 @@ jobs:
       - restore_cache:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
-          key: groovy-binaries-2.4.7
+          key: groovy-2.4.7
       - run:
           command: |
             if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
