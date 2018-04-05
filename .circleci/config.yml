@@ -38,8 +38,8 @@ jobs:
       - run: mvn --version
       - run:
           command: |
-            echo $(circleci tests glob ".ci/*.sh" | circleci tests split < $(ls -1 .ci/*.sh))
-            eval $(circleci tests glob ".ci/*.sh" | circleci tests split < $(ls -1 .ci/*.sh))
+            echo $(circleci tests glob ".ci/*.sh" | circleci tests split <$(ls -1 .ci/*.sh))
+            eval $(circleci tests glob ".ci/*.sh" | circleci tests split <$(ls -1 .ci/*.sh))
       - save_cache:
           key: goovy-binaries
           paths:
