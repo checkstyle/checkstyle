@@ -64,10 +64,11 @@ jobs:
       version: oraclejdk8
     steps:
       - restore_cache:
-          keys:
-            - m2-cache
-            - source-cache-{{ .Environment.CIRCLE_SHA1 }}
-            - groovy-binaries-2.4.7
+          key: m2-cache
+      - restore_cache:
+          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: groovy-binaries-2.4.7
       - run:
           command: |
             if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
@@ -85,10 +86,11 @@ jobs:
       version: oraclejdk8
     steps:
       - restore_cache:
-          keys:
-            - m2-cache
-            - groovy-binaries-2.4.7
-            - source-cache-{{ .Environment.CIRCLE_SHA1 }}
+          key: m2-cache
+      - restore_cache:
+          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: groovy-binaries-2.4.7
       - run:
           command: |
             if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
@@ -109,10 +111,11 @@ jobs:
       version: oraclejdk8
     steps:
       - restore_cache:
-          keys:
-            - groovy-binaries-2.4.7
-            - m2-cache
-            - source-cache-{{ .Environment.CIRCLE_SHA1 }}
+          key: m2-cache
+      - restore_cache:
+          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: groovy-binaries-2.4.7
       - run:
           command: |
             if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
@@ -131,10 +134,11 @@ jobs:
       version: oraclejdk8
     steps:
       - restore_cache:
-          keys:
-            - groovy-binaries-2.4.7
-            - m2-cache
-            - source-cache-{{ .Environment.CIRCLE_SHA1 }}
+          key: m2-cache
+      - restore_cache:
+          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: groovy-binaries-2.4.7
       - run:
           command: |
             if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
