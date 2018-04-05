@@ -9,11 +9,11 @@ jobs:
       - run: git clone https://github.com/checkstyle/contribution
       - run: java -version
       - run: mvn --version
-      - run: groovy --version | cat
       - run: if [ ! -d groovy-2.4.7 ]; then wget https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip && unzip apache-groovy-binary-2.4.7.zip; fi
       - run: pwd
       - run:
           command: |
+            mvn help:evaluate -Dexpression=settings.localRepository
             cd contribution/checkstyle-tester
             sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
             echo 'class ClassEmpty{}' > src/main/java/EmptyClass.java
