@@ -7,9 +7,9 @@ jobs:
       version: oraclejdk8
     steps:
       - restore_cache:
-          keys:
-            - m2-cache
-            - groovy-binaries-2.4.7
+          key: m2-cache
+      - restore_cache:
+          key: groovy-binaries-2.4.7
 
       - checkout
       - run:
