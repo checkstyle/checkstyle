@@ -1,0 +1,26 @@
+version: 2
+jobs:
+  build:
+    java:
+      version: oraclejdk8
+    steps:
+      checkout:
+        - git clone https://github.com/checkstyle/contribution
+      restore_cache:
+      run: java -version
+      run: mvn --version
+      run: if [ ! -d groovy-2.4.7 ]; then wget https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip && unzip apache-groovy-binary-2.4.7.zip; fi
+      run: pwd
+      run: mvn -e install -Pno-validations
+      save_cache:
+        key: goovy-binaries
+        paths:
+          - groovy-2.4.7
+  test:
+    parallelism: 4
+    steps:
+      - run:
+        command: |
+            echo $(circleci tests glob ".ci/*.sh")
+            circleci tests glob ".ci/*.sh" | xargs -n 1 echo
+
