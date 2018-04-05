@@ -13,6 +13,8 @@ jobs:
       - run: pwd
       - run:
           command: |
+            pwd
+            ls -la
             mvn help:evaluate -Dexpression=settings.localRepository
             cd contribution/checkstyle-tester
             sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
@@ -21,7 +23,8 @@ jobs:
       - save_cache:
           key: goovy-binaries-{{ .Environment.CIRCLE_SHA1 }}
           paths:
-            - groovy-2.4.7
+            - /home/circleci/groovy-2.4.7
+            - /home/circleci/.m2/repository
   test1:
     machine: true
     java:
