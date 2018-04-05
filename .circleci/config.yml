@@ -46,8 +46,6 @@ jobs:
       - run:
           command: |
             cd contribution/checkstyle-tester
-            sed -i'' 's/#infinispan/infinispan/' projects-for-circle.properties
-            groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --config checks-nonjavadoc-error.xml
 workflows:
   version: 2
   build_and_test:
