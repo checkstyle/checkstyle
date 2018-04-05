@@ -1,69 +1,149 @@
 version: 2
 jobs:
+
   build-cache:
     machine: true
     java:
       version: oraclejdk8
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - groovy-binaries-2.4.7
+            - m2-cache
       - run:
-          name: build checkstyle, clone contribution, download groovy
+          name: skip_ci creation
           command: |
-            pwd
-            ls -la
-            java -version
-            mvn --version
-            mvn -e install -Pno-validations
-            cd ../
-            git clone https://github.com/checkstyle/contribution
-            if [ ! -d groovy-2.4.7 ]; then
-              wget https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip
-              unzip apache-groovy-binary-2.4.7.zip;
+            mkdir -p .ci-temp
+            echo -n ".github|appveyor.yml|.travis.yml|.ci|distelli-manifest.yml|fast-forward-merge.sh" >> .ci-temp/skip_ci_files
+            echo -n "|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr|shippable.yml" >> .ci-temp/skip_ci_files
+            echo -n "|shippable.sh|wercker.yml|wercker.sh|intellij-idea-inspections.xml|org.eclipse.jdt.core.prefs" >> .ci-temp/skip_ci_files
+      - run:
+          name: check
+          command: |
+            if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
+              # build checkstyle, clone contribution, download groovy
+              pwd
+              ls -la
+              java -version
+              mvn --version
+              mvn -e install -Pno-validations
+              cd ../
+              git clone https://github.com/checkstyle/contribution
+              if [ ! -d groovy-2.4.7 ]; then
+                wget https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip
+                unzip apache-groovy-binary-2.4.7.zip;
+              fi
+              ls -la
+              # maven cache for checkstyle-tester
+              cd contribution/checkstyle-tester
+              sed -i'' 's/^guava/#guava/' projects-for-circle.properties
+              sed -i'' 's/#checkstyle-sonar/checkstyle-sonar/' projects-for-circle.properties
+              /home/circleci/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --config my_check.xml
             fi
-            ls -la
-      - run:
-          name: mvn cache for checkstyle-tester
-          command: |
-            cd ../
-            cd contribution/checkstyle-tester
-            sed -i'' 's/^guava/#guava/' projects-for-circle.properties
-            sed -i'' 's/#checkstyle-sonar/checkstyle-sonar/' projects-for-circle.properties
-            /home/circleci/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --config my_check.xml
       - save_cache:
-          key: goovy-binaries-{{ .Environment.CIRCLE_SHA1 }}
+          key: groovy-binaries-2.4.7
           paths:
             - /home/circleci/groovy-2.4.7
+      - save_cache:
+          key: m2-cache
+          paths:
             - /home/circleci/.m2/repository
+      - save_cache:
+          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
             - /home/circleci/project
             - /home/circleci/contribution
-  test1:
+
+  test-openjdk_7_8:
     machine: true
     java:
       version: oraclejdk8
     steps:
       - restore_cache:
-          key: goovy-binaries-{{ .Environment.CIRCLE_SHA1 }}
+          keys:
+            - groovy-binaries-2.4.7
+            - m2-cache
+            - source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-            cd ../
-            cd contribution/checkstyle-tester
-            sed -i'' 's/^guava/#guava/' projects-for-circle.properties
-            sed -i'' 's/#infinispan/infinispan/' projects-for-circle.properties
-            /home/circleci/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --config checks-nonjavadoc-error.xml
-  test2:
+            if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
+              cd ../
+              cd contribution/checkstyle-tester
+              sed -i'' 's/^guava/#guava/' projects-for-circle.properties
+              sed -i'' 's/#openjdk7/openjdk7/' projects-for-circle.properties
+              sed -i'' 's/#openjdk8/openjdk8/' projects-for-circle.properties
+              /home/circleci/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --config checks-nonjavadoc-error.xml
+            fi
+
+  test-infinispan-protonpack-jOOL-lucene-solr-openjdk9:
     machine: true
     java:
       version: oraclejdk8
     steps:
       - restore_cache:
-          key: goovy-binaries-{{ .Environment.CIRCLE_SHA1 }}
+          keys:
+            - groovy-binaries-2.4.7
+            - m2-cache
+            - source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-            cd ../
-            cd contribution/checkstyle-tester
-            sed -i'' 's/^guava/#guava/' projects-for-circle.properties
-            sed -i'' 's/#protonpack/protonpack/' projects-for-circle.properties
-            /home/circleci/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --config checks-nonjavadoc-error.xml
+            if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
+              cd ../
+              cd contribution/checkstyle-tester
+              sed -i'' 's/^guava/#guava/' projects-for-circle.properties
+              sed -i'' 's/#openjdk9/openjdk9/' projects-for-circle.properties
+              sed -i'' 's/#infinispan/infinispan/' projects-for-circle.properties
+              sed -i'' 's/#protonpack/protonpack/' projects-for-circle.properties
+              sed -i'' 's/#jOOL/jOOL/' projects-for-circle.properties
+              sed -i'' 's/#lucene-solr/lucene-solr/' projects-for-circle.properties
+              /home/circleci/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --config checks-nonjavadoc-error.xml
+            fi
+
+  test-tapestry5-storm-cassandra:
+    machine: true
+    java:
+      version: oraclejdk8
+    steps:
+      - restore_cache:
+          keys:
+            - groovy-binaries-2.4.7
+            - m2-cache
+            - source-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          command: |
+            if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
+              cd ../
+              cd contribution/checkstyle-tester
+              sed -i'' 's/^guava/#guava/' projects-for-circle.properties
+              sed -i'' 's/#tapestry-5/tapestry-5/' projects-for-circle.properties
+              sed -i'' 's/#storm/storm/' projects-for-circle.properties
+              sed -i'' 's/#cassandra/cassandra/' projects-for-circle.properties
+              /home/circleci/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --config checks-nonjavadoc-error.xml
+            fi
+
+  test-apache-hadoop-scouter-groovy:
+    machine: true
+    java:
+      version: oraclejdk8
+    steps:
+      - restore_cache:
+          keys:
+            - groovy-binaries-2.4.7
+            - m2-cache
+            - source-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          command: |
+            if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
+              cd ../
+              cd contribution/checkstyle-tester
+              sed -i'' 's/^guava/#guava/' projects-for-circle.properties
+              sed -i'' 's/#apache-commons/apache-commons/' projects-for-circle.properties
+              sed -i'' 's/#hadoop/hadoop/' projects-for-circle.properties
+              sed -i'' 's/#groovy/groovy/' projects-for-circle.properties
+              sed -i'' 's/#scouter/scouter/' projects-for-circle.properties
+              /home/circleci/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --config checks-nonjavadoc-error.xml
+            fi
 
 workflows:
   version: 2
