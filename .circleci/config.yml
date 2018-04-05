@@ -15,7 +15,7 @@ jobs:
           name: skip_ci creation
           command: |
             mkdir -p .ci-temp
-            echo -n ".github|appveyor.yml|.travis.yml|.ci|distelli-manifest.yml|fast-forward-merge.sh" >> .ci-temp/skip_ci_files
+            echo -n ".github|appveyor.yml|.travis.yml|\.ci/|distelli-manifest.yml|fast-forward-merge.sh" >> .ci-temp/skip_ci_files
             echo -n "|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr|shippable.yml" >> .ci-temp/skip_ci_files
             echo -n "|shippable.sh|wercker.yml|wercker.sh|intellij-idea-inspections.xml|org.eclipse.jdt.core.prefs" >> .ci-temp/skip_ci_files
       - run:
@@ -150,10 +150,16 @@ workflows:
   build-test-regression:
     jobs:
       - build-cache
-      - test1:
+      - test-openjdk_7_8:
           requires:
             - build-cache
-      - test2:
+      - test-infinispan-protonpack-jOOL-lucene-solr-openjdk9:
+          requires:
+            - build-cache
+      - test-tapestry5-storm-cassandra:
+          requires:
+            - build-cache
+      - test-apache-hadoop-scouter-groovy:
           requires:
             - build-cache
 
