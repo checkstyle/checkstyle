@@ -6,7 +6,7 @@ skip_commits:
     - .ci/
     - .github/
     - travis.yml
-    - circle.yml
+    - .circleci/
     - distelli-manifest.yml
     - fast-forward-merge.sh
     - LICENSE
