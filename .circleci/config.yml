@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build-cache:
+  build_cache:
     machine: true
     java:
       version: oraclejdk8
@@ -50,11 +50,11 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build-cache
+      - build_cache
       - test1
           requires:
-            - build-cache
+            - build_cache
       - test2
           requires:
-            - build-cache
+            - build_cache
 
