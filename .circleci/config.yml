@@ -1,51 +1,55 @@
-version: 2
-jobs:
-  build:
-    docker:
-      - image: circleci/openjdk:8u162-jdk-node-browsers
-    steps:
-      - checkout
-      - run: mvn -e install -Pno-validations
-  test:
-    docker:
-      - image: circleci/openjdk:8-jdk-node-browsers
-    steps:
-      - checkout
-      - run: mvn -e test
-workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - build
-      - test
-
 # version: 2
 # jobs:
 #   build:
-#     machine: true
-#     parallelism: 4
-#     java:
-#       version: oraclejdk8
+#     docker:
+#       - image: circleci/openjdk:8u162-jdk-node-browsers
 #     steps:
 #       - checkout
-#       - run: git clone https://github.com/checkstyle/contribution
-#       - restore_cache:
-#           key: goovy-binaries
-#       - run: java -version
-#       - run: mvn --version
-#       - run: if [ ! -d groovy-2.4.7 ]; then wget https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip && unzip apache-groovy-binary-2.4.7.zip; fi
-#       - run: pwd
 #       - run: mvn -e install -Pno-validations
-#       - save_cache:
-#           key: goovy-binaries
-#           paths:
-#             - groovy-2.4.7
 #   test:
-#     machine: true
-#     parallelism: 4
+#     docker:
+#       - image: circleci/openjdk:8-jdk-node-browsers
 #     steps:
-#       - run:
-#         command: |
-#             echo $(circleci tests glob ".ci/*.sh")
-#             circleci tests glob ".ci/*.sh" | xargs -n 1 echo
+#       - checkout
+#       - run: mvn -e test
+# workflows:
+#   version: 2
+#   build_and_test:
+#     jobs:
+#       - build
+#       - test
+
+version: 2
+jobs:
+  build:
+    machine: true
+    parallelism: 4
+    java:
+      version: oraclejdk8
+    steps:
+      - checkout
+      - run: git clone https://github.com/checkstyle/contribution
+      - restore_cache:
+          key: goovy-binaries
+      - run: java -version
+      - run: mvn --version
+      - run: if [ ! -d groovy-2.4.7 ]; then wget https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip && unzip apache-groovy-binary-2.4.7.zip; fi
+      - run: pwd
+      - run: mvn -e install -Pno-validations
+      - run:
+        command: |
+            echo $(circleci tests glob ".ci/*.sh")
+            circleci tests glob ".ci/*.sh" | xargs -n 1 echo
+      - save_cache:
+          key: goovy-binaries
+          paths:
+            - groovy-2.4.7
+  test:
+    machine: true
+    parallelism: 4
+    steps:
+      - run:
+        command: |
+            echo $(circleci tests glob ".ci/*.sh")
+            circleci tests glob ".ci/*.sh" | xargs -n 1 echo
 
