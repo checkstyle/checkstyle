@@ -46,7 +46,9 @@ jobs:
           paths:
             - /home/circleci/groovy-2.4.7
       - save_cache:
-          key: m2-cache
+          # Save by timestamp , but will be restored by prefix without timestamp (most recent)
+          #https://discuss.circleci.com/t/add-mechanism-to-update-existing-cache-key/9014/13
+          key: m2-cache-epoch-{{ epoch }}
           paths:
             - /home/circleci/.m2/repository
       - save_cache:
@@ -62,9 +64,9 @@ jobs:
     steps:
       - restore_cache:
           keys:
+            - source-cache-{{ .Environment.CIRCLE_SHA1 }}
             - groovy-binaries-2.4.7
             - m2-cache
-            - source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
             if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
@@ -83,8 +85,8 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - groovy-binaries-2.4.7
             - m2-cache
+            - groovy-binaries-2.4.7
             - source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
