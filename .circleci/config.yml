@@ -52,4 +52,8 @@ workflows:
     jobs:
       - build-cache
       - test1
+          requires:
+            - build-cache
       - test2
+          requires:
+            - build-cache
