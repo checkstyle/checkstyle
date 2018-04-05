@@ -28,7 +28,7 @@
             Indentation: wrapped method name. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5655">#5655</a>
           </li>
           <li>
-            Indentaton: super() is ignored. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/3808">#3808</a>
+            Indentation: super() is ignored. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/3808">#3808</a>
           </li>
           <li>
             IllegalType: support arrays as types. Author: kazachka <a href="https://github.com/checkstyle/checkstyle/issues/4429">#4429</a>
@@ -43,7 +43,7 @@
             PMD 6: migrate configuration to pmd 6.X version. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5603">#5603</a>
           </li>
           <li>
-            wercker is failing with uncler message after release on non-rebased branches. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/5452">#5452</a>
+            wercker is failing with unclear message after release on non-rebased branches. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/5452">#5452</a>
           </li>
           <li>
             Add openjdk8/9 to Travis/AppVeyor. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5663">#5663</a>
@@ -160,7 +160,7 @@
             Jacoco coverage report. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5516">#5516</a>
           </li>
           <li>
-            Use StringBuilder instead of StringBuffer as it offers high performanâ€¦. Author: reudismam <a href="https://github.com/checkstyle/checkstyle/issues/5505">#5505</a>
+            Use StringBuilder instead of StringBuffer as it offers high performance. Author: reudismam <a href="https://github.com/checkstyle/checkstyle/issues/5505">#5505</a>
           </li>
           <li>
             AvoidEscapedUnicodeCharactersCheck: re-organize regular expressions. Author: SunriseCoder <a href="https://github.com/checkstyle/checkstyle/issues/5427">#5427</a>
