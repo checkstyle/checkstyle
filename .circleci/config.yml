@@ -5,7 +5,7 @@ jobs:
     java:
       version: oraclejdk8
     steps:
-      - checkout:
+      - checkout
       - run: git clone https://github.com/checkstyle/contribution
       - restore_cache:
           key: goovy-binaries
