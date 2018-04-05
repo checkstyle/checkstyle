@@ -13,11 +13,11 @@ jobs:
       - run: if [ ! -d groovy-2.4.7 ]; then wget https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip && unzip apache-groovy-binary-2.4.7.zip; fi
       - run: pwd
       - run:
-        command: |
-          cd contribution/checkstyle-tester
-          sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
-          echo 'class ClassEmpty{}' > src/main/java/EmptyClass.java
-          groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-to-test-on.properties --config my_check.xml
+          command: |
+            cd contribution/checkstyle-tester
+            sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
+            echo 'class ClassEmpty{}' > src/main/java/EmptyClass.java
+            groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-to-test-on.properties --config my_check.xml
       - save_cache:
           key: goovy-binaries-{{ .Environment.CIRCLE_SHA1 }}
           paths:
