@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build_cache:
+  build-cache:
     machine: true
     java:
       version: oraclejdk8
@@ -46,15 +46,16 @@ jobs:
       - run:
           command: |
             cd contribution/checkstyle-tester
+
 workflows:
   version: 2
-  build_and_test:
+  build-test-regression:
     jobs:
-      - build_cache
-      - test1
+      - build-cache
+      - test1:
           requires:
-            - build_cache
-      - test2
+            - build-cache
+      - test2:
           requires:
-            - build_cache
+            - build-cache
 
