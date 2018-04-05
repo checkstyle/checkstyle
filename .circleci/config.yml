@@ -7,13 +7,14 @@ jobs:
     steps:
       - checkout
       - run:
-          name: clone contribution, download groovy
+          name: build checkstyle, clone contribution, download groovy
           command: |
-            cd ../
             pwd
             ls -la
             java -version
             mvn --version
+            mvn -e install -Pno-validations
+            cd ../
             git clone https://github.com/checkstyle/contribution
             if [ ! -d groovy-2.4.7 ]; then
               wget https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip
