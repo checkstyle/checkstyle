@@ -1,0 +1,172 @@
+version: 2
+jobs:
+
+  build-cache:
+    machine: true
+    java:
+      version: oraclejdk8
+    steps:
+      - restore_cache:
+          key: m2-cache
+      - restore_cache:
+          key: groovy-2.4.7
+
+      - checkout
+      - run:
+          name: skip_ci creation
+          command: |
+            mkdir -p .ci-temp
+            echo -n ".github|appveyor.yml|.travis.yml|\.ci/|distelli-manifest.yml|fast-forward-merge.sh" >> .ci-temp/skip_ci_files
+            echo -n "|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr|shippable.yml" >> .ci-temp/skip_ci_files
+            echo -n "|shippable.sh|wercker.yml|wercker.sh|intellij-idea-inspections.xml|org.eclipse.jdt.core.prefs" >> .ci-temp/skip_ci_files
+      - run:
+          name: download all maven dependecies
+          command: |
+            if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
+              # build checkstyle, clone contribution, download groovy
+              pwd
+              ls -la
+              java -version
+              mvn --version
+              mvn -e install -Pno-validations
+              cd ../
+              git clone https://github.com/checkstyle/contribution
+              if [ ! -d groovy-2.4.7 ]; then
+                wget https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip
+                unzip apache-groovy-binary-2.4.7.zip;
+              fi
+              ls -la
+              # maven cache for checkstyle-tester
+              cd contribution/checkstyle-tester
+              sed -i'' 's/^guava/#guava/' projects-for-circle.properties
+              sed -i'' 's/#checkstyle-sonar/checkstyle-sonar/' projects-for-circle.properties
+              /home/circleci/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --config my_check.xml
+            fi
+      - save_cache:
+          key: groovy-2.4.7
+          paths:
+            - /home/circleci/groovy-2.4.7
+      - save_cache:
+          # Save by timestamp , but will be restored by prefix without timestamp (most recent)
+          #https://discuss.circleci.com/t/add-mechanism-to-update-existing-cache-key/9014/13
+          key: m2-cache-epoch-{{ epoch }}
+          paths:
+            - /home/circleci/.m2/repository
+      - save_cache:
+          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - /home/circleci/project
+            - /home/circleci/contribution
+
+  test-openjdk_7_8:
+    machine: true
+    java:
+      version: oraclejdk8
+    steps:
+      - restore_cache:
+          key: m2-cache
+      - restore_cache:
+          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: groovy-2.4.7
+      - run:
+          command: |
+            if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
+              cd ../
+              cd contribution/checkstyle-tester
+              sed -i'' 's/^guava/#guava/' projects-for-circle.properties
+              sed -i'' 's/#openjdk7/openjdk7/' projects-for-circle.properties
+              sed -i'' 's/#openjdk8/openjdk8/' projects-for-circle.properties
+              /home/circleci/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --config checks-nonjavadoc-error.xml
+            fi
+
+  test-infinispan-protonpack-jOOL-lucene-solr-openjdk9:
+    machine: true
+    java:
+      version: oraclejdk8
+    steps:
+      - restore_cache:
+          key: m2-cache
+      - restore_cache:
+          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: groovy-2.4.7
+      - run:
+          command: |
+            if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
+              cd ../
+              cd contribution/checkstyle-tester
+              sed -i'' 's/^guava/#guava/' projects-for-circle.properties
+              sed -i'' 's/#openjdk9/openjdk9/' projects-for-circle.properties
+              sed -i'' 's/#infinispan/infinispan/' projects-for-circle.properties
+              sed -i'' 's/#protonpack/protonpack/' projects-for-circle.properties
+              sed -i'' 's/#jOOL/jOOL/' projects-for-circle.properties
+              sed -i'' 's/#lucene-solr/lucene-solr/' projects-for-circle.properties
+              /home/circleci/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --config checks-nonjavadoc-error.xml
+            fi
+
+  test-tapestry5-storm-cassandra:
+    machine: true
+    java:
+      version: oraclejdk8
+    steps:
+      - restore_cache:
+          key: m2-cache
+      - restore_cache:
+          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: groovy-2.4.7
+      - run:
+          command: |
+            if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
+              cd ../
+              cd contribution/checkstyle-tester
+              sed -i'' 's/^guava/#guava/' projects-for-circle.properties
+              sed -i'' 's/#tapestry-5/tapestry-5/' projects-for-circle.properties
+              sed -i'' 's/#storm/storm/' projects-for-circle.properties
+              sed -i'' 's/#cassandra/cassandra/' projects-for-circle.properties
+              /home/circleci/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --config checks-nonjavadoc-error.xml
+            fi
+
+  test-apache-hadoop-scouter-groovy:
+    machine: true
+    java:
+      version: oraclejdk8
+    steps:
+      - restore_cache:
+          key: m2-cache
+      - restore_cache:
+          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: groovy-2.4.7
+      - run:
+          command: |
+            if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
+              cd ../
+              cd contribution/checkstyle-tester
+              sed -i'' 's/^guava/#guava/' projects-for-circle.properties
+              sed -i'' 's/#apache-commons/apache-commons/' projects-for-circle.properties
+              sed -i'' 's/#hadoop/hadoop/' projects-for-circle.properties
+              sed -i'' 's/#groovy/groovy/' projects-for-circle.properties
+              sed -i'' 's/#scouter/scouter/' projects-for-circle.properties
+              /home/circleci/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --config checks-nonjavadoc-error.xml
+            fi
+
+workflows:
+  version: 2
+  build-test-regression:
+    jobs:
+      - build-cache
+      - test-openjdk_7_8:
+          requires:
+            - build-cache
+      - test-infinispan-protonpack-jOOL-lucene-solr-openjdk9:
+          requires:
+            - build-cache
+      - test-tapestry5-storm-cassandra:
+          requires:
+            - build-cache
+      - test-apache-hadoop-scouter-groovy:
+          requires:
+            - build-cache
+
