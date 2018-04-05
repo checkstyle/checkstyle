@@ -3,6 +3,7 @@ jobs:
   build:
     java:
       version: oraclejdk8
+    machine: true
     steps:
       - checkout:
         - git clone https://github.com/checkstyle/contribution
@@ -18,6 +19,7 @@ jobs:
           paths:
             - groovy-2.4.7
   test:
+    machine: true
     parallelism: 4
     steps:
       - run:
