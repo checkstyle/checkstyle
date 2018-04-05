@@ -23,7 +23,7 @@ version: 2
 jobs:
   build:
     machine: true
-    parallelism: 4
+    parallelism: 6
     java:
       version: oraclejdk8
     steps:
@@ -32,10 +32,10 @@ jobs:
       - restore_cache:
           key: goovy-binaries
       - run: java -version
-      - run: mvn --version
-      - run: if [ ! -d groovy-2.4.7 ]; then wget https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip && unzip apache-groovy-binary-2.4.7.zip; fi
+      #- run: mvn --version
+      #- run: if [ ! -d groovy-2.4.7 ]; then wget https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip && unzip apache-groovy-binary-2.4.7.zip; fi
       - run: pwd
-      - run: mvn --version
+      #- run: java -version
       - run:
           command: |
             echo $(ls -1 .ci/*.sh | circleci tests split)
