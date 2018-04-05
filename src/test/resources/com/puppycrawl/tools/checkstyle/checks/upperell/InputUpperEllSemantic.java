@@ -52,7 +52,7 @@ class InputUpperEllSemantic
         catch (IllegalStateException emptyCatchIsAlwaysAnError) {
         }
         catch (NullPointerException ex) {
-            // can never happen, but only commentig this is currently an error
+            // can never happen, but only commenting this is currently an error
             // Possible future enhancement: allowEmptyCatch="commented"
         }
         catch (ArrayIndexOutOfBoundsException ex) {
