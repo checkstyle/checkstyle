@@ -7,6 +7,7 @@ jobs:
     steps:
       - checkout
       - run:
+          name: clone contribution, download groovy
           command: |
             cd ../
             pwd
@@ -20,6 +21,7 @@ jobs:
             fi
             ls -la
       - run:
+          name: mvn cache for checkstyle-tester
           command: |
             cd ../
             cd contribution/checkstyle-tester
@@ -41,11 +43,10 @@ jobs:
           key: goovy-binaries-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-            pwd
-            ls -la
+            cd ../
             cd contribution/checkstyle-tester
-            sed -i'' 's/#protonpack/protonpack/' projects-for-circle.properties
-            groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --config checks-nonjavadoc-error.xml
+            sed -i'' 's/#infinispan/infinispan/' projects-for-circle.properties
+            /home/circleci/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --config checks-nonjavadoc-error.xml
   test2:
     machine: true
     java:
@@ -55,7 +56,10 @@ jobs:
           key: goovy-binaries-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
+            cd ../
             cd contribution/checkstyle-tester
+            sed -i'' 's/#protonpack/protonpack/' projects-for-circle.properties
+            /home/circleci/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --config checks-nonjavadoc-error.xml
 
 workflows:
   version: 2
