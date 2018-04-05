@@ -56,7 +56,11 @@ jobs:
           key: goovy-binaries-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
+            pwd
+            ls -la
             cd ../
+            ls -la
+            pwd
             cd contribution/checkstyle-tester
             sed -i'' 's/#protonpack/protonpack/' projects-for-circle.properties
             /home/circleci/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --config checks-nonjavadoc-error.xml
