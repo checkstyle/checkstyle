@@ -27,7 +27,7 @@ jobs:
             cd ../
             cd contribution/checkstyle-tester
             sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
-            echo 'class ClassEmpty{}' > src/main/java/EmptyClass.java
+            sed -i'' 's/#checkstyle-sonar/checkstyle-sonar/' projects-for-circle.properties
             /home/circleci/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-to-test-on.properties --config my_check.xml
       - save_cache:
           key: goovy-binaries-{{ .Environment.CIRCLE_SHA1 }}
@@ -47,6 +47,7 @@ jobs:
           command: |
             cd ../
             cd contribution/checkstyle-tester
+            sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
             sed -i'' 's/#infinispan/infinispan/' projects-for-circle.properties
             /home/circleci/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --config checks-nonjavadoc-error.xml
   test2:
@@ -60,6 +61,7 @@ jobs:
           command: |
             cd ../
             cd contribution/checkstyle-tester
+            sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
             sed -i'' 's/#protonpack/protonpack/' projects-for-circle.properties
             /home/circleci/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --config checks-nonjavadoc-error.xml
 
