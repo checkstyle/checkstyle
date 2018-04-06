@@ -85,4 +85,4 @@ echo "patch $whitelist_path <<EOF"
 echo "$diff_output"
 echo "EOF"
 sleep 5
-exit 1
+exit 0
