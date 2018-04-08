@@ -87,8 +87,6 @@
                  nl.jqno.equalsverifier.EqualsVerifier#.verify() as correctness check method -->
             <!-- in AstRegressionTest pmd does not find asserts in inner classes methods called from the test method -->
             <!-- in XdocsPagesTest pmd does not find asserts in lambdas -->
-            <!-- PackageObjectFactoryTest.testCreateModuleWithNonExistName pmd does not find asserts
-                 in methods called from the test method -->
             <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AllChecksTest'
               or @Image='AstRegressionTest' or @Image='DetailASTTest'
               or @Image='ImportControlCheckTest']//PrimaryPrefix/Name[@Image='verify']
@@ -99,7 +97,6 @@
               or @Image='SuppressWithNearbyCommentFilterTest' or @Image='SuppressionCommentFilterTest'
               or @Image='SuppressionFilterTest' or @Image='SuppressionXpathFilterTest'
               or @Image='SuppressWithPlainTextCommentFilterTest' or @Image='XpathFilterTest']//PrimarySuffix[@Image='verify']
-            | //ClassOrInterfaceDeclaration[@Image='PackageObjectFactoryTest']//MethodDeclarator[@Image='testCreateModuleWithNonExistName']
             | //ClassOrInterfaceDeclaration[@Image='XdocsPagesTest']//MethodDeclarator[@Image='testAllChecksPresentOnAvailableChecksPage']
             "/>
         </properties>
