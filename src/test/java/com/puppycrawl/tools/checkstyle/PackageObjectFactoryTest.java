@@ -153,24 +153,22 @@ public class PackageObjectFactoryTest {
 
     @Test
     public void testCreateModuleWithNonExistName() {
-        testCreateModuleWithNonExistName("NonExistClassOne");
-        testCreateModuleWithNonExistName("NonExistClassTwo");
-    }
-
-    private void testCreateModuleWithNonExistName(String name) {
-        try {
-            factory.createModule(name);
-            fail("Exception is expected");
-        }
-        catch (CheckstyleException ex) {
-            final String attemptedNames = BASE_PACKAGE + PACKAGE_SEPARATOR + name + STRING_SEPARATOR
-                    + name + CHECK_SUFFIX + STRING_SEPARATOR
+        final String[] names = {"NonExistClassOne", "NonExistClassTwo", };
+        for (String name : names) {
+            try {
+                factory.createModule(name);
+                fail("Exception is expected");
+            }
+            catch (CheckstyleException ex) {
+                final String attemptedNames = BASE_PACKAGE + PACKAGE_SEPARATOR + name
+                    + STRING_SEPARATOR + name + CHECK_SUFFIX + STRING_SEPARATOR
                     + BASE_PACKAGE + PACKAGE_SEPARATOR + name + CHECK_SUFFIX;
-            final LocalizedMessage exceptionMessage = new LocalizedMessage(0,
+                final LocalizedMessage exceptionMessage = new LocalizedMessage(0,
                     Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
                     new String[] {name, attemptedNames}, null, factory.getClass(), null);
-            assertEquals("Invalid exception message",
+                assertEquals("Invalid exception message",
                     exceptionMessage.getMessage(), ex.getMessage());
+            }
         }
     }
 
