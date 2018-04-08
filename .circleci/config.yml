@@ -2,6 +2,8 @@ version: 2
 jobs:
 
   build-caches:
+    environment:
+      GROOVY_PATH: "/home/circleci/groovy-2.4.7/"
     machine: true
     java:
       version: oraclejdk8
@@ -36,12 +38,15 @@ jobs:
                 wget https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip
                 unzip apache-groovy-binary-2.4.7.zip;
               fi
+              # load custom PATH
+              export PATH=$GROOVY_PATH/bin:$PATH
+              #
               ls -la
               # maven cache for checkstyle-tester
               cd contribution/checkstyle-tester
               sed -i'' 's/^guava/#guava/' projects-for-circle.properties
               sed -i'' 's/#checkstyle-sonar/checkstyle-sonar/' projects-for-circle.properties
-              /home/circleci/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --config my_check.xml
+              groovy launch.groovy --listOfProjects projects-for-circle.properties --config my_check.xml
             fi
       - save_cache:
           key: groovy-2.4.7
@@ -63,6 +68,8 @@ jobs:
     machine: true
     java:
       version: oraclejdk8
+    environment:
+      GROOVY_PATH: "/home/circleci/groovy-2.4.7/"
     steps:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
       - restore_cache:
@@ -73,6 +80,8 @@ jobs:
           key: groovy-2.4.7
       - run:
           command: |
+            # load custom PATH
+            export PATH=$GROOVY_PATH/bin:$PATH
             if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
               CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
               echo 'CS_POM_VERSION='${CS_POM_VERSION}
@@ -81,7 +90,7 @@ jobs:
               sed -i'' 's/^guava/#guava/' projects-for-circle.properties
               sed -i'' 's/#openjdk7/openjdk7/' projects-for-circle.properties
               sed -i'' 's/#openjdk8/openjdk8/' projects-for-circle.properties
-              /home/circleci/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties \
+              groovy launch.groovy --listOfProjects projects-for-circle.properties \
                 --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
             fi
 
@@ -89,6 +98,8 @@ jobs:
     machine: true
     java:
       version: oraclejdk8
+    environment:
+      GROOVY_PATH: "/home/circleci/groovy-2.4.7/"
     steps:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
       - restore_cache:
@@ -99,6 +110,8 @@ jobs:
           key: groovy-2.4.7
       - run:
           command: |
+            # load custom PATH
+            export PATH=$GROOVY_PATH/bin:$PATH
             if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
               CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
               echo 'CS_POM_VERSION='${CS_POM_VERSION}
@@ -110,7 +123,7 @@ jobs:
               sed -i'' 's/#protonpack/protonpack/' projects-for-circle.properties
               sed -i'' 's/#jOOL/jOOL/' projects-for-circle.properties
               sed -i'' 's/#lucene-solr/lucene-solr/' projects-for-circle.properties
-              /home/circleci/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties \
+              groovy launch.groovy --listOfProjects projects-for-circle.properties \
                 --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
             fi
 
@@ -118,6 +131,8 @@ jobs:
     machine: true
     java:
       version: oraclejdk8
+    environment:
+      GROOVY_PATH: "/home/circleci/groovy-2.4.7/"
     steps:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
       - restore_cache:
@@ -128,6 +143,8 @@ jobs:
           key: groovy-2.4.7
       - run:
           command: |
+            # load custom PATH
+            export PATH=$GROOVY_PATH/bin:$PATH
             if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
               CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
               echo 'CS_POM_VERSION='${CS_POM_VERSION}
@@ -137,7 +154,7 @@ jobs:
               sed -i'' 's/#tapestry-5/tapestry-5/' projects-for-circle.properties
               sed -i'' 's/#storm/storm/' projects-for-circle.properties
               sed -i'' 's/#cassandra/cassandra/' projects-for-circle.properties
-              /home/circleci/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties \
+              groovy launch.groovy --listOfProjects projects-for-circle.properties \
                 --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
             fi
 
@@ -145,6 +162,8 @@ jobs:
     machine: true
     java:
       version: oraclejdk8
+    environment:
+      GROOVY_PATH: "/home/circleci/groovy-2.4.7/"
     steps:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
       - restore_cache:
@@ -155,6 +174,8 @@ jobs:
           key: groovy-2.4.7
       - run:
           command: |
+            # load custom PATH
+            export PATH=$GROOVY_PATH/bin:$PATH
             if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
               CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
               echo 'CS_POM_VERSION='${CS_POM_VERSION}
@@ -165,7 +186,7 @@ jobs:
               sed -i'' 's/#hadoop/hadoop/' projects-for-circle.properties
               sed -i'' 's/#groovy/groovy/' projects-for-circle.properties
               sed -i'' 's/#scouter/scouter/' projects-for-circle.properties
-              /home/circleci/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties \
+              groovy launch.groovy --listOfProjects projects-for-circle.properties \
                 --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
             fi
 
