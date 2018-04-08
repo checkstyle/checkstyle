@@ -45,6 +45,8 @@ echo "Run w"
 find . \
   -name .git -prune -o -name .hg -prune -o \
   -name images -prune -o \
+  -path 'src/it/resources' -prune -o \
+  -path 'src/test/resources' -prune -o \
   -name 'messages*_??.properties' -prune -o -name '*_??.translation*' -prune -o \
   -name $(basename $temp) -prune -o \
   -type f -print0 |\
