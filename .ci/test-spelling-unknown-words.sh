@@ -51,7 +51,8 @@ find . \
   -name $(basename $temp) -prune -o \
   -type f -print0 |\
   xargs -0 $word_splitter |\
-  $word_splitter > $run_output
+  $word_splitter |\
+  perl -p -n -e 's/ \(.*//' > $run_output
 
 printDetails() {
   echo ''
