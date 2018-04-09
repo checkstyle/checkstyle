@@ -7,6 +7,35 @@
   <description>
     PMD common ruleset for Checkstyle main/test sourcesets
   </description>
+
+  <rule ref="category/java/bestpractices.xml">
+    <!-- We do not care about this minor overhead, we are not Android application and we do not
+         want to change visibility of methods. Package-private visibility should be avoid almost
+         always. -->
+    <exclude name="AccessorMethodGeneration"/>
+    <!-- The PMD mistakes the AbstractViolationReporter::log() as a debug log. -->
+    <exclude name="GuardLogStatement"/>
+  </rule>
+  <rule ref="category/java/bestpractices.xml/AvoidPrintStackTrace">
+    <properties>
+      <!-- It is ok to use print stack trace in CLI class. -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/bestpractices.xml/JUnitAssertionsShouldIncludeMessage">
+    <properties>
+      <!-- The PMD check accepts only a string constant as the assert message.
+           This check uses a method call. -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocCatchCheck']//MethodDeclaration[@Name='visitJavadocToken']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/bestpractices.xml/SystemPrintln">
+    <properties>
+      <!-- it is ok to use println in CLI class. -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main']"/>
+    </properties>
+  </rule>
+
   <rule ref="category/java/errorprone.xml">
     <!-- That rule is not practical, no options to allow some magic numbers,
          we will use our implementation. -->
@@ -285,19 +314,6 @@
 
   <rule ref="rulesets/java/imports.xml"/>
 
-  <rule ref="rulesets/java/logging-java.xml/SystemPrintln">
-    <properties>
-      <!-- it is ok to use println in CLI class -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main' or @Image='JavadocPropertiesGenerator']"/>
-    </properties>
-  </rule>
-  <rule ref="rulesets/java/logging-java.xml/AvoidPrintStackTrace">
-    <properties>
-      <!-- it is ok to use print stack trace in CLI class -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main' or @Image='JavadocPropertiesGenerator']"/>
-    </properties>
-  </rule>
-
   <rule ref="rulesets/java/migrating.xml"/>
 
   <rule ref="rulesets/java/naming.xml">
@@ -379,14 +395,7 @@
       <property name="skipAnnotations" value="true"/>
     </properties>
   </rule>
-  <rule ref="rulesets/java/sunsecure.xml/MethodReturnsInternalArray">
-    <properties>
-      <!--It's not important when array is empty-->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocNodeImpl']"/>
-    </properties>
-  </rule>
   <rule ref="rulesets/java/typeresolution.xml"/>
   <rule ref="rulesets/java/unnecessary.xml"/>
-  <rule ref="rulesets/java/unusedcode.xml"/>
 
 </ruleset>
