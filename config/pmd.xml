@@ -70,29 +70,54 @@
 
   <rule ref="rulesets/java/basic.xml"/>
   <rule ref="rulesets/java/braces.xml"/>
-  <rule ref="rulesets/java/codesize.xml">
-    <!-- we are using CyclomaticComplexity -->
-    <exclude name="ModifiedCyclomaticComplexity"/>
-    <!-- we are using CyclomaticComplexity -->
-    <exclude name="StdCyclomaticComplexity"/>
-  </rule>
 
-  <rule ref="rulesets/java/codesize.xml/NcssCount">
+  <rule ref="category/java/design.xml">
+    <!-- Too much false-positives on the check classes.
+         We do not follow the philosophy of complete encapsulation, we like data classes
+         (preferable immutable) to transfer content from one part to another.
+         There is no way to configure the rule (it has no properties). -->
+    <exclude name="DataClass"/>
+    <!-- Too much alarms on the check classes, we will never move logic out of the check,
+         each check is an independent logic container. -->
+    <exclude name="GodClass"/>
+    <!-- Too many violations, will be suppressed until we find out how use these metrics. -->
+    <exclude name="LawOfDemeter"/>
+  </rule>
+  <rule ref="category/java/design.xml/AvoidCatchingGenericException">
+    <properties>
+      <!-- There is no other way to deliver the filename that was under processing.
+           See https://github.com/checkstyle/checkstyle/issues/2285 -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Checker']//MethodDeclaration[@Name='processFiles']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/design.xml/AvoidThrowingRawExceptionTypes">
+    <properties>
+      <!-- There is no other way to deliver the filename that was under processing.
+           See https://github.com/checkstyle/checkstyle/issues/2285 -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Checker']//MethodDeclaration[@Name='processFiles']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/design.xml/CouplingBetweenObjects">
+    <properties>
+      <!-- I do not see any problem, looks like a false positive. -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='HandlerFactory']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/design.xml/NcssCount">
     <properties>
       <property name="methodReportLevel" value="32"/>
-      <!-- The classes Main, PackageObjectFactory, CheckstyleAntTask, RequireThisCheck,
+      <!-- Main, PackageObjectFactory, CheckstyleAntTask, RequireThisCheck, HandlerFactory,
              VariableDeclarationUsageDistanceCheck, CommentsIndentationCheck, JavadocMethodCheck,
-             HandlerFactory are big and should not be split without a good reason.
-           The test classes should be one whole piece of code.
+             are big and should not be split without a good reason.
            The methods visitToken/leaveToken are a big SWITCH block with a number of IF blocks.
              If we split the block to several methods it will damage the readability.
-           The methods XMLLogger.encode, FallThroughCheck.isTerminated, ElementNode.iterateAxis,
+           XMLLogger.encode, FallThroughCheck.isTerminated, ElementNode.iterateAxis,
              NoWhitespaceAfterCheck.getArrayDeclaratorPreviousElement are also huge switches,
              they has to be monolithic. -->
       <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main'
         or @Image='PackageObjectFactory' or @Image='CheckstyleAntTask' or @Image='RequireThisCheck'
         or @Image='VariableDeclarationUsageDistanceCheck' or @Image='CommentsIndentationCheck'
-        or @Image='JavadocMethodCheck' or @Image='HandlerFactory' or ends-with(@Image,'Test')]
+        or @Image='JavadocMethodCheck' or @Image='HandlerFactory']
       | //ClassOrInterfaceDeclaration[@Image='XMLLogger']//MethodDeclaration[@Name='encode']
       | //ClassOrInterfaceDeclaration[@Image='LeftCurlyCheck' or @Image='FinalLocalVariableCheck'
         or @Image='ImportOrderCheck' or @Image='NPathComplexityCheck']//MethodDeclaration[@Name='visitToken']
@@ -104,66 +129,82 @@
       "/>
     </properties>
   </rule>
-
-  <rule ref="rulesets/java/codesize.xml/CyclomaticComplexity">
+  <rule ref="category/java/design.xml/CyclomaticComplexity">
     <properties>
       <property name="classReportLevel" value="76"/>
       <property name="methodReportLevel" value="11"/>
-      <!-- DeclarationOrder - 'visitToken' has just big SWITCH block which contains IF blocks.
-           If we split the block to several methods it will damage readability.
-           validateCli is not reasonable to split as encapsulation of logic will be damaged
-           getDetails - huge Switch, it has to be monolithic
-           JavadocMethodCheck, JavadocStyleCheck, JavadocUtils.getJavadocTags() - deprecated
-           FinalLocalVariableCheck.visitToken() - it is just big switch , not could be done
-           GenericWhitespaceCheck.processSingleGeneric() - it contains a lot of similar to each other and very simple condition
-           VariableDeclarationUsageDistanceCheck, CustomImportOrderCheck - it is not OK to have such a complicated logic need to be refactored.
-      -->
-      <property name="violationSuppressXPath" value="//DeclarationOrder[@Name='visitToken'] and //MethodDeclaration[@Name='validateCli' and ../../..[@Image='Main']] | //MethodDeclaration[@Name='processSingleGeneric' and ../../..[@Image='GenericWhitespaceCheck']] | //MethodDeclaration[@Name='visitToken' and ../../..[@Image='FinalLocalVariableCheck']] | //MethodDeclaration[@Name='getJavadocTags' and ../../..[@Image='JavadocUtils']] | //MethodDeclaration[@Name='getDetails' and ../../..[@Image='RightCurlyCheck']] | //ClassOrInterfaceDeclaration[@Image='JavadocMethodCheck' or @Image='JavadocStyleCheck' or @Image='VariableDeclarationUsageDistanceCheck' or @Image='CustomImportOrderCheck']"/>
+      <!-- RequireThisCheck, VariableDeclarationUsageDistanceCheck, XdocsPagesTest,
+             JavadocMethodCheck and CommentsIndentationCheck are big classes and should not
+             be split without a good reason.
+           Main.validateCli is not reasonable to split as encapsulation of the logic will be
+             damaged.
+           *.visitToken are a big SWITCH block with a number of IF blocks.
+             If we split the block to several methods it will damage the readability.
+           JavadocStyleCheck is deprecated.
+           SuppressWarningsHolder.getAcceptableParent, FallThroughCheck.isTerminated,
+             ElementNode.iterateAxis, RootNode.iterateAxis are also huge switches,
+             they has to be monolithic.
+           CustomImportOrderCheck.finishImportList, CustomImportOrderCheck.getImportGroup are
+             validated by checkstyle version of Npath, we think that pmd is wrong here.
+           Checker.processFiles is validated by checkstyle version of Npath, we think that pmd is
+             wrong here. -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='RequireThisCheck'
+      or @Image='VariableDeclarationUsageDistanceCheck' or @Image='XdocsPagesTest'
+      or @Image='JavadocMethodCheck' or @Image='CommentsIndentationCheck']
+    | //ClassOrInterfaceDeclaration[@Image='Main']//MethodDeclaration[@Name='validateCli']
+    | //ClassOrInterfaceDeclaration[@Image='Checker']//MethodDeclaration[@Name='processFiles']
+    | //ClassOrInterfaceDeclaration[@Image='FallThroughCheck']//MethodDeclaration[@Name='isTerminated']
+    | //ClassOrInterfaceDeclaration[@Image='SuppressWarningsHolder']//MethodDeclaration[@Name='getAcceptableParent']
+    | //ClassOrInterfaceDeclaration[@Image='CustomImportOrderCheck']//MethodDeclaration[@Name='finishImportList' or @Name='getImportGroup']
+    | //ClassOrInterfaceDeclaration[@Image='JavadocStyleCheck']//MethodDeclaration[@Name='checkHtmlTags']
+    | //ClassOrInterfaceDeclaration[@Image='ElementNode' or @Image='RootNode']//MethodDeclaration[@Name='iterateAxis']
+    | //ClassOrInterfaceDeclaration[@Image='NPathComplexityCheck'
+      or @Image='EmptyLineSeparatorCheck' or @Image='LeftCurlyCheck' or @Image='ImportOrderCheck'
+      or @Image='DeclarationOrderCheck' or @Image='MissingOverrideCheck'
+      or @Image='FinalLocalVariableCheck' or @Image='ModifiedControlVariableCheck'
+      or @Image='ParameterAssignmentCheck' or @Image='UnnecessaryParenthesesCheck'
+      or @Image='AbstractClassCouplingCheck' or @Image='BooleanExpressionComplexityCheck'
+      or @Image='ParenPadCheck']//MethodDeclaration[@Name='visitToken']"/>
     </properties>
   </rule>
-  <rule ref="rulesets/java/codesize.xml/NPathComplexity">
+  <rule ref="category/java/design.xml/TooManyFields">
     <properties>
-      <!-- JavadocMethodCheck - deprecated
-           WhitespaceAroundCheck.isNotRelevantSituation - npath = 216, but additional extraction
-                                of expression to separate method does not make sense as it will
-                                damage encapsulation of that check.
-      -->
-      <property name="violationSuppressXPath" value="//MethodDeclaration[@Name='isNotRelevantSituation' and ../../..[@Image='WhitespaceAroundCheck']] | //MethodDeclaration[@Name='validateCli' and ../../..[@Image='Main']] | //ClassOrInterfaceDeclaration[@Image='JavadocMethodCheck' or @Image='JavadocStyleCheck']"/>
-    </properties>
-  </rule>
-  <rule ref="rulesets/java/codesize.xml/TooManyFields">
-    <properties>
-      <!-- Unable to split fields out of class. -->
+      <!-- Unable to split fields out of the class. -->
       <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Checker']"/>
     </properties>
   </rule>
-  <rule ref="rulesets/java/codesize.xml/TooManyMethods">
+  <rule ref="category/java/design.xml/TooManyMethods">
     <properties>
       <property name="maxmethods" value="20"/>
-      <!-- Reducing the number of methods in RequireThisCheck requires making excess hierarchy or duplicating code, or making existing methods too complex. -->
-      <!-- PackageObjectFactory has many boilerplate methods. -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='RequireThisCheck' or @Image='PackageObjectFactory']"/>
+      <!-- Reducing the number of methods in RequireThisCheck requires making an excessive hierarchy
+             or duplicating the code, or making existing methods too complex.
+           The class PackageObjectFactory has many boilerplate methods. -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='RequireThisCheck'
+        or @Image='PackageObjectFactory']"/>
     </properties>
   </rule>
-  <rule ref="rulesets/java/codesize.xml/ExcessiveClassLength">
+  <rule ref="category/java/design.xml/ExcessiveClassLength">
     <properties>
-      <!-- *TokenTypes are special classes that a big due to a lot of description comments -->
-      <!-- JavadocMethodCheck is deprecated class, till it is redone to use JavadocAst -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypes' or @Image='TokenTypes' or @Image='JavadocMethodCheck' or @Image='RequireThisCheck']"/>
+      <!-- *TokenTypes are special classes that are big due to a lot of description comments.
+           JavadocMethodCheck is a deprecated class, till it is redone to use JavadocAst.
+           RequireThisCheck has to work with and identify many frames. -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypes'
+        or @Image='TokenTypes' or @Image='JavadocMethodCheck' or @Image='RequireThisCheck']"/>
     </properties>
   </rule>
-  <rule ref="rulesets/java/codesize.xml/ExcessiveMethodLength">
+  <rule ref="category/java/design.xml/ExcessiveParameterList">
     <properties>
-      <!-- JavadocMethodCheck is deprecated class, till it is redone to use JavadocAst -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocMethodCheck']"/>
-      <!-- getDetails() method is a huge SWITCH, it has to be monolithic -->
-      <property name="violationSuppressXPath" value="//MethodDeclaration[@Name='getDetails' and ../../..[@Image='RightCurlyCheck']]"/>
-    </properties>
-  </rule>
-  <rule ref="rulesets/java/codesize.xml/ExcessiveParameterList">
-    <properties>
-      <!-- LocalizedMessage class has constructor with many parameters -->
+      <!-- The class LocalizedMessage has a constructor with many parameters by design. -->
       <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='LocalizedMessage']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/design.xml/ExcessiveImports">
+    <properties>
+      <!-- Main actively uses Checkstyle, logging and command line parsing API.
+           CheckstyleAntTask integrates Checkstyle with Ant.
+           Checker collects external resource locations and sets up the configuration. -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main'
+        or @Image='Checker' or @Image='CheckstyleAntTask']"/>
     </properties>
   </rule>
 
@@ -213,25 +254,6 @@
     <properties>
       <!-- that class integrates checkstyle and antlr that is why it has a lot of imports -->
       <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AutomaticBean']"/>
-    </properties>
-  </rule>
-  <rule ref="rulesets/java/coupling.xml">
-    <!-- produce too much violations, suppressed till we figure out how useful that metrics-->
-    <exclude name="LawOfDemeter"/>
-    <!-- this rule is for managing import, we have special Check for that -->
-    <exclude name="LoosePackageCoupling"/>
-  </rule>
-  <rule ref="rulesets/java/coupling.xml/ExcessiveImports">
-    <properties>
-      <!-- TreeWalker integrates Checkstyle and antlr and CheckstyleAntTask integrates Checkstyle
-       with Ant. Checker collects external resource locations and setup configuration. -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='CheckstyleAntTask' or @Image='Checker' or @Image='Main']"/>
-    </properties>
-  </rule>
-  <rule ref="rulesets/java/coupling.xml/CouplingBetweenObjects">
-    <properties>
-      <!-- I do not see any problem , looks like false positive -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='HandlerFactory']"/>
     </properties>
   </rule>
 
@@ -372,20 +394,6 @@
     <!--not configurable, decreases readability-->
     <exclude name="UseStringBufferForStringAppends"/>
   </rule>
-  <rule ref="rulesets/java/strictexception.xml/AvoidCatchingGenericException">
-    <properties>
-      <!-- There is no other way to deliver filename that was under processing.
-           See https://github.com/checkstyle/checkstyle/issues/2285-->
-      <property name="violationSuppressXPath" value="//MethodDeclaration[@Name='processFiles' and ../../..[@Image='Checker']]"/>
-    </properties>
-  </rule>
-  <rule ref="rulesets/java/strictexception.xml/AvoidThrowingRawExceptionTypes">
-    <properties>
-      <!-- There is no other way to deliver filename that was under processing.
-           See https://github.com/checkstyle/checkstyle/issues/2285-->
-      <property name="violationSuppressXPath" value="//MethodDeclaration[@Name='processFiles' and ../../..[@Image='Checker']]"/>
-    </properties>
-  </rule>
 
   <rule ref="rulesets/java/strings.xml"/>
   <rule ref="rulesets/java/strings.xml/AvoidDuplicateLiterals">
@@ -395,7 +403,6 @@
       <property name="skipAnnotations" value="true"/>
     </properties>
   </rule>
-  <rule ref="rulesets/java/typeresolution.xml"/>
   <rule ref="rulesets/java/unnecessary.xml"/>
 
 </ruleset>

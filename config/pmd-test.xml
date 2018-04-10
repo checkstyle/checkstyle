@@ -32,8 +32,6 @@
         <exclude name="ExcessivePublicCount"/>
         <!--we have too much UTs for each main class, it is better to keep all tests in one file to ease navigation and search for test-->
         <exclude name="ExcessiveClassLength"/>
-        <!--we want to keep it all in one place-->
-        <exclude name="NcssTypeCount"/>
         <!--we want to avoid wide throws signature, it is just test-->
         <exclude name="AvoidCatchingGenericException"/>
         <!--we do not want invest extra time to make logic ideal in test method, may be later...-->
@@ -44,49 +42,61 @@
         <exclude name="NonThreadSafeSingleton"/>
     </rule>
 
-    <rule ref="rulesets/java/codesize.xml/NcssMethodCount">
+    <rule ref="category/java/design.xml/NcssCount">
         <properties>
-            <!-- 'testTokenNumbering' method is simple but long as it recheck each token one by one -->
-            <!-- 'testNospaceWithComplexInput' it is intended to keep all in one method. -->
-            <!--Method `testTokenValues` in JavadocTokenTypes contains several asserts as it checks each token explicitly-->
-            <!-- XdocsPagesTest is a complicated list of different checks -->
-            <property name="violationSuppressXPath" value="
-            //ClassOrInterfaceDeclaration[@Image='GeneratedJavaTokenTypesTest']//MethodDeclarator[@Image='testTokenNumbering']
-            | //ClassOrInterfaceDeclaration[@Image='ParenPadCheckTest']//MethodDeclarator[@Image='testNospaceWithComplexInput']
-            | //MethodDeclaration[@Name='testTokenValues' and ../../..[@Image='JavadocTokenTypesTest']]
-            | //MethodDeclaration[@Name='getModulePropertyExpectedValue' and ../../..[@Image='XdocsPagesTest']]"/>
+            <!-- We want to keep it all in one place. -->
+            <property name="classReportLevel" value="1000"/>
+            <!-- A big enough value to satisfy the most cases. -->
+            <property name="methodReportLevel" value="100"/>
+            <!-- GeneratedJavaTokenTypesTest.testTokenNumbering' is simple but long as it recheck
+                   each token one by one.
+                 JavadocTokenTypesTest.TokenValues contains several asserts as it checks each
+                   token explicitly.
+                 XdocsPagesTest.getModulePropertyExpectedTypeName is a complicated list of
+                   different checks. -->
+            <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypesTest']//MethodDeclaration[@Name='testTokenValues']
+            | //ClassOrInterfaceDeclaration[@Image='GeneratedJavaTokenTypesTest']//MethodDeclaration[@Name='testTokenNumbering']
+            | //ClassOrInterfaceDeclaration[@Image='XdocsPagesTest']//MethodDeclaration[@Name='getModulePropertyExpectedTypeName']"/>
         </properties>
     </rule>
 
-    <rule ref="rulesets/java/codesize.xml/ExcessiveMethodLength">
+    <rule ref="category/java/design.xml/ExcessiveMethodLength">
         <properties>
-            <!-- 'testTokenNumbering' method is simple but long as it recheck each token one by one -->
-            <!-- 'testNospaceWithComplexInput' it is intended to keep all in one method. -->
-            <!--Method `testTokenValues` in JavadocTokenTypes contains several asserts as it checks each token explicitly-->
-            <!-- XdocsPagesTest is a complicated list of different checks -->
+            <!-- GeneratedJavaTokenTypesTest.testTokenNumbering' is simple but long as it recheck
+                   each token one by one.
+                 ParenPadCheckTest.testNospaceWithComplexInput is intended to keep all in one
+                   method.
+                 JavadocTokenTypesTest.TokenValues contains several asserts as it checks each
+                   token explicitly.
+                 XdocsPagesTest.getModulePropertyExpectedTypeName is a complicated list of
+                   different checks. -->
             <property name="violationSuppressXPath" value="
-            //ClassOrInterfaceDeclaration[@Image='GeneratedJavaTokenTypesTest']//MethodDeclarator[@Image='testTokenNumbering']
-            | //ClassOrInterfaceDeclaration[@Image='ParenPadCheckTest']//MethodDeclarator[@Image='testNospaceWithComplexInput']
-            | //ClassOrInterfaceDeclaration[@Image='ParenPadTest']//MethodDeclarator[@Image='testMethodParen']
-            | //MethodDeclaration[@Name='testTokenValues' and ../../..[@Image='JavadocTokenTypesTest']]
-            | //MethodDeclaration[@Name='getModulePropertyExpectedTypeName' and ../../..[@Image='XdocsPagesTest']]"/>
+            //ClassOrInterfaceDeclaration[@Image='GeneratedJavaTokenTypesTest']//MethodDeclaration[@Name='testTokenNumbering']
+            | //ClassOrInterfaceDeclaration[@Image='ParenPadCheckTest']//MethodDeclaration[@Name='testNospaceWithComplexInput']
+            | //ClassOrInterfaceDeclaration[@Image='ParenPadTest']//MethodDeclaration[@Name='testMethodParen']
+            | //ClassOrInterfaceDeclaration[@Image='JavadocTokenTypesTest']//MethodDeclaration[@Name='testTokenValues']
+            | //ClassOrInterfaceDeclaration[@Image='XdocsPagesTest']//MethodDeclaration[@Name='getModulePropertyExpectedTypeName']"/>
         </properties>
     </rule>
 
-    <rule ref="rulesets/java/junit.xml/JUnitTestsShouldIncludeAssert">
-        <!-- pmd cannot find assert if it is located in private method of this class called from the test
-        method or method of another class -->
+    <rule ref="category/java/bestpractices.xml/JUnitTestsShouldIncludeAssert">
+        <!-- PMD cannot find assert if it is located in private method of this class called from
+               the test method or method of another class. -->
         <properties>
-            <!-- in AllChecksTest, AstRegressionTest, DetailASTTest and ImportControlCheckTest
-                 pmd does not find asserts in private methods of the test class called from the test method -->
-            <!-- in MainTest pmd does not find asserts in lambdas called in the method exit.checkAssertionAfterwards -->
-            <!-- in FilterSetTest, LineColumnTest, LocalizedMessageTest, CsvFilterTest, IntMatchFilterTest
-                 IntRangeFilterTest, SuppressElementTest, SuppressWithNearbyCommentFilterTest
-                 SuppressWithPlainTextCommentFilterTest, SuppressionCommentFilterTest, SuppressionFilterTest
-                 SuppressionXpathFilterTest, XpathFilterTest pmd does not accept
-                 nl.jqno.equalsverifier.EqualsVerifier#.verify() as correctness check method -->
-            <!-- in AstRegressionTest pmd does not find asserts in inner classes methods called from the test method -->
-            <!-- in XdocsPagesTest pmd does not find asserts in lambdas -->
+            <!-- In AllChecksTest, AstRegressionTest, DetailASTTest and ImportControlCheckTest
+                   PMD does not find asserts in private methods of the test class called from the
+                   test method.
+                 In MainTest PMD does not find asserts in lambdas called in the method
+                   exit.checkAssertionAfterwards.
+                 In FilterSetTest, LineColumnTest, LocalizedMessageTest, CsvFilterTest,
+                   IntMatchFilterTest, IntRangeFilterTest, SuppressElementTest,
+                   SuppressWithNearbyCommentFilterTest, SuppressWithPlainTextCommentFilterTest,
+                   SuppressionCommentFilterTest, SuppressionFilterTest, SuppressionXpathFilterTest,
+                   XpathFilterTest PMD does not accept nl.jqno.equalsverifier.EqualsVerifier.verify
+                   as correctness check method.
+                 In AstRegressionTest PMD does not find asserts in inner classes methods called
+                   from the test method.
+                 In XdocsPagesTest PMD does not find asserts in lambdas. -->
             <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AllChecksTest'
               or @Image='AstRegressionTest' or @Image='DetailASTTest'
               or @Image='ImportControlCheckTest']//PrimaryPrefix/Name[@Image='verify']
@@ -97,7 +107,7 @@
               or @Image='SuppressWithNearbyCommentFilterTest' or @Image='SuppressionCommentFilterTest'
               or @Image='SuppressionFilterTest' or @Image='SuppressionXpathFilterTest'
               or @Image='SuppressWithPlainTextCommentFilterTest' or @Image='XpathFilterTest']//PrimarySuffix[@Image='verify']
-            | //ClassOrInterfaceDeclaration[@Image='XdocsPagesTest']//MethodDeclarator[@Image='testAllChecksPresentOnAvailableChecksPage']
+            | //ClassOrInterfaceDeclaration[@Image='XdocsPagesTest']//MethodDeclaration[@Name='testAllChecksPresentOnAvailableChecksPage']
             "/>
         </properties>
     </rule>
@@ -109,20 +119,22 @@
         </properties>
     </rule>
 
-    <rule ref="rulesets/java/migrating.xml/JUnit4TestShouldUseBeforeAnnotation">
+    <rule ref="category/java/bestpractices.xml/JUnit4TestShouldUseBeforeAnnotation">
         <properties>
-            <!-- false positive -->
+            <!-- A false positive. -->
             <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='CommitValidationTest']"/>
         </properties>
     </rule>
-    <rule ref="rulesets/java/junit.xml/JUnitTestContainsTooManyAsserts">
+    <rule ref="category/java/bestpractices.xml/JUnitTestContainsTooManyAsserts">
         <properties>
             <property name="maximumAsserts" value="11"/>
-            <!--Methods `testTokenNumbers` and `testRuleNumbers` in GeneratedJavadocTokenTypesTest contain several asserts as they check each token and each rule explicitly-->
-            <!--Method `testTokenValues` in JavadocTokenTypes contains several asserts as it checks each token explicitly-->
-            <property name="violationSuppressXPath" value="
-            //ClassOrInterfaceDeclaration[@Image='GeneratedJavadocTokenTypesTest']
-            | //MethodDeclaration[@Name='testTokenValues' and ../../..[@Image='JavadocTokenTypesTest']]"/>
+            <!-- GeneratedJavadocTokenTypesTest.testTokenNumbers and
+                   GeneratedJavadocTokenTypesTest.testRuleNumbers contains several asserts
+                   as they check each token and each rule explicitly.
+                 JavadocTokenTypes.testTokenValues contains several asserts as it checks each
+                   token explicitly. -->
+            <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypesTest']//MethodDeclaration[@Name='testTokenValues']
+            | //ClassOrInterfaceDeclaration[@Image='GeneratedJavadocTokenTypesTest']//MethodDeclaration[@Name='testTokenNumbers' or @Name='testRuleNumbers']"/>
         </properties>
     </rule>
 
@@ -134,14 +146,4 @@
         </properties>
     </rule>
 
-    <rule ref="rulesets/java/unusedcode.xml/UnusedPrivateMethod">
-        <properties>
-            <!-- generates false-positives on private methods called within a file -->
-            <property name="violationSuppressXPath" value="
-            //ClassOrInterfaceDeclaration[@Image='IndentationCheckTest']//MethodDeclarator[@Image='verifyWarns']
-            | //ClassOrInterfaceDeclaration[@Image='SuppressWarningsFilterTest']//MethodDeclarator[@Image='verifySuppressed']
-            | //ClassOrInterfaceDeclaration[@Image='SuppressWithNearbyCommentFilterTest']//MethodDeclarator[@Image='verifySuppressed']
-            | //ClassOrInterfaceDeclaration[@Image='SuppressionCommentFilterTest']//MethodDeclarator[@Image='verifySuppressed']"/>
-        </properties>
-    </rule>
 </ruleset>

@@ -11,14 +11,6 @@
     <exclude-pattern>.*/src/test/.*</exclude-pattern>
     <rule ref="config/pmd.xml"/>
 
-    <rule ref="rulesets/java/unusedcode.xml/UnusedPrivateMethod">
-        <properties>
-            <!-- generates false-positives on private methods called within a file -->
-            <property name="violationSuppressXPath" value="
-            //MethodDeclaration[@Name='countTokens' and ../../..[@Image='DescendantTokenCheck']]
-            | //MethodDeclaration[@Name='getHashCodeBasedOnObjectContent' and ../../..[@Image='PropertyCacheFile']]"/>
-        </properties>
-    </rule>
     <rule ref="rulesets/java/basic.xml/CollapsibleIfStatements">
         <properties>
             <!-- till https://github.com/hcoles/pitest/issues/377 -->
