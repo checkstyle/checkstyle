@@ -454,7 +454,7 @@ public class ImportOrderCheck
         else {
             log(line, MSG_ORDERING, name);
         }
-        if (isSeparatorInGroup(groupIdx, isStatic, line)) {
+        if (separated  && isSeparatorInGroup(groupIdx, isStatic, line)) {
             log(line, MSG_SEPARATED_IN_GROUP, name);
         }
 
@@ -471,7 +471,7 @@ public class ImportOrderCheck
      */
     private boolean isSeparatorInGroup(int groupIdx, boolean isStatic, int line) {
         final boolean inSameGroup = isInSameGroup(groupIdx, isStatic);
-        return (!separated || inSameGroup) && isSeparatorBeforeImport(line);
+        return inSameGroup && isSeparatorBeforeImport(line);
     }
 
     /**
