@@ -171,16 +171,13 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     private void loadHeader(final Reader headerReader) throws IOException {
         final LineNumberReader lnr = new LineNumberReader(headerReader);
         try {
-            while (true) {
-                String line = lnr.readLine();
-                if (line == null) {
-                    break;
+            String line;
+            do {
+                line = lnr.readLine();
+                if (line != null) {
+                    readerLines.add(line);
                 }
-                if (line.isEmpty()) {
-                    line = "^$";
-                }
-                readerLines.add(line);
-            }
+            } while (line != null);
             postProcessHeaderLines();
         }
         finally {

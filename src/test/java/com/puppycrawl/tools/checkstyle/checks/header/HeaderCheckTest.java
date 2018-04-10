@@ -289,4 +289,17 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         }
     }
 
+    @Test
+    public void testHeaderIsValidWithBlankLines() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getPath("InputHeaderjava.blank-lines.header"));
+        verify(checkConfig, getPath("InputHeaderBlankLines.java"));
+    }
+
+    @Test
+    public void testHeaderIsValidWithBlankLinesBlockStyle() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getPath("InputHeaderjava.blank-lines2.header"));
+        verify(checkConfig, getPath("InputHeaderBlankLines2.java"));
+    }
 }

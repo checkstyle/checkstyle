@@ -58,6 +58,12 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
     /** Empty array to avoid instantiations. */
     private static final int[] EMPTY_INT_ARRAY = new int[0];
 
+    /** Regex pattern for a blank line. **/
+    private static final String EMPTY_LINE_PATTERN = "^$";
+
+    /** Compiled regex pattern for a blank line. **/
+    private static final Pattern BLANK_LINE = Pattern.compile(EMPTY_LINE_PATTERN);
+
     /** The compiled regular expressions. */
     private final List<Pattern> headerRegexps = new ArrayList<>();
 
@@ -99,8 +105,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
                             || isMatch(line, headerLineNo);
                 }
                 if (!isMatch) {
-                    log(index + 1, MSG_HEADER_MISMATCH, getHeaderLines().get(
-                            headerLineNo));
+                    log(index + 1, MSG_HEADER_MISMATCH, getHeaderLine(headerLineNo));
                     break;
                 }
                 if (!isMultiLine(headerLineNo)) {
@@ -113,6 +118,20 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
                 logFirstSinglelineLine(headerLineNo, headerSize);
             }
         }
+    }
+
+    /**
+     * Returns the line from the header. Where the line is blank return the regexp pattern
+     * for a blank line.
+     * @param headerLineNo heaeder line number to return
+     * @return the line from the header
+     */
+    private String getHeaderLine(int headerLineNo) {
+        String line = getHeaderLines().get(headerLineNo);
+        if (line.isEmpty()) {
+            line = EMPTY_LINE_PATTERN;
+        }
+        return line;
     }
 
     /**
@@ -153,7 +172,12 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
         final List<String> headerLines = getHeaderLines();
         for (String line : headerLines) {
             try {
-                headerRegexps.add(Pattern.compile(line));
+                if (line.isEmpty()) {
+                    headerRegexps.add(BLANK_LINE);
+                }
+                else {
+                    headerRegexps.add(Pattern.compile(line));
+                }
             }
             catch (final PatternSyntaxException ex) {
                 throw new IllegalArgumentException("line "
