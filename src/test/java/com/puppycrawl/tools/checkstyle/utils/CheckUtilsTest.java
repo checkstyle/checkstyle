@@ -57,7 +57,7 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
     @Test
     public void testParseDoubleWithIncorrectToken() {
         final double parsedDouble = CheckUtils.parseDouble("1_02", TokenTypes.ASSIGN);
-        assertEquals("Invalid parse result", 0.0, parsedDouble, 0.0);
+        assertEquals("Invalid parse result", Double.NaN, parsedDouble, 0.0);
     }
 
     @Test
@@ -340,21 +340,45 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testParseDouble() {
-        assertEquals("Invalid parse result", 1.0,
-                CheckUtils.parseDouble("1", TokenTypes.NUM_INT), 0);
+    public void testParseDoubleFloatingPointValues() {
         assertEquals("Invalid parse result", -0.05,
                 CheckUtils.parseDouble("-0.05f", TokenTypes.NUM_FLOAT), 0);
+        assertEquals("Invalid parse result", 10.0,
+                CheckUtils.parseDouble("10.0", TokenTypes.NUM_DOUBLE), 0);
+        assertEquals("Invalid parse result", 1230,
+                CheckUtils.parseDouble("1.23e3", TokenTypes.NUM_DOUBLE), 0);
+        assertEquals("Invalid parse result", -321,
+                CheckUtils.parseDouble("-3.21E2", TokenTypes.NUM_DOUBLE), 0);
+        assertEquals("Invalid parse result", -0.0,
+                CheckUtils.parseDouble("-0.0", TokenTypes.NUM_DOUBLE), 0);
+        assertEquals("Invalid parse result", Double.NaN,
+                CheckUtils.parseDouble("NaN", TokenTypes.NUM_DOUBLE), 0);
+    }
+
+    @Test
+    public void testParseDoubleIntegerValues() {
+        assertEquals("Invalid parse result", 0.0,
+                CheckUtils.parseDouble("0L", TokenTypes.NUM_LONG), 0);
+        assertEquals("Invalid parse result", 0b101,
+                CheckUtils.parseDouble("0B101", TokenTypes.NUM_INT), 0);
+        assertEquals("Invalid parse result", 289_775_941,
+                CheckUtils.parseDouble("0b10001010001011010000101000101L", TokenTypes.NUM_LONG), 0);
+        assertEquals("Invalid parse result", 1.0,
+                CheckUtils.parseDouble("1", TokenTypes.NUM_INT), 0);
         assertEquals("Invalid parse result", 8.0,
                 CheckUtils.parseDouble("8L", TokenTypes.NUM_LONG), 0);
-        assertEquals("Invalid parse result", 0.0,
-                CheckUtils.parseDouble("0.0", TokenTypes.NUM_DOUBLE), 0);
+        assertEquals("Invalid parse result", -2.147_483_648E10,
+                CheckUtils.parseDouble("-21474836480", TokenTypes.NUM_LONG), 0);
+        assertEquals("Invalid parse result", -2,
+                CheckUtils.parseDouble("-2", TokenTypes.NUM_INT), 0);
+        assertEquals("Invalid parse result", -1,
+                CheckUtils.parseDouble("0xffffffff", TokenTypes.NUM_INT), 0);
         assertEquals("Invalid parse result", 2915.0,
                 CheckUtils.parseDouble("0x0B63", TokenTypes.NUM_INT), 0);
         assertEquals("Invalid parse result", 2.147_483_647E10,
                 CheckUtils.parseDouble("21474836470", TokenTypes.NUM_LONG), 0);
         assertEquals("Invalid parse result", 59.0,
-                CheckUtils.parseDouble("073L", TokenTypes.NUM_LONG), 0);
+                CheckUtils.parseDouble("073l", TokenTypes.NUM_LONG), 0);
     }
 
     @Test

@@ -41,6 +41,9 @@ import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier;
 public final class CheckUtils {
 
     // constants for parseDouble()
+    /** Binary radix. */
+    private static final int BASE_2 = 2;
+
     /** Octal radix. */
     private static final int BASE_8 = 8;
 
@@ -155,12 +158,12 @@ public final class CheckUtils {
      * type. Returns 0 for types other than float, double, int, and long.
      * @param text the string to be parsed.
      * @param type the token type of the text. Should be a constant of
-     * {@link TokenTypes}.
+     *     {@link TokenTypes}.
      * @return the double value represented by the string argument.
      */
     public static double parseDouble(String text, int type) {
         String txt = UNDERSCORE_PATTERN.matcher(text).replaceAll("");
-        double result = 0;
+        final double result;
         switch (type) {
             case TokenTypes.NUM_FLOAT:
             case TokenTypes.NUM_DOUBLE:
@@ -173,66 +176,61 @@ public final class CheckUtils {
                     radix = BASE_16;
                     txt = txt.substring(2);
                 }
-                else if (txt.charAt(0) == '0') {
+                else if (txt.startsWith("0b") || txt.startsWith("0B")) {
+                    radix = BASE_2;
+                    txt = txt.substring(2);
+                }
+                else if (CommonUtils.startsWithChar(txt, '0')) {
                     radix = BASE_8;
                     txt = txt.substring(1);
                 }
-                if (CommonUtils.endsWithChar(txt, 'L') || CommonUtils.endsWithChar(txt, 'l')) {
-                    txt = txt.substring(0, txt.length() - 1);
-                }
-                if (!txt.isEmpty()) {
-                    if (type == TokenTypes.NUM_INT) {
-                        result = parseInt(txt, radix);
-                    }
-                    else {
-                        result = parseLong(txt, radix);
-                    }
-                }
+                result = parseNumber(txt, radix, type);
                 break;
             default:
+                result = Double.NaN;
                 break;
         }
         return result;
     }
 
     /**
-     * Parses the string argument as a signed integer in the radix specified by
+     * Parses the string argument as an integer or a long in the radix specified by
      * the second argument. The characters in the string must all be digits of
-     * the specified radix. Handles negative values, which method
-     * java.lang.Integer.parseInt(String, int) does not.
+     * the specified radix.
      * @param text the String containing the integer representation to be
      *     parsed. Precondition: text contains a parsable int.
      * @param radix the radix to be used while parsing text.
-     * @return the integer represented by the string argument in the specified radix.
+     * @param type the token type of the text. Should be a constant of
+     *     {@link TokenTypes}.
+     * @return the number represented by the string argument in the specified radix.
      */
-    private static int parseInt(String text, int radix) {
-        int result = 0;
-        final int max = text.length();
-        for (int i = 0; i < max; i++) {
-            final int digit = Character.digit(text.charAt(i), radix);
-            result *= radix;
-            result += digit;
+    private static double parseNumber(final String text, final int radix, final int type) {
+        String txt = text;
+        if (CommonUtils.endsWithChar(txt, 'L') || CommonUtils.endsWithChar(txt, 'l')) {
+            txt = txt.substring(0, txt.length() - 1);
         }
-        return result;
-    }
-
-    /**
-     * Parses the string argument as a signed long in the radix specified by
-     * the second argument. The characters in the string must all be digits of
-     * the specified radix. Handles negative values, which method
-     * java.lang.Integer.parseInt(String, int) does not.
-     * @param text the String containing the integer representation to be
-     *     parsed. Precondition: text contains a parsable int.
-     * @param radix the radix to be used while parsing text.
-     * @return the long represented by the string argument in the specified radix.
-     */
-    private static long parseLong(String text, int radix) {
-        long result = 0;
-        final int max = text.length();
-        for (int i = 0; i < max; i++) {
-            final int digit = Character.digit(text.charAt(i), radix);
-            result *= radix;
-            result += digit;
+        final double result;
+        if (txt.isEmpty()) {
+            result = 0.0;
+        }
+        else {
+            final boolean negative = txt.charAt(0) == '-';
+            if (type == TokenTypes.NUM_INT) {
+                if (negative) {
+                    result = Integer.parseInt(txt, radix);
+                }
+                else {
+                    result = Integer.parseUnsignedInt(txt, radix);
+                }
+            }
+            else {
+                if (negative) {
+                    result = Long.parseLong(txt, radix);
+                }
+                else {
+                    result = Long.parseUnsignedLong(txt, radix);
+                }
+            }
         }
         return result;
     }
