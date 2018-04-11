@@ -81,6 +81,9 @@ public class MagicNumberCheckTest
             "189:48: " + getCheckMessage(MSG_KEY, "43"),
             "193:42: " + getCheckMessage(MSG_KEY, "-44"),
             "197:48: " + getCheckMessage(MSG_KEY, "-45"),
+            "214:20: " + getCheckMessage(MSG_KEY, "0b101"),
+            "215:22: " + getCheckMessage(MSG_KEY,
+                "0b1010000101000101101000010100010110100001010001011010000101000101L"),
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
@@ -127,6 +130,9 @@ public class MagicNumberCheckTest
             "174:15: " + getCheckMessage(MSG_KEY, "21"),
             "178:15: " + getCheckMessage(MSG_KEY, "37"),
             "182:15: " + getCheckMessage(MSG_KEY, "101"),
+            "214:20: " + getCheckMessage(MSG_KEY, "0b101"),
+            "215:22: " + getCheckMessage(MSG_KEY,
+                "0b1010000101000101101000010100010110100001010001011010000101000101L"),
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
@@ -201,6 +207,9 @@ public class MagicNumberCheckTest
             "174:15: " + getCheckMessage(MSG_KEY, "21"),
             "178:15: " + getCheckMessage(MSG_KEY, "37"),
             "182:15: " + getCheckMessage(MSG_KEY, "101"),
+            "214:20: " + getCheckMessage(MSG_KEY, "0b101"),
+            "215:22: " + getCheckMessage(MSG_KEY,
+                "0b1010000101000101101000010100010110100001010001011010000101000101L"),
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
@@ -246,6 +255,9 @@ public class MagicNumberCheckTest
             "174:15: " + getCheckMessage(MSG_KEY, "21"),
             "178:15: " + getCheckMessage(MSG_KEY, "37"),
             "182:15: " + getCheckMessage(MSG_KEY, "101"),
+            "214:20: " + getCheckMessage(MSG_KEY, "0b101"),
+            "215:22: " + getCheckMessage(MSG_KEY,
+                "0b1010000101000101101000010100010110100001010001011010000101000101L"),
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
@@ -287,6 +299,9 @@ public class MagicNumberCheckTest
             "174:15: " + getCheckMessage(MSG_KEY, "21"),
             "178:15: " + getCheckMessage(MSG_KEY, "37"),
             "182:15: " + getCheckMessage(MSG_KEY, "101"),
+            "214:20: " + getCheckMessage(MSG_KEY, "0b101"),
+            "215:22: " + getCheckMessage(MSG_KEY,
+                "0b1010000101000101101000010100010110100001010001011010000101000101L"),
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
@@ -334,6 +349,9 @@ public class MagicNumberCheckTest
             "174:15: " + getCheckMessage(MSG_KEY, "21"),
             "178:15: " + getCheckMessage(MSG_KEY, "37"),
             "182:15: " + getCheckMessage(MSG_KEY, "101"),
+            "214:20: " + getCheckMessage(MSG_KEY, "0b101"),
+            "215:22: " + getCheckMessage(MSG_KEY,
+                "0b1010000101000101101000010100010110100001010001011010000101000101L"),
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
@@ -435,6 +453,9 @@ public class MagicNumberCheckTest
             "193:42: " + getCheckMessage(MSG_KEY, "-44"),
             "197:48: " + getCheckMessage(MSG_KEY, "-45"),
             "209:63: " + getCheckMessage(MSG_KEY, "62"),
+            "214:20: " + getCheckMessage(MSG_KEY, "0b101"),
+            "215:22: " + getCheckMessage(MSG_KEY,
+                "0b1010000101000101101000010100010110100001010001011010000101000101L"),
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }

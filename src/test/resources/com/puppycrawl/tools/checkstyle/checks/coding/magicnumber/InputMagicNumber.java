@@ -209,3 +209,8 @@ class TestMethodCall {
         final TestMethodCall dummyObject = new TestMethodCall(62);
 	}
 }
+
+class Binary {
+    int intValue = 0b101;
+    long longValue = 0b1010000101000101101000010100010110100001010001011010000101000101L;
+}

@@ -81,3 +81,8 @@ class Chars {
     short d = 1;
     final long e = 0; 
 }
+
+class Doubles {
+    final double subZero = -0.0;
+    final double nan = Double.NaN;
+}
