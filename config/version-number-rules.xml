@@ -27,5 +27,12 @@
                 <ignoreVersion type="regex">.*</ignoreVersion>
             </ignoreVersions>
         </rule>
+        <rule groupId="org.codehaus.mojo" artifactId="xml-maven-plugin">
+            <ignoreVersions>
+                <!-- till https://github.com/mojohaus/xml-maven-plugin/issues/46 -->
+                <ignoreVersion type="regex">1.0.2</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+
     </rules>
 </ruleset>
