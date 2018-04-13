@@ -5,17 +5,6 @@
 
 <import-control pkg="com.puppycrawl.tools.checkstyle">
 
-  <allow pkg="antlr"/>
-  <allow pkg="com.puppycrawl.tools.checkstyle.api"/>
-  <allow pkg="com.puppycrawl.tools.checkstyle.checks"/>
-  <allow pkg="java.io"/>
-  <allow pkg="java.net"/>
-  <allow pkg="java.util"/>
-  <allow pkg="javax.xml.parsers"/>
-  <allow pkg="org.apache.commons.beanutils"/>
-  <allow pkg="org.apache.commons.logging"/>
-  <allow pkg="org.xml.sax"/>
-
   <!--Disallowed till https://github.com/mojohaus/cobertura-maven-plugin/issues/29-->
   <disallow class="java.util.stream.Stream"/>
   <disallow class="java.util.stream.Stream.Builder"/>
@@ -28,6 +17,17 @@
   <disallow class="java.util.stream.BaseStream"/>
   <disallow class="java.util.stream.Collector"/>
   <disallow class="java.util.Comparator"/>
+
+  <allow pkg="antlr"/>
+  <allow pkg="com.puppycrawl.tools.checkstyle.api"/>
+  <allow pkg="com.puppycrawl.tools.checkstyle.checks"/>
+  <allow pkg="java.io"/>
+  <allow pkg="java.net"/>
+  <allow pkg="java.util"/>
+  <allow pkg="javax.xml.parsers"/>
+  <allow pkg="org.apache.commons.beanutils"/>
+  <allow pkg="org.apache.commons.logging"/>
+  <allow pkg="org.xml.sax"/>
 
   <!-- The local ones -->
   <allow pkg="java.lang.reflect" local-only="true" />
@@ -70,11 +70,12 @@
   </subpackage>
 
   <subpackage name="ant">
-    <allow pkg="org.apache.tools.ant" local-only="true"/>
-    <allow pkg="com.puppycrawl.tools.checkstyle"/>
     <disallow pkg="com.puppycrawl.tools.checkstyle.checks"/>
     <disallow pkg="com.puppycrawl.tools.checkstyle.filters"/>
     <disallow pkg="com.puppycrawl.tools.checkstyle.gui"/>
+
+    <allow pkg="org.apache.tools.ant" local-only="true"/>
+    <allow pkg="com.puppycrawl.tools.checkstyle"/>
 
     <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
     <allow class="com.google.common.io.Closeables" local-only="true"/>
@@ -140,12 +141,13 @@
   </subpackage>
 
   <subpackage name="filters">
+    <disallow pkg="com\.puppycrawl\.tools\.checkstyle\.checks\.[^.]+" regex="true"/>
+
     <allow pkg="net.sf.saxon"/>
     <allow class="java.lang.ref.WeakReference" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerFilter" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.XmlLoader" local-only="true"/>
-    <disallow pkg="com\.puppycrawl\.tools\.checkstyle\.checks\.[^.]+" regex="true"/>
     <allow pkg="com.puppycrawl.tools.checkstyle.utils"/>
     <allow pkg="com.puppycrawl.tools.checkstyle.xpath"/>
     <allow class="java.nio.charset.StandardCharsets" local-only="true"/>
