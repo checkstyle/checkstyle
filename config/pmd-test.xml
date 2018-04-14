@@ -112,13 +112,6 @@
         </properties>
     </rule>
 
-    <rule ref="config/pmd.xml/ConfusingTernary">
-        <properties>
-            <!-- false positive: commit validation is a sequence of checks, if we shuffle them it would be broken -->
-            <property name="violationSuppressXPath" value="//MethodDeclaration[@Name='validateCommitMessage' and ../../..[@Image='CommitValidationTest']]"/>
-        </properties>
-    </rule>
-
     <rule ref="category/java/bestpractices.xml/JUnit4TestShouldUseBeforeAnnotation">
         <properties>
             <!-- A false positive. -->
@@ -138,9 +131,17 @@
         </properties>
     </rule>
 
-    <rule ref="rulesets/java/naming.xml/ShortMethodName">
+    <rule ref="category/java/codestyle.xml/ConfusingTernary">
         <properties>
-            <!-- this inherited from GeneratedJavaLexer -->
+            <!-- A false positive: commit validation is a sequence of checks, if we shuffle them
+                   it would be broken. -->
+            <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='CommitValidationTest']//MethodDeclaration[@Name='validateCommitMessage']"/>
+        </properties>
+    </rule>
+
+    <rule ref="category/java/codestyle.xml/ShortMethodName">
+        <properties>
+            <!-- This inherited from GeneratedJavaLexer. -->
             <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AstRegressionTest']
             | //ClassOrInterfaceDeclaration[@Image='AssertGeneratedJavaLexer']//MethodDeclarator[@Image='LA']"/>
         </properties>

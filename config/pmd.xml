@@ -36,6 +36,50 @@
     </properties>
   </rule>
 
+  <rule ref="category/java/codestyle.xml">
+    <!-- Opposite to UnnecessaryConstructor. -->
+    <exclude name="AtLeastOneConstructor"/>
+    <!-- Turning a local variable to the field may create design problems and extend the scope of
+           the variable. -->
+    <exclude name="AvoidFinalLocalVariable"/>
+    <!-- Conflicts with names that does not mean in/out. -->
+    <exclude name="AvoidPrefixingMethodParameters"/>
+    <!-- Calling super() is completely pointless, no matter if class inherits anything or not;
+         it is meaningful only if you do not call implicit constructor of the base class. -->
+    <exclude name="CallSuperInConstructor"/>
+    <!-- Till https://github.com/checkstyle/checkstyle/issues/5665 -->
+    <exclude name="CommentDefaultAccessModifier"/>
+    <!-- Pollutes code with modifiers. -->
+    <exclude name="LocalVariableCouldBeFinal"/>
+    <!-- Pollutes the code with modifiers. We use the ParameterAssignmentCheck to protect the
+         parameters. -->
+    <exclude name="MethodArgumentCouldBeFinal"/>
+    <!-- It is possible only in functional languages and fanatically-pristine code, without
+         additional option that are done at ReturnCountExtendedCheck it is not a good rule. -->
+    <exclude name="OnlyOneReturn"/>
+    <!-- We use CheckstyleCustomShortVariable, to control the length and skip Override methods. -->
+    <exclude name="ShortVariable"/>
+  </rule>
+  <rule ref="category/java/codestyle.xml/AbstractNaming">
+    <properties>
+     <!-- We can not brake compatibility with previous versions. -->
+     <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AbstractClassNameCheck' or @Image='AutomaticBean']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/codestyle.xml/LongVariable">
+    <properties>
+      <!-- Nothing bad with the long and descriptive variable names if only they fit the line,
+           but still keep it reasonable. -->
+      <property name="minimum" value="45"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/codestyle.xml/ShortClassName">
+    <properties>
+      <!-- Main is a good name for the class containing the main method.
+           Tag as inner class name is fine. -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main' or @Image='Tag']"/>
+    </properties>
+  </rule>
   <rule ref="category/java/errorprone.xml">
     <!-- That rule is not practical, no options to allow some magic numbers,
          we will use our implementation. -->
@@ -69,7 +113,6 @@
   </rule>
 
   <rule ref="rulesets/java/basic.xml"/>
-  <rule ref="rulesets/java/braces.xml"/>
 
   <rule ref="category/java/design.xml">
     <!-- Too much false-positives on the check classes.
@@ -334,14 +377,8 @@
     </properties>
   </rule>
 
-  <rule ref="rulesets/java/imports.xml"/>
-
   <rule ref="rulesets/java/migrating.xml"/>
 
-  <rule ref="rulesets/java/naming.xml">
-    <!-- we use CheckstyleCustomShortVariable, to control length (will be fixed in PMD 5.4) and skip Override methods -->
-    <exclude name="ShortVariable"/>
-  </rule>
 <rule name="CheckstyleCustomShortVariable"
       message="Avoid variables with short names that shorter than 2 symbols: {0}"
       language="java"
@@ -365,24 +402,6 @@
    </property>
 </properties>
 </rule>
-  <rule ref="rulesets/java/naming.xml/AbstractNaming">
-    <properties>
-     <!-- We can not brake compatibility with previous versions -->
-     <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AbstractClassNameCheck' or @Image='AutomaticBean']"/>
-    </properties>
-  </rule>
-  <rule ref="rulesets/java/naming.xml/LongVariable">
-    <properties>
-      <!-- nothing bad in long and descriptive variable names if only they fit line, but still keep it reasonable -->
-      <property name="minimum" value="45"/>
-    </properties>
-  </rule>
-  <rule ref="rulesets/java/naming.xml/ShortClassName">
-    <properties>
-      <!-- Main is good name for class containing main method, Tag as inner class name is also fine -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main' or @Image='Tag']"/>
-    </properties>
-  </rule>
 
   <rule ref="rulesets/java/optimizations.xml">
     <!--produces more false-positives than real problems-->
@@ -403,6 +422,5 @@
       <property name="skipAnnotations" value="true"/>
     </properties>
   </rule>
-  <rule ref="rulesets/java/unnecessary.xml"/>
 
 </ruleset>

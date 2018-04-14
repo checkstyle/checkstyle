@@ -11,10 +11,10 @@
     <exclude-pattern>.*/src/test/.*</exclude-pattern>
     <rule ref="config/pmd.xml"/>
 
-    <rule ref="rulesets/java/basic.xml/CollapsibleIfStatements">
+    <rule ref="category/java/design.xml/CollapsibleIfStatements">
         <properties>
-            <!-- till https://github.com/hcoles/pitest/issues/377 -->
-            <property name="violationSuppressXPath" value="//MethodDeclaration[@Name='main' and ../../..[@Image='Main']]"/>
+            <!-- Till https://github.com/hcoles/pitest/issues/377 -->
+            <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main']//MethodDeclaration[@Name='main']"/>
         </properties>
     </rule>
 
