@@ -99,6 +99,13 @@
     <!-- Till https://github.com/checkstyle/checkstyle/issues/5680 -->
     <exclude name="UseProperClassLoader"/>
   </rule>
+  <rule ref="category/java/errorprone.xml/AvoidDuplicateLiterals">
+    <properties>
+      <!-- Annotations like '@SuppressWarnings' don't need to be checked, it is better to keep their
+             strings connected to the annotation instead of separating. -->
+      <property name="skipAnnotations" value="true"/>
+    </properties>
+  </rule>
   <rule ref="category/java/errorprone.xml/EmptyCatchBlock">
     <properties>
       <property name="allowCommentedBlocks" value="true"/>
@@ -251,6 +258,27 @@
     </properties>
   </rule>
 
+  <rule ref="category/java/performance.xml">
+    <!-- Produces more false positives than real problems. -->
+    <exclude name="AvoidInstantiatingObjectsInLoops"/>
+    <!-- Conflicts with the ToArrayCallWithZeroLengthArrayArgument check from the Idea.
+         This rule is based on a study by Aleksey Shipilёv
+         https://shipilev.net/blog/2016/arrays-wisdom-ancients/
+         However, in modern JVM the result is different:
+         Benchmark (size)  (type)   Mode  Cnt Score    Error  Units
+         simple     1000  arraylist avgt  15  400.156   4.154 ns/op
+         sized      1000  arraylist avgt  15 1051.462  26.820 ns/op
+         zero       1000  arraylist avgt  15  743.794  27.400 ns/op
+         simple     1000  hashset   avgt  15 4728.179 130.822 ns/op
+         sized      1000  hashset   avgt  15 4960.655 179.637 ns/op
+         zero       1000  hashset   avgt  15 5101.816 159.180 ns/op
+         The advantages of this rule are questionable, and the flaws are obvious.
+     -->
+    <exclude name="OptimizableToArrayCall"/>
+    <!-- Not configurable, decreases readability. -->
+    <exclude name="UseStringBufferForStringAppends"/>
+  </rule>
+
   <rule ref="rulesets/java/comments.xml">
     <!-- <exclude name="CommentRequired"/> -->
     <!-- we use class comments as source for xdoc files, so content is big and that is by design -->
@@ -377,8 +405,6 @@
     </properties>
   </rule>
 
-  <rule ref="rulesets/java/migrating.xml"/>
-
 <rule name="CheckstyleCustomShortVariable"
       message="Avoid variables with short names that shorter than 2 symbols: {0}"
       language="java"
@@ -402,25 +428,5 @@
    </property>
 </properties>
 </rule>
-
-  <rule ref="rulesets/java/optimizations.xml">
-    <!--produces more false-positives than real problems-->
-    <exclude name="AvoidInstantiatingObjectsInLoops"/>
-    <!--pollutes code with modifiers-->
-    <exclude name="LocalVariableCouldBeFinal"/>
-    <!--pollutes code with modifiers-->
-    <exclude name="MethodArgumentCouldBeFinal"/>
-    <!--not configurable, decreases readability-->
-    <exclude name="UseStringBufferForStringAppends"/>
-  </rule>
-
-  <rule ref="rulesets/java/strings.xml"/>
-  <rule ref="rulesets/java/strings.xml/AvoidDuplicateLiterals">
-    <properties>
-      <!-- Annotations like '@SuppressWarnings' don't need to be checked, it is better to keep their strings
-           connected to the annotation instead of separating. -->
-      <property name="skipAnnotations" value="true"/>
-    </properties>
-  </rule>
 
 </ruleset>
