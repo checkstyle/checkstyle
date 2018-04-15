@@ -123,7 +123,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
     /**
      * Returns the line from the header. Where the line is blank return the regexp pattern
      * for a blank line.
-     * @param headerLineNo heaeder line number to return
+     * @param headerLineNo header line number to return
      * @return the line from the header
      */
     private String getHeaderLine(int headerLineNo) {
