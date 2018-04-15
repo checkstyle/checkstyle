@@ -42,14 +42,8 @@ echo "Clean up from previous run"
 rm -f $run_output
 
 echo "Run w"
-find . \
-  -name .git -prune -o -name .hg -prune -o \
-  -name images -prune -o \
-  -path 'src/it/resources' -prune -o \
-  -path 'src/test/resources' -prune -o \
-  -name 'messages*_??.properties' -prune -o -name '*_??.translation*' -prune -o \
-  -name $(basename $temp) -prune -o \
-  -type f -print0 |\
+(git 'ls-files' -z 2> /dev/null || hg locate -0) |\
+  .ci-temp/contribution/jsoref-spellchecker/exclude.pl |\
   xargs -0 $word_splitter |\
   $word_splitter |\
   perl -p -n -e 's/ \(.*//' > $run_output
