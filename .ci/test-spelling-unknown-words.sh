@@ -71,7 +71,7 @@ if [ ! -e $whitelist ]; then
 fi
 diff_output=`diff -U0 $whitelist $run_output |grep -v "$spellchecker" || true`
 [ -z "$diff_output" ] && exit 0
-new_output=`echo "$diff_output" |\
+new_output=`diff -i -U0 $whitelist $run_output |grep -v "$spellchecker" |\
   perl -n -w -e 'next unless /^\+/; next if /^\+{3} /; s/^.//; print;'`
 if [ -z "$new_output" ]; then
   echo "There are now fewer misspellings than before."
