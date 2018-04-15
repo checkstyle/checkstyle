@@ -119,8 +119,6 @@
     </properties>
   </rule>
 
-  <rule ref="rulesets/java/basic.xml"/>
-
   <rule ref="category/java/design.xml">
     <!-- Too much false-positives on the check classes.
          We do not follow the philosophy of complete encapsulation, we like data classes
@@ -258,6 +256,11 @@
     </properties>
   </rule>
 
+  <rule ref="category/java/multithreading.xml">
+    <!-- Checkstyle is not thread safe till https://github.com/checkstyle/checkstyle/projects/5. -->
+    <exclude name="UseConcurrentHashMap"/>
+  </rule>
+
   <rule ref="category/java/performance.xml">
     <!-- Produces more false positives than real problems. -->
     <exclude name="AvoidInstantiatingObjectsInLoops"/>
@@ -277,6 +280,12 @@
     <exclude name="OptimizableToArrayCall"/>
     <!-- Not configurable, decreases readability. -->
     <exclude name="UseStringBufferForStringAppends"/>
+  </rule>
+  <rule ref="category/java/performance.xml/AvoidUsingShortType">
+    <properties>
+      <!-- This class uses the class java.lang.Short for properties only. -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AutomaticBean']"/>
+    </properties>
   </rule>
 
   <rule ref="rulesets/java/comments.xml">
@@ -298,33 +307,6 @@
       <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration | //PackageDeclaration | //ClassOrInterfaceDeclaration[@Image='JavadocTagInfo'] | //ClassOrInterfaceDeclaration[@Image='SeverityLevel'] | //ClassOrInterfaceDeclaration[@Image='LeftCurlyOption'] | //ClassOrInterfaceDeclaration[@Image='RightCurlyOption'] | //ClassOrInterfaceDeclaration[@Image='ImportOrderOption']"/>
       <property name="maxLines" value="8"/>
       <property name="maxLineLength" value="100"/>
-    </properties>
-  </rule>
-
-  <rule ref="rulesets/java/controversial.xml">
-    <!-- calling super() is completely pointless, no matter if class inherits anything or not; it is meaningful only if you do not call implicit constructor of base class -->
-    <exclude name="CallSuperInConstructor"/>
-    <!-- We reuse Check instances between java files, we need to clear state of class in beginTree() methods -->
-    <exclude name="NullAssignment"/>
-    <!-- it is possible only in functional languages and fanatically-pristine code, without additional option that are done at ReturnCountExtendedCheck it is not good rule -->
-    <exclude name="OnlyOneReturn"/>
-    <!-- opposite to UnnecessaryConstructor -->
-    <exclude name="AtLeastOneConstructor"/>
-    <!-- that rule is too buggy, too much false positives-->
-    <exclude name="DataflowAnomalyAnalysis"/>
-    <!-- turning local variables to fields create design problems and extend scope of variable -->
-    <exclude name="AvoidFinalLocalVariable"/>
-    <!-- conflicts with names that does not mean in/out -->
-    <exclude name="AvoidPrefixingMethodParameters"/>
-    <!-- that is not practical, no options to allow some magic numbers, we will use our implementation -->
-    <exclude name="AvoidLiteralsInIfCondition"/>
-    <!-- Checkstyle is not thread safe -->
-    <exclude name="UseConcurrentHashMap"/>
-  </rule>
-  <rule ref="rulesets/java/controversial.xml/AvoidUsingShortType">
-    <properties>
-      <!-- that class integrates checkstyle and antlr that is why it has a lot of imports -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AutomaticBean']"/>
     </properties>
   </rule>
 
