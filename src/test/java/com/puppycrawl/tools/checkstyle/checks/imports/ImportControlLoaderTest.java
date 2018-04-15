@@ -60,7 +60,7 @@ public class ImportControlLoaderTest {
 
     @Test
     public void testLoad() throws CheckstyleException {
-        final ImportControl root =
+        final AbstractImportControl root =
                 ImportControlLoader.load(
                 new File(getPath("InputImportControlLoaderComplete.xml")).toURI());
         assertNotNull("Import root should not be null", root);
@@ -83,7 +83,7 @@ public class ImportControlLoaderTest {
 
     @Test
     public void testExtraElementInConfig() throws Exception {
-        final ImportControl root =
+        final AbstractImportControl root =
                 ImportControlLoader.load(
                     new File(getPath("InputImportControlLoaderWithNewElement.xml")).toURI());
         assertNotNull("Import root should not be null", root);

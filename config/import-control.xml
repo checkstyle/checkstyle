@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE import-control PUBLIC
-    "-//Puppy Crawl//DTD Import Control 1.3//EN"
-    "http://checkstyle.sourceforge.net/dtds/import_control_1_3.dtd">
+    "-//Puppy Crawl//DTD Import Control 1.4//EN"
+    "http://checkstyle.sourceforge.net/dtds/import_control_1_4.dtd">
 
 <import-control pkg="com.puppycrawl.tools.checkstyle">
 
@@ -45,14 +45,18 @@
   <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
   <allow class="com.google.common.base.CaseFormat" local-only="true"/>
   <allow class="com.google.common.io.BaseEncoding" local-only="true"/>
-  <allow class="com.google.common.io.Closeables" local-only="true"/>
-  <allow class="com.google.common.io.Flushables" local-only="true"/>
   <allow class="com.google.common.collect.HashMultimap" local-only="true"/>
   <allow class="com.google.common.collect.ImmutableCollection" local-only="true"/>
   <allow class="com.google.common.collect.ImmutableList" local-only="true"/>
   <allow class="com.google.common.collect.ImmutableMap" local-only="true"/>
   <allow class="com.google.common.collect.Multimap" local-only="true"/>
   <allow class="com.google.common.io.ByteStreams" local-only="true"/>
+
+  <file name="PropertyCacheFile">
+    <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
+    <allow class="com.google.common.io.Closeables"/>
+    <allow class="com.google.common.io.Flushables"/>
+  </file>
 
   <subpackage name="utils">
     <allow pkg="java.lang.reflect" local-only="true" />
@@ -158,13 +162,20 @@
     <allow pkg="javax.swing"/>
     <allow pkg="java.util" exact-match="true"/>
     <allow pkg="com.puppycrawl.tools.checkstyle.api" local-only="true"/>
-    <allow pkg="com.puppycrawl.tools.checkstyle.utils" local-only="true"/>
-    <allow class="com.puppycrawl.tools.checkstyle.JavaParser" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode"
            local-only="true"/>
-    <allow class="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser" local-only="true"/>
     <allow class="com.google.common.collect.ImmutableList" local-only="true"/>
-    <allow class="java.nio.charset.StandardCharsets" local-only="true" />
+    <disallow pkg="com\.puppycrawl\.tools\.checkstyle\.(checks|ant|doclets|filters)" regex="true"/>
+
+    <file name=".*(Model|Presentation)" regex="true">
+      <disallow pkg="java.awt.Graphics"/>
+      <disallow pkg="java.awt.Component"/>
+      <disallow pkg="javax\.swing\.J.*" regex="true"/>
+      <allow class="java.nio.charset.StandardCharsets" />
+      <allow class="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser"/>
+      <allow class="com.puppycrawl.tools.checkstyle.JavaParser"/>
+      <allow pkg="com.puppycrawl.tools.checkstyle.utils"/>
+    </file>
   </subpackage>
 
   <subpackage name="xpath">

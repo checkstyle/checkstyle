@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Check that controls what packages can be imported in each package. Useful
+ * Check that controls what can be imported in each package and file. Useful
  * for ensuring that application layering is not violated. Ideas on how the
  * check can be improved include support for:
  * <ul>
@@ -79,15 +79,17 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
     private boolean processCurrentFile;
 
     /** The root package controller. */
-    private ImportControl root;
+    private PkgImportControl root;
     /** The package doing the import. */
     private String packageName;
+    /** The file name doing the import. */
+    private String fileName;
 
     /**
      * The package controller for the current file. Used for performance
      * optimisation.
      */
-    private ImportControl currentImportControl;
+    private AbstractImportControl currentImportControl;
 
     @Override
     public int[] getDefaultTokens() {
@@ -108,6 +110,13 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
     public void beginTree(DetailAST rootAST) {
         currentImportControl = null;
         processCurrentFile = path.matcher(getFileContents().getFileName()).find();
+        fileName = getFileContents().getText().getFile().getName();
+
+        final int period = fileName.lastIndexOf('.');
+
+        if (period != -1) {
+            fileName = fileName.substring(0, period);
+        }
     }
 
     @Override
@@ -119,7 +128,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
                 }
                 else {
                     packageName = getPackageText(ast);
-                    currentImportControl = root.locateFinest(packageName);
+                    currentImportControl = root.locateFinest(packageName, fileName);
                     if (currentImportControl == null) {
                         log(ast, MSG_UNKNOWN_PKG);
                     }
@@ -127,8 +136,8 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
             }
             else if (currentImportControl != null) {
                 final String importText = getImportText(ast);
-                final AccessResult access =
-                        currentImportControl.checkAccess(packageName, importText);
+                final AccessResult access = currentImportControl.checkAccess(packageName, fileName,
+                        importText);
                 if (access != AccessResult.ALLOWED) {
                     log(ast, MSG_DISALLOWED, importText);
                 }

@@ -313,7 +313,7 @@
       </tr>
       <tr>
         <td><a href="config_imports.html#ImportControl">ImportControl</a></td>
-        <td>Check that controls what packages can be imported in each package.</td>
+        <td>Check that controls what can be imported in each package and file.</td>
       </tr>
       <tr>
         <td><a href="config_imports.html#ImportOrder">ImportOrder</a></td>

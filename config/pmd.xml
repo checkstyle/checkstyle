@@ -88,7 +88,7 @@
       <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='XMLLogger']//MethodDeclarator[@Image='isReference']
       | //ClassOrInterfaceDeclaration[@Image='DetailAST']//MethodDeclarator[@Image='addPreviousSibling']
       | //ClassOrInterfaceDeclaration[@Image='AnnotationLocationCheck']//MethodDeclarator[@Image='checkAnnotations']
-      | //ClassOrInterfaceDeclaration[@Image='ImportControl']//MethodDeclarator[@Image='checkAccess']
+      | //ClassOrInterfaceDeclaration[@Image='AbstractImportControl']//MethodDeclarator[@Image='checkAccess']
       | //ClassOrInterfaceDeclaration[@Image='HandlerFactory']//MethodDeclarator[@Image='getHandler']"/>
     </properties>
   </rule>
