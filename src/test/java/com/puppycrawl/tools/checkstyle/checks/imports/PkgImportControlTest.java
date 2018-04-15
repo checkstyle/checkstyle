@@ -25,20 +25,22 @@ import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ImportControlTest {
+public class PkgImportControlTest {
 
-    private final ImportControl icRoot = new ImportControl("com.kazgroup.courtlink", false);
-    private final ImportControl icCommon = new ImportControl(icRoot, "common", false);
+    private final PkgImportControl icRoot = new PkgImportControl(
+            "com.kazgroup.courtlink", false, MismatchStrategy.DISALLOWED);
+    private final PkgImportControl icCommon = new PkgImportControl(icRoot,
+            "common", false, MismatchStrategy.DELEGATE_TO_PARENT);
 
-    private final ImportControl icRootRegexpChild = new ImportControl("com.kazgroup.courtlink",
-            false);
-    private final ImportControl icCommonRegexpChild = new ImportControl(icRootRegexpChild,
-            "common", false);
+    private final PkgImportControl icRootRegexpChild = new PkgImportControl(
+            "com.kazgroup.courtlink", false, MismatchStrategy.DELEGATE_TO_PARENT);
+    private final PkgImportControl icCommonRegexpChild = new PkgImportControl(icRootRegexpChild,
+            "common", false, MismatchStrategy.DELEGATE_TO_PARENT);
 
-    private final ImportControl icRootRegexpParent = new ImportControl("com\\.[^.]+\\.courtlink",
-            true);
-    private final ImportControl icBootRegexpParen = new ImportControl(icRootRegexpParent,
-            "bo+t", true);
+    private final PkgImportControl icRootRegexpParent = new PkgImportControl(
+            "com\\.[^.]+\\.courtlink", true, MismatchStrategy.DELEGATE_TO_PARENT);
+    private final PkgImportControl icBootRegexpParen = new PkgImportControl(icRootRegexpParent,
+            "bo+t", true, MismatchStrategy.DELEGATE_TO_PARENT);
 
     @Before
     public void setUp() {
@@ -70,159 +72,170 @@ public class ImportControlTest {
     @Test
     public void testLocateFinest() {
         assertEquals("Unexpected response", icRoot, icRoot
-                .locateFinest("com.kazgroup.courtlink.domain"));
+                .locateFinest("com.kazgroup.courtlink.domain", "MyClass"));
         assertEquals("Unexpected response", icCommon, icRoot
-                .locateFinest("com.kazgroup.courtlink.common.api"));
-        assertNull("Unexpected response", icRoot.locateFinest("com"));
+                .locateFinest("com.kazgroup.courtlink.common.api", "MyClass"));
+        assertNull("Unexpected response", icRoot.locateFinest("com", "MyClass"));
     }
 
     @Test
     public void testEnsureTrailingDot() {
-        assertNull("Unexpected response", icRoot.locateFinest("com.kazgroup.courtlinkkk"));
         assertNull("Unexpected response",
-                icRoot.locateFinest("com.kazgroup.courtlink/common.api"));
+                icRoot.locateFinest("com.kazgroup.courtlinkkk", "MyClass"));
+        assertNull("Unexpected response",
+                icRoot.locateFinest("com.kazgroup.courtlink/common.api", "MyClass"));
     }
 
     @Test
     public void testCheckAccess() {
         assertEquals("Unexpected access result", AccessResult.DISALLOWED, icCommon.checkAccess(
-                "com.kazgroup.courtlink.common",
+                "com.kazgroup.courtlink.common", "MyClass",
                 "org.springframework.something"));
         assertEquals("Unexpected access result", AccessResult.ALLOWED, icCommon
-                .checkAccess("com.kazgroup.courtlink.common",
+                .checkAccess("com.kazgroup.courtlink.common", "MyClass",
                         "org.apache.commons.something"));
         assertEquals("Unexpected access result", AccessResult.DISALLOWED, icCommon.checkAccess(
-                "com.kazgroup.courtlink.common", "org.apache.commons"));
+                "com.kazgroup.courtlink.common", "MyClass", "org.apache.commons"));
         assertEquals("Unexpected access result", AccessResult.ALLOWED, icCommon.checkAccess(
-                "com.kazgroup.courtlink.common", "org.hibernate.something"));
+                "com.kazgroup.courtlink.common", "MyClass", "org.hibernate.something"));
         assertEquals("Unexpected access result", AccessResult.DISALLOWED, icCommon.checkAccess(
-                "com.kazgroup.courtlink.common", "com.badpackage.something"));
+                "com.kazgroup.courtlink.common", "MyClass", "com.badpackage.something"));
         assertEquals("Unexpected access result", AccessResult.DISALLOWED, icRoot.checkAccess(
-                "com.kazgroup.courtlink", "org.hibernate.something"));
+                "com.kazgroup.courtlink", "MyClass", "org.hibernate.something"));
     }
 
     @Test
     public void testUnknownPkg() {
-        assertNull("Unexpected response", icRoot.locateFinest("net.another"));
+        assertNull("Unexpected response", icRoot.locateFinest("net.another", "MyClass"));
     }
 
     @Test
     public void testRegExpChildLocateFinest() {
         assertEquals("Unexpected response", icRootRegexpChild, icRootRegexpChild
-                .locateFinest("com.kazgroup.courtlink.domain"));
+                .locateFinest("com.kazgroup.courtlink.domain", "MyClass"));
         assertEquals("Unexpected response", icCommonRegexpChild, icRootRegexpChild
-                .locateFinest("com.kazgroup.courtlink.common.api"));
-        assertNull("Unexpected response", icRootRegexpChild.locateFinest("com"));
+                .locateFinest("com.kazgroup.courtlink.common.api", "MyClass"));
+        assertNull("Unexpected response", icRootRegexpChild.locateFinest("com", "MyClass"));
     }
 
     @Test
     public void testRegExpChildCheckAccess() {
         assertEquals("Unexpected access result", AccessResult.DISALLOWED,
-                icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common",
+                icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
                         "org.springframework.something"));
         assertEquals("Unexpected access result", AccessResult.DISALLOWED,
-                icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common",
+                icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
                         "org.luiframework.something"));
         assertEquals("Unexpected access result", AccessResult.DISALLOWED,
-                icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common",
+                icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
                         "de.springframework.something"));
         assertEquals("Unexpected access result", AccessResult.DISALLOWED,
-                icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common",
+                icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
                 "de.luiframework.something"));
         assertEquals("Unexpected access result", AccessResult.ALLOWED,
-                icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common",
+                icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
                         "org.apache.commons.something"));
         assertEquals("Unexpected access result", AccessResult.ALLOWED,
-                icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common",
+                icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
                         "org.lui.commons.something"));
         assertEquals("Unexpected access result", AccessResult.DISALLOWED,
-                icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common",
+                icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
                         "org.apache.commons"));
         assertEquals("Unexpected access result", AccessResult.DISALLOWED,
-                icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common",
+                icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
                         "org.lui.commons"));
         assertEquals("Unexpected access result", AccessResult.ALLOWED,
-                icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common",
+                icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
                         "org.hibernate.something"));
         assertEquals("Unexpected access result", AccessResult.DISALLOWED,
-                icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common",
+                icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
                         "com.badpackage.something"));
         assertEquals("Unexpected access result", AccessResult.DISALLOWED,
-                icRootRegexpChild.checkAccess("com.kazgroup.courtlink",
+                icRootRegexpChild.checkAccess("com.kazgroup.courtlink", "MyClass",
                         "org.hibernate.something"));
     }
 
     @Test
     public void testRegExpChildUnknownPkg() {
-        assertNull("Unexpected response", icRootRegexpChild.locateFinest("net.another"));
+        assertNull("Unexpected response", icRootRegexpChild.locateFinest("net.another", "MyClass"));
     }
 
     @Test
     public void testRegExpParentInRootIsConsidered() {
-        assertNull("Package should not be null", icRootRegexpParent.locateFinest("com"));
+        assertNull("Package should not be null", icRootRegexpParent.locateFinest("com", "MyClass"));
         assertNull("Package should not be null",
-                icRootRegexpParent.locateFinest("com/hurz/courtlink"));
+                icRootRegexpParent.locateFinest("com/hurz/courtlink", "MyClass"));
         assertNull("Package should not be null",
-                icRootRegexpParent.locateFinest("com.hurz.hurz.courtlink"));
+                icRootRegexpParent.locateFinest("com.hurz.hurz.courtlink", "MyClass"));
         assertEquals("Invalid package", icRootRegexpParent,
-                icRootRegexpParent.locateFinest("com.hurz.courtlink.domain"));
+                icRootRegexpParent.locateFinest("com.hurz.courtlink.domain", "MyClass"));
         assertEquals("Invalid package", icRootRegexpParent, icRootRegexpParent
-                .locateFinest("com.kazgroup.courtlink.domain"));
+                .locateFinest("com.kazgroup.courtlink.domain", "MyClass"));
     }
 
     @Test
     public void testRegExpParentInSubpackageIsConsidered() {
         assertEquals("Invalid package", icBootRegexpParen, icRootRegexpParent
-                .locateFinest("com.kazgroup.courtlink.boot.api"));
+                .locateFinest("com.kazgroup.courtlink.boot.api", "MyClass"));
         assertEquals("Invalid package", icBootRegexpParen, icRootRegexpParent
-                .locateFinest("com.kazgroup.courtlink.bot.api"));
+                .locateFinest("com.kazgroup.courtlink.bot.api", "MyClass"));
     }
 
     @Test
     public void testRegExpParentEnsureTrailingDot() {
-        assertNull("Invalid package", icRootRegexpParent.locateFinest("com.kazgroup.courtlinkkk"));
         assertNull("Invalid package",
-                icRootRegexpParent.locateFinest("com.kazgroup.courtlink/common.api"));
+                icRootRegexpParent.locateFinest("com.kazgroup.courtlinkkk", "MyClass"));
+        assertNull("Invalid package",
+                icRootRegexpParent.locateFinest("com.kazgroup.courtlink/common.api", "MyClass"));
     }
 
     @Test
     public void testRegExpParentAlternationInParentIsHandledCorrectly() {
         // the regular expression has to be adjusted to (com\.foo|com\.bar)
-        final ImportControl root = new ImportControl("com\\.foo|com\\.bar", true);
-        final ImportControl common = new ImportControl(root, "common", false);
+        final PkgImportControl root = new PkgImportControl("com\\.foo|com\\.bar", true,
+                MismatchStrategy.DISALLOWED);
+        final PkgImportControl common = new PkgImportControl(root, "common", false,
+                MismatchStrategy.DELEGATE_TO_PARENT);
         root.addChild(common);
-        assertEquals("Invalid package", root, root.locateFinest("com.foo"));
-        assertEquals("Invalid package", common, root.locateFinest("com.foo.common"));
-        assertEquals("Invalid package", root, root.locateFinest("com.bar"));
-        assertEquals("Invalid package", common, root.locateFinest("com.bar.common"));
+        assertEquals("Invalid package", root, root.locateFinest("com.foo", "MyClass"));
+        assertEquals("Invalid package", common, root.locateFinest("com.foo.common", "MyClass"));
+        assertEquals("Invalid package", root, root.locateFinest("com.bar", "MyClass"));
+        assertEquals("Invalid package", common, root.locateFinest("com.bar.common", "MyClass"));
     }
 
     @Test
     public void testRegExpParentAlternationInParentIfUserCaresForIt() {
         // the regular expression has to be adjusted to (com\.foo|com\.bar)
-        final ImportControl root = new ImportControl("(com\\.foo|com\\.bar)", true);
-        final ImportControl common = new ImportControl(root, "common", false);
+        final PkgImportControl root = new PkgImportControl("(com\\.foo|com\\.bar)", true,
+                MismatchStrategy.DISALLOWED);
+        final PkgImportControl common = new PkgImportControl(root, "common", false,
+                MismatchStrategy.DELEGATE_TO_PARENT);
         root.addChild(common);
-        assertEquals("Invalid package", root, root.locateFinest("com.foo"));
-        assertEquals("Invalid package", common, root.locateFinest("com.foo.common"));
-        assertEquals("Invalid package", root, root.locateFinest("com.bar"));
-        assertEquals("Invalid package", common, root.locateFinest("com.bar.common"));
+        assertEquals("Invalid package", root, root.locateFinest("com.foo", "MyClass"));
+        assertEquals("Invalid package", common, root.locateFinest("com.foo.common", "MyClass"));
+        assertEquals("Invalid package", root, root.locateFinest("com.bar", "MyClass"));
+        assertEquals("Invalid package", common, root.locateFinest("com.bar.common", "MyClass"));
     }
 
     @Test
     public void testRegExpParentAlternationInSubpackageIsHandledCorrectly() {
-        final ImportControl root = new ImportControl("org.somewhere", false);
+        final PkgImportControl root = new PkgImportControl("org.somewhere", false,
+                MismatchStrategy.DISALLOWED);
         // the regular expression has to be adjusted to (foo|bar)
-        final ImportControl subpackages = new ImportControl(root, "foo|bar", true);
+        final PkgImportControl subpackages = new PkgImportControl(root, "foo|bar", true,
+                MismatchStrategy.DELEGATE_TO_PARENT);
         root.addChild(subpackages);
-        assertEquals("Invalid package", root, root.locateFinest("org.somewhere"));
-        assertEquals("Invalid package", subpackages, root.locateFinest("org.somewhere.foo"));
-        assertEquals("Invalid package", subpackages, root.locateFinest("org.somewhere.bar"));
+        assertEquals("Invalid package", root, root.locateFinest("org.somewhere", "MyClass"));
+        assertEquals("Invalid package", subpackages,
+                root.locateFinest("org.somewhere.foo", "MyClass"));
+        assertEquals("Invalid package", subpackages,
+                root.locateFinest("org.somewhere.bar", "MyClass"));
     }
 
     @Test
     public void testRegExpParentUnknownPkg() {
-        assertNull("Package should not be null", icRootRegexpParent.locateFinest("net.another"));
+        assertNull("Package should not be null",
+                icRootRegexpParent.locateFinest("net.another", "MyClass"));
     }
 
 }

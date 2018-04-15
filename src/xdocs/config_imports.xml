@@ -881,32 +881,54 @@ public class InputIllegalImport { }
       <subsection name="Description">
         <p>Since Checkstyle 4.0</p>
         <p>
-          Controls what can be imported in each package. Useful for
+          Controls what can be imported in each package and file. Useful for
           ensuring that application layering rules are not violated,
           especially on large projects.
+        </p>
+        <p>
+          You can control imports based on the a package name or based on the file
+          name. When controlling packages, all files and sub-packages in the declared
+          package will be controlled by this check. To specify differences between a main package
+          and a sub-package, you must define the sub-package inside the main package. When
+          controlling file, only the file name is considered and only files processed by
+          <a href="config.html#TreeWalker">TreeWalker</a>. The file's extension is ignored.
         </p>
 
         <p>
           Short description of the behaviour:
           <ul>
               <li>Check starts checking from the longest matching subpackage (later 'current
-                  subpackage') described inside import control file to package defined in class
-                  file.</li>
+                  subpackage') or the first file name match described inside import
+                  control file to package defined in class file.
+                  <ul>
+                    <li>The longest matching subpackage is found by starting with the root package
+                        and examining if the any of the sub-packages or file definitions match the
+                        current class' package or file name.</li>
+                    <li>If a file name is matched first, that is considered the longest
+                        match and becomes the current file/subpackage.</li>
+                    <li>If another subpackage is matched, then it's subpackages and file
+                        names are examined for the next longest match and the process repeats
+                        recursively.</li>
+                    <li>If no subpackages or file names are matched, the current subpackage
+                        is then used.</li>
+                  </ul>
+              </li>
               <li>Order of rules in the same subpackage/root are defined by the order of
                   declaration in the XML file, which is from top (first) to bottom (last).</li>
-              <li>If there is matching allow/disallow rule inside the current subpackage then the
-                  Check returns the first "allowed" or "disallowed" message.</li>
-              <li>If there is no matching allow/disallow rule inside the current subpackage then it
-                  continues checking in the parent subpackage.</li>
-              <li>If there is no matching allow/disallow rule in any of the subpackages, including
-                  the root level (import-control), then the import is disallowed by default.</li>
+              <li>If there is matching allow/disallow rule inside the current file/subpackage
+                  then the Check returns the first "allowed" or "disallowed" message.</li>
+              <li>If there is no matching allow/disallow rule inside the current file/subpackage
+                  then it continues checking in the parent subpackage.</li>
+              <li>If there is no matching allow/disallow rule in any of the files/subpackages,
+                  including the root level (import-control), then the import is disallowed by
+                  default.</li>
           </ul>
         </p>
 
         <p>
           The DTD for a import control XML document is at <a
-          href="http://checkstyle.sourceforge.net/dtds/import_control_1_3.dtd">
-          http://checkstyle.sourceforge.net/dtds/import_control_1_3.dtd</a>. It
+          href="http://checkstyle.sourceforge.net/dtds/import_control_1_4.dtd">
+          http://checkstyle.sourceforge.net/dtds/import_control_1_4.dtd</a>. It
           contains documentation on each of the elements and attributes.
         </p>
 
@@ -918,8 +940,8 @@ public class InputIllegalImport { }
 
         <pre>
 &lt;!DOCTYPE import-control PUBLIC
-    &quot;-//Puppy Crawl//DTD Import Control 1.3//EN&quot;
-    &quot;http://checkstyle.sourceforge.net/dtds/import_control_1_3.dtd&quot;&gt;
+    &quot;-//Puppy Crawl//DTD Import Control 1.4//EN&quot;
+    &quot;http://checkstyle.sourceforge.net/dtds/import_control_1_4.dtd&quot;&gt;
         </pre>
       </subsection>
 
@@ -1111,6 +1133,27 @@ public class InputIllegalImport { }
   &lt;/subpackage&gt;
   &lt;subpackage name=&quot;filters&quot;&gt;
     &lt;allow class=&quot;javax.util.Date&quot;/&gt;
+  &lt;/subpackage&gt;
+&lt;/import-control&gt;
+        </source>
+        <p>
+          In the example below, only file names that end with "Panel", "View", or "Dialog"
+          in the package <code>gui</code> are disallowed to have imports from
+          <code>com.mycompany.dao</code> and any <code>jdbc</code> package. In addition, only
+          the file name named "PresentationModel" in the package <code>gui</code> are
+          disallowed to have imports that match <code>javax.swing.J*</code>.
+          All other imports in the package are allowed.
+        </p>
+        <source>
+&lt;import-control pkg=&quot;com.mycompany.billing&quot;&gt;
+  &lt;subpackage name=&quot;gui&quot; strategyOnMismatch=&quot;allowed&quot;&gt;
+    &lt;file name=&quot;.*(Panel|View|Dialog)&quot; regex=&quot;true&quot;&gt;
+      &lt;disallow pkg=&quot;com.mycompany.dao&quot;/&gt;
+      &lt;disallow pkg=&quot;.*\.jdbc&quot; regex=&quot;true&quot;/&gt;
+    &lt;/file&gt;
+    &lt;file name=&quot;PresentationModel&quot;&gt;
+      &lt;disallow pkg=&quot;javax\.swing\.J.*&quot; regex=&quot;true&quot;/&gt;
+    &lt;/file&gt;
   &lt;/subpackage&gt;
 &lt;/import-control&gt;
         </source>

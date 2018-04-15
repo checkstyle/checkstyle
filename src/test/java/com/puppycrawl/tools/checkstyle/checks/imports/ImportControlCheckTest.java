@@ -407,6 +407,32 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testFileName() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
+        checkConfig.addAttribute("file", getResourcePath("InputImportControlFileName.xml"));
+        final String[] expected = {
+            "3:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Image"),
+        };
+
+        verify(checkConfig, getPath("InputImportControlFileName.java"), expected);
+    }
+
+    @Test
+    public void testFileNameNoExtension() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
+        checkConfig.addAttribute("file",
+                getResourcePath("InputImportControlFileNameNoExtension.xml"));
+        final DefaultConfiguration treewalkerConfig = createModuleConfig(TreeWalker.class);
+        treewalkerConfig.addAttribute("fileExtensions", "");
+        treewalkerConfig.addChild(checkConfig);
+        final String[] expected = {
+            "3:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Image"),
+        };
+
+        verify(treewalkerConfig, getPath("InputImportControlFileNameNoExtension"), expected);
+    }
+
     /**
      * Returns String message of original exception that was thrown in
      * ImportControlCheck.setUrl or ImportControlCheck.setFile
