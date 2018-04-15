@@ -36,6 +36,22 @@
     </properties>
   </rule>
 
+  <rule ref="category/java/documentation.xml">
+    <!-- We use class comments as source for xdoc files, so content is big and that is by design. -->
+    <exclude name="CommentSize"/>
+  </rule>
+  <rule ref="category/java/documentation.xml/CommentRequired">
+    <properties>
+      <!-- *TokenTypes are special class, comments are as trailing comments.
+           RequireThisCheck$AbstractFrame is a private class, no comment is required.
+           Main.runCli has a false positive for an anonymous class.
+      -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypes']
+      | //ClassOrInterfaceDeclaration[@Image='RequireThisCheck']//ClassOrInterfaceDeclaration[@Image='AbstractFrame']
+      | //ClassOrInterfaceDeclaration[@Image='Main']//MethodDeclaration[@Name='runCli']"/>
+    </properties>
+  </rule>
+
   <rule ref="category/java/codestyle.xml">
     <!-- Opposite to UnnecessaryConstructor. -->
     <exclude name="AtLeastOneConstructor"/>
@@ -64,6 +80,24 @@
     <properties>
      <!-- We can not brake compatibility with previous versions. -->
      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AbstractClassNameCheck' or @Image='AutomaticBean']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/codestyle.xml/ConfusingTernary">
+    <properties>
+      <!-- False positives on IF_ELSE-IF-ELSE-IF. -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='XMLLogger']//MethodDeclarator[@Image='isReference']
+      | //ClassOrInterfaceDeclaration[@Image='DetailAST']//MethodDeclarator[@Image='addPreviousSibling']
+      | //ClassOrInterfaceDeclaration[@Image='AnnotationLocationCheck']//MethodDeclarator[@Image='checkAnnotations']
+      | //ClassOrInterfaceDeclaration[@Image='ImportControl']//MethodDeclarator[@Image='checkAccess']
+      | //ClassOrInterfaceDeclaration[@Image='HandlerFactory']//MethodDeclarator[@Image='getHandler']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/codestyle.xml/EmptyMethodInAbstractClassShouldBeAbstract">
+    <properties>
+      <!-- Can not change the API. -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AbstractFileSetCheck'
+        or @Image='AbstractCheck' or @Image='AbstractJavadocCheck' or @Image='AbstractNode'
+        or @Image='AbstractViolationReporter']"/>
     </properties>
   </rule>
   <rule ref="category/java/codestyle.xml/LongVariable">
@@ -130,12 +164,22 @@
     <exclude name="GodClass"/>
     <!-- Too many violations, will be suppressed until we find out how use these metrics. -->
     <exclude name="LawOfDemeter"/>
+    <!-- We use our ImportControl to control imports in packages and classes. -->
+    <exclude name="LoosePackageCoupling"/>
   </rule>
   <rule ref="category/java/design.xml/AvoidCatchingGenericException">
     <properties>
       <!-- There is no other way to deliver the filename that was under processing.
            See https://github.com/checkstyle/checkstyle/issues/2285 -->
       <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Checker']//MethodDeclaration[@Name='processFiles']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/design.xml/AvoidDeeplyNestedIfStmts">
+    <properties>
+      <!-- The default is 3 but we try to use single point of exit from the method and that require
+           some extra IFs. -->
+      <property name="problemDepth" value="4"/>
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='ClassResolver']//MethodDeclarator[@Image='resolve']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/AvoidThrowingRawExceptionTypes">
@@ -260,6 +304,13 @@
     <!-- Checkstyle is not thread safe till https://github.com/checkstyle/checkstyle/projects/5. -->
     <exclude name="UseConcurrentHashMap"/>
   </rule>
+  <rule ref="category/java/multithreading.xml/AvoidSynchronizedAtMethodLevel">
+    <properties>
+      <!-- UniqueProperties#put overloads a synchronized method, so it should have synchronized
+           modifier. -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='UniqueProperties']//MethodDeclarator[@Image='put']"/>
+    </properties>
+  </rule>
 
   <rule ref="category/java/performance.xml">
     <!-- Produces more false positives than real problems. -->
@@ -288,127 +339,29 @@
     </properties>
   </rule>
 
-  <rule ref="rulesets/java/comments.xml">
-    <!-- <exclude name="CommentRequired"/> -->
-    <!-- we use class comments as source for xdoc files, so content is big and that is by design -->
-    <exclude name="CommentSize"/>
-    <!-- Till https://github.com/checkstyle/checkstyle/issues/5665 -->
-    <exclude name="CommentDefaultAccessModifier"/>
-  </rule>
-  <rule ref="rulesets/java/comments.xml/CommentRequired">
+  <!-- Checkstyle own rules. -->
+  <rule name="CheckstyleCustomShortVariable"
+        message="Avoid variables with short names that shorter than 2 symbols: {0}"
+        language="java"
+        class="net.sourceforge.pmd.lang.rule.XPathRule"
+        externalInfoUrl="">
+    <description>
+       Fields, local variables, or parameter names that are very short are not helpful to the reader.
+    </description>
+    <priority>3</priority>
     <properties>
-      <!-- *TokenTypes are special class, comments are as trailing comments -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypes'] | //Annotation/MarkerAnnotation//Name[@Image='Override']"/>
+      <property name="xpath">
+        <value>
+          <![CDATA[
+          //VariableDeclaratorId[string-length(@Image) < 2]
+          [not(ancestor::ForInit)]
+          [not(../../VariableDeclarator and ../../../LocalVariableDeclaration and ../../../../ForStatement)]
+          [not((ancestor::FormalParameter) and (ancestor::TryStatement))]
+          [not(ancestor::ClassOrInterfaceDeclaration[//MarkerAnnotation/Name[pmd-java:typeof(@Image, 'java.lang.Override', 'Override')]])]
+          ]]>
+        </value>
+      </property>
     </properties>
   </rule>
-  <rule ref="rulesets/java/comments.xml/CommentSize">
-    <properties>
-      <!-- we use class comments as source for xdoc files, so content is big and that is by design -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration | //PackageDeclaration | //ClassOrInterfaceDeclaration[@Image='JavadocTagInfo'] | //ClassOrInterfaceDeclaration[@Image='SeverityLevel'] | //ClassOrInterfaceDeclaration[@Image='LeftCurlyOption'] | //ClassOrInterfaceDeclaration[@Image='RightCurlyOption'] | //ClassOrInterfaceDeclaration[@Image='ImportOrderOption']"/>
-      <property name="maxLines" value="8"/>
-      <property name="maxLineLength" value="100"/>
-    </properties>
-  </rule>
-
-  <rule ref="rulesets/java/design.xml">
-    <!-- extra final modifier does not make code more secure in that cases-->
-    <exclude name="ImmutableField"/>
-    <!-- this rule does not have any option, unreasonable to use -->
-    <exclude name="MissingBreakInSwitch"/>
-    <!-- we need compare by ref as Tree structure is immutable, we can easily rely on refs -->
-    <exclude name="CompareObjectsWithEquals"/>
-    <!-- we will use our own declaration order logic -->
-    <exclude name="FieldDeclarationsShouldBeAtStartOfClass"/>
-    <!-- too much alarms of Checks, we will never move logic out of Check, each Check is independent logic container -->
-    <exclude name="GodClass"/>
-    <!--we do not care about this minor overhead, we are not Android application and we do not want to change
-     visibility of methods. Package-private visibility should be avoid almost always.-->
-    <exclude name="AccessorMethodGeneration"/>
-    <!-- Conflicts with the ToArrayCallWithZeroLengthArrayArgument check from the Idea
-         This rule is based on a study by Aleksey Shipilёv
-         https://shipilev.net/blog/2016/arrays-wisdom-ancients/
-         However, in modern JVM the result is different:
-         Benchmark (size)  (type)   Mode  Cnt Score    Error  Units
-         simple     1000  arraylist avgt  15  400.156   4.154 ns/op
-         sized      1000  arraylist avgt  15 1051.462  26.820 ns/op
-         zero       1000  arraylist avgt  15  743.794  27.400 ns/op
-         simple     1000  hashset   avgt  15 4728.179 130.822 ns/op
-         sized      1000  hashset   avgt  15 4960.655 179.637 ns/op
-         zero       1000  hashset   avgt  15 5101.816 159.180 ns/op
-         The advantages of this rule are questionable, and the flaws are obvious.
-     -->
-    <exclude name="OptimizableToArrayCall"/>
-    <!-- Too much "false-positives" on the Checks classes.
-         We do not follow the philosophy of complete encapsulation, we like data classes
-         (preferable immutable) to transfer content from one part to another.
-         There is no way to configure the rule (it has no properties). -->
-    <exclude name="DataClass"/>
-  </rule>
-
-  <rule ref="rulesets/java/design.xml/ConfusingTernary">
-    <properties>
-     <!-- false positives on IF_ELSE-IF-ELSE-IF -->
-    <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='XMLLogger']//MethodDeclarator[@Image='isReference'] | //ClassOrInterfaceDeclaration[@Image='DetailAST']//MethodDeclarator[@Image='addPreviousSibling'] | //ClassOrInterfaceDeclaration[@Image='AnnotationLocationCheck']//MethodDeclarator[@Image='checkAnnotations'] | //ClassOrInterfaceDeclaration[@Image='ImportControl']//MethodDeclarator[@Image='checkAccess'] | //ClassOrInterfaceDeclaration[@Image='HandlerFactory']//MethodDeclarator[@Image='getHandler']"/>
-    </properties>
-  </rule>
-  <rule ref="rulesets/java/design.xml/AccessorClassGeneration">
-    <properties>
-      <!-- We do instantiation by way of private constructors from outside of the constructor’s
-      class in DetectorOptions intentionally as it is a whole idea of Builder pattern. -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='DetectorOptions']"/>
-    </properties>
-  </rule>
-  <rule ref="rulesets/java/design.xml/PreserveStackTrace">
-    <properties>
-     <!-- yes we swallow one exception and try to do another attempt, second attempt does not hide cause -->
-    <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='PackageObjectFactory']//MethodDeclarator[@Image='createModule']"/>
-    </properties>
-  </rule>
-  <rule ref="rulesets/java/design.xml/EmptyMethodInAbstractClassShouldBeAbstract">
-    <properties>
-     <!-- Can not change API -->
-    <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AbstractFileSetCheck'
-    or @Image='AbstractCheck' or @Image='AbstractJavadocCheck' or @Image='AbstractNode' or @Image='AbstractViolationReporter']"/>
-    </properties>
-  </rule>
-
-  <rule ref="rulesets/java/design.xml/AvoidDeeplyNestedIfStmts">
-    <properties>
-      <!-- default is 3 but we try to use single point of exit from method and that require extra IFs -->
-      <property name="problemDepth" value="4"/>
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='ClassResolver']//MethodDeclarator[@Image='resolve']"/>
-    </properties>
-  </rule>
-
-  <rule ref="rulesets/java/design.xml/AvoidSynchronizedAtMethodLevel">
-    <properties>
-      <!-- UniqueProperties#put overloads synchronized method, so it should have synchronized modifier -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='UniqueProperties']//MethodDeclarator[@Image='put']"/>
-    </properties>
-  </rule>
-
-<rule name="CheckstyleCustomShortVariable"
-      message="Avoid variables with short names that shorter than 2 symbols: {0}"
-      language="java"
-      class="net.sourceforge.pmd.lang.rule.XPathRule"
-      externalInfoUrl="">
-<description>
-   Fields, local variables, or parameter names that are very short are not helpful to the reader.
-</description>
-<priority>3</priority>
-<properties>
-   <property name="xpath">
-       <value>
-           <![CDATA[
- //VariableDeclaratorId[string-length(@Image) < 2]
- [not(ancestor::ForInit)]
- [not(../../VariableDeclarator and ../../../LocalVariableDeclaration and ../../../../ForStatement)]
- [not((ancestor::FormalParameter) and (ancestor::TryStatement))]
- [not(ancestor::ClassOrInterfaceDeclaration[//MarkerAnnotation/Name[pmd-java:typeof(@Image, 'java.lang.Override', 'Override')]])]
-            ]]>
-       </value>
-   </property>
-</properties>
-</rule>
 
 </ruleset>
