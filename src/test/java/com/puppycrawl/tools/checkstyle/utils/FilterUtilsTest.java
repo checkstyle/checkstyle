@@ -24,22 +24,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URL;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
-import org.junit.runner.RunWith;
-import org.mockito.BDDMockito;
-import org.mockito.Mockito;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 
-@RunWith(PowerMockRunner.class)
 public class FilterUtilsTest {
 
     @Rule
@@ -62,27 +51,6 @@ public class FilterUtilsTest {
     public void testNonExistentFile() {
         assertFalse("Suppression file does not exist",
                 FilterUtils.isFileExists("non-existent.xml"));
-    }
-
-    @Test
-    @PrepareForTest({FilterUtils.class, CommonUtils.class})
-    public void testExceptionOnClosing() throws Exception {
-        final File file = temporaryFolder.newFile("existing.xml");
-        final InputStream inputStream = PowerMockito.mock(InputStream.class);
-        Mockito.doThrow(IOException.class).when(inputStream).close();
-
-        final URL url = PowerMockito.mock(URL.class);
-        BDDMockito.given(url.openStream()).willReturn(inputStream);
-
-        final URI uri = PowerMockito.mock(URI.class);
-        BDDMockito.given(uri.toURL()).willReturn(url);
-
-        PowerMockito.mockStatic(CommonUtils.class);
-
-        final String fileName = file.getPath();
-        BDDMockito.given(CommonUtils.getUriByFilename(fileName)).willReturn(uri);
-        assertFalse("Should be false, because error on close",
-                FilterUtils.isFileExists(fileName));
     }
 
 }

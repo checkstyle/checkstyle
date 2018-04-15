@@ -278,9 +278,9 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final int errs = checker.process(theFiles);
 
         // process each of the lines
-        final ByteArrayInputStream inputStream =
+        try (ByteArrayInputStream inputStream =
                 new ByteArrayInputStream(stream.toByteArray());
-        try (LineNumberReader lnr = new LineNumberReader(
+            LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             final List<String> actuals = lnr.lines().limit(expected.length)
                     .sorted().collect(Collectors.toList());
@@ -355,10 +355,9 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
 
     private Map<String, List<String>> getActualViolations(int errorCount) throws IOException {
         // process each of the lines
-        final ByteArrayInputStream inputStream =
+        try (ByteArrayInputStream inputStream =
                 new ByteArrayInputStream(stream.toByteArray());
-
-        try (LineNumberReader lnr = new LineNumberReader(
+            LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             final Map<String, List<String>> actualViolations = new HashMap<>();
             for (String line = lnr.readLine(); line != null && lnr.getLineNumber() <= errorCount;

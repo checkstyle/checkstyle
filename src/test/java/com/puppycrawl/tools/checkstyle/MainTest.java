@@ -35,7 +35,6 @@ import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -64,7 +63,6 @@ import org.mockito.ArgumentCaptor;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
@@ -72,7 +70,7 @@ import com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecke
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({Main.class, CommonUtils.class, Closeables.class})
+@PrepareForTest({Main.class, CommonUtils.class})
 public class MainTest {
 
     private static final String USAGE = String.format(Locale.ROOT,
@@ -412,10 +410,6 @@ public class MainTest {
 
     @Test
     public void testExistingTargetFilePlainOutputProperties() throws Exception {
-        mockStatic(Closeables.class);
-        doNothing().when(Closeables.class);
-        Closeables.closeQuietly(any(InputStream.class));
-
         //exit.expectSystemExitWithStatus(0);
         exit.checkAssertionAfterwards(() -> {
             assertEquals("Unexpected output log", auditStartMessage.getMessage() + EOL
@@ -425,9 +419,6 @@ public class MainTest {
         Main.main("-c", getPath("InputMainConfig-classname-prop.xml"),
                 "-p", getPath("InputMainMycheckstyle.properties"),
                 getPath("InputMain.java"));
-
-        verifyStatic(Closeables.class, times(1));
-        Closeables.closeQuietly(any(InputStream.class));
     }
 
     @Test

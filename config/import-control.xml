@@ -10,18 +10,6 @@
          See https://github.com/checkstyle/checkstyle/issues/5638 -->
   <disallow class="java.io.FileInputStream"/>
   <disallow class="java.io.FileOutputStream"/>
-  <!--Disallowed till https://github.com/mojohaus/cobertura-maven-plugin/issues/29-->
-  <disallow class="java.util.stream.Stream"/>
-  <disallow class="java.util.stream.Stream.Builder"/>
-  <disallow class="java.util.stream.DoubleStream"/>
-  <disallow class="java.util.stream.DoubleStream.Builder"/>
-  <disallow class="java.util.stream.IntStream"/>
-  <disallow class="java.util.stream.IntStream.Builder"/>
-  <disallow class="java.util.stream.LongStream"/>
-  <disallow class="java.util.stream.LongStream.Builder"/>
-  <disallow class="java.util.stream.BaseStream"/>
-  <disallow class="java.util.stream.Collector"/>
-  <disallow class="java.util.Comparator"/>
 
   <allow pkg="antlr"/>
   <allow pkg="com.puppycrawl.tools.checkstyle.api"/>

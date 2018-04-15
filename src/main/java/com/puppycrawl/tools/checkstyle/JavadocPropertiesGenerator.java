@@ -39,7 +39,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 
 /**
@@ -102,10 +101,7 @@ public final class JavadocPropertiesGenerator {
      */
     private static void writePropertiesFile(File inputFile, File outputFile)
             throws CheckstyleException {
-        PrintWriter writer = null;
-        try {
-            writer = new PrintWriter(outputFile, StandardCharsets.UTF_8.name());
-
+        try (PrintWriter writer = new PrintWriter(outputFile, StandardCharsets.UTF_8.name())) {
             final DetailAST top = JavaParser.parseFile(inputFile, JavaParser.Options.WITH_COMMENTS);
             final DetailAST objBlock = getClassBody(top);
             if (objBlock != null) {
@@ -115,9 +111,6 @@ public final class JavadocPropertiesGenerator {
         catch (IOException ex) {
             throw new CheckstyleException("Failed to write javadoc properties of '" + inputFile
                 + "' to '" + outputFile + "'", ex);
-        }
-        finally {
-            CommonUtils.close(writer);
         }
     }
 

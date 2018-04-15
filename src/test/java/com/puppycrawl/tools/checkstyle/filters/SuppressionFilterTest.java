@@ -33,7 +33,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -223,10 +222,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
             int attemptCount = 0;
 
             while (attemptCount <= attemptLimit) {
-                InputStream stream = null;
-                try {
-                    final URL address = new URL(url);
-                    stream = address.openStream();
+                try (InputStream stream = new URL(url).openStream()) {
                     // Attempt to read a byte in order to check whether file content is available
                     available = stream.read() != -1;
                     break;
@@ -240,12 +236,8 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
                         Thread.sleep(1000);
                     }
                     else {
-                        Closeables.closeQuietly(stream);
                         throw ex;
                     }
-                }
-                finally {
-                    Closeables.closeQuietly(stream);
                 }
             }
         }

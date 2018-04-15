@@ -24,17 +24,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
-import static org.powermock.api.mockito.PowerMockito.doNothing;
 import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.net.URL;
@@ -55,14 +49,13 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
-import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
  * Enter a description of class PackageNamesLoaderTest.java.
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({PackageNamesLoader.class, Closeables.class})
+@PrepareForTest(PackageNamesLoader.class)
 public class PackageNamesLoaderTest extends AbstractPathTestSupport {
 
     @Override
@@ -90,10 +83,6 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
     @Test
     @SuppressWarnings("unchecked")
     public void testPackagesFile() throws Exception {
-        mockStatic(Closeables.class);
-        doNothing().when(Closeables.class);
-        Closeables.closeQuietly(any(InputStream.class));
-
         final URLConnection mockConnection = Mockito.mock(URLConnection.class);
         when(mockConnection.getInputStream()).thenReturn(
             Files.newInputStream(Paths.get(getPath("InputPackageNamesLoaderFile.xml"))));
@@ -134,9 +123,6 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
         final Set<String> checkstylePackagesSet =
                 new HashSet<>(Arrays.asList(expectedPackageNames));
         assertEquals("Invalid names set.", checkstylePackagesSet, actualPackageNames);
-
-        verifyStatic(Closeables.class, times(1));
-        Closeables.closeQuietly(any(InputStream.class));
     }
 
     @Test

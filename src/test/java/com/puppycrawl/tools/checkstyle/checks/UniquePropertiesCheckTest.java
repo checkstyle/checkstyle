@@ -22,11 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks;
 import static com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.MSG_IO_EXCEPTION_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.MSG_KEY;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
-import static org.powermock.api.mockito.PowerMockito.doNothing;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,19 +39,13 @@ import java.util.SortedSet;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest(Closeables.class)
 public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
 
     @Override
@@ -89,26 +78,6 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
             "34: " + getCheckMessage(MSG_KEY, "failed", 2),
         };
         verify(checkConfig, getPath("InputUniqueProperties.properties"), expected);
-    }
-
-    /**
-     * Pitest requires all closes of streams and readers to be verified. Using PowerMock
-     * is almost only possibility to check it without rewriting production code.
-     *
-     * @throws Exception when code tested throws some exception
-     */
-    @Test
-    public void testCloseInputStream() throws Exception {
-        mockStatic(Closeables.class);
-        doNothing().when(Closeables.class);
-        Closeables.closeQuietly(any(InputStream.class));
-
-        final DefaultConfiguration checkConfig = createModuleConfig(UniquePropertiesCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputUniquePropertiesWithoutErrors.properties"), expected);
-
-        verifyStatic(Closeables.class, times(1));
-        Closeables.closeQuietly(any(InputStream.class));
     }
 
     /**

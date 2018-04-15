@@ -38,8 +38,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
-
 /**
  * Represents the text contents of a file of arbitrary plain text type.
  * <p>
@@ -126,8 +124,7 @@ public final class FileText {
         // Use the BufferedReader to break down the lines as this
         // is about 30% faster than using the
         // LINE_TERMINATOR.split(fullText, -1) method
-        final BufferedReader reader = new BufferedReader(new StringReader(fullText));
-        try {
+        try (BufferedReader reader = new BufferedReader(new StringReader(fullText))) {
             final ArrayList<String> textLines = new ArrayList<>();
             while (true) {
                 final String line = reader.readLine();
@@ -137,9 +134,6 @@ public final class FileText {
                 textLines.add(line);
             }
             lines = textLines.toArray(new String[textLines.size()]);
-        }
-        finally {
-            CommonUtils.close(reader);
         }
     }
 
@@ -197,8 +191,7 @@ public final class FileText {
         }
         final StringBuilder buf = new StringBuilder(1024);
         final InputStream stream = Files.newInputStream(inputFile.toPath());
-        final Reader reader = new InputStreamReader(stream, decoder);
-        try {
+        try (Reader reader = new InputStreamReader(stream, decoder)) {
             final char[] chars = new char[READ_BUFFER_SIZE];
             while (true) {
                 final int len = reader.read(chars);
@@ -207,9 +200,6 @@ public final class FileText {
                 }
                 buf.append(chars, 0, len);
             }
-        }
-        finally {
-            CommonUtils.close(reader);
         }
         return buf.toString();
     }

@@ -21,8 +21,6 @@ package com.puppycrawl.tools.checkstyle.utils;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
-import java.net.URL;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
@@ -42,41 +40,14 @@ public final class FilterUtils {
      * @return true if suppression file exists, otherwise false
      */
     public static boolean isFileExists(String fileName) {
-        boolean suppressionSourceExists = true;
-        InputStream sourceInput = null;
-        try {
-            final URI uriByFilename = CommonUtils.getUriByFilename(fileName);
-            final URL url = uriByFilename.toURL();
-            sourceInput = url.openStream();
+        boolean suppressionSourceExists;
+        try (InputStream stream = CommonUtils.getUriByFilename(fileName).toURL().openStream()) {
+            suppressionSourceExists = true;
         }
         catch (CheckstyleException | IOException ignored) {
             suppressionSourceExists = false;
         }
-        finally {
-            suppressionSourceExists = closeQuietlyWithResult(sourceInput, suppressionSourceExists);
-        }
         return suppressionSourceExists;
-    }
-
-    /**
-     * Close input.
-     * This method is required till https://github.com/cobertura/cobertura/issues/170
-     * @param sourceInput stream to close
-     * @param suppressionSourceExists previous state of flag
-     * @return result of close operation
-     */
-    private static boolean closeQuietlyWithResult(InputStream sourceInput,
-                                                  boolean suppressionSourceExists) {
-        boolean closed = suppressionSourceExists;
-        if (sourceInput != null) {
-            try {
-                sourceInput.close();
-            }
-            catch (IOException ignored) {
-                closed = false;
-            }
-        }
-        return closed;
     }
 
 }

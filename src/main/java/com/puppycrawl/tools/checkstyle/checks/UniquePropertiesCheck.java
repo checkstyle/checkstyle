@@ -31,7 +31,6 @@ import com.google.common.collect.HashMultiset;
 import com.google.common.collect.ImmutableMultiset;
 import com.google.common.collect.Multiset;
 import com.google.common.collect.Multiset.Entry;
-import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
@@ -68,17 +67,12 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
     @Override
     protected void processFiltered(File file, FileText fileText) {
         final UniqueProperties properties = new UniqueProperties();
-        InputStream inputStream = null;
-        try {
-            inputStream = Files.newInputStream(file.toPath());
+        try (InputStream inputStream = Files.newInputStream(file.toPath())) {
             properties.load(inputStream);
         }
         catch (IOException ex) {
             log(0, MSG_IO_EXCEPTION_KEY, file.getPath(),
                     ex.getLocalizedMessage());
-        }
-        finally {
-            Closeables.closeQuietly(inputStream);
         }
 
         for (Entry<String> duplication : properties

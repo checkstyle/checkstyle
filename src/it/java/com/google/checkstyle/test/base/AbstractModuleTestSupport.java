@@ -247,9 +247,9 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final int errs = checker.process(theFiles);
 
         // process each of the lines
-        final ByteArrayInputStream inputStream =
+        try (ByteArrayInputStream inputStream =
                 new ByteArrayInputStream(stream.toByteArray());
-        try (LineNumberReader lnr = new LineNumberReader(
+            LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             int previousLineNumber = 0;
             for (int i = 0; i < expected.length; i++) {

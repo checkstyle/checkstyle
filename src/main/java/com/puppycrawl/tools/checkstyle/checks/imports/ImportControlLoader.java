@@ -185,9 +185,7 @@ final class ImportControlLoader extends XmlLoader {
      * @throws CheckstyleException if an error occurs.
      */
     public static ImportControl load(URI uri) throws CheckstyleException {
-        InputStream inputStream = null;
-        try {
-            inputStream = uri.toURL().openStream();
+        try (InputStream inputStream = uri.toURL().openStream()) {
             final InputSource source = new InputSource(inputStream);
             return load(source, uri);
         }
@@ -196,9 +194,6 @@ final class ImportControlLoader extends XmlLoader {
         }
         catch (IOException ex) {
             throw new CheckstyleException("unable to find " + uri, ex);
-        }
-        finally {
-            closeStream(inputStream);
         }
     }
 
@@ -222,23 +217,6 @@ final class ImportControlLoader extends XmlLoader {
         }
         catch (IOException ex) {
             throw new CheckstyleException("unable to read " + uri, ex);
-        }
-    }
-
-    /**
-     * This method exists only due to bug in cobertura library
-     * https://github.com/cobertura/cobertura/issues/170
-     * @param inputStream the InputStream to close
-     * @throws CheckstyleException if an error occurs.
-     */
-    private static void closeStream(InputStream inputStream) throws CheckstyleException {
-        if (inputStream != null) {
-            try {
-                inputStream.close();
-            }
-            catch (IOException ex) {
-                throw new CheckstyleException("unable to close input stream", ex);
-            }
         }
     }
 

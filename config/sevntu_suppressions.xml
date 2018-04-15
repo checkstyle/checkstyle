@@ -27,11 +27,6 @@
     <suppress checks="ForbidCertainImports"
               files="JavadocUtils\.java|JavadocUtilsTest\.java"/>
 
-    <!--ITs and UTs are not included in Cobertura coverage report
-    and do not have coverage problems due to imports from java.util.stream. -->
-    <suppress id="ForbidInterfacesImportFromJavaUtilStream"
-              files=".*[\\/]src[\\/](test|it)[\\/]"/>
-
     <!-- Tone down the checking for test code -->
     <suppress checks="ForbidCertainImports"
               files="DetailASTTest\.java"/>

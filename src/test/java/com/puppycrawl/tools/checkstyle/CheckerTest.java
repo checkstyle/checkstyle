@@ -982,47 +982,49 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultLoggerClosesItStreams() throws Exception {
         final Checker checker = new Checker();
-        final CloseAndFlushTestByteArrayOutputStream testInfoOutputStream =
-            new CloseAndFlushTestByteArrayOutputStream();
-        final CloseAndFlushTestByteArrayOutputStream testErrorOutputStream =
-            new CloseAndFlushTestByteArrayOutputStream();
-        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        checker.addListener(new DefaultLogger(testInfoOutputStream,
-            true, testErrorOutputStream, true));
+        try (CloseAndFlushTestByteArrayOutputStream testInfoOutputStream =
+                new CloseAndFlushTestByteArrayOutputStream();
+            CloseAndFlushTestByteArrayOutputStream testErrorOutputStream =
+                new CloseAndFlushTestByteArrayOutputStream()) {
+            checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+            checker.addListener(new DefaultLogger(testInfoOutputStream,
+                true, testErrorOutputStream, true));
 
-        final File tmpFile = temporaryFolder.newFile("file.java");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+            final File tmpFile = temporaryFolder.newFile("file.java");
+            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checker, tmpFile.getPath(), expected);
+            verify(checker, tmpFile.getPath(), expected);
 
-        assertEquals("Close count was not expected",
-                1, testInfoOutputStream.getCloseCount());
-        assertEquals("Flush count was not expected",
-                3, testInfoOutputStream.getFlushCount());
-        assertEquals("Close count was not expected",
-                1, testErrorOutputStream.getCloseCount());
-        assertEquals("Flush count was not expected",
-                1, testErrorOutputStream.getFlushCount());
+            assertEquals("Close count was not expected",
+                    1, testInfoOutputStream.getCloseCount());
+            assertEquals("Flush count was not expected",
+                    3, testInfoOutputStream.getFlushCount());
+            assertEquals("Close count was not expected",
+                    1, testErrorOutputStream.getCloseCount());
+            assertEquals("Flush count was not expected",
+                    1, testErrorOutputStream.getFlushCount());
+        }
     }
 
     // -@cs[CheckstyleTestMakeup] must use raw class to directly initialize DefaultLogger
     @Test
     public void testXmlLoggerClosesItStreams() throws Exception {
         final Checker checker = new Checker();
-        final CloseAndFlushTestByteArrayOutputStream testInfoOutputStream =
-            new CloseAndFlushTestByteArrayOutputStream();
-        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        checker.addListener(new XMLLogger(testInfoOutputStream, true));
+        try (CloseAndFlushTestByteArrayOutputStream testInfoOutputStream =
+                new CloseAndFlushTestByteArrayOutputStream()) {
+            checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+            checker.addListener(new XMLLogger(testInfoOutputStream, true));
 
-        final File tmpFile = temporaryFolder.newFile("file.java");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+            final File tmpFile = temporaryFolder.newFile("file.java");
+            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checker, tmpFile.getPath(), tmpFile.getPath(), expected);
+            verify(checker, tmpFile.getPath(), tmpFile.getPath(), expected);
 
-        assertEquals("Close count was not expected",
-                1, testInfoOutputStream.getCloseCount());
-        assertEquals("Flush count was not expected",
-                0, testInfoOutputStream.getFlushCount());
+            assertEquals("Close count was not expected",
+                    1, testInfoOutputStream.getCloseCount());
+            assertEquals("Flush count was not expected",
+                    0, testInfoOutputStream.getFlushCount());
+        }
     }
 
     @Test
@@ -1057,9 +1059,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         // super.verify does not work here, for we change the logger
         out.flush();
         final int errs = checker.process(Collections.singletonList(new File(path)));
-        final ByteArrayInputStream inputStream =
+        try (ByteArrayInputStream inputStream =
                 new ByteArrayInputStream(out.toByteArray());
-        try (LineNumberReader lnr = new LineNumberReader(
+            LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             // we need to ignore the unrelated lines
             final List<String> actual = lnr.lines()

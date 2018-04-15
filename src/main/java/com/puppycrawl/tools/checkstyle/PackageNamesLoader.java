@@ -36,7 +36,6 @@ import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -162,17 +161,12 @@ public final class PackageNamesLoader
      */
     private static void processFile(URL packageFile, PackageNamesLoader namesLoader)
             throws SAXException, CheckstyleException {
-        InputStream stream = null;
-        try {
-            stream = new BufferedInputStream(packageFile.openStream());
+        try (InputStream stream = new BufferedInputStream(packageFile.openStream())) {
             final InputSource source = new InputSource(stream);
             namesLoader.parseInputSource(source);
         }
         catch (IOException ex) {
             throw new CheckstyleException("unable to open " + packageFile, ex);
-        }
-        finally {
-            Closeables.closeQuietly(stream);
         }
     }
 
