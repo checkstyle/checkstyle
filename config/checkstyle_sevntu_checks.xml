@@ -125,17 +125,6 @@
             <property name="forbiddenImportsExcludesRegexp"
                       value="^com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier$"/>
         </module>
-        <module name="ForbidCertainImports">
-            <property name="packageNameRegexp" value=".+"/>
-            <property name="id" value="ForbidInterfacesImportFromJavaUtilStream"/>
-            <!--Disallowed till https://github.com/mojohaus/cobertura-maven-plugin/issues/29-->
-            <property name="forbiddenImportsRegexp" value="java\.util\.stream\.Stream|
-            java\.util\.stream\.Stream\.Builder|java\.util\.stream\.DoubleStream|
-            java\.util\.stream\.DoubleStream\.Builder|java\.util\.stream\.IntStream|
-            java\.util\.stream\.IntStream\.Builder|java\.util\.stream\.LongStream|
-            java\.util\.stream\.LongStream\.Builder|java\.util\.stream\.BaseStream|
-            java\.util\.stream\.Collector"/>
-        </module>
         <module name="LineLengthExtended">
             <property name="max" value="100"/>
             <property name="ignoreClass" value="true"/>

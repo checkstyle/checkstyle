@@ -24,24 +24,14 @@ import static com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck.MS
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
-import static org.powermock.api.mockito.PowerMockito.doNothing;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 
-import java.io.Reader;
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.reflect.Whitebox;
 
-import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -50,8 +40,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 /**
  * Unit test for RegexpHeaderCheck.
  */
-@RunWith(PowerMockRunner.class)
-@PrepareForTest(Closeables.class)
 public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Override
@@ -94,18 +82,13 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testSetHeaderSimple() {
-        //check if reader finally closed
-        mockStatic(Closeables.class);
-        doNothing().when(Closeables.class);
-        Closeables.closeQuietly(any(Reader.class));
-
         final RegexpHeaderCheck instance = new RegexpHeaderCheck();
         // check valid header passes
         final String header = "abc.*";
         instance.setHeader(header);
-
-        verifyStatic(Closeables.class, times(2));
-        Closeables.closeQuietly(any(Reader.class));
+        final List<Pattern> headerRegexps = Whitebox.getInternalState(instance, "headerRegexps");
+        assertEquals("Expected one pattern", 1, headerRegexps.size());
+        assertEquals("Invalid header regexp", header, headerRegexps.get(0).pattern());
     }
 
     /**
@@ -371,21 +354,6 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
             "5: " + getCheckMessage(MSG_HEADER_MISMATCH, "^$"),
         };
         verify(checkConfig, getPath("InputRegexpHeaderMulti52.java"), expected);
-    }
-
-    @Test
-    public void testReaderClosedAfterHeaderRead() throws Exception {
-        mockStatic(Closeables.class);
-        doNothing().when(Closeables.class);
-        Closeables.closeQuietly(any(Reader.class));
-
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
-        checkConfig.addAttribute("headerFile", getPath("InputRegexpHeader.header"));
-        createChecker(checkConfig);
-
-        //check if reader finally closed
-        verifyStatic(Closeables.class, times(2));
-        Closeables.closeQuietly(any(Reader.class));
     }
 
 }

@@ -154,7 +154,9 @@ public class ImportControlLoaderTest {
             fail("exception expected " + available);
         }
         catch (CheckstyleException ex) {
-            assertSame("Invalid exception class", IOException.class, ex.getCause().getClass());
+            final Throwable[] suppressed = ex.getSuppressed();
+            assertEquals("Expected one suppressed exception", 1, suppressed.length);
+            assertSame("Invalid exception class", IOException.class, suppressed[0].getClass());
         }
         Mockito.verify(inputStream).close();
     }

@@ -45,7 +45,6 @@ import org.apache.commons.cli.ParseException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -589,19 +588,14 @@ public final class Main {
             throws CheckstyleException {
         final Properties properties = new Properties();
 
-        InputStream fis = null;
-        try {
-            fis = Files.newInputStream(file.toPath());
-            properties.load(fis);
+        try (InputStream stream = Files.newInputStream(file.toPath())) {
+            properties.load(stream);
         }
         catch (final IOException ex) {
             final LocalizedMessage loadPropertiesExceptionMessage = new LocalizedMessage(0,
                     Definitions.CHECKSTYLE_BUNDLE, LOAD_PROPERTIES_EXCEPTION,
                     new String[] {file.getAbsolutePath()}, null, Main.class, null);
             throw new CheckstyleException(loadPropertiesExceptionMessage.getMessage(), ex);
-        }
-        finally {
-            Closeables.closeQuietly(fis);
         }
 
         return properties;

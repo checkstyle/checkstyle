@@ -37,7 +37,6 @@ import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
@@ -150,10 +149,6 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
 
     @Test
     public void testPopulateDetails() throws IOException {
-        mockStatic(Closeables.class);
-        doNothing().when(Closeables.class);
-        Closeables.closeQuietly(any(InputStream.class));
-
         final Configuration config = new DefaultConfiguration("myName");
         final PropertyCacheFile cache = new PropertyCacheFile(config,
                 getPath("InputPropertyCacheFile"));
@@ -169,9 +164,6 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         assertEquals("Invalid cache value", "value", cache.get("key"));
         assertNotNull("Config hash key should not be null",
                 cache.get(PropertyCacheFile.CONFIG_HASH_KEY));
-
-        verifyStatic(Closeables.class, times(2));
-        Closeables.closeQuietly(any(InputStream.class));
     }
 
     @Test

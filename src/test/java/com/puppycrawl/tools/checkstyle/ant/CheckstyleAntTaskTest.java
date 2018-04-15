@@ -25,16 +25,11 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
-import static org.powermock.api.mockito.PowerMockito.doNothing;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -58,7 +53,6 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.reflect.Whitebox;
 
-import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.Definitions;
@@ -68,7 +62,7 @@ import com.puppycrawl.tools.checkstyle.internal.testmodules.CheckerStub;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecker;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({CheckstyleAntTask.class, Closeables.class})
+@PrepareForTest(CheckstyleAntTask.class)
 public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
     private static final String FLAWLESS_INPUT =
@@ -471,11 +465,6 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
     @Test
     public final void testSetPropertiesFile() throws IOException {
-        //check if input stream finally closed
-        mockStatic(Closeables.class);
-        doNothing().when(Closeables.class);
-        Closeables.closeQuietly(any(InputStream.class));
-
         TestRootModuleChecker.reset();
 
         final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
@@ -486,8 +475,6 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
         assertEquals("Property is not set",
                 "ignore", TestRootModuleChecker.getProperty());
-        verifyStatic(Closeables.class, times(1));
-        Closeables.closeQuietly(any(InputStream.class));
     }
 
     @Test

@@ -44,7 +44,6 @@ import org.apache.tools.ant.types.FileSet;
 import org.apache.tools.ant.types.Path;
 import org.apache.tools.ant.types.Reference;
 
-import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
@@ -323,18 +322,9 @@ public class CheckstyleAntTask extends Task {
             processFiles(rootModule, warningCounter, checkstyleVersion);
         }
         finally {
-            destroyRootModule(rootModule);
-        }
-    }
-
-    /**
-     * Destroy root module. This method exists only due to bug in cobertura library
-     * https://github.com/cobertura/cobertura/issues/170
-     * @param rootModule Root module that was used to process files
-     */
-    private static void destroyRootModule(RootModule rootModule) {
-        if (rootModule != null) {
-            rootModule.destroy();
+            if (rootModule != null) {
+                rootModule.destroy();
+            }
         }
     }
 
@@ -443,17 +433,12 @@ public class CheckstyleAntTask extends Task {
 
         // Load the properties file if specified
         if (properties != null) {
-            InputStream inStream = null;
-            try {
-                inStream = Files.newInputStream(properties.toPath());
+            try (InputStream inStream = Files.newInputStream(properties.toPath())) {
                 returnValue.load(inStream);
             }
             catch (final IOException ex) {
                 throw new BuildException("Error loading Properties file '"
                         + properties + "'", ex, getLocation());
-            }
-            finally {
-                Closeables.closeQuietly(inStream);
             }
         }
 

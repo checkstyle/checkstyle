@@ -114,18 +114,13 @@ final class PropertyCacheFile {
         configHash = getHashCodeBasedOnObjectContent(config);
         final File file = new File(fileName);
         if (file.exists()) {
-            InputStream inStream = null;
-            try {
-                inStream = Files.newInputStream(file.toPath());
+            try (InputStream inStream = Files.newInputStream(file.toPath())) {
                 details.load(inStream);
                 final String cachedConfigHash = details.getProperty(CONFIG_HASH_KEY);
                 if (!configHash.equals(cachedConfigHash)) {
                     // Detected configuration change - clear cache
                     reset();
                 }
-            }
-            finally {
-                Closeables.closeQuietly(inStream);
             }
         }
         else {

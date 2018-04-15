@@ -42,7 +42,6 @@ import org.apache.commons.logging.LogFactory;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.SetMultimap;
-import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
@@ -477,18 +476,13 @@ public class TranslationCheck extends AbstractFileSetCheck {
      */
     private Set<String> getTranslationKeys(File file) {
         Set<String> keys = new HashSet<>();
-        InputStream inStream = null;
-        try {
-            inStream = Files.newInputStream(file.toPath());
+        try (InputStream inStream = Files.newInputStream(file.toPath())) {
             final Properties translations = new Properties();
             translations.load(inStream);
             keys = translations.stringPropertyNames();
         }
         catch (final IOException ex) {
             logIoException(ex, file);
-        }
-        finally {
-            Closeables.closeQuietly(inStream);
         }
         return keys;
     }

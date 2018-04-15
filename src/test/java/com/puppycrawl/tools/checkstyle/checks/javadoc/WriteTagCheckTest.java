@@ -216,9 +216,9 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         final int errs = checker.process(theFiles);
 
         // process each of the lines
-        final ByteArrayInputStream localStream =
-            new ByteArrayInputStream(getStream().toByteArray());
-        try (LineNumberReader lnr = new LineNumberReader(
+        try (ByteArrayInputStream localStream =
+                new ByteArrayInputStream(getStream().toByteArray());
+            LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(localStream, StandardCharsets.UTF_8))) {
             for (int i = 0; i < expected.length; i++) {
                 final String expectedResult = messageFileName + ":" + expected[i];

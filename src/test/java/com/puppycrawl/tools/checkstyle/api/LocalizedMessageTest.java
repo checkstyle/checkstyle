@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import static com.puppycrawl.tools.checkstyle.utils.CommonUtils.EMPTY_BYTE_ARRAY;
 import static com.puppycrawl.tools.checkstyle.utils.CommonUtils.EMPTY_OBJECT_ARRAY;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -31,7 +30,6 @@ import static org.mockito.Mockito.verify;
 import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.when;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -43,7 +41,6 @@ import java.util.ResourceBundle;
 
 import org.junit.After;
 import org.junit.Test;
-import org.mockito.Mockito;
 import org.powermock.reflect.Whitebox;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
@@ -160,26 +157,6 @@ public class LocalizedMessageTest {
         final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
 
         assertEquals("Invalid message", "Empty statement.", localizedMessage.getMessage());
-    }
-
-    @Test
-    public void testBundleWithoutReload() throws IOException {
-        final ClassLoader classloader = mock(ClassLoader.class);
-        final URLConnection mockConnection = Mockito.mock(URLConnection.class);
-        when(mockConnection.getInputStream()).thenReturn(
-                new ByteArrayInputStream(EMPTY_BYTE_ARRAY));
-
-        final URL url = getMockUrl(mockConnection);
-        final String resource =
-                "com/puppycrawl/tools/checkstyle/checks/coding/messages_en.properties";
-        when(classloader.getResource(resource)).thenReturn(url);
-
-        final LocalizedMessage.Utf8Control control = new LocalizedMessage.Utf8Control();
-        final ResourceBundle resourceBundle = control.newBundle(
-                "com.puppycrawl.tools.checkstyle.checks.coding.messages",
-                Locale.ENGLISH, "java.class", classloader, false);
-
-        assertNull("Resource bundle should not be null", resourceBundle);
     }
 
     @Test

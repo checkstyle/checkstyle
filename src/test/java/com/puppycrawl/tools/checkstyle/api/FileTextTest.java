@@ -21,28 +21,16 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
-import static org.powermock.api.mockito.PowerMockito.doNothing;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest(CommonUtils.class)
 public class FileTextTest extends AbstractPathTestSupport {
 
     @Override
@@ -66,18 +54,10 @@ public class FileTextTest extends AbstractPathTestSupport {
 
     @Test
     public void testSupportedCharset() throws IOException {
-        //check if reader finally closed
-        mockStatic(CommonUtils.class);
-        doNothing().when(CommonUtils.class);
-        CommonUtils.close(any(Reader.class));
-
         final String charsetName = StandardCharsets.ISO_8859_1.name();
         final FileText fileText = new FileText(new File(getPath("InputFileTextImportControl.xml")),
                 charsetName);
         assertEquals("Invalid charset name", charsetName, fileText.getCharset().name());
-
-        verifyStatic(CommonUtils.class, times(2));
-        CommonUtils.close(any(Reader.class));
     }
 
     @Test
