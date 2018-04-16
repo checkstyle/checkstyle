@@ -668,11 +668,6 @@ public class UserService {
           are queries for suppressed nodes inside the AST tree.
         </p>
         <p>
-          Note, after resolving
-          <a href="https://github.com/checkstyle/checkstyle/issues/4530">issue 4530</a>
-          CLI will have option to generate the basic suppression xpath to elements.
-        </p>
-        <p>
           Currently, filter supports the following
           checks:
         </p>
@@ -859,6 +854,63 @@ public class UserService {
         <source>
 &lt;suppress-xpath checks=&quot;.*&quot; query=&quot;/CLASS_DEF[@text='TestClass']
           //METHOD_DEF[@text='testMethod']//VARIABLE_DEF[@text='testVariable']&quot;/&gt;
+        </source>
+        <p>
+          In the following sample, violations for <code>LeftCurly</code> check will be suppressed
+          for classes with name <i>Main</i> or for methods with name <i>calculate</i>.
+        </p>
+        <source>
+&lt;suppress-xpath checks=&quot;LeftCurly&quot; query=&quot;/CLASS_DEF[@text='Main']//*
+          | //METHOD_DEF[@text='calculate']/*&quot;/&gt;
+        </source>
+        <p>
+          The following example demonstrates how to suppress <code>RequireThis</code> violations for
+          variable <i>age</i> inside <i>changeAge</i> method.
+        </p>
+        <source>
+&lt;suppress-xpath checks=&quot;RequireThis&quot; query=&quot;/CLASS_DEF[@text='InputTest']
+          //METHOD_DEF[@text='changeAge']//ASSIGN[@text='age']/IDENT&quot;/&gt;
+        </source>
+        <source>
+public class InputTest {
+  private int age = 23;
+
+  public void changeAge() {
+    age = 24; //violation will be suppressed
+  }
+}
+        </source>
+        <p>
+          Suppress <code>IllegalThrows</code> violations only for methods with name
+          <i>throwsMethod</i> and only for <code>RuntimeException</code> exceptions.
+          Double colon is used for axis iterations. In the following example <code>ancestor</code>
+          axis is used to iterate all ancestor nodes of the current node with type
+          <code>METHOD_DEF</code> and name <i>throwsMethod</i>. Please read more about xpath axes at
+          <a href="https://www.w3schools.com/xml/xpath_axes.asp">W3Schools Xpath Axes</a>.
+        </p>
+        <source>
+&lt;suppress-xpath checks=&quot;IllegalThrows&quot; query=&quot;//LITERAL_THROWS/IDENT[
+          ..[@text='RuntimeException'] and ./ancestor::METHOD_DEF[@text='throwsMethod']]&quot;/&gt;
+        </source>
+        <source>
+public class InputTest {
+  public void throwsMethod() throws RuntimeException { // violation will be suppressed
+  }
+
+  public void sampleMethod() throws RuntimeException { // will throw violation here
+  }
+}
+        </source>
+        <p>
+          The following sample demonstrates how to suppress all violations for method itself and
+          all descendants. <code>descendant-or-self</code> axis iterates through current node and
+          all children nodes at any level. Keyword <code>node()</code> selects node elements.
+          Please read more about xpath syntax at
+          <a href="https://www.w3schools.com/xml/xpath_syntax.asp">W3Schools Xpath Syntax</a>.
+        </p>
+        <source>
+&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;//METHOD_DEF[@text='legacyMethod']
+          /descendant-or-self::node()&quot;/&gt;
         </source>
       </subsection>
       <subsection name="Example of Usage">
