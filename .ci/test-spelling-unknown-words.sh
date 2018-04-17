@@ -54,7 +54,10 @@ echo "Run w"
   .ci-temp/contribution/jsoref-spellchecker/exclude.pl |\
   xargs -0 $word_splitter |\
   $word_splitter |\
-  perl -p -n -e 's/ \(.*//' > $run_output
+  perl -p -n -e 's/ \(.*//' |\
+  perl -n -e 'next if /^[ux]?[a-f]+$/i; print' |\
+  perl -n -e 'next if /^([a-z])\1+$/i; print' |\
+  cat > $run_output
 
 printDetails() {
   echo ''
