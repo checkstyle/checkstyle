@@ -5,15 +5,23 @@
 # plus `fchurn` which uses `dn` mostly rolled together.
 set -e
 
-echo "cloning contribution"
 contrib_repo=https://github.com/checkstyle/contribution.git
 temp=`pwd`/.ci-temp
 mkdir -p $temp
 contrib=$temp/contribution
-if [ ! -d $contrib ]; then
-  git clone $contrib_repo $contrib
+
+if [[ ${skipFetchRepo+x} ]]; then
+  echo "[WARN] Existing $contrib will be used, no clone/fetch will happen"
 else
-  (cd $contrib; git fetch; git reset --hard origin/master)
+  if [ ! -d $contrib ]; then
+    echo "cloning contribution repo"
+    git clone $contrib_repo $contrib
+  else
+    echo "fetching contribution repo"
+    cd $contrib;
+    git fetch; git reset --hard origin/master
+    cd $temp/../
+  fi
 fi
 
 spellchecker=$contrib/jsoref-spellchecker
