@@ -10,7 +10,7 @@ temp=`pwd`/.ci-temp
 mkdir -p $temp
 contrib=$temp/contribution
 
-if [[ $skipFetchRepo == "true" ]]; then
+if [ "$skipFetchRepo" == "true" ]; then
   echo "[WARN] Existing $contrib will be used, no clone/fetch will happen"
 else
   if [ ! -d $contrib ]; then
