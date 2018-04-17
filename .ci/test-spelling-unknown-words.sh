@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # This CI acceptance test is based on:
 # https://github.com/jsoref/spelling/blob/04648bdc63723e5cdf5cbeaff2225a462807abc8
 # It is conceptually `f` which runs `w` (spelling-unknown-word-splitter)
