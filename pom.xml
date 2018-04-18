@@ -1226,7 +1226,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>xml-maven-plugin</artifactId>
-        <version>1.0.1</version>
+        <version>1.0.2</version>
         <executions>
           <execution>
             <goals>
@@ -1235,6 +1235,7 @@
           </execution>
         </executions>
         <configuration>
+          <catalogHandling>strict</catalogHandling>
           <validationSets>
             <validationSet>
               <dir>config</dir>
@@ -1246,10 +1247,11 @@
               </excludes>
             </validationSet>
             <validationSet>
+              <validating>true</validating>
               <dir>src/site/resources/files</dir>
-              <systemId>src/main/resources/com/puppycrawl/tools/checkstyle/suppressions_1_0.dtd</systemId>
             </validationSet>
             <validationSet>
+              <validating>true</validating>
               <dir>src/site</dir>
               <includes>
                 <include>site.xml</include>
@@ -1257,20 +1259,20 @@
               <systemId>http://maven.apache.org/xsd/decoration-1.0.0.xsd</systemId>
             </validationSet>
             <validationSet>
+              <validating>true</validating>
               <dir>src/test/resources</dir>
               <includes>
                 <include>com/puppycrawl/tools/checkstyle/packagenamesloader/InputPackageNamesLoaderFile.xml</include>
                 <include>com/puppycrawl/tools/checkstyle/treewalker/InputTreeWalkerNotJava.xml</include>
               </includes>
-              <systemId>src/main/resources/com/puppycrawl/tools/checkstyle/packages_1_0.dtd</systemId>
             </validationSet>
             <validationSet>
+              <validating>true</validating>
               <dir>src/main/resources</dir>
               <includes>
                 <include>google_checks.xml</include>
                 <include>sun_checks.xml</include>
               </includes>
-              <systemId>src/main/resources/com/puppycrawl/tools/checkstyle/configuration_1_3.dtd</systemId>
             </validationSet>
           </validationSets>
           <catalogs>
