@@ -5,31 +5,11 @@
 # plus `fchurn` which uses `dn` mostly rolled together.
 set -e
 
-contrib_repo=https://github.com/checkstyle/contribution.git
-temp=`pwd`/.ci-temp
-mkdir -p $temp
-contrib=$temp/contribution
-
-if [ "$skipFetchRepo" == "true" ]; then
-  echo "[WARN] Existing $contrib will be used, no clone/fetch will happen"
-else
-  if [ ! -d $contrib ]; then
-    echo "cloning contribution repo"
-    git clone $contrib_repo $contrib
-  else
-    echo "fetching contribution repo"
-    cd $contrib;
-    git fetch; git reset --hard origin/master
-    cd $temp/../
-  fi
-fi
-
-spellchecker=$contrib/jsoref-spellchecker
-whitelist_path=jsoref-spellchecker/whitelist.words
+spellchecker=.ci/jsoref-spellchecker
+whitelist_path=.ci/jsoref-spellchecker/whitelist.words
 dict=$spellchecker/english.words
 word_splitter=$spellchecker/spelling-unknown-word-splitter.pl
 run_output=$spellchecker/unknown.words
-whitelist=$contrib/$whitelist_path
 if [ ! -e $dict ]; then
   echo "Retrieve ./usr/share/dict/linux.words"
   words_rpm=$spellchecker/words.rpm
@@ -51,7 +31,7 @@ rm -f $run_output
 
 echo "Run w"
 (git 'ls-files' -z 2> /dev/null || hg locate -0) |\
-  .ci-temp/contribution/jsoref-spellchecker/exclude.pl |\
+  .ci/jsoref-spellchecker/exclude.pl |\
   xargs -0 $word_splitter |\
   $word_splitter |\
   perl -p -n -e 's/ \(.*//' > $run_output
@@ -59,29 +39,34 @@ echo "Run w"
 printDetails() {
   echo ''
   echo 'If you are ok with the output of this run, you will need to'
-  echo "git clone $contrib_repo contribution; cd contribution;"
 }
 
 echo "Review results"
-if [ ! -e $whitelist ]; then
-  echo No preexisting $whitelist file.
+if [ ! -e $whitelist_path ]; then
+  echo No preexisting $whitelist_path file.
   printDetails
   echo "cat > $whitelist_path <<EOF=EOF"
   cat $run_output
   echo EOF=EOF
   exit 2
 fi
-diff_output=`diff -U0 $whitelist $run_output |grep -v "$spellchecker" || true`
-[ -z "$diff_output" ] && exit 0
-new_output=`diff -i -U0 $whitelist $run_output |grep -v "$spellchecker" |\
+
+diff_output=`diff -U0 $whitelist_path $run_output |grep -v "$spellchecker" || true`
+
+if [ -z "$diff_output" ]; then
+  echo "No new words and misspellings found."
+  exit 0
+fi
+
+new_output=`diff -i -U0 $whitelist_path $run_output |grep -v "$spellchecker" |\
   perl -n -w -e 'next unless /^\+/; next if /^\+{3} /; s/^.//; print;'`
 if [ -z "$new_output" ]; then
   echo "There are now fewer misspellings than before."
-  echo "$contrib_repo $whitelist_path could be updated:"
+  echo "$whitelist_path could be updated:"
   echo ''
   echo "$diff_output"
   sleep 5
-  exit 0
+  exit 1
 fi
 echo New misspellings found, please review:
 echo "$new_output"
@@ -90,4 +75,4 @@ echo "patch $whitelist_path <<EOF"
 echo "$diff_output"
 echo "EOF"
 sleep 5
-exit 0
+exit 1
