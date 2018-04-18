@@ -163,8 +163,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * &lt;/module&gt;
  * </pre>
  *
- * @author Tim Tyler &lt;tim@tt1.org&gt;
- * @author Rick Giles
  */
 @FileStatefulCheck
 public class DescendantTokenCheck extends AbstractCheck {

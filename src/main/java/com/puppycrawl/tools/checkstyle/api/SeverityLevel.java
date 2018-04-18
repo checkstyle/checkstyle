@@ -30,9 +30,6 @@ import java.util.Locale;
  * defined here.
  * </p>
  *
- * @author David Schneider
- * @author Travis Schneeberger
- * @author Mehmet Can Cömert
  */
 public enum SeverityLevel {
 

@@ -35,7 +35,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 
 /**
  * Parses file as javadoc DetailNode tree and prints to system output stream.
- * @author bizmailov
  */
 public final class DetailNodeTreeStringPrinter {
 

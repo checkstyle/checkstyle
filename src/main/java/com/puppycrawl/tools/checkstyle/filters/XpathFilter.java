@@ -38,7 +38,6 @@ import net.sf.saxon.trans.XPathException;
  * This filter processes {@link TreeWalkerAuditEvent}
  * objects based on the criteria of file, check, module id, xpathQuery.
  *
- * @author Timur Tibeyev.
  */
 public class XpathFilter implements TreeWalkerFilter {
 

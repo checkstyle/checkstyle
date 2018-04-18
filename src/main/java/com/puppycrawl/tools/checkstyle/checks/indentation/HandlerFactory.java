@@ -31,7 +31,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 /**
  * Factory for handlers. Looks up constructor via reflection.
  *
- * @author jrichard
  */
 public class HandlerFactory {
 

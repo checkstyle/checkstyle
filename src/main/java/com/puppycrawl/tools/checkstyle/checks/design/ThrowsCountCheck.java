@@ -51,7 +51,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <b>ignorePrivateMethods</b> - allows to skip private methods as they do
  * not cause problems for other classes.
  * </p>
- * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  */
 @StatelessCheck
 public final class ThrowsCountCheck extends AbstractCheck {

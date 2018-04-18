@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 /**
  * An interface for filtering Integer.
- * @author o_sukhodolsky
  */
 @FunctionalInterface
 interface IntFilter {

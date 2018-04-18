@@ -81,8 +81,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * &lt;/module&gt;
  * </pre>
  *
- * @author Robert Whitebit
- * @author Richard Veach
  */
 @StatelessCheck
 public class SingleSpaceSeparatorCheck extends AbstractCheck {

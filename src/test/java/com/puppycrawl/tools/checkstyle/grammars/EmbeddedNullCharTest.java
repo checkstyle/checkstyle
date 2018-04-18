@@ -28,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Tests that embedded nulls in string literals does not halt parsing.
- * @author Michael Studman
  */
 public class EmbeddedNullCharTest
     extends AbstractModuleTestSupport {

@@ -62,8 +62,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
  * </pre>
  *
  *
- * @author max
- * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
 public class SummaryJavadocCheck extends AbstractJavadocCheck {
 

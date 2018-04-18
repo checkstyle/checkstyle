@@ -24,7 +24,6 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 /**
  * Implementation of a {@link MatchSuppressor} that suppresses based on
  * whether in a comment.
- * @author Oliver Burn
  */
 class CommentSuppressor implements MatchSuppressor {
 

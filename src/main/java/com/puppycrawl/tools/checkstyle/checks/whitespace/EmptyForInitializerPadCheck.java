@@ -47,7 +47,6 @@ for (
  * &lt;module name="EmptyForInitializerPad"/&gt;
  * </pre>
  *
- * @author lkuehne
  */
 @StatelessCheck
 public class EmptyForInitializerPadCheck

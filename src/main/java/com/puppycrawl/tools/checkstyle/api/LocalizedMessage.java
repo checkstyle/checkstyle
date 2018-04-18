@@ -44,8 +44,6 @@ import java.util.ResourceBundle.Control;
  * message.properties files. The underlying implementation uses
  * java.text.MessageFormat.
  *
- * @author Oliver Burn
- * @author lkuehne
  * @noinspection SerializableHasSerializationMethods, ClassWithTooManyConstructors
  */
 public final class LocalizedMessage
@@ -495,7 +493,6 @@ public final class LocalizedMessage
      * the properties files as UTF-8.
      * </p>
      *
-     * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
      * @noinspection IOResourceOpenedButNotSafelyClosed
      */
     public static class Utf8Control extends Control {

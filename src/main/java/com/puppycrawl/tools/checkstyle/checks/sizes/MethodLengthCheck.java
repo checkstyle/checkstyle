@@ -54,7 +54,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *    &lt;property name="max" value="60"/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author Lars Kühne
  */
 @StatelessCheck
 public class MethodLengthCheck extends AbstractCheck {

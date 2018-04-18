@@ -31,7 +31,6 @@ import java.util.EventListener;
  *   fileFinished )*
  * auditFinished
  * </pre>
- * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
  */
 public interface AuditListener
     extends EventListener {

@@ -31,7 +31,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Tests GeneratedJava14Lexer.
- * @author Rick Giles
  */
 public class GeneratedJava14LexerTest
     extends AbstractModuleTestSupport {

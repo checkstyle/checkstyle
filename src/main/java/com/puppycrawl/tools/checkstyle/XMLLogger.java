@@ -44,7 +44,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * we want to localize error messages or simply that file names are
  * localized and takes care about escaping as well.
 
- * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
  */
 // -@cs[AbbreviationAsWordInName] We can not change it as,
 // check's name is part of API (used in configurations).

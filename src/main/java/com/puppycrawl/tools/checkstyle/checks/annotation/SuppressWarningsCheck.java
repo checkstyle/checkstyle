@@ -88,7 +88,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *        &quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author Travis Schneeberger
  */
 @StatelessCheck
 public class SuppressWarningsCheck extends AbstractCheck {

@@ -38,7 +38,6 @@ import com.puppycrawl.tools.checkstyle.api.RootModule;
 
 /**
  * Contains utility methods for module reflection.
- * @author LuoLiangchen
  */
 public final class ModuleReflectionUtils {
 

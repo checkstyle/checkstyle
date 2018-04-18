@@ -39,7 +39,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    &lt;property name=&quot;max&quot; value=&quot;1&quot;/&gt;
  *  &lt;/module&gt;
  * </pre>
- * @author Alexander Jesse
  * @see NestedIfDepthCheck
  */
 @FileStatefulCheck

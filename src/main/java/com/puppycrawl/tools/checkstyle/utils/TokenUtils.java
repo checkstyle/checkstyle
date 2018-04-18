@@ -36,7 +36,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Contains utility methods for tokens.
  *
- * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
 public final class TokenUtils {
 

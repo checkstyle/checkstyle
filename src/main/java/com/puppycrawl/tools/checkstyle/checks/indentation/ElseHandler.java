@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Handler for else blocks.
  *
- * @author jrichard
  */
 public class ElseHandler extends BlockParentHandler {
 

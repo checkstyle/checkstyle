@@ -35,7 +35,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtils;
  * This filter accepts TreeWalkerAuditEvents according to file, check and xpath query,
  * as specified in a suppression file.
  *
- * @author Timur Tibeyev.
  * @noinspection NonFinalFieldReferenceInEquals, NonFinalFieldReferencedInHashCode
  */
 public class SuppressionXpathFilter extends AutomaticBean implements

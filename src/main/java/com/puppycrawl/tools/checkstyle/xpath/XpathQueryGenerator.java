@@ -68,7 +68,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  *     </li>
  * </ul>
  *
- * @author Timur Tibeyev.
  */
 public class XpathQueryGenerator {
 

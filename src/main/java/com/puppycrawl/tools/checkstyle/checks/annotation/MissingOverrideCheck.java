@@ -74,7 +74,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * &lt;/module&gt;
  * </pre>
  *
- * @author Travis Schneeberger
  */
 @StatelessCheck
 public final class MissingOverrideCheck extends AbstractCheck {

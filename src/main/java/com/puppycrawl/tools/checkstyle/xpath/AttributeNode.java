@@ -27,7 +27,6 @@ import net.sf.saxon.type.Type;
 /**
  * Represents attribute of the element.
  *
- * @author Timur Tibeyev
  */
 public class AttributeNode extends AbstractNode {
 

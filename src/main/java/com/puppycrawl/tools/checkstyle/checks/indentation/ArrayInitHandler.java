@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Handler for array initialization blocks.
  *
- * @author jrichard
  */
 public class ArrayInitHandler extends BlockParentHandler {
 

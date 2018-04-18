@@ -37,7 +37,6 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
  * <pre>
  * &lt;module name="SuperClone"/&gt;
  * </pre>
- * @author Rick Giles
  */
 @StatelessCheck
 public class SuperCloneCheck extends AbstractSuperCheck {

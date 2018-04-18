@@ -36,7 +36,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="SimplifyBooleanReturn"/&gt;
  * </pre>
- * @author Lars Kühne
  */
 @StatelessCheck
 public class SimplifyBooleanReturnCheck

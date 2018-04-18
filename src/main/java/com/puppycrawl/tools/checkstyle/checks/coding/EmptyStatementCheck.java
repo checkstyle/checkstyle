@@ -41,7 +41,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="EmptyStatement"/&gt;
  * </pre>
- * @author Rick Giles
  */
 @StatelessCheck
 public class EmptyStatementCheck extends AbstractCheck {

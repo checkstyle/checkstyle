@@ -30,7 +30,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode;
 
 /**
  * Helper class to select a code.
- * @author unknown
  */
 public class CodeSelector {
 

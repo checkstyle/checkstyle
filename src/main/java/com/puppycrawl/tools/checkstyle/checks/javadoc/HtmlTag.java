@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 /**
  * Used to keep track of a tag and the text that follows it.
  *
- * @author Chris Stillwell
  */
 class HtmlTag {
 

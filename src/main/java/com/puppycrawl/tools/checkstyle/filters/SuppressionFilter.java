@@ -36,8 +36,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtils;
  * This filter accepts AuditEvents according to file, check, line, and
  * column, as specified in a suppression file.
  * </p>
- * @author Rick Giles
- * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
  * @noinspection NonFinalFieldReferenceInEquals, NonFinalFieldReferencedInHashCode
  */
 public class SuppressionFilter extends AutomaticBean implements Filter, ExternalResourceHolder {

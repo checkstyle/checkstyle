@@ -29,8 +29,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 /**
  * An extension of the CommonAST that records the line and column number.
  *
- * @author Oliver Burn
- * @author lkuehne
  * @see <a href="http://www.antlr.org/">ANTLR Website</a>
  * @noinspection FieldNotUsedInToString, SerializableHasSerializationMethods
  */

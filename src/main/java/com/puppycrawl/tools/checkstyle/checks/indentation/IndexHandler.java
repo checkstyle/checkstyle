@@ -24,7 +24,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 /**
  * Handler for array index operation.
  *
- * @author yudindi
  */
 public class IndexHandler extends AbstractExpressionHandler {
 

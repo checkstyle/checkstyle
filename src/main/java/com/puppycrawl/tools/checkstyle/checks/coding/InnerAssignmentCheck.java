@@ -39,7 +39,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * where a variable is set.
  * </p>
  *
- * @author lkuehne
  */
 @StatelessCheck
 public class InnerAssignmentCheck

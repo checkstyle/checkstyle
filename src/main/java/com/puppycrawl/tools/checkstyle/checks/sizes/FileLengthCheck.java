@@ -53,7 +53,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  *    &lt;property name="max" value="1500"/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author Lars Kühne
  */
 @StatelessCheck
 public class FileLengthCheck extends AbstractFileSetCheck {

@@ -62,7 +62,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *     &lt;property name="allowLineBreaks" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author Rick Giles
  */
 
 @StatelessCheck

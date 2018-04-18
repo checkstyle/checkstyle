@@ -48,8 +48,6 @@ import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
  * The user can change the file that is parsed and displayed
  * using a JFileChooser.
  *
- * @author Lars Kühne
- * @author Vladislav Lisetskiy
  * @noinspection MagicNumber
  */
 public class MainFrame extends JFrame {

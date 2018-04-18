@@ -31,7 +31,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 /**
  * Checks that all packages have a package documentation. See the documentation
  * for more information.
- * @author Oliver Burn
  */
 public class JavadocPackageCheck extends AbstractFileSetCheck {
 

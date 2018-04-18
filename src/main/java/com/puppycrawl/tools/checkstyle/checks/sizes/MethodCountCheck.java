@@ -34,8 +34,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 /**
  * Checks the number of methods declared in each type declaration by access
  * modifier or total count.
- * @author Alexander Jesse
- * @author Oliver Burn
  */
 @FileStatefulCheck
 public final class MethodCountCheck extends AbstractCheck {

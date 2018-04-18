@@ -24,7 +24,6 @@ import com.puppycrawl.tools.checkstyle.api.LineColumn;
 /**
  * Value object for storing data about a parsed tag.
  *
- * @author Nathan Naze
  */
 public final class TagInfo {
 

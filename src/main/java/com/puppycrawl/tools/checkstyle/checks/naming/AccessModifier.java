@@ -26,7 +26,6 @@ import java.util.Locale;
  * Access modifiers names are taken from JLS:
  * https://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.6
  *
- * @author Andrei Selkin
  */
 public enum AccessModifier {
 

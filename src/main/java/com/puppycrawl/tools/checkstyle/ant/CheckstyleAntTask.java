@@ -64,7 +64,6 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
 /**
  * An implementation of a ANT task for calling checkstyle. See the documentation
  * of the task for usage.
- * @author Oliver Burn
  * @noinspection ClassLoaderInstantiation
  */
 public class CheckstyleAntTask extends Task {
@@ -616,7 +615,6 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Poor mans enumeration for the formatter types.
-     * @author Oliver Burn
      */
     public static class FormatterType extends EnumeratedAttribute {
 
@@ -632,7 +630,6 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Details about a formatter to be used.
-     * @author Oliver Burn
      */
     public static class Formatter {
 

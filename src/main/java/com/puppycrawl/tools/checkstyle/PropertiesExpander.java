@@ -28,7 +28,6 @@ import java.util.Properties;
  * Resolves external properties from an
  * underlying {@code Properties} object.
  *
- * @author lkuehne
  */
 public final class PropertiesExpander
     implements PropertyResolver {

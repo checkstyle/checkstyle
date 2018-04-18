@@ -67,7 +67,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *
  * <p>See {@link SuppressionCommentFilter} for usage notes.
  *
- * @author Mick Killianey
  */
 public class SuppressWithNearbyCommentFilter
     extends AutomaticBean

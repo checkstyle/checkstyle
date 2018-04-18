@@ -46,7 +46,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="OverloadMethodsDeclarationOrder"/&gt;
  * </pre>
- * @author maxvetrenko
  */
 @StatelessCheck
 public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {

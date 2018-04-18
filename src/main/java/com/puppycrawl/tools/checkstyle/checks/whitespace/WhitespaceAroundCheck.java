@@ -160,9 +160,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *
  * <pre>   &lt;property name="ignoreEnhancedForColon" value="true" /&gt;</pre>
  *
- * @author Oliver Burn
- * @author maxvetrenko
- * @author Andrei Selkin
  */
 @StatelessCheck
 public class WhitespaceAroundCheck extends AbstractCheck {

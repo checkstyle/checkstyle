@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Handler for do...while blocks.
  *
- * @author jrichard
  */
 public class DoWhileHandler extends BlockParentHandler {
 

@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 /**
  * A default no-op handler.
  *
- * @author jrichard
  */
 public class PrimordialHandler extends AbstractExpressionHandler {
 

@@ -56,8 +56,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *  }
  * </pre>
  *
- * @author Travis Schneeberger
- * @author Vladislav Lisetskiy
  */
 @FileStatefulCheck
 public class EqualsAvoidNullCheck extends AbstractCheck {

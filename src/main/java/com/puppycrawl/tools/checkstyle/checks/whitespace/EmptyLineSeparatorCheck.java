@@ -186,8 +186,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
  *     }
  * }
  * </pre>
- * @author maxvetrenko
- * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
 @StatelessCheck
 public class EmptyLineSeparatorCheck extends AbstractCheck {

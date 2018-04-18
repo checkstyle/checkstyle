@@ -59,9 +59,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>The optional "allowStaticMemberImports" when set to true will allow
  * starred static member imports but will not affect class imports.
  *
- * @author Oliver Burn
- * @author <a href="bschneider@vecna.com">Bill Schneider</a>
- * @author Travis Schneeberger
  */
 @StatelessCheck
 public class AvoidStarImportCheck

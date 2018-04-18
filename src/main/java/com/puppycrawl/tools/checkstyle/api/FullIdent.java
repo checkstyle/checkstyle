@@ -33,7 +33,6 @@ import java.util.List;
  * whitespace), which is often easier to work with in Checks.
  * </p>
  *
- * @author Oliver Burn
  * @see TokenTypes#DOT
  * @see TokenTypes#IDENT
  **/

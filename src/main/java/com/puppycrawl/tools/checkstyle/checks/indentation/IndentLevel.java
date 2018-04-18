@@ -25,7 +25,6 @@ import java.util.BitSet;
  * Encapsulates representation of notion of expected indentation levels.
  * Provide a way to have multiple acceptable levels.
  *
- * @author o_sukhodolsky
  */
 public class IndentLevel {
 

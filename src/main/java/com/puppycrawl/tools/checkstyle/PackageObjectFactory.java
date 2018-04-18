@@ -45,8 +45,6 @@ import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtils;
  *         that represents Check (with 'Check' suffix).
  *     </li>
  * </ul>
- * @author Rick Giles
- * @author lkuehne
  */
 public class PackageObjectFactory implements ModuleFactory {
 

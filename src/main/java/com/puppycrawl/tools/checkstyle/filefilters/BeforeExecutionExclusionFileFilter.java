@@ -65,7 +65,6 @@ import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
  * &lt;/module&gt;
  * </pre>
  *
- * @author Richard Veach
  */
 public final class BeforeExecutionExclusionFileFilter extends AutomaticBean
         implements BeforeExecutionFileFilter {

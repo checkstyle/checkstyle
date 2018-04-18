@@ -29,7 +29,6 @@ import com.puppycrawl.tools.checkstyle.api.LineColumn;
 /**
  * Tools for parsing block tags from a Javadoc comment.
  *
- * @author Nathan Naze
  */
 public final class BlockTagUtils {
 

@@ -60,7 +60,6 @@ import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 /**
  * Enter a description of class PackageObjectFactoryTest.java.
  *
- * @author Rick Giles
  */
 public class PackageObjectFactoryTest {
 

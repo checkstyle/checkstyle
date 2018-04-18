@@ -30,7 +30,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 /**
  * The base class for checks.
  *
- * @author Oliver Burn
  * @see <a href="{@docRoot}/../writingchecks.html" target="_top">Writing
  * your own checks</a>
  * @noinspection NoopMethodInAbstractClass

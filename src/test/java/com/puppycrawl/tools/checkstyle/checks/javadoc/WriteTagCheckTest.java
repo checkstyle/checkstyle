@@ -43,7 +43,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Unit test for WriteTagCheck.
- * @author Daniel Grenner
  */
 public class WriteTagCheckTest extends AbstractModuleTestSupport {
 

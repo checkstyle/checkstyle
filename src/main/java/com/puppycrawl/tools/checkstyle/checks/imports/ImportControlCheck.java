@@ -43,7 +43,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  *
- * @author Oliver Burn
  */
 @FileStatefulCheck
 public class ImportControlCheck extends AbstractCheck implements ExternalResourceHolder {

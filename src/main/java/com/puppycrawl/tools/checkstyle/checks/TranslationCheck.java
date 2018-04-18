@@ -97,9 +97,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * violation that the language code is incorrect.
  * <br>
  *
- * @author Alexandra Bunge
- * @author lkuehne
- * @author Andrei Selkin
  */
 public class TranslationCheck extends AbstractFileSetCheck {
 

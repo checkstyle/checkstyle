@@ -33,7 +33,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 /**
  * Checks that a variable has Javadoc comment. Ignores {@code serialVersionUID} fields.
  *
- * @author Oliver Burn
  */
 @StatelessCheck
 public class JavadocVariableCheck

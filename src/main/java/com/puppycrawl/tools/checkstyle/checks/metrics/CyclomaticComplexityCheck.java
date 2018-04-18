@@ -42,9 +42,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * block as a single decision point. Default value is <b>false</b>
  *
  *
- * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
- * @author Oliver Burn
- * @author <a href="mailto:andreyselkin@gmail.com">Andrei Selkin</a>
  */
 @FileStatefulCheck
 public class CyclomaticComplexityCheck

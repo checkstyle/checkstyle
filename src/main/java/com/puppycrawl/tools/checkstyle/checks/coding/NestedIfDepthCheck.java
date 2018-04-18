@@ -28,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
 /**
  * Restricts nested if-else blocks to a specified depth (default = 1).
  *
- * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  */
 @FileStatefulCheck
 public final class NestedIfDepthCheck extends AbstractCheck {

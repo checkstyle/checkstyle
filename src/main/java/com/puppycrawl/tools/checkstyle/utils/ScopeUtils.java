@@ -27,7 +27,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Contains utility methods for working on scope.
  *
- * @author Oliver Burn
  */
 public final class ScopeUtils {
 

@@ -46,8 +46,6 @@ import com.puppycrawl.tools.checkstyle.api.FilterSet;
 
 /**
  * Tests SuppressionsLoader.
- * @author Rick Giles
- * @author <a href="mailto:andreyselkin@gmail.com">Andrei Selkin</a>
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ SuppressionsLoader.class, SuppressionsLoaderTest.class })

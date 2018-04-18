@@ -64,7 +64,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * &lt;/module&gt;
  * </pre>
  *
- * @author max
  *
  */
 public class AtclauseOrderCheck extends AbstractJavadocCheck {

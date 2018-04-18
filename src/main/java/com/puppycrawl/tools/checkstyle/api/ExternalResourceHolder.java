@@ -31,7 +31,6 @@ import com.puppycrawl.tools.checkstyle.Checker;
  * {@link #getExternalResourceLocations}. This allows Checkstyle to invalidate (clear) cache
  * when the content of at least one external configuration resource of the module is changed.
  *
- * @author Andrei Selkin
  */
 @FunctionalInterface
 public interface ExternalResourceHolder {

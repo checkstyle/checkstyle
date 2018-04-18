@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Handler for switch statements.
  *
- * @author jrichard
  */
 public class SwitchHandler extends BlockParentHandler {
 

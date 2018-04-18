@@ -50,10 +50,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * }
  * </p>
  *
- * @author lkuehne
- * @author o_sukhodolsky
- * @author Michael Studman
- * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
 @StatelessCheck
 public class FinalParametersCheck extends AbstractCheck {

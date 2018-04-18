@@ -37,8 +37,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;module name=&quot;UncommentedMain&quot;/&gt;
  * </pre>
  *
- * @author Michael Yui
- * @author o_sukhodolsky
  */
 @FileStatefulCheck
 public class UncommentedMainCheck

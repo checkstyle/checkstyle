@@ -23,7 +23,6 @@ import java.io.Serializable;
 
 /**
  * Thread mode settings for the checkstyle modules.
- * @author Andrew Kuchev
  * @noinspection SerializableHasSerializationMethods
  */
 public class ThreadModeSettings implements Serializable {

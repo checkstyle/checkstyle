@@ -79,7 +79,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * &lt;/module&gt;
  * </pre>
  *
- * @author maxvetrenko
  */
 @StatelessCheck
 public class SeparatorWrapCheck

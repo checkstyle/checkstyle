@@ -85,9 +85,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  *  benefit from checking for them.
  * </p>
  *
- * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
- * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
- * @author <a href="mailto:andreyselkin@gmail.com">Andrei Selkin</a>
  */
 public final class IllegalTypeCheck extends AbstractCheck {
 

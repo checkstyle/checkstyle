@@ -24,7 +24,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 /**
  * Handler for static initialization blocks.
  *
- * @author Jeff Weston
  */
 public class StaticInitHandler extends BlockParentHandler {
 

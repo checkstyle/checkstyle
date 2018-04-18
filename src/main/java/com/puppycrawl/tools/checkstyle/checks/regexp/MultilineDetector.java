@@ -26,7 +26,6 @@ import com.puppycrawl.tools.checkstyle.api.LineColumn;
 
 /**
  * A detector that matches across multiple lines.
- * @author oliver
  */
 class MultilineDetector {
 

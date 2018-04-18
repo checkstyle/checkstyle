@@ -24,7 +24,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 /**
  * Handler for finally blocks.
  *
- * @author jrichard
  */
 public class FinallyHandler extends BlockParentHandler {
 

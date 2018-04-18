@@ -25,7 +25,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  * An audit listener that counts how many {@link AuditEvent AuditEvents}
  * of a given severity have been generated.
  *
- * @author lkuehne
  */
 public final class SeverityLevelCounter implements AuditListener {
 

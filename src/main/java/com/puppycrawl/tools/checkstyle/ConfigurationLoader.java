@@ -48,7 +48,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 /**
  * Loads a configuration from a standard configuration XML file.
  *
- * @author Oliver Burn
  */
 public final class ConfigurationLoader {
 

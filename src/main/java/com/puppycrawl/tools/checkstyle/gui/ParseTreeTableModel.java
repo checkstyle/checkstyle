@@ -31,7 +31,6 @@ import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 /**
  * The model that backs the parse tree in the GUI.
  *
- * @author Lars Kühne
  */
 public class ParseTreeTableModel implements TreeModel {
 

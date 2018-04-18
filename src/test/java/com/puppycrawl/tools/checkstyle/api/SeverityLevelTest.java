@@ -29,7 +29,6 @@ import org.junit.Test;
 
 /**
  * Test cases for {@link SeverityLevel} enumeration.
- * @author Mehmet Can Cömert
  */
 public class SeverityLevelTest {
 

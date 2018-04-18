@@ -27,7 +27,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Handler for a list of statements.
  *
- * @author jrichard
  */
 public class SlistHandler extends BlockParentHandler {
 

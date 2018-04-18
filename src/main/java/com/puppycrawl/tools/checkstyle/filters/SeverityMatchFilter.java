@@ -28,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  * This is a very simple filter based on severity matching.
  * The filter admits option severity and accepts an AuditEvent
  * if its severity equals the filter's severity.
- * @author Rick Giles
  */
 public class SeverityMatchFilter
     extends AutomaticBean

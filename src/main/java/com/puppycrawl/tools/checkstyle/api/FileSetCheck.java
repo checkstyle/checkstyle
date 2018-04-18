@@ -25,8 +25,6 @@ import java.util.SortedSet;
 /**
  * Interface for Checking a set of files for some criteria.
  *
- * @author lkuehne
- * @author oliver
  */
 public interface FileSetCheck
     extends Configurable, Contextualizable {

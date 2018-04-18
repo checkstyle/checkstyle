@@ -114,7 +114,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * <p>This check is almost exactly the same as the {@link NoFinalizerCheck}
  *
- * @author Travis Schneeberger
  * @see Object#clone()
  */
 @StatelessCheck

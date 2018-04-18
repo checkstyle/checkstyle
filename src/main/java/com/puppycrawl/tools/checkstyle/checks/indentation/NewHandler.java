@@ -24,8 +24,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Handler for operator new.
- * @author o_sukhodolsky
- * @author Ilja Dubinin
  */
 public class NewHandler extends AbstractExpressionHandler {
 

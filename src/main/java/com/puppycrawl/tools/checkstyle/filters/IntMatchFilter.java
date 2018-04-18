@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 /**
  * This filter accepts a matching Integer.
- * @author Rick Giles
  */
 class IntMatchFilter implements IntFilter {
 

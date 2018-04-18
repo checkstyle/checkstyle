@@ -55,7 +55,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  *
- * @author Rob Worth
  */
 @StatelessCheck
 public class AnonInnerLengthCheck extends AbstractCheck {

@@ -64,9 +64,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     r = 5; int t; //violation here
  * </pre>
  *
- * @author Alexander Jesse
- * @author Oliver Burn
- * @author Andrei Selkin
  */
 @FileStatefulCheck
 public final class OneStatementPerLineCheck extends AbstractCheck {

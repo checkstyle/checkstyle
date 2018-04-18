@@ -49,7 +49,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
  * </pre>
  * Compatible with Java 1.5 source.
  *
- * @author Oliver Burn
  */
 @FileStatefulCheck
 public class UnusedImportsCheck extends AbstractCheck {

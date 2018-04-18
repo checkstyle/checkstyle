@@ -52,7 +52,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *    &lt;property name="format" value="\AThis code is copyrighted"/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author Stan Quinn
  */
 @FileStatefulCheck
 public class RegexpCheck extends AbstractCheck {

@@ -26,8 +26,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * of this has been shown to indicate the amount of maintenance required
  * in functional programs (on a file basis) at least.
  *
- * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
- * @author o_sukhodolsky
  */
 public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck {
 

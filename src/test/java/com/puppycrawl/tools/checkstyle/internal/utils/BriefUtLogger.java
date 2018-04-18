@@ -26,7 +26,6 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 
 /**
  * A brief logger that only display info about errors.
- * @author Andrei Selkin
  */
 public class BriefUtLogger extends DefaultLogger {
 

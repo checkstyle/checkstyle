@@ -130,9 +130,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * }
  * </pre>
  *
- * @author Rick Giles
- * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
- * @author <a href="mailto:andreyselkin@gmail.com">Andrei Selkin</a>
  */
 @StatelessCheck
 public class NeedBracesCheck extends AbstractCheck {

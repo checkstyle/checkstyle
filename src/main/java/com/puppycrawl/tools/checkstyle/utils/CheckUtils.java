@@ -34,9 +34,6 @@ import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier;
 /**
  * Contains utility methods for the checks.
  *
- * @author Oliver Burn
- * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
- * @author o_sukhodolsky
  */
 public final class CheckUtils {
 

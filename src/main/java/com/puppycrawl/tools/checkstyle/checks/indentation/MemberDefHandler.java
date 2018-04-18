@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Handler for member definitions.
  *
- * @author o_sukhodolsky
  */
 public class MemberDefHandler extends AbstractExpressionHandler {
 

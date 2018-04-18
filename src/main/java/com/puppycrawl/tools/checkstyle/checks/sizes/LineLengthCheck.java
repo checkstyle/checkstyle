@@ -71,7 +71,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * &lt;/module&gt;
  * </pre>
  *
- * @author Lars Kühne
  */
 @StatelessCheck
 public class LineLengthCheck extends AbstractCheck {

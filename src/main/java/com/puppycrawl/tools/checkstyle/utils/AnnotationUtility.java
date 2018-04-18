@@ -26,7 +26,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Contains utility methods designed to work with annotations.
  *
- * @author Travis Schneeberger
  */
 public final class AnnotationUtility {
 

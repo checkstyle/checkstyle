@@ -62,7 +62,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * &lt;/module&gt;
  * </pre>
  *
- * @author Daniel Grenner
  */
 @StatelessCheck
 public class WriteTagCheck

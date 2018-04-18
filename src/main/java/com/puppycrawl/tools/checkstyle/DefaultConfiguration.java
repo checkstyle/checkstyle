@@ -31,7 +31,6 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 /**
  * Default implementation of the Configuration interface.
- * @author lkuehne
  * @noinspection SerializableHasSerializationMethods
  */
 public final class DefaultConfiguration implements Configuration {

@@ -31,7 +31,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
  * &lt;module name=&quot;NonEmptyAtclauseDescription&quot;/&gt;
  * </pre>
  *
- * @author maxvetrenko
  *
  */
 public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck {

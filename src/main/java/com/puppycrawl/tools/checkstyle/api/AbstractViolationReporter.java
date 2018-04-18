@@ -26,7 +26,6 @@ import java.util.Map;
  * findings. Such modules have a Severity level which is used for the
  * {@link LocalizedMessage localized messages} that are created by the module.
  *
- * @author lkuehne
  * @noinspection NoopMethodInAbstractClass
  */
 public abstract class AbstractViolationReporter

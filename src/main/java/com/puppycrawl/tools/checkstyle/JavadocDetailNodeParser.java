@@ -53,7 +53,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 
 /**
  * Used for parsing Javadoc comment as DetailNode tree.
- * @author bizmailov
  *
  */
 public class JavadocDetailNodeParser {

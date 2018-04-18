@@ -77,10 +77,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *     they match the level of the parent
  * </pre>
  *
- * @author jrichard
- * @author o_sukhodolsky
- * @author Maikel Steneker
- * @author maxvetrenko
  * @noinspection ThisEscapedInObjectConstruction
  */
 @FileStatefulCheck

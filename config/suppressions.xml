@@ -27,7 +27,7 @@
     <suppress checks="ExecutableStatementCount|JavaNCSS|BooleanExpressionComplexity|NestedIfDepth|MethodLength" files="[\\/]XdocsPagesTest\.java"/>
     <suppress checks="IllegalCatch" files="[\\/]internal[\\/].*[\\/]\w+Util\.java"/>
     <suppress checks="EmptyBlock" files=".*[\\/]src[\\/]test[\\/]"/>
-    <suppress message="Missing a Javadoc comment|Missing package-info.java file|Expected @throws tag for|missing @author tag" files=".*[\\/]src[\\/](test|it)[\\/]"/>
+    <suppress message="Missing a Javadoc comment|Missing package-info.java file|Expected @throws tag for" files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <suppress checks="MagicNumber" files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <suppress checks="AvoidStaticImport" files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <suppress checks="ClassDataAbstractionCoupling" files="[\\/]IndentationCheckTest.java$|[\\/]SuppressWithNearbyCommentFilterTest.java$|[\\/]SuppressionCommentFilterTest.java|[\\/]DetailASTTest.java$"/>

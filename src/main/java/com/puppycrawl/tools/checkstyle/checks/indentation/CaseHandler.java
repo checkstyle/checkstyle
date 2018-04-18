@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Handler for case statements.
  *
- * @author jrichard
  */
 public class CaseHandler extends AbstractExpressionHandler {
 

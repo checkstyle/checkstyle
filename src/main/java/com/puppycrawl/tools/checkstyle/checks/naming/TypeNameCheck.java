@@ -44,7 +44,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *    &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author Oliver Burn
  */
 public class TypeNameCheck
     extends AbstractAccessControlNameCheck {

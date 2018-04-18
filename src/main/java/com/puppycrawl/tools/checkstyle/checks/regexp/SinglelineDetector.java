@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
  * A detector that matches individual lines.
- * @author oliver
  */
 class SinglelineDetector {
 

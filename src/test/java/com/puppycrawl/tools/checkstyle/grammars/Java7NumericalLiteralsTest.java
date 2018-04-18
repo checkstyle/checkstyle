@@ -28,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Tests Java 7 numerical literals can be parsed.
- * @author Dinesh Bolkensteyn (SonarSource)
  */
 public class Java7NumericalLiteralsTest
     extends AbstractModuleTestSupport {

@@ -64,7 +64,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="ModifierOrder"/&gt;
  * </pre>
- * @author Lars Kühne
  */
 @StatelessCheck
 public class ModifierOrderCheck

@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
 /**
  * An implementation of {@link MatchSuppressor} that never suppresses a
  * match.
- * @author oliver
  */
 public final class NeverSuppress implements MatchSuppressor {
 

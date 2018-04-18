@@ -32,7 +32,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 /**
  * NoFinalizerCheck test.
  *
- * @author smckay@google.com (Steve McKay)
  */
 public class NoFinalizerCheckTest
     extends AbstractModuleTestSupport {

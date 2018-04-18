@@ -33,8 +33,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * line-wrapping indentation should be not less then value of the
  * lineWrappingIndentation parameter.
  *
- * @author maxvetrenko
- * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
  */
 public class LineWrappingHandler {
 

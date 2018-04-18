@@ -48,7 +48,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * Responsible for walking an abstract syntax tree and notifying interested
  * checks at each each node.
  *
- * @author Oliver Burn
  */
 public final class TreeWalker extends AbstractFileSetCheck implements ExternalResourceHolder {
 

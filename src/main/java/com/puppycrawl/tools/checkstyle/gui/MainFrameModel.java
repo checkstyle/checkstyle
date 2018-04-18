@@ -34,7 +34,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
  * Model for checkstyle frame.
- * @author Vladislav Lisetskiy
  */
 public class MainFrameModel {
 

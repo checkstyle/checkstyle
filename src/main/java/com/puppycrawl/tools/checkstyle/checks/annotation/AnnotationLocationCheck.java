@@ -157,7 +157,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * }
  * }
  *
- * @author maxvetrenko
  */
 @StatelessCheck
 public class AnnotationLocationCheck extends AbstractCheck {

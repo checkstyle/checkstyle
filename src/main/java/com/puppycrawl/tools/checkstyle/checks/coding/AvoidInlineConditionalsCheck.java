@@ -35,7 +35,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Rationale: Some developers find inline conditionals hard to read,
  * so their company's coding standards forbids them.
  *
- * @author lkuehne
  */
 @StatelessCheck
 public class AvoidInlineConditionalsCheck extends AbstractCheck {

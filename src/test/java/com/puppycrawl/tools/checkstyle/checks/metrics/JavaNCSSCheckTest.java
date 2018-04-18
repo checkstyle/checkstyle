@@ -34,7 +34,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 /**
  * Test case for the JavaNCSS-Check.
  *
- * @author Lars Ködderitzsch
  */
 // -@cs[AbbreviationAsWordInName] Test should be named as its main class.
 public class JavaNCSSCheckTest extends AbstractModuleTestSupport {

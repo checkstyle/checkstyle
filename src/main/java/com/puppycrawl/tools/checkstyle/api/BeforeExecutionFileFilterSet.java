@@ -27,7 +27,6 @@ import java.util.Set;
  * A before execution file filter set applies filters to events.
  * If a before execution file filter in the set rejects an event, then the
  * event is rejected. Otherwise, the event is accepted.
- * @author Richard Veach
  */
 public final class BeforeExecutionFileFilterSet
     implements BeforeExecutionFileFilter {

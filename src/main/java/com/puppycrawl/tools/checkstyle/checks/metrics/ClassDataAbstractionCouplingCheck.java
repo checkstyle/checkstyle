@@ -25,8 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * This metric measures the number of instantiations of other classes
  * within the given class.
  *
- * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
- * @author o_sukhodolsky
  */
 public final class ClassDataAbstractionCouplingCheck
     extends AbstractClassCouplingCheck {

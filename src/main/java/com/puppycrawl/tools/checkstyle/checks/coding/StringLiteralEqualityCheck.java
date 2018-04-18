@@ -35,7 +35,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * {@code if ("something".equals(x))}.
  * </p>
  *
- * @author Lars K&uuml;hne
  * @noinspection HtmlTagCanBeJavadocTag
  */
 @StatelessCheck

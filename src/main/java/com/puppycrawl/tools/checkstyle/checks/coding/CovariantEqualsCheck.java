@@ -41,7 +41,6 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
  * <pre>
  * &lt;module name="CovariantEquals"/&gt;
  * </pre>
- * @author Rick Giles
  */
 @FileStatefulCheck
 public class CovariantEqualsCheck extends AbstractCheck {

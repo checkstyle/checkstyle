@@ -51,7 +51,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 /**
  * A Java Bean that implements the component lifecycle interfaces by
  * calling the bean's setters for all configuration attributes.
- * @author lkuehne
  */
 // -@cs[AbstractClassName] We can not brake compatibility with previous versions.
 public abstract class AutomaticBean

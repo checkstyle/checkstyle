@@ -50,7 +50,6 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
  * <pre>
  * &lt;module name="EqualsHashCode"/&gt;
  * </pre>
- * @author lkuehne
  */
 @FileStatefulCheck
 public class EqualsHashCodeCheck

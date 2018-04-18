@@ -47,7 +47,6 @@ for (Iterator foo = very.long.line.iterator();
  * &lt;module name="EmptyForIteratorPad"/&gt;
  * </pre>
  *
- * @author Rick Giles
  */
 @StatelessCheck
 public class EmptyForIteratorPadCheck

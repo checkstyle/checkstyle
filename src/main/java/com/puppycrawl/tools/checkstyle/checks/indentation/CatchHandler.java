@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Handler for catch blocks.
  *
- * @author jrichard
  */
 public class CatchHandler extends BlockParentHandler {
 

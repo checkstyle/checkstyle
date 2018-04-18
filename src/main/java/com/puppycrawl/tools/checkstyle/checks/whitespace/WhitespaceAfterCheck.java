@@ -57,8 +57,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *     &lt;property name="tokens" value="COMMA, SEMI"/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author Oliver Burn
- * @author Rick Giles
  */
 @StatelessCheck
 public class WhitespaceAfterCheck

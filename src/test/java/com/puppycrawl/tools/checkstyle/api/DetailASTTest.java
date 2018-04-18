@@ -50,7 +50,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * TestCase to check DetailAST.
- * @author Oliver Burn
  */
 public class DetailASTTest extends AbstractModuleTestSupport {
 

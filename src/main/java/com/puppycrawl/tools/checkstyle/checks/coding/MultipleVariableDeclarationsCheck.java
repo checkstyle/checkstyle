@@ -42,7 +42,6 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
  * <pre>
  * &lt;module name="MultipleVariableDeclarations"/&gt;
  * </pre>
- * @author o_sukhodolsky
  */
 @StatelessCheck
 public class MultipleVariableDeclarationsCheck extends AbstractCheck {

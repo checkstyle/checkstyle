@@ -31,7 +31,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * class after all method and field declarations.
  * </p>
  *
- * @author <a href="mailto:ryly@mail.ru">Ruslan Dyachenko</a>
  */
 @FileStatefulCheck
 public class InnerTypeLastCheck extends AbstractCheck {

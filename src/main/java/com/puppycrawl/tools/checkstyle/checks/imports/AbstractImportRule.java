@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 
 /**
  * Base class for import rules.
- * @author Jochen Van de Velde
  */
 abstract class AbstractImportRule {
 

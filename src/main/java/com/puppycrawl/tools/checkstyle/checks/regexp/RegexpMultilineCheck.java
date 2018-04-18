@@ -28,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 /**
  * Implementation of a check that looks that matches across multiple lines in
  * any file type.
- * @author Oliver Burn
  */
 public class RegexpMultilineCheck extends AbstractFileSetCheck {
 

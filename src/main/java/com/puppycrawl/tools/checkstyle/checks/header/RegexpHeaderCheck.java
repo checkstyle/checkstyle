@@ -37,8 +37,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * if header is not specified, the default value of header is set to null
  * and the check does not rise any violations.
  *
- * @author Lars Kühne
- * @author o_sukhodolsky
  */
 @StatelessCheck
 public class RegexpHeaderCheck extends AbstractHeaderCheck {

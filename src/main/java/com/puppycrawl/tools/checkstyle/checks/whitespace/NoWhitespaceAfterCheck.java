@@ -78,10 +78,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * <pre>
  * public void foo(final char @NotNull [] param) {} // No violation
  * </pre>
- * @author Rick Giles
- * @author lkuehne
- * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
- * @author attatrol
  */
 @StatelessCheck
 public class NoWhitespaceAfterCheck extends AbstractCheck {

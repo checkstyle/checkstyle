@@ -49,7 +49,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
  * For IDE plugins (like the eclipse plugin) it would be useful to have
  * a programmatic access to the first sentence of the TokenType constants,
  * so they can use them in their configuration gui.
- * @author Pavel Bludov
  */
 public final class JavadocPropertiesGenerator {
 

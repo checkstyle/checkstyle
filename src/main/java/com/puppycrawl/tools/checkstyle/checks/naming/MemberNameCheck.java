@@ -47,7 +47,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  *    &lt;property name="format" value="^m[A-Z][a-zA-Z0-9]*$"/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author Rick Giles
  */
 public class MemberNameCheck
     extends AbstractAccessControlNameCheck {

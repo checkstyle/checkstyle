@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 
 /**
  * Represents whether a class is allowed to be imported or not.
- * @author Oliver Burn
  */
 class ClassImportRule extends AbstractImportRule {
 

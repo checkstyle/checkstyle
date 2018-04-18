@@ -28,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Tests Java 7 diamond can be parsed.
- * @author Dinesh Bolkensteyn (SonarSource)
  */
 public class Java7DiamondTest
     extends AbstractModuleTestSupport {

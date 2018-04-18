@@ -67,7 +67,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * &lt;/module&gt;
  * </pre>
  *
- * @author o_sukhodolsky
  */
 @StatelessCheck
 public class FallThroughCheck extends AbstractCheck {

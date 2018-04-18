@@ -39,7 +39,6 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
  * Responsible for loading the contents of an import control configuration file.
- * @author Oliver Burn
  */
 final class ImportControlLoader extends XmlLoader {
 

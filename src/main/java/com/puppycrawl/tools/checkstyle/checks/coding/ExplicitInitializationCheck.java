@@ -47,7 +47,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * values.
  * </p>
  *
- * @author o_sukhodolsky
  */
 @StatelessCheck
 public class ExplicitInitializationCheck extends AbstractCheck {

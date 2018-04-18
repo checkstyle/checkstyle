@@ -40,7 +40,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * constants at all.
  * </p>
  *
- * @author lkuehne
  */
 @StatelessCheck
 public final class InterfaceIsTypeCheck

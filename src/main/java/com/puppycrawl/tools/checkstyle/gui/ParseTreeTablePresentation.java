@@ -35,7 +35,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 /**
  * The model that backs the parse tree in the GUI.
  *
- * @author Lars Kühne
  */
 public class ParseTreeTablePresentation {
 

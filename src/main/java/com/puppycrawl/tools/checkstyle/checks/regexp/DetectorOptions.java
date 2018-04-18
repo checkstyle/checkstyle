@@ -26,7 +26,6 @@ import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
 
 /**
  * Options for a detector.
- * @author Oliver Burn
  */
 public final class DetectorOptions {
 

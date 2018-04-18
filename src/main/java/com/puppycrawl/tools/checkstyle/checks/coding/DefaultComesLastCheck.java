@@ -42,7 +42,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="DefaultComesLast"/&gt;
  * </pre>
- * @author o_sukhodolsky
  */
 @StatelessCheck
 public class DefaultComesLastCheck extends AbstractCheck {

@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 /**
  * Represents the options for wrapping on an operator.
  *
- * @author Rick Giles
  */
 public enum WrapOption {
 

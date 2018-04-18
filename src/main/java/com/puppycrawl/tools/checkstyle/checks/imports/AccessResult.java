@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 /**
  * Represents the result of an access check.
  *
- * @author Oliver Burn
  */
 enum AccessResult {
 

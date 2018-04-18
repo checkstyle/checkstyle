@@ -27,7 +27,6 @@ import com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder;
 /**
  * A filter that suppresses warnings using the {@link SuppressWarnings}
  * annotation.
- * @author Trevor Robinson
  */
 public class SuppressWarningsFilter
     extends AutomaticBean

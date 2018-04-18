@@ -49,9 +49,6 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
  *  or java.lang.Override annotation) default value is <b>true</b>.
  * </p>
  *
- * @author Oliver Burn
- * @author John Sirois
- * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
 @StatelessCheck
 public final class IllegalThrowsCheck extends AbstractCheck {

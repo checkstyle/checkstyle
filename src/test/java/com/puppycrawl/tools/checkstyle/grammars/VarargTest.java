@@ -28,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Tests varargs can be parsed.
- * @author Michael Studman
  */
 public class VarargTest
     extends AbstractModuleTestSupport {

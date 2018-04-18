@@ -43,7 +43,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="MissingSwitchDefault"/&gt;
  * </pre>
- * @author o_sukhodolsky
  */
 @StatelessCheck
 public class MissingSwitchDefaultCheck extends AbstractCheck {
