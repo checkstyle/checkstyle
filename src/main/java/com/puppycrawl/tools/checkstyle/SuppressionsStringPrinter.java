@@ -36,7 +36,6 @@ import com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator;
 /**
  * Class for constructing xpath queries to suppress nodes
  * with specified line and column number.
- * @author Timur Tibeyev.
  */
 public final class SuppressionsStringPrinter {
 

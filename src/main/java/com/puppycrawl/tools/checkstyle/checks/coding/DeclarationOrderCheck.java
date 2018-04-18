@@ -106,7 +106,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * &lt;module name="DeclarationOrder"/&gt;
  * </pre>
  *
- * @author r_auckenthaler
  */
 @FileStatefulCheck
 public class DeclarationOrderCheck extends AbstractCheck {

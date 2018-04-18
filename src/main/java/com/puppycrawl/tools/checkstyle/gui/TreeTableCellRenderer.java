@@ -32,7 +32,6 @@ import javax.swing.tree.TreeModel;
 
 /**
  * A TreeCellRenderer that displays a JTree.
- * @author Lars Kühne
  */
 class TreeTableCellRenderer extends JTree implements
         TableCellRenderer {

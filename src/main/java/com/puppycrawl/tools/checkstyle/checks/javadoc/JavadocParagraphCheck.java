@@ -67,8 +67,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
  *    *
  *    *&#47;
  * </pre>
- * @author maxvetrenko
- * @author Vladislav Lisetskiy
  *
  */
 public class JavadocParagraphCheck extends AbstractJavadocCheck {

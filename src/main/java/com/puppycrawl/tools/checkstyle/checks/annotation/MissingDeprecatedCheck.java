@@ -95,7 +95,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * </code>
  * </pre>
  *
- * @author Travis Schneeberger
  */
 @StatelessCheck
 public final class MissingDeprecatedCheck extends AbstractCheck {

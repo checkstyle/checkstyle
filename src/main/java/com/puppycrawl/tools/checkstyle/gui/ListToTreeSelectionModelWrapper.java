@@ -29,7 +29,6 @@ import javax.swing.tree.TreePath;
  * a change in the ListSelectionModel happens, the paths are updated
  * in the DefaultTreeSelectionModel.
  *
- * @author unknown
  */
 class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
 

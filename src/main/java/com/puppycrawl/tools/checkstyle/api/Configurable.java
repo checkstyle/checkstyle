@@ -27,7 +27,6 @@ package com.puppycrawl.tools.checkstyle.api;
  * The general idea of
  * Configuration/Configurable was taken from <a target="_top"
  * href="http://avalon.apache.org/closed.html">Jakarta's Avalon framework</a>.
- * @author lkuehne
  */
 @FunctionalInterface
 public interface Configurable {

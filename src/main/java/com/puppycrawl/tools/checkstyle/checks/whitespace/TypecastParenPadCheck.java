@@ -46,7 +46,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     &lt;property name="option" value="space"/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author Oliver Burn
  */
 public class TypecastParenPadCheck extends AbstractParenPadCheck {
 

@@ -25,7 +25,6 @@ import java.util.List;
 /**
  * The first module that is run as part of Checkstyle and controls its entire
  * behavior and children.
- * @author Richard Veach
  */
 public interface RootModule extends Configurable {
 

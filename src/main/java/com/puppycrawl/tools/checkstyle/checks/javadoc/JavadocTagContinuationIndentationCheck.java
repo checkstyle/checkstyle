@@ -40,7 +40,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
  * &lt;/module&gt;
  * </pre>
  *
- * @author max
  *
  */
 public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck {

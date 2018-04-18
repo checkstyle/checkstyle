@@ -28,9 +28,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Checks that no method having zero parameters is defined
  * using the name <em>finalize</em>.
  *
- * @author fqian@google.com (Feng Qian)
- * @author smckay@google.com (Steve McKay)
- * @author lkuehne
  */
 @StatelessCheck
 public class NoFinalizerCheck extends AbstractCheck {

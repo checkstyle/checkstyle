@@ -28,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.api.Context;
 
 /**
  * A default implementation of the Context interface.
- * @author lkuehne
  */
 public final class DefaultContext implements Context {
 

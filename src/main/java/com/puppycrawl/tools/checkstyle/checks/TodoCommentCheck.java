@@ -48,8 +48,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    &lt;property name="format" value="(TODO)|(FIXME)"/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author Oliver Burn
- * @author Baratali Izmailov
  */
 @StatelessCheck
 public class TodoCommentCheck

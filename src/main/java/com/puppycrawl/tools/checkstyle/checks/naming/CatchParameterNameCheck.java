@@ -58,7 +58,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  *
- * @author Michal Kordas
  */
 public class CatchParameterNameCheck extends AbstractNameCheck {
 

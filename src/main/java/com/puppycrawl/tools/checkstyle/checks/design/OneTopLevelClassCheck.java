@@ -82,7 +82,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *  so do not use the "tokens" property.
  * </p>
  *
- * @author maxvetrenko
  */
 @FileStatefulCheck
 public class OneTopLevelClassCheck extends AbstractCheck {

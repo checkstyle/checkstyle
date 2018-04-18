@@ -161,8 +161,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  *
- * @author <a href="mailto:rd.ryly@gmail.com">Ruslan Diachenko</a>
- * @author <a href="mailto:barataliba@gmail.com">Baratali Izmailov</a>
  */
 @StatelessCheck
 public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {

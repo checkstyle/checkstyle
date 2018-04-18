@@ -48,7 +48,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * &lt;/module&gt;
  * </pre>
  *
- * @author Rick Giles
  */
 public class LocalFinalVariableNameCheck
     extends AbstractNameCheck {

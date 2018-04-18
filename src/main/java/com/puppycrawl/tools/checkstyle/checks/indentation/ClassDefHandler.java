@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Handler for class definitions.
  *
- * @author jrichard
  */
 public class ClassDefHandler extends BlockParentHandler {
 

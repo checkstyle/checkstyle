@@ -54,8 +54,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * 'crlf' (windows), 'cr' (mac), 'lf' (unix) and 'lf_cr_crlf' (lf, cr or crlf).
  * </p>
  *
- * @author Christopher Lenz
- * @author lkuehne
  */
 @StatelessCheck
 public class NewlineAtEndOfFileCheck

@@ -64,9 +64,6 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
  *    &lt;property name="allowClassName" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author Oliver Burn
- * @author Travis Schneeberger
- * @author Utkarsh Srivastava
  */
 public class MethodNameCheck
     extends AbstractAccessControlNameCheck {

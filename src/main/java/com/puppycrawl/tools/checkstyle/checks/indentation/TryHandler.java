@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Handler for try blocks.
  *
- * @author jrichard
  */
 public class TryHandler extends BlockParentHandler {
 

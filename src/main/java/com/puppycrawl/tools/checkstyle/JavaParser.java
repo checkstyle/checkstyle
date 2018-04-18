@@ -43,8 +43,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 /**
  * Helper methods to parse java source files.
  *
- * @author Oliver Burn
- * @author Pavel Bludov
  */
 public final class JavaParser {
 

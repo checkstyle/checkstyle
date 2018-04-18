@@ -82,8 +82,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *     &lt;property name="option" value="space"/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author Oliver Burn
- * @author Vladislav Lisetskiy
  */
 public class ParenPadCheck extends AbstractParenPadCheck {
 

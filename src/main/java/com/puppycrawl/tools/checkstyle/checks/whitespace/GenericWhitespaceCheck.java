@@ -66,7 +66,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * List&lt;T&gt; list = ImmutableList.Builder&lt;T&gt;::new;     // Method reference
  * sort(list, Comparable::&lt;String&gt;compareTo);              // Method reference
  * </pre>
- * @author Oliver Burn
  */
 @FileStatefulCheck
 public class GenericWhitespaceCheck extends AbstractCheck {

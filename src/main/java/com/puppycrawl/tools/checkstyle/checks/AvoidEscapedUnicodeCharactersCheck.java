@@ -106,7 +106,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * &lt;/module&gt;
  * </pre>
  *
- * @author maxvetrenko
  * @noinspection HtmlTagCanBeJavadocTag
  */
 @FileStatefulCheck

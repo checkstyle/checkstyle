@@ -93,8 +93,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  *
  *
- * @author Daniel Grenner
- * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
  */
 @FileStatefulCheck
 public final class ModifiedControlVariableCheck extends AbstractCheck {

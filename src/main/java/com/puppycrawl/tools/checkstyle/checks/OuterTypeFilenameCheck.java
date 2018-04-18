@@ -29,8 +29,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Checks that the outer type name and the file name match.
- * @author Oliver Burn
- * @author maxvetrenko
  */
 @FileStatefulCheck
 public class OuterTypeFilenameCheck extends AbstractCheck {

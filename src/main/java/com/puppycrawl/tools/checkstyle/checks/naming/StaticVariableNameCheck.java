@@ -45,7 +45,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  *    &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author Rick Giles
  */
 public class StaticVariableNameCheck
     extends AbstractAccessControlNameCheck {

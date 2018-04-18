@@ -35,8 +35,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * takes into account the nesting of conditional statements and
  * multi-part boolean expressions.
  *
- * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
- * @author o_sukhodolsky
  */
 // -@cs[AbbreviationAsWordInName] Can't change check name
 @FileStatefulCheck

@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Handler for method calls.
  *
- * @author jrichard
  */
 public class MethodCallHandler extends AbstractExpressionHandler {
 

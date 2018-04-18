@@ -373,7 +373,6 @@
     </module>
     <module name="JavadocTagContinuationIndentation"/>
     <module name="JavadocType">
-      <property name="authorFormat" value="\S"/>
       <!-- avoid errors on tag '@noinspection' -->
       <property name="allowUnknownTags" value="true"/>
     </module>

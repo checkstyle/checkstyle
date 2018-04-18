@@ -176,12 +176,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * </pre>
  *
  *
- * @author Bill Schneider
- * @author o_sukhodolsky
- * @author David DIDIER
- * @author Steve McKay
- * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
- * @author Andrei Selkin
  */
 @FileStatefulCheck
 public class ImportOrderCheck

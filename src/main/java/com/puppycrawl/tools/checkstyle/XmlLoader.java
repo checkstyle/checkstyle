@@ -45,7 +45,6 @@ import org.xml.sax.helpers.DefaultHandler;
  * stringent, stuffy, stuffy, tough, unpermissive, unsparing and uptight.
  * </p>
  *
- * @author Oliver Burn
  * @noinspection ThisEscapedInObjectConstruction
  */
 public class XmlLoader

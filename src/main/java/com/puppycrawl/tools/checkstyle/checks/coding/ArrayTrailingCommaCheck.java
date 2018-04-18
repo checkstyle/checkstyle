@@ -86,7 +86,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="ArrayTrailingComma"/&gt;
  * </pre>
- * @author o_sukhodolsky
  */
 @StatelessCheck
 public class ArrayTrailingCommaCheck extends AbstractCheck {

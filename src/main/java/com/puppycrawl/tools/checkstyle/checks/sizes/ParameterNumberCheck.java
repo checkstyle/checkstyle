@@ -62,7 +62,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *  }
  * }
  * </pre>
- * @author Oliver Burn
  */
 @StatelessCheck
 public class ParameterNumberCheck

@@ -26,7 +26,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
  * Implementation of a check that looks for a single line in any file type.
- * @author Oliver Burn
  */
 public class RegexpSinglelineCheck extends AbstractFileSetCheck {
 

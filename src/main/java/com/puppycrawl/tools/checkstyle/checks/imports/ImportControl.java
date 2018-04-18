@@ -30,7 +30,6 @@ import java.util.regex.Pattern;
  * classes are allowed to be used. Each instance must have a single parent or
  * be the root node. Each instance may have zero or more children.
  *
- * @author Oliver Burn
  */
 class ImportControl {
 

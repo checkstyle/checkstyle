@@ -29,7 +29,6 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 /**
  * Utility methods for suppression filters.
  *
- * @author Timur Tibeyev.
  */
 public final class FilterUtils {
 

@@ -23,7 +23,6 @@ import java.util.SortedSet;
 
 /**
  * Used by FileSetChecks to distribute AuditEvents to AuditListeners.
- * @author lkuehne
  */
 public interface MessageDispatcher {
 

@@ -50,7 +50,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * are not needed.
  * </p>
  *
- * @author Eric Roe
  */
 @FileStatefulCheck
 public class UnnecessaryParenthesesCheck extends AbstractCheck {

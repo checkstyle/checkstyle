@@ -36,7 +36,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;module name="MissingCtor"/&gt;
  * </pre>
  *
- * @author o_sukhodolsky
  */
 @StatelessCheck
 public class MissingCtorCheck extends AbstractCheck {

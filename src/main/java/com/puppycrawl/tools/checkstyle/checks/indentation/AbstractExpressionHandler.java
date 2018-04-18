@@ -28,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 /**
  * Abstract base class for all handlers.
  *
- * @author jrichard
  */
 public abstract class AbstractExpressionHandler {
 

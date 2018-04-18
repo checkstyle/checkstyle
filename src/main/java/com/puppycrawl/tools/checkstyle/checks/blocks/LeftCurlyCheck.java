@@ -70,9 +70,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * &lt;/module&gt;
  * </pre>
  *
- * @author Oliver Burn
- * @author lkuehne
- * @author maxvetrenko
  */
 @StatelessCheck
 public class LeftCurlyCheck

@@ -43,7 +43,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Loads a filter chain of suppressions.
- * @author Rick Giles
  */
 public final class SuppressionsLoader
     extends XmlLoader {

@@ -35,7 +35,6 @@ import net.sf.saxon.type.Type;
 /**
  * Represents root node of Xpath-tree.
  *
- * @author Timur Tibeyev
  */
 public class RootNode extends AbstractNode {
 

@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 
 /**
  * Represents whether a package is allowed to be imported or not.
- * @author Oliver Burn
  */
 class PkgImportRule extends AbstractImportRule {
 

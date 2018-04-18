@@ -61,7 +61,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * each static member in the Math class individually like
  * java.lang.Math.PI
  * </p>
- * @author Travis Schneeberger
  */
 @StatelessCheck
 public class AvoidStaticImportCheck

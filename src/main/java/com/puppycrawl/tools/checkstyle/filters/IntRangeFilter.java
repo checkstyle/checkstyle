@@ -23,7 +23,6 @@ import java.util.Objects;
 
 /**
  * This filter accepts an Integer in a range.
- * @author Rick Giles
  */
 class IntRangeFilter implements IntFilter {
 

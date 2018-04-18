@@ -36,7 +36,6 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
  *   <li>(optionally) the check's columns is in the filter's column CSV.</li>
  * </ul>
  *
- * @author Rick Giles
  */
 public class SuppressElement
     implements Filter {

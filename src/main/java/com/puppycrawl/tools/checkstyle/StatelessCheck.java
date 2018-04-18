@@ -32,7 +32,6 @@ import java.lang.annotation.Target;
  * execution stage (but it still can set properties at the initialization stage).
  * Checker guarantees that there will be exactly one check instance during the audit.
  * This also means, that all files will be processed by the same check instance.
- * @author Andrew Kuchev
  * @noinspection AnnotationClass, ClassIndependentOfModule
  */
 @Retention(RetentionPolicy.RUNTIME)

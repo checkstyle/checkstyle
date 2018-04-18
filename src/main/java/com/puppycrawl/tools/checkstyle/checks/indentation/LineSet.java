@@ -25,7 +25,6 @@ import java.util.TreeMap;
 /**
  * Represents a set of lines.
  *
- * @author jrichard
  */
 public class LineSet {
 

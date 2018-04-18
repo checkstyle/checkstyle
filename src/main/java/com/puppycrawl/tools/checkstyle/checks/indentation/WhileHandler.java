@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Handler for while loops.
  *
- * @author jrichard
  */
 public class WhileHandler extends BlockParentHandler {
 

@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.api;
 
 /**
  * An interface for before execution file filtering events.
- * @author Richard Veach
  */
 @FunctionalInterface
 public interface BeforeExecutionFileFilter {

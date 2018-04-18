@@ -300,8 +300,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * &lt;/module&gt;
  * </pre>
  *
- * @author maxvetrenko
- * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
 @FileStatefulCheck
 public class CustomImportOrderCheck extends AbstractCheck {
@@ -803,7 +801,6 @@ public class CustomImportOrderCheck extends AbstractCheck {
     /**
      * Contains import attributes as line number, import full path, import
      * group.
-     * @author max
      */
     private static class ImportDetails {
 
@@ -875,7 +872,6 @@ public class CustomImportOrderCheck extends AbstractCheck {
     /**
      * Contains matching attributes assisting in definition of "best matching"
      * group for import.
-     * @author ivanov-alex
      */
     private static class RuleMatchForImport {
 

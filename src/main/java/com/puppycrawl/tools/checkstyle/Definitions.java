@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 /**
  * Contains constant definitions common to the package.
- * @author Oliver Burn
  **/
 public final class Definitions {
 

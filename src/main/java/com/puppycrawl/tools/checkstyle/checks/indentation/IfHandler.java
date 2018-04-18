@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Handler for if statements.
  *
- * @author jrichard
  */
 public class IfHandler extends BlockParentHandler {
 

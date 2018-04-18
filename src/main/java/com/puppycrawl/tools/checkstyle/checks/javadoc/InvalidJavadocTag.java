@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 /**
  * Value object for storing data about an invalid Javadoc validTags.
- * @author Oliver Burn
  */
 public final class InvalidJavadocTag {
 

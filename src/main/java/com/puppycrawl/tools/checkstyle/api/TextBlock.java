@@ -23,7 +23,6 @@ package com.puppycrawl.tools.checkstyle.api;
  * A block of text from an input file that does not necessarily
  * have any grammatical structure.
  *
- * @author lkuehne
  */
 public interface TextBlock {
 

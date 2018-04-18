@@ -35,8 +35,6 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
  * method call because they can be applied to non boolean variables and
  * Checkstyle does not know types of methods from different classes.
  *
- * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
- * @author o_sukhodolsky
  */
 @FileStatefulCheck
 public final class BooleanExpressionComplexityCheck extends AbstractCheck {
@@ -207,8 +205,6 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
     /**
      * Represents context (method/expression) in which we check complexity.
      *
-     * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
-     * @author o_sukhodolsky
      */
     private class Context {
 

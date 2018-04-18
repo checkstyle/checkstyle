@@ -42,7 +42,6 @@ import java.util.List;
  * <MY_FOO_TYPE>}, etc. According to this class they are valid tags.
  * </p>
  *
- * @author Chris Stillwell
  */
 class TagParser {
 
@@ -274,7 +273,6 @@ class TagParser {
 
     /**
      * Represents current position in the text.
-     * @author o_sukhodolsky
      */
     private static final class Point {
 

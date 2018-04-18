@@ -27,7 +27,6 @@ import java.util.Set;
  * classes are not initialized.
  * <p>Limitations: this does not handle inner classes very well.</p>
  *
- * @author Oliver Burn
  */
 public class ClassResolver {
 

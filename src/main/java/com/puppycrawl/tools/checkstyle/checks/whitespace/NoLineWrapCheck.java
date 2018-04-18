@@ -61,7 +61,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * <pre>{@code import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
  * }</pre>
  *
- * @author maxvetrenko
  */
 @StatelessCheck
 public class NoLineWrapCheck extends AbstractCheck {

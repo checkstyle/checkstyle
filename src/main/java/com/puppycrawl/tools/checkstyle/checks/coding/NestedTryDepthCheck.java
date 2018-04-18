@@ -26,7 +26,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Restricts nested try-catch-finally blocks to a specified depth (default = 1).
- * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  */
 @FileStatefulCheck
 public final class NestedTryDepthCheck extends AbstractCheck {

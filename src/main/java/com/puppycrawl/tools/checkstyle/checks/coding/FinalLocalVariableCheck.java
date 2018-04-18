@@ -72,8 +72,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * }
  * }
  * </p>
- * @author k_gibbs, r_auckenthaler
- * @author Vladislav Lisetskiy
  */
 @FileStatefulCheck
 public class FinalLocalVariableCheck extends AbstractCheck {

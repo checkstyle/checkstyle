@@ -53,9 +53,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
  * &lt;/module&gt;
  * </pre>
  *
- * @author baratali
- * @author maxvetrenko
- * @author vladlis
  *
  */
 public class SingleLineJavadocCheck extends AbstractJavadocCheck {

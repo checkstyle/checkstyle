@@ -127,7 +127,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * }
  * </pre>
  *
- * @author Dmitri Priimak
  */
 @FileStatefulCheck
 public class HiddenFieldCheck
@@ -555,7 +554,6 @@ public class HiddenFieldCheck
 
     /**
      * Holds the names of static and instance fields of a type.
-     * @author Rick Giles
      */
     private static class FieldFrame {
 

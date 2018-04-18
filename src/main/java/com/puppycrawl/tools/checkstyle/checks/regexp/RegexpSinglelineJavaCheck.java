@@ -27,7 +27,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 /**
  * Implementation of a check that looks for a single line in Java files.
  * Supports ignoring comments for matches.
- * @author Oliver Burn
  */
 @StatelessCheck
 public class RegexpSinglelineJavaCheck extends AbstractCheck {

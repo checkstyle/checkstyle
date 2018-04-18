@@ -39,7 +39,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="SimplifyBooleanExpression"/&gt;
  * </pre>
- * @author lkuehne
  */
 @StatelessCheck
 public class SimplifyBooleanExpressionCheck

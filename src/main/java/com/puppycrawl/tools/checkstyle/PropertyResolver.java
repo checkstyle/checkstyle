@@ -26,7 +26,6 @@ package com.puppycrawl.tools.checkstyle;
  * resolve the values of external properties like {@code ${basename}}
  * that occur in the configuration file.
  *
- * @author lkuehne
  * @see ConfigurationLoader
  */
 @FunctionalInterface

@@ -39,7 +39,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * file being checked. It provides helper methods for performing type
  * information functions.
  *
- * @author Oliver Burn
  * @deprecated Checkstyle is not type aware tool and all Checks derived from this
  *     class are potentially unstable.
  * @noinspection DeprecatedIsStillUsed, AbstractClassWithOnlyOneDirectInheritor

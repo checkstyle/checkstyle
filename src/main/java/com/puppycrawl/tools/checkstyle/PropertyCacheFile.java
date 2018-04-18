@@ -56,8 +56,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * cache file to ensure the cache is invalidated when the
  * configuration has changed.
  *
- * @author Oliver Burn
- * @author Andrei Selkin
  */
 final class PropertyCacheFile {
 
@@ -361,7 +359,6 @@ final class PropertyCacheFile {
 
     /**
      * Class which represents external resource.
-     * @author Andrei Selkin
      */
     private static class ExternalResource {
 

@@ -28,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
  * Presentation model for CodeSelector.
- * @author unknown
  */
 public class CodeSelectorPresentation {
 

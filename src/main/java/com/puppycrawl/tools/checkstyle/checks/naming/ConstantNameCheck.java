@@ -51,7 +51,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * </pre>
  *
  *
- * @author Rick Giles
  */
 public class ConstantNameCheck
     extends AbstractAccessControlNameCheck {

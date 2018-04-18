@@ -56,7 +56,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Wrapper command line program for the Checker.
- * @author the original author or authors.
  * @noinspection UseOfSystemOutOrSystemErr
  **/
 public final class Main {

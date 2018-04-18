@@ -35,7 +35,6 @@ import java.util.EventObject;
  * </i>
  * </p>
  *
- * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
  * @see AuditListener
  * @noinspection SerializableHasSerializationMethods
  */

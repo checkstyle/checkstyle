@@ -29,7 +29,6 @@ import com.puppycrawl.tools.checkstyle.api.LineColumn;
 /**
  * Tools for extracting inline tags from Javadoc comments.
  *
- * @author Nathan Naze
  */
 public final class InlineTagUtils {
 

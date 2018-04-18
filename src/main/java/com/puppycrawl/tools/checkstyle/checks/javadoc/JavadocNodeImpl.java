@@ -28,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 /**
  * Implementation of DetailNode interface that is mutable.
  *
- * @author Baratali Izmailov
  *
  */
 public class JavadocNodeImpl implements DetailNode {

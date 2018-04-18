@@ -40,7 +40,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * Checks the uniqueness of property keys (left from equal sign) in the
  * properties file.
  *
- * @author Pavel Baranchikov
  */
 @StatelessCheck
 public class UniquePropertiesCheck extends AbstractFileSetCheck {
@@ -138,7 +137,6 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
     /**
      * Properties subclass to store duplicated property keys in a separate map.
      *
-     * @author Pavel Baranchikov
      * @noinspection ClassExtendsConcreteCollection, SerializableHasSerializationMethods
      */
     private static class UniqueProperties extends Properties {

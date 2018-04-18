@@ -27,7 +27,6 @@ import javax.swing.WindowConstants;
 /**
  * Entry point for starting the checkstyle GUI.
  *
- * @author unknown
  */
 public final class Main {
 

@@ -45,9 +45,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 /**
  * Custom Checkstyle Check to validate Javadoc.
  *
- * @author Chris Stillwell
- * @author Daniel Grenner
- * @author Travis Schneeberger
  */
 @StatelessCheck
 public class JavadocStyleCheck

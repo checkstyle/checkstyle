@@ -46,7 +46,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * &lt;module name=&quot;UpperEll&quot;/&gt;
  * </pre>
  *
- * @author Oliver Burn
  */
 @StatelessCheck
 public class UpperEllCheck extends AbstractCheck {

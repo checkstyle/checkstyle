@@ -24,7 +24,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 /**
  * Handler for lambda expressions.
  *
- * @author pietern
  */
 public class LambdaHandler extends AbstractExpressionHandler {
 

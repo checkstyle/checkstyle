@@ -42,7 +42,6 @@ import java.lang.annotation.Target;
  * there might be a list of files, which will be checked by the same instance.
  * Note: Checks with such annotation will be executed in mode how all Checks worked
  * before MT mode is introduced.
- * @author Andrew Kuchev
  * @noinspection AnnotationClass, ClassIndependentOfModule
  */
 @Retention(RetentionPolicy.RUNTIME)

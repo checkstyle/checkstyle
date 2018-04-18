@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 /**
  * Represents a Javadoc tag. Provides methods to query what type of tag it is.
- * @author Oliver Burn
  */
 public class JavadocTag {
 

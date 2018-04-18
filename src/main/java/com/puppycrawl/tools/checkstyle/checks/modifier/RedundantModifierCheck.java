@@ -110,10 +110,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * }
  * </pre>
  *
- * @author lkuehne
- * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
- * @author <a href="mailto:andreyselkin@gmail.com">Andrei Selkin</a>
- * @author Vladislav Lisetskiy
  */
 @StatelessCheck
 public class RedundantModifierCheck

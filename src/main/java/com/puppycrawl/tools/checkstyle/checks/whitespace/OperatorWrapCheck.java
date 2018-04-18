@@ -89,7 +89,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * &lt;/module&gt;
  * </pre>
  *
- * @author Rick Giles
  */
 @StatelessCheck
 public class OperatorWrapCheck

@@ -51,8 +51,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  *     &lt;property name="tokens" value="LITERAL_NATIVE"/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
- * @author Rick Giles
  */
 @StatelessCheck
 public class IllegalTokenCheck

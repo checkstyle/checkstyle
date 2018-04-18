@@ -27,7 +27,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
  * Checks to see if a file contains a tab character.
- * @author oliverb
  */
 @StatelessCheck
 public class FileTabCharacterCheck extends AbstractFileSetCheck {

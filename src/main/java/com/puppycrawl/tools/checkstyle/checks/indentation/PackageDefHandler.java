@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Handler for package definitions.
  *
- * @author jrichard
  */
 public class PackageDefHandler extends AbstractExpressionHandler {
 

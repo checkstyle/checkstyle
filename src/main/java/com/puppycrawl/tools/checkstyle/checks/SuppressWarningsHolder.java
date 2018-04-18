@@ -35,8 +35,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Maintains a set of check suppressions from {@link SuppressWarnings}
  * annotations.
- * @author Trevor Robinson
- * @author St&eacute;phane Galland
  */
 @StatelessCheck
 public class SuppressWarningsHolder

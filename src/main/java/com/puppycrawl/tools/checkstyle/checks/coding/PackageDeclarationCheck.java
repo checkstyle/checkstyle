@@ -37,9 +37,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * These directories are added to the classpath so that your classes
  * are visible to JVM when it runs the code.
  *
- * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
- * @author Oliver Burn
- * @author Vikramaditya Kukreja
  */
 @FileStatefulCheck
 public final class PackageDeclarationCheck extends AbstractCheck {

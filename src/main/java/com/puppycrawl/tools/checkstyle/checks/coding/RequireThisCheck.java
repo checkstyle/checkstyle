@@ -87,9 +87,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * Non-static methods invoked on either this or a variable name seem to be
  * OK, likewise.</p>
  *
- * @author Stephen Bloch
- * @author o_sukhodolsky
- * @author Andrei Selkin
  */
 // -@cs[ClassDataAbstractionCoupling] This check requires to work with and identify many frames.
 @FileStatefulCheck
@@ -1001,8 +998,6 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * A declaration frame.
-     * @author Stephen Bloch
-     * @author Andrei Selkin
      */
     private abstract static class AbstractFrame {
 
@@ -1131,8 +1126,6 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * A frame initiated at method definition; holds a method definition token.
-     * @author Stephen Bloch
-     * @author Andrei Selkin
      */
     private static class MethodFrame extends AbstractFrame {
 
@@ -1154,7 +1147,6 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * A frame initiated at constructor definition.
-     * @author Andrei Selkin
      */
     private static class ConstructorFrame extends AbstractFrame {
 
@@ -1176,8 +1168,6 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * A frame initiated at class, enum or interface definition; holds instance variable names.
-     * @author Stephen Bloch
-     * @author Andrei Selkin
      */
     private static class ClassFrame extends AbstractFrame {
 
@@ -1391,7 +1381,6 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * A frame initiated on entering a statement list; holds local variable names.
-     * @author Stephen Bloch
      */
     private static class BlockFrame extends AbstractFrame {
 
@@ -1413,7 +1402,6 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * A frame initiated on entering a catch block; holds local catch variable names.
-     * @author Richard Veach
      */
     public static class CatchFrame extends AbstractFrame {
 
@@ -1435,7 +1423,6 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * A frame initiated on entering a for block; holds local for variable names.
-     * @author Richard Veach
      */
     public static class ForFrame extends AbstractFrame {
 

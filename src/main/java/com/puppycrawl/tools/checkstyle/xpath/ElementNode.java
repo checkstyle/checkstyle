@@ -34,7 +34,6 @@ import net.sf.saxon.type.Type;
 /**
  * Represents element node of Xpath-tree.
  *
- * @author Timur Tibeyev
  */
 public class ElementNode extends AbstractNode {
 

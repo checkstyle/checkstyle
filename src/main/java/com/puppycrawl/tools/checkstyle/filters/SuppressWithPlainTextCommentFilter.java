@@ -54,7 +54,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *     This is sometimes superior to a separate suppressions file, which
  *     must be kept up-to-date as the source file is edited.
  * </p>
- * @author Andrei Selkin
  */
 public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements Filter {
 

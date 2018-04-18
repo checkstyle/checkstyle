@@ -42,7 +42,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </ol>
  *
  *
- * @author Rick Giles
  */
 public abstract class AbstractAccessControlNameCheck
     extends AbstractNameCheck {

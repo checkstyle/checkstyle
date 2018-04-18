@@ -63,8 +63,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * &lt;/module&gt;
  * </pre>
  *
- * @author Oliver Burn
- * @author Andrei Selkin
  */
 public class ParameterNameCheck extends AbstractNameCheck {
 

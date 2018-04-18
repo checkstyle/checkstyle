@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Handler for for loops.
  *
- * @author jrichard
  */
 public class ForHandler extends BlockParentHandler {
 

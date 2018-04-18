@@ -28,7 +28,6 @@ import java.util.Set;
  * A filter set applies filters to AuditEvents.
  * If a filter in the set rejects an AuditEvent, then the
  * AuditEvent is rejected. Otherwise, the AuditEvent is accepted.
- * @author Rick Giles
  */
 public class FilterSet
     implements Filter {

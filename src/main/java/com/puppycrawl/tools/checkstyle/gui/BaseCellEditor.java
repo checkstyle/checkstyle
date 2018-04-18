@@ -35,7 +35,6 @@ import javax.swing.event.EventListenerList;
  * "https://docs.oracle.com/cd/E48246_01/apirefs.1111/e13403/oracle/ide/controls/TreeTableModel.html">
  * Original&nbsp;Source&nbsp;Location</a>
  *
- * @author Philip Milne
  */
 public class BaseCellEditor implements CellEditor {
 

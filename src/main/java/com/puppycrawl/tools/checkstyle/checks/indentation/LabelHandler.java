@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Handler for labels.
  *
- * @author jrichard
  */
 public class LabelHandler extends AbstractExpressionHandler {
 

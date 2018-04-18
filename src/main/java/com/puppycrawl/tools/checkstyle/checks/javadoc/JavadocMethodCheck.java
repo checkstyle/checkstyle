@@ -43,9 +43,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 /**
  * Checks the Javadoc of a method or constructor.
  *
- * @author Oliver Burn
- * @author Rick Giles
- * @author o_sukhodolsky
  *
  * @noinspection deprecation
  */

@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Handler for synchronized statements.
  *
- * @author liscju piotr.listkiewicz@gmail.com
  */
 public class SynchronizedHandler extends BlockParentHandler {
 

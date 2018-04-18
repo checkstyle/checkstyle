@@ -43,7 +43,6 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
  * ensure that parameters are never assigned would give
  * the best of both worlds.
  * </p>
- * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  */
 @FileStatefulCheck
 public final class ParameterAssignmentCheck extends AbstractCheck {

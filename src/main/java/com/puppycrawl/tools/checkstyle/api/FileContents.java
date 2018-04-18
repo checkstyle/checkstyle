@@ -35,7 +35,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 /**
  * Represents the contents of a file.
  *
- * @author Oliver Burn
  */
 public final class FileContents implements CommentListener {
 

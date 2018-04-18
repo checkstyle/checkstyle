@@ -41,7 +41,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * <pre>
  * &lt;module name="FinalClass"/&gt;
  * </pre>
- * @author o_sukhodolsky
  */
 @FileStatefulCheck
 public class FinalClassCheck

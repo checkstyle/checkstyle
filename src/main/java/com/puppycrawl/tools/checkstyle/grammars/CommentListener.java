@@ -23,7 +23,6 @@ package com.puppycrawl.tools.checkstyle.grammars;
  * This interface is used to be notified by parser about comments
  * in the parsed code.
  *
- * @author o_sukhodolsky
  * @noinspection ClassOnlyUsedInOnePackage
  */
 public interface CommentListener {

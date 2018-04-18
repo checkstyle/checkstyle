@@ -75,12 +75,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * &lt;/module&gt;
  * </pre>
  *
- * @author Oliver Burn
- * @author lkuehne
- * @author o_sukhodolsky
- * @author maxvetrenko
- * @author Andrei Selkin
- * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
  */
 @StatelessCheck
 public class RightCurlyCheck extends AbstractCheck {

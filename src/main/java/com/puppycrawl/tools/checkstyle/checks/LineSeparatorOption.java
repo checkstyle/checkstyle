@@ -25,7 +25,6 @@ import java.util.Arrays;
 /**
  * Represents the options for line separator settings.
  *
- * @author lkuehne
  * @see NewlineAtEndOfFileCheck
  */
 public enum LineSeparatorOption {

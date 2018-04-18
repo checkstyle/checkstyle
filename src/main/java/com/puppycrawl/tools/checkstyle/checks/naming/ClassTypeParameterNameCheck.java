@@ -45,7 +45,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  *
- * @author Travis Schneeberger
  */
 public class ClassTypeParameterNameCheck
     extends AbstractNameCheck {

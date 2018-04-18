@@ -30,8 +30,6 @@ import java.util.StringTokenizer;
  * This filter accepts an integer that matches a CSV value, where
  * each value is an integer or a range of integers.
  * </p>
- * @author Rick Giles
- * @author o_sukhodolsky
  */
 class CsvFilter implements IntFilter {
 

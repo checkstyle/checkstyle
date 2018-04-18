@@ -134,9 +134,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * }
  * }
  * </pre>
- * @author Rick Giles
- * @author Lars Kühne
- * @author Daniel Solano Gómez
  */
 @StatelessCheck
 public class MagicNumberCheck extends AbstractCheck {

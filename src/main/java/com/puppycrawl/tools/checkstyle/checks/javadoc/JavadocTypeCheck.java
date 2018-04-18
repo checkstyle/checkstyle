@@ -41,8 +41,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * <p>Does not perform checks for author and version tags for inner classes, as
  * they should be redundant because of outer class.
  *
- * @author Oliver Burn
- * @author Michael Tamm
  */
 @StatelessCheck
 public class JavadocTypeCheck

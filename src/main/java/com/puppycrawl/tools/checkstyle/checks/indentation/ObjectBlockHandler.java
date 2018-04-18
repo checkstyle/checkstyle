@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Handler for inner classes.
  *
- * @author jrichard
  */
 public class ObjectBlockHandler extends BlockParentHandler {
 

@@ -31,7 +31,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * space is required after a left parenthesis and before a right parenthesis,
  * or such spaces are forbidden.
  * </p>
- * @author Oliver Burn
  */
 @StatelessCheck
 public abstract class AbstractParenPadCheck

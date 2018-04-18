@@ -42,7 +42,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Loads a list of package names from a package name XML file.
- * @author Rick Giles
  */
 public final class PackageNamesLoader
     extends XmlLoader {

@@ -33,7 +33,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
  * Class for printing AST to String.
- * @author Vladislav Lisetskii
  */
 public final class AstTreeStringPrinter {
 

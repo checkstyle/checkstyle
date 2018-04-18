@@ -29,7 +29,6 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  * A ModuleFactory can implement this name resolution by using naming
  * conventions, fallback strategies, etc.
  *
- * @author lkuehne
  */
 @FunctionalInterface
 public interface ModuleFactory {

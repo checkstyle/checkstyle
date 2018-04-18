@@ -83,7 +83,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  * </pre>
  *
- * @author lkuehne
  */
 @StatelessCheck
 public class AvoidNestedBlocksCheck extends AbstractCheck {

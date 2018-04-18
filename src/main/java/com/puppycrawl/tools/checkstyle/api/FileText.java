@@ -47,7 +47,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * Checker.
  * </p>
  *
- * @author Martin von Gagern
  */
 public final class FileText {
 

@@ -39,7 +39,6 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.TagInfo;
 
 /**
  * Contains utility methods for working with Javadoc.
- * @author Lyle Hanson
  */
 public final class JavadocUtils {
 

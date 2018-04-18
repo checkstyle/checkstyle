@@ -123,7 +123,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * }
  * }
  * </pre>
- * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
 @StatelessCheck
 public class EmptyCatchBlockCheck extends AbstractCheck {

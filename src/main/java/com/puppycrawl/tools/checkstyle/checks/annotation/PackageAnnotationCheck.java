@@ -43,7 +43,6 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
  * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-7.html#jls-7.4.1">
  * Java Language Specification, section 7.4.1</a>.
  * </p>
- * @author Travis Schneeberger
  */
 @StatelessCheck
 public class PackageAnnotationCheck extends AbstractCheck {

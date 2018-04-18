@@ -61,7 +61,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  *
- * @author Oliver Burn
  */
 @StatelessCheck
 public class PackageNameCheck

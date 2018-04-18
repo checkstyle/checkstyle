@@ -34,7 +34,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * Abstract class for checking that an overriding method with no parameters
  * invokes the super method.
  * </p>
- * @author Rick Giles
  */
 @FileStatefulCheck
 public abstract class AbstractSuperCheck
@@ -198,7 +197,6 @@ public abstract class AbstractSuperCheck
     /**
      * Stack node for a method definition and a record of
      * whether the method has a call to the super method.
-     * @author Rick Giles
      */
     private static class MethodNode {
 

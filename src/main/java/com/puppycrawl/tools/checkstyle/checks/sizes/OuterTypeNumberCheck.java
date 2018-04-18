@@ -26,7 +26,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Checks for the number of defined types at the "outer" level.
- * @author oliverb
  */
 @FileStatefulCheck
 public class OuterTypeNumberCheck extends AbstractCheck {

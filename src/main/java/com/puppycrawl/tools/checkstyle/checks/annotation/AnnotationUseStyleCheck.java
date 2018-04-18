@@ -100,14 +100,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  *
- * @author Travis Schneeberger
  */
 @StatelessCheck
 public final class AnnotationUseStyleCheck extends AbstractCheck {
 
     /**
      * Defines the styles for defining elements in an annotation.
-     * @author Travis Schneeberger
      */
     public enum ElementStyle {
 
@@ -145,7 +143,6 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      * Defines the two styles for defining
      * elements in an annotation.
      *
-     * @author Travis Schneeberger
      */
     public enum TrailingArrayComma {
 
@@ -174,7 +171,6 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      * Defines the two styles for defining
      * elements in an annotation.
      *
-     * @author Travis Schneeberger
      */
     public enum ClosingParens {
 

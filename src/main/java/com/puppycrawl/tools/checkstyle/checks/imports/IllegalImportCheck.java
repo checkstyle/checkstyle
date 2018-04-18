@@ -60,8 +60,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * Compatible with Java 1.5 source.
  *
  * </pre>
- * @author Oliver Burn
- * @author Lars Kühne
  */
 @StatelessCheck
 public class IllegalImportCheck

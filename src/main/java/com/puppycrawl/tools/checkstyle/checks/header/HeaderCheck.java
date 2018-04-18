@@ -31,7 +31,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * the default value of header is set to null
  * and the check does not rise any violations.
  *
- * @author Lars Kühne
  */
 @StatelessCheck
 public class HeaderCheck extends AbstractHeaderCheck {

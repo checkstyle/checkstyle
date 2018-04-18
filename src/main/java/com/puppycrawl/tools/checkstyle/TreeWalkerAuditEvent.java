@@ -26,7 +26,6 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 /**
  * Raw {@code TreeWalker} event for audit.
  *
- * @author Timur Tibeyev
  */
 public class TreeWalkerAuditEvent {
 

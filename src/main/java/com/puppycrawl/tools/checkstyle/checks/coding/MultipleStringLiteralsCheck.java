@@ -36,7 +36,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * Checks for multiple occurrences of the same string literal within a
  * single file.
  *
- * @author Daniel Grenner
  */
 @FileStatefulCheck
 public class MultipleStringLiteralsCheck extends AbstractCheck {

@@ -29,8 +29,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 /**
  * Provides common functionality for many FileSetChecks.
  *
- * @author lkuehne
- * @author oliver
  * @noinspection NoopMethodInAbstractClass
  */
 public abstract class AbstractFileSetCheck

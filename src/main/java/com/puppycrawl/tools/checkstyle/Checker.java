@@ -59,10 +59,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * This class provides the functionality to check a set of files.
- * @author Oliver Burn
- * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
- * @author lkuehne
- * @author Andrei Selkin
  */
 public class Checker extends AutomaticBean implements MessageDispatcher, RootModule {
 
