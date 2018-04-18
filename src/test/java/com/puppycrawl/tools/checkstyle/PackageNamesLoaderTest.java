@@ -60,8 +60,6 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
  * Enter a description of class PackageNamesLoaderTest.java.
- * @author Rick Giles
- * @author lkuehne
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({PackageNamesLoader.class, Closeables.class})

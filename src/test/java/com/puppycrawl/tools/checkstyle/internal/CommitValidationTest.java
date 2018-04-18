@@ -68,7 +68,6 @@ import org.junit.Test;
  *
  * <p>Filtered commit list is checked if their messages has proper structure.</p>
  *
- * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
  */
 public class CommitValidationTest {
 

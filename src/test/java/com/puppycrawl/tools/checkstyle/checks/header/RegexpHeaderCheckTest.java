@@ -49,7 +49,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Unit test for RegexpHeaderCheck.
- * @author richter
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(Closeables.class)

@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 /**
  * Represents the formatter for log message which is used in UTs.
  * Message format is: filePath:lineNo:columnNo: message.
- * @author Andrei Selkin
  */
 public class AuditEventUtFormatter implements AuditEventFormatter {
 

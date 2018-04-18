@@ -30,8 +30,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Unit test for AnonInnerLengthCheck.
- * @author Rob Worth
- * @author Lars Kühne
  */
 public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
 

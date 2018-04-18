@@ -37,7 +37,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 /**
  * Test fixture for the UnnecessaryParenthesesCheck.
  *
- * @author  Eric K. Roe
  */
 public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
 

@@ -48,8 +48,6 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 /**
  * Unit test for ConfigurationLoader.
- * @author Rick Giles
- * @author lkuehne
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({DefaultConfiguration.class, ConfigurationLoader.class})

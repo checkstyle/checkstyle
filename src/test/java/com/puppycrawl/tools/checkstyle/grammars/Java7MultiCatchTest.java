@@ -28,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Tests Java 7 multi-catch can be parsed.
- * @author Dinesh Bolkensteyn (SonarSource)
  */
 public class Java7MultiCatchTest
     extends AbstractModuleTestSupport {

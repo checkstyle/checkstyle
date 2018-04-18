@@ -33,7 +33,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 /**
  * Tests to ensure that default message bundle is determined correctly.
  *
- * @author lkuehne
  */
 public class AbstractViolationReporterTest {
 

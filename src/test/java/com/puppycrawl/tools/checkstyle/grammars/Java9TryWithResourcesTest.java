@@ -28,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Tests Java 9 try-with-resources can be parsed.
- * @author checkstyle team
  */
 public class Java9TryWithResourcesTest extends AbstractModuleTestSupport {
 

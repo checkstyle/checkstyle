@@ -28,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Tests that extended unicode escapes can be parsed.
- * @author Dinesh Bolkensteyn (SonarSource)
  */
 public class UnicodeEscapeTest
     extends AbstractModuleTestSupport {

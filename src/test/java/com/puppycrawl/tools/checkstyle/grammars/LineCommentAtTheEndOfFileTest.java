@@ -30,7 +30,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * Checks that file can be parsed, when it ends on line-comment but without
  * new-line.
  *
- * @author Evgeny Mandrikov
  */
 public class LineCommentAtTheEndOfFileTest
     extends AbstractModuleTestSupport {

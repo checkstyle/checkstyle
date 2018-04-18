@@ -28,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Tests hex floats and doubles can be parsed.
- * @author Michael Studman
  */
 public class HexFloatsTest
     extends AbstractModuleTestSupport {
