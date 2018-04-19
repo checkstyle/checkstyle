@@ -12,16 +12,12 @@
     <!-- illegal words are part of Javadoc -->
     <suppress checks="TodoComment" files=".*TodoCommentCheck\.java"/>
 
-    <!-- All disallowed characters are stored there -->
-    <suppress checks="AvoidEscapedUnicodeCharactersCheck"
-              files="AvoidEscapedUnicodeCharactersCheck.java"/>
-
     <!-- 'Abstract' pattern is used to show it is checking for abstract class name -->
     <suppress checks="AbstractClassNameCheck"
               files="AbstractClassNameCheck.java"/>
     <!-- test should be named as their main class -->
     <suppress checks="AbstractClassNameCheck"
-              files="AbstractCheckTest.java|AbstractClassNameCheckTest.java|AbstractTypeAwareCheckTest.java|AbstractJavadocCheckTest.java|AbstractViolationReporterTest.java|AbstractFileSetCheckTest.java|AbstractNodeTest.java"/>
+              files="AbstractCheckTest.java|AbstractClassNameCheckTest.java|AbstractTypeAwareCheckTest.java|AbstractJavadocCheckTest.java|AbstractViolationReporterTest.java|AbstractFileSetCheckTest.java"/>
 
     <!-- Tone down the checking for test code -->
     <suppress checks="ExecutableStatementCount|JavaNCSS|BooleanExpressionComplexity|NestedIfDepth|MethodLength" files="[\\/]XdocsPagesTest\.java"/>
@@ -30,9 +26,6 @@
     <suppress message="Missing a Javadoc comment|Missing package-info.java file|Expected @throws tag for" files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <suppress checks="MagicNumber" files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <suppress checks="AvoidStaticImport" files=".*[\\/]src[\\/](test|it)[\\/]"/>
-    <suppress checks="ClassDataAbstractionCoupling" files="[\\/]IndentationCheckTest.java$|[\\/]SuppressWithNearbyCommentFilterTest.java$|[\\/]SuppressionCommentFilterTest.java|[\\/]DetailASTTest.java$"/>
-    <suppress checks="EqualsAvoidNull" files="[\\/]Int.*FilterTest.java$"/>
-    <suppress checks="VisibilityModifier" files="[\\/]AbstractModuleTestSupport.java$"/>
     <suppress checks="WriteTag" files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <suppress checks="MethodCount" files=".*[\\/]src[\\/](test|it)[\\/]"/>
 
@@ -40,9 +33,6 @@
     <suppress checks="MagicNumber" files="(ParseTreeTablePresentation|MainFrame)\.java"/>
 
     <!-- Methods that build fake AST are very long-->
-    <suppress checks="MethodLength" files="src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammars[\\/]comments[\\/]CommentsTest\.java"/>
-    <suppress checks="ExecutableStatementCount" files="src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammars[\\/]comments[\\/]CommentsTest\.java"/>
-    <suppress checks="JavaNCSS" files="src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammars[\\/]comments[\\/]CommentsTest\.java"/>
     <suppress checks="MethodLength" files=".*(Generated)?Java(doc)?TokenTypesTest\.java"/>
     <suppress checks="ExecutableStatementCount" files=".*(Generated)?Java(doc)?TokenTypesTest\.java"/>
     <suppress checks="JavaNCSS" files=".*(Generated)?Java(doc)?TokenTypesTest\.java"/>
@@ -53,10 +43,10 @@
     <suppress checks="MissingDeprecated" files=".*JavadocTokenTypes\.java"/>
 
     <!-- Till https://github.com/checkstyle/checkstyle/issues/1854 -->
-    <suppress checks="TrailingComment" files="(InnerAssignmentCheck\.java|OperatorWrapCheck\.java|XMLLoggerTest\.java|AbbreviationAsWordInNameCheckTest\.java)"/>
+    <suppress checks="TrailingComment" files="(InnerAssignmentCheck\.java|OperatorWrapCheck\.java|AbbreviationAsWordInNameCheckTest\.java)"/>
 
     <!-- Fixing these cases will decrease code readability -->
-    <suppress checks="MultipleStringLiterals" files="JavadocStyleCheck\.java|AbstractTypeAwareCheck\.java|XMLLogger\.java"/>
+    <suppress checks="MultipleStringLiterals" files="JavadocStyleCheck\.java|XMLLogger\.java"/>
     <suppress checks="MultipleStringLiterals" files=".*[\\/]src[\\/](test|it)[\\/]"/>
 
     <!-- There are a lot of setters/getters in the Check. A small number of methods is left for Check's logic -->
@@ -67,17 +57,13 @@
     <suppress checks="MethodCount" files="[\\/]VisibilityModifierCheck.java$"/>
     <!--RequireThisCheck has a hierarchy of nested classes which contains a lot of methods. -->
     <suppress checks="MethodCount" files="[\\/]RequireThisCheck.java$"/>
-    <!--There are a lot of methods inherited from NodeInfo interface. -->
-    <suppress checks="MethodCount" files="[\\/]AbstractNode.java$"/>
 
     <!-- we need that set of converters -->
     <suppress checks="ClassDataAbstractionCoupling" files="AutomaticBean\.java"/>
     <!-- they are aggregators of logic, usage a several of classes are ok -->
-    <suppress checks="ClassDataAbstractionCoupling" files="(Checker|TreeWalker|Main|CheckstyleAntTask|JavadocDetailNodeParser)\.java"/>
-    <suppress checks="ClassDataAbstractionCoupling" files="(CheckerTest|TreeWalkerTest|AbstractModuleTestSupport|XdocsPagesTest|CheckstyleAntTaskTest)\.java"/>
-    <suppress checks="ClassDataAbstractionCoupling" files="PropertyCacheFile\.java"/>
+    <suppress checks="ClassDataAbstractionCoupling" files="(Checker|Main|CheckstyleAntTask|JavadocDetailNodeParser)\.java"/>
+    <suppress checks="ClassDataAbstractionCoupling" files="(CheckerTest|AbstractModuleTestSupport|CheckstyleAntTaskTest)\.java"/>
     <suppress checks="ClassDataAbstractionCoupling" files="PropertyCacheFileTest\.java"/>
-    <suppress checks="ClassDataAbstractionCoupling" files="JavadocPropertiesGenerator\.java"/>
     <suppress checks="ClassFanOutComplexity" files="[\\/]Main\.java"/>
     <suppress checks="ClassFanOutComplexity" files="CheckstyleAntTask\.java"/>
     <suppress checks="ClassFanOutComplexity" files="CheckerTest\.java"/>
