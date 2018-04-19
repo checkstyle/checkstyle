@@ -23,7 +23,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
  * Used to keep track of a tag and the text that follows it.
  *
  */
-class HtmlTag {
+/* default */ class HtmlTag {
 
     /** The maximum length of text to display with this tag. */
     private static final int MAX_TEXT_LEN = 60;
@@ -55,7 +55,7 @@ class HtmlTag {
      * @param incomplete is the tag is incomplete.
      * @param text the line of comment text for this tag.
      */
-    HtmlTag(String id, int lineNo, int position, boolean closedTag,
+    /* default */ HtmlTag(String id, int lineNo, int position, boolean closedTag,
             boolean incomplete, String text) {
         this.id = id;
         this.lineNo = lineNo;

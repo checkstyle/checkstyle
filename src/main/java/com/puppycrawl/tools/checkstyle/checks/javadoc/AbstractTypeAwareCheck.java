@@ -456,7 +456,7 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
          * @param surroundingClass name of current surrounding class.
          * @param check the check we use to load class.
          */
-        RegularClass(final Token name,
+        /* default */ RegularClass(final Token name,
                              final String surroundingClass,
                              final AbstractTypeAwareCheck check) {
             super(name);
@@ -504,7 +504,7 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
          * @param name token which represents name of class alias.
          * @param classInfo class information associated with the alias.
          */
-        ClassAlias(final Token name, AbstractClassInfo classInfo) {
+        /* default */ ClassAlias(final Token name, AbstractClassInfo classInfo) {
             super(name);
             this.classInfo = classInfo;
         }

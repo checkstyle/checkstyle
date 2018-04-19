@@ -274,7 +274,8 @@ public class FinalClassCheck
          *  @param declaredAsAbstract indicates if the
          *         class declared as abstract
          */
-        ClassDesc(String qualifiedName, boolean declaredAsFinal, boolean declaredAsAbstract) {
+        /* default */ ClassDesc(String qualifiedName, boolean declaredAsFinal,
+                boolean declaredAsAbstract) {
             this.qualifiedName = qualifiedName;
             this.declaredAsFinal = declaredAsFinal;
             this.declaredAsAbstract = declaredAsAbstract;

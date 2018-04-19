@@ -712,7 +712,8 @@ public class JavadocDetailNodeParser {
          * @param messageKey message key
          * @param messageArguments message arguments
          */
-        ParseErrorMessage(int lineNumber, String messageKey, Object... messageArguments) {
+        /* default */ ParseErrorMessage(int lineNumber, String messageKey,
+                Object... messageArguments) {
             this.lineNumber = lineNumber;
             this.messageKey = messageKey;
             this.messageArguments = messageArguments.clone();

@@ -24,7 +24,7 @@ import java.util.Objects;
 /**
  * This filter accepts an Integer in a range.
  */
-class IntRangeFilter implements IntFilter {
+/* default */ class IntRangeFilter implements IntFilter {
 
     /** Lower bound of the range. */
     private final Integer lowerBound;
@@ -38,7 +38,7 @@ class IntRangeFilter implements IntFilter {
      * @param lowerBound the lower bound of the range.
      * @param upperBound the upper bound of the range.
      */
-    IntRangeFilter(int lowerBound, int upperBound) {
+    /* default */ IntRangeFilter(int lowerBound, int upperBound) {
         this.lowerBound = lowerBound;
         this.upperBound = upperBound;
     }

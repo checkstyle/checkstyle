@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 /**
  * Represents whether a class is allowed to be imported or not.
  */
-class ClassImportRule extends AbstractImportRule {
+/* default */ class ClassImportRule extends AbstractImportRule {
 
     /** Package to control access to. */
     private final String className;
@@ -35,7 +35,7 @@ class ClassImportRule extends AbstractImportRule {
      * @param regExp whether the class name is to be interpreted as a regular
      *        expression.
      */
-    ClassImportRule(final boolean allow, final boolean localOnly,
+    /* default */ ClassImportRule(final boolean allow, final boolean localOnly,
         final String className, final boolean regExp) {
         super(allow, localOnly, regExp);
         this.className = className;

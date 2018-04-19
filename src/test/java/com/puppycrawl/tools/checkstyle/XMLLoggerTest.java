@@ -356,7 +356,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
 
         private static final long serialVersionUID = 1L;
 
-        TestException(String msg, Throwable cause) {
+        /* default */ TestException(String msg, Throwable cause) {
             super(msg, cause);
         }
 

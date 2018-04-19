@@ -848,7 +848,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         private final String msg;
         private final int level;
 
-        MessageLevelPair(String msg, int level) {
+        /* default */ MessageLevelPair(String msg, int level) {
             this.msg = msg;
             this.level = level;
         }

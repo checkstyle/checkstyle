@@ -25,7 +25,7 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
  * Implementation of a {@link MatchSuppressor} that suppresses based on
  * whether in a comment.
  */
-class CommentSuppressor implements MatchSuppressor {
+/* default */ class CommentSuppressor implements MatchSuppressor {
 
     /** File contents to check for comments. */
     private final FileContents currentContents;
@@ -36,7 +36,7 @@ class CommentSuppressor implements MatchSuppressor {
      * @param currentContents
      *            content of checked file.
      **/
-    CommentSuppressor(FileContents currentContents) {
+    /* default */ CommentSuppressor(FileContents currentContents) {
         this.currentContents = currentContents;
     }
 

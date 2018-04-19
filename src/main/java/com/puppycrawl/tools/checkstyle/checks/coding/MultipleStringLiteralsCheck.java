@@ -203,7 +203,7 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
          * @param line int
          * @param col int
          */
-        StringInfo(int line, int col) {
+        /* default */ StringInfo(int line, int col) {
             this.line = line;
             this.col = col;
         }

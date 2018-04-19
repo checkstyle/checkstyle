@@ -30,7 +30,7 @@ import javax.swing.tree.TreePath;
  * in the DefaultTreeSelectionModel.
  *
  */
-class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
+/* default */ class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
 
     private static final long serialVersionUID = 2267930983939339510L;
     /** TreeTable to perform updates on. */
@@ -42,7 +42,7 @@ class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
      * Constructor to initialise treeTable.
      * @param jTreeTable TreeTable to perform updates on.
      */
-    ListToTreeSelectionModelWrapper(TreeTable jTreeTable) {
+    /* default */ ListToTreeSelectionModelWrapper(TreeTable jTreeTable) {
         treeTable = jTreeTable;
         getListSelectionModel().addListSelectionListener(event -> {
             updateSelectedPathsFromSelectedRows();

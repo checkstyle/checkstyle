@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
  * Each instance may have zero or more children. A child may
  * be a sub-package, a class, or an allow/disallow rule.
  */
-class PkgImportControl extends AbstractImportControl {
+/* default */ class PkgImportControl extends AbstractImportControl {
     /** The package separator: "." */
     private static final String DOT = ".";
     /** A pattern matching the package separator: "." */
@@ -57,9 +57,9 @@ class PkgImportControl extends AbstractImportControl {
      * @param regex flags interpretation of name as regex pattern.
      * @param strategyOnMismatch strategy in a case if matching allow/disallow rule was not found.
      */
-    PkgImportControl(String packageName, boolean regex, MismatchStrategy strategyOnMismatch) {
+    /* default */ PkgImportControl(String packageName, boolean regex,
+            MismatchStrategy strategyOnMismatch) {
         super(null, strategyOnMismatch);
-
         this.regex = regex;
         if (regex) {
             // ensure that fullName is a self-contained regular expression
@@ -82,7 +82,7 @@ class PkgImportControl extends AbstractImportControl {
      * @param regex flags interpretation of name as regex pattern.
      * @param strategyOnMismatch strategy in a case if matching allow/disallow rule was not found.
      */
-    PkgImportControl(PkgImportControl parent, String subPackageName, boolean regex,
+    /* default */ PkgImportControl(PkgImportControl parent, String subPackageName, boolean regex,
             MismatchStrategy strategyOnMismatch) {
         super(parent, strategyOnMismatch);
         if (regex || parent.regex) {

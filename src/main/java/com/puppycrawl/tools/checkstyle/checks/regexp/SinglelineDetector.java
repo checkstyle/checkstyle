@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 /**
  * A detector that matches individual lines.
  */
-class SinglelineDetector {
+/* default */ class SinglelineDetector {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -49,7 +49,7 @@ class SinglelineDetector {
      * Creates an instance.
      * @param options the options to use.
      */
-    SinglelineDetector(DetectorOptions options) {
+    /* default */ SinglelineDetector(DetectorOptions options) {
         this.options = options;
     }
 

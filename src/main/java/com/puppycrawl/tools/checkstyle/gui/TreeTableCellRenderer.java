@@ -33,7 +33,7 @@ import javax.swing.tree.TreeModel;
 /**
  * A TreeCellRenderer that displays a JTree.
  */
-class TreeTableCellRenderer extends JTree implements
+/* default */ class TreeTableCellRenderer extends JTree implements
         TableCellRenderer {
 
     /**
@@ -52,7 +52,7 @@ class TreeTableCellRenderer extends JTree implements
      * @param treeTable tree table to render.
      * @param model Tree model.
      */
-    TreeTableCellRenderer(TreeTable treeTable, TreeModel model) {
+    /* default */ TreeTableCellRenderer(TreeTable treeTable, TreeModel model) {
         super(model);
         this.treeTable = treeTable;
     }

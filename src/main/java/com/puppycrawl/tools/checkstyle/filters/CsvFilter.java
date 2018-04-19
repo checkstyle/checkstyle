@@ -31,7 +31,7 @@ import java.util.StringTokenizer;
  * each value is an integer or a range of integers.
  * </p>
  */
-class CsvFilter implements IntFilter {
+/* default */ class CsvFilter implements IntFilter {
 
     /** Filter set. */
     private final Set<IntFilter> filters = new HashSet<>();
@@ -45,7 +45,7 @@ class CsvFilter implements IntFilter {
      * @throws NumberFormatException if a component substring does not
      *     contain a parsable integer.
      */
-    CsvFilter(String pattern) {
+    /* default */ CsvFilter(String pattern) {
         final StringTokenizer tokenizer = new StringTokenizer(pattern, ",");
         while (tokenizer.hasMoreTokens()) {
             final String token = tokenizer.nextToken().trim();

@@ -255,7 +255,7 @@ public final class MethodCountCheck extends AbstractCheck {
          *        The surrounding scope definition (class, enum, etc.) which to count all methods
          *        for.
          */
-        MethodCounter(DetailAST scopeDefinition) {
+        /* default */ MethodCounter(DetailAST scopeDefinition) {
             this.scopeDefinition = scopeDefinition;
             inInterface = scopeDefinition.getType() == TokenTypes.INTERFACE_DEF;
         }
