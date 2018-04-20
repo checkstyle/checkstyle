@@ -68,7 +68,7 @@
     <suppress checks="ClassFanOutComplexity" files="CheckstyleAntTask\.java"/>
     <suppress checks="ClassFanOutComplexity" files="CheckerTest\.java"/>
     <!-- a lot of GUI elements is OK -->
-    <suppress checks="ClassDataAbstractionCoupling" files="TreeTable\.java"/>
+    <suppress checks="ClassDataAbstractionCoupling" files="(TreeTable|MainFrame)\.java"/>
 
     <!-- Should be fixed after moving https://github.com/sevntu-checkstyle/sevntu.checkstyle/blob/master/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/ReturnCountExtendedCheck.java into the main repo, to allow skip guard sentences(or by topLinesToIgnoreCount) -->
     <suppress checks="ReturnCount" files="(ConfigurationLoader|LambdaHandler)\.java"/>
