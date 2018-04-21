@@ -429,10 +429,11 @@
           (<code>maxTotal</code>), or to prevent too many methods of a specific access modifier
           (<code>private</code>, <code>package</code>, <code>protected</code> or
           <code>public</code>).
-          Each count is completely separated to customize how many methods of each you want to allow.
-          For example, specifying a <code>maxTotal</code> of 10, still means you can prevent more
-          than 0 <code>maxPackage</code> methods. A violation won't appear for 8 public methods,
-          but one will appear if there is also 3 private methods or any package-private methods.
+          Each count is completely separated to customize how many methods of each you want to
+          allow. For example, specifying a <code>maxTotal</code> of 10, still means you can
+          prevent more than 0 <code>maxPackage</code> methods. A violation won't appear for 8
+          public methods, but one will appear if there is also 3 private methods or any
+          package-private methods.
         </p>
         <p>
           Methods defined in anonymous classes are not counted towards any totals.

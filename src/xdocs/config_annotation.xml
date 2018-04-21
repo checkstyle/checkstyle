@@ -125,7 +125,8 @@ public String getNameIfPresent() { ... }
         <source>
 &lt;module name=&quot;AnnotationLocation&quot;&gt;
   &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
+    value=&quot;false&quot;/&gt;
   &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
@@ -142,7 +143,8 @@ public String getNameIfPresent() { ... }
         <source>
 &lt;module name=&quot;AnnotationLocation&quot;&gt;
   &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
+    value=&quot;true&quot;/&gt;
   &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
@@ -159,19 +161,21 @@ public String getNameIfPresent() { ... }
         <source>
 &lt;module name=&quot;AnnotationLocation&quot;&gt;
   &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
+    value=&quot;false&quot;/&gt;
   &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
        <p>
-         The following example demonstrates how the check validates annotations of method parameters,
-         catch parameters, foreach, for-loop variable definitions.
+         The following example demonstrates how the check validates annotations of method
+         parameters, catch parameters, foreach, for-loop variable definitions.
        </p>
        <p>Configuration:</p>
        <source>
 &lt;module name=&quot;AnnotationLocation&quot;&gt;
   &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
+    value=&quot;false&quot;/&gt;
   &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
   &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF, PARAMETER_DEF&quot;/&gt;
  &lt;/module&gt;
@@ -863,7 +867,8 @@ public static final int COUNTER = 10; // violation as javadoc exists
           </tr>
           <tr>
             <td>aliasList</td>
-            <td>Aliases for check names that can be used in code within <code>SuppressWarnings</code></td>
+            <td>Aliases for check names that can be used in code within
+                <code>SuppressWarnings</code></td>
             <td><a href="property_types.html#stringSet">String Set</a> in a format of comma separated attribute=value entries.
             The attribute is the fully qualified name of the Check and value is its alias.</td>
             <td>null</td>
@@ -912,7 +917,8 @@ public void needsLotsOfParameters(@SuppressWarnings("unused") int a,
           </source>
       </p>
 
-      <p>It is possible to suppress all the checkstyle warnings with the argument <code>"all"</code>:
+      <p>It is possible to suppress all the checkstyle warnings with the argument
+         <code>"all"</code>:
           <source>
 @SuppressWarnings("all")
 public void someFunctionWithInvalidStyle() {

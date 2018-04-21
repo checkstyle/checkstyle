@@ -1078,7 +1078,8 @@ import static java.math.BigInteger.ZERO;
 &lt;/module&gt;
         </source>
         <p>
-         If the annotation is between the type and the array, the check will skip validation for spaces:
+         If the annotation is between the type and the array, the check will skip validation for
+         spaces:
         </p>
         <source>
 public void foo(final char @NotNull [] param) {} // No violation

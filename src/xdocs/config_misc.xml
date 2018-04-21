@@ -1162,9 +1162,10 @@ void foo(String aFooString,
           encounters a file that doesn't end with a line separator.
         </p>
         <p>
-          Attention: property fileExtensions works with files that are passed by similar property for at
-          <a href="config.html#Checker">Checker</a>.
-          Please make sure required file extensions are mentioned at Checker's fileExtensions property.
+          Attention: property fileExtensions works with files that are passed by similar property
+          for at <a href="config.html#Checker">Checker</a>.
+          Please make sure required file extensions are mentioned at Checker's fileExtensions
+          property.
         </p>
       </subsection>
 
@@ -1603,9 +1604,9 @@ messages.properties: Key 'hell' missing.
 messages.properties: Key 'ok' missing.
         </source>
         <p>
-          <font color="red">Attention:</font> this Check could produce false-positives if it is used with
-          <a href="config.html#Checker">Checker</a> that use cache (property "cacheFile")
-          This is known design problem, will be addressed at
+          <font color="red">Attention:</font> this Check could produce false-positives if it
+          is used with <a href="config.html#Checker">Checker</a> that use cache (property
+          "cacheFile") This is known design problem, will be addressed at
           <a href="https://github.com/checkstyle/checkstyle/issues/3539">issue</a>.
         </p>
       </subsection>

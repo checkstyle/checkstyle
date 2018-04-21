@@ -65,8 +65,9 @@
           </tr>
           <tr>
             <td>allowedAbbreviationLength</td>
-            <td>indicates on the number of consecutive capital letters allowed in targeted identifiers
-             (abbreviations in the classes, interfaces, variables and methods names, ... ).</td>
+            <td>indicates on the number of consecutive capital letters allowed in targeted
+             identifiers (abbreviations in the classes, interfaces, variables and methods
+             names, ... ).</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>3</td>
             <td>5.8</td>
@@ -1297,8 +1298,8 @@ public boolean equals(Object o) {
         </source>
         <p>
           The following configuration checks that the parameters always start with two
-          lowercase characters and, in addition, that public method parameters cannot be one character
-          long:
+          lowercase characters and, in addition, that public method parameters cannot be one
+          character long:
         </p>
         <source>
 &lt;module name=&quot;ParameterName&quot;&gt;

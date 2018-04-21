@@ -108,8 +108,8 @@ public class MyClass {
       Javadoc by specification could contain any HTML tags that let user generate content he needs.
       All tags are copied as is to result javadoc html pages by Sun/Oracle javadoc tool.
       All bad formatting is responsibility of user and web-browser. To validate Checkstyle to parse
-      input to predictable structure - Abstract Syntax Tree(AST). It is very difficult to parse free style
-      format, so input text need to follow some format, so limitation appears.
+      input to predictable structure - Abstract Syntax Tree(AST). It is very difficult to parse
+      free style format, so input text need to follow some format, so limitation appears.
       </p>
       <p>
       The comment should be written in <a href="#Tight-HTML_rules">Tight-HTML</a> to build nested AST Tree that most Checks expect.
@@ -135,8 +135,13 @@ public class MyClass {
       </p>
       Other rules:
       <ul>
-        <li>Document Structure elements (DOCTYPE, &lt;html&gt;, &lt;body&gt;, etc) are not mandatory.</li>
-        <li>Elements must always be closed, except HTML4 elements whose end tag is optional (omittable) and HTML4 <a href="https://www.w3.org/TR/html/syntax.html#void-elements">void elements</a>. See <a href="#HTML_Code_In_Javadoc_Comments">HTML Code In Javadoc Comments</a> section</li>
+        <li>Document Structure elements (DOCTYPE, &lt;html&gt;, &lt;body&gt;, etc) are
+            not mandatory.</li>
+        <li>Elements must always be closed, except HTML4 elements whose end tag is optional
+            (omittable) and HTML4
+            <a href="https://www.w3.org/TR/html/syntax.html#void-elements">void elements</a>.
+            See <a href="#HTML_Code_In_Javadoc_Comments">HTML Code In Javadoc Comments</a>
+            section</li>
         <li>HTML elements can be either in lowercase or in uppercase</li>
         <li>Attribute names can be either in lowercase or in uppercase</li>
         <li>Attribute values can be either quoted or not be quoted</li>
@@ -150,7 +155,7 @@ public class MyClass {
       </p>
       <p>
       To start implementing new Check create a new class and extend <a
-      href='apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html'>AbstractJavadocCheck</a>.
+      href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html">AbstractJavadocCheck</a>.
       It has two abstract methods you should implement:
       </p>
       <ul>
@@ -275,7 +280,8 @@ CLASS_DEF -> CLASS_DEF [5:0]
  * @see AbstractClass
       ]]></source>
       <p>Command:</p>
-      <source class="wrap-content">java -jar checkstyle-X.XX-all.jar -j MyJavadocComment.javadoc</source>
+      <source class="wrap-content">java -jar checkstyle-X.XX-all.jar \
+        -j MyJavadocComment.javadoc</source>
       <p>Output:</p>
       <source><![CDATA[
 JAVADOC -> JAVADOC [0:0]

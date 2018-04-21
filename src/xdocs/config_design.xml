@@ -32,9 +32,9 @@
           This check makes sense only for library projects (not application projects)
           which care of ideal OOP-design to make sure that class works in all cases even misusage.
           Even in library projects this check most likely will find classes that are designed
-          for extension by somebody. User needs to use suppressions extensively to got a benefit from
-          this check, and keep in suppressions all confirmed/known classes that are deigned for
-          inheritance intentionally to let the check catch only new classes, and bring this to
+          for extension by somebody. User needs to use suppressions extensively to got a benefit
+          from this check, and keep in suppressions all confirmed/known classes that are deigned
+          for inheritance intentionally to let the check catch only new classes, and bring this to
           team/user attention.
         </p>
         <p>
@@ -979,7 +979,8 @@ public class Foo{
             <td>ignoreAnnotationCanonicalNames</td>
             <td>ignore annotations canonical names</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>org.junit.Rule, org.junit.ClassRule, com.google.common.annotations.VisibleForTesting</td>
+            <td>org.junit.Rule, org.junit.ClassRule,
+                com.google.common.annotations.VisibleForTesting</td>
             <td>6.5</td>
           </tr>
         </table>
@@ -1083,7 +1084,8 @@ public class ImmutableClass
 &lt;module name=&quot;VisibilityModifier&quot;&gt;
   &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
   &lt;property name=&quot;immutableClassCanonicalNames&quot;
-    value=&quot;com.google.common.collect.ImmutableSet, com.google.common.collect.ImmutableMap,java.lang.String&quot;/&gt;
+    value=&quot;com.google.common.collect.ImmutableSet, com.google.common.collect.ImmutableMap,
+      java.lang.String&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -1127,8 +1129,8 @@ class SomeClass
         </source>
 
         <p>
-          To configure the Check passing fields annotated with @org.junit.Rule, @org.junit.ClassRule and
-          @com.google.common.annotations.VisibleForTesting annotations:
+          To configure the Check passing fields annotated with @org.junit.Rule,
+          @org.junit.ClassRule and @com.google.common.annotations.VisibleForTesting annotations:
         </p>
         <source>
 &lt;module name=&quot;VisibilityModifier&quot;/&gt;

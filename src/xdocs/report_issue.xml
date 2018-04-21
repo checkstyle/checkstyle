@@ -89,7 +89,8 @@ private static final int SOMETHING = 1;
   </module>
 </module>
 
-/var/tmp $ java -Duser.language=en -Duser.country=US -jar checkstyle-6.XX-all.jar -c config.xml Test.java
+/var/tmp $ java -Duser.language=en -Duser.country=US -jar checkstyle-6.XX-all.jar \
+  -c config.xml Test.java
 Starting audit...
 Audit done.
 

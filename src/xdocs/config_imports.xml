@@ -296,9 +296,9 @@ import java.util.regex.Matcher; //#8
           thirdPartyPackageRegExp and standardPackageRegExp options.
         </p>
         <p>
-          Pretty often one import can match more than one group. For example, static import from standard
-          package or regular expressions are configured to allow one import match multiple groups.
-          In this case, group will be assigned according to priorities:
+          Pretty often one import can match more than one group. For example, static import
+          from standard package or regular expressions are configured to allow one import match
+          multiple groups. In this case, group will be assigned according to priorities:
         </p>
         <ol>
           <li>STATIC has top priority</li>
@@ -312,7 +312,8 @@ import java.util.regex.Matcher; //#8
           Few examples to illustrate "best match":
         </p>
         <p>
-          1. patterns STANDARD_JAVA_PACKAGE = "Check", SPECIAL_IMPORTS="ImportOrderCheck" and input file:
+          1. patterns STANDARD_JAVA_PACKAGE = "Check", SPECIAL_IMPORTS="ImportOrderCheck"
+          and input file:
         </p>
         <source>
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
@@ -329,8 +330,8 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </source>
         <p>
-          Result: import will be assigned to SPECIAL_IMPORTS. Matching substring length is 5 for both
-          patterns. However, "Avoid" position is lower then "Check" position.
+          Result: import will be assigned to SPECIAL_IMPORTS. Matching substring length is 5 for
+          both patterns. However, "Avoid" position is lower then "Check" position.
         </p>
 
     </subsection>

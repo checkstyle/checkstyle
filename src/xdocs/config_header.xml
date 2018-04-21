@@ -49,7 +49,8 @@ line 5: ////////////////////////////////////////////////////////////////////
 
         <p>
           Since the year information will change over time, you can tell
-          Checkstyle to ignore line 4 by setting property <code>ignoreLines</code> to <code> 4</code>.
+          Checkstyle to ignore line 4 by setting property <code>ignoreLines</code> to
+          <code> 4</code>.
         </p>
       </subsection>
 
@@ -352,7 +353,8 @@ line 6: ^\W*$
 &lt;module name=&quot;RegexpHeader&quot;&gt;
   &lt;property
     name=&quot;header&quot;
-    value=&quot;^// Copyright \(C\) (\d\d\d\d -)? 2004 MyCompany$\n^// All rights reserved$&quot;/&gt;
+    value=&quot;^// Copyright \(C\) (\d\d\d\d -)? 2004 MyCompany$
+      \n^// All rights reserved$&quot;/&gt;
 &lt;/module&gt;
         </source>
 

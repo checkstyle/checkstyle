@@ -55,8 +55,8 @@
         configuration file, the <code>BeforeExecutionFileFilter</code> is an <a
         href="apidocs/com/puppycrawl/tools/checkstyle/api/AutomaticBean.html">AutomaticBean</a>
         with mutator method <code>setFiles(String)</code> that
-        receives the file name pattern.  An <code>AutomaticBean</code> uses JavaBean introspection to set
-        JavaBean properties such as <code>files</code>.
+        receives the file name pattern.  An <code>AutomaticBean</code> uses JavaBean
+        introspection to set JavaBean properties such as <code>files</code>.
       </p>
 
       <source>
@@ -98,8 +98,8 @@ public class FilesBeforeExecutionFileFilter
 
     <section name="Using Before Execution File Filters">
       <p>
-        To incorporate a <code>BeforeExecutionFileFilter</code> in the before execution file filter set
-        for a <code>Checker</code>, include a module element for
+        To incorporate a <code>BeforeExecutionFileFilter</code> in the before execution file
+        filter set for a <code>Checker</code>, include a module element for
         the <code>BeforeExecutionFileFilter</code> in the <a
         href="config.html#Before Execution File Filters">configuration file</a>. For example, to
         configure a <code>Checker</code> so that it uses custom

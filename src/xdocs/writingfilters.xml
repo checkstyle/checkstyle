@@ -58,8 +58,8 @@
         configuration file, the <code>Filter</code> is an <a
         href="apidocs/com/puppycrawl/tools/checkstyle/api/AutomaticBean.html">AutomaticBean</a>
         with mutator method <code>setFiles(String)</code> that
-        receives the file name pattern.  An <code>AutomaticBean</code> uses JavaBean introspection to set
-        JavaBean properties such as <code>files</code>.
+        receives the file name pattern.  An <code>AutomaticBean</code> uses JavaBean
+        introspection to set JavaBean properties such as <code>files</code>.
       </p>
 
       <source>

@@ -144,7 +144,8 @@
                       </a>
                   </td>
                   <td>
-                      Provides analysis per commit and per pull request. Supports CheckStyle config files.
+                      Provides analysis per commit and per pull request. Supports CheckStyle
+                      config files.
                   </td>
               </tr>
               <tr>

@@ -599,8 +599,8 @@
                                 We can detect URL with protocol type as http://, https:// etc.
                                 <br />
                                 <a href="https://webtoolkit.googleblog.com/2008/07/getting-to-really-know-gwt-part-1-jsni.html">JSNI</a>
-                                could not be detected right now, but might be possible after comments and
-                                javadoc support appear in Checkstyle
+                                could not be detected right now, but might be possible after
+                                comments and javadoc support appear in Checkstyle
                             </td>
                             <td>
                                 <a
@@ -1453,7 +1453,8 @@
                                     alt="" />
                                 <br />
                                 <a href="config_javadoc.html#SingleLineJavadoc">SingleLineJavadoc</a>
-                                Recent update for guide that clarify requirements will be addressed at
+                                Recent update for guide that clarify requirements will be
+                                addressed at
                                 <a href="https://github.com/checkstyle/checkstyle/issues/4052">#4052</a>
                             </td>
                             <td>
@@ -1592,7 +1593,8 @@
                                     src="images/ok_blue.png"
                                     alt="" />
                                 <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a><br/>
-                                Overrides are checked by presence of "@Override" annotation on method.
+                                Overrides are checked by presence of "@Override" annotation on
+                                method.
                             </td>
                             <td>
                                 <a

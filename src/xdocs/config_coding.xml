@@ -79,7 +79,8 @@ return new int[] {
  300000000000000000000,} // Added line
         </source>
         <p>
-          If opening brace is on the same line as training comma there's also (more arguable) problem:
+          If opening brace is on the same line as training comma there's also (more arguable)
+          problem:
         </p>
         <source>
 {100000000000000000000, // Line cannot be just duplicated to slightly modify entry
@@ -1201,11 +1202,12 @@ case 5:
          Enhanced For-Loop</a>.
          </p>
          <p>
-         Option 'validateEnhancedForLoopVariable' could be used to make Check to validate even variable
-         from Enhanced For Loop.
+         Option 'validateEnhancedForLoopVariable' could be used to make Check to validate
+         even variable from Enhanced For Loop.
          </p>
          <p>
-         An example of how to configure the check so that it also validates enhanced For Loop Variable is:
+         An example of how to configure the check so that it also validates enhanced For Loop
+         Variable is:
          </p>
          <source>
 &lt;module name="FinalLocalVariable"&gt;
@@ -1971,7 +1973,8 @@ class SomeClass
 
       <subsection name="Examples">
         <p>
-          To configure the check to forbid String literals containing <code>&quot;a href&quot;</code>:
+          To configure the check to forbid String literals containing
+          <code>&quot;a href&quot;</code>:
         </p>
         <source>
 &lt;module name=&quot;IllegalTokenText&quot;&gt;
@@ -2217,7 +2220,8 @@ while ((line = bufferedReader.readLine()) != null) {
         </source>
 
         <p>
-          To configure the check for only <code>=</code>, <code> +=</code>, and <code>-=</code> operators:
+          To configure the check for only <code>=</code>, <code> +=</code>, and <code>-=</code>
+          operators:
         </p>
         <source>
 &lt;module name=&quot;InnerAssignment&quot;&gt;
@@ -3804,7 +3808,8 @@ public static class B {
   }
 }
 
-// If the variable is locally defined, there won't be a violation provided the variable doesn't overlap.
+// If the variable is locally defined, there won't be a violation provided the variable
+// doesn't overlap.
 class C {
   private String s1 = "foo1";
   String s2 = "foo2";
@@ -3903,7 +3908,8 @@ class C {
           </tr>
           <tr>
             <td>maxForVoid</td>
-            <td>maximum allowed number of return statements in void methods/constructors/lambdas</td>
+            <td>maximum allowed number of return statements in void
+                methods/constructors/lambdas</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>1</code></td>
             <td>6.19</td>

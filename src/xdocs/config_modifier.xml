@@ -189,8 +189,8 @@
         </p>
 
         <p>
-          Enums can also contain abstract methods and methods which can be overridden by the declared
-          enumeration fields.
+          Enums can also contain abstract methods and methods which can be overridden by the
+          declared enumeration fields.
           See the following example:
         </p>
 
