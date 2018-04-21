@@ -39,7 +39,8 @@
       <p>When you import Checkstyle Project, "Setup maven plugin connectors" window will appear.</p>
       <p>
         Left click on "Finish".<br/><br/>
-        <img alt="screenshot" src="images/gui_screenshot_setup_maven_plugin_connectors_eclipse.png"/>
+        <img alt="screenshot"
+          src="images/gui_screenshot_setup_maven_plugin_connectors_eclipse.png"/>
         <br/><br/>
       </p>
       <p>
@@ -60,7 +61,8 @@
         Then "Security Warning" window will appear.
         <br/><br/>
         Left click on "OK", and then restart Eclipse.<br/><br/>
-        <img alt="screenshot" src="images/gui_screenshot_install_connector_security_warning_eclipse.png"/>
+        <img alt="screenshot"
+          src="images/gui_screenshot_install_connector_security_warning_eclipse.png"/>
       </p>
       <p>
         <br/><br/>

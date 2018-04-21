@@ -5,6 +5,9 @@
     "http://checkstyle.sourceforge.net/dtds/suppressions_1_2.dtd">
 
 <suppressions>
+    <!-- can't split long messages between lines -->
+    <suppress checks="RegexpSingleline" files="google_checks\.xml" lines="37,77"/>
+
     <suppress checks="FileLength"
               files="TokenTypes.java|IndentationCheckTest.java"
               lines="1"/>

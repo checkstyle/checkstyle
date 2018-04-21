@@ -274,7 +274,8 @@
         </source>
 
         <p>
-          To configure the check with two excluded classes <code>HashMap</code> and <code>HashSet</code>:
+          To configure the check with two excluded classes <code>HashMap</code> and
+          <code>HashSet</code>:
         </p>
         <source>
 &lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
@@ -316,7 +317,8 @@ public class InputClassCoupling {
         </source>
 
         <p>
-          To configure the check with two excluded classes <code>HashMap</code> and <code>HashSet</code>:
+          To configure the check with two excluded classes <code>HashMap</code> and
+          <code>HashSet</code>:
         </p>
         <source>
 &lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
@@ -378,9 +380,9 @@ public class InputClassCoupling {
           in the <code>excludedPackages</code> parameter.
         </p>
         <p>
-          Also node, that <code>excludedPackages</code> will not exclude classes, imported via wildcard
-          (e.g. <code>import java.math.*</code>). Instead of wildcard import you should use direct import
-          (e.g. <code>import java.math.BigDecimal</code>).
+          Also node, that <code>excludedPackages</code> will not exclude classes, imported via
+          wildcard (e.g. <code>import java.math.*</code>). Instead of wildcard import you should
+          use direct import (e.g. <code>import java.math.BigDecimal</code>).
         </p>
         <p>
           Also note, that checkstyle will not exclude classes within the same file
@@ -612,9 +614,9 @@ public class Foo {
           the <code>excludedPackages</code> parameter.
         </p>
         <p>
-          Also node, that <code>excludedPackages</code> will not exclude classes, imported via wildcard
-          (e.g. <code>import java.math.*</code>). Instead of wildcard import you should use direct import
-          (e.g. <code>import java.math.BigDecimal</code>).
+          Also node, that <code>excludedPackages</code> will not exclude classes, imported via
+          wildcard (e.g. <code>import java.math.*</code>). Instead of wildcard import you should
+          use direct import (e.g. <code>import java.math.BigDecimal</code>).
         </p>
         <p>
           Also note, that checkstyle will not exclude classes within the same file
@@ -805,7 +807,8 @@ public class Foo {
 &lt;/module&gt;
         </source>
         <p>
-          Explanation on how complexity is calculated (switchBlockAsSingleDecisionPoint is set to false):
+          Explanation on how complexity is calculated (switchBlockAsSingleDecisionPoint
+          is set to false):
         </p>
         <source>
 class CC {
@@ -851,7 +854,8 @@ class CC {
   }
 }        </source>
         <p>
-          Explanation on how complexity is calculated (switchBlockAsSingleDecisionPoint is set to true):
+          Explanation on how complexity is calculated (switchBlockAsSingleDecisionPoint is set to
+          true):
         </p>
         <source>
 class SwitchExample {
@@ -1051,7 +1055,8 @@ class SwitchExample {
           (A &amp;&amp; B, C || D, E ? F :G and their combinations).
           <br/>
           The NPATH metric was designed base on Cyclomatic complexity to
-          avoid problem of Cyclomatic complexity metric like nesting level within a function(method).
+          avoid problem of Cyclomatic complexity metric like nesting level within a
+          function(method).
         </p>
         <p>
           Metric was described at <a href="http://dl.acm.org/citation.cfm?id=42379">"NPATH: a measure of execution pathcomplexity and its applications"</a>. If you need detailed description of algorithm, please read that article,

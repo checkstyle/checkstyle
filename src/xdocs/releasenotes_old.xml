@@ -2291,7 +2291,8 @@
         <li>Detect matches of generic regular expressions (requests 595254, 621247, 630536).</li>
         <li>Find empty blocks (not only empty catch blocks, request 609523).</li>
         <li>Check spaces at empty for iterators (requests 565666, 583725).</li>
-        <li>Detect missing property file keys in internationalized applications (request 634966).</li>
+        <li>Detect missing property file keys in internationalized applications
+            (request 634966).</li>
         <li>Check content of @author and @version tag against a regular expression.</li>
         <li>Detect hiding of fields by parameters or local variables with the same name (request
         471897).</li>
@@ -2316,7 +2317,8 @@
         <li>Array instantiation incorrectly flagged (bug 626875).</li>
         <li>Tests fail with non-English locale (bug 594469).</li>
         <li>Cachefile streams were not closed (bug 665016).</li>
-        <li>Ant Task: NullPointerException when type was not specified in formatter (bug 670321).</li>
+        <li>Ant Task: NullPointerException when type was not specified in formatter
+            (bug 670321).</li>
       </ul>
 
       <p>
@@ -2358,12 +2360,12 @@
         <li>Inspired by patch 580410 from Shinya Ohnuma, now the error messages are localised.</li>
         <li>Support checking to determine if an unused <code>@throws</code> exception is a subclass
         of <code>java.lang.Error</code> (request 583719).</li>
-        <li>Incorporate patch 555878 from Rick Giles to allow pattern for local final variables to be
-        specified.</li>
+        <li>Incorporate patch 555878 from Rick Giles to allow pattern for local final variables to
+        be specified.</li>
         <li>Incorporate patch 566855 from Rob Worth to optionally check that parenthesis are padded
         with spaces.</li>
-        <li>Incorporate patch 590931 from Vijay Aravamudhan to improve documentation of the build.xml
-        file.</li>
+        <li>Incorporate patch 590931 from Vijay Aravamudhan to improve documentation of the
+        build.xml file.</li>
         <li>Incorporate patch from Vijay Aravamudhan to enforce requiring @version tag (request
         543964).</li>
         <li>Incorporate patch 607481 from Ville SkyttÃ¤ to enforce wrap on operator at EOL.</li>

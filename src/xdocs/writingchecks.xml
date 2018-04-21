@@ -659,7 +659,8 @@ java -classpath mycompanychecks.jar;checkstyle-${projectVersion}-all.jar ^
         <br/>
         - a Check that finds redundant type casts or unused public methods.
         <br/>
-        - a Check that validate that user custom Exception class inherited from java.lang.Exception class.
+        - a Check that validate that user custom Exception class inherited from
+          java.lang.Exception class.
       </p>
 
     </section>

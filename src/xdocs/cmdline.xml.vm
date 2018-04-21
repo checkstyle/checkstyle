@@ -124,8 +124,8 @@ java -D&lt;property&gt;=&lt;value&gt;  \
           Multiple excludes are allowed.
         </li>
         <li>
-          <code>-x, --exclude-regexp excludedDirectoryPattern</code> - Directory pattern to exclude from
-          CheckStyle. Multiple excludes are allowed.
+          <code>-x, --exclude-regexp excludedDirectoryPattern</code> - Directory pattern to
+          exclude from CheckStyle. Multiple excludes are allowed.
         </li>
         <li>
           <code>-v</code> - print product version and exit. Any other option is ignored.
@@ -255,7 +255,8 @@ java -Dcheckstyle.cache.file=target/cachefile com.puppycrawl.tools.checkstyle.Ma
         </b>
       </p>
       <source class="wrap-content">
-java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml -p myCheckstyle.properties Check.java
+java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
+  -p myCheckstyle.properties Check.java
       </source>
 
       <p>

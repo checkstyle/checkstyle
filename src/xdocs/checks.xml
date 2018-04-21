@@ -101,7 +101,8 @@
       </tr>
       <tr>
         <td><a href="config_naming.html#CatchParameterName">CatchParameterName</a></td>
-        <td>Checks that catch parameter names conform to a format specified by the format property.</td>
+        <td>Checks that catch parameter names conform to a format specified by the format
+            property.</td>
       </tr>
       <tr>
         <td><a href="config_metrics.html#ClassDataAbstractionCoupling">ClassDataAbstractionCoupling</a></td>
@@ -559,7 +560,8 @@
       </tr>
       <tr>
         <td><a href="config_design.html#OneTopLevelClass">OneTopLevelClass</a></td>
-        <td>Checks that each top-level class, interfaces or enum resides in a source file of its own.</td>
+        <td>Checks that each top-level class, interfaces or enum resides in a source file of
+            its own.</td>
       </tr>
       <tr>
         <td><a href="config_whitespace.html#OperatorWrap">OperatorWrap</a></td>
@@ -688,7 +690,8 @@
       <tr>
         <td><a href="config_javadoc.html#SingleLineJavadoc">SingleLineJavadoc</a></td>
         <td>
-         Checks that a JavaDoc block which can fit on a single line and doesn't contain at-clauses</td>
+         Checks that a JavaDoc block which can fit on a single line and doesn't contain
+         at-clauses</td>
       </tr>
       <tr>
         <td><a href="config_whitespace.html#SingleSpaceSeparator">SingleSpaceSeparator</a></td>

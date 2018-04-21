@@ -62,7 +62,8 @@
       </p>
 
       <source>
-&lt;taskdef resource=&quot;com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties&quot;/&gt;
+&lt;taskdef
+  resource=&quot;com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties&quot;/&gt;
       </source>
 
       <p>
@@ -341,7 +342,8 @@
 
       <p>
         <b>
-          Checkstyle use ant configuration to validate its own code. See example is our git repository -
+          Checkstyle use ant configuration to validate its own code. See example is our git
+          repository -
           <a href="https://github.com/checkstyle/checkstyle/blob/master/config/ant-phase-verify.xml#L25">
             config/ant-phase-verify.xml</a>.
         </b>
@@ -382,8 +384,8 @@
 &lt;!-- Somewhere in your config --&gt;
 &lt;path id="project.sourcepath"&gt;
   &lt;fileset dir="src"
-              includes="**/*"
-              excludes="it/resources/**/*,test/resources/**/*,test/resources-noncompilable/**/*"/&gt;
+          includes="**/*"
+          excludes="it/resources/**/*,test/resources/**/*,test/resources-noncompilable/**/*"/&gt;
 &lt;/path&gt;
 
 &lt;!-- Actual checkstyle config --&gt;

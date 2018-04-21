@@ -47,7 +47,8 @@
         </p>
         <p>In multiline mode...</p>
         <ul>
-          <li> <code>^</code> means the beginning of a line, as opposed to beginning of the input.</li>
+          <li> <code>^</code> means the beginning of a line, as opposed to beginning of the
+              input.</li>
           <li> For beginning of the input use <code>\A</code>.</li>
           <li> <code>$</code> means the end of a line, as opposed to the end of the input.</li>
           <li> For end of input use <code>\Z</code>.</li>
@@ -739,7 +740,8 @@ public static final int A_SETPOINT = 1;
         </p>
         <source>
 &lt;module name=&quot;RegexpOnFilename&quot;&gt;
-  &lt;property name=&quot;folderPattern&quot; value=&quot;[\\/]src[\\/]\w+[\\/]resources[\\/]&quot;/&gt;
+  &lt;property name=&quot;folderPattern&quot;
+    value=&quot;[\\/]src[\\/]\w+[\\/]resources[\\/]&quot;/&gt;
   &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
   &lt;property name=&quot;fileExtensions&quot; value=&quot;properties, xml&quot;/&gt;
 &lt;/module&gt;

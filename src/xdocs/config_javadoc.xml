@@ -1710,7 +1710,8 @@ public boolean isSomething()
 
       <subsection name="Examples">
         <p>
-          By default Check validate that first sentence is not empty and first sentence is not missing:
+          By default Check validate that first sentence is not empty and first sentence is not
+          missing:
         </p>
         <source>
 &lt;module name=&quot;SummaryJavadocCheck&quot;/&gt;
@@ -1739,11 +1740,13 @@ public class Test extends Exception {
       ]]>
         </source>
         <p>
-          To ensure that summary do not contain phrase like "This method returns" , use following config:
+          To ensure that summary do not contain phrase like "This method returns" , use
+          following config:
         </p>
         <source>
 &lt;module name=&quot;SummaryJavadocCheck&quot;&gt;
-  &lt;property name=&quot;forbiddenSummaryFragments&quot; value=&quot;^This method returns.*&quot;/&gt;
+  &lt;property name=&quot;forbiddenSummaryFragments&quot;
+    value=&quot;^This method returns.*&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>

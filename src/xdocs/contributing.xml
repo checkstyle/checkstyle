@@ -127,28 +127,30 @@
       </p>
 
       <p>
-        Please create a <a href="https://help.github.com/articles/using-pull-requests/">Pull Request</a>
-        for your contribution. In the Pull Request description, add any explanations of the implementation
-        nuances. Please read the Pull Request template for more requirements.
-        <b>ATTENTION:</b> Please verify that the Pull Request contains ONLY your intended changes and
-        is based on the most recent HEAD of our master branch.
+        Please create a
+        <a href="https://help.github.com/articles/using-pull-requests/">Pull Request</a>
+        for your contribution. In the Pull Request description, add any explanations of the
+        implementation nuances. Please read the Pull Request template for more requirements.
+        <b>ATTENTION:</b> Please verify that the Pull Request contains ONLY your intended changes
+        and is based on the most recent HEAD of our master branch.
       </p>
 
       <p>
         <b>ATTENTION:</b>The commit message must adhere to a certain format.
-         It should be "Issue #Number: Brief single-line message", where NUMBER is the issue number at Github
+         It should be "Issue #Number: Brief single-line message", where NUMBER is the issue number
+         at Github
          (see <a href="https://github.com/checkstyle/checkstyle/commit/9303fd9d971eb55cdfd62686ba2f5698edb2c83e">an example</a>).
-         Small changes of configuration files, documentation fixes, etc. can be contributed by starting
-         the commit message with one of "minor:", "config:", "infra:", "doc:" or "spelling:",
-         followed by a space and a brief single-line message.
+         Small changes of configuration files, documentation fixes, etc. can be contributed by
+         starting the commit message with one of "minor:", "config:", "infra:", "doc:" or
+         "spelling:", followed by a space and a brief single-line message.
       </p>
 
       <p>
         After submitting a Pull Request, it will be automatically checked by
-        <a href="https://travis-ci.org/checkstyle/checkstyle">Travis</a> and other continuous integration tools.
-        Therefore, please recheck after some minutes that the system didn't find any issues with your changes.
-        If there are issues, please fix them by amending commit (not by separate commit)
-        and provide an updated version of the same Pull Request.
+        <a href="https://travis-ci.org/checkstyle/checkstyle">Travis</a> and other continuous
+        integration tools. Therefore, please recheck after some minutes that the system didn't
+        find any issues with your changes. If there are issues, please fix them by amending
+        commit (not by separate commit) and provide an updated version of the same Pull Request.
       </p>
 
       <p>

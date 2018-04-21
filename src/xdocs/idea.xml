@@ -33,7 +33,8 @@
       </p>
       <p>
         Generate sources that a required by checkstyle
-        by right click over pom.xml file and click on menu "Maven / Generate Sources and Update Folders"
+        by right click over pom.xml file and click on menu "Maven / Generate Sources and Update
+        Folders"
         <img alt="screenshot" src="images/gui_screenshot_idea_generate_sources.png"/>
         <br/><br/>
       </p>
@@ -60,7 +61,8 @@
     <section name="Organize Imports">
       <p>
         One of the Checkstyle checks we run on our own code require certain order of import
-        statements. Few changes in IDE settings are required to help your IDE do it automatically.<br/>
+        statements. Few changes in IDE settings are required to help your IDE do it
+        automatically.<br/>
         To change formatter settings please go to File->Settings in menu.<br/>
         Then in the tree go to: Editor->Code Style->Java, open Import tab (follow numbers on a
         picture) and apply settings highlighted:<br/><br/>
@@ -77,8 +79,9 @@
         <code>config/intellij-idea-inspections.xml</code>.<br/><br/>
         <img alt="Inspections in IntelliJ IDEA" src="images/gui_screenshot_inspections_idea.png"/>
         <br/><br/>
-        Not all files in repository should be analyzed. For example test input files contain numerous
-        violations on purpose. Our shared inspection scope can be used to exclude such files.<br/>
+        Not all files in repository should be analyzed. For example test input files contain
+        numerous violations on purpose. Our shared inspection scope can be used to exclude such
+        files.<br/>
         To add custom scope copy file <code>config/intellij-idea-inspection-scope.xml</code>
         to <code>.idea/scopes</code> directory.
         Command from root of repo is

@@ -295,7 +295,8 @@ private int array1 []; // CHECKSTYLE_ON: ALMOST_ALL
   &lt;property name=&quot;onCommentFormat&quot; value=&quot;resume&quot;/&gt;
   &lt;property name=&quot;checkFormat&quot; value=&quot;IllegalTypeCheck&quot;/&gt;
   &lt;property name=&quot;messageFormat&quot;
-      value=&quot;^Declaring variables, return values or parameters of type 'GregorianCalendar' is not allowed.$&quot;/&gt;
+      value=&quot;^Declaring variables, return values or parameters of type 'GregorianCalendar'
+        is not allowed.$&quot;/&gt;
 &lt;/module&gt;
           </source>
           <p>
@@ -509,7 +510,8 @@ public class UserService {
                   <code>id</code> -
                   a <a href="property_types.html#string">string</a>
                   matched against the ID of the check associated with an audit
-                  event.  Optional as long as <code>checks</code> or <code>message</code> is specified.
+                  event.  Optional as long as <code>checks</code> or <code>message</code>
+                  is specified.
               </li>
               <li>
                   <code>lines</code> - a comma-separated list of
@@ -631,7 +633,8 @@ public class UserService {
             Suppress FileLength check on integration tests in certain folder:
           </p>
           <source>
-&lt;suppress checks=&quot;FileLength&quot; files=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
+&lt;suppress checks=&quot;FileLength&quot;
+  files=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
           </source>
           <p>
             Suppress naming errors on variable named 'log' in all files:
@@ -1189,13 +1192,15 @@ private int D2;
 // ALLOW MemberName ON PREVIOUS LINE
 . . .
             </source>
+
             <p>
-                To configure a filter to allow suppress one or more Checks(separated by &quot;|&quot;)
-                and demand comment no less than 14 symbols:
+                To configure a filter to allow suppress one or more Checks
+                (separated by &quot;|&quot;) and demand comment no less than 14 symbols:
             </p>
             <source>
 &lt;module name="SuppressWithNearbyCommentFilter&quot;&gt;
-  &lt;property name="commentFormat" value="@cs\.suppress \[(\w+(\|\w+)*)\] \w[-\.'`,:;\w ]{14,}"/&gt;
+  &lt;property name="commentFormat"
+    value="@cs\.suppress \[(\w+(\|\w+)*)\] \w[-\.'`,:;\w ]{14,}"/&gt;
   &lt;property name="checkFormat" value="$1"/&gt;
   &lt;property name="influenceFormat" value="1"/&gt;
 &lt;/module>
@@ -1312,8 +1317,8 @@ public class UserService {
                   file is edited.
               </p>
               <p>
-                  Note that the suppression comment should be put before the violation. You can use more
-                  than one suppression comment each on separate line.
+                  Note that the suppression comment should be put before the violation.
+                  You can use more than one suppression comment each on separate line.
               </p>
           </subsection>
           <subsection name="Properties">
@@ -1450,8 +1455,8 @@ my.property=value2 // No violation events will be reported
               <p>
                   To configure a filter to suppress all audit events between a comment
                   containing <code>CHECKSTYLE_OFF: ALMOST_ALL</code> and a comment containing
-                  <code>CHECKSTYLE_OFF: ALMOST_ALL</code> except for the <em>EqualsHashCode</em> check
-                  (Checker is configured to check only java files):
+                  <code>CHECKSTYLE_OFF: ALMOST_ALL</code> except for the <em>EqualsHashCode</em>
+                  check (Checker is configured to check only java files):
               </p>
               <source>
 &lt;module name=&quot;Checker&quot;&gt;
@@ -1460,7 +1465,8 @@ my.property=value2 // No violation events will be reported
   &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
     &lt;property name=&quot;offCommentFormat&quot; value=&quot;CHECKSTYLE_OFF: ALMOST_ALL&quot;/&gt;
     &lt;property name=&quot;onCommentFormat&quot; value=&quot;CHECKSTYLE_ON: ALMOST_ALL&quot;/&gt;
-    &lt;property name=&quot;checkFormat&quot; value=&quot;^((?!(FileTabCharacterCheck)).)*$&quot;/&gt;
+    &lt;property name=&quot;checkFormat&quot;
+      value=&quot;^((?!(FileTabCharacterCheck)).)*$&quot;/&gt;
   &lt;/module&gt;
 
 &lt;/module>
