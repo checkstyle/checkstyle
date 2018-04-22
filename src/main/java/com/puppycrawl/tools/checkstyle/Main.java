@@ -45,6 +45,7 @@ import org.apache.commons.cli.ParseException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -602,41 +603,30 @@ public final class Main {
     }
 
     /**
-     * Creates the audit listener.
-     *
+     * This method creates in AuditListener an open stream for validation data, it must be closed by
+     * {@link RootModule} (default implementation is {@link Checker}) by calling
+     * {@link AuditListener#auditFinished(AuditEvent)}.
      * @param format format of the audit listener
      * @param outputLocation the location of output
      * @return a fresh new {@code AuditListener}
      * @exception IOException when provided output location is not found
      */
-    private static AuditListener createListener(String format,
-                                                String outputLocation)
+    private static AuditListener createListener(String format, String outputLocation)
             throws IOException {
-        // setup the output stream
-        final OutputStream out;
-        final AutomaticBean.OutputStreamOptions closeOutputStream;
-        if (outputLocation == null) {
-            out = System.out;
-            closeOutputStream = AutomaticBean.OutputStreamOptions.NONE;
-        }
-        else {
-            out = Files.newOutputStream(Paths.get(outputLocation));
-            closeOutputStream = AutomaticBean.OutputStreamOptions.CLOSE;
-        }
-
-        // setup a listener
         final AuditListener listener;
         if (XML_FORMAT_NAME.equals(format)) {
-            listener = new XMLLogger(out, closeOutputStream);
+            final OutputStream out = getOutputStream(outputLocation);
+            final AutomaticBean.OutputStreamOptions closeOutputStreamOption =
+                    getOutputStreamOptions(outputLocation);
+            listener = new XMLLogger(out, closeOutputStreamOption);
         }
         else if (PLAIN_FORMAT_NAME.equals(format)) {
-            listener = new DefaultLogger(out, closeOutputStream, out,
-                    AutomaticBean.OutputStreamOptions.NONE);
+            final OutputStream out = getOutputStream(outputLocation);
+            final AutomaticBean.OutputStreamOptions closeOutputStreamOption =
+                    getOutputStreamOptions(outputLocation);
+            listener = new DefaultLogger(out, closeOutputStreamOption);
         }
         else {
-            if (closeOutputStream == AutomaticBean.OutputStreamOptions.CLOSE) {
-                CommonUtils.close(out);
-            }
             final LocalizedMessage outputFormatExceptionMessage = new LocalizedMessage(0,
                     Definitions.CHECKSTYLE_BUNDLE, CREATE_LISTENER_EXCEPTION,
                     new String[] {format, PLAIN_FORMAT_NAME, XML_FORMAT_NAME}, null,
@@ -645,6 +635,40 @@ public final class Main {
         }
 
         return listener;
+    }
+
+    /**
+     * Create output stream or return System.out
+     * @param outputLocation output location
+     * @return output stream
+     * @throws IOException might happen
+     */
+    @SuppressWarnings("resource")
+    private static OutputStream getOutputStream(String outputLocation) throws IOException {
+        final OutputStream result;
+        if (outputLocation == null) {
+            result = System.out;
+        }
+        else {
+            result = Files.newOutputStream(Paths.get(outputLocation));
+        }
+        return result;
+    }
+
+    /**
+     * Create {@link AutomaticBean.OutputStreamOptions} for the given location.
+     * @param outputLocation output location
+     * @return output stream options
+     */
+    private static AutomaticBean.OutputStreamOptions getOutputStreamOptions(String outputLocation) {
+        final AutomaticBean.OutputStreamOptions result;
+        if (outputLocation == null) {
+            result = AutomaticBean.OutputStreamOptions.NONE;
+        }
+        else {
+            result = AutomaticBean.OutputStreamOptions.CLOSE;
+        }
+        return result;
     }
 
     /**

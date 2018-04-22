@@ -173,7 +173,7 @@
     </module>
     <module name="PackageAnnotation"/>
     <module name="SuppressWarnings">
-        <property name="format" value="^((?!unchecked|deprecation|rawtypes).)*$"/>
+        <property name="format" value="^((?!unchecked|deprecation|rawtypes|resource).)*$"/>
         <message key="suppressed.warning.not.allowed"
              value="The warning ''{0}'' cannot be suppressed at this location. Only few javac warnings are allowed to suppress. If try to suppress checkstyle/pmd/..... violation please do this in their config file. If you try to suppress IntelliJ IDEA inspection, please use javadoc block tag @noinspection"
              />

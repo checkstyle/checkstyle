@@ -17,8 +17,7 @@ if [ ! -f $ECJ_PATH ]; then
     wget http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse/eclipse/downloads/drops4/$ECJ_MAVEN_VERSION/$ECJ_JAR -O $ECJ_PATH
 fi
 
-mkdir -p target/classes
-mkdir -p target/eclipse
+mkdir -p target/classes target/test-classes target/eclipse
 
 RESULT_FILE=target/eclipse/report.txt
 
