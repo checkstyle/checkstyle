@@ -4,6 +4,8 @@ org.eclipse.jdt.core.compiler.problem.deadCode=error
 org.eclipse.jdt.core.compiler.problem.deprecationInDeprecatedCode=enabled
 org.eclipse.jdt.core.compiler.problem.deprecationWhenOverridingDeprecatedMethod=enabled
 org.eclipse.jdt.core.compiler.problem.discouragedReference=error
+# The severity is set to 'warning', since we need to suppress it in some cases.
+org.eclipse.jdt.core.compiler.problem.explicitlyClosedAutoCloseable=warning
 org.eclipse.jdt.core.compiler.problem.emptyStatement=error
 org.eclipse.jdt.core.compiler.problem.fallthroughCase=error
 org.eclipse.jdt.core.compiler.problem.fatalOptionalError=disabled
@@ -58,8 +60,6 @@ org.eclipse.jdt.core.compiler.problem.typeParameterHiding=error
 org.eclipse.jdt.core.compiler.problem.fieldHiding=error
 #We can not efnforce this rule as we are library and we keep deprecated stuff for some time
 org.eclipse.jdt.core.compiler.problem.deprecation=ignore
-#We can not use try-with-resources till we use cobertura for coverage
-org.eclipse.jdt.core.compiler.problem.explicitlyClosedAutoCloseable=ignore
 #we will not put all String values to resources, it does not make sense in our project
 org.eclipse.jdt.core.compiler.problem.nonExternalizedStringLiteral=ignore
 #we should print errors on all throwables

@@ -105,8 +105,13 @@
     <inspection_tool class="AssignmentUsedAsCondition" enabled="true" level="ERROR" enabled_by_default="true" />
     <!-- we are ok to use auto-boxing as we use modern java -->
     <inspection_tool class="AutoBoxing" enabled="false" level="ERROR" enabled_by_default="false" />
-    <!-- we can not use try-with-resource till we switch to jacoco for code coverage -->
-    <inspection_tool class="AutoCloseableResource" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="AutoCloseableResource" enabled="true" level="ERROR" enabled_by_default="true">
+        <!-- These classes do not contain any resources that need to be closed. -->
+        <option name="ignoredTypes" value="java.io.ByteArrayOutputStream,java.util.stream.Stream,java.util.stream.IntStream,java.util.stream.LongStream,java.util.stream.DoubleStream,com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream" />
+        <!-- False positives for the Closable returned from a builder method (which return "this").
+             Mock stubs shouldn't be closed. -->
+        <option name="METHOD_MATCHER_CONFIG" value="java.util.Formatter,format,java.io.Writer,append,com.google.common.base.Preconditions,checkNotNull,org.hibernate.Session,close,java.io.PrintWriter,printf,org.mockito.Mockito,mock|verify,org.mockito.stubbing.Stubber,when" />
+    </inspection_tool>
     <!-- we are ok to use auto-unboxing as we use modern java -->
     <inspection_tool class="AutoUnboxing" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="AutowiredDependenciesInspection" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -2151,6 +2156,10 @@ isolated classes and we cannot put them to separate package as it will affect us
                 <!-- XDocs UT is very long and complex -->
                 <option value="OverlyComplexBooleanExpression" />
                 <option value="ReuseOfLocalVariable" />
+                <!-- Sometimes resources are created in one method and released in another.
+                       In this case, there will be a warning "AutoCloseableResource", which need
+                       to be suppressed. -->
+                <option value="resource" />
             </list>
         </option>
     </inspection_tool>

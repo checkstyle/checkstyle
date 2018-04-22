@@ -176,7 +176,13 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
                          OutputStream errorStream,
                          OutputStreamOptions errorStreamOptions,
                          AuditEventFormatter messageFormatter) {
+        if (infoStreamOptions == null) {
+            throw new IllegalArgumentException("Parameter infoStreamOptions can not be null");
+        }
         closeInfo = infoStreamOptions == OutputStreamOptions.CLOSE;
+        if (errorStreamOptions == null) {
+            throw new IllegalArgumentException("Parameter errorStreamOptions can not be null");
+        }
         closeError = errorStreamOptions == OutputStreamOptions.CLOSE;
         final Writer infoStreamWriter = new OutputStreamWriter(infoStream, StandardCharsets.UTF_8);
         infoWriter = new PrintWriter(infoStreamWriter);

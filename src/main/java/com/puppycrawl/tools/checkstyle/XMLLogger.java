@@ -98,6 +98,9 @@ public class XMLLogger
      */
     public XMLLogger(OutputStream outputStream, OutputStreamOptions outputStreamOptions) {
         writer = new PrintWriter(new OutputStreamWriter(outputStream, StandardCharsets.UTF_8));
+        if (outputStreamOptions == null) {
+            throw new IllegalArgumentException("Parameter outputStreamOptions can not be null");
+        }
         closeStream = outputStreamOptions == OutputStreamOptions.CLOSE;
     }
 

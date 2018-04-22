@@ -18,8 +18,7 @@ if [ ! -f $ECJ_PATH ]; then
     wget $ECLIPSE_URL/$ECJ_MAVEN_VERSION/$ECJ_JAR -O $ECJ_PATH
 fi
 
-mkdir -p target/classes
-mkdir -p target/eclipse
+mkdir -p target/classes target/test-classes target/eclipse
 
 RESULT_FILE=target/eclipse/report.txt
 

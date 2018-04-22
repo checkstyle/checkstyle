@@ -19,8 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -114,6 +116,35 @@ public class DefaultLoggerTest {
         dl.auditFinished(new AuditEvent(6000, "myfile"));
         assertTrue("Message should contain exception info, but was " + infoStream,
                 infoStream.toString().contains("java.lang.IllegalStateException: upsss"));
+    }
+
+    @Test
+    public void testNullInfoStreamOptions() {
+        try {
+            final DefaultLogger logger = new DefaultLogger(new ByteArrayOutputStream(), null);
+            // assert required to calm down eclipse's 'The allocated object is never used' violation
+            assertNotNull("Null instance", logger);
+            fail("Exception was expected");
+        }
+        catch (IllegalArgumentException exception) {
+            assertEquals("Invalid error message", "Parameter infoStreamOptions can not be null",
+                    exception.getMessage());
+        }
+    }
+
+    @Test
+    public void testNullErrorStreamOptions() {
+        try {
+            final DefaultLogger logger = new DefaultLogger(new ByteArrayOutputStream(),
+                AutomaticBean.OutputStreamOptions.CLOSE, new ByteArrayOutputStream(), null);
+            // assert required to calm down eclipse's 'The allocated object is never used' violation
+            assertNotNull("Null instance", logger);
+            fail("Exception was expected");
+        }
+        catch (IllegalArgumentException exception) {
+            assertEquals("Invalid error message", "Parameter errorStreamOptions can not be null",
+                    exception.getMessage());
+        }
     }
 
     @Test
