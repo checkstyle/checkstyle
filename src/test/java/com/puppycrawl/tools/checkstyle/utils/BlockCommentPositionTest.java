@@ -104,7 +104,7 @@ public class BlockCommentPositionTest extends AbstractPathTestSupport {
         private final Function<DetailAST, Boolean> assertion;
         private final int matchesNum;
 
-        BlockCommentPositionTestMetadata(String fileName, Function<DetailAST,
+        /* default */ BlockCommentPositionTestMetadata(String fileName, Function<DetailAST,
                 Boolean> assertion, int matchesNum) {
             this.fileName = fileName;
             this.assertion = assertion;

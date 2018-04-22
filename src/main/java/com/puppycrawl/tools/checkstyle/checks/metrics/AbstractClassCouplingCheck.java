@@ -357,7 +357,8 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
          * @param lineNo line of class definition.
          * @param columnNo column of class definition.
          */
-        ClassContext(FileContext parentContext, String className, int lineNo, int columnNo) {
+        /* default */ ClassContext(FileContext parentContext, String className, int lineNo,
+                int columnNo) {
             this.parentContext = parentContext;
             this.className = className;
             this.lineNo = lineNo;

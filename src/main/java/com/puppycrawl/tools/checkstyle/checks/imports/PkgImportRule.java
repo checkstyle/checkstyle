@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 /**
  * Represents whether a package is allowed to be imported or not.
  */
-class PkgImportRule extends AbstractImportRule {
+/* default */ class PkgImportRule extends AbstractImportRule {
 
     /** Package to control access to. */
     private final String pkgName;
@@ -39,7 +39,7 @@ class PkgImportRule extends AbstractImportRule {
      * @param regExp whether the package name is to be interpreted as a regular
      *        expression.
      */
-    PkgImportRule(final boolean allow, final boolean localOnly,
+    /* default */ PkgImportRule(final boolean allow, final boolean localOnly,
         final String pkgName, final boolean exactMatch, final boolean regExp) {
         super(allow, localOnly, regExp);
         this.pkgName = pkgName;

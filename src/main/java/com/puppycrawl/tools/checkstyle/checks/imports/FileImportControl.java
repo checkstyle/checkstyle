@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
  * considered and only files processed by TreeWalker. The file's
  * extension is ignored.
  */
-class FileImportControl extends AbstractImportControl {
+/* default */ class FileImportControl extends AbstractImportControl {
     /** The name for the file. */
     private final String name;
     /** The regex pattern for exact matches - only not null if regex is true. */
@@ -40,7 +40,7 @@ class FileImportControl extends AbstractImportControl {
      * @param name the name of the file.
      * @param regex flags interpretation of name as regex pattern.
      */
-    FileImportControl(PkgImportControl parent, String name, boolean regex) {
+    /* default */ FileImportControl(PkgImportControl parent, String name, boolean regex) {
         super(parent, MismatchStrategy.DELEGATE_TO_PARENT);
 
         this.regex = regex;

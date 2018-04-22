@@ -1185,7 +1185,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @param parent parent frame.
          * @param ident frame name ident.
          */
-        ClassFrame(AbstractFrame parent, DetailAST ident) {
+        /* default */ ClassFrame(AbstractFrame parent, DetailAST ident) {
             super(parent, ident);
             instanceMembers = new HashSet<>();
             instanceMethods = new HashSet<>();

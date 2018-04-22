@@ -63,7 +63,7 @@ public class MainFrameModel {
          * Provides description.
          * @param descr description
          */
-        ParseMode(String descr) {
+        /* default */ ParseMode(String descr) {
             description = descr;
         }
 

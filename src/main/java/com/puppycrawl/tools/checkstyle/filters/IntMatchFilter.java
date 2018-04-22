@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 /**
  * This filter accepts a matching Integer.
  */
-class IntMatchFilter implements IntFilter {
+/* default */ class IntMatchFilter implements IntFilter {
 
     /** The matching Integer. */
     private final int matchValue;
@@ -31,7 +31,7 @@ class IntMatchFilter implements IntFilter {
      * Constructs a MatchFilter for an int.
      * @param matchValue the matching int.
      */
-    IntMatchFilter(int matchValue) {
+    /* default */ IntMatchFilter(int matchValue) {
         this.matchValue = matchValue;
     }
 

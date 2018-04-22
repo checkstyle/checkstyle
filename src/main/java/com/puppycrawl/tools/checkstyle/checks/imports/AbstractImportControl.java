@@ -27,7 +27,7 @@ import java.util.LinkedList;
  * classes are allowed to be used. Each instance must have a single parent or
  * be the root node.
  */
-abstract class AbstractImportControl {
+/* default */ abstract class AbstractImportControl {
 
     /** List of {@link AbstractImportRule} objects to check. */
     private final Deque<AbstractImportRule> rules = new LinkedList<>();
@@ -41,7 +41,8 @@ abstract class AbstractImportControl {
      * @param parent the parent node.
      * @param strategyOnMismatch strategy in a case if matching allow/disallow rule was not found.
      */
-    AbstractImportControl(AbstractImportControl parent, MismatchStrategy strategyOnMismatch) {
+    /* default */ AbstractImportControl(AbstractImportControl parent,
+            MismatchStrategy strategyOnMismatch) {
         this.parent = parent;
         this.strategyOnMismatch = strategyOnMismatch;
     }
