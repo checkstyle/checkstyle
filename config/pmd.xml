@@ -63,7 +63,7 @@
     <!-- Calling super() is completely pointless, no matter if class inherits anything or not;
          it is meaningful only if you do not call implicit constructor of the base class. -->
     <exclude name="CallSuperInConstructor"/>
-    <!-- Till https://github.com/checkstyle/checkstyle/issues/5665 -->
+    <!-- Pollutes code with excessive comments. -->
     <exclude name="CommentDefaultAccessModifier"/>
     <!-- Pollutes code with modifiers. -->
     <exclude name="LocalVariableCouldBeFinal"/>
