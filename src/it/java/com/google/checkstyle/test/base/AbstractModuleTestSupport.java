@@ -75,6 +75,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
 
     }
 
+    private static final String ROOT_MODULE_NAME = "root";
+
     private static final Pattern WARN_PATTERN = CommonUtils
             .createPattern(".*[ ]*//[ ]*warn[ ]*|/[*]\\s?warn\\s?[*]/");
 
@@ -115,7 +117,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param clazz module class.
      * @return {@link DefaultConfiguration} instance.
      */
-    private static DefaultConfiguration createModuleConfig(Class<?> clazz) {
+    protected static DefaultConfiguration createModuleConfig(Class<?> clazz) {
         return new DefaultConfiguration(clazz.getName());
     }
 
@@ -155,10 +157,13 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     protected final Checker createChecker(Configuration moduleConfig,
                                     ModuleCreationOption moduleCreationOption)
             throws Exception {
-        final DefaultConfiguration dc;
+        final Configuration dc;
 
         if (moduleCreationOption == ModuleCreationOption.IN_TREEWALKER) {
             dc = createTreeWalkerConfig(moduleConfig);
+        }
+        else if (ROOT_MODULE_NAME.equals(moduleConfig.getName())) {
+            dc = moduleConfig;
         }
         else {
             dc = createRootConfig(moduleConfig);
@@ -199,7 +204,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @return {@link DefaultConfiguration} for the given {@link Configuration} instance.
      */
     protected static DefaultConfiguration createRootConfig(Configuration config) {
-        final DefaultConfiguration dc = new DefaultConfiguration("root");
+        final DefaultConfiguration dc = new DefaultConfiguration(ROOT_MODULE_NAME);
         dc.addChild(config);
         return dc;
     }

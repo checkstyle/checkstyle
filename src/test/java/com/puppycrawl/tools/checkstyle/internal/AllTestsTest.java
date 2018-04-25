@@ -209,7 +209,8 @@ public class AllTestsTest {
 
             if (!fileName.endsWith("TestSupport.java")
                     // tests external utility XPathEvaluator
-                    && !"XpathMapper.java".equals(fileName)) {
+                    && !"XpathMapper.java".equals(fileName)
+                    && !"XpathRegression.java".equals(fileName)) {
                 final String path;
 
                 try {
