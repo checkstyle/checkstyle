@@ -360,7 +360,7 @@ public class InputFallThrough
    }
     
    /* C-style comments with custom fallthru-comment. */
-   void methodFallThruCCustomWords(int i, int j, boolean cond) {
+   void methodFallThruCustomWords(int i, int j, boolean cond) {
       while (true) {
           switch (i){
           case 0:
