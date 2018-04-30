@@ -15,6 +15,108 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.10">
+      <p>New:</p>
+        <ul>
+          <li>
+            ImportControl: add ability to control imports in certain classes . Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3492">#3492</a>
+          </li>
+          <li>
+            Add the new option for Checkstyle CLI to generate the basic suppression xpath. Author: Timur Tibeyev <a href="https://github.com/checkstyle/checkstyle/issues/4530">#4530</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Store IDENT token type in the xpath tree. Author: Timur Tibeyev <a href="https://github.com/checkstyle/checkstyle/issues/5508">#5508</a>
+          </li>
+          <li>
+            Xpath Mapper : UnsupportedOperationException when several queries are combined. Author: Timur Tibeyev <a href="https://github.com/checkstyle/checkstyle/issues/5571">#5571</a>
+          </li>
+          <li>
+            HeaderCheck: fails with empty lines. Author: Paul Campbell <a href="https://github.com/checkstyle/checkstyle/issues/5511">#5511</a>
+          </li>
+          <li>
+            CheckUtils.parseDouble: wrong result for negative values. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5709">#5709</a>
+          </li>
+          <li>
+            FinalClassCheck: 'extractQualifiedName' omits 2nd ident of package name. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5706">#5706</a>
+          </li>
+          <li>
+            Indentation: false positive for one-line lambda. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5675">#5675</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            format xdoc files to follow rule of LineLength (max ia 100) . Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5291">#5291</a>
+          </li>
+          <li>
+            Remove remnants of cobertura usage. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5616">#5616</a>
+          </li>
+          <li>
+            Create xdoc page to explain the new Xpath-based suppression model. Author: Timur Tibeyev <a href="https://github.com/checkstyle/checkstyle/issues/5513">#5513</a>
+          </li>
+          <li>
+            Migrate to CircleCI 2.0. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5657">#5657</a>
+          </li>
+          <li>
+            consider introducing spelling regression checker. Author: Josh Soref, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5676">#5676</a>
+          </li>
+          <li>
+            remove all authors javadoc tags from sources. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5738">#5738</a>
+          </li>
+          <li>
+            PMD 6: migrate configuration to pmd 6.X version. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5603">#5603</a>
+          </li>
+          <li>
+            jsoref spell checker: skipp all files/folders that are referenced in .gitignore. Author: Josh Soref <a href="https://github.com/checkstyle/checkstyle/issues/5719">#5719</a>
+          </li>
+          <li>
+            spellchecker: don't complain about case. Author: Josh Soref <a href="https://github.com/checkstyle/checkstyle/issues/5732">#5732</a>
+          </li>
+          <li>
+            Replace File{Input,Output}Stream with Files.new{Input,Output}Stream. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5638">#5638</a>
+          </li>
+          <li>
+            config: moved disallows to be first in import control. Author: rnveach
+          </li>
+          <li>
+            UpperEll rule description gives bogus reason: Capital(!) L looks like 1. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5718">#5718</a>
+          </li>
+          <li>
+            refactor PackageObjectFactoryTest.testCreateModuleWithNonExistName. Author: surajumang <a href="https://github.com/checkstyle/checkstyle/issues/5677">#5677</a>
+          </li>
+          <li>
+            jsoref spellchecker: group word families togeth. Author: Josh Soref <a href="https://github.com/checkstyle/checkstyle/issues/5701">#5701</a>
+          </li>
+          <li>
+            jsoref spell checker: remove resource from validation. Author: Josh Soref <a href="https://github.com/checkstyle/checkstyle/issues/5693">#5693</a>
+          </li>
+          <li>
+            Update javadoc for MismatchStrategy. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5695">#5695</a>
+          </li>
+          <li>
+            spelling: anon - API: sevntu-checkstyle/sevntu.checkstyle#657. Author: Josh Soref
+          </li>
+          <li>
+            migrate to circleci 2.0. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5528">#5528</a>
+          </li>
+          <li>
+            spelling: commenting. Author: Josh Soref
+          </li>
+          <li>
+            spelling: unclear. Author: Josh Soref
+          </li>
+          <li>
+            spelling: performance. Author: Josh Soref
+          </li>
+          <li>
+            spelling: indentation. Author: Josh Soref
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 8.9">
       <p>Breaking backward compatibility:</p>
         <ul>
