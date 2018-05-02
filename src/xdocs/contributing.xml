@@ -83,7 +83,7 @@
         do take this one step further and measure the coverage of our
         unit tests using
 
-        <a href="http://www.eclemma.org/jacoco/">JaCoCo</a>.
+        <a href="https://www.eclemma.org/jacoco/">JaCoCo</a>.
 
         This means it is not sufficient to pass all tests, but the tests
         should ideally execute each line in the code, code coverage should be 100%. To generate the
