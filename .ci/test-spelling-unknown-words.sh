@@ -19,11 +19,13 @@ if [ ! -e $dict ]; then
   rm $words_rpm
 fi
 
-echo "Retrieve w"
 if [ ! -e $word_splitter ]; then 
+  echo "Retrieve w"
   curl -s https://raw.githubusercontent.com/jsoref/spelling/master/w |\
     perl -p -n -e "s</usr/share/dict/words><$dict>" > $word_splitter
-  chmod +x $word_splitter
+  chmod u+x $word_splitter
+  echo "Retrieved."
+  ls -la $word_splitter
 fi
 
 echo "Clean up from previous run"
