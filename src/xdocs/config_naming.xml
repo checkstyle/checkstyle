@@ -1260,9 +1260,9 @@ class MyClass {
       <subsection name="Description">
         <p>Since Checkstyle 3.0</p>
         <p>
-          Checks that method and <code>catch</code> parameter names conform to a format specified
-          by the format property. By using <code>accessModifiers</code> property it is possible
-          to specify different formats for methods at different visibility levels.
+          Checks that method, lambda and <code>catch</code> parameter names conform to a format
+          specified by the format property. By using <code>accessModifiers</code> property it is
+          possible to specify different formats for methods at different visibility levels.
         </p>
       </subsection>
 
@@ -1301,9 +1301,26 @@ public boolean equals(Object o) {
           </tr>
           <tr>
             <td>accessModifiers</td>
-            <td>Access modifiers of methods where parameters are checked.</td>
+            <td>
+              Access modifiers of methods where parameters are checked. Please note that it
+              does not work with lambda or catch parameters as they have no notifiers.
+            </td>
             <td><a href="property_types.html#access_modifiers">Access Modifier Set</a></td>
             <td><code>public, protected, package, private</code></td>
+            <td>7.5</td>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>tokens to check</td>
+            <td>
+              subset of tokens
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">LAMBDA</a>.
+            </td>
+            <td>
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">LAMBDA</a>.
+            </td>
             <td>7.5</td>
           </tr>
         </table>
@@ -1314,7 +1331,10 @@ public boolean equals(Object o) {
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;ParameterName&quot;/&gt;
+&lt;module name=&quot;ParameterName&quot;&gt;
+  &lt;property name="tokens" value="PARAMETER_DEF,LAMBDA"/&gt;
+  &lt;property name="ignoreOverridden" value="true"/&gt;
+&lt;/module&gt;
         </source>
           <p>
             An example of how to configure the check to skip methods with Override annotation from
@@ -1322,6 +1342,7 @@ public boolean equals(Object o) {
           </p>
           <source>
 &lt;module name="ParameterName"&gt;
+  &lt;property name="tokens" value="PARAMETER_DEF,LAMBDA"/&gt;
   &lt;property name="ignoreOverridden" value="true"/&gt;
 &lt;/module&gt;
           </source>
@@ -1331,6 +1352,7 @@ public boolean equals(Object o) {
         </p>
         <source>
 &lt;module name="ParameterName"&gt;
+  &lt;property name="tokens" value="PARAMETER_DEF,LAMBDA"/&gt;
   &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
 &lt;/module&gt;
         </source>
@@ -1341,16 +1363,32 @@ public boolean equals(Object o) {
         </p>
         <source>
 &lt;module name=&quot;ParameterName&quot;&gt;
+  &lt;property name="tokens" value="PARAMETER_DEF"/&gt;
   &lt;property name=&quot;format&quot; value=&quot;^[a-z]([a-z0-9][a-zA-Z0-9]*)?$&quot;/&gt;
   &lt;property name=&quot;accessModifiers&quot; value=&quot;protected, package, private&quot;/&gt;
   &lt;message key=&quot;name.invalidPattern&quot;
     value=&quot;Parameter name ''{0}'' must match pattern ''{1}''&quot;/&gt;
 &lt;/module&gt;
 &lt;module name=&quot;ParameterName&quot;&gt;
+  &lt;property name="tokens" value="PARAMETER_DEF"/&gt;
   &lt;property name=&quot;format&quot; value=&quot;^[a-z][a-z0-9][a-zA-Z0-9]*$&quot;/&gt;
   &lt;property name=&quot;accessModifiers&quot; value=&quot;public&quot;/&gt;
   &lt;message key=&quot;name.invalidPattern&quot;
     value=&quot;Parameter name ''{0}'' must match pattern ''{1}''&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          An example of separate configuration for lambda parameters. When code parses to AST tree
+          PARAMETER_DEF could appear under LAMBDA, in this case it considered as LAMBDA.
+        </p>
+        <source>
+&lt;module name=&quot;ParameterName&quot;&gt;
+  &lt;property name="tokens" value="PARAMETER_DEF"/&gt;
+  &lt;property name=&quot;format&quot; value=&quot;^[a-z]([a-z0-9][a-zA-Z0-9]*)?$&quot;/&gt;]
+&lt;/module&gt;
+&lt;module name=&quot;ParameterName&quot;&gt;
+  &lt;property name="tokens" value="LAMBDA"/&gt;
+  &lt;property name=&quot;format&quot; value=&quot;^[a-z][a-z0-9][a-zA-Z0-9]*$&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>

@@ -58,4 +58,23 @@ public class ParameterNameTest extends AbstractModuleTestSupport {
         verify(config, filePath, expected, warnList);
     }
 
+    @Test
+    public void testParametersInLambda() throws Exception {
+        final Configuration config = getModuleConfig("ParameterName");
+        final String format = config.getAttribute("format");
+
+        final String[] expected = {
+            "8:68: " + getCheckMessage(config.getMessages(), MSG_KEY, "sT", format),
+            "10:66: " + getCheckMessage(config.getMessages(), MSG_KEY, "sT", format),
+            "12:65: " + getCheckMessage(config.getMessages(), MSG_KEY, "sT1", format),
+            "12:70: " + getCheckMessage(config.getMessages(), MSG_KEY, "sT2", format),
+            "14:80: " + getCheckMessage(config.getMessages(), MSG_KEY, "sT", format),
+        };
+
+        final String filePath = getPath("InputParameterNameInLambda.java");
+
+        final Integer[] warnList = getLinesWithWarn(filePath);
+        verify(config, filePath, expected, warnList);
+    }
+
 }
