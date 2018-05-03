@@ -145,7 +145,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      */
     public final void setExcludedPackages(String... excludedPackages) {
         final List<String> invalidIdentifiers = Arrays.stream(excludedPackages)
-            .filter(x -> !CommonUtils.isName(x))
+            .filter(packageName -> !CommonUtils.isName(packageName))
             .collect(Collectors.toList());
         if (!invalidIdentifiers.isEmpty()) {
             throw new IllegalArgumentException(

@@ -163,7 +163,7 @@ public class ParameterNameCheck extends AbstractNameCheck {
      * @return whether the method matches the expected access modifier.
      */
     private boolean matchAccessModifiers(final AccessModifier accessModifier) {
-        return Arrays.stream(accessModifiers).anyMatch(el -> el == accessModifier);
+        return Arrays.stream(accessModifiers).anyMatch(modifier -> modifier == accessModifier);
     }
 
     /**

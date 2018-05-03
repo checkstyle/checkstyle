@@ -458,7 +458,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
             dispatcher.fireFileStarted(path);
             final Set<String> currentFileKeys = fileKeys.get(currentFile);
             final Set<String> missingKeys = keysThatMustExist.stream()
-                .filter(e -> !currentFileKeys.contains(e)).collect(Collectors.toSet());
+                .filter(key -> !currentFileKeys.contains(key)).collect(Collectors.toSet());
             if (!missingKeys.isEmpty()) {
                 for (Object key : missingKeys) {
                     log(0, MSG_KEY, key);
