@@ -5,6 +5,7 @@
 [![][circleci img]][circleci]
 [![][wercker img]][wercker]
 [![][shippable img]][shippable]
+[![][buddy img]][buddy]
 [![][coverage img]][coverage]
 
 [![][mavenbadge img]][mavenbadge]
@@ -112,4 +113,6 @@ directory.
 [shippable]: https://app.shippable.com/projects/577032be3be4f4faa56adb38
 [shippable img]: https://img.shields.io/shippable/577032be3be4f4faa56adb38/master.svg?label=shippable
 
+[buddy]: https://app.buddy.works/ivanovjr/checkstyle/pipelines/pipeline/135806
+[buddy img]: https://app.buddy.works/ivanovjr/checkstyle/pipelines/pipeline/135806/badge.svg?token=240176b1ce495d0a03a141f3f2f77971f43fe892a98de31cbc0e392ce5341f76 "buddy pipeline"
 
