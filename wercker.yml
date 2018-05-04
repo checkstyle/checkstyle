@@ -27,7 +27,7 @@ build:
   - script:
       name: Build Checkstyle
       code: |
-        SKIP_FILES="appveyor.yml|codeship-*|circleci|distelli-manifest.yml|.travis.yml|shippable.yml|shippable.sh|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr|intellij-idea-inspections.xml|org.eclipse.jdt.core.prefs"
+        SKIP_FILES="appveyor.yml|codeship-*|buddy.yml|circleci|distelli-manifest.yml|.travis.yml|shippable.yml|shippable.sh|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr|intellij-idea-inspections.xml|org.eclipse.jdt.core.prefs"
         export SKIP_CI=$(if [[ $(git diff --name-only HEAD HEAD~1 | grep -vE "$SKIP_FILES" | cat | wc -c) > 0 ]]; then echo false; else echo true; fi;)
         echo "SKIP_CI="$SKIP_CI
         if [[ $SKIP_CI == 'false' ]]; then

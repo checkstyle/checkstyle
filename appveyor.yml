@@ -19,6 +19,7 @@ skip_commits:
     - wercker.yml
     - wercker.sh
     - codeship-
+    - buddy.yml
 
 clone_depth: 10
 branches:

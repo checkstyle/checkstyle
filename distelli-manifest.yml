@@ -2,7 +2,7 @@
 checkstyle/checkstyle:
   Build:
     - set -e
-    - SKIP_FILES="appveyor.yml|codeship-*|circleci|shippable.yml|shippable.sh|.travis.yml|wercker.yml|wercker.sh|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr|intellij-idea-inspections.xml|org.eclipse.jdt.core.prefs"
+    - SKIP_FILES="appveyor.yml|codeship-*|buddy.yml|circleci|shippable.yml|shippable.sh|.travis.yml|wercker.yml|wercker.sh|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr|intellij-idea-inspections.xml|org.eclipse.jdt.core.prefs"
     - SKIP_CI=$(if [[ $(git diff --name-only HEAD HEAD~1 | grep -vE "$SKIP_FILES" | cat | wc -c) > 0 ]]; then echo false; else echo true; fi;)
     - echo "SKIP_CI="$SKIP_CI
     - |
