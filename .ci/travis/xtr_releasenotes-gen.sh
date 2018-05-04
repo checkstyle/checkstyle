@@ -7,15 +7,31 @@ set -e
 echo "TRAVIS_PULL_REQUEST:"$TRAVIS_PULL_REQUEST
 if [[ $TRAVIS_PULL_REQUEST =~ ^([0-9]*)$ ]]; then echo "Build is not for Pull Request"; sleep 5; exit 0; fi
 
-git clone https://github.com/checkstyle/contribution
+if [ -d contribution ]; then
+  cd contribution/
+  git reset --hard origin/master
+  git pull origin master
+  cd ../
+else
+  git clone https://github.com/checkstyle/contribution
+fi
 cd contribution/releasenotes-builder
 mvn -e clean compile package
 cd ../../
+
 # we need to do full clone as Travis do "git clone --depth=50"
-git clone https://github.com/checkstyle/checkstyle
+if [ -d checkstyle ]; then
+  cd checkstyle/
+  git reset --hard origin/master
+  git pull origin master
+  cd ../
+else
+  git clone https://github.com/checkstyle/checkstyle
+fi
 cd checkstyle
 LATEST_RELEASE_TAG=$(git describe $(git rev-list --tags --max-count=1))
 cd ../
+
 CS_RELEASE_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec | sed 's/-SNAPSHOT//' )
 echo LATEST_RELEASE_TAG=$LATEST_RELEASE_TAG
 echo CS_RELEASE_VERSION=$CS_RELEASE_VERSION
