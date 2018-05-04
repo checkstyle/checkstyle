@@ -1,0 +1,2 @@
+system:
+  image: checkstyle/maven-builder-image:latest

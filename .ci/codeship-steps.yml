@@ -1,0 +1,4 @@
+- name: linkcheck
+  tag: master
+  service: system
+  command: echo foo
