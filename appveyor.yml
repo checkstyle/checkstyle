@@ -18,6 +18,7 @@ skip_commits:
     - shippable.sh
     - wercker.yml
     - wercker.sh
+    - codeship-
 
 clone_depth: 10
 branches:
