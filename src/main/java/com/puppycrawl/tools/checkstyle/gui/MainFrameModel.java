@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import com.google.common.collect.ImmutableList;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -78,7 +77,7 @@ public class MainFrameModel {
     private final ParseTreeTableModel parseTreeTableModel;
 
     /** Lines to position map. */
-    private ImmutableList<Integer> linesToPosition = ImmutableList.of();
+    private List<Integer> linesToPosition = new ArrayList<>();
 
     /** Current mode. */
     private ParseMode parseMode = ParseMode.PLAIN_JAVA;
@@ -175,10 +174,9 @@ public class MainFrameModel {
      * prevent additional overhead of copying
      * and possible state modifications.
      * @return lines to position map.
-     * @noinspection ReturnOfCollectionOrArrayField
      */
-    public ImmutableList<Integer> getLinesToPosition() {
-        return linesToPosition;
+    public List<Integer> getLinesToPosition() {
+        return new ArrayList<>(linesToPosition);
     }
 
     /**
@@ -220,7 +218,7 @@ public class MainFrameModel {
                     linesToPositionTemp.add(sb.length());
                     sb.append(element).append(System.lineSeparator());
                 }
-                linesToPosition = ImmutableList.copyOf(linesToPositionTemp);
+                linesToPosition = linesToPositionTemp;
                 text = sb.toString();
             }
             catch (IOException ex) {

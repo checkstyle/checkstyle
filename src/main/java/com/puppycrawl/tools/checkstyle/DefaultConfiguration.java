@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
@@ -143,8 +142,8 @@ public final class DefaultConfiguration implements Configuration {
      * @return unmodifiable map containing custom messages
      */
     @Override
-    public ImmutableMap<String, String> getMessages() {
-        return ImmutableMap.copyOf(messages);
+    public Map<String, String> getMessages() {
+        return new HashMap<>(messages);
     }
 
     /**

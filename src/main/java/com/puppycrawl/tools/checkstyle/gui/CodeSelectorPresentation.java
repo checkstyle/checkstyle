@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.gui;
 
 import java.util.List;
 
-import com.google.common.collect.ImmutableList;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
@@ -46,7 +45,7 @@ public class CodeSelectorPresentation {
      * @param lines2position list to map lines.
      * @noinspection AssignmentToCollectionOrArrayFieldFromParameter
      */
-    public CodeSelectorPresentation(DetailAST ast, ImmutableList<Integer> lines2position) {
+    public CodeSelectorPresentation(DetailAST ast, List<Integer> lines2position) {
         node = ast;
         this.lines2position = lines2position;
     }
@@ -57,7 +56,7 @@ public class CodeSelectorPresentation {
      * @param lines2position list to map lines.
      * @noinspection AssignmentToCollectionOrArrayFieldFromParameter
      */
-    public CodeSelectorPresentation(DetailNode node, ImmutableList<Integer> lines2position) {
+    public CodeSelectorPresentation(DetailNode node, List<Integer> lines2position) {
         this.node = node;
         this.lines2position = lines2position;
     }
