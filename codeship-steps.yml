@@ -1,4 +1,8 @@
-- name: linkcheck
+- type: parallel
   tag: master
   service: system
-  command: ls -la && .ci/run-link-check-plugin.sh
+  steps:
+    #-  command: ./.ci/travis/travis.sh site
+    #-  command: ./.ci/travis/travis.sh nondex
+    -  command: ls -la
+    -  command: .ci/run-link-check-plugin.sh
