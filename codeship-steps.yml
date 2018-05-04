@@ -1,6 +1,9 @@
 - name: linkcheck
   tag: codeship-steps
   service: system
-  steps:
-  - command: ls -la
-  - command: .ci/run-link-check-plugin.sh
+  command: ls -la
+
+- name: linkcheck
+  tag: codeship-steps
+  service: system
+  command: .ci/run-link-check-plugin.sh
