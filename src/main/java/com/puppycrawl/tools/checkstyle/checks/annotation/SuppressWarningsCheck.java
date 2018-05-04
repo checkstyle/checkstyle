@@ -169,8 +169,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
             //rare case with empty array ex: @SuppressWarnings({})
             if (warning == null) {
                 //check to see if empty warnings are forbidden -- are by default
-                logMatch(warningHolder.getLineNo(),
-                    warningHolder.getColumnNo(), "");
+                logMatch(warningHolder, "");
             }
             else {
                 while (warning != null) {
@@ -181,8 +180,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
                             case TokenTypes.STRING_LITERAL:
                                 final String warningText =
                                     removeQuotes(warning.getFirstChild().getText());
-                                logMatch(warning.getLineNo(),
-                                        warning.getColumnNo(), warningText);
+                                logMatch(warning, warningText);
                                 break;
                             // conditional case
                             // ex:
@@ -229,17 +227,15 @@ public class SuppressWarningsCheck extends AbstractCheck {
 
     /**
      * This method looks for a warning that matches a configured expression.
-     * If found it logs a violation at the given line and column number.
+     * If found it logs a violation at the given AST.
      *
-     * @param lineNo the line number
-     * @param colNum the column number
+     * @param ast the location to place the violation
      * @param warningText the warning.
      */
-    private void logMatch(final int lineNo,
-        final int colNum, final String warningText) {
+    private void logMatch(DetailAST ast, final String warningText) {
         final Matcher matcher = format.matcher(warningText);
         if (matcher.matches()) {
-            log(lineNo, colNum,
+            log(ast,
                     MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, warningText);
         }
     }
@@ -304,7 +300,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
         else {
             final String warningText =
                     removeQuotes(cond.getText());
-            logMatch(cond.getLineNo(), cond.getColumnNo(), warningText);
+            logMatch(cond, warningText);
         }
     }
 

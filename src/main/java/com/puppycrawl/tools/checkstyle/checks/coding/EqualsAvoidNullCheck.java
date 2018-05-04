@@ -278,12 +278,10 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
                 && isCalledOnStringFieldOrVariable(objCalledOn)) {
             final String methodName = methodCall.getFirstChild().getLastChild().getText();
             if (EQUALS.equals(methodName)) {
-                log(methodCall.getLineNo(), methodCall.getColumnNo(),
-                    MSG_EQUALS_AVOID_NULL);
+                log(methodCall, MSG_EQUALS_AVOID_NULL);
             }
             else {
-                log(methodCall.getLineNo(), methodCall.getColumnNo(),
-                    MSG_EQUALS_IGNORE_CASE_AVOID_NULL);
+                log(methodCall, MSG_EQUALS_IGNORE_CASE_AVOID_NULL);
             }
         }
     }

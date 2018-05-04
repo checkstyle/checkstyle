@@ -146,7 +146,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
             if (canBeSubclassed(classDef)) {
                 final String className = classDef.findFirstToken(TokenTypes.IDENT).getText();
                 final String methodName = ast.findFirstToken(TokenTypes.IDENT).getText();
-                log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY, className, methodName);
+                log(ast, MSG_KEY, className, methodName);
             }
         }
     }

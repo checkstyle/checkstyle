@@ -69,8 +69,7 @@ public class StringLiteralEqualityCheck extends AbstractCheck {
 
         if (firstChild.getType() == TokenTypes.STRING_LITERAL
                 || secondChild.getType() == TokenTypes.STRING_LITERAL) {
-            log(ast.getLineNo(), ast.getColumnNo(),
-                    MSG_KEY, ast.getText());
+            log(ast, MSG_KEY, ast.getText());
         }
     }
 

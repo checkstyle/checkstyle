@@ -133,8 +133,7 @@ public class MethodNameCheck
             // down the tree looking for the first ident.
             if (classIdent != null
                 && method.getText().equals(classIdent.getText())) {
-                log(method.getLineNo(), method.getColumnNo(),
-                    MSG_KEY, method.getText());
+                log(method, MSG_KEY, method.getText());
             }
         }
     }

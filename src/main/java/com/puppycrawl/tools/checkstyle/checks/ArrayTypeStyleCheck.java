@@ -72,7 +72,7 @@ public class ArrayTypeStyleCheck extends AbstractCheck {
                     || variableAST.getColumnNo() - ast.getColumnNo() > -1;
 
                 if (isJavaStyle != javaStyle) {
-                    log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
+                    log(ast, MSG_KEY);
                 }
             }
         }

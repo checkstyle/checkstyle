@@ -195,8 +195,7 @@ public class RedundantModifierCheck
             final DetailAST modifier =
                     modifiers.findFirstToken(tokenType);
             if (modifier != null) {
-                log(modifier.getLineNo(), modifier.getColumnNo(),
-                        MSG_KEY, modifier.getText());
+                log(modifier, MSG_KEY, modifier.getText());
             }
         }
     }
@@ -210,8 +209,7 @@ public class RedundantModifierCheck
         final DetailAST modifier = getFirstModifierAst(modifiers);
 
         if (modifier != null) {
-            log(modifier.getLineNo(), modifier.getColumnNo(),
-                    MSG_KEY, modifier.getText());
+            log(modifier, MSG_KEY, modifier.getText());
         }
     }
 
@@ -263,8 +261,7 @@ public class RedundantModifierCheck
                         && ast.getType() != TokenTypes.CLASS_DEF
                 || type == TokenTypes.FINAL
                         && ast.getType() != TokenTypes.CLASS_DEF) {
-                log(modifier.getLineNo(), modifier.getColumnNo(),
-                        MSG_KEY, modifier.getText());
+                log(modifier, MSG_KEY, modifier.getText());
                 break;
             }
 
@@ -357,8 +354,7 @@ public class RedundantModifierCheck
         DetailAST astModifier = astModifiers.getFirstChild();
         while (astModifier != null) {
             if (astModifier.getType() == modifierType) {
-                log(astModifier.getLineNo(), astModifier.getColumnNo(),
-                        MSG_KEY, astModifier.getText());
+                log(astModifier, MSG_KEY, astModifier.getText());
             }
 
             astModifier = astModifier.getNextSibling();

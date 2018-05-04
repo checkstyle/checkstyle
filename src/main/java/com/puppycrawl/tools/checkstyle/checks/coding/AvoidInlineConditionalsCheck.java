@@ -65,7 +65,7 @@ public class AvoidInlineConditionalsCheck extends AbstractCheck {
         // the only place a QUESTION token can occur is in inline conditionals
         // so no need to do any further tricks here - pretty trivial Check!
 
-        log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
+        log(ast, MSG_KEY);
     }
 
 }

@@ -254,7 +254,7 @@ public class DescendantTokenCheck extends AbstractCheck {
                 if (minimumMessage == null) {
                     minimumMessage = MSG_KEY_MIN;
                 }
-                log(ast.getLineNo(), ast.getColumnNo(),
+                log(ast,
                         minimumMessage,
                         String.valueOf(tokenCount),
                         String.valueOf(minimumNumber),
@@ -267,7 +267,7 @@ public class DescendantTokenCheck extends AbstractCheck {
                 if (maximumMessage == null) {
                     maximumMessage = MSG_KEY_MAX;
                 }
-                log(ast.getLineNo(), ast.getColumnNo(),
+                log(ast,
                         maximumMessage,
                         String.valueOf(tokenCount),
                         String.valueOf(maximumNumber),
@@ -293,7 +293,7 @@ public class DescendantTokenCheck extends AbstractCheck {
             if (minimumMessage == null) {
                 minimumMessage = MSG_KEY_SUM_MIN;
             }
-            log(ast.getLineNo(), ast.getColumnNo(),
+            log(ast,
                     minimumMessage,
                     String.valueOf(total),
                     String.valueOf(minimumNumber), name);
@@ -302,7 +302,7 @@ public class DescendantTokenCheck extends AbstractCheck {
             if (maximumMessage == null) {
                 maximumMessage = MSG_KEY_SUM_MAX;
             }
-            log(ast.getLineNo(), ast.getColumnNo(),
+            log(ast,
                     maximumMessage,
                     String.valueOf(total),
                     String.valueOf(maximumNumber), name);

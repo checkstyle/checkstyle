@@ -95,8 +95,7 @@ public class AnonInnerLengthCheck extends AbstractCheck {
             final int length =
                 closingBrace.getLineNo() - openingBrace.getLineNo() + 1;
             if (length > max) {
-                log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY,
-                        length, max);
+                log(ast, MSG_KEY, length, max);
             }
         }
     }
