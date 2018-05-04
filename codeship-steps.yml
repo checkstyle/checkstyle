@@ -8,7 +8,15 @@
 
 - tag: codeship-steps
   service: system
+  command: ls -la ../../
+
+- tag: codeship-steps
+  service: system
   command: ls -la .
+
+- tag: codeship-steps
+  service: system
+  command: git pull origin master
 
 - tag: codeship-steps
   service: system
