@@ -1,4 +1,4 @@
 - name: linkcheck
   tag: master
   service: system
-  command: echo foo
+  command: .ci/run-link-check-plugin.sh
