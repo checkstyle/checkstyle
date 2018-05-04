@@ -164,8 +164,7 @@ public abstract class AbstractSuperCheck
                 final DetailAST methodAST = methodNode.getMethod();
                 final DetailAST nameAST =
                     methodAST.findFirstToken(TokenTypes.IDENT);
-                log(nameAST.getLineNo(), nameAST.getColumnNo(),
-                    MSG_KEY, nameAST.getText());
+                log(nameAST, MSG_KEY, nameAST.getText());
             }
         }
     }

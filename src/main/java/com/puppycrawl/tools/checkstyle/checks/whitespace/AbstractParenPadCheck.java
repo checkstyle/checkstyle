@@ -119,8 +119,7 @@ public abstract class AbstractParenPadCheck
             else if (option == PadOption.SPACE
                 && !Character.isWhitespace(line.charAt(before))
                 && line.charAt(before) != OPEN_PARENTHESIS) {
-                log(ast.getLineNo(), ast.getColumnNo(),
-                    MSG_WS_NOT_PRECEDED, CLOSE_PARENTHESIS);
+                log(ast, MSG_WS_NOT_PRECEDED, CLOSE_PARENTHESIS);
             }
         }
     }

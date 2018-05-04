@@ -68,7 +68,7 @@ public class EmptyStatementCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
+        log(ast, MSG_KEY);
     }
 
 }

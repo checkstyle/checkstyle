@@ -166,8 +166,7 @@ public class JavaNCSSCheck extends AbstractCheck {
 
             final int count = counter.getCount();
             if (count > methodMaximum) {
-                log(ast.getLineNo(), ast.getColumnNo(), MSG_METHOD,
-                        count, methodMaximum);
+                log(ast, MSG_METHOD, count, methodMaximum);
             }
         }
         else if (tokenType == TokenTypes.CLASS_DEF) {
@@ -176,8 +175,7 @@ public class JavaNCSSCheck extends AbstractCheck {
 
             final int count = counter.getCount();
             if (count > classMaximum) {
-                log(ast.getLineNo(), ast.getColumnNo(), MSG_CLASS,
-                        count, classMaximum);
+                log(ast, MSG_CLASS, count, classMaximum);
             }
         }
     }
@@ -189,8 +187,7 @@ public class JavaNCSSCheck extends AbstractCheck {
 
         final int count = counter.getCount();
         if (count > fileMaximum) {
-            log(rootAST.getLineNo(), rootAST.getColumnNo(), MSG_FILE,
-                    count, fileMaximum);
+            log(rootAST, MSG_FILE, count, fileMaximum);
         }
     }
 

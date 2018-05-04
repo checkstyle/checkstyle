@@ -96,8 +96,7 @@ public class MethodLengthCheck extends AbstractCheck {
                 openingBrace.findFirstToken(TokenTypes.RCURLY);
             final int length = getLengthOfBlock(openingBrace, closingBrace);
             if (length > max) {
-                log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY,
-                        length, max);
+                log(ast, MSG_KEY, length, max);
             }
         }
     }

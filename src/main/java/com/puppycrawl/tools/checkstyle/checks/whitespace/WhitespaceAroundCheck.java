@@ -384,8 +384,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
                 final char prevChar = line.charAt(before);
                 if (shouldCheckSeparationFromPreviousToken(ast)
                         && !Character.isWhitespace(prevChar)) {
-                    log(ast.getLineNo(), ast.getColumnNo(),
-                            MSG_WS_NOT_PRECEDED, ast.getText());
+                    log(ast, MSG_WS_NOT_PRECEDED, ast.getText());
                 }
             }
 

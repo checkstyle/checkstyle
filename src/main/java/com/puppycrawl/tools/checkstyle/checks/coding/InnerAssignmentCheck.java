@@ -136,7 +136,7 @@ public class InnerAssignmentCheck
         if (!isInContext(ast, ALLOWED_ASSIGNMENT_CONTEXT)
                 && !isInNoBraceControlStatement(ast)
                 && !isInWhileIdiom(ast)) {
-            log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
+            log(ast, MSG_KEY);
         }
     }
 

@@ -150,8 +150,7 @@ public final class ExecutableStatementCountCheck
     private void leaveMemberDef(DetailAST ast) {
         final int count = context.getCount();
         if (count > max) {
-            log(ast.getLineNo(), ast.getColumnNo(),
-                    MSG_KEY, count, max);
+            log(ast, MSG_KEY, count, max);
         }
         context = contextStack.pop();
     }

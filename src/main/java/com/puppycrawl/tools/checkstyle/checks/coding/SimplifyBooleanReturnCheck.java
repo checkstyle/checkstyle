@@ -83,7 +83,7 @@ public class SimplifyBooleanReturnCheck
 
             if (canReturnOnlyBooleanLiteral(thenStatement)
                 && canReturnOnlyBooleanLiteral(elseStatement)) {
-                log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
+                log(ast, MSG_KEY);
             }
         }
     }

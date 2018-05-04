@@ -284,8 +284,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
 
             if (identAST != null && identAST.getType() == TokenTypes.IDENT
                 && getCurrentVariables().contains(identAST.getText())) {
-                log(ast.getLineNo(), ast.getColumnNo(),
-                    MSG_KEY, identAST.getText());
+                log(ast, MSG_KEY, identAST.getText());
             }
         }
     }

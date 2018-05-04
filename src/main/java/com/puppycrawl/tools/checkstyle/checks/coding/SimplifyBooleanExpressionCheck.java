@@ -74,8 +74,7 @@ public class SimplifyBooleanExpressionCheck
             case TokenTypes.LNOT:
             case TokenTypes.LOR:
             case TokenTypes.LAND:
-                log(parent.getLineNo(), parent.getColumnNo(),
-                    MSG_KEY);
+                log(parent, MSG_KEY);
                 break;
             default:
                 break;

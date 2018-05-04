@@ -675,26 +675,63 @@ public class UserService {
           checks:
         </p>
         <ul>
+          <li>AbstractClassNameCheck</li>
+          <li>AnonInnerLengthCheck</li>
+          <li>ArrayTypeStyleCheck</li>
+          <li>AvoidInlineConditionalsCheck</li>
+          <li>AvoidNestedBlocksCheck</li>
+          <li>BooleanExpressionComplexityCheck</li>
+          <li>CovariantEqualsCheck</li>
           <li>CyclomaticComplexityCheck</li>
           <li>DeclarationOrderCheck</li>
           <li>DefaultComesLastCheck</li>
+          <li>DescendantTokenCheck</li>
+          <li>DesignForExtensionCheck</li>
+          <li>EmptyStatementCheck</li>
+          <li>EqualsAvoidNullCheck</li>
+          <li>EqualsHashCodeCheck</li>
+          <li>ExecutableStatementCountCheck</li>
           <li>ExplicitInitializationCheck</li>
           <li>FallThroughCheck</li>
+          <li>FinalLocalVariableCheck</li>
+          <li>FinalParametersCheck</li>
           <li>HiddenFieldCheck</li>
+          <li>HideUtilityClassConstructorCheck</li>
+          <li>InnerAssignmentCheck</li>
+          <li>InnerTypeLastCheck</li>
           <li>JavadocVariableCheck</li>
+          <li>JavaNCSSCheck</li>
           <li>IllegalThrowsCheck</li>
           <li>ImportControlCheck</li>
           <li>LeftCurlyCheck</li>
+          <li>MethodLengthCheck</li>
+          <li>MethodNameCheck</li>
           <li>MethodParamPadCheck</li>
+          <li>ModifiedControlVariableCheck</li>
+          <li>ModifierOrderCheck</li>
           <li>MultipleVariableDeclarationsCheck</li>
+          <li>MutableExceptionCheck</li>
           <li>NestedForDepthCheck</li>
           <li>NestedIfDepthCheck</li>
           <li>NestedTryDepthCheck</li>
           <li>NPathComplexityCheck</li>
           <li>OneStatementPerLineCheck</li>
           <li>OuterTypeNumberCheck</li>
+          <li>ParameterAssignmentCheck</li>
+          <li>ParameterNumberCheck</li>
+          <li>RedundantImportCheck</li>
+          <li>RedundantModifierCheck</li>
           <li>RequireThisCheck</li>
+          <li>ReturnCountCheck</li>
           <li>RightCurlyCheck</li>
+          <li>SimplifyBooleanExpressionCheck</li>
+          <li>SimplifyBooleanReturnCheck</li>
+          <li>StringLiteralEqualityCheck</li>
+          <li>SuperCloneCheck</li>
+          <li>SuperFinalizeCheck</li>
+          <li>SuppressWarningsCheck</li>
+          <li>ThrowsCountCheck</li>
+          <li>VisibilityModifierCheck</li>
         </ul>
         <p>
           Note, that support for other Checks will be available after resolving

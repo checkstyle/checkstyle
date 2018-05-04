@@ -271,7 +271,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         if (scope != null) {
             for (FinalVariableCandidate candidate : scope.values()) {
                 final DetailAST ident = candidate.variableIdent;
-                log(ident.getLineNo(), ident.getColumnNo(), MSG_KEY, ident.getText());
+                log(ident, MSG_KEY, ident.getText());
             }
         }
     }

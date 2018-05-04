@@ -118,15 +118,14 @@ public class ModifierOrderCheck
             final DetailAST error = checkOrderSuggestedByJls(mods);
             if (error != null) {
                 if (error.getType() == TokenTypes.ANNOTATION) {
-                    log(error.getLineNo(), error.getColumnNo(),
+                    log(error,
                             MSG_ANNOTATION_ORDER,
                              error.getFirstChild().getText()
                              + error.getFirstChild().getNextSibling()
                                 .getText());
                 }
                 else {
-                    log(error.getLineNo(), error.getColumnNo(),
-                            MSG_MODIFIER_ORDER, error.getText());
+                    log(error, MSG_MODIFIER_ORDER, error.getText());
                 }
             }
         }

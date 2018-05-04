@@ -96,8 +96,7 @@ public class CovariantEqualsCheck extends AbstractCheck {
                 for (DetailAST equalsAST : equalsMethods) {
                     final DetailAST nameNode = equalsAST
                             .findFirstToken(TokenTypes.IDENT);
-                    log(nameNode.getLineNo(), nameNode.getColumnNo(),
-                            MSG_KEY);
+                    log(nameNode, MSG_KEY);
                 }
             }
         }

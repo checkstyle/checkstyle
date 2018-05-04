@@ -118,13 +118,11 @@ public final class AbstractClassNameCheck extends AbstractCheck {
         if (isAbstract(ast)) {
             // if class has abstract modifier
             if (!ignoreName && !isMatchingClassName(className)) {
-                log(ast.getLineNo(), ast.getColumnNo(),
-                    MSG_ILLEGAL_ABSTRACT_CLASS_NAME, className, format.pattern());
+                log(ast, MSG_ILLEGAL_ABSTRACT_CLASS_NAME, className, format.pattern());
             }
         }
         else if (!ignoreModifier && isMatchingClassName(className)) {
-            log(ast.getLineNo(), ast.getColumnNo(),
-                MSG_NO_ABSTRACT_CLASS_MODIFIER, className);
+            log(ast, MSG_NO_ABSTRACT_CLASS_MODIFIER, className);
         }
     }
 

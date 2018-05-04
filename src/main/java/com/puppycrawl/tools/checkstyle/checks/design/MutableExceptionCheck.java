@@ -136,8 +136,7 @@ public final class MutableExceptionCheck extends AbstractCheck {
                 ast.findFirstToken(TokenTypes.MODIFIERS);
 
             if (modifiersAST.findFirstToken(TokenTypes.FINAL) == null) {
-                log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY,
-                        ast.findFirstToken(TokenTypes.IDENT).getText());
+                log(ast, MSG_KEY, ast.findFirstToken(TokenTypes.IDENT).getText());
             }
         }
     }

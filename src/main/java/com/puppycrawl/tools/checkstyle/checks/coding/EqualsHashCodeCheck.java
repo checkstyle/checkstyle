@@ -164,10 +164,10 @@ public class EqualsHashCodeCheck
                 return objBlockWithHashCode.remove(detailASTDetailASTEntry.getKey()) == null;
             }).forEach(detailASTDetailASTEntry -> {
                 final DetailAST equalsAST = detailASTDetailASTEntry.getValue();
-                log(equalsAST.getLineNo(), equalsAST.getColumnNo(), MSG_KEY_HASHCODE);
+                log(equalsAST, MSG_KEY_HASHCODE);
             });
         objBlockWithHashCode.forEach((key, equalsAST) -> {
-            log(equalsAST.getLineNo(), equalsAST.getColumnNo(), MSG_KEY_EQUALS);
+            log(equalsAST, MSG_KEY_EQUALS);
         });
     }
 
