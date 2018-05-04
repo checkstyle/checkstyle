@@ -20,11 +20,11 @@
 package com.puppycrawl.tools.checkstyle.gui;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JTextArea;
 
-import com.google.common.collect.ImmutableList;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 
@@ -49,11 +49,11 @@ public class CodeSelector {
         this.editor = editor;
         if (node instanceof DetailAST) {
             pModel = new CodeSelectorPresentation((DetailAST) node,
-                    ImmutableList.copyOf(lines2position));
+                    new ArrayList<>(lines2position));
         }
         else {
             pModel = new CodeSelectorPresentation((DetailNode) node,
-                    ImmutableList.copyOf(lines2position));
+                    new ArrayList<>(lines2position));
         }
     }
 

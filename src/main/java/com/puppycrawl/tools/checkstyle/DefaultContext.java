@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
-import com.google.common.collect.ImmutableCollection;
-import com.google.common.collect.ImmutableList;
 import com.puppycrawl.tools.checkstyle.api.Context;
 
 /**
@@ -40,8 +40,8 @@ public final class DefaultContext implements Context {
     }
 
     @Override
-    public ImmutableCollection<String> getAttributeNames() {
-        return ImmutableList.copyOf(entries.keySet());
+    public Collection<String> getAttributeNames() {
+        return new HashSet<>(entries.keySet());
     }
 
     /**

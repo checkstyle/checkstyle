@@ -45,11 +45,6 @@
   <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
   <allow class="com.google.common.base.CaseFormat" local-only="true"/>
   <allow class="com.google.common.io.BaseEncoding" local-only="true"/>
-  <allow class="com.google.common.collect.HashMultimap" local-only="true"/>
-  <allow class="com.google.common.collect.ImmutableCollection" local-only="true"/>
-  <allow class="com.google.common.collect.ImmutableList" local-only="true"/>
-  <allow class="com.google.common.collect.ImmutableMap" local-only="true"/>
-  <allow class="com.google.common.collect.Multimap" local-only="true"/>
   <allow class="com.google.common.io.ByteStreams" local-only="true"/>
 
   <file name="PropertyCacheFile">
@@ -62,8 +57,6 @@
     <allow pkg="java.lang.reflect" local-only="true" />
     <allow pkg="java.nio" local-only="true" />
     <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerFilter"/>
-    <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
-    <allow class="com.google.common.collect.ImmutableMap" local-only="true"/>
     <allow class="com.google.common.reflect.ClassPath" local-only="true"/>
   </subpackage>
 
@@ -75,8 +68,6 @@
     <allow pkg="org.apache.tools.ant" local-only="true"/>
     <allow pkg="com.puppycrawl.tools.checkstyle"/>
 
-    <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
-    <allow class="com.google.common.io.Closeables" local-only="true"/>
     <allow class="java.nio.file.Files" local-only="true"/>
   </subpackage>
 
@@ -108,15 +99,6 @@
     <allow class="java.nio.file.NoSuchFileException" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.Definitions" local-only="true"/>
 
-    <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
-    <allow class="com.google.common.io.Closeables" local-only="true"/>
-    <allow class="com.google.common.collect.HashMultiset" local-only="true"/>
-    <allow class="com.google.common.collect.HashMultimap" local-only="true"/>
-    <allow class="com.google.common.collect.ImmutableMultiset" local-only="true"/>
-    <allow class="com.google.common.collect.Multiset" local-only="true"/>
-    <allow class="com.google.common.collect.Multiset.Entry" local-only="true"/>
-    <allow class="com.google.common.collect.SetMultimap" local-only="true"/>
-
     <subpackage name="imports">
       <allow class="com.puppycrawl.tools.checkstyle.XmlLoader" local-only="true"/>
     </subpackage>
@@ -126,8 +108,6 @@
     <subpackage name="header">
       <allow class="java.nio.charset.Charset" local-only="true"/>
       <allow class="java.nio.charset.StandardCharsets" local-only="true" />
-      <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
-      <allow class="com.google.common.io.Closeables" local-only="true"/>
     </subpackage>
     <subpackage name="javadoc">
       <allow pkg="com.puppycrawl.tools.checkstyle.grammars.javadoc"/>
@@ -164,7 +144,6 @@
     <allow pkg="com.puppycrawl.tools.checkstyle.api" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode"
            local-only="true"/>
-    <allow class="com.google.common.collect.ImmutableList" local-only="true"/>
     <disallow pkg="com\.puppycrawl\.tools\.checkstyle\.(checks|ant|doclets|filters)" regex="true"/>
 
     <file name=".*(Model|Presentation)" regex="true">
