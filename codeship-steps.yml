@@ -1,4 +1,7 @@
-- name: linkcheck
-  tag: master
+- type: parallel
+  tag: codeship-steps
   service: system
-  command: ls -la && .ci/run-link-check-plugin.sh
+  steps:
+    -  command: ./.ci/travis/travis.sh site
+    -  command: ./.ci/travis/travis.sh nondex
+    -  command: .ci/run-link-check-plugin.sh

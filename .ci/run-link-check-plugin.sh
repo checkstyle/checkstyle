@@ -4,7 +4,7 @@
 #Run "firefox target/site/linkcheck.html" after completion to review html report
 
 set -e
-
+pwd
 uname -a
 mvn --version
 curl -I https://sourceforge.net/projects/checkstyle/
