@@ -1,11 +1,10 @@
 - tag: codeship-steps
   service: system
-  command: pwd
-
-- tag: codeship-steps
-  service: system
-  command: ls -la .
-
-- tag: codeship-steps
-  service: system
   command: .ci/run-link-check-plugin.sh
+
+- type: parallel
+  tag: codeship-steps
+  service: system
+  steps:
+    -  command: ./.ci/shippable.sh pitest-xpath
+    -  command: ./.ci/shippable.sh pitest-filters
