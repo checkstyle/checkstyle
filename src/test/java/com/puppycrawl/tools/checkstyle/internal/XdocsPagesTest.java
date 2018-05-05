@@ -358,6 +358,11 @@ public class XdocsPagesTest {
 
         int subSectionPos = 0;
         for (Node subSection : XmlUtil.getChildrenElements(section)) {
+            if (subSectionPos == 0 && "p".equals(subSection.getNodeName())) {
+                validateSinceDescriptionSection(fileName, sectionName, subSection);
+                continue;
+            }
+
             final String subSectionName = subSection.getAttributes().getNamedItem("name")
                     .getNodeValue();
 
@@ -383,7 +388,6 @@ public class XdocsPagesTest {
 
             switch (subSectionPos) {
                 case 0:
-                    validateSinceDescriptionSection(fileName, sectionName, subSection);
                     break;
                 case 1:
                     validatePropertySection(fileName, sectionName, subSection, instance);

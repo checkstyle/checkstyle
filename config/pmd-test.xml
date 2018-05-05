@@ -108,6 +108,7 @@
               or @Image='SuppressionFilterTest' or @Image='SuppressionXpathFilterTest'
               or @Image='SuppressWithPlainTextCommentFilterTest' or @Image='XpathFilterTest']//PrimarySuffix[@Image='verify']
             | //ClassOrInterfaceDeclaration[@Image='XdocsPagesTest']//MethodDeclaration[@Name='testAllChecksPresentOnAvailableChecksPage']
+            | //ClassOrInterfaceDeclaration[@Image='XdocsJavaDocsTest']//MethodDeclaration[@Name='testAllCheckSectionJavaDocs']
             "/>
         </properties>
     </rule>
