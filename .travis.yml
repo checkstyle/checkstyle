@@ -1,4 +1,4 @@
-wlanguage: java
+language: java
 sudo: false
 
 cache:
