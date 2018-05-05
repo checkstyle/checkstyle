@@ -32,8 +32,8 @@
     </section>
 
     <section name="AbbreviationAsWordInName">
+      <p>Since Checkstyle 5.8</p>
       <subsection name="Description">
-        <p>Since Checkstyle 5.8</p>
         <p>
          The Check validate abbreviations(consecutive capital letters)
          length in identifier name, it also allows to enforce camel case naming. Please read more at
@@ -43,7 +43,7 @@
         </p>
 
         <p>
-         <i>allowedAbbreviationLength</i> specifies how many consecutive capital letters are
+         <code>allowedAbbreviationLength</code> specifies how many consecutive capital letters are
          allowed in the identifier.
          A value of <i>3</i> indicates that up to 4 consecutive capital letters are allowed,
          one after the other, before a violation is printed. The identifier 'MyTEST' would be
@@ -75,28 +75,28 @@
           <tr>
             <td>allowedAbbreviations</td>
             <td>list of abbreviations that must be skipped for checking.
-            Abbreviations should be separated by comma, no spaces are allowed.</td>
+            Abbreviations should be separated by comma.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td>{}</td>
             <td>5.8</td>
           </tr>
           <tr>
             <td>ignoreFinal</td>
-            <td>allow to skip variables with final modifier.</td>
+            <td>allow to skip variables with <code>final</code> modifier.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>true</td>
             <td>5.8</td>
           </tr>
           <tr>
             <td>ignoreStatic</td>
-            <td>allow to skip variables with static modifier.</td>
+            <td>allow to skip variables with <code>static</code> modifier.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>true</td>
             <td>5.8</td>
           </tr>
           <tr>
             <td>ignoreOverriddenMethods</td>
-            <td>Allows to ignore methods tagged with @Override annotation
+            <td>allow to ignore methods tagged with <code>@Override</code> annotation
             (that usually mean inherited name).</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>true</td>
@@ -135,10 +135,10 @@
       <subsection name="Examples">
        <p>
          Default configuration
-         <source>
-&lt;module name="AbbreviationAsWordInName"/&gt;
-         </source>
        </p>
+       <source>
+&lt;module name="AbbreviationAsWordInName"/&gt;
+       </source>
        <p>
           To configure to check variables and classes identifiers,
           do not ignore variables with static modifier and allow
