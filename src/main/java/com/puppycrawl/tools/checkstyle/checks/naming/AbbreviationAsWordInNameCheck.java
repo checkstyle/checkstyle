@@ -51,47 +51,62 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * is what should be used to enforce strict camel casing. The identifier 'MyTest' would
  * be allowed, but 'MyTEst' would not be.
  * </p>
+ * <ul>
+ * <li>
+ * Option {@code allowedAbbreviationLength} - indicates on the number of consecutive capital
+ * letters allowed in targeted identifiers (abbreviations in the classes, interfaces, variables
+ * and methods names, ... ). Default value is {@code 3}.
+ * </li>
+ * <li>
+ * Option {@code allowedAbbreviations} - list of abbreviations that must be skipped for checking.
+ * Abbreviations should be separated by comma. Default value is {@code {}}.
+ * </li>
+ * <li>
+ * Option {@code ignoreFinal} - allow to skip variables with {@code final} modifier. Default value
+ * is {@code true}.
+ * </li>
+ * <li>
+ * Option {@code ignoreStatic} - allow to skip variables with {@code static} modifier. Default
+ * value is {@code true}.
+ * </li>
+ * <li>
+ * Option {@code ignoreOverriddenMethods} - allow to ignore methods tagged with {@code @Override}
+ * annotation (that usually mean inherited name). Default value is {@code true}.
+ * </li>
+ * <li>
+ * Option {@code tokens} - tokens to check Default value is:
+ * <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+ * <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+ * <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
+ * <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">ANNOTATION_DEF</a>,
+ * <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">ANNOTATION_FIELD_DEF</a>,
+ * <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
+ * <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
+ * <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>.}.
+ * </li>
+ * </ul>
  * <p>
- * Option {@code allowedAbbreviationLength} indicates on the allowed amount of capital
- * letters in abbreviations in the classes, interfaces,
- * variables and methods names. Default value is '3'.
- * </p>
- * <p>
- * Option {@code allowedAbbreviations} - list of abbreviations that
- * must be skipped for checking. Abbreviations should be separated by comma,
- * no spaces are allowed.
- * </p>
- * <p>
- * Option {@code ignoreFinal} allow to skip variables with {@code final} modifier.
- * Default value is {@code true}.
- * </p>
- * <p>
- * Option {@code ignoreStatic} allow to skip variables with {@code static} modifier.
- * Default value is {@code true}.
- * </p>
- * <p>
- * Option {@code ignoreOverriddenMethod} - Allows to
- * ignore methods tagged with {@code @Override} annotation
- * (that usually mean inherited name). Default value is {@code true}.
- * </p>
  * Default configuration
+ * </p>
  * <pre>
- * &lt;module name="AbbreviationAsWordInName" /&gt;
+ * &lt;module name="AbbreviationAsWordInName"/&gt;
  * </pre>
  * <p>
  * To configure to check variables and classes identifiers, do not ignore
  * variables with static modifier
- * and allow no abbreviations (enforce camel case phrase) but allow XML and URL abbreviations.
+ * and allow no abbreviations (enforce camel case phrase) and allow no abbreviations to use (camel
+ * case phrase) and allow XML and URL abbreviations.
  * </p>
  * <pre>
  * &lt;module name="AbbreviationAsWordInName"&gt;
- *     &lt;property name="tokens" value="VARIABLE_DEF,CLASS_DEF"/&gt;
- *     &lt;property name="ignoreStatic" value="false"/&gt;
- *     &lt;property name="allowedAbbreviationLength" value="1"/&gt;
- *     &lt;property name="allowedAbbreviations" value="XML,URL"/&gt;
+ *   &lt;property name="tokens" value="VARIABLE_DEF,CLASS_DEF"/&gt;
+ *   &lt;property name="ignoreStatic" value="false"/&gt;
+ *   &lt;property name="allowedAbbreviationLength" value="1"/&gt;
+ *   &lt;property name="allowedAbbreviations" value="XML,URL"/&gt;
  * &lt;/module&gt;
  * </pre>
  *
+ * @since 5.8
  */
 @StatelessCheck
 public class AbbreviationAsWordInNameCheck extends AbstractCheck {
@@ -107,28 +122,33 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     private static final int DEFAULT_ALLOWED_ABBREVIATIONS_LENGTH = 3;
 
     /**
-     * Variable indicates on the allowed amount of capital letters in
-     * abbreviations in the classes, interfaces, variables and methods names.
+     * Indicates on the number of consecutive capital letters allowed in
+     * targeted identifiers (abbreviations in the classes, interfaces, variables
+     * and methods names, ... ).
      */
     private int allowedAbbreviationLength =
             DEFAULT_ALLOWED_ABBREVIATIONS_LENGTH;
 
     /**
-     * Set of allowed abbreviation to ignore in check.
+     * List of abbreviations that must be skipped for checking. Abbreviations
+     * should be separated by comma.
      */
     private Set<String> allowedAbbreviations = new HashSet<>();
 
-    /** Allows to ignore variables with 'final' modifier. */
+    /** Allow to skip variables with {@code final} modifier. */
     private boolean ignoreFinal = true;
 
-    /** Allows to ignore variables with 'static' modifier. */
+    /** Allow to skip variables with {@code static} modifier. */
     private boolean ignoreStatic = true;
 
-    /** Allows to ignore methods with '@Override' annotation. */
+    /**
+     * Allow to ignore methods tagged with {@code @Override} annotation (that
+     * usually mean inherited name).
+     */
     private boolean ignoreOverriddenMethods = true;
 
     /**
-     * Sets ignore option for variables with 'final' modifier.
+     * Setter to allow to skip variables with {@code final} modifier.
      * @param ignoreFinal
      *        Defines if ignore variables with 'final' modifier or not.
      */
@@ -137,7 +157,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     }
 
     /**
-     * Sets ignore option for variables with 'static' modifier.
+     * Setter to allow to skip variables with {@code static} modifier.
      * @param ignoreStatic
      *        Defines if ignore variables with 'static' modifier or not.
      */
@@ -146,7 +166,8 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     }
 
     /**
-     * Sets ignore option for methods with "@Override" annotation.
+     * Setter to allow to ignore methods tagged with {@code @Override}
+     * annotation (that usually mean inherited name).
      * @param ignoreOverriddenMethods
      *        Defines if ignore methods with "@Override" annotation or not.
      */
@@ -155,20 +176,21 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     }
 
     /**
-     * Allowed abbreviation length in names.
-     * @param allowedAbbreviationLength
-     *            amount of allowed capital letters in abbreviation.
+     * Setter to indicates on the number of consecutive capital letters allowed
+     * in targeted identifiers (abbreviations in the classes, interfaces,
+     * variables and methods names, ... ).
+     * @param allowedAbbreviationLength amount of allowed capital letters in
+     *        abbreviation.
      */
     public void setAllowedAbbreviationLength(int allowedAbbreviationLength) {
         this.allowedAbbreviationLength = allowedAbbreviationLength;
     }
 
     /**
-     * Set a list of abbreviations that must be skipped for checking.
+     * Setter to set a list of abbreviations that must be skipped for checking.
      * Abbreviations should be separated by comma, no spaces is allowed.
-     * @param allowedAbbreviations
-     *        an string of abbreviations that must be skipped from checking,
-     *        each abbreviation separated by comma.
+     * @param allowedAbbreviations an string of abbreviations that must be
+     *        skipped from checking, each abbreviation separated by comma.
      */
     public void setAllowedAbbreviations(String... allowedAbbreviations) {
         if (allowedAbbreviations != null) {
