@@ -4,27 +4,7 @@
 
 - tag: codeship-steps
   service: system
-  command: ls -la ../
-
-- tag: codeship-steps
-  service: system
-  command: ls -la ../../
-
-- tag: codeship-steps
-  service: system
   command: ls -la .
-
-- tag: codeship-steps
-  service: system
-  command: git pull origin master
-
-- tag: codeship-steps
-  service: system
-  command: ls -la .
-
-- tag: codeship-steps
-  service: system
-  command: ls -la /usr/local/checkstyle2
 
 - tag: codeship-steps
   service: system
