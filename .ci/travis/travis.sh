@@ -4,6 +4,10 @@ set -e
 
 case $1 in
 
+site)
+  mvn -e clean site -Pno-validations
+  ;;
+
 nondex)
   mvn -e --fail-never clean nondex:nondex -DargLine='-Xms1024m -Xmx2048m'
   cat `grep -RlE 'td class=.x' .nondex/ | cat` < /dev/null > output.txt
