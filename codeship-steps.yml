@@ -24,4 +24,8 @@
 
 - tag: codeship-steps
   service: system
+  command: ls -la /usr/local/checkstyle2
+
+- tag: codeship-steps
+  service: system
   command: .ci/run-link-check-plugin.sh
