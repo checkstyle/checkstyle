@@ -5,8 +5,8 @@
 
 <import-control pkg="com.puppycrawl.tools.checkstyle">
 
-  <allow pkg=".*" regex="true" />
-
   <disallow pkg="junit.framework" />
+
+  <allow pkg=".*" regex="true" />
 
 </import-control>
