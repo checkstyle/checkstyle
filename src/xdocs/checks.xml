@@ -39,8 +39,8 @@
       <tr>
         <td><a href="config_naming.html#AbstractClassName">AbstractClassName</a></td>
         <td>
-          Ensures that the names of abstract classes conforming to some
-          regular expression.
+          Ensures that the names of abstract classes conforming to some regular expression and
+          check that <code>abstract</code> modifier exists.
         </td>
       </tr>
       <tr>

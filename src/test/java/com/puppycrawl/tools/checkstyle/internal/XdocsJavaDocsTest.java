@@ -103,7 +103,9 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
 
                 if ("Content".equals(sectionName) || "Overview".equals(sectionName)
                         // suppression list
-                        || !"AbbreviationAsWordInName".equals(sectionName)) {
+                        || !"AbbreviationAsWordInName".equals(sectionName)
+                                && !"AbstractClassName".equals(sectionName)
+                ) {
                     continue;
                 }
 
