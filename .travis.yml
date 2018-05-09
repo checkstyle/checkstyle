@@ -27,6 +27,7 @@ matrix:
     - env:
         - DESC="test Issue ref in PR description"
         - CMD="./.ci/travis/travis.sh pr-description"
+        - SKIP_CI="false"
 
     # unit tests (oraclejdk8)
     - jdk: oraclejdk8
@@ -146,6 +147,7 @@ matrix:
     - env:
         - DESC="check permissions on all files"
         - CMD="./.ci/travis/travis.sh check-chmod"
+        - SKIP_CI="false"
 
     # Ensure that all Sevntu check are kused
     - jdk: oraclejdk8
@@ -193,10 +195,18 @@ matrix:
     - env:
         - DESC="spell checker"
         - CMD="./.ci/test-spelling-unknown-words.sh"
+        - SKIP_CI="false"
 
 script:
   - SKIP_FILES=".github|codeship-*|buddy.yml|appveyor.yml|circleci|distelli-manifest.yml|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr|shippable.yml|shippable.sh|wercker.yml|wercker.sh|intellij-idea-inspections.xml"
-  - SKIP_CI=$(if [[ $(git diff --name-only HEAD HEAD~1 | grep -vE "$SKIP_FILES" | cat | wc -c | sed 's/^ *//' ) > 0 ]]; then echo false; else echo true; fi;)
+  - |
+    if [[ $SKIP_CI != 'false' ]]; then
+         if [[ $(git diff --name-only HEAD HEAD~1 | grep -vE "$SKIP_FILES" | cat | wc -c | sed 's/^ *//' ) > 0 ]]; then
+              SKIP_CI="false"
+         else
+              SKIP_CI="true"
+         fi
+    fi
   - echo "SKIP_CI="$SKIP_CI
   - |
     set -e
@@ -204,6 +214,8 @@ script:
     then
          eval $CMD;
          echo "eval of CMD is completed"
+    else
+         echo "CI is skipped"
     fi
 
 after_success:
