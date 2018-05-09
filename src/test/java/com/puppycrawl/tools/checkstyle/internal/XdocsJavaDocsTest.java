@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -201,7 +202,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         for (List<Node> property : CHECK_PROPERTIES) {
             final String propertyName = getNodeText(property.get(0), true);
 
-            result.append("\n<li>\nOption {@code ");
+            result.append("\n<li>\nProperty {@code ");
             result.append(propertyName);
             result.append("} - ");
 
@@ -214,11 +215,16 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 result.append(" Default value is: ");
             }
             else {
-                result.append(" Default value is {@code ");
+                result.append(" Default value is ");
             }
 
             result.append(getNodeText(property.get(3), true));
-            result.append("}.\n</li>");
+
+            if (result.charAt(result.length() - 1) != '.') {
+                result.append('.');
+            }
+
+            result.append("\n</li>");
         }
 
         result.append("\n</ul>");
@@ -367,6 +373,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     }
 
     private static class JavaDocCapture extends AbstractCheck {
+        private static final Pattern SETTER_PATTERN = Pattern.compile("^set[A-Z].*");
+
         private int depth;
 
         @Override
@@ -465,7 +473,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         }
 
         private void visitMethod(DetailAST ast, DetailAST node) {
-            if (depth == 0 && CheckUtils.isSetterMethod(node)) {
+            if (depth == 0 && isSetterMethod(node)) {
                 final String propertyUpper = node.findFirstToken(TokenTypes.IDENT)
                         .getText().substring(3);
                 final String propertyName = makeFirstLower(propertyUpper);
@@ -476,10 +484,38 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
 
                     Assert.assertEquals(checkName + "'s class method-level JavaDoc for "
                             + propertyName,
-                            "Setter to " + propertyDoc,
+                            "Setter to " + makeFirstLower(propertyDoc),
                             javaDoc.substring(0, javaDoc.indexOf(" @param")));
                 }
             }
+        }
+
+        /**
+         * Returns whether an AST represents a setter method. This is similar to
+         * {@link CheckUtils#isSetterMethod(DetailAST)} except this doesn't care
+         * about the number of children in the method.
+         * @param ast the AST to check with.
+         * @return whether the AST represents a setter method.
+         */
+        private static boolean isSetterMethod(DetailAST ast) {
+            boolean setterMethod = false;
+
+            if (ast.getType() == TokenTypes.METHOD_DEF) {
+                final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
+                final String name = type.getNextSibling().getText();
+                final boolean matchesSetterFormat = SETTER_PATTERN.matcher(name).matches();
+                final boolean voidReturnType = type.findFirstToken(TokenTypes.LITERAL_VOID) != null;
+
+                final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
+                final boolean singleParam = params.getChildCount(TokenTypes.PARAMETER_DEF) == 1;
+
+                if (matchesSetterFormat && voidReturnType && singleParam) {
+                    final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
+
+                    setterMethod = slist != null;
+                }
+            }
+            return setterMethod;
         }
 
         private static String getJavaDocText(DetailAST node) {
