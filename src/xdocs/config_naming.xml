@@ -191,9 +191,18 @@
     </section>
 
     <section name="AbstractClassName">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description">
-        <p>Since Checkstyle 3.2</p>
-        <p>Validates identifiers for <code>abstract</code> classes.</p>
+        <p>
+          Ensures that the names of abstract classes conforming to some regular expression and
+          check that <code>abstract</code> modifier exists.
+        </p>
+        <p>
+          Rationale: Abstract classes are convenience base class implementations of
+          interfaces, not types as such. As such they should be named to indicate this.
+          Also if names of classes starts with 'Abstract' it's very convenient that
+          they will have abstract modifier.
+        </p>
       </subsection>
 
       <subsection name="Properties">
@@ -207,7 +216,7 @@
           </tr>
           <tr>
             <td>format</td>
-            <td>Specifies valid identifiers.</td>
+            <td>Specify valid identifiers.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"^Abstract.+$"</code></td>
             <td>3.2</td>
@@ -215,7 +224,7 @@
           <tr>
             <td>ignoreModifier</td>
             <td>
-              Controls whether to ignore checking for the
+              Control whether to ignore checking for the
               <code>abstract</code> modifier on classes that match the
               name.
             </td>
@@ -226,9 +235,9 @@
           <tr>
             <td>ignoreName</td>
             <td>
-              Controls whether to ignore checking the name. Realistically
+              Control whether to ignore checking the name. Realistically
               only useful if using the check to identify that match name
-              and do not have the <code>abstract</code> modifier.  name.
+              and do not have the <code>abstract</code> modifier.
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
