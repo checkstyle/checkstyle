@@ -53,28 +53,28 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * </p>
  * <ul>
  * <li>
- * Option {@code allowedAbbreviationLength} - indicates on the number of consecutive capital
+ * Property {@code allowedAbbreviationLength} - Indicate the number of consecutive capital
  * letters allowed in targeted identifiers (abbreviations in the classes, interfaces, variables
  * and methods names, ... ). Default value is {@code 3}.
  * </li>
  * <li>
- * Option {@code allowedAbbreviations} - list of abbreviations that must be skipped for checking.
- * Abbreviations should be separated by comma. Default value is {@code {}}.
+ * Property {@code allowedAbbreviations} - Specify list of abbreviations that must be skipped for
+ * checking. Abbreviations should be separated by comma. Default value is {@code {}}.
  * </li>
  * <li>
- * Option {@code ignoreFinal} - allow to skip variables with {@code final} modifier. Default value
- * is {@code true}.
- * </li>
- * <li>
- * Option {@code ignoreStatic} - allow to skip variables with {@code static} modifier. Default
+ * Property {@code ignoreFinal} - Allow to skip variables with {@code final} modifier. Default
  * value is {@code true}.
  * </li>
  * <li>
- * Option {@code ignoreOverriddenMethods} - allow to ignore methods tagged with {@code @Override}
+ * Property {@code ignoreStatic} - Allow to skip variables with {@code static} modifier. Default
+ * value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code ignoreOverriddenMethods} - Allow to ignore methods tagged with {@code @Override}
  * annotation (that usually mean inherited name). Default value is {@code true}.
  * </li>
  * <li>
- * Option {@code tokens} - tokens to check Default value is:
+ * Property {@code tokens} - tokens to check Default value is:
  * <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
  * <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
  * <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
@@ -82,7 +82,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">ANNOTATION_FIELD_DEF</a>,
  * <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
  * <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
- * <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>.}.
+ * <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>.
  * </li>
  * </ul>
  * <p>
@@ -122,7 +122,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     private static final int DEFAULT_ALLOWED_ABBREVIATIONS_LENGTH = 3;
 
     /**
-     * Indicates on the number of consecutive capital letters allowed in
+     * Indicate the number of consecutive capital letters allowed in
      * targeted identifiers (abbreviations in the classes, interfaces, variables
      * and methods names, ... ).
      */
@@ -130,7 +130,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
             DEFAULT_ALLOWED_ABBREVIATIONS_LENGTH;
 
     /**
-     * List of abbreviations that must be skipped for checking. Abbreviations
+     * Specify list of abbreviations that must be skipped for checking. Abbreviations
      * should be separated by comma.
      */
     private Set<String> allowedAbbreviations = new HashSet<>();
@@ -176,7 +176,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     }
 
     /**
-     * Setter to indicates on the number of consecutive capital letters allowed
+     * Setter to indicate the number of consecutive capital letters allowed
      * in targeted identifiers (abbreviations in the classes, interfaces,
      * variables and methods names, ... ).
      * @param allowedAbbreviationLength amount of allowed capital letters in
@@ -187,8 +187,8 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     }
 
     /**
-     * Setter to set a list of abbreviations that must be skipped for checking.
-     * Abbreviations should be separated by comma, no spaces is allowed.
+     * Setter to specify list of abbreviations that must be skipped for checking.
+     * Abbreviations should be separated by comma.
      * @param allowedAbbreviations an string of abbreviations that must be
      *        skipped from checking, each abbreviation separated by comma.
      */

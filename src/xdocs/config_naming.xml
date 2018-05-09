@@ -65,41 +65,41 @@
           </tr>
           <tr>
             <td>allowedAbbreviationLength</td>
-            <td>indicates on the number of consecutive capital letters allowed in targeted
+            <td>Indicate the number of consecutive capital letters allowed in targeted
              identifiers (abbreviations in the classes, interfaces, variables and methods
              names, ... ).</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td>3</td>
+            <td><code>3</code></td>
             <td>5.8</td>
           </tr>
           <tr>
             <td>allowedAbbreviations</td>
-            <td>list of abbreviations that must be skipped for checking.
+            <td>Specify list of abbreviations that must be skipped for checking.
             Abbreviations should be separated by comma.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>{}</td>
+            <td><code>{}</code></td>
             <td>5.8</td>
           </tr>
           <tr>
             <td>ignoreFinal</td>
-            <td>allow to skip variables with <code>final</code> modifier.</td>
+            <td>Allow to skip variables with <code>final</code> modifier.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>true</td>
+            <td><code>true</code></td>
             <td>5.8</td>
           </tr>
           <tr>
             <td>ignoreStatic</td>
-            <td>allow to skip variables with <code>static</code> modifier.</td>
+            <td>Allow to skip variables with <code>static</code> modifier.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>true</td>
+            <td><code>true</code></td>
             <td>5.8</td>
           </tr>
           <tr>
             <td>ignoreOverriddenMethods</td>
-            <td>allow to ignore methods tagged with <code>@Override</code> annotation
+            <td>Allow to ignore methods tagged with <code>@Override</code> annotation
             (that usually mean inherited name).</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>true</td>
+            <td><code>true</code></td>
             <td>5.8</td>
           </tr>
           <tr>
