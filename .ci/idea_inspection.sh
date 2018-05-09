@@ -7,7 +7,7 @@
 # IDEA_PATH="/Applications/IntelliJ IDEA.app/Contents/MacOS/idea" ./.ci/idea_inspection.sh
 #
 # Example Linux:
-# IDEA_PATH=/opt/idea-IC-171.4694.70/bin/idea.sh ./.ci/idea_inspection.sh
+# export IDEA_PATH=$HOME/java/idea-IU-172.4574.11 && ./.ci/idea_inspection.sh
 #################################################
 
 PROJECT_DIR=$PWD/
@@ -29,15 +29,14 @@ if [[ -z $IDEA_PATH ]]; then
 fi
 
 #Execute compilation of Checkstyle to generate all source files
-mvn -e compile
+mvn -e clean compile
 
 mkdir -p $RESULTS_DIR
 rm -rf $RESULTS_DIR/*
 
 echo "Intellij Idea validation is about to start"
 echo "Progress output will be flushed at end. Validation is in progress ..."
-IDEA_OUTPUT=`exec "$IDEA_PATH" inspect $PROJECT_DIR $INSPECTIONS_PATH $RESULTS_DIR -$NOISE_LVL`
-echo $IDEA_OUTPUT
+IDEA_OUTPUT=`$IDEA_PATH/bin/inspect.sh $PROJECT_DIR $INSPECTIONS_PATH $RESULTS_DIR -v1`
 
 if [[ $IDEA_OUTPUT == "Already running" ]]; then
     echo "It might be that Intellij Idea is running, please close it."
