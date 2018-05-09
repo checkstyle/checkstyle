@@ -19,7 +19,7 @@ if [ ! -e $dict ]; then
   rm $words_rpm
 fi
 
-if [ ! -e $word_splitter ]; then 
+if [ ! -e $word_splitter ]; then
   echo "Retrieve w"
   curl -s https://raw.githubusercontent.com/jsoref/spelling/master/w |\
     perl -p -n -e "s</usr/share/dict/words><$dict>" > $word_splitter
@@ -45,7 +45,7 @@ printDetails() {
 
 echo "Review results"
 if [ ! -e $whitelist_path ]; then
-  echo No preexisting $whitelist_path file.
+  echo "No preexisting $whitelist_path file."
   printDetails
   echo "cat > $whitelist_path <<EOF=EOF"
   cat $run_output
@@ -66,11 +66,13 @@ if [ -z "$new_output" ]; then
   echo "There are now fewer misspellings than before."
   echo "$whitelist_path could be updated:"
   echo ''
+  echo "patch $whitelist_path <<EOF"
   echo "$diff_output"
+  echo "EOF"
   sleep 5
   exit 1
 fi
-echo New misspellings found, please review:
+echo "New misspellings found, please review:"
 echo "$new_output"
 printDetails
 echo "patch $whitelist_path <<EOF"
