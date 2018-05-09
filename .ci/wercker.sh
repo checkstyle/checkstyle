@@ -19,6 +19,7 @@ no-error-orekit)
   echo CS_version: ${CS_POM_VERSION}
   for i in 1 2 3 4 5; do git clone https://github.com/Hipparchus-Math/hipparchus.git && break || sleep 15; done
   cd hipparchus
+  git checkout 42fe07bcff62f6d4ded73a799d4fac8a0f155b35
   mvn -e clean install -DskipTests
   cd ../
   for i in 1 2 3 4 5; do git clone https://github.com/CS-SI/Orekit.git && break || sleep 15; done
