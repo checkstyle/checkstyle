@@ -38,17 +38,17 @@ public class NonEmptyAtclauseDescriptionTest extends AbstractModuleTestSupport {
             "non.empty.atclause");
 
         final String[] expected = {
+            "32: " + msg,
+            "33: " + msg,
             "34: " + msg,
             "35: " + msg,
             "36: " + msg,
             "37: " + msg,
-            "38: " + msg,
-            "39: " + msg,
+            "46: " + msg,
+            "47: " + msg,
             "48: " + msg,
             "49: " + msg,
             "50: " + msg,
-            "51: " + msg,
-            "52: " + msg,
         };
 
         final Configuration checkConfig = getModuleConfig("NonEmptyAtclauseDescription");

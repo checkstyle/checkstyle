@@ -45,7 +45,6 @@ public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck {
     public int[] getDefaultJavadocTokens() {
         return new int[] {
             JavadocTokenTypes.PARAM_LITERAL,
-            JavadocTokenTypes.RETURN_LITERAL,
             JavadocTokenTypes.THROWS_LITERAL,
             JavadocTokenTypes.EXCEPTION_LITERAL,
             JavadocTokenTypes.DEPRECATED_LITERAL,

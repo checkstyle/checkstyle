@@ -7,7 +7,6 @@ class InputNonEmptyAtclauseDescriptionCheck
 	 * @param a Some javadoc
 	 * @param b Some javadoc
 	 * @param c Some javadoc
-	 * @return Some javadoc
 	 * @throws Exception Some javadoc
 	 * @deprecated Some javadoc
 	 */
@@ -21,7 +20,6 @@ class InputNonEmptyAtclauseDescriptionCheck
 	 * @param a Some javadoc
 	 * @param b Some javadoc
 	 * @param c Some javadoc
-	 * @return Some javadoc
 	 * @throws Exception Some javadoc
 	 */
 	public int foo2(String a, int b, double c) throws Exception
