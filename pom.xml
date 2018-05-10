@@ -1250,6 +1250,7 @@
               <validating>true</validating>
               <dir>src/site/resources/files</dir>
             </validationSet>
+            <!-- disabled till https://github.com/checkstyle/checkstyle/issues/5785
             <validationSet>
               <validating>true</validating>
               <dir>src/site</dir>
@@ -1257,7 +1258,7 @@
                 <include>site.xml</include>
               </includes>
               <systemId>http://maven.apache.org/xsd/decoration-1.0.0.xsd</systemId>
-            </validationSet>
+            </validationSet>-->
             <validationSet>
               <validating>true</validating>
               <dir>src/test/resources</dir>
