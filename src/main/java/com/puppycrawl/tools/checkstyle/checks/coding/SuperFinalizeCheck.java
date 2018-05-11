@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
  * </p>
  * <p>
  * Reference:<a
- * href="http://javarevisited.blogspot.com/2012/03/finalize-method-in-java-tutorial.html">
+ * href="https://javarevisited.blogspot.com/2012/03/finalize-method-in-java-tutorial.html">
  * 10 points on finalize method in Java</a>.
  * </p>
  * <p>
