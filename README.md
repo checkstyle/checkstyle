@@ -7,6 +7,8 @@
 [![][shippable img]][shippable]
 [![][buddy img]][buddy]
 [![][coverage img]][coverage]
+[![][snyk img]][snyk]
+
 
 [![][mavenbadge img]][mavenbadge]
 [![][sonar img]][sonar]
@@ -116,3 +118,8 @@ directory.
 [buddy]: https://app.buddy.works/ivanovjr/checkstyle/pipelines/pipeline/135806
 [buddy img]: https://app.buddy.works/ivanovjr/checkstyle/pipelines/pipeline/135806/badge.svg?token=240176b1ce495d0a03a141f3f2f77971f43fe892a98de31cbc0e392ce5341f76 "buddy pipeline"
 
+[snyk]: https://snyk.io/test/github/checkstyle/checkstyle:pom.xml?targetFile=pom.xml
+[snyk img]: https://snyk.io/test/github/checkstyle/checkstyle/badge.svg
+
+
+              
