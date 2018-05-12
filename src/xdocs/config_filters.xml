@@ -775,7 +775,7 @@ public class UserService {
               Tells what to do when the file is not existing. If
               optional is set to false the file must exist, or else
               it ends with error. On the other hand if optional is
-              true and file is not found, the filter accept all
+              true and file is not found, the filter accepts all
               audit events.
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
