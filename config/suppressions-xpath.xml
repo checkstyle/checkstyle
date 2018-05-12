@@ -8,7 +8,8 @@
     <!-- Tone down the checking for test code -->
     <suppress-xpath checks="NPathComplexity"
                     query="/CLASS_DEF[@text='XdocsPagesTest']
-                    //METHOD_DEF[@text='validateCheckSection' or @text='getModulePropertyExpectedValue']"/>
+                    //METHOD_DEF[@text='validateCheckSection'
+                                  or @text='getModulePropertyExpectedValue']"/>
 
     <suppress-xpath checks="CyclomaticComplexity"
                     query="/CLASS_DEF[@text='XdocsPagesTest']//METHOD_DEF"/>

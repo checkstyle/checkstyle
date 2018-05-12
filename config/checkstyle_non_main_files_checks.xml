@@ -5,13 +5,14 @@
 
 <module name="Checker">
     <property name="charset" value="UTF-8"/>
-    
+
     <!-- Hard coded until https://issues.apache.org/jira/browse/MCHECKSTYLE-332 is released. -->
     <property name="cacheFile" value="target/cache_non_main_files"/>
 
     <!-- Suppressions for resources -->
     <module name="SuppressionFilter">
-        <property name="file" value="${project.basedir}/config/checkstyle_non_main_files_suppressions.xml"/>
+        <property name="file"
+                  value="${project.basedir}/config/checkstyle_non_main_files_suppressions.xml"/>
     </module>
     <!-- Miscellaneous -->
     <module name="NewlineAtEndOfFile" />

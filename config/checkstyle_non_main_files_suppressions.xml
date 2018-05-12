@@ -5,28 +5,36 @@
     "http://checkstyle.sourceforge.net/dtds/suppressions_1_1.dtd">
 
 <suppressions>
-    
+
     <!-- Input files for NewlineAtEndOfFileCheckTest, intentional no new line at the end. -->
     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]InputNewlineAtEndOfFile.*\.java"/>
 
     <!-- Intentional no new line at the end. -->
-     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]comments[\\/]InputFullOfSinglelineComments\.java"/>
-     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfSinglelineComments\.java"/>
+     <suppress checks="NewlineAtEndOfFile"
+               files="[\\/]test[\\/].*[\\/]grammars[\\/]comments[\\/]InputFullOfSinglelineComments\.java"/>
+     <suppress checks="NewlineAtEndOfFile"
+               files="[\\/]test[\\/].*[\\/]asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfSinglelineComments\.java"/>
 
     <!-- Grammar specific input file, should have exact structure to reproduce the case. -->
-     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]InputEmbeddedNullChar\.java"/>
+     <suppress checks="NewlineAtEndOfFile"
+               files="[\\/]test[\\/].*[\\/]grammars[\\/]InputEmbeddedNullChar\.java"/>
 
     <!-- Javadoc files should not have new line by design (on purpose). -->
      <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*\.javadoc"/>
 
     <!--Empty file cannot have any new line at the end. -->
-    <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]checks[\\/]newlineatendoffile[\\/]InputNewlineAtEndOfFileEmptyFile\.txt"/>
-    <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]InputRegressionEmptyAst\.txt"/>
+    <suppress checks="NewlineAtEndOfFile"
+              files="[\\/]test[\\/].*[\\/]checks[\\/]newlineatendoffile[\\/]InputNewlineAtEndOfFileEmptyFile\.txt"/>
+    <suppress checks="NewlineAtEndOfFile"
+              files="[\\/]test[\\/].*[\\/]grammars[\\/]InputRegressionEmptyAst\.txt"/>
 
     <!-- File with CR line separators used for testing -->
-    <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfBlockCommentsCR\.java"/>
-    <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]InputAstRegressionNewlineCrAtEndOfFile\.java"/>
+    <suppress checks="NewlineAtEndOfFile"
+              files="[\\/]test[\\/].*[\\/]asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfBlockCommentsCR\.java"/>
+    <suppress checks="NewlineAtEndOfFile"
+              files="[\\/]test[\\/].*[\\/]grammars[\\/]InputAstRegressionNewlineCrAtEndOfFile\.java"/>
 
     <!-- For the testing purposes -->
-    <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]checks[\\/]uniqueproperties[\\/]InputUniquePropertiesWithDuplicates\.properties"/>
+    <suppress checks="NewlineAtEndOfFile"
+              files="[\\/]test[\\/].*[\\/]checks[\\/]uniqueproperties[\\/]InputUniquePropertiesWithDuplicates\.properties"/>
 </suppressions>
