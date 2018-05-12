@@ -29,8 +29,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
- * Checks the placement of left curly braces on types, methods and
- * other blocks:
+ * Checks the placement of left curly braces.
+ * The policy to verify is specified using the {@link LeftCurlyOption} class
+ * and the default one being {@link LeftCurlyOption#EOL}.
+ * </p>
+ * <p>
+ * By default the following tokens are checked:
  *  {@link TokenTypes#LITERAL_CATCH LITERAL_CATCH},  {@link
  * TokenTypes#LITERAL_DO LITERAL_DO},  {@link TokenTypes#LITERAL_ELSE
  * LITERAL_ELSE},  {@link TokenTypes#LITERAL_FINALLY LITERAL_FINALLY},  {@link
@@ -38,8 +42,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * LITERAL_IF},  {@link TokenTypes#LITERAL_SWITCH LITERAL_SWITCH},  {@link
  * TokenTypes#LITERAL_SYNCHRONIZED LITERAL_SYNCHRONIZED},  {@link
  * TokenTypes#LITERAL_TRY LITERAL_TRY},  {@link TokenTypes#LITERAL_WHILE
- * LITERAL_WHILE},  {@link TokenTypes#STATIC_INIT STATIC_INIT},
- * {@link TokenTypes#LAMBDA LAMBDA}.
+ * LITERAL_WHILE},  {@link TokenTypes#STATIC_INIT STATIC_INIT}, {@link
+ * TokenTypes#LITERAL_CASE LITERAL_CASE}, {@link TokenTypes#LITERAL_DEFAULT
+ * LITERAL_DEFAULT}, {@link TokenTypes#LAMBDA LAMBDA}.
  * </p>
  *
  * <p>
@@ -142,6 +147,8 @@ public class LeftCurlyCheck
             TokenTypes.LITERAL_WHILE,
             TokenTypes.LITERAL_TRY,
             TokenTypes.LITERAL_CATCH,
+            TokenTypes.LITERAL_CASE,
+            TokenTypes.LITERAL_DEFAULT,
             TokenTypes.LITERAL_FINALLY,
             TokenTypes.LITERAL_SYNCHRONIZED,
             TokenTypes.LITERAL_SWITCH,
@@ -163,7 +170,7 @@ public class LeftCurlyCheck
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST startToken;
-        DetailAST brace;
+        final DetailAST brace;
 
         switch (ast.getType()) {
             case TokenTypes.CTOR_DEF:
@@ -177,12 +184,12 @@ public class LeftCurlyCheck
             case TokenTypes.ENUM_DEF:
             case TokenTypes.ENUM_CONSTANT_DEF:
                 startToken = skipAnnotationOnlyLines(ast);
-                final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
-                brace = objBlock;
-
-                if (objBlock != null) {
-                    brace = objBlock.getFirstChild();
-                }
+                brace = findBraceForTypeDefinition(ast);
+                break;
+            case TokenTypes.LITERAL_CASE:
+            case TokenTypes.LITERAL_DEFAULT:
+                startToken = ast;
+                brace = findBraceForCaseGroup(ast);
                 break;
             case TokenTypes.LITERAL_WHILE:
             case TokenTypes.LITERAL_CATCH:
@@ -199,12 +206,7 @@ public class LeftCurlyCheck
                 break;
             case TokenTypes.LITERAL_ELSE:
                 startToken = ast;
-                final DetailAST candidate = ast.getFirstChild();
-                brace = null;
-
-                if (candidate.getType() == TokenTypes.SLIST) {
-                    brace = candidate;
-                }
+                brace = findBraceForElse(ast);
                 break;
             default:
                 // ATTENTION! We have default here, but we expect case TokenTypes.METHOD_DEF,
@@ -290,6 +292,53 @@ public class LeftCurlyCheck
             annotation = annotation.getNextSibling();
         }
         return annotation;
+    }
+
+    /**
+     * Find brace, considering rules for {@code TokenTypes.LITERAL_ELSE}.
+     * @param ast {@code DetailAST}.
+     * @return {@code DetailAST} brace itself or null if it is not found.
+     */
+    private static DetailAST findBraceForElse(DetailAST ast) {
+        final DetailAST candidate = ast.getFirstChild();
+        DetailAST foundBrace = null;
+
+        if (candidate.getType() == TokenTypes.SLIST) {
+            foundBrace = candidate;
+        }
+        return foundBrace;
+    }
+
+    /**
+     * Find brace, considering rules for
+     * {@code TokenTypes.INTERFACE_DEF}, {@code TokenTypes.CLASS_DEF},
+     * {@code TokenTypes.ANNOTATION_DEF}, {@code TokenTypes.ENUM_DEF},
+     * {@code TokenTypes.ENUM_CONSTANT_DEF}.
+     * @param ast {@code DetailAST}.
+     * @return {@code DetailAST} brace itself or null if it is not found.
+     */
+    private static DetailAST findBraceForTypeDefinition(DetailAST ast) {
+        final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
+        DetailAST brace = objBlock;
+
+        if (objBlock != null) {
+            brace = objBlock.getFirstChild();
+        }
+        return brace;
+    }
+
+    /**
+     * Find brace, considering rules for {@code TokenTypes.LITERAL_CASE},
+     * {@code TokenTypes.LITERAL_DEFAULT}.
+     * @param ast {@code DetailAST}.
+     * @return {@code DetailAST} brace itself or null if it is not found.
+     */
+    private static DetailAST findBraceForCaseGroup(DetailAST ast) {
+        DetailAST brace = null;
+        if (ast.getNextSibling() != null) {
+            brace = ast.getNextSibling().findFirstToken(TokenTypes.SLIST);
+        }
+        return brace;
     }
 
     /**
