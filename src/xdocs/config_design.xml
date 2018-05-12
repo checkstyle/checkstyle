@@ -52,7 +52,7 @@
          overridden in its subclass.
         </p>
          <p>
-          Problem is described at "Effective Java, 2nd Edition by Josh Bloch" book, chapter
+          Problem is described at "Effective Java, 2nd Edition by Joshua Bloch" book, chapter
           "Item 17: Design and document for inheritance or else prohibit it".
         </p>
         <p>
