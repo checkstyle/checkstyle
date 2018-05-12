@@ -70,7 +70,8 @@
           <exclude name=".classpath"/>
           <exclude name=".project"/>
 
-          <!-- m2e-code-quality Eclipse IDE plugin temporary configuration files for Eclipse CS Checkstyle / PMD / SpotBugs Plug-Ins -->
+          <!-- m2e-code-quality Eclipse IDE plugin temporary configuration files
+               for Eclipse CS Checkstyle / PMD / SpotBugs Plug-Ins -->
           <exclude name=".checkstyle/**/*"/>
           <exclude name=".pmd/**/*"/>
           <exclude name=".pmdruleset.xml"/>

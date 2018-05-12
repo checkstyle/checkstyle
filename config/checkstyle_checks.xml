@@ -88,7 +88,8 @@
   <module name="RegexpSingleline">
       <property name="format" value="/\*\* +\p{javaLowerCase}"/>
       <property name="fileExtensions" value="java"/>
-      <property name="message" value="First sentence in a comment should start with a capital letter"/>
+      <property name="message"
+                value="First sentence in a comment should start with a capital letter"/>
   </module>
   <module name="RegexpSingleline">
     <property name="format" value="^(?!(.*http|import)).{101,}$"/>
@@ -105,19 +106,22 @@
       <property name="folderPattern" value="[\\/]src[\\/]\w+[\\/]java[\\/]"/>
       <property name="fileNamePattern" value="\.java$"/>
       <property name="match" value="false"/>
-      <message key="regexp.filepath.mismatch" value="Only java files should be located in the ''src/*/java'' folders."/>
+      <message key="regexp.filepath.mismatch"
+               value="Only java files should be located in the ''src/*/java'' folders."/>
   </module>
   <module name="RegexpOnFilename">
       <property name="folderPattern" value="[\\/]src[\\/]xdocs[\\/]"/>
       <property name="fileNamePattern" value="\.(xml)|(vm)$"/>
       <property name="match" value="false"/>
-      <message key="regexp.filepath.mismatch" value="All files in the ''src/xdocs'' folder should have the ''xml'' or ''vm'' extension."/>
+      <message key="regexp.filepath.mismatch"
+               value="All files in the ''src/xdocs'' folder should have the ''xml'' or ''vm'' extension."/>
   </module>
   <module name="RegexpOnFilename">
       <property name="folderPattern" value="[\\/]src[\\/]it[\\/]java[\\/]"/>
       <property name="fileNamePattern" value="^((\w+Test)|(Abstract\w+))\.java$"/>
       <property name="match" value="false"/>
-      <message key="regexp.filepath.mismatch" value="All files in the ''src/it/java'' folder should be named ''*Test.java'' or ''Abstract*.java''."/>
+      <message key="regexp.filepath.mismatch"
+               value="All files in the ''src/it/java'' folder should be named ''*Test.java'' or ''Abstract*.java''."/>
   </module>
 
   <!-- Size Violations -->
@@ -227,7 +231,8 @@
 
     <!-- Class Design -->
     <module name="DesignForExtension">
-      <property name="ignoredAnnotations" value="Override, Test, Before, After, BeforeClass, AfterClass"/>
+      <property name="ignoredAnnotations"
+                value="Override, Test, Before, After, BeforeClass, AfterClass"/>
     </module>
     <module name="FinalClass"/>
     <module name="HideUtilityClassConstructor"/>
@@ -258,7 +263,8 @@
         <property name="setterCanReturnItsClass" value="true"/>
     </module>
     <module name="IllegalCatch">
-        <property name="illegalClassNames" value="java.lang.Exception, java.lang.Throwable, java.lang.RuntimeException, java.lang.NullPointerException"/>
+        <property name="illegalClassNames"
+                  value="java.lang.Exception, java.lang.Throwable, java.lang.RuntimeException, java.lang.NullPointerException"/>
     </module>
     <module name="IllegalInstantiation">
         <property name="classes" value="org.xml.sax.SAXException, org.xml.sax.SAXParseException, org.apache.commons.beanutils.ConversionException,
@@ -339,7 +345,8 @@
     <module name="AvoidStarImport"/>
     <module name="AvoidStaticImport"/>
     <module name="CustomImportOrder">
-      <property name="customImportOrderRules" value="STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS"/>
+      <property name="customImportOrderRules"
+                value="STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS"/>
       <property name="specialImportsRegExp" value="^org\."/>
       <property name="sortImportsInGroupAlphabetically" value="true"/>
       <property name="separateLineBetweenGroups" value="true"/>

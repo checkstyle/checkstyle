@@ -5,7 +5,8 @@
   <target name="execute">
     <propertyfile file="${mvn.project.build.outputDirectory}/checkstylecompilation.properties">
       <entry key="checkstyle.compile.version" value="${mvn.project.version}"/>
-      <entry key="checkstyle.compile.timestamp" type="date" value="now" pattern="E MMMM dd yyyy, HH:mm z"/>
+      <entry key="checkstyle.compile.timestamp" type="date"
+             value="now" pattern="E MMMM dd yyyy, HH:mm z"/>
     </propertyfile>
   </target>
 </project>

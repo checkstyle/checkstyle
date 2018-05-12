@@ -2,7 +2,8 @@
 <!--
 Meaningful description of rules can be obtained using this page -
 https://www.sonarsource.com/products/codeanalyzers/sonarjava/rules.html#RSPEC-3776
-e.g. - provided link corresponds to rule S3776 (add to the end of the URL the <key> value without 'S').
+e.g. - provided link corresponds to rule S3776
+(add to the end of the URL the <key> value without 'S').
 -->
 <profile>
     <name>checkstyle-profile</name>
