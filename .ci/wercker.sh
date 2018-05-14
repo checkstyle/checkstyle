@@ -94,6 +94,17 @@ no-error-sevntu-checks)
   rm -rf sevntu.checkstyle
   ;;
 
+no-error-strata)
+  set -e
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  echo CS_version: ${CS_POM_VERSION}
+  for i in 1 2 3 4 5; do git clone https://github.com/OpenGamma/Strata && break || sleep 15; done
+  cd Strata
+  mvn install -e -B -Dstrict -DskipTests -Dforbiddenapis.skip=true -Dcheckstyle.version=${CS_POM_VERSION}
+  cd ../
+  rm -rf Strata
+  ;;
+
 no-exception-struts)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
