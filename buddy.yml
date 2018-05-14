@@ -2,7 +2,6 @@
   trigger_mode: "ON_EVERY_PUSH"
   ref_name: "master"
   ref_type: "BRANCH"
-  clone_depth: 1
   actions:
   - action: "Execute: ./.ci/travis/travis.sh versions"
     type: "BUILD"
@@ -21,7 +20,6 @@
   trigger_mode: "ON_EVERY_PUSH"
   ref_name: "master"
   ref_type: "BRANCH"
-  clone_depth: 1
   actions:
   - action: "Execute: ./.ci/travis/travis.sh releasenotes-gen"
     type: "BUILD"
@@ -41,7 +39,6 @@
 #   trigger_mode: "ON_EVERY_PUSH"
 #   ref_name: "master"
 #   ref_type: "BRANCH"
-#   clone_depth: 1
 #   actions:
 #   - action: "Execute: ./.ci/travis/travis.sh check-chmod"
 #     type: "BUILD"
@@ -62,7 +59,6 @@
 #   trigger_mode: "ON_EVERY_PUSH"
 #   ref_name: "master"
 #   ref_type: "BRANCH"
-#   clone_depth: 1
 #   actions:
 #   - action: "Execute: ./.ci/test-spelling-unknown-words.sh"
 #     type: "BUILD"
