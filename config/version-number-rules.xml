@@ -2,7 +2,8 @@
 <ruleset xmlns="http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          comparisonMethod="maven"
-         xsi:schemaLocation="http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0 https://mojo.codehaus.org/versions-maven-plugin/xsd/rule-2.0.0.xsd">
+         xsi:schemaLocation="http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0
+                             https://mojo.codehaus.org/versions-maven-plugin/xsd/rule-2.0.0.xsd">
 
     <ignoreVersions>
         <ignoreVersion type="regex">
