@@ -105,6 +105,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                         // suppression list
                         || !"AbbreviationAsWordInName".equals(sectionName)
                                 && !"AbstractClassName".equals(sectionName)
+                                && !"CatchParameterName".equals(sectionName)
                 ) {
                     continue;
                 }
