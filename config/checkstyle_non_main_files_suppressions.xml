@@ -40,6 +40,13 @@
 
     <!-- this file is created by Appveyor CI after checkout -->
     <suppress checks="RegexpSingleline" files="appveyor.cmd"/>
+    <!-- test resources are weird by design, no validations in them -->
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]it[\\/]resources[\\/]*"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/]*"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources-noncompilable[\\/]*"/>
 
     <!-- suppressed till https://github.com/checkstyle/checkstyle/issues/5791 -->
     <suppress checks="RegexpSingleline"
@@ -111,23 +118,13 @@
     <suppress checks="RegexpSingleline"
               files="shippable.yml"/>
     <suppress checks="RegexpSingleline"
-              files="src[\\/]it[\\/]java[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule412nonemptyblocks[\\/]RightCurlyTest.java"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]it[\\/]resources[\\/]*"/>
-    <suppress checks="RegexpSingleline"
               files="src[\\/]site[\\/]site.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]test[\\/]resources[\\/]*"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]test[\\/]resources-noncompilable[\\/]*"/>
     <suppress checks="RegexpSingleline"
               files="src[\\/]xdocs[\\/]anttask.xml.vm"/>
     <suppress checks="RegexpSingleline"
               files="src[\\/]xdocs[\\/]beginning_development.xml"/>
     <suppress checks="RegexpSingleline"
               files="src[\\/]xdocs[\\/]checks.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]cmdline.xml.vm"/>
     <suppress checks="RegexpSingleline"
               files="src[\\/]xdocs[\\/]config_annotation.xml"/>
     <suppress checks="RegexpSingleline"
