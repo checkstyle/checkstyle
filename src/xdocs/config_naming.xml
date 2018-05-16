@@ -295,10 +295,13 @@
     </section>
 
     <section name="CatchParameterName">
+      <p>Since Checkstyle 6.14</p>
       <subsection name="Description">
-        <p>Since Checkstyle 6.14</p>
         <p>
-          Checks that catch parameter names conform to a format specified by the format property.
+          Checks that <code>catch</code> parameter names conform to a format specified by the
+          format property.
+        </p>
+        <p>
           Default pattern has the following characteristic:
         </p>
         <ul>
@@ -339,14 +342,14 @@
 
       <subsection name="Examples">
         <p>
-          To configure the check:
+          An example of how to configure the check is:
         </p>
         <source>
 &lt;module name=&quot;CatchParameterName&quot;/&gt;
         </source>
         <p>
           An example of how to configure the check for names that begin with
-          a lower case letter, followed by letters and digits is:
+          a lower case letter, followed by any letters or digits is:
         </p>
         <source>
 &lt;module name="CatchParameterName"&gt;

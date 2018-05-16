@@ -101,8 +101,8 @@
       </tr>
       <tr>
         <td><a href="config_naming.html#CatchParameterName">CatchParameterName</a></td>
-        <td>Checks that catch parameter names conform to a format specified by the format
-            property.</td>
+        <td>Checks that <code>catch</code> parameter names conform to a format specified by the
+            format property.</td>
       </tr>
       <tr>
         <td><a href="config_metrics.html#ClassDataAbstractionCoupling">ClassDataAbstractionCoupling</a></td>
