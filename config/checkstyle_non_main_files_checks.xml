@@ -16,4 +16,9 @@
     </module>
     <!-- Miscellaneous -->
     <module name="NewlineAtEndOfFile" />
+    <module name="RegexpSingleline">
+      <!-- catch lines above 100 symbols -->
+      <property name="format" value="^.{101,}$"/>
+      <property name="message" value="Line should be less than 100 symbols"/>
+    </module>
 </module>
