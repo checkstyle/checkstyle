@@ -38,6 +38,9 @@
     <suppress checks="NewlineAtEndOfFile"
               files="[\\/]test[\\/].*[\\/]checks[\\/]uniqueproperties[\\/]InputUniquePropertiesWithDuplicates\.properties"/>
 
+    <!-- this file is created by Appveyor CI after checkout -->
+    <suppress checks="RegexpSingleline" files="appveyor.cmd"/>
+
     <!-- suppressed till https://github.com/checkstyle/checkstyle/issues/5791 -->
     <suppress checks="RegexpSingleline"
               files="appveyor.yml"/>
