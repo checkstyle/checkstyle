@@ -160,7 +160,7 @@ matrix:
     - os: osx
       env:
         - DESC="MacOS verify, site, assembly"
-        - CMD="./.ci/travis/travis.sh travis-osx"
+        - CMD="export JAVA_HOME=$(/usr/libexec/java_home) && ./.ci/travis/travis.sh travis-osx"
 
     # https://sonarcloud.io (oraclejdk8)
     - jdk: oraclejdk8

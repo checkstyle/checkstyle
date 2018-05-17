@@ -55,7 +55,6 @@ test-tr)
   ;;
 
 travis-osx)
-  export JAVA_HOME=$(/usr/libexec/java_home)
   mvn -e package -Dlinkcheck.skip=true
   mvn -e package -Passembly
   ;;
