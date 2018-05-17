@@ -112,15 +112,7 @@
     <suppress checks="RegexpSingleline"
               files="distelli-manifest.yml"/>
     <suppress checks="RegexpSingleline"
-              files=".github[\\/]ISSUE_TEMPLATE.md"/>
-    <suppress checks="RegexpSingleline"
-              files=".github[\\/]PULL_REQUEST_TEMPLATE.md"/>
-    <suppress checks="RegexpSingleline"
               files="pom.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="README.md"/>
-    <suppress checks="RegexpSingleline"
-              files="release.sh"/>
     <suppress checks="RegexpSingleline"
               files="shippable.yml"/>
     <suppress checks="RegexpSingleline"
