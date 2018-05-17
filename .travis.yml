@@ -114,7 +114,7 @@ matrix:
     - jdk: oraclejdk8
       env:
         - DESC="tests ja"
-        - CMD="./.ci/travis/travis.sh test-ja"
+        - CMD="./.ci/travis/travis.sh test-jp"
     # unit tests in Portuguese locale (oraclejdk8)
     - jdk: oraclejdk8
       env:

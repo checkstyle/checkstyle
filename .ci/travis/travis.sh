@@ -56,7 +56,8 @@ test-tr)
 
 travis-osx)
   export JAVA_HOME=$(/usr/libexec/java_home)
-  mvn -e package -Dlinkcheck.skip=true && mvn -e package -Passembly
+  mvn -e package -Dlinkcheck.skip=true
+  mvn -e package -Passembly
   ;;
 
 site)
@@ -185,7 +186,7 @@ no-exception-test-checkstyle-sevntu-checkstyle)
   ;;
 
 no-exception-test-guava)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}'\
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: $CS_POM_VERSION
   git clone https://github.com/checkstyle/contribution
@@ -201,7 +202,7 @@ no-exception-test-guava)
   ;;
 
 no-exception-test-guava-with-google-checks)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}'
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: $CS_POM_VERSION
   git clone https://github.com/checkstyle/contribution
