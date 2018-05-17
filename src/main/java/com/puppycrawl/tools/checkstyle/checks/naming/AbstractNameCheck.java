@@ -73,8 +73,7 @@ public abstract class AbstractNameCheck
         if (mustCheckName(ast)) {
             final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
             if (!format.matcher(nameAST.getText()).find()) {
-                log(nameAST.getLineNo(),
-                    nameAST.getColumnNo(),
+                log(nameAST,
                     MSG_INVALID_PATTERN,
                     nameAST.getText(),
                     format.pattern());

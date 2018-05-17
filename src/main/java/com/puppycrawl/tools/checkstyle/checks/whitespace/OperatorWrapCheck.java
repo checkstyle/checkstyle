@@ -217,11 +217,11 @@ public class OperatorWrapCheck
             if (option == WrapOption.NL
                     && !text.equals(currentLine.trim())
                     && CommonUtils.isBlank(currentLine.substring(colNo + text.length()))) {
-                log(lineNo, colNo, MSG_LINE_NEW, text);
+                log(ast, MSG_LINE_NEW, text);
             }
             else if (option == WrapOption.EOL
                     && CommonUtils.hasWhitespaceBefore(colNo - 1, currentLine)) {
-                log(lineNo, colNo, MSG_LINE_PREVIOUS, text);
+                log(ast, MSG_LINE_PREVIOUS, text);
             }
         }
     }
