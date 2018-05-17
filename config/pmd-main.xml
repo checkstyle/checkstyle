@@ -14,7 +14,9 @@
     <rule ref="category/java/design.xml/CollapsibleIfStatements">
         <properties>
             <!-- Till https://github.com/hcoles/pitest/issues/377 -->
-            <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main']//MethodDeclaration[@Name='main']"/>
+            <property name="violationSuppressXPath"
+                      value="//ClassOrInterfaceDeclaration[@Image='Main']
+                                 //MethodDeclaration[@Name='main']"/>
         </properties>
     </rule>
 

@@ -26,7 +26,9 @@
     <properties>
       <!-- The PMD check accepts only a string constant as the assert message.
            This check uses a method call. -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocCatchCheck']//MethodDeclaration[@Name='visitJavadocToken']"/>
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@Image='JavadocCatchCheck']
+                           //MethodDeclaration[@Name='visitJavadocToken']"/>
     </properties>
   </rule>
   <rule ref="category/java/bestpractices.xml/SystemPrintln">
@@ -37,7 +39,8 @@
   </rule>
 
   <rule ref="category/java/documentation.xml">
-    <!-- We use class comments as source for xdoc files, so content is big and that is by design. -->
+    <!-- We use class comments as source for xdoc files,
+         so content is big and that is by design. -->
     <exclude name="CommentSize"/>
   </rule>
   <rule ref="category/java/documentation.xml/CommentRequired">
@@ -46,8 +49,10 @@
            RequireThisCheck$AbstractFrame is a private class, no comment is required.
            Main.runCli has a false positive for an anonymous class.
       -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypes']
-      | //ClassOrInterfaceDeclaration[@Image='RequireThisCheck']//ClassOrInterfaceDeclaration[@Image='AbstractFrame']
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypes']
+      | //ClassOrInterfaceDeclaration[@Image='RequireThisCheck']
+      | //ClassOrInterfaceDeclaration[@Image='AbstractFrame']
       | //ClassOrInterfaceDeclaration[@Image='Main']//MethodDeclaration[@Name='runCli']"/>
     </properties>
   </rule>
@@ -79,23 +84,32 @@
   <rule ref="category/java/codestyle.xml/AbstractNaming">
     <properties>
      <!-- We can not brake compatibility with previous versions. -->
-     <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AbstractClassNameCheck' or @Image='AutomaticBean']"/>
+     <property name="violationSuppressXPath"
+               value="//ClassOrInterfaceDeclaration
+                          [@Image='AbstractClassNameCheck' or @Image='AutomaticBean']"/>
     </properties>
   </rule>
   <rule ref="category/java/codestyle.xml/ConfusingTernary">
     <properties>
       <!-- False positives on IF_ELSE-IF-ELSE-IF. -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='XMLLogger']//MethodDeclarator[@Image='isReference']
-      | //ClassOrInterfaceDeclaration[@Image='DetailAST']//MethodDeclarator[@Image='addPreviousSibling']
-      | //ClassOrInterfaceDeclaration[@Image='AnnotationLocationCheck']//MethodDeclarator[@Image='checkAnnotations']
-      | //ClassOrInterfaceDeclaration[@Image='AbstractImportControl']//MethodDeclarator[@Image='checkAccess']
-      | //ClassOrInterfaceDeclaration[@Image='HandlerFactory']//MethodDeclarator[@Image='getHandler']"/>
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@Image='XMLLogger']
+                           //MethodDeclarator[@Image='isReference']
+      | //ClassOrInterfaceDeclaration[@Image='DetailAST']
+              //MethodDeclarator[@Image='addPreviousSibling']
+      | //ClassOrInterfaceDeclaration[@Image='AnnotationLocationCheck']
+              //MethodDeclarator[@Image='checkAnnotations']
+      | //ClassOrInterfaceDeclaration[@Image='AbstractImportControl']
+              //MethodDeclarator[@Image='checkAccess']
+      | //ClassOrInterfaceDeclaration[@Image='HandlerFactory']
+              //MethodDeclarator[@Image='getHandler']"/>
     </properties>
   </rule>
   <rule ref="category/java/codestyle.xml/EmptyMethodInAbstractClassShouldBeAbstract">
     <properties>
       <!-- Can not change the API. -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AbstractFileSetCheck'
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@Image='AbstractFileSetCheck'
         or @Image='AbstractCheck' or @Image='AbstractJavadocCheck' or @Image='AbstractNode'
         or @Image='AbstractViolationReporter']"/>
     </properties>
@@ -111,7 +125,8 @@
     <properties>
       <!-- Main is a good name for the class containing the main method.
            Tag as inner class name is fine. -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main' or @Image='Tag']"/>
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@Image='Main' or @Image='Tag']"/>
     </properties>
   </rule>
   <rule ref="category/java/errorprone.xml">
@@ -171,7 +186,9 @@
     <properties>
       <!-- There is no other way to deliver the filename that was under processing.
            See https://github.com/checkstyle/checkstyle/issues/2285 -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Checker']//MethodDeclaration[@Name='processFiles']"/>
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@Image='Checker']
+                             //MethodDeclaration[@Name='processFiles']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/AvoidDeeplyNestedIfStmts">
@@ -179,20 +196,25 @@
       <!-- The default is 3 but we try to use single point of exit from the method and that require
            some extra IFs. -->
       <property name="problemDepth" value="4"/>
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='ClassResolver']//MethodDeclarator[@Image='resolve']"/>
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@Image='ClassResolver']
+                             //MethodDeclarator[@Image='resolve']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/AvoidThrowingRawExceptionTypes">
     <properties>
       <!-- There is no other way to deliver the filename that was under processing.
            See https://github.com/checkstyle/checkstyle/issues/2285 -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Checker']//MethodDeclaration[@Name='processFiles']"/>
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@Image='Checker']
+                             //MethodDeclaration[@Name='processFiles']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/CouplingBetweenObjects">
     <properties>
       <!-- I do not see any problem, looks like a false positive. -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='HandlerFactory']"/>
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@Image='HandlerFactory']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/NcssCount">
@@ -212,11 +234,14 @@
         or @Image='JavadocMethodCheck' or @Image='HandlerFactory']
       | //ClassOrInterfaceDeclaration[@Image='XMLLogger']//MethodDeclaration[@Name='encode']
       | //ClassOrInterfaceDeclaration[@Image='LeftCurlyCheck' or @Image='FinalLocalVariableCheck'
-        or @Image='ImportOrderCheck' or @Image='NPathComplexityCheck']//MethodDeclaration[@Name='visitToken']
-      | //ClassOrInterfaceDeclaration[@Image='FallThroughCheck']//MethodDeclaration[@Name='isTerminated']
+        or @Image='ImportOrderCheck' or @Image='NPathComplexityCheck']
+             //MethodDeclaration[@Name='visitToken']
+      | //ClassOrInterfaceDeclaration[@Image='FallThroughCheck']
+             //MethodDeclaration[@Name='isTerminated']
       | //ClassOrInterfaceDeclaration[@Image='ModifiedControlVariableCheck'
         or @Image='NPathComplexityCheck']//MethodDeclaration[@Name='leaveToken']
-      | //ClassOrInterfaceDeclaration[@Image='NoWhitespaceAfterCheck']//MethodDeclaration[@Name='getArrayDeclaratorPreviousElement']
+      | //ClassOrInterfaceDeclaration[@Image='NoWhitespaceAfterCheck']
+             //MethodDeclaration[@Name='getArrayDeclaratorPreviousElement']
       | //ClassOrInterfaceDeclaration[@Image='ElementNode']//MethodDeclaration[@Name='iterateAxis']
       "/>
     </properties>
@@ -240,16 +265,22 @@
              validated by checkstyle version of Npath, we think that pmd is wrong here.
            Checker.processFiles is validated by checkstyle version of Npath, we think that pmd is
              wrong here. -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='RequireThisCheck'
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@Image='RequireThisCheck'
       or @Image='VariableDeclarationUsageDistanceCheck' or @Image='XdocsPagesTest'
       or @Image='JavadocMethodCheck' or @Image='CommentsIndentationCheck']
     | //ClassOrInterfaceDeclaration[@Image='Main']//MethodDeclaration[@Name='validateCli']
     | //ClassOrInterfaceDeclaration[@Image='Checker']//MethodDeclaration[@Name='processFiles']
-    | //ClassOrInterfaceDeclaration[@Image='FallThroughCheck']//MethodDeclaration[@Name='isTerminated']
-    | //ClassOrInterfaceDeclaration[@Image='SuppressWarningsHolder']//MethodDeclaration[@Name='getAcceptableParent']
-    | //ClassOrInterfaceDeclaration[@Image='CustomImportOrderCheck']//MethodDeclaration[@Name='finishImportList' or @Name='getImportGroup']
-    | //ClassOrInterfaceDeclaration[@Image='JavadocStyleCheck']//MethodDeclaration[@Name='checkHtmlTags']
-    | //ClassOrInterfaceDeclaration[@Image='ElementNode' or @Image='RootNode']//MethodDeclaration[@Name='iterateAxis']
+    | //ClassOrInterfaceDeclaration[@Image='FallThroughCheck']
+          //MethodDeclaration[@Name='isTerminated']
+    | //ClassOrInterfaceDeclaration[@Image='SuppressWarningsHolder']
+          //MethodDeclaration[@Name='getAcceptableParent']
+    | //ClassOrInterfaceDeclaration[@Image='CustomImportOrderCheck']
+          //MethodDeclaration[@Name='finishImportList' or @Name='getImportGroup']
+    | //ClassOrInterfaceDeclaration[@Image='JavadocStyleCheck']
+          //MethodDeclaration[@Name='checkHtmlTags']
+    | //ClassOrInterfaceDeclaration[@Image='ElementNode' or @Image='RootNode']
+          //MethodDeclaration[@Name='iterateAxis']
     | //ClassOrInterfaceDeclaration[@Image='NPathComplexityCheck'
       or @Image='EmptyLineSeparatorCheck' or @Image='LeftCurlyCheck' or @Image='ImportOrderCheck'
       or @Image='DeclarationOrderCheck' or @Image='MissingOverrideCheck'
@@ -262,7 +293,8 @@
   <rule ref="category/java/design.xml/TooManyFields">
     <properties>
       <!-- Unable to split fields out of the class. -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Checker']"/>
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@Image='Checker']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/TooManyMethods">
@@ -271,7 +303,8 @@
       <!-- Reducing the number of methods in RequireThisCheck requires making an excessive hierarchy
              or duplicating the code, or making existing methods too complex.
            The class PackageObjectFactory has many boilerplate methods. -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='RequireThisCheck'
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@Image='RequireThisCheck'
         or @Image='PackageObjectFactory']"/>
     </properties>
   </rule>
@@ -280,14 +313,16 @@
       <!-- *TokenTypes are special classes that are big due to a lot of description comments.
            JavadocMethodCheck is a deprecated class, till it is redone to use JavadocAst.
            RequireThisCheck has to work with and identify many frames. -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypes'
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypes'
         or @Image='TokenTypes' or @Image='JavadocMethodCheck' or @Image='RequireThisCheck']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveParameterList">
     <properties>
       <!-- The class LocalizedMessage has a constructor with many parameters by design. -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='LocalizedMessage']"/>
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@Image='LocalizedMessage']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveImports">
@@ -308,7 +343,9 @@
     <properties>
       <!-- UniqueProperties#put overloads a synchronized method, so it should have synchronized
            modifier. -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='UniqueProperties']//MethodDeclarator[@Image='put']"/>
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@Image='UniqueProperties']
+                           //MethodDeclarator[@Image='put']"/>
     </properties>
   </rule>
 
@@ -335,7 +372,8 @@
   <rule ref="category/java/performance.xml/AvoidUsingShortType">
     <properties>
       <!-- This class uses the class java.lang.Short for properties only. -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AutomaticBean']"/>
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@Image='AutomaticBean']"/>
     </properties>
   </rule>
 
@@ -346,7 +384,7 @@
         class="net.sourceforge.pmd.lang.rule.XPathRule"
         externalInfoUrl="">
     <description>
-       Fields, local variables, or parameter names that are very short are not helpful to the reader.
+      Fields, local variables, or parameter names that are very short are not helpful to the reader.
     </description>
     <priority>3</priority>
     <properties>
@@ -355,9 +393,11 @@
           <![CDATA[
           //VariableDeclaratorId[string-length(@Image) < 2]
           [not(ancestor::ForInit)]
-          [not(../../VariableDeclarator and ../../../LocalVariableDeclaration and ../../../../ForStatement)]
+          [not(../../VariableDeclarator and ../../../LocalVariableDeclaration
+                and ../../../../ForStatement)]
           [not((ancestor::FormalParameter) and (ancestor::TryStatement))]
-          [not(ancestor::ClassOrInterfaceDeclaration[//MarkerAnnotation/Name[pmd-java:typeof(@Image, 'java.lang.Override', 'Override')]])]
+          [not(ancestor::ClassOrInterfaceDeclaration[
+              //MarkerAnnotation/Name[pmd-java:typeof(@Image, 'java.lang.Override', 'Override')]])]
           ]]>
         </value>
       </property>
