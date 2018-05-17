@@ -7,19 +7,22 @@ function checkPitestReport() {
   ignored=("$@")
   fail=0
   SEARCH_REGEXP="(span  class='survived'|class='uncovered'><pre>)"
-  grep -irE "$SEARCH_REGEXP" target/pit-reports | sed -E 's/.*\/([A-Za-z]+.java.html)/\1/' | sort > target/actual.txt
+  grep -irE "$SEARCH_REGEXP" target/pit-reports \
+     | sed -E 's/.*\/([A-Za-z]+.java.html)/\1/' | sort > target/actual.txt
   printf "%s\n" "${ignored[@]}" | sed '/^$/d' > target/ignored.txt
   if [ "$(diff --unified target/ignored.txt target/actual.txt)" != "" ] ; then
       fail=1
       echo "Actual:" ;
-      grep -irE "$SEARCH_REGEXP" target/pit-reports | sed -E 's/.*\/([A-Za-z]+.java.html)/\1/' | sort
+      grep -irE "$SEARCH_REGEXP" target/pit-reports \
+         | sed -E 's/.*\/([A-Za-z]+.java.html)/\1/' | sort
       echo "Ignore:" ;
       printf '%s\n' "${ignored[@]}"
       echo "Diff:"
       diff --unified target/ignored.txt target/actual.txt | cat
   fi;
   if [ "$fail" -ne "0" ]; then
-    echo "Difference between 'Actual' and 'Ignore' lists is detected, lists should be equal, build will be failed."
+    echo "Difference between 'Actual' and 'Ignore' lists is detected, lists should be equal."
+    echo "build will be failed."
   fi
   sleep 5s
   exit $fail
