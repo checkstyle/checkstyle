@@ -47,6 +47,12 @@
               files="src[\\/]test[\\/]resources[\\/]*"/>
     <suppress checks="RegexpSingleline"
               files="src[\\/]test[\\/]resources-noncompilable[\\/]*"/>
+    <!-- content is generated -->
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]xdocs[\\/]releasenotes_old.xml"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]xdocs[\\/]releasenotes.xml"/>
+
 
     <!-- suppressed till https://github.com/checkstyle/checkstyle/issues/5791 -->
     <suppress checks="RegexpSingleline"
@@ -118,14 +124,6 @@
     <suppress checks="RegexpSingleline"
               files="shippable.yml"/>
     <suppress checks="RegexpSingleline"
-              files="src[\\/]site[\\/]site.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]anttask.xml.vm"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]beginning_development.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]checks.xml"/>
-    <suppress checks="RegexpSingleline"
               files="src[\\/]xdocs[\\/]config_annotation.xml"/>
     <suppress checks="RegexpSingleline"
               files="src[\\/]xdocs[\\/]config_blocks.xml"/>
@@ -160,49 +158,11 @@
     <suppress checks="RegexpSingleline"
               files="src[\\/]xdocs[\\/]config_whitespace.xml"/>
     <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]config.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]consulting.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]contributing.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]eclipse.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]extending.xml"/>
-    <suppress checks="RegexpSingleline"
               files="src[\\/]xdocs[\\/]google_style.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]idea.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]index.xml.vm"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]netbeans.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]property_types.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]releasenotes_old.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]releasenotes.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]report_issue.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]running.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]sponsoring.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]style_configs.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]sun_style.xml"/>
     <suppress checks="RegexpSingleline"
               files="src[\\/]xdocs[\\/]writingchecks.xml"/>
     <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]writingfilefilters.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]writingfilters.xml"/>
-    <suppress checks="RegexpSingleline"
               files="src[\\/]xdocs[\\/]writingjavadocchecks.xml.vm"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]writinglisteners.xml.vm"/>
     <suppress checks="RegexpSingleline"
               files=".travis.yml"/>
     <suppress checks="RegexpSingleline"

@@ -6,7 +6,8 @@
 
   <head>
     <title>Coding</title>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
     <script type="text/javascript" src="js/anchors.js"/>
     <script type="text/javascript" src="js/google-analytics.js"/>
     <link rel="icon" href="images/favicon.png" type="image/x-icon" />
@@ -390,7 +391,8 @@ class Test {
 
         <p>
           ATTENTION: the check skips class fields which have
-          <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.3.3">forward references</a>
+          <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.3.3">
+              forward references</a>
            from validation due to the fact that we have Checkstyle's limitations to clearly
           detect user intention of fields location and grouping. For example,
           <source>

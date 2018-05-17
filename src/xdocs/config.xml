@@ -6,7 +6,8 @@
 
   <head>
     <title>Configuration</title>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
     <script type="text/javascript" src="js/anchors.js"/>
     <script type="text/javascript" src="js/google-analytics.js"/>
     <link rel="icon" href="images/favicon.png" type="image/x-icon" />
@@ -686,7 +687,8 @@
         custom message pattern, as shown in the example above.
         Placeholders used in the default message can also be used in the
         custom message.  Note that the message pattern must be a valid
-        <a href="https://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html">java.text.MessageFormat</a>
+        <a href="https://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html">
+            java.text.MessageFormat</a>
         style pattern,
         so be careful about curly braces outside a placeholder
         definition.
@@ -725,7 +727,8 @@
         accept a file, then Checker will process and validate the file.
         If any Before Execution File Filter rejects an file, then Checker skips over
         the file and acts like it does not exist.
-        For more information, please visit the <a href="config_filefilters.html">file filters page</a>.
+        For more information, please visit the
+        <a href="config_filefilters.html">file filters page</a>.
       </p>
 
     </section>

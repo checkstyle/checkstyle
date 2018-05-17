@@ -6,7 +6,8 @@
 
   <head>
     <title>Writing Filters</title>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
     <script type="text/javascript" src="js/anchors.js"/>
     <script type="text/javascript" src="js/google-analytics.js"/>
     <link rel="icon" href="images/favicon.png" type="image/x-icon" />
@@ -103,7 +104,8 @@ public class FilesFilter
 
     <section name="Declare check's external resource locations">
       <p>
-        See <a href="writingchecks.html#Declare_checks_external_resource_locations">Declare check's external resource locations</a>.
+        See <a href="writingchecks.html#Declare_checks_external_resource_locations">
+        Declare check's external resource locations</a>.
       </p>
     </section>
 

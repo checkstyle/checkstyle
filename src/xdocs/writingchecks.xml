@@ -6,7 +6,8 @@
 
   <head>
     <title>Writing Checks</title>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
     <script type="text/javascript" src="js/anchors.js"/>
     <script type="text/javascript" src="js/google-analytics.js"/>
     <link rel="icon" href="images/favicon.png" type="image/x-icon" />
@@ -275,7 +276,8 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
       but an abstract class to provide some helper methods. A Check provides
       methods that take an AST as an argument and perform the checking process
       for that AST, most prominently <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#visitToken-com.puppycrawl.tools.checkstyle.api.DetailAST-"><code>visitToken()</code></a>.  </p>
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#visitToken-com.puppycrawl.tools.checkstyle.api.DetailAST-">
+              <code>visitToken()</code></a>.  </p>
 
       <p> It is important to understand that the individual
       Checks do no drive the AST traversal (it possible to traverse itself, but not recommended).
@@ -287,16 +289,19 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
 
       <p> Before any visitor method is called, the TreeWalker
       will call <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#beginTree-com.puppycrawl.tools.checkstyle.api.DetailAST-"><code>beginTree()</code></a> to give the Check a chance to do
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#beginTree-com.puppycrawl.tools.checkstyle.api.DetailAST-">
+              <code>beginTree()</code></a> to give the Check a chance to do
       some initialization. Then, when performing the recursive descend from
       the root to the leaf nodes, the <code>visitToken()</code>
       method is called. Unlike the basic examples in the pattern book, there
       is a <code>visitToken()</code> counterpart called <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#leaveToken-com.puppycrawl.tools.checkstyle.api.DetailAST-"><code>leaveToken()</code></a>. The TreeWalker will call that
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#leaveToken-com.puppycrawl.tools.checkstyle.api.DetailAST-">
+              <code>leaveToken()</code></a>. The TreeWalker will call that
       method to signal that the subtree below the node has been processed and
       the TreeWalker is backtracking from the node. After the root node has
       been left, the TreeWalker will call <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#finishTree-com.puppycrawl.tools.checkstyle.api.DetailAST-"><code>finishTree()</code></a>.  </p>
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#finishTree-com.puppycrawl.tools.checkstyle.api.DetailAST-">
+              <code>finishTree()</code></a>.  </p>
 
     </section>
 
@@ -446,7 +451,8 @@ public class MethodLimitCheck extends AbstractCheck
         provides utility methods to extract information from the tree,
         like <code>getChildCount()</code>. By now you have
         probably consulted the API documentation and found that
-        <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/api/DetailAST.java">DetailsAST</a> additionally provides methods for navigating around
+        <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/api/DetailAST.java">
+            DetailsAST</a> additionally provides methods for navigating around
         in the syntax tree, like finding the next sibling of a node, the
         children of a node, the parent of a node, etc.
       </p>
@@ -529,7 +535,8 @@ public class MethodLimitCheck extends AbstractCheck
       <p>
         To support internationalized error messages, you need to create or reuse existing
         a messages.properties file alongside your Check class
-        (<a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/com/puppycrawl/tools/checkstyle/checks/sizes/messages.properties">example</a>)
+        (<a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/com/puppycrawl/tools/checkstyle/checks/sizes/messages.properties">
+          example</a>)
         , i.e. the
         Java file and the properties files should be in the same
         directory.  Add a symbolic error code and an English
@@ -540,7 +547,8 @@ public class MethodLimitCheck extends AbstractCheck
         methods to provide the dynamic part of the message (mMax in this
         case): <code>log(&quot;too.many.methods&quot;,
         mMax);</code>. Please consult the documentation of Java&#39;s <a
-        href="https://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html">MessageFormat</a>
+        href="https://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html">
+          MessageFormat</a>
         to learn about the syntax of format strings (especially about
         those funny numbers in the translated text).
       </p>
@@ -673,9 +681,11 @@ java -classpath mycompanychecks.jar;checkstyle-${projectVersion}-all.jar ^
 
       <p> Writing a FileSetCheck is pretty straightforward: Just
       inherit from <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html">AbstractFileSetCheck</a>
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html">
+              AbstractFileSetCheck</a>
       and override the abstract <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html#processFiltered-java.io.File-java.util.List-"><code>processFiltered(java.io.File, java.util.List)</code></a> method and you&#39;re
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html#processFiltered-java.io.File-java.util.List-">
+              <code>processFiltered(java.io.File, java.util.List)</code></a> method and you&#39;re
       done. A very simple example could fire an error if the number of files
       exceeds a certain limit. Here is a FileSetCheck that does just that:</p>
 
@@ -737,22 +747,28 @@ public class LimitImplementationFiles extends AbstractFileSetCheck
        <p>
          Checkstyle can cache external configuration resources of any kind which are used by your
          check. If you want to do such a thing, you should implement
-         <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html">ExternalResourceHolder</a>
+         <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html">
+             ExternalResourceHolder</a>
          interface. Such module must declare external resource locations as a set of Strings
-         which will be returned from <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">getExternalResourceLocations</a>
+         which will be returned from <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">
+           getExternalResourceLocations</a>
          method. This will allow Checkstyle to invalidate (clear) cache when the content of at
          least one external configuration resource of your check is changed.
        </p>
        <p>
          ATTENTION!
          <li>
-           If <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">getExternalResourceLocations</a>
-           return null, there will be NullPointerException in <a href="apidocs/com/puppycrawl/tools/checkstyle/Checker.html">Checker</a>.
+           If <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">
+             getExternalResourceLocations</a>
+           return null, there will be NullPointerException in <a href="apidocs/com/puppycrawl/tools/checkstyle/Checker.html">
+             Checker</a>.
            Such behaviour will signal that your module (check or filter) is designed incorrectly.
          </li>
          <li>
-           It makes sense to return an empty set from <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">getExternalResourceLocations</a>
-           only for composite modules like <a href="apidocs/com/puppycrawl/tools/checkstyle/TreeWalker.html">TreeWalker</a>.
+           It makes sense to return an empty set from <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">
+             getExternalResourceLocations</a>
+           only for composite modules like <a href="apidocs/com/puppycrawl/tools/checkstyle/TreeWalker.html">
+             TreeWalker</a>.
          </li>
        </p>
       </section>

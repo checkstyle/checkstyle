@@ -5,7 +5,8 @@
 
     <head>
         <title>Google's Style</title>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
+        <script type="text/javascript"
+                src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
         <script type="text/javascript" src="js/anchors.js"/>
         <script type="text/javascript" src="js/google-analytics.js"/>
         <link rel="icon" href="images/favicon.png" type="image/x-icon" />
@@ -17,9 +18,10 @@
             <subsection name="Useful information">
                 <p>
                     This coverage report was created for
-                    <a
-                        href="http://google.github.io/styleguide/javaguide.html">Google Java Style</a>
-                        (<a href="http://checkstyle.sourceforge.net/reports/google-java-style-20170228.html">cached page</a>)
+                    <a href="http://google.github.io/styleguide/javaguide.html">
+                        Google Java Style</a>
+                        (<a href="http://checkstyle.sourceforge.net/reports/google-java-style-20170228.html">
+                          cached page</a>)
                     , version of 28 February 2017
                 </p>
 
@@ -27,8 +29,7 @@
                     <a href="reports/google-style/guava/">Checkstyle's html report for Guava library</a>
                 </p>
                 <p>
-                    <a
-                        href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml">
+                    <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml">
                     Checkstyle configuration for 'Google Java Style'</a>
                 </p>
             </subsection>
@@ -69,8 +70,7 @@
                         <tr>
                             <td><a name="1"/><a href="#1"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
-                                <a
-                                    href="http://checkstyle.sourceforge.net/reports/google-java-style-20170228.html#s1-introduction">
+                                <a href="http://checkstyle.sourceforge.net/reports/google-java-style-20170228.html#s1-introduction">
                                     <strong>1 Introduction</strong>
                                 </a>
                             </td>

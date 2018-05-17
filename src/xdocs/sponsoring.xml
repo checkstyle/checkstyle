@@ -6,7 +6,8 @@
 
   <head>
     <title>Sponsoring</title>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
     <script type="text/javascript" src="js/anchors.js"/>
     <script type="text/javascript" src="js/google-analytics.js"/>
     <link rel="icon" href="images/favicon.png" type="image/x-icon" />
@@ -23,13 +24,19 @@
       </p>
 
       <p>
-        <a href="https://freedomsponsors.org/search/?project_name=checkstyle">freedomsponsors - checkstyle</a>
+        <a href="https://freedomsponsors.org/search/?project_name=checkstyle">
+          freedomsponsors - checkstyle</a>
         <br/>
         <a href="https://www.bountysource.com/teams/checkstyle/issues">bountysource - checkstyle</a>
         <br/>
-        <a href="https://salt.bountysource.com/teams/checkstyle">bountysource (salt) - checkstyle</a>
+        <a href="https://salt.bountysource.com/teams/checkstyle">
+          bountysource (salt) - checkstyle</a>
         <br/>
-        <a href="https://flattr.com/submit/auto?fid=g39d10&amp;url=http%3A%2F%2Fcheckstyle.sourceforge.net" target="_blank"><img src="https://button.flattr.com/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0"/></a>
+        <a href="https://flattr.com/submit/auto?fid=g39d10&amp;url=http%3A%2F%2Fcheckstyle.sourceforge.net"
+           target="_blank">
+          <img src="https://button.flattr.com/flattr-badge-large.png"
+               alt="Flattr this" title="Flattr this" border="0"/>
+        </a>
       </p>
 
       <p>

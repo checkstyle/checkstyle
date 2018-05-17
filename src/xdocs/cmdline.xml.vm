@@ -57,7 +57,8 @@ java -D&lt;property&gt;=&lt;value&gt;  \
           <code>-c configurationFile</code> - specifies the location of the
           file that defines the configuration modules. The location can either
           be a filesystem location, or a
-          <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/lang/resources.html#res_names">name</a>
+          <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/lang/resources.html#res_names">
+              name</a>
           passed to the ClassLoader.getResource() method.
         </li>
         <li>
@@ -166,8 +167,10 @@ java -jar checkstyle-${projectVersion}-all.jar -c /google_checks.xml MyClass.jav
         </source>
         It is recommended to use configuration files that are embedded in jar files, but latest
         configuration files are there:
-        <a href="https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/sun_checks.xml">sun_checks.xml</a>
-        <a href="https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml">google_checks.xml</a>
+        <a href="https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/sun_checks.xml">
+            sun_checks.xml</a>
+        <a href="https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml">
+            google_checks.xml</a>
       </p>
       <p>
           To run <a href="writingchecks.html#The_Checkstyle_SDK_Gui">Checkstyle UI viewer</a>
@@ -212,9 +215,11 @@ java -jar target/checkstyle-X.X-SNAPSHOT-all.jar -c /sun_checks.xml MyClass.java
     <section name="Usage by Classpath update">
       <p>
         The easiest way is to include
-        <a href="http://downloads.sourceforge.net/project/checkstyle/checkstyle/${projectVersion}/checkstyle-${projectVersion}-all.jar">checkstyle-${projectVersion}-all.jar</a>
+        <a href="http://downloads.sourceforge.net/project/checkstyle/checkstyle/${projectVersion}/checkstyle-${projectVersion}-all.jar">
+            checkstyle-${projectVersion}-all.jar</a>
         in the
-        <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/classpath.html#sthref10">classpath</a>.
+        <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/classpath.html#sthref10">
+            classpath</a>.
         Alternatively, you must include the
         <code>compile</code> third party dependencies listed in
 
