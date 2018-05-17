@@ -5,7 +5,8 @@ set -e
 # https://github.com/checkstyle/checkstyle/wiki/How-to-make-a-release
 
 SF_USER=romanivanov
-RELEASE=$(xmlstarlet sel -N pom=http://maven.apache.org/POM/4.0.0 -t -m pom:project -v pom:version pom.xml | sed "s/-SNAPSHOT//")
+RELEASE=$(xmlstarlet sel -N pom=http://maven.apache.org/POM/4.0.0 \
+           -t -m pom:project -v pom:version pom.xml | sed "s/-SNAPSHOT//")
 PREV_RELEASE=$(git describe $(git rev-list --tags --max-count=1) | sed "s/checkstyle-//")
 
 echo "PREVIOUS RELEASE version:"$PREV_RELEASE
@@ -25,10 +26,14 @@ echo "Please provide password for $SF_USER,checkstyle@shell.sourceforge.net"
 echo "exit" | ssh -t $SF_USER,checkstyle@shell.sourceforge.net create
 
 # Version bump in pom.xml - https://github.com/checkstyle/checkstyle/commits/master
-mvn -e -Pgpg release:prepare -B -Darguments="-DskipTests -DskipITs -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dxml.skip=true"
+SKIP_TEST="-DskipTests -DskipITs"
+SKIP_CHECKSTYLE="-Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true"
+SKIP_OTHERS="-Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dxml.skip=true"
+mvn -e -Pgpg release:prepare -B -Darguments="$SKIP_TEST $SKIP_CHECKSTYLE $SKIP_OTHERS"
 
-# deployment of jars to maven central and publication of site to http://checkstyle.sourceforge.net/new-site/
-mvn -e -Pgpg release:perform -Darguments='-Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true'
+# deployment of jars to maven central
+# and publication of site to http://checkstyle.sourceforge.net/new-site/
+mvn -e -Pgpg release:perform -Darguments="$SKIP_CHECKSTYLE"
 
 #############################
 
