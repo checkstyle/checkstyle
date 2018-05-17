@@ -205,9 +205,7 @@ public class IllegalInstantiationCheck
             final String typeName = typeIdent.getText();
             final String fqClassName = getIllegalInstantiation(typeName);
             if (fqClassName != null) {
-                final int lineNo = newTokenAst.getLineNo();
-                final int colNo = newTokenAst.getColumnNo();
-                log(lineNo, colNo, MSG_KEY, fqClassName);
+                log(newTokenAst, MSG_KEY, fqClassName);
             }
         }
     }

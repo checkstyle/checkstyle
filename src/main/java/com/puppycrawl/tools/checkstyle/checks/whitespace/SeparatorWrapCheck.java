@@ -155,11 +155,11 @@ public class SeparatorWrapCheck
 
         if (option == WrapOption.EOL
                 && substringBeforeToken.isEmpty()) {
-            log(lineNo, colNo, MSG_LINE_PREVIOUS, text);
+            log(ast, MSG_LINE_PREVIOUS, text);
         }
         else if (option == WrapOption.NL
                  && substringAfterToken.isEmpty()) {
-            log(lineNo, colNo, MSG_LINE_NEW, text);
+            log(ast, MSG_LINE_NEW, text);
         }
     }
 

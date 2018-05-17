@@ -87,8 +87,7 @@ public class IllegalTokenCheck
     @Override
     public void visitToken(DetailAST ast) {
         log(
-            ast.getLineNo(),
-            ast.getColumnNo(),
+            ast,
             MSG_KEY,
             convertToString(ast)
         );

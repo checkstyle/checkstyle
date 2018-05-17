@@ -682,12 +682,16 @@ public class UserService {
           <li>AvoidInlineConditionalsCheck</li>
           <li>AvoidNestedBlocksCheck</li>
           <li>BooleanExpressionComplexityCheck</li>
+          <li>CatchParameterNameCheck</li>
+          <li>ClassTypeParameterNameCheck</li>
+          <li>ConstantNameCheck</li>
           <li>CovariantEqualsCheck</li>
           <li>CyclomaticComplexityCheck</li>
           <li>DeclarationOrderCheck</li>
           <li>DefaultComesLastCheck</li>
           <li>DescendantTokenCheck</li>
           <li>DesignForExtensionCheck</li>
+          <li>EmptyBlockCheck</li>
           <li>EmptyStatementCheck</li>
           <li>EqualsAvoidNullCheck</li>
           <li>EqualsHashCodeCheck</li>
@@ -698,16 +702,26 @@ public class UserService {
           <li>FinalParametersCheck</li>
           <li>HiddenFieldCheck</li>
           <li>HideUtilityClassConstructorCheck</li>
+          <li>IllegalInstantiationCheck</li>
+          <li>IllegalTokenCheck</li>
+          <li>IllegalTokenTextCheck</li>
           <li>InnerAssignmentCheck</li>
           <li>InnerTypeLastCheck</li>
+          <li>InterfaceTypeParameterNameCheck</li>
           <li>JavadocVariableCheck</li>
           <li>JavaNCSSCheck</li>
+          <li>IllegalImportCheck</li>
           <li>IllegalThrowsCheck</li>
           <li>ImportControlCheck</li>
           <li>LeftCurlyCheck</li>
+          <li>LocalFinalVariableNameCheck</li>
+          <li>LocalVariableNameCheck</li>
+          <li>MagicNumberCheck</li>
+          <li>MemberNameCheck</li>
           <li>MethodLengthCheck</li>
           <li>MethodNameCheck</li>
           <li>MethodParamPadCheck</li>
+          <li>MethodTypeParameterNameCheck</li>
           <li>ModifiedControlVariableCheck</li>
           <li>ModifierOrderCheck</li>
           <li>MultipleVariableDeclarationsCheck</li>
@@ -717,21 +731,26 @@ public class UserService {
           <li>NestedTryDepthCheck</li>
           <li>NPathComplexityCheck</li>
           <li>OneStatementPerLineCheck</li>
+          <li>OperatorWrapCheck</li>
           <li>OuterTypeNumberCheck</li>
           <li>ParameterAssignmentCheck</li>
+          <li>ParameterNameCheck</li>
           <li>ParameterNumberCheck</li>
           <li>RedundantImportCheck</li>
           <li>RedundantModifierCheck</li>
           <li>RequireThisCheck</li>
           <li>ReturnCountCheck</li>
           <li>RightCurlyCheck</li>
+          <li>SeparatorWrapCheck</li>
           <li>SimplifyBooleanExpressionCheck</li>
           <li>SimplifyBooleanReturnCheck</li>
+          <li>StaticVariableNameCheck</li>
           <li>StringLiteralEqualityCheck</li>
           <li>SuperCloneCheck</li>
           <li>SuperFinalizeCheck</li>
           <li>SuppressWarningsCheck</li>
           <li>ThrowsCountCheck</li>
+          <li>TypeNameCheck</li>
           <li>VisibilityModifierCheck</li>
         </ul>
         <p>

@@ -114,8 +114,7 @@ public class IllegalTokenTextCheck
                 customMessage = MSG_KEY;
             }
             log(
-                ast.getLineNo(),
-                ast.getColumnNo(),
+                ast,
                 customMessage,
                 formatString);
         }

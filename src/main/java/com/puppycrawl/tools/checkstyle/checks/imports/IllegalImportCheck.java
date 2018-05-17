@@ -155,8 +155,7 @@ public class IllegalImportCheck
                 ast.getFirstChild().getNextSibling());
         }
         if (isIllegalImport(imp.getText())) {
-            log(ast.getLineNo(),
-                ast.getColumnNo(),
+            log(ast,
                 MSG_KEY,
                 imp.getText());
         }

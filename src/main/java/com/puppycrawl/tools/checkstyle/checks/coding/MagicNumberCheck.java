@@ -294,8 +294,7 @@ public class MagicNumberCheck extends AbstractCheck {
             reportAST = parent;
             text = "+" + text;
         }
-        log(reportAST.getLineNo(),
-                reportAST.getColumnNo(),
+        log(reportAST,
                 MSG_KEY,
                 text);
     }

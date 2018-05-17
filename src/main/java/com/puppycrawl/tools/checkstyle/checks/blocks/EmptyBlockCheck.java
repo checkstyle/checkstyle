@@ -152,15 +152,13 @@ public class EmptyBlockCheck
                     emptyBlock = leftCurly.getChildCount() <= 1;
                 }
                 if (emptyBlock) {
-                    log(leftCurly.getLineNo(),
-                        leftCurly.getColumnNo(),
+                    log(leftCurly,
                         MSG_KEY_BLOCK_NO_STATEMENT,
                         ast.getText());
                 }
             }
             else if (!hasText(leftCurly)) {
-                log(leftCurly.getLineNo(),
-                    leftCurly.getColumnNo(),
+                log(leftCurly,
                     MSG_KEY_BLOCK_EMPTY,
                     ast.getText());
             }
