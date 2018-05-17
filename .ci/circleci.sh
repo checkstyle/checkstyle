@@ -5,7 +5,8 @@ set -e
 case $1 in
 
 no-exception-openjdk7-openjdk8)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
   cd ../
   cd contribution/checkstyle-tester
@@ -17,7 +18,8 @@ no-exception-openjdk7-openjdk8)
   ;;
 
 no-exception-openjdk9-lucene-and-others)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
   cd ../
   cd contribution/checkstyle-tester
@@ -32,7 +34,8 @@ no-exception-openjdk9-lucene-and-others)
   ;;
 
 no-exception-cassandra-storm-tapestry)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
   cd ../
   cd contribution/checkstyle-tester
@@ -45,7 +48,8 @@ no-exception-cassandra-storm-tapestry)
   ;;
 
 no-exception-hadoop-apache-groovy-scouter)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
   cd ../
   cd contribution/checkstyle-tester
