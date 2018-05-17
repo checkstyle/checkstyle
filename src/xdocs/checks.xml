@@ -6,7 +6,8 @@
 
   <head>
     <title>Checks</title>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
     <script type="text/javascript" src="js/anchors.js"/>
     <script type="text/javascript" src="js/google-analytics.js"/>
     <link rel="icon" href="images/favicon.png" type="image/x-icon" />
@@ -73,7 +74,8 @@
         <td>Checks the order of at-clauses.</td>
       </tr>
       <tr>
-        <td><a href="config_misc.html#AvoidEscapedUnicodeCharacters">AvoidEscapedUnicodeCharacters</a></td>
+        <td><a href="config_misc.html#AvoidEscapedUnicodeCharacters">
+          AvoidEscapedUnicodeCharacters</a></td>
         <td>Restrict using Unicode escapes.</td>
       </tr>
       <tr>
@@ -93,7 +95,8 @@
         <td>Check that finds static imports.</td>
       </tr>
       <tr>
-        <td><a href="config_metrics.html#BooleanExpressionComplexity">BooleanExpressionComplexity</a></td>
+        <td><a href="config_metrics.html#BooleanExpressionComplexity">
+          BooleanExpressionComplexity</a></td>
         <td>
           Restricts nested boolean operators (&amp;&amp;, ||, &amp;, |
           and ^) to a specified depth (default = 3).
@@ -105,7 +108,8 @@
             format property.</td>
       </tr>
       <tr>
-        <td><a href="config_metrics.html#ClassDataAbstractionCoupling">ClassDataAbstractionCoupling</a></td>
+        <td><a href="config_metrics.html#ClassDataAbstractionCoupling">
+          ClassDataAbstractionCoupling</a></td>
         <td>This metric measures the number of instantiations of other classes within the given
             class.</td>
       </tr>
@@ -272,7 +276,8 @@
         a field that is defined in the same class.</td>
       </tr>
       <tr>
-        <td><a href="config_design.html#HideUtilityClassConstructor">HideUtilityClassConstructor</a></td>
+        <td><a href="config_design.html#HideUtilityClassConstructor">
+          HideUtilityClassConstructor</a></td>
         <td>Make sure that utility classes (classes that contain only static methods)
         do not have a public constructor.</td>
       </tr>
@@ -342,7 +347,8 @@
         Use Interfaces only to define types.</td>
       </tr>
       <tr>
-        <td><a href="config_naming.html#InterfaceTypeParameterName">InterfaceTypeParameterName</a></td>
+        <td><a href="config_naming.html#InterfaceTypeParameterName">
+          InterfaceTypeParameterName</a></td>
         <td>
           Checks that interface type parameter names conform to a format specified
         by the format property.</td>
@@ -364,7 +370,8 @@
         <td>Custom Checkstyle Check to validate Javadoc.</td>
       </tr>
       <tr>
-        <td><a href="config_javadoc.html#JavadocTagContinuationIndentation">JavadocTagContinuationIndentation</a></td>
+        <td><a href="config_javadoc.html#JavadocTagContinuationIndentation">
+          JavadocTagContinuationIndentation</a></td>
         <td>Checks the indentation of the continuation lines in at-clauses.</td>
       </tr>
       <tr>
@@ -487,7 +494,8 @@
         single file.</td>
       </tr>
       <tr>
-        <td><a href="config_coding.html#MultipleVariableDeclarations">MultipleVariableDeclarations</a></td>
+        <td><a href="config_coding.html#MultipleVariableDeclarations">
+          MultipleVariableDeclarations</a></td>
         <td>
           Checks that each variable declaration is in its own statement
         and on its own line.</td>
@@ -536,7 +544,8 @@
         Checks that chosen statements are not line-wrapped.</td>
       </tr>
       <tr>
-        <td><a href="config_javadoc.html#NonEmptyAtclauseDescription">NonEmptyAtclauseDescription</a></td>
+        <td><a href="config_javadoc.html#NonEmptyAtclauseDescription">
+          NonEmptyAtclauseDescription</a></td>
         <td>
         Checks that the at-clause tag is followed by description .</td>
       </tr>
@@ -577,7 +586,8 @@
         <td>Checks for the number of defined types at the "outer" level.</td>
       </tr>
       <tr>
-        <td><a href="config_coding.html#OverloadMethodsDeclarationOrder">OverloadMethodsDeclarationOrder</a></td>
+        <td><a href="config_coding.html#OverloadMethodsDeclarationOrder">
+          OverloadMethodsDeclarationOrder</a></td>
         <td>Checks that overload methods are grouped together.</td>
       </tr>
       <tr>
@@ -678,7 +688,8 @@
         Checks line wrapping with separators.</td>
       </tr>
       <tr>
-        <td><a href="config_coding.html#SimplifyBooleanExpression">SimplifyBooleanExpression</a></td>
+        <td><a href="config_coding.html#SimplifyBooleanExpression">
+          SimplifyBooleanExpression</a></td>
         <td>
         Checks for overly complicated boolean expressions.</td>
       </tr>
@@ -785,7 +796,8 @@
         <td>Checks that long constants are defined with an upper ell.</td>
       </tr>
       <tr>
-        <td><a href="config_coding.html#VariableDeclarationUsageDistance">VariableDeclarationUsageDistance</a></td>
+        <td><a href="config_coding.html#VariableDeclarationUsageDistance">
+          VariableDeclarationUsageDistance</a></td>
         <td>Checks the distance between declaration of variable and its first usage.</td>
       </tr>
       <tr>

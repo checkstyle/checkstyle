@@ -6,7 +6,8 @@
 
   <head>
     <title>Contributing</title>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
     <script type="text/javascript" src="js/anchors.js"/>
     <script type="text/javascript" src="js/google-analytics.js"/>
     <link rel="icon" href="images/favicon.png" type="image/x-icon" />
@@ -50,8 +51,10 @@
         As soon as one of admins of our project approved your idea you are good to start
         implementation and you will be welcome with final code contribution.
         Please do not expect that we will accept any code that you send to us.
-        Example of ideal <a href="https://github.com/checkstyle/checkstyle/issues/258">issue description</a>,
-        and how it is commented on fix <a href="https://github.com/checkstyle/checkstyle/pull/601">Pull Request</a>.
+        Example of ideal <a href="https://github.com/checkstyle/checkstyle/issues/258">
+        issue description</a>,
+        and how it is commented on fix <a href="https://github.com/checkstyle/checkstyle/pull/601">
+        Pull Request</a>.
       </p>
     </section>
 
@@ -64,7 +67,8 @@
 
       <p>
         To report issue please follow our best practices page - <a href="report_issue.html">
-          How to report an issue ?</a> (<a href="report_issue.html#How_to_report_a_bug">How to report a bug ?</a>)
+          How to report an issue ?</a> (<a href="report_issue.html#How_to_report_a_bug">
+        How to report a bug ?</a>)
       </p>
     </section>
 
@@ -113,7 +117,8 @@
       <p>
         The last step of verification that all works fine please do testing of your
         functionality on any open-source project (Spring, Hibernate, ....).
-        Here is how to do it from <a href="http://checkstyle.sourceforge.net/cmdline.html">command line</a>
+        Here is how to do it from <a href="http://checkstyle.sourceforge.net/cmdline.html">
+        command line</a>
       </p>
     </section>
 
@@ -139,7 +144,9 @@
         <b>ATTENTION:</b>The commit message must adhere to a certain format.
          It should be "Issue #Number: Brief single-line message", where NUMBER is the issue number
          at Github
-         (see <a href="https://github.com/checkstyle/checkstyle/commit/9303fd9d971eb55cdfd62686ba2f5698edb2c83e">an example</a>).
+         (see
+         <a href="https://github.com/checkstyle/checkstyle/commit/9303fd9d971eb55cdfd62686ba2f5698edb2c83e">
+         an example</a>).
          Small changes of configuration files, documentation fixes, etc. can be contributed by
          starting the commit message with one of "minor:", "config:", "infra:", "doc:" or
          "spelling:", followed by a space and a brief single-line message.

@@ -5,7 +5,8 @@
 
    <head>
       <title>Sun's Java Style</title>
-      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
+      <script type="text/javascript"
+              src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
       <script type="text/javascript" src="js/anchors.js"/>
       <script type="text/javascript" src="js/google-analytics.js"/>
       <link rel="icon" href="images/favicon.png" type="image/x-icon" />
@@ -18,12 +19,14 @@
                 <p>
                     This coverage report will be created for
                     <a
-                        href="http://www.oracle.com/technetwork/java/codeconvtoc-136057.html">Code Conventions for the Java TM Programming Language</a>
+                        href="http://www.oracle.com/technetwork/java/codeconvtoc-136057.html">
+                        Code Conventions for the Java TM Programming Language</a>
                     Revised April 20, 1999
                 </p>
 
                 <p>
-                    <a href="reports/javadoc/openjdk8/">Checkstyle's html report for Open JDK library (javadoc validation)</a>
+                    <a href="reports/javadoc/openjdk8/">
+                        Checkstyle's html report for Open JDK library (javadoc validation)</a>
                 </p>
                 <p>
                     <a
