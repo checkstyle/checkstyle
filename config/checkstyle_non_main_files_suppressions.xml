@@ -114,8 +114,6 @@
     <suppress checks="RegexpSingleline"
               files="pom.xml"/>
     <suppress checks="RegexpSingleline"
-              files="shippable.yml"/>
-    <suppress checks="RegexpSingleline"
               files="src[\\/]xdocs[\\/]google_style.xml"/>
     <suppress checks="RegexpSingleline"
               files="src[\\/]xdocs[\\/]writingchecks.xml"/>
@@ -123,7 +121,5 @@
               files="src[\\/]xdocs[\\/]writingjavadocchecks.xml.vm"/>
     <suppress checks="RegexpSingleline"
               files=".travis.yml"/>
-    <suppress checks="RegexpSingleline"
-              files="wercker.yml"/>
 
 </suppressions>
