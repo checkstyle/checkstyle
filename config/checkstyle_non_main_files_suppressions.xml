@@ -100,14 +100,6 @@
     <suppress checks="RegexpSingleline"
               files="config[\\/]org.eclipse.jdt.core.prefs"/>
     <suppress checks="RegexpSingleline"
-              files="config[\\/]pmd-main.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="config[\\/]pmd-test.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="config[\\/]pmd.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="config[\\/]spotbugs-exclude.xml"/>
-    <suppress checks="RegexpSingleline"
               files="config[\\/]suppressions.xml"/>
     <suppress checks="RegexpSingleline"
               files="distelli-manifest.yml"/>
