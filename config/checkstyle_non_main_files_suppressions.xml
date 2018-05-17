@@ -112,8 +112,6 @@
     <suppress checks="RegexpSingleline"
               files="distelli-manifest.yml"/>
     <suppress checks="RegexpSingleline"
-              files="pom.xml"/>
-    <suppress checks="RegexpSingleline"
               files="src[\\/]xdocs[\\/]google_style.xml"/>
     <suppress checks="RegexpSingleline"
               files="src[\\/]xdocs[\\/]writingchecks.xml"/>
