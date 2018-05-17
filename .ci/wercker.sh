@@ -141,7 +141,7 @@ no-exception-struts)
   cd contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
   sed -i'' 's/#apache-struts/apache-struts/' projects-for-wercker.properties
-  groovy ./launch.groovy --listOfProjects projects-for-wercker.properties
+  groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
   cd ../../
   rm -rf contribution

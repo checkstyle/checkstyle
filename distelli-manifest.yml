@@ -3,9 +3,9 @@ checkstyle/checkstyle:
   Build:
     - set -e
     - SKIP_FILES1="appveyor.yml|codeship-*|buddy.yml|circleci|shippable.yml|shippable.sh"
-    - SKIP_FILES2=|.travis.yml|wercker.yml|wercker.sh|fast-forward-merge.sh|LICENSE"
-    - SKIP_FILES3=|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr"
-    - SKIP_FILES4=|intellij-idea-inspections.xml|org.eclipse.jdt.core.prefs"
+    - SKIP_FILES2="|.travis.yml|wercker.yml|wercker.sh|fast-forward-merge.sh|LICENSE"
+    - SKIP_FILES3="|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr"
+    - SKIP_FILES4="|intellij-idea-inspections.xml|org.eclipse.jdt.core.prefs"
     - SKIP_FILES=$SKIP_FILES1$SKIP_FILES2$SKIP_FILES3$SKIP_FILES4
     - |
       export SKIP_CI=false;
