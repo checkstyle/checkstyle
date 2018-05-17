@@ -4,6 +4,61 @@ set -e
 
 case $1 in
 
+checkstyle-and-sevntu)
+  export MAVEN_OPTS='-Xmx2000m'
+  mvn -e clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true
+  ;;
+
+jacoco)
+  export MAVEN_OPTS='-Xmx2000m'
+  mvn -e clean test jacoco:restore-instrumented-classes jacoco:report@default-report
+  ;;
+
+test-de)
+  mvn -e clean integration-test failsafe:verify \
+    -DargLine='-Duser.language=de -Duser.country=DE -Xms1024m -Xmx2048m'
+  ;;
+
+test-es)
+  mvn -e clean integration-test failsafe:verify \
+    -DargLine='-Duser.language=es -Duser.country=ES -Xms1024m -Xmx2048m'
+  ;;
+
+test-fi)
+  mvn -e clean integration-test failsafe:verify \
+    -DargLine='-Duser.language=fi -Duser.country=FI -Xms1024m -Xmx2048m'
+  ;;
+
+test-fr)
+  mvn -e clean integration-test failsafe:verify \
+    -DargLine='-Duser.language=fr -Duser.country=FR -Xms1024m -Xmx2048m'
+  ;;
+
+test-zh)
+  mvn -e clean integration-test failsafe:verify \
+    -DargLine='-Duser.language=zh -Duser.country=ZH -Xms1024m -Xmx2048m'
+  ;;
+
+test-jp)
+  mvn -e clean integration-test failsafe:verify \
+    -DargLine='-Duser.language=jp -Duser.country=JP -Xms1024m -Xmx2048m'
+  ;;
+
+test-pt)
+  mvn -e clean integration-test failsafe:verify \
+    -DargLine='-Duser.language=pt -Duser.country=PT -Xms1024m -Xmx2048m'
+  ;;
+
+test-tr)
+  mvn -e clean integration-test failsafe:verify \
+    -DargLine='-Duser.language=tr -Duser.country=TR -Xms1024m -Xmx2048m'
+  ;;
+
+travis-osx)
+  export JAVA_HOME=$(/usr/libexec/java_home)
+  mvn -e package -Dlinkcheck.skip=true && mvn -e package -Passembly
+  ;;
+
 site)
   mvn -e clean site -Pno-validations
   ;;
@@ -39,10 +94,13 @@ versions)
 
 assembly-run-all-jar)
   mvn -e clean package -Passembly
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo version:$CS_POM_VERSION
+  FOLDER=src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule332nolinewrap
+  FILE=InputNoLineWrapGood.java
   java -jar target/checkstyle-$CS_POM_VERSION-all.jar -c /google_checks.xml \
-        src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule332nolinewrap/InputNoLineWrapGood.java > output.log
+        $FOLDER/$FILE > output.log
   if grep -vE '(Starting audit)|(warning)|(Audit done.)' output.log ; then exit 1; fi
   if grep 'warning' output.log ; then exit 1; fi
   ;;
@@ -50,7 +108,10 @@ assembly-run-all-jar)
 sonarqube)
   # token could be generated at https://sonarcloud.io/account/security/
   # executon on local: SONAR_TOKEN=xxxxxxxxxx ./.ci/travis/travis.sh sonarqube
-  if [[ -v TRAVIS_PULL_REQUEST && $TRAVIS_PULL_REQUEST && $TRAVIS_PULL_REQUEST =~ ^([0-9]*)$ ]]; then exit 0; fi
+  if [[ -v TRAVIS_PULL_REQUEST && $TRAVIS_PULL_REQUEST && $TRAVIS_PULL_REQUEST =~ ^([0-9]*)$ ]];
+    then
+      exit 0;
+  fi
   if [[ -z $SONAR_TOKEN ]]; then echo "SONAR_TOKEN is not set"; sleep 5s; exit 1; fi
   export MAVEN_OPTS='-Xmx2000m'
   mvn -e clean package sonar:sonar \
@@ -61,7 +122,7 @@ sonarqube)
   ;;
 
 release-dry-run)
-  if [ $(git log -1 | grep -E "\[maven-release-plugin\] prepare release" | cat | wc -l) -lt 1 ]; then
+  if [ $(git log -1 | grep -E "\[maven-release-plugin\] prepare release" | cat | wc -l) -lt 1 ];then
     mvn -e release:prepare -DdryRun=true --batch-mode -Darguments='-DskipTests -DskipITs \
       -Djacoco.skip=true -Dpmd.skip=true -Dspotbugs.skip=true -Dxml.skip=true \
       -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dgpg.skip=true'
@@ -93,18 +154,22 @@ all-sevntu-checks)
   ;;
 
 no-error-test-sbe)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                    --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo version:$CS_POM_VERSION
   mvn -e clean install -Pno-validations
   git clone https://github.com/real-logic/simple-binary-encoding.git
   cd simple-binary-encoding
   git checkout 963814f8ca1456de9daaf67e78663e7d877871a9
-  sed -i'' "s/'com.puppycrawl.tools:checkstyle:.*'/'com.puppycrawl.tools:checkstyle:$CS_POM_VERSION'/" build.gradle
+  sed -i'' \
+    "s/'com.puppycrawl.tools:checkstyle:.*'/'com.puppycrawl.tools:checkstyle:$CS_POM_VERSION'/" \
+    build.gradle
   ./gradlew build
   ;;
 
 no-exception-test-checkstyle-sevntu-checkstyle)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                    --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: $CS_POM_VERSION
   git clone https://github.com/checkstyle/contribution
   cd contribution/checkstyle-tester
@@ -115,11 +180,13 @@ no-exception-test-checkstyle-sevntu-checkstyle)
   mvn -e clean install -Pno-validations
   cd contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
-  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
+  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
+    --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
   ;;
 
 no-exception-test-guava)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}'\
+                    --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: $CS_POM_VERSION
   git clone https://github.com/checkstyle/contribution
   cd contribution/checkstyle-tester
@@ -129,11 +196,13 @@ no-exception-test-guava)
   mvn -e clean install -Pno-validations
   cd contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
-  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
+  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties
+     --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
   ;;
 
 no-exception-test-guava-with-google-checks)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}'
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: $CS_POM_VERSION
   git clone https://github.com/checkstyle/contribution
   cd contribution/checkstyle-tester
@@ -144,11 +213,13 @@ no-exception-test-guava-with-google-checks)
   sed -i.'' 's/warning/ignore/' src/main/resources/google_checks.xml
   cd contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
-  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config ../../src/main/resources/google_checks.xml --checkstyleVersion $CS_POM_VERSION
+  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
+      --config ../../src/main/resources/google_checks.xml --checkstyleVersion $CS_POM_VERSION
   ;;
 
 no-exception-test-hibernate)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                    --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: $CS_POM_VERSION
   git clone https://github.com/checkstyle/contribution
   cd contribution/checkstyle-tester
@@ -158,11 +229,13 @@ no-exception-test-hibernate)
   mvn -e clean install -Pno-validations
   cd contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
-  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
+  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
+     --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
   ;;
 
 no-exception-test-spotbugs)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: $CS_POM_VERSION
   git clone https://github.com/checkstyle/contribution
   cd contribution/checkstyle-tester
@@ -172,11 +245,13 @@ no-exception-test-spotbugs)
   mvn -e clean install -Pno-validations
   cd contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
-  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
+  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
+    --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
   ;;
 
 no-exception-test-spring-framework)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: $CS_POM_VERSION
   git clone https://github.com/checkstyle/contribution
   cd contribution/checkstyle-tester
@@ -186,11 +261,13 @@ no-exception-test-spring-framework)
   mvn -e clean install -Pno-validations
   cd contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
-  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
+  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
+    --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
   ;;
 
 no-exception-test-hbase)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: $CS_POM_VERSION
   git clone https://github.com/checkstyle/contribution
   cd contribution/checkstyle-tester
@@ -200,11 +277,13 @@ no-exception-test-hbase)
   mvn -e clean install -Pno-validations
   cd contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
-  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
+  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
+      --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
   ;;
 
 no-exception-test-Pmd-elasticsearch-lombok-ast)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: $CS_POM_VERSION
   git clone https://github.com/checkstyle/contribution
   cd contribution/checkstyle-tester
@@ -216,11 +295,13 @@ no-exception-test-Pmd-elasticsearch-lombok-ast)
   mvn -e clean install -Pno-validations
   cd contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
-  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
+  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
+      --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
   ;;
 
 no-exception-test-alot-of-project1)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: $CS_POM_VERSION
   git clone https://github.com/checkstyle/contribution
   cd contribution/checkstyle-tester
@@ -235,7 +316,8 @@ no-exception-test-alot-of-project1)
   mvn -e clean install -Pno-validations
   cd contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
-  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
+  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
+      --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
   ;;
 
 *)
