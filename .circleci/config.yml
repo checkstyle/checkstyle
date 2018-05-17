@@ -19,13 +19,18 @@ jobs:
           name: skip_ci creation
           command: |
             mkdir -p .ci-temp
-            echo -n ".github|appveyor.yml|.travis.yml|\.ci/|distelli-manifest.yml|fast-forward-merge.sh" >> .ci-temp/skip_ci_files
-            echo -n "|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr|shippable.yml" >> .ci-temp/skip_ci_files
-            echo -n "|shippable.sh|wercker.yml|wercker.sh|intellij-idea-inspections.xml|org.eclipse.jdt.core.prefs" >> .ci-temp/skip_ci_files
+            echo -n ".github|appveyor.yml|.travis.yml|\.ci/" >> .ci-temp/skip_ci_files
+            echo -n "|distelli-manifest.yml|fast-forward-merge.sh" >> .ci-temp/skip_ci_files
+            echo -n "|LICENSE|LICENSE.apache20|README.md|release.sh" >> .ci-temp/skip_ci_files
+            echo -n "|RIGHTS.antlr|shippable.yml" >> .ci-temp/skip_ci_files
+            echo -n "|shippable.sh|wercker.yml|wercker.sh" >> .ci-temp/skip_ci_files
+            echo -n "|intellij-idea-inspections.xml" >> .ci-temp/skip_ci_files
+            echo -n "|org.eclipse.jdt.core.prefs" >> .ci-temp/skip_ci_files
       - run:
           name: download all maven dependencies and groovy
           command: |
-            if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
+            if [ $(git diff --name-only HEAD HEAD~1 \
+                   | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
               # build checkstyle, clone contribution, download groovy
               pwd
               ls -la
@@ -46,7 +51,8 @@ jobs:
               cd contribution/checkstyle-tester
               sed -i'' 's/^guava/#guava/' projects-for-circle.properties
               sed -i'' 's/#checkstyle-sonar/checkstyle-sonar/' projects-for-circle.properties
-              groovy launch.groovy --listOfProjects projects-for-circle.properties --config my_check.xml
+              groovy launch.groovy \
+                  --listOfProjects projects-for-circle.properties --config my_check.xml
             fi
       - save_cache:
           key: groovy-2.4.7
@@ -82,7 +88,8 @@ jobs:
           command: |
             # load custom PATH
             export PATH=$GROOVY_PATH/bin:$PATH
-            if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
+            if [ $(git diff --name-only HEAD HEAD~1 \
+                     | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
               ./.ci/circleci.sh no-exception-openjdk7-openjdk8
             fi
 
@@ -104,7 +111,8 @@ jobs:
           command: |
             # load custom PATH
             export PATH=$GROOVY_PATH/bin:$PATH
-            if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
+            if [ $(git diff --name-only HEAD HEAD~1 \
+                      | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
               ./.ci/circleci.sh no-exception-openjdk9-lucene-and-others
             fi
 
@@ -126,7 +134,8 @@ jobs:
           command: |
             # load custom PATH
             export PATH=$GROOVY_PATH/bin:$PATH
-            if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
+            if [ $(git diff --name-only HEAD HEAD~1 \
+                       | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
               ./.ci/circleci.sh no-exception-cassandra-storm-tapestry
             fi
 
@@ -148,7 +157,8 @@ jobs:
           command: |
             # load custom PATH
             export PATH=$GROOVY_PATH/bin:$PATH
-            if [ $(git diff --name-only HEAD HEAD~1 | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
+            if [ $(git diff --name-only HEAD HEAD~1 \
+                       | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
               ./.ci/circleci.sh no-exception-hadoop-apache-groovy-scouter
             fi
 

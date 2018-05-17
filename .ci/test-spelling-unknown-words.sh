@@ -13,7 +13,9 @@ run_output=$spellchecker/unknown.words
 if [ ! -e $dict ]; then
   echo "Retrieve ./usr/share/dict/linux.words"
   words_rpm=$spellchecker/words.rpm
-  curl https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/w/words-3.0-28.fc28.noarch.rpm > $words_rpm
+  URL_PART1="https://rpmfind.net/linux/fedora/linux/development/rawhide/"
+  URL_PART2="Everything/aarch64/os/Packages/w/words-3.0-28.fc28.noarch.rpm"
+  curl $URL_PART1$URL_PART2 > $words_rpm
   $spellchecker/rpm2cpio.sh $words_rpm |\
     cpio -i --to-stdout ./usr/share/dict/linux.words > $dict
   rm $words_rpm

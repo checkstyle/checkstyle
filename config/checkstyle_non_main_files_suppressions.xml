@@ -52,25 +52,13 @@
               files="src[\\/]xdocs[\\/]releasenotes_old.xml"/>
     <suppress checks="RegexpSingleline"
               files="src[\\/]xdocs[\\/]releasenotes.xml"/>
-
+    <!-- it contains list of html text, no way to wrap -->
+    <suppress checks="RegexpSingleline"
+              files=".ci[\\/]shippable.sh"/>
 
     <!-- suppressed till https://github.com/checkstyle/checkstyle/issues/5791 -->
     <suppress checks="RegexpSingleline"
               files="appveyor.yml"/>
-    <suppress checks="RegexpSingleline"
-              files=".ci[\\/]circleci.sh"/>
-    <suppress checks="RegexpSingleline"
-              files=".ci[\\/]eclipse-compiler-javac.sh"/>
-    <suppress checks="RegexpSingleline"
-              files=".circleci[\\/]config.yml"/>
-    <suppress checks="RegexpSingleline"
-              files=".ci[\\/]run-link-check-plugin.sh"/>
-    <suppress checks="RegexpSingleline"
-              files=".ci[\\/]shippable.sh"/>
-    <suppress checks="RegexpSingleline"
-              files=".ci[\\/]sonar.sh"/>
-    <suppress checks="RegexpSingleline"
-              files=".ci[\\/]test-spelling-unknown-words.sh"/>
     <suppress checks="RegexpSingleline"
               files=".ci[\\/]travis[\\/]checkchmod.sh"/>
     <suppress checks="RegexpSingleline"
@@ -79,8 +67,6 @@
               files=".ci[\\/]travis[\\/]xtr_pr-description.sh"/>
     <suppress checks="RegexpSingleline"
               files=".ci[\\/]travis[\\/]xtr_releasenotes-gen.sh"/>
-    <suppress checks="RegexpSingleline"
-              files=".ci[\\/]wercker.sh"/>
     <suppress checks="RegexpSingleline"
               files="config[\\/]build.xml"/>
     <suppress checks="RegexpSingleline"
@@ -109,8 +95,6 @@
               files="config[\\/]spotbugs-exclude.xml"/>
     <suppress checks="RegexpSingleline"
               files="config[\\/]suppressions.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="distelli-manifest.yml"/>
     <suppress checks="RegexpSingleline"
               files="pom.xml"/>
     <suppress checks="RegexpSingleline"
