@@ -122,8 +122,6 @@
     <suppress checks="RegexpSingleline"
               files="release.sh"/>
     <suppress checks="RegexpSingleline"
-              files="shippable.yml"/>
-    <suppress checks="RegexpSingleline"
               files="src[\\/]xdocs[\\/]config_annotation.xml"/>
     <suppress checks="RegexpSingleline"
               files="src[\\/]xdocs[\\/]config_blocks.xml"/>
@@ -165,7 +163,5 @@
               files="src[\\/]xdocs[\\/]writingjavadocchecks.xml.vm"/>
     <suppress checks="RegexpSingleline"
               files=".travis.yml"/>
-    <suppress checks="RegexpSingleline"
-              files="wercker.yml"/>
 
 </suppressions>
