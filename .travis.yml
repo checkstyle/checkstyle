@@ -40,13 +40,13 @@ matrix:
     - jdk: oraclejdk8
       env:
         - DESC="checkstyle and sevntu-checkstyle"
-        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true"
+        - CMD="./.ci/travis/travis.sh checkstyle-and-sevntu"
 
     # jacoco and codecov (oraclejdk8)
     - jdk: oraclejdk8
       env:
         - DESC="jacoco and codecov"
-        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean test jacoco:restore-instrumented-classes jacoco:report@default-report"
+        - CMD="./.ci/travis/travis.sh jacoco"
         - CMD_AFTER_SUCCESS="bash <(curl -s https://codecov.io/bash)"
 
     # spotbugs and pmd (oraclejdk8)
@@ -73,7 +73,8 @@ matrix:
         - DESC="NonDex"
         - CMD="./.ci/travis/travis.sh nondex"
 
-    # site (oraclejdk8 as 'site' success is required to be sure that on release time all will be ok, admins will use oracle8 version)
+    # site (oraclejdk8 as 'site' success is required to be sure that on release time all will be ok,
+    # admins will use oracle8 version)
     # moved to https://codeship.com/projects/124310/configure_tests
     #- jdk: oraclejdk8
     #  env:
@@ -88,42 +89,42 @@ matrix:
     - jdk: oraclejdk8
       env:
         - DESC="tests de"
-        - CMD="mvn -e clean integration-test failsafe:verify -DargLine='-Duser.language=de -Duser.country=DE -Xms1024m -Xmx2048m'"
+        - CMD="./.ci/travis/travis.sh test-de"
     # unit tests in Spanish locale (oraclejdk8)
     - jdk: oraclejdk8
       env:
         - DESC="tests es"
-        - CMD="mvn -e clean integration-test failsafe:verify -DargLine='-Duser.language=es -Duser.country=ES -Xms1024m -Xmx2048m'"
+        - CMD="./.ci/travis/travis.sh test-es"
     # unit tests in Finnish locale (oraclejdk8)
     - jdk: oraclejdk8
       env:
         - DESC="tests fi"
-        - CMD="mvn -e clean integration-test failsafe:verify -DargLine='-Duser.language=fi -Duser.country=FI -Xms1024m -Xmx2048m'"
+        - CMD="./.ci/travis/travis.sh test-fi"
     # unit tests in French locale (oraclejdk8)
     - jdk: oraclejdk8
       env:
         - DESC="tests fr"
-        - CMD="mvn -e clean integration-test failsafe:verify -DargLine='-Duser.language=fr -Duser.country=FR -Xms1024m -Xmx2048m'"
+        - CMD="./.ci/travis/travis.sh test-fr"
     # unit tests in Chinese locale (oraclejdk8)
     - jdk: oraclejdk8
       env:
         - DESC="tests zh"
-        - CMD="mvn -e clean integration-test failsafe:verify -DargLine='-Duser.language=zh -Duser.country=CN -Xms1024m -Xmx2048m'"
+        - CMD="./.ci/travis/travis.sh test-zh"
     # unit tests in Japanese locale (oraclejdk8)
     - jdk: oraclejdk8
       env:
         - DESC="tests ja"
-        - CMD="mvn -e clean integration-test failsafe:verify -DargLine='-Duser.language=ja -Duser.country=JP -Xms1024m -Xmx2048m'"
+        - CMD="./.ci/travis/travis.sh test-jp"
     # unit tests in Portuguese locale (oraclejdk8)
     - jdk: oraclejdk8
       env:
         - DESC="tests pt"
-        - CMD="mvn -e clean integration-test failsafe:verify -DargLine='-Duser.language=pt -Duser.country=PT -Xms1024m -Xmx2048m'"
+        - CMD="./.ci/travis/travis.sh test-pt"
     # unit tests in Turkish locale (oraclejdk8)
     - jdk: oraclejdk8
       env:
         - DESC="tests tr"
-        - CMD="mvn -e clean integration-test failsafe:verify -DargLine='-Duser.language=tr -Duser.country=TR -Xms1024m -Xmx2048m'"
+        - CMD="./.ci/travis/travis.sh test-tr"
 
     # assembly (oraclejdk8)
     - jdk: oraclejdk8
@@ -158,8 +159,10 @@ matrix:
     # MacOS verify (till cache is not working, we can not do verify)
     - os: osx
       env:
-        - DESC="MacOS verify, site, assembly"
-        - CMD="export JAVA_HOME=$(/usr/libexec/java_home) && mvn -e package -Dlinkcheck.skip=true && mvn -e package -Passembly "
+        - DESC="MacOS verify, site, assembly
+        - CMD1="mvn -e package -Dlinkcheck.skip=true"
+        - CMD2="mvn -e package -Passembly"
+        - CMD="export JAVA_HOME=$(/usr/libexec/java_home) && $CMD1 && $CMD2"
 
     # https://sonarcloud.io (oraclejdk8)
     - jdk: oraclejdk8
@@ -198,10 +201,14 @@ matrix:
         - SKIP_CI="false"
 
 script:
-  - SKIP_FILES=".github|codeship-*|buddy.yml|appveyor.yml|circleci|distelli-manifest.yml|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr|shippable.yml|shippable.sh|wercker.yml|wercker.sh|intellij-idea-inspections.xml"
+  - SKIP_FILES1=".github|codeship-*|buddy.yml|appveyor.yml|circleci|distelli-manifest.yml"
+  - SKIP_FILES2="|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr"
+  - SKIP_FILE3="|shippable.yml|shippable.sh|wercker.yml|wercker.sh|intellij-idea-inspections.xml"
+  - SKIP_FILES=$SKIP_FILES1$SKIP_FILES2$SKIP_FILES3
   - |
     if [[ $SKIP_CI != 'false' ]]; then
-         if [[ $(git diff --name-only HEAD HEAD~1 | grep -vE "$SKIP_FILES" | cat | wc -c | sed 's/^ *//' ) > 0 ]]; then
+         if [[ $(git diff --name-only HEAD HEAD~1 | grep -vE "$SKIP_FILES" \
+                    | cat | wc -c | sed 's/^ *//' ) > 0 ]]; then
               SKIP_CI="false"
          else
               SKIP_CI="true"
@@ -230,7 +237,13 @@ after_success:
     fi
   - |
     set -e
-    SKIP_DEPLOY=$(if [ $(git log -1 | grep -E "\[maven-release-plugin\] prepare release" | cat | wc -l) -lt 1 ]; then echo false; else echo true; fi;)
+    SKIP_DEPLOY=false
+    if [ $(git log -1 | grep -E "\[maven-release-plugin\] prepare release" | cat | wc -l) -lt 1 ];
+      then
+        SKIP_DEPLOY=false;
+      else
+        SKIP_DEPLOY=true;
+    fi;
     if [[ $TRAVIS_REPO_SLUG == 'checkstyle/checkstyle'
             && $TRAVIS_BRANCH == 'master'
             && $TRAVIS_PULL_REQUEST == 'false'

@@ -60,14 +60,6 @@
     <suppress checks="RegexpSingleline"
               files="appveyor.yml"/>
     <suppress checks="RegexpSingleline"
-              files=".ci[\\/]travis[\\/]checkchmod.sh"/>
-    <suppress checks="RegexpSingleline"
-              files=".ci[\\/]travis[\\/]travis.sh"/>
-    <suppress checks="RegexpSingleline"
-              files=".ci[\\/]travis[\\/]xtr_pr-description.sh"/>
-    <suppress checks="RegexpSingleline"
-              files=".ci[\\/]travis[\\/]xtr_releasenotes-gen.sh"/>
-    <suppress checks="RegexpSingleline"
               files="config[\\/]build.xml"/>
     <suppress checks="RegexpSingleline"
               files="config[\\/]catalog.xml"/>
@@ -93,7 +85,5 @@
               files="src[\\/]xdocs[\\/]writingchecks.xml"/>
     <suppress checks="RegexpSingleline"
               files="src[\\/]xdocs[\\/]writingjavadocchecks.xml.vm"/>
-    <suppress checks="RegexpSingleline"
-              files=".travis.yml"/>
 
 </suppressions>
