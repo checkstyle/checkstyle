@@ -168,8 +168,9 @@
               </tr>
           </table>
           <p>
-              offCommentFormat and onCommentFormat must have equal <a
-                  href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Matcher.html#groupCount()">paren counts</a>.
+              offCommentFormat and onCommentFormat must have equal
+              <a href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Matcher.html#groupCount()">
+              paren counts</a>.
           </p>
       </subsection>
       <subsection name="Examples">
@@ -988,7 +989,8 @@ public class InputTest {
           </p>
           <p>
               Usage: This filter only works in conjunction with a
-              <a href="config_annotation.html#SuppressWarningsHolder">SuppressWarningsHolder</a>, since that check finds
+              <a href="config_annotation.html#SuppressWarningsHolder">SuppressWarningsHolder</a>,
+              since that check finds
               the annotations in the Java files and makes them available for
               the filter. Because of that, a configuration that includes
               this filter must also include
@@ -1398,8 +1400,9 @@ public class UserService {
                   </tr>
               </table>
               <p>
-                  offCommentFormat and onCommentFormat must have equal <a
-                      href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Matcher.html#groupCount()">paren counts</a>.
+                  offCommentFormat and onCommentFormat must have equal
+                  <a href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Matcher.html#groupCount()">
+                  paren counts</a>.
               </p>
           </subsection>
           <subsection name="Examples">
