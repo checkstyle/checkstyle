@@ -70,7 +70,8 @@ environment:
     # checkstyle and sevntu.checkstyle
     - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
       DESC: "checkstyle and sevntu.checkstyle"
-      CMD1: "mvn -e verify -DskipTests -DskipITs -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dxml.skip=true"
+      CMD1: "mvn -e verify -DskipTests -DskipITs"
+      CMD2: " -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dxml.skip=true"
     # verify without checkstyle (JDK8)
     - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
       DESC: "verify without checkstyle (JDK8)"
