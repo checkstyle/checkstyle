@@ -66,7 +66,9 @@
             <property name="ignoreMethods" value="true"/>
         </module>
         <module name="ChildBlockLength">
-            <property name="blockTypes" value="LITERAL_IF,LITERAL_ELSE,LITERAL_WHILE,LITERAL_DO,LITERAL_FOR,LITERAL_SWITCH,LITERAL_TRY,LITERAL_CATCH"/>
+            <property name="blockTypes"
+                      value="LITERAL_IF,LITERAL_ELSE,LITERAL_WHILE,LITERAL_DO,
+                             LITERAL_FOR,LITERAL_SWITCH,LITERAL_TRY,LITERAL_CATCH"/>
         </module>
         <module name="MapIterationInForEachLoop">
             <property name="proposeKeySetUsage" value="true"/>
@@ -76,7 +78,9 @@
         <!--Might cause problems related to issue:
         https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/352-->
         <module name="AvoidConstantAsFirstOperandInConditionCheck">
-            <property name="targetConstantTypes" value="LITERAL_NULL,LITERAL_TRUE,LITERAL_FALSE,NUM_INT,NUM_DOUBLE,NUM_LONG,NUM_FLOAT"/>
+            <property name="targetConstantTypes"
+                      value="LITERAL_NULL,LITERAL_TRUE,LITERAL_FALSE,
+                             NUM_INT,NUM_DOUBLE,NUM_LONG,NUM_FLOAT"/>
         </module>
         <module name="EitherLogOrThrowCheck"/>
         <module name="IllegalCatchExtended">
@@ -118,7 +122,8 @@
             <property name="forbiddenImportsExcludesRegexp" value=""/>
         </module>
         <module name="ForbidCertainImports">
-            <property name="packageNameRegexp" value=".+\.checkstyle\.api.*|.+\.checkstyle\.utils.*"/>
+            <property name="packageNameRegexp"
+                      value=".+\.checkstyle\.api.*|.+\.checkstyle\.utils.*"/>
             <property name="forbiddenImportsRegexp" value=".+\.checks\..+"/>
             <!-- AccessModifier is in util package (should be moved to api package) to disallow
             its usage by API clients till https://github.com/checkstyle/checkstyle/issues/3511-->
@@ -178,7 +183,7 @@
         <module name="NumericLiteralNeedsUnderscoreCheck"/>
         <module name="UniformEnumConstantNameCheck" />
         <module name="ForbidAnnotationElementValueCheck" />
-        <module name="com.github.sevntu.checkstyle.checks.design.HideUtilityClassConstructorCheck" />
+        <module name="com.github.sevntu.checkstyle.checks.design.HideUtilityClassConstructorCheck"/>
         <module name="AvoidModifiersForTypesCheck">
           <property name="forbiddenClassesRegexpProtected" value="Logger"/>
           <property name="forbiddenClassesRegexpPublic" value="Logger"/>

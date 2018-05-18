@@ -7,7 +7,8 @@
 <suppressions>
 
     <!-- Input files for NewlineAtEndOfFileCheckTest, intentional no new line at the end. -->
-    <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]InputNewlineAtEndOfFile.*\.java"/>
+    <suppress checks="NewlineAtEndOfFile"
+              files="[\\/]test[\\/].*[\\/]InputNewlineAtEndOfFile.*\.java"/>
 
     <!-- Intentional no new line at the end. -->
      <suppress checks="NewlineAtEndOfFile"
@@ -60,16 +61,6 @@
     <suppress checks="RegexpSingleline"
               files="appveyor.yml"/>
     <suppress checks="RegexpSingleline"
-              files="config[\\/]build.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="config[\\/]catalog.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="config[\\/]checkstyle_checks.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="config[\\/]checkstyle_non_main_files_suppressions.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="config[\\/]checkstyle_sevntu_checks.xml"/>
-    <suppress checks="RegexpSingleline"
               files="config[\\/]intellij-idea-inspection-scope.xml"/>
     <suppress checks="RegexpSingleline"
               files="config[\\/]intellij-idea-inspections.properties"/>
@@ -77,8 +68,6 @@
               files="config[\\/]intellij-idea-inspections.xml"/>
     <suppress checks="RegexpSingleline"
               files="config[\\/]org.eclipse.jdt.core.prefs"/>
-    <suppress checks="RegexpSingleline"
-              files="config[\\/]suppressions.xml"/>
     <suppress checks="RegexpSingleline"
               files="src[\\/]xdocs[\\/]google_style.xml"/>
     <suppress checks="RegexpSingleline"

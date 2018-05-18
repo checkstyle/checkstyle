@@ -20,14 +20,18 @@
               files="AbstractClassNameCheck.java"/>
     <!-- test should be named as their main class -->
     <suppress checks="AbstractClassNameCheck"
-              files="AbstractCheckTest.java|AbstractClassNameCheckTest.java|AbstractTypeAwareCheckTest.java|AbstractJavadocCheckTest.java|AbstractViolationReporterTest.java|AbstractFileSetCheckTest.java"/>
+              files="AbstractCheckTest.java|AbstractClassNameCheckTest.java|
+                     |AbstractTypeAwareCheckTest.java|AbstractJavadocCheckTest.java|
+                     |AbstractViolationReporterTest.java|AbstractFileSetCheckTest.java"/>
 
     <!-- Tone down the checking for test code -->
-    <suppress checks="ExecutableStatementCount|JavaNCSS|BooleanExpressionComplexity|NestedIfDepth|MethodLength"
+    <suppress checks="ExecutableStatementCount|JavaNCSS|BooleanExpressionComplexity|
+                      |NestedIfDepth|MethodLength"
               files="[\\/]XdocsPagesTest\.java"/>
     <suppress checks="IllegalCatch" files="[\\/]internal[\\/].*[\\/]\w+Util\.java"/>
     <suppress checks="EmptyBlock" files=".*[\\/]src[\\/]test[\\/]"/>
-    <suppress message="Missing a Javadoc comment|Missing package-info.java file|Expected @throws tag for"
+    <suppress message="Missing a Javadoc comment|Missing package-info.java file|
+                       |Expected @throws tag for"
               files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <suppress checks="MagicNumber" files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <suppress checks="AvoidStaticImport" files=".*[\\/]src[\\/](test|it)[\\/]"/>
@@ -39,7 +43,8 @@
 
     <!-- Methods that build fake AST are very long-->
     <suppress checks="MethodLength" files=".*(Generated)?Java(doc)?TokenTypesTest\.java"/>
-    <suppress checks="ExecutableStatementCount" files=".*(Generated)?Java(doc)?TokenTypesTest\.java"/>
+    <suppress checks="ExecutableStatementCount"
+              files=".*(Generated)?Java(doc)?TokenTypesTest\.java"/>
     <suppress checks="JavaNCSS" files=".*(Generated)?Java(doc)?TokenTypesTest\.java"/>
     <suppress checks="ExecutableStatementCount" files=".*IllegalInstantiationCheckTest\.java"/>
     <suppress checks="ExecutableStatementCount" files=".*Main\.java"/>
@@ -49,7 +54,8 @@
 
     <!-- Till https://github.com/checkstyle/checkstyle/issues/1854 -->
     <suppress checks="TrailingComment"
-              files="(InnerAssignmentCheck\.java|OperatorWrapCheck\.java|AbbreviationAsWordInNameCheckTest\.java)"/>
+              files="(InnerAssignmentCheck\.java|OperatorWrapCheck\.java|
+                     |AbbreviationAsWordInNameCheckTest\.java)"/>
 
     <!-- Fixing these cases will decrease code readability -->
     <suppress checks="MultipleStringLiterals" files="JavadocStyleCheck\.java|XMLLogger\.java"/>
@@ -80,8 +86,8 @@
     <suppress checks="ClassDataAbstractionCoupling" files="(TreeTable|MainFrame)\.java"/>
 
     <!-- Should be fixed after moving
-    https://github.com/sevntu-checkstyle/sevntu.checkstyle/blob/master/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/ReturnCountExtendedCheck.java into the main repo,
-    to allow skip guard sentences(or by topLinesToIgnoreCount) -->
+    https://github.com/sevntu-checkstyle/sevntu.checkstyle/blob/master/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/ReturnCountExtendedCheck.java
+    into the main repo, to allow skip guard sentences(or by topLinesToIgnoreCount) -->
     <suppress checks="ReturnCount" files="(ConfigurationLoader|LambdaHandler)\.java"/>
 
     <!-- HandlerFactory crosses allowed limit for executable statements -->

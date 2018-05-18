@@ -18,7 +18,8 @@
     <module name="NewlineAtEndOfFile" />
     <module name="RegexpSingleline">
       <!-- catch lines above 100 symbols -->
-      <property name="format" value="^(?!(.*href|.*http|import|.* com.*|.*com/.*)).{101,}$"/>
+      <property name="format"
+                value="^(?!(.*href|.*http|import|.* com.*|.*com/.*|.* files=)).{101,}$"/>
       <property name="message" value="Line should not be longer then 100 symbols"/>
     </module>
 </module>
