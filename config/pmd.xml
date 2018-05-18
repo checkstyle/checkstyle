@@ -37,6 +37,13 @@
       <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main']"/>
     </properties>
   </rule>
+  <rule ref="category/java/bestpractices.xml/MissingOverride">
+    <properties>
+      <!-- Till https://github.com/pmd/pmd/issues/1063 (Fixed in 6.4.0) -->
+      <property name="violationSuppressXPath"
+                value="//MethodDeclaration[@Name='throwUnsupportedOperationException']"/>
+    </properties>
+  </rule>
 
   <rule ref="category/java/documentation.xml">
     <!-- We use class comments as source for xdoc files,
@@ -68,6 +75,11 @@
     <!-- Calling super() is completely pointless, no matter if class inherits anything or not;
          it is meaningful only if you do not call implicit constructor of the base class. -->
     <exclude name="CallSuperInConstructor"/>
+    <!-- The rule has too many false positives and will be disabled till pmd release 6.4.0. See
+         https://github.com/checkstyle/checkstyle/issues/5812
+         https://github.com/pmd/pmd/issues/1064 (fixed in 6.4.0)
+         https://github.com/pmd/pmd/issues/1065 (fixed in 6.4.0). -->
+    <exclude name="ClassNamingConventions"/>
     <!-- Till https://github.com/checkstyle/checkstyle/issues/5665 -->
     <exclude name="CommentDefaultAccessModifier"/>
     <!-- Pollutes code with modifiers. -->
@@ -119,6 +131,14 @@
       <!-- Nothing bad with the long and descriptive variable names if only they fit the line,
            but still keep it reasonable. -->
       <property name="minimum" value="45"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/codestyle.xml/PrematureDeclaration">
+    <properties>
+      <!-- Falsely flags lambdas. See https://github.com/pmd/pmd/issues/1108 (fixed in 6.4.0) -->
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@Image='DesignForExtensionCheck'
+                        or @Image='ModuleReflectionUtils']"/>
     </properties>
   </rule>
   <rule ref="category/java/codestyle.xml/ShortClassName">
