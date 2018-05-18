@@ -159,8 +159,10 @@ matrix:
     # MacOS verify (till cache is not working, we can not do verify)
     - os: osx
       env:
-        - DESC="MacOS verify, site, assembly"
-        - CMD="export JAVA_HOME=$(/usr/libexec/java_home) && ./.ci/travis/travis.sh travis-osx"
+        - DESC="MacOS verify, site, assembly
+        - CMD1="mvn -e package -Dlinkcheck.skip=true"
+        - CMD2="mvn -e package -Passembly"
+        - CMD="export JAVA_HOME=$(/usr/libexec/java_home) && $CMD1 && $CMD2"
 
     # https://sonarcloud.io (oraclejdk8)
     - jdk: oraclejdk8
