@@ -56,6 +56,9 @@
     <!-- it contains list of html text, no way to wrap -->
     <suppress checks="RegexpSingleline"
               files=".ci[\\/]shippable.sh"/>
+    <!-- property names a too long, nothing we can do -->
+    <suppress checks="RegexpSingleline"
+              files="config[\\/]org.eclipse.jdt.core.prefs"/>
 
     <!-- suppressed till https://github.com/checkstyle/checkstyle/issues/5791 -->
     <suppress checks="RegexpSingleline"
@@ -64,7 +67,5 @@
               files="config[\\/]intellij-idea-inspections.properties"/>
     <suppress checks="RegexpSingleline"
               files="config[\\/]intellij-idea-inspections.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="config[\\/]org.eclipse.jdt.core.prefs"/>
 
 </suppressions>
