@@ -68,11 +68,5 @@
               files="config[\\/]intellij-idea-inspections.xml"/>
     <suppress checks="RegexpSingleline"
               files="config[\\/]org.eclipse.jdt.core.prefs"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]google_style.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]writingchecks.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]writingjavadocchecks.xml.vm"/>
 
 </suppressions>
