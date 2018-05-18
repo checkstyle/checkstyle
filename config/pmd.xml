@@ -15,6 +15,8 @@
     <exclude name="AccessorMethodGeneration"/>
     <!-- The PMD mistakes the AbstractViolationReporter::log() as a debug log. -->
     <exclude name="GuardLogStatement"/>
+    <!-- Till https://github.com/pmd/pmd/issues/1181 -->
+    <exclude name="UnusedPrivateMethod"/>
   </rule>
   <rule ref="category/java/bestpractices.xml/AvoidPrintStackTrace">
     <properties>
@@ -87,6 +89,17 @@
      <property name="violationSuppressXPath"
                value="//ClassOrInterfaceDeclaration
                           [@Image='AbstractClassNameCheck' or @Image='AutomaticBean']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/codestyle.xml/ClassNamingConventions">
+    <properties>
+     <!-- Definitions and XmlLoader.FeaturesForVerySecureJavaInstallations aren't utility classes.
+          JavadocTokenTypes and TokenTypes aren't utility classes.
+            They are token definition classes. Also, they are part of the API. -->
+     <property name="violationSuppressXPath"
+               value="//ClassOrInterfaceDeclaration[@Image='Definitions'
+                   or @Image='JavadocTokenTypes' or @Image='TokenTypes'
+                   or @Image='FeaturesForVerySecureJavaInstallations']"/>
     </properties>
   </rule>
   <rule ref="category/java/codestyle.xml/ConfusingTernary">
@@ -358,20 +371,6 @@
   <rule ref="category/java/performance.xml">
     <!-- Produces more false positives than real problems. -->
     <exclude name="AvoidInstantiatingObjectsInLoops"/>
-    <!-- Conflicts with the ToArrayCallWithZeroLengthArrayArgument check from the Idea.
-         This rule is based on a study by Aleksey Shipilёv
-         https://shipilev.net/blog/2016/arrays-wisdom-ancients/
-         However, in modern JVM the result is different:
-         Benchmark (size)  (type)   Mode  Cnt Score    Error  Units
-         simple     1000  arraylist avgt  15  400.156   4.154 ns/op
-         sized      1000  arraylist avgt  15 1051.462  26.820 ns/op
-         zero       1000  arraylist avgt  15  743.794  27.400 ns/op
-         simple     1000  hashset   avgt  15 4728.179 130.822 ns/op
-         sized      1000  hashset   avgt  15 4960.655 179.637 ns/op
-         zero       1000  hashset   avgt  15 5101.816 159.180 ns/op
-         The advantages of this rule are questionable, and the flaws are obvious.
-     -->
-    <exclude name="OptimizableToArrayCall"/>
     <!-- Not configurable, decreases readability. -->
     <exclude name="UseStringBufferForStringAppends"/>
   </rule>
@@ -403,7 +402,7 @@
                 and ../../../../ForStatement)]
           [not((ancestor::FormalParameter) and (ancestor::TryStatement))]
           [not(ancestor::ClassOrInterfaceDeclaration[
-              //MarkerAnnotation/Name[pmd-java:typeof(@Image, 'java.lang.Override', 'Override')]])]
+              //MarkerAnnotation/Name[pmd-java:typeIs('java.lang.Override')]])]
           ]]>
         </value>
       </property>
