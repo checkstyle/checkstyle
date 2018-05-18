@@ -78,7 +78,8 @@
   <module name="RegexpMultiline">
       <property name="format" value="/\*\*\W+\* +\p{javaLowerCase}"/>
       <property name="fileExtensions" value="java"/>
-      <property name="message" value="First sentence in a comment should start with a capital letter"/>
+      <property name="message"
+                value="First sentence in a comment should start with a capital letter"/>
   </module>
   <module name="RegexpSingleline">
     <property name="format" value="\s+$"/>
@@ -114,14 +115,15 @@
       <property name="fileNamePattern" value="\.(xml)|(vm)$"/>
       <property name="match" value="false"/>
       <message key="regexp.filepath.mismatch"
-               value="All files in the ''src/xdocs'' folder should have the ''xml'' or ''vm'' extension."/>
+        value="All files in the ''src/xdocs'' folder should have the ''xml'' or ''vm'' extension."/>
   </module>
   <module name="RegexpOnFilename">
       <property name="folderPattern" value="[\\/]src[\\/]it[\\/]java[\\/]"/>
       <property name="fileNamePattern" value="^((\w+Test)|(Abstract\w+))\.java$"/>
       <property name="match" value="false"/>
       <message key="regexp.filepath.mismatch"
-               value="All files in the ''src/it/java'' folder should be named ''*Test.java'' or ''Abstract*.java''."/>
+               value="All files in the ''src/it/java'' folder
+                      should be named ''*Test.java'' or ''Abstract*.java''."/>
   </module>
 
   <!-- Size Violations -->
@@ -175,7 +177,11 @@
     <module name="SuppressWarnings">
         <property name="format" value="^((?!unchecked|deprecation|rawtypes).)*$"/>
         <message key="suppressed.warning.not.allowed"
-             value="The warning ''{0}'' cannot be suppressed at this location. Only few javac warnings are allowed to suppress. If try to suppress checkstyle/pmd/..... violation please do this in their config file. If you try to suppress IntelliJ IDEA inspection, please use javadoc block tag @noinspection"
+             value="The warning ''{0}'' cannot be suppressed at this location.
+             Only few javac warnings are allowed to suppress.
+             If try to suppress checkstyle/pmd/..... violation please do this in their config file.
+             If you try to suppress IntelliJ IDEA inspection,
+             please use javadoc block tag @noinspection"
              />
     </module>
     <module name="SuppressWarningsHolder"/>
@@ -264,11 +270,18 @@
     </module>
     <module name="IllegalCatch">
         <property name="illegalClassNames"
-                  value="java.lang.Exception, java.lang.Throwable, java.lang.RuntimeException, java.lang.NullPointerException"/>
+                  value="java.lang.Exception,
+                         java.lang.Throwable,
+                         java.lang.RuntimeException,
+                         java.lang.NullPointerException"/>
     </module>
     <module name="IllegalInstantiation">
-        <property name="classes" value="org.xml.sax.SAXException, org.xml.sax.SAXParseException, org.apache.commons.beanutils.ConversionException,
-            org.antlr.v4.runtime.misc.ParseCancellationException, antlr.RecognitionException, antlr.TokenStreamException, antlr.TokenStreamRecognitionException, antlr.ANTLRException"/>
+        <property name="classes"
+                  value="org.xml.sax.SAXException, org.xml.sax.SAXParseException,
+                         org.apache.commons.beanutils.ConversionException,
+                         org.antlr.v4.runtime.misc.ParseCancellationException,
+                         antlr.RecognitionException, antlr.TokenStreamException,
+                         antlr.TokenStreamRecognitionException, antlr.ANTLRException"/>
     </module>
     <module name="IllegalThrows"/>
     <module name="IllegalToken">
@@ -336,7 +349,8 @@
       <property name="file" value="${checkstyle.suppressions-xpath.file}"/>
     </module>
     <module name="SuppressWithNearbyCommentFilter">
-      <property name="commentFormat" value="-@cs\[(\w{8,}(\|\w{8,})*)\] \w[\(\)\-\.\'\`\,\:\;\w ]{10,}"/>
+      <property name="commentFormat"
+                value="-@cs\[(\w{8,}(\|\w{8,})*)\] \w[\(\)\-\.\'\`\,\:\;\w ]{10,}"/>
       <property name="checkFormat" value="$1"/>
       <property name="influenceFormat" value="3"/>
     </module>
@@ -400,13 +414,36 @@
     </module>
     <module name="ClassDataAbstractionCoupling">
         <!-- Default classes are also listed-->
-        <property name="excludedClasses" value="boolean, byte, char, double, float, int, long, short, void, Boolean, Byte, Character, Double, Float, Integer, Long, Short, Void, Object, Class, String, StringBuffer, StringBuilder, ArrayIndexOutOfBoundsException, Exception, RuntimeException, IllegalArgumentException, IllegalStateException, IndexOutOfBoundsException, NullPointerException, Throwable, SecurityException, UnsupportedOperationException, List, ArrayList, Deque, Queue, LinkedList, Set, HashSet, SortedSet, TreeSet, Map, HashMap, SortedMap, TreeMap,
-            DetailsAST, CheckstyleException, UnsupportedEncodingException, BuildException, ConversionException, FileNotFoundException, TestException"/>
+        <property name="excludedClasses"
+                  value="boolean, byte, char, double, float, int, long, short, void,
+                         Boolean, Byte, Character, Double, Float, Integer, Long, Short, Void,
+                         Object, Class, String, StringBuffer, StringBuilder,
+                         ArrayIndexOutOfBoundsException, Exception, RuntimeException,
+                         IllegalArgumentException, IllegalStateException,
+                         IndexOutOfBoundsException, NullPointerException, Throwable,
+                         SecurityException, UnsupportedOperationException, List, ArrayList,
+                         Deque, Queue, LinkedList, Set, HashSet, SortedSet, TreeSet, Map,
+                         HashMap, SortedMap, TreeMap, DetailsAST, CheckstyleException,
+                         UnsupportedEncodingException, BuildException, ConversionException,
+                         FileNotFoundException, TestException"/>
     </module>
     <module name="ClassFanOutComplexity">
         <property name="max" value="25"/>
         <!-- Default classes are also listed-->
-        <property name="excludedClasses" value="boolean, byte, char, double, float, int, long, short,  void, Boolean, Byte, Character, Double, Float, Integer, Long, Short, Void, Object, Class, String, StringBuffer, StringBuilder, ArrayIndexOutOfBoundsException, Exception, RuntimeException, IllegalArgumentException, IllegalStateException, IndexOutOfBoundsException, NullPointerException, Throwable, SecurityException, UnsupportedOperationException, List, ArrayList, Deque, Queue, LinkedList, Set, HashSet, SortedSet, TreeSet, Map, HashMap, SortedMap, TreeMap, DetailsAST, CheckstyleException, UnsupportedEncodingException, BuildException, ConversionException, FileNotFoundException, TestException, Log, Sets, Multimap, TokenStreamRecognitionException, RecognitionException, TokenStreamException, IOException"/>
+        <property name="excludedClasses"
+                  value="boolean, byte, char, double, float, int, long, short,
+                         void, Boolean, Byte, Character, Double, Float, Integer,
+                         Long, Short, Void, Object, Class, String, StringBuffer,
+                         StringBuilder, ArrayIndexOutOfBoundsException, Exception,
+                         RuntimeException, IllegalArgumentException, IllegalStateException,
+                         IndexOutOfBoundsException, NullPointerException, Throwable,
+                         SecurityException, UnsupportedOperationException, List, ArrayList,
+                         Deque, Queue, LinkedList, Set, HashSet, SortedSet, TreeSet, Map,
+                         HashMap, SortedMap, TreeMap, DetailsAST, CheckstyleException,
+                         UnsupportedEncodingException, BuildException, ConversionException,
+                         FileNotFoundException, TestException, Log, Sets, Multimap,
+                         TokenStreamRecognitionException, RecognitionException,
+                         TokenStreamException, IOException"/>
     </module>
     <module name="CyclomaticComplexity">
       <property name="switchBlockAsSingleDecisionPoint" value="true"/>

@@ -436,10 +436,14 @@ public class MethodLimitCheck extends AbstractCheck
       </p>
       <p>
         Comment tokens:
-        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SINGLE_LINE_COMMENT">SINGLE_LINE_COMMENT</a>,
-        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_BEGIN">BLOCK_COMMENT_BEGIN</a>,
-        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_END">BLOCK_COMMENT_END</a>,
-        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMENT_CONTENT">COMMENT_CONTENT</a>.
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SINGLE_LINE_COMMENT">
+            SINGLE_LINE_COMMENT</a>,
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_BEGIN">
+            BLOCK_COMMENT_BEGIN</a>,
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_END">
+            BLOCK_COMMENT_END</a>,
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMENT_CONTENT">
+            COMMENT_CONTENT</a>.
       </p>
 
     </section>
@@ -534,8 +538,8 @@ public class MethodLimitCheck extends AbstractCheck
 
       <p>
         To support internationalized error messages, you need to create or reuse existing
-        a messages.properties file alongside your Check class
-        (<a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/com/puppycrawl/tools/checkstyle/checks/sizes/messages.properties">
+        a messages.properties file alongside your Check class (
+        <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/com/puppycrawl/tools/checkstyle/checks/sizes/messages.properties">
           example</a>)
         , i.e. the
         Java file and the properties files should be in the same
@@ -750,7 +754,8 @@ public class LimitImplementationFiles extends AbstractFileSetCheck
          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html">
              ExternalResourceHolder</a>
          interface. Such module must declare external resource locations as a set of Strings
-         which will be returned from <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">
+         which will be returned from
+         <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">
            getExternalResourceLocations</a>
          method. This will allow Checkstyle to invalidate (clear) cache when the content of at
          least one external configuration resource of your check is changed.
@@ -758,16 +763,20 @@ public class LimitImplementationFiles extends AbstractFileSetCheck
        <p>
          ATTENTION!
          <li>
-           If <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">
+           If
+           <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">
              getExternalResourceLocations</a>
-           return null, there will be NullPointerException in <a href="apidocs/com/puppycrawl/tools/checkstyle/Checker.html">
+           return null, there will be NullPointerException in
+           <a href="apidocs/com/puppycrawl/tools/checkstyle/Checker.html">
              Checker</a>.
            Such behaviour will signal that your module (check or filter) is designed incorrectly.
          </li>
          <li>
-           It makes sense to return an empty set from <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">
+           It makes sense to return an empty set from
+           <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">
              getExternalResourceLocations</a>
-           only for composite modules like <a href="apidocs/com/puppycrawl/tools/checkstyle/TreeWalker.html">
+           only for composite modules like
+           <a href="apidocs/com/puppycrawl/tools/checkstyle/TreeWalker.html">
              TreeWalker</a>.
          </li>
        </p>

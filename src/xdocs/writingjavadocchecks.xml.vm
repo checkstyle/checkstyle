@@ -221,7 +221,8 @@ public class MyClass {
         Javadoc comment. Because of that Javadoc grammar includes all whitespaces, newlines to
         the parse tree
         (<a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#WS">WS</a>,
-        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#NEWLINE">NEWLINE</a>).
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#NEWLINE">
+            NEWLINE</a>).
       </p>
     </section>
 
@@ -383,7 +384,8 @@ class MyCheck extends AbstractJavadocCheck {
 
     <section name="HTML Code In Javadoc Comments">
       <p>
-        Checkstyle supports HTML4 tags in Javadoc comments: <a href="https://www.w3.org/TR/html4/index/elements.html">
+        Checkstyle supports HTML4 tags in Javadoc comments:
+          <a href="https://www.w3.org/TR/html4/index/elements.html">
           all HTML4 elements</a>.
       </p>
       <p>
@@ -417,7 +419,8 @@ class MyCheck extends AbstractJavadocCheck {
       <p>
         If Checkstyle meets unknown tag (for example HTML5 tag)
         it doesn't fail and parses this tag as
-        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#HTML_TAG">HTML_TAG</a>
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#HTML_TAG">
+            HTML_TAG</a>
           Javadoc token type.
         Just follow <a href="#Tight-HTML_rules">Tight-HTML rules</a> to make
           Checkstyle javadoc parser make nested AST, even though tags are unknown.
@@ -796,7 +799,8 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
     </section>
 
     <section name="Integrating new Javadoc Check">
-      Javadoc Checks as well as regular Checks extend <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html">
+      Javadoc Checks as well as regular Checks extend
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html">
         AbstractCheck</a> class. So integrating new Javadoc Check is similar to
         <a href="writingchecks.html#Integrate_your_Check">integrating other Checks</a>.
     </section>
