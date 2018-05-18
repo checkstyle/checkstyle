@@ -59,8 +59,6 @@
 
     <!-- suppressed till https://github.com/checkstyle/checkstyle/issues/5791 -->
     <suppress checks="RegexpSingleline"
-              files="appveyor.yml"/>
-    <suppress checks="RegexpSingleline"
               files="config[\\/]intellij-idea-inspection-scope.xml"/>
     <suppress checks="RegexpSingleline"
               files="config[\\/]intellij-idea-inspections.properties"/>
@@ -68,11 +66,5 @@
               files="config[\\/]intellij-idea-inspections.xml"/>
     <suppress checks="RegexpSingleline"
               files="config[\\/]org.eclipse.jdt.core.prefs"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]google_style.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]writingchecks.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]xdocs[\\/]writingjavadocchecks.xml.vm"/>
 
 </suppressions>
