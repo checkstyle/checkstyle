@@ -2,5 +2,5 @@
      all excludes should be specified in build configuration -->
 <component name="DependencyValidationManager">
     <scope name="Checkstyle Inspection Scope"
-           pattern="!file:target//*&amp;&amp;!file:src/test/resources*//**&amp;&amp;!file:src/it/resources*//**&amp;&amp;!file:src/test/java/com/puppycrawl/tools/checkstyle/grammars/javadoc/ParseTreeBuilder.java&amp;&amp;!file:src/site/resources/js/google-analytics.js&amp;&amp;!file:config/intellij-idea-inspections.properties"/>
+           pattern="!file:target//*&amp;&amp;!file:src/test/resources*//**&amp;&amp;!file:src/it/resources*//**&amp;&amp;!file:src/site/resources/js/google-analytics.js&amp;&amp;!file:config/intellij-idea-inspections.properties"/>
 </component>

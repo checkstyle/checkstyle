@@ -59,13 +59,8 @@
     <!-- property names a too long, nothing we can do -->
     <suppress checks="RegexpSingleline"
               files="config[\\/]org.eclipse.jdt.core.prefs"/>
-
-    <!-- suppressed till https://github.com/checkstyle/checkstyle/issues/5791 -->
+    <!-- there is no way to make line wrap in property value -->
     <suppress checks="RegexpSingleline"
               files="config[\\/]intellij-idea-inspection-scope.xml"/>
-    <suppress checks="RegexpSingleline"
-              files="config[\\/]intellij-idea-inspections.properties"/>
-    <suppress checks="RegexpSingleline"
-              files="config[\\/]intellij-idea-inspections.xml"/>
 
 </suppressions>
