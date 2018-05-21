@@ -1330,9 +1330,8 @@ public class XdocsPagesTest {
             styleChecks.remove("TreeWalker");
             styleChecks.remove("Checker");
 
-            //till https://github.com/checkstyle/checkstyle/issues/5817
-            //Assert.assertTrue(fileName + " requires the following check(s) to appear: "
-            //        + styleChecks, styleChecks.isEmpty());
+            Assert.assertTrue(fileName + " requires the following check(s) to appear: "
+                    + styleChecks, styleChecks.isEmpty());
         }
     }
 
@@ -1431,9 +1430,8 @@ public class XdocsPagesTest {
             }
         }
 
-        // till https://github.com/checkstyle/checkstyle/issues/5817
-        //Assert.assertFalse(fileName + " rule '" + ruleName + "' has too many configs",
-        //        itrConfigs.hasNext());
+        Assert.assertFalse(fileName + " rule '" + ruleName + "' has too many configs",
+                itrConfigs.hasNext());
     }
 
 }
