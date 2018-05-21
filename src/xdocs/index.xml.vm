@@ -167,8 +167,8 @@
                         Lightweight Eclipse Plugin for Quality Assurance Tools
                      </a>
                   </td>
-                  <td>Alternative to the Eclipse-CS plugin. 
-                     Allows to use custom checks directly without providing 
+                  <td>Alternative to the Eclipse-CS plugin.
+                     Allows to use custom checks directly without providing
                      an Eclipse Fragment plugin for that purpose.
                   </td>
               </tr>
