@@ -161,6 +161,12 @@
               </tr>
               <tr>
                   <td><a href="https://eclipse.org">Eclipse/RAD/RDz</a></td>
+                  <td>Christian Wulf</td>
+                  <td><a href="https://github.com/ChristianWulf/qa-eclipse-plugin">Lightweight Eclipse Plugin for Quality Assurance Tools</a></td>
+                  <td>Alternative to the Eclipse-CS plugin. Allows to use custom checks directly without providing an Eclipse Fragment plugin for that purpose.</td>
+              </tr>
+              <tr>
+                  <td><a href="https://eclipse.org">Eclipse/RAD/RDz</a></td>
                   <td>David Schneider</td>
                   <td>
                       <a href="http://checkstyle.org/eclipse-cs/">Eclipse-CS Home Page</a>
