@@ -13,7 +13,7 @@ function checkout_from {
     git fetch
     cd ../
   else
-    for i in 1 2 3 4 5; do git clone CLONE_URL && break || sleep 15; done
+    for i in 1 2 3 4 5; do git clone $CLONE_URL && break || sleep 15; done
   fi
   cd ../
 }
