@@ -3,9 +3,9 @@ version: '{build}'
 skip_tags: true
 skip_commits:
   files:
-    - .ci/
-    - .circleci/
-    - .github/
+    - .ci/*
+    - .circleci/*
+    - .github/*
     - .gitattributes
     - .gitignore
     - .travis.yml
