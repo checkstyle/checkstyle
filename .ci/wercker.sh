@@ -2,14 +2,30 @@
 # Attention, there is no "-x" to avoid problems on Wercker
 set -e
 
+function checkout_from {
+  CLONE_URL=$1
+  PROJECT=$(echo "$CLONE_URL" | sed -nE 's/.*\/(.*).git/\1/p')
+  mkdir -p .ci-temp
+  cd .ci-temp
+  if [ -d "$PROJECT" ]; then
+    echo "Target project $PROJECT is already cloned, latest changes will be fetched"
+    cd $PROJECT
+    git fetch
+    cd ../
+  else
+    for i in 1 2 3 4 5; do git clone $CLONE_URL && break || sleep 15; done
+  fi
+  cd ../
+}
+
 case $1 in
 
 no-error-pgjdbc)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  for i in 1 2 3 4 5; do git clone https://github.com/pgjdbc/pgjdbc.git && break || sleep 15; done
-  cd pgjdbc/pgjdbc
+  checkout_from https://github.com/pgjdbc/pgjdbc.git
+  cd .ci-temp/pgjdbc/pgjdbc
   mvn -e checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
   cd ../../
   rm -rf pgjdbc
@@ -19,16 +35,8 @@ no-error-orekit)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  mkdir -p .ci-temp
-  cd .ci-temp
-  if [ -d "Orekit" ]; then
-    echo "Target project is already cloned, latest changes will be fetched"
-    cd Orekit
-    git fetch
-  else
-    for i in 1 2 3 4 5; do git clone https://github.com/CS-SI/Orekit.git && break || sleep 15; done
-    cd Orekit
-  fi
+  checkout_from https://github.com/CS-SI/Orekit.git
+  cd .ci-temp/Orekit
   # no CI is enforced in project, so to make our build stable we should
   # checkout to latest release (annotated tag)
   #git checkout $(git describe --abbrev=0 --tags)
@@ -46,10 +54,8 @@ no-error-xwiki)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  for i in 1 2 3 4 5; do
-    git clone https://github.com/xwiki/xwiki-commons/ && break || sleep 15;
-  done
-  cd xwiki-commons
+  checkout_from https://github.com/xwiki/xwiki-commons.git
+  cd .ci-temp/xwiki-commons
   git checkout 44b0c0048c516dae20cf5f8a71181af836549484
   mvn -e install -DskipTests -Dxwiki.clirr.skip=true checkstyle:check \
      -Dcheckstyle.version=${CS_POM_VERSION}
@@ -61,10 +67,8 @@ no-error-apex-core)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  for i in 1 2 3 4 5; do
-    git clone https://github.com/apache/incubator-apex-core/ && break || sleep 15;
-  done
-  cd incubator-apex-core
+  checkout_from https://github.com/apache/incubator-apex-core.git
+  cd .ci-temp/incubator-apex-core
   mvn -e compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
   cd ../
   rm -rf incubator-apex-core
@@ -74,10 +78,8 @@ no-error-hibernate-search)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  for i in 1 2 3 4 5; do
-    git clone https://github.com/hibernate/hibernate-search.git && break || sleep 15;
-  done
-  cd hibernate-search
+  checkout_from https://github.com/hibernate/hibernate-search.git
+  cd .ci-temp/hibernate-search
   mvn -e clean install -DskipTests=true -Dtest.elasticsearch.host.provided=true \
      -Dcheckstyle.skip=true -Dforbiddenapis.skip=true \
      -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION}
@@ -115,10 +117,8 @@ no-error-sevntu-checks)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  for i in 1 2 3 4 5; do
-    git clone https://github.com/sevntu-checkstyle/sevntu.checkstyle && break || sleep 15;
-  done
-  cd sevntu.checkstyle/sevntu-checks
+  checkout_from https://github.com/sevntu-checkstyle/sevntu.checkstyle.git
+  cd .ci-temp/sevntu.checkstyle/sevntu-checks
   mvn -e -Pno-validations verify  -Dcheckstyle.skip=false -Dcheckstyle.version=${CS_POM_VERSION} \
      -Dcheckstyle.configLocation=../../config/checkstyle_checks.xml
   cd ../../
@@ -130,8 +130,8 @@ no-error-strata)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  for i in 1 2 3 4 5; do git clone https://github.com/OpenGamma/Strata && break || sleep 15; done
-  cd Strata
+  checkout_from https://github.com/OpenGamma/Strata.git
+  cd .ci-temp/Strata
   mvn install -e -B -Dstrict -DskipTests \
      -Dforbiddenapis.skip=true -Dcheckstyle.version=${CS_POM_VERSION}
   cd ../
@@ -142,10 +142,8 @@ no-exception-struts)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  for i in 1 2 3 4 5; do
-    git clone https://github.com/checkstyle/contribution && break || sleep 15;
-  done
-  cd contribution/checkstyle-tester
+  checkout_from https://github.com/checkstyle/contribution.git
+  cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
   sed -i'' 's/#apache-struts/apache-struts/' projects-for-wercker.properties
   groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
@@ -159,10 +157,8 @@ no-exception-checkstyle-sevntu)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  for i in 1 2 3 4 5; do
-    git clone https://github.com/checkstyle/contribution && break || sleep 15;
-  done
-  cd contribution/checkstyle-tester
+  checkout_from https://github.com/checkstyle/contribution.git
+  cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
   sed -i'' 's/#checkstyle/checkstyle/' projects-for-wercker.properties
   sed -i'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-for-wercker.properties
@@ -176,10 +172,8 @@ no-exception-guava)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  for i in 1 2 3 4 5; do
-    git clone https://github.com/checkstyle/contribution && break || sleep 15;
-  done
-  cd contribution/checkstyle-tester
+  checkout_from https://github.com/checkstyle/contribution.git
+  cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
   sed -i'' 's/#guava/guava/' projects-for-wercker.properties
   groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
@@ -192,8 +186,8 @@ no-exception-hibernate-orm)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  git clone https://github.com/checkstyle/contribution
-  cd contribution/checkstyle-tester
+  checkout_from https://github.com/checkstyle/contribution.git
+  cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#hibernate-orm/hibernate-orm/' projects-to-test-on.properties
   groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
@@ -206,8 +200,8 @@ no-exception-spotbugs)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  git clone https://github.com/checkstyle/contribution
-  cd contribution/checkstyle-tester
+  checkout_from https://github.com/checkstyle/contribution.git
+  cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spotbugs/spotbugs/' projects-to-test-on.properties
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
@@ -220,8 +214,8 @@ no-exception-spring-framework)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  git clone https://github.com/checkstyle/contribution
-  cd contribution/checkstyle-tester
+  checkout_from https://github.com/checkstyle/contribution.git
+  cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spring-framework/spring-framework/' projects-to-test-on.properties
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
@@ -234,8 +228,8 @@ no-exception-hbase)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  git clone https://github.com/checkstyle/contribution
-  cd contribution/checkstyle-tester
+  checkout_from https://github.com/checkstyle/contribution.git
+  cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#Hbase/Hbase/' projects-to-test-on.properties
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
@@ -248,8 +242,8 @@ no-exception-Pmd-elasticsearch-lombok-ast)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  git clone https://github.com/checkstyle/contribution
-  cd contribution/checkstyle-tester
+  checkout_from https://github.com/checkstyle/contribution.git
+  cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#pmd/pmd/' projects-to-test-on.properties
   sed -i.'' 's/#elasticsearch/elasticsearch/' projects-to-test-on.properties
@@ -264,8 +258,8 @@ no-exception-alot-of-projects)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  git clone https://github.com/checkstyle/contribution
-  cd contribution/checkstyle-tester
+  checkout_from https://github.com/checkstyle/contribution.git
+  cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#RxJava/RxJava/' projects-to-test-on.properties
   sed -i.'' 's/#java-design-patterns/java-design-patterns/' projects-to-test-on.properties
