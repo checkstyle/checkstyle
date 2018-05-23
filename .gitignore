@@ -9,7 +9,7 @@
 .pmd
 .pmdruleset.xml
 .fbExcludeFilterFile
- 
+
 # NetBeans project files
 nbactions.xml
 nb-configuration.xml
@@ -37,7 +37,7 @@ replay_pid*
 # NonDex files
 .nondex
 
-# spell checker whitelist
+# temp folder for files/folders of ci validations
 .ci-temp
 
 #side effect of jsoref-spellchecker tools usage
