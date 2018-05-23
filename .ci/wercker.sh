@@ -19,20 +19,27 @@ no-error-orekit)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  for i in 1 2 3 4 5; do
-    git clone https://github.com/Hipparchus-Math/hipparchus.git && break || sleep 15;
-  done
-  cd hipparchus
-  git checkout 42fe07bcff62f6d4ded73a799d4fac8a0f155b35
-  mvn -e clean install -DskipTests
-  cd ../
-  for i in 1 2 3 4 5; do git clone https://github.com/CS-SI/Orekit.git && break || sleep 15; done
-  cd Orekit
-  # Orekit use 'develop' branch as target for PullRequest merges
-  git checkout develop
+  mkdir -p .ci-temp
+  cd .ci-temp
+  if [ -d "Orekit" ]; then
+    echo "Target project is already cloned, latest changes will be fetched"
+    cd Orekit
+    git fetch
+  else
+    for i in 1 2 3 4 5; do git clone https://github.com/CS-SI/Orekit.git && break || sleep 15; done
+    cd Orekit
+  fi
+  # no CI is enforced in project, so to make our build stable we should
+  # checkout to latest release (annotated tag)
+  #git checkout $(git describe --abbrev=0 --tags)
+  # Orekit use 'develop' branch as target for PullRequest merges, where all our breaking changes
+  # of 8.2 and above are applied
+  #git checkout develop
+  # due to temporal compilation problems(20180522) we use latest commit where compilation pass
+  git checkout 9862be9
   mvn -e compile checkstyle:check -Dorekit.checkstyle.version=${CS_POM_VERSION}
   cd ../
-  rm -rf hipparchus Orekit
+  rm -rf Orekit
   ;;
 
 no-error-xwiki)
