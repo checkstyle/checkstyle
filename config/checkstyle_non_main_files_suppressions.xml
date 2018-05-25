@@ -46,8 +46,6 @@
               files="src[\\/]it[\\/]resources[\\/]*"/>
     <suppress checks="RegexpSingleline"
               files="src[\\/]test[\\/]resources[\\/]*"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]test[\\/]resources-noncompilable[\\/]*"/>
     <!-- content is generated -->
     <suppress checks="RegexpSingleline"
               files="src[\\/]xdocs[\\/]releasenotes_old.xml"/>
