@@ -194,6 +194,12 @@ matrix:
         - DESC="build with OracleJDK9"
         - CMD="mvn -e package -Passembly && mvn -e site -Dlinkcheck.skip=true"
 
+    # OracleJDK9 build
+    - jdk: oraclejdk9
+      env:
+        - DESC="build with OracleJDK9"
+        - CMD="./.ci/travis/travis.sh javac9"
+
     # new questionably spelled words
     - env:
         - DESC="spell checker"
