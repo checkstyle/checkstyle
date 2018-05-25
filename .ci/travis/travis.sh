@@ -63,6 +63,10 @@ site)
   mvn -e clean site -Pno-validations
   ;;
 
+javac9)
+  javac $(grep -Rl --include='*.java' '//Compilable with Java9' src/test/resources-noncompilable)
+  ;;
+
 nondex)
   mvn -e --fail-never clean nondex:nondex -DargLine='-Xms1024m -Xmx2048m'
   cat `grep -RlE 'td class=.x' .nondex/ | cat` < /dev/null > output.txt
