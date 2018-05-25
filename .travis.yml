@@ -73,17 +73,11 @@ matrix:
         - DESC="NonDex"
         - CMD="./.ci/travis/travis.sh nondex"
 
-    # site (oraclejdk8 as 'site' success is required to be sure that on release time all will be ok,
-    # admins will use oracle8 version)
-    # moved to https://codeship.com/projects/124310/configure_tests
-    #- jdk: oraclejdk8
-    #  env:
-    #    - DESC="site"
-    #    - CMD1="mvn -e clean site -Dlinkcheck.skip=true -DskipTests -DskipITs "
-    #    - CMD2=" -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true "
-    #    - CMD3=" -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true"
-    #    - CMD=$CMD1$CMD2$CMD3
-    #    - COVERAGE_CMD=""
+    # site
+    - jdk: oraclejdk8
+     env:
+       - DESC="site without validations"
+       - CMD="./.ci/travis/travis.sh site"
 
     # unit tests in German locale (oraclejdk8)
     - jdk: oraclejdk8
