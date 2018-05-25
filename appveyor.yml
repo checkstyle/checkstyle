@@ -105,3 +105,4 @@ build_script:
   - ps: get-content appveyor.cmd
   # We need to use cmd there as ps1 is failing each time error output appear from any command line
   - appveyor.cmd
+  - ps: Get-DirStats -Path C:\Users\appveyor\.m2 | Sort-Object -Property Size
