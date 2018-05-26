@@ -795,11 +795,11 @@
     </section>
 
     <section name="LocalVariableName">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
             Checks that local, non-<code>final</code> variable names conform to a format specified
-            by the format property.
+            by the format property. A catch parameter is considered to be a local variable.
         </p>
       </subsection>
 
@@ -838,13 +838,30 @@ for (int i = 1; i &lt; 10; i++) {}
 
       <subsection name="Examples">
         <p>
-          To configure the check to use the default configuration:
+          An example of how to configure the check is:
         </p>
 
         <source>
 &lt;module name=&quot;LocalVariableName&quot;/&gt;
         </source>
 
+        <p>
+          An example of how to configure the check for names that begin with a lower
+          case letter, followed by letters, digits, and underscores is:
+        </p>
+        <source>
+&lt;module name="LocalVariableName"&gt;
+  &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          An example of one character variable name in initialization expression(like "i")
+          in FOR loop:
+        </p>
+        <source>
+          for(int i = 1; i &lt; 10; i++) {}
+        </source>
         <p>
           An example of how to configure the check to allow one character variable name in
           <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
