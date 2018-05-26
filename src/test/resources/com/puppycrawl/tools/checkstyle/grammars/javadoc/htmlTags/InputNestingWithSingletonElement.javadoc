@@ -8,7 +8,7 @@
 * <body> body with <br/> singletonElement </body>
 * <colgroup><col><col><col></colgroup>
 * <dd> dd with <hr> singletonElement </dd>
-* <dt> dt with <img src="~/singletonElement.jpg" alt="" width="100" height="150"/> singletonElement </dt>
+* <dt> dt with <img src="~/singletonElement.jpg" alt="" width="100" height="150"/> singletonEl </dt>
 * <head> head with <img src="~/singletonElement.jpg" alt="" width="100" height="150">
 * singletonElement </head>
 *

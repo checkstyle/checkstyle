@@ -24,14 +24,14 @@ public class InputUnicodeEscape
     char q = '\uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu005D';
     char r = '\u005c\u0027';
     char s = '\uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu005c\uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu0027';
-    
+
     char wtf1 = '\u005c\u005c'; // This is a legal backslash
     String wtf2 = "\\u005c";    // = "\u005c", with a single backslash, and != a backslash!
-                                // There is an ambiguity in the grammar, the interpretation is done as "\\" + "u005c"
+                                // There is ambiguity, the interpretation is done as "\\" + "u005c"
     //char wtf3 = '\\u005c';    // This is therefore, illegal
 
     //char z = '\u005cu005c'; /* This is illegal */
-    
+
     String sa = "\u0078\u006b\u0020\u005c\u0022\u003f\u0020\u19e8\u19f2\u19ec";
     String sb = "ihcp gyqnaznr \u2d21\u2d07\u2d0a\u2d02\u2d23\u2d27";
     String sc = "\u3009\u3007\u3017\u3032 ]*+f?)).[. xhc";

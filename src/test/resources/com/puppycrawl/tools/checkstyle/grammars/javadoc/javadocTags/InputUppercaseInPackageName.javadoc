@@ -26,4 +26,4 @@
 * @see package.Class.NestedClassAtDepth1.NestedClassAtDepth2#member
 <p> Separate package from class without context
 * </p>
-* @see javax.swing.tree.DefaultTreeCellRenderer.getTreeCellRendererComponent ()
+* @see javax.swing.tree.DefaultTreeCellRenderer.getTreeCellRenderer ()
