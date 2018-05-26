@@ -43,7 +43,7 @@
     <suppress checks="RegexpSingleline" files="appveyor.cmd"/>
     <!-- test resources are weird by design, no validations in them -->
     <suppress checks="RegexpSingleline"
-              files="src[\\/]it[\\/]resources[\\/]*"/>
+              files="src[\\/]it[\\/]resources[\\/].*[\\/]InputLineLength.*\.java"/>
     <suppress checks="RegexpSingleline"
               files="src[\\/]test[\\/]resources[\\/]*"/>
     <!-- content is generated -->
