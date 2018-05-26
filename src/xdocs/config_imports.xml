@@ -1427,6 +1427,16 @@ import java.util.stream.IntStream;
             <td>3.2</td>
           </tr>
           <tr>
+          <td>separatedStaticGroups</td>
+              <td>
+              whether static import groups should be separated by, at least, one
+              blank line or comment and aren't separated internally.
+              </td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td>false</td>
+            <td>8.12</td>
+          </tr>
+          <tr>
             <td>caseSensitive</td>
             <td>whether string comparison should be case sensitive or not.
               Case sensitive sorting is in
