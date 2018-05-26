@@ -264,7 +264,9 @@
            CustomImportOrderCheck.finishImportList, CustomImportOrderCheck.getImportGroup are
              validated by checkstyle version of Npath, we think that pmd is wrong here.
            Checker.processFiles is validated by checkstyle version of Npath, we think that pmd is
-             wrong here. -->
+             wrong here.
+           XdocsJavaDocsTest.testAllCheckSectionJavaDocs is needed until all suppressions are
+             removed. -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@Image='RequireThisCheck'
       or @Image='VariableDeclarationUsageDistanceCheck' or @Image='XdocsPagesTest'
@@ -287,7 +289,9 @@
       or @Image='FinalLocalVariableCheck' or @Image='ModifiedControlVariableCheck'
       or @Image='ParameterAssignmentCheck' or @Image='UnnecessaryParenthesesCheck'
       or @Image='AbstractClassCouplingCheck' or @Image='BooleanExpressionComplexityCheck'
-      or @Image='ParenPadCheck']//MethodDeclaration[@Name='visitToken']"/>
+      or @Image='ParenPadCheck']//MethodDeclaration[@Name='visitToken']
+    | //ClassOrInterfaceDeclaration[@Image='XdocsJavaDocsTest']
+          //MethodDeclaration[@Name='testAllCheckSectionJavaDocs']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/TooManyFields">

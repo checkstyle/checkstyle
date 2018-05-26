@@ -494,11 +494,13 @@
     </section>
 
     <section name="ConstantName">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
-          Validates identifiers for constants (<code>static</code>, <code>
-          final</code> fields).
+          Checks that constant names conform to a format specified by the format property.
+          A <em>constant</em> is a <strong>static</strong> and <strong>final</strong> field or an
+          interface/annotation field, except <strong>serialVersionUID</strong> and
+          <strong>serialPersistentFields</strong>.
         </p>
       </subsection>
 
@@ -553,10 +555,15 @@
 
       <subsection name="Examples">
         <p>
-          Property <code>format</code> in module <code>ConstantName</code>
-          is used to specify names to be allowed. The following configuration
-          apart from names allowed by default allows <code>log</code> or
-          <code>logger</code>:
+          An example of how to configure the check is:
+        </p>
+
+        <source>
+&lt;module name="ConstantName"/&gt;
+        </source>
+        <p>
+          The following configuration apart from names allowed by default allows <code>log</code>
+          or <code>logger</code>:
         </p>
 
         <source>
