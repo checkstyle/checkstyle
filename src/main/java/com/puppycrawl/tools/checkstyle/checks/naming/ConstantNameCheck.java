@@ -30,9 +30,30 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * A <em>constant</em> is a <strong>static</strong> and <strong>final</strong>
  * field or an interface/annotation field, except
  * <strong>serialVersionUID</strong> and <strong>serialPersistentFields
- * </strong>.  The format is a regular expression
- * and defaults to <strong>^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$</strong>.
+ * </strong>.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code format} - Specifies valid identifiers. Default value is
+ * {@code "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"}.
+ * </li>
+ * <li>
+ * Property {@code applyToPublic} - Controls whether to apply the check to public member.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code applyToProtected} - Controls whether to apply the check to protected member.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code applyToPackage} - Controls whether to apply the check to package-private member.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code applyToPrivate} - Controls whether to apply the check to private member.
+ * Default value is {@code true}.
+ * </li>
+ * </ul>
  * <p>
  * An example of how to configure the check is:
  * </p>
@@ -41,16 +62,17 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * </pre>
  *
  * <p>
- * An example of how to configure the check for names that are only upper case
- * letters and digits is:
+ * The following configuration apart from names allowed by default allows {@code log}
+ * or {@code logger}:
  * </p>
  * <pre>
- * &lt;module name="ConstantName"&gt;
- *    &lt;property name="format" value="^[A-Z][A-Z0-9]*$"/&gt;
+ * &lt;module name=&quot;ConstantName&quot;&gt;
+ *   &lt;property name=&quot;format&quot;
+ *     value=&quot;^log(ger)?|[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  *
- *
+ * @since 3.0
  */
 public class ConstantNameCheck
     extends AbstractAccessControlNameCheck {

@@ -80,6 +80,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
      * Test contains asserts in callstack, but idea does not see them.
      * @noinspection JUnitTestMethodWithNoAssertions
      */
+    // -@cs[CyclomaticComplexity] needed until all suppressions are removed
     @Test
     public void testAllCheckSectionJavaDocs() throws Exception {
         final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
@@ -107,6 +108,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                                 && !"AbstractClassName".equals(sectionName)
                                 && !"CatchParameterName".equals(sectionName)
                                 && !"ClassTypeParameterName".equals(sectionName)
+                                && !"ConstantName".equals(sectionName)
                 ) {
                     continue;
                 }
