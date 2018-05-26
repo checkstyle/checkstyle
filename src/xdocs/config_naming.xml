@@ -416,9 +416,10 @@
     </section>
 
     <section name="ClassTypeParameterName">
+      <p>Since Checkstyle 5.0</p>
       <subsection name="Description">
-        <p>Since Checkstyle 5.0</p>
-        <p>Validates identifiers for class type parameters.</p>
+        <p>Checks that class type parameter names conform to a format specified by the format
+           property.</p>
       </subsection>
 
       <subsection name="Properties">
@@ -442,10 +443,18 @@
 
       <subsection name="Examples">
         <p>
-          To configure the check:
+          An example of how to configure the check is:
         </p>
         <source>
 &lt;module name=&quot;ClassTypeParameterName&quot;/&gt;
+        </source>
+        <p>
+          An example of how to configure the check for names that are only a single letter is:
+        </p>
+        <source>
+&lt;module name=&quot;ClassTypeParameterName&quot;&gt;
+  &lt;property name="format" value="^[a-zA-Z]$"/&gt;
+&lt;/module&gt;
         </source>
       </subsection>
 
