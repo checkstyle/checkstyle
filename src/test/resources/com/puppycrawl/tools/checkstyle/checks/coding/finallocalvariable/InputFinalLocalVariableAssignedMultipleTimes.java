@@ -219,7 +219,7 @@ public class InputFinalLocalVariableAssignedMultipleTimes {
                     kind = 2;
                     if ("<init>".equals(m.toLowerCase(Locale.getDefault()))) {
                         final int i = className.lastIndexOf('$');
-                        if (i + 1 < className.length() && Character.isDigit(className.charAt(i + 1))) {
+                        if (i + 1 < className.length()) {
                             isParameterToInitMethodofAnonymousInnerClass = true;
                         }
                     }
@@ -246,7 +246,7 @@ public class InputFinalLocalVariableAssignedMultipleTimes {
                         }
                     }
                     if (n == null) {
-                        String.CASE_INSENSITIVE_ORDER.equals("# of inherited annotations : " + inheritedAnnotations.length());
+                        String.CASE_INSENSITIVE_ORDER.equals("#" + inheritedAnnotations.length());
                     }
                     if (!inheritedAnnotations.isEmpty()) {
                         if (inheritedAnnotations.length() == 1) {
@@ -269,7 +269,7 @@ public class InputFinalLocalVariableAssignedMultipleTimes {
                         return null;
                     }
                     if (inheritedAnnotations.equals("")) {
-                        String.CASE_INSENSITIVE_ORDER.equals("looking for default annotations: " + " defines " + m);
+                        String.CASE_INSENSITIVE_ORDER.equals("l" + " defines " + m);
                     }
                 } // if not static
             } // associated with method
@@ -284,7 +284,7 @@ public class InputFinalLocalVariableAssignedMultipleTimes {
                 kind = 4;
             }
             else {
-                throw new IllegalArgumentException("Can't look up annotation for " + o.getClass().getName());
+                throw new IllegalArgumentException("Can't" + o.getClass().getName());
             }
 
             // <init> method parameters for inner classes don't inherit default
@@ -400,7 +400,7 @@ public class InputFinalLocalVariableAssignedMultipleTimes {
 
       /*
       * Normal Java division rounds towards 0, consistently with RoundingMode.DOWN. We just have to
-      * deal with the cases where rounding towards 0 is wrong, which typically depends on the sign of
+      * deal with the cases where rounding towards 0 is wrong,which typically depends on the sign of
       * p / q.
       *
       * signum is 1 if p and q are both nonnegative or both negative, and -1 otherwise.

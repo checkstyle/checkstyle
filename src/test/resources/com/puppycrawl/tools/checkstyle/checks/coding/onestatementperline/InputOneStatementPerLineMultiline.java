@@ -1,5 +1,5 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
-
+import java.io.StringReader;
 /*
     This class provides test input for OneStatementPerLineCheck with different
     types of multiline statements.
@@ -137,7 +137,7 @@ public class InputOneStatementPerLineMultiline {
 
     /**
      * Multiple statements within try-with-resource on a separate line is legal.
-     * @see <a href="https://github.com/checkstyle/checkstyle/issues/2211">OneStatementPerLine: false match with try-with-resources</a>
+     * @see <a href="https://github.com/checkstyle/checkstyle/issues/2211">false match</a>
      */
     private void issue2211pass() {
         try(
@@ -149,8 +149,8 @@ public class InputOneStatementPerLineMultiline {
     }
 
     /**
-     * Multiple statements within try-with-resource on a separate line is legal. Added per PR comment:
-     * @see <a href="https://github.com/checkstyle/checkstyle/pull/2750#issuecomment-166032327">Please add UT cases</a>
+     * Multiple statements within try-with-resource on a separate line is legal. Per PR comment:
+     * @see <a href="https://github.com/checkstyle/checkstyle/pull/2750#issuecomment-166032327"/>
      */
     private void issue2211pass2() {
         try( AutoCloseable i = new java.io.StringReader("");
@@ -161,22 +161,22 @@ public class InputOneStatementPerLineMultiline {
 
     /**
      * Multiple statements within try-with-resource on next line after try is illegal.
-     * @see <a href="https://github.com/checkstyle/checkstyle/issues/2211">OneStatementPerLine: false match with try-with-resources</a>
+     * @see <a href="https://github.com/checkstyle/checkstyle/issues/2211">false match</a>
      */
     private void issue2211fail() {
         try(
-                AutoCloseable i = new java.io.StringReader("");AutoCloseable k = new java.io.StringReader("");
+      AutoCloseable i = new java.io.StringReader("");AutoCloseable k = new java.io.StringReader("");
         ) {
         } catch (Exception e1) {
         }
     }
 
     /**
-     * Multiple statements within try-with-resource on a same line as try is illegal.  Added per PR comment:
-     * @see <a href="https://github.com/checkstyle/checkstyle/pull/2750#issuecomment-166032327">Please add UT cases</a>
+     * Multiple statements within try-with-resource on a same line as try is illegal. PR comment:
+     * @see <a href="https://github.com/checkstyle/checkstyle/pull/2750#issuecomment-166032327"/>
      */
     private void issue2211fail2() {
-        try( AutoCloseable i = new java.io.StringReader("");AutoCloseable k = new java.io.StringReader("");) {
+        try( AutoCloseable i = new StringReader("");AutoCloseable k = new StringReader("");) {
         } catch (Exception e1) {
         }
     }

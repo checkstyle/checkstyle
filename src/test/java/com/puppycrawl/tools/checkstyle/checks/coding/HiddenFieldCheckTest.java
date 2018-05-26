@@ -46,9 +46,9 @@ public class HiddenFieldCheckTest
             "60:35: " + getCheckMessage(MSG_KEY, "number"),
             "73:35: " + getCheckMessage(MSG_KEY, "id"),
             "101:33: " + getCheckMessage(MSG_KEY, "note"),
-            "126:57: " + getCheckMessage(MSG_KEY, "stringValue"),
-            "126:78: " + getCheckMessage(MSG_KEY, "intValue"),
-            "137:74: " + getCheckMessage(MSG_KEY, "doubleValue"),
+            "126:48: " + getCheckMessage(MSG_KEY, "stringValue"),
+            "126:69: " + getCheckMessage(MSG_KEY, "intValue"),
+            "137:69: " + getCheckMessage(MSG_KEY, "doubleValue"),
             "149:51: " + getCheckMessage(MSG_KEY, "firstString"),
             "149:64: " + getCheckMessage(MSG_KEY, "secondString"),
             "165:49: " + getCheckMessage(MSG_KEY, "first"),
@@ -66,10 +66,10 @@ public class HiddenFieldCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(HiddenFieldCheck.class);
         final String[] expected = {
-            "10:97: " + getCheckMessage(MSG_KEY, "other"),
-            "16:94: " + getCheckMessage(MSG_KEY, "other"),
-            "24:101: " + getCheckMessage(MSG_KEY, "other"),
-            "34:105: " + getCheckMessage(MSG_KEY, "other"),
+            "10:45: " + getCheckMessage(MSG_KEY, "other"),
+            "16:42: " + getCheckMessage(MSG_KEY, "other"),
+            "24:49: " + getCheckMessage(MSG_KEY, "other"),
+            "34:53: " + getCheckMessage(MSG_KEY, "other"),
             "46:26: " + getCheckMessage(MSG_KEY, "someField"),
         };
         verify(checkConfig, getPath("InputHiddenFieldStaticVisibility.java"), expected);

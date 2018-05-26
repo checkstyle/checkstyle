@@ -57,8 +57,6 @@
               files="src[\\/]test[\\/]resources[\\/].*[\\/]ant[\\/]checkstyleanttask[\\/]ExpectedCheckstyleAntTaskXmlOutput\.xml"/>
     <!-- till #5791 -->
     <suppress checks="RegexpSingleline"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]coding[\\/].*"/>
-    <suppress checks="RegexpSingleline"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]descendanttoken[\\/].*"/>
     <suppress checks="RegexpSingleline"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]design[\\/].*"/>

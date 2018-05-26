@@ -102,7 +102,7 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
         return methodParam += "suffix";
     }
 
-    String addSuffixToField(String field1) {
+    String addSuf2F(String field1) {
         return field1 += "suffix";
     }
 
@@ -154,13 +154,13 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
 
     static void foo16() {
         long fieldFinal1 = 5L;
-//        this.fieldFinal1 = fieldFinal1; // compile time error: cannot be referenced from a static context
+// this.fieldFinal1 = fieldFinal1; // compile time error: cannot be referenced from a static context
         fieldFinal1 = 11L;
     }
 
     static void foo17() {
         String fieldStatic = "";
-//        this.fieldStatic = fieldStatic; // compile time error: cannot be referenced from a static context
+// this.fieldStatic = fieldStatic; // compile time error: cannot be referenced from a static context
         fieldStatic = "Hello, World!";
     }
 
@@ -254,7 +254,7 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
     }
 
     static void foo29(String field1) {
-//        this.field1 = true ? "field1" : field1; <- compile time error: cannot be referenced from a static context
+//this.field1 = true ? "field1" : field1; /compile error: cannot be referenced from a static context
         field1 = true ? "field1" : field1;
     }
 
@@ -267,12 +267,12 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
     }
 
     String foo32(String field1) {
-        field1 = addSuffixToField(field1); // no violation!!! it is just modification of parameter which is returned at the end of the method
+        field1 = addSuf2F(field1); // no violation! modification of parameter which is returned
         return field1;
     }
 
     String foo33(String field1 ) {
-        field1 = addSuffixToField(field1); // violation (no return, variable 'stringField' will not be saved after method execution)
+        field1 = addSuf2F(field1); // violation (no return, variable 'stringField' will not be saved
         return "New String";
     }
 
@@ -309,14 +309,14 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
 
     static void foo39() {
         boolean booleanField = true;
-//        this.booleanField = !booleanField; <-- compile time error: cannot be referenced from a static context
+// this.booleanField = !booleanField; compile time error: cannot be referenced from a static context
         booleanField = !booleanField;
     }
 
     static void foo40() {
         try {
             boolean booleanField = true;
-//            this.booleanField = !booleanField; <-- compile time error: cannot be referenced from a static context
+//this.booleanField = !booleanField; <-- compile error: cannot be referenced from a static context
             booleanField = !booleanField;
         }
         catch (Exception e) {}
@@ -364,27 +364,27 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
         fieldStatic = this.fieldStatic;
     }
 
-    private String servletRelativeAction;
+    private String action;
 
-    public String getServletRelativeAction() {
-        return this.servletRelativeAction;
+    public String getAction() {
+        return this.action;
     }
 
     public String foo45() {
-        String servletRelativeAction = getServletRelativeAction(); // violation (Method call to 'getServletRelativeAction' needs "this.".)
+        String action = getAction(); // violation (Method call to 'getaction' needs "this.".)
         if (true) {
-            return processAction("action"); // violation (Method call to 'processAction' needs "this.".)
+            return processAction("action"); //violation(Method call to 'processAction' need "this.")
         }
-        else if (servletRelativeAction.endsWith("/")) {
-            if (servletRelativeAction.startsWith("/")) {
-                servletRelativeAction = "" + servletRelativeAction;
+        else if (action.endsWith("/")) {
+            if (action.startsWith("/")) {
+                action = "" + action;
             }
         }
-        servletRelativeAction = "servletRelativeAction"; // No violation. Local var allowed
-        return processAction(servletRelativeAction); // violation (Method call to 'processAction' needs "this.".)
+        action = "action"; // No violation. Local var allowed
+        return processAction(action); // violation (Method call to 'processAction' needs "this.".)
     }
 
-    private String processAction(String servletRelativeAction) {
+    private String processAction(String action) {
         return "";
     }
 

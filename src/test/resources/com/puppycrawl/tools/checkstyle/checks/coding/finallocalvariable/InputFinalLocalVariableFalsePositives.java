@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class InputFinalLocalVariableFalsePositives {
 
-    // spring-framework/spring-web/src/main/java/org/springframework/web/multipart/commons/CommonsFileUploadSupport.java
+    // spring-framework/spring-web/.../CommonsFileUploadSupport.java
     private void foo1() {
         String value;
         if (true) {
@@ -24,7 +24,7 @@ public class InputFinalLocalVariableFalsePositives {
         }
     }
 
-    // spring-framework/spring-messaging/src/main/java/org/springframework/messaging/simp/stomp/StompBrokerRelayMessageHandler.java
+    // spring-framework/spring-messaging/.../StompBrokerRelayMessageHandler.java
     private void foo2() {
         String stompAccessor;
 
@@ -81,7 +81,7 @@ public class InputFinalLocalVariableFalsePositives {
         }
     }
 
-    // spring-framework/spring-jdbc/src/main/java/org/springframework/jdbc/support/SQLErrorCodesFactory.java
+    // spring-framework/spring-jdbc/.../SQLErrorCodesFactory.java
     private void foo3() {
         String errorCodes;
 
@@ -105,7 +105,7 @@ public class InputFinalLocalVariableFalsePositives {
         final String s = errorCodes;
     }
 
-    // spring-framework/spring-context/src/main/java/org/springframework/scheduling/config/TaskExecutorFactoryBean.java
+    // spring-framework/spring-context/.../TaskExecutorFactoryBean.java
     private void foo4() {
         if (true) {
             try {
@@ -131,7 +131,7 @@ public class InputFinalLocalVariableFalsePositives {
         }
     }
 
-    // spring-framework/spring-beans/src/main/java/org/springframework/beans/factory/support/SimpleInstantiationStrategy.java
+    // spring-framework/spring-beans/.../SimpleInstantiationStrategy.java
     private void foo5() {
         if (true) {
             final String s = "";
@@ -1739,7 +1739,7 @@ public class InputFinalLocalVariableFalsePositives {
         }
     }
 
-    // apache-struts/core/src/main/java/org/apache/struts2/dispatcher/mapper/DefaultActionMapper.java
+    // apache-struts/core/.../mapper/DefaultActionMapper.java
     private void foo65() {
         String name;
         if (true) {
@@ -1777,7 +1777,7 @@ public class InputFinalLocalVariableFalsePositives {
         }
     }
 
-    // hibernate-core/src/main/java/org/hibernate/bytecode/internal/javassist/BytecodeProviderImpl.java
+    // hibernate-core/.../internal/javassist/BytecodeProviderImpl.java
     private void foo67() {
         String fastClass;
         try {
@@ -1966,7 +1966,7 @@ public class InputFinalLocalVariableFalsePositives {
         }
     }
 
-    // apache-struts/core/src/main/java/org/apache/struts2/dispatcher/mapper/DefaultActionMapper.java
+    // apache-struts/core/.../dispatcher/mapper/DefaultActionMapper.java
     private void foo79() {
         String name;
         if (true) {
@@ -2048,7 +2048,7 @@ public class InputFinalLocalVariableFalsePositives {
         }
     }
 
-    // Hbase/hbase-server/src/main/java/org/apache/hadoop/hbase/regionserver/DefaultHeapMemoryTuner.java
+    // Hbase/hbase-server/.../hadoop/hbase/regionserver/DefaultHeapMemoryTuner.java
     private void foo84() {
         float newMemstoreSize;
         float newBlockCacheSize;
@@ -2270,7 +2270,7 @@ public class InputFinalLocalVariableFalsePositives {
         }
     }
 
-    // hibernate-core/src/main/java/org/hibernate/internal/util/collections/BoundedConcurrentHashMap.java
+    // hibernate-core/.../internal/util/collections/BoundedConcurrentHashMap.java
     private void foo93() {
         if (true) {
             String evictedCopy;
@@ -2308,7 +2308,7 @@ public class InputFinalLocalVariableFalsePositives {
         }
     }
 
-    // spring-framework/spring-test/src/main/java/org/springframework/test/annotation/ProfileValueUtils.java
+    // spring-framework/spring-test/.../springframework/test/annotation/ProfileValueUtils.java
     private void foo95() {
         String profileValueSource;
         if (true) {
@@ -2326,7 +2326,7 @@ public class InputFinalLocalVariableFalsePositives {
         }
     }
 
-    // spring-framework/spring-webmvc/src/main/java/org/springframework/web/servlet/mvc/method/annotation/RequestPartMethodArgumentResolver.java
+    // spring-framework/spring-webmvc/.../method/annotation/RequestPartMethodArgumentResolver.java
     private void foo96() {
         Object arg;
         if (true) {
@@ -2361,7 +2361,7 @@ public class InputFinalLocalVariableFalsePositives {
         }
     }
 
-    // infinispan/commons/src/main/java/org/infinispan/commons/util/concurrent/jdk8backported/BoundedEquivalentConcurrentHashMapV8.java
+    // infinispan/commons/.../concurrent/jdk8backported/BoundedEquivalentConcurrentHashMapV8.java
     private void foo97() {
         if (true) {
             String evictedCopy;
@@ -2391,7 +2391,7 @@ public class InputFinalLocalVariableFalsePositives {
         }
     }
 
-    // infinispan/persistence/soft-index/src/main/java/org/infinispan/persistence/sifs/IndexNode.java
+    // infinispan/persistence/soft-index/.../infinispan/persistence/sifs/IndexNode.java
     private void foo99() {
         int insertionPoint;
         if (true) {

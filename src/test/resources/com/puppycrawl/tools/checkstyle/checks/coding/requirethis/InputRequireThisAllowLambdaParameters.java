@@ -16,7 +16,7 @@ public class InputRequireThisAllowLambdaParameters {
     void foo2() {
         final java.util.List<String> strings = new java.util.ArrayList<>();
         strings.add("foo1");
-        strings.stream().filter(s1 -> s1.contains(s1 = s1 + "2"))  // NO violation; s1 is a lambda parameter
+        strings.stream().filter(s1 -> s1.contains(s1 = s1 + "2"))// NO violation;s1 is lambda param
                 .collect(java.util.stream.Collectors.toList());
     }
 

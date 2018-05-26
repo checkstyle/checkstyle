@@ -70,8 +70,8 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
             "81:10: " + getCheckMessage(MSG_KEY),
             "90:28: " + getCheckMessage(MSG_KEY),
             "135:39: " + getCheckMessage(MSG_KEY),
-            "168:110: " + getCheckMessage(MSG_KEY),
-            "179:107: " + getCheckMessage(MSG_KEY),
+            "168:100: " + getCheckMessage(MSG_KEY),
+            "179:91: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig,

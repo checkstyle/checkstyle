@@ -1,5 +1,5 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.stringliteralequality;
-
+import java.util.Locale;
 /**
  * Input file for the StringLiteralEqualityCheck
  * @author Lars K&uuml;hne
@@ -39,7 +39,7 @@ public class InputStringLiteralEquality
             // what some of us get paid for :-)
         }
 
-        if ("Rick".toUpperCase(java.util.Locale.getDefault()) == "Rick".toLowerCase(java.util.Locale.getDefault()))
+        if ("Rick".toUpperCase(Locale.getDefault()) == "Rick".toLowerCase(Locale.getDefault()))
         {
             // completely dynamic, don't flag
         }
