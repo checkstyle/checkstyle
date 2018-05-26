@@ -109,6 +109,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                                 && !"CatchParameterName".equals(sectionName)
                                 && !"ClassTypeParameterName".equals(sectionName)
                                 && !"ConstantName".equals(sectionName)
+                                && !"InterfaceTypeParameterName".equals(sectionName)
                 ) {
                     continue;
                 }

@@ -610,10 +610,11 @@
     </section>
 
     <section name="InterfaceTypeParameterName">
+      <p>Since Checkstyle 5.8</p>
       <subsection name="Description">
-        <p>Since Checkstyle 5.8</p>
         <p>
-          Validates identifiers for interface type parameters.
+          Checks that interface type parameter names conform to a format specified by the format
+          property.
         </p>
       </subsection>
 
@@ -638,10 +639,19 @@
 
       <subsection name="Examples">
         <p>
-          To configure the check:
+          An example of how to configure the check is:
         </p>
         <source>
 &lt;module name=&quot;InterfaceTypeParameterName&quot;/&gt;
+        </source>
+        <p>
+          An example of how to configure the check for names that are only a single
+          letter is:
+        </p>
+        <source>
+&lt;module name="InterfaceTypeParameterName"&gt;
+   &lt;property name="format" value="^[a-zA-Z]$"/&gt;
+&lt;/module&gt;
         </source>
       </subsection>
 
