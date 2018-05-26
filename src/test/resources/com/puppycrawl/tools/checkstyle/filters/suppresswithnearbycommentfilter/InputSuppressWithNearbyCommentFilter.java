@@ -77,6 +77,6 @@ class InputSuppressWithNearbyCommentFilter
 }
 
 class Magic {
-    /* SUPPRESS CHECKSTYLE MemberNameCheck */ private int A2; /* SUPPRESS CHECKSTYLE MemberNameCheck ololo */
+    /* SUPPRESS CHECKSTYLE MemberNameCheck */ private int A2;/* SUPPRESS CHECKSTYLE MemberName ol */
     private int A1;
 }

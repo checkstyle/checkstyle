@@ -47,19 +47,17 @@
     <suppress checks="RegexpSingleline"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]InputLineLength.*\.java"/>
     <suppress checks="RegexpSingleline"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/].*ExpectedXMLLogger.*\.xml"/>
-    <suppress checks="RegexpSingleline"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]grammars[\\/]comments[\\/].*"/>
     <suppress checks="RegexpSingleline"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]ant[\\/]checkstyleanttask[\\/]Input.*"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]api[\\/]detailast.*"/>
-    <suppress checks="RegexpSingleline"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfBlockComments\.java"/>
+    <!-- we can not change expected as it will require change of main class logic -->
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/].*ExpectedXMLLogger.*\.xml"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]ant[\\/]checkstyleanttask[\\/]ExpectedCheckstyleAntTaskXmlOutput\.xml"/>
+    <!-- till #5791 -->
     <suppress checks="RegexpSingleline"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/].*"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]filters[\\/]suppresswithnearbycommentfilter[\\/]InputSuppressWithNearbyCommentFilter\.java"/>
     <!-- content is generated -->
     <suppress checks="RegexpSingleline"
               files="src[\\/]xdocs[\\/]releasenotes_old.xml"/>
