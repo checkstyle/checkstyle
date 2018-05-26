@@ -5,63 +5,63 @@ public class InputRightCurlyAloneOrSingleline {
     public boolean equals(Object other) { boolean flag = true; return flag; }
 
     public int hashCode()
-    { 
+    {
         int a = 10;
         return 1;
     }
 
     private void foo()
-    { int var1 = 5; var2 = 6; } 
+    { int var1 = 5; var2 = 6; }
 
-    private void foo1() { return; } 
+    private void foo1() { return; }
 
     private String foo2() { return toString();
-    } 
+    }
 
-    private void foo3() { ; return; } 
+    private void foo3() { ; return; }
 
     private int var1;
     private int var2;
-    public InputRightCurlyAloneOrSingleline() { this.var1 = 1; } 
-    public InputRightCurlyAloneOrSingleline(int var1, int var2) { this.var1 = var1; this.var2 = var2; } 
+    public InputRightCurlyAloneOrSingleline() { this.var1 = 1; }
+    public InputRightCurlyAloneOrSingleline(int v1, int v2) { this.var1 = v1; this.var2 = v2; }
 
-    private void foo4() { ;; } 
+    private void foo4() { ;; }
 
-    private void foo5() { ; } 
+    private void foo5() { ; }
 
-    private void foo6() {  } 
+    private void foo6() {  }
 
     private void foo12() {
-        try { int i = 5; int b = 10; } 
-        catch (Exception e) { } 
-    } 
+        try { int i = 5; int b = 10; }
+        catch (Exception e) { }
+    }
 
     private void foo13() {
-        for (int i = 0; i < 10; i++) { int a = 5; int b = 6; } 
+        for (int i = 0; i < 10; i++) { int a = 5; int b = 6; }
 
         do
         {
             var1 = 2;
-        } 
+        }
         while (var2 == 2);
-    } 
+    }
 
-    static { int a; int b; } 
+    static { int a; int b; }
 
-    { int c; int d;} 
+    { int c; int d;}
 
     private void foo14() {
         if (var1 > 0) {
             return;
-        } 
-    } 
+        }
+    }
 
     private void foo15() {
         class A { int a; } var1++; //violation
-        class B {  } 
+        class B {  }
         if(true) {
 
-        } 
+        }
         else;
     }
 
@@ -71,23 +71,23 @@ public class InputRightCurlyAloneOrSingleline {
         }
     }
 
-    private void foo17() { int var1 = 5; var2 = 6; } private void foo18() {int var1 = 5; var2 = 6; } //violation
+    void f17() { int var1 = 5; var2 = 6; } private void f18() {int var1 = 5; var2 = 6; } //violation
 
     private void foo19() {int var1 = 5;
         var2 = 6;} //violation
 
     private String foo20() {
-        do { var2 ++; }  
+        do { var2 ++; }
         while (var2 < 15);
 
-        while (var1 < 10) { var1++; } 
+        while (var1 < 10) { var1++; }
 
         do { var2++; var1++; } while (var2 < 15); return ""+0xCAFEBABE; //violation
     }
 
     private void foo21() {
-        new Object() { @Override protected void finalize() { "".toString(); }}; 
-    } 
+        new Object() { @Override protected void finalize() { "".toString(); }};
+    }
 
     void foo22() {
         long startTime = System.nanoTime();
@@ -110,7 +110,7 @@ public class InputRightCurlyAloneOrSingleline {
         Thread t = new Thread() {@Override public void run() {super.run();}};
         new Object() { @Override protected void finalize() { "".toString(); }  { int a = 5; }};
         new Object() { @Override protected void finalize() { "".toString(); }  int b = 10; };
-        new Object() { @Override protected void finalize() { "".toString(); }  { int c = 5; } int d = 8; };
+        new Object() { protected void finalize() { hashCode(); }  { int c = 5; } int d = 8; };
 
         java.util.Map<String, String> map2 = new java.util.LinkedHashMap<String, String>() {{
             put("Hello", "World");

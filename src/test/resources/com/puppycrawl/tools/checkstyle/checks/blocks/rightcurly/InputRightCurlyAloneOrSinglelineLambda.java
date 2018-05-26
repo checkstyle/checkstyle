@@ -44,6 +44,6 @@ public class InputRightCurlyAloneOrSinglelineLambda {
                 return s != null;
         }).collect(Collectors.toList());    // violation
 
-        Stream.of("Hello").filter(s -> {return s != null;}).collect(Collectors.toList());   // violation
+        Stream.of("H").filter(s -> {return s != null;}).collect(Collectors.toList());   // violation
     }
 }
