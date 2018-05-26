@@ -57,7 +57,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     public void testIncorrect() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
         final String[] expected = {
-            "6: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation1"),
+            "6: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnn"),
             "11: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation1"),
             "17: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation1", 8, 4),
             "25: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation1", 8, 4),

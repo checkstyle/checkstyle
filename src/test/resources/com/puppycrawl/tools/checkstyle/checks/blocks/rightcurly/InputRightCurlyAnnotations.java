@@ -39,12 +39,12 @@ class InputRightCurlyAnnotations
 
     private void foo8() { ; return; } //violation
 
-    private int var1;
-    private int var2;
+    private int var1; private int v1;
+    private int var2; private int v2;
     @SuppressWarnings("unused")
     public InputRightCurlyAnnotations() { this.var1 = 1; } //violation
     @SuppressWarnings("unused")
-    public InputRightCurlyAnnotations(int var1, int var2) { this.var1 = var1; this.var2 = var2; } //violation
+    public InputRightCurlyAnnotations(int v1, int v2) {this.var1 = v1; this.var2 = v2; } //violation
 
     @SuppressWarnings("unused")
     private void foo9() { ;; } //violation
@@ -108,7 +108,7 @@ class InputRightCurlyAnnotations
     }
 
     @Deprecated
-    private void foo17() { int var1 = 5; var2 = 6; } @Deprecated private void foo18() {int var1 = 5; var2 = 6; } //violation
+    void foo17() { int v1 = 5; v2 = 6; } @Deprecated void foo18() {int v1 = 5; v2 = 6; } //violation
 
     private void foo19() {int var1 = 5;
         var2 = 6;} //violation
@@ -148,9 +148,9 @@ class InputRightCurlyAnnotations
         }}; //violation
 
         Thread t = new Thread() {@Override public void run() {super.run();}}; //violation
-        new Object() { @Override protected void finalize() { "".toString(); }  { int a = 5; }}; //violation
-        new Object() { @Override protected void finalize() { "".toString(); }  int b = 10; }; //violation
-        new Object() { @Override protected void finalize() { "".toString(); }  { int c = 5; } int d = 8; }; //violation
+        new Object() { public int hashCode() { return 1; }  { int a = 5; }}; //violation
+        new Object() { public int hashCode() { return 1; }  int b = 10; }; //violation
+        new Object() { public int hashCode() { return 1; }  { int c = 5; } int d = 8; }; //violation
 
         java.util.Map<String, String> map2 = new java.util.LinkedHashMap<String, String>() {{
             put("Hello", "World");

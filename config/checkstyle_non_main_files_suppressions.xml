@@ -57,7 +57,30 @@
               files="src[\\/]test[\\/]resources[\\/].*[\\/]ant[\\/]checkstyleanttask[\\/]ExpectedCheckstyleAntTaskXmlOutput\.xml"/>
     <!-- till #5791 -->
     <suppress checks="RegexpSingleline"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/].*"/>
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]coding[\\/].*"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]descendanttoken[\\/].*"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]design[\\/].*"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]imports[\\/].*"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]indentation[\\/].*"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]javadoc[\\/].*"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]metrics[\\/].*"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]modifier[\\/].*"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]naming[\\/].*"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]sizes[\\/].*"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]translation[\\/].*"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]whitespace[\\/].*"/>
+
     <!-- content is generated -->
     <suppress checks="RegexpSingleline"
               files="src[\\/]xdocs[\\/]releasenotes_old.xml"/>

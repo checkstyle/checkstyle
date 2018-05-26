@@ -99,8 +99,8 @@ class InputLeftCurlyDefault3
 }
 
 /**
- * Test input for closing brace if that brace terminates 
- * a statement or the body of a constructor. 
+ * Test input for closing brace if that brace terminates
+ * a statement or the body of a constructor.
  */
 class FooCtor
 {
@@ -111,8 +111,8 @@ class FooCtor
     }}
 
 /**
-* Test input for closing brace if that brace terminates 
-* a statement or the body of a method. 
+* Test input for closing brace if that brace terminates
+* a statement or the body of a method.
 */
 class FooMethod
 {
@@ -122,8 +122,8 @@ class FooMethod
     }}
 
 /**
-* Test input for closing brace if that brace terminates 
-* a statement or the body of a named class. 
+* Test input for closing brace if that brace terminates
+* a statement or the body of a named class.
 */
 class FooInner
 {
@@ -131,17 +131,17 @@ class FooInner
     {
 		public void fooInnerMethod ()
         {
-			
+
 		}
     }}
 
 /**
- * False positive 
+ * False positive
  *
  */
 class Absent_CustomFieldSerializer3 {
 
-    public static void serialize() {} //false positive. Expected nothing but was "'}' should be alone on a line." 
+    public static void serialize() {} // Expected nothing but was "'}' should be alone on a line."
 }
 
 class Absent_CustomFieldSerializer4
