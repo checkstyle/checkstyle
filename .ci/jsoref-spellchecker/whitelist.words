@@ -29,6 +29,7 @@ allclasses
 alot
 ambig
 Amessages
+androidx
 ANNOS
 annotationlocation
 annotationonsameline
@@ -65,6 +66,7 @@ ASF
 ASingle
 Aspectj
 Asrc
+assertj
 ASTNo
 asttreestringprinter
 Asun
@@ -278,6 +280,7 @@ cyclomatic
 cyclomaticcomplexity
 cz
 daaf
+dalvik
 Daniil
 daniilyar
 Darguments
@@ -489,6 +492,7 @@ googleapis
 googleblog
 googleecommon
 googlegroups
+googlesource
 govstrangefolder
 gplus
 gradle
@@ -714,6 +718,7 @@ lexer
 lgpl
 lharris
 LHSOf
+libcore
 liberapay
 libexec
 lifecycle
@@ -946,6 +951,7 @@ parameterassignment
 parametername
 parameternumber
 paramnum
+Parcelable
 parenpad
 parrt
 parsetreetablepresentation
@@ -981,6 +987,7 @@ Postgresql
 powermock
 Ppitest
 prameterless
+prebuilts
 preformatted
 printf
 println
@@ -1123,6 +1130,7 @@ spellchecker
 spliterator
 spotbugs
 spotbugsreports
+spotify
 springframework
 sqale
 sqe
@@ -1155,6 +1163,7 @@ subelements
 subext
 subscope
 sudo
+suitebuilder
 sukhodolsky
 summaryjavadoc
 superclasses

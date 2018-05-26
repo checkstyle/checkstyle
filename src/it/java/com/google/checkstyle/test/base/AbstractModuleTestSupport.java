@@ -113,6 +113,20 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
+     * Returns canonical path for the file with the given file name.
+     * The path is formed base on the non-compilable resources location.
+     * This implementation uses 'src/test/resources-noncompilable/'
+     * as a non-compilable resource location.
+     * @param filename file name.
+     * @return canonical path for the file with the given file name.
+     * @throws IOException if I/O exception occurs while forming the path.
+     */
+    protected final String getNonCompilablePath(String filename) throws IOException {
+        return new File("src/it/resources-noncompilable/" + getPackageLocation() + "/"
+                + filename).getCanonicalPath();
+    }
+
+    /**
      * Creates {@link DefaultConfiguration} instance for the given module class.
      * @param clazz module class.
      * @return {@link DefaultConfiguration} instance.
