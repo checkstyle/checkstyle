@@ -1,14 +1,14 @@
 [![][travis img]][travis]
 [![][appveyor img]][appveyor]
 [![][teamcity img]][teamcity]
-[![][codeship img]][codeship]
 [![][circleci img]][circleci]
 [![][wercker img]][wercker]
 [![][shippable img]][shippable]
-[![][buddy img]][buddy]
 [![][coverage img]][coverage]
 [![][snyk img]][snyk]
 
+[![][codeship img]][codeship]
+[![][buddy img]][buddy]
 
 [![][mavenbadge img]][mavenbadge]
 [![][sonar img]][sonar]
