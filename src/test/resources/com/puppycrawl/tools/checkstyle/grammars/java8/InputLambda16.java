@@ -9,14 +9,16 @@ public class InputLambda16 {
 
 	static final Comparator<ChronoLocalDateTime<? extends ChronoLocalDate>> DATE_TIME_ORDER =
          (Comparator<ChronoLocalDateTime<? extends ChronoLocalDate>>) (dateTime1, dateTime2) -> {
-             int cmp = Long.compare(dateTime1.toLocalDate().toEpochDay(), dateTime2.toLocalDate().toEpochDay());
+             int cmp = Long.compare(dateTime1.toLocalDate().toEpochDay(),
+                dateTime2.toLocalDate().toEpochDay());
              if (cmp == 0) {
-                 cmp = Long.compare(dateTime1.toLocalTime().toNanoOfDay(), dateTime2.toLocalTime().toNanoOfDay());
+                 cmp = Long.compare(dateTime1.toLocalTime().toNanoOfDay(),
+                    dateTime2.toLocalTime().toNanoOfDay());
              }
              return cmp;
          };
-	
+
 	public static void main(String args[]) {
-		
+
 	}
 }

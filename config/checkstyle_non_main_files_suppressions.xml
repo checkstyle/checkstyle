@@ -45,7 +45,21 @@
     <suppress checks="RegexpSingleline"
               files="src[\\/]it[\\/]resources[\\/].*[\\/]InputLineLength.*\.java"/>
     <suppress checks="RegexpSingleline"
-              files="src[\\/]test[\\/]resources[\\/]*"/>
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]InputLineLength.*\.java"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/].*ExpectedXMLLogger.*\.xml"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]grammars[\\/]comments[\\/].*"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]ant/checkstyleanttask/Input.*"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]api[\\/]detailast.*"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfBlockComments\.java"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/].*"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]filters[\\/]suppresswithnearbycommentfilter[\\/]InputSuppressWithNearbyCommentFilter\.java"/>
     <!-- content is generated -->
     <suppress checks="RegexpSingleline"
               files="src[\\/]xdocs[\\/]releasenotes_old.xml"/>

@@ -81,7 +81,7 @@ public class OneStatementPerLineTest extends AbstractModuleTestSupport {
             "38:58: " + msg,
             "38:74: " + msg,
             "39:50: " + msg,
-            "43:91: " + msg,
+            "43:85: " + msg,
         };
 
         final Configuration checkConfig = getModuleConfig("OneStatementPerLine");

@@ -113,7 +113,7 @@ public class ModifierOrderCheckTest
         // See https://github.com/checkstyle/checkstyle/issues/903#issuecomment-172228013
         final DefaultConfiguration checkConfig = createModuleConfig(ModifierOrderCheck.class);
         final String[] expected = {
-            "103:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MethodAnnotation"),
+            "104:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MethodAnnotation"),
         };
         verify(checkConfig, getNonCompilablePath("InputModifierOrderTypeAnnotations.java"),
             expected);

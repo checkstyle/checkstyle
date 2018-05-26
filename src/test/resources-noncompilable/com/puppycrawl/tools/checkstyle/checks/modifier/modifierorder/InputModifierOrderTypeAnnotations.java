@@ -88,7 +88,8 @@ public class InputModifierOrderTypeAnnotations extends MyClass {
 
     public @TypeAnnotation boolean equals(Object obj) { return super.equals(obj); }
 
-//    @TypeAnnotation void foo9() { } <-- Compiletime error: void type cannot be annotated with type annotation
+//    @TypeAnnotation void foo9() { } <-- Compiletime error:
+                                        // void type cannot be annotated with type annotation
 
     @Override
     void foo10() {
