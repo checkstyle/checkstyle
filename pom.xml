@@ -589,7 +589,8 @@
                 <sourceDirectory>${project.basedir}/src</sourceDirectory>
               </sourceDirectories>
               <excludes>
-                **/it/resources/**/*,**/test/resources/**/*,**/test/resources-noncompilable/**/*
+                **/it/resources/**/*,**/it/resources-noncompilable/**/*,
+                ,**/test/resources/**/*,**/test/resources-noncompilable/**/*
               </excludes>
             </configuration>
             <goals>

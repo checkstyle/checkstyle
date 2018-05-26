@@ -514,8 +514,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("separated", "true");
         checkConfig.addAttribute("groups", "java, org");
         final String[] expected = {
-            // Till https://github.com/checkstyle/checkstyle/issues/5279
-            //"4: " + getCheckMessage(MSG_SEPARATION, "org.antlr.v4.runtime.CommonToken.*"),
+            "4: " + getCheckMessage(MSG_SEPARATION, "org.antlr.v4.runtime.CommonToken.*"),
             "5: " + getCheckMessage(MSG_ORDERING, "org.antlr.v4.runtime.CommonToken.*"),
             "7: " + getCheckMessage(MSG_ORDERING, "java.util.Set"),
         };
@@ -837,6 +836,23 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testStaticGroupsBottomSeparated() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("groups", "android,com,net,junit,org,java,javax");
+        checkConfig.addAttribute("staticGroups", "android,com,net,junit,org,java,javax");
+        checkConfig.addAttribute("option", "bottom");
+        checkConfig.addAttribute("ordered", "true");
+        checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
+        checkConfig.addAttribute("separated", "true");
+        checkConfig.addAttribute("separatedStaticGroups", "true");
+        checkConfig.addAttribute("useContainerOrderingForStatic", "false");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig,
+            getNonCompilablePath("InputImportOrderStaticGroupsBottomSeparated.java"), expected);
+    }
+
+    @Test
     public void testStaticGroupsInflow() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportOrderCheck.class);
         checkConfig.addAttribute("groups", "");
@@ -879,6 +895,23 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getNonCompilablePath("InputImportOrderStaticGroupsTop.java"),
+                expected);
+    }
+
+    @Test
+    public void testStaticGroupsTopSeparated() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("groups", "android, androidx, java");
+        checkConfig.addAttribute("staticGroups", "android, androidx, java");
+        checkConfig.addAttribute("option", "top");
+        checkConfig.addAttribute("ordered", "true");
+        checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
+        checkConfig.addAttribute("separated", "false");
+        checkConfig.addAttribute("separatedStaticGroups", "true");
+        checkConfig.addAttribute("useContainerOrderingForStatic", "false");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getNonCompilablePath("InputImportOrderStaticGroupsTopSeparated.java"),
                 expected);
     }
 

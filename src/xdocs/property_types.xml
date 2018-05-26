@@ -485,7 +485,10 @@
 
         <tr>
           <td><code>top</code></td>
-          <td>All static imports are at the top. For example:
+          <td>All static imports are at the top.
+              Groups for static import are defined by the property 'staticGroups'.
+              The blank line between groups is driven by the property 'separatedStaticGroups'.
+              For example:
               <pre>
     import static a.b.C.*;
     import static x.y.Z.*;
@@ -534,7 +537,10 @@
 
         <tr>
           <td><code>bottom</code></td>
-          <td>All static imports are at the bottom. For example:
+          <td>All static imports are at the bottom.
+              Groups for static import are defined by the property 'staticGroups'.
+              The blank line between groups is driven by the property 'separatedStaticGroups'.
+              For example:
               <pre>
     import a.b.D;
     import x.y.Z;
