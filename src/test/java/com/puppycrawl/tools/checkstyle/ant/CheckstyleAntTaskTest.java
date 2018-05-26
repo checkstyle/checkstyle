@@ -193,7 +193,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         assertThat("There more files to check then expected",
                 filesToCheck.size(), is(9));
         assertThat("The path of file differs from expected",
-                filesToCheck.get(5).getAbsolutePath(), is(getPath(FLAWLESS_INPUT)));
+                filesToCheck.get(6).getAbsolutePath(), is(getPath(FLAWLESS_INPUT)));
         assertEquals("Amount of logged messages in unexpected",
                 9, antTask.getLoggedMessages().size());
     }
@@ -507,7 +507,8 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.execute();
 
         final List<String> expected = FileUtils.readLines(
-                new File(getPath("InputCheckstyleAntTaskXmlOutput.xml")), StandardCharsets.UTF_8);
+                new File(getPath("ExpectedCheckstyleAntTaskXmlOutput.xml")),
+                        StandardCharsets.UTF_8);
         final List<String> actual = FileUtils.readLines(outputFile, StandardCharsets.UTF_8);
         for (int i = 0; i < expected.size(); i++) {
             final String line = expected.get(i);
