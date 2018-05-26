@@ -78,7 +78,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
 
     /**
      * Test contains asserts in callstack, but idea does not see them.
-     * @noinspection JUnitTestMethodWithNoAssertions
+     * @noinspection JUnitTestMethodWithNoAssertions, OverlyComplexBooleanExpression
      */
     // -@cs[CyclomaticComplexity] needed until all suppressions are removed
     @Test
@@ -102,6 +102,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 final String sectionName = section.getAttributes().getNamedItem("name")
                         .getNodeValue();
 
+                // -@cs[BooleanExpressionComplexity] needed until all suppressions are removed
                 if ("Content".equals(sectionName) || "Overview".equals(sectionName)
                         // suppression list
                         || !"AbbreviationAsWordInName".equals(sectionName)
@@ -110,6 +111,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                                 && !"ClassTypeParameterName".equals(sectionName)
                                 && !"ConstantName".equals(sectionName)
                                 && !"InterfaceTypeParameterName".equals(sectionName)
+                                && !"LocalFinalVariableName".equals(sectionName)
                 ) {
                     continue;
                 }

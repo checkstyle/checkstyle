@@ -691,11 +691,12 @@
     </section>
 
     <section name="LocalFinalVariableName">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
-          Validates identifiers for local, <code>final</code> variables, including
-          <code>catch</code> parameters and resources in <code>try</code> statements.
+          Checks that local final variable names conform to a format specified
+          by the format property. A catch parameter and resources in try statements
+          are considered to be a local, final variables.
         </p>
       </subsection>
 
@@ -742,10 +743,19 @@
 
       <subsection name="Examples">
         <p>
-          To configure the check:
+          An example of how to configure the check is:
         </p>
         <source>
 &lt;module name=&quot;LocalFinalVariableName&quot;/&gt;
+        </source>
+        <p>
+          An example of how to configure the check for names that are only upper case letters and
+          digits is:
+        </p>
+        <source>
+&lt;module name=&quot;LocalFinalVariableName&quot;&gt;
+  &lt;property name="format" value="^[A-Z][A-Z0-9]*$"/&gt;
+&lt;/module&gt;
         </source>
       </subsection>
 
