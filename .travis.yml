@@ -175,6 +175,7 @@ matrix:
       env:
         - DESC="print versions to update"
         - CMD="./.ci/travis/travis.sh versions"
+        - SKIP_CI="false"
 
     # OpenJDK8 build
     - jdk: openjdk8
