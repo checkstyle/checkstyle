@@ -27,13 +27,25 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 
 /**
  * <p>
- * Checks that local, non-final variable names conform to a format specified
+ * Checks that local, non-{@code final} variable names conform to a format specified
  * by the format property. A catch parameter is considered to be
- * a local variable. The format is a
- * {@link Pattern regular expression}
- * and defaults to
- * <strong>^[a-z][a-zA-Z0-9]*$</strong>.
+ * a local variable.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code format} - Specifies valid identifiers. Default value is
+ * {@code "^[a-z][a-zA-Z0-9]*$"}.
+ * </li>
+ * <li>
+ * Property {@code allowOneCharVarInForLoop} - Allow one character variable name in
+ * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">initialization expressions</a>
+ * in FOR loop. For example:
+ * <pre>
+ * for (int i = 1; i &lt; 10; i++) {}
+ * </pre>
+ * Default value is {@code false}.
+ * </li>
+ * </ul>
  * <p>
  * An example of how to configure the check is:
  * </p>
@@ -46,7 +58,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * </p>
  * <pre>
  * &lt;module name="LocalVariableName"&gt;
- *    &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+ *   &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
@@ -57,16 +69,17 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * for(int i = 1; i &lt; 10; i++) {}
  * </pre>
  * <p>
- * An example of how to configure the check to allow one char variable name in
+ * An example of how to configure the check to allow one character variable name in
  * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
  * initialization expressions</a> in FOR loop:
  * </p>
  * <pre>
  * &lt;module name="LocalVariableName"&gt;
- *    &lt;property name="allowOneCharVarInForLoop" value="true"/&gt;
+ *   &lt;property name="allowOneCharVarInForLoop" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
  *
+ * @since 3.0
  */
 public class LocalVariableNameCheck
     extends AbstractNameCheck {
@@ -75,7 +88,12 @@ public class LocalVariableNameCheck
     private static final Pattern SINGLE_CHAR = Pattern.compile("^[a-z]$");
 
     /**
-     * Allow one character name for initialization expression in FOR loop.
+     * Allow one character variable name in
+     * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">initialization expressions</a>
+     * in FOR loop. For example:
+     * <pre>
+     * for (int i = 1; i &lt; 10; i++) {}
+     * </pre>
      */
     private boolean allowOneCharVarInForLoop;
 
@@ -85,7 +103,12 @@ public class LocalVariableNameCheck
     }
 
     /**
-     * Sets whether to allow one character name in FOR loop or not.
+     * Setter to allow one character variable name in
+     * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">initialization expressions</a>
+     * in FOR loop. For example:
+     * <pre>
+     * for (int i = 1; i &lt; 10; i++) {}
+     * </pre>
      *
      * @param allow Flag for allowing or not one character name in FOR loop.
      */

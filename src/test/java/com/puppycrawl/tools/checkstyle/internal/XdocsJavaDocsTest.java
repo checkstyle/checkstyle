@@ -112,6 +112,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                                 && !"ConstantName".equals(sectionName)
                                 && !"InterfaceTypeParameterName".equals(sectionName)
                                 && !"LocalFinalVariableName".equals(sectionName)
+                                && !"LocalVariableName".equals(sectionName)
                 ) {
                     continue;
                 }
@@ -329,7 +330,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         else {
             final char last = text.charAt(text.length() - 1);
 
-            result = firstCharToAppend != ':' && !Character.isWhitespace(last);
+            result = firstCharToAppend != ':' && last != '-' && !Character.isWhitespace(last);
         }
 
         return result;
