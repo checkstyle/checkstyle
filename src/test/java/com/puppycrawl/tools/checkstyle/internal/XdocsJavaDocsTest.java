@@ -278,7 +278,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         final boolean changeToTag = "code".equals(name);
 
         if (newLineOpenBefore) {
-            result.append(System.lineSeparator());
+            result.append('\n');
         }
         else if (shouldAppendSpace(result, '<')) {
             result.append(' ');
@@ -297,7 +297,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         }
 
         if (newLineOpenAfter) {
-            result.append(System.lineSeparator());
+            result.append('\n');
         }
 
         if (sanitize) {
@@ -308,7 +308,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         }
 
         if (newLineClose) {
-            result.append(System.lineSeparator());
+            result.append('\n');
         }
 
         if (changeToTag) {
