@@ -75,9 +75,9 @@ matrix:
 
     # site
     - jdk: oraclejdk8
-     env:
-       - DESC="site without validations"
-       - CMD="./.ci/travis/travis.sh site"
+      env:
+        - DESC="site without validations"
+        - CMD="./.ci/travis/travis.sh site"
 
     # unit tests in German locale (oraclejdk8)
     - jdk: oraclejdk8
