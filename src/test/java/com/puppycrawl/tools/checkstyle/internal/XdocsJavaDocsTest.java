@@ -247,7 +247,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                     final String text = temp.trim();
 
                     if (!text.isEmpty()) {
-                        if (shouldAppendSpace(result)) {
+                        if (shouldAppendSpace(result, text.charAt(0))) {
                             result.append(' ');
                         }
 
@@ -276,7 +276,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         if (newLineOpenBefore) {
             result.append(System.lineSeparator());
         }
-        else if (shouldAppendSpace(result)) {
+        else if (shouldAppendSpace(result, '<')) {
             result.append(' ');
         }
 
@@ -317,7 +317,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         }
     }
 
-    private static boolean shouldAppendSpace(StringBuffer text) {
+    private static boolean shouldAppendSpace(StringBuffer text, char firstCharToAppend) {
         final boolean result;
 
         if (text.length() == 0) {
@@ -326,7 +326,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         else {
             final char last = text.charAt(text.length() - 1);
 
-            result = !Character.isWhitespace(last);
+            result = firstCharToAppend != ':' && !Character.isWhitespace(last);
         }
 
         return result;
