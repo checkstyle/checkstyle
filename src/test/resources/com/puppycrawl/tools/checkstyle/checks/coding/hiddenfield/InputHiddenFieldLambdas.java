@@ -123,10 +123,10 @@ public class InputHiddenFieldLambdas {
     String stringValue = "248.3";
     int intValue = 2;
     {
-        Function <String, Integer> multiAdder = (String stringValue, Integer intValue) -> { // 2 violations
+        Function <String, Integer> m = (String stringValue, Integer intValue) -> { // 2 violations
             return Integer.parseInt(stringValue) + intValue;
         };
-        String.valueOf(multiAdder.apply ("22.4", 2));
+        String.valueOf(m.apply ("22.4", 2));
     }
 
     /**
@@ -134,10 +134,10 @@ public class InputHiddenFieldLambdas {
      */
     Double doubleValue = 8.5;
     {
-        Function <Integer, Double> adder = (Integer integerValue, Double doubleValue) -> { // 1 violation
+        Function <Integer, Double> a =(Integer integerValue, Double doubleValue) -> { // 1 violation
             return  integerValue + doubleValue;
         };
-        String.valueOf(adder.apply(2, 2.2));
+        String.valueOf(a.apply(2, 2.2));
     }
 
     /**
