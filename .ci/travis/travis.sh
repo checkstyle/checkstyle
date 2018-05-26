@@ -96,6 +96,11 @@ versions)
   fi
   ;;
 
+link-check)
+  if [[ -v TRAVIS_EVENT_TYPE && $TRAVIS_EVENT_TYPE != "cron" ]]; then exit 0; fi
+  ./.ci/run-link-check-plugin.sh
+  ;;
+
 assembly-run-all-jar)
   mvn -e clean package -Passembly
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
