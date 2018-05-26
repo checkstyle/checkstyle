@@ -3,22 +3,22 @@ package com.google.checkstyle.test.chapter4formatting.rule452indentcontinuationl
 class FooFieldClass { //indent:0 exp:0
 
   boolean flag = conditionFirst("Loooooooooooooooooong", new //indent:2 exp:2
-      SecondFieldClassWithVeryVeryVeryLongName("Loooooooooooooooooog"). //indent:6 exp:6
+      SecondFieldWithName("Loooooooooooooooooog"). //indent:6 exp:6
       getInteger(new FooFieldClass(), "Loooooooooooooooooog"), //indent:6 exp:6
       new InnerClassFoo()); //indent:6 exp:6
 
   boolean secondFlag = conditionSecond(10000000000.0, new //indent:2 exp:2
-      SecondFieldClassWithVeryVeryVeryLongName("Looooooooooooo" //indent:6 exp:6
+      SecondFieldWithName("Looooooooooooo" //indent:6 exp:6
       + "oooooooooooong").getString(new FooFieldClass(), //indent:6 exp:6
-      new SecondFieldClassWithVeryVeryVeryLongName("loooooooooong"). //indent:6 exp:6
+      new SecondFieldWithName("loooooooooong"). //indent:6 exp:6
       getInteger(new FooFieldClass(), "loooooooooooooong")), "loooooooooooong") //indent:6 exp:6
       || conditionThird(2048) || conditionFourth(new //indent:6 exp:6
-      SecondFieldClassWithVeryVeryVeryLongName("Looooooooooooooo" //indent:6 exp:6
+      SecondFieldWithName("Looooooooooooooo" //indent:6 exp:6
       + "ooooooooooooong").getBoolean(new FooFieldClass(), false)) || //indent:6 exp:6
-      conditionFifth(true, new SecondFieldClassWithVeryVeryVeryLongName(getString(2048, "Looo" //indent:6 exp:6
+      conditionFifth(true, new SecondFieldWithName(getString(2048, "Looo" //indent:6 exp:6
       + "ooooooooooooooooooooooooooooooooooooooooooong")).getBoolean( //indent:6 exp:6
       new FooFieldClass(), true)) || conditionSixth(false, new //indent:6 exp:6
-      SecondFieldClassWithVeryVeryVeryLongName(getString(100000, "Loooooong" //indent:6 exp:6
+      SecondFieldWithName(getString(100000, "Loooooong" //indent:6 exp:6
       + "Fooooooo><"))) || conditionNoArg() //indent:6 exp:6
       || conditionNoArg() || //indent:6 exp:6
       conditionNoArg() || conditionNoArg(); //indent:6 exp:6
@@ -50,7 +50,7 @@ class FooFieldClass { //indent:0 exp:0
   } //indent:2 exp:2
 
   private boolean conditionSixth(boolean flag, //indent:2 exp:2
-      SecondFieldClassWithVeryVeryVeryLongName instance) { //indent:6 exp:6
+      SecondFieldWithName instance) { //indent:6 exp:6
     return false; //indent:4 exp:4
   } //indent:2 exp:2
 
@@ -61,39 +61,39 @@ class FooFieldClass { //indent:0 exp:0
   class InnerClassFoo { //indent:2 exp:2
 
     boolean flag = conditionFirst("Loooooooooooooooooong", new //indent:4 exp:4
-        SecondFieldClassWithVeryVeryVeryLongName("Loooooooooooooooooog"). //indent:8 exp:8
+        SecondFieldWithName("Loooooooooooooooooog"). //indent:8 exp:8
             getInteger(new FooFieldClass(), "Loooooooooooooooooog"), //indent:12 exp:>=8
              new InnerClassFoo()); //indent:13 exp:>=8
 
     boolean secondFlag = conditionSecond(10000000000.0, new //indent:4 exp:4
-        SecondFieldClassWithVeryVeryVeryLongName("Looooooooooooo" //indent:8 exp:8
+        SecondFieldWithName("Looooooooooooo" //indent:8 exp:8
            + "oooooooooooong").getString(new FooFieldClass(), //indent:11 exp:>=8
-          new SecondFieldClassWithVeryVeryVeryLongName("loooooooooong"). //indent:10 exp:>=8
-            getInteger(new FooFieldClass(), "loooooooooooooong")), "loooooooooooong") //indent:12 exp:>=8
+          new SecondFieldWithName("loooooooooong"). //indent:10 exp:>=8
+            getInteger(new FooFieldClass(), "looooooooong")), "loooooooooooong") //indent:12 exp:>=8
              || conditionThird(2048) || conditionFourth(new //indent:13 exp:>=8
-                SecondFieldClassWithVeryVeryVeryLongName("Looooooooooooooo" //indent:16 exp:>=8
+                SecondFieldWithName("Looooooooooooooo" //indent:16 exp:>=8
             + "ooooooooooooong").getBoolean(new FooFieldClass(), false)) || //indent:12 exp:>=8
-           conditionFifth(true, new SecondFieldClassWithVeryVeryVeryLongName(getString(2048, "Looo" //indent:11 exp:>=8
+           conditionFifth(true, new SecondFieldWithName(getString(2048, "Looo" //indent:11 exp:>=8
                + "ooooooooooooooooooooooooooooooooooooooooooong")).getBoolean( //indent:15 exp:>=8
             new FooFieldClass(), true)) || conditionSixth(false, new //indent:12 exp:>=8
-            SecondFieldClassWithVeryVeryVeryLongName(getString(100000, "Loooooong" //indent:12 exp:>=8
+            SecondFieldWithName(getString(100000, "Loooooong" //indent:12 exp:>=8
                 + "Fooooooo><"))) || conditionNoArg() //indent:16 exp:>=8
           || conditionNoArg() || //indent:10 exp:>=8
           conditionNoArg() || conditionNoArg(); //indent:10 exp:>=8
 
     FooFieldClass anonymousClass = new FooFieldClass() { //indent:4 exp:4
       boolean secondFlag = conditionSecond(10000000000.0, new //indent:6 exp:6
-          SecondFieldClassWithVeryVeryVeryLongName("Looooooooooooo" //indent:10 exp:10
+          SecondFieldWithName("Looooooooooooo" //indent:10 exp:10
             + "oooooooooooong").getString(new FooFieldClass(), //indent:12 exp:>=10
-               new SecondFieldClassWithVeryVeryVeryLongName("loooooooooong"). //indent:15 exp:>=10
-             getInteger(new FooFieldClass(), "loooooooooooooong")), "loooooooooooong") //indent:13 exp:>=10
+               new SecondFieldWithName("loooooooooong"). //indent:15 exp:>=10
+             getInteger(new FooFieldClass(), "looooooong")), "loooooooooooong") //indent:13 exp:>=10
               || conditionThird(2048) || conditionFourth(new //indent:14 exp:>=10
-                 SecondFieldClassWithVeryVeryVeryLongName("Looooooooooooooo" //indent:17 exp:>=10
+                 SecondFieldWithName("Looooooooooooooo" //indent:17 exp:>=10
              + "ooooooooooooong").getBoolean(new FooFieldClass(), false)) || //indent:13 exp:>=10
-            conditionFifth(true, new SecondFieldClassWithVeryVeryVeryLongName(getString(2048, "Looo" //indent:12 exp:>=10
+            conditionFifth(true, new SecondFieldWithName(getString(2048, "Looo" //indent:12 exp:>=10
                 + "ooooooooooooooooooooooooooooooooooooooooooong")).getBoolean( //indent:16 exp:>=10
              new FooFieldClass(), true)) || conditionSixth(false, new //indent:13 exp:>=8
-             SecondFieldClassWithVeryVeryVeryLongName(getString(100000, "Loooooong" //indent:13 exp:>=10
+             SecondFieldWithName(getString(100000, "Loooooong" //indent:13 exp:>=10
                  + "Fooooooo><"))) || conditionNoArg() //indent:17 exp:>=10
            || conditionNoArg() || //indent:11 exp:>=10
            conditionNoArg() || conditionNoArg(); //indent:11 exp:>=10
@@ -101,9 +101,9 @@ class FooFieldClass { //indent:0 exp:0
   } //indent:2 exp:2
 } //indent:0 exp:0
 
-class SecondFieldClassWithVeryVeryVeryLongName { //indent:0 exp:0
+class SecondFieldWithName { //indent:0 exp:0
 
-  public SecondFieldClassWithVeryVeryVeryLongName(String string) { //indent:2 exp:2
+  public SecondFieldWithName(String string) { //indent:2 exp:2
 
   } //indent:2 exp:2
 
@@ -119,8 +119,8 @@ class SecondFieldClassWithVeryVeryVeryLongName { //indent:0 exp:0
     return false; //indent:4 exp:4
   } //indent:2 exp:2
 
-  SecondFieldClassWithVeryVeryVeryLongName getInstance() { //indent:2 exp:2
-    return new SecondFieldClassWithVeryVeryVeryLongName("VeryLoooooooooo" //indent:4 exp:4
+  SecondFieldWithName getInstance() { //indent:2 exp:2
+    return new SecondFieldWithName("VeryLoooooooooo" //indent:4 exp:4
         + "oongString"); //indent:8 exp:8
   } //indent:2 exp:2
 } //indent:0 exp:0
