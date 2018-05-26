@@ -170,11 +170,18 @@ matrix:
         - DESC="no error test on simple-binary-encoding"
         - CMD="./.ci/travis/travis.sh no-error-test-sbe"
 
-    # versions to update
+    # versions to update (CRON)
     - jdk: oraclejdk8
       env:
-        - DESC="print versions to update"
+        - DESC="print versions to update (CRON)"
         - CMD="./.ci/travis/travis.sh versions"
+        - SKIP_CI="false"
+
+    # check links (CRON)
+    - jdk: oraclejdk8
+      env:
+        - DESC="check links (CRON)"
+        - CMD="./.ci/travis/travis.sh link-check"
         - SKIP_CI="false"
 
     # OpenJDK8 build
