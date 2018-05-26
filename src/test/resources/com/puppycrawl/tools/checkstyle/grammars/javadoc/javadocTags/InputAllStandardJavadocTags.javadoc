@@ -56,7 +56,7 @@ and even here
 @serial include
 @serial exclude
 @serialField myField myObjectStreamField description of my serial field
-@serialData The data-description documents the types and order of data in the serialized form. Specifically, this data includes the optional data written by the writeObject method and all data (including base classes) written by the Externalizable.writeExternal method.
+@serialData The data-description documents the types.
 @since 1.5
 @since Release 3.4.5
 @throws IOException throws exception if connection refused.

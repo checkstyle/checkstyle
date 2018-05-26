@@ -11,8 +11,7 @@
         <module name="MemberName">
             <property name="format" value="^m[a-zA-Z0-9]*$"/>
             <message key="name.invalidPattern"
-                     value="Member ''{0}'' must start with a lowercase ''m'' (checked pattern ''{1}'')."
-                     />
+                     value="Member ''{0}'' must start with ''m'' (checked pattern ''{1}'')."/>
         </module>
     </module>
 </module>

@@ -40,7 +40,7 @@ public class InputOneStatementPerLine {
         ints.stream().map( t -> t * 2);
         List<Integer> ints2 = new LinkedList<Integer>();
         ints.stream().map( t -> { return ints2.stream().map(w -> { return w * 2; });});
-        ints.stream().map( t -> { return ints2.stream().map(w -> { int m = w * 2; return m; });}); //warn
+        ints.stream().map( t -> { return ints2.stream().map(w -> { int m=w; return m; });}); //warn
         ints.stream().map( t -> {
             return ints2.stream().map(
                     w -> {
