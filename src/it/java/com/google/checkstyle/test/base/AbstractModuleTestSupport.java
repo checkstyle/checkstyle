@@ -330,7 +330,6 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param moduleName module name.
      * @param moduleId module id.
      * @return {@link Configuration} instance for the given module name.
-     * @throws CheckstyleException if exception occurs during configuration loading.
      */
     protected static Configuration getModuleConfig(String moduleName, String moduleId) {
         final Configuration result;
