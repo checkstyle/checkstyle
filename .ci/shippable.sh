@@ -18,12 +18,24 @@ function checkout_from {
   cd ../
 }
 
+function build_checkstyle {
+  CS_VERSION=$1
+  JAR_PATH="$HOME/.m2/repository/com/puppycrawl/tools/checkstyle/"
+  JAR_PATH="$JAR_PATH""$CS_VERSION/checkstyle-$CS_VERSION.jar"
+  echo "Checkstyle jar: "$JAR_PATH
+  if [ ! -f $JAR_PATH ]; then
+    echo "Checkstyle jar not found, we will build it..."
+    mvn clean install -Pno-validations
+  fi
+}
+
 case $1 in
 
 no-exception-openjdk7-openjdk8)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                       --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
+  build_checkstyle $CS_POM_VERSION
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-for-circle.properties
@@ -37,6 +49,7 @@ no-exception-openjdk9-lucene-and-others)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                       --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
+  build_checkstyle $CS_POM_VERSION
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-for-circle.properties
@@ -54,6 +67,7 @@ no-exception-cassandra-storm-tapestry)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                       --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
+  build_checkstyle $CS_POM_VERSION
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-for-circle.properties
@@ -68,6 +82,7 @@ no-exception-hadoop-apache-groovy-scouter)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                       --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
+  build_checkstyle $CS_POM_VERSION
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-for-circle.properties

@@ -56,7 +56,6 @@ build:
       then
         pwd
         ls -la
-        mvn clean install -Pno-validations
         echo "Command: $CMD"
         eval $CMD
       else
