@@ -170,6 +170,24 @@ jobs:
              echo "Command: $CMD"
              eval $CMD
 
+  pitest7:
+    machine: true
+    java:
+      version: oraclejdk8
+    parallelism: 4
+    steps:
+      # restore_cache.keys does not work, so multiple restore_cache.key is used
+      - restore_cache:
+          key: m2-cache
+      - restore_cache:
+          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          command: |
+             echo "./.ci/pitest.sh pitest-gui"   >> commands.txt
+             CMD="$(circleci tests split commands.txt)"
+             echo "Command: $CMD"
+             eval $CMD
+
 workflows:
   version: 2
   pitest-testing:
@@ -193,3 +211,7 @@ workflows:
       - pitest6:
           requires:
             - build-caches
+      # we do not do thorough testing of gui part
+      # - pitest7:
+      #     requires:
+      #       - build-caches
