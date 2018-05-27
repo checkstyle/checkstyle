@@ -34,7 +34,7 @@ build:
       set -e
       if [ ! -d /root/groovy-2.4.7 ]; then
         wget https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip
-        unzip apache-groovy-binary-2.4.7.zip -d /root/groovy-2.4.7
+        unzip apache-groovy-binary-2.4.7.zip -d /root/
       fi
       # load custom PATH
       export PATH=/root/groovy-2.4.7/bin:$PATH
