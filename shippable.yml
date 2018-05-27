@@ -19,6 +19,7 @@ build:
   cache: true
   cache_dir_list:
     - /root/.m2
+    - /root/groovy-2.4.7
 
   # default is drydock/u14javall with jdk 1.8.0.25
   # that make pitest make different results with latest jdk builds,
@@ -31,6 +32,12 @@ build:
     # we skip PRs and commits that are not for Issues, as pitest is too time consuming
     - |
       set -e
+      if [ ! -d /root/groovy-2.4.7 ]; then
+        wget https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip
+        unzip apache-groovy-binary-2.4.7.zip -d /root/groovy-2.4.7
+      fi
+      # load custom PATH
+      export PATH=/root/groovy-2.4.7/bin:$PATH
       SKIP_FILES1="appveyor.yml|codeship-*|buddy.yml|circleci|distelli-manifest.yml|.travis.yml"
       SKIP_FILES2="|wercker.yml|wercker.sh|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md"
       SKIP_FILES3="|release.sh|RIGHTS.antlr|intellij-idea-inspections.xml"
