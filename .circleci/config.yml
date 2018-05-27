@@ -44,7 +44,7 @@ jobs:
             - /home/circleci/project
             - /home/circleci/contribution
 
-  test-pitest1:
+  pitest1:
     machine: true
     java:
       version: oraclejdk8
@@ -58,14 +58,14 @@ jobs:
       - run:
           command: |
              echo "./.ci/pitest.sh pitest-coding"  >> commands.txt
-             echo "./.ci/pitest.sh pitest-common"   >> commands.txt
-             echo "./.ci/pitest.sh pitest-imports"   >> commands.txt
-             echo "./.ci/pitest.sh pitest-ant"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-common"  >> commands.txt
+             echo "./.ci/pitest.sh pitest-imports" >> commands.txt
+             echo "./.ci/pitest.sh pitest-ant"     >> commands.txt
              CMD="$(circleci tests split commands.txt)"
              echo "Command: $CMD"
              eval $CMD
 
-  test-pitest2:
+  pitest2:
     machine: true
     java:
       version: oraclejdk8
@@ -78,15 +78,36 @@ jobs:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-             echo "./.ci/pitest.sh pitest-main"   >> commands.txt
-             echo "./.ci/pitest.sh pitest-javadoc"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-main"        >> commands.txt
+             echo "./.ci/pitest.sh pitest-javadoc"     >> commands.txt
+             echo "./.ci/pitest.sh pitest-indentation" >> commands.txt
+             echo "./.ci/pitest.sh pitest-xpath"       >> commands.txt
+             CMD="$(circleci tests split commands.txt)"
+             echo "Command: $CMD"
+             eval $CMD
+
+  pitest3:
+    machine: true
+    java:
+      version: oraclejdk8
+    parallelism: 4
+    steps:
+      # restore_cache.keys does not work, so multiple restore_cache.key is used
+      - restore_cache:
+          key: m2-cache
+      - restore_cache:
+          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          command: |
+             echo "./.ci/pitest.sh pitest-misc"    >> commands.txt
+             echo "./.ci/pitest.sh pitest-design"  >> commands.txt
+             echo "./.ci/pitest.sh pitest-api"     >> commands.txt
              echo "./.ci/pitest.sh pitest-utils"   >> commands.txt
-             echo "./.ci/pitest.sh pitest-api"   >> commands.txt
              CMD="$(circleci tests split commands.txt)"
              echo "Command: $CMD"
              eval $CMD
 
-  test-pitest3:
+  pitest4:
     machine: true
     java:
       version: oraclejdk8
@@ -99,15 +120,15 @@ jobs:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-             echo "./.ci/pitest.sh pitest-design"   >> commands.txt
-             echo "./.ci/pitest.sh pitest-misc"   >> commands.txt
-             echo "./.ci/pitest.sh pitest-xpath"   >> commands.txt
-             echo "./.ci/pitest.sh pitest-indentation"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-whitespace" >> commands.txt
+             echo "./.ci/pitest.sh pitest-filters"    >> commands.txt
+             echo "./.ci/pitest.sh pitest-header"     >> commands.txt
+             echo "./.ci/pitest.sh pitest-annotation" >> commands.txt
              CMD="$(circleci tests split commands.txt)"
              echo "Command: $CMD"
              eval $CMD
 
-  test-pitest4:
+  pitest5:
     machine: true
     java:
       version: oraclejdk8
@@ -120,36 +141,15 @@ jobs:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-             echo "./.ci/pitest.sh pitest-packagenamesloader"   >> commands.txt
-             echo "./.ci/pitest.sh pitest-tree-walker"   >> commands.txt
-             echo "./.ci/pitest.sh pitest-header"   >> commands.txt
-             echo "./.ci/pitest.sh pitest-annotation"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-packagenamesloader" >> commands.txt
+             echo "./.ci/pitest.sh pitest-tree-walker"        >> commands.txt
+             echo "./.ci/pitest.sh pitest-naming"             >> commands.txt
+             echo "./.ci/pitest.sh pitest-metrics"            >> commands.txt
              CMD="$(circleci tests split commands.txt)"
              echo "Command: $CMD"
              eval $CMD
 
-  test-pitest5:
-    machine: true
-    java:
-      version: oraclejdk8
-    parallelism: 4
-    steps:
-      # restore_cache.keys does not work, so multiple restore_cache.key is used
-      - restore_cache:
-          key: m2-cache
-      - restore_cache:
-          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
-      - run:
-          command: |
-             echo "./.ci/pitest.sh pitest-whitespace"   >> commands.txt
-             echo "./.ci/pitest.sh pitest-filters"   >> commands.txt
-             echo "./.ci/pitest.sh pitest-naming"   >> commands.txt
-             echo "./.ci/pitest.sh pitest-modifier"   >> commands.txt
-             CMD="$(circleci tests split commands.txt)"
-             echo "Command: $CMD"
-             eval $CMD
-
-  test-pitest6:
+  pitest6:
     machine: true
     java:
       version: oraclejdk8
@@ -163,33 +163,33 @@ jobs:
       - run:
           command: |
              echo "./.ci/pitest.sh pitest-blocks"   >> commands.txt
-             echo "./.ci/pitest.sh pitest-sizes"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-sizes"    >> commands.txt
+             echo "./.ci/pitest.sh pitest-modifier" >> commands.txt
              echo "./.ci/pitest.sh pitest-regexp"   >> commands.txt
-             echo "./.ci/pitest.sh pitest-metrics"   >> commands.txt
              CMD="$(circleci tests split commands.txt)"
              echo "Command: $CMD"
              eval $CMD
 
 workflows:
   version: 2
-  regression-testing:
+  pitest-testing:
     jobs:
       - build-caches
-      - test-pitest1:
+      - pitest1:
           requires:
             - build-caches
-      - test-pitest2:
+      - pitest2:
           requires:
             - build-caches
-      - test-pitest3:
+      - pitest3:
           requires:
             - build-caches
-      - test-pitest4:
+      - pitest4:
           requires:
             - build-caches
-      - test-pitest5:
+      - pitest5:
           requires:
             - build-caches
-      - test-pitest6:
+      - pitest6:
           requires:
             - build-caches
