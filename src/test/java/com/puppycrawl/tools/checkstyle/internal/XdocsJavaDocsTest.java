@@ -115,6 +115,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                                 && !"LocalVariableName".equals(sectionName)
                                 && !"MemberName".equals(sectionName)
                                 && !"MethodName".equals(sectionName)
+                                && !"MethodTypeParameterName".equals(sectionName)
                 ) {
                     continue;
                 }
