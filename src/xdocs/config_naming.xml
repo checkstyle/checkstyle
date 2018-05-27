@@ -1506,10 +1506,11 @@ public boolean equals(Object o) {
     </section>
 
     <section name="StaticVariableName">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
-          Validates identifiers for <code>static</code>, non-<code>final</code> fields.
+          Checks that {@code static}, non-{@code final} variable names conform to a format
+          specified by the format property.
         </p>
       </subsection>
 
@@ -1564,10 +1565,19 @@ public boolean equals(Object o) {
 
       <subsection name="Examples">
         <p>
-          To configure the check:
+          An example of how to configure the check is:
         </p>
         <source>
 &lt;module name=&quot;StaticVariableName&quot;/&gt;
+        </source>
+        <p>
+          An example of how to configure the check for names that begin with a lower case letter,
+          followed by letters, digits, and underscores is:
+        </p>
+        <source>
+&lt;module name="StaticVariableName"&gt;
+  &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+&lt;/module&gt;
         </source>
       </subsection>
 
