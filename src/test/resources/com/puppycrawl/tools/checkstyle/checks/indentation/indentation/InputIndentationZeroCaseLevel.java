@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation.indentation; //indent
  * throwsIndent = 4                                                           //indent:1 exp:1
  *                                                                            //indent:1 exp:1
  *                                                                            //indent:1 exp:1
- */                                                                           //indent:1 exp:1                                                                         //indent:1 exp:1
+ */                                                                           //indent:1 exp:1
 public class InputIndentationZeroCaseLevel { //indent:0 exp:0
     protected void begin(){ //indent:4 exp:4
         int i=0; //indent:8 exp:8

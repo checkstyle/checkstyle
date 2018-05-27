@@ -10,7 +10,7 @@ public class InputJavadocMethodReceiverParameter {
 
     @Retention(RetentionPolicy.RUNTIME)
     @Target({ElementType.TYPE_USE, ElementType.TYPE_PARAMETER})
-    public @interface UnknownInitialization {
+    public @interface Ann {
         /**
          * A dummy annotation to check Java 8's receiver parameter handling.
          *
@@ -24,7 +24,7 @@ public class InputJavadocMethodReceiverParameter {
      *
      * @param buffer dummy argument
      */
-    public void foo(@UnknownInitialization(InputJavadocMethodReceiverParameter.class) InputJavadocMethodReceiverParameter this,
+    public void foo(@Ann(Object.class) InputJavadocMethodReceiverParameter this,
             final ByteBuffer buffer) {
         buffer.putInt(1);
     }

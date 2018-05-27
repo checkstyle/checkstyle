@@ -70,7 +70,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         checkConfig.addAttribute("processJavadoc", "false");
         final String[] expected = {
-            "8:45: " + getCheckMessage(MSG_KEY,
+            "8:16: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.checks."
                 + "imports.unusedimports.InputUnusedImportsBug"),
             "11:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
@@ -108,7 +108,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     public void testProcessJavadoc() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = {
-            "8:45: " + getCheckMessage(MSG_KEY,
+            "8:16: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.checks."
                         + "imports.unusedimports.InputUnusedImportsBug"),
             "11:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),

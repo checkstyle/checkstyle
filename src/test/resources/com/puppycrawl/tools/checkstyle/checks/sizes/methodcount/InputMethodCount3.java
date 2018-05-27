@@ -3,7 +3,7 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.methodcount;
 public class InputMethodCount3 {
 
     /**
-     * Dummy inner class to check that the inner-classes methods are not counted for the outer class.
+     * Dummy inner class to check that the inner-classes methods are not counted for the outer class
      */
     /**
      * Dummy method doing nothing

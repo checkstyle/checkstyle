@@ -323,11 +323,11 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
 
         final String[] expected = {
-            "33: " + getCheckMessage(MSG_ERROR, ")", 16, 0),
-            "35: " + getCheckMessage(MSG_ERROR, ")", 16, 0),
-            "39: " + getCheckMessage(MSG_ERROR, ")", 8, 4),
-            "41: " + getCheckMessage(MSG_ERROR, ")", 8, 4),
-            "45: " + getCheckMessage(MSG_ERROR, ")", 8, 4),
+            "34: " + getCheckMessage(MSG_ERROR, ")", 16, 0),
+            "36: " + getCheckMessage(MSG_ERROR, ")", 16, 0),
+            "40: " + getCheckMessage(MSG_ERROR, ")", 8, 4),
+            "42: " + getCheckMessage(MSG_ERROR, ")", 8, 4),
+            "46: " + getCheckMessage(MSG_ERROR, ")", 8, 4),
         };
 
         verifyWarns(checkConfig,

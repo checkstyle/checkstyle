@@ -19,12 +19,12 @@ import javax.swing.JButton; //indent:0 exp:0
  *                                                                            //indent:1 exp:1
  * @author  jrichard                                                          //indent:1 exp:1
  */                                                                           //indent:1 exp:1
-  public class InputIndentationInvalidClassDefIndent extends java.awt.event.MouseAdapter implements java.awt.event.MouseListener { //indent:2 exp:0 warn
+  public class InputIndentationInvalidClassDefIndent extends Object { //indent:2 exp:0 warn
 
 
 } //indent:0 exp:0
 
-class InputIndentationInvalidClassDefIndentB extends java.awt.event.MouseAdapter implements java.awt.event.MouseListener  //indent:0 exp:0
+class InputIndentationInvalidClassDefIndentB extends javax.swing.JButton //indent:0 exp:0
   { //indent:2 exp:0 warn
 
 
@@ -61,27 +61,27 @@ final class InputIndentationValidClassDefIndent44 //indent:0 exp:0
 
 } //indent:0 exp:0
 
-  final class InputIndentationValidClassDefIndent55 extends java.awt.event.MouseAdapter implements java.awt.event.MouseListener  //indent:2 exp:0 warn
+  final class InputIndentationValidClassDefIndent55 extends Object  //indent:2 exp:0 warn
   { //indent:2 exp:0 warn
 
 } //indent:0 exp:0
 
 
-final class InputIndentationValidClassDefIndent5b extends java.awt.event.MouseAdapter implements java.awt.event.MouseListener  //indent:0 exp:0
+final class InputIndentationValidClassDefIndent5b extends Object  //indent:0 exp:0
 { //indent:0 exp:0
 
   } //indent:2 exp:0 warn
 
 
 class InputIndentationInvalidClassDefIndentc2 //indent:0 exp:0
-  extends java.awt.event.MouseAdapter implements java.awt.event.MouseListener { //indent:2 exp:4 warn
+  extends java.awt.event.MouseAdapter implements java.awt.event.MouseListener {//indent:2 exp:4 warn
 
 
 } //indent:0 exp:0
 
 
 
-final class InputIndentationValidClassDefIndent66 extends java.awt.event.MouseAdapter implements java.awt.event.MouseListener { //indent:0 exp:0
+final class InputIndentationValidClassDefIndent66 extends Object { //indent:0 exp:0
 
   class foo { } //indent:2 exp:4 warn
 

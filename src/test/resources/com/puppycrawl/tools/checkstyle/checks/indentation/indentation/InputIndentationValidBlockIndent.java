@@ -79,7 +79,7 @@ public class InputIndentationValidBlockIndent { //indent:0 exp:0
 
 enum EquivalenceTester { //indent:0 exp:0
     /** //indent:4 exp:4
-     * An equivalence tester that decides based on {@link Object#equals(Object) equals}. //indent:5 exp:5
+     * An equivalenster that decides based on {@link Object#equals(Object) equals}. //indent:5 exp:5
      */ //indent:5 exp:5
     OBJECT_ATTRIBUTES { //indent:4 exp:4
         /** //indent:8 exp:8

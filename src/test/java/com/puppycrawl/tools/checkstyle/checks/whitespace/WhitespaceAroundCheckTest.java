@@ -169,8 +169,8 @@ public class WhitespaceAroundCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAroundCheck.class);
         final String[] expected = {
-            "6:83: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "&"),
-            "6:84: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "&"),
+            "7:27: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "&"),
+            "7:28: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "&"),
         };
         verify(checkConfig, getPath("InputWhitespaceAroundGenerics.java"), expected);
     }

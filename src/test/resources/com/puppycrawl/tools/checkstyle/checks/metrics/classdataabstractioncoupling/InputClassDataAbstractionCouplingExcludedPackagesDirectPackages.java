@@ -5,7 +5,7 @@ import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupli
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.inputs.b.BClass;
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.inputs.c.CClass;
 
-public class InputClassDataAbstractionCouplingExcludedPackagesDirectPackages { // total: 2 violations
+public class InputClassDataAbstractionCouplingExcludedPackagesDirectPackages { //total: 2 violations
     public AAClass aa = new AAClass(); // violation
     public ABClass ab = new ABClass(); // violation
 

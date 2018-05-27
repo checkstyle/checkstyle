@@ -8,8 +8,8 @@ import java.util.Date; //indent:0 exp:0
     @PrimaryKeyJoinColumn(name = "PRESENTER_NAME") //indent:4 exp:4
         }) //indent:8 exp:0 warn
 @AssociationOverrides( { //indent:0 exp:0
-    @AssociationOverride(name = "id.channel", joinColumns = @JoinColumn(name = "chan_id", nullable = false)), //indent:4 exp:4
-    @AssociationOverride(name = "id.presenter", joinColumns = @JoinColumn(name = "presenter_name", nullable = false))}) //indent:4 exp:4
+    @AssociationOverride(name = "id.channel"), //indent:4 exp:4
+    @AssociationOverride(name = "id.presenter")}) //indent:4 exp:4
 public class InputIndentationAnnotationScopeIndentationCheck { //indent:0 exp:0
     @EmbeddedId //indent:4 exp:4
     public String id; //indent:4 exp:4
@@ -43,7 +43,7 @@ public class InputIndentationAnnotationScopeIndentationCheck { //indent:0 exp:0
 } //indent:0 exp:0
 @interface AssociationOverride { //indent:0 exp:0
     String name(); //indent:4 exp:4
-    JoinColumn joinColumns(); //indent:4 exp:4
+    JoinColumn joinColumns() default @JoinColumn(name = "prese", nullable = false); //indent:4 exp:4
 } //indent:0 exp:0
 @interface JoinColumn { //indent:0 exp:0
     String name(); //indent:4 exp:4

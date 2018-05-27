@@ -13,7 +13,7 @@ public class InputVisibilityModifiersPublicImmutable {
     public final BigDecimal value;
     public final List list;
     public InputVisibilityModifiersPublicImmutable(Collection<String> includes,
-                                                   BigDecimal value, String notes, int someValue, List l) {
+                                            BigDecimal value, String notes, int someValue, List l) {
         this.includes = ImmutableSet.copyOf(includes);
         this.value = value;
         this.notes = notes;

@@ -25,7 +25,7 @@ public class InputParameterNameOverrideAnnotation {
 
     InputParameterNameOverrideAnnotation() {} // No NPE here!
 
-    InputParameterNameOverrideAnnotation(int field, java.util.Set<String> packageNames) {} // No NPE here!
+    InputParameterNameOverrideAnnotation(int fie, java.util.Set<String> pkgNames) {} // No NPE here!
 
 
 }

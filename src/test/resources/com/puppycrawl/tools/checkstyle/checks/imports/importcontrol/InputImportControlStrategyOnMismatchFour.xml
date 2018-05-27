@@ -3,7 +3,8 @@
     "-//Puppy Crawl//DTD Import Control 1.3//EN"
     "http://checkstyle.sourceforge.net/dtds/import_control_1_3.dtd">
 
-<import-control pkg="com.puppycrawl.tools.checkstyle.checks.imports" strategyOnMismatch="disallowed">
+<import-control pkg="com.puppycrawl.tools.checkstyle.checks.imports"
+                strategyOnMismatch="disallowed">
   <subpackage name="importcontrol" strategyOnMismatch="allowed">
     <disallow class="java\..*\.Image" local-only="true" regex="true"/>
     <disallow pkg="javax\.swing" regex="true"/>

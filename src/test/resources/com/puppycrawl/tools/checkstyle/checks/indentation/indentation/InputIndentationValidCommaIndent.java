@@ -29,7 +29,7 @@ public class InputIndentationValidCommaIndent { //indent:0 exp:0
 
         boolean longVarName = true; //indent:8 exp:8
         boolean myotherLongVariableName = false; //indent:8 exp:8
-        if (j == 2 || longVarName == true || myotherLongVariableName == true || myotherLongVariableName == false || longVarName == true) { //indent:8 exp:8
+        if (j == 2 || longVarName == true || longVarName == true) { //indent:8 exp:8
         } //indent:8 exp:8
 
         if ((j == 2 && k == 3) //indent:8 exp:8

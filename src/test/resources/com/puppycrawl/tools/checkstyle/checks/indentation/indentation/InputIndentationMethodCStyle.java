@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation.indentation; //indent
  * throwsIndent = 8                                                           //indent:1 exp:1
  *                                                                            //indent:1 exp:1
  *                                                                            //indent:1 exp:1
- */                                                                           //indent:1 exp:1                                                                   //indent:1 exp:1
+ */                                                                           //indent:1 exp:1
 public class InputIndentationMethodCStyle { //indent:0 exp:0
     public InputIndentationMethodCStyle(int appleCount, //indent:4 exp:4
                              int bananaCount, //indent:29 exp:12 warn

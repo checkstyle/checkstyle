@@ -3,7 +3,8 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespaceafter;
 import java.util.Collection;
 import java.util.Map;
 
-public class InputWhitespaceAfterGenerics<A, B extends Collection<?>, C extends D&E, F extends Collection<? extends InputWhitespaceAfterGenerics[]>>
+public class InputWhitespaceAfterGenerics<A, B extends Collection<?>,
+       C extends D&E, F extends Collection<? extends InputWhitespaceAfterGenerics[]>>
 {
 }
 

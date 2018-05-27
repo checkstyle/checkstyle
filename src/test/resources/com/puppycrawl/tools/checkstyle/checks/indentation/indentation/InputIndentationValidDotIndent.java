@@ -38,7 +38,7 @@ public class InputIndentationValidDotIndent { //indent:0 exp:0
             .CASE_INSENSITIVE_ORDER //indent:12 exp:12
                 .reversed(); //indent:16 exp:16
 
-        BevelBorder border = new javax.swing.border.BevelBorder(BevelBorder.LOWERED); //indent:8 exp:8
+        BevelBorder border = new BevelBorder(BevelBorder.LOWERED); //indent:8 exp:8
         border = new javax.swing.border. //indent:8 exp:8
             BevelBorder(BevelBorder.LOWERED); //indent:12 exp:12
 

@@ -20,44 +20,44 @@ public final class InputIndentationTryResourcesNotStrict { //indent:0 exp:0
     static void fooMethod(String zipFileName) throws IOException { //indent:4 exp:4
 
         Charset charset = StandardCharsets.US_ASCII; //indent:8 exp:8
-        Path outputFilePath = Paths.get(zipFileName); //indent:8 exp:8
+        Path filePath = Paths.get(zipFileName); //indent:8 exp:8
 
         try //indent:8 exp:8
             ( //indent:12 exp:>=8
-final BufferedWriter writer = Files.newBufferedWriter(outputFilePath, charset); //indent:0 exp:12 warn
+final BufferedWriter writer = Files.newBufferedWriter(filePath, charset); //indent:0 exp:12 warn
             ) { //indent:12 exp:>=8
             ; //indent:12 exp:12
         } //indent:8 exp:8
         try ( //indent:8 exp:8
             BufferedWriter writer = Files. //indent:12 exp:12
-newBufferedWriter(outputFilePath, charset); //indent:0 exp:16 warn
+newBufferedWriter(filePath, charset); //indent:0 exp:16 warn
             ZipFile zf = new ZipFile(zipFileName) //indent:12 exp:12
             ) { //indent:12 exp:>=8
             zf.getName(); //indent:12 exp:12
         } //indent:8 exp:8
         try (BufferedWriter writer = Files. //indent:8 exp:8
-newBufferedWriter(outputFilePath, charset); //indent:0 exp:>=12 warn
+newBufferedWriter(filePath, charset); //indent:0 exp:>=12 warn
             ZipFile zf = new ZipFile(zipFileName) //indent:12 exp:12
             ) { //indent:12 exp:>=8
             zf.getName(); //indent:12 exp:12
         } //indent:8 exp:8
         try ( //indent:8 exp:8
             BufferedWriter writer = Files. //indent:12 exp:12
-                newBufferedWriter(outputFilePath, charset); //indent:16 exp:16
+                newBufferedWriter(filePath, charset); //indent:16 exp:16
             ZipFile zf = new ZipFile(zipFileName) //indent:12 exp:12
             ) { //indent:12 exp:>=8
             zf.getName(); //indent:12 exp:12
         } //indent:8 exp:8
         try ( //indent:8 exp:8
-            BufferedWriter writer = Files.newBufferedWriter(outputFilePath, charset); //indent:12 exp:12
+            BufferedWriter writer = Files.newBufferedWriter(filePath, charset); //indent:12 exp:12
             ZipFile zf = new ZipFile(zipFileName) //indent:12 exp:12
             ) { //indent:12 exp:>=8
             zf.getName(); //indent:12 exp:12
         } //indent:8 exp:8
         try { //indent:8 exp:8
             try ( //indent:12 exp:12
-                    BufferedWriter writer = Files.newBufferedWriter(outputFilePath, charset)) { //indent:20 exp:>=16
-                writer.flush(); //indent:16 exp:16
+                    BufferedWriter wrr = Files.newBufferedWriter(null, null)) { //indent:20 exp:>=16
+                wrr.flush(); //indent:16 exp:16
             } catch (MalformedInputException e) { //indent:12 exp:12
                 //Empty //indent:16 exp:16
             } //indent:12 exp:12
@@ -69,12 +69,12 @@ newBufferedWriter(outputFilePath, charset); //indent:0 exp:>=12 warn
         } catch (Exception e) { //indent:8 exp:8
 
         } //indent:8 exp:8
-        try (BufferedWriter writer = Files.newBufferedWriter(outputFilePath, charset)) { //indent:8 exp:8
+        try (BufferedWriter writer = Files.newBufferedWriter(filePath, charset)) { //indent:8 exp:8
             Integer.parseInt("2"); //indent:12 exp:12
         } catch (Exception e) { //indent:8 exp:8
 
         } //indent:8 exp:8
-        BufferedWriter writ = Files.newBufferedWriter(outputFilePath, charset); //indent:8 exp:8
+        BufferedWriter writ = Files.newBufferedWriter(filePath, charset); //indent:8 exp:8
         try (BufferedWriter writer = writ) { //indent:8 exp:8
             Integer.parseInt("2"); //indent:12 exp:12
         } catch (IOException e) { //indent:8 exp:8
@@ -101,50 +101,50 @@ newBufferedWriter(outputFilePath, charset); //indent:0 exp:>=12 warn
             throw e; //indent:12 exp:12
         } //indent:8 exp:8
         try ( //indent:8 exp:8
-            BufferedWriter writer = Files.newBufferedWriter(outputFilePath, charset); //indent:12 exp:12
+            BufferedWriter writer = Files.newBufferedWriter(filePath, charset); //indent:12 exp:12
             ZipFile zf = new ZipFile( //indent:12 exp:12
                 zipFileName) //indent:16 exp:16
             ) { //indent:12 exp:>=8
             zf.getName(); //indent:12 exp:12
         } //indent:8 exp:8
         try ( //indent:8 exp:8
-            BufferedWriter writer = Files.newBufferedWriter(outputFilePath, charset); //indent:12 exp:12
+            BufferedWriter writer = Files.newBufferedWriter(filePath, charset); //indent:12 exp:12
             ZipFile zf = new ZipFile( //indent:12 exp:12
                  zipFileName) //indent:17 exp:>=16
             ) { //indent:12 exp:>=8
             zf.getName(); //indent:12 exp:12
         } //indent:8 exp:8
         try ( //indent:8 exp:8
-            BufferedWriter writer = Files.newBufferedWriter(outputFilePath, charset); //indent:12 exp:12
+            BufferedWriter writer = Files.newBufferedWriter(filePath, charset); //indent:12 exp:12
             ZipFile zf = new ZipFile( //indent:12 exp:12
                zipFileName) //indent:15 exp:>=16 warn
             ) { //indent:12 exp:>=8
             zf.getName(); //indent:12 exp:12
         } //indent:8 exp:8
-        try (BufferedWriter writer = Files.newBufferedWriter(outputFilePath, charset)) { //indent:8 exp:8
+        try (BufferedWriter writer = Files.newBufferedWriter(filePath, charset)) { //indent:8 exp:8
             writer.close();  //indent:12 exp:12
         } //indent:8 exp:8
-        try (          BufferedWriter writer = Files.newBufferedWriter(outputFilePath, charset)) { //indent:8 exp:8
+        try ( BufferedWriter writer = Files.newBufferedWriter(filePath, charset)) { //indent:8 exp:8
             writer.close();  //indent:12 exp:12
         } //indent:8 exp:8
        try ( //indent:7 exp:8 warn
 
 
 
-            BufferedWriter writer = Files.newBufferedWriter(outputFilePath, charset)) { //indent:12 exp:12
+            BufferedWriter writer = Files.newBufferedWriter(filePath, charset)) { //indent:12 exp:12
                writer.close();  //indent:15 exp:12 warn
         } //indent:8 exp:8
         try ( //indent:8 exp:8
 
 
 
-           BufferedWriter writer = Files.newBufferedWriter(outputFilePath, charset)) { //indent:11 exp:12 warn
+           BufferedWriter writer = Files.newBufferedWriter(null, charset)) { //indent:11 exp:12 warn
          writer.close();  //indent:9 exp:12 warn
         } //indent:8 exp:8
         try ( //indent:8 exp:8
 
            BufferedWriter writer = Files. //indent:11 exp:12 warn
-           newBufferedWriter(outputFilePath, charset)) { //indent:11 exp:16 warn
+           newBufferedWriter(filePath, charset)) { //indent:11 exp:16 warn
              writer.close(); //indent:13 exp:12 warn
         } //indent:8 exp:8
        try (BufferedWriter writer = writ //indent:7 exp:8 warn
@@ -161,14 +161,14 @@ newBufferedWriter(outputFilePath, charset); //indent:0 exp:>=12 warn
             ; //indent:12 exp:12
         } //indent:8 exp:8
         try (BufferedWriter writer = Files //indent:8 exp:8
-        .newBufferedWriter(outputFilePath, charset)) { //indent:8 exp:>=12 warn
+        .newBufferedWriter(filePath, charset)) { //indent:8 exp:>=12 warn
             ; //indent:12 exp:12
         } //indent:8 exp:8
         try (BufferedWriter writer = Files //indent:8 exp:8
-             .newBufferedWriter(outputFilePath, charset)) { //indent:13 exp:>=12
+             .newBufferedWriter(filePath, charset)) { //indent:13 exp:>=12
             ; //indent:12 exp:12
         } //indent:8 exp:8
-        try (DirectoryStream<Path> ds = Files.newDirectoryStream(outputFilePath, //indent:8 exp:8
+        try (DirectoryStream<Path> ds = Files.newDirectoryStream(filePath, //indent:8 exp:8
            new DirectoryStream.Filter<Path>() { //indent:11 exp:>=12 warn
                 @Override //indent:16 exp:16
                 public boolean accept(Path path) { //indent:16 exp:16

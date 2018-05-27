@@ -46,7 +46,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
 
         final String[] expected = {
             "13:9: " + getCheckMessage(MSG_KEY, 4, 3),
-            "29:99: " + getCheckMessage(MSG_KEY, 4, 3),
+            "29:87: " + getCheckMessage(MSG_KEY, 4, 3),
             "39:9: " + getCheckMessage(MSG_KEY, 6, 3),
             "45:34: " + getCheckMessage(MSG_KEY, 4, 3),
             "47:34: " + getCheckMessage(MSG_KEY, 4, 3),

@@ -20,7 +20,7 @@ import com.google.common.collect.RangeMap; //indent:0 exp:0
  *                                                                            //indent:1 exp:1
  *                                                                            //indent:1 exp:1
  */                                                                           //indent:1 exp:1
-public abstract class InputIndentationFromGuava2<K extends Comparable<?>, V> implements RangeMap<K, V> { //indent:0 exp:0
+public abstract class InputIndentationFromGuava2<K extends Comparable<?>, V> { //indent:0 exp:0
 
   public InputIndentationFromGuava2<K, V> subRangeMap1(final Range<K> range) { //indent:2 exp:2
     Range<K> ranges = null; //indent:4 exp:4
@@ -67,7 +67,7 @@ public abstract class InputIndentationFromGuava2<K extends Comparable<?>, V> imp
     return null; //indent:4 exp:4
   } //indent:2 exp:2
 
-  @Override //indent:2 exp:2
+  @Deprecated //indent:2 exp:2
   public V get(K key) //indent:2 exp:2
   { //indent:2 exp:2
     return null; //indent:4 exp:4
@@ -78,43 +78,43 @@ public abstract class InputIndentationFromGuava2<K extends Comparable<?>, V> imp
     return null; //indent:4 exp:4
   } //indent:2 exp:2
 
-  @Override //indent:2 exp:2
+  @Deprecated //indent:2 exp:2
   public void put(Range<K> range, V value) //indent:2 exp:2
   { //indent:2 exp:2
 
   } //indent:2 exp:2
 
-  @Override //indent:2 exp:2
+  @Deprecated //indent:2 exp:2
   public void putAll(RangeMap<K, V> rangeMap) //indent:2 exp:2
   { //indent:2 exp:2
 
   } //indent:2 exp:2
 
-  @Override //indent:2 exp:2
+  @Deprecated //indent:2 exp:2
   public void clear() //indent:2 exp:2
   { //indent:2 exp:2
 
   } //indent:2 exp:2
 
-  @Override //indent:2 exp:2
+  @Deprecated //indent:2 exp:2
   public void remove(Range<K> range) //indent:2 exp:2
   { //indent:2 exp:2
 
   } //indent:2 exp:2
 
-  @Override //indent:2 exp:2
+  @Deprecated //indent:2 exp:2
   public Map<Range<K>, V> asMapOfRanges() //indent:2 exp:2
   { //indent:2 exp:2
     return null; //indent:4 exp:4
   } //indent:2 exp:2
 
-  @Override //indent:2 exp:2
+  @Deprecated //indent:2 exp:2
   public RangeMap<K, V> subRangeMap(Range<K> range) //indent:2 exp:2
   { //indent:2 exp:2
     return null; //indent:4 exp:4
   } //indent:2 exp:2
 
-  @Override //indent:2 exp:2
+  @Deprecated //indent:2 exp:2
   public Entry<Range<K>, V> getEntry(K key) //indent:2 exp:2
   { //indent:2 exp:2
     return null; //indent:4 exp:4

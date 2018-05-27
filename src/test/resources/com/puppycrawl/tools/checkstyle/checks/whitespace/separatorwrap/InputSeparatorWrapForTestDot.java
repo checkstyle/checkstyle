@@ -25,7 +25,7 @@ public class InputSeparatorWrapForTestDot<T extends FooForTestDot
 class badCaseForTestDot<T extends FooForTestDot &  BarForTestDot> {
 
 
-    public void goodCaseForTestDot(int... aFoo) throws FooExceptionForTestDot, BarExceptionForTestDot
+    public void goodCaseForTestDot(int... aFoo)throws FooExceptionForTestDot, BarExceptionForTestDot
     {
         String s = "ffffooooString";
         s.
