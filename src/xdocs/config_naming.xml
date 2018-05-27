@@ -171,6 +171,35 @@
   &lt;property name="allowedAbbreviations" value="XML,URL"/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+         The following example demonstrates how the checkstyle validates the naming of class, method and variable.
+       </p>
+       <p>Configuration:</p>
+       <source>
+&lt;module name="AbbreviationAsWordInName"&gt;
+  &lt;property name="tokens" value="CLASS_DEF, VARIABLE_DEF, METHOD_DEF"/&gt;
+  &lt;property name="ignoreStatic" value="false"/&gt;
+  &lt;property name="allowedAbbreviationLength" value="0"/&gt;
+  &lt;property name="allowedAbbreviations" value="XML,URL"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Code example:</p>
+        <source>
+public class MyClass { //OK
+  ...
+  static String myString = "checkstyle"; //OK
+  ...
+  public void myMethod(String myString) { //OK
+    ...
+    int myNumber = 5; //OK
+    ...
+    for(char c : myString.toCharArray()){...} //OK
+    ...
+    for(int i = 0; i &lt; 5; i++){...} //OK
+    ...
+  }
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage">
