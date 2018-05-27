@@ -68,7 +68,7 @@
               files="src[\\/]xdocs[\\/]releasenotes.xml"/>
     <!-- it contains list of html text, no way to wrap -->
     <suppress checks="RegexpSingleline"
-              files=".ci[\\/]shippable.sh"/>
+              files=".ci[\\/]pitest.sh"/>
     <!-- property names a too long, nothing we can do -->
     <suppress checks="RegexpSingleline"
               files="config[\\/]org.eclipse.jdt.core.prefs"/>
