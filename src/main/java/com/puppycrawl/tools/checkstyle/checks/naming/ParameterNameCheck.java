@@ -21,10 +21,14 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.stream.IntStream;
+
+import javax.xml.soap.Detail;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 
 /**
@@ -71,7 +75,10 @@ public class ParameterNameCheck extends AbstractNameCheck {
      */
     private boolean ignoreOverridden;
 
-    /** Access modifiers of methods which should be checked. */
+    /**
+     * Access modifiers of methods which should be checked.
+     * Does not works with lambda or catch parameters.
+     */
     private AccessModifier[] accessModifiers = {
         AccessModifier.PUBLIC,
         AccessModifier.PROTECTED,
@@ -105,17 +112,42 @@ public class ParameterNameCheck extends AbstractNameCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return getRequiredTokens();
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return getRequiredTokens();
+        return new int[] {
+            TokenTypes.PARAMETER_DEF,
+            TokenTypes.LAMBDA,
+        };
+    }
+
+    @Override
+    public void visitToken(DetailAST ast) {
+        if (ast.getParent() != null && ast.getParent().getType() == TokenTypes.LAMBDA) {
+            if (IntStream.of(getAcceptableTokens()).noneMatch(type -> type == TokenTypes.LAMBDA)) {
+                return;
+            }
+            DetailAST parametersNode = ast.findFirstToken(TokenTypes.PARAMETERS);
+            if (parametersNode != null) {
+                for (DetailAST parameterDef = parametersNode.getFirstChild();
+                       parameterDef != null;
+                       parameterDef = parameterDef.getNextSibling()) {
+                    if (parameterDef.getType() == TokenTypes.PARAMETER_DEF) {
+                        super.visitToken(parameterDef);
+                    }
+                }
+            } else {
+                super.visitToken(ast);
+            }
+        }
+        super.visitToken(ast);
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.PARAMETER_DEF};
+        return CommonUtils.EMPTY_INT_ARRAY;
     }
 
     @Override

@@ -40,7 +40,7 @@ public class ParameterNameCheckTest
     @Test
     public void testGetRequiredTokens() {
         final ParameterNameCheck checkObj = new ParameterNameCheck();
-        final int[] expected = {TokenTypes.PARAMETER_DEF};
+        final int[] expected = CommonUtils.EMPTY_INT_ARRAY;
         assertArrayEquals("Default required tokens are invalid",
             expected, checkObj.getRequiredTokens());
     }
@@ -87,6 +87,7 @@ public class ParameterNameCheckTest
         final int[] actual = parameterNameCheckObj.getAcceptableTokens();
         final int[] expected = {
             TokenTypes.PARAMETER_DEF,
+            TokenTypes.LAMBDA,
         };
         assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
@@ -172,6 +173,24 @@ public class ParameterNameCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(ParameterNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputParameterNameReceiver.java"), expected);
+    }
+
+    @Test
+    public void testParametersInLambda() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(ParameterNameCheck.class);
+        checkConfig.addAttribute("format", "^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$");
+
+        final String pattern = "^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$";
+
+        final String[] expected = {
+            "8:68: " + getCheckMessage(MSG_INVALID_PATTERN, "s", pattern),
+            "10:66: " + getCheckMessage(MSG_INVALID_PATTERN, "st", pattern),
+            "12:65: " + getCheckMessage(MSG_INVALID_PATTERN, "s1", pattern),
+            "12:69: " + getCheckMessage(MSG_INVALID_PATTERN, "s2", pattern),
+            "14:80: " + getCheckMessage(MSG_INVALID_PATTERN, "s", pattern),
+        };
+        verify(checkConfig, getPath("InputParameterNameInLambda.java"), expected);
     }
 
 }

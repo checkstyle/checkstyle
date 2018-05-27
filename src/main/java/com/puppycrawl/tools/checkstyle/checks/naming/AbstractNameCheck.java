@@ -72,7 +72,7 @@ public abstract class AbstractNameCheck
     public void visitToken(DetailAST ast) {
         if (mustCheckName(ast)) {
             final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
-            if (!format.matcher(nameAST.getText()).find()) {
+            if (nameAST != null && !format.matcher(nameAST.getText()).find()) {
                 log(nameAST,
                     MSG_INVALID_PATTERN,
                     nameAST.getText(),
