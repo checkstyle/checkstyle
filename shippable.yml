@@ -67,7 +67,7 @@ build:
       echo "SKIP_CI="$SKIP_CI
       if [[ $SKIP_CI == 'false' ]];
       then
-        ./.ci/shippable.sh $PROFILE
+        ./.ci/pitest.sh $PROFILE
       else
         echo "Build is skipped, changed files:"
         git diff --name-only HEAD HEAD~1

@@ -57,10 +57,10 @@ jobs:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-             echo "./.ci/shippable.sh pitest-coding"  >> commands.txt
-             echo "./.ci/shippable.sh pitest-common"   >> commands.txt
-             echo "./.ci/shippable.sh pitest-imports"   >> commands.txt
-             echo "./.ci/shippable.sh pitest-ant"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-coding"  >> commands.txt
+             echo "./.ci/pitest.sh pitest-common"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-imports"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-ant"   >> commands.txt
              CMD="$(circleci tests split commands.txt)"
              echo "Command: $CMD"
              eval $CMD
@@ -78,10 +78,10 @@ jobs:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-             echo "./.ci/shippable.sh pitest-main"   >> commands.txt
-             echo "./.ci/shippable.sh pitest-javadoc"   >> commands.txt
-             echo "./.ci/shippable.sh pitest-utils"   >> commands.txt
-             echo "./.ci/shippable.sh pitest-api"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-main"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-javadoc"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-utils"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-api"   >> commands.txt
              CMD="$(circleci tests split commands.txt)"
              echo "Command: $CMD"
              eval $CMD
@@ -99,10 +99,10 @@ jobs:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-             echo "./.ci/shippable.sh pitest-design"   >> commands.txt
-             echo "./.ci/shippable.sh pitest-misc"   >> commands.txt
-             echo "./.ci/shippable.sh pitest-xpath"   >> commands.txt
-             echo "./.ci/shippable.sh pitest-indentation"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-design"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-misc"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-xpath"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-indentation"   >> commands.txt
              CMD="$(circleci tests split commands.txt)"
              echo "Command: $CMD"
              eval $CMD
@@ -120,10 +120,10 @@ jobs:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-             echo "./.ci/shippable.sh pitest-packagenamesloader"   >> commands.txt
-             echo "./.ci/shippable.sh pitest-tree-walker"   >> commands.txt
-             echo "./.ci/shippable.sh pitest-header"   >> commands.txt
-             echo "./.ci/shippable.sh pitest-annotation"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-packagenamesloader"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-tree-walker"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-header"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-annotation"   >> commands.txt
              CMD="$(circleci tests split commands.txt)"
              echo "Command: $CMD"
              eval $CMD
@@ -141,10 +141,10 @@ jobs:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-             echo "./.ci/shippable.sh pitest-whitespace"   >> commands.txt
-             echo "./.ci/shippable.sh pitest-filters"   >> commands.txt
-             echo "./.ci/shippable.sh pitest-naming"   >> commands.txt
-             echo "./.ci/shippable.sh pitest-modifier"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-whitespace"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-filters"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-naming"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-modifier"   >> commands.txt
              CMD="$(circleci tests split commands.txt)"
              echo "Command: $CMD"
              eval $CMD
@@ -162,10 +162,10 @@ jobs:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-             echo "./.ci/shippable.sh pitest-blocks"   >> commands.txt
-             echo "./.ci/shippable.sh pitest-sizes"   >> commands.txt
-             echo "./.ci/shippable.sh pitest-regexp"   >> commands.txt
-             echo "./.ci/shippable.sh pitest-metrics"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-blocks"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-sizes"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-regexp"   >> commands.txt
+             echo "./.ci/pitest.sh pitest-metrics"   >> commands.txt
              CMD="$(circleci tests split commands.txt)"
              echo "Command: $CMD"
              eval $CMD
