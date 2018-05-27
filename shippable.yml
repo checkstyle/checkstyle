@@ -6,32 +6,10 @@ jdk:
 
 env:
   matrix:
-    - PROFILE="pitest-xpath"
-    - PROFILE="pitest-filters"
-    - PROFILE="pitest-javadoc"
-    - PROFILE="pitest-imports"
-    - PROFILE="pitest-metrics"
-    - PROFILE="pitest-regexp"
-    - PROFILE="pitest-sizes"
-    - PROFILE="pitest-whitespace"
-    - PROFILE="pitest-misc"
-    - PROFILE="pitest-blocks"
-    - PROFILE="pitest-coding"
-    - PROFILE="pitest-design"
-    - PROFILE="pitest-annotation"
-    - PROFILE="pitest-header"
-    - PROFILE="pitest-modifier"
-    - PROFILE="pitest-naming"
-    - PROFILE="pitest-indentation"
-    - PROFILE="pitest-tree-walker"
-    - PROFILE="pitest-ant"
-    - PROFILE="pitest-packagenamesloader"
-    - PROFILE="pitest-common"
-    - PROFILE="pitest-main"
-    - PROFILE="pitest-api"
-    - PROFILE="pitest-utils"
-    # we do not do thorough testing of gui part
-    #- PROFILE="pitest-gui"
+    - CMD="./.ci/circleci.sh no-exception-openjdk7-openjdk8"
+    - CMD="./.ci/circleci.sh no-exception-openjdk9-lucene-and-others"
+    - CMD="./.ci/circleci.sh no-exception-cassandra-storm-tapestry"
+    - CMD="./.ci/circleci.sh no-exception-hadoop-apache-groovy-scouter"
 
 branches:
   only:
@@ -67,7 +45,8 @@ build:
       echo "SKIP_CI="$SKIP_CI
       if [[ $SKIP_CI == 'false' ]];
       then
-        ./.ci/pitest.sh $PROFILE
+        echo "Command: $CMD"
+        eval $CMD
       else
         echo "Build is skipped, changed files:"
         git diff --name-only HEAD HEAD~1
