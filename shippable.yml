@@ -38,6 +38,8 @@ build:
       fi
       # load custom PATH
       export PATH=/root/groovy-2.4.7/bin:$PATH
+      echo $PATH
+      /root/groovy-2.4.7/bin/groovy --version
       SKIP_FILES1="appveyor.yml|codeship-*|buddy.yml|circleci|distelli-manifest.yml|.travis.yml"
       SKIP_FILES2="|wercker.yml|wercker.sh|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md"
       SKIP_FILES3="|release.sh|RIGHTS.antlr|intellij-idea-inspections.xml"
