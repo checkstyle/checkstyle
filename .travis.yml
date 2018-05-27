@@ -32,7 +32,7 @@ matrix:
     # unit tests (oraclejdk8)
     - jdk: oraclejdk8
       env:
-        - DESC="tests and deploy"
+        - DESC="tests and deploys"
         - CMD="mvn -e clean integration-test failsafe:verify -DargLine='-Xms1024m -Xmx2048m'"
         - DEPLOY="true"
 
