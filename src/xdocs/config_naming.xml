@@ -914,10 +914,10 @@ for (int i = 1; i &lt; 10; i++) {}
     </section>
 
     <section name="MemberName">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
-          Validates identifiers for non-<code>static</code> fields.
+          Checks that instance variable names conform to a format specified by the format property.
         </p>
       </subsection>
 
@@ -972,11 +972,15 @@ for (int i = 1; i &lt; 10; i++) {}
 
       <subsection name="Examples">
         <p>
-          This is an example of a
-          configuration of the <code>MemberName</code> module to
-          ensure that member identifiers begin with
-          <code>&#39;m&#39;</code>, followed
-          by an upper case letter, and then letters and digits:
+         An example of how to configure the check is:
+        </p>
+        <source>
+&lt;module name="MemberName"/&gt;
+        </source>
+        <p>
+          An example of how to configure the check for names that begin with
+          <code>&quot;m&quot;</code>, followed by an upper case letter, and then letters and
+          digits is:
         </p>
 
         <source>

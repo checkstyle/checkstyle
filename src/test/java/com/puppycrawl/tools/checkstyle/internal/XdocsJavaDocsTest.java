@@ -113,6 +113,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                                 && !"InterfaceTypeParameterName".equals(sectionName)
                                 && !"LocalFinalVariableName".equals(sectionName)
                                 && !"LocalVariableName".equals(sectionName)
+                                && !"MemberName".equals(sectionName)
                 ) {
                     continue;
                 }
@@ -330,7 +331,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         else {
             final char last = text.charAt(text.length() - 1);
 
-            result = firstCharToAppend != ':' && last != '-' && !Character.isWhitespace(last);
+            result = (last == ':' || firstCharToAppend == '@' || Character.isAlphabetic(last)
+                    || Character.isAlphabetic(firstCharToAppend)) && !Character.isWhitespace(last);
         }
 
         return result;
