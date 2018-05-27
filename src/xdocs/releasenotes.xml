@@ -15,6 +15,64 @@
 
   <body>
     <!-- placeholder for a new section -->
+
+    <section name="Release 8.10.1">
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Update AbstractChecks to log DetailAST (part 1, easy cases). Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5757">#5757</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Align XDocs and Javadocs. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/5750">#5750</a>
+          </li>
+          <li>
+            move pitest execution to CircleCI. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5854">#5854</a>
+          </li>
+          <li>
+            format all files to be 100 symbols in length. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5791">#5791</a>
+          </li>
+          <li>
+            Travis unexpected problem with xml validation. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5785">#5785</a>
+          </li>
+          <li>
+            appveyor fails to reuse maven cache during build. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5831">#5831</a>
+          </li>
+          <li>
+            Compile all jdk9 files in Travis. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5827">#5827</a>
+          </li>
+          <li>
+            Please add new Eclipse Plugin to active tools list on your website. Author: ChristianWulf <a href="https://github.com/checkstyle/checkstyle/issues/5521">#5521</a>
+          </li>
+          <li>
+            Activate checks related to java.io.Closeable . Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5752">#5752</a>
+          </li>
+          <li>
+            buddy ci failure on "Fetching changes started". Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5793">#5793</a>
+          </li>
+          <li>
+            use https://snyk.io/ to find vulnerabilities in dependecies. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5788">#5788</a>
+          </li>
+          <li>
+            remove xml declaration tag from all dtd files. Author: Subbu Dantu <a href="https://github.com/checkstyle/checkstyle/issues/5721">#5721</a>
+          </li>
+          <li>
+            find way to launch IntellijIdea inspections from command line. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/4682">#4682</a>
+          </li>
+          <li>
+            Cut down on Checkstyle's dependencies on Guava, phase II. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3484">#3484</a>
+          </li>
+          <li>
+            Docker-based CI  from Codeship Pro. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3807">#3807</a>
+          </li>
+          <li>
+            use new CI - https://buddy.works/. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5473">#5473</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 8.10">
       <p>New:</p>
         <ul>
