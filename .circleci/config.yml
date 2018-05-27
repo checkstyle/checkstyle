@@ -70,97 +70,97 @@ jobs:
             - /home/circleci/project
             - /home/circleci/contribution
 
-  test-openjdk_7_8:
-    machine: true
-    java:
-      version: oraclejdk8
-    environment:
-      GROOVY_PATH: "/home/circleci/groovy-2.4.7/"
-    steps:
-      # restore_cache.keys does not work, so multiple restore_cache.key is used
-      - restore_cache:
-          key: m2-cache
-      - restore_cache:
-          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
-      - restore_cache:
-          key: groovy-2.4.7
-      - run:
-          command: |
-            # load custom PATH
-            export PATH=$GROOVY_PATH/bin:$PATH
-            if [ $(git diff --name-only HEAD HEAD~1 \
-                     | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
-              ./.ci/circleci.sh no-exception-openjdk7-openjdk8
-            fi
+  # test-openjdk_7_8:
+  #   machine: true
+  #   java:
+  #     version: oraclejdk8
+  #   environment:
+  #     GROOVY_PATH: "/home/circleci/groovy-2.4.7/"
+  #   steps:
+  #     # restore_cache.keys does not work, so multiple restore_cache.key is used
+  #     - restore_cache:
+  #         key: m2-cache
+  #     - restore_cache:
+  #         key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+  #     - restore_cache:
+  #         key: groovy-2.4.7
+  #     - run:
+  #         command: |
+  #           # load custom PATH
+  #           export PATH=$GROOVY_PATH/bin:$PATH
+  #           if [ $(git diff --name-only HEAD HEAD~1 \
+  #                    | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
+  #             ./.ci/circleci.sh no-exception-openjdk7-openjdk8
+  #           fi
 
-  test-infinispan-protonpack-jOOL-lucene-solr-openjdk9:
-    machine: true
-    java:
-      version: oraclejdk8
-    environment:
-      GROOVY_PATH: "/home/circleci/groovy-2.4.7/"
-    steps:
-      # restore_cache.keys does not work, so multiple restore_cache.key is used
-      - restore_cache:
-          key: m2-cache
-      - restore_cache:
-          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
-      - restore_cache:
-          key: groovy-2.4.7
-      - run:
-          command: |
-            # load custom PATH
-            export PATH=$GROOVY_PATH/bin:$PATH
-            if [ $(git diff --name-only HEAD HEAD~1 \
-                      | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
-              ./.ci/circleci.sh no-exception-openjdk9-lucene-and-others
-            fi
+  # test-infinispan-protonpack-jOOL-lucene-solr-openjdk9:
+  #   machine: true
+  #   java:
+  #     version: oraclejdk8
+  #   environment:
+  #     GROOVY_PATH: "/home/circleci/groovy-2.4.7/"
+  #   steps:
+  #     # restore_cache.keys does not work, so multiple restore_cache.key is used
+  #     - restore_cache:
+  #         key: m2-cache
+  #     - restore_cache:
+  #         key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+  #     - restore_cache:
+  #         key: groovy-2.4.7
+  #     - run:
+  #         command: |
+  #           # load custom PATH
+  #           export PATH=$GROOVY_PATH/bin:$PATH
+  #           if [ $(git diff --name-only HEAD HEAD~1 \
+  #                     | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
+  #             ./.ci/circleci.sh no-exception-openjdk9-lucene-and-others
+  #           fi
 
-  test-tapestry5-storm-cassandra:
-    machine: true
-    java:
-      version: oraclejdk8
-    environment:
-      GROOVY_PATH: "/home/circleci/groovy-2.4.7/"
-    steps:
-      # restore_cache.keys does not work, so multiple restore_cache.key is used
-      - restore_cache:
-          key: m2-cache
-      - restore_cache:
-          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
-      - restore_cache:
-          key: groovy-2.4.7
-      - run:
-          command: |
-            # load custom PATH
-            export PATH=$GROOVY_PATH/bin:$PATH
-            if [ $(git diff --name-only HEAD HEAD~1 \
-                       | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
-              ./.ci/circleci.sh no-exception-cassandra-storm-tapestry
-            fi
+  # test-tapestry5-storm-cassandra:
+  #   machine: true
+  #   java:
+  #     version: oraclejdk8
+  #   environment:
+  #     GROOVY_PATH: "/home/circleci/groovy-2.4.7/"
+  #   steps:
+  #     # restore_cache.keys does not work, so multiple restore_cache.key is used
+  #     - restore_cache:
+  #         key: m2-cache
+  #     - restore_cache:
+  #         key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+  #     - restore_cache:
+  #         key: groovy-2.4.7
+  #     - run:
+  #         command: |
+  #           # load custom PATH
+  #           export PATH=$GROOVY_PATH/bin:$PATH
+  #           if [ $(git diff --name-only HEAD HEAD~1 \
+  #                      | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
+  #             ./.ci/circleci.sh no-exception-cassandra-storm-tapestry
+  #           fi
 
-  test-apache-hadoop-scouter-groovy:
-    machine: true
-    java:
-      version: oraclejdk8
-    environment:
-      GROOVY_PATH: "/home/circleci/groovy-2.4.7/"
-    steps:
-      # restore_cache.keys does not work, so multiple restore_cache.key is used
-      - restore_cache:
-          key: m2-cache
-      - restore_cache:
-          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
-      - restore_cache:
-          key: groovy-2.4.7
-      - run:
-          command: |
-            # load custom PATH
-            export PATH=$GROOVY_PATH/bin:$PATH
-            if [ $(git diff --name-only HEAD HEAD~1 \
-                       | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
-              ./.ci/circleci.sh no-exception-hadoop-apache-groovy-scouter
-            fi
+  # test-apache-hadoop-scouter-groovy:
+  #   machine: true
+  #   java:
+  #     version: oraclejdk8
+  #   environment:
+  #     GROOVY_PATH: "/home/circleci/groovy-2.4.7/"
+  #   steps:
+  #     # restore_cache.keys does not work, so multiple restore_cache.key is used
+  #     - restore_cache:
+  #         key: m2-cache
+  #     - restore_cache:
+  #         key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+  #     - restore_cache:
+  #         key: groovy-2.4.7
+  #     - run:
+  #         command: |
+  #           # load custom PATH
+  #           export PATH=$GROOVY_PATH/bin:$PATH
+  #           if [ $(git diff --name-only HEAD HEAD~1 \
+  #                      | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
+  #             ./.ci/circleci.sh no-exception-hadoop-apache-groovy-scouter
+  #           fi
 
   test-pitest1:
     machine: true
@@ -186,18 +186,18 @@ workflows:
   regression-testing:
     jobs:
       - build-caches
-      - test-openjdk_7_8:
-          requires:
-            - build-caches
-      - test-infinispan-protonpack-jOOL-lucene-solr-openjdk9:
-          requires:
-            - build-caches
-      - test-tapestry5-storm-cassandra:
-          requires:
-            - build-caches
-      - test-apache-hadoop-scouter-groovy:
-          requires:
-            - build-caches
+      # - test-openjdk_7_8:
+      #     requires:
+      #       - build-caches
+      # - test-infinispan-protonpack-jOOL-lucene-solr-openjdk9:
+      #     requires:
+      #       - build-caches
+      # - test-tapestry5-storm-cassandra:
+      #     requires:
+      #       - build-caches
+      # - test-apache-hadoop-scouter-groovy:
+      #     requires:
+      #       - build-caches
       - test-pitest1:
           requires:
             - build-caches
