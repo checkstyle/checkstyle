@@ -1030,10 +1030,18 @@ for (int i = 1; i &lt; 10; i++) {}
     </section>
 
     <section name="MethodName">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
-          Validates identifiers for methods.
+          Checks that method names conform to a format specified by the format property.
+        </p>
+        <p>
+          Also, checks if a method name has the same name as the residing class.
+          The default is false (it is not allowed). It is legal in Java to have
+          method with the same name as a class. As long as a return type is specified
+          it is a method and not a constructor which it could be easily confused as.
+          Does not check-style the name of an overridden methods because the developer
+          does not have a choice in renaming such methods.
         </p>
       </subsection>
 
@@ -1057,8 +1065,8 @@ for (int i = 1; i &lt; 10; i++) {}
             <td>allowClassName</td>
             <td>
               Controls whether to allow a method name to have the same
-              name as the residing class name.  This is not to be confused
-              with a constructor.  An easy mistake is to place a return
+              name as the residing class name. This is not to be confused
+              with a constructor. An easy mistake is to place a return
               type on a constructor declaration which turns it into a
               method. For example:
               <pre>
@@ -1107,10 +1115,28 @@ class MyClass {
 
       <subsection name="Examples">
         <p>
-          To configure the check:
+          An example of how to configure the check is:
         </p>
         <source>
 &lt;module name=&quot;MethodName&quot;/&gt;
+        </source>
+        <p>
+          An example of how to configure the check for names that begin with a lower case letter,
+          followed by letters, digits, and underscores is:
+        </p>
+        <source>
+&lt;module name="MethodName"&gt;
+   &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          An example of how to configure the check to allow method names to be equal to the
+          residing class name is:
+        </p>
+        <source>
+&lt;module name="MethodName"&gt;
+   &lt;property name="allowClassName" value="true"/&gt;
+&lt;/module&gt;
         </source>
       </subsection>
 

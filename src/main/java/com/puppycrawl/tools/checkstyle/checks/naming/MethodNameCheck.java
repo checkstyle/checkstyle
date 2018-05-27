@@ -26,18 +26,50 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
 /**
  * <p>
  * Checks that method names conform to a format specified
- * by the format property. The format is a
- * {@link java.util.regex.Pattern regular expression}
- * and defaults to
- * <strong>^[a-z][a-zA-Z0-9]*$</strong>.
+ * by the format property.
  * </p>
  *
  * <p>Also, checks if a method name has the same name as the residing class.
- * The default is false (it is not allowed).  It is legal in Java to have
- * method with the same name as a class.  As long as a return type is specified
+ * The default is false (it is not allowed). It is legal in Java to have
+ * method with the same name as a class. As long as a return type is specified
  * it is a method and not a constructor which it could be easily confused as.
- * <h3>Does not check-style the name of an overridden methods</h3> because the developer does not
+ * Does not check-style the name of an overridden methods because the developer does not
  * have a choice in renaming such methods.
+ * </p>
+ *
+ * <ul>
+ * <li>
+ * Property {@code format} - Specifies valid identifiers.
+ * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
+ * </li>
+ * <li>
+ * Property {@code allowClassName} - Controls whether to allow a method name to have the same name
+ * as the residing class name. This is not to be confused with a constructor. An easy mistake is
+ * to place a return type on a constructor declaration which turns it into a method. For example:
+ * <pre>
+ * class MyClass {
+ *     public void MyClass() {} //this is a method
+ *     public MyClass() {} //this is a constructor
+ * }
+ * </pre> Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code applyToPublic} - Controls whether to apply the check to public member.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code applyToProtected} - Controls whether to apply the check to protected member.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code applyToPackage} - Controls whether to apply the check to package-private member.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code applyToPrivate} - Controls whether to apply the check to private member.
+ * Default value is {@code true}.
+ * </li>
+ * </ul>
  *
  * <p>
  * An example of how to configure the check is:
@@ -64,6 +96,8 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
  *    &lt;property name="allowClassName" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
+ *
+ * @since 3.0
  */
 public class MethodNameCheck
     extends AbstractAccessControlNameCheck {
@@ -85,7 +119,15 @@ public class MethodNameCheck
     private static final String CANONICAL_OVERRIDE = "java.lang." + OVERRIDE;
 
     /**
-     * For allowing method name to be the same as the class name.
+     * Controls whether to allow a method name to have the same name as the residing class name.
+     * This is not to be confused with a constructor. An easy mistake is to place a return type on
+     * a constructor declaration which turns it into a method. For example:
+     * <pre>
+     * class MyClass {
+     *     public void MyClass() {} //this is a method
+     *     public MyClass() {} //this is a constructor
+     * }
+     * </pre>
      */
     private boolean allowClassName;
 
@@ -139,7 +181,16 @@ public class MethodNameCheck
     }
 
     /**
-     * Sets the property for allowing a method to be the same name as a class.
+     * Setter to controls whether to allow a method name to have the same name as the residing
+     * class name. This is not to be confused with a constructor. An easy mistake is to place
+     * a return type on a constructor declaration which turns it into a method. For example:
+     * <pre>
+     * class MyClass {
+     *     public void MyClass() {} //this is a method
+     *     public MyClass() {} //this is a constructor
+     * }
+     * </pre>
+     *
      * @param allowClassName true to allow false to disallow
      */
     public void setAllowClassName(boolean allowClassName) {
