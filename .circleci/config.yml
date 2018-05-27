@@ -166,7 +166,7 @@ jobs:
     machine: true
     java:
       version: oraclejdk8
-    #parallelism: 4
+    parallelism: 4
     steps:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
       - restore_cache:
@@ -179,7 +179,7 @@ jobs:
              echo "pitest-filters" >> profiles.txt
              echo "pitest-javadoc" >> profiles.txt
              echo "pitest-imports" >> profiles.txt
-            ./.ci/shippable.sh $(circleci tests split profiles.txt)
+             ./.ci/shippable.sh $(circleci tests split profiles.txt)
 
 workflows:
   version: 2
@@ -201,4 +201,3 @@ workflows:
       - test-pitest1:
           requires:
             - build-caches
-
