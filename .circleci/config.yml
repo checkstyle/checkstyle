@@ -175,10 +175,31 @@ jobs:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-             echo "pitest-xpath" > profiles.txt
+             echo "pitest-xpath" >> profiles.txt
              echo "pitest-filters" >> profiles.txt
              echo "pitest-javadoc" >> profiles.txt
              echo "pitest-imports" >> profiles.txt
+             echo "PITEST PROFILE:"$(circleci tests split profiles.txt)
+             ./.ci/shippable.sh $(circleci tests split profiles.txt)
+
+  test-pitest2:
+    machine: true
+    java:
+      version: oraclejdk8
+    parallelism: 4
+    steps:
+      # restore_cache.keys does not work, so multiple restore_cache.key is used
+      - restore_cache:
+          key: m2-cache
+      - restore_cache:
+          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          command: |
+             echo "pitest-metrics" >> profiles.txt
+             echo "pitest-regexp" >> profiles.txt
+             echo "pitest-sizes" >> profiles.txt
+             echo "pitest-whitespace" >> profiles.txt
+             echo "PITEST PROFILE:"$(circleci tests split profiles.txt)
              ./.ci/shippable.sh $(circleci tests split profiles.txt)
 
 workflows:
@@ -201,4 +222,6 @@ workflows:
       - test-pitest1:
           requires:
             - build-caches
-
+      - test-pitest2:
+          requires:
+            - build-caches
