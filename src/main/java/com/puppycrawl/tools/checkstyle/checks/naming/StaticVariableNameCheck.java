@@ -25,11 +25,31 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 
 /**
  * <p>
- * Checks that static, non-final variable names conform to a format specified
- * by the format property. The format is a
- * {@link java.util.regex.Pattern regular expression} and defaults to
- * <strong>^[a-z][a-zA-Z0-9]*$</strong>.
+ * Checks that {@code static}, non-{@code final} variable names conform to a format specified
+ * by the format property.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code format} - Specifies valid identifiers. Default value is
+ * {@code "^[a-z][a-zA-Z0-9]*$"}.
+ * </li>
+ * <li>
+ * Property {@code applyToPublic} - Controls whether to apply the check to public member.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code applyToProtected} - Controls whether to apply the check to protected member.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code applyToPackage} - Controls whether to apply the check to package-private member.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code applyToPrivate} - Controls whether to apply the check to private member.
+ * Default value is {@code true}.
+ * </li>
+ * </ul>
  * <p>
  * An example of how to configure the check is:
  * </p>
@@ -42,9 +62,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * </p>
  * <pre>
  * &lt;module name="StaticVariableName"&gt;
- *    &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+ *   &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
  * &lt;/module&gt;
  * </pre>
+ *
+ * @since 3.0
  */
 public class StaticVariableNameCheck
     extends AbstractAccessControlNameCheck {
