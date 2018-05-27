@@ -1617,10 +1617,11 @@ public boolean equals(Object o) {
     </section>
 
     <section name="TypeName">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
-          Validates identifiers for classes, interfaces, enums, and annotations.
+          Checks that type names for classes, interfaces, enums, and annotations conform to a
+          format specified by the format property.
         </p>
       </subsection>
 
@@ -1700,6 +1701,24 @@ public boolean equals(Object o) {
       </subsection>
 
       <subsection name="Examples">
+        <p>
+          An example of how to configure the check is:
+        </p>
+
+        <source>
+&lt;module name="TypeName"/&gt;
+        </source>
+
+        <p>
+          An example of how to configure the check for names that begin with a lower case letter,
+          followed by letters, digits, and underscores is:
+        </p>
+        <source>
+&lt;module name="TypeName"&gt;
+  &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+&lt;/module&gt;
+        </source>
+
         <p>
           The following configuration element ensures that
           interface names begin with <code>"I_"</code>, followed by

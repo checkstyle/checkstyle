@@ -24,11 +24,38 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
- * Checks that type names conform to a format specified
- * by the format property. The format is a
- * {@link java.util.regex.Pattern regular expression} and defaults to
- * <strong>^[A-Z][a-zA-Z0-9]*$</strong>.
+ * Checks that type names for classes, interfaces, enums, and annotations conform to a format
+ * specified by the format property.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code format} - Specifies valid identifiers. Default value is
+ * {@code "^[A-Z][a-zA-Z0-9]*$"}.
+ * </li>
+ * <li>
+ * Property {@code applyToPublic} - Controls whether to apply the check to public member.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code applyToProtected} - Controls whether to apply the check to protected member.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code applyToPackage} - Controls whether to apply the check to package-private member.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code applyToPrivate} - Controls whether to apply the check to private member.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check Default value is:
+ * <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+ * <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+ * <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
+ * <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">ANNOTATION_DEF</a>.
+ * </li>
+ * </ul>
  * <p>
  * An example of how to configure the check is:
  * </p>
@@ -41,9 +68,23 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * </p>
  * <pre>
  * &lt;module name="TypeName"&gt;
- *    &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+ *   &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * The following configuration element ensures that interface names begin with {@code "I_"},
+ * followed by letters and digits:
+ * </p>
+ * <pre>
+ * &lt;module name="TypeName"&gt;
+ *   &lt;property name="format"
+ *     value="^I_[a-zA-Z0-9]*$"/&gt;
+ *   &lt;property name="tokens"
+ *     value="INTERFACE_DEF"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ *
+ * @since 3.0
  */
 public class TypeNameCheck
     extends AbstractAccessControlNameCheck {
