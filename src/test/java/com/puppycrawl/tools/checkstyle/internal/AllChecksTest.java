@@ -50,8 +50,8 @@ import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.ConfigurationUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
-import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 
 public class AllChecksTest extends AbstractModuleTestSupport {
 
@@ -250,10 +250,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     @Test
     public void testAllModulesWithDefaultConfiguration() throws Exception {
         final String inputFilePath = getPath("InputAllChecksDefaultConfig.java");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         for (Class<?> module : CheckUtil.getCheckstyleModules()) {
-            if (ModuleReflectionUtils.isRootModule(module)) {
+            if (ModuleReflectionUtil.isRootModule(module)) {
                 continue;
             }
 

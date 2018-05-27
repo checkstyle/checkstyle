@@ -24,7 +24,7 @@ import org.junit.Test;
 import com.google.checkstyle.test.base.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocParagraphTest extends AbstractModuleTestSupport {
 
@@ -35,7 +35,7 @@ public class JavadocParagraphTest extends AbstractModuleTestSupport {
 
     @Test
     public void testJavadocParagraphCorrect() throws Exception {
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("JavadocParagraph");
         final String filePath = getPath("InputCorrectJavadocParagraphCheck.java");

@@ -52,8 +52,8 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
-import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 
 public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport {
 
@@ -77,7 +77,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
 
     private static final String ROOT_MODULE_NAME = "root";
 
-    private static final Pattern WARN_PATTERN = CommonUtils
+    private static final Pattern WARN_PATTERN = CommonUtil
             .createPattern(".*[ ]*//[ ]*warn[ ]*|/[*]\\s?warn\\s?[*]/");
 
     private static final String XML_NAME = "/google_checks.xml";
@@ -135,8 +135,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         for (Class<?> moduleClass : CHECKSTYLE_MODULES) {
             if (moduleClass.getSimpleName().equals(name)
                     || moduleClass.getSimpleName().equals(name + "Check")) {
-                if (ModuleReflectionUtils.isCheckstyleTreeWalkerCheck(moduleClass)
-                        || ModuleReflectionUtils.isTreeWalkerFilterModule(moduleClass)) {
+                if (ModuleReflectionUtil.isCheckstyleTreeWalkerCheck(moduleClass)
+                        || ModuleReflectionUtil.isTreeWalkerFilterModule(moduleClass)) {
                     moduleCreationOption = ModuleCreationOption.IN_TREEWALKER;
                 }
                 break;

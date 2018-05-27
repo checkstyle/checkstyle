@@ -24,7 +24,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MethodReferencesTest extends AbstractModuleTestSupport {
 
@@ -38,7 +38,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MemberNameCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodReferences.java"), expected);
     }
 
@@ -47,7 +47,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MemberNameCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodReferences2.java"), expected);
     }
 
@@ -56,7 +56,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MemberNameCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodReferences3.java"), expected);
     }
 
@@ -64,7 +64,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
     public void testArrayAfterGeneric()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MemberNameCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodReferences4.java"), expected);
     }
 
@@ -72,7 +72,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
     public void testFromHibernate()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MemberNameCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodReferences5.java"), expected);
     }
 
@@ -80,7 +80,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
     public void testFromSpring()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MemberNameCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodReferences6.java"), expected);
     }
 
@@ -89,7 +89,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MemberNameCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodReferences7.java"), expected);
     }
 

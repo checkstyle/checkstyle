@@ -35,9 +35,9 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
-import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>Checks that code doesn't rely on the &quot;this&quot; default.
@@ -327,7 +327,7 @@ public class RequireThisCheck extends AbstractCheck {
      *         'this' and null otherwise.
      */
     private AbstractFrame getFieldWithoutThis(DetailAST ast, int parentType) {
-        final boolean importOrPackage = ScopeUtils.getSurroundingScope(ast) == null;
+        final boolean importOrPackage = ScopeUtil.getSurroundingScope(ast) == null;
         final boolean methodNameInMethodCall = parentType == TokenTypes.DOT
                 && ast.getPreviousSibling() != null;
         final boolean typeName = parentType == TokenTypes.TYPE
@@ -361,7 +361,7 @@ public class RequireThisCheck extends AbstractCheck {
                 collectVariableDeclarations(ast, frame);
                 break;
             case TokenTypes.PARAMETER_DEF :
-                if (!CheckUtils.isReceiverParameter(ast)
+                if (!CheckUtil.isReceiverParameter(ast)
                         && !isLambdaParameter(ast)
                         && ast.getParent().getType() != TokenTypes.LITERAL_CATCH) {
                     final DetailAST parameterIdent = ast.findFirstToken(TokenTypes.IDENT);
@@ -428,7 +428,7 @@ public class RequireThisCheck extends AbstractCheck {
         if (frame.getType() == FrameType.CLASS_FRAME) {
             final DetailAST mods =
                     ast.findFirstToken(TokenTypes.MODIFIERS);
-            if (ScopeUtils.isInInterfaceBlock(ast)
+            if (ScopeUtil.isInInterfaceBlock(ast)
                     || mods.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
                 ((ClassFrame) frame).addStaticMember(ident);
             }
@@ -968,7 +968,7 @@ public class RequireThisCheck extends AbstractCheck {
                 isLambdaParameter = parent.getFirstChild().getText().equals(ast.getText());
             }
             else {
-                isLambdaParameter = TokenUtils.findFirstTokenByPredicate(lambdaParameters,
+                isLambdaParameter = TokenUtil.findFirstTokenByPredicate(lambdaParameters,
                     paramDef -> {
                         final DetailAST param = paramDef.findFirstToken(TokenTypes.IDENT);
                         return param != null && param.getText().equals(ast.getText());

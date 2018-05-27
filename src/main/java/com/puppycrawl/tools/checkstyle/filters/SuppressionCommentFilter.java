@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
@@ -335,27 +335,27 @@ public class SuppressionCommentFilter
             String format = "";
             try {
                 if (this.tagType == TagType.ON) {
-                    format = CommonUtils.fillTemplateWithStringsByRegexp(
+                    format = CommonUtil.fillTemplateWithStringsByRegexp(
                             filter.checkFormat, text, filter.onCommentFormat);
                     tagCheckRegexp = Pattern.compile(format);
                     if (filter.messageFormat == null) {
                         tagMessageRegexp = null;
                     }
                     else {
-                        format = CommonUtils.fillTemplateWithStringsByRegexp(
+                        format = CommonUtil.fillTemplateWithStringsByRegexp(
                                 filter.messageFormat, text, filter.onCommentFormat);
                         tagMessageRegexp = Pattern.compile(format);
                     }
                 }
                 else {
-                    format = CommonUtils.fillTemplateWithStringsByRegexp(
+                    format = CommonUtil.fillTemplateWithStringsByRegexp(
                             filter.checkFormat, text, filter.offCommentFormat);
                     tagCheckRegexp = Pattern.compile(format);
                     if (filter.messageFormat == null) {
                         tagMessageRegexp = null;
                     }
                     else {
-                        format = CommonUtils.fillTemplateWithStringsByRegexp(
+                        format = CommonUtil.fillTemplateWithStringsByRegexp(
                                 filter.messageFormat, text, filter.offCommentFormat);
                         tagMessageRegexp = Pattern.compile(format);
                     }

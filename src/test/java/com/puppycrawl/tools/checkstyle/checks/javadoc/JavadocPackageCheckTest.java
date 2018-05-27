@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocPackageCheckTest
     extends AbstractModuleTestSupport {
@@ -115,7 +115,7 @@ public class JavadocPackageCheckTest
     public void testHtmlAllowed() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         checkConfig.addAttribute("allowLegacy", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(createChecker(checkConfig),
             getPath("pkghtml" + File.separator + "InputJavadocPackageHtmlIgnored.java"),
             getPath("pkghtml" + File.separator + "package-info.java"), expected);
@@ -124,7 +124,7 @@ public class JavadocPackageCheckTest
     @Test
     public void testAnnotation() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocPackageCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(createChecker(checkConfig),
             getPath("annotation"
                     + File.separator + "package-info.java"),
@@ -146,7 +146,7 @@ public class JavadocPackageCheckTest
                     + File.separator + "package-info.java")));
         when(fileWithoutParent.getParent()).thenReturn(null);
         when(fileWithoutParent.getParentFile()).thenReturn(null);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(createChecker(moduleConfig),
                 new File[] {fileWithoutParent},
                 getPath("annotation"

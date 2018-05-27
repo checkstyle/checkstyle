@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
  * <p>Checks that if a class defines a covariant method equals,
@@ -80,7 +80,7 @@ public class CovariantEqualsCheck extends AbstractCheck {
             boolean hasEqualsObject = false;
             while (child != null) {
                 if (child.getType() == TokenTypes.METHOD_DEF
-                        && CheckUtils.isEqualsMethod(child)) {
+                        && CheckUtil.isEqualsMethod(child)) {
                     if (isFirstParameterObject(child)) {
                         hasEqualsObject = true;
                     }

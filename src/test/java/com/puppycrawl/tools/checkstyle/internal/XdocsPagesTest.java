@@ -81,7 +81,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 public class XdocsPagesTest {
 
@@ -883,7 +883,7 @@ public class XdocsPagesTest {
                                     sb.append(", ");
                                 }
 
-                                sb.append(TokenUtils.getTokenName(i));
+                                sb.append(TokenUtil.getTokenName(i));
                             }
                         }
 
@@ -900,7 +900,7 @@ public class XdocsPagesTest {
                                 sb.append(", ");
                             }
 
-                            sb.append(TokenUtils.getTokenName((int) Array.get(value, i)));
+                            sb.append(TokenUtil.getTokenName((int) Array.get(value, i)));
                         }
 
                         result = sb.toString();
@@ -942,7 +942,7 @@ public class XdocsPagesTest {
                         final String[] newArray = new String[Array.getLength(value)];
 
                         for (int i = 0; i < newArray.length; i++) {
-                            newArray[i] = TokenUtils.getTokenName(((Number) Array.get(value, i))
+                            newArray[i] = TokenUtil.getTokenName(((Number) Array.get(value, i))
                                     .intValue());
                         }
 

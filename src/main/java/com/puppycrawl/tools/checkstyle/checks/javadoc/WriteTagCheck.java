@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
@@ -101,7 +101,7 @@ public class WriteTagCheck
      */
     public void setTag(String tag) {
         this.tag = tag;
-        tagRegExp = CommonUtils.createPattern(tag + "\\s*(.*$)");
+        tagRegExp = CommonUtil.createPattern(tag + "\\s*(.*$)");
     }
 
     /**
@@ -146,7 +146,7 @@ public class WriteTagCheck
 
     @Override
     public int[] getRequiredTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return CommonUtil.EMPTY_INT_ARRAY;
     }
 
     @Override

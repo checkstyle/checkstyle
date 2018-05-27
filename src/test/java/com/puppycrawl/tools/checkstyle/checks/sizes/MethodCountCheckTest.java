@@ -31,7 +31,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MethodCountCheckTest extends AbstractModuleTestSupport {
 
@@ -70,7 +70,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MethodCountCheck.class);
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputMethodCount.java"), expected);
     }
@@ -133,7 +133,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MethodCountCheck.class);
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputMethodCount4.java"), expected);
     }
@@ -156,7 +156,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("maxTotal", "1");
         checkConfig.addAttribute("tokens", "ENUM_DEF");
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputMethodCount6.java"), expected);
     }

@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Checks for long lines.
@@ -105,7 +105,7 @@ public class LineLengthCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return CommonUtil.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -113,7 +113,7 @@ public class LineLengthCheck extends AbstractCheck {
         final String[] lines = getLines();
         for (int i = 0; i < lines.length; i++) {
             final String line = lines[i];
-            final int realLength = CommonUtils.lengthExpandedTabs(
+            final int realLength = CommonUtil.lengthExpandedTabs(
                 line, line.length(), getTabWidth());
 
             if (realLength > max && !IGNORE_PATTERN.matcher(line).find()

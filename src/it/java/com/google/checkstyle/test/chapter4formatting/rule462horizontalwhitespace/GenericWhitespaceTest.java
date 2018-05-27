@@ -23,7 +23,7 @@ import org.junit.Test;
 
 import com.google.checkstyle.test.base.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class GenericWhitespaceTest extends AbstractModuleTestSupport {
 
@@ -109,7 +109,7 @@ public class GenericWhitespaceTest extends AbstractModuleTestSupport {
     @Test
     public void genericEndsTheLine() throws Exception {
         final Configuration checkConfig = getModuleConfig("GenericWhitespace");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputGenericWhitespaceEndsTheLine.java"),
                 expected);
     }

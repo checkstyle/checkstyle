@@ -28,8 +28,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
-import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
@@ -127,15 +127,15 @@ public final class MissingDeprecatedCheck extends AbstractCheck {
 
     /** Compiled regexp to match Javadoc tag with no argument. */
     private static final Pattern MATCH_DEPRECATED =
-            CommonUtils.createPattern("@(deprecated)\\s+\\S");
+            CommonUtil.createPattern("@(deprecated)\\s+\\S");
 
     /** Compiled regexp to match first part of multilineJavadoc tags. */
     private static final Pattern MATCH_DEPRECATED_MULTILINE_START =
-            CommonUtils.createPattern("@(deprecated)\\s*$");
+            CommonUtil.createPattern("@(deprecated)\\s*$");
 
     /** Compiled regexp to look for a continuation of the comment. */
     private static final Pattern MATCH_DEPRECATED_MULTILINE_CONT =
-            CommonUtils.createPattern("(\\*/|@|[^\\s\\*])");
+            CommonUtil.createPattern("(\\*/|@|[^\\s\\*])");
 
     /** Multiline finished at end of comment. */
     private static final String END_JAVADOC = "*/";
@@ -184,8 +184,8 @@ public final class MissingDeprecatedCheck extends AbstractCheck {
             getFileContents().getJavadocBefore(ast.getLineNo());
 
         final boolean containsAnnotation =
-            AnnotationUtility.containsAnnotation(ast, DEPRECATED)
-            || AnnotationUtility.containsAnnotation(ast, FQ_DEPRECATED);
+            AnnotationUtil.containsAnnotation(ast, DEPRECATED)
+            || AnnotationUtil.containsAnnotation(ast, FQ_DEPRECATED);
 
         final boolean containsJavadocTag = containsJavadocTag(javadoc);
 

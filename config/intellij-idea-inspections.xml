@@ -3498,7 +3498,7 @@
     ,com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport,verify.*, ,
     ,com.puppycrawl.tools.checkstyle.AbstractTreeTestSupport,verify.*, ,
     ,com.google.checkstyle.test.base.AbstractModuleTestSupport,verify.*, ,
-    ,com.puppycrawl.tools.checkstyle.internal.TestUtils,assert.*, ,
+    ,com.puppycrawl.tools.checkstyle.internal.TestUtil,assert.*, ,
     ,com.puppycrawl.tools.checkstyle.grammars.AstRegressionTest.AssertGeneratedJavaLexer,verify.*, ,
     ,nl.jqno.equalsverifier.EqualsVerifier,verify.*, ,
     ,org.powermock.api.mockito.PowerMockito,verify.*"/>

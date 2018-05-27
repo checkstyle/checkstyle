@@ -24,7 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
@@ -73,7 +73,7 @@ public class AvoidStaticImportCheck
     public static final String MSG_KEY = "import.avoidStatic";
 
     /** The classes/static members to exempt from this check. */
-    private String[] excludes = CommonUtils.EMPTY_STRING_ARRAY;
+    private String[] excludes = CommonUtil.EMPTY_STRING_ARRAY;
 
     @Override
     public int[] getDefaultTokens() {

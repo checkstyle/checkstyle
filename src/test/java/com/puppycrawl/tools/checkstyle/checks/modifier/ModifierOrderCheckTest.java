@@ -29,7 +29,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class ModifierOrderCheckTest
     extends AbstractModuleTestSupport {
@@ -68,7 +68,7 @@ public class ModifierOrderCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(ModifierOrderCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputModifierOrderDefaultMethods.java"), expected);
     }
 
@@ -82,7 +82,7 @@ public class ModifierOrderCheckTest
             TokenTypes.OBJBLOCK,
         };
         assertArrayEquals("Default tokens are invalid", expected, actual);
-        final int[] unexpectedEmptyArray = CommonUtils.EMPTY_INT_ARRAY;
+        final int[] unexpectedEmptyArray = CommonUtil.EMPTY_INT_ARRAY;
         Assert.assertNotSame("Default tokens should not be empty array",
                 unexpectedEmptyArray, actual);
         Assert.assertNotSame("Invalid default tokens", unexpectedArray, actual);
@@ -99,7 +99,7 @@ public class ModifierOrderCheckTest
             TokenTypes.OBJBLOCK,
         };
         assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
-        final int[] unexpectedEmptyArray = CommonUtils.EMPTY_INT_ARRAY;
+        final int[] unexpectedEmptyArray = CommonUtil.EMPTY_INT_ARRAY;
         Assert.assertNotSame("Default tokens should not be empty array",
                 unexpectedEmptyArray, actual);
         Assert.assertNotSame("Invalid acceptable tokens", unexpectedArray, actual);

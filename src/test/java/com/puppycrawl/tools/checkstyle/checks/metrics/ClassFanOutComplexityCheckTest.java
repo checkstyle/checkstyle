@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
 
@@ -129,7 +129,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
                 + "com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity.inputs.b,"
                 + "com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity.inputs.c");
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
             getPath("InputClassFanOutComplexityExcludedPackagesAllIgnored.java"), expected);
     }
@@ -141,7 +141,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
 
         checkConfig.addAttribute("max", "0");
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputClassFanOutComplexity15Extensions.java"), expected);
     }
@@ -152,7 +152,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(ClassFanOutComplexityCheck.class);
 
         createChecker(checkConfig);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputClassFanOutComplexity.java"), expected);
     }
 
@@ -214,7 +214,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
                 createModuleConfig(ClassFanOutComplexityCheck.class);
         moduleConfig.addAttribute("max", "0");
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(moduleConfig,
                 getPath("InputClassFanOutComplexityMultiDimensionalArray.java"), expected);
     }
@@ -225,7 +225,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
                 createModuleConfig(ClassFanOutComplexityCheck.class);
         moduleConfig.addAttribute("max", "0");
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(moduleConfig,
                 getPath("InputClassFanOutComplexityPackageName.java"), expected);
     }

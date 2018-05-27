@@ -25,7 +25,7 @@ import com.google.checkstyle.test.base.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.NoLineWrapCheck;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class NoLineWrapTest extends AbstractModuleTestSupport {
 
@@ -51,7 +51,7 @@ public class NoLineWrapTest extends AbstractModuleTestSupport {
 
     @Test
     public void testGoodLineWrap() throws Exception {
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("NoLineWrap");
         final String filePath = getPath("InputNoLineWrapGood.java");

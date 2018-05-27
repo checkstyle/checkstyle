@@ -35,7 +35,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocStyleCheckTest
     extends AbstractModuleTestSupport {
@@ -188,7 +188,7 @@ public class JavadocStyleCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocStyleCheck.class);
         checkConfig.addAttribute("checkFirstSentence", "false");
         checkConfig.addAttribute("checkHtml", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputJavadocStyleHtmlComment.java"), expected);
     }
@@ -196,7 +196,7 @@ public class JavadocStyleCheckTest
     @Test
     public void testOnInputWithNoJavadoc() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocStyleCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputJavadocStyleNoJavadoc.java"), expected);
     }
@@ -366,7 +366,7 @@ public class JavadocStyleCheckTest
     public void packageInfoAnnotation() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocStyleCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(createChecker(checkConfig),
                getPath("pkginfo" + File.separator + "annotation" + File.separator
@@ -391,7 +391,7 @@ public class JavadocStyleCheckTest
     public void packageInfoValid() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocStyleCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(createChecker(checkConfig),
                getPath("pkginfo" + File.separator + "valid" + File.separator + "package-info.java"),

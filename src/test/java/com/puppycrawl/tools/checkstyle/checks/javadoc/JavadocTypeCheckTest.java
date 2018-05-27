@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
 
@@ -46,7 +46,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         final JavadocTypeCheck javadocTypeCheck = new JavadocTypeCheck();
         assertArrayEquals(
             "JavadocTypeCheck#getRequiredTokens should return empty array by default",
-            CommonUtils.EMPTY_INT_ARRAY, javadocTypeCheck.getRequiredTokens());
+            CommonUtil.EMPTY_INT_ARRAY, javadocTypeCheck.getRequiredTokens());
     }
 
     @Test
@@ -390,7 +390,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("allowUnknownTags", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                 getPath("InputJavadocTypeBadTag.java"),
                 expected);

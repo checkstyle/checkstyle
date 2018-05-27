@@ -29,7 +29,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
 
@@ -105,7 +105,7 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputMissingOverrideBadOverrideFromOther.java"), expected);
     }
@@ -135,7 +135,7 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
     public void testBadAnnotationOverrideJ5Compatible() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputMissingOverrideBadAnnotation.java"), expected);
     }
@@ -163,7 +163,7 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "false");
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputMissingOverrideGoodOverrideFromObject.java"), expected);
     }
@@ -177,7 +177,7 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputMissingOverrideGoodOverrideFromObject.java"), expected);
     }
@@ -189,7 +189,7 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGoodOverrideFromOther() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MissingOverrideCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputMissingOverrideGoodOverrideFromOther.java"), expected);
     }
@@ -203,7 +203,7 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputMissingOverrideGoodOverrideFromOther.java"), expected);
     }
@@ -215,7 +215,7 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGoodAnnotationOverride() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MissingOverrideCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputMissingOverrideGoodOverride.java"), expected);
     }
@@ -228,7 +228,7 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
     public void testGoodAnnotationOverrideJ5Compatible() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputMissingOverrideGoodOverride.java"), expected);
     }

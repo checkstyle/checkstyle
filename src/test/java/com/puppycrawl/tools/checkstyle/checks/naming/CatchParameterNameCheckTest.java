@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
 
@@ -51,7 +51,7 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultConfigurationOnCorrectFile() throws Exception {
         final Configuration checkConfig = createModuleConfig(CatchParameterNameCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputCatchParameterNameSimple.java"), expected);
     }
@@ -93,7 +93,7 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(CatchParameterNameCheck.class);
         checkConfig.addAttribute("format", "[a-z]");
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputCatchParameterName.java"), expected);
     }

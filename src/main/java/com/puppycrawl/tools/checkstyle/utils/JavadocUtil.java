@@ -33,14 +33,14 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.BlockTagUtils;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.InlineTagUtils;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.BlockTagUtil;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.InlineTagUtil;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.TagInfo;
 
 /**
  * Contains utility methods for working with Javadoc.
  */
-public final class JavadocUtils {
+public final class JavadocUtil {
 
     /**
      * The type of Javadoc tag we want returned.
@@ -76,12 +76,12 @@ public final class JavadocUtils {
 
     // initialise the constants
     static {
-        TOKEN_NAME_TO_VALUE = TokenUtils.nameToValueMapFromPublicIntFields(JavadocTokenTypes.class);
-        TOKEN_VALUE_TO_NAME = TokenUtils.valueToNameArrayFromNameToValueMap(TOKEN_NAME_TO_VALUE);
+        TOKEN_NAME_TO_VALUE = TokenUtil.nameToValueMapFromPublicIntFields(JavadocTokenTypes.class);
+        TOKEN_VALUE_TO_NAME = TokenUtil.valueToNameArrayFromNameToValueMap(TOKEN_NAME_TO_VALUE);
     }
 
     /** Prevent instantiation. */
-    private JavadocUtils() {
+    private JavadocUtil() {
     }
 
     /**
@@ -102,11 +102,11 @@ public final class JavadocUtils {
         final List<TagInfo> tags = new ArrayList<>();
 
         if (getBlockTags) {
-            tags.addAll(BlockTagUtils.extractBlockTags(textBlock.getText()));
+            tags.addAll(BlockTagUtil.extractBlockTags(textBlock.getText()));
         }
 
         if (getInlineTags) {
-            tags.addAll(InlineTagUtils.extractInlineTags(textBlock.getText()));
+            tags.addAll(InlineTagUtil.extractInlineTags(textBlock.getText()));
         }
 
         final List<JavadocTag> validTags = new ArrayList<>();

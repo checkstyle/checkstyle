@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Checks the ordering/grouping of imports. Features are:
@@ -265,8 +265,8 @@ public class ImportOrderCheck
                 // matches any package
                 grp = Pattern.compile("");
             }
-            else if (CommonUtils.startsWithChar(pkg, '/')) {
-                if (!CommonUtils.endsWithChar(pkg, '/')) {
+            else if (CommonUtil.startsWithChar(pkg, '/')) {
+                if (!CommonUtil.endsWithChar(pkg, '/')) {
                     throw new IllegalArgumentException("Invalid group");
                 }
                 pkg = pkg.substring(1, pkg.length() - 1);
@@ -274,7 +274,7 @@ public class ImportOrderCheck
             }
             else {
                 final StringBuilder pkgBuilder = new StringBuilder(pkg);
-                if (!CommonUtils.endsWithChar(pkg, '.')) {
+                if (!CommonUtil.endsWithChar(pkg, '.')) {
                     pkgBuilder.append('.');
                 }
                 grp = Pattern.compile("^" + Pattern.quote(pkgBuilder.toString()));

@@ -32,7 +32,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
@@ -82,7 +82,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     public void testSameOmitOneLiners() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
         checkConfig.addAttribute("option", RightCurlyOption.SAME.toString());
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRightCurlyNameForOneLiners.java"), expected);
     }
 
@@ -154,7 +154,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testForceLineBreakBefore2() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRightCurlyLineBreakBefore.java"), expected);
     }
 
@@ -164,7 +164,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
         checkConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, "
             + "LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRightCurlyEmptyAbstractMethod.java"), expected);
     }
 
@@ -291,7 +291,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("option", "invalid_option");
 
         try {
-            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
             verify(checkConfig, getPath("InputRightCurly.java"), expected);
             fail("exception expected");

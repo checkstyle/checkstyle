@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Filter;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
@@ -67,10 +67,10 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
     private static final String DEFAULT_CHECK_FORMAT = ".*";
 
     /** Regexp which turns checkstyle reporting off. */
-    private Pattern offCommentFormat = CommonUtils.createPattern(DEFAULT_OFF_FORMAT);
+    private Pattern offCommentFormat = CommonUtil.createPattern(DEFAULT_OFF_FORMAT);
 
     /** Regexp which turns checkstyle reporting on. */
-    private Pattern onCommentFormat = CommonUtils.createPattern(DEFAULT_ON_FORMAT);
+    private Pattern onCommentFormat = CommonUtil.createPattern(DEFAULT_ON_FORMAT);
 
     /** The check format to suppress. */
     private String checkFormat = DEFAULT_CHECK_FORMAT;
@@ -258,27 +258,27 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
             String format = "";
             try {
                 if (this.suppressionType == SuppressionType.ON) {
-                    format = CommonUtils.fillTemplateWithStringsByRegexp(
+                    format = CommonUtil.fillTemplateWithStringsByRegexp(
                             filter.checkFormat, text, filter.onCommentFormat);
                     eventSourceRegexp = Pattern.compile(format);
                     if (filter.messageFormat == null) {
                         eventMessageRegexp = null;
                     }
                     else {
-                        format = CommonUtils.fillTemplateWithStringsByRegexp(
+                        format = CommonUtil.fillTemplateWithStringsByRegexp(
                                 filter.messageFormat, text, filter.onCommentFormat);
                         eventMessageRegexp = Pattern.compile(format);
                     }
                 }
                 else {
-                    format = CommonUtils.fillTemplateWithStringsByRegexp(
+                    format = CommonUtil.fillTemplateWithStringsByRegexp(
                             filter.checkFormat, text, filter.offCommentFormat);
                     eventSourceRegexp = Pattern.compile(format);
                     if (filter.messageFormat == null) {
                         eventMessageRegexp = null;
                     }
                     else {
-                        format = CommonUtils.fillTemplateWithStringsByRegexp(
+                        format = CommonUtil.fillTemplateWithStringsByRegexp(
                                 filter.messageFormat, text, filter.offCommentFormat);
                         eventMessageRegexp = Pattern.compile(format);
                     }

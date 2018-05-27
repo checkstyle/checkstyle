@@ -27,7 +27,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
 
@@ -41,7 +41,7 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
         final AnnotationOnSameLineCheck check = new AnnotationOnSameLineCheck();
         assertArrayEquals(
             "AnnotationOnSameLineCheck#getRequiredTokens should return empty array by default",
-            CommonUtils.EMPTY_INT_ARRAY, check.getRequiredTokens());
+            CommonUtil.EMPTY_INT_ARRAY, check.getRequiredTokens());
     }
 
     @Test

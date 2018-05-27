@@ -23,7 +23,7 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
@@ -196,7 +196,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
     @Override
     public int[] getRequiredTokens() {
         // Check can work with any of acceptable tokens
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return CommonUtil.EMPTY_INT_ARRAY;
     }
 
     // -@cs[CyclomaticComplexity] All logs should be in visit token.

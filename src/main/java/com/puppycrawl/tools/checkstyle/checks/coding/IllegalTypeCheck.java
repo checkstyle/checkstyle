@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Checks that particular class are never used as types in variable
@@ -453,7 +453,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
     public void setMemberModifiers(String modifiers) {
         final List<Integer> modifiersList = new ArrayList<>();
         for (String modifier : modifiers.split(",")) {
-            modifiersList.add(TokenUtils.getTokenId(modifier.trim()));
+            modifiersList.add(TokenUtil.getTokenId(modifier.trim()));
         }
         memberModifiers = modifiersList;
     }

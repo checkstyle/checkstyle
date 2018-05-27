@@ -38,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 // -@cs[AbbreviationAsWordInName] Can't change check name
 public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
@@ -181,7 +181,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(NPathComplexityCheck.class);
 
         createChecker(checkConfig);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputNPathComplexityDefault.java"), expected);
     }
 

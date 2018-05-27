@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Contains utility methods designed to work with annotations.
  *
  */
-public final class AnnotationUtility {
+public final class AnnotationUtil {
 
     /**
      * Common message.
@@ -38,7 +38,7 @@ public final class AnnotationUtility {
      * Private utility constructor.
      * @throws UnsupportedOperationException if called
      */
-    private AnnotationUtility() {
+    private AnnotationUtil() {
         throw new UnsupportedOperationException("do not instantiate.");
     }
 
@@ -144,7 +144,7 @@ public final class AnnotationUtility {
             throw new IllegalArgumentException("the annotation is null");
         }
 
-        if (CommonUtils.isBlank(annotation)) {
+        if (CommonUtil.isBlank(annotation)) {
             throw new IllegalArgumentException(
                     "the annotation is empty or spaces");
         }

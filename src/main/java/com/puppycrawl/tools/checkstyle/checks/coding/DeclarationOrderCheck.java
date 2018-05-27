@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * Checks that the parts of a class or interface declaration
@@ -214,7 +214,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
                 }
                 break;
             case TokenTypes.VARIABLE_DEF:
-                if (ScopeUtils.isClassFieldDef(ast)) {
+                if (ScopeUtil.isClassFieldDef(ast)) {
                     final DetailAST fieldDef = ast.findFirstToken(TokenTypes.IDENT);
                     classFieldNames.add(fieldDef.getText());
                 }
@@ -296,7 +296,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
      */
     private void processModifiersSubState(DetailAST modifiersAst, ScopeState state,
                                           boolean isStateValid) {
-        final Scope access = ScopeUtils.getScopeFromMods(modifiersAst);
+        final Scope access = ScopeUtil.getScopeFromMods(modifiersAst);
         if (state.declarationAccess.compareTo(access) > 0) {
             if (isStateValid
                     && !ignoreModifiers

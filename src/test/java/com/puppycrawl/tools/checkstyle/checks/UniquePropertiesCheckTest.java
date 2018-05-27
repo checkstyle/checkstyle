@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
 
@@ -113,7 +113,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testShouldNotProcessFilesWithWrongFileExtension() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UniquePropertiesCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputUniqueProperties.txt"), expected);
     }
 

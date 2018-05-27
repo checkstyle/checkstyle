@@ -28,7 +28,7 @@ import java.util.SortedSet;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Tests to ensure that default message bundle is determined correctly.
@@ -125,17 +125,17 @@ public class AbstractViolationReporterTest {
 
         @Override
         public int[] getDefaultTokens() {
-            return CommonUtils.EMPTY_INT_ARRAY;
+            return CommonUtil.EMPTY_INT_ARRAY;
         }
 
         @Override
         public int[] getAcceptableTokens() {
-            return CommonUtils.EMPTY_INT_ARRAY;
+            return CommonUtil.EMPTY_INT_ARRAY;
         }
 
         @Override
         public int[] getRequiredTokens() {
-            return CommonUtils.EMPTY_INT_ARRAY;
+            return CommonUtil.EMPTY_INT_ARRAY;
         }
 
     }

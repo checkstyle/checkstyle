@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <p>
@@ -179,7 +179,7 @@ public abstract class AbstractSuperCheck
         boolean overridingMethod = false;
 
         if (ast.getType() == TokenTypes.METHOD_DEF
-                && !ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
+                && !ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
             final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
             final String name = nameAST.getText();
             final DetailAST modifiersAST = ast.findFirstToken(TokenTypes.MODIFIERS);

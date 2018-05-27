@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
  * <p>
@@ -117,7 +117,7 @@ public class EqualsHashCodeCheck
         final DetailAST modifiers = ast.getFirstChild();
         final DetailAST parameters = ast.findFirstToken(TokenTypes.PARAMETERS);
 
-        return CheckUtils.isEqualsMethod(ast)
+        return CheckUtil.isEqualsMethod(ast)
                 && modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
                 && isObjectParam(parameters.getFirstChild())
                 && (ast.findFirstToken(TokenTypes.SLIST) != null

@@ -33,7 +33,7 @@ import org.junit.Test;
 import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
 
@@ -46,7 +46,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     public void testGetRequiredTokens() {
         final OneTopLevelClassCheck checkObj = new OneTopLevelClassCheck();
         assertArrayEquals("Required tokens array is not empty",
-                CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+                CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -86,7 +86,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     public void testFileWithOneTopLevelClass() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(OneTopLevelClassCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputOneTopLevelClass.java"), expected);
     }
 
@@ -94,7 +94,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     public void testFileWithOneTopLevelInterface() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(OneTopLevelClassCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputOneTopLevelClassInterface.java"), expected);
     }
 
@@ -102,7 +102,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     public void testFileWithOneTopLevelEnum() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(OneTopLevelClassCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputOneTopLevelClassEnum.java"), expected);
     }
 
@@ -167,7 +167,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testPackageInfoWithNoTypesDeclared() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OneTopLevelClassCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath("package-info.java"), expected);
     }
 

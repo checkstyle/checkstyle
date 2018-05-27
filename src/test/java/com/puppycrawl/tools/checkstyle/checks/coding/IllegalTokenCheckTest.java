@@ -25,7 +25,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 public class IllegalTokenCheckTest
     extends AbstractModuleTestSupport {
@@ -81,15 +81,15 @@ public class IllegalTokenCheckTest
 
         final String[] expected = {
             "3:3: " + getCheckMessage(MSG_KEY,
-                        JavadocUtils.escapeAllControlChars(
+                        JavadocUtil.escapeAllControlChars(
                             "*" + System.lineSeparator()
                             + " * Test for illegal tokens"
                             + System.lineSeparator() + " ")),
             "31:29: " + getCheckMessage(MSG_KEY,
-                        JavadocUtils.escapeAllControlChars(
+                        JavadocUtil.escapeAllControlChars(
                             " some comment href" + System.lineSeparator())),
             "35:28: " + getCheckMessage(MSG_KEY,
-                        JavadocUtils.escapeAllControlChars(
+                        JavadocUtil.escapeAllControlChars(
                             " some a href" + System.lineSeparator())),
         };
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);

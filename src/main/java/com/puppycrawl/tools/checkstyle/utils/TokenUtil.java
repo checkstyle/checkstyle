@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Contains utility methods for tokens.
  *
  */
-public final class TokenUtils {
+public final class TokenUtil {
 
     /** Maps from a token name to value. */
     private static final Map<String, Integer> TOKEN_NAME_TO_VALUE;
@@ -61,7 +61,7 @@ public final class TokenUtils {
     }
 
     /** Stop instances being created. **/
-    private TokenUtils() {
+    private TokenUtil() {
     }
 
     /**
@@ -102,7 +102,7 @@ public final class TokenUtils {
      * @return array of map keys
      */
     public static String[] valueToNameArrayFromNameToValueMap(Map<String, Integer> map) {
-        String[] valueToNameArray = CommonUtils.EMPTY_STRING_ARRAY;
+        String[] valueToNameArray = CommonUtil.EMPTY_STRING_ARRAY;
 
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
             final int value = entry.getValue();

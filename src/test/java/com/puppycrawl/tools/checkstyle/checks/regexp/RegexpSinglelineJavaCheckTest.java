@@ -27,7 +27,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
 
@@ -41,14 +41,14 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         final RegexpSinglelineJavaCheck regexpSinglelineJavaCheck =
             new RegexpSinglelineJavaCheck();
         assertArrayEquals("Default acceptable tokens are invalid",
-            CommonUtils.EMPTY_INT_ARRAY, regexpSinglelineJavaCheck.getAcceptableTokens());
+            CommonUtil.EMPTY_INT_ARRAY, regexpSinglelineJavaCheck.getAcceptableTokens());
     }
 
     @Test
     public void testGetRequiredTokens() {
         final RegexpSinglelineJavaCheck checkObj = new RegexpSinglelineJavaCheck();
         assertArrayEquals("Default required tokens are invalid",
-            CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+            CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -93,7 +93,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
                 createModuleConfig(RegexpSinglelineJavaCheck.class);
         checkConfig.addAttribute("format", "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(");
         checkConfig.addAttribute("ignoreCase", "false");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpSinglelineJavaSemantic.java"), expected);
     }
 
@@ -104,7 +104,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         // See if the comment is removed properly
         checkConfig.addAttribute("format", "don't use trailing comments");
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpSinglelineJavaTrailingComment.java"), expected);
     }
 
@@ -128,7 +128,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         // See if the comment is removed properly
         checkConfig.addAttribute("format", "c-style 1");
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpSinglelineJavaTrailingComment.java"), expected);
     }
 
@@ -151,7 +151,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         // See if a second comment on the same line is removed properly
         checkConfig.addAttribute("format", "c-style 2");
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpSinglelineJavaTrailingComment.java"), expected);
     }
 
@@ -161,7 +161,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
                 createModuleConfig(RegexpSinglelineJavaCheck.class);
         checkConfig.addAttribute("format", "Let's check multi-line comments");
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpSinglelineJavaTrailingComment.java"), expected);
     }
 
@@ -171,7 +171,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
                 createModuleConfig(RegexpSinglelineJavaCheck.class);
         checkConfig.addAttribute("format", "long ms /");
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpSinglelineJavaTrailingComment.java"), expected);
     }
 
@@ -206,7 +206,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         // make sure the comment is not turned into spaces
         checkConfig.addAttribute("format", "long ms  ");
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpSinglelineJavaTrailingComment.java"), expected);
     }
 
@@ -217,7 +217,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         // StackOverflowError with trailing space and ignoreComments
         checkConfig.addAttribute("format", "\\s+$");
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpSinglelineJavaTrailingComment.java"), expected);
     }
 
@@ -228,7 +228,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("format", "Test case file");
         checkConfig.addAttribute("minimum", "1");
         checkConfig.addAttribute("maximum", "1000");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpSinglelineJavaSemantic.java"), expected);
     }
 
@@ -239,7 +239,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("format", "package");
         checkConfig.addAttribute("minimum", "1");
         checkConfig.addAttribute("maximum", "1000");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpSinglelineJavaSemantic.java"), expected);
     }
 

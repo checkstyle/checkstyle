@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <p>
@@ -104,7 +104,7 @@ public class FinalClassCheck
                 break;
 
             case TokenTypes.CTOR_DEF:
-                if (!ScopeUtils.isInEnumBlock(ast)) {
+                if (!ScopeUtil.isInEnumBlock(ast)) {
                     final ClassDesc desc = classes.peek();
                     if (modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null) {
                         desc.registerNonPrivateCtor();
@@ -129,7 +129,7 @@ public class FinalClassCheck
                 && !desc.isDeclaredAsFinal()
                 && !desc.isWithNonPrivateCtor()
                 && !desc.isWithNestedSubclass()
-                && !ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
+                && !ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
                 final String qualifiedName = desc.getQualifiedName();
                 final String className = getClassNameFromQualifiedName(qualifiedName);
                 log(ast.getLineNo(), MSG_KEY, className);

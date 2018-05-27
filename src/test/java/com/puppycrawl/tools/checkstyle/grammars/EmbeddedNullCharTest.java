@@ -24,7 +24,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Tests that embedded nulls in string literals does not halt parsing.
@@ -42,7 +42,7 @@ public class EmbeddedNullCharTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MemberNameCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputEmbeddedNullChar.java"), expected);
     }
 

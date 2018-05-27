@@ -24,7 +24,7 @@ import org.junit.Test;
 import com.google.checkstyle.test.base.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class SummaryJavadocTest extends AbstractModuleTestSupport {
 
@@ -35,7 +35,7 @@ public class SummaryJavadocTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCorrect() throws Exception {
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("SummaryJavadoc");
         final String filePath = getPath("InputCorrectSummaryJavaDocCheck.java");

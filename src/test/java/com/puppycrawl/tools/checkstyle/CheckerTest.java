@@ -89,7 +89,7 @@ import com.puppycrawl.tools.checkstyle.internal.testmodules.DebugFilter;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.TestBeforeExecutionFileFilter;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.TestFileSetCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class CheckerTest extends AbstractModuleTestSupport {
 
@@ -517,7 +517,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
 
         final File tmpFile = temporaryFolder.newFile("file.java");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkerConfig, tmpFile.getPath(), expected);
         final Properties cacheAfterFirstRun = new Properties();
@@ -593,7 +593,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 cacheAfterClear.getProperty(PropertyCacheFile.CONFIG_HASH_KEY));
 
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         // file that should be audited is not in cache
         verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
@@ -703,7 +703,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final File cacheFile = temporaryFolder.newFile();
         checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
 
         verify(checkerConfig, pathToEmptyFile, expected);
@@ -764,7 +764,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.addListener(getBriefUtLogger());
 
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checker, pathToEmptyFile, expected);
         final Properties cacheAfterFirstRun = new Properties();
@@ -825,7 +825,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
 
         final String filePath = getPath("InputCheckerClearDetailAstLazyLoadCache.java");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkerConfig, filePath, expected);
     }
@@ -844,7 +844,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checkerConfig.addChild(filterConfig);
 
         final String fileViolationPath = temporaryFolder.newFile("ViolationFile.java").getPath();
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkerConfig, fileViolationPath, expected);
 
@@ -991,7 +991,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 true, testErrorOutputStream, true));
 
             final File tmpFile = temporaryFolder.newFile("file.java");
-            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
             verify(checker, tmpFile.getPath(), expected);
 
@@ -1016,7 +1016,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             checker.addListener(new XMLLogger(testInfoOutputStream, true));
 
             final File tmpFile = temporaryFolder.newFile("file.java");
-            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
             verify(checker, tmpFile.getPath(), tmpFile.getPath(), expected);
 

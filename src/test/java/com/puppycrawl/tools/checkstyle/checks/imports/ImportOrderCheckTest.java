@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(ImportOrderOption.class)
@@ -144,7 +144,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("separated", "true");
         checkConfig.addAttribute("ordered", "true");
         checkConfig.addAttribute("option", "bottom");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputImportOrderNoGapBetweenStaticImports.java"), expected);
     }
@@ -157,7 +157,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("ordered", "true");
         checkConfig.addAttribute("option", "top");
         checkConfig.addAttribute("sortStaticImportsAlphabetically", "false");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputImportOrderSortStaticImportsAlphabetically.java"),
             expected);
@@ -186,7 +186,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     public void testCaseInsensitive() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportOrderCheck.class);
         checkConfig.addAttribute("caseSensitive", "false");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputImportOrderCaseInsensitive.java"), expected);
     }
@@ -197,7 +197,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("option", "top");
         checkConfig.addAttribute("caseSensitive", "false");
         checkConfig.addAttribute("useContainerOrderingForStatic", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getNonCompilablePath("InputImportOrderEclipseStaticCaseSensitive.java"),
             expected);
@@ -210,7 +210,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("option", "invalid_option");
 
         try {
-            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
             verify(checkConfig, getPath("InputImportOrder_Top.java"), expected);
             fail("exception expected");
@@ -316,7 +316,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ImportOrderCheck.class);
         checkConfig.addAttribute("groups", "/javax/, sun, /^java/, org, /java/");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig,
             getNonCompilablePath("InputImportOrderGetGroupNumber.java"), expected);
@@ -362,7 +362,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     public void testNoFailureForRedundantImports() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ImportOrderCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputImportOrder_NoFailureForRedundantImports.java"),
             expected);
     }
@@ -610,7 +610,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("groups", "/^javax");
 
         try {
-            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
             verify(checkConfig, getPath("InputImportOrder.java"), expected);
             fail("exception expected");
@@ -629,7 +629,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     public void testGroupWithDot() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportOrderCheck.class);
         checkConfig.addAttribute("groups", "java.awt.");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputImportOrder_NoFailureForRedundantImports.java"),
             expected);
@@ -698,7 +698,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("separated", "true");
         checkConfig.addAttribute("option", "top");
         checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig,
             getNonCompilablePath("InputImportOrder_EclipseDefaultPositive.java"), expected);
@@ -748,7 +748,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("caseSensitive", "false");
         checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
         checkConfig.addAttribute("useContainerOrderingForStatic", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath("InputImportOrderEclipseStatic.java"), expected);
     }
 

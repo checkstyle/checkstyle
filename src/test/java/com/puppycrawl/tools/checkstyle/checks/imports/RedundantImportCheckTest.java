@@ -34,7 +34,7 @@ import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class RedundantImportCheckTest
     extends AbstractModuleTestSupport {
@@ -66,7 +66,7 @@ public class RedundantImportCheckTest
             "4:1: " + getCheckMessage(MSG_DUPLICATE, 3, "java.util.Arrays.asList"),
             "7:1: " + getCheckMessage(MSG_DUPLICATE, 6, "java.util.List")
         );
-        final List<String> expectedSecondInput = Arrays.asList(CommonUtils.EMPTY_STRING_ARRAY);
+        final List<String> expectedSecondInput = Arrays.asList(CommonUtil.EMPTY_STRING_ARRAY);
         final File[] inputs = {new File(inputWithWarnings), new File(inputWithoutWarnings)};
 
         verify(createChecker(checkConfig), inputs, ImmutableMap.of(

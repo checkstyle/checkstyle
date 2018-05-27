@@ -27,7 +27,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class ParameterNameCheckTest
     extends AbstractModuleTestSupport {
@@ -51,7 +51,7 @@ public class ParameterNameCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(ParameterNameCheck.class);
         checkConfig.addAttribute("format", "^NO_WAY_MATEY$");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputParameterNameCatchOnly.java"), expected);
     }
 
@@ -77,7 +77,7 @@ public class ParameterNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ParameterNameCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputParameterName.java"), expected);
     }
 
@@ -163,14 +163,14 @@ public class ParameterNameCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(ParameterNameCheck.class);
         checkConfig.addAttribute("format", "^[a-z][a-zA-Z0-9]*$");
         checkConfig.addAttribute("ignoreOverridden", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputParameterNameOverrideAnnotationNoNPE.java"), expected);
     }
 
     @Test
     public void testReceiverParameter() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ParameterNameCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputParameterNameReceiver.java"), expected);
     }
 

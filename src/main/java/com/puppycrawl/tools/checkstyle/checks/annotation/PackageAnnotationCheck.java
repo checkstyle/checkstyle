@@ -23,7 +23,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 
 /**
  * This check makes sure that all package annotations are in the
@@ -73,7 +73,7 @@ public class PackageAnnotationCheck extends AbstractCheck {
     @Override
     public void visitToken(final DetailAST ast) {
         final boolean containsAnnotation =
-            AnnotationUtility.containsAnnotation(ast);
+            AnnotationUtil.containsAnnotation(ast);
         final boolean inPackageInfo =
             getFileContents().inPackageInfo();
 

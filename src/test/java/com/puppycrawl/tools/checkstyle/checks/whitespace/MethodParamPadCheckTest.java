@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MethodParamPadCheckTest
     extends AbstractModuleTestSupport {
@@ -47,7 +47,7 @@ public class MethodParamPadCheckTest
         final MethodParamPadCheck checkObj = new MethodParamPadCheck();
         assertArrayEquals(
             "MethodParamPadCheck#getRequiredTokens should return empty array by default",
-            CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+            CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -129,7 +129,7 @@ public class MethodParamPadCheckTest
     public void test1322879() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MethodParamPadCheck.class);
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodParamPadWhitespaceAround.java"),
                expected);
     }
@@ -155,7 +155,7 @@ public class MethodParamPadCheckTest
         checkConfig.addAttribute("option", "invalid_option");
 
         try {
-            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
             verify(checkConfig, getPath("InputMethodParamPad.java"), expected);
             fail("exception expected");

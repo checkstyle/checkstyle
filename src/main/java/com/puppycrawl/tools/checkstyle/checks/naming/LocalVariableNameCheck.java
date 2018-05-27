@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <p>
@@ -143,7 +143,7 @@ public class LocalVariableNameCheck
         else {
             final DetailAST modifiersAST = ast.findFirstToken(TokenTypes.MODIFIERS);
             final boolean isFinal = modifiersAST.findFirstToken(TokenTypes.FINAL) != null;
-            result = !isFinal && ScopeUtils.isLocalVariableDef(ast);
+            result = !isFinal && ScopeUtil.isLocalVariableDef(ast);
         }
         return result;
     }

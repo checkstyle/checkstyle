@@ -25,7 +25,7 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * The base class for checks.
@@ -246,13 +246,13 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * @param args arguments to format
      */
     public final void log(DetailAST ast, String key, Object... args) {
-        // CommonUtils.lengthExpandedTabs returns column number considering tabulation
+        // CommonUtil.lengthExpandedTabs returns column number considering tabulation
         // characters, it takes line from the file by line number, ast column number and tab
         // width as arguments. Returned value is 0-based, but user must see column number starting
-        // from 1, that is why result of the method CommonUtils.lengthExpandedTabs
+        // from 1, that is why result of the method CommonUtil.lengthExpandedTabs
         // is increased by one.
 
-        final int col = 1 + CommonUtils.lengthExpandedTabs(
+        final int col = 1 + CommonUtil.lengthExpandedTabs(
                 getLines()[ast.getLineNo() - 1], ast.getColumnNo(), tabWidth);
         context.get().messages.add(
                 new LocalizedMessage(
@@ -286,7 +286,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     @Override
     public final void log(int lineNo, int colNo, String key,
             Object... args) {
-        final int col = 1 + CommonUtils.lengthExpandedTabs(
+        final int col = 1 + CommonUtil.lengthExpandedTabs(
             getLines()[lineNo - 1], colNo, tabWidth);
         context.get().messages.add(
             new LocalizedMessage(

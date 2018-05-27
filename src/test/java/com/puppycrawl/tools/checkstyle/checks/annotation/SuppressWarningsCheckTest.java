@@ -25,7 +25,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
 
@@ -791,7 +791,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
     public void testUncheckedInConstant() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputSuppressWarningsConstants.java"), expected);
     }
@@ -800,7 +800,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
     public void testValuePairAnnotation() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputSuppressWarningsValuePair.java"), expected);
     }

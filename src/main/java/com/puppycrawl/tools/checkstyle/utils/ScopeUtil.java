@@ -28,10 +28,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Contains utility methods for working on scope.
  *
  */
-public final class ScopeUtils {
+public final class ScopeUtil {
 
     /** Prevent instantiation. */
-    private ScopeUtils() {
+    private ScopeUtil() {
     }
 
     /**

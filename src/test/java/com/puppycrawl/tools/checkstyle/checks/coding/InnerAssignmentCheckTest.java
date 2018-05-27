@@ -26,7 +26,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class InnerAssignmentCheckTest
     extends AbstractModuleTestSupport {
@@ -66,7 +66,7 @@ public class InnerAssignmentCheckTest
     public void testLambdaExpression() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(InnerAssignmentCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputInnerAssignmentLambdaExpressions.java"),
             expected);
     }

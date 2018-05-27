@@ -46,7 +46,7 @@ import org.apache.commons.beanutils.converters.LongConverter;
 import org.apache.commons.beanutils.converters.ShortConverter;
 
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * A Java Bean that implements the component lifecycle interfaces by
@@ -295,7 +295,7 @@ public abstract class AutomaticBean
         @SuppressWarnings({"unchecked", "rawtypes"})
         @Override
         public Object convert(Class type, Object value) {
-            return CommonUtils.createPattern(value.toString());
+            return CommonUtil.createPattern(value.toString());
         }
 
     }
@@ -331,9 +331,9 @@ public abstract class AutomaticBean
             final String url = value.toString();
             URI result = null;
 
-            if (!CommonUtils.isBlank(url)) {
+            if (!CommonUtil.isBlank(url)) {
                 try {
-                    result = CommonUtils.getUriByFilename(url);
+                    result = CommonUtil.getUriByFilename(url);
                 }
                 catch (CheckstyleException ex) {
                     throw new IllegalArgumentException(ex);

@@ -35,8 +35,8 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 public class ParenPadCheckTest
     extends AbstractModuleTestSupport {
@@ -153,7 +153,7 @@ public class ParenPadCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(ParenPadCheck.class);
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputParenPadWithSpace.java"),
                expected);
     }
@@ -328,7 +328,7 @@ public class ParenPadCheckTest
         checkConfig.addAttribute("option", "invalid_option");
 
         try {
-            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
             verify(checkConfig, getPath("InputParenPadLeftRightAndNoSpace.java"), expected);
             fail("exception expected");
@@ -481,7 +481,7 @@ public class ParenPadCheckTest
 
         for (int token : check.getAcceptableTokens()) {
             ast.setType(token);
-            assertTrue(message + TokenUtils.getTokenName(token),
+            assertTrue(message + TokenUtil.getTokenName(token),
                     (boolean) method.invoke(check, ast));
         }
     }

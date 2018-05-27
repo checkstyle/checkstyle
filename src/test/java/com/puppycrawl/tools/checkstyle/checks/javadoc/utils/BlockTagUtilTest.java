@@ -28,12 +28,12 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-public class BlockTagUtilsTest {
+public class BlockTagUtilTest {
 
     @Test
     public void testHasPrivateConstructor() throws Exception {
         assertTrue("Constructor is not private",
-                TestUtil.isUtilsClassHasPrivateConstructor(BlockTagUtils.class, true));
+                TestUtil.isUtilsClassHasPrivateConstructor(BlockTagUtil.class, true));
     }
 
     @Test
@@ -46,7 +46,7 @@ public class BlockTagUtilsTest {
             " */",
         };
 
-        final List<TagInfo> tags = BlockTagUtils.extractBlockTags(text);
+        final List<TagInfo> tags = BlockTagUtil.extractBlockTags(text);
         assertEquals("Invalid tags size", 4, tags.size());
 
         final TagInfo tag1 = tags.get(0);
@@ -69,7 +69,7 @@ public class BlockTagUtilsTest {
             " * @version 1.0",
             " */",
         };
-        final List<TagInfo> tags = BlockTagUtils.extractBlockTags(text);
+        final List<TagInfo> tags = BlockTagUtil.extractBlockTags(text);
         assertEquals("Invalid tags size", 1, tags.size());
         assertEquals("Invalid tag name", "version", tags.get(0).getName());
         assertEquals("Invalid tag value", "1.0", tags.get(0).getValue());
@@ -82,7 +82,7 @@ public class BlockTagUtilsTest {
             " * Foo",
             " * @version 1.0 */"};
 
-        final List<TagInfo> tags = BlockTagUtils.extractBlockTags(text);
+        final List<TagInfo> tags = BlockTagUtil.extractBlockTags(text);
         assertEquals("Invalid tags size", 1, tags.size());
         assertEquals("Invalid tag name", "version", tags.get(0).getName());
         assertEquals("Invalid tag value", "1.0", tags.get(0).getValue());

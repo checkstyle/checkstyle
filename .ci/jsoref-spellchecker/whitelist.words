@@ -194,7 +194,7 @@ checkouting
 checkstyle
 checkstyleanttask
 checkstylecompilation
-checkutils
+checkutil
 chmod
 chr
 ci
@@ -1003,7 +1003,7 @@ rhs
 RHSOf
 rickgiles
 rightcurly
-Rl
+rl
 rnveach
 romani
 romanivanov
@@ -1266,6 +1266,7 @@ Wsdl
 www
 Xandy
 xargs
+xcommons
 xdoc
 xdocspagetitle
 xerces

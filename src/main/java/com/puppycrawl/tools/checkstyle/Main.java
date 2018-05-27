@@ -52,7 +52,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.RootModule;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Wrapper command line program for the Checker.
@@ -329,7 +329,7 @@ public final class Main {
             final String configLocation = cmdLine.getOptionValue(OPTION_C_NAME);
             try {
                 // test location only
-                CommonUtils.getUriByFilename(configLocation);
+                CommonUtil.getUriByFilename(configLocation);
             }
             catch (CheckstyleException ignored) {
                 result.add(String.format("Could not find config XML file '%s'.", configLocation));
@@ -381,7 +381,7 @@ public final class Main {
         if (cmdLine.hasOption(cliParameterName)) {
             final String checkerThreadsNumberStr =
                 cmdLine.getOptionValue(cliParameterName);
-            if (CommonUtils.isInt(checkerThreadsNumberStr)) {
+            if (CommonUtil.isInt(checkerThreadsNumberStr)) {
                 final int checkerThreadsNumber = Integer.parseInt(checkerThreadsNumberStr);
                 if (checkerThreadsNumber < 1) {
                     result.add(mustBeGreaterThanZeroMessage);

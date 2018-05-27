@@ -27,7 +27,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class WhitespaceAfterCheckTest
     extends AbstractModuleTestSupport {
@@ -42,7 +42,7 @@ public class WhitespaceAfterCheckTest
         final WhitespaceAfterCheck checkObj = new WhitespaceAfterCheck();
         assertArrayEquals(
             "WhitespaceAfterCheck#getRequiredTokens should return empty array by default",
-            CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+            CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -192,7 +192,7 @@ public class WhitespaceAfterCheckTest
     @Test
     public void test1322879() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAfterCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputWhitespaceAfterAround.java"),
                expected);
     }

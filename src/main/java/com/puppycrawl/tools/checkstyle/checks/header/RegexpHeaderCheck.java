@@ -28,7 +28,7 @@ import java.util.regex.PatternSyntaxException;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Checks the header of the source against a header file that contains a
@@ -194,8 +194,8 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
      */
     @Override
     public void setHeader(String header) {
-        if (!CommonUtils.isBlank(header)) {
-            if (!CommonUtils.isPatternValid(header)) {
+        if (!CommonUtil.isBlank(header)) {
+            if (!CommonUtil.isPatternValid(header)) {
                 throw new IllegalArgumentException("Unable to parse format: " + header);
             }
             super.setHeader(header);

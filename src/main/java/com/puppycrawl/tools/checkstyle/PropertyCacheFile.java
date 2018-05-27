@@ -44,7 +44,7 @@ import com.google.common.io.Closeables;
 import com.google.common.io.Flushables;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * This class maintains a persistent(on file-system) store of the files
@@ -297,7 +297,7 @@ final class PropertyCacheFile {
      */
     private static byte[] loadExternalResource(String location) throws CheckstyleException {
         final byte[] content;
-        final URI uri = CommonUtils.getUriByFilename(location);
+        final URI uri = CommonUtil.getUriByFilename(location);
 
         try {
             content = ByteStreams.toByteArray(new BufferedInputStream(uri.toURL().openStream()));

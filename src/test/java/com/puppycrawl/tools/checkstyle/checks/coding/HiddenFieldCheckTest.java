@@ -26,7 +26,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class HiddenFieldCheckTest
     extends AbstractModuleTestSupport {
@@ -399,7 +399,7 @@ public class HiddenFieldCheckTest
     @Test
     public void testReceiverParameter() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(HiddenFieldCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputHiddenFieldReceiver.java"), expected);
     }
 

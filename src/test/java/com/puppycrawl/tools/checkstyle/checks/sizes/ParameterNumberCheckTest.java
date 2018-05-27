@@ -27,7 +27,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class ParameterNumberCheckTest
     extends AbstractModuleTestSupport {
@@ -42,7 +42,7 @@ public class ParameterNumberCheckTest
         final ParameterNumberCheck checkObj = new ParameterNumberCheck();
         assertArrayEquals(
             "ParameterNumberCheck#getRequiredTokens should return empty array by default",
-            CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+            CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -88,7 +88,7 @@ public class ParameterNumberCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(ParameterNumberCheck.class);
         checkConfig.addAttribute("max", "9");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputParameterNumberSimple.java"), expected);
     }
 

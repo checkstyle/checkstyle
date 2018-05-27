@@ -27,7 +27,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocTagContinuationIndentationCheckTest
         extends AbstractModuleTestSupport {
@@ -50,7 +50,7 @@ public class JavadocTagContinuationIndentationCheckTest
     public void testFp() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(JavadocTagContinuationIndentationCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                getPath("InputJavadocTagContinuationIndentationGuavaFalsePositive.java"),
                expected);

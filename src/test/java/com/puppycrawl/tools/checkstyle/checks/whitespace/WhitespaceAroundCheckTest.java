@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class WhitespaceAroundCheckTest
     extends AbstractModuleTestSupport {
@@ -43,7 +43,7 @@ public class WhitespaceAroundCheckTest
         final WhitespaceAroundCheck checkObj = new WhitespaceAroundCheck();
         assertArrayEquals(
             "WhitespaceAroundCheck#getRequiredTokens should return empty array by default",
-            CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+            CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -178,7 +178,7 @@ public class WhitespaceAroundCheckTest
     @Test
     public void test1322879And1649038() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAroundCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputWhitespaceAround.java"),
                expected);
     }
@@ -267,7 +267,7 @@ public class WhitespaceAroundCheckTest
     public void allowEmptyMethods() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAroundCheck.class);
         checkConfig.addAttribute("allowEmptyMethods", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputWhitespaceAround.java"), expected);
     }
 
@@ -425,7 +425,7 @@ public class WhitespaceAroundCheckTest
     public void testWhitespaceAroundEmptyCatchBlock() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAroundCheck.class);
         checkConfig.addAttribute("allowEmptyCatches", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputWhitespaceAroundCatch.java"),
                 expected);
     }

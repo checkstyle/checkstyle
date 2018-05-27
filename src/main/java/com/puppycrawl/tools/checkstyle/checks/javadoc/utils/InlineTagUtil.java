@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.LineColumn;
  * Tools for extracting inline tags from Javadoc comments.
  *
  */
-public final class InlineTagUtils {
+public final class InlineTagUtil {
 
     /**
      * Inline tag pattern.
@@ -42,7 +42,7 @@ public final class InlineTagUtils {
     private static final Pattern JAVADOC_PREFIX_PATTERN = Pattern.compile(
         "^\\s*\\*", Pattern.MULTILINE);
 
-    /** Pattern matching whitespace, used by {@link InlineTagUtils#collapseWhitespace(String)}. */
+    /** Pattern matching whitespace, used by {@link InlineTagUtil#collapseWhitespace(String)}. */
     private static final Pattern WHITESPACE_PATTERN = Pattern.compile("\\s+");
 
     /** Pattern matching a newline. */
@@ -55,7 +55,7 @@ public final class InlineTagUtils {
     private static final String CARRIAGE_RETURN = "\r";
 
     /** Prevent instantiation. */
-    private InlineTagUtils() {
+    private InlineTagUtil() {
     }
 
     /**

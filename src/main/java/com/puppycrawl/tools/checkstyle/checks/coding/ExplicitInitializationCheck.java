@@ -23,8 +23,8 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
-import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <p>
@@ -147,8 +147,8 @@ public class ExplicitInitializationCheck extends AbstractCheck {
 
         // do not check local variables and
         // fields declared in interface/annotations
-        if (!ScopeUtils.isLocalVariableDef(ast)
-                && !ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
+        if (!ScopeUtil.isLocalVariableDef(ast)
+                && !ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
             final DetailAST assign = ast.findFirstToken(TokenTypes.ASSIGN);
 
             if (assign != null) {
@@ -200,7 +200,7 @@ public class ExplicitInitializationCheck extends AbstractCheck {
             case TokenTypes.NUM_INT:
             case TokenTypes.NUM_LONG:
                 final String text = expr.getText();
-                isZero = Double.compare(CheckUtils.parseDouble(text, type), 0.0) == 0;
+                isZero = Double.compare(CheckUtil.parseDouble(text, type), 0.0) == 0;
                 break;
             default:
                 isZero = false;

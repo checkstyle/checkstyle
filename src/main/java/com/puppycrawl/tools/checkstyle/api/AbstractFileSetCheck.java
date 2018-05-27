@@ -24,7 +24,7 @@ import java.util.Arrays;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Provides common functionality for many FileSetChecks.
@@ -45,7 +45,7 @@ public abstract class AbstractFileSetCheck
     private MessageDispatcher messageDispatcher;
 
     /** The file extensions that are accepted by this filter. */
-    private String[] fileExtensions = CommonUtils.EMPTY_STRING_ARRAY;
+    private String[] fileExtensions = CommonUtil.EMPTY_STRING_ARRAY;
 
     /**
      * Called to process a file that matches the specified file extensions.
@@ -77,7 +77,7 @@ public abstract class AbstractFileSetCheck
         final SortedSet<LocalizedMessage> messages = MESSAGE_COLLECTOR.get();
         messages.clear();
         // Process only what interested in
-        if (CommonUtils.matchesFileExtension(file, fileExtensions)) {
+        if (CommonUtil.matchesFileExtension(file, fileExtensions)) {
             processFiltered(file, fileText);
         }
         final SortedSet<LocalizedMessage> result = new TreeSet<>(messages);
@@ -129,7 +129,7 @@ public abstract class AbstractFileSetCheck
         fileExtensions = new String[extensions.length];
         for (int i = 0; i < extensions.length; i++) {
             final String extension = extensions[i];
-            if (CommonUtils.startsWithChar(extension, '.')) {
+            if (CommonUtil.startsWithChar(extension, '.')) {
                 fileExtensions[i] = extension;
             }
             else {

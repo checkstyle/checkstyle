@@ -33,7 +33,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
 
@@ -195,7 +195,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("closingParens", "ignore");
         checkConfig.addAttribute("elementStyle", "ignore");
         checkConfig.addAttribute("trailingArrayComma", "ALWAYS");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputAnnotationUseStyleWithTrailingComma.java"), expected);
     }
@@ -226,7 +226,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("closingParens", "ignore");
         checkConfig.addAttribute("elementStyle", "ignore");
         checkConfig.addAttribute("trailingArrayComma", "NEVER");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputAnnotationUseStyleNoTrailingComma.java"), expected);
     }
@@ -237,7 +237,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("closingParens", "ignore");
         checkConfig.addAttribute("elementStyle", "ignore");
         checkConfig.addAttribute("trailingArrayComma", "ignore");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputAnnotationUseStyleDifferentStyles.java"), expected);
     }
@@ -246,7 +246,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     public void testAnnotationsWithoutDefaultValues() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationUseStyleCheck.class);
         checkConfig.addAttribute("closingParens", "NEVER");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputAnnotationUseStyleParams.java"), expected);
     }
@@ -280,7 +280,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("closingParens", "ignore");
         checkConfig.addAttribute("elementStyle", "COMPACT_NO_ARRAY");
         checkConfig.addAttribute("trailingArrayComma", "ignore");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputAnnotationUseStyle.java"), expected);
     }

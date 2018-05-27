@@ -29,7 +29,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
 
@@ -42,14 +42,14 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
     public void testGetRequiredTokens() {
         final TrailingCommentCheck checkObj = new TrailingCommentCheck();
         assertArrayEquals("Required tokens array is not empty",
-                CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+                CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
     public void testGetAcceptableTokens() {
         final TrailingCommentCheck checkObj = new TrailingCommentCheck();
         assertArrayEquals("Acceptable tokens array is not empty",
-                CommonUtils.EMPTY_INT_ARRAY, checkObj.getAcceptableTokens());
+                CommonUtil.EMPTY_INT_ARRAY, checkObj.getAcceptableTokens());
     }
 
     @Test

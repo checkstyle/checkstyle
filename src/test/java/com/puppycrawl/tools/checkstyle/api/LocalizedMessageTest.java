@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import static com.puppycrawl.tools.checkstyle.utils.CommonUtils.EMPTY_OBJECT_ARRAY;
+import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_OBJECT_ARRAY;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;

@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * Checks the number of methods declared in each type declaration by access
@@ -156,7 +156,7 @@ public final class MethodCountCheck extends AbstractCheck {
     private void raiseCounter(DetailAST method) {
         final MethodCounter actualCounter = counters.peek();
         final DetailAST temp = method.findFirstToken(TokenTypes.MODIFIERS);
-        final Scope scope = ScopeUtils.getScopeFromMods(temp);
+        final Scope scope = ScopeUtil.getScopeFromMods(temp);
         actualCounter.increment(scope);
     }
 

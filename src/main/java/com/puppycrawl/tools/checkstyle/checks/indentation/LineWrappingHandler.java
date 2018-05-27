@@ -26,7 +26,7 @@ import java.util.TreeMap;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * This class checks line-wrapping into definitions and expressions. The
@@ -312,7 +312,7 @@ public class LineWrappingHandler {
         final String line =
             indentCheck.getLine(ast.getLineNo() - 1);
 
-        return CommonUtils.lengthExpandedTabs(line, ast.getColumnNo(),
+        return CommonUtil.lengthExpandedTabs(line, ast.getColumnNo(),
             indentCheck.getIndentationTabWidth());
     }
 
@@ -339,7 +339,7 @@ public class LineWrappingHandler {
         while (Character.isWhitespace(line.charAt(index))) {
             index++;
         }
-        return CommonUtils.lengthExpandedTabs(line, index, indentCheck.getIndentationTabWidth());
+        return CommonUtil.lengthExpandedTabs(line, index, indentCheck.getIndentationTabWidth());
     }
 
     /**

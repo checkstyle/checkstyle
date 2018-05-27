@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.utils.checkutils;
+package com.puppycrawl.tools.checkstyle.utils.checkutil;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,7 +9,7 @@ import com.google.common.base.Objects;
  * @param <V> ssss
  * @param <C> dddd
  */
-public class InputCheckUtilsTest<V, C> {
+public class InputCheckUtilTest<V, C> {
     private Map<String, Integer> field = new HashMap<>();
     protected int[] array = new int[10];
     public static final Long VAR_1 = 1L;
@@ -23,7 +23,7 @@ public class InputCheckUtilsTest<V, C> {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        InputCheckUtilsTest<V, C> that = (InputCheckUtilsTest<V, C>) o;
+        InputCheckUtilTest<V, C> that = (InputCheckUtilTest<V, C>) o;
         return Objects.equal(field, that.field) &&
                 Objects.equal(array, that.array);
     }
@@ -66,5 +66,5 @@ public class InputCheckUtilsTest<V, C> {
         }
     }
 
-    public void testReceiver(InputCheckUtilsTest<V, C> this, int variable) {}
+    public void testReceiver(InputCheckUtilTest<V, C>this, int variable) {}
 }

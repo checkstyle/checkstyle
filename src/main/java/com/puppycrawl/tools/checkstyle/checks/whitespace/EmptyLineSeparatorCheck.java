@@ -27,8 +27,8 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
  * Checks for empty line separators after header, package, all import declarations,
@@ -279,7 +279,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return CommonUtil.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -490,7 +490,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         final int number = 3;
         if (lineNo >= number) {
             final String prePreviousLine = getLines()[lineNo - number];
-            result = CommonUtils.isBlank(prePreviousLine);
+            result = CommonUtil.isBlank(prePreviousLine);
         }
         return result;
     }
@@ -551,7 +551,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         if (lineNo != 1) {
             // [lineNo - 2] is the number of the previous line as the numbering starts from zero.
             final String lineBefore = getLines()[lineNo - 2];
-            result = CommonUtils.isBlank(lineBefore);
+            result = CommonUtil.isBlank(lineBefore);
         }
         return result;
     }
@@ -565,7 +565,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         boolean result = false;
         final DetailAST previous = token.getPreviousSibling();
         if (previous.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
-                && JavadocUtils.isJavadocComment(previous.getFirstChild().getText())) {
+                && JavadocUtil.isJavadocComment(previous.getFirstChild().getText())) {
             result = true;
         }
         return result;

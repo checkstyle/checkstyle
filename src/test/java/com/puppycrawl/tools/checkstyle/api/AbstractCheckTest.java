@@ -33,7 +33,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class AbstractCheckTest extends AbstractPathTestSupport {
 
@@ -47,7 +47,7 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
-                return CommonUtils.EMPTY_INT_ARRAY;
+                return CommonUtil.EMPTY_INT_ARRAY;
             }
 
             @Override
@@ -62,7 +62,7 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
         };
         // Eventually it will become clear abstract method
         Assert.assertArrayEquals("Invalid number of tokens, should be empty",
-                CommonUtils.EMPTY_INT_ARRAY, check.getRequiredTokens());
+                CommonUtil.EMPTY_INT_ARRAY, check.getRequiredTokens());
     }
 
     @Test
@@ -70,7 +70,7 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
-                return CommonUtils.EMPTY_INT_ARRAY;
+                return CommonUtil.EMPTY_INT_ARRAY;
             }
 
             @Override
@@ -85,7 +85,7 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
         };
         // Eventually it will become clear abstract method
         Assert.assertArrayEquals("Invalid number of tokens, should be empty",
-                CommonUtils.EMPTY_INT_ARRAY, check.getAcceptableTokens());
+                CommonUtil.EMPTY_INT_ARRAY, check.getAcceptableTokens());
     }
 
     @Test
@@ -93,17 +93,17 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
-                return CommonUtils.EMPTY_INT_ARRAY;
+                return CommonUtil.EMPTY_INT_ARRAY;
             }
 
             @Override
             public int[] getAcceptableTokens() {
-                return CommonUtils.EMPTY_INT_ARRAY;
+                return CommonUtil.EMPTY_INT_ARRAY;
             }
 
             @Override
             public int[] getRequiredTokens() {
-                return CommonUtils.EMPTY_INT_ARRAY;
+                return CommonUtil.EMPTY_INT_ARRAY;
             }
         };
         final AbstractCheck checkSpy = spy(check);
@@ -118,7 +118,7 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
-                return CommonUtils.EMPTY_INT_ARRAY;
+                return CommonUtil.EMPTY_INT_ARRAY;
             }
 
             @Override
@@ -143,7 +143,7 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
-                return CommonUtils.EMPTY_INT_ARRAY;
+                return CommonUtil.EMPTY_INT_ARRAY;
             }
 
             @Override
@@ -167,7 +167,7 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
-                return CommonUtils.EMPTY_INT_ARRAY;
+                return CommonUtil.EMPTY_INT_ARRAY;
             }
 
             @Override

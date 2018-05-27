@@ -41,22 +41,22 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier;
 
-public class CheckUtilsTest extends AbstractPathTestSupport {
+public class CheckUtilTest extends AbstractPathTestSupport {
 
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/utils/checkutils";
+        return "com/puppycrawl/tools/checkstyle/utils/checkutil";
     }
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertTrue("Constructor is not private",
-                isUtilsClassHasPrivateConstructor(CheckUtils.class, true));
+                isUtilsClassHasPrivateConstructor(CheckUtil.class, true));
     }
 
     @Test
     public void testParseDoubleWithIncorrectToken() {
-        final double parsedDouble = CheckUtils.parseDouble("1_02", TokenTypes.ASSIGN);
+        final double parsedDouble = CheckUtil.parseDouble("1_02", TokenTypes.ASSIGN);
         assertEquals("Invalid parse result", Double.NaN, parsedDouble, 0.0);
     }
 
@@ -66,7 +66,7 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
         ast.setType(TokenTypes.ASSIGN);
         ast.setText("ASSIGN");
         assertFalse("Invalid elseIf check result 'ASSIGN' is not 'else if'",
-                CheckUtils.isElseIf(ast));
+                CheckUtil.isElseIf(ast));
 
         final DetailAST parentAst = new DetailAST();
         parentAst.setType(TokenTypes.LCURLY);
@@ -78,7 +78,7 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
         parentAst.addChild(ifAst);
 
         assertFalse("Invalid elseIf check result: 'IF' is not 'else if'",
-                CheckUtils.isElseIf(ifAst));
+                CheckUtil.isElseIf(ifAst));
 
         final DetailAST parentAst2 = new DetailAST();
         parentAst2.setType(TokenTypes.SLIST);
@@ -87,13 +87,13 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
         parentAst2.addChild(ifAst);
 
         assertFalse("Invalid elseIf check result: 'SLIST' is not 'else if'",
-                CheckUtils.isElseIf(ifAst));
+                CheckUtil.isElseIf(ifAst));
 
         final DetailAST elseAst = new DetailAST();
         elseAst.setType(TokenTypes.LITERAL_ELSE);
 
         elseAst.setFirstChild(ifAst);
-        assertTrue("Invalid elseIf check result", CheckUtils.isElseIf(ifAst));
+        assertTrue("Invalid elseIf check result", CheckUtil.isElseIf(ifAst));
     }
 
     @Test
@@ -110,7 +110,7 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
         metDef.addChild(modifiers);
 
         assertFalse("Invalid result: ast is not equals method",
-                CheckUtils.isEqualsMethod(metDef));
+                CheckUtil.isEqualsMethod(metDef));
 
         metDef.removeChildren();
 
@@ -135,7 +135,7 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
         metDef.addChild(parameters);
 
         assertFalse("Invalid result: ast is not equals method",
-                CheckUtils.isEqualsMethod(metDef));
+                CheckUtil.isEqualsMethod(metDef));
     }
 
     @Test
@@ -144,7 +144,7 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
         modifiers.setType(TokenTypes.METHOD_DEF);
 
         try {
-            CheckUtils.getAccessModifierFromModifiersToken(modifiers);
+            CheckUtil.getAccessModifierFromModifiersToken(modifiers);
             fail(IllegalArgumentException.class.getSimpleName() + " was expected.");
         }
         catch (IllegalArgumentException exc) {
@@ -157,7 +157,7 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
     @Test
     public void testGetAccessModifierFromModifiersTokenWithNullParameter() {
         try {
-            CheckUtils.getAccessModifierFromModifiersToken(null);
+            CheckUtil.getAccessModifierFromModifiersToken(null);
             fail(IllegalArgumentException.class.getSimpleName() + " was expected.");
         }
         catch (IllegalArgumentException exc) {
@@ -172,7 +172,7 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
         final DetailAST typeNode = getNodeFromFile(TokenTypes.TYPE);
 
         assertEquals("Invalid full type", "Map[13x12]",
-                CheckUtils.createFullType(typeNode).toString());
+                CheckUtil.createFullType(typeNode).toString());
     }
 
     @Test
@@ -181,7 +181,7 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
                 .getNextSibling().getFirstChild().getNextSibling();
 
         assertEquals("Invalid full type", "int[14x14]",
-                CheckUtils.createFullType(arrayTypeNode).toString());
+                CheckUtil.createFullType(arrayTypeNode).toString());
     }
 
     @Test
@@ -190,7 +190,7 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
         final List<String> expected = Arrays.asList("V", "C");
 
         assertEquals("Invalid type parameters",
-                expected, CheckUtils.getTypeParameterNames(parameterizedClassNode));
+                expected, CheckUtil.getTypeParameterNames(parameterizedClassNode));
     }
 
     @Test
@@ -202,7 +202,7 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
                 firstTypeParameter.getNextSibling().getNextSibling());
 
         assertEquals("Invalid type parameters", expected,
-                CheckUtils.getTypeParameters(parameterizedClassNode));
+                CheckUtil.getTypeParameters(parameterizedClassNode));
     }
 
     @Test
@@ -211,9 +211,9 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
         final DetailAST someOtherMethod = equalsMethodNode.getNextSibling();
 
         assertTrue("Invalid result: AST provided is not equals method",
-                CheckUtils.isEqualsMethod(equalsMethodNode));
+                CheckUtil.isEqualsMethod(equalsMethodNode));
         assertFalse("Invalid result: AST provided is equals method",
-                CheckUtils.isEqualsMethod(someOtherMethod));
+                CheckUtil.isEqualsMethod(someOtherMethod));
     }
 
     @Test
@@ -227,11 +227,11 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
                 firstElseNode.getParent().getNextSibling().getNextSibling();
 
         assertTrue("Invalid result: AST provided is not else if with curly",
-                CheckUtils.isElseIf(ifElseWithCurlyBraces));
+                CheckUtil.isElseIf(ifElseWithCurlyBraces));
         assertTrue("Invalid result: AST provided is not else if with curly",
-                CheckUtils.isElseIf(ifElse));
+                CheckUtil.isElseIf(ifElse));
         assertFalse("Invalid result: AST provided is else if with curly",
-                CheckUtils.isElseIf(ifWithoutElse));
+                CheckUtil.isElseIf(ifWithoutElse));
     }
 
     @Test
@@ -240,9 +240,9 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
         final DetailAST voidMethod = nonVoidMethod.getNextSibling();
 
         assertTrue("Invalid result: AST provided is void method",
-                CheckUtils.isNonVoidMethod(nonVoidMethod));
+                CheckUtil.isNonVoidMethod(nonVoidMethod));
         assertFalse("Invalid result: AST provided is non void method",
-                CheckUtils.isNonVoidMethod(voidMethod));
+                CheckUtil.isNonVoidMethod(voidMethod));
     }
 
     @Test
@@ -251,9 +251,9 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
         final DetailAST getterMethod = notGetterMethod.getNextSibling().getNextSibling();
 
         assertTrue("Invalid result: AST provided is getter method",
-                CheckUtils.isGetterMethod(getterMethod));
+                CheckUtil.isGetterMethod(getterMethod));
         assertFalse("Invalid result: AST provided is not getter method",
-                CheckUtils.isGetterMethod(notGetterMethod));
+                CheckUtil.isGetterMethod(notGetterMethod));
     }
 
     @Test
@@ -264,9 +264,9 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
         final DetailAST notSetterMethod = setterMethod.getNextSibling();
 
         assertTrue("Invalid result: AST provided is setter method",
-                CheckUtils.isSetterMethod(setterMethod));
+                CheckUtil.isSetterMethod(setterMethod));
         assertFalse("Invalid result: AST provided is not setter method",
-                CheckUtils.isSetterMethod(notSetterMethod));
+                CheckUtil.isSetterMethod(notSetterMethod));
     }
 
     @Test
@@ -277,13 +277,13 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
         final DetailAST packageVariable = publicVariable.getNextSibling();
 
         assertEquals("Invalid access modifier", AccessModifier.PRIVATE,
-                CheckUtils.getAccessModifierFromModifiersToken(privateVariable.getFirstChild()));
+                CheckUtil.getAccessModifierFromModifiersToken(privateVariable.getFirstChild()));
         assertEquals("Invalid access modifier", AccessModifier.PROTECTED,
-                CheckUtils.getAccessModifierFromModifiersToken(protectedVariable.getFirstChild()));
+                CheckUtil.getAccessModifierFromModifiersToken(protectedVariable.getFirstChild()));
         assertEquals("Invalid access modifier", AccessModifier.PUBLIC,
-                CheckUtils.getAccessModifierFromModifiersToken(publicVariable.getFirstChild()));
+                CheckUtil.getAccessModifierFromModifiersToken(publicVariable.getFirstChild()));
         assertEquals("Invalid access modifier", AccessModifier.PACKAGE,
-                CheckUtils.getAccessModifierFromModifiersToken(packageVariable.getFirstChild()));
+                CheckUtil.getAccessModifierFromModifiersToken(packageVariable.getFirstChild()));
     }
 
     @Test
@@ -291,7 +291,7 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
         final DetailAST classDef = getNodeFromFile(TokenTypes.CLASS_DEF);
 
         assertEquals("Invalid first node", classDef.getFirstChild().getFirstChild(),
-                CheckUtils.getFirstNode(classDef));
+                CheckUtil.getFirstNode(classDef));
     }
 
     @Test
@@ -306,7 +306,7 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
 
         root.addChild(child);
 
-        assertEquals("Unexpected node", root, CheckUtils.getFirstNode(root));
+        assertEquals("Unexpected node", root, CheckUtil.getFirstNode(root));
     }
 
     @Test
@@ -321,7 +321,7 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
 
         root.addChild(child);
 
-        assertEquals("Unexpected node", root, CheckUtils.getFirstNode(root));
+        assertEquals("Unexpected node", root, CheckUtil.getFirstNode(root));
     }
 
     @Test
@@ -334,56 +334,56 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
                 receiverParameter.getNextSibling().getNextSibling();
 
         assertTrue("Invalid result: parameter provided is receiver parameter",
-                CheckUtils.isReceiverParameter(receiverParameter));
+                CheckUtil.isReceiverParameter(receiverParameter));
         assertFalse("Invalid result: parameter provided is not receiver parameter",
-                CheckUtils.isReceiverParameter(simpleParameter));
+                CheckUtil.isReceiverParameter(simpleParameter));
     }
 
     @Test
     public void testParseDoubleFloatingPointValues() {
         assertEquals("Invalid parse result", -0.05,
-                CheckUtils.parseDouble("-0.05f", TokenTypes.NUM_FLOAT), 0);
+                CheckUtil.parseDouble("-0.05f", TokenTypes.NUM_FLOAT), 0);
         assertEquals("Invalid parse result", 10.0,
-                CheckUtils.parseDouble("10.0", TokenTypes.NUM_DOUBLE), 0);
+                CheckUtil.parseDouble("10.0", TokenTypes.NUM_DOUBLE), 0);
         assertEquals("Invalid parse result", 1230,
-                CheckUtils.parseDouble("1.23e3", TokenTypes.NUM_DOUBLE), 0);
+                CheckUtil.parseDouble("1.23e3", TokenTypes.NUM_DOUBLE), 0);
         assertEquals("Invalid parse result", -321,
-                CheckUtils.parseDouble("-3.21E2", TokenTypes.NUM_DOUBLE), 0);
+                CheckUtil.parseDouble("-3.21E2", TokenTypes.NUM_DOUBLE), 0);
         assertEquals("Invalid parse result", -0.0,
-                CheckUtils.parseDouble("-0.0", TokenTypes.NUM_DOUBLE), 0);
+                CheckUtil.parseDouble("-0.0", TokenTypes.NUM_DOUBLE), 0);
         assertEquals("Invalid parse result", Double.NaN,
-                CheckUtils.parseDouble("NaN", TokenTypes.NUM_DOUBLE), 0);
+                CheckUtil.parseDouble("NaN", TokenTypes.NUM_DOUBLE), 0);
     }
 
     @Test
     public void testParseDoubleIntegerValues() {
         assertEquals("Invalid parse result", 0.0,
-                CheckUtils.parseDouble("0L", TokenTypes.NUM_LONG), 0);
+                CheckUtil.parseDouble("0L", TokenTypes.NUM_LONG), 0);
         assertEquals("Invalid parse result", 0b101,
-                CheckUtils.parseDouble("0B101", TokenTypes.NUM_INT), 0);
+                CheckUtil.parseDouble("0B101", TokenTypes.NUM_INT), 0);
         assertEquals("Invalid parse result", 289_775_941,
-                CheckUtils.parseDouble("0b10001010001011010000101000101L", TokenTypes.NUM_LONG), 0);
+                CheckUtil.parseDouble("0b10001010001011010000101000101L", TokenTypes.NUM_LONG), 0);
         assertEquals("Invalid parse result", 1.0,
-                CheckUtils.parseDouble("1", TokenTypes.NUM_INT), 0);
+                CheckUtil.parseDouble("1", TokenTypes.NUM_INT), 0);
         assertEquals("Invalid parse result", 8.0,
-                CheckUtils.parseDouble("8L", TokenTypes.NUM_LONG), 0);
+                CheckUtil.parseDouble("8L", TokenTypes.NUM_LONG), 0);
         assertEquals("Invalid parse result", -2.147_483_648E10,
-                CheckUtils.parseDouble("-21474836480", TokenTypes.NUM_LONG), 0);
+                CheckUtil.parseDouble("-21474836480", TokenTypes.NUM_LONG), 0);
         assertEquals("Invalid parse result", -2,
-                CheckUtils.parseDouble("-2", TokenTypes.NUM_INT), 0);
+                CheckUtil.parseDouble("-2", TokenTypes.NUM_INT), 0);
         assertEquals("Invalid parse result", -1,
-                CheckUtils.parseDouble("0xffffffff", TokenTypes.NUM_INT), 0);
+                CheckUtil.parseDouble("0xffffffff", TokenTypes.NUM_INT), 0);
         assertEquals("Invalid parse result", 2915.0,
-                CheckUtils.parseDouble("0x0B63", TokenTypes.NUM_INT), 0);
+                CheckUtil.parseDouble("0x0B63", TokenTypes.NUM_INT), 0);
         assertEquals("Invalid parse result", 2.147_483_647E10,
-                CheckUtils.parseDouble("21474836470", TokenTypes.NUM_LONG), 0);
+                CheckUtil.parseDouble("21474836470", TokenTypes.NUM_LONG), 0);
         assertEquals("Invalid parse result", 59.0,
-                CheckUtils.parseDouble("073l", TokenTypes.NUM_LONG), 0);
+                CheckUtil.parseDouble("073l", TokenTypes.NUM_LONG), 0);
     }
 
     @Test
     public void testParseClassNames() {
-        final Set<String> actual = CheckUtils.parseClassNames(
+        final Set<String> actual = CheckUtil.parseClassNames(
                 "I.am.class.name.with.dot.in.the.end.", "ClassOnly", "my.Class");
         final Set<String> expected = new HashSet<>();
         expected.add("I.am.class.name.with.dot.in.the.end.");
@@ -394,7 +394,7 @@ public class CheckUtilsTest extends AbstractPathTestSupport {
     }
 
     private DetailAST getNodeFromFile(int type) throws Exception {
-        return getNode(JavaParser.parseFile(new File(getPath("InputCheckUtilsTest.java")),
+        return getNode(JavaParser.parseFile(new File(getPath("InputCheckUtilTest.java")),
             JavaParser.Options.WITH_COMMENTS), type);
     }
 

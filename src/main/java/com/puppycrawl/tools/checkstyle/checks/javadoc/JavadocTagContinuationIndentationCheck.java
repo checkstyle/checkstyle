@@ -24,8 +24,8 @@ import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
  * <p>
@@ -81,11 +81,11 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
         if (!isInlineDescription(ast)) {
             final List<DetailNode> textNodes = getAllNewlineNodes(ast);
             for (DetailNode newlineNode : textNodes) {
-                final DetailNode textNode = JavadocUtils.getNextSibling(JavadocUtils
+                final DetailNode textNode = JavadocUtil.getNextSibling(JavadocUtil
                         .getNextSibling(newlineNode));
                 if (textNode != null && textNode.getType() == JavadocTokenTypes.TEXT) {
                     final String text = textNode.getText();
-                    if (!CommonUtils.isBlank(text.trim())
+                    if (!CommonUtil.isBlank(text.trim())
                             && (text.length() <= offset
                                     || !text.substring(1, offset + 1).trim().isEmpty())) {
                         log(textNode.getLineNumber(), MSG_KEY, offset);
@@ -102,12 +102,12 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      */
     private static List<DetailNode> getAllNewlineNodes(DetailNode descriptionNode) {
         final List<DetailNode> textNodes = new ArrayList<>();
-        DetailNode node = JavadocUtils.getFirstChild(descriptionNode);
-        while (JavadocUtils.getNextSibling(node) != null) {
+        DetailNode node = JavadocUtil.getFirstChild(descriptionNode);
+        while (JavadocUtil.getNextSibling(node) != null) {
             if (node.getType() == JavadocTokenTypes.NEWLINE) {
                 textNodes.add(node);
             }
-            node = JavadocUtils.getNextSibling(node);
+            node = JavadocUtil.getNextSibling(node);
         }
         return textNodes;
     }

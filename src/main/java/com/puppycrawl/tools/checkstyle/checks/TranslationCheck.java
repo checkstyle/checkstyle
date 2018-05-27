@@ -48,7 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
@@ -134,19 +134,19 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * variant suffix. For example, messages_es_ES_UNIX.properties.
      */
     private static final Pattern LANGUAGE_COUNTRY_VARIANT_PATTERN =
-        CommonUtils.createPattern("^.+\\_[a-z]{2}\\_[A-Z]{2}\\_[A-Za-z]+\\..+$");
+        CommonUtil.createPattern("^.+\\_[a-z]{2}\\_[A-Z]{2}\\_[A-Za-z]+\\..+$");
     /**
      * Regexp pattern for bundles names which end with language code, followed by country code
      * suffix. For example, messages_es_ES.properties.
      */
     private static final Pattern LANGUAGE_COUNTRY_PATTERN =
-        CommonUtils.createPattern("^.+\\_[a-z]{2}\\_[A-Z]{2}\\..+$");
+        CommonUtil.createPattern("^.+\\_[a-z]{2}\\_[A-Z]{2}\\..+$");
     /**
      * Regexp pattern for bundles names which end with language code suffix.
      * For example, messages_es.properties.
      */
     private static final Pattern LANGUAGE_PATTERN =
-        CommonUtils.createPattern("^.+\\_[a-z]{2}\\..+$");
+        CommonUtil.createPattern("^.+\\_[a-z]{2}\\..+$");
 
     /** File name format for default translation. */
     private static final String DEFAULT_TRANSLATION_FILE_NAME_FORMATTER = "%s.%s";
@@ -178,7 +178,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
      */
     public TranslationCheck() {
         setFileExtensions("properties");
-        baseName = CommonUtils.createPattern("^messages.*$");
+        baseName = CommonUtil.createPattern("^messages.*$");
         log = LogFactory.getLog(TranslationCheck.class);
     }
 
@@ -345,7 +345,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
             final String baseName = extractBaseName(fileName);
             final Matcher baseNameMatcher = baseNameRegexp.matcher(baseName);
             if (baseNameMatcher.matches()) {
-                final String extension = CommonUtils.getFileExtension(fileName);
+                final String extension = CommonUtil.getFileExtension(fileName);
                 final String path = getPath(currentFile.getAbsolutePath());
                 final ResourceBundle newBundle = new ResourceBundle(baseName, path, extension);
                 final Optional<ResourceBundle> bundle = findBundle(resourceBundles, newBundle);

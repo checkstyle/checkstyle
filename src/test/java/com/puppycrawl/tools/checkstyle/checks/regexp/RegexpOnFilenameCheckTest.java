@@ -34,7 +34,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
 
@@ -47,7 +47,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
     public void testDefaultConfigurationOnValidInput() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpOnFilenameCheck.class);
         verify(checkConfig, getPath("InputRegexpOnFilenameSemantic.java"),
-                CommonUtils.EMPTY_STRING_ARRAY);
+                CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -78,7 +78,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("match", "true");
         checkConfig.addAttribute("fileNamePattern", "BAD.*");
         verify(checkConfig, getPath("InputRegexpOnFilenameSemantic.java"),
-                CommonUtils.EMPTY_STRING_ARRAY);
+                CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -99,7 +99,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("match", "false");
         checkConfig.addAttribute("fileNamePattern", ".*\\.java");
         verify(checkConfig, getPath("InputRegexpOnFilenameSemantic.java"),
-                CommonUtils.EMPTY_STRING_ARRAY);
+                CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -120,7 +120,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("match", "true");
         checkConfig.addAttribute("folderPattern", "BAD.*");
         verify(checkConfig, getPath("InputRegexpOnFilenameSemantic.java"),
-                CommonUtils.EMPTY_STRING_ARRAY);
+                CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -141,7 +141,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("match", "false");
         checkConfig.addAttribute("folderPattern", ".*[\\\\/]resources[\\\\/].*");
         verify(checkConfig, getPath("InputRegexpOnFilenameSemantic.java"),
-                CommonUtils.EMPTY_STRING_ARRAY);
+                CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -164,7 +164,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("folderPattern", "BAD.*");
         checkConfig.addAttribute("fileNamePattern", ".*\\.properties");
         verify(checkConfig, getPath("InputRegexpOnFilenameSemantic.java"),
-                CommonUtils.EMPTY_STRING_ARRAY);
+                CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -174,7 +174,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("folderPattern", ".*[\\\\/]resources[\\\\/].*");
         checkConfig.addAttribute("fileNamePattern", ".*\\.properties");
         verify(checkConfig, getPath("InputRegexpOnFilenameSemantic.java"),
-                CommonUtils.EMPTY_STRING_ARRAY);
+                CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -184,7 +184,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("folderPattern", "BAD.*");
         checkConfig.addAttribute("fileNamePattern", ".*\\.java");
         verify(checkConfig, getPath("InputRegexpOnFilenameSemantic.java"),
-                CommonUtils.EMPTY_STRING_ARRAY);
+                CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -207,7 +207,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("folderPattern", ".*[\\\\/]javastrangefolder[\\\\/].*");
         checkConfig.addAttribute("fileNamePattern", ".*\\.dat");
         verify(checkConfig, getPath("InputRegexpOnFilenameSemantic.java"),
-                CommonUtils.EMPTY_STRING_ARRAY);
+                CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -217,7 +217,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("folderPattern", ".*[\\\\/]govstrangefolder[\\\\/].*");
         checkConfig.addAttribute("fileNamePattern", ".*\\.java");
         verify(checkConfig, getPath("InputRegexpOnFilenameSemantic.java"),
-                CommonUtils.EMPTY_STRING_ARRAY);
+                CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -226,7 +226,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("fileNamePattern", ".*\\.java");
         checkConfig.addAttribute("ignoreFileNameExtensions", "true");
         verify(checkConfig, getPath("InputRegexpOnFilenameSemantic.java"),
-                CommonUtils.EMPTY_STRING_ARRAY);
+                CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -235,7 +235,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("fileNamePattern", "\\.");
         checkConfig.addAttribute("ignoreFileNameExtensions", "true");
         verify(checkConfig, getPath("InputRegexpOnFilenameNoExtension"),
-                CommonUtils.EMPTY_STRING_ARRAY);
+                CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -268,7 +268,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
         final File fileWithoutParent = spy(new File(getPath("package-info.java")));
         when(fileWithoutParent.getParent()).thenReturn(null);
         when(fileWithoutParent.getParentFile()).thenReturn(null);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(createChecker(moduleConfig),
                 new File[] {fileWithoutParent},
                 getPath("package-info.java"), expected);

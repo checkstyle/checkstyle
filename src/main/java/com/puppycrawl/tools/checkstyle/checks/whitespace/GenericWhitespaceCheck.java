@@ -23,7 +23,7 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
@@ -311,7 +311,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      *     false if there is nothing before or some other characters
      */
     private static boolean containsWhitespaceBefore(int before, String line) {
-        return before != 0 && CommonUtils.hasWhitespaceBefore(before, line);
+        return before != 0 && CommonUtil.hasWhitespaceBefore(before, line);
     }
 
     /**

@@ -39,10 +39,10 @@ import com.puppycrawl.tools.checkstyle.api.RootModule;
 /**
  * Contains utility methods for module reflection.
  */
-public final class ModuleReflectionUtils {
+public final class ModuleReflectionUtil {
 
     /** Prevent instantiation. */
-    private ModuleReflectionUtils() {
+    private ModuleReflectionUtil() {
     }
 
     /**
@@ -59,7 +59,7 @@ public final class ModuleReflectionUtils {
         return packages.stream()
                 .flatMap(pkg -> classPath.getTopLevelClasses(pkg).stream())
                 .map(ClassPath.ClassInfo::load)
-                .filter(ModuleReflectionUtils::isCheckstyleModule)
+                .filter(ModuleReflectionUtil::isCheckstyleModule)
                 .collect(Collectors.toSet());
     }
 

@@ -57,7 +57,7 @@ import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class TreeWalkerTest extends AbstractModuleTestSupport {
 
@@ -94,7 +94,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             final String content = "public class Main { public static final int k = 5 + 4; }";
             writer.write(content);
         }
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, file.getPath(), expected);
     }
 
@@ -106,7 +106,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tokens", "VARIABLE_DEF, ENUM_DEF, CLASS_DEF, METHOD_DEF,"
                 + "IMPORT");
         try {
-            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
             verify(checkConfig, getPath("InputTreeWalker.java"), expected);
             fail("CheckstyleException is expected");
         }
@@ -127,7 +127,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     public void testOnEmptyFile() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(HiddenFieldCheck.class);
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, pathToEmptyFile, expected);
     }
@@ -137,7 +137,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocPackageCheck.class);
 
         try {
-            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
             verify(createChecker(checkConfig, ModuleCreationOption.IN_TREEWALKER),
                     temporaryFolder.newFile().getPath(), expected);
             fail("CheckstyleException is expected");
@@ -188,7 +188,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
 
         try {
-            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
             verify(checkConfig, pathToEmptyFile, expected);
             fail("Exception is expected");
         }
@@ -243,7 +243,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             new HashSet<>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
         final File file = temporaryFolder.newFile("file.java");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checker, file.getPath(), expected);
     }
@@ -301,7 +301,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
 
         try {
-            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
             verify(checkConfig, pathToEmptyFile, expected);
             fail("CheckstyleException is expected");
         }
@@ -320,7 +320,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             createModuleConfig(RequiredTokenIsEmptyIntArray.class);
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, pathToEmptyFile, expected);
     }
 
@@ -465,7 +465,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(VerifyInitCheck.class);
         final File file = temporaryFolder.newFile("file.pdf");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, file.getPath(), expected);
         assertTrue("Init was not called", VerifyInitCheck.isInitWasCalled());
     }
@@ -476,7 +476,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(VerifyDestroyCheck.class);
         final File file = temporaryFolder.newFile("file.pdf");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, file.getPath(), expected);
         assertTrue("Destroy was not called", VerifyDestroyCheck.isDestroyWasCalled());
     }
@@ -487,7 +487,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(VerifyDestroyCommentCheck.class);
         final File file = temporaryFolder.newFile("file.pdf");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, file.getPath(), expected);
         assertTrue("Destroy was not called", VerifyDestroyCheck.isDestroyWasCalled());
     }
@@ -504,7 +504,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
 
         final String filePath = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkerConfig, filePath, expected);
         // One more time to use cache.
@@ -541,7 +541,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         @Override
         public int[] getDefaultTokens() {
-            return CommonUtils.EMPTY_INT_ARRAY;
+            return CommonUtil.EMPTY_INT_ARRAY;
         }
 
         @Override
@@ -572,7 +572,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         @Override
         public int[] getDefaultTokens() {
-            return CommonUtils.EMPTY_INT_ARRAY;
+            return CommonUtil.EMPTY_INT_ARRAY;
         }
 
         @Override
@@ -624,7 +624,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         @Override
         public int[] getAcceptableTokens() {
-            return CommonUtils.EMPTY_INT_ARRAY;
+            return CommonUtil.EMPTY_INT_ARRAY;
         }
 
     }
@@ -633,7 +633,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         @Override
         public int[] getRequiredTokens() {
-            return CommonUtils.EMPTY_INT_ARRAY;
+            return CommonUtil.EMPTY_INT_ARRAY;
         }
 
         @Override
@@ -643,7 +643,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         @Override
         public int[] getAcceptableTokens() {
-            return CommonUtils.EMPTY_INT_ARRAY;
+            return CommonUtil.EMPTY_INT_ARRAY;
         }
 
     }

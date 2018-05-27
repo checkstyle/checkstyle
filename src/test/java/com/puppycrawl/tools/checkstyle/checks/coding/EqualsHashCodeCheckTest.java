@@ -33,7 +33,7 @@ import org.junit.Test;
 import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class EqualsHashCodeCheckTest
     extends AbstractModuleTestSupport {
@@ -67,7 +67,7 @@ public class EqualsHashCodeCheckTest
     public void testBooleanMethods() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(EqualsHashCodeCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputEqualsHashCode.java"), expected);
     }
 
@@ -83,7 +83,7 @@ public class EqualsHashCodeCheckTest
             "94:13: " + getCheckMessage(MSG_KEY_HASHCODE)
         );
         final List<String> expectedThirdInputErrors =
-            Arrays.asList(CommonUtils.EMPTY_STRING_ARRAY);
+            Arrays.asList(CommonUtil.EMPTY_STRING_ARRAY);
 
         final String firstInput = getPath("InputEqualsHashCodeNoEquals.java");
         final String secondInput = getPath("InputEqualsHashCodeSemantic.java");

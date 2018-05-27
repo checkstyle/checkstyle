@@ -28,10 +28,10 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  * Utility methods for suppression filters.
  *
  */
-public final class FilterUtils {
+public final class FilterUtil {
 
     /** Stop instances being created. **/
-    private FilterUtils() {
+    private FilterUtil() {
     }
 
     /**
@@ -41,7 +41,7 @@ public final class FilterUtils {
      */
     public static boolean isFileExists(String fileName) {
         boolean suppressionSourceExists;
-        try (InputStream stream = CommonUtils.getUriByFilename(fileName).toURL().openStream()) {
+        try (InputStream stream = CommonUtil.getUriByFilename(fileName).toURL().openStream()) {
             suppressionSourceExists = true;
         }
         catch (CheckstyleException | IOException ignored) {

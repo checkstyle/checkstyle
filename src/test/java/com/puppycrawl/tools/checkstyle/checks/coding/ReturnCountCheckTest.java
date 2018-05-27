@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class ReturnCountCheckTest extends AbstractModuleTestSupport {
 
@@ -115,7 +115,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
     public void testWithReturnOnlyAsTokens() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ReturnCountCheck.class);
         checkConfig.addAttribute("tokens", "LITERAL_RETURN");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputReturnCountLambda.java"), expected);
     }
 

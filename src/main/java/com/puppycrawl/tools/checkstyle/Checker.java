@@ -55,7 +55,7 @@ import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.RootModule;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * This class provides the functionality to check a set of files.
@@ -107,7 +107,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
     private Context childContext;
 
     /** The file extensions that are accepted. */
-    private String[] fileExtensions = CommonUtils.EMPTY_STRING_ARRAY;
+    private String[] fileExtensions = CommonUtil.EMPTY_STRING_ARRAY;
 
     /**
      * The severity level of any violations found by submodules.
@@ -275,7 +275,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
                 final String fileName = file.getAbsolutePath();
                 final long timestamp = file.lastModified();
                 if (cacheFile != null && cacheFile.isInCache(fileName, timestamp)
-                        || !CommonUtils.matchesFileExtension(file, fileExtensions)
+                        || !CommonUtil.matchesFileExtension(file, fileExtensions)
                         || !acceptFileStarted(fileName)) {
                     continue;
                 }
@@ -351,7 +351,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * @return {@code true} if the file is accepted.
      */
     private boolean acceptFileStarted(String fileName) {
-        final String stripped = CommonUtils.relativizeAndNormalizePath(basedir, fileName);
+        final String stripped = CommonUtil.relativizeAndNormalizePath(basedir, fileName);
         return beforeExecutionFileFilters.accept(stripped);
     }
 
@@ -363,7 +363,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      */
     @Override
     public void fireFileStarted(String fileName) {
-        final String stripped = CommonUtils.relativizeAndNormalizePath(basedir, fileName);
+        final String stripped = CommonUtil.relativizeAndNormalizePath(basedir, fileName);
         final AuditEvent event = new AuditEvent(this, stripped);
         for (final AuditListener listener : listeners) {
             listener.fileStarted(event);
@@ -378,7 +378,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      */
     @Override
     public void fireErrors(String fileName, SortedSet<LocalizedMessage> errors) {
-        final String stripped = CommonUtils.relativizeAndNormalizePath(basedir, fileName);
+        final String stripped = CommonUtil.relativizeAndNormalizePath(basedir, fileName);
         boolean hasNonFilteredViolations = false;
         for (final LocalizedMessage element : errors) {
             final AuditEvent event = new AuditEvent(this, stripped, element);
@@ -402,7 +402,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      */
     @Override
     public void fireFileFinished(String fileName) {
-        final String stripped = CommonUtils.relativizeAndNormalizePath(basedir, fileName);
+        final String stripped = CommonUtil.relativizeAndNormalizePath(basedir, fileName);
         final AuditEvent event = new AuditEvent(this, stripped);
         for (final AuditListener listener : listeners) {
             listener.fileFinished(event);
@@ -527,7 +527,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
             fileExtensions = new String[extensions.length];
             for (int i = 0; i < extensions.length; i++) {
                 final String extension = extensions[i];
-                if (CommonUtils.startsWithChar(extension, '.')) {
+                if (CommonUtil.startsWithChar(extension, '.')) {
                     fileExtensions[i] = extension;
                 }
                 else {

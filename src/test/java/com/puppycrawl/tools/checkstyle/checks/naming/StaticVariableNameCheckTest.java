@@ -27,7 +27,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class StaticVariableNameCheckTest
     extends AbstractModuleTestSupport {
@@ -70,7 +70,7 @@ public class StaticVariableNameCheckTest
         // allow method names and class names to equal
         checkConfig.addAttribute("applyToPrivate", "false");
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputStaticVariableName1.java"), expected);
     }
 
@@ -79,7 +79,7 @@ public class StaticVariableNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(StaticVariableNameCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputStaticVariableName.java"), expected);
     }
 

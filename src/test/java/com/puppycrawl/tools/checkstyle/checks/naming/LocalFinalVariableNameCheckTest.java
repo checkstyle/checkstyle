@@ -27,7 +27,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class LocalFinalVariableNameCheckTest
     extends AbstractModuleTestSupport {
@@ -43,7 +43,7 @@ public class LocalFinalVariableNameCheckTest
             new LocalFinalVariableNameCheck();
         assertArrayEquals(
             "LocalFinalVariableNameCheck#getRequiredTokens should return empty array by default",
-            CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+            CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -80,7 +80,7 @@ public class LocalFinalVariableNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(LocalFinalVariableNameCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLocalFinalVariableNameInnerClass.java"), expected);
     }
 

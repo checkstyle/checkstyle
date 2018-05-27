@@ -26,7 +26,7 @@ import org.junit.Test;
 import com.google.checkstyle.test.base.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class OuterTypeFilenameTest extends AbstractModuleTestSupport {
 
@@ -37,7 +37,7 @@ public class OuterTypeFilenameTest extends AbstractModuleTestSupport {
 
     @Test
     public void testOuterTypeFilename1() throws Exception {
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("OuterTypeFilename");
         final String filePath = getPath("InputOuterTypeFilename1.java");
@@ -48,7 +48,7 @@ public class OuterTypeFilenameTest extends AbstractModuleTestSupport {
 
     @Test
     public void testOuterTypeFilename2() throws Exception {
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("OuterTypeFilename");
         final String filePath = getPath("InputOuterTypeFilename2.java");

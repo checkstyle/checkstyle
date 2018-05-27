@@ -28,7 +28,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
 
@@ -42,7 +42,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(DescendantTokenCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputDescendantTokenIllegalTokens.java"), expected);
     }
 
@@ -98,7 +98,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("limitedTokens", "LITERAL_DEFAULT");
         checkConfig.addAttribute("maximumNumber", "0");
         checkConfig.addAttribute("minimumDepth", "3");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputDescendantTokenIllegalTokens.java"), expected);
     }
 
@@ -111,7 +111,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("limitedTokens", "LITERAL_DEFAULT");
         checkConfig.addAttribute("maximumNumber", "0");
         checkConfig.addAttribute("maximumDepth", "1");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputDescendantTokenIllegalTokens.java"), expected);
     }
 
@@ -261,7 +261,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("maximumNumber", "1");
         checkConfig.addAttribute("maximumMessage", "What are you doing?");
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputDescendantTokenReturnFromFinally.java"), expected);
     }

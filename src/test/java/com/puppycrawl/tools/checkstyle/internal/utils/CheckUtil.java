@@ -42,9 +42,9 @@ import com.google.common.reflect.ClassPath;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
-import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtils;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 public final class CheckUtil {
 
@@ -140,7 +140,7 @@ public final class CheckUtil {
                 .getContextClassLoader();
         final String packageName = "com.puppycrawl.tools.checkstyle";
         return getCheckstyleModulesRecursive(packageName, loader).stream()
-                .filter(ModuleReflectionUtils::isCheckstyleTreeWalkerCheck)
+                .filter(ModuleReflectionUtil::isCheckstyleTreeWalkerCheck)
                 .collect(Collectors.toSet());
     }
 
@@ -162,14 +162,14 @@ public final class CheckUtil {
      * @param loader the class loader used to load Checkstyle package name
      * @return the set of checkstyle's module classes
      * @throws IOException if the attempt to read class path resources failed
-     * @see ModuleReflectionUtils#isCheckstyleModule(Class)
+     * @see ModuleReflectionUtil#isCheckstyleModule(Class)
      */
     private static Set<Class<?>> getCheckstyleModulesRecursive(
             String packageName, ClassLoader loader) throws IOException {
         final ClassPath classPath = ClassPath.from(loader);
         return classPath.getTopLevelClassesRecursive(packageName).stream()
                 .map(ClassPath.ClassInfo::load)
-                .filter(ModuleReflectionUtils::isCheckstyleModule)
+                .filter(ModuleReflectionUtil::isCheckstyleModule)
                 .filter(cls -> !cls.getCanonicalName()
                         .startsWith("com.puppycrawl.tools.checkstyle.internal.testmodules"))
                 .filter(cls -> !cls.getCanonicalName()
@@ -249,7 +249,7 @@ public final class CheckUtil {
 
     public static String getTokenText(int[] tokens, int... subtractions) {
         final String tokenText;
-        if (subtractions.length == 0 && Arrays.equals(tokens, TokenUtils.getAllTokenIds())) {
+        if (subtractions.length == 0 && Arrays.equals(tokens, TokenUtil.getAllTokenIds())) {
             tokenText = "TokenTypes.";
         }
         else {
@@ -277,7 +277,7 @@ public final class CheckUtil {
                     result.append(", ");
                 }
 
-                result.append(TokenUtils.getTokenName(token));
+                result.append(TokenUtil.getTokenName(token));
             }
 
             if (result.length() == 0) {
@@ -296,7 +296,7 @@ public final class CheckUtil {
         final Set<String> result = new HashSet<>();
 
         for (int token : tokens) {
-            result.add(TokenUtils.getTokenName(token));
+            result.add(TokenUtil.getTokenName(token));
         }
 
         return result;
@@ -327,7 +327,7 @@ public final class CheckUtil {
                 result.append(", ");
             }
 
-            result.append(JavadocUtils.getTokenName(token));
+            result.append(JavadocUtil.getTokenName(token));
         }
 
         if (result.length() == 0) {

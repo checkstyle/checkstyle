@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * Checks that a variable has Javadoc comment. Ignores {@code serialVersionUID} fields.
@@ -132,15 +132,15 @@ public class JavadocVariableCheck
      */
     private boolean shouldCheck(final DetailAST ast) {
         boolean result = false;
-        if (!ScopeUtils.isInCodeBlock(ast) && !isIgnored(ast)) {
+        if (!ScopeUtil.isInCodeBlock(ast) && !isIgnored(ast)) {
             Scope customScope = Scope.PUBLIC;
             if (ast.getType() != TokenTypes.ENUM_CONSTANT_DEF
-                    && !ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
+                    && !ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
                 final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
-                customScope = ScopeUtils.getScopeFromMods(mods);
+                customScope = ScopeUtil.getScopeFromMods(mods);
             }
 
-            final Scope surroundingScope = ScopeUtils.getSurroundingScope(ast);
+            final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
             result = customScope.isIn(scope) && surroundingScope.isIn(scope)
                 && (excludeScope == null
                     || !customScope.isIn(excludeScope)

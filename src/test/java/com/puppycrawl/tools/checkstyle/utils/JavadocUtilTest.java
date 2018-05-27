@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
 
-public class JavadocUtilsTest {
+public class JavadocUtilTest {
 
     @Test
     public void testTags() {
@@ -51,7 +51,7 @@ public class JavadocUtilsTest {
         };
         final Comment comment = new Comment(text, 1, 4, text[3].length());
         final JavadocTags allTags =
-            JavadocUtils.getJavadocTags(comment, JavadocUtils.JavadocTagType.ALL);
+            JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.ALL);
         assertEquals("Invalid valid tags size", 5, allTags.getValidTags().size());
     }
 
@@ -63,7 +63,7 @@ public class JavadocUtilsTest {
         };
         final Comment comment = new Comment(text, 1, 4, text[1].length());
         final JavadocTags allTags =
-            JavadocUtils.getJavadocTags(comment, JavadocUtils.JavadocTagType.ALL);
+            JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.ALL);
         assertEquals("Invalid valid tags size", 1, allTags.getValidTags().size());
     }
 
@@ -75,9 +75,9 @@ public class JavadocUtilsTest {
         };
         final Comment comment = new Comment(text, 1, 2, text[1].length());
         final JavadocTags blockTags =
-            JavadocUtils.getJavadocTags(comment, JavadocUtils.JavadocTagType.BLOCK);
+            JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.BLOCK);
         final JavadocTags inlineTags =
-            JavadocUtils.getJavadocTags(comment, JavadocUtils.JavadocTagType.INLINE);
+            JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.INLINE);
         assertEquals("Invalid valid tags size", 1, blockTags.getValidTags().size());
         assertEquals("Invalid valid tags size", 2, inlineTags.getValidTags().size());
     }
@@ -88,8 +88,8 @@ public class JavadocUtilsTest {
             "/** {@link List link text }",
         };
         final Comment comment = new Comment(text, 1, 1, text[0].length());
-        final List<JavadocTag> tags = JavadocUtils.getJavadocTags(
-            comment, JavadocUtils.JavadocTagType.ALL).getValidTags();
+        final List<JavadocTag> tags = JavadocUtil.getJavadocTags(
+            comment, JavadocUtil.JavadocTagType.ALL).getValidTags();
         assertEquals("Invalid first arg", "List link text", tags.get(0).getFirstArg());
     }
 
@@ -99,8 +99,8 @@ public class JavadocUtilsTest {
             "/** {@link List#add(Object)}",
         };
         final Comment comment = new Comment(text, 1, 1, text[0].length());
-        final List<JavadocTag> tags = JavadocUtils.getJavadocTags(
-            comment, JavadocUtils.JavadocTagType.ALL).getValidTags();
+        final List<JavadocTag> tags = JavadocUtil.getJavadocTags(
+            comment, JavadocUtil.JavadocTagType.ALL).getValidTags();
         assertEquals("Invalid first arg", "List#add(Object)", tags.get(0).getFirstArg());
     }
 
@@ -112,8 +112,8 @@ public class JavadocUtilsTest {
         };
         final Comment comment = new Comment(text, 1, 2, text[1].length());
 
-        final List<JavadocTag> tags = JavadocUtils.getJavadocTags(
-            comment, JavadocUtils.JavadocTagType.ALL).getValidTags();
+        final List<JavadocTag> tags = JavadocUtil.getJavadocTags(
+            comment, JavadocUtil.JavadocTagType.ALL).getValidTags();
 
         assertEquals("Invalid tags size", 2, tags.size());
 
@@ -133,8 +133,8 @@ public class JavadocUtilsTest {
         final String[] text = {"/** Also {@link Name value} */"};
         final Comment comment = new Comment(text, 1, 0, text[0].length());
 
-        final List<JavadocTag> tags = JavadocUtils.getJavadocTags(
-            comment, JavadocUtils.JavadocTagType.INLINE).getValidTags();
+        final List<JavadocTag> tags = JavadocUtil.getJavadocTags(
+            comment, JavadocUtil.JavadocTagType.INLINE).getValidTags();
 
         assertEquals("Invalid tags size", 1, tags.size());
 
@@ -151,7 +151,7 @@ public class JavadocUtilsTest {
         };
         final Comment comment = new Comment(text, 1, 3, text[2].length());
         final JavadocTags allTags =
-            JavadocUtils.getJavadocTags(comment, JavadocUtils.JavadocTagType.ALL);
+            JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.ALL);
         assertEquals("Unexpected invalid tags size", 2, allTags.getInvalidTags().size());
         assertEquals("Unexpected valid tags size", 1, allTags.getValidTags().size());
     }
@@ -160,7 +160,7 @@ public class JavadocUtilsTest {
     public void testEmptyBlockComment() {
         final String emptyComment = "";
         assertFalse("Should return false when empty string is passed",
-                JavadocUtils.isJavadocComment(emptyComment));
+                JavadocUtil.isJavadocComment(emptyComment));
     }
 
     @Test
@@ -181,14 +181,14 @@ public class JavadocUtilsTest {
         commentContent.setNextSibling(commentEnd);
 
         assertFalse("Should return false when empty block comment is passed",
-                JavadocUtils.isJavadocComment(commentBegin));
+                JavadocUtil.isJavadocComment(commentBegin));
     }
 
     @Test
     public void testEmptyJavadocComment() {
         final String emptyJavadocComment = "*";
         assertTrue("Should return true when empty javadoc comment is passed",
-                JavadocUtils.isJavadocComment(emptyJavadocComment));
+                JavadocUtil.isJavadocComment(emptyJavadocComment));
     }
 
     @Test
@@ -216,13 +216,13 @@ public class JavadocUtilsTest {
         aJavadocPosition.setType(TokenTypes.METHOD_DEF);
         aJavadocPosition.setFirstChild(commentBeginParent);
         assertTrue("Should return true when empty javadoc comment ast is passed",
-                JavadocUtils.isJavadocComment(commentBegin));
+                JavadocUtil.isJavadocComment(commentBegin));
     }
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertTrue("Constructor is not private",
-                isUtilsClassHasPrivateConstructor(JavadocUtils.class, true));
+                isUtilsClassHasPrivateConstructor(JavadocUtil.class, true));
     }
 
     @Test
@@ -237,28 +237,28 @@ public class JavadocUtilsTest {
 
         node.setChildren(firstChild, secondChild);
         assertFalse("Should return true when branch contains node passed",
-                JavadocUtils.containsInBranch(node, JavadocTokenTypes.AUTHOR_LITERAL));
+                JavadocUtil.containsInBranch(node, JavadocTokenTypes.AUTHOR_LITERAL));
 
         firstChild.setParent(node);
         secondChild.setParent(node);
         assertFalse("Should return false when branch does not contain node passed",
-                JavadocUtils.containsInBranch(node, JavadocTokenTypes.AUTHOR_LITERAL));
+                JavadocUtil.containsInBranch(node, JavadocTokenTypes.AUTHOR_LITERAL));
 
         secondChild.setType(JavadocTokenTypes.AUTHOR_LITERAL);
         assertTrue("Should return true when branch contains node passed",
-                JavadocUtils.containsInBranch(node, JavadocTokenTypes.AUTHOR_LITERAL));
+                JavadocUtil.containsInBranch(node, JavadocTokenTypes.AUTHOR_LITERAL));
     }
 
     @Test
     public void testGetTokenNameForId() {
         assertEquals("Invalid token name",
-                "EOF", JavadocUtils.getTokenName(JavadocTokenTypes.EOF));
+                "EOF", JavadocUtil.getTokenName(JavadocTokenTypes.EOF));
     }
 
     @Test
     public void testGetTokenNameForLargeId() {
         try {
-            JavadocUtils.getTokenName(30073);
+            JavadocUtil.getTokenName(30073);
             fail("exception expected");
         }
         catch (IllegalArgumentException ex) {
@@ -270,7 +270,7 @@ public class JavadocUtilsTest {
     @Test
     public void testGetTokenNameForInvalidId() {
         try {
-            JavadocUtils.getTokenName(100);
+            JavadocUtil.getTokenName(100);
             fail("exception expected");
         }
         catch (IllegalArgumentException ex) {
@@ -282,7 +282,7 @@ public class JavadocUtilsTest {
     @Test
     public void testGetTokenNameForLowerBoundInvalidId() {
         try {
-            JavadocUtils.getTokenName(10083);
+            JavadocUtil.getTokenName(10083);
             fail("exception expected");
         }
         catch (IllegalArgumentException ex) {
@@ -294,7 +294,7 @@ public class JavadocUtilsTest {
     @Test
     public void testGetTokenIdThatIsUnknown() {
         try {
-            JavadocUtils.getTokenId("");
+            JavadocUtil.getTokenId("");
             fail("exception expected");
         }
         catch (IllegalArgumentException ex) {
@@ -305,7 +305,7 @@ public class JavadocUtilsTest {
 
     @Test
     public void testGetTokenId() {
-        final int tokenId = JavadocUtils.getTokenId("JAVADOC");
+        final int tokenId = JavadocUtil.getTokenId("JAVADOC");
 
         assertEquals("Invalid token id", JavadocTokenTypes.JAVADOC, tokenId);
     }
@@ -317,7 +317,7 @@ public class JavadocUtilsTest {
 
         javadoc.setText("1javadoc");
         detailAST.setFirstChild(javadoc);
-        final String commentContent = JavadocUtils.getJavadocCommentContent(detailAST);
+        final String commentContent = JavadocUtil.getJavadocCommentContent(detailAST);
 
         assertEquals("Invalid comment content", "javadoc", commentContent);
     }
@@ -334,7 +334,7 @@ public class JavadocUtilsTest {
         basetag.setParent(javadocNode);
         javadocNode.setChildren(basetag, body);
 
-        final DetailNode result = JavadocUtils.findFirstToken(javadocNode, JavadocTokenTypes.BODY);
+        final DetailNode result = JavadocUtil.findFirstToken(javadocNode, JavadocTokenTypes.BODY);
 
         assertEquals("Invalid first token", body, result);
     }
@@ -353,20 +353,20 @@ public class JavadocUtilsTest {
 
         root.setChildren(previousNode, node);
 
-        assertEquals("Unexpected node", previousNode, JavadocUtils.getPreviousSibling(node));
+        assertEquals("Unexpected node", previousNode, JavadocUtil.getPreviousSibling(node));
     }
 
     @Test
     public void testGetTokenNames() {
         assertEquals("Unexpected token name",
-            "OPTGROUP", JavadocUtils.getTokenName(10082));
+            "OPTGROUP", JavadocUtil.getTokenName(10082));
     }
 
     @Test
     public void testEscapeAllControlChars() {
-        assertEquals("invalid result", "abc", JavadocUtils.escapeAllControlChars("abc"));
+        assertEquals("invalid result", "abc", JavadocUtil.escapeAllControlChars("abc"));
         assertEquals("invalid result", "1\\r2\\n3\\t",
-                JavadocUtils.escapeAllControlChars("1\\r2\\n3\\t"));
+                JavadocUtil.escapeAllControlChars("1\\r2\\n3\\t"));
     }
 
 }

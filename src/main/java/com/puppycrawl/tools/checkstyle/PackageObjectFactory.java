@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtils;
+import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 
 /**
  * A factory for creating objects from package names and names.
@@ -293,7 +293,7 @@ public class PackageObjectFactory implements ModuleFactory {
     private Map<String, Set<String>> generateThirdPartyNameToFullModuleName(ClassLoader loader) {
         Map<String, Set<String>> returnValue;
         try {
-            returnValue = ModuleReflectionUtils.getCheckstyleModules(packages, loader).stream()
+            returnValue = ModuleReflectionUtil.getCheckstyleModules(packages, loader).stream()
                     .collect(Collectors.toMap(
                         Class::getSimpleName,
                         cls -> Collections.singleton(cls.getCanonicalName()),

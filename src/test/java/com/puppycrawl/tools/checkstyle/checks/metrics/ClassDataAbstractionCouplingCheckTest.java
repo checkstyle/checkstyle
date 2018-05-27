@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSupport {
 
@@ -152,7 +152,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
                 + "com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling."
                     + "inputs.c");
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
             getPath("InputClassDataAbstractionCouplingExcludedPackagesAllIgnored.java"), expected);
     }
@@ -163,7 +163,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
             createModuleConfig(ClassDataAbstractionCouplingCheck.class);
 
         createChecker(checkConfig);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputClassDataAbstractionCoupling.java"), expected);
     }
 

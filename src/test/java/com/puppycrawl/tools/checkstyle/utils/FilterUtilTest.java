@@ -29,7 +29,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-public class FilterUtilsTest {
+public class FilterUtilTest {
 
     @Rule
     public final TemporaryFolder temporaryFolder = new TemporaryFolder();
@@ -37,20 +37,20 @@ public class FilterUtilsTest {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertTrue("Constructor is not private",
-                isUtilsClassHasPrivateConstructor(FilterUtils.class, true));
+                isUtilsClassHasPrivateConstructor(FilterUtil.class, true));
     }
 
     @Test
     public void testExistingFile() throws Exception {
         final File file = temporaryFolder.newFile();
         assertTrue("Suppression file exists",
-                FilterUtils.isFileExists(file.getPath()));
+                FilterUtil.isFileExists(file.getPath()));
     }
 
     @Test
     public void testNonExistentFile() {
         assertFalse("Suppression file does not exist",
-                FilterUtils.isFileExists("non-existent.xml"));
+                FilterUtil.isFileExists("non-existent.xml"));
     }
 
 }

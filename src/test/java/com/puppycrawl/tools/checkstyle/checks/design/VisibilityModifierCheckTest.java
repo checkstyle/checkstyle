@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class VisibilityModifierCheckTest
     extends AbstractModuleTestSupport {
@@ -229,7 +229,7 @@ public class VisibilityModifierCheckTest
                 createModuleConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("allowPublicImmutableFields", "true");
         checkConfig.addAttribute("immutableClassCanonicalNames", "java.util.Arrays");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputVisibilityModifierImmutableStarImport.java"), expected);
     }
 
@@ -240,7 +240,7 @@ public class VisibilityModifierCheckTest
         checkConfig.addAttribute("allowPublicImmutableFields", "true");
         checkConfig.addAttribute("immutableClassCanonicalNames",
             "java.lang.String, com.google.common.collect.ImmutableSet");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputVisibilityModifierImmutableStarImport2.java"),
                 expected);
     }
@@ -369,7 +369,7 @@ public class VisibilityModifierCheckTest
         checkConfig.addAttribute("allowPublicFinalFields", "true");
         checkConfig.addAttribute("immutableClassCanonicalNames",
             "com.google.common.collect.ImmutableSet");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputVisibilityModifiersPublicImmutable.java"), expected);
     }
 

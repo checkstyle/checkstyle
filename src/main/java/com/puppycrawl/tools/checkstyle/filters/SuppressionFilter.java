@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
-import com.puppycrawl.tools.checkstyle.utils.FilterUtils;
+import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
 
 /**
  * <p>
@@ -89,7 +89,7 @@ public class SuppressionFilter extends AutomaticBean implements Filter, External
     protected void finishLocalSetup() throws CheckstyleException {
         if (file != null) {
             if (optional) {
-                if (FilterUtils.isFileExists(file)) {
+                if (FilterUtil.isFileExists(file)) {
                     filters = SuppressionsLoader.loadSuppressions(file);
                 }
                 else {

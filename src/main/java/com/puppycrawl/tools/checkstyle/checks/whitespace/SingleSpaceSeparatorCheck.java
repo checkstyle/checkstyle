@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
@@ -115,7 +115,7 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return CommonUtil.EMPTY_INT_ARRAY;
     }
 
     // -@cs[SimpleAccessorNameNotation] Overrides method from base class.
@@ -244,7 +244,7 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
      *         text on the {@code line}.
      */
     private static boolean isFirstInLine(String line, int columnNo) {
-        return CommonUtils.isBlank(line.substring(0, columnNo));
+        return CommonUtil.isBlank(line.substring(0, columnNo));
     }
 
     /**

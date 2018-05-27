@@ -24,7 +24,7 @@ import org.junit.Test;
 import com.google.checkstyle.test.base.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class OneTopLevelClassTest extends AbstractModuleTestSupport {
 
@@ -56,7 +56,7 @@ public class OneTopLevelClassTest extends AbstractModuleTestSupport {
 
     @Test
     public void testGood() throws Exception {
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("OneTopLevelClass");
         final String filePath = getPath("InputOneTopLevelClassGood.java");

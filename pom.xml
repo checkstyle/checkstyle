@@ -2596,15 +2596,15 @@
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.utils.*</param>
-                <!-- 12% mutation in CommonUtils,
-                     3% coverage in CommonUtils, 2% coverage in JavadocUtils -->
+                <!-- 12% mutation in CommonUtil,
+                     3% coverage in CommonUtil, 2% coverage in JavadocUtil -->
                 <param>com.puppycrawl.tools.checkstyle.AstTreeStringPrinterTest</param>
-                <!-- 2% mutation in CommonUtils -->
+                <!-- 2% mutation in CommonUtil -->
                 <param>com.puppycrawl.tools.checkstyle.DetailNodeTreeStringPrinterTest</param>
-                <!-- ModuleReflectionUtils -->
+                <!-- ModuleReflectionUtil -->
                 <param>com.puppycrawl.tools.checkstyle.PackageObjectFactoryTest</param>
                 <!-- 3% coverage in BlockCommentPosition,
-                     11% mutation in JavadocUtils, 10% coverage in JavadocUtils, ScopeUtils -->
+                     11% mutation in JavadocUtil, 10% coverage in JavadocUtil, ScopeUtil -->
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest
                 </param>

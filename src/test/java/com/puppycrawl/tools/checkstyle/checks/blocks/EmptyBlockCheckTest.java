@@ -30,7 +30,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class EmptyBlockCheckTest
     extends AbstractModuleTestSupport {
@@ -143,7 +143,7 @@ public class EmptyBlockCheckTest
         checkConfig.addAttribute("option", "invalid_option");
 
         try {
-            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
             verify(checkConfig, getPath("InputEmptyBlockSemantic.java"), expected);
             fail("exception expected");
@@ -230,7 +230,7 @@ public class EmptyBlockCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyBlockCheck.class);
         checkConfig.addAttribute("option", BlockOption.STATEMENT.toString());
         checkConfig.addAttribute("tokens", "LITERAL_DEFAULT");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         final String path = getPath("InputEmptyBlockAnnotationDefaultKeyword.java");
         verify(checkConfig, path, expected);
     }

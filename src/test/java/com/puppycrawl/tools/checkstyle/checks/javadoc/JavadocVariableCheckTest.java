@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocVariableCheckTest
     extends AbstractModuleTestSupport {
@@ -94,7 +94,7 @@ public class JavadocVariableCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocVariableCheck.class);
         checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputJavadocVariableInner.java"), expected);
     }
 

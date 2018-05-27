@@ -29,7 +29,7 @@ import org.junit.Test;
 import com.google.checkstyle.test.base.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class RightCurlyTest extends AbstractModuleTestSupport {
 
@@ -55,7 +55,7 @@ public class RightCurlyTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRightCurlySame() throws Exception {
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("RightCurly", "RightCurlySame");
         final String filePath = getPath("InputRightCurlySame.java");
@@ -98,7 +98,7 @@ public class RightCurlyTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRightCurlyAloneSame() throws Exception {
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("RightCurly", "RightCurlyAlone");
         final String filePath = getPath("InputRightCurlySame.java");
@@ -109,7 +109,7 @@ public class RightCurlyTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRightCurlyAloneSameAndLiteralDo() throws Exception {
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("RightCurly", "RightCurlyAlone");
         final String filePath = getPath("InputRightCurlyDoWhileAlone.java");
