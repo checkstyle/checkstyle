@@ -39,6 +39,8 @@
     <suppress checks="NewlineAtEndOfFile"
               files="[\\/]test[\\/].*[\\/]checks[\\/]uniqueproperties[\\/]InputUniquePropertiesWithDuplicates\.properties"/>
 
+    <!-- till https://issues.apache.org/jira/browse/MRELEASE-1008 -->
+    <suppress checks="RegexpSingleline" files="pom.xml"/>
     <!-- this file is created by Appveyor CI after checkout -->
     <suppress checks="RegexpSingleline" files="appveyor.cmd"/>
     <!-- test resources are weird by design, no validations in them -->
