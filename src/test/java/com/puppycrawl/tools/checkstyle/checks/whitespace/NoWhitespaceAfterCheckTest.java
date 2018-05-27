@@ -159,7 +159,7 @@ public class NoWhitespaceAfterCheckTest
             "81:40: " + getCheckMessage(MSG_KEY, "Integer"),
             "85:14: " + getCheckMessage(MSG_KEY, "char"),
             "86:52: " + getCheckMessage(MSG_KEY, "A"),
-            "87:86: " + getCheckMessage(MSG_KEY, "Object"),
+            "87:69: " + getCheckMessage(MSG_KEY, "Object"),
             "90:41: " + getCheckMessage(MSG_KEY, ")"),
             "90:49: " + getCheckMessage(MSG_KEY, "]"),
             "92:35: " + getCheckMessage(MSG_KEY, "Object"),

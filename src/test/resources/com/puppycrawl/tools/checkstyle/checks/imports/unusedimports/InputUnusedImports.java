@@ -5,7 +5,7 @@
 package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
 import com.puppycrawl.tools.checkstyle.checks.imports.*;
-                                     import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsBug;
+        import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsBug;
 import java.io.*;
 import java.lang.*;
 import java.lang.String;
@@ -89,7 +89,7 @@ class InputUnusedImports
      * method comment with JavaDoc-only import {@link BitSet#aMethod()}
      */
     public void Label() {}
-    
+
     /**
      * Renders to a {@linkplain Graphics2D graphics context}.
      * @throws HeadlessException if no graphis environment can be found.
@@ -99,7 +99,8 @@ class InputUnusedImports
 
     /**
      * First is a class with a method with arguments {@link Checker#method1(CheckerTest)}.
-     * Next is a class with typed method {@link BaseFileSetCheckTestSupport#method2(Definitions, InputUnusedImports15Extensions)}.
+     * Next is a class with typed method
+     * {@link BaseFileSetCheckTestSupport#method2(Definitions, InputUnusedImports15Extensions)}.
      *
      * @param param1 with a link {@link ConfigurationLoaderTest}
      * @throws PackageNamesLoader when broken

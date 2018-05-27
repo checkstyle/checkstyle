@@ -26,14 +26,14 @@ public class InputBooleanExpressionComplexity {
     public boolean equals(Object object) {
         new NestedClass() {
             public void method() {
-                new Settings(Settings.FALSE || Settings.FALSE || Settings.FALSE || Settings.FALSE || Settings.FALSE);
+                new Settings(Settings.FALSE || Settings.FALSE || Settings.FALSE || _a || _b);
             }
             public void method2() {
             }
         };
         return (((_a && (_b & _c)) || (_c ^ _d) || (_a && _d)));
     }
-    
+
     public boolean bitwise()
     {
         return (((_a & (_b & _c)) | (_c ^ _d) | (_a & _d)));

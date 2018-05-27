@@ -53,12 +53,12 @@ class InputIndentationValidClassDefIndent4a //indent:0 exp:>=4 warn
 
 } //indent:0 exp:0
 
-final class InputIndentationValidClassDefIndent5 extends java.awt.event.MouseAdapter implements java.awt.event.MouseListener  //indent:0 exp:0
+final class InputIndentationValidClassDefIndent5 extends Object  //indent:0 exp:0
 { //indent:0 exp:0
 
 } //indent:0 exp:0
 
-final class InputIndentationValidClassDefIndent6 extends java.awt.event.MouseAdapter implements java.awt.event.MouseListener { //indent:0 exp:0
+final class InputIndentationValidClassDefIndent6 extends Object { //indent:0 exp:0
 
     class foo { } //indent:4 exp:4
 
@@ -139,9 +139,9 @@ final class InputIndentationValidClassDefIndent6 extends java.awt.event.MouseAda
                     return (value1 <= value2); //indent:20 exp:20
                 } //indent:16 exp:16
 
-                public boolean compare(Comparable<Object> obj1, Comparable<Object> obj2) //indent:16 exp:16
+                public boolean co(Comparable<Object> ob1, Comparable<Object> ob2) //indent:16 exp:16
                 { //indent:16 exp:16
-                    return (obj1.compareTo(obj2) <= 0); //indent:20 exp:20
+                    return (ob1.compareTo(ob2) <= 0); //indent:20 exp:20
                 } //indent:16 exp:16
             }); //indent:12 exp:12
 } //indent:0 exp:0

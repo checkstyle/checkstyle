@@ -50,34 +50,16 @@
               files="src[\\/]test[\\/]resources[\\/].*[\\/]grammars[\\/]comments[\\/].*"/>
     <suppress checks="RegexpSingleline"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfBlockComments\.java"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]abstractjavadoc[\\/]InputAbstractJavadocPosition.*\.java"/>
+
     <!-- we can not change expected as it will require change of main class logic -->
     <suppress checks="RegexpSingleline"
               files="src[\\/]test[\\/]resources[\\/].*[\\/].*ExpectedXMLLogger.*\.xml"/>
     <suppress checks="RegexpSingleline"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]ant[\\/]checkstyleanttask[\\/]ExpectedCheckstyleAntTaskXmlOutput\.xml"/>
-    <!-- till #5791 -->
     <suppress checks="RegexpSingleline"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]descendanttoken[\\/].*"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]design[\\/].*"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]imports[\\/].*"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]indentation[\\/].*"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]javadoc[\\/].*"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]metrics[\\/].*"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]modifier[\\/].*"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]naming[\\/].*"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]sizes[\\/].*"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]translation[\\/].*"/>
-    <suppress checks="RegexpSingleline"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]whitespace[\\/].*"/>
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]translation[\\/]Expected.*\.xml"/>
 
     <!-- content is generated -->
     <suppress checks="RegexpSingleline"

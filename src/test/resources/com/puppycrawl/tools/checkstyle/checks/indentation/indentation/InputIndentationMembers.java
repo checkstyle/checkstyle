@@ -21,7 +21,7 @@ class FooFieldClass { //indent:0 exp:0
   boolean flag //indent:2 exp:2
      = conditionFirst("Loooooooooooooooooong", new  //indent:5 exp:6 warn
       SecondFieldClassWithVeryVeryVeryLongName("Loooooooooooooooooog"). //indent:6 exp:6
-      getInteger(new FooFieldClass(), "Loooooooooooooooooog"), new InnerClassFoo()); //indent:6 exp:6
+      getInteger(new FooFieldClass(), "Looooooooooooooooog"), new InnerClassFoo()); //indent:6 exp:6
 
 
   String getString(int someInt, String someString) { //indent:2 exp:2
@@ -51,8 +51,8 @@ class FooFieldClass { //indent:0 exp:0
           boolean secondFlag = conditionSecond(10000000000.0, new //indent:10 exp:10
               SecondFieldClassWithVeryVeryVeryLongName("Looooooooooooo" //indent:14 exp:14
                 + "oooooooooooong").getString(new FooFieldClass(), //indent:16 exp:>=14
-                   new SecondFieldClassWithVeryVeryVeryLongName("loooooooooong"). //indent:19 exp:>=14
-                 getInteger(new FooFieldClass(), "loooooooooooooong")), "loooooooooooong"); //indent:17 exp:>=14
+                   new SecondFieldClassWithVeryVeryVeryLongName("loooooooong"). //indent:19 exp:>=14
+                 getInteger(new FooFieldClass(), "looong")), "looooooooooong"); //indent:17 exp:>=14
         }; //indent:8 exp:8
    } //indent:3 exp:2 warn
 } //indent:0 exp:0

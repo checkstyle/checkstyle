@@ -181,9 +181,9 @@ public class WhitespaceAfterCheckTest
     public void testTypeArgumentAndParameterCommas() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAfterCheck.class);
         final String[] expected = {
-            "11:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
-            "11:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
-            "11:41: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "12:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "12:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "12:41: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
         };
         verify(checkConfig, getPath("InputWhitespaceAfterGenerics.java"),
                 expected);

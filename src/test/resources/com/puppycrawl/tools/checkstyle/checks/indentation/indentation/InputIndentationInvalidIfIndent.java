@@ -55,7 +55,7 @@ public class InputIndentationInvalidIfIndent { //indent:0 exp:0
  if (test) { //indent:1 exp:8 warn
         } //indent:8 exp:8
 
-        // lcurly on next line -- if, rcurly indented too far, lcurly not far enough //indent:8 exp:8
+        // lcurly on next line-- if, rcurly indented too far, lcurly not far enough //indent:8 exp:8
         //  //indent:8 exp:8
          if (test)  //indent:9 exp:8 warn
          { //indent:9 exp:8 warn
@@ -65,7 +65,7 @@ public class InputIndentationInvalidIfIndent { //indent:0 exp:0
      { //indent:5 exp:8 warn
      } //indent:5 exp:8 warn
 
-        // lcurly for if and else on same line -- too much space after if on same line -- ALLOWED //indent:8 exp:8
+        //lcurly for if and else on same line, much space after if on same line - ok//indent:8 exp:8
         if (test)      { //indent:8 exp:8
           } else {      // this is not allowed //indent:10 exp:8 warn
        } //indent:7 exp:8 warn

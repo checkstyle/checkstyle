@@ -3,7 +3,8 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 import java.util.Collection;
 import java.util.Map;
 
-public class InputWhitespaceAroundGenerics<A, B extends Collection<?>, C extends D&E, F extends Collection<? extends InputWhitespaceAroundGenerics[]>>
+public class InputWhitespaceAroundGenerics<A, B extends Collection<?>,
+               C extends D&E, F extends Collection<? extends InputWhitespaceAroundGenerics[]>>
 {
 }
 

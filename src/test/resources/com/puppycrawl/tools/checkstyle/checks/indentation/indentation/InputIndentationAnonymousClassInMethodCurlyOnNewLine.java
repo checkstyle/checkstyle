@@ -23,7 +23,7 @@ public class InputIndentationAnonymousClassInMethodCurlyOnNewLine //indent:0 exp
     private void aMethod() //indent:4 exp:4
     { //indent:4 exp:4
         final Supplier<Map<String, List<AbstractExpressionHandler>>> sup1 = //indent:8 exp:8
-                new Supplier<Map<String, List<com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler>>>() { //indent:16 exp:>=16
+                new Supplier<Map<String, List<AbstractExpressionHandler>>>() { //indent:16 exp:>=16
                     @Override //indent:20 exp:20
                     public Map<String, List<AbstractExpressionHandler>> get() //indent:20 exp:20
                     { //indent:20 exp:20
@@ -31,7 +31,7 @@ public class InputIndentationAnonymousClassInMethodCurlyOnNewLine //indent:0 exp
                     } //indent:20 exp:20
                 }; //indent:16 exp:16
         final Supplier<Map<String, List<AbstractExpressionHandler>>> sup2 = //indent:8 exp:8
-                  new Supplier<Map<String, List<com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler>>>() { //indent:18 exp:>=16
+                  new Supplier<Map<String, List<AbstractExpressionHandler>>>(){ //indent:18 exp:>=16
                     @Override //indent:20 exp:20
                     public Map<String, List<AbstractExpressionHandler>> get() //indent:20 exp:20
                     { //indent:20 exp:20
@@ -39,7 +39,7 @@ public class InputIndentationAnonymousClassInMethodCurlyOnNewLine //indent:0 exp
                     } //indent:20 exp:20
                   }; //indent:18 exp:8,12,16 warn
         final Supplier<Map<String, List<AbstractExpressionHandler>>> sup3 = //indent:8 exp:8
-              new Supplier<Map<String, List<com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler>>>() { //indent:14 exp:>=16 warn
+              new Supplier<Map<String,List<AbstractExpressionHandler>>>(){ //indent:14 exp:>=16 warn
                     @Override //indent:20 exp:20
                     public Map<String, List<AbstractExpressionHandler>> get() //indent:20 exp:20
                     { //indent:20 exp:20
@@ -47,7 +47,7 @@ public class InputIndentationAnonymousClassInMethodCurlyOnNewLine //indent:0 exp
                     } //indent:20 exp:20
               }; //indent:14 exp:8,12,16 warn
         final Supplier<Map<String, List<AbstractExpressionHandler>>> sup4 = //indent:8 exp:8
-                new Supplier<Map<String, List<com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler>>>() //indent:16 exp:>=16
+                new Supplier<Map<String, List<AbstractExpressionHandler>>>() //indent:16 exp:>=16
                 { //indent:16 exp:16
                     @Override //indent:20 exp:20
                     public Map<String, List<AbstractExpressionHandler>> get() //indent:20 exp:20
@@ -56,7 +56,7 @@ public class InputIndentationAnonymousClassInMethodCurlyOnNewLine //indent:0 exp
                     } //indent:20 exp:20
                 }; //indent:16 exp:16
         final Supplier<Map<String, List<AbstractExpressionHandler>>> sup5 = //indent:8 exp:8
-                new Supplier<Map<String, List<com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler>>>() //indent:16 exp:>=16
+                new Supplier<Map<String, List<AbstractExpressionHandler>>>() //indent:16 exp:>=16
                   { //indent:18 exp:8,12,16 warn
                       @Override //indent:22 exp:22
                       public Map<String, List<AbstractExpressionHandler>> get() //indent:22 exp:22
@@ -65,7 +65,7 @@ public class InputIndentationAnonymousClassInMethodCurlyOnNewLine //indent:0 exp
                       } //indent:22 exp:22
                   }; //indent:18 exp:8,12,16 warn
         final Supplier<Map<String, List<AbstractExpressionHandler>>> sup6 = //indent:8 exp:8
-                new Supplier<Map<String, List<com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler>>>() //indent:16 exp:>=16
+                new Supplier<Map<String, List<AbstractExpressionHandler>>>() //indent:16 exp:>=16
               { //indent:14 exp:8,12,16 warn
                   @Override //indent:18 exp:18
                   public Map<String, List<AbstractExpressionHandler>> get() //indent:18 exp:18

@@ -319,8 +319,8 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
             "22:50: " + getCheckMessage(MSG_KEY_SUM_MIN, 2, 3, "EQUAL"),
             "23:33: " + getCheckMessage(MSG_KEY_SUM_MIN, 2, 3, "NOT_EQUAL"),
             "23:51: " + getCheckMessage(MSG_KEY_SUM_MIN, 2, 3, "NOT_EQUAL"),
-            "24:54: " + getCheckMessage(MSG_KEY_SUM_MIN, 2, 3, "EQUAL"),
-            "24:77: " + getCheckMessage(MSG_KEY_SUM_MIN, 1, 3, "EQUAL"),
+            "25:13: " + getCheckMessage(MSG_KEY_SUM_MIN, 2, 3, "EQUAL"),
+            "25:36: " + getCheckMessage(MSG_KEY_SUM_MIN, 1, 3, "EQUAL"),
         };
 
         verify(checkConfig, getPath("InputDescendantTokenReturnFromFinally.java"), expected);
@@ -341,8 +341,8 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
             "22:50: custom message",
             "23:33: custom message",
             "23:51: custom message",
-            "24:54: custom message",
-            "24:77: custom message",
+            "25:13: custom message",
+            "25:36: custom message",
         };
 
         verify(checkConfig, getPath("InputDescendantTokenReturnFromFinally.java"), expected);

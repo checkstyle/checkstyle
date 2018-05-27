@@ -6,7 +6,7 @@ import java.util.function.Consumer; //indent:0 exp:0
 
 
 public class InputIndentationLambda2 { //indent:0 exp:0
-    public <T> Consumer<Integer> params(Consumer<Integer> f1, Consumer<Integer> f2) { //indent:4 exp:4
+    public <T> Consumer<Integer> par(Consumer<Integer> f1, Consumer<Integer> f2) { //indent:4 exp:4
         return f2; //indent:8 exp:8
     } //indent:4 exp:4
 
@@ -14,7 +14,7 @@ public class InputIndentationLambda2 { //indent:0 exp:0
     } //indent:4 exp:4
 
     public Consumer<Integer> returnFunctionOfLambda() { //indent:4 exp:4
-        return params( //indent:8 exp:8
+        return par( //indent:8 exp:8
                 (x) -> print(x * 1), //indent:16 exp:16
                 (x) -> print(x * 2) //indent:16 exp:16
         ); //indent:8 exp:8

@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.checks.indentation.indentation; //indent:0 exp:0
 
-public class InputIndentationMethodPrecededByAnnotationWithParameterOnSeparateLine { //indent:0 exp:0
+public class InputIndentationMethodPrecededByAnnotationWithParameterOnSeparateLine {//indent:0 exp:0
 
   @interface  Annotation1 { //indent:2 exp:2
     String field1(); //indent:4 exp:4

@@ -68,8 +68,8 @@ public class InputLocalFinalVariableNameTryResources {
 
     void method6() throws Exception {
         String srcDir = System.getProperty("test.src", ".");
-        try (FileInputStream fis8859_1 = new FileInputStream(new File(srcDir, "Bug6204853.properties"));
-             FileInputStream fisUTF8 = new FileInputStream(new File(srcDir, "Bug6204853_Utf8.properties"));
+        try (FileInputStream fis8859_1 = new FileInputStream(new File(srcDir, "Bug.properties"));
+             FileInputStream fisUTF8 = new FileInputStream(new File(srcDir, "Bug_Utf8.properties"));
              InputStreamReader isrutf8 = new InputStreamReader(fisUTF8, "UTF-8")) {
             PropertyResourceBundle bundleUtf8 = new PropertyResourceBundle(isrutf8);
             PropertyResourceBundle bundle = new PropertyResourceBundle(fis8859_1);

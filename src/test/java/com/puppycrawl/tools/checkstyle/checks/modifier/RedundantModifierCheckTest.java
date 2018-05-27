@@ -135,10 +135,10 @@ public class RedundantModifierCheckTest
                 createModuleConfig(RedundantModifierCheck.class);
 
         final String[] expected = {
-            "18:33: " + getCheckMessage(MSG_KEY, "public"),
-            "22:41: " + getCheckMessage(MSG_KEY, "public"),
-            "33:33: " + getCheckMessage(MSG_KEY, "public"),
-            "41:33: " + getCheckMessage(MSG_KEY, "public"),
+            "18:17: " + getCheckMessage(MSG_KEY, "public"),
+            "22:21: " + getCheckMessage(MSG_KEY, "public"),
+            "33:12: " + getCheckMessage(MSG_KEY, "public"),
+            "41:17: " + getCheckMessage(MSG_KEY, "public"),
         };
 
         verify(checkConfig,

@@ -16,7 +16,7 @@ import java.util.Arrays; //indent:0 exp:0
  *                                                                            //indent:1 exp:1
  * @author  jrichard                                                          //indent:1 exp:1
  */                                                                           //indent:1 exp:1
-public class InputIndentationValidMethodIndent extends java.awt.event.MouseAdapter implements java.awt.event.MouseListener { //indent:0 exp:0
+public class InputIndentationValidMethodIndent extends Object { //indent:0 exp:0
 
     // ctor with rcurly on same line //indent:4 exp:4
     public InputIndentationValidMethodIndent() { //indent:4 exp:4

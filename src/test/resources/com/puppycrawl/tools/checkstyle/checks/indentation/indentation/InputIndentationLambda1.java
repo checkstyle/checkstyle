@@ -11,7 +11,7 @@ import java.util.stream.IntStream; //indent:0 exp:0
 import java.util.stream.Stream; //indent:0 exp:0
 
 public class InputIndentationLambda1 { //indent:0 exp:0
-  private static final java.util.logging.Logger LOG = java.util.logging.Logger.getLogger(InputIndentationLambda1.class.getName()); //indent:2 exp:2
+  java.util.logging.Logger LOG =  java.util.logging.Logger.getLogger(""); //indent:2 exp:2
   interface Printer //indent:2 exp:2
   { //indent:2 exp:2
     void print(String s); //indent:4 exp:4

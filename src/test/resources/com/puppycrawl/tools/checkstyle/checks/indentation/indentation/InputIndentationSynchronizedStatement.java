@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation.indentation; //indent
  * throwsIndent = 8                                                           //indent:1 exp:1
  *                                                                            //indent:1 exp:1
  *                                                                            //indent:1 exp:1
- */                                                                           //indent:1 exp:1                                                                   //indent:1 exp:1
+ */                                                                           //indent:1 exp:1
 public class InputIndentationSynchronizedStatement { //indent:0 exp:0
     private static InputIndentationSynchronizedStatement instance;//indent:4 exp:4
     public static InputIndentationSynchronizedStatement getInstance() {//indent:4 exp:4

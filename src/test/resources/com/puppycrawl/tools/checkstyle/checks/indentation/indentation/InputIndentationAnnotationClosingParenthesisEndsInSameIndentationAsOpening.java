@@ -14,19 +14,20 @@ package com.puppycrawl.tools.checkstyle.checks.indentation.indentation; //indent
 @SimpleType( //indent:0 exp:0
     value = Boolean.class //indent:4 exp:4
 ) //indent:0 exp:0
-public class InputIndentationAnnotationClosingParenthesisEndsInSameIndentationAsOpening { //indent:0 exp:0
+public class //indent:0 exp:0
+    InputIndentationAnnotationClosingParenthesisEndsInSameIndentationAsOpening { //indent:4 exp:4
 } //indent:0 exp:0
 
 @PrecedingSimpleType( value = Boolean.class //indent:0 exp:0
 ) //indent:0 exp:0
 @SimpleType( value = Boolean.class //indent:0 exp:0
 ) //indent:0 exp:0
-class MultipleInputIndentationAnnotationClosingParenthesisJustLineAfterOpeningSameIndentationAsOpening { //indent:0 exp:0
+class MultipleInputIndentationAnnotationClosingParenthesisJustLineAfterOpening { //indent:0 exp:0
 } //indent:0 exp:0
 
 @SimpleType( value = Boolean.class //indent:0 exp:0
 ) //indent:0 exp:0
-class InputIndentationAnnotationClosingParenthesisJustLineAfterOpeningSameIndentationAsOpening { //indent:0 exp:0
+class InputIndentationAnnotationClosingParenthesisJustLineAfter { //indent:0 exp:0
 } //indent:0 exp:0
 
 @PrecedingSimpleType( value = Boolean.class //indent:0 exp:0
