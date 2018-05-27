@@ -24,8 +24,8 @@ import java.util.Optional;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
-import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <p>
@@ -182,7 +182,7 @@ public class ParameterNameCheck extends AbstractNameCheck {
         boolean checkName = true;
         if (ignoreOverridden && isOverriddenMethod(ast)
                 || ast.getParent().getType() == TokenTypes.LITERAL_CATCH
-                || CheckUtils.isReceiverParameter(ast)
+                || CheckUtil.isReceiverParameter(ast)
                 || !matchAccessModifiers(getAccessModifier(ast))) {
             checkName = false;
         }
@@ -204,12 +204,12 @@ public class ParameterNameCheck extends AbstractNameCheck {
 
         if (meth.getType() == TokenTypes.METHOD_DEF
                 || meth.getType() == TokenTypes.CTOR_DEF) {
-            if (ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
+            if (ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
                 accessModifier = AccessModifier.PUBLIC;
             }
             else {
                 final DetailAST modsToken = meth.findFirstToken(TokenTypes.MODIFIERS);
-                accessModifier = CheckUtils.getAccessModifierFromModifiersToken(modsToken);
+                accessModifier = CheckUtil.getAccessModifierFromModifiersToken(modsToken);
             }
         }
 

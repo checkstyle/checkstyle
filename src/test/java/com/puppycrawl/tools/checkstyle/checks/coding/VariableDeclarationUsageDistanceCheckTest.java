@@ -27,7 +27,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class VariableDeclarationUsageDistanceCheckTest extends
         AbstractModuleTestSupport {
@@ -262,7 +262,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     public void testLabels() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(VariableDeclarationUsageDistanceCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputVariableDeclarationUsageDistanceLabels.java"), expected);
     }

@@ -57,6 +57,9 @@ no-error-xwiki)
   checkout_from https://github.com/xwiki/xwiki-commons.git
   cd .ci-temp/xwiki-commons
   git checkout 44b0c0048c516dae20cf5f8a71181af836549484
+  # Till https://jira.xwiki.org/browse/XCOMMONS-1430
+  grep -rl AnnotationUtility . | xargs -r sed -i 's/\(AnnotationUtil\).../\1/g'
+  grep -rl CommonUtils . | xargs -r sed -i 's/\(CommonUtil\)./\1/g'
   mvn -e install -DskipTests -Dxwiki.clirr.skip=true checkstyle:check \
      -Dcheckstyle.version=${CS_POM_VERSION}
   cd ../../

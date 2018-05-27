@@ -26,7 +26,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class LineLengthCheckTest extends AbstractModuleTestSupport {
 
@@ -40,7 +40,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
         final LineLengthCheck checkObj = new LineLengthCheck();
         assertArrayEquals(
             "LineLengthCheck#getRequiredTokens should return empty array by default",
-            CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+            CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
         final LineLengthCheck checkObj = new LineLengthCheck();
         assertArrayEquals(
             "LineLengthCheck#getAcceptabletokens should return empty array by default",
-            CommonUtils.EMPTY_INT_ARRAY, checkObj.getAcceptableTokens());
+            CommonUtil.EMPTY_INT_ARRAY, checkObj.getAcceptableTokens());
     }
 
     @Test

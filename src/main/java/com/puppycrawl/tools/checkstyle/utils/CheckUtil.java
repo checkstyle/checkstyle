@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier;
  * Contains utility methods for the checks.
  *
  */
-public final class CheckUtils {
+public final class CheckUtil {
 
     // constants for parseDouble()
     /** Binary radix. */
@@ -69,7 +69,7 @@ public final class CheckUtils {
     private static final Pattern GETTER_PATTERN = Pattern.compile("^(is|get)[A-Z].*");
 
     /** Prevent instances. */
-    private CheckUtils() {
+    private CheckUtil() {
     }
 
     /**
@@ -177,7 +177,7 @@ public final class CheckUtils {
                     radix = BASE_2;
                     txt = txt.substring(2);
                 }
-                else if (CommonUtils.startsWithChar(txt, '0')) {
+                else if (CommonUtil.startsWithChar(txt, '0')) {
                     radix = BASE_8;
                     txt = txt.substring(1);
                 }
@@ -203,7 +203,7 @@ public final class CheckUtils {
      */
     private static double parseNumber(final String text, final int radix, final int type) {
         String txt = text;
-        if (CommonUtils.endsWithChar(txt, 'L') || CommonUtils.endsWithChar(txt, 'l')) {
+        if (CommonUtil.endsWithChar(txt, 'L') || CommonUtil.endsWithChar(txt, 'l')) {
             txt = txt.substring(0, txt.length() - 1);
         }
         final double result;

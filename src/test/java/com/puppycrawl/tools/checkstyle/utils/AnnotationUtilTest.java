@@ -31,12 +31,12 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class AnnotationUtilityTest {
+public class AnnotationUtilTest {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         try {
-            isUtilsClassHasPrivateConstructor(AnnotationUtility.class, true);
+            isUtilsClassHasPrivateConstructor(AnnotationUtil.class, true);
             Assert.fail("Exception is expected");
         }
         catch (InvocationTargetException ex) {
@@ -48,7 +48,7 @@ public class AnnotationUtilityTest {
     @Test
     public void testContainsAnnotationNull() {
         try {
-            AnnotationUtility.containsAnnotation(null);
+            AnnotationUtil.containsAnnotation(null);
             Assert.fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException ex) {
@@ -60,7 +60,7 @@ public class AnnotationUtilityTest {
     @Test
     public void testContainsAnnotationNull2() {
         try {
-            AnnotationUtility.containsAnnotation(null, "");
+            AnnotationUtil.containsAnnotation(null, "");
             Assert.fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException ex) {
@@ -73,8 +73,8 @@ public class AnnotationUtilityTest {
     public void testContainsAnnotationFalse() {
         final DetailAST ast = new DetailAST();
         ast.setType(1);
-        Assert.assertFalse("AnnotationUtility should not contain " + ast,
-                AnnotationUtility.containsAnnotation(ast));
+        Assert.assertFalse("AnnotationUtil should not contain " + ast,
+                AnnotationUtil.containsAnnotation(ast));
     }
 
     @Test
@@ -84,8 +84,8 @@ public class AnnotationUtilityTest {
         final DetailAST ast2 = new DetailAST();
         ast2.setType(TokenTypes.MODIFIERS);
         ast.addChild(ast2);
-        Assert.assertFalse("AnnotationUtility should not contain " + ast,
-                AnnotationUtility.containsAnnotation(ast));
+        Assert.assertFalse("AnnotationUtil should not contain " + ast,
+                AnnotationUtil.containsAnnotation(ast));
     }
 
     @Test
@@ -98,14 +98,14 @@ public class AnnotationUtilityTest {
         final DetailAST ast3 = new DetailAST();
         ast3.setType(TokenTypes.ANNOTATION);
         ast2.addChild(ast3);
-        assertTrue("AnnotationUtility should contain " + ast,
-                AnnotationUtility.containsAnnotation(ast));
+        assertTrue("AnnotationUtil should contain " + ast,
+                AnnotationUtil.containsAnnotation(ast));
     }
 
     @Test
     public void testAnnotationHolderNull() {
         try {
-            AnnotationUtility.getAnnotationHolder(null);
+            AnnotationUtil.getAnnotationHolder(null);
             Assert.fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException ex) {
@@ -117,7 +117,7 @@ public class AnnotationUtilityTest {
     @Test
     public void testAnnotationNull() {
         try {
-            AnnotationUtility.getAnnotation(null, null);
+            AnnotationUtil.getAnnotation(null, null);
             Assert.fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException ex) {
@@ -129,7 +129,7 @@ public class AnnotationUtilityTest {
     @Test
     public void testAnnotationNull2() {
         try {
-            AnnotationUtility.getAnnotation(new DetailAST(), null);
+            AnnotationUtil.getAnnotation(new DetailAST(), null);
             Assert.fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException ex) {
@@ -141,7 +141,7 @@ public class AnnotationUtilityTest {
     @Test
     public void testAnnotationEmpty() {
         try {
-            AnnotationUtility.getAnnotation(new DetailAST(), "");
+            AnnotationUtil.getAnnotation(new DetailAST(), "");
             Assert.fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException ex) {
@@ -153,7 +153,7 @@ public class AnnotationUtilityTest {
     @Test
     public void testContainsAnnotationWithNull() {
         try {
-            AnnotationUtility.getAnnotation(null, "");
+            AnnotationUtil.getAnnotation(null, "");
             Assert.fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException ex) {
@@ -183,7 +183,7 @@ public class AnnotationUtilityTest {
         astForTest.setFirstChild(child);
 
         assertTrue("Annotation should contain " + astForTest,
-                AnnotationUtility.containsAnnotation(astForTest, "Annotation"));
+                AnnotationUtil.containsAnnotation(astForTest, "Annotation"));
     }
 
     @Test
@@ -210,7 +210,7 @@ public class AnnotationUtilityTest {
         astForTest.setFirstChild(child);
 
         assertTrue("Annotation should contain " + astForTest,
-                AnnotationUtility.containsAnnotation(astForTest, "Annotation"));
+                AnnotationUtil.containsAnnotation(astForTest, "Annotation"));
     }
 
 }

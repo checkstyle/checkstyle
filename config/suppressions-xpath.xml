@@ -15,7 +15,7 @@
                     query="/CLASS_DEF[@text='XdocsPagesTest']//METHOD_DEF"/>
 
     <!-- Suppressions from PMD configuration-->
-    <!-- JavadocMethodCheck, JavadocStyleCheck, JavadocUtils.getJavadocTags() - deprecated -->
+    <!-- JavadocMethodCheck, JavadocStyleCheck, JavadocUtil.getJavadocTags() - deprecated -->
     <suppress-xpath checks="CyclomaticComplexity"
                     query="/CLASS_DEF[@text='JavadocMethodCheck' or @text='JavadocStyleCheck'
                     or @text='CustomImportOrderCheck']//METHOD_DEF"/>

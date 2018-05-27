@@ -24,7 +24,7 @@ import java.util.Locale;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>Abstract class for checking the padding of parentheses. That is whether a
@@ -113,7 +113,7 @@ public abstract class AbstractParenPadCheck
             final String line = getLines()[ast.getLineNo() - 1];
             if (option == PadOption.NOSPACE
                 && Character.isWhitespace(line.charAt(before))
-                && !CommonUtils.hasWhitespaceBefore(before, line)) {
+                && !CommonUtil.hasWhitespaceBefore(before, line)) {
                 log(ast.getLineNo(), before, MSG_WS_PRECEDED, CLOSE_PARENTHESIS);
             }
             else if (option == PadOption.SPACE

@@ -27,7 +27,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MethodLengthCheckTest extends AbstractModuleTestSupport {
 
@@ -41,7 +41,7 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
         final MethodLengthCheck checkObj = new MethodLengthCheck();
         assertArrayEquals(
             "MethodLengthCheck#getRequiredTokens should return empty array by default",
-            CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+            CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -74,7 +74,7 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(MethodLengthCheck.class);
         checkConfig.addAttribute("max", "19");
         checkConfig.addAttribute("countEmpty", "false");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodLengthSimple.java"), expected);
     }
 
@@ -94,7 +94,7 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
     public void testAbstract() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MethodLengthCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodLengthModifier.java"), expected);
     }
 

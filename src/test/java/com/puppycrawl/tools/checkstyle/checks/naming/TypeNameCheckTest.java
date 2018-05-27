@@ -26,7 +26,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class TypeNameCheckTest
     extends AbstractModuleTestSupport {
@@ -42,7 +42,7 @@ public class TypeNameCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(TypeNameCheck.class);
         checkConfig.addAttribute("format", "^inputHe");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputTypeName.java"), expected);
     }
 

@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
  * Checks that a JavaDoc block can fit on a single line and doesn't
@@ -133,7 +133,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
      */
     private boolean hasJavadocTags(DetailNode javadocRoot) {
         final DetailNode javadocTagSection =
-                JavadocUtils.findFirstToken(javadocRoot, JavadocTokenTypes.JAVADOC_TAG);
+                JavadocUtil.findFirstToken(javadocRoot, JavadocTokenTypes.JAVADOC_TAG);
         return javadocTagSection != null && !isTagIgnored(javadocTagSection);
     }
 
@@ -148,14 +148,14 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
      */
     private boolean hasJavadocInlineTags(DetailNode javadocRoot) {
         DetailNode javadocTagSection =
-                JavadocUtils.findFirstToken(javadocRoot, JavadocTokenTypes.JAVADOC_INLINE_TAG);
+                JavadocUtil.findFirstToken(javadocRoot, JavadocTokenTypes.JAVADOC_INLINE_TAG);
         boolean foundTag = false;
         while (javadocTagSection != null) {
             if (!isTagIgnored(javadocTagSection)) {
                 foundTag = true;
                 break;
             }
-            javadocTagSection = JavadocUtils.getNextSibling(
+            javadocTagSection = JavadocUtil.getNextSibling(
                     javadocTagSection, JavadocTokenTypes.JAVADOC_INLINE_TAG);
         }
         return foundTag;
@@ -168,7 +168,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
      * @return true, if ignoredTags contains javadocTagSection's javadoc tag.
      */
     private boolean isTagIgnored(DetailNode javadocTagSection) {
-        return ignoredTags.contains(JavadocUtils.getTagName(javadocTagSection));
+        return ignoredTags.contains(JavadocUtil.getTagName(javadocTagSection));
     }
 
 }

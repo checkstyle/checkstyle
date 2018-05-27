@@ -26,7 +26,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
 
@@ -40,7 +40,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(SingleSpaceSeparatorCheck.class);
         verify(checkConfig, getPath("InputSingleSpaceSeparatorNoErrors.java"),
-                CommonUtils.EMPTY_STRING_ARRAY);
+                CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -48,7 +48,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
         final SingleSpaceSeparatorCheck check = new SingleSpaceSeparatorCheck();
 
         assertArrayEquals("Invalid acceptable tokens",
-            CommonUtils.EMPTY_INT_ARRAY, check.getAcceptableTokens());
+            CommonUtil.EMPTY_INT_ARRAY, check.getAcceptableTokens());
     }
 
     @Test

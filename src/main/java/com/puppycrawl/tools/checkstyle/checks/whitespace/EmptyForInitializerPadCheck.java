@@ -25,7 +25,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>Checks the padding of an empty for initializer; that is whether a
@@ -108,7 +108,7 @@ public class EmptyForInitializerPadCheck
             final String line = getLines()[semiLineIdx];
             final int before = semi.getColumnNo() - 1;
             //don't check if semi at beginning of line
-            if (!CommonUtils.hasWhitespaceBefore(before, line)) {
+            if (!CommonUtil.hasWhitespaceBefore(before, line)) {
                 if (option == PadOption.NOSPACE
                     && Character.isWhitespace(line.charAt(before))) {
                     log(semi.getLineNo(), before, MSG_PRECEDED, SEMICOLON);

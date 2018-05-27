@@ -1,7 +1,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule4861blockcommentstyle;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
  * Contains examples of using comments at the end of the block.
@@ -59,7 +59,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     //    }
 
     public void foo11() {
-        CheckUtils
+        CheckUtil
             .getFirstNode(new DetailAST())
             .getFirstChild()
             .getNextSibling();
@@ -67,7 +67,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     }
 
     public void foo12() {
-        CheckUtils
+        CheckUtil
             .getFirstNode(new DetailAST())
             .getFirstChild()
             .getNextSibling();
@@ -75,33 +75,33 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     }
 
     public void foo13() {
-        CheckUtils.getFirstNode(new DetailAST())
+        CheckUtil.getFirstNode(new DetailAST())
                 .getFirstChild()
                 .getNextSibling();
         // comment
     }
 
     public void foo14() {
-        CheckUtils.getFirstNode(new DetailAST())
+        CheckUtil.getFirstNode(new DetailAST())
             .getFirstChild()
             .getNextSibling();
                                // warn
     }
 
     public void foo15() {
-        CheckUtils
+        CheckUtil
               .getFirstNode(new DetailAST());
         // comment
     }
 
     public void foo16() {
-        CheckUtils
+        CheckUtil
             .getFirstNode(new DetailAST());
                      // warn
     }
 
     public void foo17() {
-        CheckUtils
+        CheckUtil
             .getFirstNode(new DetailAST())
             .getFirstChild()
             // comment
@@ -109,7 +109,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     }
 
     public void foo18() {
-        CheckUtils
+        CheckUtil
             .getFirstNode(new DetailAST())
             .getFirstChild()
                              // warn

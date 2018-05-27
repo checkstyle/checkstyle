@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <p>
@@ -98,8 +98,8 @@ public class MemberNameCheck
             ast.findFirstToken(TokenTypes.MODIFIERS);
         final boolean isStatic = modifiersAST.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
 
-        return !isStatic && !ScopeUtils.isInInterfaceOrAnnotationBlock(ast)
-            && !ScopeUtils.isLocalVariableDef(ast)
+        return !isStatic && !ScopeUtil.isInInterfaceOrAnnotationBlock(ast)
+            && !ScopeUtil.isLocalVariableDef(ast)
                 && shouldCheckInScope(modifiersAST);
     }
 

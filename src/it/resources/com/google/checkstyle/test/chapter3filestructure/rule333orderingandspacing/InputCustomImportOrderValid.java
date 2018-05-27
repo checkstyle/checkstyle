@@ -1,7 +1,7 @@
 package com.google.checkstyle.test.chapter3filestructure.rule333orderingandspacing;
 
-import static com.puppycrawl.tools.checkstyle.utils.AnnotationUtility.containsAnnotation;
-import static com.puppycrawl.tools.checkstyle.utils.AnnotationUtility.getAnnotation;
+import static com.puppycrawl.tools.checkstyle.utils.AnnotationUtil.containsAnnotation;
+import static com.puppycrawl.tools.checkstyle.utils.AnnotationUtil.getAnnotation;
 
 import com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck;
 import com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck;

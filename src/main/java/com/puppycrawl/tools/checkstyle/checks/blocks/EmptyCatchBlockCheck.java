@@ -25,7 +25,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
@@ -158,7 +158,7 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
      */
     public void setExceptionVariableName(String exceptionVariableName) {
         this.exceptionVariableName = exceptionVariableName;
-        variableNameRegexp = CommonUtils.createPattern(exceptionVariableName);
+        variableNameRegexp = CommonUtil.createPattern(exceptionVariableName);
     }
 
     /**
@@ -170,7 +170,7 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
      */
     public void setCommentFormat(String commentFormat) {
         this.commentFormat = commentFormat;
-        commentRegexp = CommonUtils.createPattern(commentFormat);
+        commentRegexp = CommonUtil.createPattern(commentFormat);
     }
 
     @Override

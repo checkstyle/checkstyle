@@ -28,7 +28,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class BeforeExecutionExclusionFileFilterTest extends AbstractModuleTestSupport {
 
@@ -70,7 +70,7 @@ public class BeforeExecutionExclusionFileFilterTest extends AbstractModuleTestSu
                 createModuleConfig(BeforeExecutionExclusionFileFilter.class);
         filterConfig.addAttribute("fileNamePattern", "IncorrectClass\\.java");
 
-        final String[] violations = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] violations = CommonUtil.EMPTY_STRING_ARRAY;
         verify(createChecker(filterConfig),
                 getNonCompilablePath("InputBeforeExecutionExclusionFileFilterIncorrectClass.java"),
                 violations);

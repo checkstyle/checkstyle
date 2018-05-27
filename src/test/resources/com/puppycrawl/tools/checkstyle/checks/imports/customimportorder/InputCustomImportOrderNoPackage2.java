@@ -1,7 +1,7 @@
 
 
-import static com.puppycrawl.tools.checkstyle.utils.AnnotationUtility.containsAnnotation;
-import static com.puppycrawl.tools.checkstyle.utils.AnnotationUtility.getAnnotation;
+import static com.puppycrawl.tools.checkstyle.utils.AnnotationUtil.containsAnnotation;
+import static com.puppycrawl.tools.checkstyle.utils.AnnotationUtil.getAnnotation;
 
 
 import com.sun.accessibility.internal.resources.*;

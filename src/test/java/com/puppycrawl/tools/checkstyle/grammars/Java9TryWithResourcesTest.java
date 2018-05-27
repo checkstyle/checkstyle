@@ -24,7 +24,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Tests Java 9 try-with-resources can be parsed.
@@ -40,7 +40,7 @@ public class Java9TryWithResourcesTest extends AbstractModuleTestSupport {
     public void testCanParse() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MemberNameCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath("InputJava9TryWithResources.java"), expected);
     }
 

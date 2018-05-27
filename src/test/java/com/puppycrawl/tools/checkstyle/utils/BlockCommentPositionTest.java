@@ -81,7 +81,7 @@ public class BlockCommentPositionTest extends AbstractPathTestSupport {
         DetailAST node = detailAST;
         while (node != null) {
             if (node.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
-                    && JavadocUtils.isJavadocComment(node)) {
+                    && JavadocUtil.isJavadocComment(node)) {
                 if (!assertion.apply(node)) {
                     throw new IllegalStateException("Position of comment is defined correctly");
                 }

@@ -38,9 +38,9 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
-import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * Custom Checkstyle Check to validate Javadoc.
@@ -136,7 +136,7 @@ public class JavadocStyleCheck
 
     @Override
     public int[] getRequiredTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return CommonUtil.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -164,17 +164,17 @@ public class JavadocStyleCheck
         if (ast.getType() == TokenTypes.PACKAGE_DEF) {
             check = getFileContents().inPackageInfo();
         }
-        else if (!ScopeUtils.isInCodeBlock(ast)) {
+        else if (!ScopeUtil.isInCodeBlock(ast)) {
             final Scope customScope;
 
-            if (ScopeUtils.isInInterfaceOrAnnotationBlock(ast)
+            if (ScopeUtil.isInInterfaceOrAnnotationBlock(ast)
                     || ast.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
                 customScope = Scope.PUBLIC;
             }
             else {
-                customScope = ScopeUtils.getScopeFromMods(ast.findFirstToken(TokenTypes.MODIFIERS));
+                customScope = ScopeUtil.getScopeFromMods(ast.findFirstToken(TokenTypes.MODIFIERS));
             }
-            final Scope surroundingScope = ScopeUtils.getSurroundingScope(ast);
+            final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
 
             check = customScope.isIn(scope)
                     && (surroundingScope == null || surroundingScope.isIn(scope))
@@ -390,7 +390,7 @@ public class JavadocStyleCheck
         // Identify any tags left on the stack.
         // Skip multiples, like <b>...<b>
         String lastFound = "";
-        final List<String> typeParameters = CheckUtils.getTypeParameterNames(ast);
+        final List<String> typeParameters = CheckUtil.getTypeParameterNames(ast);
         for (final HtmlTag htmlTag : htmlStack) {
             if (!isSingleTag(htmlTag)
                 && !htmlTag.getId().equals(lastFound)

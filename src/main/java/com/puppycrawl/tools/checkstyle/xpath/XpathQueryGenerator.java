@@ -26,8 +26,8 @@ import java.util.stream.Collectors;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Generates xpath queries. Xpath queries are generated based on received
@@ -119,7 +119,7 @@ public class XpathQueryGenerator {
      * @return child {@code DetailAst} element of the given root
      */
     private static DetailAST findChildWithIdent(DetailAST root) {
-        return TokenUtils.findFirstTokenByPredicate(root,
+        return TokenUtil.findFirstTokenByPredicate(root,
             cur -> {
                 return cur.findFirstToken(TokenTypes.IDENT) != null;
             }).orElse(null);
@@ -177,7 +177,7 @@ public class XpathQueryGenerator {
         while (cur != root) {
             final StringBuilder curNodeQueryBuilder = new StringBuilder(256);
             curNodeQueryBuilder.append('/')
-                    .append(TokenUtils.getTokenName(cur.getType()));
+                    .append(TokenUtil.getTokenName(cur.getType()));
             final DetailAST identAst = cur.findFirstToken(TokenTypes.IDENT);
             if (identAst != null) {
                 curNodeQueryBuilder.append("[@text='")
@@ -229,7 +229,7 @@ public class XpathQueryGenerator {
      * @return the column number with tabs expanded
      */
     private int expandedTabColumn(DetailAST ast) {
-        return 1 + CommonUtils.lengthExpandedTabs(fileText.get(lineNumber - 1),
+        return 1 + CommonUtil.lengthExpandedTabs(fileText.get(lineNumber - 1),
                 ast.getColumnNo(), tabWidth);
     }
 

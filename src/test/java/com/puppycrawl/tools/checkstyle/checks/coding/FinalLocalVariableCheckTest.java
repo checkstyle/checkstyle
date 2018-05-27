@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class FinalLocalVariableCheckTest
     extends AbstractModuleTestSupport {
@@ -105,7 +105,7 @@ public class FinalLocalVariableCheckTest
             createModuleConfig(FinalLocalVariableCheck.class);
         checkConfig.addAttribute("tokens", "PARAMETER_DEF");
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputFinalLocalVariableNativeMethods.java"), expected);
     }
 
@@ -115,7 +115,7 @@ public class FinalLocalVariableCheckTest
             createModuleConfig(FinalLocalVariableCheck.class);
         checkConfig.addAttribute("tokens", "VARIABLE_DEF, PARAMETER_DEF");
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputFinalLocalVariableFalsePositive.java"), expected);
     }
 
@@ -226,7 +226,7 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testMultipleAndNestedConditions() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(FinalLocalVariableCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputFinalLocalVariableMultipleAndNestedConditions.java"),
             expected);
     }
@@ -235,7 +235,7 @@ public class FinalLocalVariableCheckTest
     public void testMultiTypeCatch() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(FinalLocalVariableCheck.class);
         checkConfig.addAttribute("tokens", "PARAMETER_DEF,VARIABLE_DEF");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputFinalLocalVariableMultiCatch.java"),
                 expected);
     }
@@ -243,7 +243,7 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testLeavingSlistToken() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(FinalLocalVariableCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputFinalLocalVariableLeavingSlistToken.java"), expected);
     }
 

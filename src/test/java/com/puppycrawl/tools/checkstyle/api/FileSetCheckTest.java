@@ -26,7 +26,7 @@ import java.io.File;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class FileSetCheckTest
     extends AbstractModuleTestSupport {
@@ -40,7 +40,7 @@ public class FileSetCheckTest
     public void testTranslation() throws Exception {
         final Configuration checkConfig =
             createModuleConfig(TestFileSetCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputFileSetIllegalTokens.java"), expected);
 
         assertTrue("destroy() not called by Checker", TestFileSetCheck.isDestroyed());
@@ -50,7 +50,7 @@ public class FileSetCheckTest
     public void testProcessCallsFinishBeforeCallingDestroy() throws Exception {
         final Configuration checkConfig =
             createModuleConfig(TestFileSetCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputFileSetIllegalTokens.java"), expected);
 

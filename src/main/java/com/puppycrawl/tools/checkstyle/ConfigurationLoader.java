@@ -43,7 +43,7 @@ import org.xml.sax.SAXParseException;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Loads a configuration from a standard configuration XML file.
@@ -240,7 +240,7 @@ public final class ConfigurationLoader {
             boolean omitIgnoredModules, ThreadModeSettings threadModeSettings)
             throws CheckstyleException {
         // figure out if this is a File or a URL
-        final URI uri = CommonUtils.getUriByFilename(config);
+        final URI uri = CommonUtil.getUriByFilename(config);
         final InputSource source = new InputSource(uri.toString());
         return loadConfiguration(source, overridePropsResolver,
                 omitIgnoredModules, threadModeSettings);
@@ -367,7 +367,7 @@ public final class ConfigurationLoader {
                                                   ThreadModeSettings threadModeSettings)
             throws CheckstyleException {
         // figure out if this is a File or a URL
-        final URI uri = CommonUtils.getUriByFilename(config);
+        final URI uri = CommonUtil.getUriByFilename(config);
         final InputSource source = new InputSource(uri.toString());
         return loadConfiguration(source, overridePropsResolver,
                 ignoredModulesOptions, threadModeSettings);

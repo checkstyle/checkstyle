@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
 
@@ -164,7 +164,7 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
     public void testNoNpeWhenBlockCommentEndsClassFile() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(CommentsIndentationCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         final String testInputFile = "InputCommentsIndentationNoNpe.java";
         verify(checkConfig, getPath(testInputFile), expected);
     }

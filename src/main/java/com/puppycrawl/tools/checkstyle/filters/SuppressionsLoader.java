@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.XmlLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Loads a filter chain of suppressions.
@@ -199,7 +199,7 @@ public final class SuppressionsLoader
     public static FilterSet loadSuppressions(String filename)
             throws CheckstyleException {
         // figure out if this is a File or a URL
-        final URI uri = CommonUtils.getUriByFilename(filename);
+        final URI uri = CommonUtil.getUriByFilename(filename);
         final InputSource source = new InputSource(uri.toString());
         return loadSuppressions(source, filename);
     }
@@ -226,7 +226,7 @@ public final class SuppressionsLoader
     public static Set<TreeWalkerFilter> loadXpathSuppressions(String filename)
             throws CheckstyleException {
         // figure out if this is a File or a URL
-        final URI uri = CommonUtils.getUriByFilename(filename);
+        final URI uri = CommonUtil.getUriByFilename(filename);
         final InputSource source = new InputSource(uri.toString());
         return loadXpathSuppressions(source, filename);
     }

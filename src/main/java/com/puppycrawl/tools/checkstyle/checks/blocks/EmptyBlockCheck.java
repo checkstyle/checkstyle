@@ -25,7 +25,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Checks for empty blocks. This check does not validate sequential blocks.
@@ -136,7 +136,7 @@ public class EmptyBlockCheck
 
     @Override
     public int[] getRequiredTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return CommonUtil.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -190,7 +190,7 @@ public class EmptyBlockCheck
             // Handle braces on the same line
             final String txt = lines[slistLineNo - 1]
                     .substring(slistColNo + 1, rcurlyColNo);
-            if (!CommonUtils.isBlank(txt)) {
+            if (!CommonUtil.isBlank(txt)) {
                 returnValue = true;
             }
         }
@@ -198,7 +198,7 @@ public class EmptyBlockCheck
             final String firstLine = lines[slistLineNo - 1].substring(slistColNo + 1);
             final String lastLine = lines[rcurlyLineNo - 1].substring(0, rcurlyColNo);
             // check if all lines are also only whitespace
-            returnValue = !(CommonUtils.isBlank(firstLine) && CommonUtils.isBlank(lastLine))
+            returnValue = !(CommonUtil.isBlank(firstLine) && CommonUtil.isBlank(lastLine))
                     || !checkIsAllLinesAreWhitespace(lines, slistLineNo, rcurlyLineNo);
         }
         return returnValue;
@@ -218,7 +218,7 @@ public class EmptyBlockCheck
     private static boolean checkIsAllLinesAreWhitespace(String[] lines, int lineFrom, int lineTo) {
         boolean result = true;
         for (int i = lineFrom; i < lineTo - 1; i++) {
-            if (!CommonUtils.isBlank(lines[i])) {
+            if (!CommonUtil.isBlank(lines[i])) {
                 result = false;
                 break;
             }

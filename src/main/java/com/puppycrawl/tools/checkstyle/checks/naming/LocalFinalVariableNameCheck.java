@@ -21,8 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
-import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <p>
@@ -84,7 +84,7 @@ public class LocalFinalVariableNameCheck
 
     @Override
     public int[] getRequiredTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return CommonUtil.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -93,7 +93,7 @@ public class LocalFinalVariableNameCheck
             ast.findFirstToken(TokenTypes.MODIFIERS);
         final boolean isFinal = ast.getType() == TokenTypes.RESOURCE
             || modifiersAST.findFirstToken(TokenTypes.FINAL) != null;
-        return isFinal && ScopeUtils.isLocalVariableDef(ast);
+        return isFinal && ScopeUtil.isLocalVariableDef(ast);
     }
 
 }

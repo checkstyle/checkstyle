@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
@@ -245,7 +245,7 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
     @Override
     public void init() {
         if (fileNamePattern == null && folderPattern == null) {
-            fileNamePattern = CommonUtils.createPattern("\\s");
+            fileNamePattern = CommonUtil.createPattern("\\s");
         }
     }
 
@@ -269,7 +269,7 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
         String fileName = file.getName();
 
         if (ignoreFileNameExtensions) {
-            fileName = CommonUtils.getFileNameWithoutExtension(fileName);
+            fileName = CommonUtil.getFileNameWithoutExtension(fileName);
         }
 
         return fileName;

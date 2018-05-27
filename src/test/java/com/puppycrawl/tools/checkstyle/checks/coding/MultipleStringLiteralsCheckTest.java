@@ -31,7 +31,7 @@ import org.junit.Test;
 import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
 
@@ -89,7 +89,7 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
             "5:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
             "10:23: " + getCheckMessage(MSG_KEY, "\", \"", 3)
         );
-        final List<String> expectedSecondInput = Arrays.asList(CommonUtils.EMPTY_STRING_ARRAY);
+        final List<String> expectedSecondInput = Arrays.asList(CommonUtil.EMPTY_STRING_ARRAY);
 
         verify(createChecker(checkConfig), inputs,
             ImmutableMap.of(firstInput, expectedFirstInput,

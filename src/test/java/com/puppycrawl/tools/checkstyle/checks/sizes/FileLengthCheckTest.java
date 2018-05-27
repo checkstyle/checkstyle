@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class FileLengthCheckTest
     extends AbstractModuleTestSupport {
@@ -56,7 +56,7 @@ public class FileLengthCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(FileLengthCheck.class);
         checkConfig.addAttribute("max", "225");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(createChecker(checkConfig),
                 getPath("InputFileLength.java"),
                 getPath("InputFileLength.java"), expected);
@@ -67,7 +67,7 @@ public class FileLengthCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(FileLengthCheck.class);
         checkConfig.addAttribute("max", "1000");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(createChecker(checkConfig),
                 getPath("InputFileLength.java"),
                 getPath("InputFileLength.java"), expected);
@@ -97,7 +97,7 @@ public class FileLengthCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(FileLengthCheck.class);
         checkConfig.addAttribute("fileExtensions", "txt");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(createChecker(checkConfig),
                 getPath("InputFileLength.java"),

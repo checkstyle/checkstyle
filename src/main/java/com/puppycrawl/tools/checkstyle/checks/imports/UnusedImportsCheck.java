@@ -34,8 +34,8 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
  * <p>
@@ -60,18 +60,18 @@ public class UnusedImportsCheck extends AbstractCheck {
     public static final String MSG_KEY = "import.unused";
 
     /** Regex to match class names. */
-    private static final Pattern CLASS_NAME = CommonUtils.createPattern(
+    private static final Pattern CLASS_NAME = CommonUtil.createPattern(
            "((:?[\\p{L}_$][\\p{L}\\p{N}_$]*\\.)*[\\p{L}_$][\\p{L}\\p{N}_$]*)");
     /** Regex to match the first class name. */
-    private static final Pattern FIRST_CLASS_NAME = CommonUtils.createPattern(
+    private static final Pattern FIRST_CLASS_NAME = CommonUtil.createPattern(
            "^" + CLASS_NAME);
     /** Regex to match argument names. */
-    private static final Pattern ARGUMENT_NAME = CommonUtils.createPattern(
+    private static final Pattern ARGUMENT_NAME = CommonUtil.createPattern(
            "[(,]\\s*" + CLASS_NAME.pattern());
 
     /** Regexp pattern to match java.lang package. */
     private static final Pattern JAVA_LANG_PACKAGE_PATTERN =
-        CommonUtils.createPattern("^java\\.lang\\.[a-zA-Z]+$");
+        CommonUtil.createPattern("^java\\.lang\\.[a-zA-Z]+$");
 
     /** Suffix for the star import. */
     private static final String STAR_IMPORT_SUFFIX = ".*";
@@ -171,7 +171,7 @@ public class UnusedImportsCheck extends AbstractCheck {
      */
     private boolean isUnusedImport(String imprt) {
         final Matcher javaLangPackageMatcher = JAVA_LANG_PACKAGE_PATTERN.matcher(imprt);
-        return !referenced.contains(CommonUtils.baseClassName(imprt))
+        return !referenced.contains(CommonUtil.baseClassName(imprt))
             || javaLangPackageMatcher.matches();
     }
 
@@ -237,9 +237,9 @@ public class UnusedImportsCheck extends AbstractCheck {
         final List<JavadocTag> tags = new ArrayList<>();
         // gather all the inline tags, like @link
         // INLINE tags inside BLOCKs get hidden when using ALL
-        tags.addAll(getValidTags(textBlock, JavadocUtils.JavadocTagType.INLINE));
+        tags.addAll(getValidTags(textBlock, JavadocUtil.JavadocTagType.INLINE));
         // gather all the block-level tags, like @throws and @see
-        tags.addAll(getValidTags(textBlock, JavadocUtils.JavadocTagType.BLOCK));
+        tags.addAll(getValidTags(textBlock, JavadocUtil.JavadocTagType.BLOCK));
 
         final Set<String> references = new HashSet<>();
 
@@ -256,8 +256,8 @@ public class UnusedImportsCheck extends AbstractCheck {
      * @return the list of tags
      */
     private static List<JavadocTag> getValidTags(TextBlock cmt,
-            JavadocUtils.JavadocTagType tagType) {
-        return JavadocUtils.getJavadocTags(cmt, tagType).getValidTags();
+            JavadocUtil.JavadocTagType tagType) {
+        return JavadocUtil.getJavadocTags(cmt, tagType).getValidTags();
     }
 
     /**

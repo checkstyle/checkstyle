@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.LineColumn;
  * Tools for parsing block tags from a Javadoc comment.
  *
  */
-public final class BlockTagUtils {
+public final class BlockTagUtil {
 
     /** Block tag pattern for a first line. */
     private static final Pattern BLOCK_TAG_PATTERN_FIRST_LINE = Pattern.compile(
@@ -44,7 +44,7 @@ public final class BlockTagUtils {
     private static final String JAVADOC_CLOSING_TAG = "*/";
 
     /** Prevent instantiation. */
-    private BlockTagUtils() {
+    private BlockTagUtil() {
     }
 
     /**

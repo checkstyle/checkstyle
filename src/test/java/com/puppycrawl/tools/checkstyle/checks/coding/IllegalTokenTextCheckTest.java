@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 public class IllegalTokenTextCheckTest
     extends AbstractModuleTestSupport {
@@ -143,7 +143,7 @@ public class IllegalTokenTextCheckTest
         final int expectedTokenTypesTotalNumber = 169;
         Assert.assertEquals("Total number of TokenTypes has changed, acceptable tokens in"
                 + " IllegalTokenTextCheck need to be reconsidered.",
-            expectedTokenTypesTotalNumber, TokenUtils.getTokenTypesTotalNumber());
+            expectedTokenTypesTotalNumber, TokenUtil.getTokenTypesTotalNumber());
 
         final IllegalTokenTextCheck check = new IllegalTokenTextCheck();
         final int[] allowedTokens = check.getAcceptableTokens();
@@ -158,7 +158,7 @@ public class IllegalTokenTextCheckTest
             TokenTypes.CHAR_LITERAL
         );
         for (int tokenType : allowedTokens) {
-            Assert.assertTrue(TokenUtils.getTokenName(tokenType) + " should not be allowed"
+            Assert.assertTrue(TokenUtil.getTokenName(tokenType) + " should not be allowed"
                 + " in this check as its text is a constant (IllegalTokenCheck should be used for"
                 + " such cases).", tokenTypesWithMutableText.contains(tokenType));
         }

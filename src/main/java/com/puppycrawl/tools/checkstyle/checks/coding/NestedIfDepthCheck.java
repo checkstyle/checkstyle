@@ -23,7 +23,7 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
  * Restricts nested if-else blocks to a specified depth (default = 1).
@@ -73,7 +73,7 @@ public final class NestedIfDepthCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST literalIf) {
-        if (!CheckUtils.isElseIf(literalIf)) {
+        if (!CheckUtil.isElseIf(literalIf)) {
             if (depth > max) {
                 log(literalIf, MSG_KEY, depth, max);
             }
@@ -83,7 +83,7 @@ public final class NestedIfDepthCheck extends AbstractCheck {
 
     @Override
     public void leaveToken(DetailAST literalIf) {
-        if (!CheckUtils.isElseIf(literalIf)) {
+        if (!CheckUtil.isElseIf(literalIf)) {
             --depth;
         }
     }

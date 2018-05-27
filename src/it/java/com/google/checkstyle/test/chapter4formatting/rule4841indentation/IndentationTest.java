@@ -23,7 +23,7 @@ import org.junit.Test;
 
 import com.google.checkstyle.test.base.AbstractIndentationTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class IndentationTest extends AbstractIndentationTestSupport {
 
@@ -34,7 +34,7 @@ public class IndentationTest extends AbstractIndentationTestSupport {
 
     @Test
     public void testCorrectClass() throws Exception {
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("Indentation");
         final String filePath = getPath("InputIndentationCorrectClass.java");
@@ -45,7 +45,7 @@ public class IndentationTest extends AbstractIndentationTestSupport {
 
     @Test
     public void testCorrectField() throws Exception {
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("Indentation");
         final String filePath = getPath("InputIndentationCorrectFieldAndParameter.java");
@@ -56,7 +56,7 @@ public class IndentationTest extends AbstractIndentationTestSupport {
 
     @Test
     public void testCorrectFor() throws Exception {
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("Indentation");
         final String filePath = getPath("InputIndentationCorrectForAndParameter.java");
@@ -67,7 +67,7 @@ public class IndentationTest extends AbstractIndentationTestSupport {
 
     @Test
     public void testCorrectIf() throws Exception {
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("Indentation");
         final String filePath = getPath("InputIndentationCorrectIfAndParameter.java");
@@ -78,7 +78,7 @@ public class IndentationTest extends AbstractIndentationTestSupport {
 
     @Test
     public void testCorrect() throws Exception {
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("Indentation");
         final String filePath = getPath("InputIndentationCorrect.java");
@@ -89,7 +89,7 @@ public class IndentationTest extends AbstractIndentationTestSupport {
 
     @Test
     public void testCorrectReturn() throws Exception {
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("Indentation");
         final String filePath = getPath("InputIndentationCorrectReturnAndParameter.java");
@@ -100,7 +100,7 @@ public class IndentationTest extends AbstractIndentationTestSupport {
 
     @Test
     public void testCorrectWhile() throws Exception {
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("Indentation");
         final String filePath = getPath("InputIndentationCorrectWhileDoWhileAndParameter.java");

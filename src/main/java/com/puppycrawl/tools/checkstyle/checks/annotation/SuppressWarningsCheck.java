@@ -26,8 +26,8 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
@@ -143,7 +143,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return CommonUtil.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -217,10 +217,10 @@ public class SuppressWarningsCheck extends AbstractCheck {
      * @return the {@link SuppressWarnings SuppressWarnings} annotation
      */
     private static DetailAST getSuppressWarnings(DetailAST ast) {
-        DetailAST annotation = AnnotationUtility.getAnnotation(ast, SUPPRESS_WARNINGS);
+        DetailAST annotation = AnnotationUtil.getAnnotation(ast, SUPPRESS_WARNINGS);
 
         if (annotation == null) {
-            annotation = AnnotationUtility.getAnnotation(ast, FQ_SUPPRESS_WARNINGS);
+            annotation = AnnotationUtil.getAnnotation(ast, FQ_SUPPRESS_WARNINGS);
         }
         return annotation;
     }

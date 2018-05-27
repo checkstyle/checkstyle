@@ -51,9 +51,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     private static final List<List<Node>> CHECK_PROPERTIES = new ArrayList<>();
@@ -424,7 +424,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
 
         @Override
         public void visitToken(DetailAST ast) {
-            if (JavadocUtils.isJavadocComment(ast)) {
+            if (JavadocUtil.isJavadocComment(ast)) {
                 final DetailAST node = getParent(ast);
 
                 switch (node.getType()) {
@@ -450,7 +450,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                         // ignore
                         break;
                     default:
-                        Assert.fail("Unknown token '" + TokenUtils.getTokenName(node.getType())
+                        Assert.fail("Unknown token '" + TokenUtil.getTokenName(node.getType())
                                 + "': " + ast.getLineNo());
                         break;
                 }
@@ -461,7 +461,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         public void leaveToken(DetailAST ast) {
             final DetailAST node = getParent(ast);
 
-            if (node.getType() == TokenTypes.CLASS_DEF && JavadocUtils.isJavadocComment(ast)) {
+            if (node.getType() == TokenTypes.CLASS_DEF && JavadocUtil.isJavadocComment(ast)) {
                 depth--;
             }
         }
@@ -510,7 +510,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
 
         /**
          * Returns whether an AST represents a setter method. This is similar to
-         * {@link CheckUtils#isSetterMethod(DetailAST)} except this doesn't care
+         * {@link CheckUtil#isSetterMethod(DetailAST)} except this doesn't care
          * about the number of children in the method.
          * @param ast the AST to check with.
          * @return whether the AST represents a setter method.

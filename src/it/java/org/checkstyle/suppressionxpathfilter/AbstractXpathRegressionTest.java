@@ -42,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator;
 
 public abstract class AbstractXpathRegressionTest extends AbstractModuleTestSupport {
@@ -51,7 +51,7 @@ public abstract class AbstractXpathRegressionTest extends AbstractModuleTestSupp
 
     private static final String DELIMITER = " | \n";
 
-    private static final String[] NO_VIOLATIONS = CommonUtils.EMPTY_STRING_ARRAY;
+    private static final String[] NO_VIOLATIONS = CommonUtil.EMPTY_STRING_ARRAY;
 
     private static final Pattern LINE_COLUMN_NUMBER_REGEX =
             Pattern.compile("([0-9]+):([0-9]+):");

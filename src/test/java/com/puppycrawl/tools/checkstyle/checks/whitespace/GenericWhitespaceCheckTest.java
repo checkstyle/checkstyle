@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class GenericWhitespaceCheckTest
     extends AbstractModuleTestSupport {
@@ -111,21 +111,21 @@ public class GenericWhitespaceCheckTest
     @Test
     public void testList() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputGenericWhitespaceList.java"), expected);
     }
 
     @Test
     public void testInnerClass() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputGenericWhitespaceInnerClass.java"), expected);
     }
 
     @Test
     public void testMethodReferences() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputGenericWhitespaceMethodRef1.java"), expected);
     }
 
@@ -141,7 +141,7 @@ public class GenericWhitespaceCheckTest
     @Test
     public void testGenericEndsTheLine() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputGenericWhitespaceEndsTheLine.java"), expected);
     }
 

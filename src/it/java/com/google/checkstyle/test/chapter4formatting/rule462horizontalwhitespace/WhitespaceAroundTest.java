@@ -23,7 +23,7 @@ import org.junit.Test;
 
 import com.google.checkstyle.test.base.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class WhitespaceAroundTest extends AbstractModuleTestSupport {
 
@@ -72,7 +72,7 @@ public class WhitespaceAroundTest extends AbstractModuleTestSupport {
 
     @Test
     public void testWhitespaceAroundEmptyTypesCycles() throws Exception {
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("WhitespaceAround");
         final String filePath = getPath("InputWhitespaceAroundEmptyTypesAndCycles.java");

@@ -27,7 +27,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class CyclomaticComplexityCheckTest
     extends AbstractModuleTestSupport {
@@ -71,7 +71,7 @@ public class CyclomaticComplexityCheckTest
             createModuleConfig(CyclomaticComplexityCheck.class);
         checkConfig.addAttribute("max", "5");
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputCyclomaticComplexitySwitchBlocks.java"), expected);
     }
@@ -128,7 +128,7 @@ public class CyclomaticComplexityCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(CyclomaticComplexityCheck.class);
         checkConfig.addAttribute("max", "100");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputCyclomaticComplexitySwitchBlocks.java"), expected);
     }

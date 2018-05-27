@@ -45,7 +45,7 @@ import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
-import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtils;
+import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 
 public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport {
 
@@ -105,8 +105,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         if (!ROOT_MODULE_NAME.equals(moduleName)) {
             try {
                 final Class<?> moduleClass = Class.forName(moduleName);
-                if (ModuleReflectionUtils.isCheckstyleTreeWalkerCheck(moduleClass)
-                        || ModuleReflectionUtils.isTreeWalkerFilterModule(moduleClass)) {
+                if (ModuleReflectionUtil.isCheckstyleTreeWalkerCheck(moduleClass)
+                        || ModuleReflectionUtil.isTreeWalkerFilterModule(moduleClass)) {
                     moduleCreationOption = ModuleCreationOption.IN_TREEWALKER;
                 }
             }

@@ -47,7 +47,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Contains utility methods.
  *
  */
-public final class CommonUtils {
+public final class CommonUtil {
 
     /** Copied from org.apache.commons.lang3.ArrayUtils. */
     public static final String[] EMPTY_STRING_ARRAY = new String[0];
@@ -73,7 +73,7 @@ public final class CommonUtils {
     private static final String BLOCK_MULTIPLE_COMMENT_END = "*/";
 
     /** Stop instances being created. **/
-    private CommonUtils() {
+    private CommonUtil() {
     }
 
     /**
@@ -504,7 +504,7 @@ public final class CommonUtils {
             else {
                 // check to see if the file is in the classpath
                 try {
-                    final URL configUrl = CommonUtils.class
+                    final URL configUrl = CommonUtil.class
                             .getResource(filename);
                     if (configUrl == null) {
                         throw new CheckstyleException(UNABLE_TO_FIND_EXCEPTION_PREFIX + filename);

@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 
 /**
  * <p>
@@ -153,8 +153,8 @@ public class MethodNameCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (!AnnotationUtility.containsAnnotation(ast, OVERRIDE)
-            && !AnnotationUtility.containsAnnotation(ast, CANONICAL_OVERRIDE)) {
+        if (!AnnotationUtil.containsAnnotation(ast, OVERRIDE)
+            && !AnnotationUtil.containsAnnotation(ast, CANONICAL_OVERRIDE)) {
             // Will check the name against the format.
             super.visitToken(ast);
         }

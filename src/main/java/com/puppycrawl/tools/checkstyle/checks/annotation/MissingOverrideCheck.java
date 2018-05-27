@@ -28,8 +28,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
-import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
@@ -99,7 +99,7 @@ public final class MissingOverrideCheck extends AbstractCheck {
 
     /** Compiled regexp to match Javadoc tags with no argument and {}. */
     private static final Pattern MATCH_INHERIT_DOC =
-            CommonUtils.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
+            CommonUtil.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
 
     /**
      * Java 5 compatibility option.
@@ -169,8 +169,8 @@ public final class MissingOverrideCheck extends AbstractCheck {
 
             if (check
                 && containsTag
-                && !AnnotationUtility.containsAnnotation(ast, OVERRIDE)
-                && !AnnotationUtility.containsAnnotation(ast, FQ_OVERRIDE)) {
+                && !AnnotationUtil.containsAnnotation(ast, OVERRIDE)
+                && !AnnotationUtil.containsAnnotation(ast, FQ_OVERRIDE)) {
                 log(ast.getLineNo(), MSG_KEY_ANNOTATION_MISSING_OVERRIDE);
             }
         }

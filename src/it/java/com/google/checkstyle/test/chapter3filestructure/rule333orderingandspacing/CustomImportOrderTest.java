@@ -24,7 +24,7 @@ import org.junit.Test;
 import com.google.checkstyle.test.base.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class CustomImportOrderTest extends AbstractModuleTestSupport {
 
@@ -119,7 +119,7 @@ public class CustomImportOrderTest extends AbstractModuleTestSupport {
 
     @Test
     public void testValid() throws Exception {
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("CustomImportOrder");
         final String filePath = getPath("InputCustomImportOrderValid.java");
@@ -130,7 +130,7 @@ public class CustomImportOrderTest extends AbstractModuleTestSupport {
 
     @Test
     public void testValidGoogleStyleOrderOfImports() throws Exception {
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("CustomImportOrder");
         final String filePath = getPath("InputCustomImportOrderNoImports.java");

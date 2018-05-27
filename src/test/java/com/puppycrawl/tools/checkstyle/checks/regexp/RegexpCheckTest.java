@@ -28,7 +28,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class RegexpCheckTest extends AbstractModuleTestSupport {
 
@@ -42,7 +42,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         final RegexpCheck regexpCheck = new RegexpCheck();
         assertArrayEquals(
                 "RegexpCheck#getAcceptableTokens should return empty array by default",
-                CommonUtils.EMPTY_INT_ARRAY, regexpCheck.getAcceptableTokens());
+                CommonUtil.EMPTY_INT_ARRAY, regexpCheck.getAcceptableTokens());
     }
 
     @Test
@@ -50,7 +50,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         final RegexpCheck checkObj = new RegexpCheck();
         assertArrayEquals(
             "RegexpCheck#getRequiredTokens should return empty array by default",
-            CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+            CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -58,7 +58,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(RegexpCheck.class);
         checkConfig.addAttribute("format", "Test case file");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpSemantic.java"), expected);
     }
 
@@ -79,7 +79,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(RegexpCheck.class);
         checkConfig.addAttribute("format", "Test case file");
         checkConfig.addAttribute("duplicateLimit", "0");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpSemantic.java"), expected);
     }
 
@@ -88,7 +88,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpCheck.class);
         checkConfig.addAttribute("format", "Test case file");
         checkConfig.addAttribute("duplicateLimit", "-1");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpSemantic.java"), expected);
     }
 
@@ -110,7 +110,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(RegexpCheck.class);
         checkConfig.addAttribute("format", "This text is not in the file");
         checkConfig.addAttribute("illegalPattern", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpSemantic.java"), expected);
     }
 
@@ -202,7 +202,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(RegexpCheck.class);
         checkConfigFalse.addAttribute("format", "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(");
         checkConfigFalse.addAttribute("illegalPattern", "true");
-        final String[] expectedFalse = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expectedFalse = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfigFalse, getPath("InputRegexpSemantic.java"), expectedFalse);
     }
 
@@ -214,7 +214,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("format", "don't use trailing comments");
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpTrailingComment.java"), expected);
     }
 
@@ -240,7 +240,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("format", "c-style 1");
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpTrailingComment.java"), expected);
     }
 
@@ -265,7 +265,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("format", "c-style 2");
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpTrailingComment.java"), expected);
     }
 
@@ -276,7 +276,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("format", "Let's check multi-line comments");
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpTrailingComment.java"), expected);
     }
 
@@ -287,7 +287,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("format", "long ms /");
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpTrailingComment.java"), expected);
     }
 
@@ -325,14 +325,14 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("format", "long ms  ");
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpTrailingComment.java"), expected);
     }
 
     @Test
     public void testOnFileStartingWithEmptyLine() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpStartingWithEmptyLine.java"), expected);
     }
 

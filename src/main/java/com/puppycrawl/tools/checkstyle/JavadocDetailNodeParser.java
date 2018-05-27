@@ -49,7 +49,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
 import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocLexer;
 import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
  * Used for parsing Javadoc comment as DetailNode tree.
@@ -104,7 +104,7 @@ public class JavadocDetailNodeParser {
     public ParseStatus parseJavadocAsDetailNode(DetailAST javadocCommentAst) {
         blockCommentLineNumber = javadocCommentAst.getLineNo();
 
-        final String javadocComment = JavadocUtils.getJavadocCommentContent(javadocCommentAst);
+        final String javadocComment = JavadocUtil.getJavadocCommentContent(javadocCommentAst);
 
         // Use a new error listener each time to be able to use
         // one check instance for multiple files to be checked
@@ -219,7 +219,7 @@ public class JavadocDetailNodeParser {
                 parseTreeParent = parseTreeParent.getChild(0);
             }
             else {
-                JavadocNodeImpl nextJavadocSibling = (JavadocNodeImpl) JavadocUtils
+                JavadocNodeImpl nextJavadocSibling = (JavadocNodeImpl) JavadocUtil
                         .getNextSibling(currentJavadocParent);
 
                 ParseTree nextParseTreeSibling = getNextSibling(parseTreeParent);
@@ -231,7 +231,7 @@ public class JavadocDetailNodeParser {
                     ParseTree tempParseTreeParent = parseTreeParent.getParent();
 
                     while (nextJavadocSibling == null && tempJavadocParent != null) {
-                        nextJavadocSibling = (JavadocNodeImpl) JavadocUtils
+                        nextJavadocSibling = (JavadocNodeImpl) JavadocUtil
                                 .getNextSibling(tempJavadocParent);
 
                         nextParseTreeSibling = getNextSibling(tempParseTreeParent);
@@ -418,7 +418,7 @@ public class JavadocDetailNodeParser {
             final String className = getNodeClassNameWithoutContext(node);
             final String typeName =
                     CaseFormat.UPPER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, className);
-            tokenType = JavadocUtils.getTokenId(typeName);
+            tokenType = JavadocUtil.getTokenId(typeName);
         }
 
         return tokenType;

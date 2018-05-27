@@ -37,7 +37,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class DefaultLoggerTest {
 
@@ -87,11 +87,11 @@ public class DefaultLoggerTest {
                 getClass(), null);
         final LocalizedMessage startMessage = new LocalizedMessage(0,
                 Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.AUDIT_STARTED_MESSAGE,
-                CommonUtils.EMPTY_STRING_ARRAY, null,
+                CommonUtil.EMPTY_STRING_ARRAY, null,
                 getClass(), null);
         final LocalizedMessage finishMessage = new LocalizedMessage(0,
                 Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.AUDIT_FINISHED_MESSAGE,
-                CommonUtils.EMPTY_STRING_ARRAY, null,
+                CommonUtil.EMPTY_STRING_ARRAY, null,
                 getClass(), null);
 
         verify(infoStream, times(1)).close();

@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <p>
@@ -204,7 +204,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                         && ast.findFirstToken(TokenTypes.MODIFIERS)
                             .findFirstToken(TokenTypes.FINAL) == null
                         && !isInAbstractOrNativeMethod(ast)
-                        && !ScopeUtils.isInInterfaceBlock(ast)
+                        && !ScopeUtil.isInInterfaceBlock(ast)
                         && !isMultipleTypeCatch(ast)) {
                     insertParameter(ast);
                 }
@@ -642,7 +642,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 && astTraverse.getType() != TokenTypes.CLASS_DEF
                 && astTraverse.getType() != TokenTypes.ENUM_DEF
                 && astTraverse.getType() != TokenTypes.CTOR_DEF
-                && !ScopeUtils.isClassFieldDef(astTraverse)) {
+                && !ScopeUtil.isClassFieldDef(astTraverse)) {
             astTraverse = astTraverse.getParent();
         }
         return astTraverse;

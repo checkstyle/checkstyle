@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Checks for multiple occurrences of the same string literal within a
@@ -107,7 +107,7 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
     public final void setIgnoreOccurrenceContext(String... strRep) {
         ignoreOccurrenceContext.clear();
         for (final String s : strRep) {
-            final int type = TokenUtils.getTokenId(s);
+            final int type = TokenUtil.getTokenId(s);
             ignoreOccurrenceContext.set(type);
         }
     }

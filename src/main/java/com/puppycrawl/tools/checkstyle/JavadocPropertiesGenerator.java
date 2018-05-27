@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
  * This class is used internally in the build process to write a property file
@@ -202,7 +202,7 @@ public final class JavadocPropertiesGenerator {
             }
             // Otherwise, the javadoc comment will be right here.
             else if (child.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
-                    && JavadocUtils.isJavadocComment(child)) {
+                    && JavadocUtil.isJavadocComment(child)) {
                 final DetailNode tree = DetailNodeTreeStringPrinter.parseJavadocAsDetailNode(child);
                 firstSentence = getFirstJavadocSentence(tree);
             }
@@ -276,7 +276,7 @@ public final class JavadocPropertiesGenerator {
                     break;
                 default:
                     throw new CheckstyleException("Unsupported inline tag "
-                        + JavadocUtils.getTokenName(node.getType()));
+                        + JavadocUtil.getTokenName(node.getType()));
             }
         }
     }

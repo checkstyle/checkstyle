@@ -28,8 +28,8 @@ import java.util.regex.Pattern;
 import com.google.common.base.CharMatcher;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
  * <p>
@@ -97,7 +97,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     );
 
     /** Regular expression for forbidden summary fragments. */
-    private Pattern forbiddenSummaryFragments = CommonUtils.createPattern("^$");
+    private Pattern forbiddenSummaryFragments = CommonUtil.createPattern("^$");
 
     /** Period symbol at the end of first javadoc sentence. */
     private String period = PERIOD;
@@ -167,7 +167,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                 found = true;
             }
             else if (child.getType() != JavadocTokenTypes.LEADING_ASTERISK
-                    && !CommonUtils.isBlank(child.getText())) {
+                    && !CommonUtil.isBlank(child.getText())) {
                 break;
             }
         }
@@ -188,7 +188,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                 result.append(child.getText());
             }
             else if (child.getType() == JavadocTokenTypes.HTML_ELEMENT
-                    && CommonUtils.isBlank(result.toString().trim())) {
+                    && CommonUtil.isBlank(result.toString().trim())) {
                 result.append(getStringInsideTag(result.toString(),
                         child.getChildren()[0].getChildren()[0]));
             }
@@ -215,7 +215,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             if (tempNode.getType() == JavadocTokenTypes.TEXT) {
                 contents.append(tempNode.getText());
             }
-            tempNode = JavadocUtils.getNextSibling(tempNode);
+            tempNode = JavadocUtil.getNextSibling(tempNode);
         }
         return contents.toString();
     }

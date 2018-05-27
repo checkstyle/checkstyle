@@ -26,7 +26,7 @@ import org.junit.Test;
 
 import com.google.checkstyle.test.base.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class PackageNameTest extends AbstractModuleTestSupport {
 
@@ -44,7 +44,7 @@ public class PackageNameTest extends AbstractModuleTestSupport {
     @Test
     public void testGoodPackageName() throws Exception {
         final Configuration checkConfig = getModuleConfig("PackageName");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         final String filePath = getPath("packagenames", "InputPackageNameGood.java");
 

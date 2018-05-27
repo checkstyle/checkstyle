@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
-import com.puppycrawl.tools.checkstyle.utils.FilterUtils;
+import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
 
 /**
  * This filter accepts TreeWalkerAuditEvents according to file, check and xpath query,
@@ -101,7 +101,7 @@ public class SuppressionXpathFilter extends AutomaticBean implements
     protected void finishLocalSetup() throws CheckstyleException {
         if (file != null) {
             if (optional) {
-                if (FilterUtils.isFileExists(file)) {
+                if (FilterUtil.isFileExists(file)) {
                     filters = SuppressionsLoader.loadXpathSuppressions(file);
                 }
                 else {

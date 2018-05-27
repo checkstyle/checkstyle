@@ -1,7 +1,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltype;
 
-import static com.puppycrawl.tools.checkstyle.utils.CheckUtils.isElseIf;
-import static com.puppycrawl.tools.checkstyle.utils.CheckUtils.*;
+import static com.puppycrawl.tools.checkstyle.utils.CheckUtil.isElseIf;
+import static com.puppycrawl.tools.checkstyle.utils.CheckUtil.*;
 import static com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalType.SomeStaticClass;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 //configuration: "illegalClassNames": SomeStaticClass

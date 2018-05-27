@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * This enum defines the various Javadoc tags and there properties.
@@ -92,7 +92,7 @@ public enum JavadocTagInfo {
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
             return Arrays.binarySearch(DEF_TOKEN_TYPES, astType) >= 0
-                && !ScopeUtils.isLocalVariableDef(ast);
+                && !ScopeUtil.isLocalVariableDef(ast);
         }
 
     },
@@ -106,7 +106,7 @@ public enum JavadocTagInfo {
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
             return Arrays.binarySearch(DEF_TOKEN_TYPES, astType) >= 0
-                && !ScopeUtils.isLocalVariableDef(ast);
+                && !ScopeUtil.isLocalVariableDef(ast);
         }
 
     },
@@ -120,7 +120,7 @@ public enum JavadocTagInfo {
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
             return Arrays.binarySearch(DEF_TOKEN_TYPES_DEPRECATED, astType) >= 0
-                && !ScopeUtils.isLocalVariableDef(ast);
+                && !ScopeUtil.isLocalVariableDef(ast);
         }
 
     },
@@ -150,7 +150,7 @@ public enum JavadocTagInfo {
             return astType == TokenTypes.METHOD_DEF
                 && ast.findFirstToken(TokenTypes.MODIFIERS)
                     .findFirstToken(TokenTypes.LITERAL_STATIC) == null
-                && ScopeUtils.getScopeFromMods(ast
+                && ScopeUtil.getScopeFromMods(ast
                     .findFirstToken(TokenTypes.MODIFIERS)) != Scope.PRIVATE;
         }
 
@@ -165,7 +165,7 @@ public enum JavadocTagInfo {
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
             return Arrays.binarySearch(DEF_TOKEN_TYPES, astType) >= 0
-                && !ScopeUtils.isLocalVariableDef(ast);
+                && !ScopeUtil.isLocalVariableDef(ast);
         }
 
     },
@@ -179,7 +179,7 @@ public enum JavadocTagInfo {
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
             return Arrays.binarySearch(DEF_TOKEN_TYPES, astType) >= 0
-                && !ScopeUtils.isLocalVariableDef(ast);
+                && !ScopeUtil.isLocalVariableDef(ast);
         }
 
     },
@@ -193,7 +193,7 @@ public enum JavadocTagInfo {
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
             return Arrays.binarySearch(DEF_TOKEN_TYPES, astType) >= 0
-                && !ScopeUtils.isLocalVariableDef(ast);
+                && !ScopeUtil.isLocalVariableDef(ast);
         }
 
     },
@@ -239,7 +239,7 @@ public enum JavadocTagInfo {
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
             return Arrays.binarySearch(DEF_TOKEN_TYPES, astType) >= 0
-                && !ScopeUtils.isLocalVariableDef(ast);
+                && !ScopeUtil.isLocalVariableDef(ast);
         }
 
     },
@@ -254,7 +254,7 @@ public enum JavadocTagInfo {
             final int astType = ast.getType();
 
             return astType == TokenTypes.VARIABLE_DEF
-                && !ScopeUtils.isLocalVariableDef(ast);
+                && !ScopeUtil.isLocalVariableDef(ast);
         }
 
     },
@@ -307,7 +307,7 @@ public enum JavadocTagInfo {
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
             return Arrays.binarySearch(DEF_TOKEN_TYPES, astType) >= 0
-                && !ScopeUtils.isLocalVariableDef(ast);
+                && !ScopeUtil.isLocalVariableDef(ast);
         }
 
     },
@@ -335,7 +335,7 @@ public enum JavadocTagInfo {
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
             return Arrays.binarySearch(DEF_TOKEN_TYPES, astType) >= 0
-                && !ScopeUtils.isLocalVariableDef(ast);
+                && !ScopeUtil.isLocalVariableDef(ast);
         }
 
     },

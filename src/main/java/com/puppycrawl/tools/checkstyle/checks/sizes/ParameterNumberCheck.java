@@ -23,8 +23,8 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
@@ -117,7 +117,7 @@ public class ParameterNumberCheck
 
     @Override
     public int[] getRequiredTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return CommonUtil.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -139,8 +139,8 @@ public class ParameterNumberCheck
     private boolean shouldIgnoreNumberOfParameters(DetailAST ast) {
         //if you override a method, you have no power over the number of parameters
         return ignoreOverriddenMethods
-                && (AnnotationUtility.containsAnnotation(ast, OVERRIDE)
-                || AnnotationUtility.containsAnnotation(ast, CANONICAL_OVERRIDE));
+                && (AnnotationUtil.containsAnnotation(ast, OVERRIDE)
+                || AnnotationUtil.containsAnnotation(ast, CANONICAL_OVERRIDE));
     }
 
 }

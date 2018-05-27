@@ -25,7 +25,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
@@ -196,7 +196,7 @@ public class OperatorWrapCheck
 
     @Override
     public int[] getRequiredTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return CommonUtil.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -216,11 +216,11 @@ public class OperatorWrapCheck
             // itself.
             if (option == WrapOption.NL
                     && !text.equals(currentLine.trim())
-                    && CommonUtils.isBlank(currentLine.substring(colNo + text.length()))) {
+                    && CommonUtil.isBlank(currentLine.substring(colNo + text.length()))) {
                 log(ast, MSG_LINE_NEW, text);
             }
             else if (option == WrapOption.EOL
-                    && CommonUtils.hasWhitespaceBefore(colNo - 1, currentLine)) {
+                    && CommonUtil.hasWhitespaceBefore(colNo - 1, currentLine)) {
                 log(ast, MSG_LINE_PREVIOUS, text);
             }
         }

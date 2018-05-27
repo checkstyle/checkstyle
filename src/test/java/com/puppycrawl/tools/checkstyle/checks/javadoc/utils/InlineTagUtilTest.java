@@ -29,12 +29,12 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-public class InlineTagUtilsTest {
+public class InlineTagUtilTest {
 
     @Test
     public void testHasPrivateConstructor() throws Exception {
         assertTrue("Constructor is not private",
-                TestUtil.isUtilsClassHasPrivateConstructor(InlineTagUtils.class, true));
+                TestUtil.isUtilsClassHasPrivateConstructor(InlineTagUtil.class, true));
     }
 
     @Test
@@ -45,7 +45,7 @@ public class InlineTagUtilsTest {
             "   {@link List#add(Object) link text}",
             " * {@link Class link text}",
             " */"};
-        final List<TagInfo> tags = InlineTagUtils.extractInlineTags(text);
+        final List<TagInfo> tags = InlineTagUtil.extractInlineTags(text);
 
         assertEquals("Unexpected tags size", 4, tags.size());
 
@@ -63,7 +63,7 @@ public class InlineTagUtilsTest {
             " *        bar baz}",
             " */"};
 
-        final List<TagInfo> tags = InlineTagUtils.extractInlineTags(text);
+        final List<TagInfo> tags = InlineTagUtil.extractInlineTags(text);
 
         assertEquals("Unexpected tags size", 1, tags.size());
         assertTag(tags.get(0), "link", "foo bar baz", 2, 4);
@@ -76,7 +76,7 @@ public class InlineTagUtilsTest {
             " * {@code     foo\t\t   bar   baz\t    }",
             " */"};
 
-        final List<TagInfo> tags = InlineTagUtils.extractInlineTags(text);
+        final List<TagInfo> tags = InlineTagUtil.extractInlineTags(text);
 
         assertEquals("Unexpected tags size", 1, tags.size());
         assertTag(tags.get(0), "code", "foo bar baz", 2, 4);
@@ -88,7 +88,7 @@ public class InlineTagUtilsTest {
             "  {@link foo}",
         };
 
-        final List<TagInfo> tags = InlineTagUtils.extractInlineTags(source);
+        final List<TagInfo> tags = InlineTagUtil.extractInlineTags(source);
 
         assertEquals("Unexpected tags size", 1, tags.size());
 
@@ -99,7 +99,7 @@ public class InlineTagUtilsTest {
     @Test
     public void testBadInputExtractInlineTagsLineFeed() {
         try {
-            InlineTagUtils.extractInlineTags("abc\ndef");
+            InlineTagUtil.extractInlineTags("abc\ndef");
             fail("IllegalArgumentException expected");
         }
         catch (IllegalArgumentException ex) {
@@ -110,7 +110,7 @@ public class InlineTagUtilsTest {
     @Test
     public void testBadInputExtractInlineTagsCarriageReturn() {
         try {
-            InlineTagUtils.extractInlineTags("abc\rdef");
+            InlineTagUtil.extractInlineTags("abc\rdef");
             fail("IllegalArgumentException expected");
         }
         catch (IllegalArgumentException ex) {

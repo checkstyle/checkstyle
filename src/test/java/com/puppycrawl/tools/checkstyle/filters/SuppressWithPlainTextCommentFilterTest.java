@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import nl.jqno.equalsverifier.EqualsVerifier;
 
 public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSupport {
@@ -231,7 +231,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         final DefaultConfiguration checkCfg = createModuleConfig(FileTabCharacterCheck.class);
         checkCfg.addAttribute("eachLine", "true");
 
-        final String[] suppressed = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
 
         final String[] violationMessages = {
             "5:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_FILE_CONTAINS_TAB),
@@ -265,7 +265,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         final DefaultConfiguration checkCfg = createModuleConfig(FileTabCharacterCheck.class);
         checkCfg.addAttribute("eachLine", "true");
 
-        final String[] suppressed = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
 
         final String[] violationMessages = {
             "5:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_FILE_CONTAINS_TAB),
@@ -473,7 +473,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
         Arrays.stream(childConfigs).forEach(checkerConfig::addChild);
 
-        final String fileExtension = CommonUtils.getFileExtension(fileNameWithExtension);
+        final String fileExtension = CommonUtil.getFileExtension(fileNameWithExtension);
         checkerConfig.addAttribute("fileExtensions", fileExtension);
 
         verify(checkerConfig, getPath(fileNameWithExtension), violationMessages);

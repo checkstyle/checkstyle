@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
  * Restricts nested boolean operators (&amp;&amp;, ||, &amp;, | and ^) to
@@ -178,7 +178,7 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
      */
     private void visitMethodDef(DetailAST ast) {
         contextStack.push(context);
-        final boolean check = !CheckUtils.isEqualsMethod(ast);
+        final boolean check = !CheckUtil.isEqualsMethod(ast);
         context = new Context(check);
     }
 

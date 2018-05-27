@@ -29,8 +29,8 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
  * <p>
@@ -81,7 +81,7 @@ public final class IllegalThrowsCheck extends AbstractCheck {
     public void setIllegalClassNames(final String... classNames) {
         illegalClassNames.clear();
         illegalClassNames.addAll(
-                CheckUtils.parseClassNames(classNames));
+                CheckUtil.parseClassNames(classNames));
     }
 
     @Override
@@ -125,8 +125,8 @@ public final class IllegalThrowsCheck extends AbstractCheck {
     private boolean isIgnorableMethod(DetailAST methodDef) {
         return shouldIgnoreMethod(methodDef.findFirstToken(TokenTypes.IDENT).getText())
             || ignoreOverriddenMethods
-               && (AnnotationUtility.containsAnnotation(methodDef, "Override")
-                  || AnnotationUtility.containsAnnotation(methodDef, "java.lang.Override"));
+               && (AnnotationUtil.containsAnnotation(methodDef, "Override")
+                  || AnnotationUtil.containsAnnotation(methodDef, "java.lang.Override"));
     }
 
     /**

@@ -32,7 +32,7 @@ import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
 
@@ -46,7 +46,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String inputWithoutWarnings = getPath("InputUnusedImportsWithoutWarnings.java");
         final String inputWithWarnings = getPath("InputUnusedImportsCheckClearState.java");
-        final List<String> expectedFirstInput = Arrays.asList(CommonUtils.EMPTY_STRING_ARRAY);
+        final List<String> expectedFirstInput = Arrays.asList(CommonUtil.EMPTY_STRING_ARRAY);
         final List<String> expectedSecondInput = Arrays.asList(
                 "3:8: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
                 "4:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
@@ -128,35 +128,35 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testProcessJavadocWithLinkTag() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputUnusedImportsWithValueTag.java"), expected);
     }
 
     @Test
     public void testProcessJavadocWithBlockTagContainingMethodParameters() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputUnusedImportsWithBlockMethodParameters.java"), expected);
     }
 
     @Test
     public void testAnnotations() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath("InputUnusedImportsAnnotations.java"), expected);
     }
 
     @Test
     public void testBug() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputUnusedImportsBug.java"), expected);
     }
 
     @Test
     public void testNewlinesInsideTags() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputUnusedImportsWithNewlinesInsideTags.java"), expected);
     }
 

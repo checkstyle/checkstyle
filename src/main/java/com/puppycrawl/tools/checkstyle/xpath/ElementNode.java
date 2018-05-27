@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.xpath;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 import net.sf.saxon.om.AxisInfo;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.tree.iter.ArrayIterator;
@@ -72,7 +72,7 @@ public class ElementNode extends AbstractNode {
         this.detailAst = detailAst;
         setIdent();
         createChildren();
-        text = TokenUtils.getTokenName(detailAst.getType());
+        text = TokenUtil.getTokenName(detailAst.getType());
     }
 
     /**

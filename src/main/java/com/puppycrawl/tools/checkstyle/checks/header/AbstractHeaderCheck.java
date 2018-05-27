@@ -38,7 +38,7 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Abstract super class for header checks.
@@ -137,7 +137,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
      * @throws IllegalArgumentException if the header cannot be interpreted
      */
     public void setHeader(String header) {
-        if (!CommonUtils.isBlank(header)) {
+        if (!CommonUtil.isBlank(header)) {
             checkHeaderNotInitialized();
 
             final String headerExpandedNewLines = ESCAPED_LINE_FEED_PATTERN
