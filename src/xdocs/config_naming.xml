@@ -1359,8 +1359,8 @@ class MyClass {
     </section>
 
     <section name="ParameterName">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
           Checks that method and <code>catch</code> parameter names conform to a format specified
           by the format property. By using <code>accessModifiers</code> property it is possible
@@ -1413,10 +1413,19 @@ public boolean equals(Object o) {
 
       <subsection name="Examples">
         <p>
-          To configure the check:
+          An example of how to configure the check:
         </p>
         <source>
 &lt;module name=&quot;ParameterName&quot;/&gt;
+        </source>
+        <p>
+          An example of how to configure the check for names that begin with a lower case letter,
+          followed by letters, digits, and underscores:
+        </p>
+        <source>
+&lt;module name="ParameterName"&gt;
+  &lt;property name="format" value="^[a-z][_a-zA-Z0-9]+$"/&gt;
+&lt;/module&gt;
         </source>
           <p>
             An example of how to configure the check to skip methods with Override annotation from
