@@ -6,7 +6,7 @@ jdk:
 
 env:
   matrix:
-    - CMD="./.ci/shippable.sh no-exception-openjdk7-openjdk8"
+    #- CMD="./.ci/shippable.sh no-exception-openjdk7-openjdk8"
     - CMD="./.ci/shippable.sh no-exception-openjdk9-lucene-and-others"
     - CMD="./.ci/shippable.sh no-exception-cassandra-storm-tapestry"
     - CMD="./.ci/shippable.sh no-exception-hadoop-apache-groovy-scouter"
@@ -56,6 +56,7 @@ build:
       then
         pwd
         ls -la
+        mvn clean install -Pno-validations
         echo "Command: $CMD"
         eval $CMD
       else
