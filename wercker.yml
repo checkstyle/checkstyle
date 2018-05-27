@@ -53,6 +53,7 @@ build:
       name: NoErrorTest - Postgresql JDBC Driver
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
+          echo "Command: ./.ci/wercker.sh no-error-pgjdbc"
           ./.ci/wercker.sh no-error-pgjdbc
         else
           echo "build is skipped ..."
@@ -62,6 +63,7 @@ build:
       name: NoErrorTest - Orekit
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
+          echo "Command: ./.ci/wercker.sh no-error-orekit"
           ./.ci/wercker.sh no-error-orekit
         else
           echo "build is skipped ..."
@@ -71,6 +73,7 @@ build:
       name: NoErrorTest - XWiki
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
+          echo "Command: ./.ci/wercker.sh no-error-xwiki"
           ./.ci/wercker.sh no-error-xwiki
         else
           echo "build is skipped ..."
@@ -80,6 +83,7 @@ build:
       name: NoErrorTest - Apache Apex
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
+          echo "Command: ./.ci/wercker.sh no-error-apex-core"
           ./.ci/wercker.sh no-error-apex-core
         else
           echo "build is skipped ..."
@@ -89,6 +93,7 @@ build:
       name: NoErrorTest - Hibernate Search
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
+          echo "Command: ./.ci/wercker.sh no-error-hibernate-search"
           ./.ci/wercker.sh no-error-hibernate-search
         else
           echo "build is skipped ..."
@@ -100,6 +105,7 @@ build:
   #     name: NoErrorTest - HtmlUnit
   #     code: |
   #       if [[ $SKIP_CI == 'false' ]]; then
+  #         echo "Command: ./.ci/wercker.sh no-error-htmlunit"
   #         ./.ci/wercker.sh no-error-htmlunit
   #       else
   #         echo "build is skipped ..."
@@ -109,6 +115,7 @@ build:
       name: NoErrorTest - checkstyle's sevntu
       code: |
         if [[ 'true' == 'false' ]]; then
+          echo "Command: ./.ci/wercker.sh no-error-checkstyles-sevntu"
           ./.ci/wercker.sh no-error-checkstyles-sevntu
         else
           echo "build is skipped ..."
@@ -118,6 +125,7 @@ build:
 #      name: NoErrorTest - sevntu-checks
 #      code: |
 #        if [[ $SKIP_CI == 'false' ]]; then
+#          echo "Command: ./.ci/wercker.sh no-error-sevntu-checks"
 #          ./.ci/wercker.sh no-error-sevntu-checks
 #        else
 #          echo "build is skipped ..."
@@ -127,6 +135,7 @@ build:
       name: NoExceptiontest - Apache Struts
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
+          echo "Command: ./.ci/wercker.sh no-exception-struts"
           ./.ci/wercker.sh no-exception-struts
         else
           echo "build is skipped ..."
@@ -136,6 +145,7 @@ build:
       name: NoExceptiontest - Checkstyle ,sevntu-checkstyle
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
+          echo "Command: ./.ci/wercker.sh no-exception-checkstyle-sevntu"
           ./.ci/wercker.sh no-exception-checkstyle-sevntu
         else
           echo "build is skipped ..."
@@ -145,6 +155,7 @@ build:
       name: NoExceptiontest - Guava
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
+          echo "Command: ./.ci/wercker.sh ./.ci/wercker.sh no-exception-guava"
           ./.ci/wercker.sh no-exception-guava
         else
           echo "build is skipped ..."
@@ -154,6 +165,7 @@ build:
       name: NoExceptiontest - Hibernate
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
+          echo "Command: ./.ci/wercker.sh no-exception-hibernate-orm"
           ./.ci/wercker.sh no-exception-hibernate-orm
         else
           echo "build is skipped ..."
@@ -164,6 +176,7 @@ build:
       name: NoExceptiontest - spotbugs
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
+          echo "Command: ./.ci/wercker.sh no-exception-spotbugs"
           ./.ci/wercker.sh no-exception-spotbugs
         else
           echo "build is skipped ..."
@@ -173,6 +186,7 @@ build:
       name: NoExceptiontest - spring-framework
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
+          echo "Command: ./.ci/wercker.sh no-exception-spring-framework"
           ./.ci/wercker.sh no-exception-spring-framework
         else
           echo "build is skipped ..."
@@ -182,6 +196,7 @@ build:
       name: NoExceptiontest - Hbase
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
+          echo "Command: ./.ci/wercker.sh no-exception-hbase"
           ./.ci/wercker.sh no-exception-hbase
         else
           echo "build is skipped ..."
@@ -191,6 +206,7 @@ build:
       name: NoExceptiontest - pmd elasticsearch lombok-ast
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
+          echo "Command: ./.ci/wercker.sh no-exception-Pmd-elasticsearch-lombok-ast"
           ./.ci/wercker.sh no-exception-Pmd-elasticsearch-lombok-ast
         else
           echo "build is skipped ..."
@@ -200,6 +216,7 @@ build:
       name: NoExceptiontest - RxJava apache-ant apache-jsecurity android-launcher ....
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
+          echo "Command: ./.ci/wercker.sh no-exception-alot-of-projects"
           ./.ci/wercker.sh no-exception-alot-of-projects
         else
           echo "build is skipped ..."
