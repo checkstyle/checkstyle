@@ -45,6 +45,8 @@ build:
       echo "SKIP_CI="$SKIP_CI
       if [[ $SKIP_CI == 'false' ]];
       then
+        pwd
+        ls -la
         echo "Command: $CMD"
         eval $CMD
       else
