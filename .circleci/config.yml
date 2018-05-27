@@ -166,7 +166,7 @@ jobs:
     machine: true
     java:
       version: oraclejdk8
-    parallelism: 4
+    #parallelism: 4
     steps:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
       - restore_cache:
