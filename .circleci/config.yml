@@ -162,6 +162,25 @@ jobs:
               ./.ci/circleci.sh no-exception-hadoop-apache-groovy-scouter
             fi
 
+  test-pitest1:
+    machine: true
+    java:
+      version: oraclejdk8
+    parallelism: 4
+    steps:
+      # restore_cache.keys does not work, so multiple restore_cache.key is used
+      - restore_cache:
+          key: m2-cache
+      - restore_cache:
+          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          command: |
+             echo "pitest-xpath" > profiles.txt
+             echo "pitest-filters" >> profiles.txt
+             echo "pitest-javadoc" >> profiles.txt
+             echo "pitest-imports" >> profiles.txt
+            ./.ci/shippable.sh $(circleci tests split profiles.txt)
+
 workflows:
   version: 2
   regression-testing:
@@ -177,6 +196,9 @@ workflows:
           requires:
             - build-caches
       - test-apache-hadoop-scouter-groovy:
+          requires:
+            - build-caches
+      - test-pitest1:
           requires:
             - build-caches
 
