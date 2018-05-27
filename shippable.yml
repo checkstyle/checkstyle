@@ -6,10 +6,10 @@ jdk:
 
 env:
   matrix:
-    - CMD="./.ci/circleci.sh no-exception-openjdk7-openjdk8"
-    - CMD="./.ci/circleci.sh no-exception-openjdk9-lucene-and-others"
-    - CMD="./.ci/circleci.sh no-exception-cassandra-storm-tapestry"
-    - CMD="./.ci/circleci.sh no-exception-hadoop-apache-groovy-scouter"
+    - CMD="./.ci/shippable.sh no-exception-openjdk7-openjdk8"
+    - CMD="./.ci/shippable.sh no-exception-openjdk9-lucene-and-others"
+    - CMD="./.ci/shippable.sh no-exception-cassandra-storm-tapestry"
+    - CMD="./.ci/shippable.sh no-exception-hadoop-apache-groovy-scouter"
 
 branches:
   only:
