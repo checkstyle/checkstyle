@@ -2,8 +2,6 @@ version: 2
 jobs:
 
   build-caches:
-    environment:
-      GROOVY_PATH: "/home/circleci/groovy-2.4.7/"
     machine: true
     java:
       version: oraclejdk8
@@ -11,9 +9,6 @@ jobs:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
       - restore_cache:
           key: m2-cache
-      - restore_cache:
-          key: groovy-2.4.7
-
       - checkout
       - run:
           name: skip_ci creation
@@ -31,33 +26,13 @@ jobs:
           command: |
             if [ $(git diff --name-only HEAD HEAD~1 \
                    | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
-              # build checkstyle, clone contribution, download groovy
               pwd
               ls -la
               java -version
               mvn --version
-              mvn -e install -Pno-validations
-              cd ../
-              git clone https://github.com/checkstyle/contribution
-              if [ ! -d groovy-2.4.7 ]; then
-                wget https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip
-                unzip apache-groovy-binary-2.4.7.zip;
-              fi
-              # load custom PATH
-              export PATH=$GROOVY_PATH/bin:$PATH
-              #
-              ls -la
-              # maven cache for checkstyle-tester
-              cd contribution/checkstyle-tester
-              sed -i'' 's/^guava/#guava/' projects-for-circle.properties
-              sed -i'' 's/#checkstyle-sonar/checkstyle-sonar/' projects-for-circle.properties
-              groovy launch.groovy \
-                  --listOfProjects projects-for-circle.properties --config my_check.xml
+              mvn -e -Ppitest-metrics clean test org.pitest:pitest-maven:mutationCoverage \
+                  -Dpit.report.skip=true;
             fi
-      - save_cache:
-          key: groovy-2.4.7
-          paths:
-            - /home/circleci/groovy-2.4.7
       - save_cache:
           # Save by timestamp , but will be restored by prefix without timestamp (most recent)
           #https://discuss.circleci.com/t/add-mechanism-to-update-existing-cache-key/9014/13
@@ -69,98 +44,6 @@ jobs:
           paths:
             - /home/circleci/project
             - /home/circleci/contribution
-
-  # test-openjdk_7_8:
-  #   machine: true
-  #   java:
-  #     version: oraclejdk8
-  #   environment:
-  #     GROOVY_PATH: "/home/circleci/groovy-2.4.7/"
-  #   steps:
-  #     # restore_cache.keys does not work, so multiple restore_cache.key is used
-  #     - restore_cache:
-  #         key: m2-cache
-  #     - restore_cache:
-  #         key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
-  #     - restore_cache:
-  #         key: groovy-2.4.7
-  #     - run:
-  #         command: |
-  #           # load custom PATH
-  #           export PATH=$GROOVY_PATH/bin:$PATH
-  #           if [ $(git diff --name-only HEAD HEAD~1 \
-  #                    | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
-  #             ./.ci/circleci.sh no-exception-openjdk7-openjdk8
-  #           fi
-
-  # test-infinispan-protonpack-jOOL-lucene-solr-openjdk9:
-  #   machine: true
-  #   java:
-  #     version: oraclejdk8
-  #   environment:
-  #     GROOVY_PATH: "/home/circleci/groovy-2.4.7/"
-  #   steps:
-  #     # restore_cache.keys does not work, so multiple restore_cache.key is used
-  #     - restore_cache:
-  #         key: m2-cache
-  #     - restore_cache:
-  #         key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
-  #     - restore_cache:
-  #         key: groovy-2.4.7
-  #     - run:
-  #         command: |
-  #           # load custom PATH
-  #           export PATH=$GROOVY_PATH/bin:$PATH
-  #           if [ $(git diff --name-only HEAD HEAD~1 \
-  #                     | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
-  #             ./.ci/circleci.sh no-exception-openjdk9-lucene-and-others
-  #           fi
-
-  # test-tapestry5-storm-cassandra:
-  #   machine: true
-  #   java:
-  #     version: oraclejdk8
-  #   environment:
-  #     GROOVY_PATH: "/home/circleci/groovy-2.4.7/"
-  #   steps:
-  #     # restore_cache.keys does not work, so multiple restore_cache.key is used
-  #     - restore_cache:
-  #         key: m2-cache
-  #     - restore_cache:
-  #         key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
-  #     - restore_cache:
-  #         key: groovy-2.4.7
-  #     - run:
-  #         command: |
-  #           # load custom PATH
-  #           export PATH=$GROOVY_PATH/bin:$PATH
-  #           if [ $(git diff --name-only HEAD HEAD~1 \
-  #                      | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
-  #             ./.ci/circleci.sh no-exception-cassandra-storm-tapestry
-  #           fi
-
-  # test-apache-hadoop-scouter-groovy:
-  #   machine: true
-  #   java:
-  #     version: oraclejdk8
-  #   environment:
-  #     GROOVY_PATH: "/home/circleci/groovy-2.4.7/"
-  #   steps:
-  #     # restore_cache.keys does not work, so multiple restore_cache.key is used
-  #     - restore_cache:
-  #         key: m2-cache
-  #     - restore_cache:
-  #         key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
-  #     - restore_cache:
-  #         key: groovy-2.4.7
-  #     - run:
-  #         command: |
-  #           # load custom PATH
-  #           export PATH=$GROOVY_PATH/bin:$PATH
-  #           if [ $(git diff --name-only HEAD HEAD~1 \
-  #                      | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
-  #             ./.ci/circleci.sh no-exception-hadoop-apache-groovy-scouter
-  #           fi
 
   test-pitest1:
     machine: true
@@ -175,10 +58,10 @@ jobs:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-             echo "./.ci/shippable.sh pitest-xpath" >> commands.txt
-             echo "./.ci/shippable.sh pitest-filters" >> commands.txt
-             echo "./.ci/shippable.sh pitest-javadoc" >> commands.txt
-             echo "./.ci/shippable.sh pitest-imports" >> commands.txt
+             echo "./.ci/shippable.sh pitest-coding"  >> commands.txt
+             echo "./.ci/shippable.sh pitest-utils"   >> commands.txt
+             echo "./.ci/shippable.sh pitest-packagenamesloader"   >> commands.txt
+             echo "./.ci/shippable.sh pitest-naming"   >> commands.txt
              CMD="$(circleci tests split commands.txt)"
              echo "Command: $CMD"
              eval $CMD
@@ -196,33 +79,118 @@ jobs:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-             echo "pitest-metrics" >> profiles.txt
-             echo "pitest-regexp" >> profiles.txt
-             echo "pitest-sizes" >> profiles.txt
-             echo "pitest-whitespace" >> profiles.txt
-             echo "PITEST PROFILE:"$(circleci tests split profiles.txt)
-             ./.ci/shippable.sh $(circleci tests split profiles.txt)
+             echo "./.ci/shippable.sh pitest-common"   >> commands.txt
+             echo "./.ci/shippable.sh pitest-api"   >> commands.txt
+             echo "./.ci/shippable.sh pitest-tree-walker"   >> commands.txt
+             echo "./.ci/shippable.sh pitest-modifier"   >> commands.txt
+             CMD="$(circleci tests split commands.txt)"
+             echo "Command: $CMD"
+             eval $CMD
+
+  test-pitest3:
+    machine: true
+    java:
+      version: oraclejdk8
+    parallelism: 4
+    steps:
+      # restore_cache.keys does not work, so multiple restore_cache.key is used
+      - restore_cache:
+          key: m2-cache
+      - restore_cache:
+          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          command: |
+             echo "./.ci/shippable.sh pitest-imports"   >> commands.txt
+             echo "./.ci/shippable.sh pitest-design"   >> commands.txt
+             echo "./.ci/shippable.sh pitest-header"   >> commands.txt
+             echo "./.ci/shippable.sh pitest-blocks"   >> commands.txt
+             CMD="$(circleci tests split commands.txt)"
+             echo "Command: $CMD"
+             eval $CMD
+
+  test-pitest4:
+    machine: true
+    java:
+      version: oraclejdk8
+    parallelism: 4
+    steps:
+      # restore_cache.keys does not work, so multiple restore_cache.key is used
+      - restore_cache:
+          key: m2-cache
+      - restore_cache:
+          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          command: |
+             echo "./.ci/shippable.sh pitest-ant"   >> commands.txt
+             echo "./.ci/shippable.sh pitest-misc"   >> commands.txt
+             echo "./.ci/shippable.sh pitest-annotation"   >> commands.txt
+             echo "./.ci/shippable.sh pitest-sizes"   >> commands.txt
+             CMD="$(circleci tests split commands.txt)"
+             echo "Command: $CMD"
+             eval $CMD
+
+  test-pitest5:
+    machine: true
+    java:
+      version: oraclejdk8
+    parallelism: 4
+    steps:
+      # restore_cache.keys does not work, so multiple restore_cache.key is used
+      - restore_cache:
+          key: m2-cache
+      - restore_cache:
+          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          command: |
+             echo "./.ci/shippable.sh pitest-main"   >> commands.txt
+             echo "./.ci/shippable.sh pitest-xpath"   >> commands.txt
+             echo "./.ci/shippable.sh pitest-whitespace"   >> commands.txt
+             echo "./.ci/shippable.sh pitest-regexp"   >> commands.txt
+             CMD="$(circleci tests split commands.txt)"
+             echo "Command: $CMD"
+             eval $CMD
+
+  test-pitest6:
+    machine: true
+    java:
+      version: oraclejdk8
+    parallelism: 4
+    steps:
+      # restore_cache.keys does not work, so multiple restore_cache.key is used
+      - restore_cache:
+          key: m2-cache
+      - restore_cache:
+          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          command: |
+             echo "./.ci/shippable.sh pitest-javadoc"   >> commands.txt
+             echo "./.ci/shippable.sh pitest-indentation"   >> commands.txt
+             echo "./.ci/shippable.sh pitest-filters"   >> commands.txt
+             echo "./.ci/shippable.sh pitest-metrics"   >> commands.txt
+             CMD="$(circleci tests split commands.txt)"
+             echo "Command: $CMD"
+             eval $CMD
 
 workflows:
   version: 2
   regression-testing:
     jobs:
       - build-caches
-      # - test-openjdk_7_8:
-      #     requires:
-      #       - build-caches
-      # - test-infinispan-protonpack-jOOL-lucene-solr-openjdk9:
-      #     requires:
-      #       - build-caches
-      # - test-tapestry5-storm-cassandra:
-      #     requires:
-      #       - build-caches
-      # - test-apache-hadoop-scouter-groovy:
-      #     requires:
-      #       - build-caches
       - test-pitest1:
           requires:
             - build-caches
       - test-pitest2:
+          requires:
+            - build-caches
+      - test-pitest3:
+          requires:
+            - build-caches
+      - test-pitest4:
+          requires:
+            - build-caches
+      - test-pitest5:
+          requires:
+            - build-caches
+      - test-pitest6:
           requires:
             - build-caches
