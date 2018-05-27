@@ -24,11 +24,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Checks that class type parameter names conform to a format specified
- * by the format property.  The format is a
- * {@link java.util.regex.Pattern regular expression} and defaults to
- * <strong>^[A-Z]$</strong>.
+ * Checks that method type parameter names conform to a format specified
+ * by the format property.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code format} - Specifies valid identifiers. Default value is {@code "^[A-Z]$"}.
+ * </li>
+ * </ul>
  * <p>
  * An example of how to configure the check is:
  * </p>
@@ -37,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * <p>
  * An example of how to configure the check for names that are only a single
- * letter is
+ * letter is:
  * </p>
  * <pre>
  * &lt;module name="MethodTypeParameterName"&gt;
@@ -45,6 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  *
+ * @since 5.0
  */
 public class MethodTypeParameterNameCheck
     extends AbstractNameCheck {
