@@ -6,6 +6,9 @@
 
 <suppressions>
 
+    <!-- Do not validate possible source code remnances after regresson testing -->
+    <suppress checks=".*" files=".ci-temp[\\/]"/>
+
     <!-- Input files for NewlineAtEndOfFileCheckTest, intentional no new line at the end. -->
     <suppress checks="NewlineAtEndOfFile"
               files="[\\/]test[\\/].*[\\/]InputNewlineAtEndOfFile.*\.java"/>
