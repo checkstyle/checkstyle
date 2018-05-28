@@ -6,7 +6,7 @@
 
 <suppressions>
 
-    <!-- Do not validate possible source code remnances after regresson testing -->
+    <!-- Do not validate possible source code remnants after regression testing -->
     <suppress checks=".*" files=".ci-temp[\\/]"/>
 
     <!-- Input files for NewlineAtEndOfFileCheckTest, intentional no new line at the end. -->
