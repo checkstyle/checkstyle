@@ -74,6 +74,24 @@
 
     </section>
 
+    <section name="Previous Version Documentation">
+      <p>
+        Current site contains documentation only for latest, released version.
+        We only support this latest version. We highly recommend read latest documentation first.
+        <br/>
+        However, you might need documentation for previous releases because you are still using
+        an older version and latest version describe some features that does not work for you.
+        <br/>
+        You can find documentation for most old versions using a URL format like
+        http://checkstyle.sourceforge.net/version/X.X where "X.X" is the version number.<br/>
+        Example:
+        <a href="http://checkstyle.sourceforge.net/version/6.18">
+          http://checkstyle.sourceforge.net/version/6.18
+        </a>
+        for version 6.18.
+      </p>
+    </section>
+
     <section name="Backport">
       <p>
         Since Checkstyle 7, some users have been unable to continue upgrading to newer versions

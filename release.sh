@@ -39,17 +39,30 @@ mvn -e -Pgpg release:perform -Darguments="$SKIP_CHECKSTYLE"
 
 ssh $SF_USER,checkstyle@shell.sourceforge.net << EOF
 
-
-#Swap html content
+# Swap html content
 cd /home/project-web/checkstyle
 mv htdocs/new-site/ .
 mv htdocs htdocs-$PREV_RELEASE
 mv new-site htdocs
 ln -s /home/project-web/checkstyle/reports htdocs/reports
 
-#Archiving
+# Archiving
 tar cfz htdocs-$PREV_RELEASE.tar.gz htdocs-$PREV_RELEASE/
+mv htdocs-$PREV_RELEASE.tar.gz htdocs-archive/
 rm -rf htdocs-$PREV_RELEASE/
+
+# Extracting archive to previous releases documentation
+tar -xzvf htdocs-archive/htdocs-$PREV_RELEASE.tar.gz -C htdocs-version/ \
+--exclude="*/apidocs" \
+--exclude="*/xref" --exclude="*/xref-test" --exclude="*/cobertura" --exclude="*/dsm" \
+--exclude="*/api" --exclude="reports" --exclude="jacoco" --exclude="dtds" \
+--exclude="dependency-updates-report.html" --exclude="plugin-updates-report.html" \
+--exclude="jdepend-report.html" --exclude="failsafe-report.html" \
+--exclude="surefire-report.html" \
+--exclude="linkcheck.html" --exclude="findbugs.html" --exclude="taglist.html" \
+--exclude="releasenotes_old.html" --exclude="dependencies.html"
+# Make a link to make it accessible from web
+ln -f -s htdocs-version/htdocs-$PREV_RELEASE htdocs/version/$PREV_RELEASE
 
 EOF
 
