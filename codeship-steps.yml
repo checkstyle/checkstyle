@@ -1,5 +1,7 @@
 - type: parallel
-  tag: master
+  # Codeship does not support PR from fork, it supports only builds of branches
+  # so to keep running validation at least from main repo branches we should not define tag
+  #tag: master
   service: system
   steps:
     #-  command: ./.ci/travis/travis.sh site
