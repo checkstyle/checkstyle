@@ -17,7 +17,7 @@ jobs:
             echo -n ".github|appveyor.yml|.travis.yml|\.ci/" >> .ci-temp/skip_ci_files
             echo -n "|distelli-manifest.yml|fast-forward-merge.sh" >> .ci-temp/skip_ci_files
             echo -n "|LICENSE|LICENSE.apache20|README.md|release.sh" >> .ci-temp/skip_ci_files
-            echo -n "|RIGHTS.antlr|shippable.yml" >> .ci-temp/skip_ci_files
+            echo -n "|RIGHTS.antlr|shippable.yml|codeship" >> .ci-temp/skip_ci_files
             echo -n "|shippable.sh|wercker.yml|wercker.sh" >> .ci-temp/skip_ci_files
             echo -n "|intellij-idea-inspections.xml" >> .ci-temp/skip_ci_files
             echo -n "|org.eclipse.jdt.core.prefs" >> .ci-temp/skip_ci_files
