@@ -85,7 +85,7 @@
         You can find documentation for most old versions using a URL format like
         http://checkstyle.sourceforge.net/version/X.X where "X.X" is the version number.<br/>
         Example:
-        <a href="http://checkstyle.sourceforge.net/version/6.18">
+        <a href="http://checkstyle.sourceforge.net/version/6.18/">
           http://checkstyle.sourceforge.net/version/6.18
         </a>
         for version 6.18.
