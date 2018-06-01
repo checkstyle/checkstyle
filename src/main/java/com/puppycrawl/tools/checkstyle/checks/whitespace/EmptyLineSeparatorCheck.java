@@ -20,6 +20,8 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.EnumSet;
 import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
@@ -474,23 +476,25 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return true, if token has empty two lines before and allowMultipleEmptyLines is false
      */
     private boolean hasNotAllowedTwoEmptyLinesBefore(DetailAST token) {
-        return !allowMultipleEmptyLines && hasEmptyLineBefore(token)
-                && isPrePreviousLineEmpty(token);
-    }
-
-    /**
-     * Checks if a token has empty pre-previous line.
-     * @param token DetailAST token.
-     * @return true, if token has empty lines before.
-     */
-    private boolean isPrePreviousLineEmpty(DetailAST token) {
         boolean result = false;
-        final int lineNo = token.getLineNo();
-        // 3 is the number of the pre-previous line because the numbering starts from zero.
-        final int number = 3;
-        if (lineNo >= number) {
-            final String prePreviousLine = getLines()[lineNo - number];
-            result = CommonUtils.isBlank(prePreviousLine);
+        if (!allowMultipleEmptyLines && hasEmptyLineBefore(token)) {
+            final List<EnumSet<LineFlag>> lineFlags = categorizeLines();
+            for (int i = token.getLineNo() - 2; i > 0 && !result; i--) {
+                final EnumSet<LineFlag> flags = lineFlags.get(i);
+                if (flags.contains(LineFlag.EMPTY)) {
+                    // 1 line above line being checked is empty.
+                    final EnumSet<LineFlag> previousLineFlags = lineFlags.get(i - 1);
+                    if (previousLineFlags.contains(LineFlag.EMPTY)) {
+                        // 2 lines above the line being checked
+                        // and after the previous token are empty.
+                        result = true;
+                    }
+                }
+                else if (flags.contains(LineFlag.CODE)) {
+                    // We've hit some code, there aren't multiple adjacent empty lines.
+                    break;
+                }
+            }
         }
         return result;
     }
@@ -549,9 +553,17 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         boolean result = false;
         final int lineNo = token.getLineNo();
         if (lineNo != 1) {
-            // [lineNo - 2] is the number of the previous line as the numbering starts from zero.
-            final String lineBefore = getLines()[lineNo - 2];
-            result = CommonUtils.isBlank(lineBefore);
+            final List<EnumSet<LineFlag>> flags = categorizeLines();
+            for (int i = lineNo - 2; i >= 0; i--) {
+                final EnumSet<LineFlag> lineFlags = flags.get(i);
+                if (!lineFlags.contains(LineFlag.COMMENT)) {
+                    if (lineFlags.contains(LineFlag.EMPTY)) {
+                        // Line is empty.
+                        result = true;
+                        break;
+                    }
+                }
+            }
         }
         return result;
     }
@@ -591,4 +603,252 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         return parentType == TokenTypes.CLASS_DEF;
     }
 
+    /**
+     * Parses the files lines and assigns them flags depending on whether the line is code,
+     * comment, and/or empty.
+     *
+     * @return list of flags for each line.
+     */
+    private List<EnumSet<LineFlag>> categorizeLines() {
+        final EmptyLineSeparatorParser parser = new EmptyLineSeparatorParser();
+        parser.processLines(getLines());
+        return parser.getFlags();
+    }
+
+    /**
+     * Flags that apply to source code file lines.
+     */
+    private enum LineFlag {
+
+        /**
+         * Line contains code.
+         */
+        CODE,
+
+        /**
+         * Line contains a comment.
+         */
+        COMMENT,
+
+        /**
+         * Line leaves a comment open.
+         */
+        COMMENT_OPEN,
+
+        /**
+         * Line is empty. It doesn't contain any comments or code, but may contain whitespace.
+         */
+        EMPTY
+    }
+
+    /**
+     * Parses a Java source file to assign each line a set of flags based on whether they have code,
+     * comments, and if they leave a multi-line comment open.
+     */
+    private static class EmptyLineSeparatorParser {
+
+        /**
+         * List of flags for each line.
+         */
+        private final List<EnumSet<LineFlag>> flags = new ArrayList<>();
+
+        /**
+         * The flags for the previously parsed line.
+         */
+        private EnumSet<LineFlag> previousLineFlags;
+
+        /**
+         * The flags for the line currently being processed.
+         */
+        private EnumSet<LineFlag> currentLineFlags;
+
+        /**
+         * The current line being processed.
+         */
+        private String currentLine;
+
+        /**
+         * The index of the current character being checked.
+         */
+        private int currentCharIndex;
+
+        /**
+         * Processes each given line up to the specified line.
+         *
+         * @param lines      the lines to process.
+         */
+        public void processLines(final String... lines) {
+            for (final String line : lines) {
+                processLine(line);
+            }
+        }
+
+        /**
+         * Processes the given line.
+         *
+         * @param line the line to process.
+         */
+        public void processLine(final String line) {
+            currentLine = line;
+            currentCharIndex = 0;
+            startLine();
+            while (currentCharIndex < line.length()) {
+                processChar();
+                currentCharIndex++;
+            }
+            endLine();
+        }
+
+        /**
+         * Method called at the start of each line.
+         */
+        private void startLine() {
+            currentLineFlags = EnumSet.noneOf(LineFlag.class);
+            if (previousLineFlags != null && previousLineFlags.contains(LineFlag.COMMENT_OPEN)) {
+                currentLineFlags.add(LineFlag.COMMENT);
+                currentLineFlags.add(LineFlag.COMMENT_OPEN);
+            }
+            else {
+                currentLineFlags.add(LineFlag.EMPTY);
+            }
+        }
+
+        /**
+         * Processes the current character.
+         */
+        private void processChar() {
+            checkEmpty();
+        }
+
+        /**
+         * Checks whether the current character means that the line is not empty.
+         */
+        private void checkEmpty() {
+            if (!Character.isWhitespace(currentChar())) {
+                // Line contains non-whitespace character, it isn't empty.
+                currentLineFlags.remove(LineFlag.EMPTY);
+                checkQuoteEscape();
+            }
+        }
+
+        /**
+         * Checks whether the current character escapes the following character in a string literal.
+         */
+        private void checkQuoteEscape() {
+            if (currentChar() == '\\') {
+                // Skip current and next char, it won't terminate the string.
+                currentCharIndex++;
+            }
+            else {
+                checkEndComment();
+            }
+        }
+
+        /**
+         * Checks whether the current character terminates a multi-line comment.
+         */
+        private void checkEndComment() {
+            if (currentLineFlags.contains(LineFlag.COMMENT_OPEN) && currentChar() == '*'
+                    && lineHasNextChar() && nextChar() == '/') {
+                // End of multi-line comment.
+                currentLineFlags.remove(LineFlag.COMMENT_OPEN);
+                // Skip current and next char.
+                currentCharIndex++;
+            }
+            else {
+                checkStartComment();
+            }
+        }
+
+        /**
+         * Checks whether the current character marks the start of a multi-line comment.
+         */
+        private void checkStartComment() {
+            if (currentChar() == '/' && lineHasNextChar() && nextChar() == '*') {
+                // Start of multi-line comment.
+                currentLineFlags.add(LineFlag.COMMENT);
+                currentLineFlags.add(LineFlag.COMMENT_OPEN);
+                // Skip next character.
+                currentCharIndex++;
+            }
+            else {
+                checkStartSingleLineComment();
+            }
+        }
+
+        /**
+         * Checks whether the current character marks the start of a single-line comment.
+         */
+        private void checkStartSingleLineComment() {
+            if (currentChar() == '/' && lineHasNextChar()
+                && !currentLineFlags.contains(LineFlag.COMMENT_OPEN)) {
+                // nextChar() can only be another slash for a valid Java file
+                // since it's not a multi-line comment.
+                currentLineFlags.add(LineFlag.COMMENT);
+
+                // Skip the rest of the line.
+                currentCharIndex = currentLine.length();
+            }
+            else {
+                checkCode();
+            }
+        }
+
+        /**
+         * Checks whether the current character is normal source code.
+         */
+        private void checkCode() {
+            if (!currentLineFlags.contains(LineFlag.COMMENT_OPEN)) {
+                // Line contains non-whitespace character outside of comment, this is code.
+                currentLineFlags.add(LineFlag.CODE);
+            }
+        }
+
+        /**
+         * Method called after the current line has finished processing.
+         */
+        private void endLine() {
+            flags.add(currentLineFlags);
+            previousLineFlags = currentLineFlags;
+            currentLineFlags = null;
+        }
+
+        /**
+         * Returns the current character being processed.
+         *
+         * @return the current character.
+         */
+        private char currentChar() {
+            return currentLine.charAt(currentCharIndex);
+        }
+
+        /**
+         * Returns the character that immediately follows the character currently being processed.
+         *
+         * @return the next character.
+         */
+        private char nextChar() {
+            return currentLine.charAt(currentCharIndex + 1);
+        }
+
+        /**
+         * Determines whether the current line has a character immediately following the character
+         * currently being processed.
+         *
+         * @return whether there is a next character.
+         */
+        private boolean lineHasNextChar() {
+            return currentCharIndex < currentLine.length() - 1;
+        }
+
+        /**
+         * Returns the flags for the lines that have been processed.
+         *
+         * @return the line flags.
+         */
+        public List<EnumSet<LineFlag>> getFlags() {
+            return Collections.unmodifiableList(flags);
+        }
+
+    }
 }
