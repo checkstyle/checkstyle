@@ -282,12 +282,12 @@ public class JavadocUtilsTest {
     @Test
     public void testGetTokenNameForLowerBoundInvalidId() {
         try {
-            JavadocUtils.getTokenName(10080);
+            JavadocUtils.getTokenName(10083);
             fail("exception expected");
         }
         catch (IllegalArgumentException ex) {
             assertEquals("Invalid exception message",
-                    "Unknown javadoc token id. Given id: 10080", ex.getMessage());
+                    "Unknown javadoc token id. Given id: 10083", ex.getMessage());
         }
     }
 
@@ -359,7 +359,7 @@ public class JavadocUtilsTest {
     @Test
     public void testGetTokenNames() {
         assertEquals("Unexpected token name",
-            "WBR_TAG", JavadocUtils.getTokenName(10079));
+            "OPTGROUP", JavadocUtils.getTokenName(10082));
     }
 
     @Test

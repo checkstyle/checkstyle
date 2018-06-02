@@ -1098,6 +1098,9 @@ public final class JavadocTokenTypes {
 
     /** Table head tag name. */
     public static final int THEAD_HTML_TAG_NAME = JavadocParser.THEAD_HTML_TAG_NAME;
+
+    /** `optgroup` tag name. */
+    public static final int OPTGROUP_HTML_TAG_NAME = JavadocParser.OPTGROUP_HTML_TAG_NAME;
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     /////////////////////// SINGLETON HTML TAGS  //////////////////////////////////////////////////
@@ -1529,6 +1532,15 @@ public final class JavadocTokenTypes {
     public static final int THEAD_TAG_START = JavadocParser.RULE_theadTagStart + RULE_TYPES_OFFSET;
     /** End table head tag. */
     public static final int THEAD_TAG_END = JavadocParser.RULE_theadTagEnd + RULE_TYPES_OFFSET;
+
+    /** `optgroup` html tag. */
+    public static final int OPTGROUP = JavadocParser.RULE_optgroup + RULE_TYPES_OFFSET;
+    /** `optgroup` tag start. */
+    public static final int OPTGROUP_TAG_START =
+            JavadocParser.RULE_optgroupTagStart + RULE_TYPES_OFFSET;
+    /** `optgroup` tag end. */
+    public static final int OPTGROUP_TAG_END =
+            JavadocParser.RULE_optgroupTagEnd + RULE_TYPES_OFFSET;
 
     /////////////////////// SINGLETON HTML TAGS  //////////////////////////////////////////////////
     /**
