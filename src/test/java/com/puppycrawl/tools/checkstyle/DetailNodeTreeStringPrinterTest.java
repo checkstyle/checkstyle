@@ -216,4 +216,10 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
         }
     }
 
+    @Test
+    public void testJavadocWithHardcodedTokens() throws Exception {
+        verifyJavadocTree(getPath(
+                "ExpectedDetailNodeTreeStringPrinterJavadocWithHardcodedTokensAst.txt"),
+                getPath("InputDetailNodeTreeStringPrinterJavadocWithHardcodedTokens.javadoc"));
+    }
 }

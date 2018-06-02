@@ -412,7 +412,8 @@ public class JavadocDetailNodeParser {
         final int tokenType;
 
         if (node.getChildCount() == 0) {
-            tokenType = ((TerminalNode) node).getSymbol().getType();
+            final int antlrTokenType = ((TerminalNode) node).getSymbol().getType();
+            tokenType = mapAntlrTokenTypeToJavadocTokenType(antlrTokenType);
         }
         else {
             final String className = getNodeClassNameWithoutContext(node);
@@ -422,6 +423,35 @@ public class JavadocDetailNodeParser {
         }
 
         return tokenType;
+    }
+
+    /**
+     * Newly added HTML tag names' tokens have to be introduced before the
+     * {@link JavadocTokenTypes#HTML_TAG_NAME} token in <tt>JavadocLexer</tt>. As a result the
+     * value that ANTLR automatically generates for <tt>HTML_TAG_NAME</tt> token type changes.
+     * On the other hand checkstyle needs to provide consistent token values to the users in
+     * {@link JavadocTokenTypes} to avoid loss of compatability with the older versions.
+     * Accordingly the token value for <tt>HTML_TAG_NAME</tt> and one other token
+     * ({@link JavadocTokenTypes#EMBED_HTML_TAG_NAME}) are hardcoded and swapped in
+     * <tt>JavadocTokenTypes</tt>.
+     *
+     * @param antlrTokenType value of token in ANTLR
+     * @return value of token as per {@link JavadocTokenTypes}
+     * @see "https://github.com/checkstyle/checkstyle/pull/5455"
+     * @see "https://github.com/checkstyle/checkstyle/issues/5139"
+     */
+    private static int mapAntlrTokenTypeToJavadocTokenType(int antlrTokenType) {
+        final int javadocTokenType;
+        if (antlrTokenType == JavadocTokenTypes.HTML_TAG_NAME) {
+            javadocTokenType = JavadocTokenTypes.EMBED_HTML_TAG_NAME;
+        }
+        else if (antlrTokenType == JavadocTokenTypes.EMBED_HTML_TAG_NAME) {
+            javadocTokenType = JavadocTokenTypes.HTML_TAG_NAME;
+        }
+        else {
+            javadocTokenType = antlrTokenType;
+        }
+        return javadocTokenType;
     }
 
     /**
@@ -485,12 +515,12 @@ public class JavadocDetailNodeParser {
         final Deque<Token> stack = new ArrayDeque<>();
         int prevTokenType = JavadocTokenTypes.EOF;
         for (final Token token : tokenList) {
-            final int tokenType = token.getType();
-            if (tokenType == JavadocTokenTypes.HTML_TAG_NAME
+            final int javadocTokenType = mapAntlrTokenTypeToJavadocTokenType(token.getType());
+            if (javadocTokenType == JavadocTokenTypes.HTML_TAG_NAME
                     && prevTokenType == JavadocTokenTypes.START) {
                 stack.push(token);
             }
-            else if (tokenType == JavadocTokenTypes.HTML_TAG_NAME && !stack.isEmpty()) {
+            else if (javadocTokenType == JavadocTokenTypes.HTML_TAG_NAME && !stack.isEmpty()) {
                 if (stack.peek().getText().equals(token.getText())) {
                     stack.pop();
                 }
@@ -498,7 +528,7 @@ public class JavadocDetailNodeParser {
                     htmlTagNameStart = stack.pop();
                 }
             }
-            prevTokenType = tokenType;
+            prevTokenType = javadocTokenType;
         }
         if (htmlTagNameStart == null) {
             htmlTagNameStart = stack.pop();

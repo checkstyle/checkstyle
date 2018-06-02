@@ -75,7 +75,7 @@ public class JavadocTokenTypesTest {
         assertEquals(msg, 22, JavadocTokenTypes.LITERAL_INCLUDE);
         assertEquals(msg, 39, JavadocTokenTypes.FIELD_NAME);
         assertEquals(msg, 41, JavadocTokenTypes.FIELD_TYPE);
-        assertEquals(msg, 95, JavadocTokenTypes.HTML_TAG_NAME);
+        assertEquals(msg, 87, JavadocTokenTypes.HTML_TAG_NAME);
         assertEquals(msg, 5, JavadocTokenTypes.START);
         assertEquals(msg, 57, JavadocTokenTypes.SLASH);
         assertEquals(msg, 55, JavadocTokenTypes.END);
@@ -110,7 +110,7 @@ public class JavadocTokenTypesTest {
         assertEquals(msg, 84, JavadocTokenTypes.LINK_HTML_TAG_NAME);
         assertEquals(msg, 85, JavadocTokenTypes.META_HTML_TAG_NAME);
         assertEquals(msg, 86, JavadocTokenTypes.PARAM_HTML_TAG_NAME);
-        assertEquals(msg, 87, JavadocTokenTypes.EMBED_HTML_TAG_NAME);
+        assertEquals(msg, 95, JavadocTokenTypes.EMBED_HTML_TAG_NAME);
         assertEquals(msg, 88, JavadocTokenTypes.KEYGEN_HTML_TAG_NAME);
         assertEquals(msg, 92, JavadocTokenTypes.SOURCE_HTML_TAG_NAME);
         assertEquals(msg, 93, JavadocTokenTypes.TRACK_HTML_TAG_NAME);

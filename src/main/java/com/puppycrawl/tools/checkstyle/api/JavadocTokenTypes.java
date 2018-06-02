@@ -1019,7 +1019,7 @@ public final class JavadocTokenTypes {
     /**
      * Identifier inside HTML tag: tag name or attribute name.
      */
-    public static final int HTML_TAG_NAME = JavadocParser.HTML_TAG_NAME;
+    public static final int HTML_TAG_NAME = 87;
 
     // HTML tag components
 
@@ -1140,7 +1140,7 @@ public final class JavadocTokenTypes {
     /** Param tag name. */
     public static final int PARAM_HTML_TAG_NAME = JavadocParser.PARAM_HTML_TAG_NAME;
     /** "embed" tag name. */
-    public static final int EMBED_HTML_TAG_NAME = JavadocParser.EMBED_HTML_TAG_NAME;
+    public static final int EMBED_HTML_TAG_NAME = 95;
     /** "keygen" tag name. */
     public static final int KEYGEN_HTML_TAG_NAME = JavadocParser.KEYGEN_HTML_TAG_NAME;
     /** "source" tag name. */
