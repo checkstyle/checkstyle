@@ -59,6 +59,8 @@ no-error-xwiki)
   cd .ci-temp/xwiki-commons
   # till https://github.com/xwiki/xwiki-commons/pull/39
   git checkout i5812-rename-util
+  mvn -f xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
+    install -DskipTests -Dcheckstyle.version=${CS_POM_VERSION}
   mvn -e test-compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
   cd ../../
   rm -rf xwiki-commons
