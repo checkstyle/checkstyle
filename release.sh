@@ -74,12 +74,6 @@ cd target/checkout
 #Generate all binaries, no clean to keep site resources just in case
 mvn -e -Passembly package
 
-#Publish them to sourceforce
-FRS_PATH=/home/frs/project/checkstyle/checkstyle/$RELEASE
-ssh $SF_USER,checkstyle@shell.sourceforge.net "mkdir -p $FRS_PATH"
-# !!! THIS WILL ASK A SOURCEFORGE PASSWORD !!
-scp target/*.zip target/*.tar.gz target/*.jar $SF_USER@frs.sourceforge.net:$FRS_PATH
-
 #come back repo folder
 cd ../../
 

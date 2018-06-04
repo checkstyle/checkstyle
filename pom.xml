@@ -1563,11 +1563,6 @@
             <excludedLink>
               https://sonarcloud.io/project/index/com.puppycrawl.tools:checkstyle
             </excludedLink>
-            <!-- SSL error, skip validating released "-all" jar on sourceforge
-                 as it is uploaded after site generation-->
-            <excludedLink>
-              http://downloads.sourceforge.net/project/checkstyle/checkstyle/*/checkstyle-*-all.jar
-            </excludedLink>
 
             <!-- Excluded due to linkcheck's issue #22:
                  https://issues.apache.org/jira/browse/MLINKCHECK-22-->
