@@ -21,16 +21,27 @@ jobs:
             echo -n "|shippable.sh|wercker.yml|wercker.sh" >> .ci-temp/skip_ci_files
             echo -n "|intellij-idea-inspections.xml" >> .ci-temp/skip_ci_files
             echo -n "|org.eclipse.jdt.core.prefs" >> .ci-temp/skip_ci_files
+            SKIP_CI=false;
+            if [ $(git diff --name-only HEAD HEAD~1 \
+                   | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
+                SKIP_CI=false;
+              else
+                SKIP_CI=true;
+            fi
+            echo $SKIP_CI > .ci-temp/skip_ci
       - run:
           name: download all maven dependencies and groovy
           command: |
-            if [ $(git diff --name-only HEAD HEAD~1 \
-                   | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
+            SKIP_CI=`cat .ci-temp/skip_ci`
+            echo "SKIP_CI="$SKIP_CI
+            if [[ $SKIP_CI == 'false' ]]; then
               pwd
               ls -la
               java -version
               mvn --version
               mvn -Ppitest-metrics dependency:go-offline
+            else
+              echo "build is skipped ..."
             fi
       - save_cache:
           # Save by timestamp , but will be restored by prefix without timestamp (most recent)
@@ -57,13 +68,19 @@ jobs:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-             echo "./.ci/pitest.sh pitest-coding"  >> commands.txt
-             echo "./.ci/pitest.sh pitest-common"  >> commands.txt
-             echo "./.ci/pitest.sh pitest-imports" >> commands.txt
-             echo "./.ci/pitest.sh pitest-ant"     >> commands.txt
-             CMD="$(circleci tests split commands.txt)"
-             echo "Command: $CMD"
-             eval $CMD
+            SKIP_CI=`cat .ci-temp/skip_ci`
+            echo "SKIP_CI="$SKIP_CI
+            if [[ $SKIP_CI == 'false' ]]; then
+              echo "./.ci/pitest.sh pitest-coding"  >> commands.txt
+              echo "./.ci/pitest.sh pitest-common"  >> commands.txt
+              echo "./.ci/pitest.sh pitest-imports" >> commands.txt
+              echo "./.ci/pitest.sh pitest-ant"     >> commands.txt
+              CMD="$(circleci tests split commands.txt)"
+              echo "Command: $CMD"
+              eval $CMD
+            else
+              echo "build is skipped ..."
+            fi
 
   pitest2:
     machine: true
@@ -78,13 +95,19 @@ jobs:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-             echo "./.ci/pitest.sh pitest-main"        >> commands.txt
-             echo "./.ci/pitest.sh pitest-javadoc"     >> commands.txt
-             echo "./.ci/pitest.sh pitest-indentation" >> commands.txt
-             echo "./.ci/pitest.sh pitest-xpath"       >> commands.txt
-             CMD="$(circleci tests split commands.txt)"
-             echo "Command: $CMD"
-             eval $CMD
+            SKIP_CI=`cat .ci-temp/skip_ci`
+            echo "SKIP_CI="$SKIP_CI
+            if [[ $SKIP_CI == 'false' ]]; then
+              echo "./.ci/pitest.sh pitest-main"        >> commands.txt
+              echo "./.ci/pitest.sh pitest-javadoc"     >> commands.txt
+              echo "./.ci/pitest.sh pitest-indentation" >> commands.txt
+              echo "./.ci/pitest.sh pitest-xpath"       >> commands.txt
+              CMD="$(circleci tests split commands.txt)"
+              echo "Command: $CMD"
+              eval $CMD
+            else
+              echo "build is skipped ..."
+            fi
 
   pitest3:
     machine: true
@@ -99,13 +122,19 @@ jobs:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-             echo "./.ci/pitest.sh pitest-misc"    >> commands.txt
-             echo "./.ci/pitest.sh pitest-design"  >> commands.txt
-             echo "./.ci/pitest.sh pitest-api"     >> commands.txt
-             echo "./.ci/pitest.sh pitest-utils"   >> commands.txt
-             CMD="$(circleci tests split commands.txt)"
-             echo "Command: $CMD"
-             eval $CMD
+            SKIP_CI=`cat .ci-temp/skip_ci`
+            echo "SKIP_CI="$SKIP_CI
+            if [[ $SKIP_CI == 'false' ]]; then
+              echo "./.ci/pitest.sh pitest-misc"    >> commands.txt
+              echo "./.ci/pitest.sh pitest-design"  >> commands.txt
+              echo "./.ci/pitest.sh pitest-api"     >> commands.txt
+              echo "./.ci/pitest.sh pitest-utils"   >> commands.txt
+              CMD="$(circleci tests split commands.txt)"
+              echo "Command: $CMD"
+              eval $CMD
+            else
+              echo "build is skipped ..."
+            fi
 
   pitest4:
     machine: true
@@ -120,13 +149,19 @@ jobs:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-             echo "./.ci/pitest.sh pitest-whitespace" >> commands.txt
-             echo "./.ci/pitest.sh pitest-filters"    >> commands.txt
-             echo "./.ci/pitest.sh pitest-header"     >> commands.txt
-             echo "./.ci/pitest.sh pitest-annotation" >> commands.txt
-             CMD="$(circleci tests split commands.txt)"
-             echo "Command: $CMD"
-             eval $CMD
+            SKIP_CI=`cat .ci-temp/skip_ci`
+            echo "SKIP_CI="$SKIP_CI
+            if [[ $SKIP_CI == 'false' ]]; then
+              echo "./.ci/pitest.sh pitest-whitespace" >> commands.txt
+              echo "./.ci/pitest.sh pitest-filters"    >> commands.txt
+              echo "./.ci/pitest.sh pitest-header"     >> commands.txt
+              echo "./.ci/pitest.sh pitest-annotation" >> commands.txt
+              CMD="$(circleci tests split commands.txt)"
+              echo "Command: $CMD"
+              eval $CMD
+            else
+              echo "build is skipped ..."
+            fi
 
   pitest5:
     machine: true
@@ -141,13 +176,19 @@ jobs:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-             echo "./.ci/pitest.sh pitest-packagenamesloader" >> commands.txt
-             echo "./.ci/pitest.sh pitest-tree-walker"        >> commands.txt
-             echo "./.ci/pitest.sh pitest-naming"             >> commands.txt
-             echo "./.ci/pitest.sh pitest-metrics"            >> commands.txt
-             CMD="$(circleci tests split commands.txt)"
-             echo "Command: $CMD"
-             eval $CMD
+            SKIP_CI=`cat .ci-temp/skip_ci`
+            echo "SKIP_CI="$SKIP_CI
+            if [[ $SKIP_CI == 'false' ]]; then
+              echo "./.ci/pitest.sh pitest-packagenamesloader" >> commands.txt
+              echo "./.ci/pitest.sh pitest-tree-walker"        >> commands.txt
+              echo "./.ci/pitest.sh pitest-naming"             >> commands.txt
+              echo "./.ci/pitest.sh pitest-metrics"            >> commands.txt
+              CMD="$(circleci tests split commands.txt)"
+              echo "Command: $CMD"
+              eval $CMD
+            else
+              echo "build is skipped ..."
+            fi
 
   pitest6:
     machine: true
@@ -162,13 +203,19 @@ jobs:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-             echo "./.ci/pitest.sh pitest-blocks"   >> commands.txt
-             echo "./.ci/pitest.sh pitest-sizes"    >> commands.txt
-             echo "./.ci/pitest.sh pitest-modifier" >> commands.txt
-             echo "./.ci/pitest.sh pitest-regexp"   >> commands.txt
-             CMD="$(circleci tests split commands.txt)"
-             echo "Command: $CMD"
-             eval $CMD
+            SKIP_CI=`cat .ci-temp/skip_ci`
+            echo "SKIP_CI="$SKIP_CI
+            if [[ $SKIP_CI == 'false' ]]; then
+              echo "./.ci/pitest.sh pitest-blocks"   >> commands.txt
+              echo "./.ci/pitest.sh pitest-sizes"    >> commands.txt
+              echo "./.ci/pitest.sh pitest-modifier" >> commands.txt
+              echo "./.ci/pitest.sh pitest-regexp"   >> commands.txt
+              CMD="$(circleci tests split commands.txt)"
+              echo "Command: $CMD"
+              eval $CMD
+            else
+              echo "build is skipped ..."
+            fi
 
   pitest7:
     machine: true
@@ -183,10 +230,16 @@ jobs:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-             echo "./.ci/pitest.sh pitest-gui"   >> commands.txt
-             CMD="$(circleci tests split commands.txt)"
-             echo "Command: $CMD"
-             eval $CMD
+            SKIP_CI=`cat .ci-temp/skip_ci`
+            echo "SKIP_CI="$SKIP_CI
+            if [[ $SKIP_CI == 'false' ]]; then
+              echo "./.ci/pitest.sh pitest-gui"   >> commands.txt
+              CMD="$(circleci tests split commands.txt)"
+              echo "Command: $CMD"
+              eval $CMD
+            else
+              echo "build is skipped ..."
+            fi
 
 workflows:
   version: 2
