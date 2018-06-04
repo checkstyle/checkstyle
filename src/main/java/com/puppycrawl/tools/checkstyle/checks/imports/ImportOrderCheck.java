@@ -361,6 +361,7 @@ public class ImportOrderCheck
     // -@cs[CyclomaticComplexity] SWITCH was transformed into IF-ELSE.
     @Override
     public void visitToken(DetailAST ast) {
+        final int line = ast.getLineNo();
         final FullIdent ident;
         final boolean isStatic;
 
@@ -384,7 +385,7 @@ public class ImportOrderCheck
                 lastGroup = Integer.MIN_VALUE;
                 lastImport = "";
             }
-            doVisitToken(ident, isStatic, isStaticAndNotLastImport);
+            doVisitToken(ident, isStatic, isStaticAndNotLastImport, line);
 
             if (isStaticAndNotLastImport && !beforeFirstImport) {
                 log(ident.getLineNo(), MSG_ORDERING, ident.getText());
@@ -395,7 +396,7 @@ public class ImportOrderCheck
                 lastGroup = Integer.MIN_VALUE;
                 lastImport = "";
             }
-            doVisitToken(ident, isStatic, isLastImportAndNonStatic);
+            doVisitToken(ident, isStatic, isLastImportAndNonStatic, line);
 
             if (isLastImportAndNonStatic) {
                 log(ident.getLineNo(), MSG_ORDERING, ident.getText());
@@ -403,14 +404,14 @@ public class ImportOrderCheck
         }
         else if (option == ImportOrderOption.ABOVE) {
             // previous non-static but current is static
-            doVisitToken(ident, isStatic, isStaticAndNotLastImport);
+            doVisitToken(ident, isStatic, isStaticAndNotLastImport, line);
         }
         else if (option == ImportOrderOption.UNDER) {
-            doVisitToken(ident, isStatic, isLastImportAndNonStatic);
+            doVisitToken(ident, isStatic, isLastImportAndNonStatic, line);
         }
         else if (option == ImportOrderOption.INFLOW) {
             // "previous" argument is useless here
-            doVisitToken(ident, isStatic, true);
+            doVisitToken(ident, isStatic, true, line);
         }
         else {
             throw new IllegalStateException(
@@ -429,12 +430,11 @@ public class ImportOrderCheck
      * @param isStatic whether the token is static or not.
      * @param previous previous non-static but current is static (above), or
      *                  previous static but current is non-static (under).
+     * @param line the line of the current import.
      */
-    private void doVisitToken(FullIdent ident, boolean isStatic,
-            boolean previous) {
+    private void doVisitToken(FullIdent ident, boolean isStatic, boolean previous, int line) {
         final String name = ident.getText();
         final int groupIdx = getGroupNumber(name);
-        final int line = ident.getLineNo();
 
         if (groupIdx > lastGroup) {
             if (!beforeFirstImport && separated && line - lastImportLine < 2
