@@ -92,4 +92,6 @@
 
     <!-- HandlerFactory crosses allowed limit for executable statements -->
     <suppress checks="ExecutableStatementCount" files="HandlerFactory\.java"/>
+
+    <suppress checks="RightCurly" files="(TreeTable|Main)\.java" lines="454,119"/>
 </suppressions>

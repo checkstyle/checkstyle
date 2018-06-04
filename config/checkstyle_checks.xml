@@ -228,6 +228,7 @@
       <property name="tokens" value="LITERAL_FINALLY"/>
       <property name="tokens" value="LITERAL_IF"/>
       <property name="tokens" value="LITERAL_TRY"/>
+      <property name="tokens" value="LITERAL_NEW"/>
       <property name="option" value="alone"/>
     </module>
     <module name="RightCurly">

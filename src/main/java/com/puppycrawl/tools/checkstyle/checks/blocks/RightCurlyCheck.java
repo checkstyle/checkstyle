@@ -52,6 +52,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  *  {@link TokenTypes#STATIC_INIT STATIC_INIT}.
  *  {@link TokenTypes#INSTANCE_INIT INSTANCE_INIT}.
  *  {@link TokenTypes#LAMBDA LAMBDA}.
+ *  {@link TokenTypes#LITERAL_NEW LITERAL_NEW}.
  * </p>
  * <p>
  * <b>shouldStartLine</b> - does the check need to check
@@ -159,6 +160,7 @@ public class RightCurlyCheck extends AbstractCheck {
             TokenTypes.STATIC_INIT,
             TokenTypes.INSTANCE_INIT,
             TokenTypes.LAMBDA,
+            TokenTypes.LITERAL_NEW,
         };
     }
 
@@ -399,6 +401,9 @@ public class RightCurlyCheck extends AbstractCheck {
                 case TokenTypes.LAMBDA:
                     details = getDetailsForLambda(ast);
                     break;
+                case TokenTypes.LITERAL_NEW:
+                    details = getDetailsForAnonClassOrArrInitOrObjInit(ast);
+                    break;
                 default:
                     details = getDetailsForOthers(ast);
                     break;
@@ -566,6 +571,60 @@ public class RightCurlyCheck extends AbstractCheck {
                 rcurly = lcurly.getLastChild();
             }
             return new Details(lcurly, rcurly, nextToken, shouldCheckLastRcurly);
+        }
+
+        /**
+         * Collects details for Anonymous classes.
+         * @param ast a {@code DetailAST} value
+         * @return an object containing all details to make a validation
+         */
+        private static Details getDetailsForAnonClassOrArrInitOrObjInit(DetailAST ast) {
+            final Details details;
+            if (isAnonymousClassDef(ast)) {
+                final DetailAST objblockAST = ast.getLastChild();
+                final DetailAST lcurly = objblockAST.getFirstChild();
+                final DetailAST rcurly = objblockAST.getLastChild();
+                DetailAST nextToken = getNextToken(ast);
+                if (nextToken.getType() == TokenTypes.SEMI
+                        || nextToken.getType() == TokenTypes.COMMA) {
+                    nextToken = getNextToken(nextToken);
+                }
+                details = new Details(lcurly, rcurly, nextToken, false);
+            }
+            else if (isArrayInitialization(ast)) {
+                final DetailAST arrInitAST = ast.getLastChild();
+                final DetailAST rcurly = arrInitAST.getLastChild();
+                DetailAST nextToken = getNextToken(ast);
+                if (nextToken.getType() == TokenTypes.SEMI
+                        || nextToken.getType() == TokenTypes.COMMA) {
+                    nextToken = getNextToken(nextToken);
+                }
+                details = new Details(arrInitAST, rcurly, nextToken, false);
+            }
+            else {
+                details = new Details(null, null, null, false);
+            }
+            return details;
+        }
+
+        /**
+         * Determines whether the AST is an array intialization.
+         * @param ast the AST to process
+         * @return true if the AST is an array intialization
+         */
+        private static boolean isArrayInitialization(DetailAST ast) {
+            final DetailAST arrInitAST = ast.getLastChild();
+            return arrInitAST != null && arrInitAST.getType() == TokenTypes.ARRAY_INIT;
+        }
+
+        /**
+         * Determines whether the AST is a definition of an anonymous class.
+         * @param ast the AST to process
+         * @return true if the AST is a definition of an anonymous class
+         */
+        private static boolean isAnonymousClassDef(DetailAST ast) {
+            final DetailAST objblockAST = ast.getLastChild();
+            return objblockAST != null && objblockAST.getType() == TokenTypes.OBJBLOCK;
         }
 
         /**
