@@ -38,6 +38,15 @@
                alt="Flattr this" title="Flattr this" border="0"/>
         </a>
         <br/>
+        Donate by <a href="https://liberapay.com/checkstyle/">Liberapay</a>:
+        <script src="https://liberapay.com/~150680/widgets/button.js"></script>
+        <noscript>
+          <a href="https://liberapay.com/~150680/donate">
+            <img alt="Donate using Liberapay"
+               src="https://liberapay.com/assets/widgets/donate.svg"/>
+          </a>
+        </noscript>
+        <br/>
         <object type="image/svg+xml"
         data="https://opencollective.com/checkstyle/tiers/backer.svg?avatarHeight=76&amp;width=600">
         </object>
