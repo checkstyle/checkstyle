@@ -64,7 +64,7 @@
     <xmlvalidate file="config/checkstyle_checks.xml">
       <xmlcatalog>
         <dtd
-          publicId="-//Puppy Crawl//DTD Check Configuration 1.1//EN"
+          publicId="-//Checkstyle//DTD Checkstyle Configuration 1.1//EN"
           location="${checkstyle.dir}/configuration_1_1.dtd"/>
       </xmlcatalog>
     </xmlvalidate>

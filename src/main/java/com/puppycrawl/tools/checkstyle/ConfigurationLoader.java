@@ -75,6 +75,10 @@ public final class ConfigurationLoader {
     private static final String DTD_PUBLIC_ID_1_0 =
         "-//Puppy Crawl//DTD Check Configuration 1.0//EN";
 
+    /** The new public ID for version 1_0 of the configuration dtd. */
+    private static final String DTD_PUBLIC_CS_ID_1_0 =
+        "-//Checkstyle//DTD Checkstyle Configuration 1.0//EN";
+
     /** The resource for version 1_0 of the configuration dtd. */
     private static final String DTD_CONFIGURATION_NAME_1_0 =
         "com/puppycrawl/tools/checkstyle/configuration_1_0.dtd";
@@ -82,6 +86,10 @@ public final class ConfigurationLoader {
     /** The public ID for version 1_1 of the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_1 =
         "-//Puppy Crawl//DTD Check Configuration 1.1//EN";
+
+    /** The new public ID for version 1_1 of the configuration dtd. */
+    private static final String DTD_PUBLIC_CS_ID_1_1 =
+        "-//Checkstyle//DTD Checkstyle Configuration 1.1//EN";
 
     /** The resource for version 1_1 of the configuration dtd. */
     private static final String DTD_CONFIGURATION_NAME_1_1 =
@@ -91,6 +99,10 @@ public final class ConfigurationLoader {
     private static final String DTD_PUBLIC_ID_1_2 =
         "-//Puppy Crawl//DTD Check Configuration 1.2//EN";
 
+    /** The new public ID for version 1_2 of the configuration dtd. */
+    private static final String DTD_PUBLIC_CS_ID_1_2 =
+        "-//Checkstyle//DTD Checkstyle Configuration 1.2//EN";
+
     /** The resource for version 1_2 of the configuration dtd. */
     private static final String DTD_CONFIGURATION_NAME_1_2 =
         "com/puppycrawl/tools/checkstyle/configuration_1_2.dtd";
@@ -98,6 +110,10 @@ public final class ConfigurationLoader {
     /** The public ID for version 1_3 of the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_3 =
         "-//Puppy Crawl//DTD Check Configuration 1.3//EN";
+
+    /** The new public ID for version 1_3 of the configuration dtd. */
+    private static final String DTD_PUBLIC_CS_ID_1_3 =
+        "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN";
 
     /** The resource for version 1_3 of the configuration dtd. */
     private static final String DTD_CONFIGURATION_NAME_1_3 =
@@ -156,6 +172,10 @@ public final class ConfigurationLoader {
         map.put(DTD_PUBLIC_ID_1_1, DTD_CONFIGURATION_NAME_1_1);
         map.put(DTD_PUBLIC_ID_1_2, DTD_CONFIGURATION_NAME_1_2);
         map.put(DTD_PUBLIC_ID_1_3, DTD_CONFIGURATION_NAME_1_3);
+        map.put(DTD_PUBLIC_CS_ID_1_0, DTD_CONFIGURATION_NAME_1_0);
+        map.put(DTD_PUBLIC_CS_ID_1_1, DTD_CONFIGURATION_NAME_1_1);
+        map.put(DTD_PUBLIC_CS_ID_1_2, DTD_CONFIGURATION_NAME_1_2);
+        map.put(DTD_PUBLIC_CS_ID_1_3, DTD_CONFIGURATION_NAME_1_3);
         return map;
     }
 

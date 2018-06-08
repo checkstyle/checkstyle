@@ -1,7 +1,7 @@
 <!-- Add the following to any file that is to be validated against this DTD:
 
 <!DOCTYPE suppressions PUBLIC
-    "-//Puppy Crawl//DTD Suppressions Xpath Experimental 1.2//EN"
+    "-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
     "http://checkstyle.sourceforge.net/dtds/suppressions_1_2_xpath_experimental.dtd">
 -->
 

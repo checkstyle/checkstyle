@@ -26,8 +26,10 @@ import java.net.URL;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Set;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -48,6 +50,10 @@ public final class PackageNamesLoader
     /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID =
         "-//Puppy Crawl//DTD Package Names 1.0//EN";
+
+    /** The new public ID for the configuration dtd. */
+    private static final String DTD_PUBLIC_CS_ID =
+        "-//Checkstyle//DTD Package Names Configuration 1.0//EN";
 
     /** The resource for the configuration dtd. */
     private static final String DTD_RESOURCE_NAME =
@@ -75,7 +81,7 @@ public final class PackageNamesLoader
      */
     private PackageNamesLoader()
             throws ParserConfigurationException, SAXException {
-        super(DTD_PUBLIC_ID, DTD_RESOURCE_NAME);
+        super(createIdToResourceNameMap());
     }
 
     @Override
@@ -168,6 +174,17 @@ public final class PackageNamesLoader
         catch (IOException ex) {
             throw new CheckstyleException("unable to open " + packageFile, ex);
         }
+    }
+
+    /**
+     * Creates mapping between local resources and dtd ids.
+     * @return map between local resources and dtd ids.
+     */
+    private static Map<String, String> createIdToResourceNameMap() {
+        final Map<String, String> map = new HashMap<>();
+        map.put(DTD_PUBLIC_ID, DTD_RESOURCE_NAME);
+        map.put(DTD_PUBLIC_CS_ID, DTD_RESOURCE_NAME);
+        return map;
     }
 
 }

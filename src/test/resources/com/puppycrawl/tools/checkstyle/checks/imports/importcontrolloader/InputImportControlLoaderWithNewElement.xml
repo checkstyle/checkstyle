@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE import-control PUBLIC
-    "-//Puppy Crawl//DTD Import Control 1.UT//EN"
+    "-//Checkstyle//DTD ImportControl Configuration 1.UT//EN"
         "src/test/resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrolloader/InputImportControlLoaderDtd_MODIFIED_FOR_UT.dtd">
 
 <import-control pkg="com">
