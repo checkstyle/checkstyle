@@ -39,7 +39,7 @@
         </a>
         <br/>
         Donate by <a href="https://liberapay.com/checkstyle/">Liberapay</a>:
-        <script src="https://liberapay.com/~150680/widgets/button.js"></script>
+        <script src="https://liberapay.com/~150680/widgets/button.js" />
         <noscript>
           <a href="https://liberapay.com/~150680/donate">
             <img alt="Donate using Liberapay"
