@@ -1,7 +1,7 @@
 <!-- Add the following to any file that is to be validated against this DTD:
 
 <!DOCTYPE module PUBLIC
-    "-//Puppy Crawl//DTD Check Configuration 1.1//EN"
+    "-//Checkstyle//DTD Checkstyle Configuration 1.1//EN"
     "http://checkstyle.sourceforge.net/dtds/configuration_1_1.dtd">
 -->
 

@@ -46,21 +46,41 @@ final class ImportControlLoader extends XmlLoader {
     private static final String DTD_PUBLIC_ID_1_0 =
         "-//Puppy Crawl//DTD Import Control 1.0//EN";
 
+    /** The new public ID for version 1_0 of the configuration dtd. */
+    private static final String DTD_PUBLIC_CS_ID_1_0 =
+        "-//Checkstyle//DTD ImportControl Configuration 1.0//EN";
+
     /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_1 =
         "-//Puppy Crawl//DTD Import Control 1.1//EN";
+
+    /** The new public ID for version 1_1 of the configuration dtd. */
+    private static final String DTD_PUBLIC_CS_ID_1_1 =
+        "-//Checkstyle//DTD ImportControl Configuration 1.1//EN";
 
     /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_2 =
         "-//Puppy Crawl//DTD Import Control 1.2//EN";
 
+    /** The new public ID for version 1_2 of the configuration dtd. */
+    private static final String DTD_PUBLIC_CS_ID_1_2 =
+        "-//Checkstyle//DTD ImportControl Configuration 1.22//EN";
+
     /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_3 =
-            "-//Puppy Crawl//DTD Import Control 1.3//EN";
+        "-//Puppy Crawl//DTD Import Control 1.3//EN";
+
+    /** The new public ID for version 1_3 of the configuration dtd. */
+    private static final String DTD_PUBLIC_CS_ID_1_3 =
+        "-//Checkstyle//DTD ImportControl Configuration 1.3//EN";
 
     /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_4 =
         "-//Puppy Crawl//DTD Import Control 1.4//EN";
+
+    /** The new public ID for version 1_4 of the configuration dtd. */
+    private static final String DTD_PUBLIC_CS_ID_1_4 =
+        "-//Checkstyle//DTD ImportControl Configuration 1.4//EN";
 
     /** The resource for the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_0 =
@@ -76,7 +96,7 @@ final class ImportControlLoader extends XmlLoader {
 
     /** The resource for the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_3 =
-            "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_3.dtd";
+        "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_3.dtd";
 
     /** The resource for the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_4 =
@@ -118,6 +138,11 @@ final class ImportControlLoader extends XmlLoader {
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_2, DTD_RESOURCE_NAME_1_2);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_3, DTD_RESOURCE_NAME_1_3);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_4, DTD_RESOURCE_NAME_1_4);
+        DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_0, DTD_RESOURCE_NAME_1_0);
+        DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_1, DTD_RESOURCE_NAME_1_1);
+        DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_2, DTD_RESOURCE_NAME_1_2);
+        DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_3, DTD_RESOURCE_NAME_1_3);
+        DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_4, DTD_RESOURCE_NAME_1_4);
     }
 
     /**

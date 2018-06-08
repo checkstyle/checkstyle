@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suppressions PUBLIC
-    "-//Puppy Crawl//DTD Suppressions Xpath Experimental 1.2//EN"
+    "-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
     "http://checkstyle.sourceforge.net/dtds/suppressions_1_2_xpath_experimental.dtd">
 <suppressions>
   <suppress-xpath files="file1" id="id1" checks="test" query="/CLASS_DEF"/>

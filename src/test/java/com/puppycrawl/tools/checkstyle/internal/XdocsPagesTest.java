@@ -215,8 +215,8 @@ public class XdocsPagesTest {
                     .getCanonicalPath();
 
             code = "<?xml version=\"1.0\"?>\n<!DOCTYPE module PUBLIC "
-                    + "\"-//Puppy Crawl//DTD Check Configuration 1.3//EN\" \"" + dtdPath + "\">\n"
-                    + code;
+                    + "\"-//Checkstyle//DTD Checkstyle Configuration 1.3//EN\" \"" + dtdPath
+                    + "\">\n" + code;
         }
         return code;
     }

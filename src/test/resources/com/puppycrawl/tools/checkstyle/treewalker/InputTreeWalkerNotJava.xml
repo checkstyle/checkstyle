@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE checkstyle-packages PUBLIC
-    "-//Puppy Crawl//DTD Package Names 1.0//EN"
+    "-//Checkstyle//DTD Package Names Configuration 1.0//EN"
     "http://checkstyle.sourceforge.net/dtds/packages_1_0.dtd">
 
 <checkstyle-packages>

@@ -553,7 +553,7 @@ public class UserService {
 &lt;?xml version=&quot;1.0&quot;?&gt;
 
 &lt;!DOCTYPE suppressions PUBLIC
-&quot;-//Puppy Crawl//DTD Suppressions 1.1//EN&quot;
+&quot;-//Checkstyle//DTD SuppressionFilter Configuration 1.1//EN&quot;
 &quot;http://checkstyle.sourceforge.net/dtds/suppressions_1_1.dtd&quot;&gt;
 
 &lt;suppressions&gt;
@@ -873,7 +873,7 @@ public class UserService {
 &lt;?xml version=&quot;1.0&quot;?&gt;
 
 &lt;!DOCTYPE suppressions PUBLIC
-&quot;-//Puppy Crawl//DTD Suppressions Xpath Experimental 1.2//EN&quot;
+&quot;-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN&quot;
 &quot;http://checkstyle.sourceforge.net/dtds/suppressions_1_2_xpath_experimental.dtd&quot;&gt;
 
 &lt;suppressions&gt;

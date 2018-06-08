@@ -57,19 +57,6 @@ public class XmlLoader
 
     /**
      * Creates a new instance.
-     * @param publicId the public ID for the DTD to resolve
-     * @param dtdResourceName the resource for the DTD
-     * @throws SAXException if an error occurs
-     * @throws ParserConfigurationException if an error occurs
-     */
-    protected XmlLoader(String publicId, String dtdResourceName)
-            throws SAXException, ParserConfigurationException {
-        this(new HashMap<>(1));
-        publicIdToResourceNameMap.put(publicId, dtdResourceName);
-    }
-
-    /**
-     * Creates a new instance.
      * @param publicIdToResourceNameMap maps public IDs to DTD resource names
      * @throws SAXException if an error occurs
      * @throws ParserConfigurationException if an error occurs
