@@ -1569,6 +1569,11 @@
                                 <img src="images/ok_green.png" alt=""/>
                                 <a href="config_naming.html#CatchParameterName">
                                     CatchParameterName</a>
+                                <br/>
+                                <br/>
+                                <img src="images/ok_green.png" alt=""/>
+                                <a href="config_naming.html#LambdaParameterName">
+                                    LambdaParameterName</a>
                             </td>
                             <td>
                                 <a
@@ -1586,6 +1591,14 @@
                                 <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule51identifiernames/CatchParameterNameTest.java">
                                     test
                                 </a>
+                                <br/>
+                                <a
+                                        href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaParameterName">
+                                    config</a>
+                                <br />
+                                <a
+                                        href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule526parameternames/LambdaParameterNameTest.java">
+                                    test</a>
                             </td>
                         </tr>
                         <tr>

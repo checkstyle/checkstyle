@@ -690,6 +690,105 @@
       </subsection>
     </section>
 
+    <section name="LambdaParameterName">
+      <p>Since Checkstyle 8.11</p>
+      <subsection name="Description">
+        <p>
+          Check to verify lambda parameter names.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+            <th>since</th>
+          </tr>
+          <tr>
+            <td>format</td>
+            <td>Specifies valid identifiers.</td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
+            <td>8.11</td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          An example of how to configure the check is:
+        </p>
+
+        <source>
+&lt;module name="LambdaParameterName"/&gt;
+        </source>
+
+        <p>
+          An example of how to configure the check for names that begin with a lower case letter,
+          followed by letters is:
+        </p>
+        <source>
+&lt;module name="LambdaParameterName"&gt;
+  &lt;property name="format" value="^[a-z]([a-zA-Z]+)*$"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example of checking with this config:</p>
+        <source>
+public class TestClass {
+
+    Function&lt;String, String&gt; function1 = str -> str.toUpperCase().trim();
+
+    Function&lt;String, String&gt; function2 = _s -> _s.trim().toUpperCase(); // violation
+
+    public boolean testMethod(String sentence) {
+        return Stream.of(sentence.split(" "))
+            .map(word -> word.trim())
+            .anyMatch(Word -> "in".equals(Word)); // violation
+    }
+
+}
+        </source>
+
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaParameterName">
+              Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaParameterName">
+              Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
+              name.invalidPattern</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
+      </subsection>
+    </section>
+
     <section name="LocalFinalVariableName">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description">

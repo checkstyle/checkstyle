@@ -388,6 +388,10 @@
         Java source files and methods.</td>
       </tr>
       <tr>
+        <td><a href="config_naming.html#LambdaParameterName">LambdaParameterName</a></td>
+        <td>Check to verify lambda parameter names.</td>
+      </tr>
+      <tr>
         <td><a href="config_blocks.html#LeftCurly">LeftCurly</a></td>
         <td>
           Checks the placement of left curly braces on types, methods and
