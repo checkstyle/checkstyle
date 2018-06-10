@@ -672,6 +672,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.naming.ConstantNameCheck");
         NAME_TO_FULL_MODULE_NAME.put("InterfaceTypeParameterNameCheck",
                 BASE_PACKAGE + ".checks.naming.InterfaceTypeParameterNameCheck");
+        NAME_TO_FULL_MODULE_NAME.put("LambdaParameterNameCheck",
+                BASE_PACKAGE + ".checks.naming.LambdaParameterNameCheck");
         NAME_TO_FULL_MODULE_NAME.put("LocalFinalVariableNameCheck",
                 BASE_PACKAGE + ".checks.naming.LocalFinalVariableNameCheck");
         NAME_TO_FULL_MODULE_NAME.put("LocalVariableNameCheck",
