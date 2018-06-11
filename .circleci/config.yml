@@ -5,8 +5,8 @@ jobs:
     machine: true
     steps:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
-      - restore_cache:
-          key: m2-cache
+      #- restore_cache:
+      #    key: m2-cache
       - checkout
       - run:
           name: skip_ci creation
