@@ -58,7 +58,8 @@
             <!-- A big enough value to satisfy the most cases. -->
             <property name="methodReportLevel" value="100"/>
             <!-- GeneratedJavaTokenTypesTest.testTokenNumbering' is simple but long as it recheck
-                   each token one by one.
+                   each token one by one. Same goes for
+                   GeneratedJavadocTokenTypesTest#testTokenNumbers.
                  JavadocTokenTypesTest.TokenValues contains several asserts as it checks each
                    token explicitly.
                  XdocsPagesTest.getModulePropertyExpectedTypeName is a complicated list of
@@ -69,14 +70,17 @@
             | //ClassOrInterfaceDeclaration[@Image='GeneratedJavaTokenTypesTest']
                   //MethodDeclaration[@Name='testTokenNumbering']
             | //ClassOrInterfaceDeclaration[@Image='XdocsPagesTest']
-                  //MethodDeclaration[@Name='getModulePropertyExpectedTypeName']"/>
+                  //MethodDeclaration[@Name='getModulePropertyExpectedTypeName']
+            | //ClassOrInterfaceDeclaration[@Image='GeneratedJavadocTokenTypesTest']
+                  //MethodDeclaration[@Name='testTokenNumbers']"/>
         </properties>
     </rule>
 
     <rule ref="category/java/design.xml/ExcessiveMethodLength">
         <properties>
             <!-- GeneratedJavaTokenTypesTest.testTokenNumbering' is simple but long as it recheck
-                   each token one by one.
+                   each token one by one. Same goes for
+                   GeneratedJavadocTokenTypesTest#testTokenNumbers
                  ParenPadCheckTest.testNospaceWithComplexInput is intended to keep all in one
                    method.
                  JavadocTokenTypesTest.TokenValues contains several asserts as it checks each
@@ -93,7 +97,9 @@
             | //ClassOrInterfaceDeclaration[@Image='JavadocTokenTypesTest']
                 //MethodDeclaration[@Name='testTokenValues']
             | //ClassOrInterfaceDeclaration[@Image='XdocsPagesTest']
-                //MethodDeclaration[@Name='getModulePropertyExpectedTypeName']"/>
+                //MethodDeclaration[@Name='getModulePropertyExpectedTypeName']
+            | //ClassOrInterfaceDeclaration[@Image='GeneratedJavadocTokenTypesTest']
+                //MethodDeclaration[@Name='testTokenNumbers']"/>
         </properties>
     </rule>
 

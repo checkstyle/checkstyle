@@ -1110,6 +1110,9 @@ public final class JavadocTokenTypes {
 
     /** `rtc` tag name. */
     public static final int RTC_HTML_TAG_NAME = JavadocParser.RTC_HTML_TAG_NAME;
+
+    /** `rp` tag name. */
+    public static final int RP_HTML_TAG_NAME = JavadocParser.RP_HTML_TAG_NAME;
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     /////////////////////// SINGLETON HTML TAGS  //////////////////////////////////////////////////
@@ -1577,6 +1580,15 @@ public final class JavadocTokenTypes {
     /** `rtc` tag end. */
     public static final int RTC_TAG_END =
             JavadocParser.RULE_rtcTagEnd + RULE_TYPES_OFFSET;
+
+    /** `rp` html tag. */
+    public static final int RP = JavadocParser.RULE_rp + RULE_TYPES_OFFSET;
+    /** `rp` tag start. */
+    public static final int RP_TAG_START =
+            JavadocParser.RULE_rpTagStart + RULE_TYPES_OFFSET;
+    /** `rp` tag end. */
+    public static final int RP_TAG_END =
+            JavadocParser.RULE_rpTagEnd + RULE_TYPES_OFFSET;
 
     /////////////////////// SINGLETON HTML TAGS  //////////////////////////////////////////////////
     /**
