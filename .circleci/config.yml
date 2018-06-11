@@ -3,7 +3,7 @@ jobs:
 
   build-caches:
     docker:
-      - image: circleci/jdk8:0.1.1
+      - image: circleci/openjdk:8u171-node-browsers
     steps:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
       - restore_cache:
