@@ -64,7 +64,7 @@ final class ImportControlLoader extends XmlLoader {
 
     /** The new public ID for version 1_2 of the configuration dtd. */
     private static final String DTD_PUBLIC_CS_ID_1_2 =
-        "-//Checkstyle//DTD ImportControl Configuration 1.22//EN";
+        "-//Checkstyle//DTD ImportControl Configuration 1.2//EN";
 
     /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_3 =
