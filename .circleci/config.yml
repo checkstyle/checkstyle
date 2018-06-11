@@ -65,6 +65,10 @@ jobs:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
+            java -version
+            pwd
+            ls -la
+            cd /home/circleci/project
             pwd
             ls -la
             SKIP_CI=`cat .ci-temp/skip_ci`
