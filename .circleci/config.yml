@@ -52,7 +52,6 @@ jobs:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - /home/circleci/project
-            - /home/circleci/contribution
 
   pitest1:
     docker:
@@ -66,6 +65,8 @@ jobs:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
+            pwd
+            ls -la
             SKIP_CI=`cat .ci-temp/skip_ci`
             echo "SKIP_CI="$SKIP_CI
             if [[ $SKIP_CI == 'false' ]]; then
