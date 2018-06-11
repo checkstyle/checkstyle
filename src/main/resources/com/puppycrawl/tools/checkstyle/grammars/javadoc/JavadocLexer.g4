@@ -404,6 +404,7 @@ OPTGROUP_HTML_TAG_NAME: O P T G R O U P {!htmlTagNameCatched}? {htmlTagNameCatch
 RB_HTML_TAG_NAME: R B {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
 RT_HTML_TAG_NAME: R T {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
 RTC_HTML_TAG_NAME: R T C {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
+RP_HTML_TAG_NAME: R P {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
 
 // other tag names and attribute names
 HTML_TAG_NAME: NAME_START_CHAR NAME_CHAR* {htmlTagNameCatched=true;};
