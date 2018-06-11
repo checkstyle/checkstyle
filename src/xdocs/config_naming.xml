@@ -1362,9 +1362,12 @@ class MyClass {
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description">
         <p>
-          Checks that method and <code>catch</code> parameter names conform to a format specified
+          Checks that method parameter names conform to a format specified
           by the format property. By using <code>accessModifiers</code> property it is possible
           to specify different formats for methods at different visibility levels.
+          <br/>
+          To validate <code>catch</code> parameters please use
+          <a href="#CatchParameterName">CatchParameterName</a>.
         </p>
       </subsection>
 
