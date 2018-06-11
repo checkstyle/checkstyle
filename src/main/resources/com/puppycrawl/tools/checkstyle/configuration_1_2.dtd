@@ -2,7 +2,7 @@
 
 <!DOCTYPE module PUBLIC
     "-//Checkstyle//DTD Checkstyle Configuration 1.2//EN"
-    "http://checkstyle.sourceforge.net/dtds/configuration_1_2.dtd">
+    "https://checkstyle.org/dtds/configuration_1_2.dtd">
 -->
 
 <!ELEMENT module (module|property|metadata)*>

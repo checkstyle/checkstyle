@@ -2,7 +2,7 @@
 
 <!DOCTYPE suppressions PUBLIC
     "-//Checkstyle//DTD SuppressionFilter Configuration 1.0//EN"
-    "http://checkstyle.sourceforge.net/dtds/suppressions_1_0.dtd">
+    "https://checkstyle.org/dtds/suppressions_1_0.dtd">
 -->
 
 <!ELEMENT suppressions (suppress*)>
