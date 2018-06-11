@@ -2,7 +2,7 @@
 
 <!DOCTYPE module PUBLIC
     "-//Checkstyle//DTD Checkstyle Configuration 1.1//EN"
-    "http://checkstyle.sourceforge.net/dtds/configuration_1_1.dtd" [
+    "https://checkstyle.org/dtds/configuration_1_1.dtd" [
   <!ENTITY includedConfig SYSTEM "InputConfigurationLoaderIncludeFile.xml">
 ]>
 

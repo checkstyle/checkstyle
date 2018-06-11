@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE import-control PUBLIC
     "-//Checkstyle//DTD ImportControl Configuration 1.2//EN"
-    "http://checkstyle.sourceforge.net/dtds/import_control_1_2.dtd">
+    "https://checkstyle.org/dtds/import_control_1_2.dtd">
 
 <import-control pkg="com.puppycrawl.tools.checkstyle.checks.imports">
   <allow class="java\.awt.Image" regex="true"/>

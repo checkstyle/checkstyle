@@ -929,8 +929,8 @@ public class InputIllegalImport { }
 
         <p>
           The DTD for a import control XML document is at <a
-          href="http://checkstyle.sourceforge.net/dtds/import_control_1_4.dtd">
-          http://checkstyle.sourceforge.net/dtds/import_control_1_4.dtd</a>. It
+          href="https://checkstyle.org/dtds/import_control_1_4.dtd">
+          https://checkstyle.org/dtds/import_control_1_4.dtd</a>. It
           contains documentation on each of the elements and attributes.
         </p>
 
@@ -943,7 +943,7 @@ public class InputIllegalImport { }
         <pre>
 &lt;!DOCTYPE import-control PUBLIC
     &quot;-//Checkstyle//DTD ImportControl Configuration 1.4//EN&quot;
-    &quot;http://checkstyle.sourceforge.net/dtds/import_control_1_4.dtd&quot;&gt;
+    &quot;https://checkstyle.org/dtds/import_control_1_4.dtd&quot;&gt;
         </pre>
       </subsection>
 
