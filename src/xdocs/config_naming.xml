@@ -1365,7 +1365,8 @@ class MyClass {
           Checks that method parameter names conform to a format specified
           by the format property. By using <code>accessModifiers</code> property it is possible
           to specify different formats for methods at different visibility levels.
-          <br/>
+        </p>
+        <p>
           To validate <code>catch</code> parameters please use
           <a href="#CatchParameterName">CatchParameterName</a>.
         </p>
