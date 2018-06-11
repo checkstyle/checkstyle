@@ -554,7 +554,7 @@ public class UserService {
 
 &lt;!DOCTYPE suppressions PUBLIC
 &quot;-//Checkstyle//DTD SuppressionFilter Configuration 1.1//EN&quot;
-&quot;http://checkstyle.sourceforge.net/dtds/suppressions_1_1.dtd&quot;&gt;
+&quot;https://checkstyle.org/dtds/suppressions_1_1.dtd&quot;&gt;
 
 &lt;suppressions&gt;
 &lt;suppress checks=&quot;JavadocStyleCheck&quot;
@@ -874,7 +874,7 @@ public class UserService {
 
 &lt;!DOCTYPE suppressions PUBLIC
 &quot;-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN&quot;
-&quot;http://checkstyle.sourceforge.net/dtds/suppressions_1_2_xpath_experimental.dtd&quot;&gt;
+&quot;https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd&quot;&gt;
 
 &lt;suppressions&gt;
   &lt;suppress-xpath checks=&quot;CyclomaticComplexity&quot;

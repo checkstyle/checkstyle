@@ -119,7 +119,7 @@ public abstract class AbstractXpathRegressionTest extends AbstractModuleTestSupp
             bw.write("<!DOCTYPE suppressions PUBLIC\n");
             bw.write("    \"-//Checkstyle//DTD SuppressionXpathFilter ");
             bw.write("Experimental Configuration 1.2//EN\"\n");
-            bw.write("    \"http://checkstyle.sourceforge.net/dtds/");
+            bw.write("    \"https://checkstyle.org/dtds/");
             bw.write("suppressions_1_2_xpath_experimental.dtd\">\n");
             bw.write("<suppressions>\n");
             bw.write("   <suppress-xpath\n");
