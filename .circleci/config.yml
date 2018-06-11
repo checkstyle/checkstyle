@@ -2,9 +2,8 @@ version: 2
 jobs:
 
   build-caches:
-    machine: true
-    java:
-      version: oraclejdk8
+    docker:
+      - image: checkstyle/maven-builder-image:latest
     steps:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
       - restore_cache:
@@ -48,17 +47,15 @@ jobs:
           #https://discuss.circleci.com/t/add-mechanism-to-update-existing-cache-key/9014/13
           key: m2-cache-epoch-{{ epoch }}
           paths:
-            - /home/circleci/.m2/repository
+            - /root/.m2/repository
       - save_cache:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
           paths:
-            - /home/circleci/project
-            - /home/circleci/contribution
+            - /root/project
 
   pitest1:
-    machine: true
-    java:
-      version: oraclejdk8
+    docker:
+      - image: checkstyle/maven-builder-image:latest
     parallelism: 4
     steps:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
@@ -83,9 +80,8 @@ jobs:
             fi
 
   pitest2:
-    machine: true
-    java:
-      version: oraclejdk8
+    docker:
+      - image: checkstyle/maven-builder-image:latest
     parallelism: 4
     steps:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
@@ -110,9 +106,8 @@ jobs:
             fi
 
   pitest3:
-    machine: true
-    java:
-      version: oraclejdk8
+    docker:
+      - image: checkstyle/maven-builder-image:latest
     parallelism: 4
     steps:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
@@ -137,9 +132,8 @@ jobs:
             fi
 
   pitest4:
-    machine: true
-    java:
-      version: oraclejdk8
+    docker:
+      - image: checkstyle/maven-builder-image:latest
     parallelism: 4
     steps:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
@@ -164,9 +158,8 @@ jobs:
             fi
 
   pitest5:
-    machine: true
-    java:
-      version: oraclejdk8
+    docker:
+      - image: checkstyle/maven-builder-image:latest
     parallelism: 4
     steps:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
@@ -191,9 +184,8 @@ jobs:
             fi
 
   pitest6:
-    machine: true
-    java:
-      version: oraclejdk8
+    docker:
+      - image: checkstyle/maven-builder-image:latest
     parallelism: 4
     steps:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
@@ -218,9 +210,8 @@ jobs:
             fi
 
   pitest7:
-    machine: true
-    java:
-      version: oraclejdk8
+    docker:
+      - image: checkstyle/maven-builder-image:latest
     parallelism: 4
     steps:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
