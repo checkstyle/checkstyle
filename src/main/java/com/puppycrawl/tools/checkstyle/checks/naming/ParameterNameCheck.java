@@ -32,7 +32,8 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Checks that method parameter names conform to a format specified
  * by the format property. By using {@code accessModifiers} property it is possible
  * to specify different formats for methods at different visibility levels.
- * <br/>
+ * </p>
+ * <p>
  * To validate {@code catch} parameters please use
  * <a href="#CatchParameterName">CatchParameterName</a>.
  * </p>
