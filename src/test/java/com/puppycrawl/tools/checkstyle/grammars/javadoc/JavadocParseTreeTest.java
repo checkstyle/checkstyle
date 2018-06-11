@@ -322,6 +322,18 @@ public class JavadocParseTreeTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testRbHtmlTag() throws Exception {
+        verifyJavadocTree(getHtmlPath("expectedRbHtmlTagAst.txt"),
+                getHtmlPath("InputRbHtmlTag.javadoc"));
+    }
+
+    @Test
+    public void testNonTightRbHtmlTag() throws Exception {
+        verifyJavadocTree(getHtmlPath("expectedNonTightRbHtmlTagAst.txt"),
+                getHtmlPath("InputNonTightRbHtmlTag.javadoc"));
+    }
+
+    @Test
     public void testLeadingAsteriskAfterSeeTag() throws Exception {
         verifyJavadocTree(getDocPath("expectedLeadingAsteriskAfterSeeTagAst.txt"),
                 getDocPath("InputLeadingAsteriskAfterSeeTag.javadoc"));

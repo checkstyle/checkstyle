@@ -70,6 +70,7 @@ htmlElement: htmlTag
             | thead
             | tfoot
             | optgroup
+            | rb
 
             | pTagStart[true]
             | liTagStart[true]
@@ -87,6 +88,7 @@ htmlElement: htmlTag
             | theadTagStart[true]
             | tfootTagStart[true]
             | optgroupTagStart[true]
+            | rbTagStart[true]
 
             | pTagEnd
             | liTagEnd
@@ -104,6 +106,7 @@ htmlElement: htmlTag
             | theadTagEnd
             | tfootTagEnd
             | optgroupTagEnd
+            | rbTagEnd
             ;
 
 htmlElementStart:  START HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* END;
@@ -151,6 +154,7 @@ paragraph: pTagStart[false]
             | thead
             | tfoot
             | optgroup
+            | rb
 
             | liTagStart[true]
             | trTagStart[true]
@@ -167,6 +171,7 @@ paragraph: pTagStart[false]
             | theadTagStart[true]
             | tfootTagStart[true]
             | optgroupTagStart[true]
+            | rbTagStart[true]
             | ({!isNextJavadocTag()}? LEADING_ASTERISK)
             | htmlComment
             | CDATA
@@ -202,6 +207,7 @@ li: liTagStart[false]
         | thead
         | tfoot
         | optgroup
+        | rb
 
         | pTagStart[true]
         | trTagStart[true]
@@ -218,6 +224,7 @@ li: liTagStart[false]
         | theadTagStart[true]
         | tfootTagStart[true]
         | optgroupTagStart[true]
+        | rbTagStart[true]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | CDATA
@@ -253,6 +260,7 @@ tr: trTagStart[false]
         | thead
         | tfoot
         | optgroup
+        | rb
 
         | pTagStart[true]
         | liTagStart[true]
@@ -269,6 +277,7 @@ tr: trTagStart[false]
         | theadTagStart[true]
         | tfootTagStart[true]
         | optgroupTagStart[true]
+        | rbTagStart[true]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | CDATA
@@ -304,6 +313,7 @@ td: tdTagStart[false]
         | thead
         | tfoot
         | optgroup
+        | rb
 
         | pTagStart[true]
         | liTagStart[true]
@@ -320,6 +330,7 @@ td: tdTagStart[false]
         | theadTagStart[true]
         | tfootTagStart[true]
         | optgroupTagStart[true]
+        | rbTagStart[true]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | CDATA
@@ -355,6 +366,7 @@ th: thTagStart[false]
         | thead
         | tfoot
         | optgroup
+        | rb
 
         | pTagStart[true]
         | liTagStart[true]
@@ -371,6 +383,7 @@ th: thTagStart[false]
         | theadTagStart[true]
         | tfootTagStart[true]
         | optgroupTagStart[true]
+        | rbTagStart[true]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | CDATA
@@ -406,6 +419,7 @@ body: bodyTagStart[false]
         | thead
         | tfoot
         | optgroup
+        | rb
 
         | pTagStart[true]
         | liTagStart[true]
@@ -422,6 +436,7 @@ body: bodyTagStart[false]
         | theadTagStart[true]
         | tfootTagStart[true]
         | optgroupTagStart[true]
+        | rbTagStart[true]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | CDATA
@@ -457,6 +472,7 @@ colgroup: colgroupTagStart[false]
         | thead
         | tfoot
         | optgroup
+        | rb
 
         | pTagStart[true]
         | liTagStart[true]
@@ -473,6 +489,7 @@ colgroup: colgroupTagStart[false]
         | theadTagStart[true]
         | tfootTagStart[true]
         | optgroupTagStart[true]
+        | rbTagStart[true]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | CDATA
@@ -508,6 +525,7 @@ dd: ddTagStart[false]
         | thead
         | tfoot
         | optgroup
+        | rb
 
         | pTagStart[true]
         | liTagStart[true]
@@ -524,6 +542,7 @@ dd: ddTagStart[false]
         | theadTagStart[true]
         | tfootTagStart[true]
         | optgroupTagStart[true]
+        | rbTagStart[true]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | CDATA
@@ -559,6 +578,7 @@ dt: dtTagStart[false]
         | thead
         | tfoot
         | optgroup
+        | rb
 
         | pTagStart[true]
         | liTagStart[true]
@@ -575,6 +595,7 @@ dt: dtTagStart[false]
         | theadTagStart[true]
         | tfootTagStart[true]
         | optgroupTagStart[true]
+        | rbTagStart[true]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | CDATA
@@ -610,6 +631,7 @@ head: headTagStart[false]
         | thead
         | tfoot
         | optgroup
+        | rb
 
         | pTagStart[true]
         | liTagStart[true]
@@ -626,6 +648,7 @@ head: headTagStart[false]
         | theadTagStart[true]
         | tfootTagStart[true]
         | optgroupTagStart[true]
+        | rbTagStart[true]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | CDATA
@@ -661,6 +684,7 @@ html: htmlTagStart[false]
         | thead
         | tfoot
         | optgroup
+        | rb
 
         | pTagStart[true]
         | liTagStart[true]
@@ -677,6 +701,7 @@ html: htmlTagStart[false]
         | theadTagStart[true]
         | tfootTagStart[true]
         | optgroupTagStart[true]
+        | rbTagStart[true]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | CDATA
@@ -712,6 +737,7 @@ option: optionTagStart[false]
         | thead
         | tfoot
         | optgroup
+        | rb
 
         | pTagStart[true]
         | liTagStart[true]
@@ -728,6 +754,7 @@ option: optionTagStart[false]
         | theadTagStart[true]
         | tfootTagStart[true]
         | optgroupTagStart[true]
+        | rbTagStart[true]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | CDATA
@@ -763,6 +790,7 @@ tbody: tbodyTagStart[false]
         | thead
         | tfoot
         | optgroup
+        | rb
 
         | pTagStart[true]
         | liTagStart[true]
@@ -779,6 +807,7 @@ tbody: tbodyTagStart[false]
         | theadTagStart[true]
         | tfootTagStart[true]
         | optgroupTagStart[true]
+        | rbTagStart[true]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | CDATA
@@ -814,6 +843,7 @@ tfoot: tfootTagStart[false]
         | tbody
         | thead
         | optgroup
+        | rb
 
         | pTagStart[true]
         | liTagStart[true]
@@ -830,6 +860,7 @@ tfoot: tfootTagStart[false]
         | tbodyTagStart[true]
         | theadTagStart[true]
         | optgroupTagStart[true]
+        | rbTagStart[true]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | CDATA
@@ -865,6 +896,7 @@ thead: theadTagStart[false]
         | tbody
         | tfoot
         | optgroup
+        | rb
 
         | pTagStart[true]
         | liTagStart[true]
@@ -881,6 +913,7 @@ thead: theadTagStart[false]
         | tbodyTagStart[true]
         | tfootTagStart[true]
         | optgroupTagStart[true]
+        | rbTagStart[true]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | CDATA
@@ -1125,4 +1158,53 @@ optgroup: optgroupTagStart[false]
         | text
         | javadocInlineTag)*
     optgroupTagEnd
+    ;
+
+rbTagStart[boolean isNonTight]
+@after {
+    if (isNonTight && nonTightTagStartContext == null) {
+        nonTightTagStartContext = _localctx;
+    }
+}
+    : START RB_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* END;
+rbTagEnd: START SLASH RB_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* END;
+rb: rbTagStart[false]
+    (htmlTag
+        | singletonElement
+        | paragraph
+        | li
+        | tr
+        | td
+        | th
+        | body
+        | colgroup
+        | dd
+        | dt
+        | head
+        | html
+        | option
+        | tbody
+        | tfoot
+
+        | pTagStart[true]
+        | liTagStart[true]
+        | trTagStart[true]
+        | tdTagStart[true]
+        | thTagStart[true]
+        | bodyTagStart[true]
+        | colgroupTagStart[true]
+        | ddTagStart[true]
+        | dtTagStart[true]
+        | headTagStart[true]
+        | htmlTagStart[true]
+        | optionTagStart[true]
+        | tbodyTagStart[true]
+        | tfootTagStart[true]
+        | ({!isNextJavadocTag()}? LEADING_ASTERISK)
+        | htmlComment
+        | CDATA
+        | NEWLINE
+        | text
+        | javadocInlineTag)*
+    rbTagEnd
     ;
