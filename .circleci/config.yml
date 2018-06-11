@@ -47,11 +47,11 @@ jobs:
           #https://discuss.circleci.com/t/add-mechanism-to-update-existing-cache-key/9014/13
           key: m2-cache-epoch-{{ epoch }}
           paths:
-            - /home/circleci/.m2/repository
+            - /root/.m2/repository
       - save_cache:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
           paths:
-            - /home/circleci/project
+            - /root/project
 
   pitest1:
     docker:
@@ -65,12 +65,6 @@ jobs:
           key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-            java -version
-            pwd
-            ls -la
-            cd /home/circleci/project
-            pwd
-            ls -la
             SKIP_CI=`cat .ci-temp/skip_ci`
             echo "SKIP_CI="$SKIP_CI
             if [[ $SKIP_CI == 'false' ]]; then
