@@ -401,6 +401,7 @@ SOURCE_HTML_TAG_NAME: S O U R C E {!htmlTagNameCatched}? {htmlTagNameCatched=tru
 TRACK_HTML_TAG_NAME: T R A C K {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
 WBR_HTML_TAG_NAME: W B R {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
 OPTGROUP_HTML_TAG_NAME: O P T G R O U P {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
+RB_HTML_TAG_NAME: R B {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
 
 // other tag names and attribute names
 HTML_TAG_NAME: NAME_START_CHAR NAME_CHAR* {htmlTagNameCatched=true;};
