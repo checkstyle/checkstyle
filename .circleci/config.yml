@@ -3,7 +3,7 @@ jobs:
 
   build-caches:
     docker:
-      - image: circleci/openjdk:8u171-node-browsers
+      - image: circleci/jdk8:0.1.1
     steps:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
       - restore_cache:
@@ -56,7 +56,7 @@ jobs:
 
   pitest1:
     docker:
-      - image: circleci/openjdk:8u171-node-browsers
+      - image: circleci/jdk8:0.1.1
     parallelism: 4
     steps:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
@@ -82,7 +82,7 @@ jobs:
 
   pitest2:
     docker:
-      - image: circleci/openjdk:8u171-node-browsers
+      - image: circleci/jdk8:0.1.1
     parallelism: 4
     steps:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
@@ -108,7 +108,7 @@ jobs:
 
   pitest3:
     docker:
-      - image: circleci/openjdk:8u171-node-browsers
+      - image: circleci/jdk8:0.1.1
     parallelism: 4
     steps:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
@@ -134,7 +134,7 @@ jobs:
 
   pitest4:
     docker:
-      - image: circleci/openjdk:8u171-node-browsers
+      - image: circleci/jdk8:0.1.1
     parallelism: 4
     steps:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
@@ -160,7 +160,7 @@ jobs:
 
   pitest5:
     docker:
-      - image: circleci/openjdk:8u171-node-browsers
+      - image: circleci/jdk8:0.1.1
     parallelism: 4
     steps:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
@@ -186,7 +186,7 @@ jobs:
 
   pitest6:
     docker:
-      - image: circleci/openjdk:8u171-node-browsers
+      - image: circleci/jdk8:0.1.1
     parallelism: 4
     steps:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
@@ -212,7 +212,7 @@ jobs:
 
   pitest7:
     docker:
-      - image: circleci/openjdk:8u171-node-browsers
+      - image: circleci/jdk8:0.1.1
     parallelism: 4
     steps:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
