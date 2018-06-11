@@ -138,8 +138,9 @@ public class GeneratedJavadocTokenTypesTest {
         assertEquals(MSG, 95, JavadocParser.OPTGROUP_HTML_TAG_NAME);
         assertEquals(MSG, 96, JavadocParser.RB_HTML_TAG_NAME);
         assertEquals(MSG, 97, JavadocParser.RT_HTML_TAG_NAME);
-        assertEquals(MSG, 98, JavadocParser.HTML_TAG_NAME);
-        assertEquals(MSG, 99, JavadocParser.Char11);
+        assertEquals(MSG, 98, JavadocParser.RTC_HTML_TAG_NAME);
+        assertEquals(MSG, 99, JavadocParser.HTML_TAG_NAME);
+        assertEquals(MSG, 100, JavadocParser.Char11);
         assertEquals(MSG, 89, JavadocParser.ATTR_VALUE);
         assertEquals(MSG, 90, JavadocParser.Char12);
         assertEquals(MSG, 91, JavadocParser.HTML_COMMENT_END);
@@ -246,6 +247,9 @@ public class GeneratedJavadocTokenTypesTest {
         assertEquals(MSG, 86, JavadocParser.RULE_rtTagStart);
         assertEquals(MSG, 87, JavadocParser.RULE_rtTagEnd);
         assertEquals(MSG, 88, JavadocParser.RULE_rt);
+        assertEquals(MSG, 89, JavadocParser.RULE_rtcTagStart);
+        assertEquals(MSG, 90, JavadocParser.RULE_rtcTagEnd);
+        assertEquals(MSG, 91, JavadocParser.RULE_rtc);
     }
 
 }
