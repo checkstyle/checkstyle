@@ -412,6 +412,15 @@ public class XdocsPagesTest {
 
             subSectionPos++;
         }
+
+        if ("Checker".equals(sectionName)) {
+            Assert.assertTrue(fileName + " section '" + sectionName
+                    + "' should contain up to 'Package' sub-section", subSectionPos >= 6);
+        }
+        else {
+            Assert.assertTrue(fileName + " section '" + sectionName
+                    + "' should contain up to 'Parent' sub-section", subSectionPos >= 7);
+        }
     }
 
     private static void validateSinceDescriptionSection(String fileName, String sectionName,
@@ -1237,7 +1246,7 @@ public class XdocsPagesTest {
             Node subSection) {
         final String expected;
 
-        if (hasParentModule(sectionName)) {
+        if (!"TreeWalker".equals(sectionName) && hasParentModule(sectionName)) {
             expected = "TreeWalker";
         }
         else {
