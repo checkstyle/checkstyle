@@ -364,6 +364,35 @@
         </table>
       </subsection>
 
+      <subsection name="Metadata">
+        <p>
+          Used to keep metadata in the Checkstyle configuration file. This
+          information is ignored by Checkstyle. This may be useful if you want to
+          store plug-in specific information or any other information in config file.
+        </p>
+        <p>
+          To avoid name clashes between different tools/plug-ins you are <b>strongly</b>
+          encouraged to prefix all names with your domain name. For example, use the
+          name "com.mycompany.parameter" instead of "parameter".
+          <br/>
+          Prefixes
+          <code>com.puppycrawl.</code>,
+          <code>net.sourceforge.checkstyle.</code>,
+          <code>org.checkstyle.</code>
+          are reserved for Checkstyle.
+          <br/>
+          Example:
+        </p>
+
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;metadata name=&quot;com.myproject.cs-version&quot; value=&quot;4.4&quot;/&gt;
+  &lt;metadata name=&quot;com.myproject.cs-version.desc&quot; value=&quot;legacy config&quot;/&gt;
+  ...
+&lt;/module&gt;
+        </source>
+      </subsection>
+
       <subsection name="Examples">
         <p>
           For example, the following configuration fragment specifies base
@@ -439,6 +468,26 @@
 &lt;/module&gt;
         </source>
 
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href=
+                "https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml">
+            Google Style</a>
+          </li>
+          <li>
+            <a href=
+                "https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href=
+                "https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
     </section>
 

@@ -366,6 +366,12 @@ public class XdocsPagesTest {
             final String subSectionName = subSection.getAttributes().getNamedItem("name")
                     .getNodeValue();
 
+            // following subsections of Checker are not typical
+            if ("Checker".equals(sectionName)
+                    && ("Example of Usage".equals(subSectionName)
+                        || "Metadata".equals(subSectionName))) {
+                continue;
+            }
             // can be in different orders, and completely optional
             if ("Notes".equals(subSectionName)
                     || "Rule Description".equals(subSectionName)) {

@@ -12,7 +12,9 @@
       <property name="basedir" value="${basedir}"/>
   -->
 
-  <metadata name="com.atlas-sw.eclipse" value="I like Sydney"/>
+  <metadata name="org.checkstyle.principle" value="Practice What You Preach"/>
+  <metadata name="org.checkstyle.principle.description"
+            value="In our config we should use all Checks that Checkstyle has"/>
 
   <property name="cacheFile" value="${checkstyle.cache.file}"/>
 
