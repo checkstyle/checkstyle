@@ -368,7 +368,8 @@ public class XdocsPagesTest {
 
             // can be in different orders, and completely optional
             if ("Notes".equals(subSectionName)
-                    || "Rule Description".equals(subSectionName)) {
+                    || "Rule Description".equals(subSectionName)
+                    || "Metadata".equals(subSectionName)) {
                 continue;
             }
 
