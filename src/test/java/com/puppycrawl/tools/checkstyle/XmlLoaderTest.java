@@ -35,18 +35,10 @@ import org.xml.sax.XMLReader;
 
 public class XmlLoaderTest {
 
-    /**
-     * Copied from Constant. Watch section "sax features".
-     *
-     * @see com.sun.org.apache.xerces.internal.impl.Constants
-     */
-    private static final String NAMESPACES_FEATURE = "http://xml.org/sax/features/namespaces";
-
     @Test
     public void testParserConfiguredSuccessfully() throws Exception {
         final DummyLoader dummyLoader = new DummyLoader(new HashMap<>(1));
         final XMLReader parser = Whitebox.getInternalState(dummyLoader, "parser");
-        assertTrue("Invalid feature state", parser.getFeature(NAMESPACES_FEATURE));
         assertEquals("Invalid entity resolver", dummyLoader, parser.getEntityResolver());
     }
 
