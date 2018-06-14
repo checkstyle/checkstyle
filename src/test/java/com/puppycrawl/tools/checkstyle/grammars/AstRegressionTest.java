@@ -69,6 +69,12 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testInputSemicolonBetweenImports() throws Exception {
+        verifyAst(getPath("InputSemicolonBetweenImportsAst.txt"),
+                getNonCompilablePath("InputSemicolonBetweenImports.java"));
+    }
+
+    @Test
     public void testInterfaceAstTree1() throws Exception {
         verifyAst(getPath("InputRegressionJavaInterface1Ast.txt"),
                 getPath("InputRegressionJavaInterface1.java"));
