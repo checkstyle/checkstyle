@@ -17,14 +17,14 @@ if [[ $ISSUE_NUMBER =~ ^#[0-9]+$ ]]; then
                 | jq '.body' | grep -E $REGEXP | cat )
     echo 'PR Description grepped:'${PR_DESC:0:80}
     if [[ -z $PR_DESC ]]; then
-         echo 'Please put a reference to an Issue in the PR description,"
+         echo 'Please put a reference to an Issue in the PR description,'
          echo 'this will bind the Issue to your PR in Github'
          RESULT=1;
        fi
     LABEL_APRV=$(curl -s -H "Authorization: token $READ_ONLY_TOKEN" $LINK_ISSUE \
                    | jq '.labels [] | .name' | grep approved | cat | wc -l )
     if [[ $LABEL_APRV == 0 ]]; then
-         echo 'You are providing a PR for an Issue that is not approved yet,
+         echo 'You are providing a PR for an Issue that is not approved yet,'
          echo 'please ask admins to approve your Issue first'
          RESULT=1;
     fi
