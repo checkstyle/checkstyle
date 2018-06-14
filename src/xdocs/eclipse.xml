@@ -72,8 +72,16 @@
       </p>
     </section>
 
-    <section name="Suppress Eclipse warnings on resource files">
+    <section name="Suppress Eclipse warnings">
       <p>
+        1) On Deprecated methods:<br/><br/>
+        We keep compatibility for some period and demand 100% code coverage
+        even for deprecated method, so such warnings are unavoidable.<br/><br/>
+        <img alt="screenshot" src="images/gui_screenshot_eclipse_ignore_deprecated.png"/>
+      </p>
+
+      <p>
+        2) On resource files:<br/><br/>
         Right click on Checkstyle project > Build Path > Configure Build Path...<br/><br/>
         <img alt="screenshot" src="images/gui_screenshot_eclipse_build_path.png"/>
       </p>
