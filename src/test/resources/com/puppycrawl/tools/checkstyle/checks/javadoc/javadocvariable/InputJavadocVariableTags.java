@@ -219,7 +219,7 @@ class InputJavadocVariableTags1
     }
 
     /**
-     * Bug XXX, "two tags for the same exception"
+     * Bug XXXX, "two tags for the same exception"
      *
      * @exception java.io.IOException for some reasons
      * @exception IOException for another reason
