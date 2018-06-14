@@ -72,8 +72,21 @@
       </p>
     </section>
 
-    <section name="Suppress Eclipse warnings on resource files">
+    <section name="Suppress Eclipse warnings">
       <p>
+        1) Use Eclipse compiler preferences from repo:<br/><br/>
+        copy
+        <a href=
+          "https://github.com/checkstyle/checkstyle/blob/master/config/org.eclipse.jdt.core.prefs">
+          config/org.eclipse.jdt.core.prefs</a> file
+        to
+        <code>.settings</code> folder of cloned repository on your PC. Restart Eclipse.
+        Such folder does not exists in repository after clone and it is created by Eclipse
+        during project import. If folder not present please import checkstyle to Eclipse first.
+      </p>
+
+      <p>
+        2) Ignore optional compile problems on resource files:<br/><br/>
         Right click on Checkstyle project > Build Path > Configure Build Path...<br/><br/>
         <img alt="screenshot" src="images/gui_screenshot_eclipse_build_path.png"/>
       </p>
@@ -88,11 +101,6 @@
       </ul>
       <p>
         <img alt="screenshot" src="images/gui_screenshot_eclipse_ignore_warnings.png"/>
-      </p>
-      <br/>
-      <p>
-        Next, you need to put <i>.ci/org.eclipse.jdt.core.prefs</i> file to the
-        <i>.settings/org.eclipse.jdt.core.prefs</i> to setup Eclipse compiler.
       </p>
     </section>
 
