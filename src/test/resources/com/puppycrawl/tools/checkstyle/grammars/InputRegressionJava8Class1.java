@@ -1,6 +1,6 @@
 //start line index in expected file is 2
 package com.puppycrawl.tools.checkstyle.grammars;
-;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
