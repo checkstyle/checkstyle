@@ -19,7 +19,7 @@ public class InputIndentationCorrectClass  //indent:0 exp:0
           SecondClassReturnWithVeryVeryVeryLongName {  //indent:10 exp:>=6
     public InnerClass2(String string) {  //indent:4 exp:4
       super();  //indent:6 exp:6
-      // TODO Auto-generated constructor stub //indent:6 exp:6
+      // OOOO Auto-generated constructor stub //indent:6 exp:6
     }  //indent:4 exp:4
   }  //indent:2 exp:2
 

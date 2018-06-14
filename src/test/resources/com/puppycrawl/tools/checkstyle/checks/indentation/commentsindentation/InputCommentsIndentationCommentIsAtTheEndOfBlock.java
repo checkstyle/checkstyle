@@ -10,7 +10,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
 
     public void foo1() {
         foo2();
-        // TODO: missing functionality
+        // OOOO: missing functionality
     }
 
     public void foo2() {
@@ -191,7 +191,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
         // block
         foo17();
 
-        // TODO
+        // OOOO
     }
 
     public String foo28() {

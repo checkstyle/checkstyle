@@ -158,13 +158,13 @@ final class InputParameterName
   	        int tab5 =1;
     }
 
-    // FIXME:
-    /* FIXME: a
-     * FIXME:
-     * TODO
+    // MEMME:
+    /* MEMME: a
+     * MEMME:
+     * OOOO
      */
     /* NOTHING */
-    /* YES */ /* FIXME: x */ /* YES!! */
+    /* YES */ /* MEMME: x */ /* YES!! */
 
     /** test long comments **/
     void veryLong()

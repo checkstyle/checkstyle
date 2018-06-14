@@ -52,7 +52,7 @@ public class InputCommentsIndentationInSwitchBlock {
                        // some comment in empty case block
             }
             case "14": {
-        // TODO: violation
+        // OOOO: violation
             }
             case "15": {
                 foo1();

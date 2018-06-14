@@ -48,7 +48,7 @@ class InputAnnotationLocation
         @MyAnnotation2
         @MyAnnotation1 public InnerClass()
         {
-            // TODO Auto-generated constructor stub
+            // OOOO Auto-generated constructor stub
         }
         @MyAnnotation1
             @MyAnnotation2 //warn

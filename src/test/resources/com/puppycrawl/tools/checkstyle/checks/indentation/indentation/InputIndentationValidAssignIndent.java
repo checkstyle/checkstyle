@@ -47,7 +47,7 @@ public class InputIndentationValidAssignIndent //indent:0 exp:0
                 public void bar() { //indent:16 exp:16
                 } //indent:16 exp:16
             }; //indent:12 exp:12
-// XXX: need to be fixed //indent:0 exp:0
+// XXXX: need to be fixed //indent:0 exp:0
 //         function.lastArgument().candidate = parameters; //indent:0 exp:0
 //         function.lastArgument().candidate //indent:0 exp:0
 //             = //indent:0 exp:0

@@ -1401,13 +1401,13 @@ public final class JavadocTokenTypes {
             + RULE_TYPES_OFFSET;
 
     /**
-     * Start html tag: &lt;XXX&gt;.
+     * Start html tag: &lt;XXXX&gt;.
      */
     public static final int HTML_ELEMENT_START = JavadocParser.RULE_htmlElementStart
             + RULE_TYPES_OFFSET;
 
     /**
-     * End html tag: &lt;XXX&gt;.
+     * End html tag: &lt;XXXX&gt;.
      */
     public static final int HTML_ELEMENT_END = JavadocParser.RULE_htmlElementEnd
             + RULE_TYPES_OFFSET;
