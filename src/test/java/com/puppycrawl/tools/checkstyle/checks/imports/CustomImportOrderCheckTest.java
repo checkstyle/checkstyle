@@ -727,15 +727,15 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
 
         createChecker(checkConfig);
         final String[] expected = {
-            "5: " + getCheckMessage(MSG_LINE_SEPARATOR,
+            "3: " + getCheckMessage(MSG_LINE_SEPARATOR,
                 "com.puppycrawl.tools.checkstyle.utils.AnnotationUtil.containsAnnotation"),
-            "9: " + getCheckMessage(MSG_LINE_SEPARATOR,
+            "7: " + getCheckMessage(MSG_LINE_SEPARATOR,
                 "com.sun.accessibility.internal.resources.*"),
-            "13: " + getCheckMessage(MSG_LINE_SEPARATOR, "java.util.Arrays"),
-            "21: " + getCheckMessage(MSG_LINE_SEPARATOR,
+            "11: " + getCheckMessage(MSG_LINE_SEPARATOR, "java.util.Arrays"),
+            "19: " + getCheckMessage(MSG_LINE_SEPARATOR,
                 "org.apache.commons.beanutils.converters.ArrayConverter"),
         };
-        verify(checkConfig, getPath("InputCustomImportOrderNoPackage2.java"),
+        verify(checkConfig, getNonCompilablePath("InputCustomImportOrderNoPackage2.java"),
             expected);
     }
 
