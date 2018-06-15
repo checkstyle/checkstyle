@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.atclauseorder;
 /** Javadoc for import */
 import java.io.Serializable;
 

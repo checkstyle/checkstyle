@@ -1,4 +1,4 @@
-package com.github.sevntu.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
 import java.util.logging.Logger;
 

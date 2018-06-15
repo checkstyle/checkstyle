@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.asttreestringprinter;
 
 /**my class*/
 class InputAstTreeStringPrinterComments {

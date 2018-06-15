@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.pkghtml;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage.pkghtml;
 
 class InputJavadocPackageHtmlIgnored
 {

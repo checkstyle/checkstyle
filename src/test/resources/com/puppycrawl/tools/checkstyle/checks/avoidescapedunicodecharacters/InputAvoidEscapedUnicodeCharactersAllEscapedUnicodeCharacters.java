@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.checks.avoidescapedunicodecharacters;
 
 public class InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters {
 

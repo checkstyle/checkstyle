@@ -8,7 +8,7 @@ tools//6
 .//7
 checkstyle//8
 .//9
-astprinter//10
+asttreestringprinter//10
 //11
 //12
 ;//13

@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.javapackage.bothfiles;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage.bothfiles;
 
 class InputJavadocPackageBothIgnored
 {
