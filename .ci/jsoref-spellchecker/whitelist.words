@@ -897,6 +897,8 @@ Overriden
 OVERRIDERS
 packageannotation
 packagedeclaration
+packagediffdirectory
+packageinfo
 packagename
 packagenamesloader
 packageobjectfactory

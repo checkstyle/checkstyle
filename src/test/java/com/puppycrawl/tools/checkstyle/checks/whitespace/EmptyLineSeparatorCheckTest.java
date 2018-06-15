@@ -221,7 +221,7 @@ public class EmptyLineSeparatorCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-                getPath("package-info/test1/package-info.java"),
+                getPath("packageinfo/test1/package-info.java"),
                 expected);
     }
 
@@ -230,7 +230,7 @@ public class EmptyLineSeparatorCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-                getPath("package-info/test2/package-info.java"),
+                getPath("packageinfo/test2/package-info.java"),
                 expected);
     }
 
@@ -241,7 +241,7 @@ public class EmptyLineSeparatorCheckTest
             "3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
         };
         verify(checkConfig,
-                getPath("package-info/test3/package-info.java"),
+                getPath("packageinfo/test3/package-info.java"),
                 expected);
     }
 
@@ -252,7 +252,7 @@ public class EmptyLineSeparatorCheckTest
             "3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
         };
         verify(checkConfig,
-                getPath("package-info/test4/package-info.java"),
+                getPath("packageinfo/test4/package-info.java"),
                 expected);
     }
 
