@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
-// this file compiles in jdk but NOT with eclipse 
-// eclipse error "The value for annotation attribute must be a constant expression"
+//non-compiled in eclipse: The value for annotation attribute must be a constant expression
+
 public class InputAnnotationUseStyleWithTrailingComma
 {
     @Test(value={(false) ? "" : "foo",}, more={(true) ? "" : "bar",})
@@ -11,7 +11,7 @@ public class InputAnnotationUseStyleWithTrailingComma
         L,
         Y;
     }
-    
+
 }
 
 @interface Test {

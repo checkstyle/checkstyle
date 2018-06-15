@@ -61,4 +61,30 @@ public class InputSuppressWarningsCompact
         }
     }
 
+    @SuppressWarnings({(false) ? "unchecked" : "", (false) ? "unchecked" : ""})
+    class Cond {
+
+        @SuppressWarnings({(false) ? "" : "unchecked"})
+        public Cond() {
+
+        }
+
+        @SuppressWarnings({(false) ? (true) ? "   " : "unused" : "unchecked",
+            (false) ? (true) ? "   " : "unused" : "unchecked"})
+        public void aCond1() {
+
+        }
+
+        @SuppressWarnings({(false) ? "unchecked" : (true) ? "   " : "unused"})
+        public void aCond2() {
+
+        }
+
+        @java.lang.SuppressWarnings({(false) ? "unchecked" :
+                ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused",
+            (false) ? "unchecked" : ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused"})
+        public void seriously() {
+
+        }
+    }
 }

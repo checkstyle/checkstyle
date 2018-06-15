@@ -261,6 +261,20 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "11:41: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
             "44:23: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
             "53:27: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+        };
+
+        verify(checkConfig, getPath("InputSuppressWarningsCompact.java"), expected);
+    }
+
+    @Test
+    public void testCompactDefaultNonConstant() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
+
+        final String[] expected = {
+            "8:24: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "   "),
+            "11:41: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+            "44:23: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+            "53:27: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
 
             "64:48: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
             "64:76: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
@@ -275,7 +289,8 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "85:82: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "   "),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsCompact.java"), expected);
+        verify(checkConfig,
+                getNonCompilablePath("InputSuppressWarningsCompactNonConstant.java"), expected);
     }
 
     /**
@@ -304,6 +319,34 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "53:27: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
             "56:28: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
             "59:49: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+        };
+
+        verify(checkConfig, getPath("InputSuppressWarningsCompact.java"), expected);
+    }
+
+    @Test
+    public void testCompactAllNonConstant() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
+        checkConfig.addAttribute("format", ".*");
+
+        final String[] expected = {
+            "5:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "5:33: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "8:24: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "   "),
+            "11:28: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "11:41: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+            "17:24: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "20:28: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unforgiven"),
+            "20:42: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "    un"),
+            "25:32: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "29:36: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "37:24: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "abcun"),
+            "44:23: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+            "47:28: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "47:38: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "bleh"),
+            "53:27: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+            "56:28: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "59:49: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
 
             "64:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
             "64:48: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
@@ -336,7 +379,8 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "85:90: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsCompact.java"), expected);
+        verify(checkConfig,
+                getNonCompilablePath("InputSuppressWarningsCompactNonConstant.java"), expected);
     }
 
     /**
@@ -353,14 +397,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "29:36: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
             "56:28: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
             "59:49: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
-            "64:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
-            "64:62: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
-            "67:43: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
-            "72:66: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
-            "73:51: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
-            "78:38: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
-            "83:48: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
-            "85:23: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
         };
 
         verify(checkConfig, getPath("InputSuppressWarningsCompact.java"), expected);
@@ -377,12 +413,26 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = {
             "5:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+        };
+
+        verify(checkConfig, getPath("InputSuppressWarningsCompact.java"), expected);
+    }
+
+    @Test
+    public void testCompactNoUncheckedTokensNonConstant() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
+        checkConfig.addAttribute("format", "^unchecked$*");
+        checkConfig.addAttribute("tokens", "CLASS_DEF");
+
+        final String[] expected = {
+            "5:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
 
             "64:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
             "64:62: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsCompact.java"), expected);
+        verify(checkConfig,
+                getNonCompilablePath("InputSuppressWarningsCompactNonConstant.java"), expected);
     }
 
     /**
@@ -390,6 +440,27 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testCompactNoUnWildcard() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
+        checkConfig.addAttribute("format", "un.*");
+
+        final String[] expected = {
+            "5:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "5:33: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "11:28: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "17:24: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "20:28: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unforgiven"),
+            "25:32: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "29:36: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "47:28: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "56:28: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "59:49: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+        };
+
+        verify(checkConfig, getPath("InputSuppressWarningsCompact.java"), expected);
+    }
+
+    @Test
+    public void testCompactNoUnWildcardNonConstant() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", "un.*");
 
@@ -424,7 +495,8 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "85:90: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsCompact.java"), expected);
+        verify(checkConfig,
+                getNonCompilablePath("InputSuppressWarningsCompactNonConstant.java"), expected);
     }
 
     /**
@@ -432,6 +504,26 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testCompactNoUncheckedUnused() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
+        checkConfig.addAttribute("format", "^unchecked$*|^unused$");
+
+        final String[] expected = {
+            "5:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "5:33: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "11:28: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "17:24: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "25:32: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "29:36: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "47:28: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "56:28: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "59:49: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+        };
+
+        verify(checkConfig, getPath("InputSuppressWarningsCompact.java"), expected);
+    }
+
+    @Test
+    public void testCompactNoUncheckedUnusedNonConstant() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", "^unchecked$*|^unused$");
 
@@ -460,7 +552,8 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "85:90: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsCompact.java"), expected);
+        verify(checkConfig,
+                getNonCompilablePath("InputSuppressWarningsCompactNonConstant.java"), expected);
     }
 
     /**
@@ -468,6 +561,34 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testCompactNoUncheckedUnusedAll() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
+        checkConfig.addAttribute("format", "^unchecked$*|^unused$*|.*");
+
+        final String[] expected = {
+            "5:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "5:33: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "8:24: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "   "),
+            "11:28: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "11:41: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+            "17:24: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "20:28: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unforgiven"),
+            "20:42: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "    un"),
+            "25:32: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "29:36: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "37:24: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "abcun"),
+            "44:23: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+            "47:28: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "47:38: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "bleh"),
+            "53:27: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+            "56:28: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "59:49: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+        };
+
+        verify(checkConfig, getPath("InputSuppressWarningsCompact.java"), expected);
+    }
+
+    @Test
+    public void testCompactNoUncheckedUnusedAllNonConstant() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", "^unchecked$*|^unused$*|.*");
 
@@ -521,7 +642,8 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "85:90: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsCompact.java"), expected);
+        verify(checkConfig,
+                getNonCompilablePath("InputSuppressWarningsCompactNonConstant.java"), expected);
     }
 
     /**
@@ -529,6 +651,20 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testExpandedDefault() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
+
+        final String[] expected = {
+            "8:30: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "   "),
+            "11:47: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+            "44:29: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+            "53:33: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+        };
+
+        verify(checkConfig, getPath("InputSuppressWarningsExpanded.java"), expected);
+    }
+
+    @Test
+    public void testExpandedDefaultNonConstant() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
 
         final String[] expected = {
@@ -548,7 +684,8 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "86:66: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "   "),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsExpanded.java"), expected);
+        verify(checkConfig,
+                getNonCompilablePath("InputSuppressWarningsExpandedNonConstant.java"), expected);
     }
 
     /**
@@ -556,6 +693,34 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testExpandedAll() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
+        checkConfig.addAttribute("format", ".*");
+
+        final String[] expected = {
+            "5:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "5:39: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "8:30: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "   "),
+            "11:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "11:47: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+            "17:30: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "20:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unforgiven"),
+            "20:48: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "    un"),
+            "25:38: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "29:42: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "37:30: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "abcun"),
+            "44:29: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+            "47:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "47:44: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "bleh"),
+            "53:33: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+            "56:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "59:55: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+        };
+
+        verify(checkConfig, getPath("InputSuppressWarningsExpanded.java"), expected);
+    }
+
+    @Test
+    public void testExpandedAllNonConstant() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", ".*");
 
@@ -605,7 +770,8 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "86:74: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsExpanded.java"), expected);
+        verify(checkConfig,
+                getNonCompilablePath("InputSuppressWarningsExpandedNonConstant.java"), expected);
     }
 
     /**
@@ -613,6 +779,22 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testExpandedNoUnchecked() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
+        checkConfig.addAttribute("format", "^unchecked$*");
+
+        final String[] expected = {
+            "5:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "11:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "29:42: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "56:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "59:55: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+        };
+
+        verify(checkConfig, getPath("InputSuppressWarningsExpanded.java"), expected);
+    }
+
+    @Test
+    public void testExpandedNoUncheckedNonConstant() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", "^unchecked$*");
 
@@ -633,7 +815,8 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "85:27: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsExpanded.java"), expected);
+        verify(checkConfig,
+                getNonCompilablePath("InputSuppressWarningsExpandedNonConstant.java"), expected);
     }
 
     /**
@@ -647,12 +830,26 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = {
             "5:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+        };
+
+        verify(checkConfig, getPath("InputSuppressWarningsExpanded.java"), expected);
+    }
+
+    @Test
+    public void testExpandedNoUncheckedTokensNonConstant() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
+        checkConfig.addAttribute("format", "^unchecked$*");
+        checkConfig.addAttribute("tokens", "CLASS_DEF");
+
+        final String[] expected = {
+            "5:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
 
             "64:40: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
             "64:68: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsExpanded.java"), expected);
+        verify(checkConfig,
+                getNonCompilablePath("InputSuppressWarningsExpandedNonConstant.java"), expected);
     }
 
     /**
@@ -660,6 +857,27 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testExpandedNoUnWildcard() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
+        checkConfig.addAttribute("format", "un.*");
+
+        final String[] expected = {
+            "5:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "5:39: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "11:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "17:30: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "20:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unforgiven"),
+            "25:38: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "29:42: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "47:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "56:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "59:55: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+        };
+
+        verify(checkConfig, getPath("InputSuppressWarningsExpanded.java"), expected);
+    }
+
+    @Test
+    public void testExpandedNoUnWildcardNonConstant() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", "un.*");
 
@@ -690,7 +908,8 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "86:74: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsExpanded.java"), expected);
+        verify(checkConfig,
+                getNonCompilablePath("InputSuppressWarningsExpandedNonConstant.java"), expected);
     }
 
     /**
@@ -698,6 +917,26 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testExpandedNoUncheckedUnused() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
+        checkConfig.addAttribute("format", "^unchecked$*|^unused$");
+
+        final String[] expected = {
+            "5:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "5:39: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "11:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "17:30: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "25:38: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "29:42: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "47:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "56:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "59:55: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+        };
+
+        verify(checkConfig, getPath("InputSuppressWarningsExpanded.java"), expected);
+    }
+
+    @Test
+    public void testExpandedNoUncheckedUnusedNonConstant() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", "^unchecked$*|^unused$");
 
@@ -727,7 +966,8 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "86:74: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsExpanded.java"), expected);
+        verify(checkConfig,
+                getNonCompilablePath("InputSuppressWarningsExpandedNonConstant.java"), expected);
     }
 
     /**
@@ -735,6 +975,34 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testExpandedNoUncheckedUnusedAll() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
+        checkConfig.addAttribute("format", "^unchecked$*|^unused$*|.*");
+
+        final String[] expected = {
+            "5:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "5:39: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "8:30: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "   "),
+            "11:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "11:47: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+            "17:30: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "20:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unforgiven"),
+            "20:48: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "    un"),
+            "25:38: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "29:42: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "37:30: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "abcun"),
+            "44:29: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+            "47:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "47:44: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "bleh"),
+            "53:33: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+            "56:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "59:55: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+        };
+
+        verify(checkConfig, getPath("InputSuppressWarningsExpanded.java"), expected);
+    }
+
+    @Test
+    public void testExpandedNoUncheckedUnusedAllNonConstant() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", "^unchecked$*|^unused$*|.*");
 
@@ -784,7 +1052,8 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "86:74: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsExpanded.java"), expected);
+        verify(checkConfig,
+                getNonCompilablePath("InputSuppressWarningsExpandedNonConstant.java"), expected);
     }
 
     @Test
@@ -812,11 +1081,25 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "20:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
             "26:23: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+            "33:5: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+        };
+
+        verify(checkConfig, getPath("InputSuppressWarningsHolder.java"), expected);
+    }
+
+    @Test
+    public void testWorkingProperlyOnComplexAnnotationsNonConstant() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
+
+        final String[] expected = {
+            "20:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+            "26:23: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
             "30:48: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
             "35:5: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsHolder.java"), expected);
+        verify(checkConfig,
+                getNonCompilablePath("InputSuppressWarningsHolderNonConstant.java"), expected);
     }
 
 }
