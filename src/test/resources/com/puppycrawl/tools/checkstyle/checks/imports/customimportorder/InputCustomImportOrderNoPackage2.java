@@ -1,3 +1,5 @@
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
+
 
 
 import static com.puppycrawl.tools.checkstyle.utils.AnnotationUtil.containsAnnotation;

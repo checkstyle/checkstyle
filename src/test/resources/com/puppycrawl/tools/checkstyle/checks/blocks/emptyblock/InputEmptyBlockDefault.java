@@ -1,3 +1,5 @@
+package com.puppycrawl.tools.checkstyle.checks.blocks.emptyblock;
+
 public class InputEmptyBlockDefault {
     void method1(int a) {
         switch (a) {}

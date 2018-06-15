@@ -212,7 +212,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
 
         assertTrue("Reload action should be enabled", model.isReloadActionEnabled());
 
-        final int expectedLines = 17;
+        final int expectedLines = 19;
         assertEquals("Invalid lines to position", expectedLines, model.getLinesToPosition().size());
 
         final String testDataFileNameWithoutPostfix = FILE_NAME_TEST_DATA.replace(".java", "");

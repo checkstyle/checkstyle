@@ -1,3 +1,5 @@
+package com.puppycrawl.tools.checkstyle.asttreestringprinter;
+
 /**
 * class javadoc
 */

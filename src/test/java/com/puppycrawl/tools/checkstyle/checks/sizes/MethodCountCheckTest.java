@@ -144,7 +144,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("maxTotal", "1");
 
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_MANY_METHODS, 2, 1),
+            "3: " + getCheckMessage(MSG_MANY_METHODS, 2, 1),
         };
 
         verify(checkConfig, getPath("InputMethodCount5.java"), expected);
@@ -168,7 +168,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tokens", "ENUM_DEF");
 
         final String[] expected = {
-            "8: " + getCheckMessage(MSG_MANY_METHODS, 2, 1),
+            "10: " + getCheckMessage(MSG_MANY_METHODS, 2, 1),
         };
 
         verify(checkConfig, getPath("InputMethodCount7.java"), expected);

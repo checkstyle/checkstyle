@@ -196,12 +196,12 @@ public class EmptyBlockCheckTest
         checkConfig.addAttribute("option", BlockOption.TEXT.toString());
         checkConfig.addAttribute("tokens", "LITERAL_DEFAULT");
         final String[] expected = {
-            "5:30: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
-            "11:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
-            "36:22: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
-            "44:47: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
-            "50:22: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
-            "78:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "7:30: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "13:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "38:22: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "46:47: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "52:22: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "80:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
         };
         verify(checkConfig, getPath("InputEmptyBlockDefault.java"), expected);
     }
@@ -212,15 +212,15 @@ public class EmptyBlockCheckTest
         checkConfig.addAttribute("option", BlockOption.STATEMENT.toString());
         checkConfig.addAttribute("tokens", "LITERAL_DEFAULT");
         final String[] expected = {
-            "5:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "11:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "15:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "26:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "36:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "44:47: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "50:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "65:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "78:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "7:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "13:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "17:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "28:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "38:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "46:47: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "52:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "67:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "80:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
         };
         verify(checkConfig, getPath("InputEmptyBlockDefault.java"), expected);
     }
