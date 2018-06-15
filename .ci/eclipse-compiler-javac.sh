@@ -24,7 +24,7 @@ RESULT_FILE=target/eclipse/report.txt
 
 echo "Executing eclipse compiler, output is redirected to $RESULT_FILE..."
 echo "java -jar $ECJ_PATH -target 1.8 -source 1.8 -cp $1  ..."
-"
+
 java -jar $ECJ_PATH -target 1.8 -source 1.8 -cp $1 \
         -d target/eclipse-compile \
         -enableJavadoc \
