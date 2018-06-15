@@ -23,9 +23,21 @@ mkdir -p target/classes target/test-classes target/eclipse
 RESULT_FILE=target/eclipse/report.txt
 
 echo "Executing eclipse compiler, output is redirected to $RESULT_FILE..."
+echo "java -jar $ECJ_PATH -target 1.8 -source 1.8 -cp $1  ..."
+"
 java -jar $ECJ_PATH -target 1.8 -source 1.8 -cp $1 \
-        -nowarn:[./target/generated-sources/antlr] -d target/eclipse-compile \
-        -enableJavadoc src/main/java src/test/java target/generated-sources/antlr \
+        -d target/eclipse-compile \
+        -enableJavadoc \
+        -nowarn:[./target/generated-sources/antlr] \
+        -noerr:[./src/test/resources] \
+        -nowarn:[./src/test/resources] \
+        -noinfo:[./src/test/resources] \
+        src/main/java \
+        target/generated-sources/antlr \
+        src/test/java \
+        src/it/java \
+        src/test/resources \
+        src/it/resources \
         -properties config/org.eclipse.jdt.core.prefs \
     > $RESULT_FILE 2>&1 | true
 
