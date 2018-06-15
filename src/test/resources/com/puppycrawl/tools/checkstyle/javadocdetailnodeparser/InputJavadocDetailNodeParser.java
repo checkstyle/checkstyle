@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.javadocdetailnodeparser;
 
 /**
  * Some <p>Javadoc</p>.

@@ -1,1 +1,1 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.bothfiles;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage.bothfiles;

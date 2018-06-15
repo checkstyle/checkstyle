@@ -1,4 +1,4 @@
-/*0*//*1*/package/*2*/ com/*3*/./*4*/puppycrawl/*5*/./*6*/tools/*7*/./*8*/checkstyle/*9*/./*10*/astprinter/*11*/;/*12*/
+/*0*//*1*/package/*2*/ com/*3*/./*4*/puppycrawl/*5*/./*6*/tools/*7*/./*8*/checkstyle/*9*/./*10*/asttreestringprinter/*11*/;/*12*/
 /*13*/
 /*14*/public/*15*/ class /*16*/InputAstTreeStringPrinterFullOfBlockComments /*49*/{/*17*/
 	/*18*/
