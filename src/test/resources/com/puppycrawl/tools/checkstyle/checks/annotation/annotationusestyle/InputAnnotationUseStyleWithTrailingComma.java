@@ -24,7 +24,7 @@ public class InputAnnotationUseStyleWithTrailingComma
         };
     }
     
-    @Test(value={(false) ? "" : "foo",}, more={(true) ? "" : "bar",})
+    @Test(value={"foo",}, more={"bar",})
     /**
 
     */
