@@ -47,7 +47,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     @Before
     public void loadTree() throws Exception {
         tree = JavaParser.parseFile(new File(getPath("InputParseTreeTablePresentation.java")),
-            JavaParser.Options.WITH_COMMENTS);
+            JavaParser.Options.WITH_COMMENTS).getNextSibling();
     }
 
     @Test
@@ -221,7 +221,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         final String text = (String) parseTree.getValueAt(node, 4);
 
         Assert.assertEquals("Node should be an Identifier", "IDENT", type);
-        Assert.assertEquals("Class identifier should start on line 4", 4, line);
+        Assert.assertEquals("Class identifier should start on line 6", 6, line);
         Assert.assertEquals("Class name should start from column 6", 6, column);
         Assert.assertEquals("Wrong class name", "InputParseTreeTablePresentation", text);
         Assert.assertNull("Root node should have null value", treeModel);
@@ -260,7 +260,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
 
         Assert.assertNull("Tree model must be null", treeModel);
         Assert.assertEquals("Invalid type", "JAVADOC", type);
-        Assert.assertEquals("Invalid line", 1, line);
+        Assert.assertEquals("Invalid line", 3, line);
         Assert.assertEquals("Invalid column", 3, column);
         Assert.assertEquals("Invalid text", expectedText, text);
 

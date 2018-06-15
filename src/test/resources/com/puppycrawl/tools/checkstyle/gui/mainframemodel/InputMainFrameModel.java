@@ -1,3 +1,5 @@
+package com.puppycrawl.tools.checkstyle.gui.mainframemodel;
+
 /**
 * class javadoc
 */

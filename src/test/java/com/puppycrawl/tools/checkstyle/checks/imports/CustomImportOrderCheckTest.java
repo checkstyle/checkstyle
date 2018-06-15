@@ -712,7 +712,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "4: " + getCheckMessage(MSG_LINE_SEPARATOR, "java.util.*"),
         };
-        verify(checkConfig, getPath("InputCustomImportOrderNoPackage.java"),
+        verify(checkConfig, getNonCompilablePath("InputCustomImportOrderNoPackage.java"),
             expected);
     }
 
@@ -735,7 +735,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "19: " + getCheckMessage(MSG_LINE_SEPARATOR,
                 "org.apache.commons.beanutils.converters.ArrayConverter"),
         };
-        verify(checkConfig, getPath("InputCustomImportOrderNoPackage2.java"),
+        verify(checkConfig, getNonCompilablePath("InputCustomImportOrderNoPackage2.java"),
             expected);
     }
 
