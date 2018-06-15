@@ -14,6 +14,8 @@
 
     <property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/>
     <property name="check.config" location="config/checkstyle_checks.xml"/>
+    <property name="check.config_non_main"
+              location="config/checkstyle_non_main_files_checks.xml"/>
 
     <tstamp>
       <format property="STARTED" pattern="dd/MM/yyyy hh:mm:ss aa" />
@@ -52,7 +54,7 @@
     </tstamp>
     <echo>Checkstyle started (checkstyle_non_main_files_checks.xml): ${STARTED}</echo>
 
-    <checkstyle config="config/checkstyle_non_main_files_checks.xml"
+    <checkstyle config="${check.config_non_main}"
                 failOnViolation="true"
                 failureProperty="checkstyle.failure.property"
                 executeIgnoredModules="true"
