@@ -821,8 +821,10 @@ nocstylearray
 nodeps
 NODESET
 noembed
+noerr
 nofinalizer
 NOI
+noinfo
 noinspection
 nolinewrap
 nonascii
