@@ -67,7 +67,7 @@ class Bug2123003 {
     }
     
     class Inner2 {
-        @Rock(band = {(true) ? "GnR" : "Tool"})
+        @Rock(band = {"Tool"})
         private String band;
     }
     /*     \m/(>.<)\m/     */

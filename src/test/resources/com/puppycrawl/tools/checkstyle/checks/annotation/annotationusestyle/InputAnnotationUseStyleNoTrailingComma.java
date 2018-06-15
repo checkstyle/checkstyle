@@ -21,7 +21,7 @@ public class InputAnnotationUseStyleNoTrailingComma
       };
   }
   
-  @Test2(value={(false) ? "" : "foo"}, more={(true) ? "" : "bar"})
+  @Test2(value={"foo"}, more={"bar"})
 
   @Pooches2(tokens={},other={})
   enum P {
@@ -29,7 +29,7 @@ public class InputAnnotationUseStyleNoTrailingComma
       @Pooches2(tokens={Pooches2.class},other={1})
       L, // annotation in enum
       
-      @Test2(value={}, more={(false) ? "" : "unchecked"})
+      @Test2(value={}, more={"unchecked"})
       Y;
   }
   
