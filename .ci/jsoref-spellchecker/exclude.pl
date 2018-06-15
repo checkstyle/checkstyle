@@ -7,6 +7,7 @@ my @excludes=qw(
   (^|/)images/
   ^src/it/resources/
   ^src/test/resources/
+  ^src/test/resources-noncompilable/
   /messages.*_..\.properties$
   /releasenotes_old\.xml$
   /releasenotes\.xml$
