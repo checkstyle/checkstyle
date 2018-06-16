@@ -25,24 +25,43 @@ RESULT_FILE=target/eclipse/report.txt
 echo "Executing eclipse compiler, output is redirected to $RESULT_FILE..."
 echo "java -jar $ECJ_PATH -target 1.8 -source 1.8 -cp $1  ..."
 
-java -jar $ECJ_PATH -target 1.8 -source 1.8 -cp $1 \
+set +e
+java -jar $ECJ_PATH -target 1.8 -source 1.8 -encoding UTF-8 -cp $1 \
         -d target/eclipse-compile \
+        -properties config/org.eclipse.jdt.core.prefs \
         -enableJavadoc \
-        -nowarn:[./target/generated-sources/antlr] \
-        -noerr:[./src/test/resources] \
-        -nowarn:[./src/test/resources] \
-        -noinfo:[./src/test/resources] \
+        -nowarn:[target/generated-sources/antlr] \
         src/main/java \
         target/generated-sources/antlr \
         src/test/java \
         src/it/java \
-        src/test/resources \
-        src/it/resources \
-        -properties config/org.eclipse.jdt.core.prefs \
-    > $RESULT_FILE 2>&1 | true
+    > $RESULT_FILE 2>&1
+EXIT_CODE=$?
+set -e
 
-echo "Checking for ERROR|WARNING|INFO  in $RESULT_FILE ..."
-if [[ $(grep -E "ERROR|WARNING|INFO" $RESULT_FILE | cat | wc -l) > 0 ]]; then
+if [[ $EXIT_CODE != 0 ]]; then
+  echo "Content of $RESULT_FILE:"
   cat $RESULT_FILE
   false
+else
+    # check compilation of resources, all WARN and INFO are ignored
+    set +e
+    java -jar $ECJ_PATH -target 1.8 -source 1.8 -cp $1 \
+            -d target/eclipse-compile \
+            -nowarn \
+            src/main/java \
+            src/test/java \
+            target/generated-sources/antlr \
+            src/test/resources \
+            src/it/resources \
+        > $RESULT_FILE 2>&1
+    EXIT_CODE=$?
+    set -e
+
+    if [[ $EXIT_CODE != 0 ]]; then
+      echo "Content of $RESULT_FILE:"
+      cat $RESULT_FILE
+      false
+    fi
 fi
+
