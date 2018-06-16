@@ -138,33 +138,6 @@
          <exclude name="**/InputJavadocPropertiesGeneratorParseError.java"/>
          <exclude name="**/InputMainFrameModelIncorrectClass.java"/>
          <exclude name="**/InputBeforeExecutionExclusionFileFilterIncorrectClass.java"/>
-         <!-- till https://github.com/checkstyle/checkstyle/issues/4100 -->
-         <exclude name="**/InputPackageDeclarationWithCommentOnly.java" />
-         <exclude name="**/InputJava9TryWithResources.java"/>
-         <exclude name="**/InputIllegalInstantiationLang.java"/>
-         <exclude name="**/InputIllegalInstantiationNoPackage.java"/>
-         <exclude name="**/InputPackageDeclarationDiffDirectory.java"/>
-         <exclude name="**/InputPackageDeclarationDiffDirectoryAtParent.java"/>
-         <exclude name="**/InputPackageDeclarationDiffDirectoryAtSubpackage.java"/>
-         <exclude name="**/InputPackageDeclarationNoPackage.java"/>
-         <exclude
-          name="**/InputFinalClassClassWithPrivateCtorWithNestedExtendingClassWithoutPackage.java"/>
-         <exclude name="**/InputCustomImportOrderDefaultPackage.java"/>
-         <exclude name="**/InputCustomImportOrderNoPackage.java"/>
-         <exclude name="**/InputCustomImportOrderNoPackage2.java"/>
-         <exclude name="**/InputCustomImportOrderSamePackage.java"/>
-         <exclude name="**/InputCustomImportOrderSamePackageDepth25.java"/>
-         <exclude name="**/InputImportOrderEclipseStatic.java"/>
-         <exclude name="**/InputImportOrderEclipseStaticCaseSensitive.java"/>
-         <exclude name="**/InputImportOrderEclipseStaticRepetition.java"/>
-         <exclude name="**/InputImportOrderGetGroupNumber.java"/>
-         <exclude name="**/InputImportOrder_MultiplePatternMatches.java"/>
-         <exclude name="**/InputRedundantImport_UnnamedPackage.java"/>
-         <exclude name="**/InputUnusedImportsAnnotations.java"/>
-         <exclude name="**/InputUnusedImportsFileInUnnamedPackage.java"/>
-         <exclude name="**/InputIndentationPackageDeclaration2.java"/>
-         <exclude name="**/InputLineLengthLongPackageStatement.java"/>
-         <exclude name="**/outertypefilename/package-info.java"/>
         </fileset>
       </path>
       <formatter type="plain"/>

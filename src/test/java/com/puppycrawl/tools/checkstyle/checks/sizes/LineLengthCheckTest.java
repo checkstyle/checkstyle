@@ -97,7 +97,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(LineLengthCheck.class);
         checkConfig.addAttribute("max", "80");
         final String[] expected = {
-            "6: " + getCheckMessage(MSG_KEY, 80, 88),
+            "7: " + getCheckMessage(MSG_KEY, 80, 88),
         };
         verify(checkConfig, getNonCompilablePath("InputLineLengthLongPackageStatement.java"),
                 expected);
