@@ -143,6 +143,8 @@
       <formatter type="plain"/>
       <formatter type="xml" toFile="${mvn.project.build.directory}/cs_resources_errors.xml"/>
       <classpath path="${mvn.runtime_classpath}"/>
+      <property key="checkstyle.suppressions.file"
+                file="config/checkstyle_resouces_suppressions.xml"/>
     </checkstyle>
 
     <tstamp>
