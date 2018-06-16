@@ -1,5 +1,5 @@
-package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 //non-compiled in eclipse: The value for annotation attribute must be a constant expression
+package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 import java.lang.annotation.Documented;
 
 @SuppressWarnings({"unchecked", "unused"})
