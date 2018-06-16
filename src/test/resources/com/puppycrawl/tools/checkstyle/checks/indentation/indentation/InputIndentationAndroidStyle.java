@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation.indentation; //indent
  *                                                                            //indent:1 exp:1
  *                                                                            //indent:1 exp:1
  */                                                                           //indent:1 exp:1
-class InputIndentationAndroidStyleCorrect //indent:0 exp:0
+class InputIndentationAndroidStyle //indent:0 exp:0
         extends FooForExtend { //indent:8 exp:8
 
     String string = foo("fooooooooooooooo", 0, false); //indent:4 exp:4

@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.uncommentedmain;
 
-class oneMoreClass {
+class InputUncommentedMain3 {
     
     public static void anyWrongMethodName(String[] args)
     {

@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
 
-abstract class IIIInputAbstractClassName {
+abstract class InputAbbreviationAsWordInNameType {
 }
 
 abstract class NonAAAAbstractClassName {

@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter3filestructure.rule3421overloadsplit;
 
-class OverloadInput
+class InputOverloadMethodsDeclarationOrder
 {
     public void overloadMethod(int i)
     {
@@ -28,7 +28,7 @@ class OverloadInput
         //some foo code
     }
     
-    OverloadInput anonymous = new OverloadInput()
+    InputOverloadMethodsDeclarationOrder anonymous = new InputOverloadMethodsDeclarationOrder()
     {
         public void overloadMethod(int i)
         {

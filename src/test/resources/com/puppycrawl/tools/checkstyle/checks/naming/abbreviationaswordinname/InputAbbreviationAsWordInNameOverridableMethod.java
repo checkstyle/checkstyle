@@ -2,7 +2,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
 
 import org.junit.Before;
 
-abstract class NonAAAAbstractClassName1 extends Class1 {
+abstract class InputAbbreviationAsWordInNameOverridableMethod extends Class1 {
 	public int serialNUMBER = 6;
 	public final int s1erialNUMBER = 6;
 	private static int s2erialNUMBER = 6;

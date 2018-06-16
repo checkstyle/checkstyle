@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.uncommentedmain;
 
-class InputUncommentedMainTest4
+class InputUncommentedMain4
 {
     // one more uncommented main
     public static void main(int[] args)
