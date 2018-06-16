@@ -39,7 +39,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.ResourceBundle;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -278,10 +277,7 @@ public class MainTest {
     public void testExistingTargetFileXmlOutput() throws Exception {
         exit.checkAssertionAfterwards(() -> {
             final String expectedPath = getFilePath("InputMain.java");
-            final ResourceBundle compilationProperties =
-                    ResourceBundle.getBundle("checkstylecompilation", Locale.ROOT);
-            final String version = compilationProperties
-                .getString("checkstyle.compile.version");
+            final String version = Main.class.getPackage().getImplementationVersion();
             assertEquals("Unexpected output log", "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + EOL
                     + "<checkstyle version=\"" + version + "\">" + EOL
                     + "<file name=\"" + expectedPath + "\">" + EOL

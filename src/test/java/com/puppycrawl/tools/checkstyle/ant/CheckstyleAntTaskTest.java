@@ -195,7 +195,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         assertThat("The path of file differs from expected",
                 filesToCheck.get(6).getAbsolutePath(), is(getPath(FLAWLESS_INPUT)));
         assertEquals("Amount of logged messages in unexpected",
-                9, antTask.getLoggedMessages().size());
+                8, antTask.getLoggedMessages().size());
     }
 
     @Test
@@ -769,7 +769,6 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
         final List<MessageLevelPair> expectedList = Arrays.asList(
                 new MessageLevelPair("checkstyle version ", Project.MSG_VERBOSE),
-                new MessageLevelPair("compiled on ", Project.MSG_VERBOSE),
                 new MessageLevelPair("Adding standalone file for audit", Project.MSG_VERBOSE),
                 new MessageLevelPair("To locate the files took 0 ms.", Project.MSG_VERBOSE),
                 new MessageLevelPair("Running Checkstyle ", Project.MSG_INFO),
