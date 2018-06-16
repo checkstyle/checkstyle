@@ -1,5 +1,5 @@
-package com.puppycrawl.tools.checkstyle.checks.suppresswarningsholder;
 //non-compiled in eclipse: The value for annotation attribute must be a constant expression
+package com.puppycrawl.tools.checkstyle.checks.suppresswarningsholder;
 public class InputSuppressWarningsHolder {
     static final String UNUSED = "unused";
 

@@ -123,7 +123,7 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
             Assert.assertSame("Invalid class",
                     NoViableAltException.class, ex.getCause().getClass());
             Assert.assertEquals("Invalid exception message",
-                    input.getAbsolutePath() + ":1:1: unexpected token: classD",
+                    input.getAbsolutePath() + ":2:1: unexpected token: classD",
                     ex.getCause().toString());
         }
     }

@@ -64,7 +64,12 @@ site)
   ;;
 
 javac9)
-  javac $(grep -Rl --include='*.java' '//Compilable with Java9' src/test/resources-noncompilable)
+  javac $(grep -Rl --include='*.java' ': Compilable with Java9' src/test/resources-noncompilable)
+  ;;
+
+javac8)
+  javac $(grep -REL --include='*.java' \
+            '//non-compiled( with jdk8)?\:' src/test/resources-noncompilable)
   ;;
 
 nondex)

@@ -1,5 +1,5 @@
-package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 //non-compiled in eclipse: The value for annotation attribute must be a constant expression
+package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
 public class InputAnnotationUseStyleNoTrailingComma
 {

@@ -1,5 +1,5 @@
+//non-compiled: non-compilable annotation, for testing
 package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
-//non-compiled in eclipse: The value for annotation attribute must be a constant expression
 import java.lang.annotation.Documented;
 
 @SuppressWarnings(value={"unchecked", "unused"})
