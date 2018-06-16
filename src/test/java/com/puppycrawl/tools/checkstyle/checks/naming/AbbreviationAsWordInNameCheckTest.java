@@ -254,7 +254,6 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             + "PARAMETER_DEF,VARIABLE_DEF,METHOD_DEF");
         final int expectedCapitalCount = 1;
         final String[] expected = {
-            "3: " + getWarningMessage("IIIInputAbstractClassName", expectedCapitalCount),
             "6: " + getWarningMessage("NonAAAAbstractClassName", expectedCapitalCount),
             "9: " + getWarningMessage("FactoryWithBADNAme", expectedCapitalCount),
             "12: " + getWarningMessage("AbstractCLASSName", expectedCapitalCount),

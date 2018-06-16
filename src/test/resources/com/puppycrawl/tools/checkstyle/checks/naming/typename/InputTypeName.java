@@ -9,3 +9,5 @@ class inputHeaderClass {
     public @interface inputHeaderAnnotation {};
 
 }
+
+public class InputTypeName {}

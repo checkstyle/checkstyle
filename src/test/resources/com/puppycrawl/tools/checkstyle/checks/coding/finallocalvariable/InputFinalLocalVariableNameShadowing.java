@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
-class Foo1 {
+class InputFinalLocalVariableNameShadowing {
     public void foo(String text) {
         System.identityHashCode(text);
 

@@ -1,7 +1,7 @@
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
 
-@interface SomeArrays32 {
+@interface InputAnnotationUseStyle {
     @Another32(value={"foo", "bar"}) //expanded
     DOGS[] pooches();
 }

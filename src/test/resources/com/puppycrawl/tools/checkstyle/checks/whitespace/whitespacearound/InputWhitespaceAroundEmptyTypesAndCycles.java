@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 
 
 
-class myFoo
+class InputWhitespaceAroundEmptyTypesAndCycles
 {
 	private static final String ALLOWS_NULL_KEYS = "";
 	private static final String ALLOWS_NULL_VALUES = "";

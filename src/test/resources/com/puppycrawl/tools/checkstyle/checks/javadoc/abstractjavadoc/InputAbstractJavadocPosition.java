@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
 /////////////
 
 /**Javadoc*/
-class/**nope*/ A/**nope*/{
+class/**nope*/ InputAbstractJavadocPosition/**nope*/{
 	/**Javadoc*/
 	protected/**nope*/ class/**nope*/ B/**nope*/{/**nope*/}
 	

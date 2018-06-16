@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctagcontinuationind
  * @author max
  *     Some javadoc.
  */
-class JavadocTagContinuationIndentationOffset3 {
+class InputJavadocTagContinuationIndentationOffset3 {
 	/**
      * The client's first name.
      * @serial Some javadoc.
