@@ -1,4 +1,4 @@
-//Compilable by javac, but noncompilable by eclipse
+//non-compiled: contains speciallly srafted set of imports for testing
 
 //////////////////////////////////////////
 //Some header

@@ -68,33 +68,16 @@ javac9)
   ;;
 
 javac8)
-  javac $(grep -REL --include='*.java' \
-        --exclude='InputSuppressWarningsCompactNonConstant.java' \
-        --exclude='InputSuppressWarningsHolderNonConstant.java' \
-        --exclude='InputIllegalInstantiationNoPackage.java' \
-        --exclude='InputOneStatementPerLine.java' \
-        --exclude='InputPackageDeclarationNoPackage.java' \
-        --exclude='InputFinalClassClassWithPrivateCtorWithNestedExtendingClass.java' \
-        --exclude='InputFinalClassClassWithPrivateCtorWithNestedExtendingClassWithoutPackage.java' \
-        --exclude='InputCustomImportOrderDefaultPackage.java' \
+  # InputCustomImportOrderNoPackage2 - nothing is requird in front of first import
+  files=($(grep -REL --include='*.java' \
         --exclude='InputCustomImportOrderNoPackage2.java' \
-        --exclude='InputCustomImportOrderSamePackage.java' \
-        --exclude='InputCustomImportOrderThirdPartyAndSpecial.java' \
-        --exclude='InputCustomImportOrderThirdPartyPackage.java' \
-        --exclude='InputImportOrder_EclipseDefaultNegative.java' \
-        --exclude='InputImportOrder_EclipseDefaultPositive.java' \
-        --exclude='InputImportOrderEclipseStaticCaseSensitive.java' \
-        --exclude='InputImportOrderEclipseStatic.java' \
-        --exclude='InputImportOrderEclipseStaticRepetition.java' \
-        --exclude='InputImportOrderGetGroupNumber.java' \
-        --exclude='InputImportOrder.java' \
-        --exclude='InputImportOrder_MultiplePatternMatches.java' \
-        --exclude='InputModifierOrderTypeAnnotations.java' \
-        --exclude='InputUnusedImportsAnnotations.java' \
-        --exclude='InputIndentationPackageDeclaration2.java' \
-        --exclude='InputSuppressWarningsHolderNonConstant.java' \
         '//non-compiled( with jdk8)?\:' \
-        src/test/resources-noncompilable)
+        src/test/resources-noncompilable))
+  mkdir -p target
+  for file in "${files[@]}"
+  do
+    javac -d target "${file}"
+  done
   ;;
 
 nondex)
