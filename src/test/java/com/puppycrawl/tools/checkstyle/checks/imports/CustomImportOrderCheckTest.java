@@ -317,7 +317,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("customImportOrderRules",
                 "SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE###STATIC");
         final String[] expected = {
-            "4: " + getCheckMessage(MSG_LINE_SEPARATOR, "org.junit.*"),
+            "5: " + getCheckMessage(MSG_LINE_SEPARATOR, "org.junit.*"),
         };
 
         verify(checkConfig,
@@ -443,16 +443,16 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("customImportOrderRules",
                 "SAME_PACKAGE(2)");
         final String[] expected = {
-            "7: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME, "java.util.*"),
-            "8: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME, "java.util.List"),
-            "9: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME, "java.util.StringTokenizer"),
-            "10: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME, "java.util.concurrent.*"),
-            "11: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME,
-                "java.util.concurrent.AbstractExecutorService"),
+            "8: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME, "java.util.*"),
+            "9: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME, "java.util.List"),
+            "10: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME, "java.util.StringTokenizer"),
+            "11: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME, "java.util.concurrent.*"),
             "12: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME,
+                "java.util.concurrent.AbstractExecutorService"),
+            "13: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME,
                 "java.util.concurrent.locks.LockSupport"),
-            "13: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME, "java.util.regex.Pattern"),
-            "14: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME, "java.util.regex.Matcher"),
+            "14: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME, "java.util.regex.Pattern"),
+            "15: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME, "java.util.regex.Matcher"),
             };
 
         verify(checkConfig, getNonCompilablePath("InputCustomImportOrderSamePackageDepth25.java"),
@@ -468,10 +468,10 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("customImportOrderRules",
                 "SAME_PACKAGE(3)");
         final String[] expected = {
-            "10: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME, "java.util.concurrent.*"),
-            "11: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME,
-                "java.util.concurrent.AbstractExecutorService"),
+            "11: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME, "java.util.concurrent.*"),
             "12: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME,
+                "java.util.concurrent.AbstractExecutorService"),
+            "13: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME,
                 "java.util.concurrent.locks.LockSupport"),
             };
 
@@ -488,7 +488,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("customImportOrderRules",
                 "SAME_PACKAGE(4)");
         final String[] expected = {
-            "12: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME,
+            "13: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME,
                 "java.util.concurrent.locks.LockSupport"),
             };
 
@@ -710,7 +710,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
 
         createChecker(checkConfig);
         final String[] expected = {
-            "4: " + getCheckMessage(MSG_LINE_SEPARATOR, "java.util.*"),
+            "5: " + getCheckMessage(MSG_LINE_SEPARATOR, "java.util.*"),
         };
         verify(checkConfig, getNonCompilablePath("InputCustomImportOrderNoPackage.java"),
             expected);

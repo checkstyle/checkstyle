@@ -1,5 +1,5 @@
+//non-compiled: contains speciallly srafted set of imports for testing
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
-
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_ORDERING;
 import static java.awt.Button.ABORT;
 import static java.io.File.createTempFile;

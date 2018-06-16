@@ -1,19 +1,19 @@
 //non-compiled in eclipse: The value for annotation attribute must be a constant expression
 package com.puppycrawl.tools.checkstyle.checks.suppresswarningsholder;
-public class InputSuppressWarningsHolder {
+public class InputSuppressWarningsHolderNonConstant {
     static final String UNUSED = "unused";
 
     @SuppressWarnings(UNUSED)
     int a;
-    @SuppressWarnings(InputSuppressWarningsHolder.UNUSED)
+    @SuppressWarnings(InputSuppressWarningsHolderNonConstant.UNUSED)
     int b;
-    @SuppressWarnings(InputSuppressWarningsHolder.UNUSED)
+    @SuppressWarnings(InputSuppressWarningsHolderNonConstant.UNUSED)
     int c;
     @SuppressWarnings(value = UNUSED)
     int d;
-    @SuppressWarnings(value = InputSuppressWarningsHolder.UNUSED)
+    @SuppressWarnings(value = InputSuppressWarningsHolderNonConstant.UNUSED)
     int e;
-    @SuppressWarnings(value = InputSuppressWarningsHolder.UNUSED)
+    @SuppressWarnings(value = InputSuppressWarningsHolderNonConstant.UNUSED)
     int f;
     @SuppressWarnings((1 != 1) ? "" : "unused")
     int g;
