@@ -1,5 +1,5 @@
+//non-compiled: contains speciallly srafted set of imports for testing
 package com.puppycrawl.tools.checkstyle.checks.imports;
-
 import static io.netty.handler.codec.http.HttpConstants.COLON;
 import static io.netty.handler.codec.http.HttpHeaders.addHeader;
 import static io.netty.handler.codec.http.HttpHeaders.setHeader;

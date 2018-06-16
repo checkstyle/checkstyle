@@ -1,9 +1,9 @@
+//non-compiled with eclipse: extra semicolumn in imports
 package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
 
 /**
  * This file contains test inputs for InputOneStatementPerLine
- * which cause compilation problem in Eclipse 4.2.2 but still
- * must be tested.
+ * which cause compilation problem in Eclipse 4.2.2 but still must be tested.
  */
 
 /**

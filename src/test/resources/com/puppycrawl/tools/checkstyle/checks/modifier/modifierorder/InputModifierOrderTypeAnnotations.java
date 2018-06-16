@@ -37,8 +37,8 @@ public class InputModifierOrderTypeAnnotations extends MyClass {
 
     // Type annotations work with nested (non static) class constructors too
     public void foo2() {
-        InputTypeAnnotations myObject = new InputTypeAnnotations();
-        myObject.new @TypeAnnotation Nested();
+        Object myObject = new Object();
+        //myObject.new @TypeAnnotation Nested();
     }
 
     // Type casts

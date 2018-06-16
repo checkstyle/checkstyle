@@ -1684,7 +1684,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "2: " + getCheckMessage(MSG_ERROR, "package def", 1, 0),
         };
         verifyWarns(checkConfig,
-            getNonCompilablePath("InputIndentationPackageDeclaration2.java"), expected);
+            getPath("package-info.java"), expected);
     }
 
     @Test

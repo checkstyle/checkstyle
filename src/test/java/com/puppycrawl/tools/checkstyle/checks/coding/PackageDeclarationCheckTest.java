@@ -41,7 +41,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
 
         final String[] expected = {
-            "4: " + getCheckMessage(MSG_KEY_MISSING),
+            "2: " + getCheckMessage(MSG_KEY_MISSING),
         };
 
         verify(checkConfig,
