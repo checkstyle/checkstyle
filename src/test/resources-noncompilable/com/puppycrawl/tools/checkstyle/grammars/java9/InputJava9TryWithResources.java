@@ -1,4 +1,4 @@
-//non-compiled with jdk8: Compilable with Java9
+//non-compiled with javac: Compilable with Java9
 package com.puppycrawl.tools.checkstyle.grammars.java9;
 
 /**

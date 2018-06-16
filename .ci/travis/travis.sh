@@ -71,7 +71,7 @@ javac8)
   # InputCustomImportOrderNoPackage2 - nothing is required in front of first import
   files=($(grep -REL --include='*.java' \
         --exclude='InputCustomImportOrderNoPackage2.java' \
-        '//non-compiled( with jdk8)?\:' \
+        '//non-compiled (syntax|with javac)?\:' \
         src/test/resources-noncompilable))
   mkdir -p target
   for file in "${files[@]}"

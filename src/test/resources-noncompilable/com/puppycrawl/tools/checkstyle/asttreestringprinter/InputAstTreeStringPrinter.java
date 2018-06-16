@@ -1,2 +1,2 @@
-//non-compiled: bad grammar for testing
+//non-compiled syntax: bad file for testing
 classD a {}

@@ -1,4 +1,4 @@
-//non-compiled in eclipse: syntax error but works fine in jdk
+//non-compiled with eclipse: syntax error but works fine in jdk
 package com.puppycrawl.tools.checkstyle.grammars;
 import java.util.Arrays;
 ; // non-compilable by eclipse
