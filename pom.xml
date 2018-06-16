@@ -1542,6 +1542,8 @@
             <!-- Excluded due to Maven Release Plugin's issue #919:
                  https://issues.apache.org/jira/browse/MRELEASE-919-->
             <excludedLink>http://maven.apache.org/plugins/maven-release-plugin/</excludedLink>
+            <!-- http://pmd.sourceforge.net/ link should be updated in pmd plugin -->
+            <excludedLink>http://pmd.sourceforge.net/</excludedLink>
             <!-- Excluded till https://issues.sonatype.org/browse/NEXUS-9643 -->
             <excludedLink>
               http://www.sonatype.com/public-parent/nexus-maven-plugins/nexus-staging/nexus-staging-maven-plugin/
