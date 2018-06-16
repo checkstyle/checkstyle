@@ -1,4 +1,4 @@
-//non-compiled: reference to non existen package "com.nonexistent.packages.C" for testing
+//non-compiled with javac: reference to non existen package "com.nonexistent.packages.C" for testing
 package com.puppycrawl.tools.checkstyle.checks.design.finalclass;
 
 public class InputFinalClassClassWithPrivateCtorWithNestedExtendingClass {

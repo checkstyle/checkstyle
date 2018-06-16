@@ -1,4 +1,4 @@
-//non-compiled with jdk8: special package and requires imports from the same package
+//non-compiled with javac: special package and requires imports from the same package
 package java.util.concurrent;
 import com.google.common.*;
 import java.util.StringTokenizer;
