@@ -16,7 +16,7 @@ import java.util.Iterator;  //indent:0 exp:0
  *                                                                            //indent:1 exp:1
  *                                                                            //indent:1 exp:1
  */                                                                           //indent:1 exp:1
-class IndentationCorrectClassInput  //indent:0 exp:0
+class InputIndentationClassesMethods  //indent:0 exp:0
     implements Runnable, Cloneable {  //indent:4 exp:4
 
   class InnerClass implements  //indent:2 exp:2
@@ -54,7 +54,7 @@ class IndentationCorrectClassInput  //indent:0 exp:0
 
 class SecondClassWithLongLongLongLongName  //indent:0 exp:0
     extends  //indent:4 exp:4
-         IndentationCorrectClassInput{  //indent:9 exp:>=4
+         InputIndentationClassesMethods{  //indent:9 exp:>=4
   private boolean conditionFirst(String longString, int //indent:2 exp:2
       integer, InnerClass someInstance) { //indent:6 exp:6
     return false; //indent:4 exp:4

@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.checks.indentation.indentation; //indent:0 exp:0
 
-class InpuIndentationAnnotationIncorrect { //indent:0 exp:0
+class InputIndentationAnnotationIncorrect { //indent:0 exp:0
 
     public @interface MyAnnotation1 { //indent:4 exp:4
         String value(); //indent:8 exp:8

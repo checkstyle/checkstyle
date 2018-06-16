@@ -2,7 +2,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.overloadmethodsdeclaration
 
 
 
-class OverloadInput
+class InputOverloadMethodsDeclarationOrder
 {
     public void overloadMethod(int i)
     {
@@ -30,7 +30,7 @@ class OverloadInput
         //some foo code
     }
     
-    OverloadInput anonymous = new OverloadInput()
+    InputOverloadMethodsDeclarationOrder anonymous = new InputOverloadMethodsDeclarationOrder()
     {
         public void overloadMethod(int i)
         {

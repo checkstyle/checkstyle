@@ -21,7 +21,8 @@ import java.util.concurrent.ConcurrentMap; //indent:0 exp:0
  *                                                                            //indent:1 exp:1
  *                                                                            //indent:1 exp:1
  */                                                                           //indent:1 exp:1
-class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> { //indent:0 exp:0
+class InputIndentationFromGuava<K, V> extends AbstractMap<K, V> //indent:0 exp:0
+    implements ConcurrentMap<K, V> { //indent:4 exp:4
 
   enum Strength { //indent:2 exp:2
     /*                                                                              //indent:4 exp:4
@@ -52,7 +53,7 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
 
     SOFT { //indent:4 exp:4
       <K, V> Object referenceValue1( //indent:6 exp:6
-          Segment<K, V> s, ReferenceEntry<Integer, Integer> en,int va,int we) { //indent:10 exp:>=10
+          Segment<K, V> s, ReferenceEntry<Integer, Integer> en,int va,int we){ //indent:10 exp:>=10
         return (we == 1) //indent:8 exp:8
             ? new SoftValueReference<K, V>(s.valueReferenceQueue, va, en) //indent:12 exp:>=12
             : new WeightedSoftValueReference<K, V>(); //indent:12 exp:>=12

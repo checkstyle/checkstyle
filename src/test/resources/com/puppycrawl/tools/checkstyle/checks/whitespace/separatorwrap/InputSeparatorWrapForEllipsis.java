@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace.separatorwrap;
 
-class InputSeparatorWrapTestEllipsis {
+class InputSeparatorWrapForEllipsis {
 
     public void testMethodWithGoodWrapping(String...
             parameters) {

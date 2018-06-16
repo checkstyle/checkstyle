@@ -1,9 +1,9 @@
-//non-compiled: non-compilable annotation, for testing
+//non-compiled with eclipse: non-compilable annotation, for testing
 package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 import java.lang.annotation.Documented;
 
 @SuppressWarnings(value={"unchecked", "unused"})
-public class InputSuppressWarningsExpanded
+public class InputSuppressWarningsExpandedNonConstant
 {
     @SuppressWarnings(value={"   "})
     class Empty {

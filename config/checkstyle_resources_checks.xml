@@ -15,8 +15,25 @@
         <property name="file"
                   value="${project.basedir}/config/checkstyle_resources_suppressions.xml"/>
     </module>
-
-    <module name="TreeWalker">
-      <module name="PackageDeclarationCheck" />
+    <!-- till https://github.com/checkstyle/checkstyle/issues/4100
+    <module name="FileTabCharacter"/>
+    <module name="RegexpSingleline">
+        <property name="format" value="\s+$"/>
+        <property name="message" value="Trailing whitespace"/>
     </module>
+    <module name="RegexpOnFilename">
+      <property name="folderPattern"
+                value="[\\/]src[\\/](it|test)[\\/]resources(-noncompilable?)[\\/]"/>
+      <property name="fileNamePattern" value="^(package-info)|(Input\w+)\.java$"/>
+      <property name="match" value="false"/>
+      <message key="regexp.filepath.mismatch"
+               value="All files in the ''src/(it|test)/resources'' folder
+                      should be named ''Input*.java'' or ''package-info.java''."/>
+    </module>
+    -->
+    <module name="TreeWalker">
+      <module name="PackageDeclarationCheck"/>
+      <module name="OuterTypeFilenameCheck"/>
+    </module>
+
 </module>

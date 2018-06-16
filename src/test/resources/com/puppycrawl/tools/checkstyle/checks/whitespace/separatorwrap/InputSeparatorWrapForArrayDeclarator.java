@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace.separatorwrap;
 
-class InputSeparatorWrapTestArrayDeclarator {
+class InputSeparatorWrapForArrayDeclarator {
 
     protected int[] arrayDeclarationWithGoodWrapping = new int[
             ] {1, 2};

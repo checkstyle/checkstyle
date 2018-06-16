@@ -16,12 +16,12 @@ import java.util.Map; //indent:0 exp:0
  *                                                                            //indent:1 exp:1
  *                                                                            //indent:1 exp:1
  */                                                                           //indent:1 exp:1
-class FooFieldClass { //indent:0 exp:0
+class InputIndentationMembers { //indent:0 exp:0
 
   boolean flag //indent:2 exp:2
      = conditionFirst("Loooooooooooooooooong", new  //indent:5 exp:6 warn
       SecondFieldClassWithVeryVeryVeryLongName("Loooooooooooooooooog"). //indent:6 exp:6
-      getInteger(new FooFieldClass(), "Looooooooooooooooog"), new InnerClassFoo()); //indent:6 exp:6
+      getInteger(new InputIndentationMembers(), "Log"), new InnerClassFoo()); //indent:6 exp:6
 
 
   String getString(int someInt, String someString) { //indent:2 exp:2
@@ -43,16 +43,16 @@ class FooFieldClass { //indent:0 exp:0
     boolean flag //indent:4 exp:4
         = conditionFirst("Loooooooooooooooooong", new //indent:8 exp:8
         SecondFieldClassWithVeryVeryVeryLongName("Loooooooooooooooooog"). //indent:8 exp:8
-            getInteger(new FooFieldClass(), "Loooooooooooooooooog"), //indent:12 exp:>=8
+            getInteger(new InputIndentationMembers(), "Loooooooooog"), //indent:12 exp:>=8
              new InnerClassFoo()); //indent:13 exp:>=8
 
-    FooFieldClass anonymousClass = //indent:4 exp:4
-        new FooFieldClass() { //indent:8 exp:8
+    InputIndentationMembers anonymousClass = //indent:4 exp:4
+        new InputIndentationMembers() { //indent:8 exp:8
           boolean secondFlag = conditionSecond(10000000000.0, new //indent:10 exp:10
               SecondFieldClassWithVeryVeryVeryLongName("Looooooooooooo" //indent:14 exp:14
-                + "oooooooooooong").getString(new FooFieldClass(), //indent:16 exp:>=14
-                   new SecondFieldClassWithVeryVeryVeryLongName("loooooooong"). //indent:19 exp:>=14
-                 getInteger(new FooFieldClass(), "looong")), "looooooooooong"); //indent:17 exp:>=14
+                + "oooooooooooong").getString(new InputIndentationMembers(), //indent:16 exp:>=14
+                   new SecondFieldClassWithVeryVeryVeryLongName("looooooong"). //indent:19 exp:>=14
+                 getInteger(new InputIndentationMembers(), "lg")), "loooong"); //indent:17 exp:>=14
         }; //indent:8 exp:8
    } //indent:3 exp:2 warn
 } //indent:0 exp:0
@@ -63,15 +63,15 @@ class SecondFieldClassWithVeryVeryVeryLongName { //indent:0 exp:0
 
   } //indent:2 exp:2
 
-  String getString(FooFieldClass instance, int integer) { //indent:2 exp:2
+  String getString(InputIndentationMembers instance, int integer) { //indent:2 exp:2
     return "String"; //indent:4 exp:4
   } //indent:2 exp:2
 
-  int getInteger(FooFieldClass instance, String string) { //indent:2 exp:2
+  int getInteger(InputIndentationMembers instance, String string) { //indent:2 exp:2
     return -1;   //indent:4 exp:4
   } //indent:2 exp:2
 
-  boolean getBoolean(FooFieldClass instance, boolean flag) { //indent:2 exp:2
+  boolean getBoolean(InputIndentationMembers instance, boolean flag) { //indent:2 exp:2
     return false; //indent:4 exp:4
   } //indent:2 exp:2
 

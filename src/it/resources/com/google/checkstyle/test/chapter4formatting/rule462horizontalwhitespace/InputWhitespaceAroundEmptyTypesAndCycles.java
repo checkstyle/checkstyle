@@ -3,7 +3,7 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-class myFoo
+class InputWhitespaceAroundEmptyTypesAndCycles
 {
     private void foo()
     {

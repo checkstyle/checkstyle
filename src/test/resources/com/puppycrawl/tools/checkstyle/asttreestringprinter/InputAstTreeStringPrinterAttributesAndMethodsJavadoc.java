@@ -3,7 +3,7 @@ package com.puppycrawl.tools.checkstyle.asttreestringprinter;
 /**
 * class javadoc
 */
-class InputAstTreeStringPrinterJavaAndMethodsJavadoc {
+class InputAstTreeStringPrinterAttributesAndMethodsJavadoc {
 
     /** attribute javadoc*/
     int attribute;
