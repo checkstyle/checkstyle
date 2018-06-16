@@ -16,6 +16,8 @@
     <property name="check.config" location="config/checkstyle_checks.xml"/>
     <property name="check.config_non_main"
               location="config/checkstyle_non_main_files_checks.xml"/>
+    <property name="check.config_resources"
+              location="config/checkstyle_resources_checks.xml"/>
 
     <tstamp>
       <format property="STARTED" pattern="dd/MM/yyyy hh:mm:ss aa" />
@@ -116,6 +118,64 @@
       <format property="FINISHED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
     </tstamp>
     <echo>Checkstyle finished (checkstyle_non_main_files_checks.xml): ${FINISHED}</echo>
+
+    <tstamp>
+      <format property="STARTED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
+    </tstamp>
+    <echo>Checkstyle started (checkstyle_resources_checks.xml): ${STARTED}</echo>
+
+    <checkstyle config="${check.config_resources}"
+                failOnViolation="true"
+                failureProperty="checkstyle.failure.property"
+                executeIgnoredModules="true"
+                >
+      <path>
+        <fileset dir="src" includes="test/resources/**/*,test/resources-noncompilable/**/*">
+         <!-- bad syntax, permanent exclude -->
+         <exclude name="**/InputAstTreeStringPrinter.java" />
+         <exclude name="**/InputSuppressionsStringPrinter.java"/>
+         <exclude name="**/InputMainIncorrectClass.java"/>
+         <exclude name="**/InputJavadocPropertiesGeneratorParseError.java"/>
+         <exclude name="**/InputMainFrameModelIncorrectClass.java"/>
+         <exclude name="**/InputBeforeExecutionExclusionFileFilterIncorrectClass.java"/>
+         <!-- till https://github.com/checkstyle/checkstyle/issues/4100 -->
+         <exclude name="**/InputPackageDeclarationWithCommentOnly.java" />
+         <exclude name="**/InputJava9TryWithResources.java"/>
+         <exclude name="**/InputIllegalInstantiationLang.java"/>
+         <exclude name="**/InputIllegalInstantiationNoPackage.java"/>
+         <exclude name="**/InputPackageDeclarationDiffDirectory.java"/>
+         <exclude name="**/InputPackageDeclarationDiffDirectoryAtParent.java"/>
+         <exclude name="**/InputPackageDeclarationDiffDirectoryAtSubpackage.java"/>
+         <exclude name="**/InputPackageDeclarationNoPackage.java"/>
+         <exclude
+          name="**/InputFinalClassClassWithPrivateCtorWithNestedExtendingClassWithoutPackage.java"/>
+         <exclude name="**/InputCustomImportOrderDefaultPackage.java"/>
+         <exclude name="**/InputCustomImportOrderNoPackage.java"/>
+         <exclude name="**/InputCustomImportOrderNoPackage2.java"/>
+         <exclude name="**/InputCustomImportOrderSamePackage.java"/>
+         <exclude name="**/InputCustomImportOrderSamePackageDepth25.java"/>
+         <exclude name="**/InputImportOrderEclipseStatic.java"/>
+         <exclude name="**/InputImportOrderEclipseStaticCaseSensitive.java"/>
+         <exclude name="**/InputImportOrderEclipseStaticRepetition.java"/>
+         <exclude name="**/InputImportOrderGetGroupNumber.java"/>
+         <exclude name="**/InputImportOrder_MultiplePatternMatches.java"/>
+         <exclude name="**/InputRedundantImport_UnnamedPackage.java"/>
+         <exclude name="**/InputUnusedImportsAnnotations.java"/>
+         <exclude name="**/InputUnusedImportsFileInUnnamedPackage.java"/>
+         <exclude name="**/InputIndentationPackageDeclaration2.java"/>
+         <exclude name="**/InputLineLengthLongPackageStatement.java"/>
+         <exclude name="**/outertypefilename/package-info.java"/>
+        </fileset>
+      </path>
+      <formatter type="plain"/>
+      <formatter type="xml" toFile="${mvn.project.build.directory}/cs_resources_errors.xml"/>
+      <classpath path="${mvn.runtime_classpath}"/>
+    </checkstyle>
+
+    <tstamp>
+      <format property="FINISHED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
+    </tstamp>
+    <echo>Checkstyle finished (checkstyle_resources_checks.xml): ${FINISHED}</echo>
 
     <fail if="checkstyle.failure.property"
           message="Checkstyle failed: ${checkstyle.failure.property}"
