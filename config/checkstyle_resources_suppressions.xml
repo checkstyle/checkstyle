@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+  "-//Checkstyle//DTD SuppressionFilter Configuration 1.1//EN"
+  "https://checkstyle.org/dtds/suppressions_1_1.dtd">
+
+<suppressions>
+
+  <!-- intentional problem for testing -->
+  <suppress checks="PackageDeclarationCheck"
+    files="packagedeclaration[\\/]InputPackageDeclarationWithCommentOnly\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="[\\/]resources-noncompilable[\\/].*[\\/]packagedeclaration[\\/]Input.*\.java"/>
+
+  <!-- intentional problem for testing -->
+  <suppress checks="PackageDeclarationCheck"
+    files="InputFinalClassClassWithPrivateCtorWithNestedExtendingClassWithoutPackage\.java"/>
+
+  <!-- intentional problem for testing -->
+  <suppress checks="PackageDeclarationCheck"
+    files="customimportorder[\\/]InputCustomImportOrderNoPackage\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="customimportorder[\\/]InputCustomImportOrderNoPackage2\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="customimportorder[\\/]InputCustomImportOrderDefaultPackage\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="customimportorder[\\/]InputCustomImportOrderSamePackage\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="customimportorder[\\/]InputCustomImportOrderSamePackageDepth25\.java"/>
+
+  <!-- intentional problem for testing -->
+  <suppress checks="PackageDeclarationCheck"
+    files="illegalinstantiation[\\/]InputIllegalInstantiationNoPackage\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="illegalinstantiation[\\/]InputIllegalInstantiationLang\.java"/>
+
+  <!-- intentional problem for testing -->
+  <suppress checks="PackageDeclarationCheck"
+    files="redundantimport[\\/]InputRedundantImport_UnnamedPackage\.java"/>
+
+  <!-- intentional problem for testing -->
+  <suppress checks="PackageDeclarationCheck"
+    files="unusedimports[\\/]InputUnusedImportsFileInUnnamedPackage\.java"/>
+
+  <!-- intentional problem for testing -->
+  <suppress checks="PackageDeclarationCheck"
+    files="linelength[\\/]InputLineLengthLongPackageStatement\.java"/>
+
+
+
+</suppressions>

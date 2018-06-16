@@ -1,3 +1,4 @@
+// different package is intentional for test
 package java.lang;
 
 class Input {

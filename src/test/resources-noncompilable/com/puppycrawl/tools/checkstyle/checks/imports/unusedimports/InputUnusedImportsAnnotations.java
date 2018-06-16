@@ -1,8 +1,8 @@
-//non-compiled: contains specially crafted set of imports for testing
+//non-compiled with jdk8: contains specially crafted set of imports for testing
 // this file content is based on package-info.java file structure
 // Created: 2005
 ////////////////////////////////////////////////////////////////////////////////
 @MyAnnotation
-package com.puppycrawl.tools.checkstyle.checks.imports;
+package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
 import com.puppycrawl.tools.checkstyle.MyAnnotation;

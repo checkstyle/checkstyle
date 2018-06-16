@@ -1,4 +1,4 @@
-// no package
+//non-compiled with jdk8: no package by design of test
 
 import java.util.List;
 import java.util.List;

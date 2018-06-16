@@ -1,5 +1,5 @@
-//non-compiled: contains specially crafted set of imports for testing
-package com.puppycrawl.tools.checkstyle.checks.imports;
+//non-compiled with jdk8: contains specially crafted set of imports for testing
+package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 import javax.io.File;
 import sun.tools.util.ModifierFilter.ALL_ACCESS;
 import java.test.javax;
