@@ -27,9 +27,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.ResourceBundle;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -113,10 +111,7 @@ public class XMLLogger
     public void auditStarted(AuditEvent event) {
         writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 
-        final ResourceBundle compilationProperties =
-            ResourceBundle.getBundle("checkstylecompilation", Locale.ROOT);
-        final String version =
-            compilationProperties.getString("checkstyle.compile.version");
+        final String version = XMLLogger.class.getPackage().getImplementationVersion();
 
         writer.println("<checkstyle version=\"" + version + "\">");
     }
