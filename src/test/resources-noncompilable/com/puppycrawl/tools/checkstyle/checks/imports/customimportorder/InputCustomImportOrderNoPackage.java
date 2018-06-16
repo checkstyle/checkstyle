@@ -1,4 +1,4 @@
-//non-compiled: contains speciallly srafted set of imports for testing
+//non-compiled: contains specially crafted set of imports for testing
 import java.io.*;
 
 

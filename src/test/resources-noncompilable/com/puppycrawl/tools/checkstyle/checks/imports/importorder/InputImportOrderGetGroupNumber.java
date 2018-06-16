@@ -1,4 +1,4 @@
-//non-compiled: contains speciallly srafted set of imports for testing
+//non-compiled: contains specially crafted set of imports for testing
 package com.puppycrawl.tools.checkstyle.checks.imports;
 import javax.io.File;
 import sun.tools.util.ModifierFilter.ALL_ACCESS;
