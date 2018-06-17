@@ -80,9 +80,14 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         </li>
         <li>
           <code>-s line:column</code> - print xpath suppressions at the file's line and column
-          position. Line and column numbers are integer values separated by a :, specify
+          position. Line and column numbers are integer values separated by a <code>:</code>,
+          specify
           location in the file the suppression should be generated for. The option cannot be used
           with other options and requires exactly one file to run on to be specified.
+          ATTENTION: generated result will have few queries, joined by pipe(<code>|</code>).
+          Together they will match all AST nodes on specified line
+          and column. You need to choose only one and recheck that it works. Usage of all of them is
+          also ok, but might result in undesirable matching and suppress other issues.
         </li>
         <li>
           <code>-tabWidth length</code> - set the length of the tab character. Used only with
