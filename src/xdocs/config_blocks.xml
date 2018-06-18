@@ -867,6 +867,8 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
           method definitions, class definitions, constructor definitions,
           instance and static initialization blocks.
           The policy to verify is specified using the property <code> option</code>.
+          For right curly brace of expression blocks please follow issue
+          <a href="https://github.com/checkstyle/checkstyle/issues/5945">#5945</a>.
         </p>
       </subsection>
 

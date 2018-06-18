@@ -313,8 +313,10 @@
     <section name="rcurly">
       <p>
         This property represents the policy for checking the placement of a
-        right curly brace (<code>'}'</code>). The following table
-        describes the valid options:
+        right curly brace (<code>'}'</code>) in blocks but not blocks of expressions.
+        For right curly brace of expression blocks please follow issue
+        <a href="https://github.com/checkstyle/checkstyle/issues/5945">#5945</a>. The following
+        table describes the valid options:
       </p>
 
       <table summary="right curly options">
