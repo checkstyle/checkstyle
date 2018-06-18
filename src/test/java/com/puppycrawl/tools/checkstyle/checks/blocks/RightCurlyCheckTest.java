@@ -418,4 +418,40 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             getPath("InputRightCurlySameLambda.java"), expected);
     }
 
+    @Test
+    public void testBracePolicyAloneForAnonymousClass() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
+        checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
+        checkConfig.addAttribute("tokens", "LITERAL_NEW");
+        final String[] expected = {
+            "21:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "27:91: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 91),
+            "34:94: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 94),
+            "36:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "46:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "79:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "92:17: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 17),
+            "104:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+        };
+        verify(checkConfig, getPath("InputRightCurlyBracePolicyAloneForAnonymousClass.java"),
+                expected);
+    }
+
+    @Test
+    public void testBracePolicyAloneForArrayInit() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
+        checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
+        checkConfig.addAttribute("tokens", "LITERAL_NEW");
+        final String[] expected = {
+                "39:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+                "52:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+                "57:17: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 17),
+                "62:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+                "87:17: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 17),
+                "94:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+        };
+        verify(checkConfig, getPath("InputRightCurlyBracePolicyAloneForArrayInit.java"),
+                expected);
+    }
+
 }

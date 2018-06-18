@@ -291,7 +291,9 @@
       or @Image='AbstractClassCouplingCheck' or @Image='BooleanExpressionComplexityCheck'
       or @Image='ParenPadCheck']//MethodDeclaration[@Name='visitToken']
     | //ClassOrInterfaceDeclaration[@Image='XdocsJavaDocsTest']
-          //MethodDeclaration[@Name='testAllCheckSectionJavaDocs']"/>
+          //MethodDeclaration[@Name='testAllCheckSectionJavaDocs']
+    | //ClassOrInterfaceDeclaration[@Image='RightCurlyCheck']
+          //MethodDeclaration[@Name='getDetails']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/TooManyFields">
