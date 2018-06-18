@@ -13,8 +13,13 @@
 [![][mavenbadge img]][mavenbadge]
 [![][sonar img]][sonar]
 
+[![][backers badge]][backersbadge]
+[![][sponsors badge]][sponsorsbadge]
+
 Members chat: [![][gitter_mem img]][gitter_mem]
 Contributors chat: [![][gitter_con img]][gitter_con]
+
+
 
 ![](https://raw.githubusercontent.com/checkstyle/resources/master/img/checkstyle-logos/checkstyle-logo-260x99.png)
 
@@ -48,6 +53,37 @@ Please send any feedback to https://groups.google.com/forum/?hl=en#!forum/checks
 Questions and Answers from community: [![][stackoverflow img]][stackoverflow]
 
 Bugs and Feature requests (not the questions): https://github.com/checkstyle/checkstyle/issues
+
+Credits
+=====
+
+## Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="graphs/contributors"><img src="https://opencollective.com/checkstyle/contributors.svg?width=890&button=false" /></a>
+
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/checkstyle#backer)]
+
+<a href="https://opencollective.com/checkstyle#backers" target="_blank"><img src="https://opencollective.com/checkstyle/backers.svg?width=890"></a>
+
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/checkstyle#sponsor)]
+
+<a href="https://opencollective.com/checkstyle/sponsor/0/website" target="_blank"><img src="https://opencollective.com/checkstyle/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/checkstyle/sponsor/1/website" target="_blank"><img src="https://opencollective.com/checkstyle/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/checkstyle/sponsor/2/website" target="_blank"><img src="https://opencollective.com/checkstyle/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/checkstyle/sponsor/3/website" target="_blank"><img src="https://opencollective.com/checkstyle/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/checkstyle/sponsor/4/website" target="_blank"><img src="https://opencollective.com/checkstyle/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/checkstyle/sponsor/5/website" target="_blank"><img src="https://opencollective.com/checkstyle/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/checkstyle/sponsor/6/website" target="_blank"><img src="https://opencollective.com/checkstyle/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/checkstyle/sponsor/7/website" target="_blank"><img src="https://opencollective.com/checkstyle/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/checkstyle/sponsor/8/website" target="_blank"><img src="https://opencollective.com/checkstyle/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/checkstyle/sponsor/9/website" target="_blank"><img src="https://opencollective.com/checkstyle/sponsor/9/avatar.svg"></a>
 
 Licensing
 =========
@@ -124,5 +160,13 @@ directory.
 [snyk]: https://snyk.io/test/github/checkstyle/checkstyle:pom.xml?targetFile=pom.xml
 [snyk img]: https://snyk.io/test/github/checkstyle/checkstyle/badge.svg
 
+[backers badge]: https://opencollective.com/checkstyle/backers/badge.svg
+[backersbadge]: #backers
+[sponsors badge]: https://opencollective.com/checkstyle/sponsors/badge.svg
+[sponsorsbadge]: #sponsors
 
               
+
+
+
+
