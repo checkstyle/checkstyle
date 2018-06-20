@@ -49,6 +49,20 @@ Questions and Answers from community: [![][stackoverflow img]][stackoverflow]
 
 Bugs and Feature requests (not the questions): https://github.com/checkstyle/checkstyle/issues
 
+
+Support/Sponsor checkstyle
+========
+
+If you want to speed up fixing of issue and want to encourage somebody in
+internet to resolve any issue:
+[![][bountysource img]][bountysource]
+[![][salt.bountysource img]][salt.bountysource]
+[![][flattr img]][flattr]
+[![][liberapay img]][liberapay]
+[![][backers.opencollective img]][backers.opencollective]
+[![][sponsors.opencollective img]][sponsors.opencollective]
+
+
 Licensing
 =========
 
@@ -124,5 +138,20 @@ directory.
 [snyk]: https://snyk.io/test/github/checkstyle/checkstyle:pom.xml?targetFile=pom.xml
 [snyk img]: https://snyk.io/test/github/checkstyle/checkstyle/badge.svg
 
+[flattr]:https://flattr.com/submit/auto?fid=g39d10&amp;url=http%3A%2F%2Fcheckstyle.sourceforge.net
+[flattr img]:https://button.flattr.com/flattr-badge-large.png
 
-              
+[liberapay]:https://liberapay.com/checkstyle/
+[liberapay img]:https://liberapay.com/assets/widgets/donate.svg
+
+[bountysource]:https://www.bountysource.com/teams/checkstyle/issues
+[bountysource img]:https://api.bountysource.com/badge/team?team_id=3568&style=bounties_posted
+
+[salt.bountysource]:https://salt.bountysource.com/teams/checkstyle
+[salt.bountysource img]:https://img.shields.io/bountysource/team/checkstyle/activity.svg?label=salt.bountysource
+
+[backers.opencollective]:https://opencollective.com/checkstyle/
+[backers.opencollective img]:https://opencollective.com/checkstyle/backers/badge.svg
+
+[sponsors.opencollective]:https://opencollective.com/checkstyle/
+[sponsors.opencollective img]:https://opencollective.com/checkstyle/sponsors/badge.svg
