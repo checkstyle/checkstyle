@@ -20,6 +20,7 @@ skip_commits:
     - RIGHTS.antlr
     - shippable.yml
     - wercker.yml
+    - Jenkinsfile
 
 clone_depth: 10
 branches:

@@ -620,6 +620,7 @@ jdk
 jdt
 jedit
 jenkins
+Jenkinsfile
 jetbrains
 JFile
 JFrame
@@ -1309,6 +1310,7 @@ xsl
 Xslt
 xsltproc
 XSO
+xterm
 xtr
 xwiki
 XXXX
