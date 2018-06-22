@@ -211,7 +211,8 @@ script:
   - SKIP_FILES1=".github|codeship-*|buddy.yml|appveyor.yml|circleci|distelli-manifest.yml"
   - SKIP_FILES2="|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr"
   - SKIP_FILES3="|shippable.yml|shippable.sh|wercker.yml|wercker.sh|intellij-idea-inspections.xml"
-  - SKIP_FILES=$SKIP_FILES1$SKIP_FILES2$SKIP_FILES3
+  - SKIP_FILES4="|Jenkinsfile"
+  - SKIP_FILES=$SKIP_FILES1$SKIP_FILES2$SKIP_FILES3$SKIP_FILES4
   - |
     if [[ $SKIP_CI != 'false' ]]; then
          if [[ $(git diff --name-only HEAD HEAD~1 | grep -vE "$SKIP_FILES" \
