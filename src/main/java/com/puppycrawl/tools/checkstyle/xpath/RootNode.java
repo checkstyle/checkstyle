@@ -41,6 +41,9 @@ public class RootNode extends AbstractNode {
     /** Name of the root element. */
     private static final String ROOT_NAME = "ROOT";
 
+    /** Constant for optimization. */
+    private static final AbstractNode[] EMPTY_ABSTRACTNODE_ARRAY = new AbstractNode[0];
+
     /** The ast node. */
     private final DetailAST detailAst;
 
@@ -154,7 +157,7 @@ public class RootNode extends AbstractNode {
             case AxisInfo.CHILD:
                 if (hasChildNodes()) {
                     result = new ArrayIterator.OfNodes(
-                            getChildren().toArray(new AbstractNode[getChildren().size()]));
+                            getChildren().toArray(EMPTY_ABSTRACTNODE_ARRAY));
                 }
                 else {
                     result = EmptyIterator.OfNodes.THE_INSTANCE;

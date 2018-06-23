@@ -60,6 +60,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
                     Pattern.compile(".*?//indent:(\\d+)(?: ioffset:(\\d+))?"
                         + " exp:(>=)?(\\d+(?:,\\d+)*?)( warn)?$");
 
+    private static final IndentComment[] EMPTY_INDENTCOMMENT_ARRAY = new IndentComment[0];
+
     private static IndentComment[] getLinesWithWarnAndCheckComments(String aFileName,
             final int tabWidth)
                     throws IOException {
@@ -104,7 +106,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
                 lineNumber++;
             }
         }
-        return result.toArray(new IndentComment[result.size()]);
+        return result.toArray(EMPTY_INDENTCOMMENT_ARRAY);
     }
 
     private static boolean isCommentConsistent(IndentComment comment) {

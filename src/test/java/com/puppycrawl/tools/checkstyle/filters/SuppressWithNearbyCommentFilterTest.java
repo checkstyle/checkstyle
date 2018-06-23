@@ -325,7 +325,7 @@ public class SuppressWithNearbyCommentFilterTest
     private static String[] removeSuppressed(String[] from, String... remove) {
         final Collection<String> coll = Arrays.stream(from).collect(Collectors.toList());
         coll.removeAll(Arrays.asList(remove));
-        return coll.toArray(new String[coll.size()]);
+        return coll.toArray(CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
