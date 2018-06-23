@@ -40,6 +40,9 @@ public class ElementNode extends AbstractNode {
     /** String literal for text attribute. */
     private static final String TEXT_ATTRIBUTE_NAME = "text";
 
+    /** Constant for optimization. */
+    private static final AbstractNode[] EMPTY_ABSTRACT_NODE_ARRAY = new AbstractNode[0];
+
     /** The root node. */
     private final AbstractNode root;
 
@@ -182,7 +185,7 @@ public class ElementNode extends AbstractNode {
             case AxisInfo.CHILD:
                 if (hasChildNodes()) {
                     result = new ArrayIterator.OfNodes(
-                            getChildren().toArray(new AbstractNode[getChildren().size()]));
+                            getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY));
                 }
                 else {
                     result = EmptyIterator.OfNodes.THE_INSTANCE;
