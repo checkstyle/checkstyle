@@ -457,7 +457,6 @@ public class RightCurlyCheck extends AbstractCheck {
          */
         private static Details getDetailsForIfElse(DetailAST ast) {
             boolean shouldCheckLastRcurly = false;
-            DetailAST rcurly = null;
             final DetailAST lcurly;
             DetailAST nextToken;
             final int tokenType = ast.getType();
@@ -477,6 +476,7 @@ public class RightCurlyCheck extends AbstractCheck {
                 nextToken = getNextToken(ast);
                 lcurly = ast.getFirstChild();
             }
+            DetailAST rcurly = null;
             if (lcurly.getType() == TokenTypes.SLIST) {
                 rcurly = lcurly.getLastChild();
             }
