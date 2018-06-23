@@ -428,7 +428,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         final Object t = clazz.getConstructor().newInstance();
         final Method method = clazz.getDeclaredMethod("getFullImportIdent", DetailAST.class);
         method.setAccessible(true);
-        final Object actual = method.invoke(t, (DetailAST) null);
+        final Object actual = method.invoke(t, new Object[] {null});
 
         final String expected = "";
         assertEquals("Invalid getFullImportIdent result", expected, actual);
