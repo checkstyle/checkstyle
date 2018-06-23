@@ -239,7 +239,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
             if (child.getType() != JavadocTokenTypes.JAVADOC_INLINE_TAG
                 && text.contains(periodSuffix)) {
-                result.append(text.substring(0, text.indexOf(periodSuffix) + 1));
+                result.append(text, 0, text.indexOf(periodSuffix) + 1);
                 break;
             }
             else {
