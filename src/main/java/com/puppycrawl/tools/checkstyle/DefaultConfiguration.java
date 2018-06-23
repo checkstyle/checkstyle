@@ -73,7 +73,7 @@ public final class DefaultConfiguration implements Configuration {
     @Override
     public String[] getAttributeNames() {
         final Set<String> keySet = attributeMap.keySet();
-        return keySet.toArray(new String[keySet.size()]);
+        return keySet.toArray(new String[0]);
     }
 
     @Override
@@ -88,7 +88,7 @@ public final class DefaultConfiguration implements Configuration {
     @Override
     public Configuration[] getChildren() {
         return children.toArray(
-            new Configuration[children.size()]);
+                new Configuration[0]);
     }
 
     @Override

@@ -133,7 +133,7 @@ public final class FileText {
                 }
                 textLines.add(line);
             }
-            lines = textLines.toArray(new String[textLines.size()]);
+            lines = textLines.toArray(new String[0]);
         }
     }
 
@@ -174,7 +174,7 @@ public final class FileText {
         this.file = file;
         charset = null;
         fullText = buf.toString();
-        this.lines = lines.toArray(new String[lines.size()]);
+        this.lines = lines.toArray(new String[0]);
     }
 
     /**

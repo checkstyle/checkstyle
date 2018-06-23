@@ -154,7 +154,7 @@ public class RootNode extends AbstractNode {
             case AxisInfo.CHILD:
                 if (hasChildNodes()) {
                     result = new ArrayIterator.OfNodes(
-                            getChildren().toArray(new AbstractNode[getChildren().size()]));
+                            getChildren().toArray(new AbstractNode[0]));
                 }
                 else {
                     result = EmptyIterator.OfNodes.THE_INSTANCE;

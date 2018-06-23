@@ -104,7 +104,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
                 lineNumber++;
             }
         }
-        return result.toArray(new IndentComment[result.size()]);
+        return result.toArray(new IndentComment[0]);
     }
 
     private static boolean isCommentConsistent(IndentComment comment) {
