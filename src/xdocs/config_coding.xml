@@ -1943,7 +1943,7 @@ class SomeClass
             <td>format</td>
             <td>illegal pattern</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>&quot;$^&quot; (empty)</code></td>
+            <td><code>&quot;^$&quot; (empty)</code></td>
             <td>3.2</td>
           </tr>
           <tr>

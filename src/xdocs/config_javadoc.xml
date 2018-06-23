@@ -1748,7 +1748,7 @@ public boolean isSomething()
             <td>forbiddenSummaryFragments</td>
             <td>forbidden summary fragments</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>"^$"</code></td>
+            <td><code>"^$" (empty)</code></td>
             <td>6.0</td>
           </tr>
           <tr>

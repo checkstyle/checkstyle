@@ -329,7 +329,7 @@
             <td>ignorePattern</td>
             <td>pattern for lines to ignore</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td>"^$"</td>
+            <td>"^$" (empty)</td>
             <td>3.0</td>
           </tr>
           <tr>
