@@ -498,12 +498,10 @@ public class VisibilityModifierCheck
             // If imported canonical class name is not specified as allowed immutable class,
             // but its short name collides with one of specified class - removes the short name
             // from list to avoid names collision
-            if (!immutableClassCanonicalNames.contains(canonicalName)
-                     && immutableClassShortNames.contains(shortName)) {
+            if (!immutableClassCanonicalNames.contains(canonicalName)) {
                 immutableClassShortNames.remove(shortName);
             }
-            if (!ignoreAnnotationCanonicalNames.contains(canonicalName)
-                     && ignoreAnnotationShortNames.contains(shortName)) {
+            if (!ignoreAnnotationCanonicalNames.contains(canonicalName)) {
                 ignoreAnnotationShortNames.remove(shortName);
             }
         }
