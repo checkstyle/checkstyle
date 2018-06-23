@@ -251,19 +251,12 @@ public final class MissingDeprecatedCheck extends AbstractCheck {
                 final String lFin = multilineCont.group(1);
                 if (lFin.equals(NEXT_TAG) || lFin.equals(END_JAVADOC)) {
                     log(currentLine, MSG_KEY_JAVADOC_MISSING);
-                    if (foundBefore) {
-                        log(currentLine, MSG_KEY_JAVADOC_DUPLICATE_TAG,
-                                JavadocTagInfo.DEPRECATED.getText());
-                    }
-                    found = true;
                 }
-                else {
-                    if (foundBefore) {
-                        log(currentLine, MSG_KEY_JAVADOC_DUPLICATE_TAG,
-                                JavadocTagInfo.DEPRECATED.getText());
-                    }
-                    found = true;
+                if (foundBefore) {
+                    log(currentLine, MSG_KEY_JAVADOC_DUPLICATE_TAG,
+                            JavadocTagInfo.DEPRECATED.getText());
                 }
+                found = true;
             }
             reindex++;
         }
