@@ -110,7 +110,7 @@ public class RegexpCheck extends AbstractCheck {
     private int errorCount;
 
     /** The regexp to match against. */
-    private Pattern format = Pattern.compile("$^", Pattern.MULTILINE);
+    private Pattern format = Pattern.compile("^$", Pattern.MULTILINE);
 
     /** The matcher. */
     private Matcher matcher;

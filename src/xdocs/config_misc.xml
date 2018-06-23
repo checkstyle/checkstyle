@@ -1809,7 +1809,7 @@ messages_home_fr_CA_UNIX.properties
             <td>Pattern for qualified names of classes which are allowed
             to have a main method.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>"^$"</code></td>
+            <td><code>"^$" (empty)</code></td>
             <td>3.2</td>
           </tr>
         </table>

@@ -85,7 +85,7 @@
             <td>format</td>
             <td>pattern</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>"$^"</code> (empty)</td>
+            <td><code>"^$"</code> (empty)</td>
             <td>4.0</td>
           </tr>
           <tr>

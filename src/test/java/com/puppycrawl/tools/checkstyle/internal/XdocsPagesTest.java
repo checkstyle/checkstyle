@@ -985,7 +985,7 @@ public class XdocsPagesTest {
                     result = '"' + value.toString().replace("\n", "\\n").replace("\t", "\\t")
                             .replace("\r", "\\r").replace("\f", "\\f") + '"';
 
-                    if ("\"$^\"".equals(result)) {
+                    if ("\"^$\"".equals(result)) {
                         result += " (empty)";
                     }
                 }

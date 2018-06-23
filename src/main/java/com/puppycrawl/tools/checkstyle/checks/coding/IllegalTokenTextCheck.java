@@ -68,7 +68,7 @@ public class IllegalTokenTextCheck
     private String message = "";
 
     /** The format string of the regexp. */
-    private String formatString = "$^";
+    private String formatString = "^$";
 
     /** The regexp to match against. */
     private Pattern format = Pattern.compile(formatString);

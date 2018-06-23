@@ -371,7 +371,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
             <td>specialImportsRegExp</td>
             <td>RegExp for SPECIAL_IMPORTS group imports.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>"^$"</code></td>
+            <td><code>"^$" (empty)</code></td>
             <td>5.8</td>
           </tr>
           <tr>
