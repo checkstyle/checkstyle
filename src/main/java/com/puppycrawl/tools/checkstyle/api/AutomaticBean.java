@@ -365,7 +365,7 @@ public abstract class AutomaticBean
                 result.add(token.trim());
             }
 
-            return result.toArray(new String[0]);
+            return result.toArray(CommonUtil.EMPTY_STRING_ARRAY);
         }
 
     }
@@ -376,6 +376,9 @@ public abstract class AutomaticBean
      * The normal {@link ArrayConverter} class has problems with this character.
      */
     private static class RelaxedAccessModifierArrayConverter implements Converter {
+
+        /** Constant for optimization. */
+        private static final AccessModifier[] EMPTY_MODIFIER_ARRAY = new AccessModifier[0];
 
         @SuppressWarnings({"unchecked", "rawtypes"})
         @Override
@@ -390,7 +393,7 @@ public abstract class AutomaticBean
                 result.add(AccessModifier.getInstance(token.trim()));
             }
 
-            return result.toArray(new AccessModifier[0]);
+            return result.toArray(EMPTY_MODIFIER_ARRAY);
         }
 
     }

@@ -27,6 +27,7 @@ import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Default implementation of the Configuration interface.
@@ -35,6 +36,9 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 public final class DefaultConfiguration implements Configuration {
 
     private static final long serialVersionUID = 1157875385356127169L;
+
+    /** Constant for optimization. */
+    private static final Configuration[] EMPTY_CONFIGURATION_ARRAY = new Configuration[0];
 
     /** The name of this configuration. */
     private final String name;
@@ -73,7 +77,7 @@ public final class DefaultConfiguration implements Configuration {
     @Override
     public String[] getAttributeNames() {
         final Set<String> keySet = attributeMap.keySet();
-        return keySet.toArray(new String[0]);
+        return keySet.toArray(CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Override
@@ -88,7 +92,7 @@ public final class DefaultConfiguration implements Configuration {
     @Override
     public Configuration[] getChildren() {
         return children.toArray(
-                new Configuration[0]);
+                EMPTY_CONFIGURATION_ARRAY);
     }
 
     @Override
