@@ -471,17 +471,14 @@ public class RightCurlyCheck extends AbstractCheck {
                 else {
                     lcurly = nextToken.getPreviousSibling();
                 }
-                if (lcurly.getType() == TokenTypes.SLIST) {
-                    rcurly = lcurly.getLastChild();
-                }
             }
             else {
                 shouldCheckLastRcurly = true;
                 nextToken = getNextToken(ast);
                 lcurly = ast.getFirstChild();
-                if (lcurly.getType() == TokenTypes.SLIST) {
-                    rcurly = lcurly.getLastChild();
-                }
+            }
+            if (lcurly.getType() == TokenTypes.SLIST) {
+                rcurly = lcurly.getLastChild();
             }
             return new Details(lcurly, rcurly, nextToken, shouldCheckLastRcurly);
         }
