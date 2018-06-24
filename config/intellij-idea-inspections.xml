@@ -1962,7 +1962,8 @@
     </inspection_tool>
     <inspection_tool class="JUnitDatapoint" enabled="true" level="ERROR" enabled_by_default="true"/>
     <inspection_tool class="JUnitRule" enabled="true" level="ERROR" enabled_by_default="true"/>
-    <inspection_tool class="JUnitTestClassNamingConvention" enabled="true" level="ERROR"
+    <!-- suppressed till #5949 when we migrate to 2018.1.4 where such rule have new name -->
+    <inspection_tool class="JUnitTestClassNamingConvention" enabled="false" level="ERROR"
                      enabled_by_default="true">
         <option name="m_regex" value="[A-Z][A-Za-z\d]*Test"/>
         <option name="m_minLength" value="8"/>

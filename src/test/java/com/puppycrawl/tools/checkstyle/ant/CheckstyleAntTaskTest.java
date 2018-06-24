@@ -796,7 +796,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     /**
      * Non meaningful javadoc just to contain "noinspection" tag.
      * Till https://youtrack.jetbrains.com/issue/IDEA-187210
-     * @noinspection JUnitTestCaseWithNoTests, JUnitTestClassNamingConvention
+     * @noinspection JUnitTestCaseWithNoTests
      */
     private static class CheckstyleAntTaskStub extends CheckstyleAntTask {
 
@@ -816,7 +816,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     /**
      * Non meaningful javadoc just to contain "noinspection" tag.
      * Till https://youtrack.jetbrains.com/issue/IDEA-187210
-     * @noinspection JUnitTestCaseWithNoTests, JUnitTestClassNamingConvention
+     * @noinspection JUnitTestCaseWithNoTests
      */
     private static class CheckstyleAntTaskLogStub extends CheckstyleAntTask {
 
@@ -841,7 +841,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     /**
      * Non meaningful javadoc just to contain "noinspection" tag.
      * Till https://youtrack.jetbrains.com/issue/IDEA-187210
-     * @noinspection JUnitTestCaseWithNoTests, JUnitTestClassNamingConvention
+     * @noinspection JUnitTestCaseWithNoTests
      */
     private static final class MessageLevelPair {
 
