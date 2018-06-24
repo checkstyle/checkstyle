@@ -398,7 +398,6 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
 
     /**
      * It is OK to have long test method name here as it describes the test purpose.
-     * @noinspection InstanceMethodNamingConvention
      */
     @Test
     public void testPutNonExistentExternalResourceDifferentExceptionsBetweenRuns()

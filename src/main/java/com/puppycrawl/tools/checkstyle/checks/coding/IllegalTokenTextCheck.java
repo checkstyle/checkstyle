@@ -147,7 +147,6 @@ public class IllegalTokenTextCheck
     /**
      * Set whether or not the match is case sensitive.
      * @param caseInsensitive true if the match is case insensitive.
-     * @noinspection BooleanParameter
      */
     public void setIgnoreCase(boolean caseInsensitive) {
         ignoreCase = caseInsensitive;

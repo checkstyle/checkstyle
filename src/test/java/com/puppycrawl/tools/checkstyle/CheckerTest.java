@@ -498,7 +498,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     /**
      * It is OK to have long test method name here as it describes the test purpose.
-     * @noinspection InstanceMethodNamingConvention
      */
     @Test
     public void testCacheAndCheckWhichDoesNotImplementExternalResourceHolderInterface()
@@ -690,7 +689,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     /**
      * It is OK to have long test method name here as it describes the test purpose.
-     * @noinspection InstanceMethodNamingConvention
      */
     @Test
     public void testCacheAndFilterWhichDoesNotImplementExternalResourceHolderInterface()
@@ -734,7 +732,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     /**
      * It is OK to have long test method name here as it describes the test purpose.
-     * @noinspection InstanceMethodNamingConvention
      */
     // -@cs[ExecutableStatementCount] This test needs to verify many things.
     @Test

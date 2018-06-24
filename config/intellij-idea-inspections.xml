@@ -674,7 +674,10 @@
                      enabled_by_default="true"/>
     <inspection_tool class="ConstantConditionalExpressionJS" enabled="true" level="ERROR"
                      enabled_by_default="true"/>
-    <inspection_tool class="ConstantConditions" enabled="true" level="WARNING"
+    <!-- We cannot use IF_ELSE as it will force us to make code coverage
+         and we will not find Input to satisfy coverage,
+         creation of non-real test case is against our policy of testing. -->
+    <inspection_tool class="ConstantConditions" enabled="false" level="WARNING"
                      enabled_by_default="true">
         <scope name="Tests" enabled="false"/>
         <option name="SUGGEST_NULLABLE_ANNOTATIONS" value="false"/>
@@ -1721,7 +1724,9 @@
                      enabled_by_default="true"/>
     <inspection_tool class="InconsistentLanguageLevel" enabled="true" level="ERROR"
                      enabled_by_default="true"/>
-    <inspection_tool class="InconsistentLineSeparators" enabled="true" level="ERROR"
+    <!-- there are false positives on constant string values
+         that have to contain different line separators -->
+    <inspection_tool class="InconsistentLineSeparators" enabled="false" level="ERROR"
                      enabled_by_default="true"/>
     <inspection_tool class="InconsistentResourceBundle" enabled="true" level="ERROR"
                      enabled_by_default="true"/>

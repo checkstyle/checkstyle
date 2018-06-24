@@ -43,7 +43,7 @@ public class CodeSelectorPresentation {
      * Constructor.
      * @param ast ast node.
      * @param lines2position list to map lines.
-     * @noinspection AssignmentToCollectionOrArrayFieldFromParameter
+     * @noinspection AssignmentOrReturnOfFieldWithMutableType
      */
     public CodeSelectorPresentation(DetailAST ast, List<Integer> lines2position) {
         node = ast;
@@ -54,7 +54,7 @@ public class CodeSelectorPresentation {
      * Constructor.
      * @param node DetailNode node.
      * @param lines2position list to map lines.
-     * @noinspection AssignmentToCollectionOrArrayFieldFromParameter
+     * @noinspection AssignmentOrReturnOfFieldWithMutableType
      */
     public CodeSelectorPresentation(DetailNode node, List<Integer> lines2position) {
         this.node = node;

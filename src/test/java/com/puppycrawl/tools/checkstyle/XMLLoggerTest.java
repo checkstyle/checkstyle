@@ -46,7 +46,6 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
      * Output stream to hold the test results. The IntelliJ IDEA issues the AutoCloseableResource
      * warning here, so it need to be suppressed. The {@code ByteArrayOutputStream} does not hold
      * any resources that need to be released.
-     * @noinspection resource
      */
     private final CloseAndFlushTestByteArrayOutputStream outStream =
         new CloseAndFlushTestByteArrayOutputStream();
