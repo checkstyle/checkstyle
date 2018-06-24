@@ -674,7 +674,10 @@
                      enabled_by_default="true"/>
     <inspection_tool class="ConstantConditionalExpressionJS" enabled="true" level="ERROR"
                      enabled_by_default="true"/>
-    <inspection_tool class="ConstantConditions" enabled="true" level="WARNING"
+    <!-- We cannot use IF_ELSE as it will force us to make code coverage
+         and we will not find Input to satisfy coverage,
+         creation of non-real test case is against our policy of testing. -->
+    <inspection_tool class="ConstantConditions" enabled="false" level="WARNING"
                      enabled_by_default="true">
         <scope name="Tests" enabled="false"/>
         <option name="SUGGEST_NULLABLE_ANNOTATIONS" value="false"/>
@@ -1721,7 +1724,9 @@
                      enabled_by_default="true"/>
     <inspection_tool class="InconsistentLanguageLevel" enabled="true" level="ERROR"
                      enabled_by_default="true"/>
-    <inspection_tool class="InconsistentLineSeparators" enabled="true" level="ERROR"
+    <!-- there are false positives on constant string values
+         that have to contain different line separators -->
+    <inspection_tool class="InconsistentLineSeparators" enabled="false" level="ERROR"
                      enabled_by_default="true"/>
     <inspection_tool class="InconsistentResourceBundle" enabled="true" level="ERROR"
                      enabled_by_default="true"/>
@@ -1957,7 +1962,8 @@
     </inspection_tool>
     <inspection_tool class="JUnitDatapoint" enabled="true" level="ERROR" enabled_by_default="true"/>
     <inspection_tool class="JUnitRule" enabled="true" level="ERROR" enabled_by_default="true"/>
-    <inspection_tool class="JUnitTestClassNamingConvention" enabled="true" level="ERROR"
+    <!-- suppressed till #5949 when we migrate to 2018.1.4 where such rule have new name -->
+    <inspection_tool class="JUnitTestClassNamingConvention" enabled="false" level="ERROR"
                      enabled_by_default="true">
         <option name="m_regex" value="[A-Z][A-Za-z\d]*Test"/>
         <option name="m_minLength" value="8"/>
@@ -3379,6 +3385,12 @@
                        In this case, there will be a warning "AutoCloseableResource", which need
                        to be suppressed. -->
                 <option value="resource"/>
+                <!-- false positives -->
+                <option value="JUnitTestCaseWithNoTests"/>
+                <!-- false positives -->
+                <option value="NewClassNamingConvention"/>
+                <!-- false positives -->
+                <option value="JUnitTestClassNamingConvention"/>
             </list>
         </option>
     </inspection_tool>
