@@ -3388,6 +3388,8 @@
                 <option value="JUnitTestCaseWithNoTests"/>
                 <!-- false positives -->
                 <option value="NewClassNamingConvention"/>
+                <!-- false positives -->
+                <option value="JUnitTestClassNamingConvention"/>
             </list>
         </option>
     </inspection_tool>
