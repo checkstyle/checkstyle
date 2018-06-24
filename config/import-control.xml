@@ -99,6 +99,8 @@
     <allow class="java.nio.file.NoSuchFileException" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.Definitions" local-only="true"/>
 
+    <allow class="com.puppycrawl.tools.checkstyle.GlobalStatefulCheck" local-only="true"/>
+
     <subpackage name="imports">
       <allow class="com.puppycrawl.tools.checkstyle.XmlLoader" local-only="true"/>
     </subpackage>
