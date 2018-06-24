@@ -270,7 +270,6 @@ public final class LocalizedMessage
      * @param moduleId the id of the module the message is associated with
      * @param sourceClass the name of the source for the message
      * @param customMessage optional custom message overriding the default
-     * @noinspection ConstructorWithTooManyParameters
      */
     public LocalizedMessage(
         int lineNo,
