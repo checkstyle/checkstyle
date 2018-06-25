@@ -21,6 +21,12 @@ skip_commits:
     - shippable.yml
     - wercker.yml
     - Jenkinsfile
+    - config/default_sonar_profile.xml
+    - config/intellij-idea-inspection-scope.xml
+    - config/intellij-idea-inspections.properties
+    - config/intellij-idea-inspections.xml
+    - config/org.eclipse.jdt.core.prefs
+    - config/version-number-rules.xml
 
 clone_depth: 10
 branches:
