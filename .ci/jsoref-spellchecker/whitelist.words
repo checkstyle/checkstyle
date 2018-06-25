@@ -1,5 +1,6 @@
 aaaa
 aaaaaa
+Aapt
 aar
 aarch
 abbreviationaswordinname
@@ -28,6 +29,7 @@ allclasses
 alot
 ambig
 Amessages
+ANNOS
 annotationlocation
 annotationonsameline
 annotationusestyle
@@ -78,6 +80,7 @@ attr
 autoboxing
 autocrlf
 Autoproxy
+Autowire
 Autowired
 Autowiring
 avax
@@ -91,6 +94,7 @@ awt
 backend
 backport
 Backquote
+Backticks
 BADN
 badpackage
 baratali
@@ -133,6 +137,7 @@ Bolkensteyn
 booleanexpressioncomplexity
 bothfiles
 bountysource
+Bpmn
 bracesareused
 bsr
 Bsubscribe
@@ -147,6 +152,7 @@ BXOR
 bykey
 Bytecode
 bzip
+Cacheable
 cachefile
 callstack
 camelcase
@@ -209,6 +215,7 @@ classpathref
 classtypeparametername
 clazz
 clemens
+Clickable
 Clientjunk
 clirr
 Cloneable
@@ -236,6 +243,7 @@ columnlimit
 Combobox
 commentsindentation
 commerical
+Compat
 Compiletime
 Comspace
 Concat
@@ -294,6 +302,7 @@ Deserializable
 designforextension
 DEST
 destfile
+Destructuring
 detailast
 detailnodetreestringprinter
 Dexec
@@ -318,6 +327,7 @@ donotignoreexceptions
 Dorekit
 DOTALL
 doubletag
+Dpi
 Dpmd
 Dpuppycrawl
 dropdown
@@ -348,6 +358,7 @@ elasticsearch
 elementdef
 elif
 elist
+Ellipsize
 emacs
 emptyblock
 emptycatchblock
@@ -378,6 +389,7 @@ Evt
 Exceptiontest
 executablestatementcount
 executon
+Exif
 explicitinitialization
 expr
 Externalizable
@@ -484,6 +496,9 @@ Grenner
 grep
 grepped
 grp
+Gsp
+GString
+Gtk
 gui
 gunzip
 gwt
@@ -492,6 +507,7 @@ gz
 gzip
 hadoop
 hamcrest
+Haml
 Hardcoded
 hashcode
 hashset
@@ -511,6 +527,7 @@ hipparchus
 hne
 Homepage
 horizontalwhitespace
+Hostname
 href
 htag
 htdocs
@@ -539,6 +556,7 @@ illegaltoken
 illegaltokentext
 illegaltype
 Imag
+Ime
 img
 iml
 impl
@@ -552,8 +570,10 @@ Incompatabilities
 Inet
 infinispan
 initialiser
+Inlined
 inlining
 innerassignment
+Innerclass
 INNERR
 innertypelast
 Inpection
@@ -607,6 +627,8 @@ javastrangefolder
 javax
 Jax
 jayway
+JB
+JBoss
 JButton
 JCheck
 JCombo
@@ -638,6 +660,7 @@ JOption
 jp
 Jpa
 JPanel
+Jpdl
 jpeg
 jpf
 jpg
@@ -682,6 +705,7 @@ LBRACK
 lbt
 lcurly
 leadsize
+Leanback
 leftcurly
 len
 lexer
@@ -742,6 +766,7 @@ MEZk
 Micha
 Microsoft
 minimalistic
+Mipmap
 misconfigured
 Misordered
 missingctor
@@ -787,6 +812,7 @@ myformat
 myname
 mypackage
 myproject
+Mysql
 mytag
 n'th
 NAMEFILE
@@ -809,6 +835,7 @@ nestedtrydepth
 netbeans
 newdomain
 newlineatendoffile
+Nfc
 Nfo
 Niederhauser
 nio
@@ -907,6 +934,7 @@ packagestate
 packge
 packifc
 packpub
+Pageflow
 pageview
 Papaioannou
 paraception
@@ -950,11 +978,11 @@ powermock
 Ppitest
 prameterless
 preformatted
-prefs
 printf
 println
 priva
 programpractice
+Proguard
 propertycachefile
 propertyfile
 prot
@@ -984,6 +1012,7 @@ rcurly
 rdiachenko
 RDz
 README
+Readonly
 rebasing
 redundantimport
 redundantmodifier
@@ -1025,6 +1054,7 @@ RRRR
 RSPEC
 rss
 rtc
+Rtl
 ru
 ruleset
 Ruslan
@@ -1038,7 +1068,8 @@ Schneeberger
 scm
 scp
 screenshot
-SDK
+Scss
+sdk
 selfexplanatory
 Selkin
 separatorwrap
@@ -1063,6 +1094,7 @@ sivakumar
 Slawinski
 slf
 slist
+Sms
 smth
 snyk
 solr
@@ -1100,6 +1132,7 @@ stackoverflowerror
 Stacktrace
 standalone
 staticvariablename
+Stdlib
 stdout
 stefanbirkner
 stemp
@@ -1110,6 +1143,7 @@ streamapi
 strictfp
 stringliteralequality
 Studman
+Styleable
 styleguide
 stylesheets
 subdir
@@ -1172,6 +1206,8 @@ tokenks
 tokennizer
 tokentype
 tolist
+Toolbar
+Touchscreen
 trailingcomment
 treelayout
 treewalker
@@ -1181,7 +1217,6 @@ tstamp
 tt
 ttf
 ttype
-Tvs
 tw
 typecastparenpad
 typename
@@ -1190,8 +1225,10 @@ typevariablenames
 uber
 Ubuntu
 ucc
+UElement
 ufeff
 ul
+UMD
 UML
 uname
 uncomment
@@ -1205,7 +1242,7 @@ Unitless
 unlzma
 unnecessaryparentheses
 Unproxyable
-Unregister
+unregister
 unsubscribe
 unusedimports
 unxz
@@ -1231,6 +1268,7 @@ versioning
 verticalwhitespace
 Vetrenko
 Veyor
+Vfs
 viewcvs
 visibilitymodifier
 visualstudio
@@ -1240,11 +1278,14 @@ Vladlis
 vm
 vscode
 Vtl
+Wadl
+Wakelock
 Warni
 wbr
 Weakento
 Webflow
 Weblogic
+Webp
 Website
 webtoolkit
 Wellformedness
@@ -1256,6 +1297,7 @@ Whitebox
 whitelist
 whitespaceafter
 whitespacearound
+Wifi
 wiki
 wikipedia
 wiktionary
