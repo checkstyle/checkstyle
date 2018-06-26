@@ -1355,20 +1355,20 @@ import java.util.stream.IntStream;
         <p>Since Checkstyle 3.2</p>
         <p>Checks the ordering/grouping of imports. Features are:</p>
         <ul>
-          <li>groups imports: ensures that groups of imports come in a
+          <li>groups type/static imports: ensures that groups of imports come in a
           specific order (e.g., java. comes first, javax. comes second,
           then everything else)</li>
-          <li>adds a separation between groups : ensures that a blank
+          <li>adds a separation between type import groups : ensures that a blank
           line sit between each group</li>
-          <li>import groups aren't separated internally: ensures that
+          <li>type/static import groups aren't separated internally: ensures that
           each group aren't separated internally by blank line or comment</li>
-          <li>sorts imports inside each group: ensures that imports
+          <li>sorts type/static imports inside each group: ensures that imports
           within each group are in lexicographic order</li>
           <li>sorts according to case: ensures that the comparison
           between imports is case sensitive, in
           <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a></li>
-          <li>groups static imports: ensures the relative order between
-          regular imports and static imports (see
+          <li>arrange static imports: ensures the relative order between
+          type imports and static imports (see
           <a href="property_types.html#importOrder">import orders</a>)</li>
          </ul>
         <p>
@@ -1388,7 +1388,7 @@ import java.util.stream.IntStream;
           </tr>
           <tr>
             <td>option</td>
-            <td>policy on the relative order between regular imports and static imports</td>
+            <td>policy on the relative order between type imports and static imports</td>
             <td><a href="property_types.html#importOrder">Import Order Policy</a></td>
             <td><code>under</code></td>
             <td>5.0</td>
@@ -1396,9 +1396,12 @@ import java.util.stream.IntStream;
           <tr>
             <td>groups</td>
             <td>
-              list of imports groups (every group identified either by a
+              list of <b>type import</b> groups (every group identified either by a
               common prefix string, or by a regular expression enclosed
-              in forward slashes (e.g. <code>/regexp/</code>)
+              in forward slashes (e.g. <code>/regexp/</code>). All type imports,
+              which does not match any group, falls into an additional group, located at the end.
+              Thus, the empty list of type groups (the default value) means
+              one group for all type imports.
             </td>
             <td><a href="property_types.html#regexp">Regular Expressions</a></td>
             <td><code>{}</code></td>
@@ -1406,7 +1409,7 @@ import java.util.stream.IntStream;
           </tr>
           <tr>
             <td>ordered</td>
-            <td>whether imports within group should be sorted
+            <td>whether type imports within each group should be sorted
               (It doesn't affect sorting for static imports.)</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>true</td>
@@ -1415,7 +1418,7 @@ import java.util.stream.IntStream;
           <tr>
             <td>separated</td>
             <td>
-              whether imports groups should be separated by, at least, one
+              whether type import groups should be separated by, at least, one
               blank line or comment and aren't separated internally.
               (It doesn't affect separations for static imports.)
             </td>
@@ -1427,17 +1430,31 @@ import java.util.stream.IntStream;
             <td>caseSensitive</td>
             <td>whether string comparison should be case sensitive or not.
               Case sensitive sorting is in
-              <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>
+              <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.
+              (It affects both type imports and static imports)
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>true</td>
             <td>3.3</td>
           </tr>
           <tr>
+            <td>staticGroups</td>
+            <td>
+                list of <b>static</b> import groups (every group identified either by a
+                common prefix string, or by a regular expression enclosed
+                in forward slashes (e.g. <code>/regexp/</code>). All static imports,
+                which does not match any group, falls into an additional group, located at the end.
+                Thus, the empty list of static groups (the default value) means
+                one group for all static imports.
+            </td>
+            <td><a href="property_types.html#regexp">Regular Expressions</a></td>
+            <td><code>{}</code></td>
+            <td>8.12</td>
+          </tr>
+          <tr>
             <td>sortStaticImportsAlphabetically</td>
-            <td>whether <b>static imports</b> grouped by <b>top</b> or <b>bottom</b> option
-                are sorted alphabetically or not.
-                Attention: It is applied to all static imports as one group.</td>
+            <td>whether <b>static imports</b> located at <b>top</b> or <b>bottom</b> are sorted
+                within the group.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
             <td>6.5</td>
@@ -1474,7 +1491,7 @@ import java.util.stream.IntStream;
            (tested on Kepler and Luna releases):</p>
         <ul>
           <li>group of static imports is on the top</li>
-          <li>groups of non-static imports: &quot;java&quot; and &quot;javax&quot; packages first,
+          <li>groups of type imports: &quot;java&quot; and &quot;javax&quot; packages first,
               then &quot;org&quot; and then all other imports</li>
           <li>imports will be sorted in the groups</li>
           <li>groups are separated by, at least, one blank line and aren't separated internally</li>
@@ -1501,7 +1518,7 @@ import java.util.stream.IntStream;
            configuration (tested on Mars release):</p>
         <ul>
           <li>group of static imports is on the top</li>
-          <li>groups of non-static imports: &quot;java&quot; and &quot;javax&quot; packages first,
+          <li>groups of type imports: &quot;java&quot; and &quot;javax&quot; packages first,
               then &quot;org&quot; and &quot;com&quot;, then all other imports as one group</li>
           <li>imports will be sorted in the groups</li>
           <li>groups are separated by, at least, one blank line and aren't separated internally</li>
@@ -1521,7 +1538,7 @@ import java.util.stream.IntStream;
            configuration (tested on v14):</p>
         <ul>
           <li>group of static imports is on the bottom</li>
-          <li>groups of non-static imports: all imports except of &quot;javax&quot;
+          <li>groups of type imports: all imports except of &quot;javax&quot;
               and &quot;java&quot;, then &quot;javax&quot; and &quot;java&quot;</li>
           <li>imports will be sorted in the groups</li>
           <li>groups are separated by, at least, one blank line and aren't separated internally</li>
@@ -1546,7 +1563,7 @@ import java.util.stream.IntStream;
         <p>To configure the check so that it matches default NetBeans formatter configuration
            (tested on v8):</p>
         <ul>
-          <li>groups of non-static imports are not defined, all imports will be sorted as a one
+          <li>groups of type imports are not defined, all imports will be sorted as a one
               group</li>
           <li>static imports are not separated, they will be sorted along with other imports</li>
         </ul>
@@ -1577,6 +1594,26 @@ import static org.abego.treelayout.Configuration.AlignmentInLevel; // OK, alphab
 import org.abego.*;
 
 import java.util.Set; //  Wrong order for 'java.util.Set' import.
+
+public class SomeClass { ... }
+        </source>
+
+        <p>
+          To configure the Check with groups of static imports:
+        </p>
+
+        <source>
+&lt;module name=&quot;ImportOrder&quot;&gt;
+  &lt;property name=&quot;staticGroups&quot; value=&quot;org,java&quot;/&gt;
+  &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <source>
+import static org.abego.treelayout.Configuration.AlignmentInLevel; // Group 1
+import static java.lang.Math.abs; // Group 2
+import static java.lang.String.format; // Group 2
+import static com.google.common.primitives.Doubles.BYTES; // Group "everything else"
 
 public class SomeClass { ... }
         </source>
