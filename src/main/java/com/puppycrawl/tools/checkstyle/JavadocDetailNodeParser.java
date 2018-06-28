@@ -23,10 +23,10 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
 
-import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BailErrorStrategy;
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.BufferedTokenStream;
+import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonToken;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.FailedPredicateException;
@@ -165,12 +165,9 @@ public class JavadocDetailNodeParser {
      * @param blockComment
      *        block comment content.
      * @return parse tree
-     * @noinspection deprecation
      */
     private JavadocParser createJavadocParser(String blockComment) {
-        final ANTLRInputStream input = new ANTLRInputStream(blockComment);
-
-        final JavadocLexer lexer = new JavadocLexer(input);
+        final JavadocLexer lexer = new JavadocLexer(CharStreams.fromString(blockComment));
 
         final CommonTokenStream tokens = new CommonTokenStream(lexer);
 
