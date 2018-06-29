@@ -488,6 +488,10 @@
     <!-- Modifiers -->
     <module name="ModifierOrder"/>
     <module name="RedundantModifier"/>
+    <module name="InterfaceMemberImpliedModifier">
+      <!-- effectively the opposite of RedundantModifier, so output must be ignored -->
+      <property name="severity" value="ignore"/>
+    </module>
 
     <!-- Naming Conventions -->
     <module name="AbbreviationAsWordInName">
