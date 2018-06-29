@@ -347,6 +347,12 @@
         Use Interfaces only to define types.</td>
       </tr>
       <tr>
+        <td><a href="config_modifier.html#InterfaceMemberImpliedModifier">
+          InterfaceMemberImpliedModifier</a></td>
+        <td>
+          Checks for implicit modifiers on interface members and nested types.</td>
+      </tr>
+      <tr>
         <td><a href="config_naming.html#InterfaceTypeParameterName">
           InterfaceTypeParameterName</a></td>
         <td>
