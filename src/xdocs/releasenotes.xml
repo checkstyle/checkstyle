@@ -16,6 +16,81 @@
   <body>
     <!-- placeholder for a new section -->
 
+    <section name="Release 8.11">
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Add HTML5 tags support to Javadoc antlr4 grammar and related classes. Author: Piyush Sharma <a href="https://github.com/checkstyle/checkstyle/issues/3332">#3332</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            Generate a suppressions.xml file for SuppressionXpathFilter from the errors list by CLI command. Author: timurt <a href="https://github.com/checkstyle/checkstyle/issues/102">#102</a>
+          </li>
+          <li>
+            new Check - LambdaParameterName. Author: kazachka <a href="https://github.com/checkstyle/checkstyle/issues/5893">#5893</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            ImportOrder: False positive for multiline imports. Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5881">#5881</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Remove usages of ANTLRInputStream . Author: Pavel Bludov <a href="https://github.com/checkstyle/checkstyle/issues/5971">#5971</a>
+          </li>
+          <li>
+            Update Teamcity to use IntelliJ IDEA 2018.1.4. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5949">#5949</a>
+          </li>
+          <li>
+            Setup Jenkins CI for building Pull Requests. Author: Daniil Yaroslavtsev <a href="https://github.com/checkstyle/checkstyle/issues/5953">#5953</a>
+          </li>
+          <li>
+            RightCurly: false negative in ALONE and anonymous classes. Author: Piyush Sharma <a href="https://github.com/checkstyle/checkstyle/issues/4058">#4058</a>
+          </li>
+          <li>
+            xpath generator documentation does not show nuances. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5876">#5876</a>
+          </li>
+          <li>
+            Enforce more checks over checkstyle resources. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/4100">#4100</a>
+          </li>
+          <li>
+            Resolve errors and warnings from Eclipse oxygen 4.7.3. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5916">#5916</a>
+          </li>
+          <li>
+            Remove old ant phases and configs. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5934">#5934</a>
+          </li>
+          <li>
+            No explanation of what is metadata tag on checkstyle config. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2726">#2726</a>
+          </li>
+          <li>
+            http://checkstyle.sourceforge.net to http://checkstyle.org.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/5601">#5601</a>
+          </li>
+          <li>
+            doc: update xdoc for ParameterName to clarify how to check catch parameters.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            CircleCI compains 'extraneous key [java] is not permitted'. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5902">#5902</a>
+          </li>
+          <li>
+            update DTD public names. Author: Subbu Dantu, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5722">#5722</a>
+          </li>
+          <li>
+            activate new sponsoring web services. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5256">#5256</a>
+          </li>
+          <li>
+            Rename all utility classes to xxxxUtil. Author: Pavel Bludov, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/5812">#5812</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 8.10.1">
       <p>Bug fixes:</p>
         <ul>
