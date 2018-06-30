@@ -45,6 +45,8 @@ mv htdocs/new-site/ .
 mv htdocs htdocs-$PREV_RELEASE
 mv new-site htdocs
 ln -s /home/project-web/checkstyle/reports htdocs/reports
+# restore folder with links to old releases
+mv htdocs-$PREV_RELEASE/version htdocs
 
 # Archiving
 tar cfz htdocs-$PREV_RELEASE.tar.gz htdocs-$PREV_RELEASE/
