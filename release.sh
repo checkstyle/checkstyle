@@ -7,7 +7,7 @@ set -e
 SF_USER=romanivanov
 RELEASE=$(xmlstarlet sel -N pom=http://maven.apache.org/POM/4.0.0 \
            -t -m pom:project -v pom:version pom.xml | sed "s/-SNAPSHOT//")
-PREV_RELEASE=$(git describe $(git rev-list --tags --max-count=1) | sed "s/checkstyle-//")
+PREV_RELEASE=$(git describe --abbrev=0 $(git rev-list --tags --max-count=1) | sed "s/checkstyle-//")
 
 echo "PREVIOUS RELEASE version:"$PREV_RELEASE
 echo "RELEASE version:"$RELEASE
