@@ -326,15 +326,54 @@
         </tr>
 
         <tr>
+          <td><code>alone</code></td>
+          <td>
+            The brace must be alone on the line. For example:
+            <pre>
+    try {
+        ...
+    <b>}</b>
+    finally {
+        ...
+    <b>}</b>
+            </pre>
+          </td>
+        </tr>
+
+        <tr>
+          <td><code>alone_or_singleline</code></td>
+          <td>
+                  The brace must be alone on the line, yet
+                  single-line format of block is allowed.
+                  For example:
+            <pre>
+    // Brace is alone on the line
+    try {
+        ...
+    <b>}</b>
+    finally {
+        ...
+    <b>}</b>
+
+    // Single-line format of block
+    public long getId() { return id; <b>}</b>
+            </pre>
+          </td>
+        </tr>
+
+        <tr>
           <td><code>same</code></td>
           <td>
-            The brace should be on the same line as the next part of a multi-block statement
+            Work as alone_or_singleline but the brace should be on the same line
+            as the next part of a multi-block statement
             (one that directly contains multiple blocks: if/else-if/else or try/catch/finally).
             It also allows single-line format of multi-block statements.
 
             <p>Examples:</p>
 
               <pre>
+    public long getId() {return id;<b>}</b> // this is OK, it is single line
+
     // try-catch-finally blocks
     try {
         ...
@@ -368,21 +407,15 @@
        ...
     }
 
-    if (a > 0) {
+    if (a &#62; 0) {
        ...
-    <b>}</b> int i = 5; // this is NOT OK, next part of a multi-block statement is absent
-
-    // Single line blocks will rise violations, because right curly
-    // brace is not on the same line as the next part of a multi-block
-    // statement, it just ends the line.
-    public long getId() {return id;<b>}</b> // this is NOT OK
+    <b>}</b> int i = 5; // NOT OK, should be alone as next part of a multi-block statement is absent
 
     Thread t = new Thread(new Runnable() {
        @Override
        public void run() {
                   ...
-       <b>}</b> // this is NOT OK, brace is not on the same line as the next part
-         // of a multi-block statement
+       <b>}</b> // this is OK, should be alone as next part of a multi-block statement is absent
     <b>}</b>); // this is OK, allowed for better code readability
 
     if (a &#62; 0) { ... <b>}</b> // OK, single-line multi-block statement
@@ -394,41 +427,6 @@
           </td>
         </tr>
 
-        <tr>
-          <td><code>alone</code></td>
-          <td>
-            The brace must be alone on the line. For example:
-            <pre>
-    try {
-        ...
-    <b>}</b>
-    finally {
-        ...
-    <b>}</b>
-            </pre>
-          </td>
-        </tr>
-
-          <tr>
-              <td><code>alone_or_singleline</code></td>
-              <td>
-                  The brace must be alone on the line, yet
-                  single-line format of block is allowed.
-                  For example:
-                  <pre>
-    // Brace is alone on the line
-    try {
-        ...
-    <b>}</b>
-    finally {
-        ...
-    <b>}</b>
-
-    // Single-line format of block
-    public long getId() { return id; <b>}</b>
-                  </pre>
-              </td>
-          </tr>
       </table>
     </section>
 
