@@ -204,6 +204,7 @@ checkutil
 chmod
 chr
 ci
+cidfile
 circleci
 Claira
 classdataabstractioncoupling
@@ -758,6 +759,7 @@ mct
 membername
 MENFORCER
 metadata
+Metaspace
 methodcount
 methodlength
 methodname
@@ -844,6 +846,7 @@ nlow
 NMTOKEN
 noarch
 noarg
+noauto
 nobr
 noclone
 nocstylearray
@@ -1349,11 +1352,13 @@ xpathfilter
 xpathmapper
 xpathquerygenerator
 xsd
+Xshow
 xsi
 xsl
 Xslt
 xsltproc
 XSO
+Xss
 xterm
 xtr
 xwiki
