@@ -59,8 +59,8 @@
     <section name="Download">
       <p>
         The latest release of Checkstyle can be downloaded from <a
-        href="https://sourceforge.net/projects/checkstyle/files/checkstyle/">the
-        SourceForge download page</a>, or
+        href="https://github.com/checkstyle/checkstyle/releases/">the
+        GitHub releases page</a>, or
         <a href="http://search.maven.org/#search|gav|1|g%3A%22com.puppycrawl.tools%22%20AND%20a%3A%22checkstyle%22">
             Maven central</a>.
       </p>
