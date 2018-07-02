@@ -66,6 +66,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   <tr><td>separated</td><td>whether type imports groups should be separated by, at least,
  *       one blank line or comment and aren't separated internally
  *       </td><td>Boolean</td><td>false</td></tr>
+ *   <tr><td>separatedStaticGroups</td><td>whether static imports should be separated by, at least,
+ *       one blank line or comment and aren't separated internally
+ *       </td><td>Boolean</td><td>false</td></tr>
  *   <tr><td>caseSensitive</td><td>whether string comparison should be case sensitive or not.
  *       Case sensitive sorting is in ASCII sort order</td><td>Boolean</td><td>true</td></tr>
  *   <tr><td>staticGroups</td><td>list of static import groups (every group identified either by a
@@ -220,6 +223,8 @@ public class ImportOrderCheck
     private Pattern[] staticGroups = EMPTY_PATTERN_ARRAY;
     /** Require imports in group be separated. */
     private boolean separated;
+    /** Require static imports in group be separated. */
+    private boolean separatedStaticGroups;
     /** Require imports in group. */
     private boolean ordered = true;
     /** Should comparison be case sensitive. */
@@ -235,6 +240,8 @@ public class ImportOrderCheck
     private boolean lastImportStatic;
     /** Whether there was any imports. */
     private boolean beforeFirstImport;
+    /** Whether static imports are independent. **/
+    private boolean staticImportsIndependent;
     /** Whether static imports should be sorted alphabetically or not. */
     private boolean sortStaticImportsAlphabetically;
     /** Whether to use container ordering (Eclipse IDE term) for static imports or not. */
@@ -291,13 +298,24 @@ public class ImportOrderCheck
 
     /**
      * Sets whether or not groups of type imports must be separated from one another
-     * by at least one blank line.
+     * by at least one blank line or comment.
      *
      * @param separated
-     *            whether groups should be separated by one blank line.
+     *            whether groups should be separated by one blank line or comment.
      */
     public void setSeparated(boolean separated) {
         this.separated = separated;
+    }
+
+    /**
+     * Sets whether or not groups of static imports must be separated from one another
+     * by at least one blank line or comment.
+     *
+     * @param separatedStaticGroups
+     *            whether groups should be separated by one blank line or comment.
+     */
+    public void setSeparatedStaticGroups(boolean separatedStaticGroups) {
+        this.separatedStaticGroups = separatedStaticGroups;
     }
 
     /**
@@ -349,6 +367,8 @@ public class ImportOrderCheck
         lastImport = "";
         lastImportStatic = false;
         beforeFirstImport = true;
+        staticImportsIndependent =
+            option == ImportOrderOption.TOP || option == ImportOrderOption.BOTTOM;
     }
 
     // -@cs[CyclomaticComplexity] SWITCH was transformed into IF-ELSE.
@@ -419,12 +439,10 @@ public class ImportOrderCheck
      */
     private void doVisitToken(FullIdent ident, boolean isStatic, boolean previous, int line) {
         final String name = ident.getText();
-        final boolean staticImportsIndependent =
-                option == ImportOrderOption.TOP || option == ImportOrderOption.BOTTOM;
         final int groupIdx = getGroupNumber(isStatic && staticImportsIndependent, name);
 
         if (groupIdx > lastGroup) {
-            if (!beforeFirstImport && !isStatic && separated && line - lastImportLine < 2) {
+            if (!beforeFirstImport && line - lastImportLine < 2 && needSparator(isStatic)) {
                 log(line, MSG_SEPARATION, name);
             }
         }
@@ -434,7 +452,7 @@ public class ImportOrderCheck
         else {
             log(line, MSG_ORDERING, name);
         }
-        if (isSeparatorInGroup(groupIdx, line)) {
+        if (isSeparatorInGroup(groupIdx, isStatic, line)) {
             log(line, MSG_SEPARATED_IN_GROUP, name);
         }
 
@@ -443,14 +461,29 @@ public class ImportOrderCheck
     }
 
     /**
+     * Checks whether import groups should be separated.
+     * @param isStatic whether the token is static or not.
+     * @return true if imports groups should be separated.
+     */
+    private boolean needSparator(boolean isStatic) {
+        final boolean isSeparatedImports = !isStatic && separated;
+        final boolean isSeparatedStaticGroups = isStatic && separatedStaticGroups;
+        final boolean isSeparatedBetween = isStatic != lastImportStatic
+            && (separated || separatedStaticGroups && staticImportsIndependent);
+
+        return isSeparatedImports || isSeparatedStaticGroups || isSeparatedBetween;
+    }
+
+    /**
      * Checks whether imports group separated internally.
      * @param groupIdx group number.
+     * @param isStatic whether the token is static or not.
      * @param line the line of the current import.
      * @return true if imports group are separated internally.
      */
-    private boolean isSeparatorInGroup(int groupIdx, int line) {
+    private boolean isSeparatorInGroup(int groupIdx, boolean isStatic, int line) {
         final boolean inSameGroup = groupIdx == lastGroup;
-        return (!separated || inSameGroup) && isSeparatorBeforeImport(line);
+        return (inSameGroup || !needSparator(isStatic)) && isSeparatorBeforeImport(line);
     }
 
     /**
@@ -510,8 +543,7 @@ public class ImportOrderCheck
             if (useContainerOrderingForStatic) {
                 result = compareContainerOrder(lastImport, name, caseSensitive) >= 0;
             }
-            else if (option == ImportOrderOption.TOP
-                || option == ImportOrderOption.BOTTOM) {
+            else if (staticImportsIndependent) {
                 result = sortStaticImportsAlphabetically
                     && compare(lastImport, name, caseSensitive) >= 0;
             }

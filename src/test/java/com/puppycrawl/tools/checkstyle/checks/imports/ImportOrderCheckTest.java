@@ -120,6 +120,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportOrderCheck.class);
         checkConfig.addAttribute("groups", "java.awt, javax.swing, java.io, java.util");
         checkConfig.addAttribute("separated", "true");
+        checkConfig.addAttribute("separatedStaticGroups", "true");
         checkConfig.addAttribute("ordered", "false");
         final String[] expected = {
             "9: " + getCheckMessage(MSG_SEPARATION, "javax.swing.JComponent"),
@@ -514,8 +515,6 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("separated", "true");
         checkConfig.addAttribute("groups", "java, org");
         final String[] expected = {
-            // Till https://github.com/checkstyle/checkstyle/issues/5279
-            //"4: " + getCheckMessage(MSG_SEPARATION, "org.antlr.v4.runtime.CommonToken.*"),
             "5: " + getCheckMessage(MSG_ORDERING, "org.antlr.v4.runtime.CommonToken.*"),
             "7: " + getCheckMessage(MSG_ORDERING, "java.util.Set"),
         };
