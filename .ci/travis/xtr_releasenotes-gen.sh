@@ -17,6 +17,7 @@ if [ -d contribution ]; then
   cd contribution/
   git reset --hard origin/master
   git pull origin master
+  git fetch --tags
   cd ../
 else
   git clone https://github.com/checkstyle/contribution
@@ -30,6 +31,7 @@ if [ -d checkstyle ]; then
   cd checkstyle/
   git reset --hard origin/master
   git pull origin master
+  git fetch --tags
   cd ../
 else
   git clone https://github.com/checkstyle/checkstyle
