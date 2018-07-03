@@ -101,7 +101,7 @@ public abstract class AbstractXpathRegressionTest extends AbstractModuleTestSupp
      * @throws IOException if I/O exception occurs while forming the path.
      */
     protected String getPath(String checkName, String filename) throws IOException {
-        final String subpackage = checkName.toLowerCase(Locale.getDefault())
+        final String subpackage = checkName.toLowerCase(Locale.ENGLISH)
                 .replace("check", "");
         return new File("src/it/resources/" + getPackageLocation()
                 + "/" + subpackage + "/" + filename)

@@ -47,7 +47,7 @@ public class XpathRegressionRequireThisTest extends AbstractXpathRegressionTest 
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "CLASS_DEF[@text='SuppressionXpathRegressionRequireThisOne']/OBJBLOCK"
+            "/CLASS_DEF[@text='SuppressionXpathRegressionRequireThisOne']/OBJBLOCK"
                 + "/METHOD_DEF[@text='changeAge']/SLIST/EXPR/ASSIGN[@text='age']/IDENT"
         );
 
