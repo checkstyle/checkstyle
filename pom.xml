@@ -1139,6 +1139,7 @@
         <configuration>
           <includes>
             <include>com/google/**/*.java</include>
+            <include>org/checkstyle/**/*.java</include>
           </includes>
         </configuration>
         <executions>
