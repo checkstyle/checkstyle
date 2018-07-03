@@ -144,6 +144,7 @@ public class EmptyLineSeparatorCheckTest
         final int[] expected = {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
+            TokenTypes.STATIC_IMPORT,
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
@@ -214,6 +215,13 @@ public class EmptyLineSeparatorCheckTest
         verify(checkConfig,
                 getPath("InputEmptyLineSeparatorMultipleEmptyLinesInside.java"),
                 expected);
+    }
+
+    @Test
+    public void testImportsAndStaticImports() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputEmptyLineSeparatorImports.java"), expected);
     }
 
     @Test

@@ -38,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <p> By default the check will check the following statements:
  *  {@link TokenTypes#PACKAGE_DEF PACKAGE_DEF},
  *  {@link TokenTypes#IMPORT IMPORT},
+ *  {@link TokenTypes#STATIC_IMPORT STATIC_IMPORT},
  *  {@link TokenTypes#CLASS_DEF CLASS_DEF},
  *  {@link TokenTypes#INTERFACE_DEF INTERFACE_DEF},
  *  {@link TokenTypes#STATIC_INIT STATIC_INIT},
@@ -266,6 +267,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         return new int[] {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
+            TokenTypes.STATIC_IMPORT,
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
@@ -302,7 +304,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
                     processVariableDef(ast, nextToken);
                     break;
                 case TokenTypes.IMPORT:
-                    processImport(ast, nextToken, astType);
+                case TokenTypes.STATIC_IMPORT:
+                    processImport(ast, nextToken);
                     break;
                 case TokenTypes.PACKAGE_DEF:
                     processPackage(ast, nextToken);
@@ -434,10 +437,10 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * Process Import.
      * @param ast token
      * @param nextToken next token
-     * @param astType token Type
      */
-    private void processImport(DetailAST ast, DetailAST nextToken, int astType) {
-        if (astType != nextToken.getType() && !hasEmptyLineAfter(ast)) {
+    private void processImport(DetailAST ast, DetailAST nextToken) {
+        if (nextToken.getType() != TokenTypes.IMPORT
+                && nextToken.getType() != TokenTypes.STATIC_IMPORT && !hasEmptyLineAfter(ast)) {
             log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
         }
     }
