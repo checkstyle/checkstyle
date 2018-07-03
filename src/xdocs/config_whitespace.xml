@@ -268,6 +268,8 @@ for (Iterator foo = very.long.line.iterator();
                 PACKAGE_DEF</a>,
             <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
                 IMPORT</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
+                STATIC_IMPORT</a>,
             <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
                 CLASS_DEF</a>,
             <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
@@ -290,6 +292,8 @@ for (Iterator foo = very.long.line.iterator();
                 PACKAGE_DEF</a>,
             <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
                 IMPORT</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
+                STATIC_IMPORT</a>,
             <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
                 CLASS_DEF</a>,
             <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
