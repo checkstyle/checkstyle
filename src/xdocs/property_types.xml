@@ -364,7 +364,7 @@
         <tr>
           <td><code>same</code></td>
           <td>
-            Work as alone_or_singleline but the brace should be on the same line
+            Works like <code>alone_or_singleline</code> but the brace should be on the same line
             as the next part of a multi-block statement
             (one that directly contains multiple blocks: if/else-if/else or try/catch/finally).
             It also allows single-line format of multi-block statements.
@@ -409,14 +409,14 @@
 
     if (a &#62; 0) {
        ...
-    <b>}</b> int i = 5; // NOT OK, should be alone as next part of a multi-block statement is absent
+    <b>}</b> int i = 5;// NOT OK, next part of a multi-block statement is absent, so should be alone
 
     Thread t = new Thread(new Runnable() {
        @Override
        public void run() {
                   ...
        <b>}</b> // this is OK, should be alone as next part of a multi-block statement is absent
-    <b>}</b>); // this is OK, allowed for better code readability
+    <b>}</b>); // this is OK, this case is out of scope of RightCurly Check (see issue #5945)
 
     if (a &#62; 0) { ... <b>}</b> // OK, single-line multi-block statement
     if (a &#62; 0) { ... } else { ... <b>}</b> // OK, single-line multi-block statement
