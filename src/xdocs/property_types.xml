@@ -409,7 +409,7 @@
 
     if (a &#62; 0) {
        ...
-    <b>}</b> int i = 5;// NOT OK, next part of a multi-block statement is absent, so should be alone
+    <b>}</b> int i = 5; // NOT OK, no next part of a multi-block statement, so should be alone
 
     Thread t = new Thread(new Runnable() {
        @Override
