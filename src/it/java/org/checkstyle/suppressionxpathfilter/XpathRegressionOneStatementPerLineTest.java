@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck;
 
-public class XpathRegressionOneStatementPerLineTest extends AbstractXpathRegressionTest {
+public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
@@ -50,7 +50,7 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathRegress
                 + "/VARIABLE_DEF[@text='j']/SEMI"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 
@@ -74,7 +74,7 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathRegress
                 + "/METHOD_DEF[@text='foo5']/SLIST/LITERAL_FOR/SLIST/SEMI"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 }

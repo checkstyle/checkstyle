@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 
-public class XpathRegressionHiddenFieldTest extends AbstractXpathRegressionTest {
+public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
@@ -51,7 +51,7 @@ public class XpathRegressionHiddenFieldTest extends AbstractXpathRegressionTest 
                 + "/PARAMETER_DEF[@text='value']/IDENT"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 
@@ -75,7 +75,7 @@ public class XpathRegressionHiddenFieldTest extends AbstractXpathRegressionTest 
                 + "/METHOD_DEF[@text='method']/PARAMETERS/PARAMETER_DEF[@text='other']/IDENT"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 }

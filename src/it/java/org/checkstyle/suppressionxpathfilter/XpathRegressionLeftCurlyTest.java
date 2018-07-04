@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
 import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption;
 
-public class XpathRegressionLeftCurlyTest extends AbstractXpathRegressionTest {
+public class XpathRegressionLeftCurlyTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
@@ -52,7 +52,7 @@ public class XpathRegressionLeftCurlyTest extends AbstractXpathRegressionTest {
             "/CLASS_DEF[@text='SuppressionXpathRegressionLeftCurlyOne']/OBJBLOCK/LCURLY"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 
@@ -77,7 +77,7 @@ public class XpathRegressionLeftCurlyTest extends AbstractXpathRegressionTest {
             "/CLASS_DEF[@text='SuppressionXpathRegressionLeftCurlyTwo']/OBJBLOCK/LCURLY"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 
@@ -101,7 +101,7 @@ public class XpathRegressionLeftCurlyTest extends AbstractXpathRegressionTest {
                 + "/METHOD_DEF[@text='sample']/SLIST/LITERAL_IF/SLIST"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 }

@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck;
 
-public class XpathRegressionNestedForDepthTest extends AbstractXpathRegressionTest {
+public class XpathRegressionNestedForDepthTest extends AbstractXpathTestSupport {
 
     @Test
     public void testCorrect() throws Exception {
@@ -50,7 +50,7 @@ public class XpathRegressionNestedForDepthTest extends AbstractXpathRegressionTe
                 + "/METHOD_DEF[@text='test']/SLIST/LITERAL_FOR/SLIST/LITERAL_FOR/SLIST/LITERAL_FOR"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 }

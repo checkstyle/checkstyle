@@ -19,6 +19,8 @@
 
 package com.google.checkstyle.test.chapter5naming.rule51identifiernames;
 
+import java.util.Map;
+
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.AbstractModuleTestSupport;
@@ -36,14 +38,15 @@ public class CatchParameterNameTest extends AbstractModuleTestSupport {
         final String msgKey = "name.invalidPattern";
         final Configuration checkConfig = getModuleConfig("CatchParameterName");
         final String format = checkConfig.getAttribute("format");
+        final Map<String, String> messages = checkConfig.getMessages();
 
         final String[] expected = {
-            "47:28: " + getCheckMessage(checkConfig.getMessages(), msgKey, "iException", format),
-            "50:28: " + getCheckMessage(checkConfig.getMessages(), msgKey, "ex_1", format),
-            "53:28: " + getCheckMessage(checkConfig.getMessages(), msgKey, "eX", format),
-            "56:28: " + getCheckMessage(checkConfig.getMessages(), msgKey, "eXX", format),
-            "59:28: " + getCheckMessage(checkConfig.getMessages(), msgKey, "x_y_z", format),
-            "62:28: " + getCheckMessage(checkConfig.getMessages(), msgKey, "Ex", format),
+            "47:28: " + getCheckMessage(messages, msgKey, "iException", format),
+            "50:28: " + getCheckMessage(messages, msgKey, "ex_1", format),
+            "53:28: " + getCheckMessage(messages, msgKey, "eX", format),
+            "56:28: " + getCheckMessage(messages, msgKey, "eXX", format),
+            "59:28: " + getCheckMessage(messages, msgKey, "x_y_z", format),
+            "62:28: " + getCheckMessage(messages, msgKey, "Ex", format),
         };
 
         final String filePath = getPath("InputCatchParameterName.java");

@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck;
 
-public class XpathRegressionJavadocVariableTest extends AbstractXpathRegressionTest {
+public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
@@ -54,7 +54,7 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathRegressionT
                 + "/VARIABLE_DEF[@text='age']/MODIFIERS/LITERAL_PRIVATE"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 
@@ -83,7 +83,7 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathRegressionT
                 + "/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 }

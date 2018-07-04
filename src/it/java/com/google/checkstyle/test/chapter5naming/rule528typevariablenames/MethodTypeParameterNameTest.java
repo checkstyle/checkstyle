@@ -19,6 +19,8 @@
 
 package com.google.checkstyle.test.chapter5naming.rule528typevariablenames;
 
+import java.util.Map;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -44,14 +46,15 @@ public class MethodTypeParameterNameTest extends AbstractModuleTestSupport {
     @Test
     public void testMethodDefault() throws Exception {
         final Configuration checkConfig = getModuleConfig("MethodTypeParameterName");
+        final Map<String, String> messages = checkConfig.getMessages();
 
         final String[] expected = {
-            "9:6: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "e_e", format),
-            "19:6: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "Tfo$o2T", format),
-            "23:6: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "foo_", format),
-            "28:10: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "_abc", format),
-            "37:14: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "T$", format),
-            "42:14: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "EE", format),
+            "9:6: " + getCheckMessage(messages, MSG_KEY, "e_e", format),
+            "19:6: " + getCheckMessage(messages, MSG_KEY, "Tfo$o2T", format),
+            "23:6: " + getCheckMessage(messages, MSG_KEY, "foo_", format),
+            "28:10: " + getCheckMessage(messages, MSG_KEY, "_abc", format),
+            "37:14: " + getCheckMessage(messages, MSG_KEY, "T$", format),
+            "42:14: " + getCheckMessage(messages, MSG_KEY, "EE", format),
         };
 
         final String filePath = getPath("InputMethodTypeParameterName.java");

@@ -19,6 +19,8 @@
 
 package com.google.checkstyle.test.chapter5naming.rule528typevariablenames;
 
+import java.util.Map;
+
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.AbstractModuleTestSupport;
@@ -37,11 +39,12 @@ public class InterfaceTypeParameterNameTest extends AbstractModuleTestSupport {
     public void testInterfaceDefault() throws Exception {
         final Configuration configuration = getModuleConfig("InterfaceTypeParameterName");
         final String format = configuration.getAttribute("format");
+        final Map<String, String> messages = configuration.getMessages();
 
         final String[] expected = {
-            "48:15: " + getCheckMessage(configuration.getMessages(), MSG_KEY, "Input", format),
-            "76:25: " + getCheckMessage(configuration.getMessages(), MSG_KEY, "Request", format),
-            "80:25: " + getCheckMessage(configuration.getMessages(), MSG_KEY, "TRequest", format),
+            "48:15: " + getCheckMessage(messages, MSG_KEY, "Input", format),
+            "76:25: " + getCheckMessage(messages, MSG_KEY, "Request", format),
+            "80:25: " + getCheckMessage(messages, MSG_KEY, "TRequest", format),
         };
 
         final String filePath = getPath("InputInterfaceTypeParameterName.java");

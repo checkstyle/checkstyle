@@ -19,6 +19,8 @@
 
 package com.google.checkstyle.test.chapter5naming.rule526parameternames;
 
+import java.util.Map;
+
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.AbstractModuleTestSupport;
@@ -37,13 +39,14 @@ public class LambdaParameterNameTest extends AbstractModuleTestSupport {
     public void testLambdaParameterName() throws Exception {
         final Configuration config = getModuleConfig("LambdaParameterName");
         final String format = config.getAttribute("format");
+        final Map<String, String> messages = config.getMessages();
 
         final String[] expected = {
-            "9:13: " + getCheckMessage(config.getMessages(), MSG_INVALID_PATTERN, "S", format),
-            "12:14: " + getCheckMessage(config.getMessages(), MSG_INVALID_PATTERN, "sT", format),
-            "14:65: " + getCheckMessage(config.getMessages(), MSG_INVALID_PATTERN, "sT1", format),
-            "14:70: " + getCheckMessage(config.getMessages(), MSG_INVALID_PATTERN, "sT2", format),
-            "17:21: " + getCheckMessage(config.getMessages(), MSG_INVALID_PATTERN, "_s", format),
+            "9:13: " + getCheckMessage(messages, MSG_INVALID_PATTERN, "S", format),
+            "12:14: " + getCheckMessage(messages, MSG_INVALID_PATTERN, "sT", format),
+            "14:65: " + getCheckMessage(messages, MSG_INVALID_PATTERN, "sT1", format),
+            "14:70: " + getCheckMessage(messages, MSG_INVALID_PATTERN, "sT2", format),
+            "17:21: " + getCheckMessage(messages, MSG_INVALID_PATTERN, "_s", format),
         };
 
         final String filePath = getPath("InputLambdaParameterName.java");

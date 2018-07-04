@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck;
 
-public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpathRegressionTest {
+public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
@@ -64,7 +64,7 @@ public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpa
                     + "/VARIABLE_DEF[@text='j']/TYPE/LITERAL_INT"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 
@@ -94,7 +94,7 @@ public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpa
                     + "/VARIABLE_DEF[@text='i1']/TYPE/LITERAL_INT"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 }

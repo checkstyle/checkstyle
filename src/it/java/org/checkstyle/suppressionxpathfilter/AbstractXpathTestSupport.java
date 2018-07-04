@@ -45,13 +45,11 @@ import com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator;
 
-public abstract class AbstractXpathRegressionTest extends AbstractModuleTestSupport {
+public abstract class AbstractXpathTestSupport extends AbstractModuleTestSupport {
 
     private static final int DEFAULT_TAB_WIDTH = 4;
 
     private static final String DELIMITER = " | \n";
-
-    private static final String[] NO_VIOLATIONS = CommonUtil.EMPTY_STRING_ARRAY;
 
     private static final Pattern LINE_COLUMN_NUMBER_REGEX =
             Pattern.compile("([0-9]+):([0-9]+):");
@@ -76,15 +74,6 @@ public abstract class AbstractXpathRegressionTest extends AbstractModuleTestSupp
                 fileText, DEFAULT_TAB_WIDTH);
 
         return queryGenerator.generate();
-    }
-
-    private static DefaultConfiguration createCheckerWithTreeWalkerModules(
-            DefaultConfiguration... children) {
-        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
-        for (DefaultConfiguration child : children) {
-            treeWalkerConfig.addChild(child);
-        }
-        return createRootConfig(treeWalkerConfig);
     }
 
     private static void verifyXpathQueries(List<String> generatedXpathQueries,
@@ -145,7 +134,7 @@ public abstract class AbstractXpathRegressionTest extends AbstractModuleTestSupp
         return suppressionXpathFilterConfig;
     }
 
-    private ViolationPosition extractLineAndColumnNumber(String... expectedViolations) {
+    private static ViolationPosition extractLineAndColumnNumber(String... expectedViolations) {
         ViolationPosition violation = null;
         final Matcher matcher =
                 LINE_COLUMN_NUMBER_REGEX.matcher(expectedViolations[0]);
@@ -166,36 +155,33 @@ public abstract class AbstractXpathRegressionTest extends AbstractModuleTestSupp
      * Third one constructs new configuration with {@code SuppressionXpathFilter} using generated
      * xpath queries, executes checker and checks if no violation occurred.
      * @param moduleConfig module configuration.
-     * @param checkName name of the check.
      * @param fileToProcess input class file.
      * @param expectedViolations expected violation messages.
      * @param expectedXpathQueries expected generated xpath queries.
      * @throws Exception if an error occurs
      */
     protected void runVerifications(DefaultConfiguration moduleConfig,
-                                  String checkName,
                                   File fileToProcess,
                                   String[] expectedViolations,
                                   List<String> expectedXpathQueries) throws Exception {
-        final DefaultConfiguration checkerConfig =
-                createCheckerWithTreeWalkerModules(moduleConfig);
-
         final ViolationPosition position =
                 extractLineAndColumnNumber(expectedViolations);
         final List<String> generatedXpathQueries =
                 generateXpathQueries(fileToProcess, position);
 
-        final DefaultConfiguration checkerConfigWithXpath =
-                createCheckerWithTreeWalkerModules(moduleConfig,
-                        createSuppressionXpathFilter(checkName, generatedXpathQueries));
+        final DefaultConfiguration treeWalkerConfigWithXpath =
+                createModuleConfig(TreeWalker.class);
+        treeWalkerConfigWithXpath.addChild(moduleConfig);
+        treeWalkerConfigWithXpath.addChild(createSuppressionXpathFilter(moduleConfig.getName(),
+                generatedXpathQueries));
 
         final Integer[] warnList = getLinesWithWarn(fileToProcess.getPath());
-        verify(checkerConfig, fileToProcess.getPath(), expectedViolations, warnList);
+        verify(moduleConfig, fileToProcess.getPath(), expectedViolations, warnList);
         verifyXpathQueries(generatedXpathQueries, expectedXpathQueries);
-        verify(checkerConfigWithXpath, fileToProcess.getPath(), NO_VIOLATIONS);
+        verify(treeWalkerConfigWithXpath, fileToProcess.getPath(), CommonUtil.EMPTY_STRING_ARRAY);
     }
 
-    class ViolationPosition {
+    private static final class ViolationPosition {
         private final int violationLineNumber;
         private final int violationColumnNumber;
 

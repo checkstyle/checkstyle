@@ -19,6 +19,8 @@
 
 package com.google.checkstyle.test.chapter5naming.rule528typevariablenames;
 
+import java.util.Map;
+
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.AbstractModuleTestSupport;
@@ -37,11 +39,12 @@ public class ClassTypeParameterNameTest extends AbstractModuleTestSupport {
     public void testClassDefault() throws Exception {
         final Configuration configuration = getModuleConfig("ClassTypeParameterName");
         final String format = configuration.getAttribute("format");
+        final Map<String, String> messages = configuration.getMessages();
 
         final String[] expected = {
-            "5:31: " + getCheckMessage(configuration.getMessages(), MSG_KEY, "t", format),
-            "13:14: " + getCheckMessage(configuration.getMessages(), MSG_KEY, "foo", format),
-            "27:24: " + getCheckMessage(configuration.getMessages(), MSG_KEY, "$foo", format),
+            "5:31: " + getCheckMessage(messages, MSG_KEY, "t", format),
+            "13:14: " + getCheckMessage(messages, MSG_KEY, "foo", format),
+            "27:24: " + getCheckMessage(messages, MSG_KEY, "$foo", format),
         };
 
         final String filePath = getPath("InputClassTypeParameterName.java");

@@ -19,6 +19,8 @@
 
 package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespace;
 
+import java.util.Map;
+
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.AbstractModuleTestSupport;
@@ -37,31 +39,32 @@ public class WhitespaceAroundTest extends AbstractModuleTestSupport {
         final Configuration checkConfig = getModuleConfig("WhitespaceAround");
         final String msgPreceded = "ws.notPreceded";
         final String msgFollowed = "ws.notFollowed";
+        final Map<String, String> messages = checkConfig.getMessages();
 
         final String[] expected = {
-            "10:22: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, "="),
-            "12:24: " + getCheckMessage(checkConfig.getMessages(), msgFollowed, "="),
-            "20:14: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, "="),
-            "21:10: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, "="),
-            "22:13: " + getCheckMessage(checkConfig.getMessages(), msgFollowed, "+="),
-            "23:13: " + getCheckMessage(checkConfig.getMessages(), msgFollowed, "-="),
-            "31:21: " + getCheckMessage(checkConfig.getMessages(), msgFollowed, "synchronized"),
-            "33:14: " + getCheckMessage(checkConfig.getMessages(), msgFollowed, "{"),
-            "35:37: " + getCheckMessage(checkConfig.getMessages(), msgFollowed, "{"),
-            "52:11: " + getCheckMessage(checkConfig.getMessages(), msgFollowed, "if"),
-            "70:19: " + getCheckMessage(checkConfig.getMessages(), msgFollowed, "return"),
-            "92:26: " + getCheckMessage(checkConfig.getMessages(), msgFollowed, "=="),
-            "98:22: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, "*"),
-            "113:18: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, "%"),
-            "114:20: " + getCheckMessage(checkConfig.getMessages(), msgFollowed, "%"),
-            "115:18: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, "%"),
-            "117:18: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, "/"),
-            "118:20: " + getCheckMessage(checkConfig.getMessages(), msgFollowed, "/"),
-            "147:15: " + getCheckMessage(checkConfig.getMessages(), msgFollowed, "assert"),
-            "150:20: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, ":"),
-            "249:14: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, "->"),
-            "250:17: " + getCheckMessage(checkConfig.getMessages(), msgFollowed, "->"),
-            "250:17: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, "{"),
+            "10:22: " + getCheckMessage(messages, msgPreceded, "="),
+            "12:24: " + getCheckMessage(messages, msgFollowed, "="),
+            "20:14: " + getCheckMessage(messages, msgPreceded, "="),
+            "21:10: " + getCheckMessage(messages, msgPreceded, "="),
+            "22:13: " + getCheckMessage(messages, msgFollowed, "+="),
+            "23:13: " + getCheckMessage(messages, msgFollowed, "-="),
+            "31:21: " + getCheckMessage(messages, msgFollowed, "synchronized"),
+            "33:14: " + getCheckMessage(messages, msgFollowed, "{"),
+            "35:37: " + getCheckMessage(messages, msgFollowed, "{"),
+            "52:11: " + getCheckMessage(messages, msgFollowed, "if"),
+            "70:19: " + getCheckMessage(messages, msgFollowed, "return"),
+            "92:26: " + getCheckMessage(messages, msgFollowed, "=="),
+            "98:22: " + getCheckMessage(messages, msgPreceded, "*"),
+            "113:18: " + getCheckMessage(messages, msgPreceded, "%"),
+            "114:20: " + getCheckMessage(messages, msgFollowed, "%"),
+            "115:18: " + getCheckMessage(messages, msgPreceded, "%"),
+            "117:18: " + getCheckMessage(messages, msgPreceded, "/"),
+            "118:20: " + getCheckMessage(messages, msgFollowed, "/"),
+            "147:15: " + getCheckMessage(messages, msgFollowed, "assert"),
+            "150:20: " + getCheckMessage(messages, msgPreceded, ":"),
+            "249:14: " + getCheckMessage(messages, msgPreceded, "->"),
+            "250:17: " + getCheckMessage(messages, msgFollowed, "->"),
+            "250:17: " + getCheckMessage(messages, msgPreceded, "{"),
         };
 
         final String filePath = getPath("InputWhitespaceAroundBasic.java");

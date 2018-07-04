@@ -19,6 +19,8 @@
 
 package com.google.checkstyle.test.chapter5naming.rule526parameternames;
 
+import java.util.Map;
+
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.AbstractModuleTestSupport;
@@ -37,19 +39,20 @@ public class ParameterNameTest extends AbstractModuleTestSupport {
     public void testGeneralParameterName() throws Exception {
         final Configuration config = getModuleConfig("ParameterName");
         final String format = config.getAttribute("format");
+        final Map<String, String> messages = config.getMessages();
         final String[] expected = {
-            "10:21: " + getCheckMessage(config.getMessages(), MSG_KEY, "bB", format),
-            "33:22: " + getCheckMessage(config.getMessages(), MSG_KEY, "llll_llll", format),
-            "34:21: " + getCheckMessage(config.getMessages(), MSG_KEY, "bB", format),
-            "64:13: " + getCheckMessage(config.getMessages(), MSG_KEY, "$arg1", format),
-            "65:13: " + getCheckMessage(config.getMessages(), MSG_KEY, "ar$g2", format),
-            "66:13: " + getCheckMessage(config.getMessages(), MSG_KEY, "arg3$", format),
-            "67:13: " + getCheckMessage(config.getMessages(), MSG_KEY, "a_rg4", format),
-            "68:13: " + getCheckMessage(config.getMessages(), MSG_KEY, "_arg5", format),
-            "69:13: " + getCheckMessage(config.getMessages(), MSG_KEY, "arg6_", format),
-            "70:13: " + getCheckMessage(config.getMessages(), MSG_KEY, "aArg7", format),
-            "71:13: " + getCheckMessage(config.getMessages(), MSG_KEY, "aArg8", format),
-            "72:13: " + getCheckMessage(config.getMessages(), MSG_KEY, "aar_g", format),
+            "10:21: " + getCheckMessage(messages, MSG_KEY, "bB", format),
+            "33:22: " + getCheckMessage(messages, MSG_KEY, "llll_llll", format),
+            "34:21: " + getCheckMessage(messages, MSG_KEY, "bB", format),
+            "64:13: " + getCheckMessage(messages, MSG_KEY, "$arg1", format),
+            "65:13: " + getCheckMessage(messages, MSG_KEY, "ar$g2", format),
+            "66:13: " + getCheckMessage(messages, MSG_KEY, "arg3$", format),
+            "67:13: " + getCheckMessage(messages, MSG_KEY, "a_rg4", format),
+            "68:13: " + getCheckMessage(messages, MSG_KEY, "_arg5", format),
+            "69:13: " + getCheckMessage(messages, MSG_KEY, "arg6_", format),
+            "70:13: " + getCheckMessage(messages, MSG_KEY, "aArg7", format),
+            "71:13: " + getCheckMessage(messages, MSG_KEY, "aArg8", format),
+            "72:13: " + getCheckMessage(messages, MSG_KEY, "aar_g", format),
         };
 
         final String filePath = getPath("InputParameterName.java");
