@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck;
 
-public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathRegressionTest {
+public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
@@ -55,7 +55,7 @@ public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathRegres
                 + "/METHOD_DEF[@text='test']/MODIFIERS/LITERAL_PUBLIC"
                 );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 
@@ -84,7 +84,7 @@ public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathRegres
                     + "/METHOD_DEF[@text='foo2']/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 }

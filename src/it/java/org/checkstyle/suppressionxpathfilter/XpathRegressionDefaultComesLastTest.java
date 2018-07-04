@@ -29,7 +29,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck;
 
-public class XpathRegressionDefaultComesLastTest extends AbstractXpathRegressionTest {
+public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
@@ -54,7 +54,7 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathRegression
                 + "/LITERAL_DEFAULT"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 
@@ -79,7 +79,7 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathRegression
                 + "/METHOD_DEF[@text='test']/SLIST/LITERAL_SWITCH/CASE_GROUP/LITERAL_DEFAULT"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 

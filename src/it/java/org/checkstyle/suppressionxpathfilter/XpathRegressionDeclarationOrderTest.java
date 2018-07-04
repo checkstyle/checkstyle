@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck;
 
-public class XpathRegressionDeclarationOrderTest extends AbstractXpathRegressionTest {
+public class XpathRegressionDeclarationOrderTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
@@ -54,7 +54,7 @@ public class XpathRegressionDeclarationOrderTest extends AbstractXpathRegression
                         + "/OBJBLOCK/VARIABLE_DEF[@text='name']/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 
@@ -82,7 +82,7 @@ public class XpathRegressionDeclarationOrderTest extends AbstractXpathRegression
                         + "/OBJBLOCK/VARIABLE_DEF[@text='MAX']/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 }

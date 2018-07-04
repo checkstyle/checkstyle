@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck;
 
-public class XpathRegressionRequireThisTest extends AbstractXpathRegressionTest {
+public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
@@ -51,7 +51,7 @@ public class XpathRegressionRequireThisTest extends AbstractXpathRegressionTest 
                 + "/METHOD_DEF[@text='changeAge']/SLIST/EXPR/ASSIGN[@text='age']/IDENT"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 
@@ -76,7 +76,7 @@ public class XpathRegressionRequireThisTest extends AbstractXpathRegressionTest 
                 + "/METHOD_DEF[@text='method2']/SLIST/EXPR/METHOD_CALL[@text='method1']/IDENT"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 }

@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck;
 
-public class XpathRegressionIllegalThrowsTest extends AbstractXpathRegressionTest {
+public class XpathRegressionIllegalThrowsTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
@@ -50,7 +50,7 @@ public class XpathRegressionIllegalThrowsTest extends AbstractXpathRegressionTes
                 + "/METHOD_DEF[@text='sayHello']/LITERAL_THROWS[@text='RuntimeException']/IDENT"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 
@@ -74,7 +74,7 @@ public class XpathRegressionIllegalThrowsTest extends AbstractXpathRegressionTes
                 + "/METHOD_DEF[@text='methodTwo']/LITERAL_THROWS/DOT[@text='Error']"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 }

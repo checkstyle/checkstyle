@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck;
 
-public class XpathRegressionFallThroughTest extends AbstractXpathRegressionTest {
+public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
@@ -52,7 +52,7 @@ public class XpathRegressionFallThroughTest extends AbstractXpathRegressionTest 
                 + "/METHOD_DEF[@text='test']/SLIST/LITERAL_SWITCH/CASE_GROUP/LITERAL_CASE"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 
@@ -81,7 +81,7 @@ public class XpathRegressionFallThroughTest extends AbstractXpathRegressionTest 
                 + "/LITERAL_SWITCH/CASE_GROUP/LITERAL_DEFAULT"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 }

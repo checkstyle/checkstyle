@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck;
 import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption;
 
-public class XpathRegressionRightCurlyTest extends AbstractXpathRegressionTest {
+public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
@@ -51,7 +51,7 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathRegressionTest {
                 + "/METHOD_DEF[@text='test']/SLIST/LITERAL_IF/SLIST/RCURLY"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 
@@ -76,7 +76,7 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathRegressionTest {
                 + "/METHOD_DEF[@text='fooMethod']/SLIST/LITERAL_TRY/SLIST/RCURLY"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 
@@ -101,7 +101,7 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathRegressionTest {
                 + "/METHOD_DEF[@text='sample']/SLIST/LITERAL_IF/SLIST/RCURLY"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 
@@ -126,7 +126,7 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathRegressionTest {
                 + "/METHOD_DEF[@text='sample']/SLIST/LITERAL_IF/SLIST/RCURLY"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 }

@@ -108,7 +108,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * Returns test logger.
      * @return logger test logger
      */
-    public final BriefUtLogger getBriefUtLogger() {
+    protected final BriefUtLogger getBriefUtLogger() {
         return new BriefUtLogger(stream);
     }
 
@@ -118,7 +118,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @return {@link DefaultConfiguration} instance.
      */
     protected static DefaultConfiguration createModuleConfig(Class<?> clazz) {
-        return new DefaultConfiguration(clazz.getName());
+        return new DefaultConfiguration(clazz.getSimpleName());
     }
 
     /**
@@ -127,7 +127,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @return {@link Checker} instance based on the given {@link Configuration} instance.
      * @throws Exception if an exception occurs during checker configuration.
      */
-    public final Checker createChecker(Configuration moduleConfig)
+    protected final Checker createChecker(Configuration moduleConfig)
             throws Exception {
         final String name = moduleConfig.getName();
         ModuleCreationOption moduleCreationOption = ModuleCreationOption.IN_CHECKER;

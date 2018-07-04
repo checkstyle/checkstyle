@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck;
 
-public class XpathRegressionExplicitInitializationTest extends AbstractXpathRegressionTest {
+public class XpathRegressionExplicitInitializationTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
@@ -50,7 +50,7 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathRegr
                         + "/OBJBLOCK/VARIABLE_DEF[@text='a']/IDENT"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 
@@ -74,7 +74,7 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathRegr
                         + "/VARIABLE_DEF[@text='bar']/IDENT"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 }

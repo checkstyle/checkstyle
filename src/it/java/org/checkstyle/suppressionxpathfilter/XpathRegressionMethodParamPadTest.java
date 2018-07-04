@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck;
 
-public class XpathRegressionMethodParamPadTest extends AbstractXpathRegressionTest {
+public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
@@ -50,7 +50,7 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathRegressionTe
                 + "/METHOD_DEF[@text='InputMethodParamPad']/LPAREN"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 
@@ -74,7 +74,7 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathRegressionTe
                 + "/METHOD_DEF[@text='sayHello']/LPAREN"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 
@@ -99,7 +99,7 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathRegressionTe
                 + "/METHOD_DEF[@text='sayHello']/LPAREN"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 }

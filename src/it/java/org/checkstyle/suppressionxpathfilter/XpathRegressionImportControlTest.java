@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck;
 
-public class XpathRegressionImportControlTest extends AbstractXpathRegressionTest {
+public class XpathRegressionImportControlTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
@@ -51,7 +51,7 @@ public class XpathRegressionImportControlTest extends AbstractXpathRegressionTes
             "/IMPORT"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 
@@ -76,7 +76,7 @@ public class XpathRegressionImportControlTest extends AbstractXpathRegressionTes
             "/PACKAGE_DEF"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 
@@ -99,7 +99,7 @@ public class XpathRegressionImportControlTest extends AbstractXpathRegressionTes
             "/PACKAGE_DEF"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 
@@ -124,7 +124,7 @@ public class XpathRegressionImportControlTest extends AbstractXpathRegressionTes
             "/IMPORT[./DOT[@text='Scanner']]"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 }

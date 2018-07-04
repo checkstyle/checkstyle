@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck;
 
 // -@cs[AbbreviationAsWordInName] Test should be named as its main class.
-public class XpathRegressionNPathComplexityTest extends AbstractXpathRegressionTest {
+public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
@@ -57,7 +57,7 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathRegressionT
                 + "/METHOD_DEF[@text='test']/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 
@@ -81,7 +81,7 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathRegressionT
             "/CLASS_DEF[@text='SuppressionXpathRegressionNPathComplexityTwo']/OBJBLOCK/STATIC_INIT"
         );
 
-        runVerifications(moduleConfig, checkName, fileToProcess, expectedViolation,
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
 }
