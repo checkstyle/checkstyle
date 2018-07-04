@@ -62,12 +62,13 @@ public enum RightCurlyOption {
     ALONE_OR_SINGLELINE,
 
     /**
-     * Represents the policy that the brace should folllow
+     * Represents the policy that the brace should follow
      * {@link RightCurlyOption#ALONE_OR_SINGLELINE} policy
      * but the brace should be on the same line as the next part of a multi-block statement
      * (one that directly contains
-     * multiple blocks: if/else-if/else or try/catch/finally). It also allows
-     * single-line format of multi-block statements.
+     * multiple blocks: if/else-if/else or try/catch/finally).
+     * If no next part of a multi-block statement present, brace must be alone on line.
+     * It also allows single-line format of multi-block statements.
      *
      * <p>Examples:</p>
      *
@@ -116,7 +117,7 @@ public enum RightCurlyOption {
      *  public void run() {
      *                ...
      *  <b>}</b> // this is OK, should be alone as next part of a multi-block statement is absent
-     * <b>}</b>); // this is OK, this case is out of scope of RightCurly Check (see issue #5945)
+     * <b>}</b>); // this case is out of scope of RightCurly Check (see issue #5945)
      *
      * if (a &#62; 0) { ... <b>}</b> // OK, single-line multi-block statement
      * if (a &#62; 0) { ... } else { ... <b>}</b> // OK, single-line multi-block statement
