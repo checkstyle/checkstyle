@@ -174,4 +174,11 @@ public class ParameterNameCheckTest
         verify(checkConfig, getPath("InputParameterNameReceiver.java"), expected);
     }
 
+    @Test
+    public void testLambdaParameterNoViolationAtAll() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(ParameterNameCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputParameterNameLambda.java"), expected);
+    }
+
 }

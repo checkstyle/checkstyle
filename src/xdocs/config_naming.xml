@@ -1469,6 +1469,10 @@ class MyClass {
           To validate <code>catch</code> parameters please use
           <a href="#CatchParameterName">CatchParameterName</a>.
         </p>
+        <p>
+          To validate lambda parameters please use
+          <a href="#LambdaParameterName">LambdaParameterName</a>.
+        </p>
       </subsection>
 
       <subsection name="Properties" id="ParameterName_Properties">
