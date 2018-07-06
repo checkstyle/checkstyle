@@ -37,6 +37,10 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * To validate {@code catch} parameters please use
  * <a href="#CatchParameterName">CatchParameterName</a>.
  * </p>
+ * <p>
+ * To validate lambda parameters please use
+ * <a href="#LambdaParameterName">LambdaParameterName</a>.
+ * </p>
  * <ul>
  * <li>
  * Property {@code format} - Specifies valid identifiers. Default value is
@@ -186,6 +190,7 @@ public class ParameterNameCheck extends AbstractNameCheck {
         boolean checkName = true;
         if (ignoreOverridden && isOverriddenMethod(ast)
                 || ast.getParent().getType() == TokenTypes.LITERAL_CATCH
+                || ast.getParent().getParent().getType() == TokenTypes.LAMBDA
                 || CheckUtil.isReceiverParameter(ast)
                 || !matchAccessModifiers(getAccessModifier(ast))) {
             checkName = false;
@@ -202,19 +207,16 @@ public class ParameterNameCheck extends AbstractNameCheck {
      * @return the access modifier of the method/constructor.
      */
     private static AccessModifier getAccessModifier(final DetailAST ast) {
-        final DetailAST params = ast.getParent();
-        final DetailAST meth = params.getParent();
-        AccessModifier accessModifier = AccessModifier.PRIVATE;
+        final AccessModifier accessModifier;
 
-        if (meth.getType() == TokenTypes.METHOD_DEF
-                || meth.getType() == TokenTypes.CTOR_DEF) {
-            if (ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
-                accessModifier = AccessModifier.PUBLIC;
-            }
-            else {
-                final DetailAST modsToken = meth.findFirstToken(TokenTypes.MODIFIERS);
-                accessModifier = CheckUtil.getAccessModifierFromModifiersToken(modsToken);
-            }
+        if (ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
+            accessModifier = AccessModifier.PUBLIC;
+        }
+        else {
+            final DetailAST params = ast.getParent();
+            final DetailAST meth = params.getParent();
+            final DetailAST modsToken = meth.findFirstToken(TokenTypes.MODIFIERS);
+            accessModifier = CheckUtil.getAccessModifierFromModifiersToken(modsToken);
         }
 
         return accessModifier;
