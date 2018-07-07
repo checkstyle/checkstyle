@@ -76,6 +76,12 @@ pipeline {
 
   stages {
 
+    stage ("Initial") {
+      steps {
+        echo GREEN("${getCauseDescription(currentBuild)}")
+      }
+    }
+
     stage ("Prepare (triggered by hand)") {
       when { expression { getCauseDescription(currentBuild).contains("Started by user") } }
         steps {
