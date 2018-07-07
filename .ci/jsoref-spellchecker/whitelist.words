@@ -374,6 +374,7 @@ endline
 ent
 enum
 enumer
+envvar
 eol
 eot
 equalsavoidnull
@@ -479,6 +480,7 @@ genericwhitespace
 Getenv
 gg
 gh
+ghprb
 gitattributes
 github
 githubusercontent
