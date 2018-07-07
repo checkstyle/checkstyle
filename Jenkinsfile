@@ -5,6 +5,11 @@ DEFAULT_MAVEN_OPTS = "-Xss256k -Xmx300m -XX:MaxMetaspaceSize=80m -XX:MaxMetaspac
                      "-Dmaven.test.failure.ignore=false -XshowSettings:vm " + 
                      "-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
 
+// 'sha1' envvar is injected by Jenkins GHPRB plugin in case if build is started by pull request
+IS_TRIGGERED_BY_PR = env.sha1?.trim()
+
+GIT_BRANCH = '<unknown>'
+
 enum HyperSize {
   S4("s4"),
   M1("m1"),
@@ -79,22 +84,36 @@ pipeline {
     stage ("Initial") {
       steps {
         echo GREEN("${getCauseDescription(currentBuild)}")
-      }
-    }
 
-    stage ("Prepare (triggered by hand)") {
-      when { expression { getCauseDescription(currentBuild).contains("Started by user") } }
-        steps {
-        echo GREEN("Triggered by hand, so building for master branch")
-        deleteDir() /* clean up workspace */
-        git 'git@github.com:checkstyle/checkstyle.git' /* clone the master branch */
+        script {
+          // If build is triggered by PR, use PR branch, otherwise use master
+          if (IS_TRIGGERED_BY_PR) {
+            GIT_BRANCH = env.sha1
+          } else {
+            GIT_BRANCH = 'master'
+          }
+        }
+
+        echo GREEN("Branch: $GIT_BRANCH")
+
+        // Debug: print all the build envvars
+        // echo sh(returnStdout: true, script: 'env')
       }
     }
 
     stage ("Prepare (triggered by PR)") {
-      when { not { expression { getCauseDescription(currentBuild).contains("Started by user") } } }
+      when { expression { IS_TRIGGERED_BY_PR } }
       steps {
-        echo GREEN("Triggered by PR, so building for ${sha1}")
+        echo "${GREEN('PR:')} ${ghprbPullAuthorLoginMention} ${ghprbPullLink} $ghprbPullTitle"
+      }
+    }
+
+    stage ("Prepare (triggered by hand)") {
+      when { not { expression { IS_TRIGGERED_BY_PR } } }
+        steps {
+        echo GREEN("Triggered by hand, so building for master branch")
+        deleteDir() /* clean up workspace */
+        git 'git@github.com:checkstyle/checkstyle.git' /* clone the master branch */
       }
     }
  
