@@ -990,8 +990,8 @@
 
       <source>
 &lt;!DOCTYPE checkstyle-packages PUBLIC
-  &quot;-//Checkstyle//DTD Package Names Configuration 1.1//EN&quot;
-  &quot;https://checkstyle.org/dtds/packages_1_1.dtd&quot;&gt;
+  &quot;-//Checkstyle//DTD Package Names Configuration 1.0//EN&quot;
+  &quot;https://checkstyle.org/dtds/packages_1_0.dtd&quot;&gt;
       </source>
 
       <b>Suppressions XML Document</b>
