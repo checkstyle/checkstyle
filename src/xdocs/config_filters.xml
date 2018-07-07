@@ -417,7 +417,7 @@ public class UserService {
           <p>
             Filter <code>SuppressionFilter</code> rejects
             audit events for Check errors according to
-            a <a href="config.html#XML_Structure"><em>suppressions XML
+            a <a href="dtds/suppressions_1_2.dtd"><em>suppressions XML
             document</em></a> in a file. If there is no configured
             suppressions file or the optional is set to true and
             suppressions file was not found the Filter accepts all audit events.
@@ -468,22 +468,8 @@ public class UserService {
                <td>6.15</td>
              </tr>
           </table>
-      </subsection>
-      <subsection name="Examples">
           <p>
-              For example, the following configuration fragment directs the
-              Checker to use a <code>SuppressionFilter</code>
-              with suppressions
-              file <code>config/suppressions.xml</code>:
-          </p>
-          <source>
-&lt;module name=&quot;SuppressionFilter&quot;&gt;
-  &lt;property name=&quot;file&quot; value=&quot;config/suppressions.xml&quot;/&gt;
-  &lt;property name=&quot;optional&quot; value=&quot;false&quot;/&gt;
-&lt;/module&gt;
-          </source>
-          <p>
-            A <a href="config.html#XML_Structure"><em>suppressions XML
+            A <a href="dtds/suppressions_1_2.dtd"><em>suppressions XML
             document</em></a> contains a set
             of <code>suppress</code> elements, where
             each <code>suppress</code> element can have the
@@ -511,7 +497,7 @@ public class UserService {
               <li>
                   <code>id</code> -
                   a <a href="property_types.html#string">string</a>
-                  matched against the ID of the check associated with an audit
+                  matched against the <a href="config.html#Id">check id</a> associated with an audit
                   event.  Optional as long as <code>checks</code> or <code>message</code>
                   is specified.
               </li>
@@ -538,6 +524,20 @@ public class UserService {
             You can download template of empty suppression filter
             <a href="files/suppressions_none.xml">here</a>.
           </p>
+      </subsection>
+      <subsection name="Examples">
+          <p>
+              For example, the following configuration fragment directs the
+              Checker to use a <code>SuppressionFilter</code>
+              with suppressions
+              file <code>config/suppressions.xml</code>:
+          </p>
+          <source>
+&lt;module name=&quot;SuppressionFilter&quot;&gt;
+  &lt;property name=&quot;file&quot; value=&quot;config/suppressions.xml&quot;/&gt;
+  &lt;property name=&quot;optional&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
+          </source>
           <p>
             The following suppressions XML document directs
             a <code>SuppressionFilter</code> to
@@ -553,86 +553,65 @@ public class UserService {
 &lt;?xml version=&quot;1.0&quot;?&gt;
 
 &lt;!DOCTYPE suppressions PUBLIC
-&quot;-//Checkstyle//DTD SuppressionFilter Configuration 1.1//EN&quot;
-&quot;https://checkstyle.org/dtds/suppressions_1_1.dtd&quot;&gt;
+  &quot;-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN&quot;
+  &quot;https://checkstyle.org/dtds/suppressions_1_2.dtd&quot;&gt;
 
 &lt;suppressions&gt;
-&lt;suppress checks=&quot;JavadocStyleCheck&quot;
-  files=&quot;AbstractComplexityCheck.java&quot;
-  lines=&quot;82,108-122&quot;/&gt;
-&lt;suppress checks=&quot;MagicNumberCheck&quot;
-  files=&quot;JavadocStyleCheck.java&quot;
-  lines=&quot;221&quot;/&gt;
+  &lt;suppress checks=&quot;JavadocStyleCheck&quot;
+    files=&quot;AbstractComplexityCheck.java&quot;
+    lines=&quot;82,108-122&quot;/&gt;
+  &lt;suppress checks=&quot;MagicNumberCheck&quot;
+    files=&quot;JavadocStyleCheck.java&quot;
+    lines=&quot;221&quot;/&gt;
+  &lt;suppress message=&quot;Missing a Javadoc comment&quot;/&gt;
 &lt;/suppressions&gt;
-&lt;suppress message=&quot;Missing a Javadoc comment&quot;/&gt;&lt;/suppressions&gt;
           </source>
           <p>
-            As another example to suppress Check by module id:
-          </p>
-          <source>
-&lt;module name=&quot;DescendantToken&quot;&gt;
-  &lt;property name=&quot;id&quot; value=&quot;stringEqual&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;EQUAL,NOT_EQUAL&quot;/&gt;
-  &lt;property name=&quot;limitedTokens&quot; value=&quot;STRING_LITERAL&quot;/&gt;
-  &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
-  &lt;property name=&quot;maximumDepth&quot; value=&quot;1&quot;/&gt;
-&lt;/module&gt;
-
-&lt;module name=&quot;DescendantToken&quot;&gt;
-  &lt;property name=&quot;id&quot; value=&quot;switchNoDefault&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_SWITCH&quot;/&gt;
-  &lt;property name=&quot;maximumDepth&quot; value=&quot;2&quot;/&gt;
-  &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
-  &lt;property name=&quot;minimumNumber&quot; value=&quot;1&quot;/&gt;
-&lt;/module&gt;
-          </source>
-          <p>
-            Then the following can be used to suppress only the first
-            check and not the second by using
-            the <code>id</code> attribute:
+            Suppress Check by <a href="config.html#Id">module id</a>
+            when config have two instances on the same Check:
           </p>
           <source>
 &lt;suppress id=&quot;stringEqual&quot; files=&quot;SomeTestCode.java&quot;/&gt;
           </source>
           <p>
-            Suppress checks for hidden files and folders:
+            Suppress all Checks for hidden files and folders:
           </p>
           <source>
 &lt;suppress files=&quot;[/\\]\..+&quot; checks=&quot;.*&quot;/&gt;
           </source>
           <p>
-            Suppress checks for Maven-generated code:
+            Suppress all Checks for Maven-generated code:
           </p>
           <source>
 &lt;suppress files=&quot;[/\\]target[/\\]&quot; checks=&quot;.*&quot;/&gt;
           </source>
           <p>
-            Suppress checks for archives, classes and other binary files:
+            Suppress all Checks for archives, classes and other binary files:
           </p>
           <source>
 &lt;suppress files=&quot;.+\.(?:jar|zip|war|class|tar|bin)$&quot; checks=&quot;.*&quot;/&gt;
           </source>
           <p>
-            Suppress checks for image files:
+            Suppress all Checks for image files:
           </p>
           <source>
 &lt;suppress files=&quot;.+\.(?:png|gif|jpg|jpeg)$&quot; checks=&quot;.*&quot;/&gt;
           </source>
           <p>
-            Suppress checks for non-java files:
+            Suppress all Checks for non-java files:
           </p>
           <source>
 &lt;suppress files=&quot;.+\.(?:txt|xml|csv|sh|thrift|html|sql|eot|ttf|woff|css|png)$&quot;
     checks=&quot;.*&quot;/&gt;
           </source>
           <p>
-            Suppress all checks in generated sources:
+            Suppress all Checks in generated sources:
           </p>
           <source>
 &lt;suppress checks=&quot;.*&quot; files=&quot;com[\\/]mycompany[\\/]app[\\/]gen[\\/]&quot;/&gt;
           </source>
           <p>
-            Suppress FileLength check on integration tests in certain folder:
+            Suppress FileLength Check on integration tests in certain folder:
           </p>
           <source>
 &lt;suppress checks=&quot;FileLength&quot;
@@ -819,7 +798,7 @@ public class UserService {
 &lt;/module&gt;
         </source>
         <p>
-          A <a href="config.html#XML_Structure"><em>suppressions XML
+          A <a href="/dtds/suppressions_1_2_xpath_experimental.dtd"><em>suppressions XML
           document</em></a> contains a set
           of <code>suppress</code> and <code>suppress-xpath</code> elements, where
           each <code>suppress-xpath</code> element can have the

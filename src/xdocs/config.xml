@@ -729,6 +729,38 @@
       </p>
     </section>
 
+    <section name="Id">
+      <p>
+        Each module has a <code>id</code> property that can rename the module name
+        to be a name defined by the user. This is used to differentiate
+        two instances of the same Check. This custom module name should be unique
+        for the entire configuration to prevent accidental overlapping.
+        This custom name is required to be able
+        to suppress violations of 1 of the checks in specific scenarios,
+        while leaving the other unaffected. Without the custom module name,
+        it is harder to differentiate one module's violations from the other.
+      </p>
+
+      <source>
+&lt;module name=&quot;DescendantToken&quot;&gt;
+  &lt;property name=&quot;id&quot; value=&quot;stringEqual&quot;/&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;EQUAL,NOT_EQUAL&quot;/&gt;
+  &lt;property name=&quot;limitedTokens&quot; value=&quot;STRING_LITERAL&quot;/&gt;
+  &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
+  &lt;property name=&quot;maximumDepth&quot; value=&quot;1&quot;/&gt;
+&lt;/module&gt;
+
+&lt;module name=&quot;DescendantToken&quot;&gt;
+  &lt;property name=&quot;id&quot; value=&quot;switchNoDefault&quot;/&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_SWITCH&quot;/&gt;
+  &lt;property name=&quot;maximumDepth&quot; value=&quot;2&quot;/&gt;
+  &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
+  &lt;property name=&quot;minimumNumber&quot; value=&quot;1&quot;/&gt;
+&lt;/module&gt;
+      </source>
+
+    </section>
+
     <section name="Custom messages">
       <p>
         As of Checkstyle 5 all checks can be configured to report
@@ -992,25 +1024,6 @@
 &lt;!DOCTYPE checkstyle-packages PUBLIC
   &quot;-//Checkstyle//DTD Package Names Configuration 1.0//EN&quot;
   &quot;https://checkstyle.org/dtds/packages_1_0.dtd&quot;&gt;
-      </source>
-
-      <b>Suppressions XML Document</b>
-      <p>
-        This is a DTD for a suppressions XML document:
-      </p>
-
-      <source>
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-
-&lt;!ELEMENT suppressions (suppress*)&gt;
-
-&lt;!ELEMENT suppress EMPTY&gt;
-&lt;!ATTLIST suppress files CDATA #IMPLIED
-                   checks CDATA #IMPLIED
-                   message CDATA #IMPLIED
-                   id CDATA #IMPLIED
-                   lines CDATA #IMPLIED
-                   columns CDATA #IMPLIED&gt;
       </source>
 
     </section>
