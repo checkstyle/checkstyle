@@ -43,18 +43,28 @@ def getCauseDescription(def build) {
   return getCause(build).shortDescription
 }
 
-// See more about Hyper container size at https://hyper.sh/pricing.html
+// See more about Hyper container sizes at https://hyper.sh/pricing.html
 def runOnHyper(HyperSize size, String mavenOpts, String command) {
   
   String name = UUID.randomUUID()
 
-  dir("${WORKSPACE}/") {
-    sh "hyper run --name '${name}' --size=${size.toString()} --cidfile ${name}.cid " +
-      "--noauto-volume --restart=no --rm -i -e MAVEN_OPTS='${mavenOpts}' " +
-      "-v \$(pwd):/usr/local/checkstyle/ " +
-      "checkstyle/maven-builder-image:jdk-8u162b12-maven-3.5.3-groovy-2.4.15 " +
-      "bash -c '${command}'"
+  image = 'checkstyle/maven-builder-image:jdk-8u162b12-maven-3.5.3-groovy-2.4.15'
+  containerTTL = 1800 // sec
+
+  echo GREEN("To try this build locally, execute the following command: [ $command ]")
+
+  // 1. Start empty Hyper container with timeout and let it put it's id to the file for further use
+  retry(3) {
+    sh "hyper -l=warn run -d --name '${name}' --size=${size.toString()} --cidfile ${name}.cid " +
+       " --noauto-volume --restart=no -v \$(pwd):/usr/local/checkstyle/ " + 
+       " -e MAVEN_OPTS='${mavenOpts}' ${image} sleep '${containerTTL}'"
   }
+
+  // 2. Run the build command inside the container
+  sh "hyper -l=info exec -i '${name}' bash -c '${command}'"
+
+  // 3. Cleanup the container as soon as after build finish
+  sh "hyper rm -fv '${name}' | cat"
 }
 
 def runOnHyperS4(String command) {
@@ -77,6 +87,7 @@ pipeline {
     
   options {
     ansiColor('xterm')
+    timestamps()
   }
 
   stages {
@@ -136,7 +147,7 @@ pipeline {
   post {
     always {
       // Cleanup any Hyper.sh containers left by the build, if any
-      sh "ls | grep '.cid' | xargs -I {} bash -c 'cat {}; echo' | xargs -I {} hyper rm -f {} | :"
+      sh "ls | grep '.cid' | xargs -I {} bash -c 'cat {}; echo' | xargs -I {} hyper rm -fv {} | cat"
 
       // Clean up workspace
       deleteDir()
