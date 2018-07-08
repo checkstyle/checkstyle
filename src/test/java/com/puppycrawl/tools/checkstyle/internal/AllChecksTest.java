@@ -41,7 +41,10 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.GlobalStatefulCheck;
 import com.puppycrawl.tools.checkstyle.ModuleFactory;
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -324,6 +327,25 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                     Assert.fail(errorMessage);
                 }
             }
+        }
+    }
+
+    @Test
+    public void testAllModulesHaveMultiThreadAnnotation() throws Exception {
+        for (Class<?> module : CheckUtil.getCheckstyleModules()) {
+            if (ModuleReflectionUtil.isRootModule(module)
+                    || ModuleReflectionUtil.isFilterModule(module)
+                    || ModuleReflectionUtil.isFileFilterModule(module)
+                    || ModuleReflectionUtil.isTreeWalkerFilterModule(module)) {
+                continue;
+            }
+
+            Assert.assertTrue(
+                    "module '" + module.getSimpleName()
+                            + "' must contain a multi-thread annotation",
+                    module.isAnnotationPresent(GlobalStatefulCheck.class)
+                            || module.isAnnotationPresent(FileStatefulCheck.class)
+                            || module.isAnnotationPresent(StatelessCheck.class));
         }
     }
 

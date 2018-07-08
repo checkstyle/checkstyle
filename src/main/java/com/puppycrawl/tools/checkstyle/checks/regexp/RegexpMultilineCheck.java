@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
 import java.io.File;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
@@ -29,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * Implementation of a check that looks that matches across multiple lines in
  * any file type.
  */
+@StatelessCheck
 public class RegexpMultilineCheck extends AbstractFileSetCheck {
 
     /** The format of the regular expression to match. */

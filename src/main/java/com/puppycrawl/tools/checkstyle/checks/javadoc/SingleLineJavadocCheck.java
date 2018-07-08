@@ -24,6 +24,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
@@ -55,6 +56,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  *
  *
  */
+@StatelessCheck
 public class SingleLineJavadocCheck extends AbstractJavadocCheck {
 
     /**

@@ -21,12 +21,14 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import java.io.File;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
  * Implementation of a check that looks for a single line in any file type.
  */
+@StatelessCheck
 public class RegexpSinglelineCheck extends AbstractFileSetCheck {
 
     /** The format of the regular expression to match. */

@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -69,6 +70,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </pre>
  *
  */
+@StatelessCheck
 public class JavadocParagraphCheck extends AbstractJavadocCheck {
 
     /**
