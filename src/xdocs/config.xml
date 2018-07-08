@@ -913,6 +913,11 @@
       </p>
 
       <p>
+        Checkstyle also validates the package names XML document structure when it
+        loads the document. DTD is available at <a href="dtds/packages_1_0.dtd">packages_1_0.dtd</a>
+      </p>
+
+      <p>
         For example, to incorporate modules from package <code>com.mycompany.checks</code>
         with Checkstyle modules, create the XML file below and put this file into the
         <b>root of the jar</b> file which contains your custom check modules.
@@ -952,30 +957,18 @@
 
     </section>
 
-    <section name="XML Structure">
+    <section name="Configuration XML Structure">
 
-      <b>Configuration XML Document</b>
       <p>
-        The following DTD for a configuration XML document specifies the
-        hierarchy of modules and their properties:
+        DTD is used to validate the
+        configuration XML document which specifies the
+        hierarchy of modules and their properties.
       </p>
 
-      <source>
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-
-&lt;!ELEMENT module (module|property)*&gt;
-&lt;!ATTLIST module name NMTOKEN #REQUIRED&gt;
-
-&lt;!ELEMENT property EMPTY&gt;
-&lt;!ATTLIST property
-        name NMTOKEN #REQUIRED
-        value CDATA #REQUIRED
-&gt;
-      </source>
-
       <p>
-        Checkstyle validates a configuration XML document when it loads
-        the document.  To validate against the above configuration DTD,
+        Checkstyle validates the configuration XML document structure when it loads
+        the document. To validate against the
+        <a href="dtds/configuration_1_3.dtd">latest DTD</a>,
         include the following document type declaration in your
         configuration XML document:
       </p>
@@ -988,43 +981,30 @@
 
       <p>
         Checkstyle also strictly enforces the encoding attribute of an
-        XML declaration.  If Checkstyle rejects your configuration
+        XML declaration. If Checkstyle rejects your configuration
         document's encoding, correct the value of the encoding
         attribute, or remove the encoding attribute entirely.
       </p>
 
       <p>
         For a complete example of a configuration XML document, examine
-        file <code>docs/sun_checks.xml</code> that checks the Sun coding
-        conventions.
+        files
+        <a href=
+          "https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml">
+          sun_checks.xml
+        </a>
+        and
+        <a href=
+          "https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml">
+          google_checks.xml
+        </a>
+        that checks the coding conventions.
+        Example of all Checks/Modules usage could be found at checkstyle's code convention at file
+        <a
+          href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml">
+          checkstyle_checks.xml
+        </a>
       </p>
-
-      <b>Package Names XML Document</b>
-      <p>
-        This is a DTD for a package names XML document:
-      </p>
-
-      <source>
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-
-&lt;!ELEMENT checkstyle-packages (package)*&gt;
-
-&lt;!ELEMENT package (package)*&gt;
-&lt;!ATTLIST package name NMTOKEN #REQUIRED&gt;
-      </source>
-
-      <p>
-        Checkstyle also validates a package names XML document when it
-        loads the document.  To validate against the above package names
-        DTD, include the following document type declaration in your
-        package names XML document:
-      </p>
-
-      <source>
-&lt;!DOCTYPE checkstyle-packages PUBLIC
-  &quot;-//Checkstyle//DTD Package Names Configuration 1.0//EN&quot;
-  &quot;https://checkstyle.org/dtds/packages_1_0.dtd&quot;&gt;
-      </source>
 
     </section>
   </body>
