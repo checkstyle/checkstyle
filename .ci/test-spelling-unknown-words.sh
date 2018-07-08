@@ -55,7 +55,7 @@ if [ ! -e $whitelist_path ]; then
   exit 2
 fi
 
-diff_output=`diff -U0 $whitelist_path $run_output |grep -v "$spellchecker" || true`
+diff_output=`diff -U1 $whitelist_path $run_output |grep -v "$spellchecker" || true`
 
 if [ -z "$diff_output" ]; then
   echo "No new words and misspellings found."
