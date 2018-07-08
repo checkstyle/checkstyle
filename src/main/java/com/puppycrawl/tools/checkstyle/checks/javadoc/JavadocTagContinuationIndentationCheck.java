@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -42,6 +43,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  *
  *
  */
+@StatelessCheck
 public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck {
 
     /**
