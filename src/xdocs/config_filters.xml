@@ -114,6 +114,14 @@
             Note that the suppression comment should be put before the violation. You can use more
             than one suppression comment each on separate line.
           </p>
+          <p>
+            Attention: This filter may only be specified within the TreeWalker module
+            (<code>&lt;module name=&quot;TreeWalker&quot;/&gt;</code>) and only
+            applies to checks which are also defined within this module.
+            To filter non-TreeWalker checks like <code>RegexpSingleline</code>,
+            a <a href="config_filters.html#SuppressWithPlainTextCommentFilter">
+            SuppressWithPlainTextCommentFilter</a> or similar filter must be used.
+          </p>
       </subsection>
       <subsection name="Properties">
           <table>
@@ -1092,6 +1100,14 @@ public static void foo() {
                 <code>SuppressWithNearbyCommentFilter</code> uses
                 single comments.  This requires fewer lines to mark a region, and
                 may be aesthetically preferable in some contexts.
+            </p>
+            <p>
+                Attention: This filter may only be specified within the TreeWalker module
+                (<code>&lt;module name=&quot;TreeWalker&quot;/&gt;</code>) and only
+                applies to checks which are also defined within this module.
+                To filter non-TreeWalker checks like <code>RegexpSingleline</code>,
+                a <a href="config_filters.html#SuppressWithPlainTextCommentFilter">
+                SuppressWithPlainTextCommentFilter</a> or similar filter must be used.
             </p>
         </subsection>
         <subsection name="Properties">
