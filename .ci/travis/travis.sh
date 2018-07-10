@@ -11,7 +11,10 @@ checkstyle-and-sevntu)
 
 jacoco)
   export MAVEN_OPTS='-Xmx2000m'
-  mvn -e clean test jacoco:restore-instrumented-classes jacoco:report@default-report
+  mvn -e clean test \
+    jacoco:restore-instrumented-classes \
+    jacoco:report@default-report \
+    jacoco:check@default-check
   ;;
 
 test-de)
