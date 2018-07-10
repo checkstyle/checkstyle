@@ -70,23 +70,35 @@ git commit -m "commit message"
 git push origin my-new-check
            </source>
            5) Repeat steps 3-4 till development is complete<br/>
+           All additional commits, please <a href="https://davidwalsh.name/squash-commits-git">
+           squash to first</a>. Please read all rules for PullRequest at
+           our <a href="https://github.com/checkstyle/checkstyle/wiki/PR-rules">wiki</a>.
+           <source class="wrap-content">
+git rebase -i master
+git push --force origin my-new-check
+           </source>
            6) Update current branch and local master by pulling changes that were done<br/>
            by other contributors:
            <source class="wrap-content">
-git pull --rebase main master
+git pull main master
+git push origin master
            </source>
-           7) In the process of the rebase, it may discover conflicts.<br/>
+           7) Rebase your branch over your updated master
+           <source class="wrap-content">
+git rebase master
+           </source>
+           8) In the process of the rebase, it may discover conflicts.<br/>
            In that case it will stop and allow you to fix the conflicts.<br/>
            After fixing conflicts, use git add . to update the index with those contents,<br/>
            and then just run:
            <source class="wrap-content">
 git rebase --continue
            </source>
-           8) Push branch to GitHub (with all your final changes and actual code of Checkstyle):
+           9) Push branch to GitHub (with all your final changes and actual code of Checkstyle):
            <source class="wrap-content">
 git push --force origin my-new-check
            </source>
-           9) Only after all content is finished and testing is done - send a
+           10) Only after all content is finished and testing is done - send a
           <a href="https://help.github.com/articles/using-pull-requests/">Pull Request</a>
       </p>
     </section>
