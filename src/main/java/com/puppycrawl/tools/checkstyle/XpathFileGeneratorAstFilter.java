@@ -19,17 +19,20 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator;
 
 /**
  * Catches {@code TreeWalkerAuditEvent} and generates corresponding xpath query.
- * Stores event and query inside static variables for {@code XpathFileGeneratorAuditListener}.
+ * Stores localized messages and xpath queries map inside static variable
+ * for {@code XpathFileGeneratorAuditListener}.
  * See issue #102 https://github.com/checkstyle/checkstyle/issues/102
  */
 public class XpathFileGeneratorAstFilter extends AutomaticBean implements TreeWalkerFilter {
@@ -37,11 +40,8 @@ public class XpathFileGeneratorAstFilter extends AutomaticBean implements TreeWa
     /** The delimiter between xpath queries. */
     private static final String DELIMITER = " | \n";
 
-    /** List of the {@code TreeWalkerAuditEvent} objects, which supports xpath suppressions. */
-    private static final List<TreeWalkerAuditEvent> EVENTS = new ArrayList<>();
-
-    /** List of xpath queries for corresponding {@code TreeWalkerAuditEvent} objects. */
-    private static final List<String> QUERIES = new ArrayList<>();
+    /** Map from {@code LocalizedMessage} objects to xpath queries. */
+    private static final Map<LocalizedMessage, String> MESSAGE_QUERY_MAP = new HashMap<>();
 
     /** The distance between tab stop position. */
     private int tabWidth;
@@ -55,38 +55,19 @@ public class XpathFileGeneratorAstFilter extends AutomaticBean implements TreeWa
     }
 
     /**
-     * Returns xpath query corresponding to {@code TreeWalkerAuditEvent} object which points to
-     * the same AST element as specified {@code AuditEvent} object.
+     * Returns xpath query corresponding to localized message of the
+     * {@code TreeWalkerAuditEvent} object which points to the same AST element as specified
+     * {@code AuditEvent} object.
      * @param event the {@code AuditEvent} object.
      * @return returns corresponding xpath query
      */
     public static String findCorrespondingXpathQuery(AuditEvent event) {
-        String result = null;
-        for (int i = 0; i < EVENTS.size(); i++) {
-            final TreeWalkerAuditEvent treeWalkerAuditEvent =
-                    EVENTS.get(i);
-            if (event.getSourceName().equals(treeWalkerAuditEvent.getSourceName())
-                    && event.getLine() == treeWalkerAuditEvent.getLine()
-                    && event.getColumn() == treeWalkerAuditEvent.getColumn()
-                    && event.getFileName().endsWith(treeWalkerAuditEvent.getFileName())) {
-                result = QUERIES.get(i);
-                break;
-            }
-        }
-        return result;
+        return MESSAGE_QUERY_MAP.get(event.getLocalizedMessage());
     }
 
     @Override
     protected void finishLocalSetup() {
-        cleanup();
-    }
-
-    /**
-     * Makes {@code EVENTS} and {@code QUERIES} lists empty.
-     */
-    private static void cleanup() {
-        QUERIES.clear();
-        EVENTS.clear();
+        MESSAGE_QUERY_MAP.clear();
     }
 
     @Override
@@ -97,8 +78,7 @@ public class XpathFileGeneratorAstFilter extends AutomaticBean implements TreeWa
             final List<String> xpathQueries = xpathQueryGenerator.generate();
             if (!xpathQueries.isEmpty()) {
                 final String query = xpathQueries.stream().collect(Collectors.joining(DELIMITER));
-                EVENTS.add(event);
-                QUERIES.add(query);
+                MESSAGE_QUERY_MAP.put(event.getLocalizedMessage(), query);
             }
         }
         return true;

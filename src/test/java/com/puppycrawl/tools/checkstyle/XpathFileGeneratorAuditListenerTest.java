@@ -28,7 +28,7 @@ import java.io.File;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -49,23 +49,31 @@ public class XpathFileGeneratorAuditListenerTest {
     /** OS specific line separator. */
     private static final String EOL = System.getProperty("line.separator");
 
-    @Before
-    public void setUp() throws Exception {
+    private static final LocalizedMessage FIRST_MESSAGE = createLocalizedMessage(3, 51,
+            TokenTypes.LCURLY, LeftCurlyCheck.class);
+
+    private static final LocalizedMessage SECOND_MESSAGE = createLocalizedMessage(15, 5,
+            TokenTypes.METHOD_DEF, MethodParamPadCheck.class);
+
+    private static final LocalizedMessage THIRD_MESSAGE = createLocalizedMessage(17, 13,
+            TokenTypes.LITERAL_FOR, NestedForDepthCheck.class);
+
+    private static final LocalizedMessage FOURTH_MESSAGE = createLocalizedMessage(5, 5,
+            TokenTypes.VARIABLE_DEF, JavadocVariableCheck.class);
+
+    @BeforeClass
+    public static void constructEvents() throws Exception {
         final TreeWalkerAuditEvent event1 = createTreeWalkerAuditEvent(
-                "InputXpathFileGeneratorAuditListener.java", 3, 51, TokenTypes.LCURLY,
-                LeftCurlyCheck.class);
+                "InputXpathFileGeneratorAuditListener.java", FIRST_MESSAGE);
 
         final TreeWalkerAuditEvent event2 = createTreeWalkerAuditEvent(
-                "InputXpathFileGeneratorAuditListener.java", 15, 5, TokenTypes.METHOD_DEF,
-                MethodParamPadCheck.class);
+                "InputXpathFileGeneratorAuditListener.java", SECOND_MESSAGE);
 
         final TreeWalkerAuditEvent event3 = createTreeWalkerAuditEvent(
-                "InputXpathFileGeneratorAuditListener.java", 17, 13, TokenTypes.LITERAL_FOR,
-                NestedForDepthCheck.class);
+                "InputXpathFileGeneratorAuditListener.java", THIRD_MESSAGE);
 
         final TreeWalkerAuditEvent event4 = createTreeWalkerAuditEvent(
-                "InputXpathFileGeneratorAuditListener.java", 5, 5, TokenTypes.VARIABLE_DEF,
-                JavadocVariableCheck.class);
+                "InputXpathFileGeneratorAuditListener.java", FOURTH_MESSAGE);
 
         final XpathFileGeneratorAstFilter astFilter = new XpathFileGeneratorAstFilter();
         astFilter.accept(event1);
@@ -136,7 +144,7 @@ public class XpathFileGeneratorAuditListenerTest {
     @Test
     public void testCorrectOne() {
         final AuditEvent event = createAuditEvent("InputXpathFileGeneratorAuditListener.java",
-                3, 51, LeftCurlyCheck.class);
+                FIRST_MESSAGE);
 
         final String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + EOL
                 + "<!DOCTYPE suppressions PUBLIC" + EOL
@@ -159,10 +167,10 @@ public class XpathFileGeneratorAuditListenerTest {
     @Test
     public void testCorrectTwo() {
         final AuditEvent event1 = createAuditEvent("InputXpathFileGeneratorAuditListener.java",
-                15, 5, MethodParamPadCheck.class);
+                SECOND_MESSAGE);
 
         final AuditEvent event2 = createAuditEvent("InputXpathFileGeneratorAuditListener.java",
-                17, 13, NestedForDepthCheck.class);
+                THIRD_MESSAGE);
 
         final String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + EOL
                 + "<!DOCTYPE suppressions PUBLIC" + EOL
@@ -195,7 +203,7 @@ public class XpathFileGeneratorAuditListenerTest {
                 5, 5, JavadocVariableCheck.class);
 
         final AuditEvent event3 = createAuditEvent("InputXpathFileGeneratorAuditListener.java",
-                17, 13, JavadocVariableCheck.class);
+                FOURTH_MESSAGE);
 
         final String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + EOL
                 + "<!DOCTYPE suppressions PUBLIC" + EOL
@@ -214,36 +222,6 @@ public class XpathFileGeneratorAuditListenerTest {
         verifyOutput(expected, event1, event2, event3);
     }
 
-    @Test
-    public void testOnlySourceNameMatching() {
-        final AuditEvent event = createAuditEvent("InputWrong.java",
-                30, 510, LeftCurlyCheck.class);
-
-        final String expected = "";
-
-        verifyOutput(expected, event);
-    }
-
-    @Test
-    public void testOnlySourceNameAndLineMatching() {
-        final AuditEvent event = createAuditEvent("InputWrong.java",
-                3, 510, LeftCurlyCheck.class);
-
-        final String expected = "";
-
-        verifyOutput(expected, event);
-    }
-
-    @Test
-    public void testOnlySourceNameAndLineAndColumnMatching() {
-        final AuditEvent event = createAuditEvent("InputWrong.java",
-                3, 51, LeftCurlyCheck.class);
-
-        final String expected = "";
-
-        verifyOutput(expected, event);
-    }
-
     private AuditEvent createAuditEvent(String fileName, int lineNumber, int columnNumber,
                                         Class<?> sourceClass) {
         final LocalizedMessage message =
@@ -254,18 +232,27 @@ public class XpathFileGeneratorAuditListenerTest {
                 getPath(fileName), message);
     }
 
-    private static TreeWalkerAuditEvent createTreeWalkerAuditEvent(String fileName, int lineNumber,
+    private AuditEvent createAuditEvent(String fileName, LocalizedMessage message) {
+        return new AuditEvent(this,
+                getPath(fileName), message);
+    }
+
+    private static LocalizedMessage createLocalizedMessage(int lineNumber,
                                                                    int columnNumber, int tokenType,
-                                                                   Class<?> sourceClass)
+                                                                   Class<?> sourceClass) {
+        return new LocalizedMessage(lineNumber, columnNumber, tokenType,
+                "messages.properties", null, null,
+                SeverityLevel.ERROR, null, sourceClass, null);
+    }
+
+    private static TreeWalkerAuditEvent createTreeWalkerAuditEvent(String fileName,
+                                                                   LocalizedMessage message)
             throws Exception {
         final File file = new File(getPath(fileName));
         final FileText fileText = new FileText(
                 file.getAbsoluteFile(),
                 System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
         final FileContents fileContents = new FileContents(fileText);
-        final LocalizedMessage message = new LocalizedMessage(lineNumber, columnNumber, tokenType,
-                "messages.properties", null, null,
-                SeverityLevel.ERROR, null, sourceClass, null);
         final DetailAST rootAst = JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS);
 
         return new TreeWalkerAuditEvent(fileContents, fileName,
