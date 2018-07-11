@@ -276,6 +276,54 @@ no-exception-alot-of-projects)
   rm -rf contribution
   ;;
 
+no-warning-imports-guava)
+  PROJECTS=checks-import-order/projects-to-test-imports-guava.properties
+  CONFIG=checks-import-order/checks-imports-error-guava.xml
+  REPORT=reports/guava/site/index.html
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  echo CS_version: ${CS_POM_VERSION}
+  checkout_from https://github.com/checkstyle/contribution.git
+  cd .ci-temp/contribution/checkstyle-tester
+  groovy ./launch.groovy --listOfProjects $PROJECTS --config $CONFIG \
+      --checkstyleVersion ${CS_POM_VERSION}
+  RESULT=`grep -A 5 "&#160;Warning</td>" $REPORT | cat`
+  cd ../../
+  rm -rf contribution
+  if [ -z "$RESULT" ]; then
+    echo "Inpection did not find any warnings"
+  else
+    echo "$RESULT"
+    echo "Some warnings have been found. Verification failed."
+    sleep 5s
+    exit 1
+  fi
+  ;;
+
+no-warning-imports-java-design-patterns)
+  PROJECTS=checks-import-order/projects-to-test-imports-java-design-patterns.properties
+  CONFIG=checks-import-order/checks-imports-error-java-design-patterns.xml
+  REPORT=reports/java-design-patterns/site/index.html
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  echo CS_version: ${CS_POM_VERSION}
+  checkout_from https://github.com/checkstyle/contribution.git
+  cd .ci-temp/contribution/checkstyle-tester
+  groovy ./launch.groovy --listOfProjects $PROJECTS --config $CONFIG \
+      --checkstyleVersion ${CS_POM_VERSION}
+  RESULT=`grep -A 5 "&#160;Warning</td>" $REPORT | cat`
+  cd ../../
+  rm -rf contribution
+  if [ -z "$RESULT" ]; then
+    echo "Inpection did not find any warnings"
+  else
+    echo "$RESULT"
+    echo "Some warnings have been found. Verification failed."
+    sleep 5s
+    exit 1
+  fi
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s

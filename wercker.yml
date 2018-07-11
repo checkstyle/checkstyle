@@ -223,6 +223,26 @@ build:
         fi
 
   - script:
+      name: NoWarningTest - guava imports ....
+      code: |
+        if [[ $SKIP_CI == 'false' ]]; then
+          echo "Command: ./.ci/wercker.sh no-warning-imports-guava"
+          ./.ci/wercker.sh no-warning-imports-guava
+        else
+          echo "build is skipped ..."
+        fi
+
+  - script:
+      name: NoWarningTest - java-design-patterns imports....
+      code: |
+        if [[ $SKIP_CI == 'false' ]]; then
+          echo "Command: ./.ci/wercker.sh no-warning-imports-java-design-patterns"
+          ./.ci/wercker.sh no-warning-imports-java-design-patterns
+        else
+          echo "build is skipped ..."
+        fi
+
+  - script:
       name: Cleanup maven local repo
       code: |
         find ${WERCKER_CACHE_DIR} -type d -name "*SNAPSHOT" -ls -exec rm -rf {} +
