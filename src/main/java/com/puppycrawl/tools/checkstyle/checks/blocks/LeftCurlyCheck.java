@@ -29,19 +29,25 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * Checks the placement of left curly braces on types, methods and
- * other blocks:
- *  {@link TokenTypes#LITERAL_CATCH LITERAL_CATCH},  {@link
- * TokenTypes#LITERAL_DO LITERAL_DO},  {@link TokenTypes#LITERAL_ELSE
- * LITERAL_ELSE},  {@link TokenTypes#LITERAL_FINALLY LITERAL_FINALLY},  {@link
- * TokenTypes#LITERAL_FOR LITERAL_FOR},  {@link TokenTypes#LITERAL_IF
- * LITERAL_IF},  {@link TokenTypes#LITERAL_SWITCH LITERAL_SWITCH},  {@link
- * TokenTypes#LITERAL_SYNCHRONIZED LITERAL_SYNCHRONIZED},  {@link
- * TokenTypes#LITERAL_TRY LITERAL_TRY},  {@link TokenTypes#LITERAL_WHILE
- * LITERAL_WHILE},  {@link TokenTypes#STATIC_INIT STATIC_INIT},
- * {@link TokenTypes#LAMBDA LAMBDA}.
+ * Checks the placement of left curly braces.
+ * The policy to verify is specified using the {@link LeftCurlyOption} class
+ * and the default one being {@link LeftCurlyOption#EOL}.
  * </p>
- *
+ * <p>
+ * By default the following tokens are checked:
+ *  {@link TokenTypes#LAMBDA LAMBDA},
+ *  {@link TokenTypes#LITERAL_CATCH LITERAL_CATCH},
+ *  {@link TokenTypes#LITERAL_DO LITERAL_DO},
+ *  {@link TokenTypes#LITERAL_ELSE LITERAL_ELSE},
+ *  {@link TokenTypes#LITERAL_FINALLY LITERAL_FINALLY},
+ *  {@link TokenTypes#LITERAL_FOR LITERAL_FOR},
+ *  {@link TokenTypes#LITERAL_IF LITERAL_IF},
+ *  {@link TokenTypes#LITERAL_SWITCH LITERAL_SWITCH},
+ *  {@link TokenTypes#LITERAL_SYNCHRONIZED LITERAL_SYNCHRONIZED},
+ *  {@link TokenTypes#LITERAL_TRY LITERAL_TRY},
+ *  {@link TokenTypes#LITERAL_WHILE LITERAL_WHILE},
+ *  {@link TokenTypes#STATIC_INIT STATIC_INIT}.
+ * </p>
  * <p>
  * The policy to verify is specified using the {@link LeftCurlyOption} class and
  * defaults to {@link LeftCurlyOption#EOL}.
@@ -132,26 +138,26 @@ public class LeftCurlyCheck
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.CLASS_DEF,
             TokenTypes.ANNOTATION_DEF,
-            TokenTypes.ENUM_DEF,
+            TokenTypes.CLASS_DEF,
             TokenTypes.CTOR_DEF,
-            TokenTypes.METHOD_DEF,
             TokenTypes.ENUM_CONSTANT_DEF,
-            TokenTypes.LITERAL_WHILE,
-            TokenTypes.LITERAL_TRY,
-            TokenTypes.LITERAL_CATCH,
-            TokenTypes.LITERAL_FINALLY,
-            TokenTypes.LITERAL_SYNCHRONIZED,
-            TokenTypes.LITERAL_SWITCH,
-            TokenTypes.LITERAL_DO,
-            TokenTypes.LITERAL_IF,
-            TokenTypes.LITERAL_ELSE,
-            TokenTypes.LITERAL_FOR,
-            TokenTypes.STATIC_INIT,
-            TokenTypes.OBJBLOCK,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.INTERFACE_DEF,
             TokenTypes.LAMBDA,
+            TokenTypes.LITERAL_CATCH,
+            TokenTypes.LITERAL_DO,
+            TokenTypes.LITERAL_ELSE,
+            TokenTypes.LITERAL_FINALLY,
+            TokenTypes.LITERAL_FOR,
+            TokenTypes.LITERAL_IF,
+            TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_SYNCHRONIZED,
+            TokenTypes.LITERAL_TRY,
+            TokenTypes.LITERAL_WHILE,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.OBJBLOCK,
+            TokenTypes.STATIC_INIT,
         };
     }
 

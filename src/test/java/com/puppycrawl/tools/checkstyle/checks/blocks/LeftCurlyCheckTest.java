@@ -312,26 +312,27 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
         final LeftCurlyCheck check = new LeftCurlyCheck();
         final int[] actual = check.getAcceptableTokens();
         final int[] expected = {
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.CLASS_DEF,
             TokenTypes.ANNOTATION_DEF,
-            TokenTypes.ENUM_DEF,
+            TokenTypes.CLASS_DEF,
             TokenTypes.CTOR_DEF,
-            TokenTypes.METHOD_DEF,
             TokenTypes.ENUM_CONSTANT_DEF,
-            TokenTypes.LITERAL_WHILE,
-            TokenTypes.LITERAL_TRY,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.LAMBDA,
             TokenTypes.LITERAL_CATCH,
-            TokenTypes.LITERAL_FINALLY,
-            TokenTypes.LITERAL_SYNCHRONIZED,
-            TokenTypes.LITERAL_SWITCH,
             TokenTypes.LITERAL_DO,
-            TokenTypes.LITERAL_IF,
             TokenTypes.LITERAL_ELSE,
+            TokenTypes.LITERAL_FINALLY,
             TokenTypes.LITERAL_FOR,
-            TokenTypes.STATIC_INIT,
+            TokenTypes.LITERAL_IF,
+            TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_SYNCHRONIZED,
+            TokenTypes.LITERAL_TRY,
+            TokenTypes.LITERAL_WHILE,
+            TokenTypes.METHOD_DEF,
             TokenTypes.OBJBLOCK,
-            TokenTypes.LAMBDA, };
+            TokenTypes.STATIC_INIT,
+        };
         assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
 
