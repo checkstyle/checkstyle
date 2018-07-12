@@ -4,6 +4,12 @@
     "use strict";
     window.addEventListener("load", function () {
         var url = window.location.href;
+        var position = url.indexOf("#");
+
+        if (position !== -1) {
+            url = url.substring(0, position);
+        }
+
         var anchors = document.getElementsByTagName("h2");
         [].forEach.call(anchors, function (anchorItem) {
             var name = anchorItem.childNodes[0].name;
