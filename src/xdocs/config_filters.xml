@@ -737,6 +737,13 @@ public class UserService {
           Note, that support for other Checks will be available after resolving
           <a href="https://github.com/checkstyle/checkstyle/issues/4830">issue 4830</a>.
         </p>
+        <p>
+          You can use the command line helper tool to generate xpath
+          suppressions based on your configuration file and input files.
+          See
+          <a href="cmdline.html">here</a>
+          for more details.
+        </p>
       </subsection>
       <subsection name="Properties">
         <table>
