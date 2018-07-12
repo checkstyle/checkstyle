@@ -50,16 +50,16 @@ public class XpathFileGeneratorAuditListenerTest {
     private static final String EOL = System.getProperty("line.separator");
 
     private static final LocalizedMessage FIRST_MESSAGE = createLocalizedMessage(3, 51,
-            TokenTypes.LCURLY, LeftCurlyCheck.class);
+            TokenTypes.LCURLY, null, LeftCurlyCheck.class);
 
     private static final LocalizedMessage SECOND_MESSAGE = createLocalizedMessage(15, 5,
-            TokenTypes.METHOD_DEF, MethodParamPadCheck.class);
+            TokenTypes.METHOD_DEF, "MyModule", MethodParamPadCheck.class);
 
     private static final LocalizedMessage THIRD_MESSAGE = createLocalizedMessage(17, 13,
-            TokenTypes.LITERAL_FOR, NestedForDepthCheck.class);
+            TokenTypes.LITERAL_FOR, null, NestedForDepthCheck.class);
 
     private static final LocalizedMessage FOURTH_MESSAGE = createLocalizedMessage(5, 5,
-            TokenTypes.VARIABLE_DEF, JavadocVariableCheck.class);
+            TokenTypes.VARIABLE_DEF, "JavadocModuleId", JavadocVariableCheck.class);
 
     @BeforeClass
     public static void constructEvents() throws Exception {
@@ -181,7 +181,7 @@ public class XpathFileGeneratorAuditListenerTest {
                 + "<suppressions>" + EOL
                 + "<suppress-xpath" + EOL
                 + "       files=\"InputXpathFileGeneratorAuditListener.java\"" + EOL
-                + "       checks=\"MethodParamPadCheck\"" + EOL
+                + "       id=\"MyModule\"" + EOL
                 + "       query=\"/CLASS_DEF[@text='InputXpathFileGeneratorAuditListener']/OBJBLOCK"
                 + "/METHOD_DEF[@text='sort']\"/>" + EOL
                 + "<suppress-xpath" + EOL
@@ -214,7 +214,7 @@ public class XpathFileGeneratorAuditListenerTest {
                 + "<suppressions>" + EOL
                 + "<suppress-xpath" + EOL
                 + "       files=\"InputXpathFileGeneratorAuditListener.java\"" + EOL
-                + "       checks=\"JavadocVariableCheck\"" + EOL
+                + "       id=\"JavadocModuleId\"" + EOL
                 + "       query=\"/CLASS_DEF[@text='InputXpathFileGeneratorAuditListener']/OBJBLOCK"
                 + "/VARIABLE_DEF[@text='isValid']\"/>" + EOL
                 + "</suppressions>" + EOL;
@@ -239,10 +239,11 @@ public class XpathFileGeneratorAuditListenerTest {
 
     private static LocalizedMessage createLocalizedMessage(int lineNumber,
                                                                    int columnNumber, int tokenType,
+                                                                   String moduleId,
                                                                    Class<?> sourceClass) {
         return new LocalizedMessage(lineNumber, columnNumber, tokenType,
                 "messages.properties", null, null,
-                SeverityLevel.ERROR, null, sourceClass, null);
+                SeverityLevel.ERROR, moduleId, sourceClass, null);
     }
 
     private static TreeWalkerAuditEvent createTreeWalkerAuditEvent(String fileName,
