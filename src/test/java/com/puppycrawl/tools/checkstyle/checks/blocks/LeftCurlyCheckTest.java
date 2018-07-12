@@ -308,6 +308,41 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testEolSwitch() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
+        checkConfig.addAttribute("option", LeftCurlyOption.EOL.toString());
+        final String[] expected = {
+            "14:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
+            "18:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
+            "25:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
+            "39:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
+            "44:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
+        };
+        verify(checkConfig, getPath("InputLeftCurlyEolSwitch.java"), expected);
+    }
+
+    @Test
+    public void testNlSwitch() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
+        checkConfig.addAttribute("option", LeftCurlyOption.NL.toString());
+        final String[] expected = {
+            "16:21: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 21),
+            "48:14: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 14),
+        };
+        verify(checkConfig, getPath("InputLeftCurlyNlSwitch.java"), expected);
+    }
+
+    @Test
+    public void testNlowSwitch() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
+        checkConfig.addAttribute("option", LeftCurlyOption.NLOW.toString());
+        final String[] expected = {
+            "14:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
+        };
+        verify(checkConfig, getPath("InputLeftCurlyNlowSwitch.java"), expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final LeftCurlyCheck check = new LeftCurlyCheck();
         final int[] actual = check.getAcceptableTokens();
@@ -319,7 +354,9 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
             TokenTypes.ENUM_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.LAMBDA,
+            TokenTypes.LITERAL_CASE,
             TokenTypes.LITERAL_CATCH,
+            TokenTypes.LITERAL_DEFAULT,
             TokenTypes.LITERAL_DO,
             TokenTypes.LITERAL_ELSE,
             TokenTypes.LITERAL_FINALLY,
