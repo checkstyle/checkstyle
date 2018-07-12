@@ -36,7 +36,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * By default the following tokens are checked:
  *  {@link TokenTypes#LAMBDA LAMBDA},
+ *  {@link TokenTypes#LITERAL_CASE LITERAL_CASE},
  *  {@link TokenTypes#LITERAL_CATCH LITERAL_CATCH},
+ *  {@link TokenTypes#LITERAL_DEFAULT LITERAL_DEFAULT},
  *  {@link TokenTypes#LITERAL_DO LITERAL_DO},
  *  {@link TokenTypes#LITERAL_ELSE LITERAL_ELSE},
  *  {@link TokenTypes#LITERAL_FINALLY LITERAL_FINALLY},
@@ -48,6 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *  {@link TokenTypes#LITERAL_WHILE LITERAL_WHILE},
  *  {@link TokenTypes#STATIC_INIT STATIC_INIT}.
  * </p>
+ *
  * <p>
  * The policy to verify is specified using the {@link LeftCurlyOption} class and
  * defaults to {@link LeftCurlyOption#EOL}.
@@ -145,7 +148,9 @@ public class LeftCurlyCheck
             TokenTypes.ENUM_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.LAMBDA,
+            TokenTypes.LITERAL_CASE,
             TokenTypes.LITERAL_CATCH,
+            TokenTypes.LITERAL_DEFAULT,
             TokenTypes.LITERAL_DO,
             TokenTypes.LITERAL_ELSE,
             TokenTypes.LITERAL_FINALLY,
@@ -205,12 +210,12 @@ public class LeftCurlyCheck
                 break;
             case TokenTypes.LITERAL_ELSE:
                 startToken = ast;
-                final DetailAST candidate = ast.getFirstChild();
-                brace = null;
-
-                if (candidate.getType() == TokenTypes.SLIST) {
-                    brace = candidate;
-                }
+                brace = getBraceAsFirstChild(ast);
+                break;
+            case TokenTypes.LITERAL_CASE:
+            case TokenTypes.LITERAL_DEFAULT:
+                startToken = ast;
+                brace = getBraceAsFirstChild(ast.getNextSibling());
                 break;
             default:
                 // ATTENTION! We have default here, but we expect case TokenTypes.METHOD_DEF,
@@ -226,6 +231,23 @@ public class LeftCurlyCheck
         if (brace != null) {
             verifyBrace(brace, startToken);
         }
+    }
+
+    /**
+     * Gets a SLIST if it is the first child of the AST.
+     * @param ast {@code DetailAST}.
+     * @return {@code DetailAST} if the first child is {@code TokenTypes.SLIST},
+     *     {@code null} otherwise.
+     */
+    private static DetailAST getBraceAsFirstChild(DetailAST ast) {
+        DetailAST brace = null;
+        if (ast != null) {
+            final DetailAST candidate = ast.getFirstChild();
+            if (candidate != null && candidate.getType() == TokenTypes.SLIST) {
+                brace = candidate;
+            }
+        }
+        return brace;
     }
 
     /**
