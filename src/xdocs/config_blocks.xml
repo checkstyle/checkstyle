@@ -23,7 +23,7 @@
     </section>
 
     <section name="AvoidNestedBlocks">
-      <subsection name="Description">
+      <subsection name="Description" id="AvoidNestedBlocks_Description">
         <p>Since Checkstyle 3.1</p>
         <p>
           Finds nested blocks, i.e. blocks that are used freely in the code.
@@ -90,7 +90,7 @@ switch (a)
         </source>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="AvoidNestedBlocks_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -109,14 +109,14 @@ switch (a)
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="AvoidNestedBlocks_Examples">
         <p> To configure the check: </p>
         <source>
 &lt;module name=&quot;AvoidNestedBlocks&quot;/&gt;
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="AvoidNestedBlocks_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidNestedBlocks">
@@ -129,7 +129,7 @@ switch (a)
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="AvoidNestedBlocks_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22block.nested%22">
@@ -142,17 +142,17 @@ switch (a)
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="AvoidNestedBlocks_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="AvoidNestedBlocks_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="EmptyBlock">
-      <subsection name="Description">
+      <subsection name="Description" id="EmptyBlock_Description">
         <p>Since Checkstyle 3.0</p>
         <p> Checks for empty blocks. This check does not validate sequential blocks. </p>
 
@@ -186,7 +186,7 @@ switch (a) {
         </source>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="EmptyBlock_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -268,7 +268,7 @@ switch (a) {
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="EmptyBlock_Examples">
         <p> To configure the check: </p>
         <source>
 &lt;module name=&quot;EmptyBlock&quot;/&gt;
@@ -286,7 +286,7 @@ switch (a) {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="EmptyBlock_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyBlock">
@@ -303,7 +303,7 @@ switch (a) {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="EmptyBlock_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22block.empty%22">
@@ -320,17 +320,17 @@ switch (a) {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="EmptyBlock_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="EmptyBlock_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="EmptyCatchBlock">
-      <subsection name="Description">
+      <subsection name="Description" id="EmptyCatchBlock_Description">
         <p>Since Checkstyle 6.4</p>
         <p>
           Checks for empty catch blocks. There are two options to make validation more precise
@@ -338,7 +338,7 @@ switch (a) {
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="EmptyCatchBlock_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -364,7 +364,7 @@ switch (a) {
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="EmptyCatchBlock_Examples">
         <p>
           To configure the Check to suppress empty catch block if exception's variable name is
            <code>expected</code> or <code>ignore</code> or there's any comment inside:
@@ -441,7 +441,7 @@ try {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="EmptyCatchBlock_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyCatchBlock">
@@ -454,7 +454,7 @@ try {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="EmptyCatchBlock_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22catch.block.empty%22">
@@ -467,17 +467,17 @@ try {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="EmptyCatchBlock_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="EmptyCatchBlock_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="LeftCurly">
-      <subsection name="Description">
+      <subsection name="Description" id="LeftCurly_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
           Checks for the placement of left curly braces
@@ -486,7 +486,7 @@ try {
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="LeftCurly_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -603,7 +603,7 @@ try {
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="LeftCurly_Examples">
         <p> To configure the check: </p>
         <source>
 &lt;module name=&quot;LeftCurly&quot;/&gt;
@@ -628,7 +628,7 @@ try {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="LeftCurly_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LeftCurly">
@@ -645,7 +645,7 @@ try {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="LeftCurly_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.break.after%22">
@@ -666,22 +666,22 @@ try {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="LeftCurly_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="LeftCurly_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="NeedBraces">
-      <subsection name="Description">
+      <subsection name="Description" id="NeedBraces_Description">
         <p>Since Checkstyle 3.0</p>
         <p> Checks for braces around code blocks. </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="NeedBraces_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -744,7 +744,7 @@ try {
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="NeedBraces_Examples">
         <p> To configure the check: </p>
         <source>
 &lt;module name=&quot;NeedBraces&quot;/&gt;
@@ -819,7 +819,7 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
           </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="NeedBraces_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NeedBraces">
@@ -836,7 +836,7 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="NeedBraces_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22needBraces%22">
@@ -849,17 +849,17 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="NeedBraces_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="NeedBraces_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="RightCurly">
-      <subsection name="Description">
+      <subsection name="Description" id="RightCurly_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
           Checks the placement of right curly braces (<code>'}'</code>)
@@ -872,7 +872,7 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="RightCurly_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -963,7 +963,7 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="RightCurly_Examples">
         <p> To configure the check: </p>
         <source>
 &lt;module name=&quot;RightCurly&quot;/&gt;
@@ -983,7 +983,7 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="RightCurly_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RightCurly">
@@ -1000,7 +1000,7 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="RightCurly_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.alone%22">
@@ -1025,11 +1025,11 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="RightCurly_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="RightCurly_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>

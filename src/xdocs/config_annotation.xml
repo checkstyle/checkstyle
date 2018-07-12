@@ -23,7 +23,7 @@
     </section>
 
     <section name="AnnotationLocation">
-      <subsection name="Description">
+      <subsection name="Description" id="AnnotationLocation_Description">
         <p>Since Checkstyle 6.0</p>
         <p>
           Check location of annotation on language elements.
@@ -48,7 +48,7 @@ public String getNameIfPresent() { ... }
         </source>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="AnnotationLocation_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -133,7 +133,7 @@ public String getNameIfPresent() { ... }
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="AnnotationLocation_Examples">
         <p>
           Example to allow multiple annotations on the same line
         </p>
@@ -218,7 +218,7 @@ public void test(&#64;MyAnnotation String s) { // OK
        </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="AnnotationLocation_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationLocation">
@@ -231,7 +231,7 @@ public void test(&#64;MyAnnotation String s) { // OK
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="AnnotationLocation_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.location%22">
@@ -248,17 +248,17 @@ public void test(&#64;MyAnnotation String s) { // OK
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="AnnotationLocation_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="AnnotationLocation_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="AnnotationOnSameLine">
-      <subsection name="Description">
+      <subsection name="Description" id="AnnotationOnSameLine_Description">
         <p>Since Checkstyle 8.2</p>
         <p>
           The check does verifying that annotations are located on the same line with their targets.
@@ -266,7 +266,7 @@ public void test(&#64;MyAnnotation String s) { // OK
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="AnnotationOnSameLine_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -328,7 +328,7 @@ public void test(&#64;MyAnnotation String s) { // OK
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="AnnotationOnSameLine_Examples">
         <p>
           To configure the check:
         </p>
@@ -352,7 +352,7 @@ public int foo() { ... }
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="AnnotationOnSameLine_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationOnSameLine">
@@ -361,7 +361,7 @@ public int foo() { ... }
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="AnnotationOnSameLine_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.same.line%22">
@@ -374,22 +374,22 @@ public int foo() { ... }
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="AnnotationOnSameLine_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="AnnotationOnSameLine_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="AnnotationUseStyle">
-      <subsection name="Description">
+      <subsection name="Description" id="AnnotationUseStyle_Description">
         <p>Since Checkstyle 5.0</p>
         <p> This check controls the style with the usage of annotations.
         </p>
       </subsection>
-      <subsection name="Properties">
+      <subsection name="Properties" id="AnnotationUseStyle_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -441,7 +441,7 @@ public int foo() { ... }
           </tr>
         </table>
       </subsection>
-      <subsection name="Examples">
+      <subsection name="Examples" id="AnnotationUseStyle_Examples">
         <p> To configure the check:</p>
         <source>
 &lt;module name=&quot;AnnotationUseStyle&quot;/&gt;
@@ -463,7 +463,7 @@ public int foo() { ... }
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="AnnotationUseStyle_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationUseStyle">
@@ -472,7 +472,7 @@ public int foo() { ... }
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="AnnotationUseStyle_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.incorrect.style%22">
@@ -501,23 +501,23 @@ public int foo() { ... }
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="AnnotationUseStyle_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="AnnotationUseStyle_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="MissingDeprecated">
-      <subsection name="Description">
+      <subsection name="Description" id="MissingDeprecated_Description">
         <p>Since Checkstyle 5.0</p>
         <p> Verifies that both the java.lang.Deprecated annotation is
             present and the @deprecated Javadoc tag is present when
             either is present.</p>
       </subsection>
-      <subsection name="Properties">
+      <subsection name="Properties" id="MissingDeprecated_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -539,7 +539,7 @@ public int foo() { ... }
           </tr>
         </table>
       </subsection>
-      <subsection name="Examples">
+      <subsection name="Examples" id="MissingDeprecated_Examples">
         <p> To configure the check:</p>
         <source>
 &lt;module name=&quot;MissingDeprecated&quot;/&gt;
@@ -561,7 +561,7 @@ public static final int COUNTER = 10; // violation as javadoc exists
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="MissingDeprecated_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingDeprecated">
@@ -570,7 +570,7 @@ public static final int COUNTER = 10; // violation as javadoc exists
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="MissingDeprecated_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.missing.deprecated%22">
@@ -591,22 +591,22 @@ public static final int COUNTER = 10; // violation as javadoc exists
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="MissingDeprecated_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="MissingDeprecated_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="MissingOverride">
-      <subsection name="Description">
+      <subsection name="Description" id="MissingOverride_Description">
         <p>Since Checkstyle 5.0</p>
         <p> Verifies that the java.lang.Override annotation is present
           when the {@inheritDoc} javadoc tag is present.</p>
       </subsection>
-      <subsection name="Properties">
+      <subsection name="Properties" id="MissingOverride_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -636,7 +636,7 @@ public static final int COUNTER = 10; // violation as javadoc exists
           </tr>
         </table>
       </subsection>
-      <subsection name="Examples">
+      <subsection name="Examples" id="MissingOverride_Examples">
         <p> To configure the check:</p>
         <source>
 &lt;module name=&quot;MissingOverride&quot;/&gt;
@@ -654,7 +654,7 @@ public static final int COUNTER = 10; // violation as javadoc exists
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="MissingOverride_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingOverride">
@@ -663,7 +663,7 @@ public static final int COUNTER = 10; // violation as javadoc exists
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="MissingOverride_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.missing.override%22">
@@ -680,17 +680,17 @@ public static final int COUNTER = 10; // violation as javadoc exists
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="MissingOverride_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="MissingOverride_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="PackageAnnotation">
-      <subsection name="Description">
+      <subsection name="Description" id="PackageAnnotation_Description">
         <p>Since Checkstyle 5.0</p>
         <p>  This check makes sure that all package annotations are in the
              package-info.java file.
@@ -711,13 +711,13 @@ public static final int COUNTER = 10; // violation as javadoc exists
         </p>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="PackageAnnotation_Examples">
         <p> To configure the check:</p>
         <source> &lt;module name=&quot;PackageAnnotation&quot;/&gt;
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="PackageAnnotation_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageAnnotation">
@@ -726,7 +726,7 @@ public static final int COUNTER = 10; // violation as javadoc exists
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="PackageAnnotation_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.package.location%22">
@@ -739,17 +739,17 @@ public static final int COUNTER = 10; // violation as javadoc exists
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="PackageAnnotation_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="PackageAnnotation_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="SuppressWarnings">
-      <subsection name="Description">
+      <subsection name="Description" id="SuppressWarnings_Description">
         <p>Since Checkstyle 5.0</p>
         <p> This check allows you to specify what warnings that
         SuppressWarnings is not allowed to suppress.
@@ -770,7 +770,7 @@ public static final int COUNTER = 10; // violation as javadoc exists
         <code>@SuppressWarnings({('u' + (char)'n') + (""+("used" + (String)"")),})</code>.
         </p>
       </subsection>
-      <subsection name="Properties">
+      <subsection name="Properties" id="SuppressWarnings_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -849,7 +849,7 @@ public static final int COUNTER = 10; // violation as javadoc exists
 
         </table>
       </subsection>
-      <subsection name="Examples">
+      <subsection name="Examples" id="SuppressWarnings_Examples">
         <p> To configure the check:</p>
         <source> &lt;module name=&quot;SuppressWarnings&quot;/&gt;
         </source>
@@ -873,7 +873,7 @@ public static final int COUNTER = 10; // violation as javadoc exists
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="SuppressWarnings_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarnings">
@@ -882,7 +882,7 @@ public static final int COUNTER = 10; // violation as javadoc exists
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="SuppressWarnings_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22suppressed.warning.not.allowed%22">
@@ -895,17 +895,17 @@ public static final int COUNTER = 10; // violation as javadoc exists
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="SuppressWarnings_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="SuppressWarnings_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="SuppressWarningsHolder">
-      <subsection name="Description">
+      <subsection name="Description" id="SuppressWarningsHolder_Description">
         <p>Since Checkstyle 5.7</p>
         <p>
           Maintains a set of check suppressions from
@@ -917,7 +917,7 @@ public static final int COUNTER = 10; // violation as javadoc exists
          </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="SuppressWarningsHolder_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -938,7 +938,7 @@ public static final int COUNTER = 10; // violation as javadoc exists
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="SuppressWarningsHolder_Examples">
         <p>To prevent <code>FooCheck</code> errors from being reported write:</p>
         <source>
 @SuppressWarnings("foo") interface I { }
@@ -990,7 +990,7 @@ public void someFunctionWithInvalidStyle() {
 
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="SuppressWarningsHolder_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsHolder">
@@ -999,7 +999,7 @@ public void someFunctionWithInvalidStyle() {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="SuppressWarningsHolder_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22suppress.warnings.invalid.target%22">
@@ -1012,11 +1012,11 @@ public void someFunctionWithInvalidStyle() {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="SuppressWarningsHolder_Package">
         <p> com.puppycrawl.tools.checkstyle.checks </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="SuppressWarningsHolder_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
 

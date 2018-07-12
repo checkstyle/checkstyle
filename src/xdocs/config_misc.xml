@@ -23,7 +23,7 @@
     </section>
 
     <section name="ArrayTypeStyle">
-      <subsection name="Description">
+      <subsection name="Description" id="ArrayTypeStyle_Description">
         <p>Since Checkstyle 3.1</p>
         <p>
           Checks the style of array type definitions.  Some like Java style:
@@ -32,7 +32,7 @@
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="ArrayTypeStyle_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -53,7 +53,7 @@
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="ArrayTypeStyle_Examples">
         <p>
           To configure the check to enforce Java style:
         </p>
@@ -71,7 +71,7 @@
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="ArrayTypeStyle_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ArrayTypeStyle">
@@ -88,7 +88,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="ArrayTypeStyle_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22array.type.style%22">
@@ -101,13 +101,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="ArrayTypeStyle_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="ArrayTypeStyle_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -115,7 +115,7 @@
     </section>
 
     <section name="AvoidEscapedUnicodeCharacters">
-      <subsection name="Description">
+      <subsection name="Description" id="AvoidEscapedUnicodeCharacters_Description">
         <p>Since Checkstyle 5.8</p>
         <p>
           Restrict using
@@ -130,7 +130,7 @@
         </p>
       </subsection>
 
-       <subsection name="Properties">
+       <subsection name="Properties" id="AvoidEscapedUnicodeCharacters_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -170,7 +170,7 @@
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="AvoidEscapedUnicodeCharacters_Examples">
        <p>
           Examples of using Unicode:
         </p>
@@ -239,7 +239,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="AvoidEscapedUnicodeCharacters_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidEscapedUnicodeCharacters">
@@ -252,7 +252,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="AvoidEscapedUnicodeCharacters_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22forbid.escaped.unicode.char%22">
@@ -265,13 +265,13 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="AvoidEscapedUnicodeCharacters_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="AvoidEscapedUnicodeCharacters_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -279,7 +279,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
     </section>
 
     <section name="CommentsIndentation">
-      <subsection name="Description">
+      <subsection name="Description" id="CommentsIndentation_Description">
         <p>Since Checkstyle 6.10</p>
         <p>
           Controls the indentation between comments and surrounding code.
@@ -449,7 +449,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 14  }
         </source>
       </subsection>
-      <subsection name="Properties">
+      <subsection name="Properties" id="CommentsIndentation_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -479,7 +479,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="CommentsIndentation_Examples">
         <p>
           To configure the Check:
         </p>
@@ -488,7 +488,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="CommentsIndentation_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CommentsIndentation">
@@ -501,7 +501,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="CommentsIndentation_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22comments.indentation.block%22">
@@ -518,13 +518,13 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="CommentsIndentation_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.indentation
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="CommentsIndentation_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -532,7 +532,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
     </section>
 
     <section name="DescendantToken">
-      <subsection name="Description">
+      <subsection name="Description" id="DescendantToken_Description">
         <p>Since Checkstyle 3.2</p>
         <p>
           Checks for restricted tokens beneath other tokens.
@@ -548,7 +548,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="DescendantToken_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -622,7 +622,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="DescendantToken_Examples">
 
         <p>Switch with no default:</p>
         <source>
@@ -806,7 +806,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="DescendantToken_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+DescendantToken">
@@ -815,7 +815,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="DescendantToken_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22descendant.token.max%22">
@@ -840,13 +840,13 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="DescendantToken_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="DescendantToken_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -854,7 +854,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
     </section>
 
     <section name="FinalParameters">
-      <subsection name="Description">
+      <subsection name="Description" id="FinalParameters_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
           Check that parameters for methods, constructors, and catch blocks are
@@ -871,7 +871,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="FinalParameters_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -912,7 +912,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="FinalParameters_Examples">
         <p>
           To configure the check to enforce final parameters for methods and
           constructors:
@@ -942,7 +942,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="FinalParameters_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FinalParameters">
@@ -955,7 +955,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="FinalParameters_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22final.parameter%22">
@@ -968,13 +968,13 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="FinalParameters_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="FinalParameters_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -982,7 +982,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
     </section>
 
     <section name="Indentation">
-      <subsection name="Description">
+      <subsection name="Description" id="Indentation_Description">
         <p>Since Checkstyle 3.1</p>
         <p>
           Checks correct indentation of Java code.
@@ -998,7 +998,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="Indentation_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -1061,7 +1061,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="Indentation_Examples">
         <p>
           To configure the check:
         </p>
@@ -1103,7 +1103,7 @@ void foo(String aFooString,
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="Indentation_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
@@ -1116,7 +1116,7 @@ void foo(String aFooString,
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="Indentation_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22indentation.child.error%22">
@@ -1141,13 +1141,13 @@ void foo(String aFooString,
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="Indentation_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.indentation
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="Indentation_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -1155,7 +1155,7 @@ void foo(String aFooString,
     </section>
 
     <section name="NewlineAtEndOfFile">
-      <subsection name="Description">
+      <subsection name="Description" id="NewlineAtEndOfFile_Description">
         <p>Since Checkstyle 3.1</p>
         <p>
           Checks whether files end with a line separator.
@@ -1182,7 +1182,7 @@ void foo(String aFooString,
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="NewlineAtEndOfFile_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -1209,7 +1209,7 @@ void foo(String aFooString,
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="NewlineAtEndOfFile_Examples">
         <p>
           To configure the check:
         </p>
@@ -1236,7 +1236,7 @@ void foo(String aFooString,
           </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="NewlineAtEndOfFile_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NewlineAtEndOfFile">
@@ -1249,7 +1249,7 @@ void foo(String aFooString,
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="NewlineAtEndOfFile_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22noNewlineAtEOF%22">
@@ -1266,13 +1266,13 @@ void foo(String aFooString,
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="NewlineAtEndOfFile_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="NewlineAtEndOfFile_Parent_Module">
         <p>
           <a href="config.html#Checker">Checker</a>
         </p>
@@ -1280,7 +1280,7 @@ void foo(String aFooString,
     </section>
 
     <section name="OuterTypeFilename">
-      <subsection name="Description">
+      <subsection name="Description" id="OuterTypeFilename_Description">
         <p>Since Checkstyle 5.3</p>
         <p>
           Checks that the outer type name and the file name match. For example,
@@ -1289,7 +1289,7 @@ void foo(String aFooString,
         </p>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="OuterTypeFilename_Examples">
         <p>
           To configure the check:
         </p>
@@ -1298,7 +1298,7 @@ void foo(String aFooString,
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="OuterTypeFilename_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OuterTypeFilename">
@@ -1311,7 +1311,7 @@ void foo(String aFooString,
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="OuterTypeFilename_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22type.file.mismatch%22">
@@ -1324,13 +1324,13 @@ void foo(String aFooString,
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="OuterTypeFilename_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="OuterTypeFilename_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -1338,7 +1338,7 @@ void foo(String aFooString,
     </section>
 
     <section name="TodoComment">
-      <subsection name="Description">
+      <subsection name="Description" id="TodoComment_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
           A check for <code>TODO:</code> comments. Actually
@@ -1349,7 +1349,7 @@ void foo(String aFooString,
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="TodoComment_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -1368,7 +1368,7 @@ void foo(String aFooString,
         </table>
       </subsection>
 
-      <subsection name="Notes">
+      <subsection name="Notes" id="TodoComment_Notes">
         <p>
           Using <code>TODO:</code> comments is a great way
           to keep track of tasks that need to be done. Having them
@@ -1377,7 +1377,7 @@ void foo(String aFooString,
         </p>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="TodoComment_Examples">
         <p>
           To configure the check:
         </p>
@@ -1395,7 +1395,7 @@ void foo(String aFooString,
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="TodoComment_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TodoComment">
@@ -1408,7 +1408,7 @@ void foo(String aFooString,
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="TodoComment_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22todo.match%22">
@@ -1421,13 +1421,13 @@ void foo(String aFooString,
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="TodoComment_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="TodoComment_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -1435,7 +1435,7 @@ void foo(String aFooString,
     </section>
 
     <section name="TrailingComment">
-      <subsection name="Description">
+      <subsection name="Description" id="TrailingComment_Description">
         <p>Since Checkstyle 3.4</p>
         <p>
           The check to ensure that requires that comments be the only thing on
@@ -1499,7 +1499,7 @@ d = e / f;        // Another comment for this line
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="TrailingComment_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -1527,7 +1527,7 @@ d = e / f;        // Another comment for this line
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="TrailingComment_Examples">
         <p>
           To configure the check:
         </p>
@@ -1545,7 +1545,7 @@ d = e / f;        // Another comment for this line
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="TrailingComment_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TrailingComment">
@@ -1554,7 +1554,7 @@ d = e / f;        // Another comment for this line
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="TrailingComment_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22trailing.comments%22">
@@ -1567,13 +1567,13 @@ d = e / f;        // Another comment for this line
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="TrailingComment_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="TrailingComment_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -1581,7 +1581,7 @@ d = e / f;        // Another comment for this line
     </section>
 
     <section name="Translation">
-      <subsection name="Description">
+      <subsection name="Description" id="Translation_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
           A <a href="config.html#Overview">FileSetCheck</a> that ensures
@@ -1624,7 +1624,7 @@ messages.properties: Key 'ok' missing.
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="Translation_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -1675,7 +1675,7 @@ messages.properties: Key 'ok' missing.
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="Translation_Examples">
         <p>
           To configure the check to check only files which have '.properties' and '.translations'
           extensions:
@@ -1735,7 +1735,7 @@ messages_home_fr_CA_UNIX.properties
         </p>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="Translation_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Translation">
@@ -1748,7 +1748,7 @@ messages_home_fr_CA_UNIX.properties
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="Translation_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22translation.missingKey%22">
@@ -1765,13 +1765,13 @@ messages_home_fr_CA_UNIX.properties
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="Translation_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="Translation_Parent_Module">
         <p>
           <a href="config.html#Checker">Checker</a>
         </p>
@@ -1779,7 +1779,7 @@ messages_home_fr_CA_UNIX.properties
     </section>
 
     <section name="UncommentedMain">
-      <subsection name="Description">
+      <subsection name="Description" id="UncommentedMain_Description">
         <p>Since Checkstyle 3.2</p>
         <p>
           Checks for uncommented main() methods.
@@ -1795,7 +1795,7 @@ messages_home_fr_CA_UNIX.properties
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="UncommentedMain_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -1815,7 +1815,7 @@ messages_home_fr_CA_UNIX.properties
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="UncommentedMain_Examples">
         <p>
           To configure the check:
         </p>
@@ -1834,7 +1834,7 @@ messages_home_fr_CA_UNIX.properties
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="UncommentedMain_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UncommentedMain">
@@ -1843,7 +1843,7 @@ messages_home_fr_CA_UNIX.properties
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="UncommentedMain_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22uncommented.main%22">
@@ -1856,13 +1856,13 @@ messages_home_fr_CA_UNIX.properties
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="UncommentedMain_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="UncommentedMain_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -1870,7 +1870,7 @@ messages_home_fr_CA_UNIX.properties
     </section>
 
     <section name="UniqueProperties">
-      <subsection name="Description">
+      <subsection name="Description" id="UniqueProperties_Description">
         <p>Since Checkstyle 5.7</p>
         <p>
           Checks properties files for duplicated properties.
@@ -1884,7 +1884,7 @@ messages_home_fr_CA_UNIX.properties
 
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="UniqueProperties_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -1903,7 +1903,7 @@ messages_home_fr_CA_UNIX.properties
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="UniqueProperties_Examples">
         <p>
           To configure the check:
         </p>
@@ -1914,7 +1914,7 @@ messages_home_fr_CA_UNIX.properties
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="UniqueProperties_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UniqueProperties">
@@ -1923,7 +1923,7 @@ messages_home_fr_CA_UNIX.properties
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="UniqueProperties_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22properties.duplicate.property%22">
@@ -1940,13 +1940,13 @@ messages_home_fr_CA_UNIX.properties
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="UniqueProperties_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="UniqueProperties_Parent_Module">
         <p>
           <a href="config.html#Checker">Checker</a>
         </p>
@@ -1954,7 +1954,7 @@ messages_home_fr_CA_UNIX.properties
     </section>
 
     <section name="UpperEll">
-      <subsection name="Description">
+      <subsection name="Description" id="UpperEll_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
           Checks that long constants are defined with an upper ell. That
@@ -1969,7 +1969,7 @@ messages_home_fr_CA_UNIX.properties
         </p>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="UpperEll_Examples">
         <p>
           To configure the check:
         </p>
@@ -1978,7 +1978,7 @@ messages_home_fr_CA_UNIX.properties
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="UpperEll_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UpperEll">
@@ -1995,7 +1995,7 @@ messages_home_fr_CA_UNIX.properties
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="UpperEll_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22upperEll%22">
@@ -2008,13 +2008,13 @@ messages_home_fr_CA_UNIX.properties
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="UpperEll_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="UpperEll_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>

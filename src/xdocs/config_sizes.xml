@@ -23,7 +23,7 @@
     </section>
 
     <section name="AnonInnerLength">
-      <subsection name="Description">
+      <subsection name="Description" id="AnonInnerLength_Description">
         <p>Since Checkstyle 3.2</p>
         <p>
           Checks for long anonymous inner classes.
@@ -38,7 +38,7 @@
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="AnonInnerLength_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -57,7 +57,7 @@
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="AnonInnerLength_Examples">
         <p>
           To configure the check to accept files with up to 60 lines:
         </p>
@@ -68,7 +68,7 @@
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="AnonInnerLength_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnonInnerLength">
@@ -77,7 +77,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="AnonInnerLength_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22maxLen.anonInner%22">
@@ -90,13 +90,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="AnonInnerLength_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.sizes
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="AnonInnerLength_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -104,14 +104,14 @@
     </section>
 
     <section name="ExecutableStatementCount">
-      <subsection name="Description">
+      <subsection name="Description" id="ExecutableStatementCount_Description">
         <p>Since Checkstyle 3.2</p>
         <p>
           Restricts the number of executable statements to a specified limit.
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="ExecutableStatementCount_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -156,7 +156,7 @@
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="ExecutableStatementCount_Examples">
         <p>
           To configure the check:
         </p>
@@ -176,7 +176,7 @@
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="ExecutableStatementCount_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ExecutableStatementCount">
@@ -185,7 +185,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="ExecutableStatementCount_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22executableStatementCount%22">
@@ -198,13 +198,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="ExecutableStatementCount_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.sizes
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="ExecutableStatementCount_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -212,7 +212,7 @@
     </section>
 
     <section name="FileLength">
-      <subsection name="Description">
+      <subsection name="Description" id="FileLength_Description">
         <p>Since Checkstyle 5.0</p>
         <p>
           Checks for long source files.
@@ -225,7 +225,7 @@
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="FileLength_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -251,7 +251,7 @@
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="FileLength_Examples">
         <p>
           To configure the check to accept files with up to 1500 lines:
         </p>
@@ -262,7 +262,7 @@
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="FileLength_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FileLength">
@@ -275,7 +275,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="FileLength_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22maxLen.file%22">
@@ -288,13 +288,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="FileLength_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.sizes
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="FileLength_Parent_Module">
         <p>
           <a href="config.html#Checker">Checker</a>
         </p>
@@ -302,7 +302,7 @@
     </section>
 
     <section name="LineLength">
-      <subsection name="Description">
+      <subsection name="Description" id="LineLength_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
           Checks for long lines.
@@ -316,7 +316,7 @@
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="LineLength_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -342,7 +342,7 @@
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="LineLength_Examples">
         <p>
           To configure the check to accept lines up to 120 characters long:
         </p>
@@ -363,7 +363,7 @@
         </source>
       </subsection>
 
-      <subsection name="Notes">
+      <subsection name="Notes" id="LineLength_Notes">
         <ul>
           <li>
             The calculation of the length of a line takes into account the
@@ -381,7 +381,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="LineLength_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
@@ -398,7 +398,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="LineLength_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22maxLineLen%22">
@@ -411,13 +411,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="LineLength_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.sizes
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="LineLength_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -425,7 +425,7 @@
     </section>
 
     <section name="MethodCount">
-      <subsection name="Description">
+      <subsection name="Description" id="MethodCount_Description">
         <p>Since Checkstyle 5.3</p>
         <p>
           Checks the number of methods declared in each type declaration by access modifier or
@@ -471,7 +471,7 @@ public class ExampleClass {
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="MethodCount_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -551,7 +551,7 @@ public class ExampleClass {
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="MethodCount_Examples">
         <p>
           To configure the check with defaults:
         </p>
@@ -581,7 +581,7 @@ public class ExampleClass {
 
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="MethodCount_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodCount">
@@ -590,7 +590,7 @@ public class ExampleClass {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="MethodCount_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22too.many.methods%22">
@@ -619,13 +619,13 @@ public class ExampleClass {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="MethodCount_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.sizes
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="MethodCount_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -633,7 +633,7 @@ public class ExampleClass {
     </section>
 
     <section name="MethodLength">
-      <subsection name="Description">
+      <subsection name="Description" id="MethodLength_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
           Checks for long methods and constructors.
@@ -646,7 +646,7 @@ public class ExampleClass {
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="MethodLength_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -698,7 +698,7 @@ public class ExampleClass {
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="MethodLength_Examples">
         <p>
           To configure the check:
         </p>
@@ -730,7 +730,7 @@ public class ExampleClass {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="MethodLength_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodLength">
@@ -743,7 +743,7 @@ public class ExampleClass {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="MethodLength_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22maxLen.method%22">
@@ -756,13 +756,13 @@ public class ExampleClass {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="MethodLength_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.sizes
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="MethodLength_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -770,7 +770,7 @@ public class ExampleClass {
     </section>
 
     <section name="OuterTypeNumber">
-      <subsection name="Description">
+      <subsection name="Description" id="OuterTypeNumber_Description">
         <p>Since Checkstyle 5.0</p>
         <p>
           Checks for the number of types declared at the <i>outer</i>
@@ -783,7 +783,7 @@ public class ExampleClass {
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="OuterTypeNumber_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -802,7 +802,7 @@ public class ExampleClass {
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="OuterTypeNumber_Examples">
         <p>
           To configure the check to accept 1 outer type per file:
         </p>
@@ -821,7 +821,7 @@ public class ExampleClass {
 
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="OuterTypeNumber_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OuterTypeNumber">
@@ -830,7 +830,7 @@ public class ExampleClass {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="OuterTypeNumber_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22maxOuterTypes%22">
@@ -843,13 +843,13 @@ public class ExampleClass {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="OuterTypeNumber_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.sizes
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="OuterTypeNumber_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -857,14 +857,14 @@ public class ExampleClass {
     </section>
 
     <section name="ParameterNumber">
-      <subsection name="Description">
+      <subsection name="Description" id="ParameterNumber_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
           Checks the number of parameters of a method or constructor.
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="ParameterNumber_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -913,7 +913,7 @@ public class ExampleClass {
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="ParameterNumber_Examples">
         <p>
           To configure the check:
         </p>
@@ -956,7 +956,7 @@ public void needsLotsOfParameters(int a, int b, int c, int d, int e, int f, int 
           </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="ParameterNumber_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterNumber">
@@ -969,7 +969,7 @@ public void needsLotsOfParameters(int a, int b, int c, int d, int e, int f, int 
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="ParameterNumber_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22maxParam%22">
@@ -982,13 +982,13 @@ public void needsLotsOfParameters(int a, int b, int c, int d, int e, int f, int 
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="ParameterNumber_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.sizes
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="ParameterNumber_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>

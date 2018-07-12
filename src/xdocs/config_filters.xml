@@ -23,7 +23,7 @@
     </section>
 
     <section name="SeverityMatchFilter">
-      <subsection name="Description">
+      <subsection name="Description" id="SeverityMatchFilter_Description">
         <p>Since Checkstyle 3.2</p>
         <p>
           Filter <code>SeverityMatchFilter</code> decides
@@ -31,7 +31,7 @@
           level</a> of the event.
         </p>
       </subsection>
-      <subsection name="Properties">
+      <subsection name="Properties" id="SeverityMatchFilter_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -64,7 +64,7 @@
           </tr>
         </table>
       </subsection>
-      <subsection name="Examples">
+      <subsection name="Examples" id="SeverityMatchFilter_Examples">
           <p>
             For example, the following configuration fragment directs the
             Checker to not report audit events with severity
@@ -77,7 +77,7 @@
 &lt;/module&gt;
           </source>
       </subsection>
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="SeverityMatchFilter_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SeverityMatchFilter">
@@ -85,17 +85,17 @@
           </li>
         </ul>
       </subsection>
-      <subsection name="Package">
+      <subsection name="Package" id="SeverityMatchFilter_Package">
         <p> com.puppycrawl.tools.checkstyle.filters </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="SeverityMatchFilter_Parent_Module">
         <p> <a href="config.html#Checker">Checker</a> </p>
       </subsection>
     </section>
 
     <section name="SuppressionCommentFilter">
-      <subsection name="Description">
+      <subsection name="Description" id="SuppressionCommentFilter_Description">
           <p>Since Checkstyle 3.5</p>
           <p>
             Filter <code>SuppressionCommentFilter</code> uses
@@ -115,7 +115,7 @@
             than one suppression comment each on separate line.
           </p>
       </subsection>
-      <subsection name="Properties">
+      <subsection name="Properties" id="SuppressionCommentFilter_Properties">
           <table>
               <tr>
                   <th>name</th>
@@ -173,7 +173,7 @@
               paren counts</a>.
           </p>
       </subsection>
-      <subsection name="Examples">
+      <subsection name="Examples" id="SuppressionCommentFilter_Examples">
           <p>
               To configure a filter to suppress audit events between a comment
               containing <code>CHECKSTYLE:OFF</code> and a comment containing
@@ -394,7 +394,7 @@ public class UserService {
 }
           </source>
       </subsection>
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="SuppressionCommentFilter_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionCommentFilter">
@@ -402,17 +402,17 @@ public class UserService {
           </li>
         </ul>
       </subsection>
-      <subsection name="Package">
+      <subsection name="Package" id="SuppressionCommentFilter_Package">
         <p> com.puppycrawl.tools.checkstyle.filters </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="SuppressionCommentFilter_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="SuppressionFilter">
-      <subsection name="Description">
+      <subsection name="Description" id="SuppressionFilter_Description">
         <p>Since Checkstyle 3.2</p>
           <p>
             Filter <code>SuppressionFilter</code> rejects
@@ -423,7 +423,7 @@ public class UserService {
             suppressions file was not found the Filter accepts all audit events.
           </p>
       </subsection>
-      <subsection name="Properties">
+      <subsection name="Properties" id="SuppressionFilter_Properties">
           <table>
              <tr>
                <th>name</th>
@@ -525,7 +525,7 @@ public class UserService {
             <a href="files/suppressions_none.xml">here</a>.
           </p>
       </subsection>
-      <subsection name="Examples">
+      <subsection name="Examples" id="SuppressionFilter_Examples">
           <p>
               For example, the following configuration fragment directs the
               Checker to use a <code>SuppressionFilter</code>
@@ -624,7 +624,7 @@ public class UserService {
 &lt;suppress message=&quot;Name 'log' must match pattern&quot;/&gt;
           </source>
       </subsection>
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="SuppressionFilter_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionFilter">
@@ -632,17 +632,17 @@ public class UserService {
           </li>
         </ul>
       </subsection>
-      <subsection name="Package">
+      <subsection name="Package" id="SuppressionFilter_Package">
         <p> com.puppycrawl.tools.checkstyle.filters </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="SuppressionFilter_Parent_Module">
         <p> <a href="config.html#Checker">Checker</a> </p>
       </subsection>
     </section>
 
     <section name="SuppressionXpathFilter">
-      <subsection name="Description">
+      <subsection name="Description" id="SuppressionXpathFilter_Description">
         <p>Since Checkstyle 8.6</p>
         <p>
           Filter <code>SuppressionXpathFilter</code> works as
@@ -745,7 +745,7 @@ public class UserService {
           for more details.
         </p>
       </subsection>
-      <subsection name="Properties">
+      <subsection name="Properties" id="SuppressionXpathFilter_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -791,7 +791,7 @@ public class UserService {
           </tr>
         </table>
       </subsection>
-      <subsection name="Examples">
+      <subsection name="Examples" id="SuppressionXpathFilter_Examples">
         <p>
           For example, the following configuration fragment directs the
           Checker to use a <code>SuppressionXpathFilter</code>
@@ -960,7 +960,7 @@ public class InputTest {
           /descendant-or-self::node()&quot;/&gt;
         </source>
       </subsection>
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="SuppressionXpathFilter_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionXpathFilter">
@@ -968,17 +968,17 @@ public class InputTest {
           </li>
         </ul>
       </subsection>
-      <subsection name="Package">
+      <subsection name="Package" id="SuppressionXpathFilter_Package">
         <p> com.puppycrawl.tools.checkstyle.filters </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="SuppressionXpathFilter_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="SuppressWarningsFilter">
-      <subsection name="Description">
+      <subsection name="Description" id="SuppressWarningsFilter_Description">
           <p>Since Checkstyle 5.7</p>
           <p>
               Filter <code>SuppressWarningsFilter</code> uses annotations to
@@ -1004,7 +1004,7 @@ public class InputTest {
               and should be written with any dotted prefix or "Check" suffix removed.
           </p>
       </subsection>
-      <subsection name="Examples">
+      <subsection name="Examples" id="SuppressWarningsFilter_Examples">
           <p>
               To configure the check that makes tha annotations available to
               the filter.
@@ -1068,7 +1068,7 @@ public static void foo() {
 }
           </source>
       </subsection>
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="SuppressWarningsFilter_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsFilter">
@@ -1076,17 +1076,17 @@ public static void foo() {
           </li>
         </ul>
       </subsection>
-      <subsection name="Package">
+      <subsection name="Package" id="SuppressWarningsFilter_Package">
         <p> com.puppycrawl.tools.checkstyle.filters </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="SuppressWarningsFilter_Parent_Module">
         <p> <a href="config.html#Checker">Checker</a> </p>
       </subsection>
     </section>
 
     <section name="SuppressWithNearbyCommentFilter">
-        <subsection name="Description">
+        <subsection name="Description" id="SuppressWithNearbyCommentFilter_Description">
             <p>Since Checkstyle 5.0</p>
             <p>
                 Filter <code>SuppressWithNearbyCommentFilter</code> uses
@@ -1101,7 +1101,7 @@ public static void foo() {
                 may be aesthetically preferable in some contexts.
             </p>
         </subsection>
-        <subsection name="Properties">
+        <subsection name="Properties" id="SuppressWithNearbyCommentFilter_Properties">
             <table>
                 <tr>
                     <th>name</th>
@@ -1155,7 +1155,7 @@ public static void foo() {
                 </tr>
             </table>
         </subsection>
-        <subsection name="Examples">
+        <subsection name="Examples" id="SuppressWithNearbyCommentFilter_Examples">
             <p>
                 To configure a filter to suppress audit events for <i>check</i>
                 on any line with a comment <code>SUPPRESS CHECKSTYLE <i>check</i></code>:
@@ -1318,7 +1318,7 @@ public class UserService {
 }
             </source>
         </subsection>
-        <subsection name="Example of Usage">
+        <subsection name="Example of Usage" id="SuppressWithNearbyCommentFilter_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWithNearbyCommentFilter">
@@ -1326,17 +1326,17 @@ public class UserService {
           </li>
         </ul>
         </subsection>
-        <subsection name="Package">
+        <subsection name="Package" id="SuppressWithNearbyCommentFilter_Package">
             <p> com.puppycrawl.tools.checkstyle.filters </p>
         </subsection>
 
-        <subsection name="Parent Module">
+        <subsection name="Parent Module" id="SuppressWithNearbyCommentFilter_Parent_Module">
           <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
         </subsection>
       </section>
 
     <section name="SuppressWithPlainTextCommentFilter">
-          <subsection name="Description">
+          <subsection name="Description" id="SuppressWithPlainTextCommentFilter_Description">
               <p>Since Checkstyle 8.6</p>
               <p>
                   Filter <code>SuppressWithPlainTextCommentFilter</code> uses plain text to suppress
@@ -1366,7 +1366,7 @@ public class UserService {
                   You can use more than one suppression comment each on separate line.
               </p>
           </subsection>
-          <subsection name="Properties">
+          <subsection name="Properties" id="SuppressWithPlainTextCommentFilter_Properties">
               <table>
                   <tr>
                       <th>name</th>
@@ -1410,7 +1410,7 @@ public class UserService {
                   paren counts</a>.
               </p>
           </subsection>
-          <subsection name="Examples">
+          <subsection name="Examples" id="SuppressWithPlainTextCommentFilter_Examples">
               <p>
                   To configure a filter to suppress audit events between a comment
                   containing <code>CHECKSTYLE:OFF</code> and a comment containing
@@ -1620,7 +1620,8 @@ CREATE TABLE STATION (
   LONG_W REAL);
               </source>
           </subsection>
-          <subsection name="Example of Usage">
+          <subsection name="Example of Usage"
+            id="SuppressWithPlainTextCommentFilter_Example_of_Usage">
               <ul>
                   <li>
                       <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWithPlainTextCommentFilter">
@@ -1628,11 +1629,11 @@ CREATE TABLE STATION (
                   </li>
               </ul>
           </subsection>
-          <subsection name="Package">
+          <subsection name="Package" id="SuppressWithPlainTextCommentFilter_Package">
               <p> com.puppycrawl.tools.checkstyle.filters </p>
           </subsection>
 
-          <subsection name="Parent Module">
+          <subsection name="Parent Module" id="SuppressWithPlainTextCommentFilter_Parent_Module">
               <p> <a href="config.html#Checker">Checker</a> </p>
           </subsection>
       </section>

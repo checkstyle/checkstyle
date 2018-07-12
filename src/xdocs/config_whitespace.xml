@@ -23,7 +23,7 @@
     </section>
 
     <section name="EmptyForInitializerPad">
-      <subsection name="Description">
+      <subsection name="Description" id="EmptyForInitializerPad_Description">
         <p>Since Checkstyle 3.4</p>
         <p>
           Checks the padding of an empty for initializer; that is whether
@@ -38,7 +38,7 @@ for (
         </source>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="EmptyForInitializerPad_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -57,7 +57,7 @@ for (
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="EmptyForInitializerPad_Examples">
         <p>
           To configure the check:
         </p>
@@ -76,7 +76,7 @@ for (
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="EmptyForInitializerPad_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyForInitializerPad">
@@ -85,7 +85,7 @@ for (
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="EmptyForInitializerPad_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notPreceded%22">
@@ -104,13 +104,13 @@ for (
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="EmptyForInitializerPad_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="EmptyForInitializerPad_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -118,7 +118,7 @@ for (
     </section>
 
     <section name="EmptyForIteratorPad">
-      <subsection name="Description">
+      <subsection name="Description" id="EmptyForIteratorPad_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
           Checks the padding of an empty for iterator; that is whether white
@@ -133,7 +133,7 @@ for (Iterator foo = very.long.line.iterator();
         </source>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="EmptyForIteratorPad_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -152,7 +152,7 @@ for (Iterator foo = very.long.line.iterator();
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="EmptyForIteratorPad_Examples">
         <p>
           To configure the check:
         </p>
@@ -171,7 +171,7 @@ for (Iterator foo = very.long.line.iterator();
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="EmptyForIteratorPad_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyForIteratorPad">
@@ -184,7 +184,7 @@ for (Iterator foo = very.long.line.iterator();
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="EmptyForIteratorPad_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
@@ -203,13 +203,13 @@ for (Iterator foo = very.long.line.iterator();
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="EmptyForIteratorPad_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="EmptyForIteratorPad_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -217,7 +217,7 @@ for (Iterator foo = very.long.line.iterator();
     </section>
 
     <section name="EmptyLineSeparator">
-      <subsection name="Description">
+      <subsection name="Description" id="EmptyLineSeparator_Description">
         <p>Since Checkstyle 5.8</p>
         <p>
           Checks for empty line separators after header, package, all import declarations,
@@ -230,7 +230,7 @@ for (Iterator foo = very.long.line.iterator();
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="EmptyLineSeparator_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -316,7 +316,7 @@ for (Iterator foo = very.long.line.iterator();
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="EmptyLineSeparator_Examples">
       <p>
         Example of declarations without empty line separator:
       </p>
@@ -426,7 +426,7 @@ class Foo
       </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="EmptyLineSeparator_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyLineSeparator">
@@ -439,7 +439,7 @@ class Foo
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="EmptyLineSeparator_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22empty.line.separator%22">
@@ -464,13 +464,13 @@ class Foo
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="EmptyLineSeparator_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="EmptyLineSeparator_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -478,7 +478,7 @@ class Foo
     </section>
 
     <section name="FileTabCharacter">
-      <subsection name="Description">
+      <subsection name="Description" id="FileTabCharacter_Description">
         <p>Since Checkstyle 5.0</p>
         <p>
           Checks that there are no tab characters (<code>'\t'</code>) in the source code.
@@ -502,7 +502,7 @@ class Foo
         </ul>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="FileTabCharacter_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -528,7 +528,7 @@ class Foo
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="FileTabCharacter_Examples">
         <p>
           To configure the check to report on the first instance in each
           file:
@@ -546,7 +546,7 @@ class Foo
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="FileTabCharacter_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FileTabCharacter">
@@ -563,7 +563,7 @@ class Foo
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="FileTabCharacter_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22containsTab%22">
@@ -580,13 +580,13 @@ class Foo
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="FileTabCharacter_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="FileTabCharacter_Parent_Module">
         <p>
           <a href="config.html#Checker">Checker</a>
         </p>
@@ -594,7 +594,7 @@ class Foo
     </section>
 
     <section name="GenericWhitespace">
-      <subsection name="Description">
+      <subsection name="Description" id="GenericWhitespace_Description">
         <p>Since Checkstyle 5.0</p>
         <p>
           Checks that the whitespace around the Generic tokens (angle brackets)
@@ -633,7 +633,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
         </source>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="GenericWhitespace_Examples">
         <p>
           To configure the check:
         </p>
@@ -642,7 +642,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="GenericWhitespace_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+GenericWhitespace">
@@ -659,7 +659,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="GenericWhitespace_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
@@ -684,13 +684,13 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="GenericWhitespace_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="GenericWhitespace_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -698,7 +698,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
     </section>
 
     <section name="MethodParamPad">
-      <subsection name="Description">
+      <subsection name="Description" id="MethodParamPad_Description">
         <p>Since Checkstyle 3.4</p>
         <p>
           Checks the padding between the identifier of a method definition,
@@ -713,7 +713,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="MethodParamPad_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -791,7 +791,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="MethodParamPad_Examples">
         <p>
           To configure the check:
         </p>
@@ -813,7 +813,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="MethodParamPad_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodParamPad">
@@ -830,7 +830,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="MethodParamPad_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.previous%22">
@@ -851,13 +851,13 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="MethodParamPad_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="MethodParamPad_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -865,7 +865,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
     </section>
 
     <section name="NoLineWrap">
-      <subsection name="Description">
+      <subsection name="Description" id="NoLineWrap_Description">
         <p>Since Checkstyle 5.8</p>
         <p>
           Checks that chosen statements are not line-wrapped. By default this
@@ -874,7 +874,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="NoLineWrap_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -926,7 +926,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="NoLineWrap_Examples">
       <p>
         Examples of line-wrapped statements (bad case):
       </p>
@@ -965,7 +965,7 @@ import static java.math.BigInteger.ZERO;
       </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="NoLineWrap_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoLineWrap">
@@ -978,7 +978,7 @@ import static java.math.BigInteger.ZERO;
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="NoLineWrap_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22no.line.wrap%22">
@@ -991,13 +991,13 @@ import static java.math.BigInteger.ZERO;
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="NoLineWrap_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="NoLineWrap_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -1005,7 +1005,7 @@ import static java.math.BigInteger.ZERO;
     </section>
 
     <section name="NoWhitespaceAfter">
-      <subsection name="Description">
+      <subsection name="Description" id="NoWhitespaceAfter_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
           Checks that there is no whitespace after a token. More specifically,
@@ -1039,7 +1039,7 @@ import static java.math.BigInteger.ZERO;
           </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="NoWhitespaceAfter_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -1146,7 +1146,7 @@ import static java.math.BigInteger.ZERO;
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="NoWhitespaceAfter_Examples">
         <p>
           To configure the check:
         </p>
@@ -1172,7 +1172,7 @@ public void foo(final char @NotNull [] param) {} // No violation
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="NoWhitespaceAfter_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceAfter">
@@ -1185,7 +1185,7 @@ public void foo(final char @NotNull [] param) {} // No violation
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="NoWhitespaceAfter_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
@@ -1198,13 +1198,13 @@ public void foo(final char @NotNull [] param) {} // No violation
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="NoWhitespaceAfter_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="NoWhitespaceAfter_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -1212,7 +1212,7 @@ public void foo(final char @NotNull [] param) {} // No violation
     </section>
 
     <section name="NoWhitespaceBefore">
-      <subsection name="Description">
+      <subsection name="Description" id="NoWhitespaceBefore_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
           Checks that there is no whitespace before a token. More
@@ -1224,7 +1224,7 @@ public void foo(final char @NotNull [] param) {} // No violation
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="NoWhitespaceBefore_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -1284,7 +1284,7 @@ public void foo(final char @NotNull [] param) {} // No violation
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="NoWhitespaceBefore_Examples">
         <p>
           To configure the check:
         </p>
@@ -1303,7 +1303,7 @@ public void foo(final char @NotNull [] param) {} // No violation
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="NoWhitespaceBefore_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBefore">
@@ -1320,7 +1320,7 @@ public void foo(final char @NotNull [] param) {} // No violation
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="NoWhitespaceBefore_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.preceded%22">
@@ -1333,13 +1333,13 @@ public void foo(final char @NotNull [] param) {} // No violation
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="NoWhitespaceBefore_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="NoWhitespaceBefore_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -1347,14 +1347,14 @@ public void foo(final char @NotNull [] param) {} // No violation
     </section>
 
     <section name="OperatorWrap">
-      <subsection name="Description">
+      <subsection name="Description" id="OperatorWrap_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
           Checks the policy on how to wrap lines on operators.
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="OperatorWrap_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -1505,7 +1505,7 @@ public void foo(final char @NotNull [] param) {} // No violation
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="OperatorWrap_Examples">
         <p>
           To configure the check:
         </p>
@@ -1524,7 +1524,7 @@ public void foo(final char @NotNull [] param) {} // No violation
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="OperatorWrap_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OperatorWrap">
@@ -1541,7 +1541,7 @@ public void foo(final char @NotNull [] param) {} // No violation
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="OperatorWrap_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.new%22">
@@ -1560,13 +1560,13 @@ public void foo(final char @NotNull [] param) {} // No violation
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="OperatorWrap_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="OperatorWrap_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -1574,7 +1574,7 @@ public void foo(final char @NotNull [] param) {} // No violation
     </section>
 
     <section name="ParenPad">
-      <subsection name="Description">
+      <subsection name="Description" id="ParenPad_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
           Checks the policy on the padding of parentheses; i.e. whether a
@@ -1594,7 +1594,7 @@ public void foo(final char @NotNull [] param) {} // No violation
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="ParenPad_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -1750,7 +1750,7 @@ public void foo(final char @NotNull [] param) {} // No violation
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="ParenPad_Examples">
         <p>
           To configure the check:
         </p>
@@ -1781,7 +1781,7 @@ try (Closeable resource = acquire(); ) // no check before right parenthesis
 
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="ParenPad_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParenPad">
@@ -1798,7 +1798,7 @@ try (Closeable resource = acquire(); ) // no check before right parenthesis
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="ParenPad_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
@@ -1823,13 +1823,13 @@ try (Closeable resource = acquire(); ) // no check before right parenthesis
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="ParenPad_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="ParenPad_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -1837,14 +1837,14 @@ try (Closeable resource = acquire(); ) // no check before right parenthesis
     </section>
 
     <section name="SeparatorWrap">
-      <subsection name="Description">
+      <subsection name="Description" id="SeparatorWrap_Description">
         <p>Since Checkstyle 5.8</p>
         <p>
           Checks line wrapping with separators.
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="SeparatorWrap_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -1912,7 +1912,7 @@ try (Closeable resource = acquire(); ) // no check before right parenthesis
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="SeparatorWrap_Examples">
         <p>
           Code example for comma and dot at the new line:
         </p>
@@ -1968,7 +1968,7 @@ Arrays.sort(stringArray, String
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="SeparatorWrap_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SeparatorWrap">
@@ -1981,7 +1981,7 @@ Arrays.sort(stringArray, String
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="SeparatorWrap_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.new%22">
@@ -1998,13 +1998,13 @@ Arrays.sort(stringArray, String
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="SeparatorWrap_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="SeparatorWrap_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -2012,7 +2012,7 @@ Arrays.sort(stringArray, String
     </section>
 
     <section name="SingleSpaceSeparator">
-      <subsection name="Description">
+      <subsection name="Description" id="SingleSpaceSeparator_Description">
         <p>Since Checkstyle 6.19</p>
         <p>
           Checks that non-whitespace characters are separated by no more than one
@@ -2044,7 +2044,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
         </source>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="SingleSpaceSeparator_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -2063,7 +2063,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="SingleSpaceSeparator_Examples">
         <p>
           To configure the check:
         </p>
@@ -2083,7 +2083,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="SingleSpaceSeparator_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SingleSpaceSeparator">
@@ -2092,7 +2092,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="SingleSpaceSeparator_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22single.space.separator%22">
@@ -2105,13 +2105,13 @@ public long toMicros(long d) { return d / (C1 / C0); }
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="SingleSpaceSeparator_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="SingleSpaceSeparator_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -2119,7 +2119,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
     </section>
 
     <section name="TypecastParenPad">
-      <subsection name="Description">
+      <subsection name="Description" id="TypecastParenPad_Description">
         <p>Since Checkstyle 3.2</p>
         <p>
           Checks the policy on the padding of parentheses for typecasts. That
@@ -2128,7 +2128,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="TypecastParenPad_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -2147,7 +2147,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="TypecastParenPad_Examples">
         <p>
           To configure the check:
         </p>
@@ -2165,7 +2165,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="TypecastParenPad_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypecastParenPad">
@@ -2178,7 +2178,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="TypecastParenPad_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
@@ -2203,13 +2203,13 @@ public long toMicros(long d) { return d / (C1 / C0); }
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="TypecastParenPad_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="TypecastParenPad_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -2217,14 +2217,14 @@ public long toMicros(long d) { return d / (C1 / C0); }
     </section>
 
     <section name="WhitespaceAfter">
-      <subsection name="Description">
+      <subsection name="Description" id="WhitespaceAfter_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
           Checks that a token is followed by whitespace.
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="WhitespaceAfter_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -2301,7 +2301,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="WhitespaceAfter_Examples">
         <p>
           To configure the check:
         </p>
@@ -2320,7 +2320,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="WhitespaceAfter_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAfter">
@@ -2333,7 +2333,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="WhitespaceAfter_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notFollowed%22">
@@ -2352,13 +2352,13 @@ public long toMicros(long d) { return d / (C1 / C0); }
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="WhitespaceAfter_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="WhitespaceAfter_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -2366,7 +2366,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
     </section>
 
     <section name="WhitespaceAround">
-      <subsection name="Description">
+      <subsection name="Description" id="WhitespaceAround_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
         Checks that a token is surrounded by whitespace.  Empty constructor,
@@ -2412,7 +2412,7 @@ try {
         block (right curly bracket).
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="WhitespaceAround_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -2698,7 +2698,7 @@ try {
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="WhitespaceAround_Examples">
         <p>
           To configure the check:
         </p>
@@ -2717,7 +2717,7 @@ try {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="WhitespaceAround_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAround">
@@ -2734,7 +2734,7 @@ try {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="WhitespaceAround_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notFollowed%22">
@@ -2753,13 +2753,13 @@ try {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="WhitespaceAround_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="WhitespaceAround_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>

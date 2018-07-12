@@ -17,7 +17,7 @@
 
     <body>
         <section name="Google's Java Style Checkstyle Coverage ">
-            <subsection name="Useful information">
+            <subsection name="Useful information" id="Google_Useful_information">
                 <p>
                     This coverage report was created for
                     <a href="http://google.github.io/styleguide/javaguide.html">
@@ -36,7 +36,7 @@
                     Checkstyle configuration for 'Google Java Style'</a>
                 </p>
             </subsection>
-            <subsection name="Legend">
+            <subsection name="Legend" id="Google_Legend">
                 <p>
                     "--" - There is no rule in this paragraph.
                     <br />
@@ -59,7 +59,7 @@
                     <br />
                 </p>
             </subsection>
-            <subsection name="Coverage table">
+            <subsection name="Coverage table" id="Google_Coverage_table">
                 <table>
                     <thead>
                         <tr>
