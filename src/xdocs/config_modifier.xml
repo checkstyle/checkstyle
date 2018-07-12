@@ -24,7 +24,7 @@
 
     <section name="InterfaceMemberImpliedModifier">
       <p>Since Checkstyle 8.12</p>
-      <subsection name="Description">
+      <subsection name="Description" id="InterfaceMemberImpliedModifier_Description">
         <p>
           Checks for implicit modifiers on interface members and nested types.
         </p>
@@ -97,7 +97,7 @@ public interface AddressFactory {
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="InterfaceMemberImpliedModifier_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -172,7 +172,7 @@ public interface AddressFactory {
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="InterfaceMemberImpliedModifier_Examples">
         <p>
           This example checks that all implicit modifiers on methods, fields and nested
           types are explicitly specified in interfaces.
@@ -234,7 +234,7 @@ public interface RoadFeature {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="InterfaceMemberImpliedModifier_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InterfaceMemberImpliedModifier">
@@ -243,7 +243,7 @@ public interface RoadFeature {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="InterfaceMemberImpliedModifier_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22interface.implied.modifier%22">
@@ -256,11 +256,11 @@ public interface RoadFeature {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="InterfaceMemberImpliedModifier_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.modifier </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="InterfaceMemberImpliedModifier_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -268,7 +268,7 @@ public interface RoadFeature {
     </section>
 
     <section name="ModifierOrder">
-      <subsection name="Description">
+      <subsection name="Description" id="ModifierOrder_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
           Checks that the order of modifiers conforms to the suggestions in
@@ -326,14 +326,14 @@ public interface RoadFeature {
 
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="ModifierOrder_Examples">
         <p> To configure the check: </p>
         <source>
 &lt;module name=&quot;ModifierOrder&quot;/&gt;
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="ModifierOrder_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ModifierOrder">
@@ -350,7 +350,7 @@ public interface RoadFeature {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="ModifierOrder_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.order%22">
@@ -367,11 +367,11 @@ public interface RoadFeature {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="ModifierOrder_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.modifier </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="ModifierOrder_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -380,7 +380,7 @@ public interface RoadFeature {
 
     <section name="RedundantModifier">
 
-      <subsection name="Description">
+      <subsection name="Description" id="RedundantModifier_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
           Checks for redundant modifiers in:
@@ -504,7 +504,7 @@ public class ClassExtending extends ClassExample {
         </source>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="RedundantModifier_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -558,7 +558,7 @@ public class ClassExtending extends ClassExample {
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="RedundantModifier_Examples">
         <p> To configure the check: </p>
         <source>
 &lt;module name=&quot;RedundantModifier&quot;/&gt;
@@ -574,7 +574,7 @@ public class ClassExtending extends ClassExample {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="RedundantModifier_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantModifier">
@@ -587,7 +587,7 @@ public class ClassExtending extends ClassExample {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="RedundantModifier_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22redundantModifier%22">
@@ -600,11 +600,11 @@ public class ClassExtending extends ClassExample {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="RedundantModifier_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.modifier </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="RedundantModifier_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>

@@ -23,7 +23,7 @@
     </section>
 
     <section name="BeforeExecutionExclusionFileFilter">
-      <subsection name="Description">
+      <subsection name="Description" id="BeforeExecutionExclusionFileFilter_Description">
         <p>Since Checkstyle 7.2</p>
         <p>
           File filter <code>BeforeExecutionExclusionFileFilter</code> decides which files should be
@@ -45,7 +45,7 @@
           no testing for violations will be performed on them.
         </p>
       </subsection>
-      <subsection name="Properties">
+      <subsection name="Properties" id="BeforeExecutionExclusionFileFilter_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -63,7 +63,7 @@
           </tr>
         </table>
       </subsection>
-      <subsection name="Examples">
+      <subsection name="Examples" id="BeforeExecutionExclusionFileFilter_Examples">
           <p>
             To configure the filter to exclude all 'module-info.java' files:
           </p>
@@ -73,7 +73,7 @@
 &lt;/module&gt;
           </source>
       </subsection>
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="BeforeExecutionExclusionFileFilter_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+BeforeExecutionExclusionFileFilter">
@@ -81,11 +81,11 @@
           </li>
         </ul>
       </subsection>
-      <subsection name="Package">
+      <subsection name="Package" id="BeforeExecutionExclusionFileFilter_Package">
         <p> com.puppycrawl.tools.checkstyle.filefilters </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="BeforeExecutionExclusionFileFilter_Parent_Module">
         <p> <a href="config.html#Checker">Checker</a> </p>
       </subsection>
     </section>

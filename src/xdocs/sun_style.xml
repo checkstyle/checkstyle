@@ -17,7 +17,7 @@
 
    <body>
       <section name="Sun's Java Style Checkstyle Coverage">
-         <subsection name="Description">
+         <subsection name="Description" id="Sun_Description">
                 <p>
                     This coverage report will be created for
                     <a
@@ -36,7 +36,7 @@
                     incomplete Checkstyle configuration for 'Sun's Java Style'</a>
                 </p>
          </subsection>
-         <subsection name="Coverage table">
+         <subsection name="Coverage table" id="Sun_Coverage_table">
             <table>
                <thead>
                   <tr>

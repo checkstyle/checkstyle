@@ -23,7 +23,7 @@
     </section>
 
     <section name="DesignForExtension">
-      <subsection name="Description">
+      <subsection name="Description" id="DesignForExtension_Description">
         <p>Since Checkstyle 3.1</p>
         <p>
           The check finds classes that are designed for extension (subclass creation).
@@ -144,7 +144,7 @@ public abstract class Plant {
         </source>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="DesignForExtension_Properties">
             <table>
                 <tr>
                     <th>name</th>
@@ -165,7 +165,7 @@ public abstract class Plant {
             </table>
         </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="DesignForExtension_Examples">
         <p>
           To configure the check:
         </p>
@@ -219,7 +219,7 @@ public class FooTest {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="DesignForExtension_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+DesignForExtension">
@@ -232,7 +232,7 @@ public class FooTest {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="DesignForExtension_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22design.forExtension%22">
@@ -245,13 +245,13 @@ public class FooTest {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="DesignForExtension_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.design
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="DesignForExtension_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -259,7 +259,7 @@ public class FooTest {
     </section>
 
     <section name="FinalClass">
-      <subsection name="Description">
+      <subsection name="Description" id="FinalClass_Description">
         <p>Since Checkstyle 3.1</p>
         <p>
           Checks that a class which has only private constructors is declared
@@ -268,7 +268,7 @@ public class FooTest {
         </p>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="FinalClass_Examples">
         <p>
           To configure the check:
         </p>
@@ -277,7 +277,7 @@ public class FooTest {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="FinalClass_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FinalClass">
@@ -290,7 +290,7 @@ public class FooTest {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="FinalClass_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22final.class%22">
@@ -303,13 +303,13 @@ public class FooTest {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="FinalClass_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.design
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="FinalClass_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -317,7 +317,7 @@ public class FooTest {
     </section>
 
     <section name="HideUtilityClassConstructor">
-      <subsection name="Description">
+      <subsection name="Description" id="HideUtilityClassConstructor_Description">
         <p>Since Checkstyle 3.1</p>
         <p>
           Makes sure that utility classes (classes that contain only static
@@ -352,7 +352,7 @@ public class StringUtils // not final to allow subclassing
         </source>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="HideUtilityClassConstructor_Examples">
         <p>
           To configure the check:
         </p>
@@ -361,7 +361,7 @@ public class StringUtils // not final to allow subclassing
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="HideUtilityClassConstructor_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+HideUtilityClassConstructor">
@@ -374,7 +374,7 @@ public class StringUtils // not final to allow subclassing
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="HideUtilityClassConstructor_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22hide.utility.class%22">
@@ -387,13 +387,13 @@ public class StringUtils // not final to allow subclassing
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="HideUtilityClassConstructor_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.design
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="HideUtilityClassConstructor_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -401,7 +401,7 @@ public class StringUtils // not final to allow subclassing
     </section>
 
     <section name="InnerTypeLast">
-      <subsection name="Description">
+      <subsection name="Description" id="InnerTypeLast_Description">
         <p>Since Checkstyle 5.2</p>
         <p>
           Check nested (inner) classes/interfaces are declared at the
@@ -409,7 +409,7 @@ public class StringUtils // not final to allow subclassing
         </p>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="InnerTypeLast_Examples">
         <p>
           To configure the check:
         </p>
@@ -418,7 +418,7 @@ public class StringUtils // not final to allow subclassing
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="InnerTypeLast_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InnerTypeLast">
@@ -427,7 +427,7 @@ public class StringUtils // not final to allow subclassing
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="InnerTypeLast_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22arrangement.members.before.inner%22">
@@ -440,13 +440,13 @@ public class StringUtils // not final to allow subclassing
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="InnerTypeLast_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.design
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="InnerTypeLast_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -454,7 +454,7 @@ public class StringUtils // not final to allow subclassing
     </section>
 
     <section name="InterfaceIsType">
-      <subsection name="Description">
+      <subsection name="Description" id="InterfaceIsType_Description">
         <p>Since Checkstyle 3.1</p>
         <p>
           Implements Joshua Bloch, Effective Java, Item 17 - Use Interfaces only to
@@ -477,7 +477,7 @@ public class StringUtils // not final to allow subclassing
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="InterfaceIsType_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -499,7 +499,7 @@ public class StringUtils // not final to allow subclassing
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="InterfaceIsType_Examples">
         <p>
           To configure the check:
         </p>
@@ -508,7 +508,7 @@ public class StringUtils // not final to allow subclassing
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="InterfaceIsType_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InterfaceIsType">
@@ -521,7 +521,7 @@ public class StringUtils // not final to allow subclassing
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="InterfaceIsType_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22interface.type%22">
@@ -534,13 +534,13 @@ public class StringUtils // not final to allow subclassing
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="InterfaceIsType_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.design
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="InterfaceIsType_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -548,7 +548,7 @@ public class StringUtils // not final to allow subclassing
     </section>
 
     <section name="MutableException">
-      <subsection name="Description">
+      <subsection name="Description" id="MutableException_Description">
         <p>Since Checkstyle 3.2</p>
         <p>
           Ensures that exception classes (classes with names conforming to some regular
@@ -574,7 +574,7 @@ public class StringUtils // not final to allow subclassing
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="MutableException_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -600,7 +600,7 @@ public class StringUtils // not final to allow subclassing
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="MutableException_Examples">
         <p>
           To configure the check:
         </p>
@@ -609,7 +609,7 @@ public class StringUtils // not final to allow subclassing
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="MutableException_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MutableException">
@@ -618,7 +618,7 @@ public class StringUtils // not final to allow subclassing
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="MutableException_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22mutable.exception%22">
@@ -631,13 +631,13 @@ public class StringUtils // not final to allow subclassing
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="MutableException_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.design
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="MutableException_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -645,7 +645,7 @@ public class StringUtils // not final to allow subclassing
     </section>
 
     <section name="OneTopLevelClass">
-      <subsection name="Description">
+      <subsection name="Description" id="OneTopLevelClass_Description">
         <p>Since Checkstyle 5.8</p>
         <p>
           Checks that each top-level class, interface or
@@ -658,7 +658,7 @@ public class StringUtils // not final to allow subclassing
         </p>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="OneTopLevelClass_Examples">
         <p>
           An example of check's configuration:
         </p>
@@ -703,7 +703,7 @@ public class Foo{
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="OneTopLevelClass_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneTopLevelClass">
@@ -716,7 +716,7 @@ public class Foo{
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="OneTopLevelClass_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22one.top.level.class%22">
@@ -729,13 +729,13 @@ public class Foo{
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="OneTopLevelClass_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.design
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="OneTopLevelClass_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -743,7 +743,7 @@ public class Foo{
     </section>
 
     <section name="ThrowsCount">
-      <subsection name="Description">
+      <subsection name="Description" id="ThrowsCount_Description">
         <p>Since Checkstyle 3.2</p>
         <p>
           Restricts throws statements to a specified count (4 by default).
@@ -772,7 +772,7 @@ public class Foo{
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="ThrowsCount_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -798,7 +798,7 @@ public class Foo{
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="ThrowsCount_Examples">
         <p>
           To configure the check so that it doesn't allow more than two throws
           per method:
@@ -819,7 +819,7 @@ public class Foo{
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="ThrowsCount_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ThrowsCount">
@@ -828,7 +828,7 @@ public class Foo{
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="ThrowsCount_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22throws.count%22">
@@ -841,13 +841,13 @@ public class Foo{
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="ThrowsCount_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.design
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="ThrowsCount_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -855,7 +855,7 @@ public class Foo{
     </section>
 
     <section name="VisibilityModifier">
-      <subsection name="Description">
+      <subsection name="Description" id="VisibilityModifier_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
           Checks visibility of class members. Only static final, immutable or annotated
@@ -923,7 +923,7 @@ public class Foo{
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="VisibilityModifier_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -989,7 +989,7 @@ public class Foo{
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="VisibilityModifier_Examples">
         <p>
           To configure the check:
         </p>
@@ -1242,7 +1242,7 @@ public class InputPublicImmutable {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="VisibilityModifier_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+VisibilityModifier">
@@ -1255,7 +1255,7 @@ public class InputPublicImmutable {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="VisibilityModifier_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22variable.notPrivate%22">
@@ -1268,13 +1268,13 @@ public class InputPublicImmutable {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="VisibilityModifier_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.design
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="VisibilityModifier_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>

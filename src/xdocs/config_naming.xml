@@ -34,7 +34,7 @@
 
     <section name="AbbreviationAsWordInName">
       <p>Since Checkstyle 5.8</p>
-      <subsection name="Description">
+      <subsection name="Description" id="AbbreviationAsWordInName_Description">
         <p>
          The Check validate abbreviations(consecutive capital letters)
          length in identifier name, it also allows to enforce camel case naming. Please read more at
@@ -55,7 +55,7 @@
         </p>
       </subsection>
 
-       <subsection name="Properties">
+       <subsection name="Properties" id="AbbreviationAsWordInName_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -150,7 +150,7 @@
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="AbbreviationAsWordInName_Examples">
        <p>
          Default configuration
        </p>
@@ -173,7 +173,7 @@
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="AbbreviationAsWordInName_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AbbreviationAsWordInName">
@@ -186,7 +186,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="AbbreviationAsWordInName_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22abbreviation.as.word%22">
@@ -199,18 +199,18 @@
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="AbbreviationAsWordInName_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="AbbreviationAsWordInName_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="AbstractClassName">
       <p>Since Checkstyle 3.2</p>
-      <subsection name="Description">
+      <subsection name="Description" id="AbstractClassName_Description">
         <p>
           Ensures that the names of abstract classes conforming to some regular expression and
           check that <code>abstract</code> modifier exists.
@@ -223,7 +223,7 @@
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="AbstractClassName_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -264,7 +264,7 @@
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="AbstractClassName_Examples">
         <p>
           The following example shows how to configure the
           <code>AbstractClassName</code> to checks names, but ignore
@@ -277,7 +277,7 @@
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="AbstractClassName_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AbstractClassName">
@@ -286,7 +286,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="AbstractClassName_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.abstract.class.name%22">
@@ -303,18 +303,18 @@
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="AbstractClassName_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="AbstractClassName_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="CatchParameterName">
       <p>Since Checkstyle 6.14</p>
-      <subsection name="Description">
+      <subsection name="Description" id="CatchParameterName_Description">
         <p>
           Checks that <code>catch</code> parameter names conform to a format specified by the
           format property.
@@ -335,7 +335,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="CatchParameterName_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -358,7 +358,7 @@
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="CatchParameterName_Examples">
         <p>
           An example of how to configure the check is:
         </p>
@@ -376,7 +376,7 @@
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="CatchParameterName_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CatchParameterName">
@@ -391,7 +391,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="CatchParameterName_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -404,11 +404,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="CatchParameterName_Package">
         <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="CatchParameterName_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -417,12 +417,12 @@
 
     <section name="ClassTypeParameterName">
       <p>Since Checkstyle 5.0</p>
-      <subsection name="Description">
+      <subsection name="Description" id="ClassTypeParameterName_Description">
         <p>Checks that class type parameter names conform to a format specified by the format
            property.</p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="ClassTypeParameterName_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -441,7 +441,7 @@
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="ClassTypeParameterName_Examples">
         <p>
           An example of how to configure the check is:
         </p>
@@ -458,7 +458,7 @@
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="ClassTypeParameterName_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassTypeParameterName">
@@ -471,7 +471,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="ClassTypeParameterName_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -484,18 +484,18 @@
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="ClassTypeParameterName_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="ClassTypeParameterName_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="ConstantName">
       <p>Since Checkstyle 3.0</p>
-      <subsection name="Description">
+      <subsection name="Description" id="ConstantName_Description">
         <p>
           Checks that constant names conform to a format specified by the format property.
           A <em>constant</em> is a <strong>static</strong> and <strong>final</strong> field or an
@@ -504,7 +504,7 @@
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="ConstantName_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -553,7 +553,7 @@
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="ConstantName_Examples">
         <p>
           An example of how to configure the check is:
         </p>
@@ -574,7 +574,7 @@
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="ConstantName_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ConstantName">
@@ -587,7 +587,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="ConstantName_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -600,25 +600,25 @@
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="ConstantName_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="ConstantName_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="InterfaceTypeParameterName">
       <p>Since Checkstyle 5.8</p>
-      <subsection name="Description">
+      <subsection name="Description" id="InterfaceTypeParameterName_Description">
         <p>
           Checks that interface type parameter names conform to a format specified by the format
           property.
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="InterfaceTypeParameterName_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -637,7 +637,7 @@
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="InterfaceTypeParameterName_Examples">
         <p>
           An example of how to configure the check is:
         </p>
@@ -655,7 +655,7 @@
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="InterfaceTypeParameterName_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InterfaceTypeParameterName">
@@ -668,7 +668,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="InterfaceTypeParameterName_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -681,24 +681,24 @@
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="InterfaceTypeParameterName_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="InterfaceTypeParameterName_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="LambdaParameterName">
       <p>Since Checkstyle 8.11</p>
-      <subsection name="Description">
+      <subsection name="Description" id="LambdaParameterName_Description">
         <p>
           Check to verify lambda parameter names.
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="LambdaParameterName_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -717,7 +717,7 @@
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="LambdaParameterName_Examples">
         <p>
           An example of how to configure the check is:
         </p>
@@ -754,7 +754,7 @@ public class TestClass {
 
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="LambdaParameterName_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaParameterName">
@@ -767,7 +767,7 @@ public class TestClass {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="LambdaParameterName_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -780,18 +780,18 @@ public class TestClass {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="LambdaParameterName_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="LambdaParameterName_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="LocalFinalVariableName">
       <p>Since Checkstyle 3.0</p>
-      <subsection name="Description">
+      <subsection name="Description" id="LocalFinalVariableName_Description">
         <p>
           Checks that local final variable names conform to a format specified
           by the format property. A catch parameter and resources in try statements
@@ -799,7 +799,7 @@ public class TestClass {
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="LocalFinalVariableName_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -840,7 +840,7 @@ public class TestClass {
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="LocalFinalVariableName_Examples">
         <p>
           An example of how to configure the check is:
         </p>
@@ -858,7 +858,7 @@ public class TestClass {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="LocalFinalVariableName_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalFinalVariableName">
@@ -871,7 +871,7 @@ public class TestClass {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="LocalFinalVariableName_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -884,25 +884,25 @@ public class TestClass {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="LocalFinalVariableName_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="LocalFinalVariableName_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="LocalVariableName">
       <p>Since Checkstyle 3.0</p>
-      <subsection name="Description">
+      <subsection name="Description" id="LocalVariableName_Description">
         <p>
             Checks that local, non-<code>final</code> variable names conform to a format specified
             by the format property. A catch parameter is considered to be a local variable.
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="LocalVariableName_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -935,7 +935,7 @@ for (int i = 1; i &lt; 10; i++) {}
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="LocalVariableName_Examples">
         <p>
           An example of how to configure the check is:
         </p>
@@ -973,7 +973,7 @@ for (int i = 1; i &lt; 10; i++) {}
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="LocalVariableName_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalVariableName">
@@ -990,7 +990,7 @@ for (int i = 1; i &lt; 10; i++) {}
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="LocalVariableName_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -1003,24 +1003,24 @@ for (int i = 1; i &lt; 10; i++) {}
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="LocalVariableName_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="LocalVariableName_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="MemberName">
       <p>Since Checkstyle 3.0</p>
-      <subsection name="Description">
+      <subsection name="Description" id="MemberName_Description">
         <p>
           Checks that instance variable names conform to a format specified by the format property.
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="MemberName_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -1069,7 +1069,7 @@ for (int i = 1; i &lt; 10; i++) {}
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="MemberName_Examples">
         <p>
          An example of how to configure the check is:
         </p>
@@ -1089,7 +1089,7 @@ for (int i = 1; i &lt; 10; i++) {}
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="MemberName_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MemberName">
@@ -1106,7 +1106,7 @@ for (int i = 1; i &lt; 10; i++) {}
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="MemberName_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -1119,18 +1119,18 @@ for (int i = 1; i &lt; 10; i++) {}
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="MemberName_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="MemberName_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="MethodName">
       <p>Since Checkstyle 3.0</p>
-      <subsection name="Description">
+      <subsection name="Description" id="MethodName_Description">
         <p>
           Checks that method names conform to a format specified by the format property.
         </p>
@@ -1144,7 +1144,7 @@ for (int i = 1; i &lt; 10; i++) {}
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="MethodName_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -1212,7 +1212,7 @@ class MyClass {
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="MethodName_Examples">
         <p>
           An example of how to configure the check is:
         </p>
@@ -1239,7 +1239,7 @@ class MyClass {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="MethodName_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
@@ -1256,7 +1256,7 @@ class MyClass {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="MethodName_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22method.name.equals.class.name%22">
@@ -1273,25 +1273,25 @@ class MyClass {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="MethodName_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="MethodName_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="MethodTypeParameterName">
       <p>Since Checkstyle 5.0</p>
-      <subsection name="Description">
+      <subsection name="Description" id="MethodTypeParameterName_Description">
         <p>
           Checks that method type parameter names conform to a format specified by the format
           property.
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="MethodTypeParameterName_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -1310,7 +1310,7 @@ class MyClass {
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="MethodTypeParameterName_Examples">
         <p>
           An example of how to configure the check is:
         </p>
@@ -1327,7 +1327,7 @@ class MyClass {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="MethodTypeParameterName_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodTypeParameterName">
@@ -1340,7 +1340,7 @@ class MyClass {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="MethodTypeParameterName_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -1353,18 +1353,18 @@ class MyClass {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="MethodTypeParameterName_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="MethodTypeParameterName_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="PackageName">
       <p>Since Checkstyle 3.0</p>
-      <subsection name="Description">
+      <subsection name="Description" id="PackageName_Description">
         <p>
           Checks that package names conform to a format specified by the format property.
         </p>
@@ -1380,7 +1380,7 @@ class MyClass {
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="PackageName_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -1399,7 +1399,7 @@ class MyClass {
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="PackageName_Examples">
         <p>
           An example of how to configure the check is:
         </p>
@@ -1418,7 +1418,7 @@ class MyClass {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="PackageName_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageName">
@@ -1435,7 +1435,7 @@ class MyClass {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="PackageName_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -1448,18 +1448,18 @@ class MyClass {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="PackageName_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="PackageName_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="ParameterName">
       <p>Since Checkstyle 3.0</p>
-      <subsection name="Description">
+      <subsection name="Description" id="ParameterName_Description">
         <p>
           Checks that method parameter names conform to a format specified
           by the format property. By using <code>accessModifiers</code> property it is possible
@@ -1471,7 +1471,7 @@ class MyClass {
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="ParameterName_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -1514,7 +1514,7 @@ public boolean equals(Object o) {
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="ParameterName_Examples">
         <p>
           An example of how to configure the check:
         </p>
@@ -1569,7 +1569,7 @@ public boolean equals(Object o) {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="ParameterName_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterName">
@@ -1586,7 +1586,7 @@ public boolean equals(Object o) {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="ParameterName_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -1599,25 +1599,25 @@ public boolean equals(Object o) {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="ParameterName_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="ParameterName_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="StaticVariableName">
       <p>Since Checkstyle 3.0</p>
-      <subsection name="Description">
+      <subsection name="Description" id="StaticVariableName_Description">
         <p>
           Checks that {@code static}, non-{@code final} variable names conform to a format
           specified by the format property.
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="StaticVariableName_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -1666,7 +1666,7 @@ public boolean equals(Object o) {
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="StaticVariableName_Examples">
         <p>
           An example of how to configure the check is:
         </p>
@@ -1684,7 +1684,7 @@ public boolean equals(Object o) {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="StaticVariableName_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+StaticVariableName">
@@ -1697,7 +1697,7 @@ public boolean equals(Object o) {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="StaticVariableName_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -1710,25 +1710,25 @@ public boolean equals(Object o) {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="StaticVariableName_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="StaticVariableName_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
     <section name="TypeName">
       <p>Since Checkstyle 3.0</p>
-      <subsection name="Description">
+      <subsection name="Description" id="TypeName_Description">
         <p>
           Checks that type names for classes, interfaces, enums, and annotations conform to a
           format specified by the format property.
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="TypeName_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -1803,7 +1803,7 @@ public boolean equals(Object o) {
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="TypeName_Examples">
         <p>
           An example of how to configure the check is:
         </p>
@@ -1838,7 +1838,7 @@ public boolean equals(Object o) {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="TypeName_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypeName">
@@ -1855,7 +1855,7 @@ public boolean equals(Object o) {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="TypeName_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -1868,11 +1868,11 @@ public boolean equals(Object o) {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="TypeName_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="TypeName_Parent_Module">
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>

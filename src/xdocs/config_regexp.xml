@@ -23,7 +23,7 @@
     </section>
 
     <section name="Regexp">
-      <subsection name="Description">
+      <subsection name="Description" id="Regexp_Description">
         <p>Since Checkstyle 4.0</p>
         <p>
           A check that makes sure that a specified pattern exists, exists less
@@ -72,7 +72,7 @@
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="Regexp_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -130,7 +130,7 @@
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="Regexp_Examples">
         <p>
           The following examples are mainly copied from the other 3 checks
           mentioned above, to show how the same results can be achieved using
@@ -448,7 +448,7 @@ public static final int A_SETPOINT = 1;
         </p>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="Regexp_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Regexp">
@@ -457,7 +457,7 @@ public static final int A_SETPOINT = 1;
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="Regexp_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22duplicate.regexp%22">
@@ -478,13 +478,13 @@ public static final int A_SETPOINT = 1;
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="Regexp_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.regexp
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="Regexp_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -492,7 +492,7 @@ public static final int A_SETPOINT = 1;
     </section>
 
     <section name="RegexpMultiline">
-      <subsection name="Description">
+      <subsection name="Description" id="RegexpMultiline_Description">
         <p>Since Checkstyle 5.0</p>
         <p>
           A check for detecting that matches across multiple lines.
@@ -505,7 +505,7 @@ public static final int A_SETPOINT = 1;
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="RegexpMultiline_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -560,7 +560,7 @@ public static final int A_SETPOINT = 1;
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="RegexpMultiline_Examples">
         <p>
           To configure the check to find calls to print to the console:
         </p>
@@ -572,7 +572,7 @@ public static final int A_SETPOINT = 1;
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="RegexpMultiline_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpMultiline">
@@ -581,7 +581,7 @@ public static final int A_SETPOINT = 1;
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="RegexpMultiline_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.StackOverflowError%22">
@@ -606,13 +606,13 @@ public static final int A_SETPOINT = 1;
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="RegexpMultiline_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.regexp
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="RegexpMultiline_Parent_Module">
         <p>
           <a href="config.html#Checker">Checker</a>
         </p>
@@ -620,7 +620,7 @@ public static final int A_SETPOINT = 1;
     </section>
 
     <section name="RegexpOnFilename">
-      <subsection name="Description">
+      <subsection name="Description" id="RegexpOnFilename_Description">
         <p>Since Checkstyle 6.15</p>
         <p>
           Implementation of a check that looks for a file name and/or path match (or mis-match)
@@ -662,7 +662,7 @@ public static final int A_SETPOINT = 1;
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="RegexpOnFilename_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -711,7 +711,7 @@ public static final int A_SETPOINT = 1;
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="RegexpOnFilename_Examples">
         <p>
           To configure the check to report file names that contain a space:
         </p>
@@ -781,7 +781,7 @@ public static final int A_SETPOINT = 1;
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="RegexpOnFilename_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpOnFilename">
@@ -790,7 +790,7 @@ public static final int A_SETPOINT = 1;
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="RegexpOnFilename_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.filename.match%22">
@@ -807,13 +807,13 @@ public static final int A_SETPOINT = 1;
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="RegexpOnFilename_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.regexp
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="RegexpOnFilename_Parent_Module">
         <p>
           <a href="config.html#Checker">Checker</a>
         </p>
@@ -821,7 +821,7 @@ public static final int A_SETPOINT = 1;
     </section>
 
     <section name="RegexpSingleline">
-      <subsection name="Description">
+      <subsection name="Description" id="RegexpSingleline_Description">
         <p>Since Checkstyle 5.0</p>
         <p>
           A check for detecting single lines that match a supplied
@@ -835,7 +835,7 @@ public static final int A_SETPOINT = 1;
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="RegexpSingleline_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -890,7 +890,7 @@ public static final int A_SETPOINT = 1;
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="RegexpSingleline_Examples">
         <p>
           To configure the check to find trailing whitespace at the end
           of a line:
@@ -930,7 +930,7 @@ public static final int A_SETPOINT = 1;
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="RegexpSingleline_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpSingleline">
@@ -943,7 +943,7 @@ public static final int A_SETPOINT = 1;
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="RegexpSingleline_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.exceeded%22">
@@ -962,13 +962,13 @@ public static final int A_SETPOINT = 1;
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="RegexpSingleline_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.regexp
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="RegexpSingleline_Parent_Module">
         <p>
           <a href="config.html#Checker">Checker</a>
         </p>
@@ -976,7 +976,7 @@ public static final int A_SETPOINT = 1;
     </section>
 
     <section name="RegexpSinglelineJava">
-      <subsection name="Description">
+      <subsection name="Description" id="RegexpSinglelineJava_Description">
         <p>Since Checkstyle 6.0</p>
         <p>
           This class is variation on <a
@@ -986,7 +986,7 @@ public static final int A_SETPOINT = 1;
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="RegexpSinglelineJava_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -1041,7 +1041,7 @@ public static final int A_SETPOINT = 1;
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="RegexpSinglelineJava_Examples">
         <p>
           To configure the check for calls to <code>System.out.println</code>, except in comments:
         </p>
@@ -1066,7 +1066,7 @@ public static final int A_SETPOINT = 1;
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="RegexpSinglelineJava_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpSinglelineJava">
@@ -1075,7 +1075,7 @@ public static final int A_SETPOINT = 1;
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="RegexpSinglelineJava_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.exceeded%22">
@@ -1094,13 +1094,13 @@ public static final int A_SETPOINT = 1;
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="RegexpSinglelineJava_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.regexp
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="RegexpSinglelineJava_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>

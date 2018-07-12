@@ -165,6 +165,49 @@ public class XdocsPagesTest {
     }
 
     @Test
+    public void testAllSubSections() throws Exception {
+        for (Path path : XdocUtil.getXdocsFilePaths()) {
+            final String input = new String(Files.readAllBytes(path), UTF_8);
+            final String fileName = path.getFileName().toString();
+
+            final Document document = XmlUtil.getRawXml(fileName, input, input);
+            final NodeList subSections = document.getElementsByTagName("subsection");
+
+            for (int position = 0; position < subSections.getLength(); position++) {
+                final Node subSection = subSections.item(position);
+                final Node name = subSection.getAttributes().getNamedItem("name");
+
+                Assert.assertNotNull("All sub-sections in '" + fileName + "' must have a name",
+                        name);
+
+                final Node id = subSection.getAttributes().getNamedItem("id");
+
+                Assert.assertNotNull("All sub-sections in '" + fileName + "' must have an id", id);
+
+                final String sectionName;
+
+                if ("google_style.xml".equals(fileName)) {
+                    sectionName = "Google";
+                }
+                else if ("sun_style.xml".equals(fileName)) {
+                    sectionName = "Sun";
+                }
+                else {
+                    sectionName = subSection.getParentNode().getAttributes()
+                            .getNamedItem("name").getTextContent();
+                }
+
+                final String nameString = name.getNodeValue();
+                final String idString = id.getNodeValue();
+
+                Assert.assertEquals(fileName + " sub-section " + nameString + " for section "
+                        + sectionName + " must match",
+                        (sectionName + " " + nameString).replace(' ', '_'), idString);
+            }
+        }
+    }
+
+    @Test
     public void testAllXmlExamples() throws Exception {
         for (Path path : XdocUtil.getXdocsFilePaths()) {
             final String input = new String(Files.readAllBytes(path), UTF_8);

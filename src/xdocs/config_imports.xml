@@ -23,7 +23,7 @@
     </section>
 
     <section name="AvoidStarImport">
-      <subsection name="Description">
+      <subsection name="Description" id="AvoidStarImport_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
           Checks that there are no import statements that use the * notation.
@@ -37,7 +37,7 @@
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="AvoidStarImport_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -80,7 +80,7 @@
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="AvoidStarImport_Examples">
         <p>
           An example how to configure the check so that star imports from
           packages java.io and java.net as well as static members from class
@@ -96,7 +96,7 @@
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="AvoidStarImport_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
@@ -112,7 +112,7 @@
           </li>
         </ul>
       </subsection>
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="AvoidStarImport_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.avoidStar%22">
@@ -124,11 +124,11 @@
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
-      <subsection name="Package">
+      <subsection name="Package" id="AvoidStarImport_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.imports </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="AvoidStarImport_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -136,7 +136,7 @@
     </section>
 
     <section name="AvoidStaticImport">
-      <subsection name="Description">
+      <subsection name="Description" id="AvoidStaticImport_Description">
         <p>Since Checkstyle 5.0</p>
         <p>
           Checks that there are no static import statements.
@@ -150,7 +150,7 @@
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="AvoidStaticImport_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -182,7 +182,7 @@
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="AvoidStaticImport_Examples">
         <p>
           An example of how to configure the check so that the <code>java.lang.System.out</code>
           member and all members from <code>java.lang.Math</code> are allowed:
@@ -195,7 +195,7 @@
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="AvoidStaticImport_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStaticImport">
@@ -204,7 +204,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="AvoidStaticImport_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.avoidStatic%22">
@@ -217,11 +217,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="AvoidStaticImport_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.imports </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="AvoidStaticImport_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -229,7 +229,7 @@
     </section>
 
     <section name="CustomImportOrder">
-      <subsection name="Description">
+      <subsection name="Description" id="CustomImportOrder_Description">
         <p>Since Checkstyle 5.8</p>
         <p>
           Checks that the groups of import declarations appear in the order specified
@@ -237,12 +237,12 @@
           configuration such an import should be placed at the end of the import list.
         </p>
         <p>
-          <a href="#CustomImportOrder_Example">Examples section</a> contains examples that
+          <a href="#CustomImportOrder_Examples">Examples section</a> contains examples that
           work with default formatter configurations of Eclipse, IntelliJ IDEA and NetBeans
         </p>
       </subsection>
 
-      <subsection name="Rule Description">
+      <subsection name="Rule Description" id="CustomImportOrder_Rule_Description">
         <p>
           The rule consists of:
         </p>
@@ -288,7 +288,7 @@ import java.util.regex.Matcher; //#8
         </p>
       </subsection>
 
-      <subsection name="Notes">
+      <subsection name="Notes" id="CustomImportOrder_Notes">
         <p>
           Use the separator '###' between rules.
         </p>
@@ -337,7 +337,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
 
     </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="CustomImportOrder_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -393,7 +393,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </table>
       </subsection>
 
-      <subsection name="Examples" id="CustomImportOrder_Example">
+      <subsection name="Examples" id="CustomImportOrder_Examples">
         <p>To configure the check so that it matches default Eclipse formatter configuration
            (tested on Kepler and Luna releases):</p>
         <ul>
@@ -550,7 +550,7 @@ import android.*;
        </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="CustomImportOrder_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CustomImportOrder">
@@ -563,7 +563,7 @@ import android.*;
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="CustomImportOrder_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22custom.import.order%22">
@@ -592,13 +592,13 @@ import android.*;
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="CustomImportOrder_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.imports
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="CustomImportOrder_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -606,7 +606,7 @@ import android.*;
     </section>
 
     <section name="IllegalImport">
-      <subsection name="Description">
+      <subsection name="Description" id="IllegalImport_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
           Checks for imports from a set of illegal packages. By default, the
@@ -618,7 +618,7 @@ import android.*;
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="IllegalImport_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -659,7 +659,7 @@ import android.*;
 
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="IllegalImport_Examples">
         <p>
           To configure the check:
         </p>
@@ -840,7 +840,7 @@ public class InputIllegalImport { }
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="IllegalImport_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalImport">
@@ -853,7 +853,7 @@ public class InputIllegalImport { }
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="IllegalImport_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.illegal%22">
@@ -866,13 +866,13 @@ public class InputIllegalImport { }
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="IllegalImport_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.imports
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="IllegalImport_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -880,7 +880,7 @@ public class InputIllegalImport { }
     </section>
 
     <section name="ImportControl">
-      <subsection name="Description">
+      <subsection name="Description" id="ImportControl_Description">
         <p>Since Checkstyle 4.0</p>
         <p>
           Controls what can be imported in each package and file. Useful for
@@ -947,7 +947,7 @@ public class InputIllegalImport { }
         </pre>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="ImportControl_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -981,7 +981,7 @@ public class InputIllegalImport { }
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="ImportControl_Examples">
         <p>
           To configure the check using an import control file called
           &quot;config/import-control.xml&quot;, then have the following:
@@ -1307,7 +1307,7 @@ import java.util.stream.IntStream;
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="ImportControl_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ImportControl">
@@ -1316,7 +1316,7 @@ import java.util.stream.IntStream;
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="ImportControl_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.control.disallowed%22">
@@ -1337,13 +1337,13 @@ import java.util.stream.IntStream;
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="ImportControl_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.imports
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="ImportControl_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -1351,7 +1351,7 @@ import java.util.stream.IntStream;
     </section>
 
     <section name="ImportOrder">
-      <subsection name="Description">
+      <subsection name="Description" id="ImportOrder_Description">
         <p>Since Checkstyle 3.2</p>
         <p>Checks the ordering/grouping of imports. Features are:</p>
         <ul>
@@ -1372,12 +1372,12 @@ import java.util.stream.IntStream;
           <a href="property_types.html#importOrder">import orders</a>)</li>
          </ul>
         <p>
-        <a href="#ImportOrder_Example">Examples section</a> contains examples that
+        <a href="#ImportOrder_Examples">Examples section</a> contains examples that
           work with default formatter configurations of Eclipse, IntelliJ IDEA and NetBeans
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="ImportOrder_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -1499,7 +1499,7 @@ import java.util.stream.IntStream;
         </table>
       </subsection>
 
-      <subsection name="Examples" id="ImportOrder_Example">
+      <subsection name="Examples" id="ImportOrder_Examples">
         <p>To configure the check so that it matches default Eclipse formatter configuration
            (tested on Kepler and Luna releases):</p>
         <ul>
@@ -1685,7 +1685,7 @@ public class InputEclipseStaticImportsOrder { }
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="ImportOrder_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ImportOrder">
@@ -1694,7 +1694,7 @@ public class InputEclipseStaticImportsOrder { }
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="ImportOrder_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.groups.separated.internally%22">
@@ -1715,13 +1715,13 @@ public class InputEclipseStaticImportsOrder { }
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="ImportOrder_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.imports
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="ImportOrder_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -1729,7 +1729,7 @@ public class InputEclipseStaticImportsOrder { }
     </section>
 
     <section name="RedundantImport">
-      <subsection name="Description">
+      <subsection name="Description" id="RedundantImport_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
           Checks for redundant import statements. An import statement is
@@ -1751,7 +1751,7 @@ public class InputEclipseStaticImportsOrder { }
         </ul>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="RedundantImport_Examples">
         <p>
           To configure the check:
         </p>
@@ -1760,7 +1760,7 @@ public class InputEclipseStaticImportsOrder { }
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="RedundantImport_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantImport">
@@ -1773,7 +1773,7 @@ public class InputEclipseStaticImportsOrder { }
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="RedundantImport_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.duplicate%22">
@@ -1794,13 +1794,13 @@ public class InputEclipseStaticImportsOrder { }
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="RedundantImport_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.imports
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="RedundantImport_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -1808,7 +1808,7 @@ public class InputEclipseStaticImportsOrder { }
     </section>
 
     <section name="UnusedImports">
-      <subsection name="Description">
+      <subsection name="Description" id="UnusedImports_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
           Checks for unused import statements. Checkstyle uses a simple but
@@ -1866,7 +1866,7 @@ class FooBar {
         </source>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="UnusedImports_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -1885,7 +1885,7 @@ class FooBar {
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="UnusedImports_Examples">
         <p>
           To configure the check:
         </p>
@@ -1894,7 +1894,7 @@ class FooBar {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="UnusedImports_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnusedImports">
@@ -1907,7 +1907,7 @@ class FooBar {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="UnusedImports_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.unused%22">
@@ -1920,13 +1920,13 @@ class FooBar {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="UnusedImports_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.imports
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="UnusedImports_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>

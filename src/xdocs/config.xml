@@ -268,7 +268,7 @@
     </section>
 
     <section name="Checker">
-      <subsection name="Description">
+      <subsection name="Description" id="Checker_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
           All configurations have root module <code>Checker</code>.  <code>Checker</code>
@@ -292,7 +292,7 @@
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="Checker_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -364,7 +364,7 @@
         </table>
       </subsection>
 
-      <subsection name="Metadata">
+      <subsection name="Metadata" id="Checker_Metadata">
         <p>
           Used to keep metadata in the Checkstyle configuration file. This
           information is ignored by Checkstyle. This may be useful if you want to
@@ -393,7 +393,7 @@
         </source>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="Checker_Examples">
         <p>
           For example, the following configuration fragment specifies base
           directory <code>src/checkstyle</code>, cache file <code>target/cachefile</code> and German
@@ -470,7 +470,7 @@
 
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="Checker_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Checker">
@@ -487,13 +487,13 @@
         </ul>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="Checker_Package">
         <p> com.puppycrawl.tools.checkstyle </p>
       </subsection>
     </section>
 
     <section name="TreeWalker">
-      <subsection name="Description">
+      <subsection name="Description" id="TreeWalker_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
           FileSetCheck <code>TreeWalker</code> checks
@@ -502,7 +502,7 @@
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="TreeWalker_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -533,7 +533,7 @@
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="TreeWalker_Examples">
         <p>
           For example, the following configuration fragment specifies
           <code>TreeWalker</code> a <code>tabWidth</code> of <code>4</code>:
@@ -597,7 +597,7 @@
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="TreeWalker_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TreeWalker">
@@ -614,11 +614,11 @@
         </ul>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="TreeWalker_Package">
         <p> com.puppycrawl.tools.checkstyle </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="TreeWalker_Parent_Module">
         <p> <a href="config.html#Checker">Checker</a> </p>
       </subsection>
     </section>

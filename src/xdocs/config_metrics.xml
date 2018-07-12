@@ -23,7 +23,7 @@
     </section>
 
     <section name="BooleanExpressionComplexity">
-      <subsection name="Description">
+      <subsection name="Description" id="BooleanExpressionComplexity_Description">
         <p>Since Checkstyle 3.4</p>
         <p>
           Restrict the number of number of <code>&#x26;&#x26;</code>, <code>||</code>,
@@ -51,7 +51,7 @@
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="BooleanExpressionComplexity_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -93,7 +93,7 @@
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="BooleanExpressionComplexity_Examples">
         <p>
           To configure the check:
         </p>
@@ -123,7 +123,7 @@
 
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="BooleanExpressionComplexity_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+BooleanExpressionComplexity">
@@ -132,7 +132,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="BooleanExpressionComplexity_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22booleanExpressionComplexity%22">
@@ -145,13 +145,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="BooleanExpressionComplexity_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.metrics
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="BooleanExpressionComplexity_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -159,7 +159,7 @@
     </section>
 
     <section name="ClassDataAbstractionCoupling">
-      <subsection name="Description">
+      <subsection name="Description" id="ClassDataAbstractionCoupling_Description">
         <p>Since Checkstyle 3.4</p>
         <p>
           This metric measures the number of instantiations of other
@@ -217,7 +217,7 @@
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="ClassDataAbstractionCoupling_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -263,7 +263,7 @@
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="ClassDataAbstractionCoupling_Examples">
         <p>
           To configure the check:
         </p>
@@ -438,7 +438,7 @@ public class Foo {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="ClassDataAbstractionCoupling_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassDataAbstractionCoupling">
@@ -447,7 +447,7 @@ public class Foo {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="ClassDataAbstractionCoupling_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22classDataAbstractionCoupling%22">
@@ -460,13 +460,13 @@ public class Foo {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="ClassDataAbstractionCoupling_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.metrics
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="ClassDataAbstractionCoupling_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -474,7 +474,7 @@ public class Foo {
     </section>
 
     <section name="ClassFanOutComplexity">
-      <subsection name="Description">
+      <subsection name="Description" id="ClassFanOutComplexity_Description">
         <p>Since Checkstyle 3.4</p>
         <p>
           The number of other classes a given class relies on. Also the
@@ -543,7 +543,7 @@ public class Foo {
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="ClassFanOutComplexity_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -589,7 +589,7 @@ public class Foo {
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="ClassFanOutComplexity_Examples">
         <p>
           To configure the check:
         </p>
@@ -679,7 +679,7 @@ public class Foo {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="ClassFanOutComplexity_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassFanOutComplexity">
@@ -688,7 +688,7 @@ public class Foo {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="ClassFanOutComplexity_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22classFanOutComplexity%22">
@@ -701,13 +701,13 @@ public class Foo {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="ClassFanOutComplexity_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.metrics
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="ClassFanOutComplexity_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -715,7 +715,7 @@ public class Foo {
     </section>
 
     <section name="CyclomaticComplexity">
-      <subsection name="Description">
+      <subsection name="Description" id="CyclomaticComplexity_Description">
         <p>Since Checkstyle 3.2</p>
         <p>
           Checks cyclomatic complexity against a specified limit.
@@ -745,7 +745,7 @@ public class Foo {
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="CyclomaticComplexity_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -824,7 +824,7 @@ public class Foo {
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="CyclomaticComplexity_Examples">
         <p>
           To configure the check:
         </p>
@@ -911,7 +911,7 @@ class SwitchExample {
 }        </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="CyclomaticComplexity_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CyclomaticComplexity">
@@ -920,7 +920,7 @@ class SwitchExample {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="CyclomaticComplexity_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22cyclomaticComplexity%22">
@@ -933,13 +933,13 @@ class SwitchExample {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="CyclomaticComplexity_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.metrics
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="CyclomaticComplexity_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -947,7 +947,7 @@ class SwitchExample {
     </section>
 
     <section name="JavaNCSS">
-      <subsection name="Description">
+      <subsection name="Description" id="JavaNCSS_Description">
         <p>Since Checkstyle 3.5</p>
         <p>
           Determines complexity of methods, classes and files by
@@ -975,7 +975,7 @@ class SwitchExample {
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="JavaNCSS_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -1017,7 +1017,7 @@ class SwitchExample {
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="JavaNCSS_Examples">
         <p>
           To configure the check:
         </p>
@@ -1036,7 +1036,7 @@ class SwitchExample {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="JavaNCSS_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavaNCSS">
@@ -1045,7 +1045,7 @@ class SwitchExample {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="JavaNCSS_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ncss.class%22">
@@ -1066,13 +1066,13 @@ class SwitchExample {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="JavaNCSS_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.metrics
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="JavaNCSS_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
@@ -1080,7 +1080,7 @@ class SwitchExample {
     </section>
 
     <section name="NPathComplexity">
-      <subsection name="Description">
+      <subsection name="Description" id="NPathComplexity_Description">
         <p>Since Checkstyle 3.4</p>
         <p>
           The NPATH metric computes the number of possible execution
@@ -1158,7 +1158,7 @@ class SwitchExample {
         </p>
       </subsection>
 
-      <subsection name="Properties">
+      <subsection name="Properties" id="NPathComplexity_Properties">
         <table>
           <tr>
             <th>name</th>
@@ -1177,7 +1177,7 @@ class SwitchExample {
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="NPathComplexity_Examples">
         <p>
           To configure the check:
         </p>
@@ -1195,7 +1195,7 @@ class SwitchExample {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage">
+      <subsection name="Example of Usage" id="NPathComplexity_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NPathComplexity">
@@ -1204,7 +1204,7 @@ class SwitchExample {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages">
+      <subsection name="Error Messages" id="NPathComplexity_Error_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22npathComplexity%22">
@@ -1217,13 +1217,13 @@ class SwitchExample {
         </p>
       </subsection>
 
-      <subsection name="Package">
+      <subsection name="Package" id="NPathComplexity_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.metrics
         </p>
       </subsection>
 
-      <subsection name="Parent Module">
+      <subsection name="Parent Module" id="NPathComplexity_Parent_Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
