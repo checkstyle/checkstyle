@@ -14,7 +14,9 @@
     </inspection_tool>
     <inspection_tool class="AbstractClassNeverImplemented" enabled="true" level="ERROR"
                      enabled_by_default="true"/>
-    <inspection_tool class="AbstractClassWithOnlyOneDirectInheritor" enabled="true" level="ERROR"
+    <!-- we are not limited in resources
+         and we a library so there are more usages outside of our code-->
+    <inspection_tool class="AbstractClassWithOnlyOneDirectInheritor" enabled="false" level="ERROR"
                      enabled_by_default="true"/>
     <inspection_tool class="AbstractClassWithoutAbstractMethods" enabled="true" level="ERROR"
                      enabled_by_default="true"/>
@@ -5174,7 +5176,8 @@
                      enabled_by_default="true"/>
     <inspection_tool class="XsltVariableShadowing" enabled="true" level="ERROR"
                      enabled_by_default="true"/>
-    <inspection_tool class="ZeroLengthArrayInitialization" enabled="true" level="WARNING"
+    <!-- conflicting with ToArrayCallWithZeroLengthArrayArgument -->
+    <inspection_tool class="ZeroLengthArrayInitialization" enabled="false" level="WARNING"
                      enabled_by_default="true"/>
     <inspection_tool class="dependsOnMethodTestNG" enabled="true" level="ERROR"
                      enabled_by_default="true"/>

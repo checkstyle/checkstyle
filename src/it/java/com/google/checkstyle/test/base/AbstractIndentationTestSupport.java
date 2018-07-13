@@ -106,7 +106,7 @@ public abstract class AbstractIndentationTestSupport extends AbstractModuleTestS
                 lineNumber++;
             }
         }
-        return result.toArray(new Integer[result.size()]);
+        return result.toArray(new Integer[0]);
     }
 
     private static int getIndentFromComment(String comment) {
