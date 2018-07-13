@@ -335,7 +335,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
 
     /**
      * Returns {@link Configuration} instance for the given module name.
-     * This implementation uses {@link AbstractModuleTestSupport#getConfiguration()} method inside.
+     * This implementation uses {@link #getModuleConfig(String, String)} method inside.
      * @param moduleName module name.
      * @return {@link Configuration} instance for the given module name.
      */
@@ -345,7 +345,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
 
     /**
      * Returns {@link Configuration} instance for the given module name.
-     * This implementation uses {@link AbstractModuleTestSupport#getConfiguration()} method inside.
+     * This implementation uses {@link #getModuleConfig(String)} method inside.
      * @param moduleName module name.
      * @param moduleId module id.
      * @return {@link Configuration} instance for the given module name.
@@ -376,7 +376,6 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
 
     /**
      * Returns a list of all {@link Configuration} instances for the given module name.
-     * This implementation uses {@link AbstractModuleTestSupport#getConfiguration()} method inside.
      * @param moduleName module name.
      * @return {@link Configuration} instance for the given module name.
      */
@@ -429,7 +428,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 lineNumber++;
             }
         }
-        return result.toArray(new Integer[result.size()]);
+        return result.toArray(new Integer[0]);
     }
 
 }
