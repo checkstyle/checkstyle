@@ -77,18 +77,27 @@
       <p>
         Checkstyle has its own very strict set of inspections. To import and enable them go to
         Settings -> Editor -> Inspections -> Manage -> Import... and locate file
-        <code>config/intellij-idea-inspections.xml</code>.<br/><br/>
+        <code>config/intellij-idea-inspections.xml</code>.
+        <br/>
+        <br/>
         <img alt="Inspections in IntelliJ IDEA" src="images/gui_screenshot_inspections_idea.png"/>
-        <br/><br/>
-        Not all files in repository should be analyzed. For example test input files contain
-        numerous violations on purpose. Our shared inspection scope can be used to exclude such
-        files.<br/>
-        To add custom scope copy file <code>config/intellij-idea-inspection-scope.xml</code>
+        <br/>
+        <br/>
+        ATTENTION: Not all files in repository should be analyzed.
+        For example test input files contain numerous violations on purpose.
+        Our shared inspection scope should be used to exclude such files.
+        <br/>
+        Add custom scope copy file <code>config/intellij-idea-inspection-scope.xml</code>
         to <code>.idea/scopes</code> directory.
-        Command from root of repo is
+        <br/>
+        Command from root of repo is:
+        <br/>
         <code>mkdir -p .idea/scopes; cp config/intellij-idea-inspection-scope.xml
-        .idea/scopes/</code><br/>
-        Now it should be ready to use in inspect code window:<br/><br/>
+        .idea/scopes/</code>
+        <br/>
+        Now it should be ready to be used in Inspect Code window (Analyse -> Inspect Code):
+        <br/>
+        <br/>
         <img alt="Scope for inspections" src="images/gui_screenshot_scope_idea.png"/>
       </p>
     </section>
