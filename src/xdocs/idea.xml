@@ -83,7 +83,8 @@
         <img alt="Inspections in IntelliJ IDEA" src="images/gui_screenshot_inspections_idea.png"/>
         <br/>
         <br/>
-        ATTENTION: Not all files in repository should be analyzed. For example test input files contain
+        ATTENTION: Not all files in repository should be analyzed.
+        For example test input files contain
         numerous violations on purpose. Our shared inspection scope should be used to exclude such
         files.
         <br/>
