@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck;
 
-public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathTestSupport {
+public class XpathRegressionCyclomaticComplexityTest extends XpathTestSupport {
 
     @Test
     public void testOne() throws Exception {

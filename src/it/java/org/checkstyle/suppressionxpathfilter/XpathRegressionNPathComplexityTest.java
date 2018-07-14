@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck;
 
 // -@cs[AbbreviationAsWordInName] Test should be named as its main class.
-public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport {
+public class XpathRegressionNPathComplexityTest extends XpathTestSupport {
 
     @Test
     public void testOne() throws Exception {

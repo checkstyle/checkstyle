@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck;
 
-public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSupport {
+public class XpathRegressionOneStatementPerLineTest extends XpathTestSupport {
 
     @Test
     public void testOne() throws Exception {

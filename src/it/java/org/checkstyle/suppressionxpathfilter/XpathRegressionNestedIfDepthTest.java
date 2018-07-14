@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck;
 
-public class XpathRegressionNestedIfDepthTest extends AbstractXpathTestSupport {
+public class XpathRegressionNestedIfDepthTest extends XpathTestSupport {
 
     @Test
     public void testCorrect() throws Exception {

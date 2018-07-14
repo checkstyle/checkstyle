@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck;
 
-public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport {
+public class XpathRegressionMethodParamPadTest extends XpathTestSupport {
 
     @Test
     public void testOne() throws Exception {

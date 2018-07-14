@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck;
 import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption;
 
-public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
+public class XpathRegressionRightCurlyTest extends XpathTestSupport {
 
     @Test
     public void testOne() throws Exception {

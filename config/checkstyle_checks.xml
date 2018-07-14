@@ -121,7 +121,7 @@
   </module>
   <module name="RegexpOnFilename">
       <property name="folderPattern" value="[\\/]src[\\/]it[\\/]java[\\/]"/>
-      <property name="fileNamePattern" value="^((\w+Test)|(Abstract\w+))\.java$"/>
+      <property name="fileNamePattern" value="^((\w+Test)|(\w+TestSupport)|(Abstract\w+))\.java$"/>
       <property name="match" value="false"/>
       <message key="regexp.filepath.mismatch"
                value="All files in the ''src/it/java'' folder
