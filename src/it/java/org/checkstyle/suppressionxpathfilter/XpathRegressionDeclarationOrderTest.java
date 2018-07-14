@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck;
 
-public class XpathRegressionDeclarationOrderTest extends AbstractXpathTestSupport {
+public class XpathRegressionDeclarationOrderTest extends XpathTestSupport {
 
     @Test
     public void testOne() throws Exception {

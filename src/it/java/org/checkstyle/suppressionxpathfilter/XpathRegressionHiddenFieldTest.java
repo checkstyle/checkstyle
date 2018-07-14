@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 
-public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
+public class XpathRegressionHiddenFieldTest extends XpathTestSupport {
 
     @Test
     public void testOne() throws Exception {

@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck;
 
-public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpathTestSupport {
+public class XpathRegressionMultipleVariableDeclarationsTest extends XpathTestSupport {
 
     @Test
     public void testOne() throws Exception {

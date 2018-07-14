@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.sizes.OuterTypeNumberCheck;
 
-public class XpathRegressionOuterTypeNumberTest extends AbstractXpathTestSupport {
+public class XpathRegressionOuterTypeNumberTest extends XpathTestSupport {
 
     @Test
     public void testOne() throws Exception {

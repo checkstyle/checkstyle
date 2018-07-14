@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck;
 
-public class XpathRegressionImportControlTest extends AbstractXpathTestSupport {
+public class XpathRegressionImportControlTest extends XpathTestSupport {
 
     @Test
     public void testOne() throws Exception {

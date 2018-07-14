@@ -29,7 +29,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck;
 
-public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSupport {
+public class XpathRegressionDefaultComesLastTest extends XpathTestSupport {
 
     @Test
     public void testOne() throws Exception {

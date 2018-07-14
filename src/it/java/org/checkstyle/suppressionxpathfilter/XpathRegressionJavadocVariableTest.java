@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck;
 
-public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport {
+public class XpathRegressionJavadocVariableTest extends XpathTestSupport {
 
     @Test
     public void testOne() throws Exception {

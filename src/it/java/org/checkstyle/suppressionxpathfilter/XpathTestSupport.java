@@ -45,7 +45,7 @@ import com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator;
 
-public abstract class AbstractXpathTestSupport extends AbstractModuleTestSupport {
+public class XpathTestSupport extends AbstractModuleTestSupport {
 
     private static final int DEFAULT_TAB_WIDTH = 4;
 

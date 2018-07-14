@@ -28,7 +28,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck;
 
-public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
+public class XpathRegressionRequireThisTest extends XpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
