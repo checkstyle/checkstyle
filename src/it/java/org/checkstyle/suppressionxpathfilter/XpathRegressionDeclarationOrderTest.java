@@ -28,14 +28,19 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck;
 
-public class XpathRegressionDeclarationOrderTest extends XpathTestSupport {
+public class XpathRegressionDeclarationOrderTest extends AbstractXpathTestSupport {
+
+    private final String checkName = DeclarationOrderCheck.class.getSimpleName();
+
+    @Override
+    protected String getCheckName() {
+        return checkName;
+    }
 
     @Test
     public void testOne() throws Exception {
-        final String checkName = DeclarationOrderCheck.class.getSimpleName();
         final File fileToProcess =
-                new File(getPath(checkName,
-                        "SuppressionXpathRegressionDeclarationOne.java"));
+                new File(getPath("SuppressionXpathRegressionDeclarationOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(DeclarationOrderCheck.class);
@@ -60,10 +65,8 @@ public class XpathRegressionDeclarationOrderTest extends XpathTestSupport {
 
     @Test
     public void testTwo() throws Exception {
-        final String checkName = DeclarationOrderCheck.class.getSimpleName();
         final File fileToProcess =
-                new File(getPath(checkName,
-                        "SuppressionXpathRegressionDeclarationTwo.java"));
+                new File(getPath("SuppressionXpathRegressionDeclarationTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(DeclarationOrderCheck.class);

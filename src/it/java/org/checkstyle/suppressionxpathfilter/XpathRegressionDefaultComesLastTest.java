@@ -29,14 +29,19 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck;
 
-public class XpathRegressionDefaultComesLastTest extends XpathTestSupport {
+public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSupport {
+
+    private final String checkName = DefaultComesLastCheck.class.getSimpleName();
+
+    @Override
+    protected String getCheckName() {
+        return checkName;
+    }
 
     @Test
     public void testOne() throws Exception {
-        final String checkName = DefaultComesLastCheck.class.getSimpleName();
         final File fileToProcess =
-                new File(getPath(checkName,
-                        "SuppressionXpathRegressionDefaultComesLastOne.java"));
+                new File(getPath("SuppressionXpathRegressionDefaultComesLastOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(DefaultComesLastCheck.class);
@@ -60,10 +65,8 @@ public class XpathRegressionDefaultComesLastTest extends XpathTestSupport {
 
     @Test
     public void testTwo() throws Exception {
-        final String checkName = DefaultComesLastCheck.class.getSimpleName();
         final File fileToProcess =
-                new File(getPath(checkName,
-                        "SuppressionXpathRegressionDefaultComesLastTwo.java"));
+                new File(getPath("SuppressionXpathRegressionDefaultComesLastTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(DefaultComesLastCheck.class);

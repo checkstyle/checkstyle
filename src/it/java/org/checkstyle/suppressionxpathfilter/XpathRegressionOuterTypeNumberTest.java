@@ -28,14 +28,19 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.sizes.OuterTypeNumberCheck;
 
-public class XpathRegressionOuterTypeNumberTest extends XpathTestSupport {
+public class XpathRegressionOuterTypeNumberTest extends AbstractXpathTestSupport {
+
+    private final String checkName = OuterTypeNumberCheck.class.getSimpleName();
+
+    @Override
+    protected String getCheckName() {
+        return checkName;
+    }
 
     @Test
     public void testOne() throws Exception {
-        final String checkName = OuterTypeNumberCheck.class.getSimpleName();
         final File fileToProcess =
-                new File(getPath(checkName,
-                        "SuppressionXpathRegressionOuterTypeNumber.java"));
+                new File(getPath("SuppressionXpathRegressionOuterTypeNumber.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(OuterTypeNumberCheck.class);

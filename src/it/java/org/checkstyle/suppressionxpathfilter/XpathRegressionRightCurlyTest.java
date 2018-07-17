@@ -29,14 +29,19 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck;
 import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption;
 
-public class XpathRegressionRightCurlyTest extends XpathTestSupport {
+public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
+
+    private final String checkName = RightCurlyCheck.class.getSimpleName();
+
+    @Override
+    protected String getCheckName() {
+        return checkName;
+    }
 
     @Test
     public void testOne() throws Exception {
-        final String checkName = RightCurlyCheck.class.getSimpleName();
         final File fileToProcess =
-                new File(getPath(checkName,
-                        "SuppressionXpathRegressionRightCurlyOne.java"));
+                new File(getPath("SuppressionXpathRegressionRightCurlyOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RightCurlyCheck.class);
@@ -57,10 +62,8 @@ public class XpathRegressionRightCurlyTest extends XpathTestSupport {
 
     @Test
     public void testTwo() throws Exception {
-        final String checkName = RightCurlyCheck.class.getSimpleName();
         final File fileToProcess =
-                new File(getPath(checkName,
-                        "SuppressionXpathRegressionRightCurlyTwo.java"));
+                new File(getPath("SuppressionXpathRegressionRightCurlyTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RightCurlyCheck.class);
@@ -82,10 +85,8 @@ public class XpathRegressionRightCurlyTest extends XpathTestSupport {
 
     @Test
     public void testThree() throws Exception {
-        final String checkName = RightCurlyCheck.class.getSimpleName();
         final File fileToProcess =
-                new File(getPath(checkName,
-                        "SuppressionXpathRegressionRightCurlyThree.java"));
+                new File(getPath("SuppressionXpathRegressionRightCurlyThree.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RightCurlyCheck.class);
@@ -107,10 +108,8 @@ public class XpathRegressionRightCurlyTest extends XpathTestSupport {
 
     @Test
     public void testFour() throws Exception {
-        final String checkName = RightCurlyCheck.class.getSimpleName();
         final File fileToProcess =
-                new File(getPath(checkName,
-                        "SuppressionXpathRegressionRightCurlyFour.java"));
+                new File(getPath("SuppressionXpathRegressionRightCurlyFour.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RightCurlyCheck.class);

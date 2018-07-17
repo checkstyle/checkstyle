@@ -28,14 +28,19 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck;
 
-public class XpathRegressionNestedTryDepthTest extends XpathTestSupport {
+public class XpathRegressionNestedTryDepthTest extends AbstractXpathTestSupport {
+
+    private final String checkName = NestedTryDepthCheck.class.getSimpleName();
+
+    @Override
+    protected String getCheckName() {
+        return checkName;
+    }
 
     @Test
     public void testCorrect() throws Exception {
-        final String checkName = NestedTryDepthCheck.class.getSimpleName();
         final File fileToProcess =
-                new File(getPath(checkName,
-                        "SuppressionXpathRegressionNestedTryDepth.java"));
+                new File(getPath("SuppressionXpathRegressionNestedTryDepth.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NestedTryDepthCheck.class);

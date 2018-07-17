@@ -28,14 +28,19 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck;
 
-public class XpathRegressionIllegalThrowsTest extends XpathTestSupport {
+public class XpathRegressionIllegalThrowsTest extends AbstractXpathTestSupport {
+
+    private final String checkName = IllegalThrowsCheck.class.getSimpleName();
+
+    @Override
+    protected String getCheckName() {
+        return checkName;
+    }
 
     @Test
     public void testOne() throws Exception {
-        final String checkName = IllegalThrowsCheck.class.getSimpleName();
         final File fileToProcess =
-                new File(getPath(checkName,
-                        "SuppressionXpathRegressionIllegalThrowsOne.java"));
+                new File(getPath("SuppressionXpathRegressionIllegalThrowsOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalThrowsCheck.class);
@@ -56,10 +61,8 @@ public class XpathRegressionIllegalThrowsTest extends XpathTestSupport {
 
     @Test
     public void testTwo() throws Exception {
-        final String checkName = IllegalThrowsCheck.class.getSimpleName();
         final File fileToProcess =
-                new File(getPath(checkName,
-                        "SuppressionXpathRegressionIllegalThrowsTwo.java"));
+                new File(getPath("SuppressionXpathRegressionIllegalThrowsTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalThrowsCheck.class);
