@@ -28,14 +28,19 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 
-public class XpathRegressionHiddenFieldTest extends XpathTestSupport {
+public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
+
+    private final String checkName = HiddenFieldCheck.class.getSimpleName();
+
+    @Override
+    protected String getCheckName() {
+        return checkName;
+    }
 
     @Test
     public void testOne() throws Exception {
-        final String checkName = HiddenFieldCheck.class.getSimpleName();
         final File fileToProcess =
-                new File(getPath(checkName,
-                        "SuppressionXpathRegressionExplicitOne.java"));
+                new File(getPath("SuppressionXpathRegressionExplicitOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(HiddenFieldCheck.class);
@@ -57,10 +62,8 @@ public class XpathRegressionHiddenFieldTest extends XpathTestSupport {
 
     @Test
     public void testTwo() throws Exception {
-        final String checkName = HiddenFieldCheck.class.getSimpleName();
         final File fileToProcess =
-                new File(getPath(checkName,
-                        "SuppressionXpathRegressionExplicitTwo.java"));
+                new File(getPath("SuppressionXpathRegressionExplicitTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(HiddenFieldCheck.class);

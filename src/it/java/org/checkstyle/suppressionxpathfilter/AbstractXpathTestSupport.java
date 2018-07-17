@@ -22,7 +22,6 @@ package org.checkstyle.suppressionxpathfilter;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -45,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator;
 
-public class XpathTestSupport extends AbstractModuleTestSupport {
+public abstract class AbstractXpathTestSupport extends AbstractModuleTestSupport {
 
     private static final int DEFAULT_TAB_WIDTH = 4;
 
@@ -57,9 +56,13 @@ public class XpathTestSupport extends AbstractModuleTestSupport {
     @Rule
     public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
+    protected abstract String getCheckName();
+
     @Override
     protected String getPackageLocation() {
-        return "org/checkstyle/suppressionxpathfilter";
+        final String subpackage = getCheckName().toLowerCase(Locale.ENGLISH)
+                .replace("check", "");
+        return "org/checkstyle/suppressionxpathfilter" + "/" + subpackage;
     }
 
     private static List<String> generateXpathQueries(File fileToProcess,
@@ -80,21 +83,6 @@ public class XpathTestSupport extends AbstractModuleTestSupport {
                                            List<String> expectedXpathQueries) {
         assertEquals("Generated queries do not match expected ones", expectedXpathQueries,
                 generatedXpathQueries);
-    }
-
-    /**
-     * Returns canonical path for the file with the given check name and file name.
-     * @param checkName check name.
-     * @param filename file name.
-     * @return canonical path for the file name.
-     * @throws IOException if I/O exception occurs while forming the path.
-     */
-    protected String getPath(String checkName, String filename) throws IOException {
-        final String subpackage = checkName.toLowerCase(Locale.ENGLISH)
-                .replace("check", "");
-        return new File("src/it/resources/" + getPackageLocation()
-                + "/" + subpackage + "/" + filename)
-                .getCanonicalPath();
     }
 
     private String createSuppressionsXpathConfigFile(String checkName,

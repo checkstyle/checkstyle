@@ -30,14 +30,19 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
 import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption;
 
-public class XpathRegressionLeftCurlyTest extends XpathTestSupport {
+public class XpathRegressionLeftCurlyTest extends AbstractXpathTestSupport {
+
+    private final String checkName = LeftCurlyCheck.class.getSimpleName();
+
+    @Override
+    protected String getCheckName() {
+        return checkName;
+    }
 
     @Test
     public void testOne() throws Exception {
-        final String checkName = LeftCurlyCheck.class.getSimpleName();
         final File fileToProcess =
-                new File(getPath(checkName,
-                        "SuppressionXpathRegressionLeftCurlyOne.java"));
+                new File(getPath("SuppressionXpathRegressionLeftCurlyOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(LeftCurlyCheck.class);
@@ -58,10 +63,8 @@ public class XpathRegressionLeftCurlyTest extends XpathTestSupport {
 
     @Test
     public void testTwo() throws Exception {
-        final String checkName = LeftCurlyCheck.class.getSimpleName();
         final File fileToProcess =
-                new File(getPath(checkName,
-                        "SuppressionXpathRegressionLeftCurlyTwo.java"));
+                new File(getPath("SuppressionXpathRegressionLeftCurlyTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(LeftCurlyCheck.class);
@@ -83,10 +86,8 @@ public class XpathRegressionLeftCurlyTest extends XpathTestSupport {
 
     @Test
     public void testThree() throws Exception {
-        final String checkName = LeftCurlyCheck.class.getSimpleName();
         final File fileToProcess =
-                new File(getPath(checkName,
-                        "SuppressionXpathRegressionLeftCurlyThree.java"));
+                new File(getPath("SuppressionXpathRegressionLeftCurlyThree.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(LeftCurlyCheck.class);

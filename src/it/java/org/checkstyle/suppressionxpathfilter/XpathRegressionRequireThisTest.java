@@ -28,14 +28,19 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck;
 
-public class XpathRegressionRequireThisTest extends XpathTestSupport {
+public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
+
+    private final String checkName = RequireThisCheck.class.getSimpleName();
+
+    @Override
+    protected String getCheckName() {
+        return checkName;
+    }
 
     @Test
     public void testOne() throws Exception {
-        final String checkName = RequireThisCheck.class.getSimpleName();
         final File fileToProcess =
-                new File(getPath(checkName,
-                        "SuppressionXpathRegressionRequireThisOne.java"));
+                new File(getPath("SuppressionXpathRegressionRequireThisOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RequireThisCheck.class);
@@ -57,10 +62,8 @@ public class XpathRegressionRequireThisTest extends XpathTestSupport {
 
     @Test
     public void testTwo() throws Exception {
-        final String checkName = RequireThisCheck.class.getSimpleName();
         final File fileToProcess =
-                new File(getPath(checkName,
-                        "SuppressionXpathRegressionRequireThisTwo.java"));
+                new File(getPath("SuppressionXpathRegressionRequireThisTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RequireThisCheck.class);

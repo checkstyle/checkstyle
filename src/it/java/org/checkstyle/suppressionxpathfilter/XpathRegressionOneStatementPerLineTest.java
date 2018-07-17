@@ -28,14 +28,19 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck;
 
-public class XpathRegressionOneStatementPerLineTest extends XpathTestSupport {
+public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSupport {
+
+    private final String checkName = OneStatementPerLineCheck.class.getSimpleName();
+
+    @Override
+    protected String getCheckName() {
+        return checkName;
+    }
 
     @Test
     public void testOne() throws Exception {
-        final String checkName = OneStatementPerLineCheck.class.getSimpleName();
         final File fileToProcess =
-                new File(getPath(checkName,
-                        "SuppressionXpathRegressionOneStatementPerLineOne.java"));
+                new File(getPath("SuppressionXpathRegressionOneStatementPerLineOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(OneStatementPerLineCheck.class);
@@ -56,10 +61,8 @@ public class XpathRegressionOneStatementPerLineTest extends XpathTestSupport {
 
     @Test
     public void testTwo() throws Exception {
-        final String checkName = OneStatementPerLineCheck.class.getSimpleName();
         final File fileToProcess =
-                new File(getPath(checkName,
-                        "SuppressionXpathRegressionOneStatementPerLineTwo.java"));
+                new File(getPath("SuppressionXpathRegressionOneStatementPerLineTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(OneStatementPerLineCheck.class);
