@@ -84,9 +84,8 @@
         <br/>
         <br/>
         ATTENTION: Not all files in repository should be analyzed.
-        For example test input files contain
-        numerous violations on purpose. Our shared inspection scope should be used to exclude such
-        files.
+        For example test input files contain numerous violations on purpose.
+        Our shared inspection scope should be used to exclude such files.
         <br/>
         Add custom scope copy file <code>config/intellij-idea-inspection-scope.xml</code>
         to <code>.idea/scopes</code> directory.
