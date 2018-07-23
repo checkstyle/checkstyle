@@ -2,7 +2,7 @@
 <FindBugsFilter>
     <Match>
       <!-- That code is auto generated -->
-      <Package name="~com\.puppycrawl\.tools\.checkstyle\.grammars.*" />
+      <Package name="~com\.puppycrawl\.tools\.checkstyle\.grammar.*" />
     </Match>
     <Match>
       <!-- We are not aware of encoding of files that user has, so using user encoding is ok -->

@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import org.antlr.v4.runtime.Recognizer;
 
-import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser;
+import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocParser;
 
 /**
  * Contains the constants for all the tokens contained in the Abstract
@@ -1217,7 +1217,7 @@ public final class JavadocTokenTypes {
      * We need unique numbers for all tokens,
      * ANTLR do not need this and that is why this types are mixed by used values.
      * All values we can take a look at
-     * target/generated-sources/antlr/com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser.java
+     * target/generated-sources/antlr/com/puppycrawl/tools/checkstyle/grammar/javadoc/JavadocParser.java
      * For example: LEADING_ASTERISK=1 and RULE_htmlElement = 1.
      * RULE_TYPES_OFFSET required to shift parser rules,
      * to let them not overlap with types that have prefix "RULE_".

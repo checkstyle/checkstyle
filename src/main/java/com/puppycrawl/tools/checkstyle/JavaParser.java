@@ -36,8 +36,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer;
-import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer;
+import com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaLexer;
+import com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**

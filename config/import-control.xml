@@ -28,7 +28,7 @@
   <allow class="java.security.MessageDigest" local-only="true"/>
   <allow class="java.security.NoSuchAlgorithmException" local-only="true"/>
   <allow pkg="com.puppycrawl.tools.checkstyle.utils" local-only="true"/>
-  <allow pkg="com.puppycrawl.tools.checkstyle.grammars" local-only="true"/>
+  <allow pkg="com.puppycrawl.tools.checkstyle.grammar" local-only="true"/>
   <allow pkg="org.apache.commons.cli" local-only="true"/>
   <allow pkg="org.antlr.v4.runtime" local-only="true"/>
   <allow class="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.+"
@@ -75,13 +75,13 @@
   </subpackage>
 
   <subpackage name="api">
-    <allow pkg="com.puppycrawl.tools.checkstyle.grammars"/>
+    <allow pkg="com.puppycrawl.tools.checkstyle.grammar"/>
     <allow pkg="java.lang.reflect" local-only="true"/>
     <allow pkg="java.nio.charset" local-only="true"/>
     <allow class="java.beans.PropertyDescriptor" local-only="true"/>
     <allow class="java.nio.file.Files" local-only="true"/>
     <allow class="java.text.MessageFormat" local-only="true"/>
-    <allow class="com.puppycrawl.tools.checkstyle.grammars.CommentListener"
+    <allow class="com.puppycrawl.tools.checkstyle.grammar.CommentListener"
            local-only="true"/>
     <!-- AccessModifier is in util package (should be moved to api package) to disallow
     its usage by API clients till https://github.com/checkstyle/checkstyle/issues/3511-->
@@ -117,7 +117,7 @@
       <allow class="java.nio.charset.StandardCharsets" local-only="true" />
     </subpackage>
     <subpackage name="javadoc">
-      <allow pkg="com.puppycrawl.tools.checkstyle.grammars.javadoc"/>
+      <allow pkg="com.puppycrawl.tools.checkstyle.grammar.javadoc"/>
       <allow pkg="java.lang.reflect"/>
       <allow class="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser"
         local-only="true"/>

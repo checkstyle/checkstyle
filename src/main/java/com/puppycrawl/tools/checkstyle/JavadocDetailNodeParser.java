@@ -47,8 +47,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
-import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocLexer;
-import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser;
+import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocLexer;
+import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocParser;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**

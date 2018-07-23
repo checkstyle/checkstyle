@@ -414,7 +414,7 @@
               <excludeRoot>src/test/resources</excludeRoot>
               <excludeRoot>target/generated-sources/antlr</excludeRoot>
               <excludeRoot>
-                target/generated-sources/antlr/com/puppycrawl/tools/checkstyle/grammars/javadoc
+                target/generated-sources/antlr/com/puppycrawl/tools/checkstyle/grammar/javadoc
               </excludeRoot>
             </excludeRoots>
           </configuration>
@@ -787,8 +787,8 @@
             <configuration>
               <excludes>
                 <!-- Parser related classes -->
-                <exclude>com/puppycrawl/tools/checkstyle/grammars/*.class</exclude>
-                <exclude>com/puppycrawl/tools/checkstyle/grammars/javadoc/*.class</exclude>
+                <exclude>com/puppycrawl/tools/checkstyle/grammar/*.class</exclude>
+                <exclude>com/puppycrawl/tools/checkstyle/grammar/javadoc/*.class</exclude>
                 <exclude>
                   com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser$JavadocParserErrorStrategy.class
                 </exclude>
@@ -817,13 +817,13 @@
                   <excludes>
                     <!-- Parser related classes -->
                     <exclude>
-                             com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer
+                      com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer
                     </exclude>
-                    <exclude>com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaLexer</exclude>
                     <exclude>
-                             com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser*
+                      com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocParser*
                     </exclude>
-                    <exclude>com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocLexer</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocLexer</exclude>
                     <exclude>
                       com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.JavadocParserErrorStrategy
                     </exclude>
@@ -861,7 +861,7 @@
                   <element>CLASS</element>
                   <includes>
                     <include>
-                      com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer
+                      com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer
                     </include>
                   </includes>
                   <limits>
@@ -880,7 +880,7 @@
                 <rule>
                   <element>CLASS</element>
                   <includes>
-                    <include>com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer</include>
+                    <include>com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaLexer</include>
                   </includes>
                   <limits>
                     <limit>
@@ -899,7 +899,7 @@
                   <element>CLASS</element>
                   <includes>
                     <include>
-                      com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser
+                      com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocParser
                     </include>
                   </includes>
                   <limits>
@@ -918,7 +918,7 @@
                 <rule>
                   <element>CLASS</element>
                   <includes>
-                    <include>com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocLexer</include>
+                    <include>com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocLexer</include>
                   </includes>
                   <limits>
                     <limit>
@@ -1041,7 +1041,7 @@
         <version>2.2</version>
         <configuration>
           <sourceDirectory>
-            ${basedir}/src/main/resources/com/puppycrawl/tools/checkstyle/grammars
+            ${basedir}/src/main/resources/com/puppycrawl/tools/checkstyle/grammar
           </sourceDirectory>
           <grammars>java.g</grammars>
         </configuration>
@@ -1065,7 +1065,7 @@
           <sourceDirectory>${basedir}/src/main/resources/</sourceDirectory>
           <outputDirectory>${project.build.directory}/generated-sources/antlr/</outputDirectory>
           <includes>
-            <include>com/puppycrawl/tools/checkstyle/grammars/javadoc/*.g4</include>
+            <include>com/puppycrawl/tools/checkstyle/grammar/javadoc/*.g4</include>
           </includes>
         </configuration>
         <executions>
@@ -2508,7 +2508,7 @@
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.api.*</param>
-                <param>com.puppycrawl.tools.checkstyle.grammars.comments.CommentsTest</param>
+                <param>com.puppycrawl.tools.checkstyle.grammar.comments.CommentsTest</param>
                 <param>com.puppycrawl.tools.checkstyle.filefilters.*</param>
                 <param>com.puppycrawl.tools.checkstyle.filters.*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheckTest</param>
