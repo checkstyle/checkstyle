@@ -1,7 +1,7 @@
 package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
 
-import com.puppycrawl.tools.checkstyle.grammars.comments.InputFullOfSinglelineComments;
-import static com.puppycrawl.tools.checkstyle.grammars.comments.InputFullOfSinglelineComments.main;
+import com.puppycrawl.tools.checkstyle.grammar.comments.InputFullOfSinglelineComments;
+import static com.puppycrawl.tools.checkstyle.grammar.comments.InputFullOfSinglelineComments.main;
 
 public class InputLineLengthLongImportStatements {
     @Override

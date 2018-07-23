@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes;
+import com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaTokenTypes;
 
 /**
  * Contains the constants for all the tokens contained in the Abstract

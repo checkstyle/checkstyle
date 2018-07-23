@@ -15,13 +15,13 @@
 
     <!-- Intentional no new line at the end. -->
      <suppress checks="NewlineAtEndOfFile"
-               files="[\\/]test[\\/].*[\\/]grammars[\\/]comments[\\/]InputFullOfSinglelineComments\.java"/>
+               files="[\\/]test[\\/].*[\\/]grammar[\\/]comments[\\/]InputFullOfSinglelineComments\.java"/>
      <suppress checks="NewlineAtEndOfFile"
                files="[\\/]test[\\/].*[\\/]asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfSinglelineComments\.java"/>
 
     <!-- Grammar specific input file, should have exact structure to reproduce the case. -->
      <suppress checks="NewlineAtEndOfFile"
-               files="[\\/]test[\\/].*[\\/]grammars[\\/]InputEmbeddedNullChar\.java"/>
+               files="[\\/]test[\\/].*[\\/]grammar[\\/]InputEmbeddedNullChar\.java"/>
 
     <!-- Javadoc files should not have new line by design (on purpose). -->
      <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*\.javadoc"/>
@@ -30,13 +30,13 @@
     <suppress checks="NewlineAtEndOfFile"
               files="[\\/]test[\\/].*[\\/]checks[\\/]newlineatendoffile[\\/]InputNewlineAtEndOfFileEmptyFile\.txt"/>
     <suppress checks="NewlineAtEndOfFile"
-              files="[\\/]test[\\/].*[\\/]grammars[\\/]InputRegressionEmptyAst\.txt"/>
+              files="[\\/]test[\\/].*[\\/]grammar[\\/]InputRegressionEmptyAst\.txt"/>
 
     <!-- File with CR line separators used for testing -->
     <suppress checks="NewlineAtEndOfFile"
               files="[\\/]test[\\/].*[\\/]asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfBlockCommentsCR\.java"/>
     <suppress checks="NewlineAtEndOfFile"
-              files="[\\/]test[\\/].*[\\/]grammars[\\/]InputAstRegressionNewlineCrAtEndOfFile\.java"/>
+              files="[\\/]test[\\/].*[\\/]grammar[\\/]InputAstRegressionNewlineCrAtEndOfFile\.java"/>
 
     <!-- For the testing purposes -->
     <suppress checks="NewlineAtEndOfFile"
@@ -52,7 +52,7 @@
     <suppress checks="RegexpSingleline"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]InputLineLength.*\.java"/>
     <suppress checks="RegexpSingleline"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]grammars[\\/]comments[\\/].*"/>
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]grammar[\\/]comments[\\/].*"/>
     <suppress checks="RegexpSingleline"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfBlockComments\.java"/>
     <suppress checks="RegexpSingleline"

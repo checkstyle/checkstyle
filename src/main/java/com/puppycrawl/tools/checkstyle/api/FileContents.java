@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import com.puppycrawl.tools.checkstyle.grammars.CommentListener;
+import com.puppycrawl.tools.checkstyle.grammar.CommentListener;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**

@@ -146,7 +146,7 @@ public class AllTestsTest {
             }
 
             // until https://github.com/checkstyle/checkstyle/issues/5105
-            if (!path.contains(File.separatorChar + "grammars" + File.separatorChar)
+            if (!path.contains(File.separatorChar + "grammar" + File.separatorChar)
                     && !path.contains(File.separatorChar + "foo" + File.separatorChar)
                     && !path.contains(File.separatorChar + "bar" + File.separatorChar)) {
                 String fileName = file.getName();
@@ -219,7 +219,7 @@ public class AllTestsTest {
                     throw new IllegalStateException(ex);
                 }
 
-                if (!path.contains(File.separatorChar + "grammars" + File.separatorChar)
+                if (!path.contains(File.separatorChar + "grammar" + File.separatorChar)
                         && !path.contains(File.separatorChar + "internal" + File.separatorChar)) {
                     final int slash = path.lastIndexOf(File.separatorChar);
                     final String packge = path.substring(0, slash);
