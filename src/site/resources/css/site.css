@@ -63,3 +63,7 @@ h2:hover .anchor, h3:hover .anchor {
   white-space: -o-pre-wrap !important;
   word-wrap: break-word !important;
 }
+
+.releaseDate {
+  float: right;
+}
