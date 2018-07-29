@@ -84,6 +84,7 @@
     <suppress checks="ClassFanOutComplexity" files="[\\/]Main\.java"/>
     <suppress checks="ClassFanOutComplexity" files="CheckstyleAntTask\.java"/>
     <suppress checks="ClassFanOutComplexity" files="CheckerTest\.java"/>
+    <suppress checks="ClassFanOutComplexity" files="Checker\.java"/>
     <!-- a lot of GUI elements is OK -->
     <suppress checks="ClassDataAbstractionCoupling" files="(TreeTable|MainFrame)\.java"/>
 

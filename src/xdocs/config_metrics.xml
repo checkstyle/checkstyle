@@ -237,13 +237,14 @@
             <td>excludedClasses</td>
             <td>User-configured class names to ignore</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>IllegalStateException, Set, StringBuilder, HashMap, ArrayList,
-                String, float, SortedSet, long, RuntimeException, NullPointerException,
-                TreeSet, List, Boolean, Void, Queue, Short, IllegalArgumentException,
-                UnsupportedOperationException, HashSet, void, Character, IndexOutOfBoundsException,
-                byte, double, SecurityException, TreeMap, Double, Deque, int, Exception, LinkedList,
-                Integer, Float, StringBuffer, boolean, Byte, SortedMap, char, Long, short,
-                Throwable, Object, Class, ArrayIndexOutOfBoundsException, Map</td>
+            <td>HashMap, ArrayList, String, float, TreeSet, List, Boolean, Void, Override, Short,
+                IllegalArgumentException, UnsupportedOperationException, HashSet, void, Character,
+                IndexOutOfBoundsException, byte, double, Double, LinkedList, Float, Byte,
+                SortedMap, Long, Throwable, Object, Class, Map, IllegalStateException, Set,
+                StringBuilder, SuppressWarnings, SortedSet, long, RuntimeException, Deprecated,
+                NullPointerException, Queue, SecurityException, FunctionalInterface, TreeMap,
+                Deque, int, Exception, Integer, SafeVarargs, StringBuffer, boolean, char, short,
+                ArrayIndexOutOfBoundsException</td>
             <td>5.7</td>
           </tr>
           <tr>
@@ -486,47 +487,7 @@ public class Foo {
           This check processes files in the following way:
           <ol>
             <li>
-              Iterates over the list of tokens (defined below) and counts all mentioned classes.
-              <ul>
-                <li>
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">
-                PACKAGE_DEF</a>
-                </li>
-                <li>
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
-                IMPORT</a>
-                </li>
-                <li>
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                CLASS_DEF</a>
-                </li>
-                <li>
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                INTERFACE_DEF</a>
-                </li>
-                <li>
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                ENUM_DEF</a>
-                </li>
-                <li>
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPE">
-                TYPE</a>
-                </li>
-                <li>
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
-                LITERAL_NEW</a>
-                </li>
-                <li>
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_THROWS">
-                    LITERAL_THROWS
-                  </a>
-                </li>
-                <li>
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
-                    ANNOTATION_DEF
-                  </a>
-                </li>
-              </ul>
+              Iterates over all tokens that might contain type reference.
             </li>
             <li>
               If a class was imported with direct import (i.e.
@@ -563,13 +524,14 @@ public class Foo {
             <td>excludedClasses</td>
             <td>User-configured class names to ignore</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>IllegalStateException, Set, StringBuilder, HashMap, ArrayList,
-                String, float, SortedSet, long, RuntimeException, NullPointerException,
-                TreeSet, List, Boolean, Void, Queue, Short, IllegalArgumentException,
-                UnsupportedOperationException, HashSet, void, Character, IndexOutOfBoundsException,
-                byte, double, SecurityException, TreeMap, Double, Deque, int, Exception, LinkedList,
-                Integer, Float, StringBuffer, boolean, Byte, SortedMap, char, Long, short,
-                Throwable, Object, Class, ArrayIndexOutOfBoundsException, Map</td>
+            <td>HashMap, ArrayList, String, float, TreeSet, List, Boolean, Void, Override, Short,
+                IllegalArgumentException, UnsupportedOperationException, HashSet, void, Character,
+                IndexOutOfBoundsException, byte, double, Double, LinkedList, Float, Byte,
+                SortedMap, Long, Throwable, Object, Class, Map, IllegalStateException, Set,
+                StringBuilder, SuppressWarnings, SortedSet, long, RuntimeException, Deprecated,
+                NullPointerException, Queue, SecurityException, FunctionalInterface, TreeMap,
+                Deque, int, Exception, Integer, SafeVarargs, StringBuffer, boolean, char, short,
+                ArrayIndexOutOfBoundsException</td>
             <td>5.7</td>
           </tr>
           <tr>

@@ -446,7 +446,8 @@
                          UnsupportedEncodingException, BuildException, ConversionException,
                          FileNotFoundException, TestException, Log, Sets, Multimap,
                          TokenStreamRecognitionException, RecognitionException,
-                         TokenStreamException, IOException"/>
+                         TokenStreamException, IOException, Override, Deprecated, SafeVarargs,
+                         SuppressWarnings, FunctionalInterface"/>
     </module>
     <module name="CyclomaticComplexity">
       <property name="switchBlockAsSingleDecisionPoint" value="true"/>
