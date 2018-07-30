@@ -228,11 +228,6 @@
       <name>Codehaus Snapshots</name>
       <url>https://oss.sonatype.org/content/repositories/codehaus-snapshots/</url>
     </pluginRepository>
-    <pluginRepository>
-      <id>sevntu-maven</id>
-      <name>sevntu-maven</name>
-      <url>http://sevntu-checkstyle.github.io/sevntu.checkstyle/maven2</url>
-    </pluginRepository>
   </pluginRepositories>
 
   <dependencies>
