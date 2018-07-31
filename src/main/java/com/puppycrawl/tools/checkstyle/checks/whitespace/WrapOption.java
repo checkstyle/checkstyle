@@ -28,6 +28,6 @@ public enum WrapOption {
     /** Require that the token is on a new line. */
     NL,
     /** Require that the token is at the end of the line. */
-    EOL
+    EOL,
 
 }

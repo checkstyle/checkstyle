@@ -30,6 +30,6 @@ enum AccessResult {
     /** Represents that access is disallowed. */
     DISALLOWED,
     /** Represents that access is unknown. */
-    UNKNOWN
+    UNKNOWN,
 
 }

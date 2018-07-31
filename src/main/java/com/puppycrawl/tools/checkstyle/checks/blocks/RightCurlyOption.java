@@ -126,6 +126,6 @@ public enum RightCurlyOption {
      * } else { ... <b>}</b> // OK, single-line multi-block statement
      * </pre>
      **/
-    SAME
+    SAME,
 
 }

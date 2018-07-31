@@ -102,6 +102,6 @@ public enum ImportOrderOption {
         import static javax.swing.WindowConstants.*;
      * </pre>
      */
-    BOTTOM
+    BOTTOM,
 
 }

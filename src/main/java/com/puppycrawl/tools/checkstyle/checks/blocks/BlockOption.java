@@ -46,6 +46,6 @@ public enum BlockOption {
      * }
      * </pre>
      */
-    STATEMENT
+    STATEMENT,
 
 }

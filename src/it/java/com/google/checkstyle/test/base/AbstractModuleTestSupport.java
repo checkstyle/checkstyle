@@ -71,7 +71,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
          * Points that checker will be created as
          * a root of default configuration.
          */
-        IN_CHECKER
+        IN_CHECKER,
 
     }
 
