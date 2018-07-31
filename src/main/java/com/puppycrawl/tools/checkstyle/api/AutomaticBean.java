@@ -69,7 +69,7 @@ public abstract class AutomaticBean
         /**
          * Do nothing in the end.
          */
-        NONE
+        NONE,
 
     }
 

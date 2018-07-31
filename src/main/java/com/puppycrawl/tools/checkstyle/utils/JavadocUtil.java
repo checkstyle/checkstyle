@@ -52,7 +52,7 @@ public final class JavadocUtil {
         /** Inline type. */
         INLINE,
         /** All validTags. */
-        ALL
+        ALL,
 
     }
 

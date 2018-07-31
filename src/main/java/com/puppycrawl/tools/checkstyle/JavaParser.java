@@ -59,7 +59,7 @@ public final class JavaParser {
         /**
          * Comments nodes should be ignored.
          */
-        WITHOUT_COMMENTS
+        WITHOUT_COMMENTS,
 
     }
 

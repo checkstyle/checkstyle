@@ -212,7 +212,7 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
         /** On suppression type. */
         ON,
         /** Off suppression type. */
-        OFF
+        OFF,
 
     }
 

@@ -297,7 +297,8 @@ public class CommitValidationTest {
 
     private enum CommitsResolutionMode {
 
-        BY_COUNTER, BY_LAST_COMMIT_AUTHOR
+        BY_COUNTER,
+        BY_LAST_COMMIT_AUTHOR,
 
     }
 
