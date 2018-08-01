@@ -314,8 +314,7 @@
       <tr>
         <td><a href="config_coding.html#IllegalType">IllegalType</a></td>
         <td>
-          Checks that particular class are never used as types in variable
-        declarations, return values or parameters.</td>
+          Checks that particular classes or interfaces are never used.</td>
       </tr>
       <tr>
         <td><a href="config_imports.html#ImportControl">ImportControl</a></td>
