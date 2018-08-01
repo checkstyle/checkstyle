@@ -2056,8 +2056,7 @@ class SomeClass
       <subsection name="Description" id="IllegalType_Description">
         <p>Since Checkstyle 3.2</p>
         <p>
-          Checks that particular classes are never used as types in variable
-          declarations, one-dimensional and multi-dimensional arrays, return values or parameters.
+          Checks that particular classes or interfaces are never used.
         </p>
 
         <p>
@@ -2118,7 +2117,8 @@ class SomeClass
           </tr>
           <tr>
             <td>memberModifiers</td>
-            <td>Check methods and fields with only corresponding modifiers.</td>
+            <td>To check only methods and fields with any of the specified modifiers.
+                This property does not affect method calls nor method references.</td>
             <td>subset of tokens
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
             <td/>
@@ -2129,20 +2129,32 @@ class SomeClass
             <td>tokens to check</td>
             <td>
               subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                VARIABLE_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                ANNOTATION_FIELD_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
+                METHOD_CALL</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                METHOD_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
+                METHOD_REF</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
                 PARAMETER_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                METHOD_DEF</a>.
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                VARIABLE_DEF</a>.
             </td>
             <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                VARIABLE_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                ANNOTATION_FIELD_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
+                METHOD_CALL</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                METHOD_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
+                METHOD_REF</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
                 PARAMETER_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                METHOD_DEF</a>.
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                VARIABLE_DEF</a>.
             </td>
             <td>3.2</td>
           </tr>
@@ -2159,7 +2171,7 @@ class SomeClass
 &lt;/module&gt;
         </source>
         <p>
-          To configure the Check so that it verifies only public, protected and static
+          To configure the Check so that it verifies only public, protected or static
            methods and fields:
         </p>
         <source>
@@ -2167,6 +2179,38 @@ class SomeClass
   &lt;property name=&quot;memberModifiers&quot; value=&quot;LITERAL_PUBLIC,
    LITERAL_PROTECTED, LITERAL_STATIC&quot;/&gt;
 &lt;/module&gt;
+        </source>
+          <p>
+            To configure the check so that it verifies usage of types Boolean and Foo:
+          </p>
+        <source>
+&lt;module name="IllegalType"&gt;
+          &lt;property name=&quot;illegalClassNames&quot; value=&quot;Boolean, Foo&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <source>
+public class Test {
+
+  public Set&lt;Boolean&gt; set; // violation
+  public java.util.List&lt;Map&lt;Boolean, Foo&gt;&gt; list; // violation
+
+  private void method(List&lt;Foo&gt; list, Boolean value) { // violation
+    SomeType.&lt;Boolean&gt;foo(); // violation
+    final Consumer&lt;Foo&gt; consumer = Foo&lt;Boolean&gt;::foo; // violation
+  }
+
+  public &lt;T extends Boolean, U extends Serializable&gt; void typeParameter(T a) {} // violation
+
+  public void fullName(java.util.ArrayList&lt;? super Boolean&gt; a) {} // violation
+
+  public abstract Set&lt;Boolean&gt; shortName(Set&lt;? super Boolean&gt; a); // violation
+
+  public Set&lt;? extends Foo&gt; typeArgument() { // violation
+    return new TreeSet&lt;Foo&lt;Boolean&gt;&gt;();
+  }
+
+}
         </source>
       </subsection>
 

@@ -180,6 +180,32 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testGenerics() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
+        checkConfig.addAttribute("illegalClassNames",
+                "Boolean, Foo, Serializable");
+        checkConfig.addAttribute("memberModifiers", "LITERAL_PUBLIC, FINAL");
+        final String[] expected = {
+            "20:16: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "21:31: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "21:40: " + getCheckMessage(MSG_KEY, "Foo"),
+            "24:18: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "25:24: " + getCheckMessage(MSG_KEY, "Foo"),
+            "25:44: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "28:23: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "28:42: " + getCheckMessage(MSG_KEY, "Serializable"),
+            "30:54: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "32:25: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "32:60: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "34:26: " + getCheckMessage(MSG_KEY, "Foo"),
+            "34:30: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "44:20: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "57:28: " + getCheckMessage(MSG_KEY, "Boolean"),
+        };
+        verify(checkConfig, getPath("InputIllegalTypeGenerics.java"), expected);
+    }
+
+    @Test
     public void testStarImports() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
         checkConfig.addAttribute("illegalClassNames", "List");
