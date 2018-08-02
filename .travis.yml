@@ -152,6 +152,7 @@ matrix:
 
     # MacOS verify (till cache is not working, we can not do verify)
     - os: osx
+      osx_image: xcode9.3
       env:
         - DESC="MacOS verify, site, assembly
         - CMD1="mvn -e package -Dlinkcheck.skip=true"
