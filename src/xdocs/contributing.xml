@@ -169,5 +169,21 @@
         feel free to send a reminder email about your tracker item.
       </p>
     </section>
+
+    <section name="Bounty">
+
+      <p>
+        Some (mostly important) issues are marked with the label
+        <a href="https://github.com/checkstyle/checkstyle/labels/has%20bounty">has bounty</a>.
+        By solving such problem, you will not only help the community,
+        but also get free beer (in monetary terms to your paypal account).
+      </p>
+
+      <p>
+        All you need to do is link your <a href="https://github.com/">github</a>
+        account and <a href="https://paypal.com/">paypal</a> account through
+        the <a href="https://bountysource.com/">bountysource</a> website.
+      </p>
+    </section>
   </body>
 </document>
