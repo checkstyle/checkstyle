@@ -13,9 +13,10 @@ run_output=$spellchecker/unknown.words
 if [ ! -e $dict ]; then
   echo "Retrieve ./usr/share/dict/linux.words"
   words_rpm=$spellchecker/words.rpm
-  URL_PART1="https://rpmfind.net/linux/fedora/linux/development/rawhide/"
-  URL_PART2="Everything/aarch64/os/Packages/w/words-3.0-30.fc29.noarch.rpm"
-  curl $URL_PART1$URL_PART2 > $words_rpm
+  mirror="https://rpmfind.net"
+  file_path="/linux/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/w/"
+  file_name=$(curl -s "${mirror}${file_path}" | grep -o "words-.*.noarch.rpm")
+  curl "${mirror}${file_path}${file_name}" -o $words_rpm
   $spellchecker/rpm2cpio.sh $words_rpm |\
     cpio -i --to-stdout ./usr/share/dict/linux.words > $dict
   rm $words_rpm
