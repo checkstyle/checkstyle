@@ -374,6 +374,22 @@
   &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+         The following example demonstrates how the check validates parameter
+         names conform to a format specified by the format property
+        </p>
+        <p>Configuration:</p>
+        <source>
+&lt;module name="CatchParameterName"&gt;
+  &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Code example:</p>
+        <source>
+public void test(String s1, int num, char[] charArray) { // OK
+  ...
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="CatchParameterName_Example_of_Usage">
