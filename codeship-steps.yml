@@ -6,5 +6,7 @@
   steps:
     #-  command: ./.ci/travis/travis.sh site
     #-  command: ./.ci/travis/travis.sh nondex
-    -  command: ls -la && cat etc/shadow
+    -  command: ls -la
+    -  command: cat etc/shadow
+    -  command: cat etc/hostname
     -  command: .ci/run-link-check-plugin.sh
