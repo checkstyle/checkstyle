@@ -374,6 +374,26 @@
   &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          The following example shows that how the check validates the parameter
+          names with a lower case letter, followed by any letters or digits:
+        </p>
+        <pre>
+&lt;module name="CatchParameterName"&gt;
+  &lt;property name="format" value="^[a-z][a-zA-Z]+$"/&gt;
+&lt;/module&gt;
+        </pre>
+        <p>Code Example:</p>
+        <pre>
+class Test {
+  public void test1(String s1, int num, char[] charArray) { // OK
+    ...
+  }
+  public void test2(int Number) { //ERROR
+    ...
+  }
+}
+        </pre>
       </subsection>
 
       <subsection name="Example of Usage" id="CatchParameterName_Example_of_Usage">
