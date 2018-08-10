@@ -206,7 +206,7 @@
     <pmd.version>6.1.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.1</maven.jacoco.plugin.version>
     <powermock.version>2.0.0-beta.5</powermock.version>
-    <saxon.version>9.8.0-12</saxon.version>
+    <saxon.version>9.8.0-14</saxon.version>
     <maven.checkstyle.plugin.version>3.0.0</maven.checkstyle.plugin.version>
     <maven.sevntu.checkstyle.plugin.version>1.30.0</maven.sevntu.checkstyle.plugin.version>
     <maven.sevntu-checkstyle-check.checkstyle.version>
@@ -254,7 +254,7 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>25.1-jre</version>
+      <version>26.0-jre</version>
     </dependency>
     <dependency>
       <groupId>org.apache.ant</groupId>
