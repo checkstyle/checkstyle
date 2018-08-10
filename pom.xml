@@ -1494,6 +1494,8 @@
           <excludedLinks>
             <excludedLink>reports/google-style/guava</excludedLink>
             <excludedLink>reports/javadoc/openjdk8</excludedLink>
+            <!-- redirects to US page, it is better to stay international -->
+            <excludedLink>https://paypal.com/</excludedLink>
             <!-- temporal suppress till plugin update link in his source -->
             <excludedLink>http://www.mojohaus.org/exec-maven-plugin</excludedLink>
             <!-- temporal suppress till javadoc tool starts generating links to https -->
