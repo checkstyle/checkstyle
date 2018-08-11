@@ -1,7 +1,3 @@
-<!-- copy from http://maven.apache.org/xsd/decoration-1.0.0.xsd ,
-     just to make build stable in offline mode.
-     Suorce was a bit formatted to pass LineLength and NewlineAtEndOfFile validation
--->
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
   xmlns="http://maven.apache.org/DECORATION/1.0.0"
@@ -28,7 +24,7 @@
     <xs:all>
       <xs:element minOccurs="0" name="bannerLeft" type="Banner">
         <xs:annotation>
-          <xs:documentation source="version">1.0.0</xs:documentation>
+          <xs:documentation source="ven">1.0.0</xs:documentation>
           <xs:documentation source="description">
             Banner logo on the masthead of the site to the left.
           </xs:documentation>
