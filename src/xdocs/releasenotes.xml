@@ -15,6 +15,156 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <div class="releaseDate">11.08.2018</div>
+    <section name="Release 8.12">
+      <p>New:</p>
+        <ul>
+          <li>
+            LeftCurly : add support for LITERAL_CASE and LITERAL_DEFAULT .
+            Author: Pavel Bludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/5207">#5207</a>
+          </li>
+          <li>
+            ImportOrder: allow static imports be separated by local groups when
+they are at the top/bottom.
+            Author: Pavel Bludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/5279">#5279</a>
+          </li>
+          <li>
+            ImportOrder: new property groupsStatic to allow define groups for
+static imports.
+            Author: Pavel Bludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/5724">#5724</a>
+          </li>
+          <li>
+            InterfaceMemberImpliedModifier: New Check to demand all modifiers to
+be explicit in interfaces members.
+            Author: Stephen Colebourne
+            <a href="https://github.com/checkstyle/checkstyle/issues/5899">#5899</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Remove lambda support from ParameterName.
+            Author: kazachka
+            <a href="https://github.com/checkstyle/checkstyle/issues/5894">#5894</a>
+          </li>
+          <li>
+            EmptyLineSeparator raises violations when static import right after
+plain import.
+            Author: Pavel Bludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/4625">#4625</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Spell check failing to get words file.
+            Author: Pavel Bludov, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6046">#6046</a>
+          </li>
+          <li>
+            doc: bounty note.
+            Author: Pavel Bludov
+          </li>
+          <li>
+            spelling: add xcode.
+            Author: Pavel Bludov
+          </li>
+          <li>
+            Travis CI: MAC build is broken.
+            Author: Pavel Bludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6055">#6055</a>
+          </li>
+          <li>
+            Change grammars package name to grammar.
+            Author: mismatch
+            <a href="https://github.com/checkstyle/checkstyle/issues/5891">#5891</a>
+          </li>
+          <li>
+            Checkstyle&#39;s html report related links are not working.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6043">#6043</a>
+          </li>
+          <li>
+            Resolve violations from IDEA 2018.1.6.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6037">#6037</a>
+          </li>
+          <li>
+            SuppressWithNearbyCommentFilter: update document and examples on when
+it is appropriate to use.
+            Author: Lukas Eckert
+            <a href="https://github.com/checkstyle/checkstyle/issues/5973">#5973</a>
+          </li>
+          <li>
+            XpathSuppression generation should support module id.
+            Author: Timur Tibeyev
+            <a href="https://github.com/checkstyle/checkstyle/issues/5984">#5984</a>
+          </li>
+          <li>
+            Add XDoc SubSection Anchor.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6014">#6014</a>
+          </li>
+          <li>
+            Add to CI import order validation on certain projects.
+            Author: Pavel Bludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6018">#6018</a>
+          </li>
+          <li>
+            doc: reference in SuppressionXpathFilter doc about ability to
+generate suppressions by CLI.
+            Author: Timur Tibeyev
+          </li>
+          <li>
+            XpathFileGeneratorAstFilter: EVENTS and QUERIES as single map.
+            Author: Timur Tibeyev
+            <a href="https://github.com/checkstyle/checkstyle/issues/5979">#5979</a>
+          </li>
+          <li>
+            redo XML_Structure documentation section.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6011">#6011</a>
+          </li>
+          <li>
+            Mark all checks with appropriate annotation so that they could be
+used in the MT mode.
+            Author: Andrew Kuchev, rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/4870">#4870</a>
+          </li>
+          <li>
+            update documentation of SuppressionFilter with links to latest DTDs.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6003">#6003</a>
+          </li>
+          <li>
+            Checkstyle Ant prints null for checkstyle version.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6001">#6001</a>
+          </li>
+          <li>
+            Update documentation for same of RighCurly.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/5970">#5970</a>
+          </li>
+          <li>
+            Internal XPath Regression fails on RequireThisCheck.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/5996">#5996</a>
+          </li>
+          <li>
+            Setup Jenkins CI for building Pull Requests.
+            Author: Daniil Yaroslavtsev
+            <a href="https://github.com/checkstyle/checkstyle/issues/5953">#5953</a>
+          </li>
+          <li>
+            doc: fix download URLs.
+            Author: Michael Ernst
+          </li>
+        </ul>
+    </section>
 
     <section name="Release 8.11">
       <p>Breaking backward compatibility:</p>
