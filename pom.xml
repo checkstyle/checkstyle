@@ -1294,7 +1294,7 @@
               <includes>
                 <include>site.xml</include>
               </includes>
-              <systemId>http://maven.apache.org/xsd/decoration-1.0.0.xsd</systemId>
+              <systemId>.ci/travis/decoration-1.0.0.xsd</systemId>
             </validationSet>
             <validationSet>
               <validating>true</validating>
