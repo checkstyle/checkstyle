@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+  <!-- mapping of non checkstyle's xsd to make build pass in offline mode -->
+  <system publicId="http://maven.apache.org/xsd/decoration-1.0.0.xsd"
+          uri="./travis/decoration-1.0.0.xsd"/>
+  <!-- mapping of checkstyle's remote schemas to local files -->
   <system systemId="https://checkstyle.org/dtds/configuration_1_0.dtd"
           uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/configuration_1_0.dtd"/>
   <system systemId="https://checkstyle.org/dtds/configuration_1_1.dtd"
