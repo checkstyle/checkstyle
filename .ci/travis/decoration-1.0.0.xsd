@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- copy from http://maven.apache.org/xsd/decoration-1.0.0.xsd ,
      just to make build stable in offline mode.
-     Source was a bit formatted to pass LineLength and NewlineAtEndOfFile validation
+     source was a bit formatted to pass LineLength and NewlineAtEndOfFile and
+     spelling validation
 -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
   xmlns="http://maven.apache.org/DECORATION/1.0.0"
@@ -28,7 +29,7 @@
     <xs:all>
       <xs:element minOccurs="0" name="bannerLeft" type="Banner">
         <xs:annotation>
-          <xs:documentation source="ven">1.0.0</xs:documentation>
+          <xs:documentation source="version">1.0.0</xs:documentation>
           <xs:documentation source="description">
             Banner logo on the masthead of the site to the left.
           </xs:documentation>
@@ -91,7 +92,7 @@
         <xs:annotation>
           <xs:documentation source="version">1.0.0</xs:documentation>
           <xs:documentation source="description">
-            Custom configuration for use with customised Velocity templates.
+            Custom configuration for use with customized Velocity templates.
           </xs:documentation>
         </xs:annotation>
         <xs:complexType>
