@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- copy from http://maven.apache.org/xsd/decoration-1.0.0.xsd ,
      just to make build stable in offline mode.
-     Suorce was a bit formatted to pass LineLength and NewlineAtEndOfFile validation
+     Source was a bit formatted to pass LineLength and NewlineAtEndOfFile validation
 -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
   xmlns="http://maven.apache.org/DECORATION/1.0.0"
