@@ -62,6 +62,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
  * &lt;/module&gt;
  * </pre>
+<<<<<<< HEAD
  * <p>Example:</p>
  * <pre>
  * class FirstException extends Exception {}
@@ -84,6 +85,21 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     } catch (SecondException ex2) { // OK
  *       // ...
  *     } catch (ThirdException thirdException) { // OK
+=======
+ * <p>Code example:</p>
+ * <pre>
+ * public class TestCatchParameterNameCheck {
+ *   public void MyTest() {
+ *     try {
+ *       // ...
+ *     } catch (ArithmeticException ex) { //OK
+ *       // ...
+ *     } catch (ArrayIndexOutOfBoundsException ex2) { //OK
+ *       // ...
+ *     } catch (IOException thirdException) { //OK
+ *       // ...
+ *     } catch (Exception FourthException) { //violation, the initial letter should be uppercase
+>>>>>>> Issue #5832: Code samples for Naming Checks
  *       // ...
  *     }
  *   }
