@@ -61,7 +61,26 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
  * &lt;/module&gt;
  * </pre>
- *
+ * <p>
+ *   The following example shows that how the check validates the parameter
+ *   names with a lower case letter, followed by any letters or digits:
+ * </p>
+ * <pre>
+ * &lt;module name="CatchParameterName"&gt;
+ *   &lt;property name="format" value="^[a-z][a-zA-Z]+$"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * class Test {
+ *   public void test1(String s1, int num, char[] charArray) { // OK
+ *     //...
+ *   }
+ *   public void test2(int Number) { //ERROR
+ *     //...
+ *   }
+ * }
+ * </pre>
  * @since 6.14
  */
 public class CatchParameterNameCheck extends AbstractNameCheck {
