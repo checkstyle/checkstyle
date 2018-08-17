@@ -56,12 +56,55 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * An example of how to configure the check for names that begin with a lower case letter,
  * followed by any letters or digits is:
  * </p>
+ * <p>Configuration:</p>
  * <pre>
  * &lt;module name="CatchParameterName"&gt;
  *   &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
  * &lt;/module&gt;
  * </pre>
+<<<<<<< HEAD
+ * <p>Example:</p>
+ * <pre>
+ * class FirstException extends Exception {}
+ * class SecondException extends Exception {}
+ * class ThirdException extends Exception {}
  *
+ * public class TestCatchParameterNameCheck {
+ *   public void MyTest() {
+ *   	String str = null;
+ *     try {
+ *       if (str.equals("1")) {
+ *       	throw new FirstException();
+ *       } else if (str.equals("2")) {
+ *       	throw new SecondException();
+ *       } else {
+ *       	throw new ThirdException();
+ *       }
+ *     } catch (FirstException ex) { // OK
+ *       // ...
+ *     } catch (SecondException ex2) { // OK
+ *       // ...
+ *     } catch (ThirdException thirdException) { // OK
+=======
+ * <p>Code example:</p>
+ * <pre>
+ * public class TestCatchParameterNameCheck {
+ *   public void MyTest() {
+ *     try {
+ *       // ...
+ *     } catch (ArithmeticException ex) { //OK
+ *       // ...
+ *     } catch (ArrayIndexOutOfBoundsException ex2) { //OK
+ *       // ...
+ *     } catch (IOException thirdException) { //OK
+ *       // ...
+ *     } catch (Exception FourthException) { //violation, the initial letter should be uppercase
+>>>>>>> Issue #5832: Code samples for Naming Checks
+ *       // ...
+ *     }
+ *   }
+ * }
+ * </pre>
  * @since 6.14
  */
 public class CatchParameterNameCheck extends AbstractNameCheck {
