@@ -19,6 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import java.util.List;
+import java.util.function.Predicate;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -43,8 +46,7 @@ public final class AnnotationUtil {
     }
 
     /**
-     * Checks to see if the AST is annotated with
-     * the passed in annotation.
+     * Checks if the AST is annotated with the passed in annotation.
      *
      * <p>
      * This method will not look for imports or package
@@ -65,18 +67,14 @@ public final class AnnotationUtil {
      */
     public static boolean containsAnnotation(final DetailAST ast,
         String annotation) {
-        if (ast == null) {
-            throw new IllegalArgumentException(THE_AST_IS_NULL);
-        }
         return getAnnotation(ast, annotation) != null;
     }
 
     /**
-     * Checks to see if the AST is annotated with
-     * any annotation.
+     * Checks if the AST is annotated with any annotation.
      *
      * @param ast the current node
-     * @return true if contains an annotation
+     * @return {@code true} if the AST contains at least one annotation
      */
     public static boolean containsAnnotation(final DetailAST ast) {
         if (ast == null) {
@@ -87,9 +85,50 @@ public final class AnnotationUtil {
     }
 
     /**
+     * Checks if the given AST element is annotated with any of the specified annotations.
+     *
+     * <p>
+     * This method accepts both simple and fully-qualified names,
+     * e.g. "Override" will match both java.lang.Override and Override.
+     * </p>
+     *
+     * @param ast The type or method definition.
+     * @param annotations A collection of annotations to look for.
+     * @return {@code true} if the given AST element is annotated with
+     *                      at least one of the specified annotations;
+     *                      {@code false} otherwise.
+     */
+    public static boolean containsAnnotation(DetailAST ast, List<String> annotations) {
+        if (ast == null) {
+            throw new IllegalArgumentException(THE_AST_IS_NULL);
+        }
+
+        if (annotations == null) {
+            throw new IllegalArgumentException("annotations cannot be null");
+        }
+
+        boolean result = false;
+
+        if (!annotations.isEmpty()) {
+            final DetailAST firstMatchingAnnotation = findFirstAnnotation(ast, annotationNode -> {
+                DetailAST identNode = annotationNode.findFirstToken(TokenTypes.IDENT);
+                if (identNode == null) {
+                    identNode = annotationNode.findFirstToken(TokenTypes.DOT)
+                            .findFirstToken(TokenTypes.IDENT);
+                }
+
+                return annotations.contains(identNode.getText());
+            });
+            result = firstMatchingAnnotation != null;
+        }
+
+        return result;
+    }
+
+    /**
      * Gets the AST that holds a series of annotations for the
      * potentially annotated AST.  Returns {@code null}
-     * the passed in AST is not have an Annotation Holder.
+     * if the passed in AST does not have an Annotation Holder.
      *
      * @param ast the current node
      * @return the Annotation Holder
@@ -113,9 +152,8 @@ public final class AnnotationUtil {
     }
 
     /**
-     * Checks to see if the AST is annotated with
-     * the passed in annotation and return the AST
-     * representing that annotation.
+     * Checks if the AST is annotated with the passed in annotation
+     * and returns the AST representing that annotation.
      *
      * <p>
      * This method will not look for imports or package
@@ -149,18 +187,37 @@ public final class AnnotationUtil {
                     "the annotation is empty or spaces");
         }
 
+        return findFirstAnnotation(ast, annotationNode -> {
+            final DetailAST firstChild = annotationNode.findFirstToken(TokenTypes.AT);
+            final String name =
+                    FullIdent.createFullIdent(firstChild.getNextSibling()).getText();
+            return annotation.equals(name);
+        });
+    }
+
+    /**
+     * Checks if the given AST is annotated with at least one annotation that
+     * matches the given predicate and returns the AST representing the first
+     * matching annotation.
+     *
+     * <p>
+     * This method will not look for imports or package
+     * statements to detect the passed in annotation.
+     * </p>
+     *
+     * @param ast the current node
+     * @param predicate The predicate which decides if an annotation matches
+     * @return the AST representing that annotation
+     */
+    private static DetailAST findFirstAnnotation(final DetailAST ast,
+                                                 Predicate<DetailAST> predicate) {
         final DetailAST holder = getAnnotationHolder(ast);
         DetailAST result = null;
         for (DetailAST child = holder.getFirstChild();
             child != null; child = child.getNextSibling()) {
-            if (child.getType() == TokenTypes.ANNOTATION) {
-                final DetailAST firstChild = child.findFirstToken(TokenTypes.AT);
-                final String name =
-                    FullIdent.createFullIdent(firstChild.getNextSibling()).getText();
-                if (annotation.equals(name)) {
-                    result = child;
-                    break;
-                }
+            if (child.getType() == TokenTypes.ANNOTATION && predicate.test(child)) {
+                result = child;
+                break;
             }
         }
 

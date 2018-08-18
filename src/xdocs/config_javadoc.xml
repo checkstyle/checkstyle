@@ -235,7 +235,7 @@ public int checkReturnTag(final int aTagIndex,
           </tr>
           <tr>
             <td>allowedAnnotations</td>
-            <td>List of annotations that could allow missed documentation.</td>
+            <td>List of annotations that allow missed documentation.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>Override</code></td>
             <td>6.0</td>
@@ -1211,6 +1211,16 @@ public boolean isSomething()
             <td>5.1</td>
           </tr>
           <tr>
+            <td>allowedAnnotations</td>
+            <td>
+              List of annotations that allow missed documentation. Only short names are allowed,
+              e.g. <code>Generated</code>.
+            </td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td><code>Generated</code></td>
+            <td>8.15</td>
+          </tr>
+          <tr>
             <td>tokens</td>
             <td>tokens to check</td>
             <td>
@@ -1281,6 +1291,24 @@ public boolean isSomething()
 &lt;module name="JavadocType"&gt;
   &lt;property name="scope" value="private"/&gt;
   &lt;property name="excludeScope" value="package"/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          Example that allows missing comments for classes annotated with
+          <code>@SpringBootApplication</code> and <code>@Configuration</code>:
+        </p>
+        <source>
+@SpringBootApplication // no violations about missing comment on class
+public class Application {}
+
+@Configuration // no violations about missing comment on class
+class DatabaseConfiguration {}
+        </source>
+        <p>Use following configuration:</p>
+        <source>
+&lt;module name="JavadocType"&gt;
+  &lt;property name="allowedAnnotations" value="SpringBootApplication,Configuration"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -2037,4 +2065,3 @@ public class TestClass {
 
   </body>
 </document>
-

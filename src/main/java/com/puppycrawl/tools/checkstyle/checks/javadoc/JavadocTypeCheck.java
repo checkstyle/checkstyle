@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
@@ -112,6 +115,9 @@ public class JavadocTypeCheck
     /** Controls whether to flag errors for unknown tags. Defaults to false. */
     private boolean allowUnknownTags;
 
+    /** List of annotations that allow missed documentation. */
+    private List<String> allowedAnnotations = Collections.singletonList("Generated");
+
     /**
      * Sets the scope to check.
      * @param scope a scope.
@@ -160,6 +166,14 @@ public class JavadocTypeCheck
      */
     public void setAllowUnknownTags(boolean flag) {
         allowUnknownTags = flag;
+    }
+
+    /**
+     * Sets list of annotations.
+     * @param userAnnotations user's value.
+     */
+    public void setAllowedAnnotations(String... userAnnotations) {
+        allowedAnnotations = Arrays.asList(userAnnotations);
     }
 
     @Override
@@ -239,7 +253,8 @@ public class JavadocTypeCheck
             && (excludeScope == null
                 || !customScope.isIn(excludeScope)
                 || surroundingScope != null
-                && !surroundingScope.isIn(excludeScope));
+                && !surroundingScope.isIn(excludeScope))
+            && !AnnotationUtil.containsAnnotation(ast, allowedAnnotations);
     }
 
     /**
