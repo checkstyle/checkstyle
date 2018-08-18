@@ -1210,6 +1210,13 @@ public boolean isSomething()
             <td>5.1</td>
           </tr>
           <tr>
+            <td>allowedAnnotations</td>
+            <td>List of annotations that could allow missed documentation.</td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td><code>{}</code></td>
+            <td>8.13</td>
+          </tr>
+          <tr>
             <td>tokens</td>
             <td>tokens to check</td>
             <td>
@@ -1235,6 +1242,7 @@ public boolean isSomething()
             </td>
             <td>3.0</td>
           </tr>
+
         </table>
       </subsection>
 

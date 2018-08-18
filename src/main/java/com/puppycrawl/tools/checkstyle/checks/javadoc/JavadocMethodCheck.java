@@ -36,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.AllowedAnnotationsUtil;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
@@ -357,27 +358,13 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     }
 
     /**
-     * Some javadoc.
-     * @param methodDef Some javadoc.
-     * @return Some javadoc.
+     * Checks if the method is marked with an annotation which allows it
+     * to omit javadoc documentation.
+     * @param methodDef The method definition.
+     * @return true if the method is exempt from comments, false otherwise.
      */
     private boolean hasAllowedAnnotations(DetailAST methodDef) {
-        boolean result = false;
-        final DetailAST modifiersNode = methodDef.findFirstToken(TokenTypes.MODIFIERS);
-        DetailAST annotationNode = modifiersNode.findFirstToken(TokenTypes.ANNOTATION);
-        while (annotationNode != null && annotationNode.getType() == TokenTypes.ANNOTATION) {
-            DetailAST identNode = annotationNode.findFirstToken(TokenTypes.IDENT);
-            if (identNode == null) {
-                identNode = annotationNode.findFirstToken(TokenTypes.DOT)
-                    .findFirstToken(TokenTypes.IDENT);
-            }
-            if (allowedAnnotations.contains(identNode.getText())) {
-                result = true;
-                break;
-            }
-            annotationNode = annotationNode.getNextSibling();
-        }
-        return result;
+        return AllowedAnnotationsUtil.hasAllowedAnnotations(methodDef, allowedAnnotations);
     }
 
     /**
