@@ -9,3 +9,4 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
  */
 public class InputJavadocTypeUnusedParamInJavadocForClass {
 }
+
