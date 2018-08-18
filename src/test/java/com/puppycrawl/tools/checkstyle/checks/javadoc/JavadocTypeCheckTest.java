@@ -396,4 +396,63 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testAllowedAnnotationsDefault() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(JavadocTypeCheck.class);
+
+        final String[] expected = {
+            "5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verify(checkConfig,
+            getPath("InputJavadocTypeAllowedAnnotations.java"),
+            expected);
+    }
+
+    @Test
+    public void testAllowedAnnotationsWithFullyQualifiedName() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(JavadocTypeCheck.class);
+        checkConfig.addAttribute(
+            "allowedAnnotations",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype.ThisIsOk");
+
+        final String[] expected = {
+            "5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "13: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verify(checkConfig,
+                getPath("InputJavadocTypeAllowedAnnotations.java"),
+                expected);
+    }
+
+    @Test
+    public void testAllowedAnnotationsAllowed() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(JavadocTypeCheck.class);
+        checkConfig.addAttribute("allowedAnnotations", "Generated, ThisIsOk");
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig,
+            getPath("InputJavadocTypeAllowedAnnotations.java"),
+            expected);
+    }
+
+    @Test
+    public void testAllowedAnnotationsNotAllowed() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(JavadocTypeCheck.class);
+        checkConfig.addAttribute("allowedAnnotations", "Override");
+
+        final String[] expected = {
+            "5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "13: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verify(checkConfig,
+            getPath("InputJavadocTypeAllowedAnnotations.java"),
+            expected);
+    }
 }

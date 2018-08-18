@@ -36,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
@@ -185,7 +186,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      */
     private boolean allowMissingPropertyJavadoc;
 
-    /** List of annotations that could allow missed documentation. */
+    /** List of annotations that allow missed documentation. */
     private List<String> allowedAnnotations = Collections.singletonList("Override");
 
     /** Method names that match this pattern do not require javadoc blocks. */
@@ -361,30 +362,6 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * @param methodDef Some javadoc.
      * @return Some javadoc.
      */
-    private boolean hasAllowedAnnotations(DetailAST methodDef) {
-        boolean result = false;
-        final DetailAST modifiersNode = methodDef.findFirstToken(TokenTypes.MODIFIERS);
-        DetailAST annotationNode = modifiersNode.findFirstToken(TokenTypes.ANNOTATION);
-        while (annotationNode != null && annotationNode.getType() == TokenTypes.ANNOTATION) {
-            DetailAST identNode = annotationNode.findFirstToken(TokenTypes.IDENT);
-            if (identNode == null) {
-                identNode = annotationNode.findFirstToken(TokenTypes.DOT)
-                    .findFirstToken(TokenTypes.IDENT);
-            }
-            if (allowedAnnotations.contains(identNode.getText())) {
-                result = true;
-                break;
-            }
-            annotationNode = annotationNode.getNextSibling();
-        }
-        return result;
-    }
-
-    /**
-     * Some javadoc.
-     * @param methodDef Some javadoc.
-     * @return Some javadoc.
-     */
     private static int getMethodsNumberOfLine(DetailAST methodDef) {
         final int numberOfLines;
         final DetailAST lcurly = methodDef.getLastChild();
@@ -428,7 +405,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      */
     private boolean isContentsAllowMissingJavadoc(DetailAST ast) {
         return (ast.getType() == TokenTypes.METHOD_DEF || ast.getType() == TokenTypes.CTOR_DEF)
-                && (getMethodsNumberOfLine(ast) <= minLineCount || hasAllowedAnnotations(ast));
+                && (getMethodsNumberOfLine(ast) <= minLineCount
+                    || AnnotationUtil.containsAnnotation(ast, allowedAnnotations));
     }
 
     /**
@@ -488,7 +466,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
                 while (!hasInheritDocTag && it.hasNext()) {
                     hasInheritDocTag = it.next().isInheritDocTag();
                 }
-                final boolean reportExpectedTags = !hasInheritDocTag && !hasAllowedAnnotations(ast);
+                final boolean reportExpectedTags = !hasInheritDocTag
+                    && !AnnotationUtil.containsAnnotation(ast, allowedAnnotations);
 
                 checkParamTags(tags, ast, reportExpectedTags);
                 checkThrowsTags(tags, getThrows(ast), reportExpectedTags);
