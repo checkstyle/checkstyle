@@ -392,8 +392,32 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("allowUnknownTags", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-                getPath("InputJavadocTypeBadTag.java"),
-                expected);
+            getPath("InputJavadocTypeBadTag.java"),
+            expected);
     }
 
+    @Test
+    public void testAllowedAnnotationsDefault() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(JavadocTypeCheck.class);
+
+        final String[] expected = {
+            "3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verify(checkConfig,
+            getPath("InputJavadocTypeAllowedAnnotations.java"),
+            expected);
+    }
+
+    @Test
+    public void testAllowedAnnotationsAllowed() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(JavadocTypeCheck.class);
+        checkConfig.addAttribute("allowedAnnotations", "ThisIsOk");
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig,
+            getPath("InputJavadocTypeAllowedAnnotations.java"),
+            expected);
+    }
 }
