@@ -42,27 +42,19 @@ jobs:
             else
               echo "build is skipped ..."
             fi
-      - save_cache:
-          # Save by timestamp , but will be restored by prefix without timestamp (most recent)
-          #https://discuss.circleci.com/t/add-mechanism-to-update-existing-cache-key/9014/13
-          key: m2-cache-epoch-{{ epoch }}
+      - persist_to_workspace:
+          root: /home/circleci/
           paths:
-            - /home/circleci/.m2/repository
-      - save_cache:
-          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
-          paths:
-            - /home/circleci/project
-            - /home/circleci/contribution
+            - .m2
+            - project
+            - contribution
 
   pitest1:
     machine: true
     parallelism: 4
     steps:
-      # restore_cache.keys does not work, so multiple restore_cache.key is used
-      - restore_cache:
-          key: m2-cache
-      - restore_cache:
-          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - attach_workspace:
+          at: /home/circleci/
       - run:
           command: |
             SKIP_CI=`cat .ci-temp/skip_ci`
@@ -83,11 +75,8 @@ jobs:
     machine: true
     parallelism: 4
     steps:
-      # restore_cache.keys does not work, so multiple restore_cache.key is used
-      - restore_cache:
-          key: m2-cache
-      - restore_cache:
-          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - attach_workspace:
+          at: /home/circleci/
       - run:
           command: |
             SKIP_CI=`cat .ci-temp/skip_ci`
@@ -108,11 +97,8 @@ jobs:
     machine: true
     parallelism: 4
     steps:
-      # restore_cache.keys does not work, so multiple restore_cache.key is used
-      - restore_cache:
-          key: m2-cache
-      - restore_cache:
-          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - attach_workspace:
+          at: /home/circleci/
       - run:
           command: |
             SKIP_CI=`cat .ci-temp/skip_ci`
@@ -133,11 +119,8 @@ jobs:
     machine: true
     parallelism: 4
     steps:
-      # restore_cache.keys does not work, so multiple restore_cache.key is used
-      - restore_cache:
-          key: m2-cache
-      - restore_cache:
-          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - attach_workspace:
+          at: /home/circleci/
       - run:
           command: |
             SKIP_CI=`cat .ci-temp/skip_ci`
@@ -158,11 +141,8 @@ jobs:
     machine: true
     parallelism: 4
     steps:
-      # restore_cache.keys does not work, so multiple restore_cache.key is used
-      - restore_cache:
-          key: m2-cache
-      - restore_cache:
-          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - attach_workspace:
+          at: /home/circleci/
       - run:
           command: |
             SKIP_CI=`cat .ci-temp/skip_ci`
@@ -183,11 +163,8 @@ jobs:
     machine: true
     parallelism: 4
     steps:
-      # restore_cache.keys does not work, so multiple restore_cache.key is used
-      - restore_cache:
-          key: m2-cache
-      - restore_cache:
-          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - attach_workspace:
+          at: /home/circleci/
       - run:
           command: |
             SKIP_CI=`cat .ci-temp/skip_ci`
@@ -208,11 +185,8 @@ jobs:
     machine: true
     parallelism: 4
     steps:
-      # restore_cache.keys does not work, so multiple restore_cache.key is used
-      - restore_cache:
-          key: m2-cache
-      - restore_cache:
-          key: source-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - attach_workspace:
+          at: /home/circleci/
       - run:
           command: |
             SKIP_CI=`cat .ci-temp/skip_ci`
