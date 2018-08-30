@@ -270,12 +270,16 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * @noinspection ProhibitedExceptionThrown
      */
     private void processFiles(List<File> files) throws CheckstyleException {
+        // -@cs[SingleBreakOrContinue] skip file sooner to avoid extra computation
         for (final File file : files) {
             try {
+                if (!CommonUtil.matchesFileExtension(file, fileExtensions)) {
+                    continue;
+                }
+                // cancel if file is unchanged, this is very costly on some file systems
                 final String fileName = file.getAbsolutePath();
                 final long timestamp = file.lastModified();
                 if (cacheFile != null && cacheFile.isInCache(fileName, timestamp)
-                        || !CommonUtil.matchesFileExtension(file, fileExtensions)
                         || !acceptFileStarted(fileName)) {
                     continue;
                 }
