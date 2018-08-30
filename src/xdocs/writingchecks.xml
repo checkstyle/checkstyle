@@ -725,7 +725,7 @@ public class LimitImplementationFiles extends AbstractFileSetCheck
 
     if (this.fileCount > this.max) {
       // log the message
-      log(0, "max.files.exceeded", Integer.valueOf(this.max));
+      log(1, "max.files.exceeded", Integer.valueOf(this.max));
       // you can call log() multiple times to flag multiple
       // errors in the same file
     }

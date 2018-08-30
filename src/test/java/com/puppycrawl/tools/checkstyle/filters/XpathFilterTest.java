@@ -229,7 +229,7 @@ public class XpathFilterTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDecideByMessage() throws Exception {
-        final LocalizedMessage message = new LocalizedMessage(0, 0, TokenTypes.CLASS_DEF, "", "",
+        final LocalizedMessage message = new LocalizedMessage(1, 0, TokenTypes.CLASS_DEF, "", "",
                 null, null, null, getClass(), "Test");
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents, file.getName(),
                 message, JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS));

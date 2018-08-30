@@ -50,7 +50,7 @@ public class JavadocPackageCheckTest
     public void testMissing() throws Exception {
         final Configuration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_PACKAGE_INFO),
+            "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
         verify(
             createChecker(checkConfig),
@@ -64,7 +64,7 @@ public class JavadocPackageCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         checkConfig.addAttribute("allowLegacy", "true");
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_PACKAGE_INFO),
+            "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
         verify(
             createChecker(checkConfig),
@@ -79,7 +79,7 @@ public class JavadocPackageCheckTest
         final String path1 = getPath("InputJavadocPackageNoJavadoc.java");
         final String path2 = getPath("InputJavadocPackageBadTag.java");
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_PACKAGE_INFO),
+            "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
         verify(
             createChecker(checkConfig),
@@ -92,7 +92,7 @@ public class JavadocPackageCheckTest
     public void testBoth() throws Exception {
         final Configuration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_LEGACY_PACKAGE_HTML),
+            "1: " + getCheckMessage(MSG_LEGACY_PACKAGE_HTML),
         };
         verify(createChecker(checkConfig),
             getPath("bothfiles" + File.separator + "InputJavadocPackageBothIgnored.java"),
@@ -104,7 +104,7 @@ public class JavadocPackageCheckTest
     public void testHtmlDisallowed() throws Exception {
         final Configuration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_PACKAGE_INFO),
+            "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
         verify(createChecker(checkConfig),
             getPath("pkghtml" + File.separator + "InputJavadocPackageHtmlIgnored.java"),

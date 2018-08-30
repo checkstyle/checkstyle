@@ -375,11 +375,11 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.addFormatter(formatter);
         antTask.execute();
 
-        final LocalizedMessage auditStartedMessage = new LocalizedMessage(0,
+        final LocalizedMessage auditStartedMessage = new LocalizedMessage(1,
                 Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditStarted",
                 null, null,
                 getClass(), null);
-        final LocalizedMessage auditFinishedMessage = new LocalizedMessage(0,
+        final LocalizedMessage auditFinishedMessage = new LocalizedMessage(1,
                 Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditFinished",
                 null, null,
                 getClass(), null);
@@ -758,11 +758,11 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
         antTask.execute();
 
-        final LocalizedMessage auditStartedMessage = new LocalizedMessage(0,
+        final LocalizedMessage auditStartedMessage = new LocalizedMessage(1,
                 Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditStarted",
                 null, null,
                 getClass(), null);
-        final LocalizedMessage auditFinishedMessage = new LocalizedMessage(0,
+        final LocalizedMessage auditFinishedMessage = new LocalizedMessage(1,
                 Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditFinished",
                 null, null,
                 getClass(), null);

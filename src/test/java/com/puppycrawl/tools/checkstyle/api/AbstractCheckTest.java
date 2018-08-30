@@ -220,7 +220,7 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
     public void testClearMessages() {
         final AbstractCheck check = new DummyAbstractCheck();
 
-        check.log(0, "key", "args");
+        check.log(1, "key", "args");
         Assert.assertEquals("Invalid message size", 1, check.getMessages().size());
         check.clearMessages();
         Assert.assertEquals("Invalid message size", 0, check.getMessages().size());

@@ -55,7 +55,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpOnFilenameCheck.class);
         final String path = getPath("InputRegexpOnFilename Space.properties");
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_MATCH, "", "\\s"),
+            "1: " + getCheckMessage(MSG_MATCH, "", "\\s"),
         };
         verify(checkConfig, path, expected);
     }
@@ -67,7 +67,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("fileNamePattern", ".*\\.java");
         final String path = getPath("InputRegexpOnFilenameSemantic.java");
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_MATCH, "", ".*\\.java"),
+            "1: " + getCheckMessage(MSG_MATCH, "", ".*\\.java"),
         };
         verify(checkConfig, path, expected);
     }
@@ -88,7 +88,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("fileNamePattern", ".*\\.properties");
         final String path = getPath("InputRegexpOnFilenameSemantic.java");
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_MISMATCH, "", ".*\\.properties"),
+            "1: " + getCheckMessage(MSG_MISMATCH, "", ".*\\.properties"),
         };
         verify(checkConfig, path, expected);
     }
@@ -109,7 +109,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("folderPattern", ".*[\\\\/]resources[\\\\/].*");
         final String path = getPath("InputRegexpOnFilenameSemantic.java");
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_MATCH, ".*[\\\\/]resources[\\\\/].*", ""),
+            "1: " + getCheckMessage(MSG_MATCH, ".*[\\\\/]resources[\\\\/].*", ""),
         };
         verify(checkConfig, path, expected);
     }
@@ -130,7 +130,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("folderPattern", ".*[\\\\/]gov[\\\\/].*");
         final String path = getPath("InputRegexpOnFilenameSemantic.java");
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_MISMATCH, ".*[\\\\/]gov[\\\\/].*", ""),
+            "1: " + getCheckMessage(MSG_MISMATCH, ".*[\\\\/]gov[\\\\/].*", ""),
         };
         verify(checkConfig, path, expected);
     }
@@ -152,7 +152,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("fileNamePattern", ".*\\.java");
         final String path = getPath("InputRegexpOnFilenameSemantic.java");
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_MATCH, ".*[\\\\/]resources[\\\\/].*", ".*\\.java"),
+            "1: " + getCheckMessage(MSG_MATCH, ".*[\\\\/]resources[\\\\/].*", ".*\\.java"),
         };
         verify(checkConfig, path, expected);
     }
@@ -195,7 +195,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("fileNamePattern", ".*\\.dat");
         final String path = getPath("InputRegexpOnFilenameSemantic.java");
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_MISMATCH, ".*[\\\\/]com[\\\\/].*", ".*\\.dat"),
+            "1: " + getCheckMessage(MSG_MISMATCH, ".*[\\\\/]com[\\\\/].*", ".*\\.dat"),
         };
         verify(checkConfig, path, expected);
     }

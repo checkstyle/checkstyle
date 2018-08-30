@@ -79,7 +79,7 @@ public class NewlineAtEndOfFileCheck
             readAndCheckFile(file);
         }
         catch (final IOException ignored) {
-            log(0, MSG_KEY_UNABLE_OPEN, file.getPath());
+            log(1, MSG_KEY_UNABLE_OPEN, file.getPath());
         }
     }
 
@@ -111,7 +111,7 @@ public class NewlineAtEndOfFileCheck
         // Cannot use lines as the line separators have been removed!
         try (RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r")) {
             if (!endsWithNewline(randomAccessFile)) {
-                log(0, MSG_KEY_NO_NEWLINE_EOF, file.getPath());
+                log(1, MSG_KEY_NO_NEWLINE_EOF, file.getPath());
             }
         }
     }

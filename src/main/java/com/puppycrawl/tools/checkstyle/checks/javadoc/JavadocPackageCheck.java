@@ -88,11 +88,11 @@ public class JavadocPackageCheck extends AbstractFileSetCheck {
 
             if (packageInfo.exists()) {
                 if (packageHtml.exists()) {
-                    log(0, MSG_LEGACY_PACKAGE_HTML);
+                    log(1, MSG_LEGACY_PACKAGE_HTML);
                 }
             }
             else if (!allowLegacy || !packageHtml.exists()) {
-                log(0, MSG_PACKAGE_INFO);
+                log(1, MSG_PACKAGE_INFO);
             }
         }
     }

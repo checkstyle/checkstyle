@@ -246,7 +246,7 @@ public final class Main {
             // two ifs exist till https://github.com/hcoles/pitest/issues/377
             if (errorCounter != 0) {
                 if (!cliViolations) {
-                    final LocalizedMessage errorCounterMessage = new LocalizedMessage(0,
+                    final LocalizedMessage errorCounterMessage = new LocalizedMessage(1,
                             Definitions.CHECKSTYLE_BUNDLE, ERROR_COUNTER,
                             new String[] {String.valueOf(errorCounter)}, null, Main.class, null);
                     System.out.println(errorCounterMessage.getMessage());
@@ -638,7 +638,7 @@ public final class Main {
             properties.load(stream);
         }
         catch (final IOException ex) {
-            final LocalizedMessage loadPropertiesExceptionMessage = new LocalizedMessage(0,
+            final LocalizedMessage loadPropertiesExceptionMessage = new LocalizedMessage(1,
                     Definitions.CHECKSTYLE_BUNDLE, LOAD_PROPERTIES_EXCEPTION,
                     new String[] {file.getAbsolutePath()}, null, Main.class, null);
             throw new CheckstyleException(loadPropertiesExceptionMessage.getMessage(), ex);
@@ -672,7 +672,7 @@ public final class Main {
             listener = new DefaultLogger(out, closeOutputStreamOption);
         }
         else {
-            final LocalizedMessage outputFormatExceptionMessage = new LocalizedMessage(0,
+            final LocalizedMessage outputFormatExceptionMessage = new LocalizedMessage(1,
                     Definitions.CHECKSTYLE_BUNDLE, CREATE_LISTENER_EXCEPTION,
                     new String[] {format, PLAIN_FORMAT_NAME, XML_FORMAT_NAME}, null,
                     Main.class, null);

@@ -49,7 +49,7 @@ public class DefaultLoggerTest {
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
         final String output = errorStream.toString(StandardCharsets.UTF_8.name());
-        final LocalizedMessage addExceptionMessage = new LocalizedMessage(0,
+        final LocalizedMessage addExceptionMessage = new LocalizedMessage(1,
                 Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.ADD_EXCEPTION_MESSAGE,
                 new String[] {"myfile"}, null,
                 getClass(), null);
@@ -81,15 +81,15 @@ public class DefaultLoggerTest {
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
         final String output = errorStream.toString(StandardCharsets.UTF_8.name());
-        final LocalizedMessage addExceptionMessage = new LocalizedMessage(0,
+        final LocalizedMessage addExceptionMessage = new LocalizedMessage(1,
                 Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.ADD_EXCEPTION_MESSAGE,
                 new String[] {"myfile"}, null,
                 getClass(), null);
-        final LocalizedMessage startMessage = new LocalizedMessage(0,
+        final LocalizedMessage startMessage = new LocalizedMessage(1,
                 Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.AUDIT_STARTED_MESSAGE,
                 CommonUtil.EMPTY_STRING_ARRAY, null,
                 getClass(), null);
-        final LocalizedMessage finishMessage = new LocalizedMessage(0,
+        final LocalizedMessage finishMessage = new LocalizedMessage(1,
                 Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.AUDIT_FINISHED_MESSAGE,
                 CommonUtil.EMPTY_STRING_ARRAY, null,
                 getClass(), null);

@@ -251,7 +251,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("minimum", "1");
         checkConfig.addAttribute("maximum", "1000");
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_REGEXP_MINIMUM, 1, "This text is not in the file"),
+            "1: " + getCheckMessage(MSG_REGEXP_MINIMUM, 1, "This text is not in the file"),
         };
         verify(checkConfig, getPath("InputRegexpSinglelineJavaSemantic.java"), expected);
     }

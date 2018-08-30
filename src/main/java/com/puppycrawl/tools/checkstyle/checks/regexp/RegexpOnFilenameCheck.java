@@ -334,10 +334,10 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
         final String fileName = getStringOrDefault(fileNamePattern, "");
 
         if (match) {
-            log(0, MSG_MATCH, folder, fileName);
+            log(1, MSG_MATCH, folder, fileName);
         }
         else {
-            log(0, MSG_MISMATCH, folder, fileName);
+            log(1, MSG_MISMATCH, folder, fileName);
         }
     }
 

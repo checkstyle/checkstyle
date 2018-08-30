@@ -51,7 +51,7 @@ public class SuppressElementTest {
     @Test
     public void testDecideLocalizedMessage() {
         final LocalizedMessage message =
-            new LocalizedMessage(0, 0, "", "", null, null, getClass(), null);
+            new LocalizedMessage(1, 0, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
         //deny because there are matches on file and check names
         assertFalse("Names match", filter.accept(ev));
@@ -60,7 +60,7 @@ public class SuppressElementTest {
     @Test
     public void testDecideByMessage() {
         final LocalizedMessage message =
-            new LocalizedMessage(0, 0, "", "", null, null, getClass(), "Test");
+            new LocalizedMessage(1, 0, "", "", null, null, getClass(), "Test");
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
         final SuppressElement filter1 =
                 new SuppressElement(null, null, "Test", null, null, null);

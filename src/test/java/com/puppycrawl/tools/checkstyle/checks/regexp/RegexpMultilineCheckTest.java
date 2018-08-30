@@ -173,7 +173,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
         checkConfig.addAttribute("format", null);
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_EMPTY),
+            "1: " + getCheckMessage(MSG_EMPTY),
         };
         verify(checkConfig, getPath("InputRegexpMultilineSemantic.java"), expected);
     }
@@ -183,7 +183,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
         checkConfig.addAttribute("format", "");
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_EMPTY),
+            "1: " + getCheckMessage(MSG_EMPTY),
         };
         verify(checkConfig, getPath("InputRegexpMultilineSemantic.java"), expected);
     }
@@ -195,7 +195,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("format", "(x|y)*");
 
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_STACKOVERFLOW),
+            "1: " + getCheckMessage(MSG_STACKOVERFLOW),
         };
 
         final File file = temporaryFolder.newFile();
@@ -210,7 +210,23 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("format", "\\r");
         checkConfig.addAttribute("minimum", "5");
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_REGEXP_MINIMUM, "5", "\\r"),
+            "1: " + getCheckMessage(MSG_REGEXP_MINIMUM, "5", "\\r"),
+        };
+
+        final File file = temporaryFolder.newFile();
+        Files.write(file.toPath(), "".getBytes(StandardCharsets.UTF_8));
+
+        verify(checkConfig, file.getPath(), expected);
+    }
+
+    @Test
+    public void testMinimumWithCustomMessage() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
+        checkConfig.addAttribute("format", "\\r");
+        checkConfig.addAttribute("minimum", "5");
+        checkConfig.addAttribute("message", "some message");
+        final String[] expected = {
+            "1: some message",
         };
 
         final File file = temporaryFolder.newFile();
@@ -228,21 +244,6 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
             largeString.append("xy");
         }
         return largeString;
-    }
-
-    @Test
-    public void testSetMessage() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        checkConfig.addAttribute("format", "\\n");
-        checkConfig.addAttribute("minimum", "500");
-        checkConfig.addAttribute("message", "someMessage");
-
-        final String[] expected = new String[223];
-        for (int i = 0; i < 223; i++) {
-            expected[i] = i + ": someMessage";
-        }
-
-        verify(checkConfig, getPath("InputRegexpMultilineSemantic.java"), expected);
     }
 
     @Test

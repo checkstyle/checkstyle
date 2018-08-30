@@ -167,7 +167,7 @@ public class IllegalInstantiationCheckTest
         check.finishTree(newAst);
         final SortedSet<LocalizedMessage> messages2 = check.getMessages();
 
-        final LocalizedMessage addExceptionMessage = new LocalizedMessage(0,
+        final LocalizedMessage addExceptionMessage = new LocalizedMessage(1,
                 "com.puppycrawl.tools.checkstyle.checks.coding.messages", "instantiation.avoid",
                 new String[] {"java.lang.Boolean"}, null,
                 getClass(), null);

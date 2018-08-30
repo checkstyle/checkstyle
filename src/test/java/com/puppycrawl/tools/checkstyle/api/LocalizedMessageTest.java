@@ -224,7 +224,7 @@ public class LocalizedMessageTest {
     }
 
     private static LocalizedMessage createSampleLocalizedMessageWithId(String id) {
-        return new LocalizedMessage(0, "com.puppycrawl.tools.checkstyle.checks.coding.messages",
+        return new LocalizedMessage(1, "com.puppycrawl.tools.checkstyle.checks.coding.messages",
                 "empty.statement", EMPTY_OBJECT_ARRAY, id, LocalizedMessage.class, null);
     }
 

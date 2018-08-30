@@ -98,7 +98,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
         final Object lineNumber = getLineNumber.invoke(UniquePropertiesCheck.class,
                 fileText, "some key");
         Assert.assertNotNull("Line number should not be null", lineNumber);
-        assertEquals("Invalid line number", 0, lineNumber);
+        assertEquals("Invalid line number", 1, lineNumber);
     }
 
     @Test
