@@ -79,7 +79,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
     public void testTranslation() throws Exception {
         final Configuration checkConfig = createModuleConfig(TranslationCheck.class);
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_KEY, "only.english"),
+            "1: " + getCheckMessage(MSG_KEY, "only.english"),
         };
         final File[] propertyFiles = {
             new File(getPath("messages_test_de.properties")),
@@ -151,13 +151,13 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
             new File(translationProps),
         };
 
-        final String line = "0: ";
+        final String line = "1: ";
         final String firstErrorMessage = getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
                 "InputTranslationCheckFireErrors_ja.properties");
         final String secondErrorMessage = getCheckMessage(MSG_KEY, "anotherKey");
 
         verify(checker, propertyFiles, ImmutableMap.of(
-            ":0", Collections.singletonList(" " + firstErrorMessage),
+            ":1", Collections.singletonList(" " + firstErrorMessage),
             "InputTranslationCheckFireErrors_de.properties",
                 Collections.singletonList(line + secondErrorMessage)));
 
@@ -244,7 +244,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         };
 
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
+            "1: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
                     "messages_translation.properties"),
         };
         verify(
@@ -265,7 +265,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         };
 
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
+            "1: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
                     "messages_translation_de.properties"),
         };
         verify(
@@ -285,7 +285,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         };
 
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
+            "1: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
                     "messages-translation.properties"),
         };
         verify(
@@ -306,7 +306,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         };
 
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
+            "1: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
                     "messages-translation_tr.properties"),
         };
         verify(
@@ -346,7 +346,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
             };
 
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
+            "1: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
                     "messages_home_de.properties"),
         };
         verify(
@@ -392,7 +392,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         };
 
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
+            "1: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
                     "ButtonLabels_ja.properties"),
         };
         verify(
@@ -422,7 +422,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         };
 
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
+            "1: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
                     "ButtonLabels_ja.properties"),
         };
 
@@ -453,7 +453,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         };
 
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
+            "1: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
                     "ButtonLabels_ja.properties"),
         };
 
@@ -478,8 +478,8 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         };
 
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE, "MyLabelsI18_fr.properties"),
-            "0: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE, "MyLabelsI18_ja.properties"),
+            "1: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE, "MyLabelsI18_fr.properties"),
+            "1: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE, "MyLabelsI18_ja.properties"),
         };
 
         verify(

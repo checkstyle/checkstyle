@@ -117,7 +117,7 @@ public class NewlineAtEndOfFileCheckTest
             createModuleConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF.toString());
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
         };
         verify(
             createChecker(checkConfig),
@@ -131,7 +131,7 @@ public class NewlineAtEndOfFileCheckTest
             createModuleConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF_CR_CRLF.toString());
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
         };
         verify(
             createChecker(checkConfig),
@@ -164,7 +164,7 @@ public class NewlineAtEndOfFileCheckTest
             createModuleConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF.toString());
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
         };
         verify(
             createChecker(checkConfig),

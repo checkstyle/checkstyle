@@ -79,7 +79,7 @@ class MultilineDetector {
 
         final String format = options.getFormat();
         if (format == null || format.isEmpty()) {
-            options.getReporter().log(0, MSG_EMPTY);
+            options.getReporter().log(1, MSG_EMPTY);
         }
         else {
             matcher = options.getPattern().matcher(fileText.getFullText());
@@ -114,7 +114,7 @@ class MultilineDetector {
             // OK http://blog.igorminar.com/2008/05/catching-stackoverflowerror-and-bug-in.html
             // http://programmers.stackexchange.com/questions/
             //        209099/is-it-ever-okay-to-catch-stackoverflowerror-in-java
-            options.getReporter().log(0, MSG_STACKOVERFLOW, matcher.pattern().toString());
+            options.getReporter().log(1, MSG_STACKOVERFLOW, matcher.pattern().toString());
         }
     }
 
@@ -122,11 +122,11 @@ class MultilineDetector {
     private void finish() {
         if (currentMatches < options.getMinimum()) {
             if (options.getMessage().isEmpty()) {
-                options.getReporter().log(0, MSG_REGEXP_MINIMUM,
+                options.getReporter().log(1, MSG_REGEXP_MINIMUM,
                         options.getMinimum(), options.getFormat());
             }
             else {
-                options.getReporter().log(0, options.getMessage());
+                options.getReporter().log(1, options.getMessage());
             }
         }
     }

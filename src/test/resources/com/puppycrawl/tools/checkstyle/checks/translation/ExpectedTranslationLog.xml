@@ -5,11 +5,11 @@
 <file name="InputTranslationCheckFireErrors_de.properties">
 </file>
 <file name="">
-<error line="0" severity="error" message="$0" source="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"/>
+<error line="1" severity="error" message="$0" source="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"/>
 </file>
 <file name="InputTranslationCheckFireErrors.properties">
 </file>
 <file name="InputTranslationCheckFireErrors_de.properties">
-<error line="0" severity="error" message="$1" source="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"/>
+<error line="1" severity="error" message="$1" source="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"/>
 </file>
 </checkstyle>

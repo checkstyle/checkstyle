@@ -83,12 +83,12 @@ public class FileTabCharacterCheckTest
         checkConfig.addAttribute("eachLine", "false");
         final String path = getPath("Claira");
         final String exceptionMessage = " (No such file or directory)";
-        final LocalizedMessage localizedMessage = new LocalizedMessage(0,
+        final LocalizedMessage localizedMessage = new LocalizedMessage(1,
                 Definitions.CHECKSTYLE_BUNDLE, "general.exception",
                 new String[] {path + exceptionMessage}, null, getClass(), null);
 
         final String[] expected = {
-            "0: " + localizedMessage.getMessage(),
+            "1: " + localizedMessage.getMessage(),
         };
         final File[] files = {
             new File(path),

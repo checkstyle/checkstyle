@@ -209,7 +209,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
     private void validateUserSpecifiedLanguageCodes(Set<String> languageCodes) {
         for (String code : languageCodes) {
             if (!isValidLanguageCode(code)) {
-                final LocalizedMessage msg = new LocalizedMessage(0, TRANSLATION_BUNDLE,
+                final LocalizedMessage msg = new LocalizedMessage(1, TRANSLATION_BUNDLE,
                         WRONG_LANGUAGE_CODE_KEY, new Object[] {code}, getId(), getClass(), null);
                 final String exceptionMessage = String.format(Locale.ROOT,
                         "%s [%s]", msg.getMessage(), TranslationCheck.class.getSimpleName());
@@ -328,7 +328,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
     private void logMissingTranslation(String filePath, String fileName) {
         final MessageDispatcher dispatcher = getMessageDispatcher();
         dispatcher.fireFileStarted(filePath);
-        log(0, MSG_KEY_MISSING_TRANSLATION_FILE, fileName);
+        log(1, MSG_KEY_MISSING_TRANSLATION_FILE, fileName);
         fireErrors(filePath);
         dispatcher.fireFileFinished(filePath);
     }
@@ -465,7 +465,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
                 .filter(key -> !currentFileKeys.contains(key)).collect(Collectors.toSet());
             if (!missingKeys.isEmpty()) {
                 for (Object key : missingKeys) {
-                    log(0, MSG_KEY, key);
+                    log(1, MSG_KEY, key);
                 }
             }
             fireErrors(path);
