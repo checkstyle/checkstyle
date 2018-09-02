@@ -55,13 +55,18 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * The following example shows how to configure the {@code AbstractClassName} to
  * checks names, but ignore missing {@code abstract} modifiers:
  * </p>
- *
+ * <p>Configuration:</p>
  * <pre>
  * &lt;module name="AbstractClassName"&gt;
  *   &lt;property name="ignoreModifier" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
- *
+ * <p>Example:</p>
+ * <pre>
+ * abstract class AbstractFirstClass {} // OK
+ * abstract class SecondClass {} // violation, it should match the pattern "^Abstract.+$"
+ * class AbstractThirdClass {} // OK, no "abstract" modifier
+ * </pre>
  * @since 3.2
  */
 @StatelessCheck
