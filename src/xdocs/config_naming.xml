@@ -270,11 +270,18 @@
           <code>AbstractClassName</code> to checks names, but ignore
           missing <code>abstract</code> modifiers:
         </p>
+        <p>Configuration:</p>
         <source>
 &lt;module name=&quot;AbstractClassName&quot;&gt;
   &lt;property name=&quot;ignoreModifier&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example:</p>
+        <pre>
+abstract class AbstractFirstClass {} // OK
+abstract class SecondClass {} // violation, it should match the pattern "^Abstract.+$"
+class AbstractThirdClass {} // OK, no "abstract" modifier
+        </pre>
       </subsection>
 
       <subsection name="Example of Usage" id="AbstractClassName_Example_of_Usage">
