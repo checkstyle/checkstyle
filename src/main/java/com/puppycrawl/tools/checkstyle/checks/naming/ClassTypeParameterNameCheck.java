@@ -42,12 +42,19 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * An example of how to configure the check for names that are only a single
  * letter is:
  * </p>
+ * <p>Configuration:</p>
  * <pre>
  * &lt;module name="ClassTypeParameterName"&gt;
  *   &lt;property name="format" value="^[a-zA-Z]$"/&gt;
  * &lt;/module&gt;
  * </pre>
- *
+ * <p>Example:</p>
+ * <pre>
+ * class MyClass1&lt;T&gt; {} // OK
+ * class MyClass2&lt;t&gt; {} // OK
+ * class MyClass3&lt;abc&gt; {} // violation, the class type parameter
+ *                              // name should match the regular expression "^[a-zA-Z]$"
+ * </pre>
  * @since 5.0
  */
 public class ClassTypeParameterNameCheck
