@@ -544,7 +544,7 @@
     </module>
     <module name="LineLength">
       <property name="max" value="100"/>
-      <property name="ignorePattern" value="^ *\* *([^ ]+|&lt;a href.*)$"/>
+      <property name="ignorePattern" value="^ *\* *([^ ]+|\{@code .*|&lt;a href.*)$"/>
     </module>
     <module name="MethodCount">
       <property name="maxTotal" value="34"/>
