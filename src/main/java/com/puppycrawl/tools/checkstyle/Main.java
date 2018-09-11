@@ -51,8 +51,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.IVersionProvider;
+import picocli.CommandLine.Model.CommandSpec;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
+import picocli.CommandLine.Spec;
 
 /**
  * Wrapper command line program for the Checker.
@@ -106,8 +108,7 @@ public final class Main implements Callable<Integer> {
     private static final OutputFormat DEFAULT_OUTPUT_FORMAT = OutputFormat.plain;
 
     /** Config file location. */
-    @Option(names = "-c", description = "Sets the check configuration file to use.",
-            required = true)
+    @Option(names = "-c", description = "Sets the check configuration file to use.")
     private String configurationFile;
 
     /** Output file location. */
@@ -187,6 +188,10 @@ public final class Main implements Callable<Integer> {
     /** The files to process (the specified source files without the exclusions). */
     private List<File> filesToProcess;
 
+    /** Allows access to the command line parser model. */
+    @Spec
+    CommandSpec commandSpec;
+
     /** Client code should not create instances of this class, but use
      * {@link #main(String[])} method instead. */
     private Main() {
@@ -219,9 +224,17 @@ public final class Main implements Callable<Integer> {
             }
         }
         catch (CommandLine.ExecutionException ex) {
-            exitStatus = EXIT_WITH_CHECKSTYLE_EXCEPTION_CODE;
-            errorCounter = 1;
-            ex.getCause().printStackTrace();
+            if (ex.getCause() instanceof CheckstyleException) {
+                exitStatus = EXIT_WITH_CHECKSTYLE_EXCEPTION_CODE;
+                errorCounter = 1;
+                ex.getCause().printStackTrace();
+            }
+            else {
+                if (ex.getCause() instanceof RuntimeException) {
+                    throw (RuntimeException) ex.getCause();
+                }
+                throw new IllegalStateException(ex.getCause().getMessage(), ex.getCause());
+            }
         }
 
         // return exit code base on validation of Checker
@@ -286,7 +299,7 @@ public final class Main implements Callable<Integer> {
         // ensure there is no conflicting options
         else if (printAst || printAstWithComments || printJavadocTree || printTreeWithJavadoc) {
             if (suppressionLineColumnNumber != null || configurationFile != null
-                    || propertiesFile != null || format != DEFAULT_OUTPUT_FORMAT
+                    || propertiesFile != null || userSpecifiedFormatOption()
                     || outputPath != null) {
                 result.add("Option '-t' cannot be used with other options.");
             }
@@ -296,33 +309,42 @@ public final class Main implements Callable<Integer> {
         }
         else if (suppressionLineColumnNumber != null) {
             if (configurationFile != null || propertiesFile != null
-                    || format != DEFAULT_OUTPUT_FORMAT || outputPath != null) {
+                    || userSpecifiedFormatOption() || outputPath != null) {
                 result.add("Option '-s' cannot be used with other options.");
             }
             else if (filesToProcess.size() > 1) {
                 result.add("Printing xpath suppressions is allowed for only one file.");
             }
         }
-        try {
-            // test location only
-            CommonUtil.getUriByFilename(configurationFile);
-        }
-        catch (CheckstyleException ignored) {
-            result.add(String.format("Could not find config XML file '%s'.", configurationFile));
-        }
+        else if (configurationFile != null) {
+            try {
+                // test location only
+                CommonUtil.getUriByFilename(configurationFile);
+            }
+            catch (CheckstyleException ignored) {
+                result.add(String.format("Could not find config XML file '%s'.", configurationFile));
+            }
 
-        // validate optional parameters
-        if (propertiesFile != null && !propertiesFile.exists()) {
-            result.add(String.format("Could not find file '%s'.", propertiesFile));
+            // validate optional parameters
+            if (propertiesFile != null && !propertiesFile.exists()) {
+                result.add(String.format("Could not find file '%s'.", propertiesFile));
+            }
+            if (checkerThreadsNumber < 1) {
+                result.add("Checker threads number must be greater than zero");
+            }
+            if (treeWalkerThreadsNumber < 1) {
+                result.add("TreeWalker threads number must be greater than zero");
+            }
         }
-        if (checkerThreadsNumber < 1) {
-            result.add("Checker threads number must be greater than zero");
-        }
-        if (treeWalkerThreadsNumber < 1) {
-            result.add("TreeWalker threads number must be greater than zero");
+        else {
+            result.add("Must specify a config XML file.");
         }
 
         return result;
+    }
+
+    private boolean userSpecifiedFormatOption() {
+        return commandSpec.commandLine().getParseResult().hasMatchedOption("-f");
     }
 
     /**
@@ -348,7 +370,7 @@ public final class Main implements Callable<Integer> {
                     JavaParser.Options.WITH_COMMENTS);
             System.out.print(stringAst);
         }
-        else if (printAstWithComments) {
+        else if (printJavadocTree) {
             final File file = filesToProcess.get(0);
             final String stringAst = DetailNodeTreeStringPrinter.printFileAst(file);
             System.out.print(stringAst);
@@ -448,7 +470,7 @@ public final class Main implements Callable<Integer> {
                         AutomaticBean.OutputStreamOptions.NONE);
             }
             else {
-                listener = createListener();
+                listener = createListener(format, outputPath);
             }
 
             rootModule.setModuleClassLoader(moduleClassLoader);
@@ -526,7 +548,7 @@ public final class Main implements Callable<Integer> {
     }
 
     /** Enumeration over the possible output formats. */
-    private enum OutputFormat {
+    enum OutputFormat {
         xml, plain;
 
         public AuditListener createListener(OutputStream out,
@@ -539,14 +561,16 @@ public final class Main implements Callable<Integer> {
      * This method creates in AuditListener an open stream for validation data, it must be closed by
      * {@link RootModule} (default implementation is {@link Checker}) by calling
      * {@link AuditListener#auditFinished(AuditEvent)}.
+     * @param format format of the audit listener
+     * @param outputLocation the location of output
      * @return a fresh new {@code AuditListener}
      * @exception IOException when provided output location is not found
      */
-    private AuditListener createListener() throws IOException {
-
-        final OutputStream out = getOutputStream(outputPath);
+    private static AuditListener createListener(OutputFormat format, Path outputLocation)
+            throws IOException {
+        final OutputStream out = getOutputStream(outputLocation);
         final AutomaticBean.OutputStreamOptions closeOutputStreamOption =
-                getOutputStreamOptions(outputPath);
+                getOutputStreamOptions(outputLocation);
         return format.createListener(out, closeOutputStreamOption);
     }
 

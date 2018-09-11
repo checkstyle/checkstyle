@@ -35,6 +35,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +46,7 @@ import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
@@ -66,44 +68,43 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public class MainTest {
 
     private static final String USAGE = String.format(Locale.ROOT,
-          "usage: java com.puppycrawl.tools.checkstyle.Main [options] -c <config.xml>"
-        + " file...%n"
-        + " -c <arg>                                Sets the check configuration file to use.%n"
-        + " -C,--checker-threads-number <arg>       (experimental) The number of Checker threads "
-        + "(must be%n"
-        + "                                         greater than zero)%n"
-        + " -d,--debug                              Print all debug logging of CheckStyle utility%n"
-        + " -e,--exclude <arg>                      Directory path to exclude from CheckStyle%n"
-        + " -executeIgnoredModules                  Allows ignored modules to be run.%n"
-        + " -f <arg>                                Sets the output format. (plain|xml). Defaults"
-        + " to plain%n"
-        + " -gxs,--generate-xpath-suppression       Generates to output a suppression.xml to use to"
-        + " suppress%n"
-        + "                                         all violations from user's config%n"
-        + " -j,--javadocTree                        Print Parse tree of the Javadoc comment%n"
-        + " -J,--treeWithJavadoc                    Print full Abstract Syntax Tree of the file%n"
-        + " -o <arg>                                Sets the output file. Defaults to stdout%n"
-        + " -p <arg>                                Loads the properties file%n"
-        + " -s <arg>                                Print xpath suppressions at the file's line "
-        + "and column%n"
-        + "                                         position. Argument is the line and column "
-        + "number (separated%n"
-        + "                                         by a : ) in the file that the suppression "
-        + "should be%n"
-        + "                                         generated for%n"
-        + " -t,--tree                               Print Abstract Syntax Tree(AST) of the file%n"
-        + " -T,--treeWithComments                   Print Abstract Syntax Tree(AST) of the file"
-        + " including%n"
-        + "                                         comments%n"
-        + " -tabWidth <arg>                         Sets the length of the tab character. "
-        + "Used only with \"-s\"%n"
-        + "                                         option. Default value is 8%n"
-        + " -v                                      Print product version and exit%n"
-        + " -W,--tree-walker-threads-number <arg>   (experimental) The number of TreeWalker threads"
-        + " (must be%n"
-        + "                                         greater than zero)%n"
-        + " -x,--exclude-regexp <arg>               Regular expression of directory to exclude from"
-        + " CheckStyle%n");
+          "Usage: checkstyle [-dhjJtTv] [--executeIgnoredModules] [-gxs] [-c=<configurationFile>]%n" +
+          "                  [-C=<checkerThreadsNumber>] [-f=<format>] [-o=<outputPath>] [-p=<propertiesFile>]%n" +
+          "                  [-s=<suppressionLineColumnNumber>] [-tabWidth=<tabWidth>]%n" +
+          "                  [-W=<treeWalkerThreadsNumber>] [-e=<exclude>]... [-x=<excludeRegex>]... <files>...%n" +
+          "Checkstyle verifies that the specified source code files adhere to the specified rules. By default%n" +
+          "errors are reported to standard out in plain format. Checkstyle requires a configuration XML file%n" +
+          "that configures the checks to apply.%n" +
+          "      <files>...             One or more source files to verify%n" +
+          "      --executeIgnoredModules%n" +
+          "                             Allows ignored modules to be run.%n" +
+          "  -c= <configurationFile>    Sets the check configuration file to use.%n" +
+          "  -C, --checker-threads-number=<checkerThreadsNumber>%n" +
+          "                             (experimental) The number of Checker threads (must be greater than zero)%n" +
+          "  -d, --debug                Print all debug logging of CheckStyle utility%n" +
+          "  -e, --exclude=<exclude>    Directory path to exclude from CheckStyle%n" +
+          "  -f= <format>               Sets the output format. Valid values: xml, plain. Defaults to plain%n" +
+          "      -gxs, --generate-xpath-suppression%n" +
+          "                             Generates to output a suppression.xml to use to suppress all violations%n" +
+          "                               from user's config%n" +
+          "  -h, --help                 Print usage help and exit%n" +
+          "  -j, --javadocTree          Print Parse tree of the Javadoc comment%n" +
+          "  -J, --treeWithJavadoc      Print full Abstract Syntax Tree of the file%n" +
+          "  -o= <outputPath>           Sets the output file. Defaults to stdout%n" +
+          "  -p= <propertiesFile>       Loads the properties file%n" +
+          "  -s= <suppressionLineColumnNumber>%n" +
+          "                             Print xpath suppressions at the file's line and column position. Argument%n" +
+          "                               is the line and column number (separated by a : ) in the file that the%n" +
+          "                               suppression should be generated for%n" +
+          "  -t, --tree                 Print Abstract Syntax Tree(AST) of the file%n" +
+          "  -T, --treeWithComments     Print Abstract Syntax Tree(AST) of the file including comments%n" +
+          "      -tabWidth=<tabWidth>   Sets the length of the tab character. Used only with \"-s\" option. Default%n" +
+          "                               value is 8%n" +
+          "  -v                         Print product version and exit%n" +
+          "  -W, --tree-walker-threads-number=<treeWalkerThreadsNumber>%n" +
+          "                             (experimental) The number of TreeWalker threads (must be greater than zero)%n" +
+          "  -x, --exclude-regexp=<excludeRegex>%n" +
+          "                             Regular expression of directory to exclude from CheckStyle%n");
 
     private static final Logger LOG = Logger.getLogger(MainTest.class.getName()).getParent();
     private static final Handler[] HANDLERS = LOG.getHandlers();
@@ -189,10 +190,28 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(() -> {
-            final String usage = "Unrecognized option: -w" + EOL
+            final String usage = "Unknown option: -w" + EOL
                     + USAGE;
-            assertEquals("Unexpected output log", usage, systemOut.getLog());
-            assertEquals("Unexpected system error log", "", systemErr.getLog());
+            assertEquals("Unexpected output log", "", systemOut.getLog());
+            assertEquals("Unexpected system error log", usage, systemErr.getLog());
+        });
+        // need to specify a file:
+        // <files> is defined as a required positional param;
+        // picocli verifies required parameters before checking unknown options
+        Main.main("-w", "file");
+    }
+
+    @Test
+    public void testWrongArgumentMissingFiles()
+            throws Exception {
+        exit.expectSystemExitWithStatus(-1);
+        exit.checkAssertionAfterwards(() -> {
+            // files is defined as a required positional param;
+            // picocli verifies required parameters before checking unknown options
+            final String usage = "Missing required parameter: <files>" + EOL
+                    + USAGE;
+            assertEquals("Unexpected output log", "", systemOut.getLog());
+            assertEquals("Unexpected system error log", usage, systemErr.getLog());
         });
         Main.main("-w");
     }
@@ -240,9 +259,10 @@ public class MainTest {
     public void testNonExistentOutputFormat() throws Exception {
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(() -> {
-            assertEquals("Unexpected output log", "Invalid output format. "
-                    + "Found 'xmlp' but expected 'plain' or 'xml'." + EOL, systemOut.getLog());
-            assertEquals("Unexpected system error log", "", systemErr.getLog());
+            assertEquals("Unexpected output log", "", systemOut.getLog());
+            assertEquals("Unexpected system error log",
+                    "Invalid value for option '-f': expected one of [xml, plain] but was 'xmlp'" + EOL
+                    + USAGE, systemErr.getLog());
         });
         Main.main("-c", "/google_checks.xml", "-f", "xmlp",
                 getPath("InputMain.java"));
@@ -508,13 +528,14 @@ public class MainTest {
         }
     }
 
+    @Ignore("Since OutputFormat is an enum, it is no longer possible to invoke createListener with an invalid value")
     @Test
     public void testCreateListenerIllegalStateException() throws Exception {
-        final Method method = Main.class.getDeclaredMethod("createListener", String.class,
-            String.class);
+        final Method method = Main.class.getDeclaredMethod("createListener",
+                Main.OutputFormat.class, Path.class);
         method.setAccessible(true);
         try {
-            method.invoke(null, "myformat", null);
+            method.invoke(null, Main.OutputFormat.valueOf("myformat"), null);
             fail("InvocationTargetException is expected");
         }
         catch (InvocationTargetException ex) {
@@ -708,11 +729,12 @@ public class MainTest {
     public void testPrintTreeJavadocOption() throws Exception {
         final String expected = new String(Files.readAllBytes(Paths.get(
             getPath("InputMainExpectedInputJavadocComment.txt"))), StandardCharsets.UTF_8)
-            .replaceAll("\\\\r\\\\n", "\\\\n");
+            .replaceAll("\\\\r\\\\n", "\\\\n").replaceAll("\r\n", "\n");
 
         exit.checkAssertionAfterwards(() -> {
             assertEquals("Unexpected output log",
-                    expected, systemOut.getLog().replaceAll("\\\\r\\\\n", "\\\\n"));
+                    expected, systemOut.getLog().replaceAll("\\\\r\\\\n", "\\\\n")
+                            .replaceAll("\r\n", "\n"));
             assertEquals("Unexpected system error log",
                     "", systemErr.getLog());
         });
@@ -1020,11 +1042,13 @@ public class MainTest {
     public void testPrintFullTreeOption() throws Exception {
         final String expected = new String(Files.readAllBytes(Paths.get(
             getPath("InputMainExpectedInputAstTreeStringPrinterJavadoc.txt"))),
-            StandardCharsets.UTF_8).replaceAll("\\\\r\\\\n", "\\\\n");
+            StandardCharsets.UTF_8).replaceAll("\\\\r\\\\n", "\\\\n")
+                .replaceAll("\r\n", "\n");
 
         exit.checkAssertionAfterwards(() -> {
             assertEquals("Unexpected output log",
-                    expected, systemOut.getLog().replaceAll("\\\\r\\\\n", "\\\\n"));
+                    expected, systemOut.getLog().replaceAll("\\\\r\\\\n", "\\\\n")
+                            .replaceAll("\r\n", "\n"));
             assertEquals("Unexpected system error log", "", systemErr.getLog());
         });
         Main.main("-J", getPath("InputMainAstTreeStringPrinterJavadoc.java"));
@@ -1188,7 +1212,7 @@ public class MainTest {
         });
 
         Main.main("-c", getPath("InputMainConfig-non-existent-classname-ignore.xml"),
-                "-executeIgnoredModules",
+                "--executeIgnoredModules",
                 getPath("InputMain.java"));
     }
 
@@ -1196,9 +1220,10 @@ public class MainTest {
     public void testInvalidCheckerThreadsNumber() throws Exception {
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(() -> {
-            assertEquals("Unexpected output log", "Invalid Checker threads number"
-                + System.lineSeparator(), systemOut.getLog());
-            assertEquals("Unexpected system error log", "", systemErr.getLog());
+            assertEquals("Unexpected output log", "", systemOut.getLog());
+            assertEquals("Unexpected system error log",
+                    "Invalid value for option '--checker-threads-number': 'invalid' is not an int"
+                    + EOL + USAGE, systemErr.getLog());
         });
         Main.main("-C", "invalid", "-c", "/google_checks.xml", getPath("InputMain.java"));
     }
@@ -1207,9 +1232,10 @@ public class MainTest {
     public void testInvalidTreeWalkerThreadsNumber() throws Exception {
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(() -> {
-            assertEquals("Unexpected output log", "Invalid TreeWalker threads number"
-                + System.lineSeparator(), systemOut.getLog());
-            assertEquals("Unexpected system error log", "", systemErr.getLog());
+            assertEquals("Unexpected output log", "", systemOut.getLog());
+            assertEquals("Unexpected system error log",
+                    "Invalid value for option '--tree-walker-threads-number': 'invalid' is not an int"
+                    + EOL + USAGE, systemErr.getLog());
         });
         Main.main("-W", "invalid", "-c", "/google_checks.xml", getPath("InputMain.java"));
     }
@@ -1329,12 +1355,12 @@ public class MainTest {
      */
     @Test
     public void testJacocoWorkaround() throws Exception {
-        final String expected = "Files to process must be specified, found 0."
-            + System.lineSeparator();
+        final String expected = "Missing required parameter: <files>"
+            + EOL + USAGE;
         mockStatic(System.class);
         Main.main();
-        assertEquals("Unexpected output log", expected, systemOut.getLog());
-        assertEquals("Unexpected system error log", "", systemErr.getLog());
+        assertEquals("Unexpected output log", "", systemOut.getLog());
+        assertEquals("Unexpected system error log", expected, systemErr.getLog());
     }
 
 }
