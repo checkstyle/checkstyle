@@ -234,7 +234,7 @@
     <dependency>
       <groupId>info.picocli</groupId>
       <artifactId>picocli</artifactId>
-      <version>3.5.1</version>
+      <version>3.6.0</version>
     </dependency>
     <dependency>
       <groupId>antlr</groupId>

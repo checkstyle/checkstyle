@@ -1353,6 +1353,7 @@ public class MainTest {
      * @throws Exception if error occurs
      * @see <a href="https://github.com/jacoco/jacoco/issues/117">Jacoco issue 117</a>
      */
+    @Ignore("new code has only a single conditional; jacoco #117 is not a problem any more")
     @Test
     public void testJacocoWorkaround() throws Exception {
         final String expected = "Missing required parameter: <files>"
