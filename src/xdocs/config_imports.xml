@@ -401,7 +401,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
           <li>groups of non-static imports: &quot;java&quot; and &quot;javax&quot; packages first,
               then &quot;org&quot; and then all other imports</li>
           <li>imports will be sorted in the groups</li>
-          <li>groups are separated by, at least, one blank line</li>
+          <li>groups are separated by single blank line</li>
         </ul>
         <p>Notes:</p>
         <ul>
