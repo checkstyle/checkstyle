@@ -24,10 +24,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Filter;
@@ -36,12 +37,6 @@ import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -53,11 +48,16 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.RootModule;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import picocli.CommandLine;
+import picocli.CommandLine.Command;
+import picocli.CommandLine.Option;
+import picocli.CommandLine.ParameterException;
+import picocli.CommandLine.Parameters;
+import picocli.CommandLine.ParseResult;
 
 /**
  * Wrapper command line program for the Checker.
- * @noinspection UseOfSystemOutOrSystemErr
- **/
+ */
 public final class Main {
 
     /**
@@ -75,114 +75,18 @@ public final class Main {
      * message in the "messages.properties" file.
      */
     public static final String CREATE_LISTENER_EXCEPTION = "Main.createListener";
+
     /** Logger for Main. */
     private static final Log LOG = LogFactory.getLog(Main.class);
 
-    /** Width of CLI help option. */
-    private static final int HELP_WIDTH = 100;
+    /** Exit code returned when user specified invalid command line arguments. */
+    private static final int EXIT_WITH_INVALID_USER_INPUT_CODE = -1;
 
     /** Exit code returned when execution finishes with {@link CheckstyleException}. */
     private static final int EXIT_WITH_CHECKSTYLE_EXCEPTION_CODE = -2;
 
-    /** Name for the option 'v'. */
-    private static final String OPTION_V_NAME = "v";
-
-    /** Name for the option 'c'. */
-    private static final String OPTION_C_NAME = "c";
-
-    /** Name for the option 'f'. */
-    private static final String OPTION_F_NAME = "f";
-
-    /** Name for the option 'p'. */
-    private static final String OPTION_P_NAME = "p";
-
-    /** Name for the option 'o'. */
-    private static final String OPTION_O_NAME = "o";
-
-    /** Name for the option 's'. */
-    private static final String OPTION_S_NAME = "s";
-
-    /** Name for the option 't'. */
-    private static final String OPTION_T_NAME = "t";
-
-    /** Name for the option '--tree'. */
-    private static final String OPTION_TREE_NAME = "tree";
-
-    /** Name for the option 'tabWidth'. */
-    private static final String OPTION_TAB_WIDTH_NAME = "tabWidth";
-
-    /** Name for the option '-T'. */
-    private static final String OPTION_CAPITAL_T_NAME = "T";
-
-    /** Name for the option '--treeWithComments'. */
-    private static final String OPTION_TREE_COMMENT_NAME = "treeWithComments";
-
-    /** Name for the option '-j'. */
-    private static final String OPTION_J_NAME = "j";
-
-    /** Name for the option '--javadocTree'. */
-    private static final String OPTION_JAVADOC_TREE_NAME = "javadocTree";
-
-    /** Name for the option '-J'. */
-    private static final String OPTION_CAPITAL_J_NAME = "J";
-
-    /** Name for the option '--treeWithJavadoc'. */
-    private static final String OPTION_TREE_JAVADOC_NAME = "treeWithJavadoc";
-
-    /** Name for the option '-d'. */
-    private static final String OPTION_D_NAME = "d";
-
-    /** Name for the option '--debug'. */
-    private static final String OPTION_DEBUG_NAME = "debug";
-
-    /** Name for the option 'e'. */
-    private static final String OPTION_E_NAME = "e";
-
-    /** Name for the option '--exclude'. */
-    private static final String OPTION_EXCLUDE_NAME = "exclude";
-
-    /** Name for the option '--executeIgnoredModules'. */
-    private static final String OPTION_EXECUTE_IGNORED_MODULES_NAME = "executeIgnoredModules";
-
-    /** Name for the option 'x'. */
-    private static final String OPTION_X_NAME = "x";
-
-    /** Name for the option '--exclude-regexp'. */
-    private static final String OPTION_EXCLUDE_REGEXP_NAME = "exclude-regexp";
-
-    /** Name for the option '-C'. */
-    private static final String OPTION_CAPITAL_C_NAME = "C";
-
-    /** Name for the option '--checker-threads-number'. */
-    private static final String OPTION_CHECKER_THREADS_NUMBER_NAME = "checker-threads-number";
-
-    /** Name for the option '-W'. */
-    private static final String OPTION_CAPITAL_W_NAME = "W";
-
-    /** Name for the option '--tree-walker-threads-number'. */
-    private static final String OPTION_TREE_WALKER_THREADS_NUMBER_NAME =
-        "tree-walker-threads-number";
-
-    /** Name for the option 'gxs'. */
-    private static final String OPTION_GXS_NAME = "gxs";
-
-    /** Name for the option 'generate-xpath-suppression'. */
-    private static final String OPTION_GENERATE_XPATH_SUPPRESSION_NAME =
-            "generate-xpath-suppression";
-
-    /** Name for 'xml' format. */
-    private static final String XML_FORMAT_NAME = "xml";
-
-    /** Name for 'plain' format. */
-    private static final String PLAIN_FORMAT_NAME = "plain";
-
-    /** A string value of 1. */
-    private static final String ONE_STRING_VALUE = "1";
-
-    /** Default distance between tab stops. */
-    private static final String DEFAULT_TAB_WIDTH = "8";
-
-    /** Don't create instance of this class, use {@link #main(String[])} method instead. */
+    /** Client code should not create instances of this class, but use
+     * {@link #main(String[])} method instead. */
     private Main() {
     }
 
@@ -191,50 +95,36 @@ public final class Main {
      * is the number of errors found in all the files.
      * @param args the command line arguments.
      * @throws IOException if there is a problem with files access
-     * @noinspection CallToPrintStackTrace, CallToSystemExit
+     * @noinspection UseOfSystemOutOrSystemErr, CallToPrintStackTrace, CallToSystemExit
      **/
     public static void main(String... args) throws IOException {
-        int errorCounter = 0;
-        boolean cliViolations = false;
+
+        final CliOptions cliOptions = new CliOptions();
+        final CommandLine commandLine = new CommandLine(cliOptions);
+        commandLine.setUsageHelpWidth(CliOptions.HELP_WIDTH);
+        commandLine.setCaseInsensitiveEnumValuesAllowed(true);
+
         // provide proper exit code based on results.
-        final int exitWithCliViolation = -1;
         int exitStatus = 0;
-
+        int errorCounter = 0;
         try {
-            //parse CLI arguments
-            final CommandLine commandLine = parseCli(args);
-
-            // show version and exit if it is requested
-            if (commandLine.hasOption(OPTION_V_NAME)) {
-                System.out.println("Checkstyle version: "
-                        + Main.class.getPackage().getImplementationVersion());
-                exitStatus = 0;
+            final ParseResult parseResult = commandLine.parseArgs(args);
+            if (parseResult.isVersionHelpRequested()) {
+                System.out.println(getVersionString());
+            }
+            else if (parseResult.isUsageHelpRequested()) {
+                commandLine.usage(System.out);
             }
             else {
-                final List<File> filesToProcess = getFilesToProcess(getExclusions(commandLine),
-                        commandLine.getArgs());
-
-                // return error if something is wrong in arguments
-                final List<String> messages = validateCli(commandLine, filesToProcess);
-                cliViolations = !messages.isEmpty();
-                if (cliViolations) {
-                    exitStatus = exitWithCliViolation;
-                    errorCounter = 1;
-                    messages.forEach(System.out::println);
-                }
-                else {
-                    errorCounter = runCli(commandLine, filesToProcess);
-                    exitStatus = errorCounter;
-                }
+                exitStatus = execute(parseResult, cliOptions);
+                errorCounter = exitStatus;
             }
         }
-        catch (ParseException pex) {
-            // something wrong with arguments - print error and manual
-            cliViolations = true;
-            exitStatus = exitWithCliViolation;
-            errorCounter = 1;
-            System.out.println(pex.getMessage());
-            printUsage();
+        catch (ParameterException ex) {
+            exitStatus = EXIT_WITH_INVALID_USER_INPUT_CODE;
+            System.err.println(ex.getMessage());
+            System.err.println("Usage: checkstyle [OPTIONS]... FILES...");
+            System.err.println("Try 'checkstyle --help' for more information.");
         }
         catch (CheckstyleException ex) {
             exitStatus = EXIT_WITH_CHECKSTYLE_EXCEPTION_CODE;
@@ -243,14 +133,11 @@ public final class Main {
         }
         finally {
             // return exit code base on validation of Checker
-            // two ifs exist till https://github.com/hcoles/pitest/issues/377
-            if (errorCounter != 0) {
-                if (!cliViolations) {
-                    final LocalizedMessage errorCounterMessage = new LocalizedMessage(1,
-                            Definitions.CHECKSTYLE_BUNDLE, ERROR_COUNTER,
-                            new String[] {String.valueOf(errorCounter)}, null, Main.class, null);
-                    System.out.println(errorCounterMessage.getMessage());
-                }
+            if (errorCounter > 0) {
+                final LocalizedMessage errorCounterMessage = new LocalizedMessage(1,
+                        Definitions.CHECKSTYLE_BUNDLE, ERROR_COUNTER,
+                        new String[] {String.valueOf(errorCounter)}, null, Main.class, null);
+                System.out.println(errorCounterMessage.getMessage());
             }
             if (exitStatus != 0) {
                 System.exit(exitStatus);
@@ -259,483 +146,60 @@ public final class Main {
     }
 
     /**
-     * Parses and executes Checkstyle based on passed arguments.
-     * @param args
-     *        command line parameters
-     * @return parsed information about passed parameters
-     * @throws ParseException
-     *         when passed arguments are not valid
+     * Returns the version string printed when the user requests version help (--version or -V).
+     * @return a version string based on the package implementation version
      */
-    private static CommandLine parseCli(String... args)
-            throws ParseException {
-        // parse the parameters
-        final CommandLineParser clp = new DefaultParser();
-        // always returns not null value
-        return clp.parse(buildOptions(), args);
+    private static String getVersionString() {
+        return "Checkstyle version: " + Main.class.getPackage().getImplementationVersion();
     }
 
     /**
-     * Gets the list of exclusions provided through the command line argument.
-     * @param commandLine command line object
-     * @return List of exclusion patterns.
-     */
-    private static List<Pattern> getExclusions(CommandLine commandLine) {
-        final List<Pattern> result = new ArrayList<>();
-
-        if (commandLine.hasOption(OPTION_E_NAME)) {
-            for (String value : commandLine.getOptionValues(OPTION_E_NAME)) {
-                result.add(Pattern.compile("^" + Pattern.quote(new File(value).getAbsolutePath())
-                        + "$"));
-            }
-        }
-        if (commandLine.hasOption(OPTION_X_NAME)) {
-            for (String value : commandLine.getOptionValues(OPTION_X_NAME)) {
-                result.add(Pattern.compile(value));
-            }
-        }
-
-        return result;
-    }
-
-    /**
-     * Do validation of Command line options.
-     * @param cmdLine command line object
-     * @param filesToProcess List of files to process found from the command line.
-     * @return list of violations
-     */
-    // -@cs[CyclomaticComplexity] Breaking apart will damage encapsulation
-    private static List<String> validateCli(CommandLine cmdLine, List<File> filesToProcess) {
-        final List<String> result = new ArrayList<>();
-
-        if (filesToProcess.isEmpty()) {
-            result.add("Files to process must be specified, found 0.");
-        }
-        // ensure there is no conflicting options
-        else if (cmdLine.hasOption(OPTION_T_NAME) || cmdLine.hasOption(OPTION_CAPITAL_T_NAME)
-                || cmdLine.hasOption(OPTION_J_NAME) || cmdLine.hasOption(OPTION_CAPITAL_J_NAME)) {
-            if (cmdLine.hasOption(OPTION_S_NAME) || cmdLine.hasOption(OPTION_C_NAME)
-                    || cmdLine.hasOption(OPTION_P_NAME) || cmdLine.hasOption(OPTION_F_NAME)
-                    || cmdLine.hasOption(OPTION_O_NAME)) {
-                result.add("Option '-t' cannot be used with other options.");
-            }
-            else if (filesToProcess.size() > 1) {
-                result.add("Printing AST is allowed for only one file.");
-            }
-        }
-        else if (cmdLine.hasOption(OPTION_S_NAME)) {
-            if (cmdLine.hasOption(OPTION_C_NAME) || cmdLine.hasOption(OPTION_P_NAME)
-                    || cmdLine.hasOption(OPTION_F_NAME) || cmdLine.hasOption(OPTION_O_NAME)) {
-                result.add("Option '-s' cannot be used with other options.");
-            }
-            else if (filesToProcess.size() > 1) {
-                result.add("Printing xpath suppressions is allowed for only one file.");
-            }
-        }
-        // ensure a configuration file is specified
-        else if (cmdLine.hasOption(OPTION_C_NAME)) {
-            final String configLocation = cmdLine.getOptionValue(OPTION_C_NAME);
-            try {
-                // test location only
-                CommonUtil.getUriByFilename(configLocation);
-            }
-            catch (CheckstyleException ignored) {
-                result.add(String.format("Could not find config XML file '%s'.", configLocation));
-            }
-
-            // validate optional parameters
-            if (cmdLine.hasOption(OPTION_F_NAME)) {
-                final String format = cmdLine.getOptionValue(OPTION_F_NAME);
-                if (!PLAIN_FORMAT_NAME.equals(format) && !XML_FORMAT_NAME.equals(format)) {
-                    result.add(String.format("Invalid output format."
-                            + " Found '%s' but expected '%s' or '%s'.",
-                            format, PLAIN_FORMAT_NAME, XML_FORMAT_NAME));
-                }
-            }
-            if (cmdLine.hasOption(OPTION_P_NAME)) {
-                final String propertiesLocation = cmdLine.getOptionValue(OPTION_P_NAME);
-                final File file = new File(propertiesLocation);
-                if (!file.exists()) {
-                    result.add(String.format("Could not find file '%s'.", propertiesLocation));
-                }
-            }
-            verifyThreadsNumberParameter(cmdLine, result, OPTION_CAPITAL_C_NAME,
-                "Checker threads number must be greater than zero",
-                "Invalid Checker threads number");
-            verifyThreadsNumberParameter(cmdLine, result, OPTION_CAPITAL_W_NAME,
-                "TreeWalker threads number must be greater than zero",
-                "Invalid TreeWalker threads number");
-        }
-        else {
-            result.add("Must specify a config XML file.");
-        }
-
-        return result;
-    }
-
-    /**
-     * Verifies threads number CLI parameter value.
-     * @param cmdLine a command line
-     * @param result a resulting list of errors
-     * @param cliParameterName a CLI parameter name
-     * @param mustBeGreaterThanZeroMessage a message which should be reported
-     *                                     if the number of threads is less than or equal to zero
-     * @param invalidNumberMessage a message which should be reported if the passed value
-     *                             is not a valid number
-     */
-    private static void verifyThreadsNumberParameter(CommandLine cmdLine, List<String> result,
-        String cliParameterName, String mustBeGreaterThanZeroMessage,
-        String invalidNumberMessage) {
-        if (cmdLine.hasOption(cliParameterName)) {
-            final String checkerThreadsNumberStr =
-                cmdLine.getOptionValue(cliParameterName);
-            if (CommonUtil.isInt(checkerThreadsNumberStr)) {
-                final int checkerThreadsNumber = Integer.parseInt(checkerThreadsNumberStr);
-                if (checkerThreadsNumber < 1) {
-                    result.add(mustBeGreaterThanZeroMessage);
-                }
-            }
-            else {
-                result.add(invalidNumberMessage);
-            }
-        }
-    }
-
-    /**
-     * Do execution of CheckStyle based on Command line options.
-     * @param commandLine command line object
-     * @param filesToProcess List of files to process found from the command line.
+     * Validates the user input and returns {@value EXIT_WITH_INVALID_USER_INPUT_CODE} if
+     * invalid, otherwise executes CheckStyle and returns the number of violations.
+     * @param parseResult generic access to options and parameters found on the command line
+     * @param options encapsulates options and parameters specified on the command line
      * @return number of violations
      * @throws IOException if a file could not be read.
      * @throws CheckstyleException if something happens processing the files.
+     * @noinspection UseOfSystemOutOrSystemErr
      */
-    private static int runCli(CommandLine commandLine, List<File> filesToProcess)
+    private static int execute(ParseResult parseResult, CliOptions options)
             throws IOException, CheckstyleException {
-        int result = 0;
 
-        // create config helper object
-        final CliOptions config = convertCliToPojo(commandLine, filesToProcess);
-        if (commandLine.hasOption(OPTION_T_NAME)) {
-            // print AST
-            final File file = config.files.get(0);
-            final String stringAst = AstTreeStringPrinter.printFileAst(file,
-                    JavaParser.Options.WITHOUT_COMMENTS);
-            System.out.print(stringAst);
-        }
-        else if (commandLine.hasOption(OPTION_CAPITAL_T_NAME)) {
-            final File file = config.files.get(0);
-            final String stringAst = AstTreeStringPrinter.printFileAst(file,
-                    JavaParser.Options.WITH_COMMENTS);
-            System.out.print(stringAst);
-        }
-        else if (commandLine.hasOption(OPTION_J_NAME)) {
-            final File file = config.files.get(0);
-            final String stringAst = DetailNodeTreeStringPrinter.printFileAst(file);
-            System.out.print(stringAst);
-        }
-        else if (commandLine.hasOption(OPTION_CAPITAL_J_NAME)) {
-            final File file = config.files.get(0);
-            final String stringAst = AstTreeStringPrinter.printJavaAndJavadocTree(file);
-            System.out.print(stringAst);
-        }
-        else if (commandLine.hasOption(OPTION_S_NAME)) {
-            final File file = config.files.get(0);
-            final String suppressionLineColumnNumber = config.suppressionLineColumnNumber;
-            final int tabWidth = config.tabWidth;
-            final String stringSuppressions =
-                    SuppressionsStringPrinter.printSuppressions(file,
-                            suppressionLineColumnNumber, tabWidth);
-            System.out.print(stringSuppressions);
+        final int exitStatus;
+
+        // return error if something is wrong in arguments
+        final List<File> filesToProcess = getFilesToProcess(options);
+        final List<String> messages = options.validateCli(parseResult, filesToProcess);
+        final boolean hasMessages = !messages.isEmpty();
+        if (hasMessages) {
+            messages.forEach(System.out::println);
+            exitStatus = EXIT_WITH_INVALID_USER_INPUT_CODE;
         }
         else {
-            if (commandLine.hasOption(OPTION_D_NAME)) {
-                final Logger parentLogger = Logger.getLogger(Main.class.getName()).getParent();
-                final ConsoleHandler handler = new ConsoleHandler();
-                handler.setLevel(Level.FINEST);
-                handler.setFilter(new Filter() {
-                    private final String packageName = Main.class.getPackage().getName();
-
-                    @Override
-                    public boolean isLoggable(LogRecord record) {
-                        return record.getLoggerName().startsWith(packageName);
-                    }
-                });
-                parentLogger.addHandler(handler);
-                parentLogger.setLevel(Level.FINEST);
-            }
-            if (LOG.isDebugEnabled()) {
-                LOG.debug("Checkstyle debug logging enabled");
-                LOG.debug("Running Checkstyle with version: "
-                        + Main.class.getPackage().getImplementationVersion());
-            }
-
-            // run Checker
-            result = runCheckstyle(config);
+            exitStatus = runCli(options, filesToProcess);
         }
-
-        return result;
-    }
-
-    /**
-     * Util method to convert CommandLine type to POJO object.
-     * @param cmdLine command line object
-     * @param filesToProcess List of files to process found from the command line.
-     * @return command line option as POJO object
-     */
-    private static CliOptions convertCliToPojo(CommandLine cmdLine, List<File> filesToProcess) {
-        final CliOptions conf = new CliOptions();
-        conf.format = cmdLine.getOptionValue(OPTION_F_NAME);
-        if (conf.format == null) {
-            conf.format = PLAIN_FORMAT_NAME;
-        }
-        conf.outputLocation = cmdLine.getOptionValue(OPTION_O_NAME);
-        conf.configLocation = cmdLine.getOptionValue(OPTION_C_NAME);
-        conf.propertiesLocation = cmdLine.getOptionValue(OPTION_P_NAME);
-        conf.suppressionLineColumnNumber = cmdLine.getOptionValue(OPTION_S_NAME);
-        conf.files = filesToProcess;
-        conf.executeIgnoredModules = cmdLine.hasOption(OPTION_EXECUTE_IGNORED_MODULES_NAME);
-        final String checkerThreadsNumber = cmdLine.getOptionValue(
-                OPTION_CAPITAL_C_NAME, ONE_STRING_VALUE);
-        conf.checkerThreadsNumber = Integer.parseInt(checkerThreadsNumber);
-        final String treeWalkerThreadsNumber = cmdLine.getOptionValue(
-                OPTION_CAPITAL_W_NAME, ONE_STRING_VALUE);
-        conf.treeWalkerThreadsNumber = Integer.parseInt(treeWalkerThreadsNumber);
-        final String tabWidth =
-                cmdLine.getOptionValue(OPTION_TAB_WIDTH_NAME, DEFAULT_TAB_WIDTH);
-        conf.tabWidth = Integer.parseInt(tabWidth);
-        conf.generateXpathSuppressionsFile =
-                cmdLine.hasOption(OPTION_GENERATE_XPATH_SUPPRESSION_NAME);
-        return conf;
-    }
-
-    /**
-     * Executes required Checkstyle actions based on passed parameters.
-     * @param cliOptions
-     *        pojo object that contains all options
-     * @return number of violations of ERROR level
-     * @throws IOException
-     *         when output file could not be found
-     * @throws CheckstyleException
-     *         when properties file could not be loaded
-     */
-    private static int runCheckstyle(CliOptions cliOptions)
-            throws CheckstyleException, IOException {
-        // setup the properties
-        final Properties props;
-
-        if (cliOptions.propertiesLocation == null) {
-            props = System.getProperties();
-        }
-        else {
-            props = loadProperties(new File(cliOptions.propertiesLocation));
-        }
-
-        // create a configuration
-        final ThreadModeSettings multiThreadModeSettings =
-                new ThreadModeSettings(
-                        cliOptions.checkerThreadsNumber, cliOptions.treeWalkerThreadsNumber);
-
-        final ConfigurationLoader.IgnoredModulesOptions ignoredModulesOptions;
-        if (cliOptions.executeIgnoredModules) {
-            ignoredModulesOptions = ConfigurationLoader.IgnoredModulesOptions.EXECUTE;
-        }
-        else {
-            ignoredModulesOptions = ConfigurationLoader.IgnoredModulesOptions.OMIT;
-        }
-
-        final Configuration config = ConfigurationLoader.loadConfiguration(
-                cliOptions.configLocation, new PropertiesExpander(props),
-                ignoredModulesOptions, multiThreadModeSettings);
-
-        // create RootModule object and run it
-        final int errorCounter;
-        final ClassLoader moduleClassLoader = Checker.class.getClassLoader();
-        final RootModule rootModule = getRootModule(config.getName(), moduleClassLoader);
-
-        try {
-            final AuditListener listener;
-            if (cliOptions.generateXpathSuppressionsFile) {
-                // create filter to print generated xpath suppressions file
-                final Configuration treeWalkerConfig = getTreeWalkerConfig(config);
-                if (treeWalkerConfig != null) {
-                    final DefaultConfiguration moduleConfig =
-                            new DefaultConfiguration(
-                                    XpathFileGeneratorAstFilter.class.getName());
-                    moduleConfig.addAttribute(OPTION_TAB_WIDTH_NAME,
-                            Integer.toString(cliOptions.tabWidth));
-                    ((DefaultConfiguration) treeWalkerConfig).addChild(moduleConfig);
-                }
-
-                listener = new XpathFileGeneratorAuditListener(System.out,
-                        AutomaticBean.OutputStreamOptions.NONE);
-            }
-            else {
-                listener = createListener(cliOptions.format,
-                        cliOptions.outputLocation);
-            }
-
-            rootModule.setModuleClassLoader(moduleClassLoader);
-            rootModule.configure(config);
-            rootModule.addListener(listener);
-
-            // run RootModule
-            errorCounter = rootModule.process(cliOptions.files);
-        }
-        finally {
-            rootModule.destroy();
-        }
-
-        return errorCounter;
-    }
-
-    /**
-     * Returns {@code TreeWalker} module configuration.
-     * @param config The configuration object.
-     * @return The {@code TreeWalker} module configuration.
-     */
-    private static Configuration getTreeWalkerConfig(Configuration config) {
-        Configuration result = null;
-
-        final Configuration[] children = config.getChildren();
-        for (Configuration child : children) {
-            if ("TreeWalker".equals(child.getName())) {
-                result = child;
-                break;
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Creates a new instance of the root module that will control and run
-     * Checkstyle.
-     * @param name The name of the module. This will either be a short name that
-     *        will have to be found or the complete package name.
-     * @param moduleClassLoader Class loader used to load the root module.
-     * @return The new instance of the root module.
-     * @throws CheckstyleException if no module can be instantiated from name
-     */
-    private static RootModule getRootModule(String name, ClassLoader moduleClassLoader)
-            throws CheckstyleException {
-        final ModuleFactory factory = new PackageObjectFactory(
-                Checker.class.getPackage().getName(), moduleClassLoader);
-
-        return (RootModule) factory.createModule(name);
-    }
-
-    /**
-     * Loads properties from a File.
-     * @param file
-     *        the properties file
-     * @return the properties in file
-     * @throws CheckstyleException
-     *         when could not load properties file
-     */
-    private static Properties loadProperties(File file)
-            throws CheckstyleException {
-        final Properties properties = new Properties();
-
-        try (InputStream stream = Files.newInputStream(file.toPath())) {
-            properties.load(stream);
-        }
-        catch (final IOException ex) {
-            final LocalizedMessage loadPropertiesExceptionMessage = new LocalizedMessage(1,
-                    Definitions.CHECKSTYLE_BUNDLE, LOAD_PROPERTIES_EXCEPTION,
-                    new String[] {file.getAbsolutePath()}, null, Main.class, null);
-            throw new CheckstyleException(loadPropertiesExceptionMessage.getMessage(), ex);
-        }
-
-        return properties;
-    }
-
-    /**
-     * This method creates in AuditListener an open stream for validation data, it must be closed by
-     * {@link RootModule} (default implementation is {@link Checker}) by calling
-     * {@link AuditListener#auditFinished(AuditEvent)}.
-     * @param format format of the audit listener
-     * @param outputLocation the location of output
-     * @return a fresh new {@code AuditListener}
-     * @exception IOException when provided output location is not found
-     */
-    private static AuditListener createListener(String format, String outputLocation)
-            throws IOException {
-        final AuditListener listener;
-        if (XML_FORMAT_NAME.equals(format)) {
-            final OutputStream out = getOutputStream(outputLocation);
-            final AutomaticBean.OutputStreamOptions closeOutputStreamOption =
-                    getOutputStreamOptions(outputLocation);
-            listener = new XMLLogger(out, closeOutputStreamOption);
-        }
-        else if (PLAIN_FORMAT_NAME.equals(format)) {
-            final OutputStream out = getOutputStream(outputLocation);
-            final AutomaticBean.OutputStreamOptions closeOutputStreamOption =
-                    getOutputStreamOptions(outputLocation);
-            listener = new DefaultLogger(out, closeOutputStreamOption);
-        }
-        else {
-            final LocalizedMessage outputFormatExceptionMessage = new LocalizedMessage(1,
-                    Definitions.CHECKSTYLE_BUNDLE, CREATE_LISTENER_EXCEPTION,
-                    new String[] {format, PLAIN_FORMAT_NAME, XML_FORMAT_NAME}, null,
-                    Main.class, null);
-            throw new IllegalStateException(outputFormatExceptionMessage.getMessage());
-        }
-
-        return listener;
-    }
-
-    /**
-     * Create output stream or return System.out
-     * @param outputLocation output location
-     * @return output stream
-     * @throws IOException might happen
-     */
-    @SuppressWarnings("resource")
-    private static OutputStream getOutputStream(String outputLocation) throws IOException {
-        final OutputStream result;
-        if (outputLocation == null) {
-            result = System.out;
-        }
-        else {
-            result = Files.newOutputStream(Paths.get(outputLocation));
-        }
-        return result;
-    }
-
-    /**
-     * Create {@link AutomaticBean.OutputStreamOptions} for the given location.
-     * @param outputLocation output location
-     * @return output stream options
-     */
-    private static AutomaticBean.OutputStreamOptions getOutputStreamOptions(String outputLocation) {
-        final AutomaticBean.OutputStreamOptions result;
-        if (outputLocation == null) {
-            result = AutomaticBean.OutputStreamOptions.NONE;
-        }
-        else {
-            result = AutomaticBean.OutputStreamOptions.CLOSE;
-        }
-        return result;
+        return exitStatus;
     }
 
     /**
      * Determines the files to process.
-     * @param patternsToExclude The list of directory patterns to exclude from searching.
-     * @param filesToProcess
-     *        arguments that were not processed yet but shall be
+     * @param options the user-specified options
      * @return list of files to process
      */
-    private static List<File> getFilesToProcess(List<Pattern> patternsToExclude,
-            String... filesToProcess) {
-        final List<File> files = new LinkedList<>();
-        for (String element : filesToProcess) {
-            files.addAll(listFiles(new File(element), patternsToExclude));
-        }
+    private static List<File> getFilesToProcess(CliOptions options) {
+        final List<Pattern> patternsToExclude = options.getExclusions();
 
-        return files;
+        final List<File> result = new LinkedList<>();
+        for (File file : options.files) {
+            result.addAll(listFiles(file, patternsToExclude));
+        }
+        return result;
     }
 
     /**
-     * Traverses a specified node looking for files to check. Found files are added to a specified
-     * list. Subdirectories are also traversed.
+     * Traverses a specified node looking for files to check. Found files are added to
+     * a specified list. Subdirectories are also traversed.
      * @param node
      *        the node to process
      * @param patternsToExclude The list of directory patterns to exclude from searching.
@@ -785,87 +249,512 @@ public final class Main {
         return result;
     }
 
-    /** Prints the usage information. **/
-    private static void printUsage() {
-        final HelpFormatter formatter = new HelpFormatter();
-        formatter.setWidth(HELP_WIDTH);
-        formatter.printHelp(String.format("java %s [options] -c <config.xml> file...",
-                Main.class.getName()), buildOptions());
+    /**
+     * Do execution of CheckStyle based on Command line options.
+     * @param options user-specified options
+     * @param filesToProcess the list of files whose style to check
+     * @return number of violations
+     * @throws IOException if a file could not be read.
+     * @throws CheckstyleException if something happens processing the files.
+     * @noinspection UseOfSystemOutOrSystemErr
+     */
+    private static int runCli(CliOptions options, List<File> filesToProcess)
+            throws IOException, CheckstyleException {
+        int result = 0;
+        final boolean hasSuppressionLineColumnNumber = options.suppressionLineColumnNumber != null;
+
+        // create config helper object
+        if (options.printAst) {
+            // print AST
+            final File file = filesToProcess.get(0);
+            final String stringAst = AstTreeStringPrinter.printFileAst(file,
+                    JavaParser.Options.WITHOUT_COMMENTS);
+            System.out.print(stringAst);
+        }
+        else if (options.printAstWithComments) {
+            final File file = filesToProcess.get(0);
+            final String stringAst = AstTreeStringPrinter.printFileAst(file,
+                    JavaParser.Options.WITH_COMMENTS);
+            System.out.print(stringAst);
+        }
+        else if (options.printJavadocTree) {
+            final File file = filesToProcess.get(0);
+            final String stringAst = DetailNodeTreeStringPrinter.printFileAst(file);
+            System.out.print(stringAst);
+        }
+        else if (options.printTreeWithJavadoc) {
+            final File file = filesToProcess.get(0);
+            final String stringAst = AstTreeStringPrinter.printJavaAndJavadocTree(file);
+            System.out.print(stringAst);
+        }
+        else if (hasSuppressionLineColumnNumber) {
+            final File file = filesToProcess.get(0);
+            final String stringSuppressions =
+                    SuppressionsStringPrinter.printSuppressions(file,
+                            options.suppressionLineColumnNumber, options.tabWidth);
+            System.out.print(stringSuppressions);
+        }
+        else {
+            if (options.debug) {
+                final Logger parentLogger = Logger.getLogger(Main.class.getName()).getParent();
+                final ConsoleHandler handler = new ConsoleHandler();
+                handler.setLevel(Level.FINEST);
+                handler.setFilter(new OnlyCheckstyleLoggersFilter());
+                parentLogger.addHandler(handler);
+                parentLogger.setLevel(Level.FINEST);
+            }
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("Checkstyle debug logging enabled");
+                LOG.debug("Running Checkstyle with version: "
+                        + Main.class.getPackage().getImplementationVersion());
+            }
+
+            // run Checker
+            result = runCheckstyle(options, filesToProcess);
+        }
+
+        return result;
     }
 
     /**
-     * Builds and returns list of parameters supported by cli Checkstyle.
-     * @return available options
+     * Executes required Checkstyle actions based on passed parameters.
+     * @param options user-specified options
+     * @param filesToProcess the list of files whose style to check
+     * @return number of violations of ERROR level
+     * @throws IOException
+     *         when output file could not be found
+     * @throws CheckstyleException
+     *         when properties file could not be loaded
+     * @noinspection UseOfSystemOutOrSystemErr
      */
-    private static Options buildOptions() {
-        final Options options = new Options();
-        options.addOption(OPTION_C_NAME, true, "Sets the check configuration file to use.");
-        options.addOption(OPTION_O_NAME, true, "Sets the output file. Defaults to stdout");
-        options.addOption(OPTION_P_NAME, true, "Loads the properties file");
-        options.addOption(OPTION_S_NAME, true,
-                "Print xpath suppressions at the file's line and column position. "
-                        + "Argument is the line and column number (separated by a : ) in the file "
-                        + "that the suppression should be generated for");
-        options.addOption(OPTION_TAB_WIDTH_NAME, true,
-                String.format("Sets the length of the tab character. Used only with \"-s\" option. "
-                        + "Default value is %s",
-                        DEFAULT_TAB_WIDTH));
-        options.addOption(OPTION_GXS_NAME, OPTION_GENERATE_XPATH_SUPPRESSION_NAME, false,
-                "Generates to output a suppression.xml to use to suppress all violations"
-                        + " from user's config");
-        options.addOption(OPTION_F_NAME, true, String.format(
-                "Sets the output format. (%s|%s). Defaults to %s",
-                PLAIN_FORMAT_NAME, XML_FORMAT_NAME, PLAIN_FORMAT_NAME));
-        options.addOption(OPTION_V_NAME, false, "Print product version and exit");
-        options.addOption(OPTION_T_NAME, OPTION_TREE_NAME, false,
-                "Print Abstract Syntax Tree(AST) of the file");
-        options.addOption(OPTION_CAPITAL_T_NAME, OPTION_TREE_COMMENT_NAME, false,
-                "Print Abstract Syntax Tree(AST) of the file including comments");
-        options.addOption(OPTION_J_NAME, OPTION_JAVADOC_TREE_NAME, false,
-                "Print Parse tree of the Javadoc comment");
-        options.addOption(OPTION_CAPITAL_J_NAME, OPTION_TREE_JAVADOC_NAME, false,
-                "Print full Abstract Syntax Tree of the file");
-        options.addOption(OPTION_D_NAME, OPTION_DEBUG_NAME, false,
-                "Print all debug logging of CheckStyle utility");
-        options.addOption(OPTION_E_NAME, OPTION_EXCLUDE_NAME, true,
-                "Directory path to exclude from CheckStyle");
-        options.addOption(OPTION_X_NAME, OPTION_EXCLUDE_REGEXP_NAME, true,
-                "Regular expression of directory to exclude from CheckStyle");
-        options.addOption(OPTION_EXECUTE_IGNORED_MODULES_NAME, false,
-                "Allows ignored modules to be run.");
-        options.addOption(OPTION_CAPITAL_C_NAME, OPTION_CHECKER_THREADS_NUMBER_NAME, true,
-                "(experimental) The number of Checker threads (must be greater than zero)");
-        options.addOption(OPTION_CAPITAL_W_NAME, OPTION_TREE_WALKER_THREADS_NUMBER_NAME, true,
-                "(experimental) The number of TreeWalker threads (must be greater than zero)");
-        return options;
+    private static int runCheckstyle(CliOptions options, List<File> filesToProcess)
+            throws CheckstyleException, IOException {
+        // setup the properties
+        final Properties props;
+
+        if (options.propertiesFile == null) {
+            props = System.getProperties();
+        }
+        else {
+            props = loadProperties(options.propertiesFile);
+        }
+
+        // create a configuration
+        final ThreadModeSettings multiThreadModeSettings =
+                new ThreadModeSettings(options.checkerThreadsNumber,
+                        options.treeWalkerThreadsNumber);
+
+        final ConfigurationLoader.IgnoredModulesOptions ignoredModulesOptions;
+        if (options.executeIgnoredModules) {
+            ignoredModulesOptions = ConfigurationLoader.IgnoredModulesOptions.EXECUTE;
+        }
+        else {
+            ignoredModulesOptions = ConfigurationLoader.IgnoredModulesOptions.OMIT;
+        }
+
+        final Configuration config = ConfigurationLoader.loadConfiguration(
+                options.configurationFile, new PropertiesExpander(props),
+                ignoredModulesOptions, multiThreadModeSettings);
+
+        // create RootModule object and run it
+        final int errorCounter;
+        final ClassLoader moduleClassLoader = Checker.class.getClassLoader();
+        final RootModule rootModule = getRootModule(config.getName(), moduleClassLoader);
+
+        try {
+            final AuditListener listener;
+            if (options.generateXpathSuppressionsFile) {
+                // create filter to print generated xpath suppressions file
+                final Configuration treeWalkerConfig = getTreeWalkerConfig(config);
+                if (treeWalkerConfig != null) {
+                    final DefaultConfiguration moduleConfig =
+                            new DefaultConfiguration(
+                                    XpathFileGeneratorAstFilter.class.getName());
+                    moduleConfig.addAttribute(CliOptions.ATTRIB_TAB_WIDTH_NAME,
+                            String.valueOf(options.tabWidth));
+                    ((DefaultConfiguration) treeWalkerConfig).addChild(moduleConfig);
+                }
+
+                listener = new XpathFileGeneratorAuditListener(System.out,
+                        AutomaticBean.OutputStreamOptions.NONE);
+            }
+            else {
+                listener = createListener(options.format, options.outputPath);
+            }
+
+            rootModule.setModuleClassLoader(moduleClassLoader);
+            rootModule.configure(config);
+            rootModule.addListener(listener);
+
+            // run RootModule
+            errorCounter = rootModule.process(filesToProcess);
+        }
+        finally {
+            rootModule.destroy();
+        }
+
+        return errorCounter;
     }
 
-    /** Helper structure to clear show what is required for Checker to run. **/
+    /**
+     * Loads properties from a File.
+     * @param file
+     *        the properties file
+     * @return the properties in file
+     * @throws CheckstyleException
+     *         when could not load properties file
+     */
+    private static Properties loadProperties(File file)
+            throws CheckstyleException {
+        final Properties properties = new Properties();
+
+        try (InputStream stream = Files.newInputStream(file.toPath())) {
+            properties.load(stream);
+        }
+        catch (final IOException ex) {
+            final LocalizedMessage loadPropertiesExceptionMessage = new LocalizedMessage(1,
+                    Definitions.CHECKSTYLE_BUNDLE, LOAD_PROPERTIES_EXCEPTION,
+                    new String[] {file.getAbsolutePath()}, null, Main.class, null);
+            throw new CheckstyleException(loadPropertiesExceptionMessage.getMessage(), ex);
+        }
+
+        return properties;
+    }
+
+    /**
+     * Creates a new instance of the root module that will control and run
+     * Checkstyle.
+     * @param name The name of the module. This will either be a short name that
+     *        will have to be found or the complete package name.
+     * @param moduleClassLoader Class loader used to load the root module.
+     * @return The new instance of the root module.
+     * @throws CheckstyleException if no module can be instantiated from name
+     */
+    private static RootModule getRootModule(String name, ClassLoader moduleClassLoader)
+            throws CheckstyleException {
+        final ModuleFactory factory = new PackageObjectFactory(
+                Checker.class.getPackage().getName(), moduleClassLoader);
+
+        return (RootModule) factory.createModule(name);
+    }
+
+    /**
+     * Returns {@code TreeWalker} module configuration.
+     * @param config The configuration object.
+     * @return The {@code TreeWalker} module configuration.
+     */
+    private static Configuration getTreeWalkerConfig(Configuration config) {
+        Configuration result = null;
+
+        final Configuration[] children = config.getChildren();
+        for (Configuration child : children) {
+            if ("TreeWalker".equals(child.getName())) {
+                result = child;
+                break;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * This method creates in AuditListener an open stream for validation data, it must be
+     * closed by {@link RootModule} (default implementation is {@link Checker}) by calling
+     * {@link AuditListener#auditFinished(AuditEvent)}.
+     * @param format format of the audit listener
+     * @param outputLocation the location of output
+     * @return a fresh new {@code AuditListener}
+     * @exception IOException when provided output location is not found
+     */
+    private static AuditListener createListener(OutputFormat format, Path outputLocation)
+            throws IOException {
+        final OutputStream out = getOutputStream(outputLocation);
+        final AutomaticBean.OutputStreamOptions closeOutputStreamOption =
+                getOutputStreamOptions(outputLocation);
+        return format.createListener(out, closeOutputStreamOption);
+    }
+
+    /**
+     * Create output stream or return System.out
+     * @param outputPath output location
+     * @return output stream
+     * @throws IOException might happen
+     * @noinspection UseOfSystemOutOrSystemErr
+     */
+    @SuppressWarnings("resource")
+    private static OutputStream getOutputStream(Path outputPath) throws IOException {
+        final OutputStream result;
+        if (outputPath == null) {
+            result = System.out;
+        }
+        else {
+            result = Files.newOutputStream(outputPath);
+        }
+        return result;
+    }
+
+    /**
+     * Create {@link AutomaticBean.OutputStreamOptions} for the given location.
+     * @param outputPath output location
+     * @return output stream options
+     */
+    private static AutomaticBean.OutputStreamOptions getOutputStreamOptions(Path outputPath) {
+        final AutomaticBean.OutputStreamOptions result;
+        if (outputPath == null) {
+            result = AutomaticBean.OutputStreamOptions.NONE;
+        }
+        else {
+            result = AutomaticBean.OutputStreamOptions.CLOSE;
+        }
+        return result;
+    }
+
+    /** Enumeration over the possible output formats.
+     * @noinspection PackageVisibleInnerClass
+     */
+    // Package-visible for tests.
+    enum OutputFormat {
+        /** XML output format. */
+        XML,
+        /** Plain output format. */
+        PLAIN;
+
+        /**
+         * Returns a new AuditListener for this OutputFormat.
+         * @param out the output stream
+         * @param options the output stream options
+         * @return a new AuditListener for this OutputFormat
+         */
+        public AuditListener createListener(OutputStream out,
+                                            AutomaticBean.OutputStreamOptions options) {
+            final AuditListener result;
+            if (this == XML) {
+                result = new XMLLogger(out, options);
+            }
+            else {
+                result = new DefaultLogger(out, options);
+            }
+            return result;
+        }
+
+        /** Returns the name in lowercase.
+         * @return the enum name in lowercase
+         */
+        @Override
+        public String toString() {
+            return name().toLowerCase(Locale.ROOT);
+        }
+    }
+
+    /** Log Filter used in debug mode. */
+    private static final class OnlyCheckstyleLoggersFilter implements Filter {
+        /** Name of the package used to filter on. */
+        private final String packageName = Main.class.getPackage().getName();
+
+        /**
+         * Returns whether the specified record should be logged.
+         * @param record the record to log
+         * @return true if the logger name is in the package of this class or a subpackage
+         */
+        @Override
+        public boolean isLoggable(LogRecord record) {
+            return record.getLoggerName().startsWith(packageName);
+        }
+    }
+
+    /**
+     * Command line options.
+     * @noinspection unused, FieldMayBeFinal, CanBeFinal,
+     *              MismatchedQueryAndUpdateOfCollection, LocalCanBeFinal
+     */
+    @Command(name = "checkstyle", description = "Checkstyle verifies that the specified "
+            + "source code files adhere to the specified rules. By default errors are "
+            + "reported to standard out in plain format. Checkstyle requires a configuration "
+            + "XML file that configures the checks to apply.",
+            mixinStandardHelpOptions = true)
     private static class CliOptions {
 
-        /** Properties file location. */
-        private String propertiesLocation;
-        /** Config file location. */
-        private String configLocation;
-        /** Output format. */
-        private String format;
-        /** Output file location. */
-        private String outputLocation;
+        /** Width of CLI help option. */
+        private static final int HELP_WIDTH = 100;
+
+        /** The default number of threads to use for checker and the tree walker. */
+        private static final int DEFAULT_THREAD_COUNT = 1;
+
+        /** Default distance between tab stops. */
+        private static final int DEFAULT_TAB_WIDTH = 8;
+
+        /** Name for the moduleConfig attribute 'tabWidth'. */
+        private static final String ATTRIB_TAB_WIDTH_NAME = "tabWidth";
+
+        /** Default output format. */
+        private static final OutputFormat DEFAULT_OUTPUT_FORMAT = OutputFormat.PLAIN;
+
+        /** Option name for output format. */
+        private static final String OUTPUT_FORMAT_OPTION = "-f";
+
         /** List of file to validate. */
-        private List<File> files;
-        /** Switch whether to execute ignored modules or not. */
-        private boolean executeIgnoredModules;
-        /** The checker threads number. */
-        private int checkerThreadsNumber;
-        /** The tree walker threads number. */
-        private int treeWalkerThreadsNumber;
+        @Parameters(arity = "1..*", description = "One or more source files to verify")
+        private final List<File> files = new ArrayList<>();
+
+        /** Config file location. */
+        @Option(names = "-c", description = "Sets the check configuration file to use.")
+        private String configurationFile;
+
+        /** Output file location. */
+        @Option(names = "-o", description = "Sets the output file. Defaults to stdout")
+        private Path outputPath;
+
+        /** Properties file location. */
+        @Option(names = "-p", description = "Loads the properties file")
+        private File propertiesFile;
+
         /** LineNo and columnNo for the suppression. */
+        @Option(names = "-s",
+                description = "Print xpath suppressions at the file's line and column position. "
+                        + "Argument is the line and column number (separated by a : ) in the file "
+                        + "that the suppression should be generated for")
         private String suppressionLineColumnNumber;
+
         /** Tab character length. */
-        private int tabWidth;
+        @Option(names = "--tabWidth", description = "Sets the length of the tab character. "
+                + "Used only with \"-s\" option. Default value is ${DEFAULT-VALUE}")
+        private int tabWidth = DEFAULT_TAB_WIDTH;
+
         /** Switch whether to generate suppressions file or not. */
+        @Option(names = {"-g", "--generate-xpath-suppression"},
+                description = "Generates to output a suppression.xml to use to suppress all"
+                        + " violations from user's config")
         private boolean generateXpathSuppressionsFile;
 
-    }
+        /** Output format. */
+        @Option(names = "-f", description = "Sets the output format. Valid values: "
+                + "${COMPLETION-CANDIDATES}. Defaults to ${DEFAULT-VALUE}")
+        private OutputFormat format = DEFAULT_OUTPUT_FORMAT;
 
+        /** Option that controls whether to print the AST of the file. */
+        @Option(names = {"-t", "--tree"},
+                description = "Print Abstract Syntax Tree(AST) of the file")
+        private boolean printAst;
+
+        /** Option that controls whether to print the AST of the file including comments. */
+        @Option(names = {"-T", "--treeWithComments"},
+                description = "Print Abstract Syntax Tree(AST) of the file including comments")
+        private boolean printAstWithComments;
+
+        /** Option that controls whether to print the parse tree of the javadoc comment. */
+        @Option(names = {"-j", "--javadocTree"},
+                description = "Print Parse tree of the Javadoc comment")
+        private boolean printJavadocTree;
+
+        /** Option that controls whether to print the full AST of the file. */
+        @Option(names = {"-J", "--treeWithJavadoc"},
+                description = "Print full Abstract Syntax Tree of the file")
+        private boolean printTreeWithJavadoc;
+
+        /** Option that controls whether to print debug info. */
+        @Option(names = {"-d", "--debug"},
+                description = "Print all debug logging of CheckStyle utility")
+        private boolean debug;
+
+        /** Option that allows users to specify a list of paths to exclude. */
+        @Option(names = {"-e", "--exclude"},
+                description = "Directory path to exclude from CheckStyle")
+        private List<File> exclude = new ArrayList<>();
+
+        /** Option that allows users to specify a regex of paths to exclude. */
+        @Option(names = {"-x", "--exclude-regexp"},
+                description = "Regular expression of directory to exclude from CheckStyle")
+        private List<Pattern> excludeRegex = new ArrayList<>();
+
+        /** Switch whether to execute ignored modules or not. */
+        @Option(names = "--executeIgnoredModules",
+                description = "Allows ignored modules to be run.")
+        private boolean executeIgnoredModules;
+
+        /** The checker threads number. */
+        @Option(names = {"-C", "--checker-threads-number"}, description = "(experimental) The "
+                + "number of Checker threads (must be greater than zero)")
+        private int checkerThreadsNumber = DEFAULT_THREAD_COUNT;
+
+        /** The tree walker threads number. */
+        @Option(names = {"-W", "--tree-walker-threads-number"}, description = "(experimental) The "
+                + "number of TreeWalker threads (must be greater than zero)")
+        private int treeWalkerThreadsNumber = DEFAULT_THREAD_COUNT;
+
+        /**
+         * Gets the list of exclusions provided through the command line arguments.
+         * @return List of exclusion patterns.
+         */
+        private List<Pattern> getExclusions() {
+            final List<Pattern> result = new ArrayList<>();
+            exclude.forEach(file -> result.add(
+                    Pattern.compile("^" + Pattern.quote(file.getAbsolutePath()) + "$")));
+            result.addAll(excludeRegex);
+            return result;
+        }
+
+        /**
+         * Validates the user-specified command line options.
+         * @param parseResult used to verify if the format option was specified on the command line
+         * @param filesToProcess the list of files whose style to check
+         * @return list of violations
+         */
+        // -@cs[CyclomaticComplexity] Breaking apart will damage encapsulation
+        private List<String> validateCli(ParseResult parseResult, List<File> filesToProcess) {
+            final List<String> result = new ArrayList<>();
+            final boolean hasConfigurationFile = configurationFile != null;
+            final boolean hasSuppressionLineColumnNumber = suppressionLineColumnNumber != null;
+
+            if (filesToProcess.isEmpty()) {
+                result.add("Files to process must be specified, found 0.");
+            }
+            // ensure there is no conflicting options
+            else if (printAst || printAstWithComments || printJavadocTree || printTreeWithJavadoc) {
+                if (suppressionLineColumnNumber != null || configurationFile != null
+                        || propertiesFile != null || outputPath != null
+                        || parseResult.hasMatchedOption(OUTPUT_FORMAT_OPTION)) {
+                    result.add("Option '-t' cannot be used with other options.");
+                }
+                else if (filesToProcess.size() > 1) {
+                    result.add("Printing AST is allowed for only one file.");
+                }
+            }
+            else if (hasSuppressionLineColumnNumber) {
+                if (configurationFile != null || propertiesFile != null
+                        || outputPath != null
+                        || parseResult.hasMatchedOption(OUTPUT_FORMAT_OPTION)) {
+                    result.add("Option '-s' cannot be used with other options.");
+                }
+                else if (filesToProcess.size() > 1) {
+                    result.add("Printing xpath suppressions is allowed for only one file.");
+                }
+            }
+            else if (hasConfigurationFile) {
+                try {
+                    // test location only
+                    CommonUtil.getUriByFilename(configurationFile);
+                }
+                catch (CheckstyleException ignored) {
+                    final String msg = "Could not find config XML file '%s'.";
+                    result.add(String.format(Locale.ROOT, msg, configurationFile));
+                }
+
+                // validate optional parameters
+                if (propertiesFile != null && !propertiesFile.exists()) {
+                    result.add(String.format(Locale.ROOT,
+                            "Could not find file '%s'.", propertiesFile));
+                }
+                if (checkerThreadsNumber < 1) {
+                    result.add("Checker threads number must be greater than zero");
+                }
+                if (treeWalkerThreadsNumber < 1) {
+                    result.add("TreeWalker threads number must be greater than zero");
+                }
+            }
+            else {
+                result.add("Must specify a config XML file.");
+            }
+
+            return result;
+        }
+    }
 }

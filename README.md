@@ -77,7 +77,7 @@ are in the file named "RIGHTS.antlr" in this directory.
 This product includes software developed by
 The Apache Software Foundation (http://www.apache.org/).
 
-The software uses the Cli, Logging and Beanutils packages from the
+The software uses the Logging and Beanutils packages from the
 Apache Commons project (http://commons.apache.org/). The license terms
 of these packages are in the file named "LICENSE.apache20" in this
 directory.
@@ -86,6 +86,10 @@ The software uses the Google Guava Libraries
 (https://github.com/google/guava/). The license terms of
 these packages are in the file named "LICENSE.apache20" in this
 directory.
+
+The software uses the Picocli Library
+(https://github.com/remkop/picocli/). Its license terms 
+are in the file named "LICENSE.apache20" in this directory.
 
 [travis]:https://travis-ci.org/checkstyle/checkstyle/builds
 [travis img]:https://travis-ci.org/checkstyle/checkstyle.svg

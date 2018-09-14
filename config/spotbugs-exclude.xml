@@ -108,6 +108,20 @@
         <Bug pattern="NP_NULL_PARAM_DEREF"/>
     </Match>
     <Match>
+        <!-- won't fix: field values are injected by picocli -->
+        <Or>
+            <Class name="com.puppycrawl.tools.checkstyle.Main"/>
+            <Class name="com.puppycrawl.tools.checkstyle.JavadocPropertiesGenerator"/>
+        </Or>
+        <Or>
+            <Bug pattern="NP_UNWRITTEN_FIELD"/>
+            <Bug pattern="UWF_UNWRITTEN_FIELD"/>
+            <Bug pattern="MS_SHOULD_BE_FINAL"/>
+            <Bug pattern="MS_SHOULD_BE_REFACTORED_TO_BE_FINAL"/>
+            <Bug pattern="SS_SHOULD_BE_STATIC"/>
+        </Or>
+    </Match>
+    <Match>
         <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/5403 -->
         <Class name="com.puppycrawl.tools.checkstyle.PackageNamesLoader"/>
         <Method name="processFile"/>

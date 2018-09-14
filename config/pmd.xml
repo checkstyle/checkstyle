@@ -36,7 +36,10 @@
   <rule ref="category/java/bestpractices.xml/SystemPrintln">
     <properties>
       <!-- it is ok to use println in CLI class. -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main']"/>
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration
+                       [@Image='Main' or @Image='Main$CliOptions'
+                       or @Image='JavadocPropertiesGenerator']"/>
     </properties>
   </rule>
 
@@ -310,8 +313,18 @@
   <rule ref="category/java/design.xml/TooManyFields">
     <properties>
       <!-- Unable to split fields out of the class. -->
+      <!-- Main has an annotated field for each command line option. This is by design. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='Checker']"/>
+                value="//ClassOrInterfaceDeclaration[@Image='Checker']
+    | //ClassOrInterfaceDeclaration[@Image='Main']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/design.xml/ImmutableField">
+    <properties>
+      <!-- Main has annotated fields whose value is injected by picocli.
+        These fields should not be marked final. -->
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@Image='Main']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/TooManyMethods">
