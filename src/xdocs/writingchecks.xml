@@ -608,13 +608,13 @@ public class MethodLimitCheck extends AbstractCheck
       <p>For Linux/Unix OS:</p>
       <source class="wrap-content">
 java -classpath mycompanychecks.jar:checkstyle-${projectVersion}-all.jar \
-    com.puppycrawl.tools.checkstyle.Main-c config.xml myproject
+    com.puppycrawl.tools.checkstyle.Main -c config.xml myproject
       </source>
 
       <p>For Windows OS:</p>
       <source class="wrap-content">
 java -classpath mycompanychecks.jar;checkstyle-${projectVersion}-all.jar ^
-    com.puppycrawl.tools.checkstyle.Main-c config.xml myproject
+    com.puppycrawl.tools.checkstyle.Main -c config.xml myproject
       </source>
 
       <p>

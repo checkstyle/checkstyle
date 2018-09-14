@@ -39,9 +39,9 @@ java -D&lt;property&gt;=&lt;value&gt;  \
      com.puppycrawl.tools.checkstyle.Main \
      -c &lt;configurationFile&gt; \
      [-f &lt;format&gt;] [-p &lt;propertiesFile&gt;] [-o &lt;file&gt;] \
-     [-s &lt;line:column&gt;] [-gxs | --generate-xpath-suppression] [-tabWidth &lt;length&gt;] \
-     [-t | --tree] [-T | --treeWithComments] [-J | treeWithJavadoc] [-j | --javadocTree] [-v] \
-     file...
+     [-s &lt;line:column&gt;] [-g | --generate-xpath-suppression] [--tabWidth &lt;length&gt;] \
+     [-t | --tree] [-T | --treeWithComments] [-J | treeWithJavadoc] [-j | --javadocTree] \
+     [-V | --version] [-h | --help] file...
       </source>
       </p>
 
@@ -90,13 +90,13 @@ java -D&lt;property&gt;=&lt;value&gt;  \
           also ok, but might result in undesirable matching and suppress other issues.
         </li>
         <li>
-          <code>-gxs,--generate-xpath-suppression</code> - generate to output a suppression.xml to
+          <code>-g,--generate-xpath-suppression</code> - generate to output a suppression.xml to
           use to suppress all violations from user's config. Instead of printing every violation,
           all errors will be catched and single suppressions.xml file will be printed out. Used only
           with <code>-c</code> option.
         </li>
         <li>
-          <code>-tabWidth length</code> - set the length of the tab character. Used only with
+          <code>--tabWidth length</code> - set the length of the tab character. Used only with
           <code>-s</code> and <code>-gxs</code> options. Default value is 8.
         </li>
         <li>
@@ -143,10 +143,13 @@ java -D&lt;property&gt;=&lt;value&gt;  \
           exclude from CheckStyle. Multiple excludes are allowed.
         </li>
         <li>
-          <code>-v</code> - print product version and exit. Any other option is ignored.
+          <code>-V, --version</code> - print product version and exit. Any other option is ignored.
         </li>
         <li>
-          <code>-executeIgnoredModules</code> - Allows ignored modules to be run.
+          <code>-h, --help</code> - print usage help message and exit. Any other option is ignored.
+        </li>
+        <li>
+          <code>--executeIgnoredModules</code> - Allows ignored modules to be run.
         </li>
       </ul>
 

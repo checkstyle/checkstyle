@@ -27,19 +27,18 @@ import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
-
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import picocli.CommandLine;
+import picocli.CommandLine.Command;
+import picocli.CommandLine.Option;
+import picocli.CommandLine.ParameterException;
+import picocli.CommandLine.Parameters;
+import picocli.CommandLine.ParseResult;
 
 /**
  * This class is used internally in the build process to write a property file
@@ -48,18 +47,9 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * For IDE plugins (like the eclipse plugin) it would be useful to have
  * a programmatic access to the first sentence of the TokenType constants,
  * so they can use them in their configuration gui.
+ * @noinspection UseOfSystemOutOrSystemErr, unused, ClassIndependentOfModule
  */
 public final class JavadocPropertiesGenerator {
-
-    /**
-     * The command line option to specify the output file.
-     */
-    private static final String OPTION_DEST_FILE = "destfile";
-
-    /**
-     * The width of the CLI help option.
-     */
-    private static final int HELP_WIDTH = 100;
 
     /**
      * This regexp is used to extract the first sentence from the text.
@@ -67,6 +57,9 @@ public final class JavadocPropertiesGenerator {
      * "question mark", followed by a space or the end of the text.
      */
     private static final Pattern END_OF_SENTENCE_PATTERN = Pattern.compile("(.*?[.?!])(\\s|$)");
+
+    /** Max width of the usage help message for this command. */
+    private static final int USAGE_HELP_WIDTH = 100;
 
     /**
      * Don't create instance of this class, use the {@link #main(String[])} method instead.
@@ -78,39 +71,43 @@ public final class JavadocPropertiesGenerator {
      * TokenTypes.properties generator entry point.
      * @param args the command line arguments
      * @throws CheckstyleException if parser or lexer failed or if there is an IO problem
-     * @throws ParseException if the command line can not be passed
      **/
-    public static void main(String... args)
-            throws CheckstyleException, ParseException {
-        final CommandLine commandLine = parseCli(args);
-        if (commandLine.getArgList().size() == 1) {
-            final File inputFile = new File(commandLine.getArgList().get(0));
-            final File outputFile = new File(commandLine.getOptionValue(OPTION_DEST_FILE));
-            writePropertiesFile(inputFile, outputFile);
+    public static void main(String... args) throws CheckstyleException {
+        final CliOptions cliOptions = new CliOptions();
+        final CommandLine cmd = new CommandLine(cliOptions).setUsageHelpWidth(USAGE_HELP_WIDTH);
+        try {
+            final ParseResult parseResult = cmd.parseArgs(args);
+            if (parseResult.isUsageHelpRequested()) {
+                cmd.usage(System.out);
+            }
+            else {
+                writePropertiesFile(cliOptions);
+            }
         }
-        else {
-            printUsage();
+        catch (ParameterException ex) {
+            System.err.println(ex.getMessage());
+            ex.getCommandLine().usage(System.err);
         }
     }
 
     /**
      * Creates the .properties file from a .java file.
-     * @param inputFile .java file
-     * @param outputFile .properties file
+     * @param options the user-specified options
      * @throws CheckstyleException if a javadoc comment can not be parsed
      */
-    private static void writePropertiesFile(File inputFile, File outputFile)
-            throws CheckstyleException {
-        try (PrintWriter writer = new PrintWriter(outputFile, StandardCharsets.UTF_8.name())) {
-            final DetailAST top = JavaParser.parseFile(inputFile, JavaParser.Options.WITH_COMMENTS);
+    private static void writePropertiesFile(CliOptions options) throws CheckstyleException {
+        try (PrintWriter writer = new PrintWriter(options.outputFile,
+                StandardCharsets.UTF_8.name())) {
+            final DetailAST top = JavaParser.parseFile(options.inputFile,
+                    JavaParser.Options.WITH_COMMENTS);
             final DetailAST objBlock = getClassBody(top);
             if (objBlock != null) {
                 iteratePublicStaticIntFields(objBlock, writer::println);
             }
         }
         catch (IOException ex) {
-            throw new CheckstyleException("Failed to write javadoc properties of '" + inputFile
-                + "' to '" + outputFile + "'", ex);
+            throw new CheckstyleException("Failed to write javadoc properties of '"
+                    + options.inputFile + "' to '" + options.outputFile + "'", ex);
         }
     }
 
@@ -304,35 +301,22 @@ public final class JavadocPropertiesGenerator {
     }
 
     /**
-     *  Prints the usage information.
+     * Helper class encapsulating the command line options and positional parameters.
      */
-    private static void printUsage() {
-        final HelpFormatter formatter = new HelpFormatter();
-        formatter.setWidth(HELP_WIDTH);
-        formatter.printHelp(String.format("java %s [options] <input file>.",
-            JavadocPropertiesGenerator.class.getName()), buildOptions());
-    }
+    @Command(name = "java com.puppycrawl.tools.checkstyle.JavadocPropertiesGenerator",
+            mixinStandardHelpOptions = true)
+    private static class CliOptions {
 
-    /**
-     * Parses command line based on passed arguments.
-     * @param args command line arguments
-     * @return parsed information about passed arguments
-     * @throws ParseException when passed arguments are not valid
-     */
-    private static CommandLine parseCli(String... args)
-            throws ParseException {
-        final CommandLineParser clp = new DefaultParser();
-        return clp.parse(buildOptions(), args);
-    }
+        /**
+         * The command line option to specify the output file.
+         */
+        @Option(names = "--destfile", required = true, description = "The output file.")
+        private File outputFile;
 
-    /**
-     * Builds and returns the list of supported parameters.
-     * @return available options
-     */
-    private static Options buildOptions() {
-        final Options options = new Options();
-        options.addRequiredOption(null, OPTION_DEST_FILE, true, "The output file.");
-        return options;
+        /**
+         * The command line positional parameter to specify the input file.
+         */
+        @Parameters(index = "0", description = "The input file.")
+        private File inputFile;
     }
-
 }

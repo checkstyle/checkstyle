@@ -29,7 +29,7 @@
   <allow class="java.security.NoSuchAlgorithmException" local-only="true"/>
   <allow pkg="com.puppycrawl.tools.checkstyle.utils" local-only="true"/>
   <allow pkg="com.puppycrawl.tools.checkstyle.grammar" local-only="true"/>
-  <allow pkg="org.apache.commons.cli" local-only="true"/>
+  <allow pkg="picocli" local-only="true"/>
   <allow pkg="org.antlr.v4.runtime" local-only="true"/>
   <allow class="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.+"
           local-only="true" regex="true"/>
