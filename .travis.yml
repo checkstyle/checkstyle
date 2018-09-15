@@ -13,10 +13,6 @@ addons:
       - xmlstarlet
       - oracle-java8-installer
 
-branches:
-  only:
-    - master
-
 install:
   -
 
@@ -208,6 +204,11 @@ matrix:
     - env:
         - DESC="spell checker"
         - CMD="./.ci/test-spelling-unknown-words.sh"
+        - SKIP_CI="false"
+
+    - env:
+        - DESC="Test the build command"
+        - CMD="mvn install"
         - SKIP_CI="false"
 
 script:
