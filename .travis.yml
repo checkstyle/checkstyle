@@ -13,10 +13,6 @@ addons:
       - xmlstarlet
       - oracle-java8-installer
 
-branches:
-  only:
-    - master
-
 install:
   -
 
