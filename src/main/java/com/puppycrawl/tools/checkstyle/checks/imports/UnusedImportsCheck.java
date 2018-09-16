@@ -108,8 +108,7 @@ public class UnusedImportsCheck extends AbstractCheck {
         // loop over all the imports to see if referenced.
         imports.stream()
             .filter(imprt -> isUnusedImport(imprt.getText()))
-            .forEach(imprt -> log(imprt.getLineNo(),
-                imprt.getColumnNo(),
+            .forEach(imprt -> log(imprt.getDetailAst(),
                 MSG_KEY, imprt.getText()));
     }
 

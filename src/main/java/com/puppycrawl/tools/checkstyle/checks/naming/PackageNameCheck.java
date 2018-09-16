@@ -109,8 +109,7 @@ public class PackageNameCheck
         final DetailAST nameAST = ast.getLastChild().getPreviousSibling();
         final FullIdent full = FullIdent.createFullIdent(nameAST);
         if (!format.matcher(full.getText()).find()) {
-            log(full.getLineNo(),
-                full.getColumnNo(),
+            log(full.getDetailAst(),
                 MSG_KEY,
                 full.getText(),
                 format.pattern());

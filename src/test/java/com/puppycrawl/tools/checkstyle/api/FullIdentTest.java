@@ -48,6 +48,17 @@ public class FullIdentTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testGetDetailAst() throws Exception {
+        final FileText testFileText = new FileText(
+                new File(getPath("InputFullIdentTestArrayType.java")).getAbsoluteFile(),
+                System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
+        final DetailAST packageDefinitionNode = JavaParser.parse(new FileContents(testFileText));
+        final DetailAST packageName = packageDefinitionNode.getFirstChild().getNextSibling();
+        final FullIdent ident = FullIdent.createFullIdent(packageName);
+        Assert.assertEquals("Invalid full indent", "com[1x8]", ident.getDetailAst().toString());
+    }
+
+    @Test
     public void testNonValidCoordinatesWithNegative() {
         final FullIdent fullIdent = prepareFullIdentWithCoordinates(14, 15);
         Assert.assertEquals("Invalid full indent", "MyTest.MyTestik[15x14]", fullIdent.toString());

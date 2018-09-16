@@ -40,10 +40,8 @@ public final class FullIdent {
 
     /** The list holding subsequent elements of identifier. **/
     private final List<String> elements = new ArrayList<>();
-    /** The line number. **/
-    private int lineNo;
-    /** The column number. **/
-    private int columnNo;
+    /** The topmost and leftmost AST of the full identifier. */
+    private DetailAST detailAst;
 
     /** Hide default constructor. */
     private FullIdent() {
@@ -78,11 +76,19 @@ public final class FullIdent {
     }
 
     /**
+     * Gets the topmost leftmost DetailAST for this FullIdent.
+     * @return the topmost leftmost ast
+     */
+    public DetailAST getDetailAst() {
+        return detailAst;
+    }
+
+    /**
      * Gets the line number.
      * @return the line number
      */
     public int getLineNo() {
-        return lineNo;
+        return detailAst.getLineNo();
     }
 
     /**
@@ -90,12 +96,13 @@ public final class FullIdent {
      * @return the column number
      */
     public int getColumnNo() {
-        return columnNo;
+        return detailAst.getColumnNo();
     }
 
     @Override
     public String toString() {
-        return String.join("", elements) + "[" + lineNo + "x" + columnNo + "]";
+        return String.join("", elements)
+            + "[" + detailAst.getLineNo() + "x" + detailAst.getColumnNo() + "]";
     }
 
     /**
@@ -137,17 +144,8 @@ public final class FullIdent {
      */
     private void append(DetailAST ast) {
         elements.add(ast.getText());
-        if (lineNo == 0) {
-            lineNo = ast.getLineNo();
-        }
-        else if (ast.getLineNo() > 0) {
-            lineNo = Math.min(lineNo, ast.getLineNo());
-        }
-        if (columnNo == 0) {
-            columnNo = ast.getColumnNo();
-        }
-        else if (ast.getColumnNo() > 0) {
-            columnNo = Math.min(columnNo, ast.getColumnNo());
+        if (detailAst == null) {
+            detailAst = ast;
         }
     }
 

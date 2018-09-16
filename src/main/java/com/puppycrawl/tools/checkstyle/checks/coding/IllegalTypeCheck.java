@@ -327,8 +327,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
         final FullIdent ident = FullIdent.createFullIdent(type.getFirstChild());
 
         if (isMatchingClassName(ident.getText())) {
-            log(ident.getLineNo(), ident.getColumnNo(),
-                MSG_KEY, ident.getText());
+            log(ident.getDetailAst(), MSG_KEY, ident.getText());
         }
     }
 
