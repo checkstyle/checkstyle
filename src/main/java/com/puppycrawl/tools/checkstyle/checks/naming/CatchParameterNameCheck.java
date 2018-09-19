@@ -56,12 +56,31 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * An example of how to configure the check for names that begin with a lower case letter,
  * followed by any letters or digits is:
  * </p>
+ * <p>Configuration:</p>
  * <pre>
  * &lt;module name="CatchParameterName"&gt;
  *   &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
  * &lt;/module&gt;
  * </pre>
- *
+ * <p>Example:</p>
+ * <pre>
+ * public class MyTest {
+ *   public void myTest() {
+ *     try {
+ *       // ...
+ *     } catch (ArithmeticException ex) { //OK
+ *       // ...
+ *     } catch (ArrayIndexOutOfBoundsException ex2) { //OK
+ *       // ...
+ *     } catch (IOException thirdException) { //OK
+ *       // ...
+ *     } catch (Exception FourthException) { // violation, the initial letter
+ *                                           // should be lowercase
+ *       // ...
+ *     }
+ *   }
+ * }
+ * </pre>
  * @since 6.14
  */
 public class CatchParameterNameCheck extends AbstractNameCheck {

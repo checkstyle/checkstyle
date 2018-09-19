@@ -376,11 +376,31 @@ class AbstractThirdClass {} // OK, no "abstract" modifier
           An example of how to configure the check for names that begin with
           a lower case letter, followed by any letters or digits is:
         </p>
+        <p>Configuration:</p>
         <source>
 &lt;module name="CatchParameterName"&gt;
   &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example:</p>
+        <pre>
+public class MyTest {
+  public void myTest() {
+    try {
+      // ...
+    } catch (ArithmeticException ex) { //OK
+      // ...
+    } catch (ArrayIndexOutOfBoundsException ex2) { //OK
+      // ...
+    } catch (IOException thirdException) { //OK
+      // ...
+    } catch (Exception FourthException) { // violation, the initial letter
+                                          // should be lowercase
+      // ...
+    }
+  }
+}
+        </pre>
       </subsection>
 
       <subsection name="Example of Usage" id="CatchParameterName_Example_of_Usage">
