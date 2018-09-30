@@ -107,7 +107,6 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "38: " + getWarningMessage("marazmaticMETHODName", expectedCapitalCount),
             "39: " + getWarningMessage("marazmaticVARIABLEName", expectedCapitalCount),
             "40: " + getWarningMessage("MARAZMATICVariableName", expectedCapitalCount),
-            "58: " + getWarningMessage("serialNUMBER", expectedCapitalCount),
         };
 
         verify(checkConfig, getPath("InputAbbreviationAsWordInNameType.java"), expected);
@@ -212,9 +211,6 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "32: " + getWarningMessage("AbstractINNERRClass", expectedCapitalCount),
             "37: " + getWarningMessage("WellNamedFACTORY", expectedCapitalCount),
             "38: " + getWarningMessage("marazmaticMETHODName", expectedCapitalCount),
-            "58: " + getWarningMessage("serialNUMBER", expectedCapitalCount), // not in ignore list
-            "59: "
-                + getWarningMessage("s1erialNUMBER", expectedCapitalCount), // no ignore for final
         };
 
         verify(checkConfig, getPath("InputAbbreviationAsWordInNameType.java"), expected);
