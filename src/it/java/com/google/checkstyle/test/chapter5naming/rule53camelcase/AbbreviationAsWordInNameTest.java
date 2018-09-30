@@ -42,13 +42,10 @@ public class AbbreviationAsWordInNameTest extends AbstractModuleTestSupport {
         final int maxCapitalCount = 2;
 
         final String[] expected = {
-            "50: " + getWarningMessage("newCustomerID", maxCapitalCount),
             "52: " + getWarningMessage("supportsIPv6OnIOS", maxCapitalCount),
             "54: " + getWarningMessage("XMLHTTPRequest", maxCapitalCount),
-            "58: " + getWarningMessage("newCustomerID", maxCapitalCount),
             "60: " + getWarningMessage("supportsIPv6OnIOS", maxCapitalCount),
             "62: " + getWarningMessage("XMLHTTPRequest", maxCapitalCount),
-            "67: " + getWarningMessage("newCustomerID", maxCapitalCount),
             "69: " + getWarningMessage("supportsIPv6OnIOS", maxCapitalCount),
             "71: " + getWarningMessage("XMLHTTPRequest", maxCapitalCount),
         };

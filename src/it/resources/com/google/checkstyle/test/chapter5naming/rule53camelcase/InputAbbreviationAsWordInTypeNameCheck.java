@@ -47,7 +47,7 @@ class AbbreviationsCorrect {
 
 class AbbreviationsIncorrect {
     
-    int newCustomerID; //warn
+    int newCustomerID;
     
     boolean supportsIPv6OnIOS; //warn
     
@@ -55,7 +55,7 @@ class AbbreviationsIncorrect {
     
     class InnerBad {
         
-        int newCustomerID; //warn
+        int newCustomerID;
         
         boolean supportsIPv6OnIOS; //warn
         
@@ -64,7 +64,7 @@ class AbbreviationsIncorrect {
     
         AbbreviationsCorrect anonymousBad = new AbbreviationsCorrect() {
         
-            int newCustomerID; //warn
+            int newCustomerID;
             
             boolean supportsIPv6OnIOS; //warn
             

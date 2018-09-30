@@ -344,7 +344,6 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
                 abbrStarted = false;
 
                 final int endIndex = index - 1;
-                // -1 as a first capital is usually beginning of next word
                 result = getAbbreviationIfIllegal(str, beginIndex, endIndex);
                 if (result != null) {
                     break;
@@ -352,29 +351,59 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
                 beginIndex = -1;
             }
         }
-        // if abbreviation at the end of name and it is not single character (example: scaleX)
-        if (abbrStarted && beginIndex != str.length() - 1) {
-            final int endIndex = str.length();
+        // if abbreviation at the end of name (example: scaleX)
+        if (abbrStarted) {
+            final int endIndex = str.length() - 1;
             result = getAbbreviationIfIllegal(str, beginIndex, endIndex);
         }
         return result;
     }
 
     /**
-     * Get Abbreviation if it is illegal.
+     * Get Abbreviation if it is illegal, where {@code beginIndex} and {@code endIndex} are
+     * inclusive indexes of a sequence of consecutive upper-case characters.
      * @param str name
      * @param beginIndex begin index
      * @param endIndex end index
-     * @return true is abbreviation is bigger that required and not in ignore list
+     * @return the abbreviation if it is bigger than required and not in the
+     *         ignore list, otherwise {@code null}
      */
     private String getAbbreviationIfIllegal(String str, int beginIndex, int endIndex) {
         String result = null;
         final int abbrLength = endIndex - beginIndex;
         if (abbrLength > allowedAbbreviationLength) {
-            final String abbr = str.substring(beginIndex, endIndex);
+            final String abbr = getAbbreviation(str, beginIndex, endIndex);
             if (!allowedAbbreviations.contains(abbr)) {
                 result = abbr;
             }
+        }
+        return result;
+    }
+
+    /**
+     * Gets the abbreviation, where {@code beginIndex} and {@code endIndex} are
+     * inclusive indexes of a sequence of consecutive upper-case characters.
+     * <p>
+     * The character at {@code endIndex} is only included in the abbreviation if
+     * it is the last character in the string; otherwise it is usually the first
+     * capital in the next word.
+     * </p>
+     * <p>
+     * For example, {@code getAbbreviation("getXMLParser", 3, 6)} returns "XML"
+     * (not "XMLP"), and so does {@code getAbbreviation("parseXML", 5, 7)}.
+     * </p>
+     * @param str name
+     * @param beginIndex begin index
+     * @param endIndex end index
+     * @return the specified abbreviation
+     */
+    private static String getAbbreviation(String str, int beginIndex, int endIndex) {
+        final String result;
+        if (endIndex == str.length() - 1) {
+            result = str.substring(beginIndex);
+        }
+        else {
+            result = str.substring(beginIndex, endIndex);
         }
         return result;
     }
