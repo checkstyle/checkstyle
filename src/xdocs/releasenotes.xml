@@ -15,6 +15,57 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <div class="releaseDate">04.10.2018</div>
+    <section name="Release 8.13">
+      <p>New:</p>
+        <ul>
+          <li>
+            ClassFanOutComplexity: count complexity base
+annotations/extends/implements/methods params.
+            Author: kazachka
+            <a href="https://github.com/checkstyle/checkstyle/issues/4092">#4092</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Code samples for Naming Checks.
+            Author: jack870131
+            <a href="https://github.com/checkstyle/checkstyle/issues/5832">#5832</a>
+          </li>
+          <li>
+            exception in build log from spotbugs.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6098">#6098</a>
+          </li>
+          <li>
+            Line numbers should start at 1.
+            Author: Boxuan Li
+            <a href="https://github.com/checkstyle/checkstyle/issues/6000">#6000</a>
+          </li>
+          <li>
+            Align XDocs and Javadocs.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/5750">#5750</a>
+          </li>
+          <li>
+            CircleCI is failing due to missed checkout content.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6093">#6093</a>
+          </li>
+          <li>
+            Upgrade to PMD 6.6.0.
+            Author: Pavel Bludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/5790">#5790</a>
+          </li>
+          <li>
+            Unstable build due to not accesible decoration-1.0.0.xsd.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6077">#6077</a>
+          </li>
+        </ul>
+    </section>
+
     <div class="releaseDate">11.08.2018</div>
     <section name="Release 8.12">
       <p>New:</p>
