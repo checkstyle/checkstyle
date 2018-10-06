@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Checks for imports from a set of illegal packages.
  * By default, the check rejects all {@code sun.*} packages
  * since programs that contain direct calls to the {@code sun.*} packages
- * are <a href="http://www.oracle.com/technetwork/java/faq-sun-packages-142232.html">
+ * are <a href="https://www.oracle.com/technetwork/java/faq-sun-packages-142232.html">
  * not 100% Pure Java</a>.
  * </p>
  * <p>
