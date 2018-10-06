@@ -1719,7 +1719,7 @@ public boolean isSomething()
         <p>Since Checkstyle 6.0</p>
         <p>
           Checks that <a
-          href="http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html#firstsentence">
+          href="https://www.oracle.com/technetwork/java/javase/documentation/index-137868.html#firstsentence">
           Javadoc summary sentence</a> does not contain phrases that are not recommended to use.
           Summaries that contain only the <code>{@inheritDoc}</code> tag are skipped. Check also
           violate javadoc that does not contain first sentence.

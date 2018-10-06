@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 /**
  * <p>
  * Checks that <a href=
- * "http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html#firstsentence">
+ * "https://www.oracle.com/technetwork/java/javase/documentation/index-137868.html#firstsentence">
  * Javadoc summary sentence</a> does not contain phrases that are not recommended to use.
  * Check also violate javadoc that does not contain first sentence.
  * By default Check validate that first sentence is not empty:</p><br>

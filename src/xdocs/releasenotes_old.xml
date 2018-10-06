@@ -809,7 +809,7 @@
         <li>
           <i>Retired</i> the J2EE Checks. If you are using Java 5, then you
           really should be using
-          <a href="http://www.oracle.com/technetwork/java/javaee/overview/index.html">Java EE</a>. If you need
+          <a href="https://www.oracle.com/technetwork/java/javaee/overview/index.html">Java EE</a>. If you need
           these checks, then use a Checkstyle 4.x release.
         </li>
         <li>

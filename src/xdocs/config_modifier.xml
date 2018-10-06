@@ -320,7 +320,7 @@ public interface RoadFeature {
 
         <p>
           ATTENTION: We skip
-          <a href="http://www.oracle.com/technetwork/articles/java/ma14-architect-annotations-2177655.html">
+          <a href="https://www.oracle.com/technetwork/articles/java/ma14-architect-annotations-2177655.html">
           type annotations</a> from validation.
         </p>
 
