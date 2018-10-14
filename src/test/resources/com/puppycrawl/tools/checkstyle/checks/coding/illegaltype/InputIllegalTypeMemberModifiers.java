@@ -32,4 +32,7 @@ public class InputIllegalTypeMemberModifiers {
     //WARNING if memberModifiers is set and contains TokenTypes.LITERAL_PROTECTED
     protected AbstractClass a1 = null;
     public AbstractClass a2 = null;
+
+    //NO WARNING if memberModifiers is set and does not contain TokenTypes.LITERAL_PUBLIC
+    public void table5(java.util.TreeSet<Object> arg) { }
 }

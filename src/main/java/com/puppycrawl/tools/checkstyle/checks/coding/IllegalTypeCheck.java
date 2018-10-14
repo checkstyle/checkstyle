@@ -269,7 +269,8 @@ public final class IllegalTypeCheck extends AbstractCheck {
         final DetailAST grandParentAST = parameterDef.getParent().getParent();
 
         if (grandParentAST.getType() == TokenTypes.METHOD_DEF
-            && isCheckedMethod(grandParentAST)) {
+            && isCheckedMethod(grandParentAST)
+            && isVerifiable(grandParentAST)) {
             checkClassName(parameterDef);
         }
     }
