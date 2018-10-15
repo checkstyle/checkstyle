@@ -44,6 +44,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
         checkConfig.addAttribute("validateAbstractClassNames", "true");
         final String[] expected = {
+            "10:38: " + getCheckMessage(MSG_KEY, "AbstractClass"),
             "27:5: " + getCheckMessage(MSG_KEY, "AbstractClass"),
             "29:37: " + getCheckMessage(MSG_KEY, "AbstractClass"),
             "33:12: " + getCheckMessage(MSG_KEY, "AbstractClass"),
@@ -140,6 +141,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "List, InputIllegalTypeGregorianCalendar, java.io.File, ArrayList, Boolean");
         final String[] expected = {
             "10:5: " + getCheckMessage(MSG_KEY, "InputIllegalTypeGregorianCalendar"),
+            "14:43: " + getCheckMessage(MSG_KEY, "InputIllegalTypeGregorianCalendar"),
             "16:23: " + getCheckMessage(MSG_KEY, "InputIllegalTypeGregorianCalendar"),
             "24:9: " + getCheckMessage(MSG_KEY, "List"),
             "25:9: " + getCheckMessage(MSG_KEY, "java.io.File"),
@@ -199,10 +201,32 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "32:60: " + getCheckMessage(MSG_KEY, "Boolean"),
             "34:26: " + getCheckMessage(MSG_KEY, "Foo"),
             "34:30: " + getCheckMessage(MSG_KEY, "Boolean"),
-            "44:20: " + getCheckMessage(MSG_KEY, "Boolean"),
-            "57:28: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "38:26: " + getCheckMessage(MSG_KEY, "Foo"),
+            "38:38: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "47:20: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "60:28: " + getCheckMessage(MSG_KEY, "Boolean"),
         };
         verify(checkConfig, getPath("InputIllegalTypeGenerics.java"), expected);
+    }
+
+    @Test
+    public void testExtendsImplements() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
+        checkConfig.addAttribute("illegalClassNames",
+                "Boolean, Foo, Hashtable, Serializable");
+        checkConfig.addAttribute("memberModifiers", "LITERAL_PUBLIC");
+        final String[] expected = {
+            "16:17: " + getCheckMessage(MSG_KEY, "Hashtable"),
+            "17:14: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "22:23: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "24:13: " + getCheckMessage(MSG_KEY, "Serializable"),
+            "26:24: " + getCheckMessage(MSG_KEY, "Foo"),
+            "27:27: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "30:32: " + getCheckMessage(MSG_KEY, "Foo"),
+            "31:28: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "32:13: " + getCheckMessage(MSG_KEY, "Serializable"),
+        };
+        verify(checkConfig, getPath("InputIllegalTypeExtendsImplements.java"), expected);
     }
 
     @Test
@@ -283,7 +307,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
         final IllegalTypeCheck check = new IllegalTypeCheck();
 
         final DetailAST classDefAst = new DetailAST();
-        classDefAst.setType(TokenTypes.CLASS_DEF);
+        classDefAst.setType(TokenTypes.DOT);
 
         try {
             check.visitToken(classDefAst);

@@ -168,7 +168,9 @@ public final class IllegalTypeCheck extends AbstractCheck {
     public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.ANNOTATION_FIELD_DEF,
+            TokenTypes.CLASS_DEF,
             TokenTypes.IMPORT,
+            TokenTypes.INTERFACE_DEF,
             TokenTypes.METHOD_CALL,
             TokenTypes.METHOD_DEF,
             TokenTypes.METHOD_REF,
@@ -196,6 +198,10 @@ public final class IllegalTypeCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
+            case TokenTypes.CLASS_DEF:
+            case TokenTypes.INTERFACE_DEF:
+                visitTypeDef(ast);
+                break;
             case TokenTypes.METHOD_CALL:
             case TokenTypes.METHOD_REF:
                 visitMethodCallOrRef(ast);
@@ -253,6 +259,24 @@ public final class IllegalTypeCheck extends AbstractCheck {
             }
         }
         return result;
+    }
+
+    /**
+     * Checks the super type and implemented interfaces of a given type.
+     * @param typeDef class or interface for check.
+     */
+    private void visitTypeDef(DetailAST typeDef) {
+        if (isVerifiable(typeDef)) {
+            checkTypeParameters(typeDef);
+            final DetailAST extendsClause = typeDef.findFirstToken(TokenTypes.EXTENDS_CLAUSE);
+            if (extendsClause != null) {
+                checkBaseTypes(extendsClause);
+            }
+            final DetailAST implementsClause = typeDef.findFirstToken(TokenTypes.IMPLEMENTS_CLAUSE);
+            if (implementsClause != null) {
+                checkBaseTypes(implementsClause);
+            }
+        }
     }
 
     /**
@@ -348,9 +372,27 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * @param type node to check.
      */
     private void checkIdent(DetailAST type) {
-        final FullIdent ident = FullIdent.createFullIdentBelow(type);
+        final FullIdent ident = FullIdent.createFullIdent(type);
         if (isMatchingClassName(ident.getText())) {
             log(ident.getDetailAst(), MSG_KEY, ident.getText());
+        }
+    }
+
+    /**
+     * Checks the {@code extends} or {@code implements} statement.
+     * @param clause DetailAST for either {@link TokenTypes#EXTENDS_CLAUSE} or
+     *               {@link TokenTypes#IMPLEMENTS_CLAUSE}
+     */
+    private void checkBaseTypes(DetailAST clause) {
+        DetailAST child = clause.getFirstChild();
+        while (child != null) {
+            if (child.getType() == TokenTypes.IDENT) {
+                checkIdent(child);
+            }
+            else if (child.getType() == TokenTypes.TYPE_ARGUMENTS) {
+                TokenUtil.forEachChild(child, TokenTypes.TYPE_ARGUMENT, this::checkType);
+            }
+            child = child.getNextSibling();
         }
     }
 
@@ -359,7 +401,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * @param type node to check.
      */
     private void checkType(DetailAST type) {
-        checkIdent(type);
+        checkIdent(type.getFirstChild());
         checkTypeArguments(type);
         checkTypeBounds(type);
     }
@@ -386,16 +428,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
     private void checkTypeParameters(final DetailAST node) {
         final DetailAST typeParameters = node.findFirstToken(TokenTypes.TYPE_PARAMETERS);
         if (typeParameters != null) {
-            final DetailAST typeParameter =
-                    typeParameters.findFirstToken(TokenTypes.TYPE_PARAMETER);
-            checkType(typeParameter);
-            DetailAST sibling = typeParameter.getNextSibling();
-            while (sibling != null) {
-                if (sibling.getType() == TokenTypes.TYPE_PARAMETER) {
-                    checkType(sibling);
-                }
-                sibling = sibling.getNextSibling();
-            }
+            TokenUtil.forEachChild(typeParameters, TokenTypes.TYPE_PARAMETER, this::checkType);
         }
     }
 
@@ -410,15 +443,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
         }
 
         if (typeArguments != null) {
-            final DetailAST typeArgument = typeArguments.findFirstToken(TokenTypes.TYPE_ARGUMENT);
-            checkType(typeArgument);
-            DetailAST sibling = typeArgument.getNextSibling();
-            while (sibling != null) {
-                if (sibling.getType() == TokenTypes.TYPE_ARGUMENT) {
-                    checkType(sibling);
-                }
-                sibling = sibling.getNextSibling();
-            }
+            TokenUtil.forEachChild(typeArguments, TokenTypes.TYPE_ARGUMENT, this::checkType);
         }
     }
 
