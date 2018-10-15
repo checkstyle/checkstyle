@@ -41,6 +41,9 @@ public abstract class InputIllegalTypeGenerics {
 
 class Bounded {
 
+    public boolean match = new TreeSet<Integer>().stream()
+            .allMatch(new TreeSet<>()::add); // OK
+
     public static <Boolean> void foo() {} // warn
 
 }

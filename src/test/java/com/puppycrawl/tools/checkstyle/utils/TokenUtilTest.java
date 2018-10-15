@@ -27,7 +27,9 @@ import static org.junit.Assert.fail;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.TreeMap;
@@ -275,6 +277,27 @@ public class TokenUtilTest {
             ast -> "second".equals(ast.getText()));
 
         assertEquals("Invalid second sibling", secondSibling, result.get());
+    }
+
+    @Test
+    public void testForEachChild() {
+        final DetailAST astForTest = new DetailAST();
+        final DetailAST child = new DetailAST();
+        final DetailAST firstSibling = new DetailAST();
+        final DetailAST secondSibling = new DetailAST();
+        final DetailAST thirdSibling = new DetailAST();
+        firstSibling.setType(TokenTypes.DOT);
+        secondSibling.setType(TokenTypes.CLASS_DEF);
+        thirdSibling.setType(TokenTypes.IDENT);
+        secondSibling.setNextSibling(thirdSibling);
+        firstSibling.setNextSibling(secondSibling);
+        child.setNextSibling(firstSibling);
+        astForTest.setFirstChild(child);
+        final List<DetailAST> children = new ArrayList<>();
+        TokenUtil.forEachChild(astForTest, TokenTypes.CLASS_DEF, children::add);
+
+        assertEquals("Must be one match", 1, children.size());
+        assertEquals("Mismatched child node", secondSibling, children.get(0));
     }
 
 }

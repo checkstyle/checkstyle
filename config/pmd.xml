@@ -302,7 +302,7 @@
       or @Image='FinalLocalVariableCheck' or @Image='ModifiedControlVariableCheck'
       or @Image='ParameterAssignmentCheck' or @Image='UnnecessaryParenthesesCheck'
       or @Image='AbstractClassCouplingCheck' or @Image='BooleanExpressionComplexityCheck'
-      or @Image='ParenPadCheck']//MethodDeclaration[@Name='visitToken']
+      or @Image='ParenPadCheck' or @Image='IllegalTypeCheck']//MethodDeclaration[@Name='visitToken']
     | //ClassOrInterfaceDeclaration[@Image='XdocsJavaDocsTest']
           //MethodDeclaration[@Name='testAllCheckSectionJavaDocs']"/>
     </properties>
