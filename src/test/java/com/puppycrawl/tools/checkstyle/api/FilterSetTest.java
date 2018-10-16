@@ -26,12 +26,15 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.filters.SeverityMatchFilter;
 import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.EqualsVerifierReport;
 
 public class FilterSetTest {
 
     @Test
     public void testEqualsAndHashCode() {
-        EqualsVerifier.forClass(FilterSet.class).usingGetClass().verify();
+        final EqualsVerifierReport ev = EqualsVerifier.forClass(FilterSet.class).usingGetClass()
+                .report();
+        assertEquals("Error: " + ev.getMessage(), EqualsVerifierReport.SUCCESS, ev);
     }
 
     @Test
