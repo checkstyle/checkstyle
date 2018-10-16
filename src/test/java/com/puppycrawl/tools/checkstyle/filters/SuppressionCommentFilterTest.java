@@ -47,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.EqualsVerifierReport;
 
 public class SuppressionCommentFilterTest
     extends AbstractModuleTestSupport {
@@ -299,7 +300,9 @@ public class SuppressionCommentFilterTest
 
     @Test
     public void testEqualsAndHashCodeOfTagClass() {
-        EqualsVerifier.forClass(SuppressionCommentFilter.Tag.class).usingGetClass().verify();
+        final EqualsVerifierReport ev = EqualsVerifier.forClass(SuppressionCommentFilter.Tag.class)
+                .usingGetClass().report();
+        assertEquals("Error: " + ev.getMessage(), EqualsVerifierReport.SUCCESS, ev);
     }
 
     @Test

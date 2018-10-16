@@ -24,6 +24,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.EqualsVerifierReport;
 
 public class LineColumnTest {
 
@@ -55,7 +56,9 @@ public class LineColumnTest {
 
     @Test
     public void testEqualsAndHashCode() {
-        EqualsVerifier.forClass(LineColumn.class).usingGetClass().verify();
+        final EqualsVerifierReport ev = EqualsVerifier.forClass(LineColumn.class).usingGetClass()
+                .report();
+        assertEquals("Error: " + ev.getMessage(), EqualsVerifierReport.SUCCESS, ev);
     }
 
     @Test
