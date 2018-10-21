@@ -15,6 +15,31 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <div class="releaseDate">21.10.2018</div>
+    <section name="Release 8.14">
+      <p>New:</p>
+        <ul>
+          <li>
+            IllegalType: does not check types in generics.
+            Author: Pavel Bludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/5118">#5118</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Code samples for Naming Checks.
+            Author: jack870131
+            <a href="https://github.com/checkstyle/checkstyle/issues/5832">#5832</a>
+          </li>
+          <li>
+            Update FullIdent to store DetailAST instead of line/column.
+            Author: Pavel Bludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6121">#6121</a>
+          </li>
+        </ul>
+    </section>
+
     <div class="releaseDate">04.10.2018</div>
     <section name="Release 8.13">
       <p>New:</p>
