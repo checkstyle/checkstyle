@@ -52,10 +52,10 @@ public class XpathRegressionEmptyForInitializerPadTest extends AbstractXpathTest
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionEmptyForInitializerPadPreceded']"
-                + "/OBJBLOCK/METHOD_DEF[@text='method']/SLIST/LITERAL_FOR/FOR_INIT",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionEmptyForInitializerPadPreceded']"
-                + "/OBJBLOCK/METHOD_DEF[@text='method']/SLIST/LITERAL_FOR/SEMI"
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionEmptyForInitializerPadPreceded']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_FOR/FOR_INIT",
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionEmptyForInitializerPadPreceded']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_FOR/SEMI[1]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -77,10 +77,12 @@ public class XpathRegressionEmptyForInitializerPadTest extends AbstractXpathTest
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionEmptyForInitializerPadNotPreceded']"
-                + "/OBJBLOCK/METHOD_DEF[@text='method']/SLIST/LITERAL_FOR/FOR_INIT",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionEmptyForInitializerPadNotPreceded']"
-                + "/OBJBLOCK/METHOD_DEF[@text='method']/SLIST/LITERAL_FOR/SEMI"
+            "/CLASS_DEF[./IDENT["
+                + "@text='SuppressionXpathRegressionEmptyForInitializerPadNotPreceded']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_FOR/FOR_INIT",
+            "/CLASS_DEF[./IDENT["
+                + "@text='SuppressionXpathRegressionEmptyForInitializerPadNotPreceded']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_FOR/SEMI[1]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

@@ -52,8 +52,8 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionRightCurlyOne']/OBJBLOCK"
-                + "/METHOD_DEF[@text='test']/SLIST/LITERAL_IF/SLIST/RCURLY"
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionRightCurlyOne']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_IF/SLIST/RCURLY"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -75,8 +75,8 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionRightCurlyTwo']/OBJBLOCK"
-                + "/METHOD_DEF[@text='fooMethod']/SLIST/LITERAL_TRY/SLIST/RCURLY"
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionRightCurlyTwo']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='fooMethod']]/SLIST/LITERAL_TRY/SLIST/RCURLY"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -98,8 +98,8 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionRightCurlyThree']/OBJBLOCK"
-                + "/METHOD_DEF[@text='sample']/SLIST/LITERAL_IF/SLIST/RCURLY"
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionRightCurlyThree']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='sample']]/SLIST/LITERAL_IF/SLIST/RCURLY"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -121,8 +121,8 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionRightCurlyFour']/OBJBLOCK"
-                + "/METHOD_DEF[@text='sample']/SLIST/LITERAL_IF/SLIST/RCURLY"
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionRightCurlyFour']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='sample']]/SLIST/LITERAL_IF/SLIST/RCURLY"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

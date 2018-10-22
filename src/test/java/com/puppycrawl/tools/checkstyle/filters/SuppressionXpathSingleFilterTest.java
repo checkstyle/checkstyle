@@ -57,7 +57,7 @@ public class SuppressionXpathSingleFilterTest
 
     @Test
     public void testMatching() throws Exception {
-        final String xpath = "/CLASS_DEF[@text='InputSuppressionXpathSingleFilter']";
+        final String xpath = "/CLASS_DEF[./IDENT[@text='InputSuppressionXpathSingleFilter']]";
         final SuppressionXpathSingleFilter filter =
                 createSuppressionXpathSingleFilter("InputSuppressionXpathSingleFilter", "Test",
                         null, null, xpath);
@@ -101,9 +101,9 @@ public class SuppressionXpathSingleFilterTest
 
     @Test
     public void testComplexQuery() throws Exception {
-        final String xpath = "//VARIABLE_DEF[@text='pi' and "
-                + "../..[@text='countTokens']] "
-                + "| //VARIABLE_DEF[@text='someVariable' and ../..[@text='sum']]";
+        final String xpath = "//VARIABLE_DEF[./IDENT[@text='pi'] and "
+                + "../../IDENT[@text='countTokens']] "
+                + "| //VARIABLE_DEF[./IDENT[@text='someVariable'] and ../../IDENT[@text='sum']]";
         final SuppressionXpathSingleFilter filter =
                 createSuppressionXpathSingleFilter("InputSuppressionXpathSingleFilter", "Test",
                         null, null, xpath);
@@ -193,7 +193,7 @@ public class SuppressionXpathSingleFilterTest
 
     @Test
     public void testMatchingModuleId() throws Exception {
-        final String xpath = "/CLASS_DEF[@text='InputSuppressionXpathSingleFilter']";
+        final String xpath = "/CLASS_DEF[./IDENT[@text='InputSuppressionXpathSingleFilter']]";
         final SuppressionXpathSingleFilter filter =
                 createSuppressionXpathSingleFilter("InputSuppressionXpathSingleFilter", "Test",
                         null, "id19", xpath);

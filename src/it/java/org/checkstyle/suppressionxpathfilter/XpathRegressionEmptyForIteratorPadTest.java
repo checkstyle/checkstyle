@@ -52,10 +52,12 @@ public class XpathRegressionEmptyForIteratorPadTest extends AbstractXpathTestSup
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionEmptyForIteratorPadFollowed']/OBJBLOCK"
-                + "/METHOD_DEF[@text='method']/SLIST/LITERAL_FOR/FOR_ITERATOR",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionEmptyForIteratorPadFollowed']/OBJBLOCK"
-                + "/METHOD_DEF[@text='method']/SLIST/LITERAL_FOR/RPAREN"
+            "/CLASS_DEF[./IDENT["
+                + "@text='SuppressionXpathRegressionEmptyForIteratorPadFollowed']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_FOR/FOR_ITERATOR",
+            "/CLASS_DEF[./IDENT["
+                + "@text='SuppressionXpathRegressionEmptyForIteratorPadFollowed']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_FOR/RPAREN"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -77,10 +79,12 @@ public class XpathRegressionEmptyForIteratorPadTest extends AbstractXpathTestSup
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionEmptyForIteratorPadNotFollowed']/OBJBLOCK"
-                + "/METHOD_DEF[@text='method']/SLIST/LITERAL_FOR/FOR_ITERATOR",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionEmptyForIteratorPadNotFollowed']/OBJBLOCK"
-                + "/METHOD_DEF[@text='method']/SLIST/LITERAL_FOR/RPAREN"
+            "/CLASS_DEF[./IDENT["
+                + "@text='SuppressionXpathRegressionEmptyForIteratorPadNotFollowed']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_FOR/FOR_ITERATOR",
+            "/CLASS_DEF[./IDENT["
+                + "@text='SuppressionXpathRegressionEmptyForIteratorPadNotFollowed']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_FOR/RPAREN"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

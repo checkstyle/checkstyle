@@ -68,7 +68,25 @@ public class XpathFileGeneratorAstFilterTest {
                 getPath("InputXpathFileGeneratorAstFilter.java"), message);
 
         Assert.assertEquals("expected xpath",
-                "/CLASS_DEF[@text='InputXpathFileGeneratorAstFilter']/OBJBLOCK/LCURLY",
+                "/CLASS_DEF[./IDENT[@text='InputXpathFileGeneratorAstFilter']]/OBJBLOCK/LCURLY",
+                XpathFileGeneratorAstFilter.findCorrespondingXpathQuery(auditEvent));
+    }
+
+    @Test
+    public void testNoXpathQuery() throws Exception {
+        final LocalizedMessage message = new LocalizedMessage(10, 10, TokenTypes.LCURLY,
+                "messages.properties", null, null, SeverityLevel.ERROR, null, LeftCurlyCheck.class,
+                null);
+        final TreeWalkerAuditEvent event = createTreeWalkerAuditEvent(
+                "InputXpathFileGeneratorAstFilter.java", message);
+        final XpathFileGeneratorAstFilter filter = new XpathFileGeneratorAstFilter();
+
+        Assert.assertTrue("filter accepted", filter.accept(event));
+
+        final AuditEvent auditEvent = new AuditEvent(this,
+                getPath("InputXpathFileGeneratorAstFilter.java"), message);
+
+        Assert.assertNull("expected null",
                 XpathFileGeneratorAstFilter.findCorrespondingXpathQuery(auditEvent));
     }
 
@@ -88,8 +106,8 @@ public class XpathFileGeneratorAstFilterTest {
                 getPath("InputXpathFileGeneratorAstFilter.java"), message);
 
         Assert.assertEquals("expected xpath",
-                "/CLASS_DEF[@text='InputXpathFileGeneratorAstFilter']/OBJBLOCK"
-                        + "/METHOD_DEF[@text='tabMethod']/SLIST/LITERAL_RETURN",
+                "/CLASS_DEF[./IDENT[@text='InputXpathFileGeneratorAstFilter']]/OBJBLOCK"
+                        + "/METHOD_DEF[./IDENT[@text='tabMethod']]/SLIST/LITERAL_RETURN",
                 XpathFileGeneratorAstFilter.findCorrespondingXpathQuery(auditEvent));
     }
 

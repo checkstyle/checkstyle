@@ -20,8 +20,8 @@
 package com.puppycrawl.tools.checkstyle.xpath;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
 import net.sf.saxon.om.AxisInfo;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.tree.iter.ArrayIterator;
@@ -55,11 +55,8 @@ public class ElementNode extends AbstractNode {
     /** Represents text of the DetailAST. */
     private final String text;
 
-    /** The attributes. */
-    private AbstractNode[] attributes;
-
-    /** Represents value of TokenTypes#IDENT. */
-    private String ident;
+    /** The text attribute node. */
+    private AttributeNode attributeNode;
 
     /**
      * Creates a new {@code ElementNode} instance.
@@ -73,9 +70,9 @@ public class ElementNode extends AbstractNode {
         this.parent = parent;
         this.root = root;
         this.detailAst = detailAst;
-        setIdent();
-        createChildren();
         text = TokenUtil.getTokenName(detailAst.getType());
+        createTextAttribute();
+        createChildren();
     }
 
     /**
@@ -100,12 +97,19 @@ public class ElementNode extends AbstractNode {
      */
     @Override
     public String getAttributeValue(String namespace, String localPart) {
+        final String result;
         if (TEXT_ATTRIBUTE_NAME.equals(localPart)) {
-            return ident;
+            if (attributeNode == null) {
+                result = null;
+            }
+            else {
+                result = attributeNode.getStringValue();
+            }
         }
         else {
-            throw throwUnsupportedOperationException();
+            result = null;
         }
+        return result;
     }
 
     /**
@@ -179,13 +183,8 @@ public class ElementNode extends AbstractNode {
                 }
                 break;
             case AxisInfo.ATTRIBUTE:
-                if (attributes == null) {
-                    result = EmptyIterator.OfNodes.THE_INSTANCE;
-                }
-                else {
-                    try (AxisIterator iterator = new ArrayIterator.OfNodes(attributes)) {
-                        result = iterator;
-                    }
+                try (AxisIterator iterator = SingleNodeIterator.makeIterator(attributeNode)) {
+                    result = iterator;
                 }
                 break;
             case AxisInfo.CHILD:
@@ -271,17 +270,17 @@ public class ElementNode extends AbstractNode {
     }
 
     /**
-     * Finds child element with {@link TokenTypes#IDENT}, extracts its value and stores it.
-     * Value can be accessed using {@code @text} attribute. Now {@code @text} attribute is only
-     * supported attribute.
+     * Checks if token type supports {@code @text} attribute,
+     * extracts its value, creates {@code AttributeNode} object and returns it.
+     * Value can be accessed using {@code @text} attribute.
      */
-    private void setIdent() {
-        final DetailAST identAst = detailAst.findFirstToken(TokenTypes.IDENT);
-        if (identAst != null) {
-            ident = identAst.getText();
-            attributes = new AbstractNode[1];
-            attributes[0] = new AttributeNode(TEXT_ATTRIBUTE_NAME, ident);
+    private void createTextAttribute() {
+        AttributeNode attribute = null;
+        if (XpathUtil.supportsTextAttribute(detailAst)) {
+            attribute = new AttributeNode(TEXT_ATTRIBUTE_NAME,
+                    XpathUtil.getTextAttributeValue(detailAst));
         }
+        attributeNode = attribute;
     }
 
     /**

@@ -4,6 +4,6 @@
     "https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd">
 <suppressions>
   <suppress-xpath files="[\\/]src" checks="LeftCurlyCheck"
-    query="/CLASS_DEF[@text='InputTreeWalkerSuppressionXpathFilterAbsolute']/
-      OBJBLOCK/METHOD_DEF[@text='test']/SLIST" />
+    query="/CLASS_DEF[./IDENT[@text='InputTreeWalkerSuppressionXpathFilterAbsolute']]/
+      OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST" />
 </suppressions>

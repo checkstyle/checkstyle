@@ -47,10 +47,10 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
 
     @Test
     public void testCorrect() throws Exception {
-        final String expected = "/CLASS_DEF[@text='InputSuppressionsStringPrinter']" + EOL
-                + "/CLASS_DEF[@text='InputSuppressionsStringPrinter']/MODIFIERS" + EOL
-                + "/CLASS_DEF[@text='InputSuppressionsStringPrinter']/MODIFIERS/LITERAL_PUBLIC"
-                + EOL;
+        final String expected = "/CLASS_DEF[./IDENT[@text='InputSuppressionsStringPrinter']]" + EOL
+                + "/CLASS_DEF[./IDENT[@text='InputSuppressionsStringPrinter']]/MODIFIERS" + EOL
+                + "/CLASS_DEF[./IDENT[@text='InputSuppressionsStringPrinter']]/MODIFIERS"
+                + "/LITERAL_PUBLIC" + EOL;
 
         final File input = new File(getPath("InputSuppressionsStringPrinter.java"));
         final String lineAndColumnNumber = "3:1";
@@ -64,12 +64,12 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
 
     @Test
     public void testCustomTabWidth() throws Exception {
-        final String expected = "/CLASS_DEF[@text='InputSuppressionsStringPrinter']/OBJBLOCK"
-                + "/METHOD_DEF[@text='toString']" + EOL
-                + "/CLASS_DEF[@text='InputSuppressionsStringPrinter']/OBJBLOCK"
-                + "/METHOD_DEF[@text='toString']/MODIFIERS" + EOL
-                + "/CLASS_DEF[@text='InputSuppressionsStringPrinter']/OBJBLOCK"
-                + "/METHOD_DEF[@text='toString']/MODIFIERS/LITERAL_PUBLIC" + EOL;
+        final String expected = "/CLASS_DEF[./IDENT[@text='InputSuppressionsStringPrinter']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='toString']]" + EOL
+                + "/CLASS_DEF[./IDENT[@text='InputSuppressionsStringPrinter']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='toString']]/MODIFIERS" + EOL
+                + "/CLASS_DEF[./IDENT[@text='InputSuppressionsStringPrinter']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='toString']]/MODIFIERS/LITERAL_PUBLIC" + EOL;
 
         final File input = new File(getPath("InputSuppressionsStringPrinter.java"));
         final String lineAndColumnNumber = "5:13";

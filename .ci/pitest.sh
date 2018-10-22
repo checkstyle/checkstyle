@@ -35,27 +35,9 @@ pitest-annotation|pitest-design \
 |pitest-metrics|pitest-modifier|pitest-naming \
 |pitest-sizes|pitest-whitespace \
 |pitest-packagenamesloader \
-|pitest-common-2|pitest-misc)
+|pitest-common-2|pitest-misc|pitest-xpath)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=();
-  checkPitestReport "${ignoredItems[@]}"
-  ;;
-
-pitest-xpath)
-  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
-  declare -a ignoredItems=(
-  "ElementNode.java.html:<td class='covered'><pre><span  class='survived'>                if (hasChildNodes()) {</span></pre></td></tr>"
-  "ElementNode.java.html:<td class='covered'><pre><span  class='survived'>                if (hasChildNodes()) {</span></pre></td></tr>"
-  "RootNode.java.html:<td class='covered'><pre><span  class='survived'>        if (detailAst != null) {</span></pre></td></tr>"
-  "XpathFileGeneratorAstFilter.java.html:<td class='covered'><pre><span  class='survived'>            if (!xpathQueries.isEmpty()) {</span></pre></td></tr>"
-  "XpathFileGeneratorAuditListener.java.html:<td class='covered'><pre><span  class='survived'>        closeStream = outputStreamOptions == OutputStreamOptions.CLOSE;</span></pre></td></tr>"
-  "XpathFileGeneratorAuditListener.java.html:<td class='covered'><pre><span  class='survived'>        if (closeStream) {</span></pre></td></tr>"
-  "XpathQueryGenerator.java.html:<td class='covered'><pre><span  class='survived'>        if (ast.getParent() == null) {</span></pre></td></tr>"
-  "XpathQueryGenerator.java.html:<td class='covered'><pre><span  class='survived'>            if (!result) {</span></pre></td></tr>"
-  "XpathQueryGenerator.java.html:<td class='covered'><pre><span  class='survived'>                if (toVisit == null) {</span></pre></td></tr>"
-  "XpathQueryGenerator.java.html:<td class='covered'><pre><span  class='survived'>            result = ast.getParent().getChildCount(ast.getType()) &#62; 1;</span></pre></td></tr>"
-  "XpathQueryGenerator.java.html:<td class='covered'><pre><span  class='survived'>        while (curNode != null &#38;&#38; curNode.getLineNo() &#60;= lineNumber) {</span></pre></td></tr>"
-  );
   checkPitestReport "${ignoredItems[@]}"
   ;;
 
