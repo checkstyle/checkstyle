@@ -36,8 +36,7 @@ import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import net.sf.saxon.om.AxisInfo;
-import net.sf.saxon.om.Item;
-import net.sf.saxon.trans.XPathException;
+import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.tree.iter.EmptyIterator;
 
 public class XpathMapperTest extends AbstractPathTestSupport {
@@ -188,7 +187,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
     public void testQueryAllElementsWithAttribute() throws Exception {
         final String xpath = "//*[@text]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
-        final List<Item> nodes = getXpathItems(xpath, rootNode);
+        final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         assertEquals("Invalid number of nodes", 18, nodes.size());
     }
 
@@ -212,7 +211,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
     public void testQueryAllVariableDefinitionsWithAttribute() throws Exception {
         final String xpath = "//VARIABLE_DEF[@*]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
-        final List<Item> nodes = getXpathItems(xpath, rootNode);
+        final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         assertEquals("Invalid number of nodes", 4, nodes.size());
     }
 
@@ -220,7 +219,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
     public void testQueryAllVariableDefWrongAttribute() throws Exception {
         final String xpath = "//VARIABLE_DEF[@qwe]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
-        final List<Item> nodes = getXpathItems(xpath, rootNode);
+        final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         assertEquals("Invalid number of nodes", 0, nodes.size());
     }
 
@@ -228,11 +227,11 @@ public class XpathMapperTest extends AbstractPathTestSupport {
     public void testQueryAllMethodDefinitionsInContext() throws Exception {
         final String objectXpath = "/CLASS_DEF[@text='InputXpathMapperAst']//OBJBLOCK";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
-        final List<Item> objectNodes = getXpathItems(objectXpath, rootNode);
+        final List<NodeInfo> objectNodes = getXpathItems(objectXpath, rootNode);
         assertEquals("Invalid number of nodes", 1, objectNodes.size());
         final AbstractNode objNode = (AbstractNode) objectNodes.get(0);
         final String methodsXpath = "METHOD_DEF";
-        final List<Item> methodsNodes = getXpathItems(methodsXpath, objNode);
+        final List<NodeInfo> methodsNodes = getXpathItems(methodsXpath, objNode);
         assertEquals("Invalid number of nodes", 2, methodsNodes.size());
         final DetailAST[] actual = convertToArray(methodsNodes);
         final DetailAST expectedMethodDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
@@ -248,7 +247,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
     public void testQueryAllClassDefinitions() throws Exception {
         final String xpath = "CLASS_DEF";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
-        final List<Item> nodes = getXpathItems(xpath, rootNode);
+        final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         assertEquals("Invalid number of nodes", 1, nodes.size());
         final AbstractNode classDefNode = (AbstractNode) nodes.get(0);
         assertEquals("Invalid number of nodes", 3, classDefNode.getLineNumber());
@@ -307,7 +306,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
     public void testQueryClassDefinitionByClassName() throws Exception {
         final String xpath = "/CLASS_DEF[@text='InputXpathMapperAst']";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
-        final List<Item> nodes = getXpathItems(xpath, rootNode);
+        final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         final DetailAST[] actual = convertToArray(nodes);
         final DetailAST expectedClassDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
                 TokenTypes.CLASS_DEF);
@@ -323,7 +322,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
     public void testQueryWrongClassName() throws Exception {
         final String xpath = "/CLASS_DEF[@text='WrongName']";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
-        final List<Item> nodes = getXpathItems(xpath, rootNode);
+        final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         assertTrue("Should return true, because no item matches xpath", nodes.isEmpty());
     }
 
@@ -331,7 +330,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
     public void testQueryWrongXpath() throws Exception {
         final String xpath = "/WRONG_XPATH";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
-        final List<Item> nodes = getXpathItems(xpath, rootNode);
+        final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         assertTrue("Should return true, because no item matches xpath", nodes.isEmpty());
     }
 
@@ -369,7 +368,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
     public void testQueryDescendant() throws Exception {
         final String xpath = "//METHOD_DEF/descendant::EXPR";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
-        final List<Item> nodes = getXpathItems(xpath, rootNode);
+        final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         assertEquals("Invalid number of nodes", 6, nodes.size());
     }
 
@@ -391,7 +390,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
     public void testQueryNoChild() throws Exception {
         final String xpath = "//RCURLY/METHOD_DEF";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
-        final List<Item> nodes = getXpathItems(xpath, rootNode);
+        final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         assertTrue("Should return true, because no item matches xpath", nodes.isEmpty());
     }
 
@@ -399,7 +398,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
     public void testQueryNoDescendant() throws Exception {
         final String xpath = "//RCURLY/descendant::METHOD_DEF";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
-        final List<Item> nodes = getXpathItems(xpath, rootNode);
+        final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         assertTrue("Should return true, because no item matches xpath", nodes.isEmpty());
     }
 
@@ -411,7 +410,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
             getXpathItems(xpath, rootNode);
             fail("Exception is excepted");
         }
-        catch (XPathException ex) {
+        catch (UnsupportedOperationException ex) {
             assertEquals("Invalid number of nodes", "Operation is not supported", ex.getMessage());
         }
     }
@@ -424,7 +423,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
             getXpathItems(xpath, rootNode);
             fail("Exception is excepted");
         }
-        catch (XPathException ex) {
+        catch (UnsupportedOperationException ex) {
             assertEquals("Invalid number of nodes", "Operation is not supported", ex.getMessage());
         }
     }
@@ -433,7 +432,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
     public void testQuerySelf() throws Exception {
         final String objectXpath = "/CLASS_DEF[@text='InputXpathMapperAst']//OBJBLOCK";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
-        final List<Item> objectNodes = getXpathItems(objectXpath, rootNode);
+        final List<NodeInfo> objectNodes = getXpathItems(objectXpath, rootNode);
         assertEquals("Invalid number of nodes", 1, objectNodes.size());
         final AbstractNode objNode = (AbstractNode) objectNodes.get(0);
         final String methodsXpath = "self::OBJBLOCK";
@@ -460,7 +459,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
     public void testQueryNonExistentAttribute() throws Exception {
         final String xpath = "/CLASS_DEF[@text='InputXpathMapperAst']";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
-        final List<Item> nodes = getXpathItems(xpath, rootNode);
+        final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         final ElementNode classDefNode = (ElementNode) nodes.get(0);
         try {
             classDefNode.getAttributeValue("", "noneExistingAttribute");
@@ -475,7 +474,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
     public void testQueryRootSelf() throws Exception {
         final String xpath = "self::node()";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
-        final List<Item> nodes = getXpathItems(xpath, rootNode);
+        final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         assertEquals("Invalid number of nodes", 1, nodes.size());
     }
 
@@ -496,7 +495,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
     public void testQueryNonExistentAnnotation() throws Exception {
         final String xpath = "//ANNOTATION[@text='SpringBootApplication']";
         final RootNode rootNode = getRootNode("InputXpathMapperAnnotation.java");
-        final List<Item> nodes = getXpathItems(xpath, rootNode);
+        final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         assertEquals("Invalid number of nodes", 0, nodes.size());
     }
 
@@ -515,7 +514,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
     public void testQueryEnumElementsNumber() throws Exception {
         final String xpath = "/ENUM_DEF/OBJBLOCK/ENUM_CONSTANT_DEF";
         final RootNode enumRootNode = getRootNode("InputXpathMapperEnum.java");
-        final List<Item> nodes = getXpathItems(xpath, enumRootNode);
+        final List<NodeInfo> nodes = getXpathItems(xpath, enumRootNode);
         assertEquals("Invalid number of nodes", 3, nodes.size());
     }
 
@@ -551,7 +550,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
     public void testQueryInterfaceMethodDefNumber() throws Exception {
         final String xpath = "/INTERFACE_DEF/OBJBLOCK/METHOD_DEF";
         final RootNode interfaceRootNode = getRootNode("InputXpathMapperInterface.java");
-        final List<Item> nodes = getXpathItems(xpath, interfaceRootNode);
+        final List<NodeInfo> nodes = getXpathItems(xpath, interfaceRootNode);
         assertEquals("Invalid number of nodes", 4, nodes.size());
     }
 
@@ -574,7 +573,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
     public void testIdent() throws Exception {
         final String xpath = "/CLASS_DEF[@text='InputXpathMapperAst']/IDENT";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
-        final List<Item> nodes = getXpathItems(xpath, rootNode);
+        final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         final DetailAST[] actual = convertToArray(nodes);
         final DetailAST expectedIdentNode = getSiblingByType(rootNode.getUnderlyingNode(),
                 TokenTypes.CLASS_DEF)
@@ -590,7 +589,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
         return new RootNode(rootAst);
     }
 
-    private static DetailAST[] convertToArray(List<Item> nodes) {
+    private static DetailAST[] convertToArray(List<NodeInfo> nodes) {
         final DetailAST[] result = new DetailAST[nodes.size()];
         for (int i = 0; i < nodes.size(); i++) {
             final AbstractNode abstractNode = (AbstractNode) nodes.get(i);

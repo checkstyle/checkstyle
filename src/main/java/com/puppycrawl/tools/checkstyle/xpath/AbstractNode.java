@@ -28,10 +28,8 @@ import net.sf.saxon.Configuration;
 import net.sf.saxon.event.Receiver;
 import net.sf.saxon.expr.parser.Location;
 import net.sf.saxon.om.AtomicSequence;
-import net.sf.saxon.om.Item;
 import net.sf.saxon.om.NamespaceBinding;
 import net.sf.saxon.om.NodeInfo;
-import net.sf.saxon.om.SequenceIterator;
 import net.sf.saxon.om.TreeInfo;
 import net.sf.saxon.pattern.NodeTest;
 import net.sf.saxon.tree.iter.AxisIterator;
@@ -267,39 +265,6 @@ public abstract class AbstractNode implements NodeInfo {
      */
     @Override
     public final Location saveLocation() {
-        throw throwUnsupportedOperationException();
-    }
-
-    /**
-     * Compares current object with specified for position. Throws
-     * {@code UnsupportedOperationException}, because no child
-     * class implements it and this method is not used for querying.
-     * @param nodeInfo another {@code NodeInfo} object
-     * @return constant from {@code AxisInfo} representing order of
-     *      current object to specified one
-     */
-    @Override
-    public final int comparePosition(NodeInfo nodeInfo) {
-        throw throwUnsupportedOperationException();
-    }
-
-    /**
-     * Returns head. Throws {@code UnsupportedOperationException}, because no child
-     * class implements it and this method is not used for querying.
-     * @return head
-     */
-    @Override
-    public final Item head() {
-        throw throwUnsupportedOperationException();
-    }
-
-    /**
-     * Returns iterator. Throws {@code UnsupportedOperationException}, because no child
-     * class implements it and this method is not used for querying.
-     * @return iterator
-     */
-    @Override
-    public final SequenceIterator iterate() {
         throw throwUnsupportedOperationException();
     }
 

@@ -33,7 +33,6 @@ import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import net.sf.saxon.om.Item;
 import net.sf.saxon.om.NodeInfo;
 
 public class ElementNodeTest extends AbstractPathTestSupport {
@@ -55,18 +54,18 @@ public class ElementNodeTest extends AbstractPathTestSupport {
     @Test
     public void testGetParent() throws Exception {
         final String xpath = "//OBJBLOCK";
-        final List<Item> nodes = getXpathItems(xpath, rootNode);
+        final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         assertEquals("Invalid number of nodes", 1, nodes.size());
-        final AbstractNode parent = (AbstractNode) ((NodeInfo) nodes.get(0)).getParent();
+        final AbstractNode parent = (AbstractNode) nodes.get(0).getParent();
         assertEquals("Invalid token type", TokenTypes.CLASS_DEF, parent.getTokenType());
     }
 
     @Test
     public void testRootOfElementNode() throws Exception {
         final String xpath = "//OBJBLOCK";
-        final List<Item> nodes = getXpathItems(xpath, rootNode);
+        final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         assertEquals("Invalid number of nodes", 1, nodes.size());
-        final AbstractNode root = (AbstractNode) ((NodeInfo) nodes.get(0)).getRoot();
+        final AbstractNode root = (AbstractNode) nodes.get(0).getRoot();
         assertEquals("Invalid token type", TokenTypes.EOF, root.getTokenType());
         assertTrue("Should return true, because selected node is RootNode",
                 root instanceof RootNode);
