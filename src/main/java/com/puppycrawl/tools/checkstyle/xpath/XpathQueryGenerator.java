@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
 
 /**
  * Generates xpath queries. Xpath queries are generated based on received
@@ -145,15 +146,14 @@ public class XpathQueryGenerator {
 
     /**
      * Returns child {@code DetailAst} element of the given root,
-     * which has child element with token type equals to {@link TokenTypes#IDENT}.
+     * which has only one child element with token type equals to {@link TokenTypes#IDENT} or
+     * element which has value attribute.
      * @param root {@code DetailAST} root ast
      * @return child {@code DetailAst} element of the given root
      */
-    private static DetailAST findChildWithIdent(DetailAST root) {
+    private static DetailAST findChildWithIdentOrWithValue(DetailAST root) {
         return TokenUtil.findFirstTokenByPredicate(root,
-            cur -> {
-                return cur.findFirstToken(TokenTypes.IDENT) != null;
-            }).orElse(null);
+                XpathQueryGenerator::supportsAttributes).orElse(null);
     }
 
     /**
@@ -164,7 +164,7 @@ public class XpathQueryGenerator {
     private static String generateXpathQuery(DetailAST ast) {
         String xpathQuery = getXpathQuery(null, ast);
         if (!isUniqueAst(ast)) {
-            final DetailAST child = findChildWithIdent(ast);
+            final DetailAST child = findChildWithIdentOrWithValue(ast);
             if (child != null) {
                 xpathQuery += "[." + getXpathQuery(ast, child) + ']';
             }
@@ -209,12 +209,19 @@ public class XpathQueryGenerator {
             final StringBuilder curNodeQueryBuilder = new StringBuilder(256);
             curNodeQueryBuilder.append('/')
                     .append(TokenUtil.getTokenName(cur.getType()));
-            final DetailAST identAst = cur.findFirstToken(TokenTypes.IDENT);
-            if (identAst != null) {
-                curNodeQueryBuilder.append("[@text='")
-                        .append(identAst.getText())
-                        .append("']");
+            if (supportsAttributes(cur)) {
+                if (cur.getChildCount(TokenTypes.IDENT) == 1) {
+                    final DetailAST identAst = cur.findFirstToken(TokenTypes.IDENT);
+                    curNodeQueryBuilder.append("[@text='")
+                            .append(identAst.getText());
+                }
+                else {
+                    curNodeQueryBuilder.append("[@value='")
+                            .append(XpathUtil.getValue(cur));
+                }
+                curNodeQueryBuilder.append("']");
             }
+
             resultBuilder.insert(0, curNodeQueryBuilder);
             cur = cur.getParent();
         }
@@ -278,15 +285,32 @@ public class XpathQueryGenerator {
 
     /**
      * To be sure that generated xpath query will return exactly required ast element, the element
-     * should be checked for uniqueness. If ast element has {@link TokenTypes#IDENT} as the child
-     * or there is no sibling with the same {@code TokenTypes} then element is supposed to be
-     * unique. This method finds if {@code DetailAst} element is unique.
+     * should be checked for uniqueness. If ast element has only one node {@link TokenTypes#IDENT}
+     * as the child or if element has value or there is no sibling with the same {@code TokenTypes}
+     * then element is supposed to be unique. This method finds if {@code DetailAst} element is
+     * unique.
      * @param ast {@code DetailAST} ast element
      * @return if {@code DetailAst} element is unique
      */
     private static boolean isUniqueAst(DetailAST ast) {
-        return ast.findFirstToken(TokenTypes.IDENT) != null
+        return supportsAttributes(ast)
             || !hasAtLeastOneSiblingWithSameTokenType(ast);
+    }
+
+    /**
+     * Checks, if specified node can have {@code @text} or {@code @value} attribute.
+     * If it is {@link TokenTypes#IDENT} node, then number of {@link TokenTypes#IDENT} siblings is
+     * checked to avoid generation the following query:
+     * /CLASS_DEF[@text='Main']/IDENT[@value='Main']
+     *
+     * @param ast {@code DetailAst} element
+     * @return true if element supports {@code @text} or {@code @value} attribute, false otherwise
+     */
+    private static boolean supportsAttributes(DetailAST ast) {
+        return ast.getChildCount(TokenTypes.IDENT) == 1
+                    || ast.getType() == TokenTypes.IDENT
+                && ast.getParent().getChildCount(TokenTypes.IDENT) > 1
+                    || ast.getType() != TokenTypes.IDENT && XpathUtil.supportsValueAttribute(ast);
     }
 
 }

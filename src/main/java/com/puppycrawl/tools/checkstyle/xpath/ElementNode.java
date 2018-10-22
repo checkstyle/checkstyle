@@ -19,9 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
 import net.sf.saxon.om.AxisInfo;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.tree.iter.ArrayIterator;
@@ -40,6 +44,9 @@ public class ElementNode extends AbstractNode {
     /** String literal for text attribute. */
     private static final String TEXT_ATTRIBUTE_NAME = "text";
 
+    /** String literal for text attribute. */
+    private static final String VALUE_ATTRIBUTE_NAME = "value";
+
     /** Constant for optimization. */
     private static final AbstractNode[] EMPTY_ABSTRACT_NODE_ARRAY = new AbstractNode[0];
 
@@ -55,11 +62,8 @@ public class ElementNode extends AbstractNode {
     /** Represents text of the DetailAST. */
     private final String text;
 
-    /** The attributes. */
-    private AbstractNode[] attributes;
-
-    /** Represents value of TokenTypes#IDENT. */
-    private String ident;
+    /** The attributes map. */
+    private final Map<String, AttributeNode> attributes = new HashMap<>();
 
     /**
      * Creates a new {@code ElementNode} instance.
@@ -73,9 +77,9 @@ public class ElementNode extends AbstractNode {
         this.parent = parent;
         this.root = root;
         this.detailAst = detailAst;
-        setIdent();
-        createChildren();
         text = TokenUtil.getTokenName(detailAst.getType());
+        createAttributes();
+        createChildren();
     }
 
     /**
@@ -100,12 +104,15 @@ public class ElementNode extends AbstractNode {
      */
     @Override
     public String getAttributeValue(String namespace, String localPart) {
-        if (TEXT_ATTRIBUTE_NAME.equals(localPart)) {
-            return ident;
+        final AttributeNode attribute = attributes.get(localPart);
+        final String result;
+        if (attribute == null) {
+            result = null;
         }
         else {
-            throw throwUnsupportedOperationException();
+            result = attribute.getStringValue();
         }
+        return result;
     }
 
     /**
@@ -179,13 +186,10 @@ public class ElementNode extends AbstractNode {
                 }
                 break;
             case AxisInfo.ATTRIBUTE:
-                if (attributes == null) {
-                    result = EmptyIterator.OfNodes.THE_INSTANCE;
-                }
-                else {
-                    try (AxisIterator iterator = new ArrayIterator.OfNodes(attributes)) {
-                        result = iterator;
-                    }
+                try (AxisIterator iterator = new ArrayIterator.OfNodes(attributes.values().toArray(
+                        new AttributeNode[0]
+                ))) {
+                    result = iterator;
                 }
                 break;
             case AxisInfo.CHILD:
@@ -271,17 +275,42 @@ public class ElementNode extends AbstractNode {
     }
 
     /**
-     * Finds child element with {@link TokenTypes#IDENT}, extracts its value and stores it.
-     * Value can be accessed using {@code @text} attribute. Now {@code @text} attribute is only
-     * supported attribute.
+     * Finds child element with {@link TokenTypes#IDENT},
+     * extracts its value, creates {@code AttributeNode} object and returns it.
+     * Value can be accessed using {@code @text} attribute.
+     *
+     * @return attribute object
      */
-    private void setIdent() {
-        final DetailAST identAst = detailAst.findFirstToken(TokenTypes.IDENT);
-        if (identAst != null) {
-            ident = identAst.getText();
-            attributes = new AbstractNode[1];
-            attributes[0] = new AttributeNode(TEXT_ATTRIBUTE_NAME, ident);
+    private AttributeNode createTextAttribute() {
+        AttributeNode attribute = null;
+        if (detailAst.getChildCount(TokenTypes.IDENT) == 1) {
+            final String ident = detailAst.findFirstToken(TokenTypes.IDENT).getText();
+            attribute = new AttributeNode(TEXT_ATTRIBUTE_NAME, ident);
         }
+        return attribute;
+    }
+
+    /**
+     * Extracts value of the current node using {@link DetailAST#getText()}
+     * method if exists, creates {@code AttributeNode} object and returns it.
+     * Value can be accessed using {@code @value} attribute.
+     *
+     * @return attribute object
+     */
+    private AttributeNode createValueAttribute() {
+        AttributeNode attribute = null;
+        if (XpathUtil.supportsValueAttribute(detailAst)) {
+            attribute = new AttributeNode(VALUE_ATTRIBUTE_NAME, XpathUtil.getValue(detailAst));
+        }
+        return attribute;
+    }
+
+    /**
+     * Fills map of attributes.
+     */
+    private void createAttributes() {
+        attributes.put(TEXT_ATTRIBUTE_NAME, createTextAttribute());
+        attributes.put(VALUE_ATTRIBUTE_NAME, createValueAttribute());
     }
 
     /**

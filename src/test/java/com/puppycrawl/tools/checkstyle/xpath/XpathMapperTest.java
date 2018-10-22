@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.XpathUtil.getXpathI
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -188,7 +189,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
         final String xpath = "//*[@text]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
-        assertEquals("Invalid number of nodes", 18, nodes.size());
+        assertEquals("Invalid number of nodes", 17, nodes.size());
     }
 
     @Test
@@ -461,13 +462,8 @@ public class XpathMapperTest extends AbstractPathTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         final ElementNode classDefNode = (ElementNode) nodes.get(0);
-        try {
-            classDefNode.getAttributeValue("", "noneExistingAttribute");
-            fail("Exception is excepted");
-        }
-        catch (UnsupportedOperationException ex) {
-            assertEquals("Invalid number of nodes", "Operation is not supported", ex.getMessage());
-        }
+        assertNull("Not existing attribute should have null value",
+                classDefNode.getAttributeValue("", "noneExistingAttribute"));
     }
 
     @Test
@@ -580,6 +576,82 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.IDENT);
 
         final DetailAST[] expected = {expectedIdentNode};
+        assertArrayEquals("Result nodes differ from expected", expected, actual);
+    }
+
+    @Test
+    public void testIdentByValue() throws Exception {
+        final String xpath = "//IDENT[@value='puppycrawl']";
+        final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
+        final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
+        final DetailAST expectedMethodDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
+                TokenTypes.PACKAGE_DEF)
+                .findFirstToken(TokenTypes.DOT)
+                .findFirstToken(TokenTypes.DOT)
+                .findFirstToken(TokenTypes.DOT)
+                .findFirstToken(TokenTypes.DOT)
+                .findFirstToken(TokenTypes.DOT)
+                .findFirstToken(TokenTypes.IDENT)
+                .getNextSibling();
+        final DetailAST[] expected = {expectedMethodDefNode};
+        assertArrayEquals("Result nodes differ from expected", expected, actual);
+    }
+
+    @Test
+    public void testNumVariableByItsValue() throws Exception {
+        final String xpath = "//VARIABLE_DEF[.//NUM_INT[@value=123]]";
+        final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
+        final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
+        final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
+                TokenTypes.CLASS_DEF)
+                .findFirstToken(TokenTypes.OBJBLOCK)
+                .findFirstToken(TokenTypes.METHOD_DEF)
+                .findFirstToken(TokenTypes.SLIST)
+                .findFirstToken(TokenTypes.VARIABLE_DEF);
+        final DetailAST[] expected = {expectedVariableDefNode};
+        assertArrayEquals("Result nodes differ from expected", expected, actual);
+    }
+
+    @Test
+    public void testStringVariableByItsValue() throws Exception {
+        final String xpath = "//VARIABLE_DEF[./ASSIGN/EXPR"
+                + "/STRING_LITERAL[@value='HelloWorld']]";
+        final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
+        final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
+        final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
+                TokenTypes.CLASS_DEF)
+                .findFirstToken(TokenTypes.OBJBLOCK)
+                .findFirstToken(TokenTypes.METHOD_DEF)
+                .findFirstToken(TokenTypes.SLIST)
+                .findFirstToken(TokenTypes.VARIABLE_DEF)
+                .getNextSibling()
+                .getNextSibling();
+        final DetailAST[] expected = {expectedVariableDefNode};
+        assertArrayEquals("Result nodes differ from expected", expected, actual);
+    }
+
+    @Test
+    public void testSameNodesByNameAndByValue() throws Exception {
+        final String xpath1 = "//VARIABLE_DEF[@text='another']/ASSIGN/EXPR/STRING_LITERAL";
+        final String xpath2 = "//VARIABLE_DEF/ASSIGN/EXPR/STRING_LITERAL[@value='HelloWorld']";
+        final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
+        final DetailAST[] actual1 = convertToArray(getXpathItems(xpath1, rootNode));
+        final DetailAST[] actual2 = convertToArray(getXpathItems(xpath2, rootNode));
+        assertArrayEquals("Result nodes differ from expected", actual1, actual2);
+    }
+
+    @Test
+    public void testMethodDefByAnnotationValue() throws Exception {
+        final String xpath = "//METHOD_DEF[.//ANNOTATION[@text='Generated'"
+                + " and .//*[@value='good']]]";
+        final RootNode rootNode = getRootNode("InputXpathMapperAnnotation.java");
+        final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
+        final DetailAST expectedAnnotationNode = getSiblingByType(rootNode.getUnderlyingNode(),
+                TokenTypes.CLASS_DEF)
+                .findFirstToken(TokenTypes.OBJBLOCK)
+                .findFirstToken(TokenTypes.METHOD_DEF)
+                .getNextSibling();
+        final DetailAST[] expected = {expectedAnnotationNode};
         assertArrayEquals("Result nodes differ from expected", expected, actual);
     }
 

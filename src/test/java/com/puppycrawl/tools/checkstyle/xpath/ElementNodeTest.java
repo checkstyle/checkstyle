@@ -71,4 +71,28 @@ public class ElementNodeTest extends AbstractPathTestSupport {
                 root instanceof RootNode);
     }
 
+    @Test
+    public void testGetNodeByValueNumInt() throws Exception {
+        final String xPath = "//NUM_INT[@value = 123]";
+        final List<NodeInfo> nodes = getXpathItems(xPath, rootNode);
+        assertEquals("Invalid number of nodes", 1, nodes.size());
+        assertEquals("Invalid token type", TokenTypes.NUM_INT,
+                ((AbstractNode) nodes.get(0)).getTokenType());
+    }
+
+    @Test
+    public void testGetNodeByValueStringLiteral() throws Exception {
+        final String xPath = "//STRING_LITERAL[@value = 'HelloWorld']";
+        final List<NodeInfo> nodes = getXpathItems(xPath, rootNode);
+        assertEquals("Invalid number of nodes", 2, nodes.size());
+        assertEquals("Invalid token type", TokenTypes.STRING_LITERAL,
+                ((AbstractNode) nodes.get(0)).getTokenType());
+    }
+
+    @Test
+    public void testGetNodeByValueWithSameTokenText() throws Exception {
+        final String xPath = "//MODIFIERS[@value = 'MODIFIERS']";
+        final List<NodeInfo> nodes = getXpathItems(xPath, rootNode);
+        assertEquals("Invalid number of nodes", 0, nodes.size());
+    }
 }
