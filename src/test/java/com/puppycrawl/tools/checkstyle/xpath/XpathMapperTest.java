@@ -37,7 +37,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import net.sf.saxon.om.AxisInfo;
 import net.sf.saxon.om.Item;
-import net.sf.saxon.trans.XPathException;
 import net.sf.saxon.tree.iter.EmptyIterator;
 
 public class XpathMapperTest extends AbstractPathTestSupport {
@@ -411,7 +410,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
             getXpathItems(xpath, rootNode);
             fail("Exception is excepted");
         }
-        catch (XPathException ex) {
+        catch (UnsupportedOperationException ex) {
             assertEquals("Invalid number of nodes", "Operation is not supported", ex.getMessage());
         }
     }
@@ -424,7 +423,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
             getXpathItems(xpath, rootNode);
             fail("Exception is excepted");
         }
-        catch (XPathException ex) {
+        catch (UnsupportedOperationException ex) {
             assertEquals("Invalid number of nodes", "Operation is not supported", ex.getMessage());
         }
     }

@@ -285,20 +285,6 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testComparePosition() {
-        try {
-            rootNode.comparePosition(null);
-            fail("Exception is excepted");
-        }
-        catch (UnsupportedOperationException ex) {
-            assertEquals(
-                "Invalid exception message",
-                "Operation is not supported",
-                ex.getMessage());
-        }
-    }
-
-    @Test
     public void testHead() {
         try {
             rootNode.head();
