@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
@@ -156,9 +157,9 @@ public class XpathFilter implements TreeWalkerFilter {
         }
         else {
             isMatching = false;
-            final List<Item> items = getItems(event);
-            for (Item item : items) {
-                final AbstractNode abstractNode = (AbstractNode) item;
+            final List<AbstractNode> nodes = getItems(event)
+                    .stream().map(item -> (AbstractNode) item).collect(Collectors.toList());
+            for (AbstractNode abstractNode : nodes) {
                 isMatching = abstractNode.getTokenType() == event.getTokenType()
                         && abstractNode.getLineNumber() == event.getLine()
                         && abstractNode.getColumnNumber() == event.getColumnCharIndex();
@@ -175,7 +176,7 @@ public class XpathFilter implements TreeWalkerFilter {
      * @param event {@code TreeWalkerAuditEvent} object
      * @return list of nodes matching xpath expression given event
      */
-    private List<Item> getItems(TreeWalkerAuditEvent event) {
+    private List<Item<?>> getItems(TreeWalkerAuditEvent event) {
         final RootNode rootNode;
         if (event.getRootAst() == null) {
             rootNode = null;
@@ -183,7 +184,7 @@ public class XpathFilter implements TreeWalkerFilter {
         else {
             rootNode = new RootNode(event.getRootAst());
         }
-        final List<Item> items;
+        final List<Item<?>> items;
         try {
             final XPathDynamicContext xpathDynamicContext =
                     xpathExpression.createDynamicContext(rootNode);

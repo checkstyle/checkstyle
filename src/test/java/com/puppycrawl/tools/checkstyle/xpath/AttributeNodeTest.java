@@ -26,6 +26,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import net.sf.saxon.om.AxisInfo;
+import net.sf.saxon.tree.iter.AxisIterator;
 
 public class AttributeNodeTest {
 
@@ -85,8 +86,7 @@ public class AttributeNodeTest {
 
     @Test
     public void testIterate() {
-        try {
-            attributeNode.iterateAxis(AxisInfo.SELF);
+        try (AxisIterator ignored = attributeNode.iterateAxis(AxisInfo.SELF)) {
             fail("Exception is excepted");
         }
         catch (UnsupportedOperationException ex) {
