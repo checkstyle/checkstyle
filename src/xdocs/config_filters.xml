@@ -889,6 +889,20 @@ public class UserService {
           all methods with name <i>sayHelloWorld</i> inside <i>FileOne</i>
           and <i>FileTwo</i> files:
         </p>
+        <p>
+        Currently, xpath queries support one type of attribute <code>@text</code>.
+        <code>@text</code> - addresses to the text value of the node. For example: variable name,
+        annotation name, text content and etc.
+        Only the following token types support <code>@text</code> attribute:
+        <code>TokenTypes.IDENT</code>, <code>TokenTypes.STRING_LITERAL</code>,
+        <code>TokenTypes.CHAR_LITERAL</code>, <code>TokenTypes.NUM_LONG</code>,
+        <code>TokenTypes.NUM_INT</code>, <code>TokenTypes.NUM_DOUBLE</code>,
+        <code>TokenTypes.NUM_FLOAT</code>.
+        These token types were selected because only their text values are different in content
+        from token type and represent text value from file and can be used in xpath queries for
+        more accurate results.
+        Other token types always have constant values.
+        </p>
         <source>
 &lt;?xml version=&quot;1.0&quot;?&gt;
 
@@ -899,7 +913,7 @@ public class UserService {
 &lt;suppressions&gt;
   &lt;suppress-xpath checks=&quot;CyclomaticComplexity&quot;
   files=&quot;FileOne.java,FileTwo.java&quot;
-  query=&quot;//METHOD_DEF[@text='sayHelloWorld']&quot;/&gt;
+  query=&quot;//METHOD_DEF[./IDENT[@text='sayHelloWorld']]&quot;/&gt;
 &lt;/suppressions&gt;
         </source>
         <p>
@@ -925,8 +939,8 @@ public class UserService {
           Suppress checks for certain methods:
         </p>
         <source>
-&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;//METHOD_DEF[@text='getSomeVar'
-          or @text='setSomeVar']&quot;/&gt;
+&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;//METHOD_DEF[./IDENT[@text='getSomeVar'
+          or @text='setSomeVar']]&quot;/&gt;
         </source>
         <p>
           Suppress checks for variable <i>testVariable</i> inside <i>testMethod</i> method
@@ -934,23 +948,24 @@ public class UserService {
         </p>
         <source>
 &lt;suppress-xpath checks=&quot;.*&quot; query=&quot;/CLASS_DEF[@text='TestClass']
-          //METHOD_DEF[@text='testMethod']//VARIABLE_DEF[@text='testVariable']&quot;/&gt;
+          //METHOD_DEF[./IDENT[@text='testMethod']]
+          //VARIABLE_DEF[./IDENT[@text='testVariable']]&quot;/&gt;
         </source>
         <p>
           In the following sample, violations for <code>LeftCurly</code> check will be suppressed
           for classes with name <i>Main</i> or for methods with name <i>calculate</i>.
         </p>
         <source>
-&lt;suppress-xpath checks=&quot;LeftCurly&quot; query=&quot;/CLASS_DEF[@text='Main']//*
-          | //METHOD_DEF[@text='calculate']/*&quot;/&gt;
+&lt;suppress-xpath checks=&quot;LeftCurly&quot; query=&quot;/CLASS_DEF[./IDENT[@text='Main']]//*
+          | //METHOD_DEF[./IDENT[@text='calculate']]/*&quot;/&gt;
         </source>
         <p>
           The following example demonstrates how to suppress <code>RequireThis</code> violations for
           variable <i>age</i> inside <i>changeAge</i> method.
         </p>
         <source>
-&lt;suppress-xpath checks=&quot;RequireThis&quot; query=&quot;/CLASS_DEF[@text='InputTest']
-          //METHOD_DEF[@text='changeAge']//ASSIGN[@text='age']/IDENT&quot;/&gt;
+&lt;suppress-xpath checks=&quot;RequireThis&quot; query=&quot;/CLASS_DEF[./IDENT[@text='InputTest']]
+          //METHOD_DEF[./IDENT[@text='changeAge']]//ASSIGN/IDENT[@text='age']&quot;/&gt;
         </source>
         <source>
 public class InputTest {
@@ -970,8 +985,9 @@ public class InputTest {
           <a href="https://www.w3schools.com/xml/xpath_axes.asp">W3Schools Xpath Axes</a>.
         </p>
         <source>
-&lt;suppress-xpath checks=&quot;IllegalThrows&quot; query=&quot;//LITERAL_THROWS/IDENT[
-          ..[@text='RuntimeException'] and ./ancestor::METHOD_DEF[@text='throwsMethod']]&quot;/&gt;
+&lt;suppress-xpath checks=&quot;IllegalThrows&quot; query=&quot;//LITERAL_THROWS
+          /IDENT[@text='RuntimeException' and
+          ./ancestor::METHOD_DEF[./IDENT[@text='throwsMethod']]]&quot;/&gt;
         </source>
         <source>
 public class InputTest {
@@ -990,8 +1006,133 @@ public class InputTest {
           <a href="https://www.w3schools.com/xml/xpath_syntax.asp">W3Schools Xpath Syntax</a>.
         </p>
         <source>
-&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;//METHOD_DEF[@text='legacyMethod']
+&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;//METHOD_DEF[./IDENT[@text='legacyMethod']]
           /descendant-or-self::node()&quot;/&gt;
+        </source>
+
+        <p>Some elements can be suppressed in different ways.
+          For example, to suppress violation on variable <code>wordCount</code> in following code:
+        </p>
+        <source>
+public class InputTest {
+    private int wordCount = 11;
+}
+        </source>
+        <p>You need to look at AST of such code by our CLI tool:</p>
+        <source>
+$ java -jar checkstyle-X.XX-all.jar -t InputTest.java
+CLASS_DEF -> CLASS_DEF [1:0]
+|--MODIFIERS -> MODIFIERS [1:0]
+|   `--LITERAL_PUBLIC -> public [1:0]
+|--LITERAL_CLASS -> class [1:7]
+|--IDENT -> InputTest [1:13]
+`--OBJBLOCK -> OBJBLOCK [1:23]
+|--LCURLY -> { [1:23]
+|--VARIABLE_DEF -> VARIABLE_DEF [2:4]
+|   |--MODIFIERS -> MODIFIERS [2:4]
+|   |   `--LITERAL_PRIVATE -> private [2:4]
+|   |--TYPE -> TYPE [2:12]
+|   |   `--LITERAL_INT -> int [2:12]
+|   |--IDENT -> wordCount [2:16]
+|   |--ASSIGN -> = [2:26]
+|   |   `--EXPR -> EXPR [2:28]
+|   |       `--NUM_INT -> 11 [2:28]
+|   `--SEMI -> ; [2:30]
+`--RCURLY -> } [3:0]
+        </source>
+        <p>The easiest way is to suppress by variable name. As you can see <code>VARIABLE_DEF</code>
+        node refers to variable declaration statement and has child node with token type
+        <code>IDENT</code> which is used for storing class, method, variable names. </p>
+        <p>The following example demonstrates how variable can be queried by its name:</p>
+        <source>
+&lt;suppress-xpath checks=&quot;.&quot; query=&quot;//VARIABLE_DEF[
+            ./IDENT[@text='wordCount']]&quot;/&gt;
+        </source>
+        <p>Another way is to suppress by variable value. Again, if you look at the printed AST tree
+        above, you will notice that one of the grandchildren of <code>VARIABLE_DEF</code> node is
+        responsible for storing variable value - <code>NUM_INT</code> with value <b>11</b>.</p>
+        <p>The following example demonstrates how variable can be queried by its value, same
+        approach applies to <code>String, char, float, double, int, long</code> data types:</p>
+        <source>
+&lt;suppress-xpath checks=&quot;.&quot; query=&quot;//VARIABLE_DEF[.//NUM_INT[@text=11]]&quot;/&gt;
+        </source>
+        <p>Next example is about suppressing method with certain annotation by its name and
+        element value.</p>
+        <source>
+        public class InputTest {
+            @Generated("first") // should not be suppressed
+            public void test1() {
+            }
+
+            @Generated("second") // should be suppressed
+            public void test2() {
+            }
+        }
+        </source>
+        <p>First of all we need to look at AST tree printed by our CLI tool: </p>
+        <source>
+$ java -jar checkstyle-X.XX-all.jar -t InputTest.java
+CLASS_DEF -> CLASS_DEF [1:0]
+|--MODIFIERS -> MODIFIERS [1:0]
+|   `--LITERAL_PUBLIC -> public [1:0]
+|--LITERAL_CLASS -> class [1:7]
+|--IDENT -> InputTest [1:13]
+`--OBJBLOCK -> OBJBLOCK [1:23]
+|--LCURLY -> { [1:23]
+|--METHOD_DEF -> METHOD_DEF [2:4]
+|   |--MODIFIERS -> MODIFIERS [2:4]
+|   |   |--ANNOTATION -> ANNOTATION [2:4]
+|   |   |   |--AT -> @ [2:4]
+|   |   |   |--IDENT -> Generated [2:5]
+|   |   |   |--LPAREN -> ( [2:14]
+|   |   |   |--EXPR -> EXPR [2:15]
+|   |   |   |   `--STRING_LITERAL -> "first" [2:15]
+|   |   |   `--RPAREN -> ) [2:22]
+|   |   `--LITERAL_PUBLIC -> public [3:4]
+|   |--TYPE -> TYPE [3:11]
+|   |   `--LITERAL_VOID -> void [3:11]
+|   |--IDENT -> test1 [3:16]
+|   |--LPAREN -> ( [3:21]
+|   |--PARAMETERS -> PARAMETERS [3:22]
+|   |--RPAREN -> ) [3:22]
+|   `--SLIST -> { [3:24]
+|       `--RCURLY -> } [4:4]
+|--METHOD_DEF -> METHOD_DEF [6:4]
+|   |--MODIFIERS -> MODIFIERS [6:4]
+|   |   |--ANNOTATION -> ANNOTATION [6:4]
+|   |   |   |--AT -> @ [6:4]
+|   |   |   |--IDENT -> Generated [6:5]
+|   |   |   |--LPAREN -> ( [6:14]
+|   |   |   |--EXPR -> EXPR [6:15]
+|   |   |   |   `--STRING_LITERAL -> "second" [6:15]
+|   |   |   `--RPAREN -> ) [6:23]
+|   |   `--LITERAL_PUBLIC -> public [7:4]
+|   |--TYPE -> TYPE [7:11]
+|   |   `--LITERAL_VOID -> void [7:11]
+|   |--IDENT -> test2 [7:16]
+|   |--LPAREN -> ( [7:21]
+|   |--PARAMETERS -> PARAMETERS [7:22]
+|   |--RPAREN -> ) [7:22]
+|   `--SLIST -> { [7:24]
+|       `--RCURLY -> } [8:4]
+`--RCURLY -> } [9:0]
+        </source>
+        <p>AST node <code>ANNOTATION -> ANNOTATION [6:4]</code> has direct child
+        <code>IDENT -> Generated [6:5]</code>, therefore can be queried by <code>IDENT</code> value:
+        </p>
+        <source>
+&lt;suppress-xpath checks=&quot;.&quot; query=&quot;//METHOD_DEF[
+            .//ANNOTATION/IDENT[@text='Generated']]&quot;/&gt;
+        </source>
+        <p>The problem with query above that it will suppress violations for all methods with
+        annotation <code>@Generated</code>. In order to suppress methods with
+        <code>@Generated("second")</code> annotations only, you need to look at AST tree again.
+        Value of the <code>ANNOTATION</code> node is stored inside sub-node with token type
+        <code>STRING_LITERAL</code>. Use the following query to suppress methods with
+        <code>@Generated("second")</code> annotation:</p>
+        <source>
+&lt;suppress-xpath checks=&quot;.&quot; query=&quot;//METHOD_DEF[.//ANNOTATION[
+            ./IDENT[@text='Generated'] and ./EXPR/STRING_LITERAL[@text='second']]]&quot;/&gt;
         </source>
       </subsection>
       <subsection name="Example of Usage" id="SuppressionXpathFilter_Example_of_Usage">

@@ -52,10 +52,11 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionDefaultComesLastOne']/OBJBLOCK"
-                + "/METHOD_DEF[@text='test']/SLIST/LITERAL_SWITCH/CASE_GROUP",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionDefaultComesLastOne']/OBJBLOCK"
-                + "/METHOD_DEF[@text='test']/SLIST/LITERAL_SWITCH/CASE_GROUP"
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionDefaultComesLastOne']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_SWITCH/CASE_GROUP["
+                + "./SLIST/EXPR/ASSIGN/IDENT[@text='id']]",
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionDefaultComesLastOne']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_SWITCH/CASE_GROUP"
                 + "/LITERAL_DEFAULT"
         );
 
@@ -78,8 +79,9 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionDefaultComesLastTwo']/OBJBLOCK"
-                + "/METHOD_DEF[@text='test']/SLIST/LITERAL_SWITCH/CASE_GROUP/LITERAL_DEFAULT"
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionDefaultComesLastTwo']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_SWITCH/CASE_GROUP"
+                + "/LITERAL_DEFAULT"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

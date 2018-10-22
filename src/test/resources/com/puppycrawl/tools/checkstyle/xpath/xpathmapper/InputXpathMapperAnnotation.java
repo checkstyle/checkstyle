@@ -1,6 +1,15 @@
 package com.puppycrawl.tools.checkstyle.xpath.xpathmapper;
 
-@SuppressWarnings("test")
+@Deprecated
 public class InputXpathMapperAnnotation {
 
+    @SuppressWarnings("bad")
+    public void test1() {
+
+    }
+
+    @SuppressWarnings("good")
+    public void test2() {
+
+    }
 }

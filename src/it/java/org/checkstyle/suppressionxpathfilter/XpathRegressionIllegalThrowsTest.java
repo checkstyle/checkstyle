@@ -51,8 +51,9 @@ public class XpathRegressionIllegalThrowsTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionIllegalThrowsOne']/OBJBLOCK"
-                + "/METHOD_DEF[@text='sayHello']/LITERAL_THROWS[@text='RuntimeException']/IDENT"
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIllegalThrowsOne']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='sayHello']]/LITERAL_THROWS"
+                + "/IDENT[@text='RuntimeException']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -73,8 +74,9 @@ public class XpathRegressionIllegalThrowsTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionIllegalThrowsTwo']/OBJBLOCK"
-                + "/METHOD_DEF[@text='methodTwo']/LITERAL_THROWS/DOT[@text='Error']"
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIllegalThrowsTwo']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='methodTwo']]/LITERAL_THROWS"
+                + "/DOT[./IDENT[@text='Error']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

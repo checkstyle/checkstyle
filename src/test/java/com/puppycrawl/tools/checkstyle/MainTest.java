@@ -808,9 +808,11 @@ public class MainTest {
 
     @Test
     public void testPrintSuppressionOption() throws Exception {
-        final String expected = "/CLASS_DEF[@text='InputMainSuppressionsStringPrinter']" + EOL
-                + "/CLASS_DEF[@text='InputMainSuppressionsStringPrinter']/MODIFIERS" + EOL
-                + "/CLASS_DEF[@text='InputMainSuppressionsStringPrinter']/LITERAL_CLASS" + EOL;
+        final String expected = "/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']]"
+                + EOL
+                + "/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']]/MODIFIERS" + EOL
+                + "/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']]/LITERAL_CLASS"
+                + EOL;
 
         exit.checkAssertionAfterwards(() -> {
             assertEquals("Unexpected output log",
@@ -824,14 +826,19 @@ public class MainTest {
 
     @Test
     public void testPrintSuppressionAndTabWidthOption() throws Exception {
-        final String expected = "/CLASS_DEF[@text='InputMainSuppressionsStringPrinter']/OBJBLOCK"
-                + "/METHOD_DEF[@text='getName']/SLIST/VARIABLE_DEF[@text='var']" + EOL
-                + "/CLASS_DEF[@text='InputMainSuppressionsStringPrinter']/OBJBLOCK"
-                + "/METHOD_DEF[@text='getName']/SLIST/VARIABLE_DEF[@text='var']/MODIFIERS" + EOL
-                + "/CLASS_DEF[@text='InputMainSuppressionsStringPrinter']/OBJBLOCK"
-                + "/METHOD_DEF[@text='getName']/SLIST/VARIABLE_DEF[@text='var']/TYPE" + EOL
-                + "/CLASS_DEF[@text='InputMainSuppressionsStringPrinter']/OBJBLOCK"
-                + "/METHOD_DEF[@text='getName']/SLIST/VARIABLE_DEF[@text='var']/TYPE/LITERAL_INT"
+        final String expected = "/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']]"
+                + "/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='getName']]/SLIST/VARIABLE_DEF[./IDENT[@text='var']]"
+                + EOL
+                + "/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='getName']]/SLIST/VARIABLE_DEF[./IDENT[@text='var']]"
+                + "/MODIFIERS" + EOL
+                + "/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='getName']]/SLIST/VARIABLE_DEF[./IDENT[@text='var']]"
+                + "/TYPE" + EOL
+                + "/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='getName']]/SLIST/VARIABLE_DEF[./IDENT[@text='var']]"
+                + "/TYPE/LITERAL_INT"
                 + EOL;
 
         exit.checkAssertionAfterwards(() -> {
@@ -920,81 +927,81 @@ public class MainTest {
                 + "<suppress-xpath" + EOL
                 + "       files=\"InputMainComplexityOverflow.java\"" + EOL
                 + "       checks=\"JavadocMethodCheck\"" + EOL
-                + "       query=\"/CLASS_DEF[@text='InputMainComplexityOverflow']/OBJBLOCK"
-                + "/METHOD_DEF[@text='provokeNpathIntegerOverflow']\"/>" + EOL
+                + "       query=\"/CLASS_DEF[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]\"/>" + EOL
                 + "<suppress-xpath" + EOL
                 + "       files=\"InputMainComplexityOverflow.java\"" + EOL
                 + "       checks=\"LeftCurlyCheck\"" + EOL
-                + "       query=\"/CLASS_DEF[@text='InputMainComplexityOverflow']/OBJBLOCK"
-                + "/METHOD_DEF[@text='provokeNpathIntegerOverflow']/SLIST\"/>" + EOL
+                + "       query=\"/CLASS_DEF[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST\"/>" + EOL
                 + "<suppress-xpath" + EOL
                 + "       files=\"InputMainComplexityOverflow.java\"" + EOL
                 + "       checks=\"EmptyBlockCheck\"" + EOL
-                + "       query=\"/CLASS_DEF[@text='InputMainComplexityOverflow']/OBJBLOCK"
-                + "/METHOD_DEF[@text='provokeNpathIntegerOverflow']/SLIST/LITERAL_IF/SLIST"
+                + "       query=\"/CLASS_DEF[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST"
                 + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST"
                 + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>" + EOL
                 + "<suppress-xpath" + EOL
                 + "       files=\"InputMainComplexityOverflow.java\"" + EOL
                 + "       checks=\"EmptyBlockCheck\"" + EOL
-                + "       query=\"/CLASS_DEF[@text='InputMainComplexityOverflow']/OBJBLOCK"
-                + "/METHOD_DEF[@text='provokeNpathIntegerOverflow']/SLIST/LITERAL_IF/SLIST"
+                + "       query=\"/CLASS_DEF[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST"
                 + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF"
                 + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>" + EOL
                 + "<suppress-xpath" + EOL
                 + "       files=\"InputMainComplexityOverflow.java\"" + EOL
                 + "       checks=\"EmptyBlockCheck\"" + EOL
-                + "       query=\"/CLASS_DEF[@text='InputMainComplexityOverflow']/OBJBLOCK"
-                + "/METHOD_DEF[@text='provokeNpathIntegerOverflow']/SLIST/LITERAL_IF/SLIST"
+                + "       query=\"/CLASS_DEF[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST"
                 + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST"
                 + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>" + EOL
                 + "<suppress-xpath" + EOL
                 + "       files=\"InputMainComplexityOverflow.java\"" + EOL
                 + "       checks=\"EmptyBlockCheck\"" + EOL
-                + "       query=\"/CLASS_DEF[@text='InputMainComplexityOverflow']/OBJBLOCK"
-                + "/METHOD_DEF[@text='provokeNpathIntegerOverflow']/SLIST/LITERAL_IF/SLIST"
+                + "       query=\"/CLASS_DEF[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST"
                 + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF"
                 + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>" + EOL
                 + "<suppress-xpath" + EOL
                 + "       files=\"InputMainComplexityOverflow.java\"" + EOL
                 + "       checks=\"EmptyBlockCheck\"" + EOL
-                + "       query=\"/CLASS_DEF[@text='InputMainComplexityOverflow']/OBJBLOCK"
-                + "/METHOD_DEF[@text='provokeNpathIntegerOverflow']/SLIST/LITERAL_IF/SLIST"
+                + "       query=\"/CLASS_DEF[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST"
                 + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF"
                 + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>" + EOL
                 + "<suppress-xpath" + EOL
                 + "       files=\"InputMainComplexityOverflow.java\"" + EOL
                 + "       checks=\"EmptyBlockCheck\"" + EOL
-                + "       query=\"/CLASS_DEF[@text='InputMainComplexityOverflow']/OBJBLOCK"
-                + "/METHOD_DEF[@text='provokeNpathIntegerOverflow']/SLIST/LITERAL_IF/SLIST"
+                + "       query=\"/CLASS_DEF[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST"
                 + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF"
                 + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>" + EOL
                 + "<suppress-xpath" + EOL
                 + "       files=\"InputMainComplexityOverflow.java\"" + EOL
                 + "       checks=\"EmptyBlockCheck\"" + EOL
-                + "       query=\"/CLASS_DEF[@text='InputMainComplexityOverflow']/OBJBLOCK"
-                + "/METHOD_DEF[@text='provokeNpathIntegerOverflow']/SLIST/LITERAL_IF/SLIST"
+                + "       query=\"/CLASS_DEF[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST"
                 + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF"
                 + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>" + EOL
                 + "<suppress-xpath" + EOL
                 + "       files=\"InputMainComplexityOverflow.java\"" + EOL
                 + "       checks=\"EmptyBlockCheck\"" + EOL
-                + "       query=\"/CLASS_DEF[@text='InputMainComplexityOverflow']/OBJBLOCK"
-                + "/METHOD_DEF[@text='provokeNpathIntegerOverflow']/SLIST/LITERAL_IF/SLIST"
+                + "       query=\"/CLASS_DEF[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST"
                 + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF"
                 + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>" + EOL
                 + "<suppress-xpath" + EOL
                 + "       files=\"InputMainComplexityOverflow.java\"" + EOL
                 + "       checks=\"EmptyBlockCheck\"" + EOL
-                + "       query=\"/CLASS_DEF[@text='InputMainComplexityOverflow']/OBJBLOCK"
-                + "/METHOD_DEF[@text='provokeNpathIntegerOverflow']/SLIST/LITERAL_IF/SLIST"
+                + "       query=\"/CLASS_DEF[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST"
                 + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF"
                 + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>" + EOL
                 + "<suppress-xpath" + EOL
                 + "       files=\"InputMainComplexityOverflow.java\"" + EOL
                 + "       checks=\"EmptyBlockCheck\"" + EOL
-                + "       query=\"/CLASS_DEF[@text='InputMainComplexityOverflow']/OBJBLOCK"
-                + "/METHOD_DEF[@text='provokeNpathIntegerOverflow']/SLIST/LITERAL_IF/SLIST"
+                + "       query=\"/CLASS_DEF[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST"
                 + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF"
                 + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>" + EOL
                 + "</suppressions>" + EOL;
@@ -1020,18 +1027,20 @@ public class MainTest {
             + "<suppress-xpath" + EOL
             + "       files=\"InputMainGenerateXpathSuppressions.java\"" + EOL
             + "       checks=\"ExplicitInitializationCheck\"" + EOL
-            + "       query=\"/CLASS_DEF[@text='InputMainGenerateXpathSuppressions']/OBJBLOCK"
-            + "/VARIABLE_DEF[@text='low']/IDENT\"/>" + EOL
+            + "       query=\"/CLASS_DEF[./IDENT[@text='InputMainGenerateXpathSuppressions']]"
+            + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='low']\"/>" + EOL
             + "<suppress-xpath" + EOL
             + "       files=\"InputMainGenerateXpathSuppressions.java\"" + EOL
             + "       checks=\"IllegalThrowsCheck\"" + EOL
-            + "       query=\"/CLASS_DEF[@text='InputMainGenerateXpathSuppressions']/OBJBLOCK"
-            + "/METHOD_DEF[@text='test']/LITERAL_THROWS[@text='RuntimeException']/IDENT\"/>" + EOL
+            + "       query=\"/CLASS_DEF[./IDENT[@text='InputMainGenerateXpathSuppressions']]"
+            + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/LITERAL_THROWS"
+            + "/IDENT[@text='RuntimeException']\"/>" + EOL
             + "<suppress-xpath" + EOL
             + "       files=\"InputMainGenerateXpathSuppressions.java\"" + EOL
             + "       checks=\"NestedForDepthCheck\"" + EOL
-            + "       query=\"/CLASS_DEF[@text='InputMainGenerateXpathSuppressions']/OBJBLOCK"
-            + "/METHOD_DEF[@text='test']/SLIST/LITERAL_FOR/SLIST/LITERAL_FOR/SLIST"
+            + "       query=\"/CLASS_DEF[./IDENT[@text='InputMainGenerateXpathSuppressions']]"
+            + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_FOR/SLIST"
+            + "/LITERAL_FOR/SLIST"
             + "/LITERAL_FOR\"/>" + EOL
             + "</suppressions>" + EOL;
 
@@ -1072,8 +1081,9 @@ public class MainTest {
                 + "<suppress-xpath" + EOL
                 + "       files=\"InputMainGenerateXpathSuppressionsTabWidth.java\"" + EOL
                 + "       checks=\"ExplicitInitializationCheck\"" + EOL
-                + "       query=\"/CLASS_DEF[@text='InputMainGenerateXpathSuppressionsTabWidth']"
-                + "/OBJBLOCK/VARIABLE_DEF[@text='low']/IDENT\"/>" + EOL
+                + "       query=\"/CLASS_DEF[./IDENT["
+                + "@text='InputMainGenerateXpathSuppressionsTabWidth']]"
+                + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='low']\"/>" + EOL
                 + "</suppressions>" + EOL;
 
         exit.checkAssertionAfterwards(() -> {

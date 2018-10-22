@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
 
 /**
  * Generates xpath queries. Xpath queries are generated based on received
@@ -60,13 +60,15 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <ul>
  *     <li>
- *         /CLASS_DEF[@text='Main']/OBJBLOCK/METHOD_DEF[@text='sayHello']
+ *         /CLASS_DEF[./IDENT[@text='Main']]/OBJBLOCK/METHOD_DEF[./IDENT[@text='sayHello']]
  *     </li>
  *     <li>
- *         /CLASS_DEF[@text='Main']/OBJBLOCK/METHOD_DEF[@text='sayHello']/MODIFIERS
+ *         /CLASS_DEF[./IDENT[@text='Main']]/OBJBLOCK/METHOD_DEF[./IDENT[@text='sayHello']]
+ *         /MODIFIERS
  *     </li>
  *     <li>
- *         /CLASS_DEF[@text='Main']/OBJBLOCK/METHOD_DEF[@text='sayHello']/MODIFIERS/LITERAL_PUBLIC
+ *         /CLASS_DEF[./IDENT[@text='Main']]/OBJBLOCK/METHOD_DEF[./IDENT[@text='sayHello']]
+ *         /MODIFIERS/LITERAL_PUBLIC
  *     </li>
  * </ul>
  *
@@ -144,16 +146,28 @@ public class XpathQueryGenerator {
     }
 
     /**
-     * Returns child {@code DetailAst} element of the given root,
-     * which has child element with token type equals to {@link TokenTypes#IDENT}.
+     * Returns child {@code DetailAst} element of the given root, which has text attribute.
      * @param root {@code DetailAST} root ast
      * @return child {@code DetailAst} element of the given root
      */
-    private static DetailAST findChildWithIdent(DetailAST root) {
+    private static DetailAST findChildWithTextAttribute(DetailAST root) {
         return TokenUtil.findFirstTokenByPredicate(root,
-            cur -> {
-                return cur.findFirstToken(TokenTypes.IDENT) != null;
-            }).orElse(null);
+                XpathUtil::supportsTextAttribute).orElse(null);
+    }
+
+    /**
+     * Returns child {@code DetailAst} element of the given root, which has text attribute.
+     * Performs search recursively inside node's subtree.
+     * @param root {@code DetailAST} root ast
+     * @return child {@code DetailAst} element of the given root
+     */
+    private static DetailAST findChildWithTextAttributeRecursively(DetailAST root) {
+        DetailAST res = findChildWithTextAttribute(root);
+        for (DetailAST ast = root.getFirstChild(); ast != null && res == null;
+             ast = ast.getNextSibling()) {
+            res = findChildWithTextAttributeRecursively(ast);
+        }
+        return res;
     }
 
     /**
@@ -162,14 +176,47 @@ public class XpathQueryGenerator {
      * @return full xpath query for given ast element
      */
     private static String generateXpathQuery(DetailAST ast) {
-        String xpathQuery = getXpathQuery(null, ast);
-        if (!isUniqueAst(ast)) {
-            final DetailAST child = findChildWithIdent(ast);
-            if (child != null) {
-                xpathQuery += "[." + getXpathQuery(ast, child) + ']';
+        final StringBuilder xpathQueryBuilder = new StringBuilder(getXpathQuery(null, ast));
+        if (!isXpathQueryForNodeIsAccurateEnough(ast)) {
+            xpathQueryBuilder.append('[');
+            final DetailAST child = findChildWithTextAttributeRecursively(ast);
+            if (child == null) {
+                xpathQueryBuilder.append(findPositionAmongSiblings(ast));
             }
+            else {
+                xpathQueryBuilder.append('.').append(getXpathQuery(ast, child));
+            }
+            xpathQueryBuilder.append(']');
         }
-        return xpathQuery;
+        return xpathQueryBuilder.toString();
+    }
+
+    /**
+     * Finds position of the ast element among siblings.
+     * @param ast {@code DetailAST} ast element
+     * @return position of the ast element
+     */
+    private static int findPositionAmongSiblings(DetailAST ast) {
+        DetailAST cur = ast;
+        int pos = 0;
+        while (cur != null) {
+            if (cur.getType() == ast.getType()) {
+                pos++;
+            }
+            cur = cur.getPreviousSibling();
+        }
+        return pos;
+    }
+
+    /**
+     * Checks if ast element has all requirements to have unique xpath query.
+     * @param ast {@code DetailAST} ast element
+     * @return true if ast element will have unique xpath query, false otherwise
+     */
+    private static boolean isXpathQueryForNodeIsAccurateEnough(DetailAST ast) {
+        return !hasAtLeastOneSiblingWithSameTokenType(ast)
+                || XpathUtil.supportsTextAttribute(ast)
+                || findChildWithTextAttribute(ast) != null;
     }
 
     /**
@@ -179,16 +226,14 @@ public class XpathQueryGenerator {
     private List<DetailAST> getMatchingAstElements() {
         final List<DetailAST> result = new ArrayList<>();
         DetailAST curNode = rootAst;
-        while (curNode != null && curNode.getLineNo() <= lineNumber) {
+        while (curNode != null) {
             if (isMatchingByLineAndColumnAndTokenType(curNode)) {
                 result.add(curNode);
             }
             DetailAST toVisit = curNode.getFirstChild();
             while (curNode != null && toVisit == null) {
                 toVisit = curNode.getNextSibling();
-                if (toVisit == null) {
-                    curNode = curNode.getParent();
-                }
+                curNode = curNode.getParent();
             }
 
             curNode = toVisit;
@@ -209,12 +254,20 @@ public class XpathQueryGenerator {
             final StringBuilder curNodeQueryBuilder = new StringBuilder(256);
             curNodeQueryBuilder.append('/')
                     .append(TokenUtil.getTokenName(cur.getType()));
-            final DetailAST identAst = cur.findFirstToken(TokenTypes.IDENT);
-            if (identAst != null) {
+            if (XpathUtil.supportsTextAttribute(cur)) {
                 curNodeQueryBuilder.append("[@text='")
-                        .append(identAst.getText())
+                        .append(XpathUtil.getTextAttributeValue(cur))
                         .append("']");
             }
+            else {
+                final DetailAST child = findChildWithTextAttribute(cur);
+                if (child != null && child != ast) {
+                    curNodeQueryBuilder.append("[.")
+                            .append(getXpathQuery(cur, child))
+                            .append(']');
+                }
+            }
+
             resultBuilder.insert(0, curNodeQueryBuilder);
             cur = cur.getParent();
         }
@@ -228,28 +281,21 @@ public class XpathQueryGenerator {
      */
     private static boolean hasAtLeastOneSiblingWithSameTokenType(DetailAST ast) {
         boolean result = false;
-        if (ast.getParent() == null) {
-            DetailAST prev = ast.getPreviousSibling();
-            while (prev != null) {
-                if (prev.getType() == ast.getType()) {
-                    result = true;
-                    break;
-                }
-                prev = prev.getPreviousSibling();
+        DetailAST prev = ast.getPreviousSibling();
+        while (prev != null) {
+            if (prev.getType() == ast.getType()) {
+                result = true;
+                break;
             }
-            if (!result) {
-                DetailAST next = ast.getNextSibling();
-                while (next != null) {
-                    if (next.getType() == ast.getType()) {
-                        result = true;
-                        break;
-                    }
-                    next = next.getNextSibling();
-                }
-            }
+            prev = prev.getPreviousSibling();
         }
-        else {
-            result = ast.getParent().getChildCount(ast.getType()) > 1;
+        DetailAST next = ast.getNextSibling();
+        while (next != null) {
+            if (next.getType() == ast.getType()) {
+                result = true;
+                break;
+            }
+            next = next.getNextSibling();
         }
         return result;
     }
@@ -275,18 +321,4 @@ public class XpathQueryGenerator {
                 && expandedTabColumn(ast) == columnNumber
                 && (tokenType == 0 || tokenType == ast.getType());
     }
-
-    /**
-     * To be sure that generated xpath query will return exactly required ast element, the element
-     * should be checked for uniqueness. If ast element has {@link TokenTypes#IDENT} as the child
-     * or there is no sibling with the same {@code TokenTypes} then element is supposed to be
-     * unique. This method finds if {@code DetailAst} element is unique.
-     * @param ast {@code DetailAST} ast element
-     * @return if {@code DetailAst} element is unique
-     */
-    private static boolean isUniqueAst(DetailAST ast) {
-        return ast.findFirstToken(TokenTypes.IDENT) != null
-            || !hasAtLeastOneSiblingWithSameTokenType(ast);
-    }
-
 }

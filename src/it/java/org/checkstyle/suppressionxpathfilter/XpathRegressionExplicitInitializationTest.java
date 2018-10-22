@@ -51,8 +51,8 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[@text='SuppressionXpathRegressionExplicitOne']"
-                        + "/OBJBLOCK/VARIABLE_DEF[@text='a']/IDENT"
+                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionExplicitOne']]"
+                        + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='a']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -73,8 +73,8 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[@text='SuppressionXpathRegressionExplicitTwo']/OBJBLOCK"
-                        + "/VARIABLE_DEF[@text='bar']/IDENT"
+                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionExplicitTwo']]/OBJBLOCK"
+                        + "/VARIABLE_DEF/IDENT[@text='bar']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

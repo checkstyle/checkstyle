@@ -54,12 +54,12 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionNPathComplexityOne']/OBJBLOCK"
-                + "/METHOD_DEF[@text='test']",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionNPathComplexityOne']/OBJBLOCK"
-                + "/METHOD_DEF[@text='test']/MODIFIERS",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionNPathComplexityOne']/OBJBLOCK"
-                + "/METHOD_DEF[@text='test']/MODIFIERS/LITERAL_PUBLIC"
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNPathComplexityOne']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='test']]",
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNPathComplexityOne']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS",
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNPathComplexityOne']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -81,7 +81,8 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionNPathComplexityTwo']/OBJBLOCK/STATIC_INIT"
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNPathComplexityTwo']]"
+                + "/OBJBLOCK/STATIC_INIT"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

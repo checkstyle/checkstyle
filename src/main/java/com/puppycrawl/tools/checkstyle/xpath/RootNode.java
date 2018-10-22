@@ -56,9 +56,7 @@ public class RootNode extends AbstractNode {
         super(new GenericTreeInfo(Configuration.newConfiguration()));
         this.detailAst = detailAst;
 
-        if (detailAst != null) {
-            createChildren();
-        }
+        createChildren();
     }
 
     /**
