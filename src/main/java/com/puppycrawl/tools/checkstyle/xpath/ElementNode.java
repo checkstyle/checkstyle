@@ -174,7 +174,8 @@ public class ElementNode extends AbstractNode {
                 result = new Navigator.AncestorEnumeration(this, true);
                 break;
             case AxisInfo.ATTRIBUTE:
-                result = new ArrayIterator.OfNodes(attributes.values().toArray(new AttributeNode[0]));
+                result = new ArrayIterator.OfNodes(attributes.values()
+                        .toArray(new AttributeNode[0]));
                 break;
             case AxisInfo.CHILD:
                 if (hasChildNodes()) {
@@ -256,11 +257,13 @@ public class ElementNode extends AbstractNode {
         // Attribute "text"
         final DetailAST firstIdentChild = detailAst.findFirstToken(TokenTypes.IDENT);
         if (firstIdentChild != null) {
-            attributesMap.put(TEXT_ATTRIBUTE_NAME, new AttributeNode(TEXT_ATTRIBUTE_NAME, firstIdentChild.getText()));
+            attributesMap.put(TEXT_ATTRIBUTE_NAME,
+                    new AttributeNode(TEXT_ATTRIBUTE_NAME, firstIdentChild.getText()));
         }
 
         // Attribute "value"
-        attributesMap.put(VALUE_ATTRIBUTE_NAME, new AttributeNode(VALUE_ATTRIBUTE_NAME, detailAst.getText()));
+        attributesMap.put(VALUE_ATTRIBUTE_NAME,
+                new AttributeNode(VALUE_ATTRIBUTE_NAME,detailAst.getText()));
 
         return attributesMap;
     }

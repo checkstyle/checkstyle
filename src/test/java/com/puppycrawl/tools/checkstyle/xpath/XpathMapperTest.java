@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.XpathUtil.getXpathI
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -462,13 +463,8 @@ public class XpathMapperTest extends AbstractPathTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<Item> nodes = getXpathItems(xpath, rootNode);
         final ElementNode classDefNode = (ElementNode) nodes.get(0);
-        try {
-            classDefNode.getAttributeValue("", "noneExistingAttribute");
-            fail("Exception is excepted");
-        }
-        catch (UnsupportedOperationException ex) {
-            assertEquals("Invalid number of nodes", "Operation is not supported", ex.getMessage());
-        }
+        assertNull("Not existing attribute should have null value",
+                classDefNode.getAttributeValue("", "notExistingAttribute"));
     }
 
     @Test
