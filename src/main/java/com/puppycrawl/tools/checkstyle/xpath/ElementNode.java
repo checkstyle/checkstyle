@@ -104,7 +104,10 @@ public class ElementNode extends AbstractNode {
     @Override
     public String getAttributeValue(String namespace, String localPart) {
         final AttributeNode attribute = attributes.get(localPart);
-        return attribute == null ? null : attribute.getStringValue();
+        if (attribute == null) {
+            return null;
+        }
+        return attribute.getStringValue();
     }
 
     /**
@@ -263,7 +266,7 @@ public class ElementNode extends AbstractNode {
 
         // Attribute "value"
         attributesMap.put(VALUE_ATTRIBUTE_NAME,
-                new AttributeNode(VALUE_ATTRIBUTE_NAME,detailAst.getText()));
+                new AttributeNode(VALUE_ATTRIBUTE_NAME, detailAst.getText()));
 
         return attributesMap;
     }
