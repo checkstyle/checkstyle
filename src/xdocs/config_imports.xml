@@ -1548,7 +1548,7 @@ import java.util.stream.IntStream;
         </source>
 
         <p>To configure the check so that it matches default IntelliJ IDEA formatter
-           configuration (tested on v14):</p>
+           configuration (tested on v2018.2):</p>
         <ul>
           <li>group of static imports is on the bottom</li>
           <li>groups of type imports: all imports except of &quot;javax&quot;
@@ -1557,20 +1557,28 @@ import java.util.stream.IntStream;
           <li>groups are separated by, at least, one blank line and aren't separated internally</li>
         </ul>
 
-        <p>
-        Note: &quot;separated&quot; option is disabled because IDEA default has blank line
-        between &quot;java&quot; and static imports, and no blank line between
-        &quot;javax&quot; and &quot;java&quot;
-        </p>
+        <p>Note: a <a href="config_filters.html#SuppressionFilter">suppression filter</a>
+           is needed because IDEA has no blank line between "javax" and "java".</p>
 
         <source>
 &lt;module name=&quot;ImportOrder&quot;&gt;
   &lt;property name=&quot;groups&quot; value=&quot;*,javax,java&quot;/&gt;
   &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;separated&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;separated&quot; value=&quot;true&quot;/&gt;
   &lt;property name=&quot;option&quot; value=&quot;bottom&quot;/&gt;
   &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
+        </source>
+
+        <source>
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+    &quot;-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN&quot;
+    &quot;https://checkstyle.org/dtds/suppressions_1_2.dtd&quot;&gt;
+
+&lt;suppressions&gt;
+    &lt;suppress checks=&quot;ImportOrder&quot; message=&quot;^'java\..*'.*&quot;/&gt;
+&lt;/suppressions&gt;
         </source>
 
         <p>To configure the check so that it matches default NetBeans formatter configuration
