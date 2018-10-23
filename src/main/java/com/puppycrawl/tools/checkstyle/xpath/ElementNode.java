@@ -19,6 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -40,6 +44,9 @@ public class ElementNode extends AbstractNode {
     /** String literal for text attribute. */
     private static final String TEXT_ATTRIBUTE_NAME = "text";
 
+    /** String literal for value attribute. */
+    private static final String VALUE_ATTRIBUTE_NAME = "value";
+
     /** Constant for optimization. */
     private static final AbstractNode[] EMPTY_ABSTRACT_NODE_ARRAY = new AbstractNode[0];
 
@@ -55,11 +62,8 @@ public class ElementNode extends AbstractNode {
     /** Represents text of the DetailAST. */
     private final String text;
 
-    /** The attributes. */
-    private AbstractNode[] attributes;
-
-    /** Represents value of TokenTypes#IDENT. */
-    private String ident;
+    /** The attributes by attribute name. */
+    private final Map<String, AttributeNode> attributes;
 
     /**
      * Creates a new {@code ElementNode} instance.
@@ -73,7 +77,7 @@ public class ElementNode extends AbstractNode {
         this.parent = parent;
         this.root = root;
         this.detailAst = detailAst;
-        setIdent();
+        attributes = Collections.unmodifiableMap(createAttributesMap());
         createChildren();
         text = TokenUtil.getTokenName(detailAst.getType());
     }
@@ -92,20 +96,15 @@ public class ElementNode extends AbstractNode {
     }
 
     /**
-     * Returns attribute value. Throws {@code UnsupportedOperationException} in case,
-     * when name of the attribute is not equal to 'text'.
+     * Returns attribute value.
      * @param namespace namespace
      * @param localPart actual name of the attribute
      * @return attribute value
      */
     @Override
     public String getAttributeValue(String namespace, String localPart) {
-        if (TEXT_ATTRIBUTE_NAME.equals(localPart)) {
-            return ident;
-        }
-        else {
-            throw throwUnsupportedOperationException();
-        }
+        final AttributeNode attribute = attributes.get(localPart);
+        return attribute == null ? null : attribute.getStringValue();
     }
 
     /**
@@ -175,12 +174,7 @@ public class ElementNode extends AbstractNode {
                 result = new Navigator.AncestorEnumeration(this, true);
                 break;
             case AxisInfo.ATTRIBUTE:
-                if (attributes == null) {
-                    result = EmptyIterator.OfNodes.THE_INSTANCE;
-                }
-                else {
-                    result = new ArrayIterator.OfNodes(attributes);
-                }
+                result = new ArrayIterator.OfNodes(attributes.values().toArray(new AttributeNode[0]));
                 break;
             case AxisInfo.CHILD:
                 if (hasChildNodes()) {
@@ -253,17 +247,22 @@ public class ElementNode extends AbstractNode {
     }
 
     /**
-     * Finds child element with {@link TokenTypes#IDENT}, extracts its value and stores it.
-     * Value can be accessed using {@code @text} attribute. Now {@code @text} attribute is only
-     * supported attribute.
+     * Creates a map of attribute name to attribute node.
+     * @return map of attribute name to attribute node
      */
-    private void setIdent() {
-        final DetailAST identAst = detailAst.findFirstToken(TokenTypes.IDENT);
-        if (identAst != null) {
-            ident = identAst.getText();
-            attributes = new AbstractNode[1];
-            attributes[0] = new AttributeNode(TEXT_ATTRIBUTE_NAME, ident);
+    private Map<String, AttributeNode> createAttributesMap() {
+        final Map<String, AttributeNode> attributesMap = new LinkedHashMap<>();
+
+        // Attribute "text"
+        final DetailAST firstIdentChild = detailAst.findFirstToken(TokenTypes.IDENT);
+        if (firstIdentChild != null) {
+            attributesMap.put(TEXT_ATTRIBUTE_NAME, new AttributeNode(TEXT_ATTRIBUTE_NAME, firstIdentChild.getText()));
         }
+
+        // Attribute "value"
+        attributesMap.put(VALUE_ATTRIBUTE_NAME, new AttributeNode(VALUE_ATTRIBUTE_NAME, detailAst.getText()));
+
+        return attributesMap;
     }
 
     /**
