@@ -104,10 +104,11 @@ public class ElementNode extends AbstractNode {
     @Override
     public String getAttributeValue(String namespace, String localPart) {
         final AttributeNode attribute = attributes.get(localPart);
-        if (attribute == null) {
-            return null;
+        final String value = null;
+        if (attribute != null) {
+            value = attribute.getStringValue();
         }
-        return attribute.getStringValue();
+        return value;
     }
 
     /**
