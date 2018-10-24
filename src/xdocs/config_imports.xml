@@ -1558,7 +1558,9 @@ import java.util.stream.IntStream;
         </ul>
 
         <p>Note: a <a href="config_filters.html#SuppressionFilter">suppression filter</a>
-           is needed because IDEA has no blank line between "javax" and "java".</p>
+           is needed because IDEA has no blank line between "javax" and "java".
+           ImportOrder has a limitation by design to enforce an empty line between groups ("java", "javax").
+           There is no flexibility to enforce empty lines between some groups and no empty lines between other groups.</p>
 
         <source>
 &lt;module name=&quot;ImportOrder&quot;&gt;
@@ -1577,6 +1579,7 @@ import java.util.stream.IntStream;
     &quot;https://checkstyle.org/dtds/suppressions_1_2.dtd&quot;&gt;
 
 &lt;suppressions&gt;
+    &lt;!-- message contains no message text to work well in multi-language environments --&gt;
     &lt;suppress checks=&quot;ImportOrder&quot; message=&quot;^'java\..*'.*&quot;/&gt;
 &lt;/suppressions&gt;
         </source>
