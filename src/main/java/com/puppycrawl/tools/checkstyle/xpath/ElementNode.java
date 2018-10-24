@@ -107,7 +107,8 @@ public class ElementNode extends AbstractNode {
         final String value;
         if (attribute == null) {
             value = null;
-        } else {
+        }
+        else {
             value = attribute.getStringValue();
         }
         return value;
