@@ -99,6 +99,16 @@ build:
           echo "build is skipped ..."
         fi
 
+  - script:
+      name: NoErrorTest - EqualsVerifier
+      code: |
+        if [[ $SKIP_CI == 'false' ]]; then
+          echo "Command: ./.ci/wercker.sh no-error-equalsverifier"
+          ./.ci/wercker.sh no-error-equalsverifier
+        else
+          echo "build is skipped ..."
+        fi
+
   # Disabled as it result in "svn: E175002: Unexpected HTTP status 429 'Too Many Requests'"
   # even for "svn checkout -r 14923 ...."
   # - script:

@@ -77,6 +77,17 @@ no-error-apex-core)
   rm -rf incubator-apex-core
   ;;
 
+no-error-equalsverifier)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  echo CS_version: ${CS_POM_VERSION}
+  checkout_from https://github.com/jqno/equalsverifier.git
+  cd .ci-temp/equalsverifier
+  mvn -e compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+  cd ../
+  rm -rf equalsverifier
+  ;;
+
 no-error-hibernate-search)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
