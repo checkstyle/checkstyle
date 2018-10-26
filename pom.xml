@@ -279,7 +279,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>2.5.2</version>
+      <version>3.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
