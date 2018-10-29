@@ -124,7 +124,7 @@
       </p>
     </section>
 
-    <section name="Limitations">
+      <section name="Limitations">
 
           <p>
               OK, so you have written your first Check, and you have found
@@ -167,7 +167,7 @@
               java.lang.Exception class.
           </p>
 
-    </section>
+      </section>
 
     <section name="Related Tools">
       <p>
