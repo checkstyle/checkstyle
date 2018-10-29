@@ -44,6 +44,7 @@ import org.junit.Test;
 import org.powermock.reflect.Whitebox;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.EqualsVerifierReport;
 
 public class LocalizedMessageTest {
 
@@ -51,7 +52,9 @@ public class LocalizedMessageTest {
 
     @Test
     public void testEqualsAndHashCode() {
-        EqualsVerifier.forClass(LocalizedMessage.class).usingGetClass().verify();
+        final EqualsVerifierReport ev = EqualsVerifier.forClass(LocalizedMessage.class)
+                .usingGetClass().report();
+        assertEquals("Error: " + ev.getMessage(), EqualsVerifierReport.SUCCESS, ev);
     }
 
     @Test

@@ -27,6 +27,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -224,6 +225,21 @@ public final class TokenUtil {
             }
         }
         return result;
+    }
+
+    /**
+     * Performs an action for each child of {@link DetailAST} root node
+     * which matches the given token type.
+     * @param root root node.
+     * @param type token type to match.
+     * @param action action to perform on the nodes.
+     */
+    public static void forEachChild(DetailAST root, int type, Consumer<DetailAST> action) {
+        for (DetailAST ast = root.getFirstChild(); ast != null; ast = ast.getNextSibling()) {
+            if (ast.getType() == type) {
+                action.accept(ast);
+            }
+        }
     }
 
 }

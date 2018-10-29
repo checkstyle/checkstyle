@@ -26,6 +26,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.EqualsVerifierReport;
 
 public class IntMatchFilterTest {
 
@@ -39,7 +40,8 @@ public class IntMatchFilterTest {
 
     @Test
     public void testEqualsAndHashCode() {
-        EqualsVerifier.forClass(IntMatchFilter.class).verify();
+        final EqualsVerifierReport ev = EqualsVerifier.forClass(IntMatchFilter.class).report();
+        assertEquals("Error: " + ev.getMessage(), EqualsVerifierReport.SUCCESS, ev);
     }
 
     @Test

@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -39,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import net.sf.saxon.sxpath.XPathEvaluator;
 import net.sf.saxon.sxpath.XPathExpression;
 import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.EqualsVerifierReport;
 
 public class XpathFilterTest extends AbstractModuleTestSupport {
 
@@ -262,12 +264,14 @@ public class XpathFilterTest extends AbstractModuleTestSupport {
     @Test
     public void testEqualsAndHashCode() throws Exception {
         final XPathEvaluator xpathEvaluator = new XPathEvaluator();
-        EqualsVerifier.forClass(XpathFilter.class).withPrefabValues(XPathExpression.class,
+        final EqualsVerifierReport ev = EqualsVerifier.forClass(XpathFilter.class)
+            .withPrefabValues(XPathExpression.class,
                 xpathEvaluator.createExpression("//METHOD_DEF"),
                 xpathEvaluator.createExpression("//VARIABLE_DEF"))
                 .usingGetClass()
                 .withIgnoredFields("fileRegexp", "checkRegexp", "messageRegexp", "xpathExpression")
-                .verify();
+                .report();
+        assertEquals("Error: " + ev.getMessage(), EqualsVerifierReport.SUCCESS, ev);
     }
 
     private TreeWalkerAuditEvent getEvent(int line, int column, int tokenType)

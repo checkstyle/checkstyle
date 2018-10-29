@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.TreeWalkerTest;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.EqualsVerifierReport;
 import nl.jqno.equalsverifier.Warning;
 
 public class SuppressElementTest {
@@ -230,12 +231,13 @@ public class SuppressElementTest {
 
     @Test
     public void testEqualsAndHashCode() {
-        EqualsVerifier.forClass(SuppressElement.class)
+        final EqualsVerifierReport ev = EqualsVerifier.forClass(SuppressElement.class)
                 .usingGetClass()
                 .withIgnoredFields("fileRegexp", "checkRegexp", "messageRegexp", "columnFilter",
                         "lineFilter")
                 .suppress(Warning.NONFINAL_FIELDS)
-                .verify();
+                .report();
+        assertEquals("Error: " + ev.getMessage(), EqualsVerifierReport.SUCCESS, ev);
     }
 
 }

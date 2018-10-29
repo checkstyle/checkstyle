@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
-# Make sure you prepared your PC for automative deployment
-# https://github.com/checkstyle/checkstyle/wiki/How-to-make-a-release
+echo "Make sure you prepared your PC for automative deployment"
+echo "Release process: https://github.com/checkstyle/checkstyle/wiki/How-to-make-a-release"
 
 SF_USER=romanivanov
 RELEASE=$(xmlstarlet sel -N pom=http://maven.apache.org/POM/4.0.0 \
@@ -25,35 +25,35 @@ fi
 echo "Please provide password for $SF_USER,checkstyle@shell.sourceforge.net"
 echo "exit" | ssh -t $SF_USER,checkstyle@shell.sourceforge.net create
 
-# Version bump in pom.xml - https://github.com/checkstyle/checkstyle/commits/master
+echo "Version bump in pom.xml"
 SKIP_TEST="-DskipTests -DskipITs"
 SKIP_CHECKSTYLE="-Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true"
 SKIP_OTHERS="-Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dxml.skip=true"
 mvn -e -Pgpg release:prepare -B -Darguments="$SKIP_TEST $SKIP_CHECKSTYLE $SKIP_OTHERS"
 
-# deployment of jars to maven central
-# and publication of site to http://checkstyle.sourceforge.net/new-site/
+echo "Deployment of jars to maven central"
+echo "and publication of site to http://checkstyle.sourceforge.net/new-site/"
 mvn -e -Pgpg release:perform -Darguments="$SKIP_CHECKSTYLE"
 
 #############################
 
 ssh $SF_USER,checkstyle@shell.sourceforge.net << EOF
 
-# Swap html content
+echo "Swap html content"
 cd /home/project-web/checkstyle
 mv htdocs/new-site/ .
 mv htdocs htdocs-$PREV_RELEASE
 mv new-site htdocs
 ln -s /home/project-web/checkstyle/reports htdocs/reports
-# restore folder with links to old releases
+echo "restore folder with links to old releases"
 mv htdocs-$PREV_RELEASE/version htdocs
 
-# Archiving
+echo "Archiving"
 tar cfz htdocs-$PREV_RELEASE.tar.gz htdocs-$PREV_RELEASE/
 mv htdocs-$PREV_RELEASE.tar.gz htdocs-archive/
 rm -rf htdocs-$PREV_RELEASE/
 
-# Extracting archive to previous releases documentation
+echo "Extracting archive to previous releases documentation"
 tar -xzvf htdocs-archive/htdocs-$PREV_RELEASE.tar.gz -C htdocs-version/ \
 --exclude="*/apidocs" \
 --exclude="*/xref" --exclude="*/xref-test" --exclude="*/cobertura" --exclude="*/dsm" \
@@ -63,30 +63,30 @@ tar -xzvf htdocs-archive/htdocs-$PREV_RELEASE.tar.gz -C htdocs-version/ \
 --exclude="surefire-report.html" \
 --exclude="linkcheck.html" --exclude="findbugs.html" --exclude="taglist.html" \
 --exclude="releasenotes_old.html" --exclude="dependencies.html"
-# Make a link to make it accessible from web
+echo "Make a link to make it accessible from web"
 ln -f -s htdocs-version/htdocs-$PREV_RELEASE htdocs/version/$PREV_RELEASE
 
 EOF
 
 ##############################
 
-# go to folder where site was build and sources are already at required tag
+echo "Go to folder where site was build and sources are already at required tag"
 cd target/checkout
 
-#Generate all binaries, no clean to keep site resources just in case
+echo "Generate all binaries, no clean to keep site resources just in case"
 mvn -e -Passembly package
 
-#come back repo folder
+echo "Come back repo folder"
 cd ../../
 
 ##############################
 
-#update github.io
+echo "update github.io"
 if [ -d "../checkstyle.github.io" ] ; then
   cd ../checkstyle.github.io
 else
   cd ../
-  # clone by ssh only to avoid passwords on push
+  echo "Clone by ssh only to avoid passwords on push"
   git clone git@github.com:checkstyle/checkstyle.github.io.git
   cd checkstyle.github.io
 fi
@@ -95,5 +95,5 @@ git checkout HEAD -- CNAME
 cp -R ../checkstyle/target/checkout/target/site/* .
 git add .
 git commit -m "release $RELEASE"
-# we do force to avoid history changes, we do not need history as github.io shows only HEAD.
+echo "We do force to avoid history changes, we do not need history as github.io shows only HEAD."
 git push origin --force

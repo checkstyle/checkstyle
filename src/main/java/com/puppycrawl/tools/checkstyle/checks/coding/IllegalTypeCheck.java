@@ -34,8 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * Checks that particular class are never used as types in variable
- * declarations, return values or parameters.
+ * Checks that particular classes or interfaces are never used.
  *
  * <p>Rationale:
  * Helps reduce coupling on concrete classes.
@@ -71,7 +70,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * <p><b>ignoredMethodNames</b> - Methods that should not be checked.
  *
- * <p><b>memberModifiers</b> - To check only methods and fields with only specified modifiers.
+ * <p><b>memberModifiers</b> - To check only methods and fields with any of the specified modifiers.
+ * This property does not affect method calls nor method references.
  *
  * <p>In most cases it's justified to put following classes to <b>illegalClassNames</b>:
  * <ul>
@@ -167,10 +167,15 @@ public final class IllegalTypeCheck extends AbstractCheck {
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.PARAMETER_DEF,
-            TokenTypes.METHOD_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
+            TokenTypes.CLASS_DEF,
             TokenTypes.IMPORT,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.METHOD_CALL,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.METHOD_REF,
+            TokenTypes.PARAMETER_DEF,
+            TokenTypes.VARIABLE_DEF,
         };
     }
 
@@ -193,15 +198,20 @@ public final class IllegalTypeCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
+            case TokenTypes.CLASS_DEF:
+            case TokenTypes.INTERFACE_DEF:
+                visitTypeDef(ast);
+                break;
+            case TokenTypes.METHOD_CALL:
+            case TokenTypes.METHOD_REF:
+                visitMethodCallOrRef(ast);
+                break;
             case TokenTypes.METHOD_DEF:
-                if (isVerifiable(ast)) {
-                    visitMethodDef(ast);
-                }
+                visitMethodDef(ast);
                 break;
             case TokenTypes.VARIABLE_DEF:
-                if (isVerifiable(ast)) {
-                    visitVariableDef(ast);
-                }
+            case TokenTypes.ANNOTATION_FIELD_DEF:
+                visitVariableDef(ast);
                 break;
             case TokenTypes.PARAMETER_DEF:
                 visitParameterDef(ast);
@@ -252,11 +262,29 @@ public final class IllegalTypeCheck extends AbstractCheck {
     }
 
     /**
+     * Checks the super type and implemented interfaces of a given type.
+     * @param typeDef class or interface for check.
+     */
+    private void visitTypeDef(DetailAST typeDef) {
+        if (isVerifiable(typeDef)) {
+            checkTypeParameters(typeDef);
+            final DetailAST extendsClause = typeDef.findFirstToken(TokenTypes.EXTENDS_CLAUSE);
+            if (extendsClause != null) {
+                checkBaseTypes(extendsClause);
+            }
+            final DetailAST implementsClause = typeDef.findFirstToken(TokenTypes.IMPLEMENTS_CLAUSE);
+            if (implementsClause != null) {
+                checkBaseTypes(implementsClause);
+            }
+        }
+    }
+
+    /**
      * Checks return type of a given method.
      * @param methodDef method for check.
      */
     private void visitMethodDef(DetailAST methodDef) {
-        if (isCheckedMethod(methodDef)) {
+        if (isVerifiable(methodDef) && isCheckedMethod(methodDef)) {
             checkClassName(methodDef);
         }
     }
@@ -279,7 +307,17 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * @param variableDef variable to check.
      */
     private void visitVariableDef(DetailAST variableDef) {
-        checkClassName(variableDef);
+        if (isVerifiable(variableDef)) {
+            checkClassName(variableDef);
+        }
+    }
+
+    /**
+     * Checks the type arguments of given method call/reference.
+     * @param methodCallOrRef method call/reference to check.
+     */
+    private void visitMethodCallOrRef(DetailAST methodCallOrRef) {
+        checkTypeArguments(methodCallOrRef);
     }
 
     /**
@@ -319,16 +357,93 @@ public final class IllegalTypeCheck extends AbstractCheck {
     }
 
     /**
-     * Checks type of given method, parameter or variable.
+     * Checks type and type arguments/parameters of given method, parameter, variable or
+     * method call/reference.
      * @param ast node to check.
      */
     private void checkClassName(DetailAST ast) {
         final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
-        final FullIdent ident = FullIdent.createFullIdent(type.getFirstChild());
+        checkType(type);
+        checkTypeParameters(ast);
+    }
 
+    /**
+     * Checks the identifier of the given type.
+     * @param type node to check.
+     */
+    private void checkIdent(DetailAST type) {
+        final FullIdent ident = FullIdent.createFullIdent(type);
         if (isMatchingClassName(ident.getText())) {
-            log(ident.getLineNo(), ident.getColumnNo(),
-                MSG_KEY, ident.getText());
+            log(ident.getDetailAst(), MSG_KEY, ident.getText());
+        }
+    }
+
+    /**
+     * Checks the {@code extends} or {@code implements} statement.
+     * @param clause DetailAST for either {@link TokenTypes#EXTENDS_CLAUSE} or
+     *               {@link TokenTypes#IMPLEMENTS_CLAUSE}
+     */
+    private void checkBaseTypes(DetailAST clause) {
+        DetailAST child = clause.getFirstChild();
+        while (child != null) {
+            if (child.getType() == TokenTypes.IDENT) {
+                checkIdent(child);
+            }
+            else if (child.getType() == TokenTypes.TYPE_ARGUMENTS) {
+                TokenUtil.forEachChild(child, TokenTypes.TYPE_ARGUMENT, this::checkType);
+            }
+            child = child.getNextSibling();
+        }
+    }
+
+    /**
+     * Checks the given type, its arguments and parameters.
+     * @param type node to check.
+     */
+    private void checkType(DetailAST type) {
+        checkIdent(type.getFirstChild());
+        checkTypeArguments(type);
+        checkTypeBounds(type);
+    }
+
+    /**
+     * Checks the upper and lower bounds for the given type.
+     * @param type node to check.
+     */
+    private void checkTypeBounds(DetailAST type) {
+        final DetailAST upperBounds = type.findFirstToken(TokenTypes.TYPE_UPPER_BOUNDS);
+        if (upperBounds != null) {
+            checkType(upperBounds);
+        }
+        final DetailAST lowerBounds = type.findFirstToken(TokenTypes.TYPE_LOWER_BOUNDS);
+        if (lowerBounds != null) {
+            checkType(lowerBounds);
+        }
+    }
+
+    /**
+     * Checks the type parameters of the node.
+     * @param node node to check.
+     */
+    private void checkTypeParameters(final DetailAST node) {
+        final DetailAST typeParameters = node.findFirstToken(TokenTypes.TYPE_PARAMETERS);
+        if (typeParameters != null) {
+            TokenUtil.forEachChild(typeParameters, TokenTypes.TYPE_PARAMETER, this::checkType);
+        }
+    }
+
+    /**
+     * Checks the type arguments of the node.
+     * @param node node to check.
+     */
+    private void checkTypeArguments(final DetailAST node) {
+        DetailAST typeArguments = node.findFirstToken(TokenTypes.TYPE_ARGUMENTS);
+        if (typeArguments == null) {
+            typeArguments = node.getFirstChild().findFirstToken(TokenTypes.TYPE_ARGUMENTS);
+        }
+
+        if (typeArguments != null) {
+            TokenUtil.forEachChild(typeArguments, TokenTypes.TYPE_ARGUMENT, this::checkType);
         }
     }
 

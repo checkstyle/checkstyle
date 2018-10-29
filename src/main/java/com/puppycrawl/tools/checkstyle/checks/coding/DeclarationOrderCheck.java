@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Checks that the parts of a class or interface declaration
  * appear in the order suggested by the
  * <a href=
- * "http://www.oracle.com/technetwork/java/javase/documentation/codeconventions-141855.html#1852">
+ * "https://www.oracle.com/technetwork/java/javase/documentation/codeconventions-141855.html#1852">
  * Code Conventions for the Java Programming Language</a>.
  *
  *

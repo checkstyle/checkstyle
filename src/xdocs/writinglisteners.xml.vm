@@ -341,7 +341,7 @@ INFO  com.puppycrawl...Checker  - Audit finished.
       <p>
         This
         implementation uses the <a
-        href="http://www.oracle.com/technetwork/java/javamail/index.html">JavaMail API</a> as
+        href="https://www.oracle.com/technetwork/java/javamail/index.html">JavaMail API</a> as
         the mail system, and you must include appropriate jar files in
         the classpath.
       </p>

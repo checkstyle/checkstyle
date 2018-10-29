@@ -39,6 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.EqualsVerifierReport;
 import nl.jqno.equalsverifier.Warning;
 
 public class SuppressionFilterTest extends AbstractModuleTestSupport {
@@ -53,12 +54,12 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
 
     @Test
     public void testEqualsAndHashCode() {
-        EqualsVerifier
-                .forClass(SuppressionFilter.class)
+        final EqualsVerifierReport ev = EqualsVerifier.forClass(SuppressionFilter.class)
                 .usingGetClass()
                 .withIgnoredFields("file", "optional", "configuration")
                 .suppress(Warning.NONFINAL_FIELDS)
-                .verify();
+                .report();
+        assertEquals("Error: " + ev.getMessage(), EqualsVerifierReport.SUCCESS, ev);
     }
 
     @Test

@@ -612,7 +612,7 @@ import android.*;
           Checks for imports from a set of illegal packages. By default, the
           check rejects all <code>sun.*</code> packages since
           programs that contain direct calls to the <code>sun.*</code> packages are <a
-          href="http://www.oracle.com/technetwork/java/faq-sun-packages-142232.html">"not
+          href="https://www.oracle.com/technetwork/java/faq-sun-packages-142232.html">"not
           guaranteed to work on all Java-compatible platforms"</a>. To reject other packages,
           set property <code> illegalPkgs</code> to a list of the illegal packages.
         </p>
@@ -1548,7 +1548,7 @@ import java.util.stream.IntStream;
         </source>
 
         <p>To configure the check so that it matches default IntelliJ IDEA formatter
-           configuration (tested on v14):</p>
+           configuration (tested on v2018.2):</p>
         <ul>
           <li>group of static imports is on the bottom</li>
           <li>groups of type imports: all imports except of &quot;javax&quot;
@@ -1557,20 +1557,32 @@ import java.util.stream.IntStream;
           <li>groups are separated by, at least, one blank line and aren't separated internally</li>
         </ul>
 
-        <p>
-        Note: &quot;separated&quot; option is disabled because IDEA default has blank line
-        between &quot;java&quot; and static imports, and no blank line between
-        &quot;javax&quot; and &quot;java&quot;
-        </p>
+        <p>Note: a <a href="config_filters.html#SuppressionFilter">suppression filter</a>
+           is needed because IDEA has no blank line between "javax" and "java".
+           ImportOrder has a limitation by design to enforce an empty line between groups
+           ("java", "javax"). There is no flexibility to enforce empty lines between some
+           groups and no empty lines between other groups.</p>
 
         <source>
 &lt;module name=&quot;ImportOrder&quot;&gt;
   &lt;property name=&quot;groups&quot; value=&quot;*,javax,java&quot;/&gt;
   &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;separated&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;separated&quot; value=&quot;true&quot;/&gt;
   &lt;property name=&quot;option&quot; value=&quot;bottom&quot;/&gt;
   &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
+        </source>
+
+        <source>
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+    &quot;-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN&quot;
+    &quot;https://checkstyle.org/dtds/suppressions_1_2.dtd&quot;&gt;
+
+&lt;suppressions&gt;
+    &lt;!-- message contains no message text to work well in multi-language environments --&gt;
+    &lt;suppress checks=&quot;ImportOrder&quot; message=&quot;^'java\..*'.*&quot;/&gt;
+&lt;/suppressions&gt;
         </source>
 
         <p>To configure the check so that it matches default NetBeans formatter configuration

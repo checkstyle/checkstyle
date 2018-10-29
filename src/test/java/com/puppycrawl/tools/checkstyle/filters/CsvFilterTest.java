@@ -26,6 +26,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.EqualsVerifierReport;
 
 public class CsvFilterTest {
 
@@ -111,7 +112,9 @@ public class CsvFilterTest {
 
     @Test
     public void testEqualsAndHashCode() {
-        EqualsVerifier.forClass(CsvFilter.class).usingGetClass().verify();
+        final EqualsVerifierReport ev = EqualsVerifier.forClass(CsvFilter.class).usingGetClass()
+                .report();
+        assertEquals("Error: " + ev.getMessage(), EqualsVerifierReport.SUCCESS, ev);
     }
 
 }

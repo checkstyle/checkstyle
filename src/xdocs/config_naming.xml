@@ -158,19 +158,61 @@
 &lt;module name="AbbreviationAsWordInName"/&gt;
        </source>
        <p>
-          To configure to check variables and classes identifiers,
-          do not ignore variables with static modifier and allow
-          no abbreviations (enforce camel case phrase) and
-          allow no abbreviations to use (camel case phrase) and allow XML and URL abbreviations.
+          To configure to check all variables and identifiers
+          (including ones with the static modifier) and enforce
+          no abbreviations (essentially camel case) except for
+          words like 'XML' and 'URL'.
         </p>
+        <p>Configuration:</p>
         <source>
 &lt;module name="AbbreviationAsWordInName"&gt;
   &lt;property name="tokens" value="VARIABLE_DEF,CLASS_DEF"/&gt;
   &lt;property name="ignoreStatic" value="false"/&gt;
-  &lt;property name="allowedAbbreviationLength" value="1"/&gt;
+  &lt;property name="allowedAbbreviationLength" value="0"/&gt;
   &lt;property name="allowedAbbreviations" value="XML,URL"/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example:</p>
+        <pre>
+public class MyClass { // OK
+  int firstNum; // OK
+  int secondNUM; // violation, it allowed only 1 consecutive capital letter
+  static int thirdNum; // OK, the static modifier would be checked
+  static int fourthNUm; // violation, the static modifier would be checked,
+                        // and only 1 consecutive capital letter is allowed
+  String firstXML; // OK, XML abbreviation is allowed
+  String firstURL; // OK, URL abbreviation is allowed
+}
+        </pre>
+        <p>
+          To configure to check variables, excluding fields with
+          the static modifier, and allow abbreviations up to 2
+          consecutive capital letters ignoring the longer word 'CSV'.
+        </p>
+        <p>Configuration:</p>
+        <pre>
+&lt;module name="AbbreviationAsWordInName"&gt;
+  &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
+  &lt;property name="ignoreStatic" value="true"/&gt;
+  &lt;property name="allowedAbbreviationLength" value="1"/&gt;
+  &lt;property name="allowedAbbreviations" value="CSV"/&gt;
+&lt;/module&gt;
+        </pre>
+        <p>Example:</p>
+        <pre>
+public class MyClass { // OK, ignore checking the class name
+  int firstNum; // OK, abbreviation "N" is of allowed length 1
+  int secondNUm; // OK
+  int secondMYNum; // violation, found "MYN" but only
+                   // 2 consecutive capital letters are allowed
+  int thirdNUM; // violation, found "NUM" but it is allowed
+                // only 2 consecutive capital letters
+  static int fourthNUM; // OK, variables with static modifier
+                        // would be ignored
+  String firstCSV; // OK, CSV abbreviation is allowed
+  String firstXML; // violation, XML abbreviation is not allowed
+}
+        </pre>
       </subsection>
 
       <subsection name="Example of Usage" id="AbbreviationAsWordInName_Example_of_Usage">

@@ -155,7 +155,7 @@
         <td>
           Checks that the parts of a class or interface declaration
           appear in the order suggested by the <a
-          href="http://www.oracle.com/technetwork/java/javase/documentation/codeconventions-141855.html#1852"
+          href="https://www.oracle.com/technetwork/java/javase/documentation/codeconventions-141855.html#1852"
           >Code Conventions for the Java Programming Language</a>.
         </td>
       </tr>
@@ -314,8 +314,7 @@
       <tr>
         <td><a href="config_coding.html#IllegalType">IllegalType</a></td>
         <td>
-          Checks that particular class are never used as types in variable
-        declarations, return values or parameters.</td>
+          Checks that particular classes or interfaces are never used.</td>
       </tr>
       <tr>
         <td><a href="config_imports.html#ImportControl">ImportControl</a></td>
