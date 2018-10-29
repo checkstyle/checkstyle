@@ -124,6 +124,51 @@
       </p>
     </section>
 
+      <section name="Limitations">
+
+          <p>
+              OK, so you have written your first Check, and you have found
+              several flaws in many of your programs. You now know that your
+              boss does not follow the coding conventions he wrote.  And you
+              know that you are the king of the world. To become a programming
+              god, you want to write your second Check - now wait, first you
+              should know what your limits are.
+          </p>
+
+          <p>
+              There are basically only few of them:
+          </p>
+          <ul>
+              <li>Java code should be written with
+                  <a href="https://en.wikipedia.org/wiki/ASCII">ASCII</a> characters only, no UTF-8
+                  support.</li>
+              <li>To get valid violations, code have to be compilable, in other case you can get not easy
+                  to understand parse errors.</li>
+              <li>Checkout cannot determine the type of an expression.
+                  Example: "getValue() + getValue2()"</li>
+              <li>Checkout cannot determine the full inheritance hierarchy of type.</li>
+              <li>Checkout cannot see the content of other files. You have content of one file only during all
+                  Checks execution. All files are processed one by one.</li>
+          </ul>
+          <p>
+              This means that you cannot implement some of the code inspection
+              features that are available in advanced IDEs like Eclipse,
+              <a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a>,
+              <a href="https://spotbugs.github.io/">SpotBugs</a>,
+              <a href="https://www.sonarqube.org">Sonarqube</a>.
+          </p>
+
+          <p>
+              For example you will not be able to implement:
+              <br/>
+              - a Check that finds redundant type casts or unused public methods.
+              <br/>
+              - a Check that validate that user custom Exception class inherited from
+              java.lang.Exception class.
+          </p>
+
+      </section>
+
     <section name="Related Tools">
       <p>
         Checkstyle is most useful if you integrate it into your build process or
