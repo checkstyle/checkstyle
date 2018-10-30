@@ -80,6 +80,7 @@ atlassian
 attlist
 attr
 autoboxing
+autocomplete
 autocrlf
 Autoproxy
 Autowire
@@ -1402,3 +1403,4 @@ yyyy
 Yzz
 zf
 zh
+ZSH
