@@ -7,12 +7,12 @@
 
   <bannerLeft>
     <alt>Checkstyle</alt>
-    <href>http://checkstyle.sourceforge.net</href>
+    <href>https://checkstyle.org</href>
     <src>images/header-checkstyle-logo.png</src>
   </bannerLeft>
   <bannerRight>
     <alt>Checkstyle</alt>
-    <href>http://checkstyle.sourceforge.net</href>
+    <href>https://checkstyle.org</href>
     <src>images/header-right-ruller.png</src>
   </bannerRight>
 

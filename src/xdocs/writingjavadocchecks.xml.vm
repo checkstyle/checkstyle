@@ -736,7 +736,7 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
       </p>
       <p>
        For detail reference you can see
-       <a href="http://checkstyle.sourceforge.net/writingchecks.html#The_Checkstyle_SDK_Gui">
+       <a href="https://checkstyle.org/writingchecks.html#The_Checkstyle_SDK_Gui">
            Checkstyle GUI documentation</a>.
       </p>
     </section>

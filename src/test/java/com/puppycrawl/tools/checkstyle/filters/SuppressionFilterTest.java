@@ -140,7 +140,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     @Test
     public void testNonExistentSuppressionUrlWithTrueOptional() throws Exception {
         final String fileName =
-                "http://checkstyle.sourceforge.net/non_existent_suppression.xml";
+                "https://checkstyle.org/non_existent_suppression.xml";
         final boolean optional = true;
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 
@@ -170,7 +170,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     @Test
     public void testRemoteFileExternalResourceContentDoesNotChange() throws Exception {
         final String[] urlCandidates = {
-            "http://checkstyle.sourceforge.net/files/suppressions_none.xml",
+            "https://checkstyle.org/files/suppressions_none.xml",
             "https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/site/resources/"
                 + "files/suppressions_none.xml",
         };

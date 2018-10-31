@@ -294,7 +294,7 @@ used in the MT mode.
             No explanation of what is metadata tag on checkstyle config. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2726">#2726</a>
           </li>
           <li>
-            http://checkstyle.sourceforge.net to http://checkstyle.org.
+            https://checkstyle.org to http://checkstyle.org.
             Author: Roman Ivanov
             <a href="https://github.com/checkstyle/checkstyle/issues/5601">#5601</a>
           </li>
@@ -4452,17 +4452,17 @@ used in the MT mode.
       <p>Breaking backward compatibility:</p>
       <ul>
         <li>
-          Change default value of property "format" to "^Abstract.*$" in <a href="http://checkstyle.sourceforge.net/config_naming.html#AbstractClassName">AbstractClassNameCheck</a>. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1279">#1279</a>
+          Change default value of property "format" to "^Abstract.*$" in <a href="https://checkstyle.org/config_naming.html#AbstractClassName">AbstractClassNameCheck</a>. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1279">#1279</a>
         </li>
         <li>
-          Removed property "url" in <a href="http://checkstyle.sourceforge.net/config_imports.html#ImportControl">ImportControlCheck</a>. Note: will be restored in release 6.11. Author: Aleksandr Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1128">#1128</a>
+          Removed property "url" in <a href="https://checkstyle.org/config_imports.html#ImportControl">ImportControlCheck</a>. Note: will be restored in release 6.11. Author: Aleksandr Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1128">#1128</a>
         </li>
       </ul>
 
       <p>New:</p>
       <ul>
         <li>
-          New option for <a href="http://checkstyle.sourceforge.net/config_coding.html#MagicNumber">MagicNumber</a>: constantWaiverParentToken. Solution to not detected properly numbers. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1266">#1266</a>
+          New option for <a href="https://checkstyle.org/config_coding.html#MagicNumber">MagicNumber</a>: constantWaiverParentToken. Solution to not detected properly numbers. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1266">#1266</a>
         </li>
       </ul>
 
@@ -4758,13 +4758,13 @@ used in the MT mode.
       <p>Breaking backward compatibility:</p>
       <ul>
         <li>
-          Detect only label as illegal token in <a href="http://checkstyle.sourceforge.net/config_coding.html#IllegalToken">IllegalToken</a> check, default token set is changed to TokenTypes.LABELED_STAT. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1162">#1162</a>
+          Detect only label as illegal token in <a href="https://checkstyle.org/config_coding.html#IllegalToken">IllegalToken</a> check, default token set is changed to TokenTypes.LABELED_STAT. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1162">#1162</a>
         </li>
         <li>
-          Add possibility to configure targets for <a href="http://checkstyle.sourceforge.net/config_whitespace.html#ParenPad">ParenPad</a> check, LPAREN and RPAREN were removed from acceptable tokens. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1189">#1189</a>
+          Add possibility to configure targets for <a href="https://checkstyle.org/config_whitespace.html#ParenPad">ParenPad</a> check, LPAREN and RPAREN were removed from acceptable tokens. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1189">#1189</a>
         </li>
         <li>
-          Set default value of max property to 4 (from 1) for <a href="http://checkstyle.sourceforge.net/config_design.html#ThrowsCount">ThrowsCountCheck</a> and update javadoc/xdoc. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/1143">#1143</a>
+          Set default value of max property to 4 (from 1) for <a href="https://checkstyle.org/config_design.html#ThrowsCount">ThrowsCountCheck</a> and update javadoc/xdoc. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/1143">#1143</a>
         </li>
         <li>
           Restoring method FileContents.getFileName() to keep backward compatibility for some time. Author: Thomas Jensen <a href="https://github.com/checkstyle/checkstyle/issues/1205">#1205</a>
@@ -4780,26 +4780,26 @@ used in the MT mode.
       <p>New:</p>
       <ul>
         <li>
-          New option for <a href="http://checkstyle.sourceforge.net/config_coding.html#ModifiedControlVariable">ModifiedControlVariableCheck</a>: skipEnhancedForLoopVariable. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1015">#1015</a>
+          New option for <a href="https://checkstyle.org/config_coding.html#ModifiedControlVariable">ModifiedControlVariableCheck</a>: skipEnhancedForLoopVariable. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1015">#1015</a>
         </li>
         <li>
-          New options for <a href="http://checkstyle.sourceforge.net/config_javadoc.html#SingleLineJavadoc">SingleLineJavadoc</a>: ignoredTags, ignoreInlineTags. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1063">#1063</a>
+          New options for <a href="https://checkstyle.org/config_javadoc.html#SingleLineJavadoc">SingleLineJavadoc</a>: ignoredTags, ignoreInlineTags. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1063">#1063</a>
         </li>
       </ul>
 
       <p>Bug fixes:</p>
       <ul>
         <li>
-          correction of parsing of attributes in <a href="http://checkstyle.sourceforge.net/config_javadoc.html#AtclauseOrder">AtclauseOrderCheck</a>. Author: Vladislav Lisetskii  <a href="https://github.com/checkstyle/checkstyle/issues/1152">#1152</a>
+          correction of parsing of attributes in <a href="https://checkstyle.org/config_javadoc.html#AtclauseOrder">AtclauseOrderCheck</a>. Author: Vladislav Lisetskii  <a href="https://github.com/checkstyle/checkstyle/issues/1152">#1152</a>
         </li>
         <li>
-          fix for <a href="http://checkstyle.sourceforge.net/config_javadoc.html#JavadocMethod">JavadocMethodCheck</a>: catch NoClassDefFoundError in ClassResolver. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1192">#1192</a>
+          fix for <a href="https://checkstyle.org/config_javadoc.html#JavadocMethod">JavadocMethodCheck</a>: catch NoClassDefFoundError in ClassResolver. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1192">#1192</a>
         </li>
         <li>
-          Replace hardcoded message in <a href="http://checkstyle.sourceforge.net/config_whitespace.html#NoWhitespaceAfter">WhitespaceAfterCheck</a> with new message (i18n). Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/967">#967</a>
+          Replace hardcoded message in <a href="https://checkstyle.org/config_whitespace.html#NoWhitespaceAfter">WhitespaceAfterCheck</a> with new message (i18n). Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/967">#967</a>
         </li>
         <li>
-          Solution to wrong variable reported because of name shadowing in <a href="http://checkstyle.sourceforge.net/config_coding.html#FinalLocalVariable">FinalLocalVariableCheck</a>. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1142">#1142</a>
+          Solution to wrong variable reported because of name shadowing in <a href="https://checkstyle.org/config_coding.html#FinalLocalVariable">FinalLocalVariableCheck</a>. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1142">#1142</a>
         </li>
         <li>
           Clarify misleading command line tool (CLI) output. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1062">#1062</a>
@@ -4808,25 +4808,25 @@ used in the MT mode.
           solution to CLI fails when it could not find output file. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1181">#1181</a>
         </li>
         <li>
-          Fixed exception in <a href="http://checkstyle.sourceforge.net/config_imports.html#AvoidStaticImport">AvoidStaticImport</a> check trying to exclude members of inner class. Author: Aleksandr Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1209">#1209</a>
+          Fixed exception in <a href="https://checkstyle.org/config_imports.html#AvoidStaticImport">AvoidStaticImport</a> check trying to exclude members of inner class. Author: Aleksandr Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1209">#1209</a>
         </li>
         <li>
           Solution to "Incorrect config file cause CLI finish with error but no output with details". Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1180">#1180</a>
         </li>
         <li>
-          Fix exception in <a href="http://checkstyle.sourceforge.net/config_annotation.html#SuppressWarnings">SuppressWarnings</a> check on complex annotations. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1201">#1201</a>
+          Fix exception in <a href="https://checkstyle.org/config_annotation.html#SuppressWarnings">SuppressWarnings</a> check on complex annotations. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1201">#1201</a>
         </li>
         <li>
-          Fix value pair representation in <a href="http://checkstyle.sourceforge.net/config_annotation.html#SuppressWarnings">SuppressWarnings</a> check. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1246">#1246</a>
+          Fix value pair representation in <a href="https://checkstyle.org/config_annotation.html#SuppressWarnings">SuppressWarnings</a> check. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1246">#1246</a>
         </li>
         <li>
-          Do not generate violation for empty <a href="http://checkstyle.sourceforge.net/config_annotation.html#SuppressWarnings">SuppressWarnings</a>. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1187">#1187</a>
+          Do not generate violation for empty <a href="https://checkstyle.org/config_annotation.html#SuppressWarnings">SuppressWarnings</a>. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1187">#1187</a>
         </li>
         <li>
-          Fix <a href="http://checkstyle.sourceforge.net/config_coding.html#PackageDeclaration">PackageDeclaration</a> check for files with comments only. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1149">#1149</a>
+          Fix <a href="https://checkstyle.org/config_coding.html#PackageDeclaration">PackageDeclaration</a> check for files with comments only. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1149">#1149</a>
         </li>
         <li>
-          Fix exception in <a href="http://checkstyle.sourceforge.net/config_annotation.html#SuppressWarningsHolder">SuppressWarningsHolder</a> on complex annotations or annotation with dot. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1148">#1148</a>
+          Fix exception in <a href="https://checkstyle.org/config_annotation.html#SuppressWarningsHolder">SuppressWarningsHolder</a> on complex annotations or annotation with dot. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1148">#1148</a>
         </li>
       </ul>
 
@@ -4846,7 +4846,7 @@ used in the MT mode.
           move non-compilable input to resources-noncompilable. Author: Vladislav Lisetskii
         </li>
         <li>
-          Minor update in <a href="http://checkstyle.sourceforge.net/config_coding.html#FallThrough">FallThroughCheck</a> xdoc and javadoc. Author: Vladislav Lisetskii
+          Minor update in <a href="https://checkstyle.org/config_coding.html#FallThrough">FallThroughCheck</a> xdoc and javadoc. Author: Vladislav Lisetskii
         </li>
         <li>
           PMD violations: UncommentedEmptyMethod, EmptyMethodInAbstractClassShouldBeAbstract, AbstractNaming. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/995">#995</a>, <a href="https://github.com/checkstyle/checkstyle/issues/997">#997</a>, <a href="https://github.com/checkstyle/checkstyle/issues/983">#983</a>
@@ -4893,7 +4893,7 @@ used in the MT mode.
           Integrate google-style-config-test as Integration Test. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/863">#863</a>
         </li>
         <li>
-          Add known limitations to <a href="http://checkstyle.sourceforge.net/config_annotation.html#SuppressWarnings">SuppressWarnings</a> check documentation. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1252">#1252</a>
+          Add known limitations to <a href="https://checkstyle.org/config_annotation.html#SuppressWarnings">SuppressWarnings</a> check documentation. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1252">#1252</a>
         </li>
         <li>
           Fix PMD violations of ExceptionAsFlowControl, AvoidCatchingGenericException rule. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/959">#959</a>, <a href="https://github.com/checkstyle/checkstyle/issues/962">#962</a>
@@ -4911,7 +4911,7 @@ used in the MT mode.
           Add tests for equals and toString in SuppressionCommentFilter. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1088">#1088</a>
         </li>
         <li>
-          Move <a href="http://checkstyle.sourceforge.net/config_regexp.html#Regexp">Regexp</a> check from miscellaneous to regexp category. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1170">#1170</a>
+          Move <a href="https://checkstyle.org/config_regexp.html#Regexp">Regexp</a> check from miscellaneous to regexp category. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1170">#1170</a>
         </li>
         <li>
           Remove unused MethodCallLineWrapHandler class. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1178">#1178</a>
@@ -4954,10 +4954,10 @@ used in the MT mode.
       <p>New:</p>
       <ul>
         <li>
-          New "ignorePrivateMethods" property for <a href="http://checkstyle.sourceforge.net/config_design.html#ThrowsCount">ThrowsCount</a> check to skip private methods. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1136">#1136</a>
+          New "ignorePrivateMethods" property for <a href="https://checkstyle.org/config_design.html#ThrowsCount">ThrowsCount</a> check to skip private methods. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1136">#1136</a>
         </li>
         <li>
-          New "crlf" option for lineSeparator property in <a href="http://checkstyle.sourceforge.net/config_misc.html#NewlineAtEndOfFile">NewlineAtEndOfFile</a> check. Author: Martin Steiger <a href="https://github.com/checkstyle/checkstyle/pull/1045">#1045</a>
+          New "crlf" option for lineSeparator property in <a href="https://checkstyle.org/config_misc.html#NewlineAtEndOfFile">NewlineAtEndOfFile</a> check. Author: Martin Steiger <a href="https://github.com/checkstyle/checkstyle/pull/1045">#1045</a>
         </li>
       </ul>
 
@@ -4970,49 +4970,49 @@ used in the MT mode.
           Fix no possibility to set English language explicitly in config. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/152">#152</a>
         </li>
         <li>
-          Do not verify overriding methods in <a href="http://checkstyle.sourceforge.net/config_design.html#ThrowsCount">ThrowsCount</a> check. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1085">#1085</a>
+          Do not verify overriding methods in <a href="https://checkstyle.org/config_design.html#ThrowsCount">ThrowsCount</a> check. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1085">#1085</a>
         </li>
         <li>
-          Fix <a href="http://checkstyle.sourceforge.net/config_misc.html#Regexp">Regexp</a> check causing exception on file with newline on top. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1129">#1129</a>
+          Fix <a href="https://checkstyle.org/config_misc.html#Regexp">Regexp</a> check causing exception on file with newline on top. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1129">#1129</a>
         </li>
         <li>
-          Fix <a href="http://checkstyle.sourceforge.net/config_regexp.html#RegexpMultiline">RegexpMultiline</a> check causing exception with default config. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1129">#1129</a>
+          Fix <a href="https://checkstyle.org/config_regexp.html#RegexpMultiline">RegexpMultiline</a> check causing exception with default config. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1129">#1129</a>
         </li>
         <li>
-          Add support for canonical class names in <a href="http://checkstyle.sourceforge.net/config_design.html#MutableException">MutableException</a>. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1124">#1124</a>
+          Add support for canonical class names in <a href="https://checkstyle.org/config_design.html#MutableException">MutableException</a>. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1124">#1124</a>
         </li>
         <li>
-          Fix <a href="http://checkstyle.sourceforge.net/config_blocks.html#NeedBraces">NeedBraces</a> check not requiring braces in multiline statements when using allowSingleLineStatement option. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/895">#895</a>
+          Fix <a href="https://checkstyle.org/config_blocks.html#NeedBraces">NeedBraces</a> check not requiring braces in multiline statements when using allowSingleLineStatement option. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/895">#895</a>
         </li>
         <li>
           Fix equals and hashCode in SuppressionFilter, SuppressElement, IntRangeFilter, LocalizedMessage and remove obsolete toString. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1088">#1088</a>
         </li>
         <li>
-          Add "/", "+" and "-" to list of allowed tokens in <a href="http://checkstyle.sourceforge.net/config_coding.html#MagicNumber">MagicNumber</a> check. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1113">#1113</a>
+          Add "/", "+" and "-" to list of allowed tokens in <a href="https://checkstyle.org/config_coding.html#MagicNumber">MagicNumber</a> check. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1113">#1113</a>
         </li>
         <li>
-          Extend <a href="http://checkstyle.sourceforge.net/config_coding.html#ReturnCount">ReturnCount</a> check to use separate return counter for lambdas. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1068">#1068</a>
+          Extend <a href="https://checkstyle.org/config_coding.html#ReturnCount">ReturnCount</a> check to use separate return counter for lambdas. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1068">#1068</a>
         </li>
         <li>
-          Fix exception in <a href="http://checkstyle.sourceforge.net/config_design.html#OneTopLevelClass">OneTopLevelClass</a> check for package-info files. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1065">#1065</a>
+          Fix exception in <a href="https://checkstyle.org/config_design.html#OneTopLevelClass">OneTopLevelClass</a> check for package-info files. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1065">#1065</a>
         </li>
         <li>
-          Fix exception in <a href="http://checkstyle.sourceforge.net/config_coding.html#FallThrough">FallThrough</a> check for nested switch statements. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/837">#837</a>
+          Fix exception in <a href="https://checkstyle.org/config_coding.html#FallThrough">FallThrough</a> check for nested switch statements. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/837">#837</a>
         </li>
         <li>
-          MagicNumber annotation detection enhanced for arbitrary parent nodes in <a href="http://checkstyle.sourceforge.net/config_coding.html#MagicNumber">MagicNumber</a> check. Author: Mehmet Can Cömert <a href="https://github.com/checkstyle/checkstyle/issues/926">#926</a>
+          MagicNumber annotation detection enhanced for arbitrary parent nodes in <a href="https://checkstyle.org/config_coding.html#MagicNumber">MagicNumber</a> check. Author: Mehmet Can Cömert <a href="https://github.com/checkstyle/checkstyle/issues/926">#926</a>
         </li>
         <li>
-          Improve standard package regexp for <a href="http://checkstyle.sourceforge.net/config_imports.html#CustomImportOrder">CustomImportOrder</a> check. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1020">#1020</a>
+          Improve standard package regexp for <a href="https://checkstyle.org/config_imports.html#CustomImportOrder">CustomImportOrder</a> check. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1020">#1020</a>
         </li>
         <li>
-          Fix NPE in <a href="http://checkstyle.sourceforge.net/config_coding.html#ModifiedControlVariable">ModifiedControlVariable</a> check. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1012">#1012</a>
+          Fix NPE in <a href="https://checkstyle.org/config_coding.html#ModifiedControlVariable">ModifiedControlVariable</a> check. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1012">#1012</a>
         </li>
         <li>
-          Include enums in <a href="http://checkstyle.sourceforge.net/config_coding.html#CovariantEquals">CovariantEquals</a> check analysis. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1011">#1011</a>
+          Include enums in <a href="https://checkstyle.org/config_coding.html#CovariantEquals">CovariantEquals</a> check analysis. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1011">#1011</a>
         </li>
         <li>
-          Fix parsing of allowedAnnotations property in <a href="http://checkstyle.sourceforge.net/config_javadoc.html#JavadocMethod">JavadocMethod</a> check. Author: Gustav Carlson <a href="https://github.com/checkstyle/checkstyle/issues/1145">#1145</a>
+          Fix parsing of allowedAnnotations property in <a href="https://checkstyle.org/config_javadoc.html#JavadocMethod">JavadocMethod</a> check. Author: Gustav Carlson <a href="https://github.com/checkstyle/checkstyle/issues/1145">#1145</a>
         </li>
 
       </ul>
@@ -5029,16 +5029,16 @@ used in the MT mode.
           100% test coverage for com.puppycrawl.tools.checkstyle.checks.design. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1009">#1009</a>
         </li>
         <li>
-          removing dead code and refactoring in <a href="http://checkstyle.sourceforge.net/config_design.html#VisibilityModifier">VisibilityModifier</a> check. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1107">#1107</a>
+          removing dead code and refactoring in <a href="https://checkstyle.org/config_design.html#VisibilityModifier">VisibilityModifier</a> check. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1107">#1107</a>
         </li>
         <li>
           Replace deprecated PosixParser with DefaultParser. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1099">#1099</a>
         </li>
         <li>
-          remove dead code from <a href="http://checkstyle.sourceforge.net/config_design.html#MutableException">MutableException</a> check. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1103">#1103</a>
+          remove dead code from <a href="https://checkstyle.org/config_design.html#MutableException">MutableException</a> check. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1103">#1103</a>
         </li>
         <li>
-          remove dead code from <a href="http://checkstyle.sourceforge.net/config_design.html#FinalClass">FinalClass</a> check. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1100">#1100</a>
+          remove dead code from <a href="https://checkstyle.org/config_design.html#FinalClass">FinalClass</a> check. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1100">#1100</a>
         </li>
         <li>
           Make tests of Main class platform independent. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/1086">#1086</a>
@@ -5074,7 +5074,7 @@ used in the MT mode.
           Remove obsolete space from general error message. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/1029">#1029</a>
         </li>
         <li>
-          Add missing space in error message for <a href="http://checkstyle.sourceforge.net/config_imports.html#CustomImportOrder">CustomImportOrder</a> check. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/1027">#1027</a>
+          Add missing space in error message for <a href="https://checkstyle.org/config_imports.html#CustomImportOrder">CustomImportOrder</a> check. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/1027">#1027</a>
         </li>
         <li>
           resolving Findbugs violation: <a href="https://github.com/checkstyle/checkstyle/issues/911">#911</a> , <a href="https://github.com/checkstyle/checkstyle/issues/909">#909</a>,
@@ -5085,13 +5085,13 @@ used in the MT mode.
           huge refactoring for CLI Main class. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/596">#596</a>
         </li>
         <li>
-          Option allowPublicFinalFields does not exist in <a href="http://checkstyle.sourceforge.net/config_design.html#VisibilityModifier">VisibilityModifier</a> check. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1126">#1126</a>
+          Option allowPublicFinalFields does not exist in <a href="https://checkstyle.org/config_design.html#VisibilityModifier">VisibilityModifier</a> check. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1126">#1126</a>
         </li>
         <li>
-          <a href="http://checkstyle.sourceforge.net/config_design.html#OneTopLevelClass">OneTopLevelClass</a> check example is broken and documentation missing, for 'tokens' property. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1017">#1017</a>
+          <a href="https://checkstyle.org/config_design.html#OneTopLevelClass">OneTopLevelClass</a> check example is broken and documentation missing, for 'tokens' property. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1017">#1017</a>
         </li>
         <li>
-          <a href="http://checkstyle.sourceforge.net/config_design.html#OneTopLevelClass">OneTopLevelClass</a> check example in documentation has invalid XML syntax. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1016">#1016</a>
+          <a href="https://checkstyle.org/config_design.html#OneTopLevelClass">OneTopLevelClass</a> check example in documentation has invalid XML syntax. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1016">#1016</a>
         </li>
       </ul>
     </section>
@@ -5810,7 +5810,7 @@ used in the MT mode.
       <p>Notes:</p>
       <ul>
         <li>
-          <a href="http://checkstyle.sourceforge.net/reports/google-java-style.html">Google style</a>
+          <a href="https://checkstyle.org/reports/google-java-style.html">Google style</a>
           is now covered to maximum of Checkstyle ability. See detailed report <a href="google_style.html">here</a>. Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
         </li>
         <li>

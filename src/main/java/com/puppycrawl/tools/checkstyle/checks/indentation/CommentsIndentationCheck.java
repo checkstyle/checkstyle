@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Comments are indented at the same level as the surrounding code.
  * Detailed info about such convention can be found
  * <a href=
- * "http://checkstyle.sourceforge.net/reports/google-java-style-20170228.html#s4.8.6.1-block-comment-style">
+ * "https://checkstyle.org/reports/google-java-style-20170228.html#s4.8.6.1-block-comment-style">
  * here</a>
  * <p>
  * Examples:

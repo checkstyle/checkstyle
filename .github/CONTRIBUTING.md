@@ -1,11 +1,11 @@
 # Contributing
 
 Please see instructions for contributing here:
-http://checkstyle.sourceforge.net/contributing.html
+https://checkstyle.org/contributing.html
 
 # Reporting issues
 
-Please read http://checkstyle.sourceforge.net/report_issue.html
+Please read https://checkstyle.org/report_issue.html
 
 Please provide issue report in format that we request, EACH DETAIL MAKE A HUGE HELP.
 

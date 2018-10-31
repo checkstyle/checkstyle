@@ -32,7 +32,7 @@ SKIP_OTHERS="-Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dxml.skip=
 mvn -e -Pgpg release:prepare -B -Darguments="$SKIP_TEST $SKIP_CHECKSTYLE $SKIP_OTHERS"
 
 echo "Deployment of jars to maven central"
-echo "and publication of site to http://checkstyle.sourceforge.net/new-site/"
+echo "and publication of site to https://checkstyle.org/new-site/"
 mvn -e -Pgpg release:perform -Darguments="$SKIP_CHECKSTYLE"
 
 #############################

@@ -26,7 +26,7 @@
       <p>
         This document describes how to run Checkstyle using the command line
         tool. The latest version of Checkstyle can be found at <a
-        href="http://checkstyle.sourceforge.net">http://checkstyle.sourceforge.net</a>.
+        href="https://checkstyle.org">https://checkstyle.org</a>.
         This command line tool is included in the Checkstyle distribution.
       </p>
     </section>
