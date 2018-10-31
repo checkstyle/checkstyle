@@ -373,7 +373,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
 
             if (fixLinks && "a".equals(nodeName) && "href".equals(attrName)
                     && attribute.getNodeValue().startsWith("apidocs/")) {
-                attrValue = "http://checkstyle.sourceforge.net/" + attribute.getNodeValue();
+                attrValue = "https://checkstyle.org/" + attribute.getNodeValue();
             }
             else {
                 attrValue = attribute.getNodeValue();

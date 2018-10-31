@@ -28,7 +28,7 @@ or at [Maven repo](http://repo1.maven.org/maven2/com/puppycrawl/tools/checkstyle
 Each-commit builds of maven artifacts can be found at
 [Maven Snapshot repository](https://oss.sonatype.org/content/repositories/snapshots/com/puppycrawl/tools/checkstyle/) .
 
-Documentation is available in HTML format, see http://checkstyle.sourceforge.net/checks.html.
+Documentation is available in HTML format, see https://checkstyle.org/checks.html.
 
 Continuous integration and Quality reports
 ======================
@@ -36,7 +36,7 @@ Travis (Linux & MacOS build): [![][travis img]][travis]
 AppVeyor (Windows build): [![][appveyor img]][appveyor]
 [Distelli CI](https://www.distelli.com/checkstyle/builds)
 
-Quality reports: http://checkstyle.sourceforge.net/project-reports.html
+Quality reports: https://checkstyle.org/project-reports.html
 
 JavaScript, CSS and Java source file analysis on Codacy: [![][codacy img]][codacy]
 

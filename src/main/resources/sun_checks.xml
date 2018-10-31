@@ -34,7 +34,7 @@
     <!--
         If you set the basedir property below, then all reported file
         names will be relative to the specified directory. See
-        http://checkstyle.sourceforge.net/5.x/config.html#Checker
+        https://checkstyle.org/5.x/config.html#Checker
 
         <property name="basedir" value="${basedir}"/>
     -->

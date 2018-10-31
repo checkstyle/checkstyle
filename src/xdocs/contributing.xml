@@ -117,7 +117,7 @@
       <p>
         The last step of verification that all works fine please do testing of your
         functionality on any open-source project (Spring, Hibernate, ....).
-        Here is how to do it from <a href="http://checkstyle.sourceforge.net/cmdline.html">
+        Here is how to do it from <a href="https://checkstyle.org/cmdline.html">
         command line</a>
       </p>
     </section>

@@ -27,7 +27,7 @@
       <p>
         This task runs Checkstyle over specified Java files.
         The latest version of checkstyle can be found at
-        <a href="http://checkstyle.sourceforge.net/">http://checkstyle.sourceforge.net/</a>.
+        <a href="https://checkstyle.org/">https://checkstyle.org/</a>.
 
         This task is included in the checkstyle distribution.
       </p>

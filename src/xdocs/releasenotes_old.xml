@@ -1065,7 +1065,7 @@
       <ul>
         <li>
           Applied patch 1344344 by sjq to provide the new
-          <a href="http://checkstyle.sourceforge.net/config_misc.html#Regexp">Regexp</a> check that can
+          <a href="https://checkstyle.org/config_misc.html#Regexp">Regexp</a> check that can
           provide the functionality of the following
           checks: <a
           href="config_header.html#RegexpHeader">RegexpHeader</a>

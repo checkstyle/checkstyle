@@ -14,7 +14,7 @@ Rules:
    d) MUST be less than or equal to 200 characters
 
 To avoid multiple iterations of fixes and CIs failures, please read
-http://checkstyle.sourceforge.net/contributing.html
+https://checkstyle.org/contributing.html
 
 ATTENTION: We are not merging Pull Requests that are not passing our CIs,
 but we will help to resolve issues.
