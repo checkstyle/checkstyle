@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Google Java Style Guide</title>
+<link rel="stylesheet" type="text/css" href="google-java-style-20170228_files/javaguide.css">
+<script language="javascript" src="google-java-style-20170228_files/styleguide.js"></script>
+<link rel="shortcut icon" type="image/x-icon" href="https://www.google.com/favicon.ico">
+<link rel="stylesheet" type="text/css" href="google-java-style-20170228_files/prettify.css">
+</head>
+<body onload="initStyleGuide();">
+<div id="content">
+<h1>Google Java Style Guide</h1>
+<div class="vertical_toc" id="tocDiv"><div class="toc_title"></div><h3 class="ignoreLink" id="toc">Table of Contents</h3><table class="columns"><tbody class="toc" valign="top"><tr><td class="two_columns"><dl><dt><a href="#s1-introduction">1 Introduction</a></dt><dd><a href="#s1.1-terminology">1.1 Terminology notes</a></dd><dd><a href="#s1.2-guide-notes">1.2 Guide notes</a></dd></dl><dl><dt><a href="#s2-source-file-basics">2 Source file basics</a></dt><dd><a href="#s2.1-file-name">2.1 File name</a></dd><dd><a href="#s2.2-file-encoding">2.2 File encoding: UTF-8</a></dd><dd><a href="#s2.3-special-characters">2.3 Special characters</a></dd></dl><dl><dt><a href="#s3-source-file-structure">3 Source file structure</a></dt><dd><a href="#s3.1-copyright-statement">3.1 License or copyright information, if present</a></dd><dd><a href="#s3.2-package-statement">3.2 Package statement</a></dd><dd><a href="#s3.3-import-statements">3.3 Import statements</a></dd><dd><a href="#s3.4-class-declaration">3.4 Class declaration</a></dd></dl><dl><dt><a href="#s4-formatting">4 Formatting</a></dt><dd><a href="#s4.1-braces">4.1 Braces</a></dd><dd><a href="#s4.2-block-indentation">4.2 Block indentation: +2 spaces</a></dd><dd><a href="#s4.3-one-statement-per-line">4.3 One statement per line</a></dd><dd><a href="#s4.4-column-limit">4.4 Column limit: 100</a></dd><dd><a href="#s4.5-line-wrapping">4.5 Line-wrapping</a></dd><dd><a href="#s4.6-whitespace">4.6 Whitespace</a></dd><dd><a href="#s4.7-grouping-parentheses">4.7 Grouping parentheses: recommended</a></dd><dd><a href="#s4.8-specific-constructs">4.8 Specific constructs</a></dd></dl><dl><dt><a href="#s5-naming">5 Naming</a></dt><dd><a href="#s5.1-identifier-names">5.1 Rules common to all identifiers</a></dd><dd><a href="#s5.2-specific-identifier-names">5.2 Rules by identifier type</a></dd><dd><a href="#s5.3-camel-case">5.3 Camel case: defined</a></dd></dl><dl><dt><a href="#s6-programming-practices">6 Programming Practices</a></dt><dd><a href="#s6.1-override-annotation">6.1 @Override: always used</a></dd><dd><a href="#s6.2-caught-exceptions">6.2 Caught exceptions: not ignored</a></dd><dd><a href="#s6.3-static-members">6.3 Static members: qualified using class</a></dd><dd><a href="#s6.4-finalizers">6.4 Finalizers: not used</a></dd></dl><dl><dt><a href="#s7-javadoc">7 Javadoc</a></dt><dd><a href="#s7.1-javadoc-formatting">7.1 Formatting</a></dd><dd><a href="#s7.2-summary-fragment">7.2 The summary fragment</a></dd><dd><a href="#s7.3-javadoc-where-required">7.3 Where Javadoc is used</a></dd></dl></td></tr></tbody></table></div>
+
+<div class="main_body">
+
+<h2 id="s1-introduction" style="left: -46px; position: relative;">1 Introduction<a href="#s1-introduction" alt="link to s1-introduction"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h2>
+
+<p>This document serves as the <strong>complete</strong> definition of Google's coding standards for
+source code in the Java™ Programming Language. A Java source file is described as being <em>in
+Google Style</em> if and only if it adheres to the rules herein.</p>
+
+<p>Like other programming style guides, the issues covered span not only aesthetic issues of
+formatting, but other types of conventions or coding standards as well. However, this document
+focuses primarily on the <strong>hard-and-fast rules</strong> that we follow universally, and
+avoids giving <em>advice</em> that isn't clearly enforceable (whether by human or tool).
+</p>
+
+
+
+<h3 id="s1.1-terminology" style="left: -46px; position: relative;">1.1 Terminology notes<a href="#s1.1-terminology" alt="link to s1.1-terminology"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<p>In this document, unless otherwise clarified:</p>
+
+<ol>
+  <li>The term <em>class</em> is used inclusively to mean an "ordinary" class, enum class,
+  interface or annotation type (<code class="prettyprint lang-java prettyprinted" style=""><span class="lit">@interface</span></code>).</li>
+
+  <li>The term <em>member</em> (of a class) is used inclusively to mean a nested class, field,
+  method, <em>or constructor</em>; that is, all top-level contents of a class except initializers
+  and comments.
+
+  </li><li>The term <em>comment</em> always refers to <em>implementation</em> comments. We do not
+  use the phrase "documentation comments", instead using the common term "Javadoc."</li>
+</ol>
+
+<p>Other "terminology notes" will appear occasionally throughout the document.</p>
+
+<h3 id="s1.2-guide-notes" style="left: -46px; position: relative;">1.2 Guide notes<a href="#s1.2-guide-notes" alt="link to s1.2-guide-notes"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<p>Example code in this document is <strong>non-normative</strong>. That is, while the examples
+are in Google Style, they may not illustrate the <em>only</em> stylish way to represent the
+code. Optional formatting choices made in examples should not be enforced as rules.</p>
+
+
+<h2 id="s2-source-file-basics" style="left: -46px; position: relative;">2 Source file basics<a href="#s2-source-file-basics" alt="link to s2-source-file-basics"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h2>
+
+<h3 id="s2.1-file-name" style="left: -46px; position: relative;">2.1 File name<a href="#s2.1-file-name" alt="link to s2.1-file-name"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<p>The source file name consists of the case-sensitive name of the top-level class it contains
+(of which there is <a href="#s3.4.1-one-top-level-class">exactly one</a>), plus the
+<code>.java</code> extension.</p>
+
+<h3 id="s2.2-file-encoding" style="left: -46px; position: relative;">2.2 File encoding: UTF-8<a href="#s2.2-file-encoding" alt="link to s2.2-file-encoding"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<p>Source files are encoded in <strong>UTF-8</strong>.</p>
+
+<h3 id="s2.3-special-characters" style="left: -46px; position: relative;">2.3 Special characters<a href="#s2.3-special-characters" alt="link to s2.3-special-characters"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<h4 id="s2.3.1-whitespace-characters" style="left: -46px; position: relative;">2.3.1 Whitespace characters<a href="#s2.3.1-whitespace-characters" alt="link to s2.3.1-whitespace-characters"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>Aside from the line terminator sequence, the <strong>ASCII horizontal space
+character</strong> (<strong>0x20</strong>) is the only whitespace character that appears
+anywhere in a source file. This implies that:</p>
+
+<ol>
+  <li>All other whitespace characters in string and character literals are escaped.</li>
+
+  <li>Tab characters are <strong>not</strong> used for indentation.</li>
+</ol>
+
+<h4 id="s2.3.2-special-escape-sequences" style="left: -46px; position: relative;">2.3.2 Special escape sequences<a href="#s2.3.2-special-escape-sequences" alt="link to s2.3.2-special-escape-sequences"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>For any character that has a
+<a href="http://docs.oracle.com/javase/tutorial/java/data/characters.html">
+  special escape sequence</a>
+(<code class="prettyprint lang-java prettyprinted" style=""><span class="pln">\b</span></code>,
+<code class="prettyprint lang-java prettyprinted" style=""><span class="pln">\t</span></code>,
+<code class="prettyprint lang-java prettyprinted" style=""><span class="pln">\n</span></code>,
+<code class="prettyprint lang-java prettyprinted" style=""><span class="pln">\f</span></code>,
+<code class="prettyprint lang-java prettyprinted" style=""><span class="pln">\r</span></code>,
+<code class="prettyprint lang-java prettyprinted" style=""><span class="pln">\"</span></code>,
+<code class="prettyprint lang-java prettyprinted" style=""><span class="pln">\'</span></code> and
+<code class="prettyprint lang-java prettyprinted" style=""><span class="pln">\\</span></code>), that sequence
+is used rather than the corresponding octal
+(e.g.&nbsp;<code class="badcode">\012</code>) or Unicode
+(e.g.&nbsp;<code class="badcode">\u000a</code>) escape.</p>
+
+<h4 id="s2.3.3-non-ascii-characters" style="left: -46px; position: relative;">2.3.3 Non-ASCII characters<a href="#s2.3.3-non-ascii-characters" alt="link to s2.3.3-non-ascii-characters"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>For the remaining non-ASCII characters, either the actual Unicode character
+(e.g.&nbsp;<code class="prettyprint lang-java prettyprinted" style=""><span class="pun">∞</span></code>) or the equivalent Unicode escape
+(e.g.&nbsp;<code class="prettyprint lang-java prettyprinted" style=""><span class="pln">\u</span><span class="lit">221e</span></code>) is used. The choice depends only on
+which makes the code <strong>easier to read and understand</strong>, although Unicode escapes
+outside string literals and comments are strongly discouraged.</p>
+
+<p class="tip"><strong>Tip:</strong> In the Unicode escape case, and occasionally even when actual
+Unicode characters are used, an explanatory comment can be very helpful.</p>
+
+<p>Examples:</p>
+
+<table>
+  <tbody><tr>
+    <th>Example</th>
+    <th>Discussion</th>
+  </tr>
+
+  <tr>
+    <td><code class="prettyprint lang-java prettyprinted" style=""><span class="typ">String</span><span class="pln"> unitAbbrev </span><span class="pun">=</span><span class="pln"> </span><span class="str">"μs"</span><span class="pun">;</span></code></td>
+    <td>Best: perfectly clear even without a comment.</td>
+  </tr>
+
+  <tr>
+    <td><code class="prettyprint lang-java prettyprinted" style=""><span class="typ">String</span><span class="pln"> unitAbbrev </span><span class="pun">=</span><span class="pln"> </span><span class="str">"\u03bcs"</span><span class="pun">;</span><span class="pln"> </span><span class="com">// "μs"</span></code></td>
+    <td>Allowed, but there's no reason to do this.</td>
+  </tr>
+
+  <tr>
+    <td><code class="prettyprint lang-java prettyprinted" style=""><span class="typ">String</span><span class="pln"> unitAbbrev </span><span class="pun">=</span><span class="pln"> </span><span class="str">"\u03bcs"</span><span class="pun">;</span><span class="pln"> </span><span class="com">// Greek letter mu, "s"</span></code></td>
+    <td>Allowed, but awkward and prone to mistakes.</td>
+  </tr>
+
+  <tr>
+    <td><code class="badcode">String unitAbbrev = "\u03bcs";</code></td>
+    <td>Poor: the reader has no idea what this is.</td>
+  </tr>
+
+  <tr>
+     <td><code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">return</span><span class="pln"> </span><span class="str">'\ufeff'</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> content</span><span class="pun">;</span><span class="pln"> </span><span class="com">// byte order mark</span></code></td>
+     <td>Good: use escapes for non-printable characters, and comment if necessary.</td>
+  </tr>
+</tbody></table>
+
+<p class="tip"><strong>Tip:</strong> Never make your code less readable simply out of fear that
+some programs might not handle non-ASCII characters properly. If that should happen, those
+programs are <strong>broken</strong> and they must be <strong>fixed</strong>.</p>
+
+
+<a name="filestructure"></a>
+<h2 id="s3-source-file-structure" style="left: -46px; position: relative;">3 Source file structure<a href="#s3-source-file-structure" alt="link to s3-source-file-structure"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h2>
+
+<div>
+<p>A source file consists of, <strong>in order</strong>:</p>
+
+<ol>
+  <li>License or copyright information, if present</li>
+  <li>Package statement</li>
+  <li>Import statements</li>
+  <li>Exactly one top-level class</li>
+</ol>
+</div>
+
+<p><strong>Exactly one blank line</strong> separates each section that is present.</p>
+
+<h3 id="s3.1-copyright-statement" style="left: -46px; position: relative;">3.1 License or copyright information, if present<a href="#s3.1-copyright-statement" alt="link to s3.1-copyright-statement"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<p>If license or copyright information belongs in a file, it belongs here.</p>
+
+
+
+<h3 id="s3.2-package-statement" style="left: -46px; position: relative;">3.2 Package statement<a href="#s3.2-package-statement" alt="link to s3.2-package-statement"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<p>The package statement is <strong>not line-wrapped</strong>. The column limit (Section 4.4,
+<a href="#s4.4-column-limit">Column limit: 100</a>) does not apply to package statements.</p>
+
+<a name="imports"></a>
+<h3 id="s3.3-import-statements" style="left: -46px; position: relative;">3.3 Import statements<a href="#s3.3-import-statements" alt="link to s3.3-import-statements"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<h4 id="s3.3.1-wildcard-imports" style="left: -46px; position: relative;">3.3.1 No wildcard imports<a href="#s3.3.1-wildcard-imports" alt="link to s3.3.1-wildcard-imports"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p><strong>Wildcard imports</strong>, static or otherwise, <strong>are not used</strong>.</p>
+
+<h4 id="s3.3.2-import-line-wrapping" style="left: -46px; position: relative;">3.3.2 No line-wrapping<a href="#s3.3.2-import-line-wrapping" alt="link to s3.3.2-import-line-wrapping"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>Import statements are <strong>not line-wrapped</strong>. The column limit (Section 4.4,
+<a href="#s4.4-column-limit">Column limit: 100</a>) does not apply to import
+statements.</p>
+
+<h4 id="s3.3.3-import-ordering-and-spacing" style="left: -46px; position: relative;">3.3.3 Ordering and spacing<a href="#s3.3.3-import-ordering-and-spacing" alt="link to s3.3.3-import-ordering-and-spacing"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>Imports are ordered as follows:</p>
+
+<ol>
+  <li>All static imports in a single block.</li>
+  <li>All non-static imports in a single block.</li>
+</ol>
+
+<p>If there are both static and non-static imports, a single blank line separates the two
+blocks. There are no other blank lines between import statements.</p>
+
+<p>Within each block the imported names appear in ASCII sort order. (<strong>Note:</strong>
+this is not the same as the import <em>statements</em> being in ASCII sort order, since '.'
+sorts before ';'.)</p>
+
+
+
+<h4 id="s3.3.4-import-class-not-static" style="left: -46px; position: relative;">3.3.4 No static import for classes<a href="#s3.3.4-import-class-not-static" alt="link to s3.3.4-import-class-not-static"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>Static import is not used for static nested classes. They are imported with
+normal imports.</p>
+
+<h3 id="s3.4-class-declaration" style="left: -46px; position: relative;">3.4 Class declaration<a href="#s3.4-class-declaration" alt="link to s3.4-class-declaration"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<a name="oneclassperfile"></a>
+<h4 id="s3.4.1-one-top-level-class" style="left: -46px; position: relative;">3.4.1 Exactly one top-level class declaration<a href="#s3.4.1-one-top-level-class" alt="link to s3.4.1-one-top-level-class"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>Each top-level class resides in a source file of its own.</p>
+
+<a name="s3.4.2-class-member-ordering"></a>
+<h4 id="s3.4.2-ordering-class-contents" style="left: -46px; position: relative;">3.4.2 Ordering of class contents<a href="#s3.4.2-ordering-class-contents" alt="link to s3.4.2-ordering-class-contents"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>The order you choose for the members and initializers of your class can have a great effect on
+learnability. However, there's no single correct recipe for how to do it; different classes may
+order their contents in different ways.</p>
+
+<p>What is important is that each class uses <strong><em>some</em> logical order</strong>, which its
+maintainer could explain if asked. For example, new methods are not just habitually added to the end
+of the class, as that would yield "chronological by date added" ordering, which is not a logical
+ordering.</p>
+
+
+
+<a name="overloads"></a>
+<h5 id="s3.4.2.1-overloads-never-split">3.4.2.1 Overloads: never split</h5>
+
+<p>When a class has multiple constructors, or multiple methods with the same name, these appear
+sequentially, with no other code in between (not even private members).</p>
+
+<h2 id="s4-formatting" style="left: -46px; position: relative;">4 Formatting<a href="#s4-formatting" alt="link to s4-formatting"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h2>
+
+<p class="terminology"><strong>Terminology Note:</strong> <em>block-like construct</em> refers to
+the body of a class, method or constructor. Note that, by Section 4.8.3.1 on
+<a href="#s4.8.3.1-array-initializers">array initializers</a>, any array initializer
+<em>may</em> optionally be treated as if it were a block-like construct.</p>
+
+<a name="braces"></a>
+<h3 id="s4.1-braces" style="left: -46px; position: relative;">4.1 Braces<a href="#s4.1-braces" alt="link to s4.1-braces"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<h4 id="s4.1.1-braces-always-used" style="left: -46px; position: relative;">4.1.1 Braces are used where optional<a href="#s4.1.1-braces-always-used" alt="link to s4.1.1-braces-always-used"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>Braces are used with
+<code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">if</span></code>,
+<code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">else</span></code>,
+<code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">for</span></code>,
+<code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">do</span></code> and
+<code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">while</span></code> statements, even when the
+body is empty or contains only a single statement.</p>
+
+<h4 id="s4.1.2-blocks-k-r-style" style="left: -46px; position: relative;">4.1.2 Nonempty blocks: K &amp; R style<a href="#s4.1.2-blocks-k-r-style" alt="link to s4.1.2-blocks-k-r-style"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>Braces follow the Kernighan and Ritchie style
+("<a href="http://www.codinghorror.com/blog/2012/07/new-programming-jargon.html">Egyptian brackets</a>")
+for <em>nonempty</em> blocks and block-like constructs:</p>
+
+<ul>
+  <li>No line break before the opening brace.</li>
+
+  <li>Line break after the opening brace.</li>
+
+  <li>Line break before the closing brace.</li>
+
+  <li>Line break after the closing brace, <em>only if</em> that brace terminates a statement or
+  terminates the body of a method, constructor, or <em>named</em> class.
+  For example, there is <em>no</em> line break after the brace if it is followed by
+  <code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">else</span></code> or a comma.</li>
+</ul>
+
+<p>Examples:</p>
+
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="kwd">return</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">-&gt;</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="kwd">while</span><span class="pln"> </span><span class="pun">(</span><span class="pln">condition</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    method</span><span class="pun">();</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">};</span><span class="pln">
+
+</span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">MyClass</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="lit">@Override</span><span class="pln"> </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> method</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">condition</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        something</span><span class="pun">();</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">ProblemException</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        recover</span><span class="pun">();</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">otherCondition</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      somethingElse</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      lastThing</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">};</span></pre>
+
+<p>A few exceptions for enum classes are given in Section 4.8.1,
+<a href="#s4.8.1-enum-classes">Enum classes</a>.</p>
+
+<a name="emptyblocks"></a>
+<h4 id="s4.1.3-braces-empty-blocks" style="left: -46px; position: relative;">4.1.3 Empty blocks: may be concise<a href="#s4.1.3-braces-empty-blocks" alt="link to s4.1.3-braces-empty-blocks"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>An empty block or block-like construct may be in K &amp; R style (as described in
+<a href="#s4.1.2-blocks-k-r-style">Section 4.1.2</a>). Alternatively, it may be closed immediately
+after it is opened, with no characters or line break in between
+(<code class="prettyprint lang-java prettyprinted" style=""><span class="pun">{}</span></code>), <strong>unless</strong> it is part of a
+<em>multi-block statement</em> (one that directly contains multiple blocks:
+<code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">if</span><span class="pun">/</span><span class="kwd">else</span></code> or
+<code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">try</span><span class="pun">/</span><span class="kwd">catch</span><span class="pun">/</span><span class="kwd">finally</span></code>).</p>
+
+<p>Examples:</p>
+
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="pln">  </span><span class="com">// This is acceptable</span><span class="pln">
+  </span><span class="kwd">void</span><span class="pln"> doNothing</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{}</span><span class="pln">
+
+  </span><span class="com">// This is equally acceptable</span><span class="pln">
+  </span><span class="kwd">void</span><span class="pln"> doNothingElse</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="pun">}</span></pre>
+<pre class="prettyprint lang-java badcode prettyprinted" style=""><span class="pln">  </span><span class="com">// This is not acceptable: No concise empty blocks in a multi-block statement</span><span class="pln">
+  </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    doSomething</span><span class="pun">();</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Exception</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{}</span></pre>
+
+<h3 id="s4.2-block-indentation" style="left: -46px; position: relative;">4.2 Block indentation: +2 spaces<a href="#s4.2-block-indentation" alt="link to s4.2-block-indentation"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<p>Each time a new block or block-like construct is opened, the indent increases by two
+spaces. When the block ends, the indent returns to the previous indent level. The indent level
+applies to both code and comments throughout the block. (See the example in Section 4.1.2,
+<a href="#s4.1.2-blocks-k-r-style">Nonempty blocks: K &amp; R Style</a>.)</p>
+
+<h3 id="s4.3-one-statement-per-line" style="left: -46px; position: relative;">4.3 One statement per line<a href="#s4.3-one-statement-per-line" alt="link to s4.3-one-statement-per-line"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<p>Each statement is followed by a line break.</p>
+
+<a name="columnlimit"></a>
+<h3 id="s4.4-column-limit" style="left: -46px; position: relative;">4.4 Column limit: 100<a href="#s4.4-column-limit" alt="link to s4.4-column-limit"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<p>Java code has a column limit of 100 characters.
+Except as noted below, any line that would exceed this limit must be line-wrapped, as explained in
+Section 4.5, <a href="#s4.5-line-wrapping">Line-wrapping</a>.
+</p>
+
+<p><strong>Exceptions:</strong></p>
+
+<ol>
+  <li>Lines where obeying the column limit is not possible (for example, a long URL in Javadoc,
+  or a long JSNI method reference).</li>
+
+  <li><code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">package</span></code> and
+  <code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">import</span></code> statements (see Sections
+  3.2 <a href="#s3.2-package-statement">Package statement</a> and
+  3.3 <a href="#s3.3-import-statements">Import statements</a>).</li>
+
+  <li>Command lines in a comment that may be cut-and-pasted into a shell.</li>
+</ol>
+
+<h3 id="s4.5-line-wrapping" style="left: -46px; position: relative;">4.5 Line-wrapping<a href="#s4.5-line-wrapping" alt="link to s4.5-line-wrapping"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<p class="terminology"><strong>Terminology Note:</strong> When code that might otherwise legally
+occupy a single line is divided into multiple lines, this activity is called
+<em>line-wrapping</em>.</p>
+
+<p>There is no comprehensive, deterministic formula showing <em>exactly</em> how to line-wrap in
+every situation. Very often there are several valid ways to line-wrap the same piece of code.</p>
+
+<p class="note"><strong>Note:</strong> While the typical reason for line-wrapping is to avoid
+overflowing the column limit, even code that would in fact fit within the column limit <em>may</em>
+be line-wrapped at the author's discretion.</p>
+
+<p class="tip"><strong>Tip:</strong> Extracting a method or local variable may solve the problem
+without the need to line-wrap.</p>
+
+<h4 id="s4.5.1-line-wrapping-where-to-break" style="left: -46px; position: relative;">4.5.1 Where to break<a href="#s4.5.1-line-wrapping-where-to-break" alt="link to s4.5.1-line-wrapping-where-to-break"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>The prime directive of line-wrapping is: prefer to break at a
+<strong>higher syntactic level</strong>. Also:</p>
+
+<ol>
+  <li>When a line is broken at a <em>non-assignment</em> operator the break comes <em>before</em>
+  the symbol. (Note that this is not the same practice used in Google style for other languages,
+  such as C++ and JavaScript.)
+    <ul>
+      <li>This also applies to the following "operator-like" symbols:
+        <ul>
+          <li>the dot separator (<code class="prettyprint lang-java prettyprinted" style=""><span class="pun">.</span></code>)</li>
+          <li>the two colons of a method reference
+          (<code class="prettyprint lang-java prettyprinted" style=""><span class="pun">::</span></code>)</li>
+          <li>an ampersand in a type bound
+          (<code class="prettyprint lang-java prettyprinted" style=""><span class="pun">&lt;</span><span class="pln">T </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">Foo</span><span class="pln"> </span><span class="pun">&amp;</span><span class="pln"> </span><span class="typ">Bar</span><span class="pun">&gt;</span></code>)</li>
+          <li>a pipe in a catch block
+          (<code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">FooException</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> </span><span class="typ">BarException</span><span class="pln"> e</span><span class="pun">)</span></code>).</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+
+  <li>When a line is broken at an <em>assignment</em> operator the break typically comes
+  <em>after</em> the symbol, but either way is acceptable.
+    <ul>
+      <li>This also applies to the "assignment-operator-like" colon in an enhanced
+      <code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">for</span></code> ("foreach") statement.</li>
+    </ul>
+  </li>
+
+  <li>A method or constructor name stays attached to the open parenthesis
+  (<code class="prettyprint lang-java prettyprinted" style=""><span class="pun">(</span></code>) that follows it.</li>
+
+  <li>A comma (<code class="prettyprint lang-java prettyprinted" style=""><span class="pun">,</span></code>) stays attached to the token that
+  precedes it.</li>
+
+  <li>A line is never broken adjacent to the arrow in a lambda, except that a
+  break may come immediately after the arrow if the body of the lambda consists
+  of a single unbraced expression. Examples:
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="typ">MyLambda</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Long</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Object</span><span class="pun">&gt;</span><span class="pln"> lambda </span><span class="pun">=</span><span class="pln">
+    </span><span class="pun">(</span><span class="typ">String</span><span class="pln"> label</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Long</span><span class="pln"> value</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Object</span><span class="pln"> obj</span><span class="pun">)</span><span class="pln"> </span><span class="pun">-&gt;</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="pun">...</span><span class="pln">
+    </span><span class="pun">};</span><span class="pln">
+
+</span><span class="typ">Predicate</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">&gt;</span><span class="pln"> predicate </span><span class="pun">=</span><span class="pln"> str </span><span class="pun">-&gt;</span><span class="pln">
+    longExpressionInvolving</span><span class="pun">(</span><span class="pln">str</span><span class="pun">);</span></pre>
+  </li>
+</ol>
+
+<p class="note"><strong>Note:</strong> The primary goal for line wrapping is to have clear
+code, <em>not necessarily</em> code that fits in the smallest number of lines.</p>
+
+<a name="indentation"></a>
+<h4 id="s4.5.2-line-wrapping-indent" style="left: -46px; position: relative;">4.5.2 Indent continuation lines at least +4 spaces<a href="#s4.5.2-line-wrapping-indent" alt="link to s4.5.2-line-wrapping-indent"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>When line-wrapping, each line after the first (each <em>continuation line</em>) is indented
+at least +4 from the original line.</p>
+
+<p>When there are multiple continuation lines, indentation may be varied beyond +4 as
+desired. In general, two continuation lines use the same indentation level if and only if they
+begin with syntactically parallel elements.</p>
+
+<p>Section 4.6.3 on <a href="#s4.6.3-horizontal-alignment">Horizontal alignment</a> addresses
+the discouraged practice of using a variable number of spaces to align certain tokens with
+previous lines.</p>
+
+<h3 id="s4.6-whitespace" style="left: -46px; position: relative;">4.6 Whitespace<a href="#s4.6-whitespace" alt="link to s4.6-whitespace"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<h4 id="s4.6.1-vertical-whitespace" style="left: -46px; position: relative;">4.6.1 Vertical Whitespace<a href="#s4.6.1-vertical-whitespace" alt="link to s4.6.1-vertical-whitespace"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>A single blank line appears:</p>
+
+<ol>
+  <li><em>Between</em> consecutive members or initializers of a class: fields, constructors,
+  methods, nested classes, static initializers, and instance initializers.
+  <ul>
+    <li><span class="exception"><strong>Exception:</strong> A blank line between two consecutive
+    fields (having no other code between them) is optional. Such blank lines are used as needed to
+    create <em>logical groupings</em> of fields.</span></li>
+    <li><span class="exception"><strong>Exception:</strong> Blank lines between enum constants are
+    covered in <a href="#s4.8.1-enum-classes">Section 4.8.1</a>.</span></li>
+  </ul>
+  </li>
+
+  <li>Between statements, <em>as needed</em> to organize the code into logical subsections.
+  
+  </li><li><em>Optionally</em> before the first member or initializer, or after the last member or
+  initializer of the class (neither encouraged nor discouraged).</li>
+
+  <li>As required by other sections of this document (such as Section 3,
+  <a href="#s3-source-file-structure">Source file structure</a>, and Section 3.3,
+  <a href="#s3.3-import-statements">Import statements</a>).</li>
+</ol>
+
+<p><em>Multiple</em> consecutive blank lines are permitted, but never required (or encouraged).</p>
+
+<h4 id="s4.6.2-horizontal-whitespace" style="left: -46px; position: relative;">4.6.2 Horizontal whitespace<a href="#s4.6.2-horizontal-whitespace" alt="link to s4.6.2-horizontal-whitespace"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>Beyond where required by the language or other style rules, and apart from literals, comments and
+Javadoc, a single ASCII space also appears in the following places <strong>only</strong>.</p>
+
+<ol>
+  <li>Separating any reserved word, such as
+  <code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">if</span></code>,
+  <code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">for</span></code> or
+  <code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">catch</span></code>, from an open parenthesis
+  (<code class="prettyprint lang-java prettyprinted" style=""><span class="pun">(</span></code>)
+  that follows it on that line</li>
+
+  <li>Separating any reserved word, such as
+  <code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">else</span></code> or
+  <code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">catch</span></code>, from a closing curly brace
+  (<code class="prettyprint lang-java prettyprinted" style=""><span class="pun">}</span></code>) that precedes it on that line</li>
+
+  <li>Before any open curly brace
+  (<code class="prettyprint lang-java prettyprinted" style=""><span class="pun">{</span></code>), with two exceptions:
+  <ul>
+    <li><code class="prettyprint lang-java prettyprinted" style=""><span class="lit">@SomeAnnotation</span><span class="pun">({</span><span class="pln">a</span><span class="pun">,</span><span class="pln"> b</span><span class="pun">})</span></code> (no space is used)</li>
+
+    <li><code class="prettyprint lang-java prettyprinted" style=""><span class="typ">String</span><span class="pun">[][]</span><span class="pln"> x </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{{</span><span class="str">"foo"</span><span class="pun">}};</span></code> (no space is required
+    between <code class="prettyprint lang-java prettyprinted" style=""><span class="pun">{{</span></code>, by item 8 below)</li>
+  </ul>
+  </li>
+
+  <li>On both sides of any binary or ternary operator. This also applies to the following
+  "operator-like" symbols:
+  <ul>
+    <li>the ampersand in a conjunctive type bound:
+    <code class="prettyprint lang-java prettyprinted" style=""><span class="pun">&lt;</span><span class="pln">T </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">Foo</span><span class="pln"> </span><span class="pun">&amp;</span><span class="pln"> </span><span class="typ">Bar</span><span class="pun">&gt;</span></code></li>
+
+    <li>the pipe for a catch block that handles multiple exceptions:
+    <code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">FooException</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> </span><span class="typ">BarException</span><span class="pln"> e</span><span class="pun">)</span></code></li>
+
+    <li>the colon (<code class="prettyprint lang-java prettyprinted" style=""><span class="pun">:</span></code>) in an enhanced
+    <code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">for</span></code> ("foreach") statement</li>
+
+    <li>the arrow in a lambda expression:
+    <code class="prettyprint lang-java prettyprinted" style=""><span class="pun">(</span><span class="typ">String</span><span class="pln"> str</span><span class="pun">)</span><span class="pln"> </span><span class="pun">-&gt;</span><span class="pln"> str</span><span class="pun">.</span><span class="pln">length</span><span class="pun">()</span></code></li>
+  </ul>
+    but not
+
+  <ul>
+    <li>the two colons (<code class="prettyprint lang-java prettyprinted" style=""><span class="pun">::</span></code>) of a method reference, which
+    is written like <code class="prettyprint lang-java prettyprinted" style=""><span class="typ">Object</span><span class="pun">::</span><span class="pln">toString</span></code></li>
+    <li>the dot separator (<code class="prettyprint lang-java prettyprinted" style=""><span class="pun">.</span></code>), which is written like
+    <code class="prettyprint lang-java prettyprinted" style=""><span class="pln">object</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">()</span></code></li>
+  </ul>
+  </li>
+
+  <li>After <code class="prettyprint lang-java prettyprinted" style=""><span class="pun">,:;</span></code> or the closing parenthesis
+  (<code class="prettyprint lang-java prettyprinted" style=""><span class="pun">)</span></code>) of a cast</li>
+
+  <li>On both sides of the double slash (<code class="prettyprint lang-java prettyprinted" style=""><span class="com">//</span></code>) that
+  begins an end-of-line comment. Here, multiple spaces are allowed, but not required.</li>
+
+  <li>Between the type and variable of a declaration:
+  <code class="prettyprint lang-java prettyprinted" style=""><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">&gt;</span><span class="pln"> list</span></code></li>
+
+  <li><em>Optional</em> just inside both braces of an array initializer
+  <ul>
+    <li><code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">new</span><span class="pln"> </span><span class="kwd">int</span><span class="pun">[]</span><span class="pln"> </span><span class="pun">{</span><span class="lit">5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">6</span><span class="pun">}</span></code> and
+    <code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">new</span><span class="pln"> </span><span class="kwd">int</span><span class="pun">[]</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="lit">5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">6</span><span class="pln"> </span><span class="pun">}</span></code> are both valid</li>
+  </ul>
+  </li>
+</ol>
+
+This rule is never interpreted as requiring or forbidding additional space at the start or
+end of a line; it addresses only <em>interior</em> space.<p></p>
+
+<h4 id="s4.6.3-horizontal-alignment" style="left: -46px; position: relative;">4.6.3 Horizontal alignment: never required<a href="#s4.6.3-horizontal-alignment" alt="link to s4.6.3-horizontal-alignment"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p class="terminology"><strong>Terminology Note:</strong> <em>Horizontal alignment</em> is the
+practice of adding a variable number of additional spaces in your code with the goal of making
+certain tokens appear directly below certain other tokens on previous lines.</p>
+
+<p>This practice is permitted, but is <strong>never required</strong> by Google Style. It is not
+even required to <em>maintain</em> horizontal alignment in places where it was already used.</p>
+
+<p>Here is an example without alignment, then using alignment:</p>
+
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="kwd">private</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> x</span><span class="pun">;</span><span class="pln"> </span><span class="com">// this is fine</span><span class="pln">
+</span><span class="kwd">private</span><span class="pln"> </span><span class="typ">Color</span><span class="pln"> color</span><span class="pun">;</span><span class="pln"> </span><span class="com">// this too</span><span class="pln">
+
+</span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">int</span><span class="pln">   x</span><span class="pun">;</span><span class="pln">      </span><span class="com">// permitted, but future edits</span><span class="pln">
+</span><span class="kwd">private</span><span class="pln"> </span><span class="typ">Color</span><span class="pln"> color</span><span class="pun">;</span><span class="pln">  </span><span class="com">// may leave it unaligned</span></pre>
+
+<p class="tip"><strong>Tip:</strong> Alignment can aid readability, but it creates problems for
+future maintenance.  Consider a future change that needs to touch just one line. This change may
+leave the formerly-pleasing formatting mangled, and that is <strong>allowed</strong>. More often
+it prompts the coder (perhaps you) to adjust whitespace on nearby lines as well, possibly
+triggering a cascading series of reformattings. That one-line change now has a "blast radius."
+This can at worst result in pointless busywork, but at best it still corrupts version history
+information, slows down reviewers and exacerbates merge conflicts.</p>
+
+<a name="parentheses"></a>
+<h3 id="s4.7-grouping-parentheses" style="left: -46px; position: relative;">4.7 Grouping parentheses: recommended<a href="#s4.7-grouping-parentheses" alt="link to s4.7-grouping-parentheses"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<p>Optional grouping parentheses are omitted only when author and reviewer agree that there is no
+reasonable chance the code will be misinterpreted without them, nor would they have made the code
+easier to read. It is <em>not</em> reasonable to assume that every reader has the entire Java
+operator precedence table memorized.</p>
+
+<h3 id="s4.8-specific-constructs" style="left: -46px; position: relative;">4.8 Specific constructs<a href="#s4.8-specific-constructs" alt="link to s4.8-specific-constructs"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<h4 id="s4.8.1-enum-classes" style="left: -46px; position: relative;">4.8.1 Enum classes<a href="#s4.8.1-enum-classes" alt="link to s4.8.1-enum-classes"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>After each comma that follows an enum constant, a line break is optional. Additional blank
+lines (usually just one) are also allowed. This is one possibility:
+
+</p><pre class="prettyprint lang-java prettyprinted" style=""><span class="kwd">private</span><span class="pln"> </span><span class="kwd">enum</span><span class="pln"> </span><span class="typ">Answer</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  YES </span><span class="pun">{</span><span class="pln">
+    </span><span class="lit">@Override</span><span class="pln"> </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> toString</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">return</span><span class="pln"> </span><span class="str">"yes"</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+  </span><span class="pun">},</span><span class="pln">
+
+  NO</span><span class="pun">,</span><span class="pln">
+  MAYBE
+</span><span class="pun">}</span></pre>
+
+<p>An enum class with no methods and no documentation on its constants may optionally be formatted
+as if it were an array initializer (see Section 4.8.3.1 on
+<a href="#s4.8.3.1-array-initializers">array initializers</a>).</p>
+
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="kwd">private</span><span class="pln"> </span><span class="kwd">enum</span><span class="pln"> </span><span class="typ">Suit</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> CLUBS</span><span class="pun">,</span><span class="pln"> HEARTS</span><span class="pun">,</span><span class="pln"> SPADES</span><span class="pun">,</span><span class="pln"> DIAMONDS </span><span class="pun">}</span></pre>
+
+<p>Since enum classes <em>are classes</em>, all other rules for formatting classes apply.</p>
+
+<a name="localvariables"></a>
+<h4 id="s4.8.2-variable-declarations" style="left: -46px; position: relative;">4.8.2 Variable declarations<a href="#s4.8.2-variable-declarations" alt="link to s4.8.2-variable-declarations"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<h5 id="s4.8.2.1-variables-per-declaration">4.8.2.1 One variable per declaration</h5>
+
+<p>Every variable declaration (field or local) declares only one variable: declarations such as
+<code class="badcode">int a, b;</code> are not used.</p>
+
+<h5 id="s4.8.2.2-variables-limited-scope">4.8.2.2 Declared when needed</h5>
+
+<p>Local variables are <strong>not</strong> habitually declared at the start of their containing
+block or block-like construct. Instead, local variables are declared close to the point they are
+first used (within reason), to minimize their scope. Local variable declarations typically have
+initializers, or are initialized immediately after declaration.</p>
+
+<h4 id="s4.8.3-arrays" style="left: -46px; position: relative;">4.8.3 Arrays<a href="#s4.8.3-arrays" alt="link to s4.8.3-arrays"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<h5 id="s4.8.3.1-array-initializers">4.8.3.1 Array initializers: can be "block-like"</h5>
+
+<p>Any array initializer may <em>optionally</em> be formatted as if it were a "block-like
+construct." For example, the following are all valid (<strong>not</strong> an exhaustive
+list):</p>
+
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="kwd">new</span><span class="pln"> </span><span class="kwd">int</span><span class="pun">[]</span><span class="pln"> </span><span class="pun">{</span><span class="pln">           </span><span class="kwd">new</span><span class="pln"> </span><span class="kwd">int</span><span class="pun">[]</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="lit">3</span><span class="pln">            </span><span class="lit">0</span><span class="pun">,</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">                       </span><span class="lit">1</span><span class="pun">,</span><span class="pln">
+                        </span><span class="lit">2</span><span class="pun">,</span><span class="pln">
+</span><span class="kwd">new</span><span class="pln"> </span><span class="kwd">int</span><span class="pun">[]</span><span class="pln"> </span><span class="pun">{</span><span class="pln">             </span><span class="lit">3</span><span class="pun">,</span><span class="pln">
+  </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln">               </span><span class="pun">}</span><span class="pln">
+  </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="lit">3</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">                     </span><span class="kwd">new</span><span class="pln"> </span><span class="kwd">int</span><span class="pun">[]</span><span class="pln">
+                          </span><span class="pun">{</span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="lit">3</span><span class="pun">}</span></pre>
+
+<h5 id="s4.8.3.2-array-declarations">4.8.3.2 No C-style array declarations</h5>
+
+<p>The square brackets form a part of the <em>type</em>, not the variable:
+<code class="prettyprint lang-java prettyprinted" style=""><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span></code>, not
+<code class="badcode">String args[]</code>.</p>
+
+<h4 id="s4.8.4-switch" style="left: -46px; position: relative;">4.8.4 Switch statements<a href="#s4.8.4-switch" alt="link to s4.8.4-switch"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+
+
+<p class="terminology"><strong>Terminology Note:</strong> Inside the braces of a
+<em>switch block</em> are one or more <em>statement groups</em>. Each statement group consists of
+one or more <em>switch labels</em> (either <code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">case</span><span class="pln"> FOO</span><span class="pun">:</span></code> or
+<code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">default</span><span class="pun">:</span></code>), followed by one or more statements (or, for
+the <em>last</em> statement group, <em>zero</em> or more statements).</p>
+
+<h5 id="s4.8.4.1-switch-indentation">4.8.4.1 Indentation</h5>
+
+<p>As with any other block, the contents of a switch block are indented +2.</p>
+
+<p>After a switch label, there is a line break, and the indentation level is increased +2, exactly
+as if a block were being opened. The following switch label returns to the previous indentation
+level, as if a block had been closed.</p>
+
+<a name="fallthrough"></a>
+<h5 id="s4.8.4.2-switch-fall-through">4.8.4.2 Fall-through: commented</h5>
+
+<p>Within a switch block, each statement group either terminates abruptly (with a
+<code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">break</span></code>,
+<code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">continue</span></code>,
+<code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">return</span></code> or thrown exception), or is marked with a comment
+to indicate that execution will or <em>might</em> continue into the next statement group. Any
+comment that communicates the idea of fall-through is sufficient (typically
+<code class="prettyprint lang-java prettyprinted" style=""><span class="com">// fall through</span></code>). This special comment is not required in
+the last statement group of the switch block. Example:</p>
+
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="kwd">switch</span><span class="pln"> </span><span class="pun">(</span><span class="pln">input</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="kwd">case</span><span class="pln"> </span><span class="lit">1</span><span class="pun">:</span><span class="pln">
+  </span><span class="kwd">case</span><span class="pln"> </span><span class="lit">2</span><span class="pun">:</span><span class="pln">
+    prepareOneOrTwo</span><span class="pun">();</span><span class="pln">
+    </span><span class="com">// fall through</span><span class="pln">
+  </span><span class="kwd">case</span><span class="pln"> </span><span class="lit">3</span><span class="pun">:</span><span class="pln">
+    handleOneTwoOrThree</span><span class="pun">();</span><span class="pln">
+    </span><span class="kwd">break</span><span class="pun">;</span><span class="pln">
+  </span><span class="kwd">default</span><span class="pun">:</span><span class="pln">
+    handleLargeNumber</span><span class="pun">(</span><span class="pln">input</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></pre>
+
+<p>Notice that no comment is needed after <code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">case</span><span class="pln"> </span><span class="lit">1</span><span class="pun">:</span></code>, only
+at the end of the statement group.</p>
+
+<h5 id="s4.8.4.3-switch-default">4.8.4.3 The <code>default</code> case is present</h5>
+
+<p>Each switch statement includes a <code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">default</span></code> statement
+group, even if it contains no code.</p>
+
+<p><strong>Exception:</strong> A switch statement for an <code>enum</code> type <em>may</em> omit
+the <code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">default</span></code> statement group, <em>if</em> it includes
+explicit cases covering <em>all</em> possible values of that type. This enables IDEs or other static
+analysis tools to issue a warning if any cases were missed.
+
+</p>
+
+<a name="annotations"></a>
+<h4 id="s4.8.5-annotations" style="left: -46px; position: relative;">4.8.5 Annotations<a href="#s4.8.5-annotations" alt="link to s4.8.5-annotations"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>Annotations applying to a class, method or constructor appear immediately after the
+documentation block, and each annotation is listed on a line of its own (that is, one annotation
+per line). These line breaks do not constitute line-wrapping (Section
+4.5, <a href="#s4.5-line-wrapping">Line-wrapping</a>), so the indentation level is not
+increased. Example:</p>
+
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="lit">@Override</span><span class="pln">
+</span><span class="lit">@Nullable</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> getNameIfPresent</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="pun">...</span><span class="pln"> </span><span class="pun">}</span></pre>
+
+<p class="exception"><strong>Exception:</strong> A <em>single</em> parameterless annotation
+<em>may</em> instead appear together with the first line of the signature, for example:</p>
+
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="lit">@Override</span><span class="pln"> </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> hashCode</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="pun">...</span><span class="pln"> </span><span class="pun">}</span></pre>
+
+<p>Annotations applying to a field also appear immediately after the documentation block, but in
+this case, <em>multiple</em> annotations (possibly parameterized) may be listed on the same line;
+for example:</p>
+
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="lit">@Partial</span><span class="pln"> </span><span class="lit">@Mock</span><span class="pln"> </span><span class="typ">DataLoader</span><span class="pln"> loader</span><span class="pun">;</span></pre>
+
+<p>There are no specific rules for formatting annotations on parameters, local variables, or types.
+</p>
+
+<a name="comments"></a>
+<h4 id="s4.8.6-comments" style="left: -46px; position: relative;">4.8.6 Comments<a href="#s4.8.6-comments" alt="link to s4.8.6-comments"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>This section addresses <em>implementation comments</em>. Javadoc is addressed separately in
+Section 7, <a href="#s7-javadoc">Javadoc</a>.</p>
+
+<p>Any line break may be preceded by arbitrary whitespace followed by an implementation comment.
+Such a comment renders the line non-blank.</p>
+
+<h5 id="s4.8.6.1-block-comment-style">4.8.6.1 Block comment style</h5>
+
+<p>Block comments are indented at the same level as the surrounding code. They may be in
+<code class="prettyprint lang-java prettyprinted" style=""><span class="com">/* ... */</span></code> style or
+<code class="prettyprint lang-java prettyprinted" style=""><span class="com">// ...</span></code> style. For multi-line
+<code class="prettyprint lang-java prettyprinted" style=""><span class="com">/* ... */</span></code> comments, subsequent lines must start with
+<code>*</code> aligned with the <code>*</code> on the previous line.</p>
+
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="com">/*
+ * This is          // And so           /* Or you can
+ * okay.            // is this.          * even do this. */</span><span class="pln">
+ </span><span class="pun">*/</span></pre>
+
+
+<p>Comments are not enclosed in boxes drawn with asterisks or other characters.</p>
+
+<p class="tip"><strong>Tip:</strong> When writing multi-line comments, use the
+<code class="prettyprint lang-java prettyprinted" style=""><span class="com">/* ... */</span></code> style if you want automatic code formatters to
+re-wrap the lines when necessary (paragraph-style). Most formatters don't re-wrap lines in
+<code class="prettyprint lang-java prettyprinted" style=""><span class="com">// ...</span></code> style comment blocks.</p>
+
+ 
+
+<a name="modifiers"></a>
+<h4 id="s4.8.7-modifiers" style="left: -46px; position: relative;">4.8.7 Modifiers<a href="#s4.8.7-modifiers" alt="link to s4.8.7-modifiers"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>Class and member modifiers, when present, appear in the order
+recommended by the Java Language Specification:
+</p>
+
+<pre>public protected private abstract default static final transient volatile synchronized native strictfp
+</pre>
+
+<h4 id="s4.8.8-numeric-literals" style="left: -46px; position: relative;">4.8.8 Numeric Literals<a href="#s4.8.8-numeric-literals" alt="link to s4.8.8-numeric-literals"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p><code>long</code>-valued integer literals use an uppercase <code>L</code> suffix, never
+lowercase (to avoid confusion with the digit <code>1</code>). For example, <code>3000000000L</code>
+rather than <code class="badcode">3000000000l</code>.</p>
+
+<a name="naming"></a>
+<h2 id="s5-naming" style="left: -46px; position: relative;">5 Naming<a href="#s5-naming" alt="link to s5-naming"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h2>
+
+<h3 id="s5.1-identifier-names" style="left: -46px; position: relative;">5.1 Rules common to all identifiers<a href="#s5.1-identifier-names" alt="link to s5.1-identifier-names"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<p>Identifiers use only ASCII letters and digits, and, in a small number of cases noted below,
+underscores. Thus each valid identifier name is matched by the regular expression
+<code>\w+</code> .</p>
+
+<p>In Google Style special prefixes or
+suffixes, like those seen in the examples <code class="badcode">name_</code>,
+<code class="badcode">mName</code>, <code class="badcode">s_name</code> and
+<code class="badcode">kName</code>, are <strong>not</strong> used.</p>
+
+<h3 id="s5.2-specific-identifier-names" style="left: -46px; position: relative;">5.2 Rules by identifier type<a href="#s5.2-specific-identifier-names" alt="link to s5.2-specific-identifier-names"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<h4 id="s5.2.1-package-names" style="left: -46px; position: relative;">5.2.1 Package names<a href="#s5.2.1-package-names" alt="link to s5.2.1-package-names"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>Package names are all lowercase, with consecutive words simply concatenated together (no
+underscores). For example, <code>com.example.deepspace</code>, not
+<code class="badcode">com.example.deepSpace</code> or
+<code class="badcode">com.example.deep_space</code>.</p>
+
+<h4 id="s5.2.2-class-names" style="left: -46px; position: relative;">5.2.2 Class names<a href="#s5.2.2-class-names" alt="link to s5.2.2-class-names"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>Class names are written in <a href="#s5.3-camel-case">UpperCamelCase</a>.</p>
+
+<p>Class names are typically nouns or noun phrases. For example,
+<code class="prettyprint lang-java prettyprinted" style=""><span class="typ">Character</span></code> or
+<code class="prettyprint lang-java prettyprinted" style=""><span class="typ">ImmutableList</span></code>. Interface names may also be nouns or
+noun phrases (for example, <code class="prettyprint lang-java prettyprinted" style=""><span class="typ">List</span></code>), but may sometimes be
+adjectives or adjective phrases instead (for example,
+<code class="prettyprint lang-java prettyprinted" style=""><span class="typ">Readable</span></code>).</p>
+
+<p>There are no specific rules or even well-established conventions for naming annotation types.</p>
+
+<p><em>Test</em> classes are named starting with the name of the class they are testing, and ending
+with <code class="prettyprint lang-java prettyprinted" style=""><span class="typ">Test</span></code>. For example,
+<code class="prettyprint lang-java prettyprinted" style=""><span class="typ">HashTest</span></code> or
+<code class="prettyprint lang-java prettyprinted" style=""><span class="typ">HashIntegrationTest</span></code>.</p>
+
+<h4 id="s5.2.3-method-names" style="left: -46px; position: relative;">5.2.3 Method names<a href="#s5.2.3-method-names" alt="link to s5.2.3-method-names"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>Method names are written in <a href="#s5.3-camel-case">lowerCamelCase</a>.</p>
+
+<p>Method names are typically verbs or verb phrases. For example,
+<code class="prettyprint lang-java prettyprinted" style=""><span class="pln">sendMessage</span></code> or
+<code class="prettyprint lang-java prettyprinted" style=""><span class="pln">stop</span></code>.</p>
+
+<p>Underscores may appear in JUnit <em>test</em> method names to separate logical components of the
+name. One typical pattern is <code>test<i>&lt;MethodUnderTest&gt;</i>_<i>&lt;state&gt;</i></code>,
+for example <code class="prettyprint lang-java prettyprinted" style=""><span class="pln">testPop_emptyStack</span></code>. There is no One Correct
+Way to name test methods.</p>
+
+<a name="constants"></a>
+<h4 id="s5.2.4-constant-names" style="left: -46px; position: relative;">5.2.4 Constant names<a href="#s5.2.4-constant-names" alt="link to s5.2.4-constant-names"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>Constant names use <code class="prettyprint lang-java prettyprinted" style=""><span class="pln">CONSTANT_CASE</span></code>: all uppercase
+letters, with words separated by underscores. But what <em>is</em> a constant, exactly?</p>
+
+<p>Constants are static final fields whose contents are deeply immutable and whose methods have no
+detectable side effects. This includes primitives, Strings, immutable types, and immutable
+collections of immutable types. If any of the instance's observable state can change, it is not a
+constant. Merely <em>intending</em> to never mutate the object is not enough. Examples:</p>
+
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="com">// Constants</span><span class="pln">
+</span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> NUMBER </span><span class="pun">=</span><span class="pln"> </span><span class="lit">5</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">ImmutableList</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">&gt;</span><span class="pln"> NAMES </span><span class="pun">=</span><span class="pln"> </span><span class="typ">ImmutableList</span><span class="pun">.</span><span class="pln">of</span><span class="pun">(</span><span class="str">"Ed"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Ann"</span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">ImmutableMap</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">&gt;</span><span class="pln"> AGES </span><span class="pun">=</span><span class="pln"> </span><span class="typ">ImmutableMap</span><span class="pun">.</span><span class="pln">of</span><span class="pun">(</span><span class="str">"Ed"</span><span class="pun">,</span><span class="pln"> </span><span class="lit">35</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Ann"</span><span class="pun">,</span><span class="pln"> </span><span class="lit">32</span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">Joiner</span><span class="pln"> COMMA_JOINER </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Joiner</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">','</span><span class="pun">);</span><span class="pln"> </span><span class="com">// because Joiner is immutable</span><span class="pln">
+</span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">SomeMutableType</span><span class="pun">[]</span><span class="pln"> EMPTY_ARRAY </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{};</span><span class="pln">
+</span><span class="kwd">enum</span><span class="pln"> </span><span class="typ">SomeEnum</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> ENUM_CONSTANT </span><span class="pun">}</span><span class="pln">
+
+</span><span class="com">// Not constants</span><span class="pln">
+</span><span class="kwd">static</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> nonFinal </span><span class="pun">=</span><span class="pln"> </span><span class="str">"non-final"</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">final</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> nonStatic </span><span class="pun">=</span><span class="pln"> </span><span class="str">"non-static"</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">Set</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">&gt;</span><span class="pln"> mutableCollection </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">HashSet</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">&gt;();</span><span class="pln">
+</span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">ImmutableSet</span><span class="pun">&lt;</span><span class="typ">SomeMutableType</span><span class="pun">&gt;</span><span class="pln"> mutableElements </span><span class="pun">=</span><span class="pln"> </span><span class="typ">ImmutableSet</span><span class="pun">.</span><span class="pln">of</span><span class="pun">(</span><span class="pln">mutable</span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">ImmutableMap</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">,</span><span class="pln"> </span><span class="typ">SomeMutableType</span><span class="pun">&gt;</span><span class="pln"> mutableValues </span><span class="pun">=</span><span class="pln">
+    </span><span class="typ">ImmutableMap</span><span class="pun">.</span><span class="pln">of</span><span class="pun">(</span><span class="str">"Ed"</span><span class="pun">,</span><span class="pln"> mutableInstance</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Ann"</span><span class="pun">,</span><span class="pln"> mutableInstance2</span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">Logger</span><span class="pln"> logger </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Logger</span><span class="pun">.</span><span class="pln">getLogger</span><span class="pun">(</span><span class="typ">MyClass</span><span class="pun">.</span><span class="pln">getName</span><span class="pun">());</span><span class="pln">
+</span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> nonEmptyArray </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="str">"these"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"can"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"change"</span><span class="pun">};</span></pre>
+
+<p>These names are typically nouns or noun phrases.</p>
+
+<h4 id="s5.2.5-non-constant-field-names" style="left: -46px; position: relative;">5.2.5 Non-constant field names<a href="#s5.2.5-non-constant-field-names" alt="link to s5.2.5-non-constant-field-names"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>Non-constant field names (static or otherwise) are written
+in <a href="#s5.3-camel-case">lowerCamelCase</a>.</p>
+
+<p>These names are typically nouns or noun phrases.  For example,
+<code class="prettyprint lang-java prettyprinted" style=""><span class="pln">computedValues</span></code> or
+<code class="prettyprint lang-java prettyprinted" style=""><span class="pln">index</span></code>.</p>
+
+<h4 id="s5.2.6-parameter-names" style="left: -46px; position: relative;">5.2.6 Parameter names<a href="#s5.2.6-parameter-names" alt="link to s5.2.6-parameter-names"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>Parameter names are written in <a href="#s5.3-camel-case">lowerCamelCase</a>.</p>
+
+<p>One-character parameter names in public methods should be avoided.</p>
+
+<h4 id="s5.2.7-local-variable-names" style="left: -46px; position: relative;">5.2.7 Local variable names<a href="#s5.2.7-local-variable-names" alt="link to s5.2.7-local-variable-names"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>Local variable names are written in <a href="#s5.3-camel-case">lowerCamelCase</a>.</p>
+
+<p>Even when final and immutable, local variables are not considered to be constants, and should not
+be styled as constants.</p>
+
+<h4 id="s5.2.8-type-variable-names" style="left: -46px; position: relative;">5.2.8 Type variable names<a href="#s5.2.8-type-variable-names" alt="link to s5.2.8-type-variable-names"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>Each type variable is named in one of two styles:</p>
+
+<ul>
+  <li>A single capital letter, optionally followed by a single numeral (such as
+  <code class="prettyprint lang-java prettyprinted" style=""><span class="pln">E</span></code>, <code class="prettyprint lang-java prettyprinted" style=""><span class="pln">T</span></code>,
+  <code class="prettyprint lang-java prettyprinted" style=""><span class="pln">X</span></code>, <code class="prettyprint lang-java prettyprinted" style=""><span class="pln">T2</span></code>)
+  </li>
+
+  <li>A name in the form used for classes (see Section 5.2.2,
+  <a href="#s5.2.2-class-names">Class names</a>), followed by the capital letter
+  <code class="prettyprint lang-java prettyprinted" style=""><span class="pln">T</span></code> (examples:
+  <code class="prettyprint lang-java prettyprinted" style=""><span class="typ">RequestT</span></code>,
+  <code class="prettyprint lang-java prettyprinted" style=""><span class="typ">FooBarT</span></code>).</li>
+</ul>
+
+<a name="acronyms"></a>
+<a name="camelcase"></a>
+<h3 id="s5.3-camel-case" style="left: -46px; position: relative;">5.3 Camel case: defined<a href="#s5.3-camel-case" alt="link to s5.3-camel-case"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<p>Sometimes there is more than one reasonable way to convert an English phrase into camel case,
+such as when acronyms or unusual constructs like "IPv6" or "iOS" are present. To improve
+predictability, Google Style specifies the following (nearly) deterministic scheme.</p>
+
+<p>Beginning with the prose form of the name:</p>
+
+<ol>
+  <li>Convert the phrase to plain ASCII and remove any apostrophes. For example, "Müller's
+  algorithm" might become "Muellers algorithm".</li>
+
+  <li>Divide this result into words, splitting on spaces and any remaining punctuation (typically
+  hyphens).
+
+  <ul>
+    <li><em>Recommended:</em> if any word already has a conventional camel-case appearance in common
+    usage, split this into its constituent parts (e.g., "AdWords" becomes "ad&nbsp;words"). Note
+    that a word such as "iOS" is not really in camel case <em>per se</em>; it defies <em>any</em>
+    convention, so this recommendation does not apply.</li>
+  </ul>
+  </li>
+
+  <li>Now lowercase <em>everything</em> (including acronyms), then uppercase only the first
+  character of:
+  <ul>
+    <li>... each word, to yield <em>upper camel case</em>, or</li>
+    <li>... each word except the first, to yield <em>lower camel case</em></li>
+  </ul>
+  </li>
+
+  <li>Finally, join all the words into a single identifier.</li>
+</ol>
+
+<p>Note that the casing of the original words is almost entirely disregarded. Examples:</p>
+
+<table>
+  <tbody><tr>
+    <th>Prose form</th>
+    <th>Correct</th>
+    <th>Incorrect</th>
+  </tr>
+  <tr>
+    <td>"XML HTTP request"</td>
+    <td><code class="prettyprint lang-java prettyprinted" style=""><span class="typ">XmlHttpRequest</span></code></td>
+    <td><code class="badcode">XMLHTTPRequest</code></td>
+  </tr>
+  <tr>
+    <td>"new customer ID"</td>
+    <td><code class="prettyprint lang-java prettyprinted" style=""><span class="pln">newCustomerId</span></code></td>
+    <td><code class="badcode">newCustomerID</code></td>
+  </tr>
+  <tr>
+    <td>"inner stopwatch"</td>
+    <td><code class="prettyprint lang-java prettyprinted" style=""><span class="pln">innerStopwatch</span></code></td>
+    <td><code class="badcode">innerStopWatch</code></td>
+  </tr>
+  <tr>
+    <td>"supports IPv6 on iOS?"</td>
+    <td><code class="prettyprint lang-java prettyprinted" style=""><span class="pln">supportsIpv6OnIos</span></code></td>
+    <td><code class="badcode">supportsIPv6OnIOS</code></td>
+  </tr>
+  <tr>
+    <td>"YouTube importer"</td>
+    <td><code class="prettyprint lang-java prettyprinted" style=""><span class="typ">YouTubeImporter</span></code><br>
+        <code class="prettyprint lang-java prettyprinted" style=""><span class="typ">YoutubeImporter</span></code>*</td>
+    <td></td>
+  </tr>
+</tbody></table>
+
+<p>*Acceptable, but not recommended.</p>
+
+<p class="note"><strong>Note:</strong> Some words are ambiguously hyphenated in the English
+language: for example "nonempty" and "non-empty" are both correct, so the method names
+<code class="prettyprint lang-java prettyprinted" style=""><span class="pln">checkNonempty</span></code> and
+<code class="prettyprint lang-java prettyprinted" style=""><span class="pln">checkNonEmpty</span></code> are likewise both correct.</p>
+
+
+<h2 id="s6-programming-practices" style="left: -46px; position: relative;">6 Programming Practices<a href="#s6-programming-practices" alt="link to s6-programming-practices"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h2>
+
+<h3 id="s6.1-override-annotation" style="left: -46px; position: relative;">6.1 <code>@Override</code>: always used<a href="#s6.1-override-annotation" alt="link to s6.1-override-annotation"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<p>A method is marked with the <code class="prettyprint lang-java prettyprinted" style=""><span class="lit">@Override</span></code> annotation
+whenever it is legal.  This includes a class method overriding a superclass method, a class method
+implementing an interface method, and an interface method respecifying a superinterface
+method.</p>
+
+<p class="exception"><strong>Exception:</strong>
+<code class="prettyprint lang-java prettyprinted" style=""><span class="lit">@Override</span></code> may be omitted when the parent method is
+<code class="prettyprint lang-java prettyprinted" style=""><span class="lit">@Deprecated</span></code>.</p>
+
+<a name="caughtexceptions"></a>
+<h3 id="s6.2-caught-exceptions" style="left: -46px; position: relative;">6.2 Caught exceptions: not ignored<a href="#s6.2-caught-exceptions" alt="link to s6.2-caught-exceptions"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<p>Except as noted below, it is very rarely correct to do nothing in response to a caught
+exception. (Typical responses are to log it, or if it is considered "impossible", rethrow it as an
+<code class="prettyprint lang-java prettyprinted" style=""><span class="typ">AssertionError</span></code>.)</p>
+
+<p>When it truly is appropriate to take no action whatsoever in a catch block, the reason this is
+justified is explained in a comment.</p>
+
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="kwd">int</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">.</span><span class="pln">parseInt</span><span class="pun">(</span><span class="pln">response</span><span class="pun">);</span><span class="pln">
+  </span><span class="kwd">return</span><span class="pln"> handleNumericResponse</span><span class="pun">(</span><span class="pln">i</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">NumberFormatException</span><span class="pln"> ok</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="com">// it's not numeric; that's fine, just continue</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="kwd">return</span><span class="pln"> handleTextResponse</span><span class="pun">(</span><span class="pln">response</span><span class="pun">);</span></pre>
+
+<p class="exception"><strong>Exception:</strong> In tests, a caught exception may be ignored
+without comment <em>if</em> its name is or begins with <code class="prettyprint lang-java prettyprinted" style=""><span class="pln">expected</span></code>. The
+following is a very common idiom for ensuring that the code under test <em>does</em> throw an
+exception of the expected type, so a comment is unnecessary here.</p>
+
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  emptyStack</span><span class="pun">.</span><span class="pln">pop</span><span class="pun">();</span><span class="pln">
+  fail</span><span class="pun">();</span><span class="pln">
+</span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">NoSuchElementException</span><span class="pln"> expected</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+</span><span class="pun">}</span></pre>
+
+<h3 id="s6.3-static-members" style="left: -46px; position: relative;">6.3 Static members: qualified using class<a href="#s6.3-static-members" alt="link to s6.3-static-members"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<p>When a reference to a static class member must be qualified, it is qualified with that class's
+name, not with a reference or expression of that class's type.</p>
+
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="typ">Foo</span><span class="pln"> aFoo </span><span class="pun">=</span><span class="pln"> </span><span class="pun">...;</span><span class="pln">
+</span><span class="typ">Foo</span><span class="pun">.</span><span class="pln">aStaticMethod</span><span class="pun">();</span><span class="pln"> </span><span class="com">// good</span><span class="pln">
+</span><span class="badcode"><span class="pln">aFoo</span><span class="pun">.</span><span class="pln">aStaticMethod</span><span class="pun">();</span></span><span class="pln"> </span><span class="com">// bad</span><span class="pln">
+</span><span class="badcode"><span class="pln">somethingThatYieldsAFoo</span><span class="pun">().</span><span class="pln">aStaticMethod</span><span class="pun">();</span></span><span class="pln"> </span><span class="com">// very bad</span></pre>
+
+<a name="finalizers"></a>
+<h3 id="s6.4-finalizers" style="left: -46px; position: relative;">6.4 Finalizers: not used<a href="#s6.4-finalizers" alt="link to s6.4-finalizers"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<p>It is <strong>extremely rare</strong> to override <code class="prettyprint
+lang-java prettyprinted" style=""><span class="typ">Object</span><span class="pun">.</span><span class="pln">finalize</span></code>.</p>
+
+<p class="tip"><strong>Tip:</strong> Don't do it. If you absolutely must, first read and understand
+
+
+  <a href="http://books.google.com/books?isbn=8131726592"><em>Effective Java</em> Item 7,</a>
+
+"Avoid Finalizers," very carefully, and <em>then</em> don't do it.</p>
+
+
+<a name="javadoc"></a>
+<h2 id="s7-javadoc" style="left: -46px; position: relative;">7 Javadoc<a href="#s7-javadoc" alt="link to s7-javadoc"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h2>
+
+
+
+<h3 id="s7.1-javadoc-formatting" style="left: -46px; position: relative;">7.1 Formatting<a href="#s7.1-javadoc-formatting" alt="link to s7.1-javadoc-formatting"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<h4 id="s7.1.1-javadoc-multi-line" style="left: -46px; position: relative;">7.1.1 General form<a href="#s7.1.1-javadoc-multi-line" alt="link to s7.1.1-javadoc-multi-line"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>The <em>basic</em> formatting of Javadoc blocks is as seen in this example:</p>
+
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="com">/**
+ * Multiple lines of Javadoc text are written here,
+ * wrapped normally...
+ */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> method</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> p1</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="pun">...</span><span class="pln"> </span><span class="pun">}</span></pre>
+
+<p>... or in this single-line example:</p>
+
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="com">/** An especially short bit of Javadoc. */</span></pre>
+
+<p>The basic form is always acceptable. The single-line form may be substituted when the entirety
+of the Javadoc block (including comment markers) can fit on a single line. Note that this only
+applies when there are no block tags such as <code>@return</code>.
+
+</p><h4 id="s7.1.2-javadoc-paragraphs" style="left: -46px; position: relative;">7.1.2 Paragraphs<a href="#s7.1.2-javadoc-paragraphs" alt="link to s7.1.2-javadoc-paragraphs"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>One blank line—that is, a line containing only the aligned leading asterisk
+(<code>*</code>)—appears between paragraphs, and before the group of block tags if
+present. Each paragraph but the first has <code>&lt;p&gt;</code> immediately before the first word,
+with no space after.</p>
+
+<a name="s7.1.3-javadoc-at-clauses"></a>
+
+<h4 id="s7.1.3-javadoc-block-tags" style="left: -46px; position: relative;">7.1.3 Block tags<a href="#s7.1.3-javadoc-block-tags" alt="link to s7.1.3-javadoc-block-tags"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>Any of the standard "block tags" that are used appear in the order <code>@param</code>,
+<code>@return</code>, <code>@throws</code>, <code>@deprecated</code>, and these four types never
+appear with an empty description. When a block tag doesn't fit on a single line, continuation lines
+are indented four (or more) spaces from the position of the <code>@</code>.
+</p>
+
+<h3 id="s7.2-summary-fragment" style="left: -46px; position: relative;">7.2 The summary fragment<a href="#s7.2-summary-fragment" alt="link to s7.2-summary-fragment"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<p>Each Javadoc block begins with a brief <strong>summary fragment</strong>. This
+fragment is very important: it is the only part of the text that appears in certain contexts such as
+class and method indexes.</p>
+
+<p>This is a fragment—a noun phrase or verb phrase, not a complete sentence. It does
+<strong>not</strong> begin with <code class="badcode">A {@code Foo} is a...</code>, or
+<code class="badcode">This method returns...</code>, nor does it form a complete imperative sentence
+like <code class="badcode">Save the record.</code>. However, the fragment is capitalized and
+punctuated as if it were a complete sentence.</p>
+
+<p class="tip"><strong>Tip:</strong> A common mistake is to write simple Javadoc in the form
+<code class="badcode">/** @return the customer ID */</code>. This is incorrect, and should be
+changed to <code class="prettyprint lang-java prettyprinted" style=""><span class="com">/** Returns the customer ID. */</span></code>.</p>
+
+<a name="s7.3.3-javadoc-optional"></a> 
+<h3 id="s7.3-javadoc-where-required" style="left: -46px; position: relative;">7.3 Where Javadoc is used<a href="#s7.3-javadoc-where-required" alt="link to s7.3-javadoc-where-required"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h3>
+
+<p>At the <em>minimum</em>, Javadoc is present for every
+<code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">public</span></code> class, and every
+<code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">public</span></code> or
+<code class="prettyprint lang-java prettyprinted" style=""><span class="kwd">protected</span></code> member of such a class, with a few exceptions
+noted below.</p>
+
+<p>Additional Javadoc content may also be present, as explained in Section 7.3.4,
+<a href="#s7.3.4-javadoc-non-required">Non-required Javadoc</a>.</p>
+
+<h4 id="s7.3.1-javadoc-exception-self-explanatory" style="left: -46px; position: relative;">7.3.1 Exception: self-explanatory methods<a href="#s7.3.1-javadoc-exception-self-explanatory" alt="link to s7.3.1-javadoc-exception-self-explanatory"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>Javadoc is optional for "simple, obvious" methods like
+<code class="prettyprint lang-java prettyprinted" style=""><span class="pln">getFoo</span></code>, in cases where there <em>really and truly</em> is
+nothing else worthwhile to say but "Returns the foo".</p>
+
+<p class="note"><strong>Important:</strong> it is not appropriate to cite this exception to justify
+omitting relevant information that a typical reader might need to know. For example, for a method
+named <code class="prettyprint lang-java prettyprinted" style=""><span class="pln">getCanonicalName</span></code>, don't omit its documentation
+(with the rationale that it would say only
+<code class="badcode">/** Returns the canonical name. */</code>) if a typical reader may have no idea
+what the term "canonical name" means!</p>
+
+<h4 id="s7.3.2-javadoc-exception-overrides" style="left: -46px; position: relative;">7.3.2 Exception: overrides<a href="#s7.3.2-javadoc-exception-overrides" alt="link to s7.3.2-javadoc-exception-overrides"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>Javadoc is not always present on a method that overrides a supertype method.
+
+</p>
+
+
+
+<h4 id="s7.3.4-javadoc-non-required" style="left: -46px; position: relative;">7.3.4 Non-required Javadoc<a href="#s7.3.4-javadoc-non-required" alt="link to s7.3.4-javadoc-non-required"><img src="google-java-style-20170228_files/link.png" style="float:left;position:relative;bottom:5px;" width="21" height="21"></a></h4>
+
+<p>Other classes and members have Javadoc <em>as needed or desired</em>.
+
+</p><p>Whenever an implementation comment would be used to define the overall purpose or behavior of a
+class or member, that comment is written as Javadoc instead (using <code>/**</code>).</p>
+
+<p>Non-required Javadoc is not strictly required to follow the formatting rules of Sections
+7.1.2, 7.1.3, and 7.2, though it is of course recommended.</p>
+
+ 
+
+</div> 
+</div>
+
+
+</body></html>
