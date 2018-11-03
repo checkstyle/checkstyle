@@ -191,7 +191,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
             }
             else {
                 final SortedSet<LocalizedMessage> filteredMessages =
-                    getFilteredMessages(file.getPath(), contents, rootAST);
+                    getFilteredMessages(file.getAbsolutePath(), contents, rootAST);
                 addMessages(filteredMessages);
             }
             messages.clear();
