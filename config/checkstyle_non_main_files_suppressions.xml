@@ -9,6 +9,10 @@
     <!-- Do not validate possible source code remnants after regression testing -->
     <suppress checks=".*" files=".ci-temp[\\/]"/>
 
+    <!-- styleguides are copied/cached from origin place we should not change them  -->
+    <suppress checks=".*"
+      files="[\\/]site[\\/]resources[\\/]styleguides[\\/]google\-java\-style-.*"/>
+
     <!-- Input files for NewlineAtEndOfFileCheckTest, intentional no new line at the end. -->
     <suppress checks="NewlineAtEndOfFile"
               files="[\\/]test[\\/].*[\\/]InputNewlineAtEndOfFile.*\.java"/>

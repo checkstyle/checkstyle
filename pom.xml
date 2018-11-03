@@ -1496,6 +1496,8 @@
             <!-- Excluded due to checkstyle's issue #549
                  until http://jira.codehaus.org/browse/MTAGLIST-69 will be fixed -->
             <excludedPage>taglist.html</excludedPage>
+            <!-- styleguides are copies as-is to cache state we support -->
+            <excludedPage>styleguides/**</excludedPage>
           </excludedPages>
           <excludedHttpStatusErrors>
             <excludedHttpStatusError>401</excludedHttpStatusError>
@@ -1634,6 +1636,8 @@
             <excludedLink>https://plugins.jetbrains.com/plugin/4594-qaplug</excludedLink>
             <!-- avax.net.ssl.SSLHandshakeException : Received fatal alert: handshake_failure -->
             <excludedLink>https://www.scala-sbt.org/</excludedLink>
+            <!-- link is valid but permanent "SocketTimeoutException : Read timed out" -->
+            <excludedLink>https://wiki.jenkins.io/display/JENKINS/Checkstyle+Plugin</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
