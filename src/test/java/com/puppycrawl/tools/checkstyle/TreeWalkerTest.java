@@ -48,6 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 import com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck;
@@ -514,6 +515,27 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                 new String(Files.readAllBytes(cacheFile.toPath()),
                         StandardCharsets.UTF_8).contains(
                                 "InputTreeWalkerSuppressionXpathFilter.xml"));
+    }
+
+    @Test
+    public void testTreeWalkerFilterAbsolutePath() throws Exception {
+        final DefaultConfiguration filterConfig = createModuleConfig(SuppressionXpathFilter.class);
+        filterConfig.addAttribute("file",
+                getPath("InputTreeWalkerSuppressionXpathFilterAbsolute.xml"));
+        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
+
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        treeWalkerConfig.addChild(filterConfig);
+        treeWalkerConfig.addChild(checkConfig);
+
+        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
+
+        // test is only valid when relative paths are given
+        final String filePath = "src/test/resources/" + getPackageLocation()
+                + "/InputTreeWalkerSuppressionXpathFilterAbsolute.java";
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verify(checkerConfig, filePath, expected);
     }
 
     private static class BadJavaDocCheck extends AbstractCheck {
