@@ -83,9 +83,9 @@
         an older version and latest version describe some features that does not work for you.
         <br/>
         You can find documentation for most old versions using a URL format like
-        https://checkstyle.org/version/X.X where "X.X" is the version number.<br/>
+        http://checkstyle.sourceforge.net/version/X.X where "X.X" is the version number.<br/>
         Example:
-        <a href="https://checkstyle.org/version/6.18/">
+        <a href="http://checkstyle.sourceforge.net/version/6.18/">
           https://checkstyle.org/version/6.18
         </a>
         for version 6.18.
