@@ -946,10 +946,7 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
                 STATIC_INIT</a>,
             <a
              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
-                INSTANCE_INIT</a>,
-            <a
-             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
-                LAMBDA</a>.</td>
+                INSTANCE_INIT</a>.</td>
 
             <td><a
              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
