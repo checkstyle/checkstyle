@@ -132,7 +132,7 @@ public class FinalClassCheck
                 && !ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
                 final String qualifiedName = desc.getQualifiedName();
                 final String className = getClassNameFromQualifiedName(qualifiedName);
-                log(ast.getLineNo(), MSG_KEY, className);
+                log(ast, MSG_KEY, className);
             }
         }
     }

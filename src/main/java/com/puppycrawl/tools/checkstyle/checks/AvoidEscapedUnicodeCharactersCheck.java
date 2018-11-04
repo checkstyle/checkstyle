@@ -307,7 +307,7 @@ public class AvoidEscapedUnicodeCharactersCheck
                         && isOnlyUnicodeValidChars(literal, UNICODE_CONTROL)
                 || allowNonPrintableEscapes
                         && isOnlyUnicodeValidChars(literal, NON_PRINTABLE_CHARS))) {
-            log(ast.getLineNo(), MSG_KEY);
+            log(ast, MSG_KEY);
         }
     }
 

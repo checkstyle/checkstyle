@@ -42,7 +42,7 @@ public class InterfaceIsTypeCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(InterfaceIsTypeCheck.class);
         final String[] expected = {
-            "25: " + getCheckMessage(MSG_KEY),
+            "25:5: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputInterfaceIsType.java"), expected);
     }
@@ -54,8 +54,8 @@ public class InterfaceIsTypeCheckTest
             createModuleConfig(InterfaceIsTypeCheck.class);
         checkConfig.addAttribute("allowMarkerInterfaces", "false");
         final String[] expected = {
-            "20: " + getCheckMessage(MSG_KEY),
-            "25: " + getCheckMessage(MSG_KEY),
+            "20:5: " + getCheckMessage(MSG_KEY),
+            "25:5: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputInterfaceIsType.java"), expected);
     }

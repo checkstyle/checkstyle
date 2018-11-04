@@ -210,7 +210,7 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
         if (isEmptyCatchBlock(catchAst)) {
             final String commentContent = getCommentFirstLine(catchAst);
             if (isVerifiable(catchAst, commentContent)) {
-                log(catchAst.getLineNo(), MSG_KEY_CATCH_BLOCK_EMPTY);
+                log(catchAst, MSG_KEY_CATCH_BLOCK_EMPTY);
             }
         }
     }

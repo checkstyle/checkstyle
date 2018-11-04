@@ -210,7 +210,7 @@ public class NeedBracesCheck extends AbstractCheck {
 
         if (slistAST == null && !isElseIf && !isDefaultInAnnotation
                 && !skipStatement && !skipEmptyLoopBody) {
-            log(ast.getLineNo(), MSG_KEY_NEED_BRACES, ast.getText());
+            log(ast, MSG_KEY_NEED_BRACES, ast.getText());
         }
     }
 

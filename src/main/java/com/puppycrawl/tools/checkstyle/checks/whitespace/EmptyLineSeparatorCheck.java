@@ -287,7 +287,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         if (hasMultipleLinesBefore(ast)) {
-            log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
+            log(ast, MSG_MULTIPLE_LINES, ast.getText());
         }
         if (!allowMultipleEmptyLinesInsideClassMembers) {
             processMultipleLinesInside(ast);
@@ -313,11 +313,11 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
                 default:
                     if (nextToken.getType() == TokenTypes.RCURLY) {
                         if (hasNotAllowedTwoEmptyLinesBefore(nextToken)) {
-                            log(ast.getLineNo(), MSG_MULTIPLE_LINES_AFTER, ast.getText());
+                            log(ast, MSG_MULTIPLE_LINES_AFTER, ast.getText());
                         }
                     }
                     else if (!hasEmptyLineAfter(ast)) {
-                        log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED,
+                        log(nextToken, MSG_SHOULD_BE_SEPARATED,
                             nextToken.getText());
                     }
             }
@@ -421,15 +421,15 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         if (ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)) {
             if (getFileContents().getFileName().endsWith("package-info.java")) {
                 if (ast.getFirstChild().getChildCount() == 0 && !isPrecededByJavadoc(ast)) {
-                    log(ast.getLineNo(), MSG_SHOULD_BE_SEPARATED, ast.getText());
+                    log(ast, MSG_SHOULD_BE_SEPARATED, ast.getText());
                 }
             }
             else {
-                log(ast.getLineNo(), MSG_SHOULD_BE_SEPARATED, ast.getText());
+                log(ast, MSG_SHOULD_BE_SEPARATED, ast.getText());
             }
         }
         if (!hasEmptyLineAfter(ast)) {
-            log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
+            log(nextToken, MSG_SHOULD_BE_SEPARATED, nextToken.getText());
         }
     }
 
@@ -441,7 +441,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     private void processImport(DetailAST ast, DetailAST nextToken) {
         if (nextToken.getType() != TokenTypes.IMPORT
                 && nextToken.getType() != TokenTypes.STATIC_IMPORT && !hasEmptyLineAfter(ast)) {
-            log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
+            log(nextToken, MSG_SHOULD_BE_SEPARATED, nextToken.getText());
         }
     }
 
@@ -453,7 +453,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     private void processVariableDef(DetailAST ast, DetailAST nextToken) {
         if (isTypeField(ast) && !hasEmptyLineAfter(ast)
                 && isViolatingEmptyLineBetweenFieldsPolicy(nextToken)) {
-            log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED,
+            log(nextToken, MSG_SHOULD_BE_SEPARATED,
                     nextToken.getText());
         }
     }

@@ -189,7 +189,7 @@ public class JavadocTypeCheck
             final int lineNo = ast.getLineNo();
             final TextBlock textBlock = contents.getJavadocBefore(lineNo);
             if (textBlock == null) {
-                log(lineNo, MSG_JAVADOC_MISSING);
+                log(ast, MSG_JAVADOC_MISSING);
             }
             else {
                 final List<JavadocTag> tags = getJavadocTags(textBlock);

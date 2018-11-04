@@ -40,7 +40,7 @@ public class MissingSwitchDefaultCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MissingSwitchDefaultCheck.class);
         final String[] expected = {
-            "17: " + getCheckMessage(MSG_KEY, "default"),
+            "17:9: " + getCheckMessage(MSG_KEY, "default"),
         };
         verify(
             checkConfig,

@@ -379,7 +379,7 @@ public class JavadocStyleCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocStyleCheck.class);
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "1:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
 
         verify(createChecker(checkConfig),

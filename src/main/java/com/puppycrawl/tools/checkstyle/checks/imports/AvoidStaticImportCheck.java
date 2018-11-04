@@ -106,7 +106,7 @@ public class AvoidStaticImportCheck
         final FullIdent name = FullIdent.createFullIdent(startingDot);
 
         if (!isExempt(name.getText())) {
-            log(startingDot.getLineNo(), MSG_KEY, name.getText());
+            log(startingDot, MSG_KEY, name.getText());
         }
     }
 

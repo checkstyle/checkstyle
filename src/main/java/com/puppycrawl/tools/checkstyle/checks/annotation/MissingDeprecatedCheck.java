@@ -190,7 +190,7 @@ public final class MissingDeprecatedCheck extends AbstractCheck {
         final boolean containsJavadocTag = containsJavadocTag(javadoc);
 
         if (containsAnnotation ^ containsJavadocTag && !(skipNoJavadoc && javadoc == null)) {
-            log(ast.getLineNo(), MSG_KEY_ANNOTATION_MISSING_DEPRECATED);
+            log(ast, MSG_KEY_ANNOTATION_MISSING_DEPRECATED);
         }
     }
 

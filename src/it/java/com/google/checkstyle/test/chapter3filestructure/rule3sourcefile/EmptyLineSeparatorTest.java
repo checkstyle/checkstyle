@@ -38,15 +38,15 @@ public class EmptyLineSeparatorTest extends AbstractModuleTestSupport {
         final String messageKey = "empty.line.separator";
 
         final String[] expected = {
-            "19: " + getCheckMessage(clazz, messageKey, "package"),
-            "20: " + getCheckMessage(clazz, messageKey, "import"),
-            "33: " + getCheckMessage(clazz, messageKey, "CLASS_DEF"),
-            "37: " + getCheckMessage(clazz, messageKey, "STATIC_INIT"),
-            "66: " + getCheckMessage(clazz, messageKey, "METHOD_DEF"),
-            "75: " + getCheckMessage(clazz, messageKey, "INTERFACE_DEF"),
-            "82: " + getCheckMessage(clazz, messageKey, "INSTANCE_INIT"),
-            "113: " + getCheckMessage(clazz, messageKey, "CLASS_DEF"),
-            "119: " + getCheckMessage(clazz, messageKey, "VARIABLE_DEF"),
+            "19:1: " + getCheckMessage(clazz, messageKey, "package"),
+            "20:1: " + getCheckMessage(clazz, messageKey, "import"),
+            "33:1: " + getCheckMessage(clazz, messageKey, "CLASS_DEF"),
+            "37:9: " + getCheckMessage(clazz, messageKey, "STATIC_INIT"),
+            "66:5: " + getCheckMessage(clazz, messageKey, "METHOD_DEF"),
+            "75:5: " + getCheckMessage(clazz, messageKey, "INTERFACE_DEF"),
+            "82:9: " + getCheckMessage(clazz, messageKey, "INSTANCE_INIT"),
+            "113:1: " + getCheckMessage(clazz, messageKey, "CLASS_DEF"),
+            "119:5: " + getCheckMessage(clazz, messageKey, "VARIABLE_DEF"),
         };
 
         final Configuration checkConfig = getModuleConfig("EmptyLineSeparator");

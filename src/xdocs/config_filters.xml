@@ -664,16 +664,25 @@ public class UserService {
           checks:
         </p>
         <ul>
+          <li>AbbreviationAsWordInNameCheck</li>
           <li>AbstractClassNameCheck</li>
+          <li>AnnotationLocationCheck</li>
+          <li>AnnotationOnSameLineCheck</li>
+          <li>AnnotationUseStyleCheck</li>
           <li>AnonInnerLengthCheck</li>
+          <li>ArrayTrailingCommaCheck</li>
           <li>ArrayTypeStyleCheck</li>
+          <li>AvoidEscapedUnicodeCharactersCheck</li>
           <li>AvoidInlineConditionalsCheck</li>
           <li>AvoidNestedBlocksCheck</li>
+          <li>AvoidStarImportCheck</li>
+          <li>AvoidStaticImportCheck</li>
           <li>BooleanExpressionComplexityCheck</li>
           <li>CatchParameterNameCheck</li>
           <li>ClassDataAbstractionCouplingCheck</li>
           <li>ClassFanOutComplexityCheck</li>
           <li>ClassTypeParameterNameCheck</li>
+          <li>CommentsIndentationCheck</li>
           <li>ConstantNameCheck</li>
           <li>CovariantEqualsCheck</li>
           <li>CyclomaticComplexityCheck</li>
@@ -682,12 +691,14 @@ public class UserService {
           <li>DescendantTokenCheck</li>
           <li>DesignForExtensionCheck</li>
           <li>EmptyBlockCheck</li>
+          <li>EmptyCatchBlockCheck</li>
           <li>EmptyStatementCheck</li>
           <li>EqualsAvoidNullCheck</li>
           <li>EqualsHashCodeCheck</li>
           <li>ExecutableStatementCountCheck</li>
           <li>ExplicitInitializationCheck</li>
           <li>FallThroughCheck</li>
+          <li>FinalClassCheck</li>
           <li>FinalLocalVariableCheck</li>
           <li>FinalParametersCheck</li>
           <li>HiddenFieldCheck</li>
@@ -698,6 +709,7 @@ public class UserService {
           <li>IllegalTypeCheck</li>
           <li>InnerAssignmentCheck</li>
           <li>InnerTypeLastCheck</li>
+          <li>InterfaceIsTypeCheck</li>
           <li>InterfaceTypeParameterNameCheck</li>
           <li>JavadocVariableCheck</li>
           <li>JavaNCSSCheck</li>
@@ -709,23 +721,34 @@ public class UserService {
           <li>LocalVariableNameCheck</li>
           <li>MagicNumberCheck</li>
           <li>MemberNameCheck</li>
+          <li>MethodCountCheck</li>
           <li>MethodLengthCheck</li>
           <li>MethodNameCheck</li>
           <li>MethodParamPadCheck</li>
           <li>MethodTypeParameterNameCheck</li>
+          <li>MissingCtorCheck</li>
+          <li>MissingOverrideCheck</li>
+          <li>MissingSwitchDefaultCheck</li>
           <li>ModifiedControlVariableCheck</li>
           <li>ModifierOrderCheck</li>
           <li>MultipleStringLiteralsCheck</li>
           <li>MultipleVariableDeclarationsCheck</li>
           <li>MutableExceptionCheck</li>
+          <li>NeedBracesCheck</li>
           <li>NestedForDepthCheck</li>
           <li>NestedIfDepthCheck</li>
           <li>NestedTryDepthCheck</li>
+          <li>NoCloneCheck</li>
+          <li>NoFinalizerCheck</li>
+          <li>NoLineWrapCheck</li>
           <li>NPathComplexityCheck</li>
           <li>OneStatementPerLineCheck</li>
           <li>OperatorWrapCheck</li>
+          <li>OuterTypeFilenameCheck</li>
           <li>OuterTypeNumberCheck</li>
+          <li>OverloadMethodsDeclarationOrderCheck</li>
           <li>PackageNameCheck</li>
+          <li>PackageAnnotationCheck</li>
           <li>ParameterAssignmentCheck</li>
           <li>ParameterNameCheck</li>
           <li>ParameterNumberCheck</li>
@@ -742,9 +765,12 @@ public class UserService {
           <li>SuperCloneCheck</li>
           <li>SuperFinalizeCheck</li>
           <li>SuppressWarningsCheck</li>
+          <li>SuppressWarningsHolder</li>
           <li>ThrowsCountCheck</li>
           <li>TypeNameCheck</li>
+          <li>UncommentedMainCheck</li>
           <li>UnusedImportsCheck</li>
+          <li>VariableDeclarationUsageDistanceCheck</li>
           <li>VisibilityModifierCheck</li>
         </ul>
         <p>

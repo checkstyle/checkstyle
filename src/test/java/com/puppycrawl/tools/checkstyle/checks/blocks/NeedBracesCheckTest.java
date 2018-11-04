@@ -39,23 +39,23 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(NeedBracesCheck.class);
         final String[] expected = {
-            "29: " + getCheckMessage(MSG_KEY_NEED_BRACES, "do"),
-            "41: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
-            "42: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
-            "44: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
-            "45: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "58: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
-            "59: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
-            "61: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
-            "63: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "82: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "83: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "85: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "87: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
-            "89: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "97: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
-            "99: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "100: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "29:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "do"),
+            "41:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "42:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "44:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "45:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "58:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "59:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "61:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "63:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "82:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "83:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "85:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "87:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
+            "89:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "97:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
+            "99:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "100:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
         };
         verify(checkConfig, getPath("InputNeedBraces.java"), expected);
     }
@@ -66,17 +66,17 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(NeedBracesCheck.class);
         checkConfig.addAttribute("allowSingleLineStatement", "true");
         final String[] expected = {
-            "23: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "29: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "38: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "46: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
-            "53: " + getCheckMessage(MSG_KEY_NEED_BRACES, "do"),
-            "56: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
-            "62: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
-            "91: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "95: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
-            "107: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "114: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "23:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "29:43: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "38:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "46:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "53:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "do"),
+            "56:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "62:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "91:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "95:11: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
+            "107:47: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "114:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
         };
         verify(checkConfig, getPath("InputNeedBracesSingleLineStatements.java"), expected);
     }
@@ -88,7 +88,7 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tokens", "LAMBDA");
         checkConfig.addAttribute("allowSingleLineStatement", "true");
         final String[] expected = {
-            "7: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "7:29: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
         };
         verify(checkConfig, getPath("InputNeedBracesSingleLineLambda.java"), expected);
     }
@@ -100,8 +100,8 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tokens", "LITERAL_CASE, LITERAL_DEFAULT");
         checkConfig.addAttribute("allowSingleLineStatement", "true");
         final String[] expected = {
-            "72: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "75: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "72:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "75:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
         };
         verify(checkConfig, getPath("InputNeedBracesSingleLineStatements.java"), expected);
     }
@@ -131,14 +131,14 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tokens", "LITERAL_ELSE, LITERAL_CASE, LITERAL_DEFAULT");
         checkConfig.addAttribute("allowSingleLineStatement", "true");
         final String[] expected = {
-            "29: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "35: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "36: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "38: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "41: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "44: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "49: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
-            "56: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "29:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "35:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "36:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "38:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "41:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "44:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "49:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "56:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
         };
         verify(checkConfig, getPath("InputNeedBracesConditional.java"), expected);
     }
@@ -149,7 +149,7 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(NeedBracesCheck.class);
         checkConfig.addAttribute("allowEmptyLoopBody", "true");
         final String[] expected = {
-            "97: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "97:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
         };
         verify(checkConfig, getPath("InputNeedBracesNoBodyLoops.java"), expected);
     }
@@ -159,23 +159,23 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(NeedBracesCheck.class);
         final String[] expected = {
-            "10: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
-            "14: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
-            "18: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
-            "19: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
-            "23: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
-            "28: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
-            "33: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
-            "39: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
-            "45: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
-            "50: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
-            "54: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
-            "60: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
-            "67: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
-            "89: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
-            "93: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
-            "97: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "108: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "10:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "14:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "18:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "19:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "23:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "28:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "33:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "39:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "45:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "50:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "54:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "60:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "67:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "89:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "93:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "97:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "108:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
         };
         verify(checkConfig, getPath("InputNeedBracesNoBodyLoops.java"), expected);
     }

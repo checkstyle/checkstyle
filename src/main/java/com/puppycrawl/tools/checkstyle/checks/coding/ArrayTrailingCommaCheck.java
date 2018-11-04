@@ -121,7 +121,7 @@ public class ArrayTrailingCommaCheck extends AbstractCheck {
                 && rcurly.getLineNo() != previousSibling.getLineNo()
                 && arrayInit.getLineNo() != previousSibling.getLineNo()
                 && previousSibling.getType() != TokenTypes.COMMA) {
-            log(rcurly.getLineNo(), MSG_KEY);
+            log(rcurly, MSG_KEY);
         }
     }
 

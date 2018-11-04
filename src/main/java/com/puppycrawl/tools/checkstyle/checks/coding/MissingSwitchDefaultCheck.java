@@ -73,7 +73,7 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
         final DetailAST firstCaseGroupAst = ast.findFirstToken(TokenTypes.CASE_GROUP);
 
         if (!containsDefaultSwitch(firstCaseGroupAst)) {
-            log(ast.getLineNo(), MSG_KEY);
+            log(ast, MSG_KEY);
         }
     }
 

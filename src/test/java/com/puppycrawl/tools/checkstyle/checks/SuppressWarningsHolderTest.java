@@ -174,6 +174,14 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testIsSuppressedAfterEventStartNoColumn() throws Exception {
+        createHolder("check", 100, 0, 350, 0);
+        final AuditEvent event = createAuditEvent("check", 100, 0);
+
+        assertTrue("Event is not suppressed", SuppressWarningsHolder.isSuppressed(event));
+    }
+
+    @Test
     public void testIsSuppressedWithAllArgument() throws Exception {
         createHolder("all", 100, 100, 350, 350);
 
@@ -205,7 +213,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         final Configuration checkConfig = createModuleConfig(SuppressWarningsHolder.class);
 
         final String[] expected = {
-            "11: " + getCheckMessage(SuppressWarningsHolder.MSG_KEY),
+            "11:14: " + getCheckMessage(SuppressWarningsHolder.MSG_KEY),
         };
 
         verify(checkConfig, getPath("InputSuppressWarningsHolder2.java"), expected);

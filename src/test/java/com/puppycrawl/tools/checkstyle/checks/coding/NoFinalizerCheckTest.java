@@ -57,7 +57,7 @@ public class NoFinalizerCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(NoFinalizerCheck.class);
         final String[] expected = {
-            "5: " + getCheckMessage(MSG_KEY),
+            "5:5: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputNoFinalizerHasFinalizer.java"), expected);
     }

@@ -48,8 +48,8 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(EmptyCatchBlockCheck.class);
         final String[] expected = {
-            "35: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "42: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "35:11: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "42:11: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
         };
         verify(checkConfig, getPath("InputEmptyCatchBlockDefault.java"), expected);
     }
@@ -61,14 +61,14 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("exceptionVariableName", "expected|ignore|myException");
         checkConfig.addAttribute("commentFormat", "This is expected");
         final String[] expected = {
-            "35: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "63: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "97: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "186: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "195: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "214: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "230: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "239: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "35:11: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "63:11: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "97:9: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "186:11: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "195:11: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "214:11: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "230:11: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "239:11: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
         };
         verify(checkConfig, getPath("InputEmptyCatchBlockDefault.java"), expected);
     }

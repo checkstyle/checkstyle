@@ -167,7 +167,7 @@ pitest-javadoc)
   "TagParser.java.html:<td class='covered'><pre><span  class='survived'>                       &#38;&#38; (Character.isWhitespace(currentLine.charAt(column))</span></pre></td></tr>"
   "TagParser.java.html:<td class='covered'><pre><span  class='survived'>                           || currentLine.charAt(column) == &#39;*&#39;)) {</span></pre></td></tr>"
   "TagParser.java.html:<td class='covered'><pre><span  class='survived'>                while (column &#60; currentLine.length()</span></pre></td></tr>"
-  "WriteTagCheck.java.html:<td class='covered'><pre><span  class='survived'>            log(lineNo, MSG_MISSING_TAG, tag);</span></pre></td></tr>"
+  "WriteTagCheck.java.html:<td class='covered'><pre><span  class='survived'>            log(ast, MSG_MISSING_TAG, tag);</span></pre></td></tr>"
   "WriteTagCheck.java.html:<td class='covered'><pre><span  class='survived'>                    tagCount += 1;</span></pre></td></tr>"
   );
   checkPitestReport "${ignoredItems[@]}"

@@ -36,11 +36,11 @@ public class EmptyCatchBlockTest extends AbstractModuleTestSupport {
     @Test
     public void testEmptyBlockCatch() throws Exception {
         final String[] expected = {
-            "28: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
-            "49: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
-            "71: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
-            "79: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
-            "83: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
+            "28:11: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
+            "49:15: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
+            "71:15: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
+            "79:11: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
+            "83:11: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
         };
 
         final Configuration checkConfig = getModuleConfig("EmptyCatchBlock");
@@ -64,8 +64,8 @@ public class EmptyCatchBlockTest extends AbstractModuleTestSupport {
     @Test
     public void testViolationsByComment() throws Exception {
         final String[] expected = {
-            "19: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
-            "27: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
+            "19:11: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
+            "27:11: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
         };
 
         final Configuration checkConfig = getModuleConfig("EmptyCatchBlock");
@@ -78,10 +78,10 @@ public class EmptyCatchBlockTest extends AbstractModuleTestSupport {
     @Test
     public void testViolationsByVariableName() throws Exception {
         final String[] expected = {
-            "19: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
-            "35: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
-            "51: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
-            "58: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
+            "19:11: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
+            "35:11: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
+            "51:11: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
+            "58:11: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
         };
 
         final Configuration checkConfig = getModuleConfig("EmptyCatchBlock");

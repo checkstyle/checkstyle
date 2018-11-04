@@ -34,10 +34,12 @@ public class AvoidStarImportTest extends AbstractModuleTestSupport {
     @Test
     public void testStarImport() throws Exception {
         final String[] expected = {
-            "3: Using the '.*' form of import should be avoided - java.io.*.",
-            "4: Using the '.*' form of import should be avoided - java.lang.*.",
-            "18: Using the '.*' form of import should be avoided - javax.swing.WindowConstants.*.",
-            "19: Using the '.*' form of import should be avoided - javax.swing.WindowConstants.*.",
+            "3:15: Using the '.*' form of import should be avoided - java.io.*.",
+            "4:17: Using the '.*' form of import should be avoided - java.lang.*.",
+            "18:42: Using the '.*' form of import should be avoided - "
+                + "javax.swing.WindowConstants.*.",
+            "19:42: Using the '.*' form of import should be avoided - "
+                + "javax.swing.WindowConstants.*.",
         };
 
         final Configuration checkConfig = getModuleConfig("AvoidStarImport");

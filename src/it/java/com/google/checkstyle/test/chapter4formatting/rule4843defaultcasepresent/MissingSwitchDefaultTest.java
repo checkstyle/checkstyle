@@ -38,12 +38,12 @@ public class MissingSwitchDefaultTest extends AbstractModuleTestSupport {
             "missing.switch.default");
 
         final String[] expected = {
-            "11: " + msg,
-            "19: " + msg,
-            "23: " + msg,
-            "31: " + msg,
-            "38: " + msg,
-            "42: " + msg,
+            "11:9: " + msg,
+            "19:9: " + msg,
+            "23:9: " + msg,
+            "31:13: " + msg,
+            "38:21: " + msg,
+            "42:21: " + msg,
         };
 
         final Configuration checkConfig = getModuleConfig("MissingSwitchDefault");

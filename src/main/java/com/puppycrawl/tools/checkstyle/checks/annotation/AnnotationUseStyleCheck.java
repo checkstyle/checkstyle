@@ -362,7 +362,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
 
         if (valuePairCount == 0
             && annotation.branchContains(TokenTypes.EXPR)) {
-            log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
+            log(annotation, MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                 ElementStyle.EXPANDED);
         }
     }
@@ -384,7 +384,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
         if (valuePairCount == 1
             && ANNOTATION_ELEMENT_SINGLE_NAME.equals(
                 valuePair.getFirstChild().getText())) {
-            log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
+            log(annotation, MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                 ElementStyle.COMPACT);
         }
     }
@@ -404,7 +404,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
         //in compact style with one value
         if (arrayInit != null
             && arrayInit.getChildCount(TokenTypes.EXPR) == 1) {
-            log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
+            log(annotation, MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                 ElementStyle.COMPACT_NO_ARRAY);
         }
         //in expanded style with one value and the correct element name
@@ -418,7 +418,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
                 && ANNOTATION_ELEMENT_SINGLE_NAME.equals(
                     valuePair.getFirstChild().getText())
                     && nestedArrayInit.getChildCount(TokenTypes.EXPR) == 1) {
-                log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
+                log(annotation, MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                     ElementStyle.COMPACT_NO_ARRAY);
             }
         }
@@ -487,14 +487,14 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
 
             if (closingParens == ClosingParens.ALWAYS
                 && !parenExists) {
-                log(ast.getLineNo(), MSG_KEY_ANNOTATION_PARENS_MISSING);
+                log(ast, MSG_KEY_ANNOTATION_PARENS_MISSING);
             }
             else if (closingParens == ClosingParens.NEVER
                      && parenExists
                      && !ast.branchContains(TokenTypes.EXPR)
                      && !ast.branchContains(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR)
                      && !ast.branchContains(TokenTypes.ANNOTATION_ARRAY_INIT)) {
-                log(ast.getLineNo(), MSG_KEY_ANNOTATION_PARENS_PRESENT);
+                log(ast, MSG_KEY_ANNOTATION_PARENS_PRESENT);
             }
         }
     }

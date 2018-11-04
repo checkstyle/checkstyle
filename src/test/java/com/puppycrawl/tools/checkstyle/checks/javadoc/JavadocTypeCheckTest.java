@@ -69,9 +69,9 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocTypeCheck.class);
         final String[] expected = {
-            "8: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "302: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "327: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "8:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "302:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "327:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputJavadocTypeTags.java"), expected);
     }
@@ -81,9 +81,9 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocTypeCheck.class);
         final String[] expected = {
-            "14: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "21: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "27: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "14:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "21:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "27:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputJavadocTypeInner.java"), expected);
     }
@@ -93,10 +93,10 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocTypeCheck.class);
         final String[] expected = {
-            "7: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "14: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "34: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "7:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "9:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "14:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "34:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputJavadocTypePublicOnly.java"), expected);
     }
@@ -107,7 +107,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
         final String[] expected = {
-            "7: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "7:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputJavadocTypePublicOnly.java"), expected);
     }
@@ -118,8 +118,8 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
         final String[] expected = {
-            "7: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "38: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "7:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "38:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig,
                getPath("InputJavadocTypeScopeInnerInterfaces.java"),
@@ -132,10 +132,10 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
         final String[] expected = {
-            "7: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "29: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "38: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "65: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "7:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "29:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "38:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "65:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig,
                getPath("InputJavadocTypeScopeInnerInterfaces.java"),
@@ -150,9 +150,9 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             "scope",
             Scope.PACKAGE.getName());
         final String[] expected = {
-            "18: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "20: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "22: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "18:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "20:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "22:13: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputJavadocTypeScopeInnerClasses.java"), expected);
     }
@@ -165,7 +165,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             "scope",
             Scope.PUBLIC.getName());
         final String[] expected = {
-            "18: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "18:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputJavadocTypeScopeInnerClasses.java"), expected);
     }
@@ -269,16 +269,16 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocTypeCheck.class);
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "15: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "27: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "39: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "52: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "63: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "75: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "87: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "99: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "111: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "3:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "27:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "39:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "52:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "63:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "75:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "87:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "99:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "111:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig,
                getPath("InputJavadocTypeNoJavadoc.java"),
@@ -291,7 +291,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("tokens", "INTERFACE_DEF");
         final String[] expected = {
-            "4: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "4:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig,
                getPath("InputJavadocTypeNoJavadocOnInterface.java"),
@@ -304,8 +304,8 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "15: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "3:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig,
                getPath("InputJavadocTypeNoJavadoc.java"),
@@ -319,14 +319,14 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("scope", Scope.PRIVATE.getName());
         checkConfig.addAttribute("excludeScope", Scope.PROTECTED.getName());
         final String[] expected = {
-            "27: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "39: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "52: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "63: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "75: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "87: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "99: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "111: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "27:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "39:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "52:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "63:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "75:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "87:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "99:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "111:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig,
                getPath("InputJavadocTypeNoJavadoc.java"),

@@ -89,7 +89,7 @@ public class AnnotationOnSameLineCheck extends AbstractCheck {
                     annotationNode = annotationNode.getNextSibling()) {
                 if (annotationNode.getType() == TokenTypes.ANNOTATION
                         && annotationNode.getLineNo() != getNextNode(annotationNode).getLineNo()) {
-                    log(annotationNode.getLineNo(), MSG_KEY_ANNOTATION_ON_SAME_LINE,
+                    log(annotationNode, MSG_KEY_ANNOTATION_ON_SAME_LINE,
                           getAnnotationName(annotationNode));
                 }
             }

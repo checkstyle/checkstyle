@@ -186,7 +186,7 @@ public final class MethodCountCheck extends AbstractCheck {
      */
     private void checkMax(int max, int value, String msg, DetailAST ast) {
         if (max < value) {
-            log(ast.getLineNo(), msg, value, max);
+            log(ast, msg, value, max);
         }
     }
 

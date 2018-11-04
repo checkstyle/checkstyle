@@ -151,7 +151,7 @@ public class NoCloneCheck extends AbstractCheck {
                 params.findFirstToken(TokenTypes.PARAMETER_DEF) == null;
 
             if (hasEmptyParamList) {
-                log(aAST.getLineNo(), MSG_KEY);
+                log(aAST, MSG_KEY);
             }
         }
     }

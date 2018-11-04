@@ -81,7 +81,7 @@ public final class InterfaceIsTypeCheck
                 !allowMarkerInterfaces || variableDef != null;
 
         if (methodDef == null && methodRequired) {
-            log(ast.getLineNo(), MSG_KEY);
+            log(ast, MSG_KEY);
         }
     }
 

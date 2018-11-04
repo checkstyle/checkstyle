@@ -42,12 +42,12 @@ public class AbbreviationAsWordInNameTest extends AbstractModuleTestSupport {
         final int maxCapitalCount = 2;
 
         final String[] expected = {
-            "52: " + getWarningMessage("supportsIPv6OnIOS", maxCapitalCount),
-            "54: " + getWarningMessage("XMLHTTPRequest", maxCapitalCount),
-            "60: " + getWarningMessage("supportsIPv6OnIOS", maxCapitalCount),
-            "62: " + getWarningMessage("XMLHTTPRequest", maxCapitalCount),
-            "69: " + getWarningMessage("supportsIPv6OnIOS", maxCapitalCount),
-            "71: " + getWarningMessage("XMLHTTPRequest", maxCapitalCount),
+            "52:13: " + getWarningMessage("supportsIPv6OnIOS", maxCapitalCount),
+            "54:10: " + getWarningMessage("XMLHTTPRequest", maxCapitalCount),
+            "60:17: " + getWarningMessage("supportsIPv6OnIOS", maxCapitalCount),
+            "62:14: " + getWarningMessage("XMLHTTPRequest", maxCapitalCount),
+            "69:21: " + getWarningMessage("supportsIPv6OnIOS", maxCapitalCount),
+            "71:18: " + getWarningMessage("XMLHTTPRequest", maxCapitalCount),
         };
 
         final String filePath = getPath("InputAbbreviationAsWordInTypeNameCheck.java");

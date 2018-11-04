@@ -111,7 +111,7 @@ public class OuterTypeFilenameCheckTest extends AbstractModuleTestSupport {
     public void testWrongDefault() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OuterTypeFilenameCheck.class);
         final String[] expected = {
-            "4: " + getCheckMessage(MSG_KEY),
+            "4:2: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputOuterTypeFilename5.java"), expected);
     }

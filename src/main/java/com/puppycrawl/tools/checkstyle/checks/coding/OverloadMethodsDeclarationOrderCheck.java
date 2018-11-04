@@ -106,7 +106,7 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
                     if (currentIndex - previousIndex > allowedDistance) {
                         final int previousLineWithOverloadMethod =
                                 methodLineNumberMap.get(methodName);
-                        log(currentToken.getLineNo(), MSG_KEY,
+                        log(currentToken, MSG_KEY,
                                 previousLineWithOverloadMethod);
                     }
                 }

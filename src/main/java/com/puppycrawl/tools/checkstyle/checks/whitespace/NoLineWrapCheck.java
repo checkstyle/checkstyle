@@ -98,7 +98,7 @@ public class NoLineWrapCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         if (ast.getLineNo() != ast.getLastChild().getLineNo()) {
-            log(ast.getLineNo(), MSG_KEY, ast.getText());
+            log(ast, MSG_KEY, ast.getText());
         }
     }
 
