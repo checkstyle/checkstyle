@@ -375,13 +375,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     public void testRightCurlyIsAloneLambda() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
         checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
-        checkConfig.addAttribute("tokens", "LAMBDA");
-        final String[] expected = {
-            "14:74: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 74),
-            "17:49: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 49),
-            "35:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "45:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRightCurlyAloneLambda.java"), expected);
     }
 
@@ -390,13 +384,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
         checkConfig.addAttribute("option",
             RightCurlyOption.ALONE_OR_SINGLELINE.toString());
-        checkConfig.addAttribute("tokens", "LAMBDA");
-        final String[] expected = {
-            "17:49: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 49),
-            "35:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "45:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "47:54: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 54),
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
             getPath("InputRightCurlyAloneOrSinglelineLambda.java"), expected);
     }
@@ -405,15 +393,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     public void testRightCurlyIsSameLambda() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
         checkConfig.addAttribute("option", RightCurlyOption.SAME.toString());
-        checkConfig.addAttribute("tokens", "LAMBDA");
-        final String[] expected = {
-            "17:49: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 49),
-            "35:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "40:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
-            "53:30: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 30),
-            "68:20: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 20),
-            "73:20: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 20),
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
             getPath("InputRightCurlySameLambda.java"), expected);
     }

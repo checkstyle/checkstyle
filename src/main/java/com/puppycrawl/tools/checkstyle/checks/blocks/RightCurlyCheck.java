@@ -51,7 +51,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *  {@link TokenTypes#LITERAL_DO LITERAL_DO}.
  *  {@link TokenTypes#STATIC_INIT STATIC_INIT}.
  *  {@link TokenTypes#INSTANCE_INIT INSTANCE_INIT}.
- *  {@link TokenTypes#LAMBDA LAMBDA}.
  * </p>
  * <p>
  * <b>shouldStartLine</b> - does the check need to check
@@ -158,7 +157,6 @@ public class RightCurlyCheck extends AbstractCheck {
             TokenTypes.LITERAL_DO,
             TokenTypes.STATIC_INIT,
             TokenTypes.INSTANCE_INIT,
-            TokenTypes.LAMBDA,
         };
     }
 
@@ -396,9 +394,6 @@ public class RightCurlyCheck extends AbstractCheck {
                 case TokenTypes.LITERAL_FOR:
                     details = getDetailsForLoops(ast);
                     break;
-                case TokenTypes.LAMBDA:
-                    details = getDetailsForLambda(ast);
-                    break;
                 default:
                     details = getDetailsForOthers(ast);
                     break;
@@ -542,27 +537,6 @@ public class RightCurlyCheck extends AbstractCheck {
                 nextToken = getNextToken(ast);
             }
             return new Details(lcurly, rcurly, nextToken, false);
-        }
-
-        /**
-         * Collects validation details for Lambdas.
-         * @param ast a {@code DetailAST} value
-         * @return an object containing all details to make a validation
-         */
-        private static Details getDetailsForLambda(DetailAST ast) {
-            final DetailAST lcurly = ast.findFirstToken(TokenTypes.SLIST);
-            boolean shouldCheckLastRcurly = false;
-            DetailAST nextToken = getNextToken(ast);
-            if (nextToken.getType() != TokenTypes.RPAREN
-                    && nextToken.getType() != TokenTypes.COMMA) {
-                shouldCheckLastRcurly = true;
-                nextToken = getNextToken(nextToken);
-            }
-            DetailAST rcurly = null;
-            if (lcurly != null) {
-                rcurly = lcurly.getLastChild();
-            }
-            return new Details(lcurly, rcurly, nextToken, shouldCheckLastRcurly);
         }
 
         /**
