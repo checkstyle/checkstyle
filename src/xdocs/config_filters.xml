@@ -671,6 +671,8 @@ public class UserService {
           <li>AvoidNestedBlocksCheck</li>
           <li>BooleanExpressionComplexityCheck</li>
           <li>CatchParameterNameCheck</li>
+          <li>ClassDataAbstractionCouplingCheck</li>
+          <li>ClassFanOutComplexityCheck</li>
           <li>ClassTypeParameterNameCheck</li>
           <li>ConstantNameCheck</li>
           <li>CovariantEqualsCheck</li>
@@ -693,6 +695,7 @@ public class UserService {
           <li>IllegalInstantiationCheck</li>
           <li>IllegalTokenCheck</li>
           <li>IllegalTokenTextCheck</li>
+          <li>IllegalTypeCheck</li>
           <li>InnerAssignmentCheck</li>
           <li>InnerTypeLastCheck</li>
           <li>InterfaceTypeParameterNameCheck</li>
@@ -712,6 +715,7 @@ public class UserService {
           <li>MethodTypeParameterNameCheck</li>
           <li>ModifiedControlVariableCheck</li>
           <li>ModifierOrderCheck</li>
+          <li>MultipleStringLiteralsCheck</li>
           <li>MultipleVariableDeclarationsCheck</li>
           <li>MutableExceptionCheck</li>
           <li>NestedForDepthCheck</li>
@@ -721,6 +725,7 @@ public class UserService {
           <li>OneStatementPerLineCheck</li>
           <li>OperatorWrapCheck</li>
           <li>OuterTypeNumberCheck</li>
+          <li>PackageNameCheck</li>
           <li>ParameterAssignmentCheck</li>
           <li>ParameterNameCheck</li>
           <li>ParameterNumberCheck</li>
@@ -739,6 +744,7 @@ public class UserService {
           <li>SuppressWarningsCheck</li>
           <li>ThrowsCountCheck</li>
           <li>TypeNameCheck</li>
+          <li>UnusedImportsCheck</li>
           <li>VisibilityModifierCheck</li>
         </ul>
         <p>
