@@ -47,11 +47,9 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
     public static final String MSG_KEY = "multiple.string.literal";
 
     /**
-     * The found strings and their positions.
-     * {@code <String, ArrayList>}, with the ArrayList containing StringInfo
-     * objects.
+     * The found strings and their tokens.
      */
-    private final Map<String, List<StringInfo>> stringMap = new HashMap<>();
+    private final Map<String, List<DetailAST>> stringMap = new HashMap<>();
 
     /**
      * Marks the TokenTypes where duplicate strings should be ignored.
@@ -132,14 +130,12 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
         if (!isInIgnoreOccurrenceContext(ast)) {
             final String currentString = ast.getText();
             if (ignoreStringsRegexp == null || !ignoreStringsRegexp.matcher(currentString).find()) {
-                List<StringInfo> hitList = stringMap.get(currentString);
+                List<DetailAST> hitList = stringMap.get(currentString);
                 if (hitList == null) {
                     hitList = new ArrayList<>();
                     stringMap.put(currentString, hitList);
                 }
-                final int line = ast.getLineNo();
-                final int col = ast.getColumnNo();
-                hitList.add(new StringInfo(line, col));
+                hitList.add(ast);
             }
         }
     }
@@ -173,57 +169,13 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
 
     @Override
     public void finishTree(DetailAST rootAST) {
-        for (Map.Entry<String, List<StringInfo>> stringListEntry : stringMap.entrySet()) {
-            final List<StringInfo> hits = stringListEntry.getValue();
+        for (Map.Entry<String, List<DetailAST>> stringListEntry : stringMap.entrySet()) {
+            final List<DetailAST> hits = stringListEntry.getValue();
             if (hits.size() > allowedDuplicates) {
-                final StringInfo firstFinding = hits.get(0);
-                final int line = firstFinding.getLine();
-                final int col = firstFinding.getCol();
-                log(line, col, MSG_KEY, stringListEntry.getKey(), hits.size());
+                final DetailAST firstFinding = hits.get(0);
+                log(firstFinding, MSG_KEY, stringListEntry.getKey(), hits.size());
             }
         }
-    }
-
-    /**
-     * This class contains information about where a string was found.
-     */
-    private static final class StringInfo {
-
-        /**
-         * Line of finding.
-         */
-        private final int line;
-        /**
-         * Column of finding.
-         */
-        private final int col;
-
-        /**
-         * Creates information about a string position.
-         * @param line int
-         * @param col int
-         */
-        StringInfo(int line, int col) {
-            this.line = line;
-            this.col = col;
-        }
-
-        /**
-         * The line where a string was found.
-         * @return int Line of the string.
-         */
-        private int getLine() {
-            return line;
-        }
-
-        /**
-         * The column where a string was found.
-         * @return int Column of the string.
-         */
-        private int getCol() {
-            return col;
-        }
-
     }
 
 }

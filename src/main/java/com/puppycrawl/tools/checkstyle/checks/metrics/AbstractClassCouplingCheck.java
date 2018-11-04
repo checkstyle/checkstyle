@@ -226,7 +226,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      */
     private void visitClassDef(DetailAST classDef) {
         final String className = classDef.findFirstToken(TokenTypes.IDENT).getText();
-        fileContext.createNewClassContext(className, classDef.getLineNo(), classDef.getColumnNo());
+        fileContext.createNewClassContext(className, classDef);
     }
 
     /** Restores previous context. */
@@ -250,7 +250,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
         private String packageName = "";
 
         /** Current context. */
-        private ClassContext classContext = new ClassContext(this, "", 0, 0);
+        private ClassContext classContext = new ClassContext(this, "", null);
 
         /**
          * Retrieves current file package name.
@@ -295,12 +295,11 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
         /**
          * Creates new inner class context with given name and location.
          * @param className The class name.
-         * @param lineNo The class line number.
-         * @param columnNo The class column number.
+         * @param ast The class ast.
          */
-        public void createNewClassContext(String className, int lineNo, int columnNo) {
+        public void createNewClassContext(String className, DetailAST ast) {
             classesContexts.push(classContext);
-            classContext = new ClassContext(this, className, lineNo, columnNo);
+            classContext = new ClassContext(this, className, ast);
         }
 
         /** Restores previous context. */
@@ -361,23 +360,19 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
         /** Own class name. */
         private final String className;
         /* Location of own class. (Used to log violations) */
-        /** Line number of class definition. */
-        private final int lineNo;
-        /** Column number of class definition. */
-        private final int columnNo;
+        /** AST of class definition. */
+        private final DetailAST classAst;
 
         /**
          * Create new context associated with given class.
          * @param parentContext Parent file context.
          * @param className name of the given class.
-         * @param lineNo line of class definition.
-         * @param columnNo column of class definition.
+         * @param ast ast of class definition.
          */
-        ClassContext(FileContext parentContext, String className, int lineNo, int columnNo) {
+        ClassContext(FileContext parentContext, String className, DetailAST ast) {
             this.parentContext = parentContext;
             this.className = className;
-            this.lineNo = lineNo;
-            this.columnNo = columnNo;
+            classAst = ast;
         }
 
         /**
@@ -436,7 +431,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
             referencedClassNames.remove(parentContext.getPackageName() + DOT + className);
 
             if (referencedClassNames.size() > max) {
-                log(lineNo, columnNo, getLogMessageId(),
+                log(classAst, getLogMessageId(),
                         referencedClassNames.size(), max,
                         referencedClassNames.toString());
             }
