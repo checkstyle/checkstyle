@@ -1496,6 +1496,8 @@
             <!-- Excluded due to checkstyle's issue #549
                  until http://jira.codehaus.org/browse/MTAGLIST-69 will be fixed -->
             <excludedPage>taglist.html</excludedPage>
+            <!-- styleguides are copies as-is to cache state we support -->
+            <excludedPage>styleguides/**</excludedPage>
           </excludedPages>
           <excludedHttpStatusErrors>
             <excludedHttpStatusError>401</excludedHttpStatusError>

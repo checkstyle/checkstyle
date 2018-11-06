@@ -5810,7 +5810,7 @@ used in the MT mode.
       <p>Notes:</p>
       <ul>
         <li>
-          <a href="https://checkstyle.org/reports/google-java-style.html">Google style</a>
+          <a href="https://checkstyle.org/styleguides/google-java-style.html">Google style</a>
           is now covered to maximum of Checkstyle ability. See detailed report <a href="google_style.html">here</a>. Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
         </li>
         <li>
