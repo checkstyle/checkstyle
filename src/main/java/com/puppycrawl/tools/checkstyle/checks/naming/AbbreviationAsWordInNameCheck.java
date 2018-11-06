@@ -37,8 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * The Check validate abbreviations(consecutive capital letters) length in
  * identifier name, it also allows to enforce camel case naming. Please read more at
- * <a href=
- *  "https://checkstyle.org/styleguides/google-java-style-20170228.html#s5.3-camel-case">
+ * <a href="styleguides/google-java-style-20170228.html#s5.3-camel-case">
  * Google Style Guide</a> to get to know how to avoid long abbreviations in names.
  * </p>
  * <p>
