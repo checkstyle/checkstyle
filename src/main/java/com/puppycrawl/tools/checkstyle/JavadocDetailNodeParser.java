@@ -746,13 +746,13 @@ public class JavadocDetailNodeParser {
      * which might result in a performance overhead. Also, a parse error indicate
      * that javadoc doesn't follow checkstyle Javadoc grammar and the user should be made aware
      * of it.
-     * <a href="http://www.antlr.org/api/Java/org/antlr/v4/runtime/BailErrorStrategy.html">
+     * <a href="https://www.antlr.org/api/Java/org/antlr/v4/runtime/BailErrorStrategy.html">
      * BailErrorStrategy</a> is used to make ANTLR generated parser bail out on the first error
      * in parser and not attempt any recovery methods but it doesn't report error to the
      * listeners. This class is to ensure proper error reporting.
      *
      * @see DescriptiveErrorListener
-     * @see <a href="http://www.antlr.org/api/Java/org/antlr/v4/runtime/ANTLRErrorStrategy.html">
+     * @see <a href="https://www.antlr.org/api/Java/org/antlr/v4/runtime/ANTLRErrorStrategy.html">
      *     ANTLRErrorStrategy</a>
      */
     private static class JavadocParserErrorStrategy extends BailErrorStrategy {

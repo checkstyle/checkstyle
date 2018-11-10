@@ -109,7 +109,7 @@
         words, the output of the tool is a program that can transform a
         stream of characters (a Java file) into a tree representation
         that reflects the structure of the file. Checkstyle uses the
-        parser generator <a href="http://www.antlr.org">ANTLR</a> but
+        parser generator <a href="https://www.antlr.org">ANTLR</a> but
         that is an implementation detail you do not need to worry about
         when writing Checks, as well tested parser will parse Java file for you.
       </p>
