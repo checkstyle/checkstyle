@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 /**
  * An extension of the CommonAST that records the line and column number.
  *
- * @see <a href="http://www.antlr.org/">ANTLR Website</a>
+ * @see <a href="https://www.antlr.org/">ANTLR Website</a>
  * @noinspection FieldNotUsedInToString, SerializableHasSerializationMethods
  */
 public final class DetailAST extends CommonASTWithHiddenTokens {

@@ -71,7 +71,7 @@ Licensing
 This software is licensed under the terms in the file named "LICENSE" in this
 directory.
 
-The software uses the ANTLR package (http://www.antlr.org/). Its license terms
+The software uses the ANTLR package (https://www.antlr.org/). Its license terms
 are in the file named "RIGHTS.antlr" in this directory.
 
 This product includes software developed by
