@@ -94,6 +94,7 @@ no-error-hibernate-search)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/hibernate/hibernate-search.git
   cd .ci-temp/hibernate-search
+  git checkout af7ff2cb51a76cda62b0de22dcd4b824359247b8
   mvn -e clean install -DskipTests=true -Dtest.elasticsearch.host.provided=true \
      -Dcheckstyle.skip=true -Dforbiddenapis.skip=true \
      -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION}
