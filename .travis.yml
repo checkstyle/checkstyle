@@ -41,6 +41,7 @@ matrix:
       env:
         - DESC="checkstyle and sevntu-checkstyle"
         - CMD="./.ci/travis/travis.sh checkstyle-and-sevntu"
+        - SKIP_CI="false"
 
     # jacoco and codecov (oraclejdk8)
     - jdk: oraclejdk8
@@ -66,6 +67,7 @@ matrix:
       env:
         - DESC="Releasenotes generation"
         - CMD="./.ci/travis/travis.sh releasenotes-gen"
+        - SKIP_CI="false"
 
     # NonDex (oraclejdk8)
     - jdk: oraclejdk8
