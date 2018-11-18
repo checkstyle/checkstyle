@@ -149,7 +149,7 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
             if (columnNo >= minSecondWhitespaceColumnNo
                     && !isTextSeparatedCorrectlyFromPrevious(getLine(sibling.getLineNo() - 1),
                             columnNo)) {
-                log(sibling.getLineNo(), columnNo, MSG_KEY);
+                log(sibling, MSG_KEY);
             }
             if (sibling.getChildCount() >= 1) {
                 visitEachToken(sibling.getFirstChild());

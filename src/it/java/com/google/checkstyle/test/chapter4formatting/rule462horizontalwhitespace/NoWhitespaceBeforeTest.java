@@ -38,8 +38,8 @@ public class NoWhitespaceBeforeTest extends AbstractModuleTestSupport {
         final String messageKeyPreceded = "ws.preceded";
 
         final String[] expected = {
-            "12:23: " + getCheckMessage(clazz, messageKeyPreceded, ";"),
-            "18:31: " + getCheckMessage(clazz, messageKeyPreceded, ";"),
+            "12:24: " + getCheckMessage(clazz, messageKeyPreceded, ";"),
+            "18:32: " + getCheckMessage(clazz, messageKeyPreceded, ";"),
         };
         final Configuration checkConfig = getModuleConfig("NoWhitespaceBefore");
         final String filePath = getPath("InputNoWhitespaceBeforeEmptyForLoop.java");

@@ -105,19 +105,14 @@ public class WhitespaceAfterCheck
             final DetailAST targetAST = ast.findFirstToken(TokenTypes.RPAREN);
             final String line = getLine(targetAST.getLineNo() - 1);
             if (!isFollowedByWhitespace(targetAST, line)) {
-                log(targetAST.getLineNo(),
-                    targetAST.getColumnNo() + targetAST.getText().length(),
-                    MSG_WS_TYPECAST);
+                log(targetAST, MSG_WS_TYPECAST);
             }
         }
         else {
             final String line = getLine(ast.getLineNo() - 1);
             if (!isFollowedByWhitespace(ast, line)) {
                 final Object[] message = {ast.getText()};
-                log(ast.getLineNo(),
-                    ast.getColumnNo() + ast.getText().length(),
-                    MSG_WS_NOT_FOLLOWED,
-                    message);
+                log(ast, MSG_WS_NOT_FOLLOWED, message);
             }
         }
     }

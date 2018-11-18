@@ -74,9 +74,7 @@ public class UpperEllCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         if (CommonUtil.endsWithChar(ast.getText(), 'l')) {
-            log(ast.getLineNo(),
-                ast.getColumnNo() + ast.getText().length() - 1,
-                MSG_KEY);
+            log(ast, MSG_KEY);
         }
     }
 
