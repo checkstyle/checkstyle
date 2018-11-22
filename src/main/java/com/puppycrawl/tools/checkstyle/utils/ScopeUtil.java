@@ -92,6 +92,16 @@ public final class ScopeUtil {
     }
 
     /**
+     * Returns whether a node is directly contained within a class block.
+     *
+     * @param node the node to check if directly contained within a class block.
+     * @return a {@code boolean} value
+     */
+    public static boolean isInClassBlock(DetailAST node) {
+        return isInBlockOf(node, TokenTypes.CLASS_DEF);
+    }
+
+    /**
      * Returns whether a node is directly contained within an interface block.
      *
      * @param node the node to check if directly contained within an interface block.

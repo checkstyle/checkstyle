@@ -118,6 +118,12 @@
         <td>The number of other classes a given class relies on.</td>
       </tr>
       <tr>
+        <td><a href="config_modifier.html#ClassMemberImpliedModifier">
+          ClassMemberImpliedModifier</a></td>
+        <td>
+          Checks for implicit modifiers on class members and nested types.</td>
+      </tr>
+      <tr>
         <td><a href="config_naming.html#ClassTypeParameterName">ClassTypeParameterName</a></td>
         <td>
           Checks that class type parameter names conform to a format

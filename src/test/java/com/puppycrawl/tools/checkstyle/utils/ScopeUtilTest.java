@@ -39,6 +39,32 @@ public class ScopeUtilTest {
     }
 
     @Test
+    public void testInClassBlock() {
+        assertFalse("Should return false when passed is not class",
+                ScopeUtil.isInClassBlock(new DetailAST()));
+        assertFalse("Should return false when passed is not class",
+                ScopeUtil.isInClassBlock(getNode(TokenTypes.LITERAL_NEW,
+                        TokenTypes.MODIFIERS)));
+        assertTrue("Should return true when passed is class",
+                ScopeUtil.isInClassBlock(getNode(TokenTypes.OBJBLOCK, TokenTypes.CLASS_DEF,
+                        TokenTypes.MODIFIERS)));
+        assertFalse("Should return false when passed is not class",
+                ScopeUtil.isInClassBlock(getNode(TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF,
+                        TokenTypes.MODIFIERS)));
+        assertFalse("Should return false when passed is not class",
+                ScopeUtil.isInClassBlock(getNode(TokenTypes.CLASS_DEF, TokenTypes.ANNOTATION_DEF,
+                        TokenTypes.MODIFIERS)));
+        assertFalse("Should return false when passed is not class",
+                ScopeUtil.isInClassBlock(getNode(TokenTypes.CLASS_DEF, TokenTypes.ENUM_DEF,
+                        TokenTypes.MODIFIERS)));
+        assertFalse("Should return false when passed is not class",
+                ScopeUtil.isInClassBlock(getNode(TokenTypes.CLASS_DEF, TokenTypes.LITERAL_NEW,
+                        TokenTypes.IDENT)));
+        assertFalse("Should return false when passed is not expected",
+                ScopeUtil.isInClassBlock(getNode(TokenTypes.PACKAGE_DEF, TokenTypes.DOT)));
+    }
+
+    @Test
     public void testInEnumBlock() {
         assertFalse("Should return false when passed is not enum",
                 ScopeUtil.isInEnumBlock(new DetailAST()));
