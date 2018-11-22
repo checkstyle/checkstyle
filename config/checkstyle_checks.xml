@@ -487,12 +487,16 @@
     <module name="UpperEll"/>
 
     <!-- Modifiers -->
-    <module name="ModifierOrder"/>
-    <module name="RedundantModifier"/>
+    <module name="ClassMemberImpliedModifier">
+      <!-- effectively the opposite of RedundantModifier, so output must be ignored -->
+      <property name="severity" value="ignore"/>
+    </module>
     <module name="InterfaceMemberImpliedModifier">
       <!-- effectively the opposite of RedundantModifier, so output must be ignored -->
       <property name="severity" value="ignore"/>
     </module>
+    <module name="ModifierOrder"/>
+    <module name="RedundantModifier"/>
 
     <!-- Naming Conventions -->
     <module name="AbbreviationAsWordInName">

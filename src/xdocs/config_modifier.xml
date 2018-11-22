@@ -22,6 +22,135 @@
       </macro>
     </section>
 
+    <section name="ClassMemberImpliedModifier">
+      <p>Since Checkstyle 8.16</p>
+      <subsection name="Description" id="ClassMemberImpliedModifier_Description">
+        <p>
+          Checks for implicit modifiers on nested types in classes.
+        </p>
+        <p>
+          This check is effectively the opposite of
+          <a href="#RedundantModifier">RedundantModifier</a>.
+          It checks the modifiers on nested types in classes, ensuring that certain
+          modifiers are explicitly specified even though they are actually redundant.
+        </p>
+        <p>
+          Nested enums and interfaces within a class are always <code>static</code> and as such the
+          compiler does not require the <code>static</code> modifier. This check provides the
+          ability to enforce that the <code>static</code> modifier is explicitly coded and not
+          implicitly added by the compiler.
+        </p>
+        <source>
+public final class Person {
+  enum Age {  // violation
+    CHILD, ADULT
+  }
+}
+        </source>
+        <p>
+          Rationale for this check:
+          Nested enums and interfaces are treated differently from nested classes as they are
+          only allowed to be <code>static</code>. Developers should not need to remember this rule,
+          and this check provides the means to enforce that the modifier is coded explicitly.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="ClassMemberImpliedModifier_Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+            <th>since</th>
+          </tr>
+          <tr>
+            <td>violateImpliedStaticOnNestedEnum</td>
+            <td>
+              Control whether to enforce that <code>static</code> is explicitly coded
+              on nested enums in classes.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+            <td>8.16</td>
+          </tr>
+          <tr>
+            <td>violateImpliedStaticOnNestedInterface</td>
+            <td>
+              Control whether to enforce that <code>static</code> is explicitly coded
+              on nested interfaces in classes.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+            <td>8.16</td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples" id="ClassMemberImpliedModifier_Examples">
+        <p>
+          This example checks that all implicit modifiers on nested interfaces and enums
+          are explicitly specified in classes.
+        </p>
+        <p>
+          Configuration:
+        </p>
+        <source>
+&lt;module name=&quot;ClassMemberImpliedModifier&quot; /&gt;
+        </source>
+        <p>
+          Code:
+        </p>
+        <source>
+public final class Person {
+  static interface Address1 {  // valid
+  }
+
+  interface Address2 {  // violation
+  }
+
+  static enum Age1 {  // valid
+    CHILD, ADULT
+  }
+
+  enum Age2 {  // violation
+    CHILD, ADULT
+  }
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="ClassMemberImpliedModifier_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassMemberImpliedModifier">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Error Messages" id="ClassMemberImpliedModifier_Error_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22class.implied.modifier%22">
+            class.implied.modifier</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="ClassMemberImpliedModifier_Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.modifier </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="ClassMemberImpliedModifier_Parent_Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="InterfaceMemberImpliedModifier">
       <p>Since Checkstyle 8.12</p>
       <subsection name="Description" id="InterfaceMemberImpliedModifier_Description">

@@ -214,6 +214,7 @@ Claira
 classdataabstractioncoupling
 classfanoutcomplexity
 classloader
+classmemberimpliedmodifier
 classname
 classpath
 classpathref

@@ -673,6 +673,7 @@ public class UserService {
           <li>CatchParameterNameCheck</li>
           <li>ClassDataAbstractionCouplingCheck</li>
           <li>ClassFanOutComplexityCheck</li>
+          <li>ClassMemberImpliedModifierCheck</li>
           <li>ClassTypeParameterNameCheck</li>
           <li>ConstantNameCheck</li>
           <li>CovariantEqualsCheck</li>
