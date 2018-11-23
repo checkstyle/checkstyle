@@ -108,6 +108,11 @@
 
           <!-- NonDex files -->
           <exclude name=".nondex/**/*" />
+
+          <!-- temp file of jsoref-spellchecker tool,
+               some time happens to be left in repository after problematic execution -->
+          <exclude name=".ci/jsoref-spellchecker/english.words"/>
+
         </fileset>
       </path>
       <formatter type="plain"/>
