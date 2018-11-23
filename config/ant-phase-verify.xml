@@ -108,6 +108,10 @@
 
           <!-- NonDex files -->
           <exclude name=".nondex/**/*" />
+
+          <!-- Do not validate possible source code remnants after regression testing -->
+          <exclude name=".ci-temp/**/*"/>
+
         </fileset>
       </path>
       <formatter type="plain"/>
