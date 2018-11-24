@@ -68,6 +68,8 @@
           <exclude name="src/main/**/*"/>
           <exclude name="src/test/java/**/*"/>
           <exclude name="src/site/resources/images/**/*"/>
+          <!-- styleguides are copied/cached from origin place we should not change them  -->
+          <exclude name="src/site/resources/styleguides/**/*"/>
 
           <!-- Eclipse project files -->
           <exclude name=".settings/**/*"/>
