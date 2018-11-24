@@ -68,6 +68,7 @@
           <exclude name="src/main/**/*"/>
           <exclude name="src/test/java/**/*"/>
           <exclude name="src/site/resources/images/**/*"/>
+          <exclude name="src/site/resources/styleguides/google-java-style-.*/**/*"/>
 
           <!-- Eclipse project files -->
           <exclude name=".settings/**/*"/>
