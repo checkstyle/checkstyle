@@ -7,12 +7,13 @@ set -e
 
 spellchecker=.ci/jsoref-spellchecker
 whitelist_path=.ci/jsoref-spellchecker/whitelist.words
-dict=$spellchecker/english.words
+dict=.ci-temp/english.words
 word_splitter=$spellchecker/spelling-unknown-word-splitter.pl
 run_output=$spellchecker/unknown.words
 if [ ! -e $dict ]; then
+  mkdir -p .ci-temp
   echo "Retrieve ./usr/share/dict/linux.words"
-  words_rpm=$spellchecker/words.rpm
+  words_rpm=.ci-temp/words.rpm
   mirror="https://rpmfind.net"
   file_path="/linux/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/w/"
   file_name=$(curl -s "${mirror}${file_path}" | grep -o "words-.*.noarch.rpm")
