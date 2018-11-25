@@ -33,6 +33,7 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -210,7 +211,10 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
             fsc.beginProcessing(charset);
         }
 
-        processFiles(files);
+        final List<File> targetFiles = files.stream()
+                .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
+                .collect(Collectors.toList());
+        processFiles(targetFiles);
 
         // Finish up
         // It may also log!!!
@@ -275,7 +279,6 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
                 final String fileName = file.getAbsolutePath();
                 final long timestamp = file.lastModified();
                 if (cacheFile != null && cacheFile.isInCache(fileName, timestamp)
-                        || !CommonUtil.matchesFileExtension(file, fileExtensions)
                         || !acceptFileStarted(fileName)) {
                     continue;
                 }
