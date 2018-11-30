@@ -109,8 +109,8 @@ are in the file named "LICENSE.apache20" in this directory.
 [license]:LICENSE
 [license img]:https://img.shields.io/badge/license-GNU%20LGPL%20v2.1-blue.svg
 
-[mavenbadge]:https://search.maven.org/#search|gav|1|g%3A%22com.puppycrawl.tools%22%20AND%20a%3A%22checkstyle%22
-[mavenbadge img]:https://maven-badges.herokuapp.com/maven-central/com.puppycrawl.tools/checkstyle/badge.svg
+[mavenbadge]:https://search.maven.org/search?q=g:%22com.puppycrawl.tools%22%20AND%20a:%22checkstyle%22
+[mavenbadge img]:https://img.shields.io/maven-central/v/com.puppycrawl.tools/checkstyle.svg?label=Maven%20Central
 
 [gitter_mem]:https://gitter.im/checkstyle
 [gitter_mem img]:https://img.shields.io/badge/gitter-JOIN%20CHAT-blue.svg
