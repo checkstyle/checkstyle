@@ -187,13 +187,6 @@
     <system>travis</system>
     <url>https://travis-ci.org/checkstyle/checkstyle</url>
   </ciManagement>
-  <distributionManagement>
-    <site>
-      <id>sourceforge-new-site</id>
-      <name>New Site</name>
-      <url>scp://shell.sourceforge.net/home/project-web/checkstyle/htdocs/new-site</url>
-    </site>
-  </distributionManagement>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -985,15 +978,8 @@
           <xdocDirectory>${basedir}/src/xdocs</xdocDirectory>
           <!-- false till https://issues.apache.org/jira/browse/MSITE-774 -->
           <validate>false</validate>
+          <skipDeploy>true</skipDeploy>
         </configuration>
-        <dependencies>
-          <dependency>
-            <!-- add support for ssh/scp -->
-            <groupId>org.apache.maven.wagon</groupId>
-            <artifactId>wagon-ssh</artifactId>
-            <version>3.0.0</version>
-          </dependency>
-        </dependencies>
       </plugin>
 
       <plugin>
