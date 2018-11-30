@@ -15,6 +15,103 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <div class="releaseDate">30.11.2018</div>
+    <section name="Release 8.15">
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Remove Lambda from RightCurlyCheck .
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/5948">#5948</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            JavadocType: Add &quot;allowedAnnotations&quot;.
+            Author: Nikolaos Georgiou
+            <a href="https://github.com/checkstyle/checkstyle/issues/5608">#5608</a>
+          </li>
+          <li>
+            IllegalType should check extends &amp; implements and class/interface type parameters.
+            Author: Pavel Bludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6118">#6118</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            TreeWalkerAuditEvent doesn&#39;t create events on the absolute file path.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6028">#6028</a>
+          </li>
+          <li>
+            IllegalType should ignore parameters of methods with modifiers not in
+            &#39;memberModifiers&#39;.
+            Author: Eric Bruneton
+            <a href="https://github.com/checkstyle/checkstyle/issues/6123">#6123</a>
+          </li>
+          <li>
+            AbbreviationAsWordInName: false positive on capital letters on the end of the word.
+            Author: Erik Silkensen
+            <a href="https://github.com/checkstyle/checkstyle/issues/6130">#6130</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Performance issue with file.lastModified().
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6096">#6096</a>
+          </li>
+          <li>
+            warning during build of site with equalsverifier-3.0.2.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6213">#6213</a>
+          </li>
+          <li>
+            upgrade to latest picocli version to fix extra space in help output.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6175">#6175</a>
+          </li>
+          <li>
+            Please add link to contributing.md in README.md.
+            Author: varunu28
+            <a href="https://github.com/checkstyle/checkstyle/issues/5488">#5488</a>
+          </li>
+          <li>
+            update to saxon 9.9.
+            Author: Timur Tibeyev
+            <a href="https://github.com/checkstyle/checkstyle/issues/6149">#6149</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST (part 2).
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/5758">#5758</a>
+          </li>
+          <li>
+            update sources to avoid usage of sourceforge.net URLs.
+            Author: rnveach, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6185">#6185</a>
+          </li>
+          <li>
+            using picocli as command line parser.
+            Author: Remko Popma, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6068">#6068</a>
+          </li>
+          <li>
+            Add equalsverifier project to wrecker ci.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6167">#6167</a>
+          </li>
+          <li>
+            ImportOrder: example of Intellij Idea default import order is not working.
+            Author: Jan Ouwens
+            <a href="https://github.com/checkstyle/checkstyle/issues/5510">#5510</a>
+          </li>
+        </ul>
+    </section>
+
     <div class="releaseDate">21.10.2018</div>
     <section name="Release 8.14">
       <p>New:</p>
