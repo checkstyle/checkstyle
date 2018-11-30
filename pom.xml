@@ -978,7 +978,6 @@
           <xdocDirectory>${basedir}/src/xdocs</xdocDirectory>
           <!-- false till https://issues.apache.org/jira/browse/MSITE-774 -->
           <validate>false</validate>
-          <skipDeploy>true</skipDeploy>
         </configuration>
       </plugin>
 

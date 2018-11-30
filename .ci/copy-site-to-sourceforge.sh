@@ -26,9 +26,17 @@ echo "exit" | ssh -t $SF_USER,checkstyle@shell.sourceforge.net create
 
 mkdir -p .ci-temp
 cd .ci-temp
+rm -fr checkstyle.github.io
 echo "Clone by ssh only to avoid passwords on push"
 git clone git@github.com:checkstyle/checkstyle.github.io.git
-sсp -R checkstyle.github.io $SF_USER,checkstyle@shell.sourceforge.net:/home/project-web/checkstyle/
+echo "clean up git files"
+rm -rf checkstyle.github.io/.git
+rm -rf checkstyle.github.io/CNAME
+echo "Archiving ..."
+tar cfz checkstyle.github.io.tar.gz checkstyle.github.io
+echo "Uploading to sourceforge ..."
+scp checkstyle.github.io.tar.gz \
+  $SF_USER,checkstyle@shell.sourceforge.net:/home/project-web/checkstyle/
 
 #############################
 
@@ -36,6 +44,7 @@ ssh $SF_USER,checkstyle@shell.sourceforge.net << EOF
 
 echo "Swap html content"
 cd /home/project-web/checkstyle
+tar -xzvf checkstyle.github.io.tar.gz
 mv htdocs htdocs-$PREV_RELEASE
 mv checkstyle.github.io htdocs
 ln -s /home/project-web/checkstyle/reports htdocs/reports
@@ -57,7 +66,8 @@ tar -xzvf htdocs-archive/htdocs-$PREV_RELEASE.tar.gz -C htdocs-version/ \
 --exclude="surefire-report.html" \
 --exclude="linkcheck.html" --exclude="findbugs.html" --exclude="taglist.html" \
 --exclude="releasenotes_old.html" --exclude="dependencies.html"
+
 echo "Make a link to make it accessible from web"
-ln -f -s htdocs-version/htdocs-$PREV_RELEASE htdocs/version/$PREV_RELEASE
+ln -f -s $(pwd)/htdocs-version/htdocs-$PREV_RELEASE $(pwd)/htdocs/version/$PREV_RELEASE
 
 EOF
