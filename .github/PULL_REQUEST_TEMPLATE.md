@@ -16,7 +16,10 @@ Rules:
 To avoid multiple iterations of fixes and CIs failures, please read
 https://checkstyle.org/contributing.html
 
-ATTENTION: We are not merging Pull Requests that are not passing our CIs,
-but we will help to resolve issues.
+ATTENTION: We are not merging Pull Requests that are not passing our CIs.
+The CIs are not redundant, but each perform individual tasks. The requirement
+for PRs is to pass them all. Travis CI on your GitHub fork is limited to master
+you need to patch the configuration if you insist on using Travis CI to check
+your PRs. Of course, we will help you to resolve issues.
 
 Thanks for reading, remove whole this message and type what you need.
