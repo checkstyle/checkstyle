@@ -4431,6 +4431,8 @@
                 <option value="MultipleReturnPointsPerMethod"/>
                 <!-- MT check markers are annotations -->
                 <option value="AnnotationClass"/>
+                <!-- Suppression is only for TokenTypes class -->
+                <option value="ClassWithTooManyDependents"/>
                 <!-- till #4870, used in MT check markers -->
                 <option value="ClassIndependentOfModule"/>
                 <!-- till #4870, used in MT check markers -->
