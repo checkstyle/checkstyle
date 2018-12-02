@@ -495,17 +495,12 @@ public class RightCurlyCheck extends AbstractCheck {
                 rcurly = child.getLastChild();
                 nextToken = ast;
             }
-            else if (tokenType == TokenTypes.METHOD_DEF) {
+            else {
                 lcurly = ast.findFirstToken(TokenTypes.SLIST);
                 if (lcurly != null) {
                     // SLIST could be absent if method is abstract
                     rcurly = lcurly.getLastChild();
                 }
-                nextToken = getNextToken(ast);
-            }
-            else {
-                lcurly = ast.findFirstToken(TokenTypes.SLIST);
-                rcurly = lcurly.getLastChild();
                 nextToken = getNextToken(ast);
             }
             return new Details(lcurly, rcurly, nextToken, false);

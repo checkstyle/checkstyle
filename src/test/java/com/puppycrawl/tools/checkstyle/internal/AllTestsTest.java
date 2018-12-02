@@ -22,12 +22,15 @@ package com.puppycrawl.tools.checkstyle.internal;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -42,38 +45,39 @@ public class AllTestsTest {
     public void testAllInputsHaveTest() throws Exception {
         final Map<String, List<String>> allTests = new HashMap<>();
 
-        Files.walk(Paths.get("src/test/java"))
-            .forEach(filePath -> {
-                grabAllTests(allTests, filePath.toFile());
-            });
+        walk(Paths.get("src/test/java"), filePath -> {
+            grabAllTests(allTests, filePath.toFile());
+        });
 
         Assert.assertTrue("found tests", !allTests.keySet().isEmpty());
 
-        Files.walk(Paths.get("src/test/resources/com/puppycrawl"))
-            .forEach(filePath -> {
-                verifyInputFile(allTests, filePath.toFile());
-            });
-        Files.walk(Paths.get("src/test/resources-noncompilable/com/puppycrawl"))
-            .forEach(filePath -> {
-                verifyInputFile(allTests, filePath.toFile());
-            });
+        walk(Paths.get("src/test/resources/com/puppycrawl"), filePath -> {
+            verifyInputFile(allTests, filePath.toFile());
+        });
+        walk(Paths.get("src/test/resources-noncompilable/com/puppycrawl"), filePath -> {
+            verifyInputFile(allTests, filePath.toFile());
+        });
     }
 
     @Test
     public void testAllTestsHaveProductionCode() throws Exception {
         final Map<String, List<String>> allTests = new HashMap<>();
 
-        Files.walk(Paths.get("src/main/java"))
-            .forEach(filePath -> {
-                grabAllFiles(allTests, filePath.toFile());
-            });
+        walk(Paths.get("src/main/java"), filePath -> {
+            grabAllFiles(allTests, filePath.toFile());
+        });
 
         Assert.assertTrue("found tests", !allTests.keySet().isEmpty());
 
-        Files.walk(Paths.get("src/test/java"))
-            .forEach(filePath -> {
-                verifyHasProductionFile(allTests, filePath.toFile());
-            });
+        walk(Paths.get("src/test/java"), filePath -> {
+            verifyHasProductionFile(allTests, filePath.toFile());
+        });
+    }
+
+    private static void walk(Path path, Consumer<Path> action) throws IOException {
+        try (Stream<Path> walk = Files.walk(path)) {
+            walk.forEach(action);
+        }
     }
 
     private static void grabAllTests(Map<String, List<String>> allTests, File file) {

@@ -156,10 +156,9 @@ class TagParser {
 
         //Character.isJavaIdentifier... may not be a valid HTML
         //identifier but is valid for generics
-        return column < text.length()
-                && (Character.isJavaIdentifierStart(text.charAt(column))
-                    || text.charAt(column) == '/')
-                || column >= text.length();
+        return column >= text.length()
+                || Character.isJavaIdentifierStart(text.charAt(column))
+                    || text.charAt(column) == '/';
     }
 
     /**

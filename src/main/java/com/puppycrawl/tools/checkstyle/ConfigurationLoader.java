@@ -163,8 +163,11 @@ public final class ConfigurationLoader {
     }
 
     /**
-     * Creates mapping between local resources and dtd ids.
+     * Creates mapping between local resources and dtd ids. This method can't be
+     * moved to inner class because it must stay static because it is called
+     * from constructor and inner class isn't static.
      * @return map between local resources and dtd ids.
+     * @noinspection MethodOnlyUsedFromInnerClass
      */
     private static Map<String, String> createIdToResourceNameMap() {
         final Map<String, String> map = new HashMap<>();
@@ -453,7 +456,8 @@ public final class ConfigurationLoader {
 
     /**
      * Replaces {@code ${xxx}} style constructions in the given value
-     * with the string value of the corresponding data types.
+     * with the string value of the corresponding data types. This method must remain
+     * outside inner class for easier testing since inner class requires an instance.
      *
      * <p>Code copied from ant -
      * http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java
@@ -471,7 +475,7 @@ public final class ConfigurationLoader {
      * @throws CheckstyleException if the string contains an opening
      *                           {@code ${} without a closing
      *                           {@code }}
-     * @noinspection MethodWithMultipleReturnPoints
+     * @noinspection MethodWithMultipleReturnPoints, MethodOnlyUsedFromInnerClass
      */
     private static String replaceProperties(
             String value, PropertyResolver props, String defaultValue)

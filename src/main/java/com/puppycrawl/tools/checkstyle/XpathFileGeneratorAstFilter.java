@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -77,7 +76,7 @@ public class XpathFileGeneratorAstFilter extends AutomaticBean implements TreeWa
                     new XpathQueryGenerator(event, tabWidth);
             final List<String> xpathQueries = xpathQueryGenerator.generate();
             if (!xpathQueries.isEmpty()) {
-                final String query = xpathQueries.stream().collect(Collectors.joining(DELIMITER));
+                final String query = String.join(DELIMITER, xpathQueries);
                 MESSAGE_QUERY_MAP.put(event.getLocalizedMessage(), query);
             }
         }

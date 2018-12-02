@@ -114,7 +114,7 @@ public class AuditEventDefaultFormatter implements AuditEventFormatter {
                     checkFullName.lastIndexOf(SUFFIX));
             }
             else {
-                checkShortName = checkFullName.substring(lastDotIndex + 1, checkFullName.length());
+                checkShortName = checkFullName.substring(lastDotIndex + 1);
             }
         }
         return checkShortName;
