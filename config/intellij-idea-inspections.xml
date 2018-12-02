@@ -5190,7 +5190,8 @@
     </inspection_tool>
     <inspection_tool class="gwtRawAsyncCallback" enabled="false" level="WARNING"
                      enabled_by_default="false"/>
-    <inspection_tool class="unused" enabled="true" level="WARNING" enabled_by_default="true"
+    <!-- disabled till https://youtrack.jetbrains.com/issue/IDEA-203421 -->
+    <inspection_tool class="unused" enabled="false" level="WARNING" enabled_by_default="true"
                      field="protected" ignoreAccessors="true">
         <option name="LOCAL_VARIABLE" value="true"/>
         <option name="FIELD" value="true"/>
