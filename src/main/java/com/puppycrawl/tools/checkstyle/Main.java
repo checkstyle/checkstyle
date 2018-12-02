@@ -614,7 +614,10 @@ public final class Main {
                         + "that the suppression should be generated for")
         private String suppressionLineColumnNumber;
 
-        /** Tab character length. */
+        /** Tab character length.
+         *  Suppression: CanBeFinal - we use picocli and it use  reflection to manage such fields
+         * @noinspection CanBeFinal
+         */
         @Option(names = "--tabWidth", description = "Sets the length of the tab character. "
                 + "Used only with \"-s\" option. Default value is ${DEFAULT-VALUE}")
         private int tabWidth = DEFAULT_TAB_WIDTH;
@@ -625,7 +628,10 @@ public final class Main {
                         + " violations from user's config")
         private boolean generateXpathSuppressionsFile;
 
-        /** Output format. */
+        /** Output format.
+         *  Suppression: CanBeFinal - we use picocli and it use  reflection to manage such fields
+         * @noinspection CanBeFinal
+         */
         @Option(names = "-f", description = "Sets the output format. Valid values: "
                 + "${COMPLETION-CANDIDATES}. Defaults to ${DEFAULT-VALUE}")
         private OutputFormat format = DEFAULT_OUTPUT_FORMAT;
@@ -655,12 +661,18 @@ public final class Main {
                 description = "Print all debug logging of CheckStyle utility")
         private boolean debug;
 
-        /** Option that allows users to specify a list of paths to exclude. */
+        /** Option that allows users to specify a list of paths to exclude.
+         *  Suppression: CanBeFinal - we use picocli and it use  reflection to manage such fields
+         * @noinspection CanBeFinal
+         */
         @Option(names = {"-e", "--exclude"},
                 description = "Directory path to exclude from CheckStyle")
         private List<File> exclude = new ArrayList<>();
 
-        /** Option that allows users to specify a regex of paths to exclude. */
+        /** Option that allows users to specify a regex of paths to exclude.
+         *  Suppression: CanBeFinal - we use picocli and it use  reflection to manage such fields
+         * @noinspection CanBeFinal
+         */
         @Option(names = {"-x", "--exclude-regexp"},
                 description = "Regular expression of directory to exclude from CheckStyle")
         private List<Pattern> excludeRegex = new ArrayList<>();
@@ -670,12 +682,18 @@ public final class Main {
                 description = "Allows ignored modules to be run.")
         private boolean executeIgnoredModules;
 
-        /** The checker threads number. */
+        /** The checker threads number.
+         *  Suppression: CanBeFinal - we use picocli and it use  reflection to manage such fields
+         * @noinspection CanBeFinal
+         */
         @Option(names = {"-C", "--checker-threads-number"}, description = "(experimental) The "
                 + "number of Checker threads (must be greater than zero)")
         private int checkerThreadsNumber = DEFAULT_THREAD_COUNT;
 
-        /** The tree walker threads number. */
+        /** The tree walker threads number.
+         *  Suppression: CanBeFinal - we use picocli and it use  reflection to manage such fields
+         * @noinspection CanBeFinal
+         */
         @Option(names = {"-W", "--tree-walker-threads-number"}, description = "(experimental) The "
                 + "number of TreeWalker threads (must be greater than zero)")
         private int treeWalkerThreadsNumber = DEFAULT_THREAD_COUNT;
