@@ -411,7 +411,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
         }
         // We use substring(...) instead of replace(...), so that the regular expression does
         // not have to be compiled each time it is used inside 'replace' method.
-        final String removePattern = regexp.substring("^.+".length(), regexp.length());
+        final String removePattern = regexp.substring("^.+".length());
         return fileName.replaceAll(removePattern, "");
     }
 

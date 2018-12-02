@@ -283,6 +283,11 @@ public final class LocalizedMessage
                 sourceClass, customMessage);
     }
 
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     * Suppression on enumeration is needed so code stays consistent.
+     * @noinspection EqualsCalledOnEnumConstant
+     */
     // -@cs[CyclomaticComplexity] equals - a lot of fields to check.
     @Override
     public boolean equals(Object object) {

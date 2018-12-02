@@ -582,10 +582,9 @@ public class MainTest {
                     .equals(localizedMessage
                             .substring(0, localizedMessage.indexOf(' ')));
             final boolean sameSuffix =
-                    causeMessage.substring(causeMessage.lastIndexOf(' '), causeMessage.length())
+                    causeMessage.substring(causeMessage.lastIndexOf(' '))
                     .equals(localizedMessage
-                            .substring(localizedMessage.lastIndexOf(' '),
-                                    localizedMessage.length()));
+                            .substring(localizedMessage.lastIndexOf(' ')));
             assertTrue("Invalid error message", samePrefix || sameSuffix);
             assertTrue("Invalid error message", causeMessage.contains(".'"));
         }

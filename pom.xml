@@ -835,7 +835,7 @@
                     <exclude>com.puppycrawl.tools.checkstyle.gui.ParseTreeTableModel*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.gui.TreeTableCellRenderer*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter*</exclude>
-                    <!-- Deprecated classes -->
+                    <!-- This class is in deprecation phase -->
                     <exclude>
                       com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck
                     </exclude>
@@ -2180,7 +2180,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.naming.*</param>
               </targetTests>
               <excludedClasses>
-                <!-- deprecated class -->
+                <!-- This class is in deprecation phase -->
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck
                 </param>

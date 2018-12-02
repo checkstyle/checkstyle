@@ -25,6 +25,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -316,12 +318,13 @@ public class PackageObjectFactory implements ModuleFactory {
      */
     public static String getShortFromFullModuleNames(String fullName) {
         String result = fullName;
-        if (NAME_TO_FULL_MODULE_NAME.containsValue(fullName)) {
-            result = NAME_TO_FULL_MODULE_NAME
-                    .entrySet()
-                    .stream()
-                    .filter(entry -> entry.getValue().equals(fullName))
-                    .findFirst().get().getKey();
+        final Optional<Entry<String, String>> optional = NAME_TO_FULL_MODULE_NAME
+                .entrySet()
+                .stream()
+                .filter(entry -> entry.getValue().equals(fullName))
+                .findFirst();
+        if (optional.isPresent()) {
+            result = optional.get().getKey();
         }
 
         return result;

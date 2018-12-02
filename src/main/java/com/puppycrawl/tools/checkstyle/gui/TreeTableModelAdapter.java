@@ -109,14 +109,6 @@ public class TreeTableModelAdapter extends AbstractTableModel {
     }
 
     /**
-     * Invokes fireTableDataChanged after all the pending events have been
-     * processed. SwingUtilities.invokeLater is used to handle this.
-     */
-    private void delayedFireTableDataChanged() {
-        SwingUtilities.invokeLater(this::fireTableDataChanged);
-    }
-
-    /**
      * TreeExpansionListener that can update the table when tree changes.
      */
     private class UpdatingTreeExpansionListener implements TreeExpansionListener {
@@ -158,6 +150,14 @@ public class TreeTableModelAdapter extends AbstractTableModel {
         @Override
         public void treeStructureChanged(TreeModelEvent event) {
             delayedFireTableDataChanged();
+        }
+
+        /**
+         * Invokes fireTableDataChanged after all the pending events have been
+         * processed. SwingUtilities.invokeLater is used to handle this.
+         */
+        private void delayedFireTableDataChanged() {
+            SwingUtilities.invokeLater(TreeTableModelAdapter.this::fireTableDataChanged);
         }
 
     }
