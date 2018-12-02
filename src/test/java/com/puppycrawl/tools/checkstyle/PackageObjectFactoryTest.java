@@ -31,15 +31,15 @@ import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.UNABLE_TO_INS
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.powermock.api.mockito.PowerMockito.doThrow;
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
 
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.net.URLClassLoader;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -49,6 +49,12 @@ import java.util.Map;
 import java.util.Set;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -56,11 +62,15 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 
 /**
  * Enter a description of class PackageObjectFactoryTest.java.
  *
  */
+@RunWith(PowerMockRunner.class)
+@PowerMockIgnore(value = "com.puppycrawl.tools.checkstyle.api.*", globalIgnore = false)
+@PrepareForTest(ModuleReflectionUtil.class)
 public class PackageObjectFactoryTest {
 
     private final PackageObjectFactory factory = new PackageObjectFactory(
@@ -324,16 +334,41 @@ public class PackageObjectFactoryTest {
         assertNotNull("Check should not be null when creating module from name", check);
     }
 
+    /**
+     * This method is for testing the case of an exception caught inside
+     * {@code PackageObjectFactory.generateThirdPartyNameToFullModuleName}, a private method used
+     * to initialize private field {@code PackageObjectFactory.thirdPartyNameToFullModuleNames}.
+     * Since the method and the field both are private, the {@link Whitebox} is required to ensure
+     * that the field is changed. Also, the expected exception should be thrown from the static
+     * method {@link ModuleReflectionUtil#getCheckstyleModules}, so {@link PowerMockito#mockStatic}
+     * is required to mock this exception.
+     *
+     * @throws Exception when the code tested throws an exception
+     */
     @Test
-    @SuppressWarnings("unchecked")
     public void testGenerateThirdPartyNameToFullModuleNameWithException() throws Exception {
-        final URLClassLoader classLoader = mock(URLClassLoader.class);
-        when(classLoader.getURLs()).thenThrow(IOException.class);
-        final Method method = factory.getClass().getDeclaredMethod(
-                "generateThirdPartyNameToFullModuleName", ClassLoader.class);
-        method.setAccessible(true);
-        final int size = ((Map<String, String>) method.invoke(factory, classLoader)).size();
-        assertEquals("Invalid map size", 0, size);
+        final String name = "String";
+        final String packageName = "java.lang";
+        final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        final Set<String> packages = Collections.singleton(packageName);
+        final PackageObjectFactory objectFactory = new PackageObjectFactory(packages, classLoader,
+                TRY_IN_ALL_REGISTERED_PACKAGES);
+
+        mockStatic(ModuleReflectionUtil.class);
+        doThrow(new IOException("mock exception")).when(ModuleReflectionUtil.class);
+        ModuleReflectionUtil.getCheckstyleModules(packages, classLoader);
+
+        final String internalFieldName = "thirdPartyNameToFullModuleNames";
+        final Map<String, String> nullMap = Whitebox.getInternalState(objectFactory,
+                internalFieldName);
+        assertNull("Expected uninitialized field", nullMap);
+
+        final Object instance = objectFactory.createModule(name);
+        assertEquals("Expected empty string", "", instance);
+
+        final Map<String, String> emptyMap = Whitebox.getInternalState(objectFactory,
+                internalFieldName);
+        assertEquals("Expected empty map", Collections.emptyMap(), emptyMap);
     }
 
     @Test
@@ -397,6 +432,11 @@ public class PackageObjectFactoryTest {
                 PackageObjectFactory.getShortFromFullModuleNames(fullName));
     }
 
+    /**
+     * Non meaningful javadoc just to contain "noinspection" tag.
+     * Till https://youtrack.jetbrains.com/issue/IDEA-187210
+     * @noinspection JUnitTestCaseWithNoTests
+     */
     private static final class FailConstructorFileSet extends AbstractFileSetCheck {
 
         private FailConstructorFileSet() {
