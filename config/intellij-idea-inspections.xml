@@ -4450,6 +4450,8 @@
                 <option value="NewClassNamingConvention"/>
                 <!-- false positives -->
                 <option value="JUnitTestClassNamingConvention"/>
+                <!-- usage of picocli library in Main.java case won't fixes -->
+                <option value="CanBeFinal"/>
             </list>
         </option>
     </inspection_tool>
