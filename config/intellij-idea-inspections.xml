@@ -960,7 +960,8 @@
     <inspection_tool class="CallToStringConcatCanBeReplacedByOperator" enabled="true" level="ERROR"
                      enabled_by_default="true"/>
     <inspection_tool class="CallerJS" enabled="true" level="ERROR" enabled_by_default="true"/>
-    <inspection_tool class="CanBeFinal" enabled="true" level="ERROR" enabled_by_default="true">
+    <!-- disabled till https://youtrack.jetbrains.com/issue/IDEA-203424 -->
+    <inspection_tool class="CanBeFinal" enabled="false" level="ERROR" enabled_by_default="true">
         <option name="REPORT_CLASSES" value="false"/>
         <option name="REPORT_METHODS" value="false"/>
         <option name="REPORT_FIELDS" value="true"/>
@@ -1158,7 +1159,8 @@
                      enabled_by_default="true">
         <option name="limit" value="37"/>
     </inspection_tool>
-    <inspection_tool class="ClassWithTooManyDependents" enabled="true" level="ERROR"
+    <!-- disabled till https://youtrack.jetbrains.com/issue/IDEA-203424 -->
+    <inspection_tool class="ClassWithTooManyDependents" enabled="false" level="ERROR"
                      enabled_by_default="true">
         <option name="limit" value="300"/>
     </inspection_tool>
