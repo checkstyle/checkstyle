@@ -1612,7 +1612,8 @@
                      enabled_by_default="false"/>
     <inspection_tool class="DuplicatedDataProviderNames" enabled="true" level="WARNING"
                      enabled_by_default="true"/>
-    <inspection_tool class="Duplicates" enabled="true" level="ERROR" enabled_by_default="true">
+    <!-- this duplication algorithm generate too much wont't fixes -->
+    <inspection_tool class="Duplicates" enabled="false" level="ERROR" enabled_by_default="true">
         <scope name="Tests" level="ERROR" enabled="false"/>
     </inspection_tool>
     <inspection_tool class="DynamicRegexReplaceableByCompiledPattern" enabled="true" level="WARNING"
