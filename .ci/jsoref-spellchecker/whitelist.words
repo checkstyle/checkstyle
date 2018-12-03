@@ -520,7 +520,7 @@ gzip
 hadoop
 hamcrest
 Haml
-Hardcoded
+hardcoded
 hashcode
 hashset
 hashtable
@@ -1192,6 +1192,7 @@ suppressionfilter
 suppressionsloader
 suppressionsstringprinter
 suppressionxpathfilter
+suppressionxpathsinglefilter
 suppresswarnings
 suppresswarningsfilter
 suppresswarningsholder

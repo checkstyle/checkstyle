@@ -350,6 +350,13 @@
     <module name="SuppressionXpathFilter">
       <property name="file" value="${checkstyle.suppressions-xpath.file}"/>
     </module>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="files" value="IGNORETHIS"/>
+      <property name="checks" value="IGNORETHIS"/>
+      <property name="message" value="IGNORETHIS"/>
+      <property name="id" value="IGNORETHIS"/>
+      <property name="query" value="IGNORETHIS"/>
+    </module>
     <module name="SuppressWithNearbyCommentFilter">
       <property name="commentFormat"
                 value="-@cs\[(\w{8,}(\|\w{8,})*)\] \w[\(\)\-\.\'\`\,\:\;\w ]{10,}"/>

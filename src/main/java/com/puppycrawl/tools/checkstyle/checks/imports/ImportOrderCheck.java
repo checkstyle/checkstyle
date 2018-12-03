@@ -230,17 +230,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;option&quot; value=&quot;bottom&quot;/&gt;
  *   &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
- * </pre>
- * <pre>
- * &lt;?xml version=&quot;1.0&quot;?&gt;
- * &lt;!DOCTYPE suppressions PUBLIC
- *     &quot;-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN&quot;
- *     &quot;https://checkstyle.org/dtds/suppressions_1_2.dtd&quot;&gt;
- *
- * &lt;suppressions&gt;
- *     &lt;!-- message contains no message text to work well in multi-language environments --&gt;
- *     &lt;suppress checks=&quot;ImportOrder&quot; message=&quot;^'java\..*'.*&quot;/&gt;
- * &lt;/suppressions&gt;
+ * &lt;module name="SuppressionXpathSingleFilter"&gt;
+ *   &lt;property name="checks" value="ImportOrder"/&gt;
+ * &lt;/module&gt;
  * </pre>
  * <p>
  * To configure the check so that it matches default NetBeans formatter configuration
