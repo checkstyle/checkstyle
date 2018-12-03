@@ -111,7 +111,57 @@ public class XpathFilter implements TreeWalkerFilter {
                 xpathExpression = xpathEvaluator.createExpression(xpathQuery);
             }
             catch (XPathException ex) {
-                throw new IllegalStateException("Unexpected xpath query: " + xpathQuery, ex);
+                throw new IllegalArgumentException("Unexpected xpath query: " + xpathQuery, ex);
+            }
+        }
+    }
+
+    /**
+     * Creates a {@code XpathElement} instance.
+     * @param files regular expression for names of filtered files
+     * @param checks regular expression for filtered check classes
+     * @param message regular expression for messages.
+     * @param moduleId the module id
+     * @param query the xpath query
+     */
+    public XpathFilter(Pattern files, Pattern checks, Pattern message,
+                           String moduleId, String query) {
+        if (files == null) {
+            filePattern = null;
+            fileRegexp = null;
+        }
+        else {
+            filePattern = files.pattern();
+            fileRegexp = files;
+        }
+        if (checks == null) {
+            checkPattern = null;
+            checkRegexp = null;
+        }
+        else {
+            checkPattern = checks.pattern();
+            checkRegexp = checks;
+        }
+        if (message == null) {
+            messagePattern = null;
+            messageRegexp = null;
+        }
+        else {
+            messagePattern = message.pattern();
+            messageRegexp = message;
+        }
+        this.moduleId = moduleId;
+        xpathQuery = query;
+        if (xpathQuery == null) {
+            xpathExpression = null;
+        }
+        else {
+            final XPathEvaluator xpathEvaluator = new XPathEvaluator();
+            try {
+                xpathExpression = xpathEvaluator.createExpression(xpathQuery);
+            }
+            catch (XPathException ex) {
+                throw new IllegalArgumentException("Incorrect xpath query: " + xpathQuery, ex);
             }
         }
     }

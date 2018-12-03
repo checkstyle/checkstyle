@@ -521,7 +521,7 @@ gzip
 hadoop
 hamcrest
 Haml
-Hardcoded
+hardcoded
 hashcode
 hashset
 hashtable
@@ -630,6 +630,7 @@ javadoctags
 javadoctype
 javadocvariable
 Javaee
+javaformat
 javaguide
 javall
 javamail
@@ -1194,6 +1195,7 @@ suppressionfilter
 suppressionsloader
 suppressionsstringprinter
 suppressionxpathfilter
+suppressionxpathsinglefilter
 suppresswarnings
 suppresswarningsfilter
 suppresswarningsholder

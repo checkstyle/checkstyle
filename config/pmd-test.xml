@@ -193,4 +193,17 @@
         </properties>
     </rule>
 
+    <rule ref="category/java/design.xml/UseObjectForClearerAPI">
+        <properties>
+            <!-- This is checking for amount of arguments more that 3 (hardcoded).
+                    But in make sense to start making violations on items where
+                    amount of arguments more that 7. Extra abstraction(object)
+                    for single method does not make code more readable or
+                    easy to maintain -->
+            <property name="violationSuppressXPath"
+                      value="//ClassOrInterfaceDeclaration[
+                      @Image='SuppressionXpathSingleFilterTest']
+                  //MethodDeclarator[@Image='createSuppressionXpathSingleFilter']"/>
+        </properties>
+    </rule>
 </ruleset>
