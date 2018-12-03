@@ -78,6 +78,9 @@
         <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck" />
         <!--Uses setters to set fields values-->
         <Class name="com.puppycrawl.tools.checkstyle.api.AbstractCheck" />
+        <!-- We cannot modify fields since we won't have the values
+                to create the instance until the setters are called -->
+        <Class name="com.puppycrawl.tools.checkstyle.filters.SuppressionXpathSingleFilter"/>
       </Or>
       <Bug pattern="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR" />
     </Match>
