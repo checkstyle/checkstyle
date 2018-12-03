@@ -1099,7 +1099,8 @@
     </inspection_tool>
     <inspection_tool class="ClassInDefaultPackage" enabled="false" level="ERROR"
                      enabled_by_default="false"/>
-    <inspection_tool class="ClassIndependentOfModule" enabled="true" level="ERROR"
+    <!-- disabled till https://youtrack.jetbrains.com/issue/IDEA-203424 -->
+    <inspection_tool class="ClassIndependentOfModule" enabled="false" level="ERROR"
                      enabled_by_default="true"/>
     <inspection_tool class="ClassInheritanceDepth" enabled="true" level="ERROR"
                      enabled_by_default="true">
