@@ -24,11 +24,12 @@ import java.lang.reflect.Constructor;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
@@ -159,8 +160,7 @@ public class PackageObjectFactory implements ModuleFactory {
             throw new IllegalArgumentException(NULL_PACKAGE_MESSAGE);
         }
 
-        packages = new LinkedHashSet<>(1);
-        packages.add(packageName);
+        packages = Collections.singleton(packageName);
         this.moduleClassLoader = moduleClassLoader;
     }
 
@@ -296,17 +296,11 @@ public class PackageObjectFactory implements ModuleFactory {
         Map<String, Set<String>> returnValue;
         try {
             returnValue = ModuleReflectionUtil.getCheckstyleModules(packages, loader).stream()
-                    .collect(Collectors.toMap(
-                        Class::getSimpleName,
-                        cls -> Collections.singleton(cls.getCanonicalName()),
-                        (fullNames1, fullNames2) -> {
-                            final Set<String> mergedNames = new LinkedHashSet<>(fullNames1);
-                            mergedNames.addAll(fullNames2);
-                            return mergedNames;
-                        }));
+                .collect(Collectors.groupingBy(Class::getSimpleName,
+                    Collectors.mapping(Class::getCanonicalName, Collectors.toSet())));
         }
         catch (IOException ignore) {
-            returnValue = new HashMap<>();
+            returnValue = Collections.emptyMap();
         }
         return returnValue;
     }
@@ -317,17 +311,13 @@ public class PackageObjectFactory implements ModuleFactory {
      * @return simple check name.
      */
     public static String getShortFromFullModuleNames(String fullName) {
-        String result = fullName;
-        final Optional<Entry<String, String>> optional = NAME_TO_FULL_MODULE_NAME
+        return NAME_TO_FULL_MODULE_NAME
                 .entrySet()
                 .stream()
                 .filter(entry -> entry.getValue().equals(fullName))
-                .findFirst();
-        if (optional.isPresent()) {
-            result = optional.get().getKey();
-        }
-
-        return result;
+                .map(Entry::getKey)
+                .findFirst()
+                .orElse(fullName);
     }
 
     /**
@@ -382,12 +372,10 @@ public class PackageObjectFactory implements ModuleFactory {
      * @throws CheckstyleException if an error occurs.
      */
     private Object createModuleByTryInEachPackage(String name) throws CheckstyleException {
-        final Set<String> possibleNames = packages.stream()
-                .map(packageName -> packageName + PACKAGE_SEPARATOR + name)
-                .collect(Collectors.toSet());
-        possibleNames.addAll(possibleNames.stream()
-                .map(possibleName -> possibleName + CHECK_SUFFIX)
-                .collect(Collectors.toSet()));
+        final List<String> possibleNames = packages.stream()
+            .map(packageName -> packageName + PACKAGE_SEPARATOR + name)
+            .flatMap(className -> Stream.of(className, className + CHECK_SUFFIX))
+            .collect(Collectors.toList());
         Object instance = null;
         for (String possibleName : possibleNames) {
             instance = createObject(possibleName);
