@@ -1844,51 +1844,14 @@
             <version>${pitest.plugin.version}</version>
             <configuration>
               <targetClasses>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationOnSameLineCheck
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck
-                </param>
+                <param>com.puppycrawl.tools.checkstyle.checks.annotation.*</param>
               </targetClasses>
               <targetTests>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationOnSameLineCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheckTest
-                </param>
+                <param>com.puppycrawl.tools.checkstyle.checks.annotation.*</param>
               </targetTests>
+              <excludedTestClasses>
+                <param>*.Input*</param>
+              </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -1918,6 +1881,9 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.blocks.*</param>
               </targetTests>
+              <excludedTestClasses>
+                <param>*.Input*</param>
+              </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>97</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -1947,6 +1913,9 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.*</param>
               </targetTests>
+              <excludedTestClasses>
+                <param>*.Input*</param>
+              </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>98</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -1976,6 +1945,9 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.design.*</param>
               </targetTests>
+              <excludedTestClasses>
+                <param>*.Input*</param>
+              </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -2005,6 +1977,9 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.header.*</param>
               </targetTests>
+              <excludedTestClasses>
+                <param>*.Input*</param>
+              </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -2034,6 +2009,9 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.imports.*</param>
               </targetTests>
+              <excludedTestClasses>
+                <param>*.Input*</param>
+              </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>96</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -2063,6 +2041,9 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.indentation.*</param>
               </targetTests>
+              <excludedTestClasses>
+                <param>*.Input*</param>
+              </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>94</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -2092,6 +2073,9 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.*</param>
               </targetTests>
+              <excludedTestClasses>
+                <param>*.Input*</param>
+              </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>95</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -2121,6 +2105,9 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.metrics.*</param>
               </targetTests>
+              <excludedTestClasses>
+                <param>*.Input*</param>
+              </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -2150,6 +2137,9 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.modifier.*</param>
               </targetTests>
+              <excludedTestClasses>
+                <param>*.Input*</param>
+              </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -2179,6 +2169,9 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.naming.*</param>
               </targetTests>
+              <excludedTestClasses>
+                <param>*.Input*</param>
+              </excludedTestClasses>
               <excludedClasses>
                 <!-- This class is in deprecation phase -->
                 <param>
@@ -2214,6 +2207,9 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.regexp.*</param>
               </targetTests>
+              <excludedTestClasses>
+                <param>*.Input*</param>
+              </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -2243,6 +2239,9 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.sizes.*</param>
               </targetTests>
+              <excludedTestClasses>
+                <param>*.Input*</param>
+              </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -2272,6 +2271,9 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.whitespace.*</param>
               </targetTests>
+              <excludedTestClasses>
+                <param>*.Input*</param>
+              </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -2302,6 +2304,9 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.ant.*</param>
               </targetTests>
+              <excludedTestClasses>
+                <param>*.Input*</param>
+              </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -2468,6 +2473,9 @@
                   com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheckTest
                 </param>
               </targetTests>
+              <excludedTestClasses>
+                <param>*.Input*</param>
+              </excludedTestClasses>
               <excludedMethods>
                 <!-- destroy in TreeWalker was added in case module had to free up resources
                 before ending, but currently it does nothing, so we cannot check it.
@@ -2517,6 +2525,9 @@
                 <param>com.puppycrawl.tools.checkstyle.CheckerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.TranslationCheckTest</param>
               </targetTests>
+              <excludedTestClasses>
+                <param>*.Input*</param>
+              </excludedTestClasses>
               <excludedMethods>
                 <!--cause of https://github.com/checkstyle/checkstyle/issues/3605-->
                 <param>addFeaturesForVerySecureJavaInstallations</param>
@@ -2558,6 +2569,9 @@
                 <param>com.puppycrawl.tools.checkstyle.filefilters.*</param>
                 <param>com.puppycrawl.tools.checkstyle.filters.*</param>
               </targetTests>
+              <excludedTestClasses>
+                <param>*.Input*</param>
+              </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -2605,6 +2619,9 @@
                   com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheckTest
                 </param>
               </targetTests>
+              <excludedTestClasses>
+                <param>*.Input*</param>
+              </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -2634,6 +2651,9 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.gui.*</param>
               </targetTests>
+              <excludedTestClasses>
+                <param>*.Input*</param>
+              </excludedTestClasses>
               <coverageThreshold>40</coverageThreshold>
               <mutationThreshold>29</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -2688,6 +2708,9 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.xpath.*</param>
               </targetTests>
+              <excludedTestClasses>
+                <param>*.Input*</param>
+              </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
