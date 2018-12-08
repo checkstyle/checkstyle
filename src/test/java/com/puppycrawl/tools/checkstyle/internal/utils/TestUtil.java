@@ -30,7 +30,10 @@ import java.util.function.Predicate;
 
 import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
 import com.puppycrawl.tools.checkstyle.PackageObjectFactory;
+import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
+import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
@@ -132,6 +135,25 @@ public final class TestUtil {
         check.beginTree(null);
         final Field resultField = getClassDeclaredField(check.getClass(), fieldName);
         return isClear.test(resultField.get(check));
+    }
+
+    /**
+     * Checks if stateful field is cleared during {@link AutomaticBean}'s finishLocalSetup.
+     *
+     * @param filter filter object which field is to be verified
+     * @param event event to pass into filter methods
+     * @param fieldName name of the field to be checked
+     * @param isClear function for checking field state
+     * @return {@code true} if state of the field is cleared
+     * @throws Exception if there was an error.
+     */
+    public static boolean isStatefulFieldClearedDuringLocalSetup(
+            TreeWalkerFilter filter, TreeWalkerAuditEvent event,
+            String fieldName, Predicate<Object> isClear) throws Exception {
+        filter.accept(event);
+        getClassDeclaredMethod(filter.getClass(), "finishLocalSetup").invoke(filter);
+        final Field resultField = getClassDeclaredField(filter.getClass(), fieldName);
+        return isClear.test(resultField.get(filter));
     }
 
     /**

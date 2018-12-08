@@ -109,11 +109,6 @@ public class XmlLoader
         throw exception;
     }
 
-    @Override
-    public void fatalError(SAXParseException exception) throws SAXException {
-        throw exception;
-    }
-
     /**
      * Used for setting specific for secure java installations features to SAXParserFactory.
      * Pulled out as a separate class in order to suppress Pitest mutations.

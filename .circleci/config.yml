@@ -200,6 +200,25 @@ jobs:
               echo "build is skipped ..."
             fi
 
+  pitest8:
+    machine: true
+    parallelism: 4
+    steps:
+      - attach_workspace:
+          at: /home/circleci/
+      - run:
+          command: |
+            SKIP_CI=`cat .ci-temp/skip_ci`
+            echo "SKIP_CI="$SKIP_CI
+            if [[ $SKIP_CI == 'false' ]]; then
+              echo "./.ci/pitest.sh pitest-common-2"   >> commands.txt
+              CMD="$(circleci tests split commands.txt)"
+              echo "Command: $CMD"
+              eval $CMD
+            else
+              echo "build is skipped ..."
+            fi
+
 workflows:
   version: 2
   pitest-testing:
@@ -227,3 +246,6 @@ workflows:
       # - pitest7:
       #     requires:
       #       - build-caches
+      - pitest8:
+          requires:
+            - build-caches

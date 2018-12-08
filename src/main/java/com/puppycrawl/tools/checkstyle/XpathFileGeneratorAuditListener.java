@@ -71,11 +71,10 @@ public class XpathFileGeneratorAuditListener extends AutomaticBean implements Au
         if (isXmlHeaderPrinted) {
             writer.println("</suppressions>");
         }
+
+        writer.flush();
         if (closeStream) {
             writer.close();
-        }
-        else {
-            writer.flush();
         }
     }
 

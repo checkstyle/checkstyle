@@ -1790,8 +1790,8 @@
                   com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck
                 </param>
                 <param>com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.FileSetCheckLifecycle</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck</param>
                 <!-- this class will be rewritten in future releases -->
@@ -2372,6 +2372,14 @@
                 <param>com.puppycrawl.tools.checkstyle.PropertyCacheFile</param>
                 <param>com.puppycrawl.tools.checkstyle.Checker</param>
                 <param>com.puppycrawl.tools.checkstyle.ThreadModeSettings</param>
+                <!-- interfaces -->
+                <param>com.puppycrawl.tools.checkstyle.AuditEventFormatter</param>
+                <param>com.puppycrawl.tools.checkstyle.FileStatefulCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.ModuleFactory</param>
+                <param>com.puppycrawl.tools.checkstyle.PropertyResolver</param>
+                <param>com.puppycrawl.tools.checkstyle.StatelessCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.GlobalStatefulCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.grammar.CommentListener</param>
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.AuditEventDefaultFormatterTest</param>
@@ -2386,6 +2394,52 @@
                 <param>com.puppycrawl.tools.checkstyle.CheckerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.ThreadModeSettingsTest</param>
               </targetTests>
+              <coverageThreshold>100</coverageThreshold>
+              <mutationThreshold>100</mutationThreshold>
+              <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
+              <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
+              <threads>${pitest.plugin.threads}</threads>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>pitest-common-2</id>
+      <properties>
+        <skipTests>true</skipTests>
+        <jacoco.skip>true</jacoco.skip>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-maven</artifactId>
+            <version>${pitest.plugin.version}</version>
+            <configuration>
+              <targetClasses>
+                <param>com.puppycrawl.tools.checkstyle.JavadocPropertiesGenerator</param>
+                <param>com.puppycrawl.tools.checkstyle.XmlLoader</param>
+                <param>com.puppycrawl.tools.checkstyle.JavaParser</param>
+              </targetClasses>
+              <targetTests>
+                <param>com.puppycrawl.tools.checkstyle.JavadocPropertiesGeneratorTest</param>
+                <param>com.puppycrawl.tools.checkstyle.XmlLoaderTest</param>
+                <param>com.puppycrawl.tools.checkstyle.JavaParserTest</param>
+                <!-- these tests are required for xml loader -->
+                <param>com.puppycrawl.tools.checkstyle.filters.SuppressionsLoaderTest</param>
+                <param>com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest</param>
+              </targetTests>
+              <excludedMethods>
+                <!--cause of https://github.com/checkstyle/checkstyle/issues/3605-->
+                <param>addFeaturesForVerySecureJavaInstallations</param>
+              </excludedMethods>
+              <avoidCallsTo>
+                <!--cause of https://github.com/checkstyle/checkstyle/issues/3605-->
+                <avoidCallsTo>
+                  com.puppycrawl.tools.checkstyle.XmlLoader$FeaturesForVerySecureJavaInstallations
+                </avoidCallsTo>
+              </avoidCallsTo>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -2444,6 +2498,7 @@
                 <param>com.puppycrawl.tools.checkstyle.AstTreeStringPrinter</param>
                 <param>com.puppycrawl.tools.checkstyle.SuppressionsStringPrinter</param>
                 <param>com.puppycrawl.tools.checkstyle.TreeWalker</param>
+                <param>com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent</param>
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.DetailNodeTreeStringPrinterTest</param>
@@ -2472,6 +2527,7 @@
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheckTest
                 </param>
+                <param>com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilterTest</param>
               </targetTests>
               <excludedTestClasses>
                 <param>*.Input*</param>
@@ -2528,16 +2584,6 @@
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
-              <excludedMethods>
-                <!--cause of https://github.com/checkstyle/checkstyle/issues/3605-->
-                <param>addFeaturesForVerySecureJavaInstallations</param>
-              </excludedMethods>
-              <avoidCallsTo>
-                <!--cause of https://github.com/checkstyle/checkstyle/issues/3605-->
-                <avoidCallsTo>
-                  com.puppycrawl.tools.checkstyle.XmlLoader$FeaturesForVerySecureJavaInstallations
-                </avoidCallsTo>
-              </avoidCallsTo>
               <coverageThreshold>99</coverageThreshold>
               <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -2704,9 +2750,13 @@
             <configuration>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.xpath.*</param>
+                <param>com.puppycrawl.tools.checkstyle.XpathFileGeneratorAuditListener</param>
+                <param>com.puppycrawl.tools.checkstyle.XpathFileGeneratorAstFilter</param>
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.xpath.*</param>
+                <param>com.puppycrawl.tools.checkstyle.XpathFileGeneratorAuditListenerTest</param>
+                <param>com.puppycrawl.tools.checkstyle.XpathFileGeneratorAstFilterTest</param>
               </targetTests>
               <excludedTestClasses>
                 <param>*.Input*</param>
