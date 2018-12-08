@@ -402,11 +402,11 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(JavadocTypeCheck.class);
 
         final String[] expected = {
-            "5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "6: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "10: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig,
-            getPath("InputJavadocTypeAllowedAnnotations.java"),
+            getNonCompilablePath("InputJavadocTypeAllowedAnnotations.java"),
             expected);
     }
 
@@ -419,12 +419,12 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             "com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype.ThisIsOk");
 
         final String[] expected = {
-            "5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "13: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "6: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "10: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "14: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig,
-                getPath("InputJavadocTypeAllowedAnnotations.java"),
+                getNonCompilablePath("InputJavadocTypeAllowedAnnotations.java"),
                 expected);
     }
 
@@ -436,7 +436,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-            getPath("InputJavadocTypeAllowedAnnotations.java"),
+            getNonCompilablePath("InputJavadocTypeAllowedAnnotations.java"),
             expected);
     }
 
@@ -447,12 +447,12 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("allowedAnnotations", "Override");
 
         final String[] expected = {
-            "5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "13: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "6: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "10: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "14: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig,
-            getPath("InputJavadocTypeAllowedAnnotations.java"),
+            getNonCompilablePath("InputJavadocTypeAllowedAnnotations.java"),
             expected);
     }
 }

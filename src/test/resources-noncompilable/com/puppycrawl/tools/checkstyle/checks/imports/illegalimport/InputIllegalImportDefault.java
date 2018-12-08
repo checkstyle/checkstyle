@@ -1,7 +1,7 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+//non-compiled with jdk10: contains dropped packages
+
+
+
 package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 
 import com.puppycrawl.tools.checkstyle.checks.imports.*;
@@ -34,14 +34,6 @@ import java.awt.Label;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.BitSet;
-
-import com.puppycrawl.tools.checkstyle.Checker;
-import com.puppycrawl.tools.checkstyle.CheckerTest;
-import com.puppycrawl.tools.checkstyle.Definitions;
-import com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest;
-import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.DefaultLogger;
 
 /**
  * Test case for imports
