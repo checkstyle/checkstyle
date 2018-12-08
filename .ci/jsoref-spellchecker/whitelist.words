@@ -1373,6 +1373,7 @@ xmlvalidate
 Xms
 Xmx
 xpath
+xpathfilegeneratorastfilter
 xpathfilegeneratorauditlistener
 xpathfilter
 xpathmapper

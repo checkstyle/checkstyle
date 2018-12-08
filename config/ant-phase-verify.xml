@@ -145,6 +145,7 @@
          <exclude name="**/InputJavadocPropertiesGeneratorParseError.java"/>
          <exclude name="**/InputMainFrameModelIncorrectClass.java"/>
          <exclude name="**/InputBeforeExecutionExclusionFileFilterIncorrectClass.java"/>
+         <exclude name="**/InputJavaParser.java"/>
         </fileset>
       </path>
       <formatter type="plain"/>
