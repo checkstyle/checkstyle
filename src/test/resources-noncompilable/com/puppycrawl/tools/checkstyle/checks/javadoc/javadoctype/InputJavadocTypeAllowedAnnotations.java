@@ -1,3 +1,4 @@
+//non-compiled with jkd11: contains dropped packages
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
 import javax.annotation.Generated;
