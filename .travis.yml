@@ -210,6 +210,11 @@ matrix:
         - CMD="./.ci/test-spelling-unknown-words.sh"
         - SKIP_CI="false"
 
+    # find missing pitests
+    - env:
+        - DESC="find missing pitests"
+        - CMD="./.ci/travis/travis.sh check-missing-pitests"
+
 script:
   - SKIP_FILES1=".github|codeship-*|buddy.yml|appveyor.yml|circleci|distelli-manifest.yml"
   - SKIP_FILES2="|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr"
