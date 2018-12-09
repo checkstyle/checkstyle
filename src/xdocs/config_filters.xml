@@ -744,6 +744,7 @@ public class UserService {
           <li>SeparatorWrap</li>
           <li>SimplifyBooleanExpression</li>
           <li>SimplifyBooleanReturn</li>
+          <li>SingleSpaceSeparator</li>
           <li>StaticVariableName</li>
           <li>StringLiteralEquality</li>
           <li>SuperClone</li>
