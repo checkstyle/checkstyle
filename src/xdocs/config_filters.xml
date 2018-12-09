@@ -730,6 +730,7 @@ public class UserService {
           <li>ParameterAssignmentCheck</li>
           <li>ParameterNameCheck</li>
           <li>ParameterNumberCheck</li>
+          <li>ParenPadCheck</li>
           <li>RedundantImportCheck</li>
           <li>RedundantModifierCheck</li>
           <li>RequireThisCheck</li>
@@ -744,6 +745,7 @@ public class UserService {
           <li>SuperFinalizeCheck</li>
           <li>SuppressWarningsCheck</li>
           <li>ThrowsCountCheck</li>
+          <li>TypecastParenPadCheck</li>
           <li>TypeNameCheck</li>
           <li>UnusedImportsCheck</li>
           <li>VisibilityModifierCheck</li>
