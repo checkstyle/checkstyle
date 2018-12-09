@@ -754,6 +754,7 @@ public class UserService {
           <li>TypecastParenPad</li>
           <li>TypeName</li>
           <li>UnusedImports</li>
+          <li>UpperEll</li>
           <li>VisibilityModifier</li>
           <li>WhitespaceAfter</li>
           <li>WhitespaceAround</li>
