@@ -49,8 +49,8 @@ public class WhitespaceAfterCheckTest
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAfterCheck.class);
         final String[] expected = {
-            "42:40: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
-            "71:30: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "42:39: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "71:29: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
         };
         verify(checkConfig, getPath("InputWhitespaceAfterDefaultConfig.java"),
                 expected);
@@ -62,7 +62,7 @@ public class WhitespaceAfterCheckTest
                 createModuleConfig(WhitespaceAfterCheck.class);
         configurationTestCast.addAttribute("tokens", "TYPECAST");
         final String[] expected = {
-            "88:21: " + getCheckMessage(MSG_WS_TYPECAST),
+            "88:20: " + getCheckMessage(MSG_WS_TYPECAST),
         };
         verify(configurationTestCast, getPath("InputWhitespaceAfterTypeCast.java"),
                 expected);
@@ -74,7 +74,7 @@ public class WhitespaceAfterCheckTest
                 createModuleConfig(WhitespaceAfterCheck.class);
         configurationTestCast.addAttribute("tokens", "TYPECAST");
         final String[] expected = {
-            "7:24: " + getCheckMessage(MSG_WS_TYPECAST),
+            "7:23: " + getCheckMessage(MSG_WS_TYPECAST),
         };
         verify(configurationTestCast, getPath("InputWhitespaceAfterMultilineCast.java"),
                 expected);
@@ -86,9 +86,9 @@ public class WhitespaceAfterCheckTest
                 createModuleConfig(WhitespaceAfterCheck.class);
         configurationTestSemi.addAttribute("tokens", "SEMI");
         final String[] expected = {
-            "54:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
-            "54:29: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
-            "103:19: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "54:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "54:28: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "103:18: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
         };
         verify(configurationTestSemi, getPath("InputWhitespaceAfterBraces.java"),
                 expected);
@@ -100,7 +100,7 @@ public class WhitespaceAfterCheckTest
                 createModuleConfig(WhitespaceAfterCheck.class);
         configurationTestLiteralWhile.addAttribute("tokens", "LITERAL_WHILE");
         final String[] expected = {
-            "39:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "while"),
+            "39:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "while"),
         };
         verify(configurationTestLiteralWhile, getPath("InputWhitespaceAfterLiteralWhile.java"),
                 expected);
@@ -112,7 +112,7 @@ public class WhitespaceAfterCheckTest
                 createModuleConfig(WhitespaceAfterCheck.class);
         configurationTestLiteralIf.addAttribute("tokens", "LITERAL_IF");
         final String[] expected = {
-            "18:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "if"),
+            "18:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "if"),
         };
         verify(configurationTestLiteralIf, getPath("InputWhitespaceAfterLiteralIf.java"),
                 expected);
@@ -124,7 +124,7 @@ public class WhitespaceAfterCheckTest
                 createModuleConfig(WhitespaceAfterCheck.class);
         configurationTestLiteralElse.addAttribute("tokens", "LITERAL_ELSE");
         final String[] expected = {
-            "27:15: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "else"),
+            "27:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "else"),
         };
         verify(configurationTestLiteralElse, getPath("InputWhitespaceAfterLiteralElse.java"),
                 expected);
@@ -136,7 +136,7 @@ public class WhitespaceAfterCheckTest
                 createModuleConfig(WhitespaceAfterCheck.class);
         configurationTestLiteralFor.addAttribute("tokens", "LITERAL_FOR");
         final String[] expected = {
-            "51:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "for"),
+            "51:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "for"),
         };
         verify(configurationTestLiteralFor, getPath("InputWhitespaceAfterLiteralFor.java"),
                 expected);
@@ -148,7 +148,7 @@ public class WhitespaceAfterCheckTest
                 createModuleConfig(WhitespaceAfterCheck.class);
         configurationTestLiteralDo.addAttribute("tokens", "LITERAL_DO");
         final String[] expected = {
-            "63:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "do"),
+            "63:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "do"),
         };
         verify(configurationTestLiteralDo, getPath("InputWhitespaceAfterLiteralDo.java"),
                 expected);
@@ -160,7 +160,7 @@ public class WhitespaceAfterCheckTest
                 createModuleConfig(WhitespaceAfterCheck.class);
         configurationTestDoWhile.addAttribute("tokens", "DO_WHILE");
         final String[] expected = {
-            "18:16: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "while"),
+            "18:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "while"),
         };
         verify(configurationTestDoWhile, getPath("InputWhitespaceAfterDoWhile.java"),
                 expected);
@@ -170,8 +170,8 @@ public class WhitespaceAfterCheckTest
     public void testEmptyForIterator() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAfterCheck.class);
         final String[] expected = {
-            "14:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
-            "17:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "14:30: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "17:30: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
         };
         verify(checkConfig, getPath("InputWhitespaceAfterFor.java"),
                 expected);
@@ -181,9 +181,9 @@ public class WhitespaceAfterCheckTest
     public void testTypeArgumentAndParameterCommas() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAfterCheck.class);
         final String[] expected = {
-            "12:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
-            "12:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
-            "12:41: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "12:20: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "12:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "12:40: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
         };
         verify(checkConfig, getPath("InputWhitespaceAfterGenerics.java"),
                 expected);

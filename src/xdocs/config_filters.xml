@@ -754,6 +754,8 @@ public class UserService {
           <li>TypeName</li>
           <li>UnusedImports</li>
           <li>VisibilityModifier</li>
+          <li>WhitespaceAfter</li>
+          <li>WhitespaceAround</li>
         </ul>
         <p>
           Note, that support for other Checks will be available after resolving
