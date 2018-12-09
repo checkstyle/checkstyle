@@ -152,7 +152,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
 
         if (before >= 0 && Character.isWhitespace(line.charAt(before))
                 && !containsWhitespaceBefore(before, line)) {
-            log(ast.getLineNo(), before, MSG_WS_PRECEDED, CLOSE_ANGLE_BRACKET);
+            log(ast, MSG_WS_PRECEDED, CLOSE_ANGLE_BRACKET);
         }
 
         if (after < line.length()) {
@@ -186,14 +186,14 @@ public class GenericWhitespaceCheck extends AbstractCheck {
         if (indexOfAmp >= 1
             && containsWhitespaceBetween(after, indexOfAmp, line)) {
             if (indexOfAmp - after == 0) {
-                log(ast.getLineNo(), after, MSG_WS_NOT_PRECEDED, "&");
+                log(ast, MSG_WS_NOT_PRECEDED, "&");
             }
             else if (indexOfAmp - after != 1) {
-                log(ast.getLineNo(), after, MSG_WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
+                log(ast, MSG_WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
             }
         }
         else if (line.charAt(after) == ' ') {
-            log(ast.getLineNo(), after, MSG_WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
+            log(ast, MSG_WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
         }
     }
 
@@ -212,11 +212,11 @@ public class GenericWhitespaceCheck extends AbstractCheck {
         //                        +--- whitespace not allowed
         if (isGenericBeforeMethod(ast)) {
             if (Character.isWhitespace(charAfter)) {
-                log(ast.getLineNo(), after, MSG_WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
+                log(ast, MSG_WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
             }
         }
         else if (!isCharacterValidAfterGenericEnd(charAfter)) {
-            log(ast.getLineNo(), after, MSG_WS_ILLEGAL_FOLLOW, CLOSE_ANGLE_BRACKET);
+            log(ast, MSG_WS_ILLEGAL_FOLLOW, CLOSE_ANGLE_BRACKET);
         }
     }
 
@@ -266,19 +266,19 @@ public class GenericWhitespaceCheck extends AbstractCheck {
                     || grandparent.getType() == TokenTypes.METHOD_DEF)) {
                 // Require whitespace
                 if (!Character.isWhitespace(line.charAt(before))) {
-                    log(ast.getLineNo(), before, MSG_WS_NOT_PRECEDED, OPEN_ANGLE_BRACKET);
+                    log(ast, MSG_WS_NOT_PRECEDED, OPEN_ANGLE_BRACKET);
                 }
             }
             // Whitespace not required
             else if (Character.isWhitespace(line.charAt(before))
                 && !containsWhitespaceBefore(before, line)) {
-                log(ast.getLineNo(), before, MSG_WS_PRECEDED, OPEN_ANGLE_BRACKET);
+                log(ast, MSG_WS_PRECEDED, OPEN_ANGLE_BRACKET);
             }
         }
 
         if (after < line.length()
                 && Character.isWhitespace(line.charAt(after))) {
-            log(ast.getLineNo(), after, MSG_WS_FOLLOWED, OPEN_ANGLE_BRACKET);
+            log(ast, MSG_WS_FOLLOWED, OPEN_ANGLE_BRACKET);
         }
     }
 
