@@ -49,7 +49,6 @@ public final class XmlUtil {
         try {
             final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             factory.setValidating(false);
-            factory.setNamespaceAware(true);
 
             final DocumentBuilder builder = factory.newDocumentBuilder();
 

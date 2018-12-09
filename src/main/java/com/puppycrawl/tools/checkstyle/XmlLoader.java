@@ -67,7 +67,6 @@ public class XmlLoader
         final SAXParserFactory factory = SAXParserFactory.newInstance();
         FeaturesForVerySecureJavaInstallations.addFeaturesForVerySecureJavaInstallations(factory);
         factory.setValidating(true);
-        factory.setNamespaceAware(true);
         parser = factory.newSAXParser().getXMLReader();
         parser.setContentHandler(this);
         parser.setEntityResolver(this);
