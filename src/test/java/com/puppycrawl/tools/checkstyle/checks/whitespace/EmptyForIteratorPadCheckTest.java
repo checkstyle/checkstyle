@@ -53,9 +53,9 @@ public class EmptyForIteratorPadCheckTest
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyForIteratorPadCheck.class);
         final String[] expected = {
-            "27:31: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
-            "43:32: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
-            "55:11: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
+            "27:32: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
+            "43:33: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
+            "55:12: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
         };
         verify(checkConfig, getPath("InputEmptyForIteratorPad.java"), expected);
     }

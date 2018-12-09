@@ -111,11 +111,11 @@ public class EmptyForInitializerPadCheck
             if (!CommonUtil.hasWhitespaceBefore(before, line)) {
                 if (option == PadOption.NOSPACE
                     && Character.isWhitespace(line.charAt(before))) {
-                    log(semi.getLineNo(), before, MSG_PRECEDED, SEMICOLON);
+                    log(ast, MSG_PRECEDED, SEMICOLON);
                 }
                 else if (option == PadOption.SPACE
                          && !Character.isWhitespace(line.charAt(before))) {
-                    log(semi.getLineNo(), before, MSG_NOT_PRECEDED, SEMICOLON);
+                    log(ast, MSG_NOT_PRECEDED, SEMICOLON);
                 }
             }
         }

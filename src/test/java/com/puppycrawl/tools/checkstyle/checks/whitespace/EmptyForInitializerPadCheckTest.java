@@ -55,7 +55,7 @@ public class EmptyForInitializerPadCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(EmptyForInitializerPadCheck.class);
         final String[] expected = {
-            "48:14: " + getCheckMessage(MSG_PRECEDED, ";"),
+            "48:15: " + getCheckMessage(MSG_PRECEDED, ";"),
         };
         verify(checkConfig, getPath("InputEmptyForInitializerPadDefaultConfig.java"), expected);
     }
@@ -66,7 +66,7 @@ public class EmptyForInitializerPadCheckTest
                 createModuleConfig(EmptyForInitializerPadCheck.class);
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
         final String[] expected = {
-            "51:13: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
+            "51:14: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
         };
         verify(checkConfig, getPath("InputEmptyForInitializerPad.java"), expected);
     }
