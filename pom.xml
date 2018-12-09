@@ -1785,22 +1785,22 @@
             <version>${pitest.plugin.version}</version>
             <configuration>
               <targetClasses>
-                <param>com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck*</param>
                 <param>
-                  com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck
+                  com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck*
                 </param>
-                <param>com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.TranslationCheck</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.UpperEllCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.TranslationCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.UpperEllCheck*</param>
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheckTest</param>
@@ -2332,7 +2332,7 @@
             <version>${pitest.plugin.version}</version>
             <configuration>
               <targetClasses>
-                <param>com.puppycrawl.tools.checkstyle.PackageNamesLoader</param>
+                <param>com.puppycrawl.tools.checkstyle.PackageNamesLoader*</param>
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.PackageNamesLoaderTest</param>
@@ -2361,18 +2361,18 @@
             <version>${pitest.plugin.version}</version>
             <configuration>
               <targetClasses>
-                <param>com.puppycrawl.tools.checkstyle.AuditEventDefaultFormatter</param>
+                <param>com.puppycrawl.tools.checkstyle.AuditEventDefaultFormatter*</param>
                 <param>com.puppycrawl.tools.checkstyle.ConfigurationLoader*</param>
-                <param>com.puppycrawl.tools.checkstyle.DefaultConfiguration</param>
-                <param>com.puppycrawl.tools.checkstyle.DefaultContext</param>
-                <param>com.puppycrawl.tools.checkstyle.DefaultLogger</param>
-                <param>com.puppycrawl.tools.checkstyle.Definitions</param>
-                <param>com.puppycrawl.tools.checkstyle.XMLLogger</param>
-                <param>com.puppycrawl.tools.checkstyle.PackageObjectFactory</param>
-                <param>com.puppycrawl.tools.checkstyle.PropertiesExpander</param>
-                <param>com.puppycrawl.tools.checkstyle.PropertyCacheFile</param>
-                <param>com.puppycrawl.tools.checkstyle.Checker</param>
-                <param>com.puppycrawl.tools.checkstyle.ThreadModeSettings</param>
+                <param>com.puppycrawl.tools.checkstyle.DefaultConfiguration*</param>
+                <param>com.puppycrawl.tools.checkstyle.DefaultContext*</param>
+                <param>com.puppycrawl.tools.checkstyle.DefaultLogger*</param>
+                <param>com.puppycrawl.tools.checkstyle.Definitions*</param>
+                <param>com.puppycrawl.tools.checkstyle.XMLLogger*</param>
+                <param>com.puppycrawl.tools.checkstyle.PackageObjectFactory*</param>
+                <param>com.puppycrawl.tools.checkstyle.PropertiesExpander*</param>
+                <param>com.puppycrawl.tools.checkstyle.PropertyCacheFile*</param>
+                <param>com.puppycrawl.tools.checkstyle.Checker*</param>
+                <param>com.puppycrawl.tools.checkstyle.ThreadModeSettings*</param>
                 <!-- interfaces -->
                 <param>com.puppycrawl.tools.checkstyle.AuditEventFormatter</param>
                 <param>com.puppycrawl.tools.checkstyle.FileStatefulCheck</param>
@@ -2420,9 +2420,9 @@
             <version>${pitest.plugin.version}</version>
             <configuration>
               <targetClasses>
-                <param>com.puppycrawl.tools.checkstyle.JavadocPropertiesGenerator</param>
-                <param>com.puppycrawl.tools.checkstyle.XmlLoader</param>
-                <param>com.puppycrawl.tools.checkstyle.JavaParser</param>
+                <param>com.puppycrawl.tools.checkstyle.JavadocPropertiesGenerator*</param>
+                <param>com.puppycrawl.tools.checkstyle.XmlLoader*</param>
+                <param>com.puppycrawl.tools.checkstyle.JavaParser*</param>
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.JavadocPropertiesGeneratorTest</param>
@@ -2466,7 +2466,7 @@
             <version>${pitest.plugin.version}</version>
             <configuration>
               <targetClasses>
-                <param>com.puppycrawl.tools.checkstyle.Main</param>
+                <param>com.puppycrawl.tools.checkstyle.Main*</param>
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.MainTest</param>
@@ -2495,12 +2495,12 @@
             <version>${pitest.plugin.version}</version>
             <configuration>
               <targetClasses>
-                <param>com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser</param>
-                <param>com.puppycrawl.tools.checkstyle.DetailNodeTreeStringPrinter</param>
-                <param>com.puppycrawl.tools.checkstyle.AstTreeStringPrinter</param>
-                <param>com.puppycrawl.tools.checkstyle.SuppressionsStringPrinter</param>
-                <param>com.puppycrawl.tools.checkstyle.TreeWalker</param>
-                <param>com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent</param>
+                <param>com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser*</param>
+                <param>com.puppycrawl.tools.checkstyle.DetailNodeTreeStringPrinter*</param>
+                <param>com.puppycrawl.tools.checkstyle.AstTreeStringPrinter*</param>
+                <param>com.puppycrawl.tools.checkstyle.SuppressionsStringPrinter*</param>
+                <param>com.puppycrawl.tools.checkstyle.TreeWalker*</param>
+                <param>com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent*</param>
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.DetailNodeTreeStringPrinterTest</param>
@@ -2541,6 +2541,14 @@
                 together, so we just exclude it from pitest check. -->
                 <param>destroy</param>
               </excludedMethods>
+              <avoidCallsTo>
+                <!-- JavadocDetailNodeParser$JavadocParserErrorStrategy calls super to handle
+                error which always results in throwing exception. There is no clear way to kill
+                mutation on it as mutation is only looking at the non-existent return value. -->
+                <avoidCallsTo>
+                  org.antlr.v4.runtime.BailErrorStrategy
+                </avoidCallsTo>
+              </avoidCallsTo>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -2752,8 +2760,8 @@
             <configuration>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.xpath.*</param>
-                <param>com.puppycrawl.tools.checkstyle.XpathFileGeneratorAuditListener</param>
-                <param>com.puppycrawl.tools.checkstyle.XpathFileGeneratorAstFilter</param>
+                <param>com.puppycrawl.tools.checkstyle.XpathFileGeneratorAuditListener*</param>
+                <param>com.puppycrawl.tools.checkstyle.XpathFileGeneratorAstFilter*</param>
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.xpath.*</param>
