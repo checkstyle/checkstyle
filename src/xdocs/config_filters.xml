@@ -683,6 +683,8 @@ public class UserService {
           <li>DescendantToken</li>
           <li>DesignForExtension</li>
           <li>EmptyBlock</li>
+          <li>EmptyForInitializerPad</li>
+          <li>EmptyForIteratorPad</li>
           <li>EmptyStatement</li>
           <li>EqualsAvoidNull</li>
           <li>EqualsHashCode</li>
