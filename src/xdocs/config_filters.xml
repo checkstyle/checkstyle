@@ -693,6 +693,7 @@ public class UserService {
           <li>FallThrough</li>
           <li>FinalLocalVariable</li>
           <li>FinalParameters</li>
+          <li>GenericWhitespace</li>
           <li>HiddenField</li>
           <li>HideUtilityClassConstructor</li>
           <li>IllegalInstantiation</li>
