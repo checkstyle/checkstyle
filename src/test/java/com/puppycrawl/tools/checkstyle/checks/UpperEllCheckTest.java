@@ -51,7 +51,7 @@ public class UpperEllCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(UpperEllCheck.class);
         final String[] expected = {
-            "94:43: " + getCheckMessage(MSG_KEY),
+            "94:40: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputUpperEllSemantic.java"), expected);
     }
