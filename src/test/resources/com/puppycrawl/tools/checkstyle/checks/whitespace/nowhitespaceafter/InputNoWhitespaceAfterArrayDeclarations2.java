@@ -9,13 +9,13 @@ public class InputNoWhitespaceAfterArrayDeclarations2
 
     public class A {
         public int[][] create(int i, int j) {
-            return new int[3] [3];//incorrect, 12:30
+            return new int[3] [3];//incorrect, 12:31
         }
     }
 
     public class B {
-        public int create(int i, int j) [][] {//incorrect, 17:40
-            return new int     [3][i + j] ;//incorrect,18:27
+        public int create(int i, int j) [][] {//incorrect, 17:41
+            return new int     [3][i + j] ;//incorrect,18:32
         }
     }
 
@@ -26,48 +26,48 @@ public class InputNoWhitespaceAfterArrayDeclarations2
     }
 
     public class D {
-        public int[][]   [] create(int i, int j) {//incorrect, 29:23
-            return new int  [ i + j ]    [ i + j ]               [ 0 ]     ;//incorrect 30:27,38,51
+        public int[][]   [] create(int i, int j) {//incorrect, 29:26
+            return new int  [ i + j ]    [ i + j ]               [ 0 ]     ;//incorrect 30:29,42,66
         }
     }
 
     public class E {
-        public int create(int i, int j, int   [][] k)[] [][] {//incorrect, 35:44,56
-            int e [][] [] = new int[i + j] [2][i + j];//incorrect, 36:18,23,43
-            e [0] [1][2] = 0; e[1][1][1] = 0;//incorrect, 37:14,18
+        public int create(int i, int j, int   [][] k)[] [][] {//incorrect, 35:47,57
+            int e [][] [] = new int[i + j] [2][i + j];//incorrect, 36:19,24,44
+            e [0] [1][2] = 0; e[1][1][1] = 0;//incorrect, 37:15,19
             return e;
         }
     }
     public static class F {
-        public static Integer [][][] create(int i, int j) {//incorrect, 42:23
-            int[][] [] f= new int[   0][1    ][    2    ]   ;
+        public static Integer [][][] create(int i, int j) {//incorrect, 42:31
+            int[][] [] f= new int[   0][1    ][    2    ]   ;//incorrect, 43:21
             return new Integer[i + j][i + j][0];
         }
     }
     public class G {
-        public List<String> [] [] [] create(int i, int j) {//incorrect, 48:28,31,34
-            //cannot build with check - generic array creation error, but whitespaces still catched
+        public List<String> [] [] [] create(int i, int j) {//incorrect, 48:29,32,35
+            //cannot build with check - generic array creation error, but whitespaces still caught
             //List<String> g[][] [] = new List<String> [0][1][2];//incorrect 49:33,55
             //return new List<String>[i + j][i + j][0];//correct
-            int g[][][] = new int [0][1][2];
+            int g[][][] = new int [0][1][2];//incorrect 52:35
             g[  0][0   ][   0   ]=0;
-            g [0][0][0]=0;//incorrect 54:14
-            g[0] [0][0]=0;//incorrect 55:17
-            g [0] [0] [0]        =0;//incorrect 56:14,18,22
+            g [0][0][0]=0;//incorrect 54:15
+            g[0] [0][0]=0;//incorrect 55:18
+            g [0] [0] [0]        =0;//incorrect 56:15,19,23
             return null;
         }
 
     }
     public class H {
-        public List<Integer> create(int i, int j)     []      [][] {//incorrect, 62:46,53
+        public List<Integer> create(int i, int j)     []      [][] {//incorrect, 62:55,63
             return null;
         }
     }
 
-    Object someStuff4 = boolean [].class;//incorrect, 67:32
+    Object someStuff4 = boolean [].class;//incorrect, 67:33
     String[][] someStuff5 = new String[4][9];
-    String[][] someStuff6 = (java.lang.String  []  []) someStuff5;//incorrect, 69:46,50
-    String[][] someStuff7 = (String [][]) someStuff5;//incorrect, 70:36
+    String[][] someStuff6 = (java.lang.String  []  []) someStuff5;//incorrect, 69:48,52
+    String[][] someStuff7 = (String [][]) someStuff5;//incorrect, 70:37
 
     //this is legal until allowLineBreaks is set to false
     int someStuff8
@@ -77,27 +77,27 @@ public class InputNoWhitespaceAfterArrayDeclarations2
     int[]
     someStuff81;
 
-    //incorrect 81:40
-    Integer someStuff9[][][] = (Integer [][][]) F.create(1,2);
+
+    Integer someStuff9[][][] = (Integer [][][]) F.create(1,2);//incorrect 81:41
 
     //type arguments
     List<char[]> someStuff10;//correct
-    List<char [][]> someStuff11;//incorrect 85:14
-    List<InputNoWhitespaceAfterArrayDeclarations2.A []> someStuff12;//incorrect 86:52
-    void foo(List<? extends String[]> bar, Comparable<? super Object []> baz) { }//incorrect 87:86
+    List<char [][]> someStuff11;//incorrect 85:15
+    List<InputNoWhitespaceAfterArrayDeclarations2.A []> someStuff12;//incorrect 86:53
+    void foo(List<? extends String[]> bar, Comparable<? super Object []> baz) { }//incorrect 87:70
 
     Integer someStuff13 = F.create(1,1)[0][0][0];
-    Integer someStuff131 = F.create(1,1)  [0][0]   [0];//incorrect 90:41,49
+    Integer someStuff131 = F.create(1,1)  [0][0]   [0];//incorrect 90:43,52
     Object[] someStuff14 = (Object[]) null;
-    Object[] someStuff15 = (Object  []  ) null;//incorrect 92:35
+    Object[] someStuff15 = (Object  []  ) null;//incorrect 92:37
 
-    byte someStuff16 = ((byte[]) someStuff4) [0];//incorrect 94:45
+    byte someStuff16 = ((byte[]) someStuff4) [0];//incorrect 94:46
 
     public void bar() {
-        if(someStuff15 instanceof Object  []) {//incorrect 97:41
+        if(someStuff15 instanceof Object  []) {//incorrect 97:43
 
         }
-        if(someStuff15 instanceof Object[]  []) {//incorrect 100:43
+        if(someStuff15 instanceof Object[]  []) {//incorrect 100:45
 
         }
         if(someStuff15 instanceof Object[][]) {
@@ -105,7 +105,7 @@ public class InputNoWhitespaceAfterArrayDeclarations2
         }
         Object[] a = null;
 
-        if(a instanceof Object  []) {//incorrect
+        if(a instanceof Object  []) {//incorrect 108:33
 
         }
         if(a instanceof Object[][]) {

@@ -152,8 +152,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
             final int whitespaceLineNo = whitespaceFollowedAst.getLineNo();
 
             if (hasTrailingWhitespace(ast, whitespaceColumnNo, whitespaceLineNo)) {
-                log(whitespaceLineNo, whitespaceColumnNo,
-                        MSG_KEY, whitespaceFollowedAst.getText());
+                log(ast, MSG_KEY, whitespaceFollowedAst.getText());
             }
         }
     }
