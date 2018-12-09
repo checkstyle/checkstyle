@@ -725,6 +725,8 @@ public class UserService {
           <li>NestedForDepth</li>
           <li>NestedIfDepth</li>
           <li>NestedTryDepth</li>
+          <li>NoWhitespaceAfter</li>
+          <li>NoWhitespaceBefore</li>
           <li>NPathComplexity</li>
           <li>OneStatementPerLine</li>
           <li>OperatorWrap</li>

@@ -120,7 +120,7 @@ public class NoWhitespaceBeforeCheck
                 }
             }
             if (flag) {
-                log(ast.getLineNo(), before, MSG_KEY, ast.getText());
+                log(ast, MSG_KEY, ast.getText());
             }
         }
     }
