@@ -137,6 +137,15 @@ public class FileContentsTest {
     }
 
     @Test
+    public void testNotInPackageInfo() {
+        final FileContents fileContents = new FileContents(new FileText(
+                new File("filename.java"),
+                Collections.singletonList("  //   ")));
+
+        assertFalse("Should return false when not in package info", fileContents.inPackageInfo());
+    }
+
+    @Test
     public void testGetJavadocBefore() {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Collections.singletonList("    ")));

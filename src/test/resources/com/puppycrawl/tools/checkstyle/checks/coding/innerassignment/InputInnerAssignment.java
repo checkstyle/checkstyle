@@ -78,6 +78,12 @@ public class InputInnerAssignment
         do
             sum = sum + 1;
         while (sum < 6);
+
+        ChildParent o = new ChildParent();
+        Object t = null;
+
+        while (o != null)
+            t = o = o.getParent();
     }
 
     @SuppressWarnings(value = "unchecked")
@@ -97,6 +103,12 @@ public class InputInnerAssignment
         } catch (IOException e)
         {
             return null;
+        }
+    }
+
+    private static class ChildParent {
+        public ChildParent getParent() {
+            return this;
         }
     }
 }

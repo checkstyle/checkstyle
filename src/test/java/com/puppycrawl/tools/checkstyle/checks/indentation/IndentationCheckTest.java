@@ -1597,7 +1597,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "8");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "8");
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "27: " + getCheckMessage(MSG_CHILD_ERROR, "synchronized", 0, 12),
+        };
         verifyWarns(checkConfig, getPath("InputIndentationSynchronizedStatement.java"), expected);
     }
 

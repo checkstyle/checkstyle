@@ -33,6 +33,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
+import com.puppycrawl.tools.checkstyle.XpathFileGeneratorAstFilter;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -81,6 +82,9 @@ public class ModuleReflectionUtilTest {
         assertFalse("Should return false when invalid class is passed",
                 ModuleReflectionUtil
                         .isValidCheckstyleClass(InvalidNonDefaultConstructorClass.class));
+        assertFalse("Should return false when forced invalid class is passed",
+                ModuleReflectionUtil
+                        .isValidCheckstyleClass(XpathFileGeneratorAstFilter.class));
     }
 
     @Test

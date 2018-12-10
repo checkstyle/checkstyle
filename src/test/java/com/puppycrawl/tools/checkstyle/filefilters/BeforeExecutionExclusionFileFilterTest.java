@@ -28,6 +28,8 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class BeforeExecutionExclusionFileFilterTest extends AbstractModuleTestSupport {
@@ -70,8 +72,14 @@ public class BeforeExecutionExclusionFileFilterTest extends AbstractModuleTestSu
                 createModuleConfig(BeforeExecutionExclusionFileFilter.class);
         filterConfig.addAttribute("fileNamePattern", "IncorrectClass\\.java");
 
+        final DefaultConfiguration checkConfig = createModuleConfig(FinalLocalVariableCheck.class);
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        treeWalkerConfig.addChild(checkConfig);
+        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
+        checkerConfig.addChild(filterConfig);
+
         final String[] violations = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(createChecker(filterConfig),
+        verify(checkerConfig,
                 getNonCompilablePath("InputBeforeExecutionExclusionFileFilterIncorrectClass.java"),
                 violations);
     }

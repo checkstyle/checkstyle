@@ -175,6 +175,14 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testNotRegExpNoMatch() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
+        checkConfig.addAttribute("file", getPath("InputImportControlNotRegExpNoMatch.xml"));
+
+        verify(checkConfig, getPath("InputImportControl.java"), CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
+    @Test
     public void testBlacklist() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
         checkConfig.addAttribute("file", getPath("InputImportControlBlacklist.xml"));
