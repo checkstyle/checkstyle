@@ -272,8 +272,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
             objCalledOn = objCalledOn.getLastChild();
         }
         final DetailAST expr = methodCall.findFirstToken(TokenTypes.ELIST).getFirstChild();
-        if (isObjectValid(objCalledOn)
-                && containsOneArgument(methodCall)
+        if (containsOneArgument(methodCall)
                 && containsAllSafeTokens(expr)
                 && isCalledOnStringFieldOrVariable(objCalledOn)) {
             final String methodName = methodCall.getFirstChild().getLastChild().getText();
@@ -284,36 +283,6 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
                 log(methodCall, MSG_EQUALS_IGNORE_CASE_AVOID_NULL);
             }
         }
-    }
-
-    /**
-     * Check whether the object equals method is called on is not a String literal
-     * and not too complex.
-     * @param objCalledOn the object equals method is called on ast.
-     * @return true if the object is valid.
-     */
-    private static boolean isObjectValid(DetailAST objCalledOn) {
-        boolean result = true;
-        final DetailAST previousSibling = objCalledOn.getPreviousSibling();
-        if (previousSibling != null
-                && previousSibling.getType() == TokenTypes.DOT) {
-            result = false;
-        }
-        if (isStringLiteral(objCalledOn)) {
-            result = false;
-        }
-        return result;
-    }
-
-    /**
-     * Checks for calling equals on String literal and
-     * anon object which cannot be null.
-     * @param objCalledOn object AST
-     * @return if it is string literal
-     */
-    private static boolean isStringLiteral(DetailAST objCalledOn) {
-        return objCalledOn.getType() == TokenTypes.STRING_LITERAL
-                || objCalledOn.getType() == TokenTypes.LITERAL_NEW;
     }
 
     /**

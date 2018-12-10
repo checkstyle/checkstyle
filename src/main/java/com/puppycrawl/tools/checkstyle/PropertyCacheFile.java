@@ -257,8 +257,8 @@ final class PropertyCacheFile {
         final Set<ExternalResource> resources = loadExternalResources(locations);
         if (areExternalResourcesChanged(resources)) {
             reset();
+            fillCacheWithExternalResources(resources);
         }
-        fillCacheWithExternalResources(resources);
     }
 
     /**
@@ -337,8 +337,7 @@ final class PropertyCacheFile {
      * @param externalResources a set of {@link ExternalResource}.
      */
     private void fillCacheWithExternalResources(Set<ExternalResource> externalResources) {
-        externalResources.stream()
-            .filter(resource -> !isResourceLocationInCache(resource.location))
+        externalResources
             .forEach(resource -> details.setProperty(resource.location, resource.contentHashSum));
     }
 

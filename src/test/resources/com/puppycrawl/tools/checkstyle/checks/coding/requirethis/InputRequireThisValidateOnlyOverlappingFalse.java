@@ -467,3 +467,14 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
 
     boolean foo57(boolean booleanField) { booleanField = !booleanField;  return booleanField; }
 }
+class Issue6264 {
+    private final String hashCode;
+
+    Issue6264() {
+        this.hashCode = new String();
+    }
+
+    private void hashCodeMethod(String param) {
+        hashCode();
+    }
+}
