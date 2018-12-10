@@ -1794,8 +1794,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck</param>
-                <!-- this class will be rewritten in future releases -->
-                <!--<param>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder</param>-->
+                <param>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.TranslationCheck</param>
@@ -1819,9 +1818,11 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.UpperEllCheckTest</param>
+                <!-- needed for SuppressWarningsFilter -->
+                <param>com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilterTest</param>
               </targetTests>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>100</mutationThreshold>
+              <mutationThreshold>99</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -2378,6 +2379,7 @@
                 <param>com.puppycrawl.tools.checkstyle.ModuleFactory</param>
                 <param>com.puppycrawl.tools.checkstyle.PropertyResolver</param>
                 <param>com.puppycrawl.tools.checkstyle.StatelessCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.TreeWalkerFilter</param>
                 <param>com.puppycrawl.tools.checkstyle.GlobalStatefulCheck</param>
                 <param>com.puppycrawl.tools.checkstyle.grammar.CommentListener</param>
               </targetClasses>

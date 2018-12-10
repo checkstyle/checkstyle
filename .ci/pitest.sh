@@ -32,13 +32,21 @@ function checkPitestReport() {
 case $1 in
 
 pitest-annotation|pitest-design|pitest-header|pitest-imports \
-|pitest-metrics|pitest-misc|pitest-modifier|pitest-naming \
+|pitest-metrics|pitest-modifier|pitest-naming \
 |pitest-regexp|pitest-sizes|pitest-whitespace|pitest-ant \
 |pitest-api|pitest-common|pitest-filters|pitest-main \
 |pitest-packagenamesloader|pitest-tree-walker|pitest-utils \
 |pitest-xpath|pitest-common-2)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=();
+  checkPitestReport "${ignoredItems[@]}"
+  ;;
+
+pitest-misc)
+  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  declare -a ignoredItems=(
+  "SuppressWarningsHolder.java.html:<td class='covered'><pre><span  class='survived'>                        lastColumn = nextAST.getColumnNo() - 1;</span></pre></td></tr>"
+  );
   checkPitestReport "${ignoredItems[@]}"
   ;;
 
