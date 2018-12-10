@@ -26,12 +26,14 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.powermock.api.mockito.PowerMockito.mock;
 
+import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,16 +43,18 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
+import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ SuppressWarningsHolder.class, SuppressWarningsHolderTest.class })
+@PrepareForTest(SuppressWarningsHolder.class)
 public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
     @Override
@@ -59,11 +63,13 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    public void testGet() {
         final SuppressWarningsHolder checkObj = new SuppressWarningsHolder();
         final int[] expected = {TokenTypes.ANNOTATION};
         assertArrayEquals("Required token array differs from expected",
                 expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Required token array differs from expected",
+                expected, checkObj.getAcceptableTokens());
     }
 
     @Test
@@ -331,6 +337,24 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputSuppressWarningsHolder4.java"), expected);
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    public void testClearState() throws Exception {
+        final SuppressWarningsHolder check = new SuppressWarningsHolder();
+
+        final Optional<DetailAST> annotationDef = TestUtil.findTokenInAstByPredicate(
+                JavaParser.parseFile(
+                    new File(getPath("InputSuppressWarningsHolder.java")),
+                    JavaParser.Options.WITHOUT_COMMENTS),
+            ast -> ast.getType() == TokenTypes.ANNOTATION);
+
+        assertTrue("Ast should contain ANNOTATION", annotationDef.isPresent());
+        assertTrue("State is not cleared on beginTree",
+            TestUtil.isStatefulFieldClearedDuringBeginTree(check, annotationDef.get(),
+                "ENTRIES",
+                entries -> ((ThreadLocal<List<Object>>) entries).get().isEmpty()));
     }
 
     private static SuppressWarningsHolder createHolder(String checkName, int firstLine,
