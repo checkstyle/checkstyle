@@ -264,4 +264,14 @@ public class EmptyLineSeparatorCheckTest
                 expected);
     }
 
+    @Test
+    public void testClassOnly() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addAttribute("tokens", "CLASS_DEF");
+        checkConfig.addAttribute("allowMultipleEmptyLinesInsideClassMembers", "false");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputEmptyLineSeparatorMultipleEmptyLinesInside.java"),
+                expected);
+    }
+
 }

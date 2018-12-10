@@ -1791,6 +1791,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
@@ -1860,6 +1861,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
@@ -1901,6 +1903,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
@@ -1942,6 +1945,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
@@ -1983,6 +1987,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
@@ -2024,6 +2029,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
@@ -2065,6 +2071,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
@@ -2106,6 +2113,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
@@ -2147,6 +2155,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
@@ -2188,6 +2197,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
@@ -2229,6 +2239,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
@@ -2270,6 +2281,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
@@ -2317,6 +2329,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
@@ -2358,6 +2371,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
@@ -2399,6 +2413,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
@@ -2441,6 +2456,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
@@ -2482,6 +2498,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
@@ -2520,6 +2537,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
@@ -2557,6 +2575,8 @@
                 <param>com.puppycrawl.tools.checkstyle.PropertyCacheFileTest</param>
                 <param>com.puppycrawl.tools.checkstyle.CheckerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.ThreadModeSettingsTest</param>
+                <!-- this test is required for Checker -->
+                <param>com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilterTest</param>
               </targetTests>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>100</mutationThreshold>
@@ -2588,6 +2608,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
@@ -2643,6 +2664,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
@@ -2681,6 +2703,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
@@ -2768,6 +2791,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
@@ -2822,6 +2846,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
@@ -2865,6 +2890,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
@@ -2924,6 +2950,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
@@ -2990,6 +3017,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>

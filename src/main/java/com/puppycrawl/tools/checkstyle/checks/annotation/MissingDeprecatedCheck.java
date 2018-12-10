@@ -221,7 +221,8 @@ public final class MissingDeprecatedCheck extends AbstractCheck {
                     found = true;
                 }
                 else if (noArgMultilineStart.find()) {
-                    found = checkTagAtTheRestOfComment(lines, found, currentLine, i);
+                    checkTagAtTheRestOfComment(lines, found, currentLine, i);
+                    found = true;
                 }
             }
         }
@@ -237,11 +238,9 @@ public final class MissingDeprecatedCheck extends AbstractCheck {
      * @param foundBefore flag from parent method
      * @param currentLine current line
      * @param index som index
-     * @return true if Tag is found
      */
-    private boolean checkTagAtTheRestOfComment(String[] lines, boolean foundBefore,
+    private void checkTagAtTheRestOfComment(String[] lines, boolean foundBefore,
             int currentLine, int index) {
-        boolean found = false;
         int reindex = index + 1;
         while (reindex <= lines.length - 1) {
             final Matcher multilineCont = MATCH_DEPRECATED_MULTILINE_CONT.matcher(lines[reindex]);
@@ -256,11 +255,9 @@ public final class MissingDeprecatedCheck extends AbstractCheck {
                     log(currentLine, MSG_KEY_JAVADOC_DUPLICATE_TAG,
                             JavadocTagInfo.DEPRECATED.getText());
                 }
-                found = true;
             }
             reindex++;
         }
-        return found;
     }
 
 }

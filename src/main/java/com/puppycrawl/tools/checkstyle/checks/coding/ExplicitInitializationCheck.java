@@ -90,9 +90,7 @@ public class ExplicitInitializationCheck extends AbstractCheck {
             final DetailAST assign = ast.findFirstToken(TokenTypes.ASSIGN);
             final DetailAST exprStart =
                 assign.getFirstChild().getFirstChild();
-            final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
-            if (isObjectType(type)
-                && exprStart.getType() == TokenTypes.LITERAL_NULL) {
+            if (exprStart.getType() == TokenTypes.LITERAL_NULL) {
                 final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
                 log(ident, MSG_KEY, ident.getText(), "null");
             }
@@ -157,17 +155,6 @@ public class ExplicitInitializationCheck extends AbstractCheck {
             }
         }
         return skipCase;
-    }
-
-    /**
-     * Determines if a given type is an object type.
-     * @param type type to check.
-     * @return true if it is an object type.
-     */
-    private static boolean isObjectType(DetailAST type) {
-        final int objectType = type.getFirstChild().getType();
-        return objectType == TokenTypes.IDENT || objectType == TokenTypes.DOT
-                || objectType == TokenTypes.ARRAY_DECLARATOR;
     }
 
     /**

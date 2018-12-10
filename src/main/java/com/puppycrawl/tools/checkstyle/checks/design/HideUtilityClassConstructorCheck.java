@@ -68,7 +68,6 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
 
             final boolean hasDefaultCtor = details.isHasDefaultCtor();
             final boolean hasPublicCtor = details.isHasPublicCtor();
-            final boolean hasMethodOrField = details.isHasMethodOrField();
             final boolean hasNonStaticMethodOrField = details.isHasNonStaticMethodOrField();
             final boolean hasNonPrivateStaticMethodOrField =
                     details.isHasNonPrivateStaticMethodOrField();
@@ -80,7 +79,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
             final boolean extendsJlo =
                 ast.findFirstToken(TokenTypes.EXTENDS_CLAUSE) == null;
 
-            final boolean isUtilClass = extendsJlo && hasMethodOrField
+            final boolean isUtilClass = extendsJlo
                 && !hasNonStaticMethodOrField && hasNonPrivateStaticMethodOrField;
 
             if (isUtilClass && hasAccessibleCtor && !hasStaticModifier) {
@@ -117,8 +116,6 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
         /** Class ast. */
         private final DetailAST ast;
         /** Result of details gathering. */
-        private boolean hasMethodOrField;
-        /** Result of details gathering. */
         private boolean hasNonStaticMethodOrField;
         /** Result of details gathering. */
         private boolean hasNonPrivateStaticMethodOrField;
@@ -133,14 +130,6 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
          * */
         Details(DetailAST ast) {
             this.ast = ast;
-        }
-
-        /**
-         * Getter.
-         * @return boolean
-         */
-        public boolean isHasMethodOrField() {
-            return hasMethodOrField;
         }
 
         /**
@@ -180,7 +169,6 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
          */
         public void invoke() {
             final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
-            hasMethodOrField = false;
             hasNonStaticMethodOrField = false;
             hasNonPrivateStaticMethodOrField = false;
             hasDefaultCtor = true;
@@ -191,7 +179,6 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
                 final int type = child.getType();
                 if (type == TokenTypes.METHOD_DEF
                         || type == TokenTypes.VARIABLE_DEF) {
-                    hasMethodOrField = true;
                     final DetailAST modifiers =
                         child.findFirstToken(TokenTypes.MODIFIERS);
                     final boolean isStatic =

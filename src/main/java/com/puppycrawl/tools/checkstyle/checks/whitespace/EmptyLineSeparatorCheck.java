@@ -331,7 +331,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private void processMultipleLinesInside(DetailAST ast) {
         final int astType = ast.getType();
-        if (astType != TokenTypes.CLASS_DEF && isClassMemberBlock(astType)) {
+        if (isClassMemberBlock(astType)) {
             final List<Integer> emptyLines = getEmptyLines(ast);
             final List<Integer> emptyLinesToLog = getEmptyLinesToLog(emptyLines);
 
