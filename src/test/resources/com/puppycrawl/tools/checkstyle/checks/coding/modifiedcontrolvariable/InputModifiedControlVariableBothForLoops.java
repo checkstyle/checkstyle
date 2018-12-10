@@ -77,6 +77,9 @@ class InputModifiedControlVariableBothForLoops
             };
             v = "bad";
         }
+        for (int i = 0; i < 10; i += 1) {
+            for (i = 7; i < 10; i += 1) {}
+        }
     }
     private int i;
 }

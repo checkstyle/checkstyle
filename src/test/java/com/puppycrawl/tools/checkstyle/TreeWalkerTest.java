@@ -49,6 +49,7 @@ import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
+import com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 import com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck;
@@ -56,6 +57,7 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
+import com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -533,6 +535,25 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         // test is only valid when relative paths are given
         final String filePath = "src/test/resources/" + getPackageLocation()
                 + "/InputTreeWalkerSuppressionXpathFilterAbsolute.java";
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verify(checkerConfig, filePath, expected);
+    }
+
+    @Test
+    public void testExternalResourceFiltersWithNoExternalResource() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyStatementCheck.class);
+        final DefaultConfiguration filterConfig =
+                createModuleConfig(SuppressWithNearbyCommentFilter.class);
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        treeWalkerConfig.addChild(checkConfig);
+        treeWalkerConfig.addChild(filterConfig);
+
+        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
+        final File cacheFile = temporaryFolder.newFile();
+        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
+
+        final String filePath = temporaryFolder.newFile("file.java").getPath();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkerConfig, filePath, expected);

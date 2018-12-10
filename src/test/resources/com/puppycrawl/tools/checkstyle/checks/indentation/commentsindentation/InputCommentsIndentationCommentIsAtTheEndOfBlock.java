@@ -563,6 +563,13 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
         // comment
     }
 
+    void InputCommentsIndentationCommentIsAtTheEndOfBlock(String s) {
+        assert(s == null ||
+                s != null);
+         // comment
+         //comment
+    }
+
     // We almost reached the end of the class here.
 }
 // The END of the class.

@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -63,6 +65,21 @@ public class JavadocTagTest {
 
         assertEquals("Invalid toString result",
                 "JavadocTag[tag='author' lineNo=0, columnNo=1, firstArg='firstArg']", result);
+    }
+
+    @Test
+    public void testJavadocTagReferenceImports() {
+        assertTrue("", new JavadocTag(0, 0, "see", null).canReferenceImports());
+        assertTrue("", new JavadocTag(0, 0, "link", null).canReferenceImports());
+        assertTrue("", new JavadocTag(0, 0, "value", null).canReferenceImports());
+        assertTrue("", new JavadocTag(0, 0, "linkplain", null).canReferenceImports());
+        assertTrue("", new JavadocTag(0, 0, "throws", null).canReferenceImports());
+        assertTrue("", new JavadocTag(0, 0, "exception", null).canReferenceImports());
+    }
+
+    @Test
+    public void testJavadocTagReferenceImportsInvalid() {
+        assertFalse("", new JavadocTag(0, 0, "author", null).canReferenceImports());
     }
 
 }

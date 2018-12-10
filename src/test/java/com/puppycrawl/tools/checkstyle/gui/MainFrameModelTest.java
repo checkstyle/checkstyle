@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.gui;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -166,6 +167,16 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
 
         // Model will not change with null input
         verifyCorrectTestDataInFrameModel();
+    }
+
+    @Test
+    public void testOpenFileNullParameter2() throws Exception {
+        model.openFile(null);
+
+        assertNull("Test is null", model.getText());
+        assertEquals("Title is expected value", "Checkstyle GUI", model.getTitle());
+        assertFalse("Reload action should be disabled", model.isReloadActionEnabled());
+        assertNull("Current file is null", model.getCurrentFile());
     }
 
     @Test

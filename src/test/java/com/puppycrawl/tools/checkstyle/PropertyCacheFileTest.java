@@ -208,6 +208,33 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testCacheRemainsWhenExternalResourceTheSame() throws IOException {
+        final Configuration config = new DefaultConfiguration("myName");
+        final String externalResourcePath = temporaryFolder.newFile().getPath();
+        final String filePath = temporaryFolder.newFile().getPath();
+        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
+
+        // pre-populate with cache with resources
+
+        cache.load();
+
+        final Set<String> resources = new HashSet<>();
+        resources.add(externalResourcePath);
+        cache.putExternalResources(resources);
+
+        cache.persist();
+
+        // test cache with same resources and new file
+
+        cache.load();
+        cache.put("myFile", 1);
+        cache.putExternalResources(resources);
+
+        assertTrue("Should return true in file is in cache",
+                cache.isInCache("myFile", 1));
+    }
+
+    @Test
     public void testExternalResourceIsSavedInCache() throws Exception {
         final Configuration config = new DefaultConfiguration("myName");
         final String filePath = temporaryFolder.newFile().getPath();

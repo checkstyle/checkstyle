@@ -233,6 +233,27 @@ public class AnnotationUtilTest {
     }
 
     @Test
+    public void testContainsAnnotationListWithNoMatchingAnnotation() {
+        final DetailAST ast = new DetailAST();
+        final DetailAST modifiersAst = create(
+                TokenTypes.MODIFIERS,
+                create(
+                        TokenTypes.ANNOTATION,
+                        create(
+                                TokenTypes.DOT,
+                                create(
+                                        TokenTypes.IDENT,
+                                        "Override")
+                        )
+                )
+        );
+        ast.addChild(modifiersAst);
+        final List<String> annotations = Collections.singletonList("Deprecated");
+        final boolean result = AnnotationUtil.containsAnnotation(ast, annotations);
+        assertFalse("No matching annotation found", result);
+    }
+
+    @Test
     public void testContainsAnnotation() {
         final DetailAST astForTest = new DetailAST();
         astForTest.setType(TokenTypes.PACKAGE_DEF);
@@ -254,6 +275,30 @@ public class AnnotationUtilTest {
 
         assertTrue("Annotation should contain " + astForTest,
                 AnnotationUtil.containsAnnotation(astForTest, "Annotation"));
+    }
+
+    @Test
+    public void testContainsAnnotationWithStringFalse() {
+        final DetailAST astForTest = new DetailAST();
+        astForTest.setType(TokenTypes.PACKAGE_DEF);
+        final DetailAST child = new DetailAST();
+        final DetailAST annotations = new DetailAST();
+        final DetailAST annotation = new DetailAST();
+        final DetailAST annotationNameHolder = new DetailAST();
+        final DetailAST annotationName = new DetailAST();
+        annotations.setType(TokenTypes.ANNOTATIONS);
+        annotation.setType(TokenTypes.ANNOTATION);
+        annotationNameHolder.setType(TokenTypes.AT);
+        annotationName.setText("Annotation");
+
+        annotationNameHolder.setNextSibling(annotationName);
+        annotation.setFirstChild(annotationNameHolder);
+        annotations.setFirstChild(annotation);
+        child.setNextSibling(annotations);
+        astForTest.setFirstChild(child);
+
+        assertFalse("Annotation should not contain " + astForTest,
+                AnnotationUtil.containsAnnotation(astForTest, "AnnotationBad"));
     }
 
     @Test
