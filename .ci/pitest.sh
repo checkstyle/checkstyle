@@ -8,8 +8,8 @@ function checkPitestReport() {
   fail=0
   SEARCH_REGEXP="(span  class='survived'|class='uncovered'><pre>)"
   grep -irE "$SEARCH_REGEXP" target/pit-reports \
-     | sed -E 's/.*\/([A-Za-z]+.java.html)/\1/' | sort > target/actual.txt
-  printf "%s\n" "${ignored[@]}" | sed '/^$/d' > target/ignored.txt
+     | sed -E 's/.*\/([A-Za-z]+.java.html)/\1/' | LC_ALL=C sort > target/actual.txt
+  printf "%s\n" "${ignored[@]}" | sed '/^$/d' | LC_ALL=C sort > target/ignored.txt
   if [ "$(diff --unified target/ignored.txt target/actual.txt)" != "" ] ; then
       fail=1
       echo "Actual:" ;
