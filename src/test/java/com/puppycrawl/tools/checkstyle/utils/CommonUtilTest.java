@@ -214,6 +214,12 @@ public class CommonUtilTest {
     }
 
     @Test
+    public void testPattern() {
+        final boolean result = CommonUtil.isPatternValid("someValidPattern");
+        assertTrue("Should return true when pattern is valid", result);
+    }
+
+    @Test
     public void testInvalidPattern() {
         final boolean result = CommonUtil.isPatternValid("some[invalidPattern");
         assertFalse("Should return false when pattern is invalid", result);

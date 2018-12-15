@@ -490,11 +490,10 @@ public final class IllegalTypeCheck extends AbstractCheck {
         while (toVisit != null) {
             toVisit = getNextSubTreeNode(toVisit, importAst);
             if (toVisit != null && toVisit.getType() == TokenTypes.IDENT) {
-                canonicalNameBuilder.append(toVisit.getText());
-                final DetailAST nextSubTreeNode = getNextSubTreeNode(toVisit, importAst);
-                if (nextSubTreeNode.getType() != TokenTypes.SEMI) {
+                if (canonicalNameBuilder.length() > 0) {
                     canonicalNameBuilder.append('.');
                 }
+                canonicalNameBuilder.append(toVisit.getText());
             }
         }
         return canonicalNameBuilder.toString();

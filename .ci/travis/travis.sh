@@ -72,8 +72,10 @@ javac9)
 
 javac8)
   # InputCustomImportOrderNoPackage2 - nothing is required in front of first import
+  # InputIllegalTypePackageClassName - bad import for testing
   files=($(grep -REL --include='*.java' \
         --exclude='InputCustomImportOrderNoPackage2.java' \
+        --exclude='InputIllegalTypePackageClassName.java' \
         '//non-compiled (syntax|with javac)?\:' \
         src/test/resources-noncompilable))
   mkdir -p target

@@ -328,3 +328,9 @@ enum Foo1 {}
  *   some description} // no warning, as this is just inline tag description
  */
 interface FooIn1 {}
+
+/**
+ * <p>Testing javadoc with spanning tag {@linkplain #DEFAULT default mapping
+ * factory}.</p> // no warning
+ */
+interface FooIn2 {}
