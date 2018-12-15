@@ -340,6 +340,8 @@ enum InputJavadocMethodTagsEnum
     int B_CONSTANT = 1;
     /** @return This tag is valid here and expected with Java 8 */
     String someField2();
+    /** {@inheritDoc} */
+    String someField3();
 }
 
 /**
