@@ -1348,8 +1348,8 @@ import java.util.stream.IntStream;
     </section>
 
     <section name="ImportOrder">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="ImportOrder_Description">
-        <p>Since Checkstyle 3.2</p>
         <p>Checks the ordering/grouping of imports. Features are:</p>
         <ul>
           <li>groups type/static imports: ensures that groups of imports come in a
@@ -1367,11 +1367,7 @@ import java.util.stream.IntStream;
           <li>arrange static imports: ensures the relative order between
           type imports and static imports (see
           <a href="property_types.html#importOrder">import orders</a>)</li>
-         </ul>
-        <p>
-        <a href="#ImportOrder_Examples">Examples section</a> contains examples that
-          work with default formatter configurations of Eclipse, IntelliJ IDEA and NetBeans
-        </p>
+        </ul>
       </subsection>
 
       <subsection name="Properties" id="ImportOrder_Properties">
@@ -1385,7 +1381,7 @@ import java.util.stream.IntStream;
           </tr>
           <tr>
             <td>option</td>
-            <td>policy on the relative order between type imports and static imports</td>
+            <td>specify policy on the relative order between type imports and static imports.</td>
             <td><a href="property_types.html#importOrder">Import Order Policy</a></td>
             <td><code>under</code></td>
             <td>5.0</td>
@@ -1393,7 +1389,7 @@ import java.util.stream.IntStream;
           <tr>
             <td>groups</td>
             <td>
-              list of <b>type import</b> groups (every group identified either by a
+              specify list of <b>type import</b> groups (every group identified either by a
               common prefix string, or by a regular expression enclosed
               in forward slashes (e.g. <code>/regexp/</code>). All type imports,
               which does not match any group, falls into an additional group, located at the end.
@@ -1406,8 +1402,8 @@ import java.util.stream.IntStream;
           </tr>
           <tr>
             <td>ordered</td>
-            <td>whether type imports within each group should be sorted
-              (It doesn't affect sorting for static imports.)</td>
+            <td>control whether type imports within each group should be sorted.
+              It doesn't affect sorting for static imports.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>true</td>
             <td>3.2</td>
@@ -1415,9 +1411,9 @@ import java.util.stream.IntStream;
           <tr>
             <td>separated</td>
             <td>
-              whether type import groups should be separated by, at least, one
+              control whether type import groups should be separated by, at least, one
               blank line or comment and aren't separated internally.
-              (It doesn't affect separations for static imports.)
+              It doesn't affect separations for static imports.
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
@@ -1426,10 +1422,10 @@ import java.util.stream.IntStream;
           <tr>
           <td>separatedStaticGroups</td>
               <td>
-              whether static import groups should be separated by, at least, one
+              control whether static import groups should be separated by, at least, one
               blank line or comment and aren't separated internally.
-              (This property has effect only when the property <code>option</code>
-              is is set to <code>top</code> or <code>bottom</code>.)
+              This property has effect only when the property <code>option</code>
+              is is set to <code>top</code> or <code>bottom</code>.
               </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
@@ -1437,10 +1433,10 @@ import java.util.stream.IntStream;
           </tr>
           <tr>
             <td>caseSensitive</td>
-            <td>whether string comparison should be case sensitive or not.
+            <td>control whether string comparison should be case sensitive or not.
               Case sensitive sorting is in
               <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.
-              (It affects both type imports and static imports)
+              It affects both type imports and static imports.
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>true</td>
@@ -1449,13 +1445,13 @@ import java.util.stream.IntStream;
           <tr>
             <td>staticGroups</td>
             <td>
-                list of <b>static</b> import groups (every group identified either by a
+                specify list of <b>static</b> import groups (every group identified either by a
                 common prefix string, or by a regular expression enclosed
                 in forward slashes (e.g. <code>/regexp/</code>). All static imports,
                 which does not match any group, falls into an additional group, located at the end.
                 Thus, the empty list of static groups (the default value) means
-                one group for all static imports. (This property has effect only when
-                the property <code>option</code> is set to <code>top</code> or <code>bottom</code>.)
+                one group for all static imports. This property has effect only when
+                the property <code>option</code> is set to <code>top</code> or <code>bottom</code>.
             </td>
             <td><a href="property_types.html#regexp">Regular Expressions</a></td>
             <td><code>{}</code></td>
@@ -1463,15 +1459,19 @@ import java.util.stream.IntStream;
           </tr>
           <tr>
             <td>sortStaticImportsAlphabetically</td>
-            <td>whether <b>static imports</b> located at <b>top</b> or <b>bottom</b> are sorted
-                within the group.</td>
+            <td>
+                control whether <b>static imports</b> located at <b>top</b> or
+                <b>bottom</b> are sorted within the group.
+            </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
             <td>6.5</td>
           </tr>
           <tr>
             <td>useContainerOrderingForStatic</td>
-            <td>whether to use container ordering (Eclipse IDE term) for static imports or not</td>
+            <td>
+                control whether to use container ordering (Eclipse IDE term) for static
+                imports or not.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
             <td>7.1</td>
@@ -1559,12 +1559,15 @@ import java.util.stream.IntStream;
            ImportOrder has a limitation by design to enforce an empty line between groups
            ("java", "javax"). There is no flexibility to enforce empty lines between some
            groups and no empty lines between other groups.</p>
-
+          <p>
+            Note: "separated" option is disabled because IDEA default has blank line
+            between "java" and static imports, and no blank line between "javax" and "java".
+          </p>
         <source>
 &lt;module name=&quot;ImportOrder&quot;&gt;
   &lt;property name=&quot;groups&quot; value=&quot;*,javax,java&quot;/&gt;
   &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;separated&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;separated&quot; value=&quot;false&quot;/&gt;
   &lt;property name=&quot;option&quot; value=&quot;bottom&quot;/&gt;
   &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
@@ -1596,6 +1599,27 @@ import java.util.stream.IntStream;
 &lt;/module&gt;
         </source>
 
+        <p>
+          Group descriptions enclosed in slashes are interpreted as regular expressions.
+          If multiple groups match, the one matching a longer
+          substring of the imported name will take precedence, with ties
+          broken first in favor of earlier matches and finally in favor of
+          the first matching group.
+        </p>
+        <p>
+          There is always a wildcard group to which everything not in a named group
+          belongs. If an import does not match a named group, the group belongs to
+          this wildcard group. The wildcard group position can be specified using the
+          {@code *} character.
+        </p>
+        <p>
+          Check also has on option making it more flexible:
+          <b>sortStaticImportsAlphabetically</b> - sets whether static imports grouped by
+          <b>top</b> or <b>bottom</b> option should be sorted alphabetically or
+          not, default value is <b>false</b>. It is applied to static imports grouped
+          with <b>top</b> or <b>bottom</b> options. This option is helping in reconciling
+          of this Check and other tools like Eclipse's Organize Imports feature.
+        </p>
         <p>
           To configure the Check allows static imports grouped to the <b>top</b> being sorted
           alphabetically:
@@ -1649,10 +1673,10 @@ public class SomeClass { ... }
           we compare the fully qualified import names.
           For e.g. this is what is considered to be container names for the given example:
 
-          import static HttpConstants.COLON     => HttpConstants
-          import static HttpHeaders.addHeader   => HttpHeaders
-          import static HttpHeaders.setHeader   => HttpHeaders
-          import static HttpHeaders.Names.DATE  => HttpHeaders.Names
+          import static HttpConstants.COLON     =&gt; HttpConstants
+          import static HttpHeaders.addHeader   =&gt; HttpHeaders
+          import static HttpHeaders.setHeader   =&gt; HttpHeaders
+          import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
 
           According to this logic, HttpHeaders.Names should come after HttpHeaders.
         </p>
