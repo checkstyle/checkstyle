@@ -727,7 +727,7 @@ public class ImportOrderCheck
             }
             else if (CommonUtil.startsWithChar(pkg, '/')) {
                 if (!CommonUtil.endsWithChar(pkg, '/')) {
-                    throw new IllegalArgumentException("Invalid group");
+                    throw new IllegalArgumentException("Invalid group: " + pkg);
                 }
                 pkg = pkg.substring(1, pkg.length() - 1);
                 grp = Pattern.compile(pkg);

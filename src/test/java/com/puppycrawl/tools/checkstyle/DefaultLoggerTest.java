@@ -41,6 +41,14 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class DefaultLoggerTest {
 
+    private final LocalizedMessage auditStartMessage = new LocalizedMessage(1,
+            Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditStarted", null, null,
+            getClass(), null);
+
+    private final LocalizedMessage auditFinishMessage = new LocalizedMessage(1,
+            Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditFinished", null, null,
+            getClass(), null);
+
     @Test
     public void testCtor() throws UnsupportedEncodingException {
         final OutputStream infoStream = new ByteArrayOutputStream();
@@ -145,6 +153,40 @@ public class DefaultLoggerTest {
             assertEquals("Invalid error message", "Parameter errorStreamOptions can not be null",
                     exception.getMessage());
         }
+    }
+
+    @Test
+    public void testAddError() {
+        final OutputStream infoStream = new ByteArrayOutputStream();
+        final OutputStream errorStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(infoStream,
+                AutomaticBean.OutputStreamOptions.CLOSE, errorStream,
+                AutomaticBean.OutputStreamOptions.CLOSE);
+        dl.finishLocalSetup();
+        dl.auditStarted(null);
+        dl.addError(new AuditEvent(this, "fileName", new LocalizedMessage(1, 2, "bundle", "key",
+                null, null, getClass(), "customMessage")));
+        dl.auditFinished(null);
+        assertEquals("expected output", auditStartMessage.getMessage() + System.lineSeparator()
+                + auditFinishMessage.getMessage() + System.lineSeparator(), infoStream.toString());
+        assertEquals("expected output", "[ERROR] fileName:1:2: customMessage [DefaultLoggerTest]"
+                + System.lineSeparator(), errorStream.toString());
+    }
+
+    @Test
+    public void testAddErrorModuleId() {
+        final OutputStream infoStream = new ByteArrayOutputStream();
+        final OutputStream errorStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(infoStream, true, errorStream, true);
+        dl.finishLocalSetup();
+        dl.auditStarted(null);
+        dl.addError(new AuditEvent(this, "fileName", new LocalizedMessage(1, 2, "bundle", "key",
+                null, "moduleId", getClass(), "customMessage")));
+        dl.auditFinished(null);
+        assertEquals("expected output", auditStartMessage.getMessage() + System.lineSeparator()
+                + auditFinishMessage.getMessage() + System.lineSeparator(), infoStream.toString());
+        assertEquals("expected output", "[ERROR] fileName:1:2: customMessage [moduleId]"
+                + System.lineSeparator(), errorStream.toString());
     }
 
     @Test

@@ -32,6 +32,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
@@ -246,7 +247,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     @Test
     public void testAddException()
             throws Exception {
-        final XMLLogger logger = new XMLLogger(outStream, true);
+        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
         final LocalizedMessage message =
             new LocalizedMessage(1, 1,

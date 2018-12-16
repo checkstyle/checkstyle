@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck.MSG_KEY;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -113,6 +114,10 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
 
             assertTrue("Invalid exception message, should start with: " + messageStart,
                 ex.getMessage().startsWith(messageStart));
+            assertEquals("Invalid exception message,",
+                    "the following values are not valid identifiers: ["
+                            + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.]", ex
+                            .getCause().getCause().getCause().getMessage());
         }
     }
 

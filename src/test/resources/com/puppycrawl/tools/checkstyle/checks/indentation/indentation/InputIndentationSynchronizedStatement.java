@@ -26,6 +26,8 @@ public class InputIndentationSynchronizedStatement { //indent:0 exp:0
         synchronized (new Object()) {//indent:8 exp:8
 instance = instance;//indent:0 exp:12 warn
         }//indent:8 exp:8
+        synchronized//indent:8 exp:8
+            (new Object()) {}//indent:12 exp:8 warn
         return instance;//indent:8 exp:8
     }//indent:4 exp:4
 } //indent:0 exp:0

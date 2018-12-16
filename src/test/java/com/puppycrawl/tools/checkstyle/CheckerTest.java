@@ -151,18 +151,22 @@ public class CheckerTest extends AbstractModuleTestSupport {
         // Let's try fire some events
         getFireAuditStartedMethod().invoke(checker);
         assertTrue("Checker.fireAuditStarted() doesn't call listener", auditAdapter.wasCalled());
+        assertTrue("Checker.fireAuditStarted() doesn't pass event", auditAdapter.wasEventPassed());
 
         auditAdapter.resetListener();
         getFireAuditFinished().invoke(checker);
         assertTrue("Checker.fireAuditFinished() doesn't call listener", auditAdapter.wasCalled());
+        assertTrue("Checker.fireAuditFinished() doesn't pass event", auditAdapter.wasEventPassed());
 
         auditAdapter.resetListener();
         checker.fireFileStarted("Some File Name");
         assertTrue("Checker.fireFileStarted() doesn't call listener", auditAdapter.wasCalled());
+        assertTrue("Checker.fireFileStarted() doesn't pass event", auditAdapter.wasEventPassed());
 
         auditAdapter.resetListener();
         checker.fireFileFinished("Some File Name");
         assertTrue("Checker.fireFileFinished() doesn't call listener", auditAdapter.wasCalled());
+        assertTrue("Checker.fireFileFinished() doesn't pass event", auditAdapter.wasEventPassed());
 
         auditAdapter.resetListener();
         final SortedSet<LocalizedMessage> messages = new TreeSet<>();
@@ -170,6 +174,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", messages);
         assertTrue("Checker.fireErrors() doesn't call listener", auditAdapter.wasCalled());
+        assertTrue("Checker.fireErrors() doesn't pass event", auditAdapter.wasEventPassed());
     }
 
     @Test
