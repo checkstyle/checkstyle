@@ -439,14 +439,6 @@
             <excludeFilterFile>config/spotbugs-exclude.xml</excludeFilterFile>
             <spotbugsXmlOutputDirectory>target/spotbugsreports</spotbugsXmlOutputDirectory>
           </configuration>
-          <dependencies>
-            <!-- till https://github.com/spotbugs/spotbugs/issues/746 -->
-            <dependency>
-              <groupId>com.github.spotbugs</groupId>
-              <artifactId>spotbugs</artifactId>
-              <version>3.1.5</version>
-            </dependency>
-          </dependencies>
         </plugin>
 
         <!-- This plugin's configuration is used to store Eclipse
