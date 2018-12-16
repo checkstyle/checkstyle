@@ -532,6 +532,9 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                     + "'SAME_PACKAGE(-1)' in module";
             assertTrue("Invalid exception message, should start with: " + messageStart,
                 ex.getMessage().startsWith(messageStart));
+            assertEquals("Invalid exception message",
+                    "SAME_PACKAGE rule parameter should be positive integer: SAME_PACKAGE(-1)",
+                        ex.getCause().getCause().getCause().getMessage());
         }
     }
 
@@ -557,6 +560,9 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                     + "'SAME_PACKAGE(0)' in module";
             assertTrue("Invalid exception message, should start with: " + messageStart,
                 ex.getMessage().startsWith(messageStart));
+            assertEquals("Invalid exception message",
+                    "SAME_PACKAGE rule parameter should be positive integer: SAME_PACKAGE(0)",
+                        ex.getCause().getCause().getCause().getMessage());
         }
     }
 
@@ -581,6 +587,8 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                     + "'SAME_PACKAGE(3)###UNSUPPORTED_RULE' in module";
             assertTrue("Invalid exception message, should start with: " + messageStart,
                 ex.getMessage().startsWith(messageStart));
+            assertEquals("Invalid exception message", "Unexpected rule: UNSUPPORTED_RULE", ex
+                    .getCause().getCause().getCause().getMessage());
         }
     }
 
@@ -604,6 +612,9 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                     + "'SAME_PACKAGE(INT_IS_REQUIRED_HERE)' in module";
             assertTrue("Invalid exception message, should start with: " + messageStart,
                 ex.getMessage().startsWith(messageStart));
+            assertEquals("Invalid exception message",
+                    "For input string: \"INT_IS_REQUIRED_HERE\"",
+                    ex.getCause().getCause().getCause().getMessage());
         }
     }
 

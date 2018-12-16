@@ -177,7 +177,9 @@ public class AutomaticBeanTest {
         @Override
         public void register(Converter converter, Class<?> clazz) {
             super.register(converter, clazz);
-            registerCount++;
+            if (converter != null) {
+                registerCount++;
+            }
         }
 
         public int getRegisterCount() {

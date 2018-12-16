@@ -27,6 +27,9 @@ public final class DebugAuditAdapter implements AuditListener {
     /** Keeps track whether this {@code AuditListener} was called. */
     private boolean called;
 
+    /** Keeps track whether this {@code AuditListener} was given {@code AuditEvent}. */
+    private boolean passedEvent;
+
     /** Keeps track of the number of files started. */
     private int numFilesStarted;
 
@@ -45,40 +48,63 @@ public final class DebugAuditAdapter implements AuditListener {
         return called;
     }
 
+    public boolean wasEventPassed() {
+        return passedEvent;
+    }
+
     public void resetListener() {
         called = false;
+        passedEvent = false;
     }
 
     @Override
     public void addError(AuditEvent event) {
         called = true;
+        if (event != null) {
+            passedEvent = true;
+        }
     }
 
     @Override
     public void addException(AuditEvent event, Throwable throwable) {
         called = true;
+        if (event != null) {
+            passedEvent = true;
+        }
     }
 
     @Override
     public void auditStarted(AuditEvent event) {
         called = true;
+        if (event != null) {
+            passedEvent = true;
+        }
     }
 
     @Override
     public void fileStarted(AuditEvent event) {
         called = true;
         numFilesStarted++;
+        if (event != null) {
+            passedEvent = true;
+        }
     }
 
     @Override
     public void auditFinished(AuditEvent event) {
         called = true;
+        if (event != null) {
+            passedEvent = true;
+        }
     }
 
     @Override
     public void fileFinished(AuditEvent event) {
         called = true;
         numFilesFinished++;
+        if (event != null) {
+            passedEvent = true;
+        }
     }
 
 }

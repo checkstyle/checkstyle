@@ -49,6 +49,14 @@ public class IllegalInstantiationCheckTest
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(IllegalInstantiationCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputIllegalInstantiationSemantic.java"), expected);
+    }
+
+    @Test
+    public void testClasses() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(IllegalInstantiationCheck.class);
         checkConfig.addAttribute(
             "classes",
             "java.lang.Boolean,"

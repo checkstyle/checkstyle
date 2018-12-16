@@ -37,6 +37,13 @@ import org.powermock.reflect.Whitebox;
 public class FileContentsTest {
 
     @Test
+    public void testTextFileName() {
+        final FileContents fileContents = new FileContents("filename", "123", "456");
+
+        assertEquals("Invalid file name", "filename", fileContents.getText().getFile().getName());
+    }
+
+    @Test
     public void testDeprecatedAbbreviatedMethod() {
         // just to make UT coverage 100%
         final FileContents fileContents = new FileContents("filename", "123", "456");
@@ -125,6 +132,29 @@ public class FileContentsTest {
 
         assertFalse("Should return false when there is no intersection",
                 fileContents.hasIntersectionWithComment(2, 2, 3, 6));
+    }
+
+    @Test
+    public void testReportJavadocComment() {
+        final FileContents fileContents = new FileContents(
+                new FileText(new File("filename"), Collections.singletonList("  /** */   ")));
+        fileContents.reportCComment(1, 2, 1, 6);
+        final TextBlock comment = fileContents.getJavadocBefore(2);
+
+        assertEquals("Invalid comment",
+                new Comment(new String[] {"/** *"}, 2, 1, 6).toString(),
+                comment.toString());
+    }
+
+    @Test
+    public void testReportJavadocComment2() {
+        final FileContents fileContents = new FileContents("filename", "  /** */   ");
+        fileContents.reportCComment(1, 2, 1, 6);
+        final TextBlock comment = fileContents.getJavadocBefore(2);
+
+        assertEquals("Invalid comment",
+                new Comment(new String[] {"/** *"}, 2, 1, 6).toString(),
+                comment.toString());
     }
 
     @Test

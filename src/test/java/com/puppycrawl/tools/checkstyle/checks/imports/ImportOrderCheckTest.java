@@ -630,6 +630,8 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
 
             assertTrue("Invalid exception message, should start with: " + messageStart,
                 ex.getMessage().startsWith(messageStart));
+            assertEquals("Invalid exception message", "Invalid group: /^javax",
+                    ex.getCause().getCause().getCause().getMessage());
         }
     }
 

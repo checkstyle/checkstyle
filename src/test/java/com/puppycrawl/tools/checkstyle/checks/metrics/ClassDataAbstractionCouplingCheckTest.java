@@ -133,6 +133,10 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
 
             assertTrue("Invalid exception message, should start with: " + messageStart,
                 ex.getMessage().startsWith(messageStart));
+            assertEquals("Invalid exception message,",
+                    "the following values are not valid identifiers: ["
+                            + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.]", ex
+                            .getCause().getCause().getCause().getMessage());
         }
     }
 

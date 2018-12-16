@@ -1599,6 +1599,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("throwsIndent", "8");
         final String[] expected = {
             "27: " + getCheckMessage(MSG_CHILD_ERROR, "synchronized", 0, 12),
+            "30: " + getCheckMessage(MSG_ERROR, "synchronized lparen", 12, 8),
         };
         verifyWarns(checkConfig, getPath("InputIndentationSynchronizedStatement.java"), expected);
     }

@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
@@ -153,7 +154,13 @@ public class JavadocUtilTest {
         final JavadocTags allTags =
             JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.ALL);
         assertEquals("Unexpected invalid tags size", 2, allTags.getInvalidTags().size());
+        assertTag("Unexpected invalid tag", new InvalidJavadocTag(1, 4, "fake"),
+                allTags.getInvalidTags().get(0));
+        assertTag("Unexpected invalid tag", new InvalidJavadocTag(2, 4, "bogus"),
+                allTags.getInvalidTags().get(1));
         assertEquals("Unexpected valid tags size", 1, allTags.getValidTags().size());
+        assertTag("Unexpected valid tag", new JavadocTag(3, 4, "link", "List valid"),
+                allTags.getValidTags().get(0));
     }
 
     @Test
@@ -367,6 +374,21 @@ public class JavadocUtilTest {
         assertEquals("invalid result", "abc", JavadocUtil.escapeAllControlChars("abc"));
         assertEquals("invalid result", "1\\r2\\n3\\t",
                 JavadocUtil.escapeAllControlChars("1\\r2\\n3\\t"));
+    }
+
+    private static void assertTag(String message, InvalidJavadocTag expected,
+            InvalidJavadocTag actual) {
+        assertEquals(message + " line", expected.getLine(), actual.getLine());
+        assertEquals(message + " column", expected.getCol(), actual.getCol());
+        assertEquals(message + " name", expected.getName(), actual.getName());
+    }
+
+    private static void assertTag(String message, JavadocTag expected,
+            JavadocTag actual) {
+        assertEquals(message + " line", expected.getLineNo(), actual.getLineNo());
+        assertEquals(message + " column", expected.getColumnNo(), actual.getColumnNo());
+        assertEquals(message + " first arg", expected.getFirstArg(), actual.getFirstArg());
+        assertEquals(message + " tag name", expected.getTagName(), actual.getTagName());
     }
 
 }
