@@ -36,17 +36,9 @@ pitest-annotation|pitest-design|pitest-header|pitest-imports \
 |pitest-regexp|pitest-sizes|pitest-whitespace|pitest-ant \
 |pitest-api|pitest-common|pitest-filters|pitest-main \
 |pitest-packagenamesloader|pitest-tree-walker|pitest-utils \
-|pitest-xpath|pitest-common-2)
+|pitest-xpath|pitest-common-2|pitest-misc)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=();
-  checkPitestReport "${ignoredItems[@]}"
-  ;;
-
-pitest-misc)
-  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
-  declare -a ignoredItems=(
-  "SuppressWarningsHolder.java.html:<td class='covered'><pre><span  class='survived'>                        lastColumn = nextAST.getColumnNo() - 1;</span></pre></td></tr>"
-  );
   checkPitestReport "${ignoredItems[@]}"
   ;;
 

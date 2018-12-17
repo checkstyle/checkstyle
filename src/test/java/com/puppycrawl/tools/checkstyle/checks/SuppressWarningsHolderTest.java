@@ -43,13 +43,18 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck;
+import com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck;
+import com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -98,6 +103,29 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputSuppressWarningsHolder5.java"), expected);
+    }
+
+    @Test
+    public void testAll() throws Exception {
+        final Configuration checkConfig = createModuleConfig(SuppressWarningsHolder.class);
+        final DefaultConfiguration treeWalker = createModuleConfig(TreeWalker.class);
+        final Configuration filter = createModuleConfig(SuppressWarningsFilter.class);
+        final DefaultConfiguration violationCheck = createModuleConfig(TypecastParenPadCheck.class);
+        violationCheck.addAttribute("option", "space");
+
+        treeWalker.addChild(checkConfig);
+        treeWalker.addChild(violationCheck);
+
+        final DefaultConfiguration root = createRootConfig(treeWalker);
+        root.addChild(filter);
+
+        final String[] expected = {
+            "8:72: "
+                    + getCheckMessage(TypecastParenPadCheck.class,
+                            AbstractParenPadCheck.MSG_WS_NOT_PRECEDED, ")"),
+        };
+
+        verify(root, getPath("InputSuppressWarningsHolder6.java"), expected);
     }
 
     @Test
