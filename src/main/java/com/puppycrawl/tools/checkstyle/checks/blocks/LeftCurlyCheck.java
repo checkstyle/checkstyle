@@ -277,11 +277,11 @@ public class LeftCurlyCheck
                     tokenAfterLast = lastAnnotation.getNextSibling();
                 }
 
-                if (tokenAfterLast.getLineNo() > lastAnnotation.getLineNo()) {
-                    resultNode = tokenAfterLast;
+                if (tokenAfterLast.getLineNo() == lastAnnotation.getLineNo()) {
+                    resultNode = getFirstAnnotationOnSameLine(lastAnnotation);
                 }
                 else {
-                    resultNode = getFirstAnnotationOnSameLine(lastAnnotation);
+                    resultNode = tokenAfterLast;
                 }
             }
         }
