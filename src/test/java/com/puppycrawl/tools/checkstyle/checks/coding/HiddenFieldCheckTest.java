@@ -20,12 +20,21 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck.MSG_KEY;
+import static org.junit.Assert.assertTrue;
+
+import java.io.File;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class HiddenFieldCheckTest
@@ -401,6 +410,57 @@ public class HiddenFieldCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(HiddenFieldCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputHiddenFieldReceiver.java"), expected);
+    }
+
+    /**
+     * We cannot reproduce situation when visitToken is called and leaveToken is not.
+     * So, we have to use reflection to be sure that even in such situation
+     * state of the field will be cleared.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @Test
+    public void testClearState() throws Exception {
+        final HiddenFieldCheck check = new HiddenFieldCheck();
+        final DetailAST root = JavaParser.parseFile(new File(getPath("InputHiddenField.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+        final Optional<DetailAST> classDef = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.CLASS_DEF);
+
+        assertTrue("Ast should contain CLASS_DEF", classDef.isPresent());
+        assertTrue("State is not cleared on beginTree",
+                TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.get(), "frame",
+                        new CheckIfStatefulFieldCleared()));
+    }
+
+    private static class CheckIfStatefulFieldCleared implements Predicate<Object> {
+
+        @Override
+        public boolean test(Object frame) {
+            boolean result = frame != null;
+
+            // verify object is cleared
+            if (result) {
+                final Class<?> frameClass = frame.getClass();
+
+                try {
+                    if (TestUtil.getClassDeclaredField(frameClass, "parent").get(frame) != null
+                            || !((Boolean) TestUtil.getClassDeclaredField(frameClass, "staticType")
+                                    .get(frame))
+                            || TestUtil.getClassDeclaredField(frameClass, "frameName")
+                                    .get(frame) != null) {
+                        result = false;
+                    }
+                }
+                catch (NoSuchFieldException | IllegalArgumentException
+                        | IllegalAccessException ex) {
+                    throw new IllegalStateException(ex);
+                }
+            }
+
+            return result;
+        }
+
     }
 
 }

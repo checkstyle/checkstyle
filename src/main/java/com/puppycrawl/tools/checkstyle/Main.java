@@ -593,7 +593,7 @@ public final class Main {
 
         /** List of file to validate. */
         @Parameters(arity = "1..*", description = "One or more source files to verify")
-        private final List<File> files = new ArrayList<>();
+        private List<File> files;
 
         /** Config file location. */
         @Option(names = "-c", description = "Sets the check configuration file to use.")
