@@ -239,6 +239,21 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testNlowWithAnnotations() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
+        checkConfig.addAttribute("option", LeftCurlyOption.NLOW.toString());
+        final String[] expected = {
+            "10:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
+            "14:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "21:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "27:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "50:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "58:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+        };
+        verify(checkConfig, getPath("InputLeftCurlyAnnotations.java"), expected);
+    }
+
+    @Test
     public void testLineBreakAfter() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
         checkConfig.addAttribute("option", LeftCurlyOption.EOL.toString());
@@ -268,7 +283,9 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
         checkConfig.addAttribute("option", LeftCurlyOption.EOL.toString());
         checkConfig.addAttribute("ignoreEnums", "true");
-        final String[] expectedWhileTrue = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expectedWhileTrue = {
+            "8:44: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 44),
+        };
         verify(checkConfig, getPath("InputLeftCurlyIgnoreEnums.java"), expectedWhileTrue);
     }
 
@@ -279,6 +296,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("ignoreEnums", "false");
         final String[] expectedWhileFalse = {
             "4:17: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 17),
+            "8:44: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 44),
         };
         verify(checkConfig, getPath("InputLeftCurlyIgnoreEnums.java"), expectedWhileFalse);
     }
