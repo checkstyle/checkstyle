@@ -91,14 +91,9 @@ public class NewlineAtEndOfFileCheck
      *         one of 'crlf', 'lf', 'cr', 'lf_cr_crlf' or 'system'
      */
     public void setLineSeparator(String lineSeparatorParam) {
-        try {
-            lineSeparator =
-                Enum.valueOf(LineSeparatorOption.class, lineSeparatorParam.trim()
-                    .toUpperCase(Locale.ENGLISH));
-        }
-        catch (IllegalArgumentException iae) {
-            throw new IllegalArgumentException("unable to parse " + lineSeparatorParam, iae);
-        }
+        lineSeparator =
+            Enum.valueOf(LineSeparatorOption.class, lineSeparatorParam.trim()
+                .toUpperCase(Locale.ENGLISH));
     }
 
     /**
