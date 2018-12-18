@@ -627,4 +627,16 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputJavadocMethodReceiverParameter.java"), expected);
     }
 
+    @Test
+    public void testJavadocInMethod() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
+        final String[] expected = {
+            "4:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "6:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "9:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "13:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verify(checkConfig, getPath("InputJavadocMethodJavadocInMethod.java"), expected);
+    }
+
 }
