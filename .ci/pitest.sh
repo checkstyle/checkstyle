@@ -128,7 +128,6 @@ pitest-javadoc)
   "AbstractTypeAwareCheck.java.html:<td class='covered'><pre><span  class='survived'>        typeParams.clear();</span></pre></td></tr>"
   "JavadocMethodCheck.java.html:<td class='covered'><pre><span  class='survived'>        final int col = noargMultilineStart.start(1) - 1;</span></pre></td></tr>"
   "JavadocMethodCheck.java.html:<td class='covered'><pre><span  class='survived'>        return (ast.getType() == TokenTypes.METHOD_DEF || ast.getType() == TokenTypes.CTOR_DEF)</span></pre></td></tr>"
-  "JavadocMethodCheck.java.html:<td class='covered'><pre><span  class='survived'>        return true;</span></pre></td></tr>"
   "JavadocMethodCheck.java.html:<td class='covered'><pre><span  class='survived'>        while (remIndex &#60; lines.length) {</span></pre></td></tr>"
   "JavadocMethodCheck.java.html:<td class='covered'><pre><span  class='survived'>        while (remIndex &#60; lines.length) {</span></pre></td></tr>"
   "JavadocPackageCheck.java.html:<td class='covered'><pre><span  class='survived'>        directoriesChecked.clear();</span></pre></td></tr>"

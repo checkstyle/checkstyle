@@ -335,11 +335,6 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     }
 
     @Override
-    public boolean isCommentNodesRequired() {
-        return true;
-    }
-
-    @Override
     protected final void processAST(DetailAST ast) {
         final Scope theScope = calculateScope(ast);
         if (shouldCheck(ast, theScope)) {
