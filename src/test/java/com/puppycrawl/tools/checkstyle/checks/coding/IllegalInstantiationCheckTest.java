@@ -21,13 +21,19 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck.MSG_KEY;
 
+import java.io.File;
+import java.util.Collection;
+import java.util.Optional;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class IllegalInstantiationCheckTest
@@ -160,4 +166,72 @@ public class IllegalInstantiationCheckTest
         }
     }
 
+    /**
+     * We cannot reproduce situation when visitToken is called and leaveToken is not.
+     * So, we have to use reflection to be sure that even in such situation
+     * state of the field will be cleared.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @Test
+    @SuppressWarnings("unchecked")
+    public void testClearStateClassNames() throws Exception {
+        final IllegalInstantiationCheck check = new IllegalInstantiationCheck();
+        final DetailAST root = JavaParser.parseFile(
+                new File(getPath("InputIllegalInstantiationSemantic.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+        final Optional<DetailAST> classDef = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.CLASS_DEF);
+
+        Assert.assertTrue("Ast should contain CLASS_DEF", classDef.isPresent());
+        Assert.assertTrue("State is not cleared on beginTree",
+                TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.get(), "classNames",
+                    classNames -> ((Collection<String>) classNames).isEmpty()));
+    }
+
+    /**
+     * We cannot reproduce situation when visitToken is called and leaveToken is not.
+     * So, we have to use reflection to be sure that even in such situation
+     * state of the field will be cleared.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @Test
+    public void testClearStateImports() throws Exception {
+        final IllegalInstantiationCheck check = new IllegalInstantiationCheck();
+        final DetailAST root = JavaParser.parseFile(new File(
+                getPath("InputIllegalInstantiationSemantic.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+        final Optional<DetailAST> importDef = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.IMPORT);
+
+        Assert.assertTrue("Ast should contain IMPORT_DEF", importDef.isPresent());
+        Assert.assertTrue("State is not cleared on beginTree",
+                TestUtil.isStatefulFieldClearedDuringBeginTree(check, importDef.get(), "imports",
+                    imports -> ((Collection<?>) imports).isEmpty()));
+    }
+
+    /**
+     * We cannot reproduce situation when visitToken is called and leaveToken is not.
+     * So, we have to use reflection to be sure that even in such situation
+     * state of the field will be cleared.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @Test
+    @SuppressWarnings("unchecked")
+    public void testClearStateInstantiations() throws Exception {
+        final IllegalInstantiationCheck check = new IllegalInstantiationCheck();
+        final DetailAST root = JavaParser.parseFile(new File(
+                getNonCompilablePath("InputIllegalInstantiationLang.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+        final Optional<DetailAST> literalNew = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.LITERAL_NEW);
+
+        Assert.assertTrue("Ast should contain LITERAL_NEW", literalNew.isPresent());
+        Assert.assertTrue("State is not cleared on beginTree",
+                TestUtil.isStatefulFieldClearedDuringBeginTree(check, literalNew.get(),
+                    "instantiations",
+                    instantiations -> ((Collection<DetailAST>) instantiations).isEmpty()));
+    }
 }
