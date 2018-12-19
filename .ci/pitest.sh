@@ -34,19 +34,11 @@ case $1 in
 pitest-annotation|pitest-design|pitest-header|pitest-imports \
 |pitest-metrics|pitest-modifier|pitest-naming \
 |pitest-regexp|pitest-sizes|pitest-whitespace|pitest-ant \
-|pitest-api|pitest-filters|pitest-main \
+|pitest-api|pitest-common|pitest-filters|pitest-main \
 |pitest-packagenamesloader|pitest-tree-walker|pitest-utils \
 |pitest-xpath|pitest-common-2|pitest-misc|pitest-blocks)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=();
-  checkPitestReport "${ignoredItems[@]}"
-  ;;
-
-pitest-common)
-  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
-  declare -a ignoredItems=(
-  "PropertyCacheFile.java.html:<td class='covered'><pre><span  class='survived'>                resources.add(new ExternalResource(EXTERNAL_RESOURCE_KEY_PREFIX + location,</span></pre></td></tr>"
-  );
   checkPitestReport "${ignoredItems[@]}"
   ;;
 
