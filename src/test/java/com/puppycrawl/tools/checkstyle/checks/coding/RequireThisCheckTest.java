@@ -22,7 +22,10 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck.MSG_METHOD;
 import static com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck.MSG_VARIABLE;
 
+import java.io.File;
 import java.lang.reflect.Constructor;
+import java.util.Collection;
+import java.util.Optional;
 import java.util.SortedSet;
 
 import org.junit.Assert;
@@ -31,6 +34,7 @@ import org.junit.Test;
 import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -372,6 +376,28 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
                 TestUtil.getClassDeclaredMethod(cls, "getFrameNameIdent").invoke(o));
         Assert.assertEquals("expected catch frame type", "CATCH_FRAME",
                 TestUtil.getClassDeclaredMethod(cls, "getType").invoke(o).toString());
+    }
+
+    /**
+     * We cannot reproduce situation when visitToken is called and leaveToken is not.
+     * So, we have to use reflection to be sure that even in such situation
+     * state of the field will be cleared.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @Test
+    public void testClearState() throws Exception {
+        final RequireThisCheck check = new RequireThisCheck();
+        final DetailAST root = JavaParser.parseFile(
+                new File(getPath("InputRequireThisSimple.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+        final Optional<DetailAST> classDef = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.CLASS_DEF);
+
+        Assert.assertTrue("Ast should contain CLASS_DEF", classDef.isPresent());
+        Assert.assertTrue("State is not cleared on beginTree",
+                TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.get(), "current",
+                    current -> ((Collection<?>) current).isEmpty()));
     }
 
 }

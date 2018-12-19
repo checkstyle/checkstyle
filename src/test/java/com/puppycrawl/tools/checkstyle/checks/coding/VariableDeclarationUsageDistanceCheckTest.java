@@ -79,6 +79,8 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "901: " + getCheckMessage(MSG_KEY, "a", 4, 1),
             "967: " + getCheckMessage(MSG_KEY, "a", 4, 1),
             "978: " + getCheckMessage(MSG_KEY, "a", 2, 1),
+            "989: " + getCheckMessage(MSG_KEY, "a", 3, 1),
+            "1024: " + getCheckMessage(MSG_KEY, "c", 3, 1),
         };
         verify(checkConfig, getPath("InputVariableDeclarationUsageDistance.java"), expected);
     }
@@ -174,6 +176,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "540: " + getCheckMessage(MSG_KEY, "id", 2, 1),
             "542: " + getCheckMessage(MSG_KEY, "parentId", 4, 1),
             "978: " + getCheckMessage(MSG_KEY, "a", 2, 1),
+            "1024: " + getCheckMessage(MSG_KEY, "c", 4, 1),
         };
         verify(checkConfig, getPath("InputVariableDeclarationUsageDistance.java"), expected);
     }
@@ -218,6 +221,8 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "891: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 1),
             "901: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 1),
             "967: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 1),
+            "989: " + getCheckMessage(MSG_KEY_EXT, "a", 3, 1),
+            "1024: " + getCheckMessage(MSG_KEY_EXT, "c", 3, 1),
         };
         verify(checkConfig, getPath("InputVariableDeclarationUsageDistance.java"), expected);
     }
@@ -241,6 +246,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "479: " + getCheckMessage(MSG_KEY_EXT, "myOption", 7, 3),
             "491: " + getCheckMessage(MSG_KEY_EXT, "myOption", 6, 3),
             "542: " + getCheckMessage(MSG_KEY_EXT, "parentId", 4, 3),
+            "1024: " + getCheckMessage(MSG_KEY_EXT, "c", 4, 3),
         };
 
         verify(checkConfig, getPath("InputVariableDeclarationUsageDistance.java"), expected);
