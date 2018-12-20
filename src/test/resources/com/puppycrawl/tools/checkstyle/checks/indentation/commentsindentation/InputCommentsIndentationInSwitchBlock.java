@@ -302,4 +302,22 @@ public class InputCommentsIndentationInSwitchBlock {
                 break;
         }
     }
+
+    public void foo14() {
+        int a = 1;
+        switch (a) {
+            case 1:
+            default:
+// violation
+        }
+    }
+
+    public void foo15() {
+        int a = 1;
+        switch (a) {
+            case 1:
+            default:
+        // violation
+        }
+    }
 }

@@ -709,6 +709,11 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "93: " + getCheckMessage(MSG_ERROR, "switch rcurly", 10, 8),
             "95: " + getCheckMessage(MSG_ERROR, "switch lcurly", 10, 8),
             "96: " + getCheckMessage(MSG_ERROR, "switch rcurly", 6, 8),
+            "99: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 12),
+            "100: " + getCheckMessage(MSG_ERROR, "if", 12, 16),
+            "101: " + getCheckMessage(MSG_CHILD_ERROR, "if", 16, 20),
+            "102: " + getCheckMessage(MSG_ERROR, "else", 12, 16),
+            "103: " + getCheckMessage(MSG_CHILD_ERROR, "else", 16, 20),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -1095,6 +1100,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "257: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
             "258: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
             "259: " + getCheckMessage(MSG_ERROR, "if rcurly", 0, 8),
+            "260: " + getCheckMessage(MSG_ERROR, "if", 0, 8),
+            "262: " + getCheckMessage(MSG_ERROR, "else", 0, 8),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -1203,6 +1210,18 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "71: " + getCheckMessage(MSG_CHILD_ERROR, "for", 14, 16),
             "72: " + getCheckMessage(MSG_CHILD_ERROR, "for", 10, 12),
             "81: " + getCheckMessage(MSG_ERROR, "for rparen", 12, 8),
+            "86: " + getCheckMessage(MSG_ERROR, "method def modifier", 2, 4),
+            "87: " + getCheckMessage(MSG_ERROR, "for", 4, 8),
+            "88: " + getCheckMessage(MSG_CHILD_ERROR, "for", 8, 12),
+            "89: " + getCheckMessage(MSG_CHILD_ERROR, "for", 6, 12),
+            "90: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 8, 16),
+            "92: " + getCheckMessage(MSG_ERROR, "for", 0, 8),
+            "93: " + getCheckMessage(MSG_ERROR, "for lparen", 0, 8),
+            "94: " + getCheckMessage(MSG_CHILD_ERROR, "for", 0, 12),
+            "95: " + getCheckMessage(MSG_ERROR, ";", 0, 4),
+            "96: " + getCheckMessage(MSG_CHILD_ERROR, "for", 0, 12),
+            "97: " + getCheckMessage(MSG_ERROR, ";", 0, 4),
+            "98: " + getCheckMessage(MSG_CHILD_ERROR, "for", 0, 12),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -1701,6 +1720,17 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testPackageDeclaration4() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        final String[] expected = {
+            "2: " + getCheckMessage(MSG_ERROR, "com", 0, 4),
+            "3: " + getCheckMessage(MSG_ERROR, "checks", 0, 4),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationPackageDeclaration4.java"), expected);
+    }
+
+    @Test
     public void testLambda1() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addAttribute("tabWidth", "2");
@@ -1972,6 +2002,19 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig, getPath("InputIndentationEmptyArray.java"), expected);
+    }
+
+    @Test
+    public void testNewHandler() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        final String[] expected = {
+            "8: " + getCheckMessage(MSG_ERROR, "Object", 0, 12),
+            "10: " + getCheckMessage(MSG_ERROR, "(", 0, 12),
+            "13: " + getCheckMessage(MSG_CHILD_ERROR, "operator new", 0, 8),
+            "15: " + getCheckMessage(MSG_ERROR, "operator new lparen", 0, 8),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationNewHandler.java"), expected);
     }
 
     private static final class IndentAudit implements AuditListener {
