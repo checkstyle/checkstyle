@@ -63,7 +63,8 @@
                  JavadocTokenTypesTest.TokenValues contains several asserts as it checks each
                    token explicitly.
                  XdocsPagesTest.getModulePropertyExpectedTypeName is a complicated list of
-                   different checks. -->
+                   different checks.
+                 IndentationCheckTest has a lot of cases. -->
             <property name="violationSuppressXPath"
                       value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypesTest']
                                  //MethodDeclaration[@Name='testTokenValues']
@@ -72,7 +73,8 @@
             | //ClassOrInterfaceDeclaration[@Image='XdocsPagesTest']
                   //MethodDeclaration[@Name='getModulePropertyExpectedTypeName']
             | //ClassOrInterfaceDeclaration[@Image='GeneratedJavadocTokenTypesTest']
-                  //MethodDeclaration[@Name='testTokenNumbers']"/>
+                  //MethodDeclaration[@Name='testTokenNumbers']
+            | //ClassOrInterfaceDeclaration[@Image='IndentationCheckTest']"/>
         </properties>
     </rule>
 

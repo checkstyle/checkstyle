@@ -570,6 +570,19 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
          //comment
     }
 
+    int foo76() {
+        return 0;
+        /* test
+* test */
+//         test
+    }
+
+    void foo77() {
+        try {
+        /* CHECKSTYLE:OFF */} catch(Exception e) {
+        }
+    }
+
     // We almost reached the end of the class here.
 }
 // The END of the class.

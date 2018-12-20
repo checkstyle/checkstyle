@@ -87,6 +87,7 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
             "551: " + getCheckMessage(MSG_KEY_SINGLE, 550, 12, 8),
             "557: " + getCheckMessage(MSG_KEY_SINGLE, 555, 0, 8),
             "562: " + getCheckMessage(MSG_KEY_SINGLE, 561, 0, 8),
+            "577: " + getCheckMessage(MSG_KEY_SINGLE, 574, 0, 8),
         };
         final String testInputFile = "InputCommentsIndentationCommentIsAtTheEndOfBlock.java";
         verify(checkConfig, getPath(testInputFile), expected);
@@ -116,6 +117,7 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
             "229: " + getCheckMessage(MSG_KEY_SINGLE, "228, 230", 6, "12, 12"),
             "276: " + getCheckMessage(MSG_KEY_BLOCK, "275, 279", 11, "16, 12"),
             "281: " + getCheckMessage(MSG_KEY_SINGLE, "280, 282", 11, "16, 12"),
+            "311: " + getCheckMessage(MSG_KEY_SINGLE, "312", 0, "8"),
         };
         final String testInputFile = "InputCommentsIndentationInSwitchBlock.java";
         verify(checkConfig, getPath(testInputFile), expected);

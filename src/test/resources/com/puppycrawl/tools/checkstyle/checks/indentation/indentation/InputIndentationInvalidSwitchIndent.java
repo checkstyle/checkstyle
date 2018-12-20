@@ -95,6 +95,14 @@ public class InputIndentationInvalidSwitchIndent { //indent:0 exp:0
           { //indent:10 exp:8 warn
       } //indent:6 exp:8 warn
 
+        switch (s) { //indent:8 exp:8
+	    case 1: //indent:8 exp:12 warn
+	    	if (true) //indent:12 exp:16 warn
+	    		break; //indent:16 exp:20 warn
+	    	else //indent:12 exp:16 warn
+	    		break; //indent:16 exp:20 warn
+        } //indent:8 exp:8
+
     } //indent:4 exp:4
 
 } //indent:0 exp:0
