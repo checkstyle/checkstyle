@@ -1779,6 +1779,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
@@ -1850,6 +1851,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
@@ -1893,6 +1895,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
@@ -1936,6 +1939,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
@@ -1979,6 +1983,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
@@ -2022,6 +2027,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
@@ -2065,6 +2071,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
@@ -2108,6 +2115,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
@@ -2151,6 +2159,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
@@ -2194,6 +2203,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
@@ -2237,6 +2247,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
@@ -2280,6 +2291,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
@@ -2329,6 +2341,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
@@ -2372,6 +2385,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
@@ -2415,6 +2429,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
@@ -2459,6 +2474,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
@@ -2502,6 +2518,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
@@ -2542,6 +2559,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
@@ -2614,6 +2632,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
@@ -2671,6 +2690,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
@@ -2711,6 +2731,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
@@ -2800,6 +2821,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
@@ -2856,6 +2878,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
@@ -2901,6 +2924,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
@@ -2962,6 +2986,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
@@ -3030,6 +3055,7 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
