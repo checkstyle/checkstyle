@@ -487,9 +487,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
                 createModuleConfig(ImportOrderCheck.class);
         checkConfig.addAttribute("separated", "true");
         checkConfig.addAttribute("groups", "java, javax");
-        final String[] expected = {
-            "6: " + getCheckMessage(MSG_ORDERING, "java.awt.event.ActionEvent"),
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputImportOrderRepetition.java"), expected);
     }
 
@@ -501,9 +499,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("separated", "true");
         checkConfig.addAttribute("groups", "java, org");
         checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
-        final String[] expected = {
-            "5: " + getCheckMessage(MSG_ORDERING, "org.antlr.v4.runtime.CommonToken.*"),
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputImportOrderStaticRepetition.java"), expected);
     }
 
@@ -515,7 +511,6 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("groups", "java, org");
         final String[] expected = {
             "4: " + getCheckMessage(MSG_SEPARATION, "org.antlr.v4.runtime.CommonToken.*"),
-            "5: " + getCheckMessage(MSG_ORDERING, "org.antlr.v4.runtime.CommonToken.*"),
             "7: " + getCheckMessage(MSG_ORDERING, "java.util.Set"),
         };
         verify(checkConfig, getPath("InputImportOrderStaticRepetition.java"), expected);
@@ -723,10 +718,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("groups", "java, org");
         checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
         checkConfig.addAttribute("useContainerOrderingForStatic", "true");
-        final String[] expected = {
-            "4: " + getCheckMessage(MSG_ORDERING,
-                "io.netty.handler.codec.http.HttpHeaders.Names.DATE"),
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
             getNonCompilablePath("InputImportOrderEclipseStaticRepetition.java"), expected);
     }

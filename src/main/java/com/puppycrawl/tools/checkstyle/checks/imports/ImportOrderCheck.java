@@ -533,19 +533,19 @@ public class ImportOrderCheck
         final boolean result;
         if (isStatic) {
             if (useContainerOrderingForStatic) {
-                result = compareContainerOrder(lastImport, name, caseSensitive) >= 0;
+                result = compareContainerOrder(lastImport, name, caseSensitive) > 0;
             }
             else if (staticImportsApart) {
                 result = sortStaticImportsAlphabetically
-                    && compare(lastImport, name, caseSensitive) >= 0;
+                    && compare(lastImport, name, caseSensitive) > 0;
             }
             else {
-                result = compare(lastImport, name, caseSensitive) >= 0;
+                result = compare(lastImport, name, caseSensitive) > 0;
             }
         }
         else {
             // out of lexicographic order
-            result = compare(lastImport, name, caseSensitive) >= 0;
+            result = compare(lastImport, name, caseSensitive) > 0;
         }
         return result;
     }
