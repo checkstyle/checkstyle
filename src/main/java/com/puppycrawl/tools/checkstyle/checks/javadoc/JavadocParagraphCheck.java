@@ -140,7 +140,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      */
     private void checkEmptyLine(DetailNode newline) {
         final DetailNode nearestToken = getNearestNode(newline);
-        if (!isLastEmptyLine(newline) && nearestToken.getType() == JavadocTokenTypes.TEXT
+        if (nearestToken.getType() == JavadocTokenTypes.TEXT
                 && !CommonUtil.isBlank(nearestToken.getText())) {
             log(newline.getLineNumber(), MSG_TAG_AFTER);
         }
@@ -234,26 +234,6 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
             newLine = previousSibling;
         }
         return newLine;
-    }
-
-    /**
-     * Tests if NEWLINE node is a last node in javadoc.
-     * @param newLine NEWLINE node.
-     * @return true, if NEWLINE node is a last node in javadoc.
-     */
-    private static boolean isLastEmptyLine(DetailNode newLine) {
-        boolean result = true;
-        DetailNode nextNode = JavadocUtil.getNextSibling(newLine);
-        while (nextNode != null && nextNode.getType() != JavadocTokenTypes.JAVADOC_TAG) {
-            if (nextNode.getType() == JavadocTokenTypes.TEXT
-                    && !CommonUtil.isBlank(nextNode.getText())
-                    || nextNode.getType() == JavadocTokenTypes.HTML_ELEMENT) {
-                result = false;
-                break;
-            }
-            nextNode = JavadocUtil.getNextSibling(nextNode);
-        }
-        return result;
     }
 
     /**

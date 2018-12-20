@@ -233,8 +233,8 @@ public class IllegalInstantiationCheck
             }
 
             for (String illegal : classes) {
-                if (isStandardClass(className, illegal)
-                        || isSamePackage(className, pkgNameLen, illegal)) {
+                if (isSamePackage(className, pkgNameLen, illegal)
+                        || isStandardClass(className, illegal)) {
                     fullClassName = illegal;
                 }
                 else {
@@ -295,29 +295,6 @@ public class IllegalInstantiationCheck
     }
 
     /**
-     * Is class of the same package.
-     * @param className class name
-     * @return true if same package class
-     */
-    private boolean isSamePackage(String className) {
-        boolean isSamePackage = false;
-        try {
-            final ClassLoader classLoader = getClassLoader();
-            if (classLoader != null) {
-                final String fqName = pkgName + "." + className;
-                classLoader.loadClass(fqName);
-                // no ClassNotFoundException, fqName is a known class
-                isSamePackage = true;
-            }
-        }
-        catch (final ClassNotFoundException ignored) {
-            // not a class from the same package
-            isSamePackage = false;
-        }
-        return isSamePackage;
-    }
-
-    /**
      * Is Standard Class.
      * @param className class name
      * @param illegal illegal value
@@ -336,9 +313,8 @@ public class IllegalInstantiationCheck
             // not to java.lang.Boolean
 
             final boolean isSameFile = classNames.contains(className);
-            final boolean isSamePackage = isSamePackage(className);
 
-            if (!isSameFile && !isSamePackage) {
+            if (!isSameFile) {
                 isStandardClass = true;
             }
         }
