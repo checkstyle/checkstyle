@@ -264,8 +264,8 @@ public class BlockParentHandler extends AbstractExpressionHandler {
             }
             else if (isOnStartOfLine(getRightCurly())) {
                 final IndentLevel level = new IndentLevel(curlyIndent(), getBasicOffset());
-                level.addAcceptedIndent(level.getFirstIndentLevel() + getLineWrappingIndent());
-                indentLevel = level;
+                indentLevel = IndentLevel.addAcceptable(level, level.getFirstIndentLevel()
+                        + getLineWrappingIndent());
             }
         }
         return indentLevel;

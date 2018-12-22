@@ -166,6 +166,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         // will not have the right line num, so just get the child name
 
         final DetailAST ident = getMethodIdentAst();
+        final DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
         IndentLevel suggestedLevel = new IndentLevel(getLineStart(ident));
         if (!areOnSameLine(child.getMainAst().getFirstChild(), ident)) {
             suggestedLevel = new IndentLevel(suggestedLevel,
@@ -175,9 +176,8 @@ public class MethodCallHandler extends AbstractExpressionHandler {
 
         // If the right parenthesis is at the start of a line;
         // include line wrapping in suggested indent level.
-        final DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
         if (getLineStart(rparen) == rparen.getColumnNo()) {
-            suggestedLevel.addAcceptedIndent(new IndentLevel(
+            suggestedLevel = IndentLevel.addAcceptable(suggestedLevel, new IndentLevel(
                     getParent().getSuggestedChildIndent(this),
                     getIndentCheck().getLineWrappingIndentation()
             ));
