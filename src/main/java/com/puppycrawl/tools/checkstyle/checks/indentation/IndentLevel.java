@@ -24,7 +24,7 @@ import java.util.BitSet;
 /**
  * Encapsulates representation of notion of expected indentation levels.
  * Provide a way to have multiple acceptable levels.
- *
+ * This class is immutable.
  */
 public class IndentLevel {
 
@@ -51,6 +51,13 @@ public class IndentLevel {
                 levels.set(i + offset);
             }
         }
+    }
+
+    /**
+     * Creates new instance with no acceptable indentation level.
+     * This is only used internally to combine multiple levels.
+     */
+    private IndentLevel() {
     }
 
     /**
@@ -83,19 +90,31 @@ public class IndentLevel {
     }
 
     /**
-     * Adds one more acceptable indentation level.
-     * @param indent new acceptable indentation.
+     * Adds one or more acceptable indentation level.
+     * @param base class to add new indentations to.
+     * @param additions new acceptable indentation.
+     * @return New acceptable indentation level instance.
      */
-    public void addAcceptedIndent(int indent) {
-        levels.set(indent);
+    public static IndentLevel addAcceptable(IndentLevel base, int... additions) {
+        final IndentLevel result = new IndentLevel();
+        result.levels.or(base.levels);
+        for (int addition : additions) {
+            result.levels.set(addition);
+        }
+        return result;
     }
 
     /**
-     * Adds one more acceptable indentation level.
-     * @param indent new acceptable indentation.
+     * Combines 2 acceptable indentation level classes.
+     * @param base class to add new indentations to.
+     * @param addition new acceptable indentation.
+     * @return New acceptable indentation level instance.
      */
-    public void addAcceptedIndent(IndentLevel indent) {
-        levels.or(indent.levels);
+    public static IndentLevel addAcceptable(IndentLevel base, IndentLevel addition) {
+        final IndentLevel result = new IndentLevel();
+        result.levels.or(base.levels);
+        result.levels.or(addition.levels);
+        return result;
     }
 
     /**
