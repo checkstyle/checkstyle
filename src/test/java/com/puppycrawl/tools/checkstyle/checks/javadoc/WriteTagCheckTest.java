@@ -204,6 +204,15 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputWriteTag2.java"), expected);
     }
 
+    @Test
+    public void testNoJavadocs() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
+        final String[] expected = {
+            "3: " + getCheckMessage(MSG_MISSING_TAG, "null"),
+        };
+        verify(checkConfig, getPath("InputWriteTag3.java"), expected);
+    }
+
     @Override
     protected void verify(Checker checker,
                           File[] processedFiles,

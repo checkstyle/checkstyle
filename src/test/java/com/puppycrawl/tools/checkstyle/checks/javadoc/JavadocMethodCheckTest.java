@@ -140,6 +140,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "328:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "337:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "344:5: " + getCheckMessage(MSG_INVALID_INHERIT_DOC),
+            "383:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
         };
 
         verify(checkConfig, getPath("InputJavadocMethodTags.java"), expected);
@@ -179,6 +180,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "328:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "337:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "344:5: " + getCheckMessage(MSG_INVALID_INHERIT_DOC),
+            "383:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
         };
         verify(checkConfig, getPath("InputJavadocMethodTags.java"), expected);
     }
@@ -298,6 +300,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "328:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "337:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "344:5: " + getCheckMessage(MSG_INVALID_INHERIT_DOC),
+            "383:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
         };
         verify(checkConfig, getPath("InputJavadocMethodTags.java"), expected);
     }
@@ -637,6 +640,17 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "13:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputJavadocMethodJavadocInMethod.java"), expected);
+    }
+
+    @Test
+    public void testConstructor() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
+        final String[] expected = {
+            "5:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "8:49: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
+            "10:50: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
+        };
+        verify(checkConfig, getPath("InputJavadocMethodConstructor.java"), expected);
     }
 
 }

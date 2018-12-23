@@ -423,4 +423,24 @@ public class InputJavadocStyle
          * @return Return
          */
         public int test(String s) { return 0; }
+
+    /** Set of all class field names.*/
+    public String field;
+
+    /**
+     * <p>Test.</p>
+     * <pre class="body">
+         for (
+          ; i &lt; j; i++, j--) {}
+       </pre>
+     */
+    public void test2() {}
+
+    /**
+     * <p>Test.</p>
+     * <pre><code>&#064;ExtendWith(SpotBugsExtension.class)
+public class SampleTest {
+}</code></pre>
+     */
+    public void test3() {}
 }

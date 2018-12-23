@@ -376,3 +376,11 @@ public class InputJavadocMethodTags {
 class WrongException extends RuntimeException
 {
 }
+
+@interface InputInterfaceTest {
+    /** @return
+     * nothing
+     * @return
+     * oops */
+    String[] results() default {};
+}

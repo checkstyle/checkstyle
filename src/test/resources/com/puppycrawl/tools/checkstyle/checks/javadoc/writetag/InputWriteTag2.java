@@ -18,7 +18,7 @@ enum InputWriteTag2 {
 /**
  * @incomplete This annotation needs more code...
  */
-@interface InputWriteTag3 {
+@interface InputWriteTag2a {
     /**
      * @incomplete This annotation field needs more code...
      */
