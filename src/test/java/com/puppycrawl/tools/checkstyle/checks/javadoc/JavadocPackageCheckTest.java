@@ -174,4 +174,14 @@ public class JavadocPackageCheckTest
         }
     }
 
+    @Test
+    public void testNonJava() throws Exception {
+        final Configuration checkConfig = createModuleConfig(JavadocPackageCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(
+            createChecker(checkConfig),
+            getPath("InputJavadocPackageNotJava.txt"),
+            expected);
+    }
+
 }

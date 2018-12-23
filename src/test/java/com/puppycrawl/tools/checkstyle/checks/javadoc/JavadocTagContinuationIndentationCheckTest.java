@@ -74,6 +74,7 @@ public class JavadocTagContinuationIndentationCheckTest
             "310: " + getCheckMessage(MSG_KEY, 4),
             "322: " + getCheckMessage(MSG_KEY, 4),
             "324: " + getCheckMessage(MSG_KEY, 4),
+            "342: " + getCheckMessage(MSG_KEY, 4),
         };
         verify(checkConfig, getPath("InputJavadocTagContinuationIndentation.java"),
                 expected);

@@ -334,3 +334,13 @@ interface FooIn1 {}
  * factory}.</p> // no warning
  */
 interface FooIn2 {}
+class ShortNextLine {
+    /**
+     * Test.
+     *
+     * @return Test
+     * tt <code>null</code>.
+     */
+    public void example() {
+    }
+}
