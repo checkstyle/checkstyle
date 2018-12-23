@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.powermock.api.mockito.PowerMockito.when;
@@ -42,6 +43,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.reflect.Whitebox;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -496,9 +498,13 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         catch (CheckstyleException ex) {
             assertEquals("Invalid exception message",
                 "unable to parse configuration stream", ex.getMessage());
+            assertSame("Expected cause of type SAXException",
+                SAXException.class, ex.getCause().getClass());
+            assertSame("Expected cause of type CheckstyleException",
+                CheckstyleException.class, ex.getCause().getCause().getClass());
             assertEquals("Invalid exception cause message",
                 "Property ${nonexistent} has not been set",
-                    ex.getCause().getMessage());
+                ex.getCause().getCause().getMessage());
         }
     }
 
