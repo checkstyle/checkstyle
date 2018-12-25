@@ -199,12 +199,12 @@ annotations/extends/implements/methods params.
           </li>
           <li>
             ImportOrder: allow static imports be separated by local groups when
-they are at the top/bottom.
+they are at the top/bottom by new property separatedStaticGroups.
             Author: Pavel Bludov
             <a href="https://github.com/checkstyle/checkstyle/issues/5279">#5279</a>
           </li>
           <li>
-            ImportOrder: new property groupsStatic to allow define groups for
+            ImportOrder: new property staticGroups to allow define groups for
 static imports.
             Author: Pavel Bludov
             <a href="https://github.com/checkstyle/checkstyle/issues/5724">#5724</a>
