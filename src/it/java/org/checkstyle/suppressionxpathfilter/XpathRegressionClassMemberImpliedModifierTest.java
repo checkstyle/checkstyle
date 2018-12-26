@@ -51,12 +51,15 @@ public class XpathRegressionClassMemberImpliedModifierTest extends AbstractXpath
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[@text='SuppressionXpathRegressionClassMemberImpliedModifierOne']"
-                        + "/OBJBLOCK/INTERFACE_DEF[@text='Foo']",
-                "/CLASS_DEF[@text='SuppressionXpathRegressionClassMemberImpliedModifierOne']"
-                        + "/OBJBLOCK/INTERFACE_DEF[@text='Foo']/MODIFIERS",
-                "/CLASS_DEF[@text='SuppressionXpathRegressionClassMemberImpliedModifierOne']"
-                        + "/OBJBLOCK/INTERFACE_DEF[@text='Foo']/MODIFIERS/LITERAL_PUBLIC"
+                "/CLASS_DEF[@firstIdentText="
+                        + "'SuppressionXpathRegressionClassMemberImpliedModifierOne']"
+                        + "/OBJBLOCK/INTERFACE_DEF[@firstIdentText='Foo']",
+                "/CLASS_DEF[@firstIdentText="
+                        + "'SuppressionXpathRegressionClassMemberImpliedModifierOne']"
+                        + "/OBJBLOCK/INTERFACE_DEF[@firstIdentText='Foo']/MODIFIERS",
+                "/CLASS_DEF[@firstIdentText="
+                        + "'SuppressionXpathRegressionClassMemberImpliedModifierOne']"
+                        + "/OBJBLOCK/INTERFACE_DEF[@firstIdentText='Foo']/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -77,12 +80,12 @@ public class XpathRegressionClassMemberImpliedModifierTest extends AbstractXpath
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionClassMemberImpliedModifierTwo']"
-                    + "/OBJBLOCK/ENUM_DEF[@text='Count']",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionClassMemberImpliedModifierTwo']"
-                    + "/OBJBLOCK/ENUM_DEF[@text='Count']/MODIFIERS",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionClassMemberImpliedModifierTwo']"
-                    + "/OBJBLOCK/ENUM_DEF[@text='Count']/MODIFIERS/LITERAL_PUBLIC"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionClassMemberImpliedModifierTwo']"
+                    + "/OBJBLOCK/ENUM_DEF[@firstIdentText='Count']",
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionClassMemberImpliedModifierTwo']"
+                    + "/OBJBLOCK/ENUM_DEF[@firstIdentText='Count']/MODIFIERS",
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionClassMemberImpliedModifierTwo']"
+                    + "/OBJBLOCK/ENUM_DEF[@firstIdentText='Count']/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

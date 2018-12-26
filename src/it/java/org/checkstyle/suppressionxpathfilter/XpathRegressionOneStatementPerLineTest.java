@@ -51,8 +51,8 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionOneStatementPerLineOne']/OBJBLOCK"
-                + "/VARIABLE_DEF[@text='j']/SEMI"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionOneStatementPerLineOne']"
+                + "/OBJBLOCK/VARIABLE_DEF[@firstIdentText='j']/SEMI"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -73,8 +73,8 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionOneStatementPerLineTwo']/OBJBLOCK"
-                + "/METHOD_DEF[@text='foo5']/SLIST/LITERAL_FOR/SLIST/SEMI"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionOneStatementPerLineTwo']"
+                + "/OBJBLOCK/METHOD_DEF[@firstIdentText='foo5']/SLIST/LITERAL_FOR/SLIST/SEMI"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

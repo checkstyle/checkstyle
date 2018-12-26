@@ -53,10 +53,10 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionTypecastParenPadLeftFollowed']"
-                + "/OBJBLOCK/VARIABLE_DEF[@text='bad']/ASSIGN/EXPR",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionTypecastParenPadLeftFollowed']"
-                + "/OBJBLOCK/VARIABLE_DEF[@text='bad']/ASSIGN/EXPR/TYPECAST"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionTypecastParenPadLeftFollowed']"
+                + "/OBJBLOCK/VARIABLE_DEF[@firstIdentText='bad']/ASSIGN/EXPR",
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionTypecastParenPadLeftFollowed']"
+                + "/OBJBLOCK/VARIABLE_DEF[@firstIdentText='bad']/ASSIGN/EXPR/TYPECAST"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -78,10 +78,12 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionTypecastParenPadLeftNotFollowed']"
-                + "/OBJBLOCK/VARIABLE_DEF[@text='bad']/ASSIGN/EXPR",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionTypecastParenPadLeftNotFollowed']"
-                + "/OBJBLOCK/VARIABLE_DEF[@text='bad']/ASSIGN/EXPR/TYPECAST"
+            "/CLASS_DEF[@firstIdentText="
+                + "'SuppressionXpathRegressionTypecastParenPadLeftNotFollowed']"
+                + "/OBJBLOCK/VARIABLE_DEF[@firstIdentText='bad']/ASSIGN/EXPR",
+            "/CLASS_DEF[@firstIdentText="
+                + "'SuppressionXpathRegressionTypecastParenPadLeftNotFollowed']"
+                + "/OBJBLOCK/VARIABLE_DEF[@firstIdentText='bad']/ASSIGN/EXPR/TYPECAST"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -102,8 +104,8 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionTypecastParenPadRightPreceded']"
-                + "/OBJBLOCK/VARIABLE_DEF[@text='bad']/ASSIGN/EXPR/TYPECAST/RPAREN"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionTypecastParenPadRightPreceded']"
+                + "/OBJBLOCK/VARIABLE_DEF[@firstIdentText='bad']/ASSIGN/EXPR/TYPECAST/RPAREN"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -125,8 +127,9 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionTypecastParenPadRightNotPreceded']"
-                + "/OBJBLOCK/VARIABLE_DEF[@text='bad']/ASSIGN/EXPR/TYPECAST/RPAREN"
+            "/CLASS_DEF[@firstIdentText="
+                + "'SuppressionXpathRegressionTypecastParenPadRightNotPreceded']"
+                + "/OBJBLOCK/VARIABLE_DEF[@firstIdentText='bad']/ASSIGN/EXPR/TYPECAST/RPAREN"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

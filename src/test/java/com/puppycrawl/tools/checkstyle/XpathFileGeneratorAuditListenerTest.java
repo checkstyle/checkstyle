@@ -161,8 +161,8 @@ public class XpathFileGeneratorAuditListenerTest {
                 + "       files=\"InputXpathFileGeneratorAuditListener.java\"" + EOL
                 + "       checks=\"LeftCurlyCheck\""
                 + EOL
-                + "       query=\"/CLASS_DEF[@text='InputXpathFileGeneratorAuditListener']/OBJBLOCK"
-                + "/LCURLY\"/>" + EOL
+                + "       query=\"/CLASS_DEF[@firstIdentText="
+                + "'InputXpathFileGeneratorAuditListener']/OBJBLOCK/LCURLY\"/>" + EOL
                 + "</suppressions>" + EOL;
 
         verifyOutput(expected, event);
@@ -186,13 +186,15 @@ public class XpathFileGeneratorAuditListenerTest {
                 + "<suppress-xpath" + EOL
                 + "       files=\"InputXpathFileGeneratorAuditListener.java\"" + EOL
                 + "       id=\"MyModule\"" + EOL
-                + "       query=\"/CLASS_DEF[@text='InputXpathFileGeneratorAuditListener']/OBJBLOCK"
-                + "/METHOD_DEF[@text='sort']\"/>" + EOL
+                + "       query=\"/CLASS_DEF[@firstIdentText="
+                + "'InputXpathFileGeneratorAuditListener']/OBJBLOCK"
+                + "/METHOD_DEF[@firstIdentText='sort']\"/>" + EOL
                 + "<suppress-xpath" + EOL
                 + "       files=\"InputXpathFileGeneratorAuditListener.java\"" + EOL
                 + "       checks=\"NestedForDepthCheck\"" + EOL
-                + "       query=\"/CLASS_DEF[@text='InputXpathFileGeneratorAuditListener']/OBJBLOCK"
-                + "/METHOD_DEF[@text='sort']/SLIST/LITERAL_FOR/SLIST/LITERAL_FOR\"/>" + EOL
+                + "       query=\"/CLASS_DEF[@firstIdentText="
+                + "'InputXpathFileGeneratorAuditListener']/OBJBLOCK/METHOD_DEF"
+                + "[@firstIdentText='sort']/SLIST/LITERAL_FOR/SLIST/LITERAL_FOR\"/>" + EOL
                 + "</suppressions>" + EOL;
 
         verifyOutput(expected, event1, event2);
@@ -219,8 +221,9 @@ public class XpathFileGeneratorAuditListenerTest {
                 + "<suppress-xpath" + EOL
                 + "       files=\"InputXpathFileGeneratorAuditListener.java\"" + EOL
                 + "       id=\"JavadocModuleId\"" + EOL
-                + "       query=\"/CLASS_DEF[@text='InputXpathFileGeneratorAuditListener']/OBJBLOCK"
-                + "/VARIABLE_DEF[@text='isValid']\"/>" + EOL
+                + "       query=\"/CLASS_DEF[@firstIdentText="
+                + "'InputXpathFileGeneratorAuditListener']/OBJBLOCK"
+                + "/VARIABLE_DEF[@firstIdentText='isValid']\"/>" + EOL
                 + "</suppressions>" + EOL;
 
         verifyOutput(expected, event1, event2, event3);

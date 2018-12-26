@@ -51,10 +51,10 @@ public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionExplicitOne']/OBJBLOCK"
-                + "/METHOD_DEF[@text='test']/SLIST/LITERAL_SWITCH/CASE_GROUP",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionExplicitOne']/OBJBLOCK"
-                + "/METHOD_DEF[@text='test']/SLIST/LITERAL_SWITCH/CASE_GROUP/LITERAL_CASE"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionExplicitOne']/OBJBLOCK"
+                + "/METHOD_DEF[@firstIdentText='test']/SLIST/LITERAL_SWITCH/CASE_GROUP",
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionExplicitOne']/OBJBLOCK"
+                + "/METHOD_DEF[@firstIdentText='test']/SLIST/LITERAL_SWITCH/CASE_GROUP/LITERAL_CASE"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -76,12 +76,12 @@ public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionExplicitTwo']/OBJBLOCK"
-                + "/METHOD_DEF[@text='methodFallThruCustomWords']/SLIST/LITERAL_WHILE/SLIST"
-                + "/LITERAL_SWITCH/CASE_GROUP",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionExplicitTwo']/OBJBLOCK"
-                + "/METHOD_DEF[@text='methodFallThruCustomWords']/SLIST/LITERAL_WHILE/SLIST"
-                + "/LITERAL_SWITCH/CASE_GROUP/LITERAL_DEFAULT"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionExplicitTwo']/OBJBLOCK"
+                + "/METHOD_DEF[@firstIdentText='methodFallThruCustomWords']/SLIST/LITERAL_WHILE"
+                + "/SLIST/LITERAL_SWITCH/CASE_GROUP",
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionExplicitTwo']/OBJBLOCK"
+                + "/METHOD_DEF[@firstIdentText='methodFallThruCustomWords']/SLIST/LITERAL_WHILE"
+                + "/SLIST/LITERAL_SWITCH/CASE_GROUP/LITERAL_DEFAULT"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

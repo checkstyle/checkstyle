@@ -37,8 +37,8 @@ import net.sf.saxon.type.Type;
  */
 public class ElementNode extends AbstractNode {
 
-    /** String literal for text attribute. */
-    private static final String TEXT_ATTRIBUTE_NAME = "text";
+    /** String literal for firstIdentText attribute. */
+    private static final String FIRST_IDENT_TEXT_ATTRIBUTE_NAME = "firstIdentText";
 
     /** Constant for optimization. */
     private static final AbstractNode[] EMPTY_ABSTRACT_NODE_ARRAY = new AbstractNode[0];
@@ -100,7 +100,7 @@ public class ElementNode extends AbstractNode {
      */
     @Override
     public String getAttributeValue(String namespace, String localPart) {
-        if (TEXT_ATTRIBUTE_NAME.equals(localPart)) {
+        if (FIRST_IDENT_TEXT_ATTRIBUTE_NAME.equals(localPart)) {
             return ident;
         }
         else {
@@ -272,15 +272,15 @@ public class ElementNode extends AbstractNode {
 
     /**
      * Finds child element with {@link TokenTypes#IDENT}, extracts its value and stores it.
-     * Value can be accessed using {@code @text} attribute. Now {@code @text} attribute is only
-     * supported attribute.
+     * Value can be accessed using {@code @firstIdentText} attribute. Now {@code @firstIdentText}
+     * attribute is only supported attribute.
      */
     private void setIdent() {
         final DetailAST identAst = detailAst.findFirstToken(TokenTypes.IDENT);
         if (identAst != null) {
             ident = identAst.getText();
             attributes = new AbstractNode[1];
-            attributes[0] = new AttributeNode(TEXT_ATTRIBUTE_NAME, ident);
+            attributes[0] = new AttributeNode(FIRST_IDENT_TEXT_ATTRIBUTE_NAME, ident);
         }
     }
 

@@ -51,12 +51,12 @@ public class XpathRegressionDeclarationOrderTest extends AbstractXpathTestSuppor
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[@text='SuppressionXpathRegressionDeclarationOne']"
-                        + "/OBJBLOCK/VARIABLE_DEF[@text='name']",
-                "/CLASS_DEF[@text='SuppressionXpathRegressionDeclarationOne']"
-                        + "/OBJBLOCK/VARIABLE_DEF[@text='name']/MODIFIERS",
-                "/CLASS_DEF[@text='SuppressionXpathRegressionDeclarationOne']"
-                        + "/OBJBLOCK/VARIABLE_DEF[@text='name']/MODIFIERS/LITERAL_PUBLIC"
+                "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionDeclarationOne']"
+                        + "/OBJBLOCK/VARIABLE_DEF[@firstIdentText='name']",
+                "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionDeclarationOne']"
+                        + "/OBJBLOCK/VARIABLE_DEF[@firstIdentText='name']/MODIFIERS",
+                "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionDeclarationOne']"
+                        + "/OBJBLOCK/VARIABLE_DEF[@firstIdentText='name']/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -77,12 +77,12 @@ public class XpathRegressionDeclarationOrderTest extends AbstractXpathTestSuppor
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[@text='SuppressionXpathRegressionDeclarationTwo']"
-                        + "/OBJBLOCK/VARIABLE_DEF[@text='MAX']",
-                "/CLASS_DEF[@text='SuppressionXpathRegressionDeclarationTwo']"
-                        + "/OBJBLOCK/VARIABLE_DEF[@text='MAX']/MODIFIERS",
-                "/CLASS_DEF[@text='SuppressionXpathRegressionDeclarationTwo']"
-                        + "/OBJBLOCK/VARIABLE_DEF[@text='MAX']/MODIFIERS/LITERAL_PUBLIC"
+                "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionDeclarationTwo']"
+                        + "/OBJBLOCK/VARIABLE_DEF[@firstIdentText='MAX']",
+                "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionDeclarationTwo']"
+                        + "/OBJBLOCK/VARIABLE_DEF[@firstIdentText='MAX']/MODIFIERS",
+                "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionDeclarationTwo']"
+                        + "/OBJBLOCK/VARIABLE_DEF[@firstIdentText='MAX']/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

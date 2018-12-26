@@ -51,9 +51,9 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionProcessEnd']/OBJBLOCK"
-                + "/METHOD_DEF[@text='bad']/PARAMETERS/PARAMETER_DEF[@text='cls']"
-                + "/TYPE[@text='Class']/TYPE_ARGUMENTS/GENERIC_END"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionProcessEnd']/OBJBLOCK"
+                + "/METHOD_DEF[@firstIdentText='bad']/PARAMETERS/PARAMETER_DEF"
+                + "[@firstIdentText='cls']/TYPE[@firstIdentText='Class']/TYPE_ARGUMENTS/GENERIC_END"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -74,9 +74,10 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionProcessNestedGenericsOne']/OBJBLOCK"
-                + "/METHOD_DEF[@text='bad']/TYPE_PARAMETERS/TYPE_PARAMETER[@text='E']"
-                + "/TYPE_UPPER_BOUNDS[@text='Enum']/TYPE_ARGUMENTS/GENERIC_END"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionProcessNestedGenericsOne']"
+                + "/OBJBLOCK/METHOD_DEF[@firstIdentText='bad']/TYPE_PARAMETERS"
+                + "/TYPE_PARAMETER[@firstIdentText='E']/TYPE_UPPER_BOUNDS[@firstIdentText='Enum']"
+                + "/TYPE_ARGUMENTS/GENERIC_END"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -97,9 +98,10 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionProcessNestedGenericsTwo']/OBJBLOCK"
-                + "/METHOD_DEF[@text='bad']/TYPE_PARAMETERS/TYPE_PARAMETER[@text='E']"
-                + "/TYPE_UPPER_BOUNDS[@text='Enum']/TYPE_ARGUMENTS/GENERIC_END"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionProcessNestedGenericsTwo']"
+                + "/OBJBLOCK/METHOD_DEF[@firstIdentText='bad']/TYPE_PARAMETERS"
+                + "/TYPE_PARAMETER[@firstIdentText='E']/TYPE_UPPER_BOUNDS[@firstIdentText='Enum']"
+                + "/TYPE_ARGUMENTS/GENERIC_END"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -120,9 +122,10 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionProcessNestedGenericsThree']/OBJBLOCK"
-                + "/METHOD_DEF[@text='bad']/TYPE_PARAMETERS/TYPE_PARAMETER[@text='E']"
-                + "/TYPE_UPPER_BOUNDS[@text='Enum']/TYPE_ARGUMENTS/GENERIC_END"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionProcessNestedGenericsThree']"
+                + "/OBJBLOCK/METHOD_DEF[@firstIdentText='bad']/TYPE_PARAMETERS"
+                + "/TYPE_PARAMETER[@firstIdentText='E']/TYPE_UPPER_BOUNDS[@firstIdentText='Enum']"
+                + "/TYPE_ARGUMENTS/GENERIC_END"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -143,9 +146,9 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionProcessSingleGenericOne']/OBJBLOCK"
-                + "/VARIABLE_DEF[@text='bad']/ASSIGN/EXPR/METHOD_CALL/DOT[@text='Collections']"
-                + "/TYPE_ARGUMENTS/GENERIC_END"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionProcessSingleGenericOne']"
+                + "/OBJBLOCK/VARIABLE_DEF[@firstIdentText='bad']/ASSIGN/EXPR/METHOD_CALL"
+                + "/DOT[@firstIdentText='Collections']/TYPE_ARGUMENTS/GENERIC_END"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -166,8 +169,8 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionProcessSingleGenericTwo']/OBJBLOCK"
-                + "/METHOD_DEF[@text='bad']/TYPE_PARAMETERS/GENERIC_END"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionProcessSingleGenericTwo']"
+                + "/OBJBLOCK/METHOD_DEF[@firstIdentText='bad']/TYPE_PARAMETERS/GENERIC_END"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -188,10 +191,10 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionProcessStartOne']/OBJBLOCK"
-                + "/METHOD_DEF[@text='bad']/TYPE_PARAMETERS",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionProcessStartOne']/OBJBLOCK"
-                + "/METHOD_DEF[@text='bad']/TYPE_PARAMETERS/GENERIC_START"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionProcessStartOne']/OBJBLOCK"
+                + "/METHOD_DEF[@firstIdentText='bad']/TYPE_PARAMETERS",
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionProcessStartOne']/OBJBLOCK"
+                + "/METHOD_DEF[@firstIdentText='bad']/TYPE_PARAMETERS/GENERIC_START"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -212,12 +215,14 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionProcessStartTwo']/OBJBLOCK"
-                + "/METHOD_DEF[@text='bad']/PARAMETERS/PARAMETER_DEF[@text='consumer']"
-                + "/TYPE[@text='Consumer']/TYPE_ARGUMENTS",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionProcessStartTwo']/OBJBLOCK"
-                + "/METHOD_DEF[@text='bad']/PARAMETERS/PARAMETER_DEF[@text='consumer']"
-                + "/TYPE[@text='Consumer']/TYPE_ARGUMENTS/GENERIC_START"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionProcessStartTwo']/OBJBLOCK"
+                + "/METHOD_DEF[@firstIdentText='bad']/PARAMETERS"
+                + "/PARAMETER_DEF[@firstIdentText='consumer']/TYPE[@firstIdentText='Consumer']"
+                + "/TYPE_ARGUMENTS",
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionProcessStartTwo']/OBJBLOCK"
+                + "/METHOD_DEF[@firstIdentText='bad']/PARAMETERS"
+                + "/PARAMETER_DEF[@firstIdentText='consumer']/TYPE[@firstIdentText='Consumer']"
+                + "/TYPE_ARGUMENTS/GENERIC_START"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -238,14 +243,14 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionProcessStartThree']/OBJBLOCK"
-                + "/METHOD_DEF[@text='bad']",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionProcessStartThree']/OBJBLOCK/"
-                + "METHOD_DEF[@text='bad']/MODIFIERS",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionProcessStartThree']/OBJBLOCK/"
-                + "METHOD_DEF[@text='bad']/TYPE_PARAMETERS",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionProcessStartThree']/OBJBLOCK/"
-                + "METHOD_DEF[@text='bad']/TYPE_PARAMETERS/GENERIC_START"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionProcessStartThree']/OBJBLOCK"
+                + "/METHOD_DEF[@firstIdentText='bad']",
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionProcessStartThree']/OBJBLOCK/"
+                + "METHOD_DEF[@firstIdentText='bad']/MODIFIERS",
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionProcessStartThree']/OBJBLOCK/"
+                + "METHOD_DEF[@firstIdentText='bad']/TYPE_PARAMETERS",
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionProcessStartThree']/OBJBLOCK/"
+                + "METHOD_DEF[@firstIdentText='bad']/TYPE_PARAMETERS/GENERIC_START"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

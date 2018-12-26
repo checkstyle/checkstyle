@@ -53,8 +53,8 @@ public class XpathRegressionLeftCurlyTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionLeftCurlyOne']/OBJBLOCK",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionLeftCurlyOne']/OBJBLOCK/LCURLY"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionLeftCurlyOne']/OBJBLOCK",
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionLeftCurlyOne']/OBJBLOCK/LCURLY"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -76,8 +76,8 @@ public class XpathRegressionLeftCurlyTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionLeftCurlyTwo']/OBJBLOCK",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionLeftCurlyTwo']/OBJBLOCK/LCURLY"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionLeftCurlyTwo']/OBJBLOCK",
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionLeftCurlyTwo']/OBJBLOCK/LCURLY"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -98,8 +98,8 @@ public class XpathRegressionLeftCurlyTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionLeftCurlyThree']/OBJBLOCK"
-                + "/METHOD_DEF[@text='sample']/SLIST/LITERAL_IF/SLIST"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionLeftCurlyThree']/OBJBLOCK"
+                + "/METHOD_DEF[@firstIdentText='sample']/SLIST/LITERAL_IF/SLIST"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

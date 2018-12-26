@@ -7,16 +7,17 @@
 <suppressions>
     <!-- Tone down the checking for test code -->
     <suppress-xpath checks="NPathComplexity"
-                    query="/CLASS_DEF[@text='XdocsPagesTest']
-                    //METHOD_DEF[@text='validateCheckSection'
-                                  or @text='getModulePropertyExpectedValue']"/>
+                    query="/CLASS_DEF[@firstIdentText='XdocsPagesTest']
+                    //METHOD_DEF[@firstIdentText='validateCheckSection'
+                                  or @firstIdentText='getModulePropertyExpectedValue']"/>
 
     <suppress-xpath checks="CyclomaticComplexity"
-                    query="/CLASS_DEF[@text='XdocsPagesTest']//METHOD_DEF"/>
+                    query="/CLASS_DEF[@firstIdentText='XdocsPagesTest']//METHOD_DEF"/>
 
     <!-- Suppressions from PMD configuration-->
     <!-- JavadocMethodCheck, JavadocStyleCheck, JavadocUtil.getJavadocTags() - deprecated -->
     <suppress-xpath checks="CyclomaticComplexity"
-                    query="/CLASS_DEF[@text='JavadocMethodCheck' or @text='JavadocStyleCheck'
-                    or @text='CustomImportOrderCheck']//METHOD_DEF"/>
+                    query="/CLASS_DEF[@firstIdentText='JavadocMethodCheck'
+                    or @firstIdentText='JavadocStyleCheck'
+                    or @firstIdentText='CustomImportOrderCheck']//METHOD_DEF"/>
 </suppressions>

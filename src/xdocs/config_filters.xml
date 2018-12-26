@@ -891,7 +891,7 @@ public class UserService {
 &lt;suppressions&gt;
   &lt;suppress-xpath checks=&quot;CyclomaticComplexity&quot;
   files=&quot;FileOne.java,FileTwo.java&quot;
-  query=&quot;//METHOD_DEF[@text='sayHelloWorld']&quot;/&gt;
+  query=&quot;//METHOD_DEF[@firstIdentText='sayHelloWorld']&quot;/&gt;
 &lt;/suppressions&gt;
         </source>
         <p>
@@ -917,32 +917,34 @@ public class UserService {
           Suppress checks for certain methods:
         </p>
         <source>
-&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;//METHOD_DEF[@text='getSomeVar'
-          or @text='setSomeVar']&quot;/&gt;
+&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;//METHOD_DEF[@firstIdentText='getSomeVar'
+          or @firstIdentText='setSomeVar']&quot;/&gt;
         </source>
         <p>
           Suppress checks for variable <i>testVariable</i> inside <i>testMethod</i> method
           inside <i>TestClass</i> class.
         </p>
         <source>
-&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;/CLASS_DEF[@text='TestClass']
-          //METHOD_DEF[@text='testMethod']//VARIABLE_DEF[@text='testVariable']&quot;/&gt;
+&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;/CLASS_DEF[@firstIdentText='TestClass']
+          //METHOD_DEF[@firstIdentText='testMethod']
+          //VARIABLE_DEF[@firstIdentText='testVariable']&quot;/&gt;
         </source>
         <p>
           In the following sample, violations for <code>LeftCurly</code> check will be suppressed
           for classes with name <i>Main</i> or for methods with name <i>calculate</i>.
         </p>
         <source>
-&lt;suppress-xpath checks=&quot;LeftCurly&quot; query=&quot;/CLASS_DEF[@text='Main']//*
-          | //METHOD_DEF[@text='calculate']/*&quot;/&gt;
+&lt;suppress-xpath checks=&quot;LeftCurly&quot; query=&quot;/CLASS_DEF[@firstIdentText='Main']//*
+          | //METHOD_DEF[@firstIdentText='calculate']/*&quot;/&gt;
         </source>
         <p>
           The following example demonstrates how to suppress <code>RequireThis</code> violations for
           variable <i>age</i> inside <i>changeAge</i> method.
         </p>
         <source>
-&lt;suppress-xpath checks=&quot;RequireThis&quot; query=&quot;/CLASS_DEF[@text='InputTest']
-          //METHOD_DEF[@text='changeAge']//ASSIGN[@text='age']/IDENT&quot;/&gt;
+&lt;suppress-xpath checks=&quot;RequireThis&quot;
+          query=&quot;/CLASS_DEF[@firstIdentText='InputTest']
+          //METHOD_DEF[@firstIdentText='changeAge']//ASSIGN[@firstIdentText='age']/IDENT&quot;/&gt;
         </source>
         <source>
 public class InputTest {
@@ -963,7 +965,8 @@ public class InputTest {
         </p>
         <source>
 &lt;suppress-xpath checks=&quot;IllegalThrows&quot; query=&quot;//LITERAL_THROWS/IDENT[
-          ..[@text='RuntimeException'] and ./ancestor::METHOD_DEF[@text='throwsMethod']]&quot;/&gt;
+          ..[@firstIdentText='RuntimeException']
+          and ./ancestor::METHOD_DEF[@firstIdentText='throwsMethod']]&quot;/&gt;
         </source>
         <source>
 public class InputTest {
@@ -982,7 +985,7 @@ public class InputTest {
           <a href="https://www.w3schools.com/xml/xpath_syntax.asp">W3Schools Xpath Syntax</a>.
         </p>
         <source>
-&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;//METHOD_DEF[@text='legacyMethod']
+&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;//METHOD_DEF[@firstIdentText='legacyMethod']
           /descendant-or-self::node()&quot;/&gt;
         </source>
       </subsection>

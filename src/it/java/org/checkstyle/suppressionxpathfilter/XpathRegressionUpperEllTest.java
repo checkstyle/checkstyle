@@ -51,10 +51,10 @@ public class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionUpperEll']/OBJBLOCK"
-                + "/VARIABLE_DEF[@text='bad']/ASSIGN/EXPR",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionUpperEll']/OBJBLOCK"
-                + "/VARIABLE_DEF[@text='bad']/ASSIGN/EXPR/NUM_LONG"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionUpperEll']/OBJBLOCK"
+                + "/VARIABLE_DEF[@firstIdentText='bad']/ASSIGN/EXPR",
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionUpperEll']/OBJBLOCK"
+                + "/VARIABLE_DEF[@firstIdentText='bad']/ASSIGN/EXPR/NUM_LONG"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

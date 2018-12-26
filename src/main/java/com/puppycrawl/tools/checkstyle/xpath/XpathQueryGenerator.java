@@ -60,13 +60,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <ul>
  *     <li>
- *         /CLASS_DEF[@text='Main']/OBJBLOCK/METHOD_DEF[@text='sayHello']
+ *         /CLASS_DEF[@firstIdentText='Main']/OBJBLOCK/METHOD_DEF[@firstIdentText='sayHello']
  *     </li>
  *     <li>
- *         /CLASS_DEF[@text='Main']/OBJBLOCK/METHOD_DEF[@text='sayHello']/MODIFIERS
+ *         /CLASS_DEF[@firstIdentText='Main']/OBJBLOCK/METHOD_DEF[@firstIdentText='sayHello']/MODIFIERS
  *     </li>
  *     <li>
- *         /CLASS_DEF[@text='Main']/OBJBLOCK/METHOD_DEF[@text='sayHello']/MODIFIERS/LITERAL_PUBLIC
+ *         /CLASS_DEF[@firstIdentText='Main']/OBJBLOCK/METHOD_DEF[@firstIdentText='sayHello']/MODIFIERS/LITERAL_PUBLIC
  *     </li>
  * </ul>
  *
@@ -211,7 +211,7 @@ public class XpathQueryGenerator {
                     .append(TokenUtil.getTokenName(cur.getType()));
             final DetailAST identAst = cur.findFirstToken(TokenTypes.IDENT);
             if (identAst != null) {
-                curNodeQueryBuilder.append("[@text='")
+                curNodeQueryBuilder.append("[@firstIdentText='")
                         .append(identAst.getText())
                         .append("']");
             }

@@ -53,12 +53,12 @@ public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathTestSu
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionCyclomaticOne']/OBJBLOCK"
-                + "/METHOD_DEF[@text='test']",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionCyclomaticOne']/OBJBLOCK"
-                + "/METHOD_DEF[@text='test']/MODIFIERS",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionCyclomaticOne']/OBJBLOCK"
-                + "/METHOD_DEF[@text='test']/MODIFIERS/LITERAL_PUBLIC"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionCyclomaticOne']/OBJBLOCK"
+                + "/METHOD_DEF[@firstIdentText='test']",
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionCyclomaticOne']/OBJBLOCK"
+                + "/METHOD_DEF[@firstIdentText='test']/MODIFIERS",
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionCyclomaticOne']/OBJBLOCK"
+                + "/METHOD_DEF[@firstIdentText='test']/MODIFIERS/LITERAL_PUBLIC"
                 );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -80,12 +80,12 @@ public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathTestSu
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionCyclomaticTwo']/OBJBLOCK"
-                    + "/METHOD_DEF[@text='foo2']",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionCyclomaticTwo']/OBJBLOCK"
-                    + "/METHOD_DEF[@text='foo2']/MODIFIERS",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionCyclomaticTwo']/OBJBLOCK"
-                    + "/METHOD_DEF[@text='foo2']/MODIFIERS/LITERAL_PUBLIC"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionCyclomaticTwo']/OBJBLOCK"
+                    + "/METHOD_DEF[@firstIdentText='foo2']",
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionCyclomaticTwo']/OBJBLOCK"
+                    + "/METHOD_DEF[@firstIdentText='foo2']/MODIFIERS",
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionCyclomaticTwo']/OBJBLOCK"
+                    + "/METHOD_DEF[@firstIdentText='foo2']/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

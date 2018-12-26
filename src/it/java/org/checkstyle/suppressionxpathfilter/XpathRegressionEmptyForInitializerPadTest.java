@@ -52,10 +52,10 @@ public class XpathRegressionEmptyForInitializerPadTest extends AbstractXpathTest
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionEmptyForInitializerPadPreceded']"
-                + "/OBJBLOCK/METHOD_DEF[@text='method']/SLIST/LITERAL_FOR/FOR_INIT",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionEmptyForInitializerPadPreceded']"
-                + "/OBJBLOCK/METHOD_DEF[@text='method']/SLIST/LITERAL_FOR/SEMI"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionEmptyForInitializerPadPreceded']"
+                + "/OBJBLOCK/METHOD_DEF[@firstIdentText='method']/SLIST/LITERAL_FOR/FOR_INIT",
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionEmptyForInitializerPadPreceded']"
+                + "/OBJBLOCK/METHOD_DEF[@firstIdentText='method']/SLIST/LITERAL_FOR/SEMI"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -77,10 +77,12 @@ public class XpathRegressionEmptyForInitializerPadTest extends AbstractXpathTest
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionEmptyForInitializerPadNotPreceded']"
-                + "/OBJBLOCK/METHOD_DEF[@text='method']/SLIST/LITERAL_FOR/FOR_INIT",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionEmptyForInitializerPadNotPreceded']"
-                + "/OBJBLOCK/METHOD_DEF[@text='method']/SLIST/LITERAL_FOR/SEMI"
+            "/CLASS_DEF[@firstIdentText="
+                + "'SuppressionXpathRegressionEmptyForInitializerPadNotPreceded']"
+                + "/OBJBLOCK/METHOD_DEF[@firstIdentText='method']/SLIST/LITERAL_FOR/FOR_INIT",
+            "/CLASS_DEF[@firstIdentText="
+                + "'SuppressionXpathRegressionEmptyForInitializerPadNotPreceded']"
+                + "/OBJBLOCK/METHOD_DEF[@firstIdentText='method']/SLIST/LITERAL_FOR/SEMI"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

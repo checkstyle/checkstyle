@@ -61,7 +61,7 @@ public class XpathFilterTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMatching() throws Exception {
-        final String xpath = "/CLASS_DEF[@text='InputXpathFilterSuppressByXpath']";
+        final String xpath = "/CLASS_DEF[@firstIdentText='InputXpathFilterSuppressByXpath']";
         final XpathFilter filter =
                 new XpathFilter("InputXpathFilterSuppressByXpath", "Test", null, null, xpath);
         final TreeWalkerAuditEvent ev = getEvent(3, 0,
@@ -71,7 +71,7 @@ public class XpathFilterTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNonMatchingTokenType() throws Exception {
-        final String xpath = "//METHOD_DEF[@text='countTokens']";
+        final String xpath = "//METHOD_DEF[@firstIdentText='countTokens']";
         final XpathFilter filter =
                 new XpathFilter("InputXpathFilterSuppressByXpath", "Test", null, null, xpath);
         final TreeWalkerAuditEvent ev = getEvent(3, 0,
@@ -81,7 +81,7 @@ public class XpathFilterTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNonMatchingLineNumber() throws Exception {
-        final String xpath = "/CLASS_DEF[@text='InputXpathFilterSuppressByXpath']";
+        final String xpath = "/CLASS_DEF[@firstIdentText='InputXpathFilterSuppressByXpath']";
         final XpathFilter filter =
                 new XpathFilter("InputXpathFilterSuppressByXpath", "Test", null, null, xpath);
         final TreeWalkerAuditEvent ev = getEvent(100, 0,
@@ -91,7 +91,7 @@ public class XpathFilterTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNonMatchingColumnNumber() throws Exception {
-        final String xpath = "/CLASS_DEF[@text='InputXpathFilterSuppressByXpath']";
+        final String xpath = "/CLASS_DEF[@firstIdentText='InputXpathFilterSuppressByXpath']";
         final XpathFilter filter =
                 new XpathFilter("InputXpathFilterSuppressByXpath", "Test", null, null, xpath);
         final TreeWalkerAuditEvent ev = getEvent(3, 100,
@@ -101,9 +101,10 @@ public class XpathFilterTest extends AbstractModuleTestSupport {
 
     @Test
     public void testComplexQuery() throws Exception {
-        final String xpath = "//VARIABLE_DEF[@text='pi' and "
-                + "../..[@text='countTokens']] "
-                + "| //VARIABLE_DEF[@text='someVariable' and ../..[@text='sum']]";
+        final String xpath = "//VARIABLE_DEF[@firstIdentText='pi' and "
+                + "../..[@firstIdentText='countTokens']] "
+                + "| //VARIABLE_DEF[@firstIdentText='someVariable' and "
+                + "../..[@firstIdentText='sum']]";
         final XpathFilter filter =
                 new XpathFilter("InputXpathFilterSuppressByXpath", "Test", null, null, xpath);
         final TreeWalkerAuditEvent eventOne = getEvent(5, 8,
@@ -185,7 +186,7 @@ public class XpathFilterTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMatchingModuleId() throws Exception {
-        final String xpath = "/CLASS_DEF[@text='InputXpathFilterSuppressByXpath']";
+        final String xpath = "/CLASS_DEF[@firstIdentText='InputXpathFilterSuppressByXpath']";
         final XpathFilter filter =
                 new XpathFilter("InputXpathFilterSuppressByXpath", "Test", null, "id19", xpath);
         final LocalizedMessage message =
@@ -243,7 +244,7 @@ public class XpathFilterTest extends AbstractModuleTestSupport {
 
     @Test
     public void testThrowException() {
-        final String xpath = "/CLASS_DEF[@text='InputXpathFilterSuppressByXpath']";
+        final String xpath = "/CLASS_DEF[@firstIdentText='InputXpathFilterSuppressByXpath']";
         final XpathFilter filter =
                 new XpathFilter("InputXpathFilterSuppressByXpath", "Test", null, null, xpath);
         final LocalizedMessage message =

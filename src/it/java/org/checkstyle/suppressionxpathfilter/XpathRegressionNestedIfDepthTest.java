@@ -51,8 +51,9 @@ public class XpathRegressionNestedIfDepthTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionNestedIfDepth']/OBJBLOCK"
-                + "/METHOD_DEF[@text='test']/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionNestedIfDepth']/OBJBLOCK"
+                + "/METHOD_DEF[@firstIdentText='test']/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST"
+                + "/LITERAL_IF"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

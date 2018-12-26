@@ -52,8 +52,9 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionRequireThisOne']/OBJBLOCK"
-                + "/METHOD_DEF[@text='changeAge']/SLIST/EXPR/ASSIGN[@text='age']/IDENT"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionRequireThisOne']/OBJBLOCK"
+                + "/METHOD_DEF[@firstIdentText='changeAge']/SLIST/EXPR"
+                + "/ASSIGN[@firstIdentText='age']/IDENT"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -75,8 +76,9 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionRequireThisTwo']/OBJBLOCK"
-                + "/METHOD_DEF[@text='method2']/SLIST/EXPR/METHOD_CALL[@text='method1']/IDENT"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionRequireThisTwo']/OBJBLOCK"
+                + "/METHOD_DEF[@firstIdentText='method2']/SLIST/EXPR"
+                + "/METHOD_CALL[@firstIdentText='method1']/IDENT"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

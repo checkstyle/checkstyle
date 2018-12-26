@@ -51,10 +51,10 @@ public class XpathRegressionNoWhitespaceAfterTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionNoWhitespaceAfter']/OBJBLOCK"
-                + "/VARIABLE_DEF[@text='bad']/ASSIGN/EXPR",
-            "/CLASS_DEF[@text='SuppressionXpathRegressionNoWhitespaceAfter']/OBJBLOCK"
-                + "/VARIABLE_DEF[@text='bad']/ASSIGN/EXPR/UNARY_MINUS"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionNoWhitespaceAfter']/OBJBLOCK"
+                + "/VARIABLE_DEF[@firstIdentText='bad']/ASSIGN/EXPR",
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionNoWhitespaceAfter']/OBJBLOCK"
+                + "/VARIABLE_DEF[@firstIdentText='bad']/ASSIGN/EXPR/UNARY_MINUS"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

@@ -51,9 +51,9 @@ public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionExplicitOne']/OBJBLOCK"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionExplicitOne']/OBJBLOCK"
                 + "/INSTANCE_INIT/SLIST/EXPR/METHOD_CALL/ELIST/LAMBDA/PARAMETERS"
-                + "/PARAMETER_DEF[@text='value']/IDENT"
+                + "/PARAMETER_DEF[@firstIdentText='value']/IDENT"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -74,8 +74,9 @@ public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionExplicitTwo']/OBJBLOCK"
-                + "/METHOD_DEF[@text='method']/PARAMETERS/PARAMETER_DEF[@text='other']/IDENT"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionExplicitTwo']/OBJBLOCK"
+                + "/METHOD_DEF[@firstIdentText='method']/PARAMETERS"
+                + "/PARAMETER_DEF[@firstIdentText='other']/IDENT"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

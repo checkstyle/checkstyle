@@ -53,8 +53,8 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionParenPadLeftFollowed']"
-                + "/OBJBLOCK/METHOD_DEF[@text='method']/SLIST/LITERAL_IF/LPAREN"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionParenPadLeftFollowed']"
+                + "/OBJBLOCK/METHOD_DEF[@firstIdentText='method']/SLIST/LITERAL_IF/LPAREN"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -76,8 +76,8 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionParenPadLeftNotFollowed']"
-                + "/OBJBLOCK/METHOD_DEF[@text='method']/SLIST/LITERAL_IF/LPAREN"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionParenPadLeftNotFollowed']"
+                + "/OBJBLOCK/METHOD_DEF[@firstIdentText='method']/SLIST/LITERAL_IF/LPAREN"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -98,8 +98,8 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionParenPadRightPreceded']"
-                + "/OBJBLOCK/METHOD_DEF[@text='method']/SLIST/LITERAL_IF/RPAREN"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionParenPadRightPreceded']"
+                + "/OBJBLOCK/METHOD_DEF[@firstIdentText='method']/SLIST/LITERAL_IF/RPAREN"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -121,8 +121,8 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[@text='SuppressionXpathRegressionParenPadRightNotPreceded']"
-                + "/OBJBLOCK/METHOD_DEF[@text='method']/SLIST/LITERAL_IF/RPAREN"
+            "/CLASS_DEF[@firstIdentText='SuppressionXpathRegressionParenPadRightNotPreceded']"
+                + "/OBJBLOCK/METHOD_DEF[@firstIdentText='method']/SLIST/LITERAL_IF/RPAREN"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

@@ -47,10 +47,10 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
 
     @Test
     public void testCorrect() throws Exception {
-        final String expected = "/CLASS_DEF[@text='InputSuppressionsStringPrinter']" + EOL
-                + "/CLASS_DEF[@text='InputSuppressionsStringPrinter']/MODIFIERS" + EOL
-                + "/CLASS_DEF[@text='InputSuppressionsStringPrinter']/MODIFIERS/LITERAL_PUBLIC"
-                + EOL;
+        final String expected = "/CLASS_DEF[@firstIdentText='InputSuppressionsStringPrinter']" + EOL
+                + "/CLASS_DEF[@firstIdentText='InputSuppressionsStringPrinter']/MODIFIERS" + EOL
+                + "/CLASS_DEF[@firstIdentText='InputSuppressionsStringPrinter']/MODIFIERS"
+                + "/LITERAL_PUBLIC" + EOL;
 
         final File input = new File(getPath("InputSuppressionsStringPrinter.java"));
         final String lineAndColumnNumber = "3:1";
@@ -64,12 +64,12 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
 
     @Test
     public void testCustomTabWidth() throws Exception {
-        final String expected = "/CLASS_DEF[@text='InputSuppressionsStringPrinter']/OBJBLOCK"
-                + "/METHOD_DEF[@text='toString']" + EOL
-                + "/CLASS_DEF[@text='InputSuppressionsStringPrinter']/OBJBLOCK"
-                + "/METHOD_DEF[@text='toString']/MODIFIERS" + EOL
-                + "/CLASS_DEF[@text='InputSuppressionsStringPrinter']/OBJBLOCK"
-                + "/METHOD_DEF[@text='toString']/MODIFIERS/LITERAL_PUBLIC" + EOL;
+        final String expected = "/CLASS_DEF[@firstIdentText='InputSuppressionsStringPrinter']"
+                + "/OBJBLOCK/METHOD_DEF[@firstIdentText='toString']" + EOL
+                + "/CLASS_DEF[@firstIdentText='InputSuppressionsStringPrinter']/OBJBLOCK"
+                + "/METHOD_DEF[@firstIdentText='toString']/MODIFIERS" + EOL
+                + "/CLASS_DEF[@firstIdentText='InputSuppressionsStringPrinter']/OBJBLOCK"
+                + "/METHOD_DEF[@firstIdentText='toString']/MODIFIERS/LITERAL_PUBLIC" + EOL;
 
         final File input = new File(getPath("InputSuppressionsStringPrinter.java"));
         final String lineAndColumnNumber = "5:13";
@@ -111,7 +111,8 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
 
     @Test
     public void testParseFileTextThrowable() throws Exception {
-        final File input = new File(getNonCompilablePath("InputSuppressionsStringPrinter.java"));
+        final File input = new File(
+                getNonCompilablePath("InputSuppressionsStringPrinter.java"));
         final String lineAndColumnNumber = "2:3";
         final int tabWidth = 2;
         try {
