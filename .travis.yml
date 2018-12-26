@@ -152,11 +152,20 @@ matrix:
         - DESC="All sevntu checks should be used"
         - CMD="./.ci/travis/travis.sh all-sevntu-checks"
 
-    # MacOS verify (till cache is not working, we can not do verify)
+    # MacOS JDK8 verify (till cache is not working, we can not do verify)
     - os: osx
       osx_image: xcode9.3
       env:
-        - DESC="MacOS verify, site, assembly
+        - DESC="MacOS JDK8 verify, site, assembly
+        - CMD1="mvn -e package -Dlinkcheck.skip=true"
+        - CMD2="mvn -e package -Passembly"
+        - CMD="export JAVA_HOME=$(/usr/libexec/java_home) && $CMD1 && $CMD2"
+
+    # MacOS JDK11 verify (till cache is not working, we can not do verify)
+    - os: osx
+      osx_image: xcode10.1
+      env:
+        - DESC="MacOS JDK11 verify, site, assembly
         - CMD1="mvn -e package -Dlinkcheck.skip=true"
         - CMD2="mvn -e package -Passembly"
         - CMD="export JAVA_HOME=$(/usr/libexec/java_home) && $CMD1 && $CMD2"
@@ -186,10 +195,34 @@ matrix:
         - DESC="build with OpenJDK8"
         - CMD="mvn -e package -Passembly && mvn -e site -Dlinkcheck.skip=true"
 
+    # OpenJDK9 build
+    - jdk: openjdk9
+      env:
+        - DESC="build with OpenJDK9"
+        - CMD="mvn -e package -Passembly && mvn -e site -Dlinkcheck.skip=true"
+
+    # OpenJDK10 build
+    - jdk: openjdk10
+      env:
+        - DESC="build with OpenJDK10"
+        - CMD="mvn -e package -Passembly && mvn -e site -Dlinkcheck.skip=true"
+
+    # OpenJDK11 build
+    - jdk: openjdk11
+      env:
+        - DESC="build with OpenJDK11"
+        - CMD="mvn -e package -Passembly && mvn -e site -Dlinkcheck.skip=true"
+
     # OracleJDK9 build
     - jdk: oraclejdk9
       env:
         - DESC="build with OracleJDK9"
+        - CMD="mvn -e package -Passembly && mvn -e site -Dlinkcheck.skip=true"
+
+    # OracleJDK11 build
+    - jdk: oraclejdk11
+      env:
+        - DESC="build with OracleJDK11"
         - CMD="mvn -e package -Passembly && mvn -e site -Dlinkcheck.skip=true"
 
     # OracleJDK9 compile input files with jdk9 specific syntax
