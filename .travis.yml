@@ -198,6 +198,18 @@ matrix:
         - DESC="compile input files with jdk9 specific syntax"
         - CMD="./.ci/travis/travis.sh javac9"
 
+    # OpenJDK10 compile input files with jdk10 specific syntax
+    - jdk: openjdk10
+      env:
+        - DESC="compile input files with jdk10 specific syntax"
+        - CMD="./.ci/travis/travis.sh javac10"
+
+    # OpenJDK11 compile input files with jdk11 specific syntax
+    - jdk: openjdk11
+      env:
+        - DESC="compile input files with jdk11 specific syntax"
+        - CMD="./.ci/travis/travis.sh javac11"
+
     # compile input files compilation that are not compiled by eclipse
     - jdk: oraclejdk8
       env:

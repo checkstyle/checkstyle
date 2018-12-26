@@ -66,6 +66,14 @@ site)
   mvn -e clean site -Pno-validations
   ;;
 
+javac11)
+  javac $(grep -Rl --include='*.java' ': Compilable with Java11' src/test/resources-noncompilable)
+  ;;
+
+javac10)
+  javac $(grep -Rl --include='*.java' ': Compilable with Java10' src/test/resources-noncompilable)
+  ;;
+
 javac9)
   javac $(grep -Rl --include='*.java' ': Compilable with Java9' src/test/resources-noncompilable)
   ;;
