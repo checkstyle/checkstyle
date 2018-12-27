@@ -8,6 +8,8 @@
 
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"
+    files="packagedeclaration[\\/]InputPackageDeclarationNoPackage\.java"/>
+  <suppress checks="PackageDeclarationCheck"
     files="packagedeclaration[\\/]InputPackageDeclarationWithCommentOnly\.java"/>
   <suppress checks="PackageDeclarationCheck"
     files="[\\/]resources-noncompilable[\\/].*[\\/]packagedeclaration[\\/]Input.*\.java"/>

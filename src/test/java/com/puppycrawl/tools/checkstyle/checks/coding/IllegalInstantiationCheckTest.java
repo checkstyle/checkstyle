@@ -106,11 +106,9 @@ public class IllegalInstantiationCheckTest
                 "classes",
                 "java.lang.Boolean");
         final String[] expected = {
-            "3:20: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
+            "2:20: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
         };
-        verify(checkConfig,
-                getNonCompilablePath("InputIllegalInstantiationNoPackage.java"),
-                expected);
+        verify(checkConfig, getPath("InputIllegalInstantiationNoPackage.java"), expected);
     }
 
     @Test
