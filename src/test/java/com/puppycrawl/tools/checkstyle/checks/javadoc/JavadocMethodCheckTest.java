@@ -141,6 +141,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "337:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "344:5: " + getCheckMessage(MSG_INVALID_INHERIT_DOC),
             "383:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
+            "389:37: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "algorithm"),
         };
 
         verify(checkConfig, getPath("InputJavadocMethodTags.java"), expected);
@@ -181,6 +182,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "337:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "344:5: " + getCheckMessage(MSG_INVALID_INHERIT_DOC),
             "383:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
+            "389:37: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "algorithm"),
         };
         verify(checkConfig, getPath("InputJavadocMethodTags.java"), expected);
     }
@@ -301,6 +303,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "337:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "344:5: " + getCheckMessage(MSG_INVALID_INHERIT_DOC),
             "383:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
+            "389:37: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "algorithm"),
         };
         verify(checkConfig, getPath("InputJavadocMethodTags.java"), expected);
     }

@@ -384,3 +384,7 @@ class WrongException extends RuntimeException
      * oops */
     String[] results() default {};
 }
+class MoreExamples {
+    /** @param algorithm*/
+    public void setAlgorithm(String algorithm) {}
+}
