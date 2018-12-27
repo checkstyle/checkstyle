@@ -64,12 +64,6 @@ public class JavadocPackageCheck extends AbstractFileSetCheck {
     }
 
     @Override
-    public void beginProcessing(String charset) {
-        super.beginProcessing(charset);
-        directoriesChecked.clear();
-    }
-
-    @Override
     protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
         // Check if already processed directory
         final File dir;
