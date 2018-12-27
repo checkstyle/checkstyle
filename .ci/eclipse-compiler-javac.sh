@@ -7,8 +7,8 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-ECJ_JAR="ecj-4.7.jar"
-ECJ_MAVEN_VERSION="R-4.7-201706120950"
+ECJ_JAR="ecj-4.10.jar"
+ECJ_MAVEN_VERSION="R-4.10-201812060815"
 ECJ_PATH=~/.m2/repository/$ECJ_MAVEN_VERSION/$ECJ_JAR
 
 if [ ! -f $ECJ_PATH ]; then

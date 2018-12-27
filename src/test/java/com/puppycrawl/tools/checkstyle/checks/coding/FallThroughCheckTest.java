@@ -27,6 +27,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class FallThroughCheckTest extends AbstractModuleTestSupport {
 
@@ -54,12 +55,21 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "424:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "436:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "446:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "555:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "556:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "557:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "482:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "483:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "484:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
         verify(checkConfig,
                getPath("InputFallThrough.java"),
+               expected);
+    }
+
+    @Test
+    public void testTryWithResources() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(FallThroughCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig,
+               getNonCompilablePath("InputFallThrough.java"),
                expected);
     }
 
@@ -85,9 +95,9 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "424:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "436:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "446:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "555:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "556:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "557:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "482:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "483:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "484:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
         verify(checkConfig,
                getPath("InputFallThrough.java"),
@@ -133,18 +143,31 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "424:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "436:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "446:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "491:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "495:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "501:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "507:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "514:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "546:12: " + getCheckMessage(MSG_FALL_THROUGH),
-            "555:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "556:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "557:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "473:12: " + getCheckMessage(MSG_FALL_THROUGH),
+            "482:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "483:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "484:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
         verify(checkConfig,
                getPath("InputFallThrough.java"),
+               expected);
+    }
+
+    @Test
+    public void testOwnPatternTryWithResources() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(FallThroughCheck.class);
+        checkConfig.addAttribute("reliefPattern", "Continue with next case");
+
+        final String[] expected = {
+            "46:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "50:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "56:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "62:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "69:9: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+        verify(checkConfig,
+               getNonCompilablePath("InputFallThrough.java"),
                expected);
     }
 
@@ -153,7 +176,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
         final FallThroughCheck check = new FallThroughCheck();
         Assert.assertNotNull("Acceptable tokens should not be null", check.getAcceptableTokens());
         Assert.assertNotNull("Default tokens should not be null", check.getDefaultTokens());
-        Assert.assertNotNull("Rrequired tokens should not be null", check.getRequiredTokens());
+        Assert.assertNotNull("Required tokens should not be null", check.getRequiredTokens());
     }
 
     @Test

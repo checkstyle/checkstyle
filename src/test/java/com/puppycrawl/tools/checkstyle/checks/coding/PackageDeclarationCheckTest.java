@@ -41,11 +41,10 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
 
         final String[] expected = {
-            "2: " + getCheckMessage(MSG_KEY_MISSING),
+            "1: " + getCheckMessage(MSG_KEY_MISSING),
         };
 
-        verify(checkConfig,
-                getNonCompilablePath("InputPackageDeclarationNoPackage.java"), expected);
+        verify(checkConfig, getPath("InputPackageDeclarationNoPackage.java"), expected);
     }
 
     @Test

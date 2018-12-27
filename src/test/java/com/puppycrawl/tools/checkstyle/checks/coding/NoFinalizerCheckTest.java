@@ -71,4 +71,13 @@ public class NoFinalizerCheckTest
         verify(checkConfig, getPath("InputNoFinalizerFallThrough.java"), expected);
     }
 
+    @Test
+    public void testHasNoFinalizerTryWithResource()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(NoFinalizerCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getNonCompilablePath("InputNoFinalizerFallThrough.java"), expected);
+    }
+
 }
