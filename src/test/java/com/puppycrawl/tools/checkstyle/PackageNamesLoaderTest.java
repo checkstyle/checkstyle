@@ -39,6 +39,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import org.junit.Test;
@@ -142,6 +143,33 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
         field.setAccessible(true);
         final Set<String> list = (Set<String>) field.get(loader);
         assertEquals("Invalid package name", "coding.", list.iterator().next());
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    public void testPackagesWithDotsEx() throws Exception {
+        final Constructor<PackageNamesLoader> constructor =
+                PackageNamesLoader.class.getDeclaredConstructor();
+        constructor.setAccessible(true);
+        final PackageNamesLoader loader = constructor.newInstance();
+
+        final Attributes attributes1 = mock(Attributes.class);
+        when(attributes1.getValue("name")).thenReturn("coding.");
+        final Attributes attributes2 = mock(Attributes.class);
+        when(attributes2.getValue("name")).thenReturn("specific");
+
+        loader.startElement("", "", "package", attributes1);
+        loader.startElement("", "", "package", attributes2);
+        loader.endElement("", "", "package");
+        loader.endElement("", "", "package");
+
+        final Field field = PackageNamesLoader.class.getDeclaredField("packageNames");
+        field.setAccessible(true);
+        final Set<String> list = (Set<String>) field.get(loader);
+        assertEquals("Invalid list size", 2, list.size());
+        final Iterator<String> iterator = list.iterator();
+        assertEquals("Invalid package name", "coding.specific", iterator.next());
+        assertEquals("Invalid package name", "coding.", iterator.next());
     }
 
     @Test
