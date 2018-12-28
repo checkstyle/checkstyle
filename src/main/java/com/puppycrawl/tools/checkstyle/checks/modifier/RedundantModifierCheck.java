@@ -236,7 +236,7 @@ public class RedundantModifierCheck
         if (isInterfaceOrAnnotationMember(ast)) {
             processInterfaceOrAnnotation(ast);
         }
-        else if (ast.getParent() != null) {
+        else {
             checkForRedundantModifier(ast, TokenTypes.LITERAL_STATIC);
         }
     }
