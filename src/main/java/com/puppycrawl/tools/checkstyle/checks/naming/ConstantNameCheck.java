@@ -108,7 +108,7 @@ public class ConstantNameCheck
 
         if (isStatic && isFinal && shouldCheckInScope(modifiersAST)
                 || ScopeUtil.isInAnnotationBlock(ast)
-                || ScopeUtil.isInInterfaceOrAnnotationBlock(ast)
+                || ScopeUtil.isInInterfaceBlock(ast)
                         && !ScopeUtil.isInCodeBlock(ast)) {
             // Handle the serialVersionUID and serialPersistentFields constants
             // which are used for Serialization. Cannot enforce rules on it. :-)

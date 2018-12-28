@@ -208,6 +208,7 @@ class InputLocalVariableName2
         {
 
         }
+        for (final int k_ : new int[] {}) {}
     }
 }
 

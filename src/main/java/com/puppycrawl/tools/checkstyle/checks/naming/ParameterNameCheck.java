@@ -243,8 +243,7 @@ public class ParameterNameCheck extends AbstractNameCheck {
         final Optional<DetailAST> annotation =
             Optional.ofNullable(parent.getFirstChild().getFirstChild());
 
-        if (annotation.isPresent()
-                && annotation.get().getType() == TokenTypes.ANNOTATION) {
+        if (annotation.isPresent()) {
             final Optional<DetailAST> overrideToken =
                 Optional.ofNullable(annotation.get().findFirstToken(TokenTypes.IDENT));
             if (overrideToken.isPresent() && "Override".equals(overrideToken.get().getText())) {

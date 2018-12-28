@@ -348,13 +348,11 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     private static boolean hasOverrideAnnotation(DetailAST methodModifiersAST) {
         boolean result = false;
         for (DetailAST child : getChildren(methodModifiersAST)) {
-            if (child.getType() == TokenTypes.ANNOTATION) {
-                final DetailAST annotationIdent = child.findFirstToken(TokenTypes.IDENT);
+            final DetailAST annotationIdent = child.findFirstToken(TokenTypes.IDENT);
 
-                if (annotationIdent != null && "Override".equals(annotationIdent.getText())) {
-                    result = true;
-                    break;
-                }
+            if (annotationIdent != null && "Override".equals(annotationIdent.getText())) {
+                result = true;
+                break;
             }
         }
         return result;
