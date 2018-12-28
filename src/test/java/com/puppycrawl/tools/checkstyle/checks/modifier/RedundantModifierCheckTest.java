@@ -252,4 +252,14 @@ public class RedundantModifierCheckTest
                 expected);
     }
 
+    @Test
+    public void testPrivateMethodInPrivateClass() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RedundantModifierCheck.class);
+        final String[] expected = {
+            "5:17: " + getCheckMessage(MSG_KEY, "final"),
+        };
+        verify(checkConfig, getPath("InputRedundantModifierPrivateMethodInPrivateClass.java"),
+                expected);
+    }
+
 }
