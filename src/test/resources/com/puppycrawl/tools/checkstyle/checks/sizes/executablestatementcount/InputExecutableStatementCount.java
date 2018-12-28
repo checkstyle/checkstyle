@@ -86,4 +86,8 @@ public class InputExecutableStatementCount {
 
     /** Empty constructor */
     public InputExecutableStatementCount(String someString) {}
+
+    static Runnable r1 = () -> {
+        String.valueOf("Hello world one!");
+    };
 }

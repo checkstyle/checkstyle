@@ -105,7 +105,7 @@ public class ParameterNumberCheckTest
     }
 
     @Test
-    public void shouldIgnoreMethodsWithOverrideAnnotation()
+    public void testIgnoreOverriddenMethods()
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(ParameterNumberCheck.class);
@@ -113,6 +113,20 @@ public class ParameterNumberCheckTest
         final String[] expected = {
             "6:10: " + getCheckMessage(MSG_KEY, 7, 8),
             "11:10: " + getCheckMessage(MSG_KEY, 7, 8),
+        };
+        verify(checkConfig, getPath("InputParameterNumber.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreOverriddenMethodsFalse()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(ParameterNumberCheck.class);
+        final String[] expected = {
+            "6:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "11:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "19:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "24:10: " + getCheckMessage(MSG_KEY, 7, 8),
         };
         verify(checkConfig, getPath("InputParameterNumber.java"), expected);
     }
