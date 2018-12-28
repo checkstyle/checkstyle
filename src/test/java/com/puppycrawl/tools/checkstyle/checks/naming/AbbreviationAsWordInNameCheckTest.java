@@ -256,6 +256,25 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
+    public void testOverriddenMethod()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(AbbreviationAsWordInNameCheck.class);
+        checkConfig.addAttribute("ignoreOverriddenMethods", "false");
+        final int expectedCapitalCount = 4;
+
+        final String[] expected = {
+            "6: " + getWarningMessage("serialNUMBER", expectedCapitalCount),
+            "14: " + getWarningMessage("oveRRRRRrriddenMethod", expectedCapitalCount),
+            "22: " + getWarningMessage("oveRRRRRrriddenMethod", expectedCapitalCount),
+            "34: " + getWarningMessage("oveRRRRRrriddenMethod", expectedCapitalCount),
+        };
+
+        verify(checkConfig,
+                getPath("InputAbbreviationAsWordInNameOverridableMethod.java"), expected);
+    }
+
+    @Test
     public void testTypeNamesForZeroPermittedCapitalLetter() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(AbbreviationAsWordInNameCheck.class);
