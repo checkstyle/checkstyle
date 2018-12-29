@@ -235,7 +235,7 @@ public final class JavadocPropertiesGenerator {
             else if (node.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
                 formatInlineCodeTag(builder, node);
             }
-            else if (node.getType() == JavadocTokenTypes.HTML_ELEMENT) {
+            else {
                 formatHtmlElement(builder, node);
             }
         }

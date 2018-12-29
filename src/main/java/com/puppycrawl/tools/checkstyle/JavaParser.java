@@ -146,9 +146,7 @@ public final class JavaParser {
         DetailAST lastNode = root;
 
         while (curNode != null) {
-            if (isPositionGreater(curNode, lastNode)) {
-                lastNode = curNode;
-            }
+            lastNode = curNode;
 
             CommonHiddenStreamToken tokenBefore = curNode.getHiddenBefore();
             DetailAST currentSibling = curNode;
@@ -169,9 +167,7 @@ public final class JavaParser {
             DetailAST toVisit = curNode.getFirstChild();
             while (curNode != null && toVisit == null) {
                 toVisit = curNode.getNextSibling();
-                if (toVisit == null) {
-                    curNode = curNode.getParent();
-                }
+                curNode = curNode.getParent();
             }
             curNode = toVisit;
         }
@@ -189,21 +185,6 @@ public final class JavaParser {
             }
         }
         return result;
-    }
-
-    /**
-     * Checks if position of first DetailAST is greater than position of
-     * second DetailAST. Position is line number and column number in source file.
-     * @param ast1 first DetailAST node
-     * @param ast2 second DetailAST node
-     * @return true if position of ast1 is greater than position of ast2
-     */
-    private static boolean isPositionGreater(DetailAST ast1, DetailAST ast2) {
-        boolean isGreater = ast1.getLineNo() > ast2.getLineNo();
-        if (!isGreater && ast1.getLineNo() == ast2.getLineNo()) {
-            isGreater = ast1.getColumnNo() > ast2.getColumnNo();
-        }
-        return isGreater;
     }
 
     /**
