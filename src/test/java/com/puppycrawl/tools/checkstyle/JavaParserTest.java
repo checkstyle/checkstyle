@@ -19,17 +19,20 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
-import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.powermock.reflect.Whitebox;
 
 import antlr.NoViableAltException;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -48,6 +51,11 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertTrue("Constructor is not private", TestUtil.isUtilsClassHasPrivateConstructor(
             JavaParser.class, false));
+    }
+
+    @Test
+    public void testNullRootWithComments() {
+        assertNull("Invalid return root", JavaParser.appendHiddenCommentNodes(null));
     }
 
     @Test
@@ -126,28 +134,15 @@ public class JavaParserTest extends AbstractModuleTestSupport {
             commentContent.getText().startsWith(" indented comment"));
     }
 
-    /**
-     * Could not find proper test case to test pitest mutations functionally.
-     * Should be rewritten during grammar update.
-     *
-     * @throws Exception when code tested throws exception
-     */
     @Test
-    public void testIsPositionGreater() throws Exception {
-        final DetailAST ast1 = createAst(1, 3);
-        final DetailAST ast2 = createAst(1, 2);
-        final DetailAST ast3 = createAst(2, 2);
+    public void testDontAppendCommentNodes() throws Exception {
+        final DetailAST root =
+            JavaParser.parseFile(new File(getPath("InputJavaParserHiddenComments.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
 
-        final TreeWalker treeWalker = new TreeWalker();
-        final Method isPositionGreater = Whitebox.getMethod(JavaParser.class,
-                "isPositionGreater", DetailAST.class, DetailAST.class);
-
-        assertTrue("Should return true when lines are equal and column is greater",
-                (boolean) isPositionGreater.invoke(treeWalker, ast1, ast2));
-        assertFalse("Should return false when lines are equal columns are equal",
-                (boolean) isPositionGreater.invoke(treeWalker, ast1, ast1));
-        assertTrue("Should return true when line is greater",
-                (boolean) isPositionGreater.invoke(treeWalker, ast3, ast1));
+        final Optional<DetailAST> singleLineComment = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.SINGLE_LINE_COMMENT);
+        assertFalse("Single line comment should be present", singleLineComment.isPresent());
     }
 
     @Test
@@ -158,6 +153,11 @@ public class JavaParserTest extends AbstractModuleTestSupport {
             Assert.fail("exception expected");
         }
         catch (CheckstyleException ex) {
+            assertEquals("Invalid exception message",
+                    CheckstyleException.class.getName()
+                            + ": NoViableAltException occurred while parsing file "
+                            + input.getAbsolutePath() + ".",
+                    ex.toString());
             Assert.assertSame("Invalid class",
                     NoViableAltException.class, ex.getCause().getClass());
             assertEquals("Invalid exception message",
@@ -166,11 +166,41 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         }
     }
 
-    private static DetailAST createAst(int line, int column) {
-        final DetailAST ast = new DetailAST();
-        ast.setLineNo(line);
-        ast.setColumnNo(column);
-        return ast;
+    @Test
+    public void testComments() throws Exception {
+        final DetailAST root =
+            JavaParser.parseFile(new File(getPath("InputJavaParserHiddenComments3.java")),
+                JavaParser.Options.WITH_COMMENTS);
+        final CountComments counter = new CountComments(root);
+
+        assertArrayEquals("Invalid line comments",
+                Arrays.asList("1,4", "6,4", "9,0").toArray(),
+                counter.lineComments.toArray());
+        assertArrayEquals("Invalid block comments",
+                Arrays.asList("5,4", "8,0").toArray(),
+                counter.blockComments.toArray());
+    }
+
+    private static final class CountComments {
+        private final List<String> lineComments = new ArrayList<>();
+        private final List<String> blockComments = new ArrayList<>();
+
+        CountComments(DetailAST root) {
+            forEachChild(root);
+        }
+
+        private void forEachChild(DetailAST root) {
+            for (DetailAST ast = root; ast != null; ast = ast.getNextSibling()) {
+                if (ast.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
+                    lineComments.add(ast.getLineNo() + "," + ast.getColumnNo());
+                }
+                else if (ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                    blockComments.add(ast.getLineNo() + "," + ast.getColumnNo());
+                }
+
+                forEachChild(ast.getFirstChild());
+            }
+        }
     }
 
 }
