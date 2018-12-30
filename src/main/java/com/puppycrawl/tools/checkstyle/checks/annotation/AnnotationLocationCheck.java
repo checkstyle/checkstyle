@@ -264,19 +264,9 @@ public class AnnotationLocationCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         final DetailAST modifiersNode = ast.findFirstToken(TokenTypes.MODIFIERS);
 
-        if (hasAnnotations(modifiersNode)) {
+        if (modifiersNode != null) {
             checkAnnotations(modifiersNode, getExpectedAnnotationIndentation(modifiersNode));
         }
-    }
-
-    /**
-     * Checks whether a given modifier node has an annotation.
-     * @param modifierNode modifier node.
-     * @return true if the given modifier node has the annotation.
-     */
-    private static boolean hasAnnotations(DetailAST modifierNode) {
-        return modifierNode != null
-            && modifierNode.findFirstToken(TokenTypes.ANNOTATION) != null;
     }
 
     /**

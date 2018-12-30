@@ -50,4 +50,6 @@ enum Bleh3 {
     public String toString() {
         return "B";
     }
+
+    private static void test() {}
 }

@@ -13,6 +13,11 @@ public class InputAnnotationOnSameLineCheck {
         return (int) x;
     }
 
+    @Annotation2 @Annotation
+    public int field;
+
+    public
+    @Annotation int field2;
 }
 
 class SomeClass {
@@ -23,4 +28,6 @@ class SomeClass {
 }
 
 @interface Annotation {
+}
+@interface Annotation2 {
 }
