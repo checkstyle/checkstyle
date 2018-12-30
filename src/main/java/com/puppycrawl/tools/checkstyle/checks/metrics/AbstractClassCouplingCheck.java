@@ -276,10 +276,8 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
             final FullIdent ident = FullIdent.createFullIdent(
                 imp.getLastChild().getPreviousSibling());
             final String fullName = ident.getText();
-            if (fullName.charAt(fullName.length() - 1) != '*') {
-                final int lastDot = fullName.lastIndexOf(DOT);
-                importedClassPackage.put(fullName.substring(lastDot + 1), fullName);
-            }
+            final int lastDot = fullName.lastIndexOf(DOT);
+            importedClassPackage.put(fullName.substring(lastDot + 1), fullName);
         }
 
         /**
@@ -443,17 +441,9 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
          * @return true if we should count this class.
          */
         private boolean isSignificant(String candidateClassName) {
-            boolean result = !excludedClasses.contains(candidateClassName)
-                && !isFromExcludedPackage(candidateClassName);
-            if (result) {
-                for (Pattern pattern : excludeClassesRegexps) {
-                    if (pattern.matcher(candidateClassName).matches()) {
-                        result = false;
-                        break;
-                    }
-                }
-            }
-            return result;
+            return !excludedClasses.contains(candidateClassName)
+                && !isFromExcludedPackage(candidateClassName)
+                && !isExcludedClassRegexp(candidateClassName);
         }
 
         /**
@@ -475,6 +465,22 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
                     || excludedPackages.contains(packageName);
             }
             return isFromExcludedPackage;
+        }
+
+        /**
+         * Checks if given class should be ignored as it belongs to excluded class regexp.
+         * @param candidateClassName class to check.
+         * @return true if we should not count this class.
+         */
+        private boolean isExcludedClassRegexp(String candidateClassName) {
+            boolean result = false;
+            for (Pattern pattern : excludeClassesRegexps) {
+                if (pattern.matcher(candidateClassName).matches()) {
+                    result = true;
+                    break;
+                }
+            }
+            return result;
         }
 
     }

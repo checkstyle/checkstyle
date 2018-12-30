@@ -67,6 +67,8 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
             "113:5: " + getCheckMessage(MSG_KEY, 48, 0),
             "123:5: " + getCheckMessage(MSG_KEY, 1, 0),
             "124:5: " + getCheckMessage(MSG_KEY, 1, 0),
+            "130:17: " + getCheckMessage(MSG_KEY, 3, 0),
+            "144:21: " + getCheckMessage(MSG_KEY, 3, 0),
         };
 
         verify(checkConfig, getPath("InputNPathComplexityDefault.java"), expected);
@@ -96,6 +98,19 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         };
 
         verify(checkConfig, getPath("InputNPathComplexity.java"), expected);
+    }
+
+    @Test
+    public void testCalculation3() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(NPathComplexityCheck.class);
+
+        checkConfig.addAttribute("max", "0");
+        final String[] expected = {
+            "4:5: " + getCheckMessage(MSG_KEY, 64, 0),
+        };
+
+        verify(checkConfig, getNonCompilablePath("InputNPathComplexityDefault2.java"), expected);
     }
 
     @Test

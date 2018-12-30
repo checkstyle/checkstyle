@@ -93,4 +93,15 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
         }
     }
 
+    @Test
+    public void testSmall() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(BooleanExpressionComplexityCheck.class);
+        checkConfig.addAttribute("max", "1");
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getPath("InputBooleanExpressionComplexitySmall.java"), expected);
+    }
+
 }
