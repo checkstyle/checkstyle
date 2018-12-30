@@ -15,6 +15,135 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <div class="releaseDate">30.12.2018</div>
+    <section name="Release 8.16">
+      <p>New:</p>
+        <ul>
+          <li>
+            ClassMemberImpliedModifier: New Check to demand all modifiers to be
+explicit in class members.
+            Author: Stephen Colebourne
+            <a href="https://github.com/checkstyle/checkstyle/issues/5885">#5885</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            ImportOrder reports incorrect errors for redundant imports.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6303">#6303</a>
+          </li>
+          <li>
+            JavadocMethod: False positive from comment inside method.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6273">#6273</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Pitest: add new mutator REMOVE_CONDITIONALS.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6320">#6320</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for javadoc profile to 100%.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6295">#6295</a>
+          </li>
+          <li>
+            set up JDK11 build.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6228">#6228</a>
+          </li>
+          <li>
+            Align XDocs and Javadocs.
+            Author: Pavel Bludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/5750">#5750</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for indentation profile to 100%.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6294">#6294</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST (part 1, hard cases).
+            Author: Pavel Bludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/5759">#5759</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checks-coding profile to 100%.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/5008">#5008</a>
+          </li>
+          <li>
+            Pitest: add new mutator FALSE_RETURNS.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6272">#6272</a>
+          </li>
+          <li>
+            Pitest: add new mutator CONSTRUCTOR_CALLS .
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6289">#6289</a>
+          </li>
+          <li>
+            Pitest: add new mutator TRUE_RETURNS.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6264">#6264</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for blocks profile to 100%.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6293">#6293</a>
+          </li>
+          <li>
+            Strive for 100% mutation coverage.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/3708">#3708</a>
+          </li>
+          <li>
+            exception in build log from spotbugs.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6098">#6098</a>
+          </li>
+          <li>
+            Move test inputs with deprecated packages to resources-noncompilable.
+            Author: Pavel Bludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6252">#6252</a>
+          </li>
+          <li>
+            Pitest script order issue locally.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6275">#6275</a>
+          </li>
+          <li>
+            create Travis ready to use shell script to check that pistes profiles cover all classes.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/4684">#4684</a>
+          </li>
+          <li>
+            XmlLoader: remove incomplete namespaces support.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6262">#6262</a>
+          </li>
+          <li>
+            Upgrade Powermock2 to RC4.
+            Author: Pavel Bludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6238">#6238</a>
+          </li>
+          <li>
+            Resolve Teamcity violations of inspection engine 2018.3 .
+            Author: rnveach, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6241">#6241</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle IT inputs.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/5106">#5106</a>
+          </li>
+        </ul>
+    </section>
+
     <div class="releaseDate">30.11.2018</div>
     <section name="Release 8.15">
       <p>Breaking backward compatibility:</p>
