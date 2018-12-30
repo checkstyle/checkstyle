@@ -62,4 +62,8 @@ enum E {
 @SomeArrays(pooches = {})
 @Another({})
 class Closing {
+    static final String UN_U = "UN_U";
+
+    @SuppressWarnings(value = UN_U)
+    int d;
 }

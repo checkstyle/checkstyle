@@ -96,7 +96,11 @@ class InputAnnotationLocationIncorrect
    @MyAnnotation1 //warn
 (value = "")
 @MyAnnotation2
-class Foo {}
+class Foo {
+    public void method1(@MyAnnotation3 @MyAnnotation2 Object param1) {
+        return;
+    }
+}
 
 @interface MyAnnotation1 {
 

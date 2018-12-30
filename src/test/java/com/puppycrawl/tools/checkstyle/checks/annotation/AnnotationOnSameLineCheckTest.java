@@ -75,6 +75,7 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
             "9: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation"),
             "10: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation"),
             "11: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Deprecated"),
+            "16: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation"),
         };
         verify(config, getPath("InputAnnotationOnSameLineCheck.java"), expected);
     }
@@ -90,6 +91,7 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
             "9: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation"),
             "10: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation"),
             "11: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Deprecated"),
+            "16: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation"),
         };
         verify(config, getPath("InputAnnotationOnSameLineCheck.java"), expected);
     }

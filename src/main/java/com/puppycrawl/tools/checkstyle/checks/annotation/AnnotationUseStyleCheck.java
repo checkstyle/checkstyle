@@ -464,12 +464,12 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
         //comma can be null if array is empty
         final DetailAST comma = rCurly.getPreviousSibling();
 
-        if (trailingArrayComma == TrailingArrayComma.ALWAYS
-            && (comma == null || comma.getType() != TokenTypes.COMMA)) {
-            log(rCurly, MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING);
+        if (trailingArrayComma == TrailingArrayComma.ALWAYS) {
+            if (comma == null || comma.getType() != TokenTypes.COMMA) {
+                log(rCurly, MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING);
+            }
         }
-        else if (trailingArrayComma == TrailingArrayComma.NEVER
-            && comma != null && comma.getType() == TokenTypes.COMMA) {
+        else if (comma != null && comma.getType() == TokenTypes.COMMA) {
             log(comma, MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT);
         }
     }
@@ -485,14 +485,13 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
             final DetailAST paren = ast.getLastChild();
             final boolean parenExists = paren.getType() == TokenTypes.RPAREN;
 
-            if (closingParens == ClosingParens.ALWAYS
-                && !parenExists) {
-                log(ast.getLineNo(), MSG_KEY_ANNOTATION_PARENS_MISSING);
+            if (closingParens == ClosingParens.ALWAYS) {
+                if (!parenExists) {
+                    log(ast.getLineNo(), MSG_KEY_ANNOTATION_PARENS_MISSING);
+                }
             }
-            else if (closingParens == ClosingParens.NEVER
-                     && parenExists
+            else if (parenExists
                      && !ast.branchContains(TokenTypes.EXPR)
-                     && !ast.branchContains(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR)
                      && !ast.branchContains(TokenTypes.ANNOTATION_ARRAY_INIT)) {
                 log(ast.getLineNo(), MSG_KEY_ANNOTATION_PARENS_PRESENT);
             }
