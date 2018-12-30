@@ -529,6 +529,10 @@ public class UserService {
             event.
           </p>
           <p>
+            ATTENTION: filtering by message is dependant on runtime locale. If project is running
+            in different languages it is better to avoid filtering by message.
+          </p>
+          <p>
             You can download template of empty suppression filter
             <a href="files/suppressions_none.xml">here</a>.
           </p>
@@ -873,6 +877,10 @@ public class UserService {
           each <code>suppress</code> and <code>suppress-xpath</code> element. It is
           suppressed if all specified attributes match against the audit
           event.
+        </p>
+        <p>
+          ATTENTION: filtering by message is dependant on runtime locale. If project is running
+          in different languages it is better to avoid filtering by message.
         </p>
         <p>
           The following suppressions XML document directs
