@@ -122,4 +122,35 @@ public class InputNPathComplexityDefault {
     }
     public boolean getSmth() { return true; }; 
     public int apply(Object o) { return 0; }
+
+    public void inClass(int type, Short s, int color) {
+        switch (type) {
+        case 3:
+            new Object() {
+                public void anonymousMethod() {
+                    {
+                        switch (s) {
+                        case 5:
+                            switch (type) {
+                            default:
+                            }
+                        }
+                    }
+                }
+            };
+        default:
+            new Object() {
+                class SwitchClass {
+                    {
+                        switch (color) {
+                        case 5:
+                            switch (type) {
+                            default:
+                            }
+                        }
+                    }
+                }
+            };
+        }
+    }
 }

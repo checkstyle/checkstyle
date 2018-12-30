@@ -141,8 +141,7 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
      * @return true if logical operator is part of constructor or method call
      */
     private static boolean isPassedInParameter(DetailAST logicalOperator) {
-        return logicalOperator.getParent().getType() == TokenTypes.EXPR
-            && logicalOperator.getParent().getParent().getType() == TokenTypes.ELIST;
+        return logicalOperator.getParent().getParent().getType() == TokenTypes.ELIST;
     }
 
     /**
