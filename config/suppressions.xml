@@ -34,7 +34,15 @@
     <suppress checks="JavadocPackage" files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <suppress checks="JavadocVariable" files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <suppress checks="JavadocType" files=".*[\\/]src[\\/](test|it)[\\/]"/>
-    <suppress checks="JavadocMethod" files=".*[\\/]src[\\/](test|it)[\\/]"/>
+    <!-- we do not need javadocs in all classes except for *Support classes -->
+    <suppress checks="JavadocMethod" files=".*[\\/]src[\\/](test|it)[\\/].*(?&lt;!Support)\.java"/>
+    <!-- till https://github.com/checkstyle/checkstyle/issues/6336 -->
+    <suppress checks="JavadocMethod" files=".*AbstractIndentationTestSupport\.java"/>
+    <suppress checks="JavadocMethod" files=".*AbstractModuleTestSupport\.java"/>
+    <suppress checks="JavadocMethod" files=".*AbstractXpathTestSupport\.java"/>
+    <suppress checks="JavadocMethod" files=".*AbstractModuleTestSupport\.java"/>
+    <suppress checks="JavadocMethod" files=".*AbstractPathTestSupport\.java"/>
+    <suppress checks="JavadocMethod" files=".*AbstractXmlTestSupport\.java"/>
 
     <suppress checks="MagicNumber" files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <suppress checks="AvoidStaticImport" files=".*[\\/]src[\\/](test|it)[\\/]"/>
