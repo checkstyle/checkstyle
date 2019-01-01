@@ -230,18 +230,12 @@ public class DesignForExtensionCheck extends AbstractCheck {
      */
     private static boolean hasIgnoredAnnotation(DetailAST methodDef, Set<String> annotations) {
         final DetailAST modifiers = methodDef.findFirstToken(TokenTypes.MODIFIERS);
-        boolean hasIgnoredAnnotation = false;
-        if (modifiers.findFirstToken(TokenTypes.ANNOTATION) != null) {
-            final Optional<DetailAST> annotation = TokenUtil.findFirstTokenByPredicate(modifiers,
-                currentToken -> {
-                    return currentToken.getType() == TokenTypes.ANNOTATION
-                        && annotations.contains(getAnnotationName(currentToken));
-                });
-            if (annotation.isPresent()) {
-                hasIgnoredAnnotation = true;
-            }
-        }
-        return hasIgnoredAnnotation;
+        final Optional<DetailAST> annotation = TokenUtil.findFirstTokenByPredicate(modifiers,
+            currentToken -> {
+                return currentToken.getType() == TokenTypes.ANNOTATION
+                    && annotations.contains(getAnnotationName(currentToken));
+            });
+        return annotation.isPresent();
     }
 
     /**

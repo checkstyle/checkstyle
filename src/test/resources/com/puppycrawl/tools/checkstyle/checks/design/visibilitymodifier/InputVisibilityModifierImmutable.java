@@ -36,4 +36,8 @@ public final class InputVisibilityModifierImmutable
         public boolean bValue = false;
         public java.lang.Long longValue = 1L;
     }
+
+    class Example {
+        final int C_D_E = 0;
+    }
 }

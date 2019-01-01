@@ -22,6 +22,8 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 import static com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
 
+import java.io.File;
+
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -64,6 +66,25 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(InnerTypeLastCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputInnerTypeLastClassRootClass.java"), expected);
+    }
+
+    @Test
+    public void testIfRootClassChecked2() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(InnerTypeLastCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputInnerTypeLastClassRootClass2.java"), expected);
+    }
+
+    @Test
+    public void testIfRootClassChecked3() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(InnerTypeLastCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(createChecker(checkConfig), new File[] {
+            new File(getPath("InputInnerTypeLastClassRootClass.java")),
+            new File(getPath("InputInnerTypeLastClassRootClass.java")),
+        }, "InputInnerTypeLastClassRootClass.java", expected);
     }
 
     @Test

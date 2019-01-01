@@ -71,6 +71,7 @@ public class VisibilityModifierCheckTest
             "41:29: " + getCheckMessage(MSG_KEY, "sWeird"),
             "43:19: " + getCheckMessage(MSG_KEY, "sWeird2"),
             "77:20: " + getCheckMessage(MSG_KEY, "someValue"),
+            "80:11: " + getCheckMessage(MSG_KEY, "fSerialVersionUID"),
         };
         verify(checkConfig, getPath("InputVisibilityModifierInner.java"), expected);
     }
@@ -131,6 +132,34 @@ public class VisibilityModifierCheckTest
             "34:20: " + getCheckMessage(MSG_KEY, "value"),
             "36:24: " + getCheckMessage(MSG_KEY, "bValue"),
             "37:31: " + getCheckMessage(MSG_KEY, "longValue"),
+            "41:19: " + getCheckMessage(MSG_KEY, "C_D_E"),
+        };
+        verify(checkConfig, getPath("InputVisibilityModifierImmutable.java"), expected);
+    }
+
+    @Test
+    public void testAllowPublicFinalFieldsInImmutableClassWithNonCanonicalClasses()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(VisibilityModifierCheck.class);
+        checkConfig.addAttribute("allowPublicImmutableFields", "true");
+        checkConfig.addAttribute("immutableClassCanonicalNames", "String, Integer, Byte, "
+                + "Character, Short, Boolean, Long, Double, Float, StackTraceElement, BigInteger, "
+                + "BigDecimal, File, Locale, UUID, URL, URI, Inet4Address, Inet6Address, "
+                + "InetSocketAddress");
+        final String[] expected = {
+            "12:39: " + getCheckMessage(MSG_KEY, "includes"),
+            "13:39: " + getCheckMessage(MSG_KEY, "excludes"),
+            "14:35: " + getCheckMessage(MSG_KEY, "notes"),
+            "15:29: " + getCheckMessage(MSG_KEY, "money"),
+            "16:23: " + getCheckMessage(MSG_KEY, "list"),
+            "32:35: " + getCheckMessage(MSG_KEY, "uri"),
+            "33:35: " + getCheckMessage(MSG_KEY, "file"),
+            "34:20: " + getCheckMessage(MSG_KEY, "value"),
+            "35:35: " + getCheckMessage(MSG_KEY, "url"),
+            "36:24: " + getCheckMessage(MSG_KEY, "bValue"),
+            "37:31: " + getCheckMessage(MSG_KEY, "longValue"),
+            "41:19: " + getCheckMessage(MSG_KEY, "C_D_E"),
         };
         verify(checkConfig, getPath("InputVisibilityModifierImmutable.java"), expected);
     }
@@ -154,6 +183,7 @@ public class VisibilityModifierCheckTest
             "35:35: " + getCheckMessage(MSG_KEY, "url"),
             "36:24: " + getCheckMessage(MSG_KEY, "bValue"),
             "37:31: " + getCheckMessage(MSG_KEY, "longValue"),
+            "41:19: " + getCheckMessage(MSG_KEY, "C_D_E"),
             };
         verify(checkConfig, getPath("InputVisibilityModifierImmutable.java"), expected);
     }
@@ -186,6 +216,7 @@ public class VisibilityModifierCheckTest
             "35:35: " + getCheckMessage(MSG_KEY, "url"),
             "36:24: " + getCheckMessage(MSG_KEY, "bValue"),
             "37:31: " + getCheckMessage(MSG_KEY, "longValue"),
+            "41:19: " + getCheckMessage(MSG_KEY, "C_D_E"),
         };
         verify(checkConfig, getPath("InputVisibilityModifierImmutable.java"), expected);
     }
@@ -464,6 +495,18 @@ public class VisibilityModifierCheckTest
 
         assertTrue("Should return true when star import is passed",
             (boolean) isStarImport.invoke(check, importAst));
+    }
+
+    @Test
+    public void testPackageClassName() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(VisibilityModifierCheck.class);
+        checkConfig.addAttribute("immutableClassCanonicalNames", "PackageClass");
+        checkConfig.addAttribute("allowPublicImmutableFields", "true");
+        final String[] expected = {
+        };
+        verify(checkConfig, getNonCompilablePath("InputVisibilityModifierPackageClassName.java"),
+                expected);
     }
 
 }

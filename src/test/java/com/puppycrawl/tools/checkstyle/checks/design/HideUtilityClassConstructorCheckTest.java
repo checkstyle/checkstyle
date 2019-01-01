@@ -113,6 +113,15 @@ public class HideUtilityClassConstructorCheckTest
     }
 
     @Test
+    public void testEmptyAbstractClass2() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(HideUtilityClassConstructorCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputHideUtilityClassConstructorAbstract.java"),
+                expected);
+    }
+
+    @Test
     public void testEmptyClassWithOnlyPrivateFields() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(HideUtilityClassConstructorCheck.class);
