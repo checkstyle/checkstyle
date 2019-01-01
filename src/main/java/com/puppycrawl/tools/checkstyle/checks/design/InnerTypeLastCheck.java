@@ -60,6 +60,11 @@ public class InnerTypeLastCheck extends AbstractCheck {
     }
 
     @Override
+    public void beginTree(DetailAST rootAST) {
+        rootClass = true;
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         // First root class
         if (rootClass) {

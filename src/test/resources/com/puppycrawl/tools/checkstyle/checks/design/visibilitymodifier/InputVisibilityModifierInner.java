@@ -76,4 +76,6 @@ class InputVisibilityModifierInner
         /** Should be private */
         public int someValue;
     }
+
+    float fSerialVersionUID = 0x1234567F;
 }

@@ -22,8 +22,11 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 import static com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
 
+import java.lang.reflect.Method;
+
 import org.junit.Assert;
 import org.junit.Test;
+import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -106,6 +109,14 @@ public class FinalClassCheckTest
         final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF, TokenTypes.PACKAGE_DEF};
         assertArrayEquals("Default acceptable tokens are invalid",
             expected, obj.getAcceptableTokens());
+    }
+
+    @Test
+    public void testQualifiedClassName() throws Exception {
+        final Method method = Whitebox.getMethod(FinalClassCheck.class, "getQualifiedClassName",
+                String.class, String.class, String.class);
+        Assert.assertEquals("unexpected result", "ClassName",
+                method.invoke(null, "", null, "ClassName"));
     }
 
 }

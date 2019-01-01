@@ -141,16 +141,14 @@ public final class ThrowsCountCheck extends AbstractCheck {
     private static boolean isOverriding(DetailAST ast) {
         final DetailAST modifiers = ast.getParent().findFirstToken(TokenTypes.MODIFIERS);
         boolean isOverriding = false;
-        if (modifiers.findFirstToken(TokenTypes.ANNOTATION) != null) {
-            DetailAST child = modifiers.getFirstChild();
-            while (child != null) {
-                if (child.getType() == TokenTypes.ANNOTATION
-                        && "Override".equals(getAnnotationName(child))) {
-                    isOverriding = true;
-                    break;
-                }
-                child = child.getNextSibling();
+        DetailAST child = modifiers.getFirstChild();
+        while (child != null) {
+            if (child.getType() == TokenTypes.ANNOTATION
+                    && "Override".equals(getAnnotationName(child))) {
+                isOverriding = true;
+                break;
             }
+            child = child.getNextSibling();
         }
         return isOverriding;
     }
