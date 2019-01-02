@@ -154,7 +154,7 @@ public final class Main {
     }
 
     /**
-     * Validates the user input and returns {@value EXIT_WITH_INVALID_USER_INPUT_CODE} if
+     * Validates the user input and returns {@value #EXIT_WITH_INVALID_USER_INPUT_CODE} if
      * invalid, otherwise executes CheckStyle and returns the number of violations.
      * @param parseResult generic access to options and parameters found on the command line
      * @param options encapsulates options and parameters specified on the command line
