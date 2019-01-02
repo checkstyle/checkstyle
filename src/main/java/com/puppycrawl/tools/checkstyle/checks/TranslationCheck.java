@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
@@ -481,21 +480,27 @@ public class TranslationCheck extends AbstractFileSetCheck {
             translations.load(inStream);
             keys = translations.stringPropertyNames();
         }
-        catch (final IOException ex) {
-            logIoException(ex, file);
+        // -@cs[IllegalCatch] It is better to catch all exceptions since it can throw
+        // a runtime exception.
+        catch (final Exception ex) {
+            logException(ex, file);
         }
         return keys;
     }
 
     /**
-     * Helper method to log an io exception.
+     * Helper method to log an exception.
      * @param exception the exception that occurred
      * @param file the file that could not be processed
      */
-    private void logIoException(IOException exception, File file) {
-        String[] args = null;
-        String key = "general.fileNotFound";
-        if (!(exception instanceof NoSuchFileException)) {
+    private void logException(Exception exception, File file) {
+        final String[] args;
+        final String key;
+        if (exception instanceof NoSuchFileException) {
+            args = null;
+            key = "general.fileNotFound";
+        }
+        else {
             args = new String[] {exception.getMessage()};
             key = "general.exception";
         }
@@ -510,7 +515,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
         final SortedSet<LocalizedMessage> messages = new TreeSet<>();
         messages.add(message);
         getMessageDispatcher().fireErrors(file.getPath(), messages);
-        log.debug("IOException occurred.", exception);
+        log.debug("Exception occurred.", exception);
     }
 
     /** Class which represents a resource bundle. */

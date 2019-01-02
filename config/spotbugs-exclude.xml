@@ -175,4 +175,10 @@
         <Method name="processFiltered"/>
         <Bug pattern="NP_GUARANTEED_DEREF_ON_EXCEPTION_PATH"/>
     </Match>
+    <Match>
+        <!-- It is better to catch all exceptions since it can throw a runtime exception. -->
+        <Class name="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"/>
+        <Method name="getTranslationKeys"/>
+        <Bug pattern="REC_CATCH_EXCEPTION"/>
+    </Match>
 </FindBugsFilter>

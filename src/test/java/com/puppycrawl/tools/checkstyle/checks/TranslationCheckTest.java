@@ -273,16 +273,36 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         check.configure(checkConfig);
         check.setMessageDispatcher(dispatcher);
 
-        final Method logIoException = check.getClass().getDeclaredMethod("logIoException",
-                IOException.class,
+        final Method logException = check.getClass().getDeclaredMethod("logException",
+                Exception.class,
                 File.class);
-        logIoException.setAccessible(true);
+        logException.setAccessible(true);
         final File file = new File("");
-        logIoException.invoke(check, new IOException("test exception"), file);
+        logException.invoke(check, new IOException("test exception"), file);
 
         Mockito.verify(dispatcher, times(1)).fireErrors(any(String.class), captor.capture());
         final String actual = captor.getValue().first().getMessage();
         assertThat("Invalid message: " + actual, actual, endsWith("test exception"));
+    }
+
+    @Test
+    public void testLogIllegalArgumentException() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
+        checkConfig.addAttribute("baseName", "^bad.*$");
+        final String[] expected = {
+            "0: " + new LocalizedMessage(1, Definitions.CHECKSTYLE_BUNDLE, "general.exception",
+                new String[] {"Malformed \\uxxxx encoding." }, null, getClass(), null).getMessage(),
+            "1: " + getCheckMessage(MSG_KEY, "test"),
+        };
+        final File[] propertyFiles = {
+            new File(getPath("bad.properties")),
+            new File(getPath("bad_es.properties")),
+        };
+        verify(
+            createChecker(checkConfig),
+            propertyFiles,
+            getPath("bad.properties"),
+            expected);
     }
 
     @Test
