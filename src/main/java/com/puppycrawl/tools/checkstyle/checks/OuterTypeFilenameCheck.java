@@ -51,9 +51,6 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
     /** If file has public type. */
     private boolean hasPublic;
 
-    /** If first type has has same name as file. */
-    private boolean validFirst;
-
     /** Outer type with mismatched file name. */
     private DetailAST wrongType;
 
@@ -81,7 +78,6 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
     public void beginTree(DetailAST rootAST) {
         fileName = getFileName();
         seenFirstToken = false;
-        validFirst = false;
         hasPublic = false;
         wrongType = null;
     }
@@ -98,10 +94,7 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
         else {
             final String outerTypeName = ast.findFirstToken(TokenTypes.IDENT).getText();
 
-            if (fileName.equals(outerTypeName)) {
-                validFirst = true;
-            }
-            else {
+            if (!fileName.equals(outerTypeName)) {
                 wrongType = ast;
             }
         }
@@ -110,7 +103,7 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
 
     @Override
     public void finishTree(DetailAST rootAST) {
-        if (!validFirst && !hasPublic && wrongType != null) {
+        if (!hasPublic && wrongType != null) {
             log(wrongType.getLineNo(), MSG_KEY);
         }
     }

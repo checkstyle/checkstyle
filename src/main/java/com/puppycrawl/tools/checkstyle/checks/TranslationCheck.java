@@ -435,17 +435,15 @@ public class TranslationCheck extends AbstractFileSetCheck {
      */
     private void checkTranslationKeys(ResourceBundle bundle) {
         final Set<File> filesInBundle = bundle.getFiles();
-        if (filesInBundle.size() >= 2) {
-            // build a map from files to the keys they contain
-            final Set<String> allTranslationKeys = new HashSet<>();
-            final Map<File, Set<String>> filesAssociatedWithKeys = new HashMap<>();
-            for (File currentFile : filesInBundle) {
-                final Set<String> keysInCurrentFile = getTranslationKeys(currentFile);
-                allTranslationKeys.addAll(keysInCurrentFile);
-                filesAssociatedWithKeys.put(currentFile, keysInCurrentFile);
-            }
-            checkFilesForConsistencyRegardingTheirKeys(filesAssociatedWithKeys, allTranslationKeys);
+        // build a map from files to the keys they contain
+        final Set<String> allTranslationKeys = new HashSet<>();
+        final Map<File, Set<String>> filesAssociatedWithKeys = new HashMap<>();
+        for (File currentFile : filesInBundle) {
+            final Set<String> keysInCurrentFile = getTranslationKeys(currentFile);
+            allTranslationKeys.addAll(keysInCurrentFile);
+            filesAssociatedWithKeys.put(currentFile, keysInCurrentFile);
         }
+        checkFilesForConsistencyRegardingTheirKeys(filesAssociatedWithKeys, allTranslationKeys);
     }
 
     /**
@@ -463,10 +461,8 @@ public class TranslationCheck extends AbstractFileSetCheck {
             final Set<String> currentFileKeys = fileKey.getValue();
             final Set<String> missingKeys = keysThatMustExist.stream()
                 .filter(key -> !currentFileKeys.contains(key)).collect(Collectors.toSet());
-            if (!missingKeys.isEmpty()) {
-                for (Object key : missingKeys) {
-                    log(1, MSG_KEY, key);
-                }
+            for (Object key : missingKeys) {
+                log(1, MSG_KEY, key);
             }
             fireErrors(path);
             dispatcher.fireFileFinished(path);

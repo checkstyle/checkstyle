@@ -34,15 +34,19 @@ import static org.mockito.Mockito.times;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.Writer;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
 import java.util.SortedSet;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
@@ -53,19 +57,21 @@ import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractXmlTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
-import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
-import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 @RunWith(PowerMockRunner.class)
 public class TranslationCheckTest extends AbstractXmlTestSupport {
+
+    @Rule
+    public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
     @Captor
     private ArgumentCaptor<SortedSet<LocalizedMessage>> captor;
@@ -89,6 +95,48 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
             createChecker(checkConfig),
             propertyFiles,
             getPath("messages_test_de.properties"),
+            expected);
+    }
+
+    @Test
+    public void testDifferentBases() throws Exception {
+        final Configuration checkConfig = createModuleConfig(TranslationCheck.class);
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY, "only.english"),
+        };
+        final File[] propertyFiles = {
+            new File(getPath("messages_test_de.properties")),
+            new File(getPath("messages_test.properties")),
+            new File(getPath("messages_translation.properties")),
+            new File(getPath("messages_translation_de.properties")),
+        };
+        verify(
+            createChecker(checkConfig),
+            propertyFiles,
+            getPath("messages_test_de.properties"),
+            expected);
+    }
+
+    @Test
+    public void testDifferentPaths() throws Exception {
+        final File file = temporaryFolder.newFile("messages_test_de.properties");
+        try (Writer writer = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8)) {
+            final String content = "hello=Hello\ncancel=Cancel";
+            writer.write(content);
+        }
+        final Configuration checkConfig = createModuleConfig(TranslationCheck.class);
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
+                    "messages_test.properties"),
+        };
+        final File[] propertyFiles = {
+            file,
+            new File(getPath("messages_test.properties")),
+        };
+        verify(
+            createChecker(checkConfig),
+            propertyFiles,
+            file.getParent(),
             expected);
     }
 
@@ -196,18 +244,22 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         //in checks running part. So I had to do it with reflection to improve coverage.
         final TranslationCheck check = new TranslationCheck();
         final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
+        final MessageDispatcher dispatcher = mock(MessageDispatcher.class);
         check.configure(checkConfig);
-        final Checker checker = createChecker(checkConfig);
-        final SeverityLevelCounter counter = new SeverityLevelCounter(SeverityLevel.ERROR);
-        checker.addListener(counter);
-        check.setMessageDispatcher(checker);
+        check.setMessageDispatcher(dispatcher);
 
         final Method loadKeys =
             check.getClass().getDeclaredMethod("getTranslationKeys", File.class);
         loadKeys.setAccessible(true);
         final Set<String> keys = (Set<String>) loadKeys.invoke(check, new File(".no.such.file"));
         assertTrue("Translation keys should be empty when File is not found", keys.isEmpty());
-        assertEquals("Invalid error count", 1, counter.getCount());
+
+        Mockito.verify(dispatcher, times(1)).fireErrors(any(String.class), captor.capture());
+        final String actual = captor.getValue().first().getMessage();
+        final LocalizedMessage localizedMessage = new LocalizedMessage(1,
+                Definitions.CHECKSTYLE_BUNDLE, "general.fileNotFound",
+                null, null, getClass(), null);
+        assertEquals("Invalid message", localizedMessage.getMessage(), actual);
     }
 
     @Test
@@ -455,6 +507,36 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
                     "ButtonLabels_ja.properties"),
+        };
+
+        verify(
+            createChecker(checkConfig),
+            propertyFiles,
+            getPath(""),
+            expected);
+    }
+
+    @Test
+    public void testEqualBaseNamesButDifferentExtensions2() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
+        checkConfig.addAttribute("requiredTranslations", "de, es");
+        checkConfig.addAttribute("fileExtensions", "properties, translations");
+        checkConfig.addAttribute("baseName", "^.*Labels$");
+
+        final File[] propertyFiles = {
+            new File(getPath("ButtonLabels.properties")),
+            new File(getPath("ButtonLabels_de.properties")),
+            new File(getPath("ButtonLabels_es.properties")),
+            new File(getPath("ButtonLabels_ja.translations")),
+        };
+
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
+                    "ButtonLabels.translations"),
+            "1: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
+                    "ButtonLabels_de.translations"),
+            "1: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
+                    "ButtonLabels_es.translations"),
         };
 
         verify(
