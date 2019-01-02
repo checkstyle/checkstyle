@@ -200,11 +200,15 @@
   </rule>
   <rule ref="category/java/design.xml/AvoidCatchingGenericException">
     <properties>
-      <!-- There is no other way to deliver the filename that was under processing.
-           See https://github.com/checkstyle/checkstyle/issues/2285 -->
+      <!-- Checker: There is no other way to deliver the filename that was under processing.
+           See https://github.com/checkstyle/checkstyle/issues/2285
+           TranslationCheck: It is better to catch all exceptions since it can throw
+           a runtime exception. -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@Image='Checker']
-                             //MethodDeclaration[@Name='processFiles']"/>
+                             //MethodDeclaration[@Name='processFiles']
+                      |//ClassOrInterfaceDeclaration[@Image='TranslationCheck']
+                             //MethodDeclaration[@Name='getTranslationKeys']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/AvoidDeeplyNestedIfStmts">
