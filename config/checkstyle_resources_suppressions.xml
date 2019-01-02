@@ -48,6 +48,10 @@
 
   <!-- intentional problem for testing -->
   <suppress checks="OuterTypeFilename"
+    files="outertypefilename[\\/]InputOuterTypeFilename1a\.java"/>
+  <suppress checks="OuterTypeFilename"
     files="outertypefilename[\\/]InputOuterTypeFilename5\.java"/>
+  <suppress checks="OuterTypeFilename"
+    files="outertypefilename[\\/]InputOuterTypeFilenameNoPublic\.java"/>
 
 </suppressions>

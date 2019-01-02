@@ -42,4 +42,5 @@ public class InputArrayTypeStyle
             return null;
         }
     }
+    public static void foo(java.util.Collection < ? extends InputArrayTypeStyle[] > collection) {}
 }

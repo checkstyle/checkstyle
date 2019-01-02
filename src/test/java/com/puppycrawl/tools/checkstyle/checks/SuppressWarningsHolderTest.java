@@ -200,6 +200,14 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testIsSuppressedAfterEventEnd2() throws Exception {
+        createHolder("check", 100, 100, 350, 350);
+        final AuditEvent event = createAuditEvent("check", 400, 10);
+
+        assertFalse("Event is not suppressed", SuppressWarningsHolder.isSuppressed(event));
+    }
+
+    @Test
     public void testIsSuppressedAfterEventStart() throws Exception {
         createHolder("check", 100, 100, 350, 350);
         final AuditEvent event = createAuditEvent("check", 100, 100);

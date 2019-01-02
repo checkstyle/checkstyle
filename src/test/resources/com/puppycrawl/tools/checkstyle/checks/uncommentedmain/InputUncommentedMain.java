@@ -98,3 +98,12 @@ class UncommentedMainTest8
         System.identityHashCode("test8.main()");
     }
 }
+
+class UncommentedMainTest9
+{
+
+    public static void main(String args)
+    {
+        System.identityHashCode("test9.main()");
+    }
+}

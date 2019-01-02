@@ -27,4 +27,7 @@ public class InputTrailingComment {
      * comment with trailing space 
      */
     final static public String NAME="Some Name"; // NOI18N
+    final static public String NAME2="Some Name"; /*NOI18N*/
+    String NAME3="Some Name"; /*NOI18N
+*/
 }

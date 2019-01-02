@@ -87,6 +87,15 @@ public class OuterTypeFilenameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testNestedClass2() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(OuterTypeFilenameCheck.class);
+        final String[] expected = {
+            "3: " + getCheckMessage(MSG_KEY),
+        };
+        verify(checkConfig, getPath("InputOuterTypeFilename1a.java"), expected);
+    }
+
+    @Test
     public void testFinePublic() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OuterTypeFilenameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -98,6 +107,15 @@ public class OuterTypeFilenameCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(OuterTypeFilenameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputOuterTypeFilenameCheckPublic.java"), expected);
+    }
+
+    @Test
+    public void testNoPublicClasses() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(OuterTypeFilenameCheck.class);
+        final String[] expected = {
+            "3: " + getCheckMessage(MSG_KEY),
+        };
+        verify(checkConfig, getPath("InputOuterTypeFilenameNoPublic.java"), expected);
     }
 
     @Test
