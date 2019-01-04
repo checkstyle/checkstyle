@@ -99,6 +99,15 @@ class InputNeedBraces
         if (condition())
             if (condition())
                 testIf();
+
+        if (condition())
+            while (condition()) testWhile();
+        if (condition())
+            do testDoWhile(); while (condition());
+        if (condition())
+            for (int i = 0; i < 1; i++) testFor();
+        int a = 0;
+        switch (a) {default: {}}
     }
 
     void whitespaceAfterSemi()

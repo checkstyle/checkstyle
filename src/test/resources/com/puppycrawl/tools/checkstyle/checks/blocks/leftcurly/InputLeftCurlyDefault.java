@@ -49,4 +49,15 @@ public class InputLeftCurlyDefault
     @interface
     MyAnnotation {
     }
+
+    @Deprecated
+    public
+    class MyClass3 {
+    }
+
+    public class MyClass4 {
+        void method() {
+            while(true) {/*foo*/}
+        }
+    }
 }

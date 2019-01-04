@@ -126,6 +126,18 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testShouldStartLine2() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
+        checkConfig.addAttribute("option", RightCurlyOption.ALONE_OR_SINGLELINE.toString());
+        checkConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF");
+        checkConfig.addAttribute("shouldStartLine", "false");
+        final String[] expected = {
+            "122:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+        };
+        verify(checkConfig, getPath("InputRightCurlyLeft.java"), expected);
+    }
+
+    @Test
     public void testMethodCtorNamedClassClosingBrace() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
         checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());

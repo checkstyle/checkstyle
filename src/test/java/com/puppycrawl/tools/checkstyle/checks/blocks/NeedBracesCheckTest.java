@@ -56,6 +56,44 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "97: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
             "99: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
             "100: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "103: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "104: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "105: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "106: " + getCheckMessage(MSG_KEY_NEED_BRACES, "do"),
+            "107: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "108: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+        };
+        verify(checkConfig, getPath("InputNeedBraces.java"), expected);
+    }
+
+    @Test
+    public void testItWithAllowsOn() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(NeedBracesCheck.class);
+        checkConfig.addAttribute("allowSingleLineStatement", "true");
+        checkConfig.addAttribute("allowEmptyLoopBody", "true");
+        checkConfig.addAttribute("tokens", "LITERAL_DO, LITERAL_ELSE, LITERAL_FOR, LITERAL_IF, "
+            + "LITERAL_WHILE, LITERAL_CASE, LITERAL_DEFAULT, LAMBDA");
+        final String[] expected = {
+            "42: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "45: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "59: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "61: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "63: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "83: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "85: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "87: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
+            "89: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "97: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
+            "99: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "100: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "103: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "104: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "105: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "106: " + getCheckMessage(MSG_KEY_NEED_BRACES, "do"),
+            "107: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "108: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "110: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
         };
         verify(checkConfig, getPath("InputNeedBraces.java"), expected);
     }

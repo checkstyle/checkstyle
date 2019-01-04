@@ -174,7 +174,7 @@ public class LeftCurlyCheck
         switch (ast.getType()) {
             case TokenTypes.CTOR_DEF:
             case TokenTypes.METHOD_DEF:
-                startToken = skipAnnotationOnlyLines(ast);
+                startToken = skipModifierAnnotations(ast);
                 brace = ast.findFirstToken(TokenTypes.SLIST);
                 break;
             case TokenTypes.INTERFACE_DEF:
@@ -182,7 +182,7 @@ public class LeftCurlyCheck
             case TokenTypes.ANNOTATION_DEF:
             case TokenTypes.ENUM_DEF:
             case TokenTypes.ENUM_CONSTANT_DEF:
-                startToken = skipAnnotationOnlyLines(ast);
+                startToken = skipModifierAnnotations(ast);
                 final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
                 brace = objBlock;
 
@@ -246,16 +246,11 @@ public class LeftCurlyCheck
     }
 
     /**
-     * Skip lines that only contain {@code TokenTypes.ANNOTATION}s.
-     * If the received {@code DetailAST}
-     * has annotations within its modifiers then first token on the line
-     * of the first token after all annotations is return. This might be
-     * an annotation.
-     * Otherwise, the received {@code DetailAST} is returned.
+     * Skip all {@code TokenTypes.ANNOTATION}s to the first non-annotation.
      * @param ast {@code DetailAST}.
      * @return {@code DetailAST}.
      */
-    private static DetailAST skipAnnotationOnlyLines(DetailAST ast) {
+    private static DetailAST skipModifierAnnotations(DetailAST ast) {
         DetailAST resultNode = ast;
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
 
@@ -263,41 +258,15 @@ public class LeftCurlyCheck
             final DetailAST lastAnnotation = findLastAnnotation(modifiers);
 
             if (lastAnnotation != null) {
-                final DetailAST tokenAfterLast;
-
                 if (lastAnnotation.getNextSibling() == null) {
-                    tokenAfterLast = modifiers.getNextSibling();
+                    resultNode = modifiers.getNextSibling();
                 }
                 else {
-                    tokenAfterLast = lastAnnotation.getNextSibling();
-                }
-
-                if (tokenAfterLast.getLineNo() == lastAnnotation.getLineNo()) {
-                    resultNode = getFirstAnnotationOnSameLine(lastAnnotation);
-                }
-                else {
-                    resultNode = tokenAfterLast;
+                    resultNode = lastAnnotation.getNextSibling();
                 }
             }
         }
         return resultNode;
-    }
-
-    /**
-     * Returns first annotation on same line.
-     * @param annotation
-     *            last annotation on the line
-     * @return first annotation on same line.
-     */
-    private static DetailAST getFirstAnnotationOnSameLine(DetailAST annotation) {
-        DetailAST previousAnnotation = annotation;
-        final int lastAnnotationLineNumber = previousAnnotation.getLineNo();
-        while (previousAnnotation.getPreviousSibling() != null
-                && previousAnnotation.getPreviousSibling().getLineNo()
-                    == lastAnnotationLineNumber) {
-            previousAnnotation = previousAnnotation.getPreviousSibling();
-        }
-        return previousAnnotation;
     }
 
     /**

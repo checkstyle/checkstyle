@@ -15,4 +15,8 @@ public class InputLeftCurlyIgnoreEnums {
         C,
         PASCAL
     }
+
+    void method1(int a) {
+        switch (a) {case 1: ; }
+    }
 }
