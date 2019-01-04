@@ -83,6 +83,10 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
             "40:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 18),
             "45:12: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 12),
             "50:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 18),
+            "55:20: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 20),
+            "58:27: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 27),
+            "59:23: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 23),
+            "60:25: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 25),
         };
         verify(checkConfig, getPath("InputLeftCurlyDefault.java"), expected);
     }
@@ -103,6 +107,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
             "40:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 18),
             "45:12: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 12),
             "50:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 18),
+            "55:20: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 20),
         };
         verify(checkConfig, getPath("InputLeftCurlyDefault.java"), expected);
     }

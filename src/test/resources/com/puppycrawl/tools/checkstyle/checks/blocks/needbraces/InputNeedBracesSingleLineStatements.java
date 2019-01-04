@@ -113,5 +113,7 @@ public class InputNeedBracesSingleLineStatements
         for (String s: new String[]{""}) break;
         for (String s: new String[]{""})
             break;
+        for (;;)
+        ;
     }
 }

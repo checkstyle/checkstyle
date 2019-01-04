@@ -119,7 +119,6 @@ public class AvoidNestedBlocksCheck extends AbstractCheck {
         final DetailAST parent = ast.getParent();
         if (parent.getType() == TokenTypes.SLIST
                 && (!allowInSwitchCase
-                    || parent.getParent().getType() != TokenTypes.CASE_GROUP
                     || parent.getNumberOfChildren() != 1)) {
             log(ast, MSG_KEY_BLOCK_NESTED);
         }
