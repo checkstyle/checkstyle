@@ -278,6 +278,17 @@ public class EmptyLineSeparatorCheckTest
     }
 
     @Test
+    public void testNonPackageInfoWithJavadocBeforePackage() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        final String[] expected = {
+            "3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
+        };
+        verify(checkConfig,
+                getPath("InputEmptyLineSeparatorNonPackageInfoWithJavadocBeforePackage.java"),
+                expected);
+    }
+
+    @Test
     public void testClassOnly() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
         checkConfig.addAttribute("tokens", "CLASS_DEF");
