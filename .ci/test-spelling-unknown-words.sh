@@ -6,14 +6,15 @@
 set -e
 
 spellchecker=.ci/jsoref-spellchecker
-whitelist_path=.ci/jsoref-spellchecker/whitelist.words
-dict=.ci-temp/english.words
+temp=.ci-temp
+whitelist_path=$spellchecker/whitelist.words
+dict=$temp/english.words
 word_splitter=$spellchecker/spelling-unknown-word-splitter.pl
 run_output=$spellchecker/unknown.words
 if [ ! -e $dict ]; then
-  mkdir -p .ci-temp
+  mkdir -p $temp
   echo "Retrieve ./usr/share/dict/linux.words"
-  words_rpm=.ci-temp/words.rpm
+  words_rpm=$temp/words.rpm
   mirror="https://rpmfind.net"
   file_path="/linux/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/w/"
   file_name=$(curl -s "${mirror}${file_path}" | grep -o "words-.*.noarch.rpm")
@@ -37,7 +38,7 @@ rm -f $run_output
 
 echo "Run w"
 (git 'ls-files' -z 2> /dev/null || hg locate -0) |\
-  .ci/jsoref-spellchecker/exclude.pl |\
+  $spellchecker/exclude.pl |\
   xargs -0 $word_splitter |\
   $word_splitter |\
   perl -p -n -e 's/ \(.*//' > $run_output
