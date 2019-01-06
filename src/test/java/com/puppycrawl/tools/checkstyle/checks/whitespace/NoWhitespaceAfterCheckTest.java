@@ -60,6 +60,7 @@ public class NoWhitespaceAfterCheckTest
             "290:5: " + getCheckMessage(MSG_KEY, "@"),
             "291:5: " + getCheckMessage(MSG_KEY, "@"),
             "296:28: " + getCheckMessage(MSG_KEY, "int"),
+            "308:5: " + getCheckMessage(MSG_KEY, "someStuff8"),
         };
         verify(checkConfig, getPath("InputNoWhitespaceAfter.java"), expected);
     }
@@ -217,6 +218,16 @@ public class NoWhitespaceAfterCheckTest
     }
 
     @Test
+    public void testArrayDeclarator() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
+        checkConfig.addAttribute("tokens", "ARRAY_DECLARATOR");
+        final String[] expected = {
+            "11:32: " + getCheckMessage(MSG_KEY, "Entry"),
+        };
+        verify(checkConfig, getPath("InputNoWhitespaceAfterArrayDeclarator.java"), expected);
+    }
+
+    @Test
     public void testVisitTokenSwitchReflection() {
         //unexpected parent for ARRAY_DECLARATOR token
         final DetailAST astImport = mockAST(TokenTypes.IMPORT, "import", "mockfile");
@@ -234,6 +245,40 @@ public class NoWhitespaceAfterCheckTest
             assertEquals("Invalid exception message",
                 "unexpected ast syntax import[0x-1]", ex.getMessage());
         }
+    }
+
+    @Test
+    public void testAllTokens() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
+        checkConfig.addAttribute("tokens", "ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, "
+                + "BNOT, LNOT, DOT, TYPECAST, ARRAY_DECLARATOR, INDEX_OP, LITERAL_SYNCHRONIZED, "
+                + "METHOD_REF");
+        checkConfig.addAttribute("allowLineBreaks", "false");
+        final String[] expected = {
+            "5:13: " + getCheckMessage(MSG_KEY, "."),
+            "6:11: " + getCheckMessage(MSG_KEY, "."),
+            "29:13: " + getCheckMessage(MSG_KEY, "-"),
+            "29:20: " + getCheckMessage(MSG_KEY, "+"),
+            "31:13: " + getCheckMessage(MSG_KEY, "++"),
+            "31:20: " + getCheckMessage(MSG_KEY, "--"),
+            "87:20: " + getCheckMessage(MSG_KEY, ")"),
+            "89:13: " + getCheckMessage(MSG_KEY, ")"),
+            "90:13: " + getCheckMessage(MSG_KEY, ")"),
+            "111:21: " + getCheckMessage(MSG_KEY, "!"),
+            "112:22: " + getCheckMessage(MSG_KEY, "~"),
+            "129:23: " + getCheckMessage(MSG_KEY, "."),
+            "132:10: " + getCheckMessage(MSG_KEY, "."),
+            "136:11: " + getCheckMessage(MSG_KEY, "."),
+            "241:17: " + getCheckMessage(MSG_KEY, ")"),
+            "264:1: " + getCheckMessage(MSG_KEY, "."),
+            "289:5: " + getCheckMessage(MSG_KEY, "@"),
+            "290:5: " + getCheckMessage(MSG_KEY, "@"),
+            "291:5: " + getCheckMessage(MSG_KEY, "@"),
+            "296:28: " + getCheckMessage(MSG_KEY, "int"),
+            "300:18: " + getCheckMessage(MSG_KEY, ")"),
+            "308:5: " + getCheckMessage(MSG_KEY, "someStuff8"),
+        };
+        verify(checkConfig, getPath("InputNoWhitespaceAfter.java"), expected);
     }
 
     /**

@@ -112,4 +112,9 @@ class InputWhitespaceAroundBraces
     
     /** Empty method block. **/
     public void emptyImplementation() {}
+
+    public void foo() {
+        boolean flag = true;
+        if(flag){}
+    }
 }

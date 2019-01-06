@@ -408,13 +408,12 @@ public class WhitespaceAroundCheck extends AbstractCheck {
         final int parentType = ast.getParent().getType();
         final boolean starImport = currentType == TokenTypes.STAR
                 && parentType == TokenTypes.DOT;
-        final boolean slistInsideCaseGroup = currentType == TokenTypes.SLIST
-                && parentType == TokenTypes.CASE_GROUP;
+        final boolean insideCaseGroup = parentType == TokenTypes.CASE_GROUP;
 
-        final boolean starImportOrSlistInsideCaseGroup = starImport || slistInsideCaseGroup;
+        final boolean starImportOrSlistInsideCaseGroup = starImport || insideCaseGroup;
         final boolean colonOfCaseOrDefaultOrForEach =
-                isColonOfCaseOrDefault(currentType, parentType)
-                        || isColonOfForEach(currentType, parentType);
+                isColonOfCaseOrDefault(parentType)
+                        || isColonOfForEach(parentType);
         final boolean emptyBlockOrType =
                 isEmptyBlock(ast, parentType)
                     || allowEmptyTypes && isEmptyType(ast);
@@ -511,8 +510,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
         if (type == TokenTypes.RCURLY) {
             final DetailAST parent = ast.getParent();
             final DetailAST grandParent = ast.getParent().getParent();
-            result = parentType == TokenTypes.SLIST
-                    && parent.getFirstChild().getType() == TokenTypes.RCURLY
+            result = parent.getFirstChild().getType() == TokenTypes.RCURLY
                     && grandParent.getType() == match;
         }
         else {
@@ -525,25 +523,21 @@ public class WhitespaceAroundCheck extends AbstractCheck {
 
     /**
      * Whether colon belongs to cases or defaults.
-     * @param currentType current
      * @param parentType parent
      * @return true if current token in colon of case or default tokens
      */
-    private static boolean isColonOfCaseOrDefault(int currentType, int parentType) {
-        return currentType == TokenTypes.COLON
-                && (parentType == TokenTypes.LITERAL_DEFAULT
-                        || parentType == TokenTypes.LITERAL_CASE);
+    private static boolean isColonOfCaseOrDefault(int parentType) {
+        return parentType == TokenTypes.LITERAL_DEFAULT
+                    || parentType == TokenTypes.LITERAL_CASE;
     }
 
     /**
      * Whether colon belongs to for-each.
-     * @param currentType current
      * @param parentType parent
      * @return true if current token in colon of for-each token
      */
-    private boolean isColonOfForEach(int currentType, int parentType) {
-        return currentType == TokenTypes.COLON
-                && parentType == TokenTypes.FOR_EACH_CLAUSE
+    private boolean isColonOfForEach(int parentType) {
+        return parentType == TokenTypes.FOR_EACH_CLAUSE
                 && ignoreEnhancedForColon;
     }
 
@@ -554,7 +548,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * @return true is current token inside array initialization
      */
     private static boolean isArrayInitialization(int currentType, int parentType) {
-        return (currentType == TokenTypes.RCURLY || currentType == TokenTypes.LCURLY)
+        return currentType == TokenTypes.RCURLY
                 && (parentType == TokenTypes.ARRAY_INIT
                         || parentType == TokenTypes.ANNOTATION_ARRAY_INIT);
     }
@@ -641,8 +635,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
         final DetailAST previousSibling = ast.getPreviousSibling();
         return type == TokenTypes.LCURLY
                     && nextSibling.getType() == TokenTypes.RCURLY
-                || type == TokenTypes.RCURLY
-                    && previousSibling != null
+                || previousSibling != null
                     && previousSibling.getType() == TokenTypes.LCURLY;
     }
 
@@ -653,10 +646,9 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * @return true if it should omit checking for previous token, false otherwise
      */
     private static boolean isPartOfDoubleBraceInitializerForPreviousToken(DetailAST ast) {
-        final boolean initializerBeginsAfterClassBegins = ast.getType() == TokenTypes.SLIST
-                && ast.getParent().getType() == TokenTypes.INSTANCE_INIT;
-        final boolean classEndsAfterInitializerEnds = ast.getType() == TokenTypes.RCURLY
-                && ast.getPreviousSibling() != null
+        final boolean initializerBeginsAfterClassBegins =
+                ast.getParent().getType() == TokenTypes.INSTANCE_INIT;
+        final boolean classEndsAfterInitializerEnds = ast.getPreviousSibling() != null
                 && ast.getPreviousSibling().getType() == TokenTypes.INSTANCE_INIT;
         return initializerBeginsAfterClassBegins || classEndsAfterInitializerEnds;
     }
@@ -672,9 +664,8 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     private static boolean isPartOfDoubleBraceInitializerForNextToken(DetailAST ast) {
         final boolean classBeginBeforeInitializerBegin = ast.getType() == TokenTypes.LCURLY
             && ast.getNextSibling().getType() == TokenTypes.INSTANCE_INIT;
-        final boolean initializerEndsBeforeClassEnds = ast.getType() == TokenTypes.RCURLY
-            && ast.getParent().getType() == TokenTypes.SLIST
-            && ast.getParent().getParent().getType() == TokenTypes.INSTANCE_INIT
+        final boolean initializerEndsBeforeClassEnds =
+            ast.getParent().getParent().getType() == TokenTypes.INSTANCE_INIT
             && ast.getParent().getParent().getNextSibling().getType() == TokenTypes.RCURLY;
         return classBeginBeforeInitializerBegin || initializerEndsBeforeClassEnds;
     }

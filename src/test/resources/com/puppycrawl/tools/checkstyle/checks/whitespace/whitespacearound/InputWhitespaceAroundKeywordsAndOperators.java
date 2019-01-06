@@ -286,4 +286,8 @@ class SpecialCasesInForLoop
 
     public static void testNoWhitespaceBeforeEllipses(String ... args) {
     }
+    public String test() {
+        int pc = 0;
+        return ((100000+pc)+"").substring(1);
+    }
 }

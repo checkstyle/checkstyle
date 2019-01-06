@@ -464,11 +464,9 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return true if policy is violated and warning should be raised; false otherwise
      */
     private boolean isViolatingEmptyLineBetweenFieldsPolicy(DetailAST detailAST) {
-        return allowNoEmptyLineBetweenFields
-                    && detailAST.getType() != TokenTypes.VARIABLE_DEF
-                    && detailAST.getType() != TokenTypes.RCURLY
-                || !allowNoEmptyLineBetweenFields
-                    && detailAST.getType() != TokenTypes.RCURLY;
+        return detailAST.getType() != TokenTypes.RCURLY
+                && (!allowNoEmptyLineBetweenFields
+                    || detailAST.getType() != TokenTypes.VARIABLE_DEF);
     }
 
     /**
@@ -530,14 +528,12 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     private boolean hasEmptyLine(int startLine, int endLine) {
         // Initial value is false - blank line not found
         boolean result = false;
-        if (startLine <= endLine) {
-            final FileContents fileContents = getFileContents();
-            for (int line = startLine; line <= endLine; line++) {
-                // Check, if the line is blank. Lines are numbered from 0, so subtract 1
-                if (fileContents.lineIsBlank(line - 1)) {
-                    result = true;
-                    break;
-                }
+        final FileContents fileContents = getFileContents();
+        for (int line = startLine; line <= endLine; line++) {
+            // Check, if the line is blank. Lines are numbered from 0, so subtract 1
+            if (fileContents.lineIsBlank(line - 1)) {
+                result = true;
+                break;
             }
         }
         return result;

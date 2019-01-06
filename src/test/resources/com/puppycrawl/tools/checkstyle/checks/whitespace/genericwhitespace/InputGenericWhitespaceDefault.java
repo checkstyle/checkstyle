@@ -78,3 +78,4 @@ Integer> x = new ArrayList<Integer
         Map<Class<?>, Integer> b = (Map<Class<?>, Integer>) a;
     }
 }
+interface SupplierFunction<T> extends Map<List<T>, T> {}
