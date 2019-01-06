@@ -226,8 +226,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      * @return true if generic before a method ref
      */
     private static boolean isGenericBeforeMethod(DetailAST ast) {
-        return ast.getParent().getType() == TokenTypes.TYPE_ARGUMENTS
-                && ast.getParent().getParent().getType() == TokenTypes.DOT
+        return ast.getParent().getParent().getType() == TokenTypes.DOT
                 && ast.getParent().getParent().getParent().getType() == TokenTypes.METHOD_CALL
                 || isAfterMethodReference(ast);
     }
@@ -261,9 +260,8 @@ public class GenericWhitespaceCheck extends AbstractCheck {
             // Detect if the first case
             final DetailAST parent = ast.getParent();
             final DetailAST grandparent = parent.getParent();
-            if (parent.getType() == TokenTypes.TYPE_PARAMETERS
-                && (grandparent.getType() == TokenTypes.CTOR_DEF
-                    || grandparent.getType() == TokenTypes.METHOD_DEF)) {
+            if (grandparent.getType() == TokenTypes.CTOR_DEF
+                    || grandparent.getType() == TokenTypes.METHOD_DEF) {
                 // Require whitespace
                 if (!Character.isWhitespace(line.charAt(before))) {
                     log(ast, MSG_WS_NOT_PRECEDED, OPEN_ANGLE_BRACKET);

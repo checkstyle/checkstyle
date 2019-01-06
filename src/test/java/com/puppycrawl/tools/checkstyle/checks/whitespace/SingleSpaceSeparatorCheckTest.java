@@ -156,4 +156,12 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputSingleSpaceSeparatorComments.java"), expected);
     }
 
+    @Test
+    public void testEmpty() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(SingleSpaceSeparatorCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getPath("InputSingleSpaceSeparatorEmpty.java"), expected);
+    }
 }

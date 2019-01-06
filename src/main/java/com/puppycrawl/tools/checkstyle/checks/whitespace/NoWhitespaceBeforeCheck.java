@@ -113,7 +113,7 @@ public class NoWhitespaceBeforeCheck
                 && !isInEmptyForInitializerOrCondition(ast)) {
             boolean flag = !allowLineBreaks;
             // verify all characters before '.' are whitespace
-            for (int i = 0; !flag && i <= before - 1; i++) {
+            for (int i = 0; i <= before - 1; i++) {
                 if (!Character.isWhitespace(line.charAt(i))) {
                     flag = true;
                     break;
@@ -132,14 +132,12 @@ public class NoWhitespaceBeforeCheck
      */
     private static boolean isInEmptyForInitializerOrCondition(DetailAST semicolonAst) {
         boolean result = false;
-        if (semicolonAst.getType() == TokenTypes.SEMI) {
-            final DetailAST sibling = semicolonAst.getPreviousSibling();
-            if (sibling != null
-                    && (sibling.getType() == TokenTypes.FOR_INIT
-                            || sibling.getType() == TokenTypes.FOR_CONDITION)
-                    && sibling.getChildCount() == 0) {
-                result = true;
-            }
+        final DetailAST sibling = semicolonAst.getPreviousSibling();
+        if (sibling != null
+                && (sibling.getType() == TokenTypes.FOR_INIT
+                        || sibling.getType() == TokenTypes.FOR_CONDITION)
+                && sibling.getChildCount() == 0) {
+            result = true;
         }
         return result;
     }

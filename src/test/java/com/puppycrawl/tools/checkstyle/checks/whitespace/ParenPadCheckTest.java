@@ -282,6 +282,9 @@ public class ParenPadCheckTest
             "212:48: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "212:52: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
             "212:54: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "216:18: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "216:20: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "218:21: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
         verify(checkConfig, getPath("InputParenPadLeftRightAndNoSpace.java"), expected);
     }

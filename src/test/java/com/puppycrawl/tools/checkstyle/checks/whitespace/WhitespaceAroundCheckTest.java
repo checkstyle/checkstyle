@@ -87,6 +87,10 @@ public class WhitespaceAroundCheckTest
             "156:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ":"),
             "156:20: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ":"),
             "262:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "}"),
+            "291:24: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "+"),
+            "291:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "+"),
+            "291:28: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "+"),
+            "291:28: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "+"),
         };
         verify(checkConfig, getPath("InputWhitespaceAroundKeywordsAndOperators.java"), expected);
     }
@@ -129,6 +133,10 @@ public class WhitespaceAroundCheckTest
             "111:43: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
             "114:39: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
             "114:40: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "118:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "if"),
+            "118:17: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "118:17: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "118:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
         };
         verify(checkConfig, getPath("InputWhitespaceAroundBraces.java"), expected);
     }
@@ -142,6 +150,10 @@ public class WhitespaceAroundCheckTest
         final String[] expected = {
             "37:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "while"),
             "54:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "for"),
+            "118:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "if"),
+            "118:17: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "118:17: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "118:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
         };
         verify(checkConfig, getPath("InputWhitespaceAroundBraces.java"), expected);
     }
@@ -445,6 +457,34 @@ public class WhitespaceAroundCheckTest
             "14:39: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
         };
         verify(checkConfig, getPath("InputWhitespaceAroundVarargs.java"), expected);
+    }
+
+    @Test
+    public void testWhitespaceAroundAllTokens() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAroundCheck.class);
+        checkConfig.addAttribute("tokens", "ASSIGN, ARRAY_INIT, BAND, BAND_ASSIGN, BOR, "
+                + "BOR_ASSIGN, BSR, BSR_ASSIGN, BXOR, BXOR_ASSIGN, COLON, DIV, DIV_ASSIGN, "
+                + "DO_WHILE, EQUAL, GE, GT, LAMBDA, LAND, LCURLY, LE, LITERAL_CATCH, LITERAL_DO, "
+                + "LITERAL_ELSE, LITERAL_FINALLY, LITERAL_FOR, LITERAL_IF, LITERAL_RETURN, "
+                + "LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_TRY, LITERAL_WHILE, LOR, LT, "
+                + "MINUS, MINUS_ASSIGN, MOD, MOD_ASSIGN, NOT_EQUAL, PLUS, PLUS_ASSIGN, QUESTION, "
+                + "RCURLY, SL, SLIST, SL_ASSIGN, SR, SR_ASSIGN, STAR, STAR_ASSIGN, "
+                + "LITERAL_ASSERT, TYPE_EXTENSION_AND, WILDCARD_TYPE, GENERIC_START, GENERIC_END, "
+                + "ELLIPSIS");
+        checkConfig.addAttribute("allowEmptyTypes", "true");
+        checkConfig.addAttribute("allowEmptyCatches", "true");
+        final String[] expected = {
+            "6:29: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "<"),
+            "6:29: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
+            "6:35: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "<"),
+            "6:35: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
+            "6:36: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "?"),
+            "6:36: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "?"),
+            "6:37: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ">"),
+            "6:37: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ">"),
+            "6:38: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ">"),
+        };
+        verify(checkConfig, getPath("InputWhitespaceAroundAllTokens.java"), expected);
     }
 
 }

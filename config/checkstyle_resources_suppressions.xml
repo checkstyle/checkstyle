@@ -13,6 +13,8 @@
     files="packagedeclaration[\\/]InputPackageDeclarationWithCommentOnly\.java"/>
   <suppress checks="PackageDeclarationCheck"
     files="[\\/]resources-noncompilable[\\/].*[\\/]packagedeclaration[\\/]Input.*\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="[\\/]resources[\\/].*[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorEmpty\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"

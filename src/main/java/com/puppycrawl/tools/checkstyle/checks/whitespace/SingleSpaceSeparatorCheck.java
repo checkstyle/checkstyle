@@ -127,7 +127,9 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        visitEachToken(rootAST);
+        if (rootAST != null) {
+            visitEachToken(rootAST);
+        }
     }
 
     /**
@@ -138,7 +140,7 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
     private void visitEachToken(DetailAST node) {
         DetailAST sibling = node;
 
-        while (sibling != null) {
+        do {
             final int columnNo = sibling.getColumnNo() - 1;
 
             // in such expression: "j  =123", placed at the start of the string index of the second
@@ -156,7 +158,7 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
             }
 
             sibling = sibling.getNextSibling();
-        }
+        } while (sibling != null);
     }
 
     /**
@@ -193,8 +195,7 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
      *         not preceded by another space.
      */
     private static boolean isSingleSpace(String line, int columnNo) {
-        return !isPrecededByMultipleWhitespaces(line, columnNo)
-                && isSpace(line, columnNo);
+        return isSpace(line, columnNo) && !Character.isWhitespace(line.charAt(columnNo - 1));
     }
 
     /**
@@ -206,20 +207,6 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
      */
     private static boolean isSpace(String line, int columnNo) {
         return line.charAt(columnNo) == ' ';
-    }
-
-    /**
-     * Checks if the {@code line} at {@code columnNo} is preceded by at least 2
-     * whitespaces.
-     *
-     * @param line The line in the file to examine.
-     * @param columnNo The column position in the {@code line} to examine.
-     * @return {@code true} if there are at least 2 whitespace characters before
-     *         {@code columnNo}.
-     */
-    private static boolean isPrecededByMultipleWhitespaces(String line, int columnNo) {
-        return Character.isWhitespace(line.charAt(columnNo))
-                && Character.isWhitespace(line.charAt(columnNo - 1));
     }
 
     /**

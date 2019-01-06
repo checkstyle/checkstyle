@@ -33,12 +33,21 @@ case $1 in
 
 pitest-annotation|pitest-design|pitest-header|pitest-imports \
 |pitest-metrics|pitest-modifier|pitest-naming \
-|pitest-regexp|pitest-sizes|pitest-whitespace|pitest-ant \
+|pitest-regexp|pitest-sizes|pitest-ant \
 |pitest-api|pitest-common|pitest-filters|pitest-main \
 |pitest-packagenamesloader|pitest-tree-walker|pitest-utils \
 |pitest-xpath|pitest-common-2|pitest-misc|pitest-blocks)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=();
+  checkPitestReport "${ignoredItems[@]}"
+  ;;
+
+pitest-whitespace)
+  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  declare -a ignoredItems=(
+  # till https://github.com/checkstyle/checkstyle/issues/6350
+  "EmptyLineSeparatorCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (getFileContents().getFileName().endsWith(&#34;package-info.java&#34;)) {</span></pre></td></tr>"
+  );
   checkPitestReport "${ignoredItems[@]}"
   ;;
 

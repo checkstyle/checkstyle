@@ -295,4 +295,15 @@ class SpecialCasesInForLoop
     static {
         int[]err = new int [50];
     }
+
+    Object foo() {
+        return ( (Object
+                ) "");
+    }
+
+    public Object[]
+        variable;
+
+    int someStuff8
+    [];
 }

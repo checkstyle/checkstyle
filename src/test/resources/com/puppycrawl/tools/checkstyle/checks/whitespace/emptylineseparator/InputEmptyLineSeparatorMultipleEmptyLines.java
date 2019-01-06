@@ -46,3 +46,14 @@ public class InputEmptyLineSeparatorMultipleEmptyLines
 
 
 }
+
+class Test2 {
+    void testFor()
+    {
+        for (int i = 1; i < 5; i++) {
+        }
+
+
+        for(int i = 1;i < 5;i++);
+    }
+}

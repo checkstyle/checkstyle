@@ -212,3 +212,9 @@ enum MyEnum {
                 0, org.hamcrest.CoreMatchers.is( 1 ) );
     }
 }
+enum MyEnum2 {
+    SOME_CONSTANT( ) {
+        int i = (int) (2 * (4 / 2
+)                   ); 
+    };
+}
