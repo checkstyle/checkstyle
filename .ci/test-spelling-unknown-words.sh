@@ -20,7 +20,9 @@ if [ ! -e $dict ]; then
   file_name=$(curl -s "${mirror}${file_path}" | grep -o "words-.*.noarch.rpm")
   curl "${mirror}${file_path}${file_name}" -o $words_rpm
   $spellchecker/rpm2cpio.sh $words_rpm |\
-    cpio -i --to-stdout ./usr/share/dict/linux.words > $dict
+    perl -e '$/="\0"; while (<>) {if (/^0707/) { $state = (m!\./usr/share/dict/linux.words!) }
+      elsif ($state == 1) { print }} '\
+    > $dict
   rm $words_rpm
 fi
 

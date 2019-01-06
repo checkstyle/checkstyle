@@ -368,6 +368,7 @@ elementdef
 elif
 elist
 Ellipsize
+elsif
 emacs
 emptyblock
 emptycatchblock
