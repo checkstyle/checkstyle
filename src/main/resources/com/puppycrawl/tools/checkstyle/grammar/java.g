@@ -1424,7 +1424,7 @@ unaryExpressionNotPlusMinus
     ;
 
 typeCastParameters
-    : classTypeSpec[true] (BAND^ classTypeSpec[true])*
+    : classTypeSpec[true] (b:BAND {#b.setType(TYPE_EXTENSION_AND);} classTypeSpec[true])*
     ;
 
 postfixExpression

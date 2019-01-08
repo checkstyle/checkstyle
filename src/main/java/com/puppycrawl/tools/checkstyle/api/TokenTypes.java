@@ -3420,9 +3420,49 @@ public final class TokenTypes {
     public static final int ELLIPSIS = GeneratedJavaTokenTypes.ELLIPSIS;
 
     /**
-     * The {@code &} symbol when used in a generic upper or lower bounds constrain
-     * e.g&#46; <code>Comparable&lt;T extends Serializable &amp; CharSequence&gt;</code>.
-     * @noinspection HtmlTagCanBeJavadocTag
+     * The {@code &} symbol when used to extend a generic upper or lower bounds constrain
+     * or a type cast expression with an additional interface.
+     *
+     * <p>Generic type bounds extension:
+     * {@code class Comparable<T extends Serializable & CharSequence>}</p>
+     * <pre>
+     * CLASS_DEF
+     * |--MODIFIERS
+     * |--LITERAL_CLASS (class)
+     * |--IDENT (Comparable)
+     * +--TYPE_PARAMETERS
+     *     |--GENERIC_START (&lt;)
+     *     |--TYPE_PARAMETER
+     *     |   |--IDENT (T)
+     *     |   +--TYPE_UPPER_BOUNDS (extends)
+     *     |       |--IDENT (Serializable)
+     *     |       |--TYPE_EXTENSION_AND (&amp;)
+     *     |       +--IDENT (CharSequence)
+     *     +--GENERIC_END (&gt;)
+     * </pre>
+     *
+     * <p>Type cast extension:
+     * {@code return (CheckedFunction & Serializable) null;}</p>
+     * <pre>
+     * LITERAL_RETURN (return)
+     * |--EXPR
+     * |   +--TYPECAST (()
+     * |       |--TYPE
+     * |       |   +--IDENT (CheckedFunction)
+     * |       |--TYPE_EXTENSION_AND (&amp;)
+     * |       |--TYPE
+     * |       |   +--IDENT (Serializable)
+     * |       |--RPAREN ())
+     * |       +--LITERAL_NULL (null)
+     * +--SEMI (;)
+     * </pre>
+     *
+     * @see #EXTENDS_CLAUSE
+     * @see #TYPECAST
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.4">
+     * Java Language Specification, &sect;4.4</a>
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.16">
+     * Java Language Specification, &sect;15.16</a>
      */
     public static final int TYPE_EXTENSION_AND =
         GeneratedJavaTokenTypes.TYPE_EXTENSION_AND;

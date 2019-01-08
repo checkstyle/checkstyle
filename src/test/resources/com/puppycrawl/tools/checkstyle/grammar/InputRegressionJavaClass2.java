@@ -39,3 +39,5 @@ class c5 extends c4.c4a {
     c5() { new c4().super(); }
     c5(int a) { new c4().<String>super(); }
 }
+interface i1 {}
+class c6<T extends c3<T> & i1> {}

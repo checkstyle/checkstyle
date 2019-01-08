@@ -111,6 +111,12 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testTypecast() throws Exception {
+        verifyAst(getPath("InputRegressionJavaTypecastAst.txt"),
+                getPath("InputRegressionJavaTypecast.java"));
+    }
+
+    @Test
     public void testUnusedConstructors1() throws Exception {
         final Class<?> clss = GeneratedJavaLexer.class;
         final Constructor<?> constructor = clss.getDeclaredConstructor(InputStream.class);
