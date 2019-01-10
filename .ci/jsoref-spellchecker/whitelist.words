@@ -982,6 +982,7 @@ pguyot
 php
 picocli
 pid
+PIPESTATUS
 pitest
 pitesttyle
 pkga

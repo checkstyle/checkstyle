@@ -44,6 +44,11 @@ echo "Run w"
   xargs -0 $word_splitter |\
   $word_splitter |\
   perl -p -n -e 's/ \(.*//' > $run_output
+  word_splitter_status="${PIPESTATUS[2]} ${PIPESTATUS[3]}"
+  if [ "$word_splitter_status" != '0 0' ]; then
+    echo "$word_splitter failed ($word_splitter_status)"
+    exit 2
+  fi
 
 printDetails() {
   echo ''
