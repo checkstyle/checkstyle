@@ -128,9 +128,12 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
         checkConfig.addAttribute("option", RightCurlyOption.ALONE_OR_SINGLELINE.toString());
         checkConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF");
-        checkConfig.addAttribute("shouldStartLine", "false");
         final String[] expected = {
+            "111:6: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 6),
             "122:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "122:6: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 6),
+            "136:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "136:6: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 6),
         };
         verify(checkConfig, getPath("InputRightCurlyLeft.java"), expected);
     }
