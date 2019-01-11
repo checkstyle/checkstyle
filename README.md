@@ -122,7 +122,7 @@ are in the file named "LICENSE.apache20" in this directory.
 [stackoverflow img]:https://img.shields.io/badge/stackoverflow-CHECKSTYLE-blue.svg
 
 [teamcity]:https://teamcity.jetbrains.com/viewType.html?buildTypeId=Checkstyle_IdeaInspectionsMaster
-[teamcity img]:https://img.shields.io/teamcity/http/teamcity.jetbrains.com/s/Checkstyle_IdeaInspectionsMaster.svg?label=TeamCity%20inspections
+[teamcity img]:https://teamcity.jetbrains.com/app/rest/builds/buildType:(id:Checkstyle_IdeaInspectionsMaster)/statusIcon
 
 [codeship]: https://codeship.com/projects/124310
 [codeship img]:https://codeship.com/projects/67b814a0-8fee-0133-9b59-02a170289b8c/status?branch=master
