@@ -45,9 +45,11 @@ pitest-annotation|pitest-design|pitest-header|pitest-imports \
 pitest-blocks)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
+  "RightCurlyCheck.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; details.nextToken.getType() == TokenTypes.RCURLY</span></pre></td></tr>"
+  "RightCurlyCheck.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; tokenAfterNextToken.getType() == TokenTypes.SEMI</span></pre></td></tr>"
   "RightCurlyCheck.java.html:<td class='covered'><pre><span  class='survived'>            else if (tokenType == TokenTypes.LITERAL_CATCH) {</span></pre></td></tr>"
   "RightCurlyCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (tokenType == TokenTypes.LITERAL_IF) {</span></pre></td></tr>"
-  "RightCurlyCheck.java.html:<td class='covered'><pre><span  class='survived'>        return rcurly.getLineNo() == lcurly.getLineNo()</span></pre></td></tr>"
+  "RightCurlyCheck.java.html:<td class='covered'><pre><span  class='survived'>        return rcurly.getParent().getParent().getType() == TokenTypes.INSTANCE_INIT</span></pre></td></tr>"
   );
   checkPitestReport "${ignoredItems[@]}"
   ;;
