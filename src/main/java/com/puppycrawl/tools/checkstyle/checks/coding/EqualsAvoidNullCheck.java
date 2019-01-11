@@ -78,6 +78,9 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
     /** Type name for comparison. */
     private static final String STRING = "String";
 
+    /** Curly for comparison. */
+    private static final String LEFT_CURLY = "{";
+
     /** Whether to process equalsIgnoreCase() invocations. */
     private boolean ignoreEqualsIgnoreCase;
 
@@ -100,19 +103,19 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
             TokenTypes.METHOD_CALL,
             TokenTypes.CLASS_DEF,
             TokenTypes.METHOD_DEF,
-            TokenTypes.LITERAL_IF,
             TokenTypes.LITERAL_FOR,
-            TokenTypes.LITERAL_WHILE,
-            TokenTypes.LITERAL_DO,
             TokenTypes.LITERAL_CATCH,
             TokenTypes.LITERAL_TRY,
+            TokenTypes.LITERAL_SWITCH,
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PARAMETER_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.SLIST,
+            TokenTypes.OBJBLOCK,
             TokenTypes.ENUM_DEF,
             TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.LITERAL_NEW,
+            TokenTypes.LAMBDA,
         };
     }
 
@@ -146,6 +149,12 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
             case TokenTypes.LITERAL_NEW:
                 processLiteralNew(ast);
                 break;
+            case TokenTypes.OBJBLOCK:
+                final int parentType = ast.getParent().getType();
+                if (parentType != TokenTypes.CLASS_DEF && parentType != TokenTypes.ENUM_DEF) {
+                    processFrame(ast);
+                }
+                break;
             default:
                 processFrame(ast);
         }
@@ -154,17 +163,22 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
     @Override
     public void leaveToken(DetailAST ast) {
         final int astType = ast.getType();
-        if (astType != TokenTypes.VARIABLE_DEF
-                && astType != TokenTypes.PARAMETER_DEF
-                && astType != TokenTypes.METHOD_CALL
-                && astType != TokenTypes.SLIST
-                && astType != TokenTypes.LITERAL_NEW
-                || astType == TokenTypes.LITERAL_NEW
-                    && ast.findFirstToken(TokenTypes.OBJBLOCK) != null) {
-            currentFrame = currentFrame.getParent();
-        }
-        else if (astType == TokenTypes.SLIST) {
+        if (astType == TokenTypes.SLIST) {
             leaveSlist(ast);
+        }
+        else if (astType == TokenTypes.LITERAL_NEW) {
+            leaveLiteralNew(ast);
+        }
+        else if (astType == TokenTypes.OBJBLOCK) {
+            final int parentType = ast.getParent().getType();
+            if (parentType != TokenTypes.CLASS_DEF && parentType != TokenTypes.ENUM_DEF) {
+                currentFrame = currentFrame.getParent();
+            }
+        }
+        else if (astType != TokenTypes.VARIABLE_DEF
+                && astType != TokenTypes.PARAMETER_DEF
+                && astType != TokenTypes.METHOD_CALL) {
+            currentFrame = currentFrame.getParent();
         }
     }
 
@@ -174,15 +188,12 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
     }
 
     /**
-     * Determine whether SLIST begins static or non-static block and add it as
+     * Determine whether SLIST begins a block, determined by braces, and add it as
      * a frame in this case.
      * @param ast SLIST ast.
      */
     private void processSlist(DetailAST ast) {
-        final int parentType = ast.getParent().getType();
-        if (parentType == TokenTypes.SLIST
-                || parentType == TokenTypes.STATIC_INIT
-                || parentType == TokenTypes.INSTANCE_INIT) {
+        if (LEFT_CURLY.equals(ast.getText())) {
             final FieldFrame frame = new FieldFrame(currentFrame);
             currentFrame.addChild(frame);
             currentFrame = frame;
@@ -190,14 +201,11 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
     }
 
     /**
-     * Determine whether SLIST begins static or non-static block.
+     * Determine whether SLIST begins a block, determined by braces.
      * @param ast SLIST ast.
      */
     private void leaveSlist(DetailAST ast) {
-        final int parentType = ast.getParent().getType();
-        if (parentType == TokenTypes.SLIST
-                || parentType == TokenTypes.STATIC_INIT
-                || parentType == TokenTypes.INSTANCE_INIT) {
+        if (LEFT_CURLY.equals(ast.getText())) {
             currentFrame = currentFrame.getParent();
         }
     }
@@ -245,6 +253,18 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
             final FieldFrame frame = new FieldFrame(currentFrame);
             currentFrame.addChild(frame);
             currentFrame = frame;
+        }
+    }
+
+    /**
+     * Determine whether LITERAL_NEW is an anonymous class definition and leave
+     * the frame it is in.
+     *
+     * @param ast LITERAL_NEW ast.
+     */
+    private void leaveLiteralNew(DetailAST ast) {
+        if (ast.findFirstToken(TokenTypes.OBJBLOCK) != null) {
+            currentFrame = currentFrame.getParent();
         }
     }
 
@@ -550,7 +570,9 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
          * @param field the ast of the field.
          */
         public void addField(DetailAST field) {
-            fields.add(field);
+            if (field.findFirstToken(TokenTypes.IDENT) != null) {
+                fields.add(field);
+            }
         }
 
         /**

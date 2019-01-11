@@ -2,7 +2,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.equalsavoidnull;
 
 import java.io.IOException;
 import java.io.Reader;
-
+// case copied from sun.applet.AppletViewer in openjdk
 public class InputEqualsAvoidNullNested {
     public void foo(Reader in) throws IOException {
         int c;
@@ -21,7 +21,29 @@ public class InputEqualsAvoidNullNested {
                         break;
                     }
                 }
+                else {
+                    String nm = scanIdentifier(in);
+                    if (nm.equalsIgnoreCase("param")) {
+                        ;
+                    }
+                    else if (nm.equalsIgnoreCase("applet")) {
+                        ;
+                    }
+                    else if (nm.equalsIgnoreCase("object")) {
+                        ;
+                    }
+                    else if (nm.equalsIgnoreCase("embed")) {
+                        ;
+                    }
+                    else if (nm.equalsIgnoreCase("app")) {
+                        ;
+                    }
+                }
             }
         }
+    }
+
+    public static String scanIdentifier(Reader in) throws IOException {
+        return null;
     }
 }
