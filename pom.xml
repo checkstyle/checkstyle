@@ -353,7 +353,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>sonar-maven-plugin</artifactId>
-          <version>3.5.0.1254</version>
+          <version>3.6.0.1398</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
