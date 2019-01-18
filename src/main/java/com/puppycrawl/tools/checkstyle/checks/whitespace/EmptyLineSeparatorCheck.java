@@ -20,6 +20,8 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
@@ -218,6 +220,11 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     public static final String MSG_MULTIPLE_LINES_INSIDE =
             "empty.line.separator.multiple.lines.inside";
 
+    /** List of AST token types, which can not have comment nodes to check inside. */
+    private static final List<Integer> TOKEN_TYPES_WITHOUT_COMMENTS_TO_CHECK_INSIDE =
+            Arrays.asList(TokenTypes.PACKAGE_DEF, TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT,
+                    TokenTypes.STATIC_INIT);
+
     /** Allows no empty line between fields. */
     private boolean allowNoEmptyLineBetweenFields;
 
@@ -286,6 +293,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
+        checkComments(ast);
         if (hasMultipleLinesBefore(ast)) {
             log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
         }
@@ -480,6 +488,57 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     }
 
     /**
+     * Check if group of comments located right before token has more than one previous empty line.
+     * @param token DetailAST token
+     */
+    private void checkComments(DetailAST token) {
+        if (!allowMultipleEmptyLines) {
+            if (TOKEN_TYPES_WITHOUT_COMMENTS_TO_CHECK_INSIDE.contains(token.getType())) {
+                DetailAST previousNode = token.getPreviousSibling();
+                while (isCommentInBeginningOfLine(previousNode)) {
+                    if (hasEmptyLineBefore(previousNode) && isPrePreviousLineEmpty(previousNode)) {
+                        log(previousNode, MSG_MULTIPLE_LINES, previousNode.getText());
+                    }
+                    previousNode = previousNode.getPreviousSibling();
+                }
+            }
+            else {
+                checkCommentsInsideToken(token);
+            }
+        }
+    }
+
+    /**
+     * Check if group of comments located at the start of token has more than one previous empty
+     * line.
+     * @param token DetailAST token
+     */
+    private void checkCommentsInsideToken(DetailAST token) {
+        final List<DetailAST> childNodes = new LinkedList<>();
+        DetailAST childNode = token.getLastChild();
+        while (childNode != null) {
+            if (childNode.getType() == TokenTypes.MODIFIERS) {
+                for (DetailAST node = token.getFirstChild().getLastChild();
+                         node != null;
+                         node = node.getPreviousSibling()) {
+                    if (isCommentInBeginningOfLine(node)) {
+                        childNodes.add(node);
+                    }
+                }
+            }
+            else if (isCommentInBeginningOfLine(childNode)) {
+                childNodes.add(childNode);
+            }
+            childNode = childNode.getPreviousSibling();
+        }
+        for (DetailAST node : childNodes) {
+            if (hasEmptyLineBefore(node) && isPrePreviousLineEmpty(node)) {
+                log(node, MSG_MULTIPLE_LINES, node.getText());
+            }
+        }
+    }
+
+    /**
      * Checks if a token has empty pre-previous line.
      * @param token DetailAST token.
      * @return true, if token has empty lines before.
@@ -551,6 +610,22 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             // [lineNo - 2] is the number of the previous line as the numbering starts from zero.
             final String lineBefore = getLines()[lineNo - 2];
             result = CommonUtil.isBlank(lineBefore);
+        }
+        return result;
+    }
+
+    /**
+     * Check if token is comment, which starting in beginning of line.
+     * @param comment comment token for check.
+     * @return true, if token is comment, which starting in beginning of line.
+     */
+    private boolean isCommentInBeginningOfLine(DetailAST comment) {
+        // [comment.getLineNo() - 1] is the number of the previous line as the numbering starts
+        // from zero.
+        boolean result = false;
+        if (comment != null) {
+            final String lineWithComment = getLines()[comment.getLineNo() - 1].trim();
+            result = lineWithComment.startsWith("//") || lineWithComment.startsWith("/*");
         }
         return result;
     }
