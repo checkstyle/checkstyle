@@ -300,4 +300,70 @@ public class EmptyLineSeparatorCheckTest
                 expected);
     }
 
+    @Test
+    public void testLineSeparationBeforeComments() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addAttribute("allowMultipleEmptyLines", "false");
+        final String[] expected = {
+            "19: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
+            "23:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "27: " + getCheckMessage(MSG_MULTIPLE_LINES, "import"),
+            "32:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "39:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
+            "50:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
+            "67:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "78:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
+            "83: " + getCheckMessage(MSG_MULTIPLE_LINES, "import"),
+            "89:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "93:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
+            "101: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
+            "106:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "113:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
+            "126:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
+            "139: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "146:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "156:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
+            "171:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
+            "188: " + getCheckMessage(MSG_MULTIPLE_LINES, "CLASS_DEF"),
+            "194:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "198:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "204:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "216:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
+            "229:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
+            "243:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "246: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "INTERFACE_DEF"),
+            "251:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
+            "266:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "275:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "288:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "293:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "299:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "307:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "316:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "322:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "342:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "350:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+        };
+        verify(checkConfig, getPath("InputEmptyLineSeparatorWithComments.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreEmptyLinesBeforeCommentsWhenItIsAllowed() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        final String[] expected = {
+            "19: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
+            "246: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "INTERFACE_DEF"),
+        };
+        verify(checkConfig, getPath("InputEmptyLineSeparatorWithComments.java"), expected);
+    }
+
+    @Test
+    public void testNoViolationsOnEmptyLinesBeforeComments() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig,
+                getPath("InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments.java"),
+                expected);
+    }
+
 }
