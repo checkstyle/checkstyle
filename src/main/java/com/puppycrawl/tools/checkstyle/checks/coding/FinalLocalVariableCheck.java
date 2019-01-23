@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
@@ -205,7 +206,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                             .findFirstToken(TokenTypes.FINAL) == null
                         && !isInAbstractOrNativeMethod(ast)
                         && !ScopeUtil.isInInterfaceBlock(ast)
-                        && !isMultipleTypeCatch(ast)) {
+                        && !isMultipleTypeCatch(ast)
+                        && !CheckUtil.isReceiverParameter(ast)) {
                     insertParameter(ast);
                 }
                 break;
