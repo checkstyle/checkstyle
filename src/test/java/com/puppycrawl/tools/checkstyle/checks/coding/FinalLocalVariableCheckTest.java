@@ -265,4 +265,12 @@ public class FinalLocalVariableCheckTest
         verify(checkConfig, getPath("InputFinalLocalVariableAnonymousClass.java"), expected);
     }
 
+    @Test
+    public void testReceiverParameter() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(FinalLocalVariableCheck.class);
+        checkConfig.addAttribute("tokens", "PARAMETER_DEF,VARIABLE_DEF");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputFinalLocalVariableReceiverParameter.java"), expected);
+    }
+
 }
