@@ -97,9 +97,9 @@ public class MyClass {
       a method is not a javadoc comment and skipped by Sun/Oracle javadoc tool and by our javadoc
       comment matcher, but such comment will be in AST.
       </p>
-      <p>In internet you can find different types of documentation
-      generation tools similar to javadoc. Such tools rely on specific Identificator: "!", "#", "$".
-      Comments looks like <code>"/*! some comment */"</code> , <code>"/*# some comment */"</code> ,
+      <p>You can find different types of documentation generation tools similar to javadoc on the
+      Internet. Such tools rely on specific Identificator: "!", "#", "$".
+      Comments look like <code>"/*! some comment */"</code> , <code>"/*# some comment */"</code> ,
       <code>"/*$ some comment */"</code>. Such multiline comments are not a javadoc.
       </p>
     </section>
