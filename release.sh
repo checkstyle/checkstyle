@@ -32,6 +32,9 @@ mvn -e -Pgpg release:perform -Darguments="$SKIP_CHECKSTYLE"
 echo "Go to folder where site was build and sources are already at required tag"
 cd target/checkout
 
+echo "Generating web site"
+mvn -e site
+
 echo "Generating uber jar ...(no clean to keep site resources just in case)"
 mvn -e -Passembly package
 
