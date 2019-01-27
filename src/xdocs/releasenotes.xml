@@ -15,6 +15,74 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <div class="releaseDate">27.01.2019</div>
+    <section name="Release 8.17">
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Java Grammar: use TYPE_EXTENSION_AND instead of BAND in typecast expression.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6354">#6354</a>
+          </li>
+          <li>
+            RightCurly: remove obsolete shouldStartLine property.
+            Author: Piyush Sharma, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/4022">#4022</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            FinalLocalVariable: NPE with PARAMETER_DEF on methods of inner classes.
+            Author: Erik Silkensen
+            <a href="https://github.com/checkstyle/checkstyle/issues/6375">#6375</a>
+          </li>
+          <li>
+            EqualsAvoidNull: improper frame tracking.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6373">#6373</a>
+          </li>
+          <li>
+            Translation doesn&#39;t obey no halt on exception and doesn&#39;t show path to bad file.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6340">#6340</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            CI: spellchecker script is not ready for running manually by contributors.
+            Author: Josh Soref
+            <a href="https://github.com/checkstyle/checkstyle/issues/6021">#6021</a>
+          </li>
+          <li>
+            Pitest: add new mutator REMOVE_CONDITIONALS.
+            Author: rnveach, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6320">#6320</a>
+          </li>
+          <li>
+            Jenkins: switch the build machine (slave) from hyper.sh to AWS spot instance.
+            Author: Daniil Yaroslavtsev
+            <a href="https://github.com/checkstyle/checkstyle/issues/6359">#6359</a>
+          </li>
+          <li>
+            EmptyLineSeparatorCheck: surviving mutant from REMOVE_CONDITIONALS.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6350">#6350</a>
+          </li>
+          <li>
+            Update eclipse compiler to R10.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6330">#6330</a>
+          </li>
+          <li>
+            Checkstyle&#39;s self config fails on non-US locale because of english suppression.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/5350">#5350</a>
+          </li>
+        </ul>
+    </section>
+
     <div class="releaseDate">30.12.2018</div>
     <section name="Release 8.16">
       <p>New:</p>
