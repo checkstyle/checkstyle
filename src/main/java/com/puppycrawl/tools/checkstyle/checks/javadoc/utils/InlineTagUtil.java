@@ -36,7 +36,7 @@ public final class InlineTagUtil {
      * Inline tag pattern.
      */
     private static final Pattern INLINE_TAG_PATTERN = Pattern.compile(
-            ".*?\\{@(\\p{Alpha}+)\\b(.*?)}", Pattern.DOTALL);
+            "\\{@(\\p{Alpha}+)\\b(.*?)}", Pattern.DOTALL);
 
     /** Pattern to recognize leading "*" characters in Javadoc. */
     private static final Pattern JAVADOC_PREFIX_PATTERN = Pattern.compile(
