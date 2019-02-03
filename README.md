@@ -18,6 +18,7 @@ Contributors chat: [![][gitter_con img]][gitter_con]
 
 ![](https://raw.githubusercontent.com/checkstyle/resources/master/img/checkstyle-logos/checkstyle-logo-260x99.png)
 
+
 Checkstyle is a tool for checking Java source code for adherence to a Code Standard
 or set of validation rules (best practices).
 
@@ -29,6 +30,21 @@ Each-commit builds of maven artifacts can be found at
 [Maven Snapshot repository](https://oss.sonatype.org/content/repositories/snapshots/com/puppycrawl/tools/checkstyle/) .
 
 Documentation is available in HTML format, see https://checkstyle.org/checks.html.
+
+Build instructions and Contribution
+======================
+
+[Build instructions](https://checkstyle.org/contributing.html#Build)
+
+[Setup IDE for development](https://checkstyle.org/beginning_development.html)
+
+[Explanation on how to create your own module](https://checkstyle.org/extending.html)
+
+[Verification of code quality](https://checkstyle.org/contributing.html#Quality_matters)
+
+[Sending Pull Request](https://checkstyle.org/contributing.html#Submitting_your_contribution)
+
+[Report Issue](https://checkstyle.org/contributing.html#Report_an_issue)
 
 Continuous integration and Quality reports
 ======================
@@ -88,7 +104,7 @@ these packages are in the file named "LICENSE.apache20" in this
 directory.
 
 The software uses the Picocli Library
-(https://github.com/remkop/picocli/). Its license terms 
+(https://github.com/remkop/picocli/). Its license terms
 are in the file named "LICENSE.apache20" in this directory.
 
 [travis]:https://travis-ci.org/checkstyle/checkstyle/builds
