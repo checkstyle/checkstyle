@@ -1947,6 +1947,7 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <mutator>REMOVE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2036,6 +2037,7 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <mutator>REMOVE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2080,6 +2082,7 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <mutator>REMOVE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2124,6 +2127,7 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <mutator>REMOVE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2168,6 +2172,7 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <mutator>REMOVE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2353,6 +2358,7 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <mutator>REMOVE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2488,6 +2494,7 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <mutator>REMOVE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2574,6 +2581,7 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <mutator>REMOVE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2706,6 +2714,7 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <mutator>REMOVE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2838,6 +2847,7 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <mutator>REMOVE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2895,6 +2905,7 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <mutator>REMOVE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2941,6 +2952,7 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <mutator>REMOVE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -3003,6 +3015,7 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <mutator>REMOVE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
