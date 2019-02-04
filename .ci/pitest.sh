@@ -31,14 +31,155 @@ function checkPitestReport() {
 
 case $1 in
 
-pitest-annotation|pitest-design|pitest-header|pitest-imports \
+pitest-annotation|pitest-design \
 |pitest-metrics|pitest-modifier|pitest-naming \
-|pitest-regexp|pitest-sizes|pitest-whitespace|pitest-ant \
-|pitest-api|pitest-common|pitest-filters|pitest-main \
+|pitest-sizes|pitest-whitespace \
 |pitest-packagenamesloader|pitest-tree-walker|pitest-utils \
 |pitest-xpath|pitest-common-2|pitest-misc)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=();
+  checkPitestReport "${ignoredItems[@]}"
+  ;;
+
+pitest-regexp)
+  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  declare -a ignoredItems=(
+  "DetectorOptions.java.html:<td class='covered'><pre><span  class='survived'>        if (pattern == null) {</span></pre></td></tr>"
+  "RegexpCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (message == null) {</span></pre></td></tr>"
+  "RegexpCheck.java.html:<td class='covered'><pre><span  class='survived'>        return errorCount &#60;= errorLimit - 1</span></pre></td></tr>"
+  );
+  checkPitestReport "${ignoredItems[@]}"
+  ;;
+
+pitest-header)
+  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  declare -a ignoredItems=(
+  "AbstractHeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (headerFile == null) {</span></pre></td></tr>"
+  "HeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (list.length == 0) {</span></pre></td></tr>"
+  "RegexpHeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (list.length == 0) {</span></pre></td></tr>"
+  "RegexpHeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>                    isMatch = headerLineNo == headerSize</span></pre></td></tr>"
+  "RegexpHeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>                            || isMatch(line, headerLineNo);</span></pre></td></tr>"
+  );
+  checkPitestReport "${ignoredItems[@]}"
+  ;;
+
+pitest-filters)
+  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  declare -a ignoredItems=(
+  "SuppressionCommentFilter.java.html:<td class='covered'><pre><span  class='survived'>        if (event.getLocalizedMessage() != null) {</span></pre></td></tr>"
+  "SuppressionCommentFilter.java.html:<td class='covered'><pre><span  class='survived'>                    if (filter.messageFormat == null) {</span></pre></td></tr>"
+  "SuppressionCommentFilter.java.html:<td class='covered'><pre><span  class='survived'>            if (getFileContents() != currentContents) {</span></pre></td></tr>"
+  "SuppressionCommentFilter.java.html:<td class='covered'><pre><span  class='survived'>            if (line == object.line) {</span></pre></td></tr>"
+  "SuppressionXpathSingleFilter.java.html:<td class='covered'><pre><span  class='survived'>        if (checks == null) {</span></pre></td></tr>"
+  "SuppressionXpathSingleFilter.java.html:<td class='covered'><pre><span  class='survived'>        if (files == null) {</span></pre></td></tr>"
+  "SuppressWithNearbyCommentFilter.java.html:<td class='covered'><pre><span  class='survived'>                else if (tagMessageRegexp == null) {</span></pre></td></tr>"
+  "SuppressWithNearbyCommentFilter.java.html:<td class='covered'><pre><span  class='survived'>                if (CommonUtil.startsWithChar(format, &#39;+&#39;)) {</span></pre></td></tr>"
+  "SuppressWithNearbyCommentFilter.java.html:<td class='covered'><pre><span  class='survived'>        if (event.getLocalizedMessage() != null) {</span></pre></td></tr>"
+  "SuppressWithNearbyCommentFilter.java.html:<td class='covered'><pre><span  class='survived'>                if (filter.messageFormat == null) {</span></pre></td></tr>"
+  "SuppressWithNearbyCommentFilter.java.html:<td class='covered'><pre><span  class='survived'>            if (getFileContents() != currentContents) {</span></pre></td></tr>"
+  "SuppressWithPlainTextCommentFilter.java.html:<td class='covered'><pre><span  class='survived'>                    if (filter.messageFormat == null) {</span></pre></td></tr>"
+  "XpathFilter.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; (checkRegexp == null || checkRegexp.matcher(event.getSourceName()).find());</span></pre></td></tr>"
+  "XpathFilter.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; event.getLocalizedMessage() != null</span></pre></td></tr>"
+  "XpathFilter.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; (fileRegexp == null || fileRegexp.matcher(event.getFileName()).find())</span></pre></td></tr>"
+  "XpathFilter.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; (moduleId == null || moduleId.equals(event.getModuleId()))</span></pre></td></tr>"
+  "XpathFilter.java.html:<td class='covered'><pre><span  class='survived'>        if (checks == null) {</span></pre></td></tr>"
+  "XpathFilter.java.html:<td class='covered'><pre><span  class='survived'>        if (checks == null) {</span></pre></td></tr>"
+  "XpathFilter.java.html:<td class='covered'><pre><span  class='survived'>        if (files == null) {</span></pre></td></tr>"
+  "XpathFilter.java.html:<td class='covered'><pre><span  class='survived'>                isMatching = abstractNode.getTokenType() == event.getTokenType()</span></pre></td></tr>"
+  "XpathFilter.java.html:<td class='covered'><pre><span  class='survived'>        return event.getFileName() != null</span></pre></td></tr>"
+  );
+  checkPitestReport "${ignoredItems[@]}"
+  ;;
+
+pitest-api)
+  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  declare -a ignoredItems=(
+  "DetailAST.java.html:<td class='covered'><pre><span  class='survived'>            else if (parent != null) {</span></pre></td></tr>"
+  "DetailAST.java.html:<td class='covered'><pre><span  class='survived'>        if (ast != null &#38;&#38; parent != null) {</span></pre></td></tr>"
+  "DetailAST.java.html:<td class='covered'><pre><span  class='survived'>        if (branchTokenTypes == null) {</span></pre></td></tr>"
+  "DetailAST.java.html:<td class='covered'><pre><span  class='survived'>        if (childCount == NOT_INITIALIZED) {</span></pre></td></tr>"
+  "DetailAST.java.html:<td class='covered'><pre><span  class='survived'>            if (nextSibling != null) {</span></pre></td></tr>"
+  "DetailAST.java.html:<td class='covered'><pre><span  class='survived'>            if (TokenUtil.isCommentType(node.getType())) {</span></pre></td></tr>"
+  "FileContents.java.html:<td class='covered'><pre><span  class='survived'>        if (firstLine.contains(&#34;/**&#34;) &#38;&#38; !firstLine.contains(&#34;/**/&#34;)) {</span></pre></td></tr>"
+  "FileContents.java.html:<td class='covered'><pre><span  class='survived'>            if (hasIntersection) {</span></pre></td></tr>"
+  "FileText.java.html:<td class='covered'><pre><span  class='survived'>        if (fileText.lineBreaks == null) {</span></pre></td></tr>"
+  "FileText.java.html:<td class='covered'><pre><span  class='survived'>        if (lineBreaks == null) {</span></pre></td></tr>"
+  "FileText.java.html:<td class='covered'><pre><span  class='survived'>            if (lineNo &#60; lineBreakPositions.length) {</span></pre></td></tr>"
+  "LocalizedMessage.java.html:<td class='covered'><pre><span  class='survived'>                    connection.setUseCaches(!reload);</span></pre></td></tr>"
+  "LocalizedMessage.java.html:<td class='covered'><pre><span  class='survived'>            if (columnNo == other.columnNo) {</span></pre></td></tr>"
+  );
+  checkPitestReport "${ignoredItems[@]}"
+  ;;
+
+pitest-main)
+  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  declare -a ignoredItems=(
+  "Main.java.html:<td class='covered'><pre><span  class='survived'>        if (node.canRead()) {</span></pre></td></tr>"
+  "Main.java.html:<td class='covered'><pre><span  class='survived'>        if (options.executeIgnoredModules) {</span></pre></td></tr>"
+  "Main.java.html:<td class='covered'><pre><span  class='survived'>        if (outputPath == null) {</span></pre></td></tr>"
+  );
+  checkPitestReport "${ignoredItems[@]}"
+  ;;
+
+pitest-imports)
+  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  declare -a ignoredItems=(
+  "AvoidStarImportCheck.java.html:<td class='covered'><pre><span  class='survived'>            &#38;&#38; ast.getType() == TokenTypes.STATIC_IMPORT) {</span></pre></td></tr>"
+  "AvoidStarImportCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (exclude.endsWith(STAR_IMPORT_SUFFIX)) {</span></pre></td></tr>"
+  "AvoidStaticImportCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (exclude.endsWith(&#34;.*&#34;)) {</span></pre></td></tr>"
+  "CustomImportOrderCheck.java.html:<td class='covered'><pre><span  class='survived'>                        &#38;&#38; matcher.start() &#60; betterMatchCandidate.matchPosition) {</span></pre></td></tr>"
+  "CustomImportOrderCheck.java.html:<td class='covered'><pre><span  class='survived'>        else if (customImportOrderRules.contains(SAME_PACKAGE_RULE_GROUP)) {</span></pre></td></tr>"
+  "CustomImportOrderCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (bestMatch.group.equals(NON_GROUP_RULE_GROUP)) {</span></pre></td></tr>"
+  "CustomImportOrderCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (customImportOrderRules.contains(SAME_PACKAGE_RULE_GROUP)) {</span></pre></td></tr>"
+  "CustomImportOrderCheck.java.html:<td class='covered'><pre><span  class='survived'>                    || length == betterMatchCandidate.matchLength</span></pre></td></tr>"
+  "IllegalImportCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (regexp) {</span></pre></td></tr>"
+  "IllegalImportCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (!result &#38;&#38; illegalClasses != null) {</span></pre></td></tr>"
+  "IllegalImportCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (!result) {</span></pre></td></tr>"
+  "ImportControlLoader.java.html:<td class='covered'><pre><span  class='survived'>        else if (ALLOW_ELEMENT_NAME.equals(qName) || &#34;disallow&#34;.equals(qName)) {</span></pre></td></tr>"
+  "ImportOrderCheck.java.html:<td class='covered'><pre><span  class='survived'>                else if (matcher.start() == bestPos &#38;&#38; matcher.end() &#62; bestEnd) {</span></pre></td></tr>"
+  "ImportOrderCheck.java.html:<td class='covered'><pre><span  class='survived'>        final boolean separatorBetween = isStatic != lastImportStatic</span></pre></td></tr>"
+  "ImportOrderCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (caseSensitive) {</span></pre></td></tr>"
+  "ImportOrderCheck.java.html:<td class='covered'><pre><span  class='survived'>                if (!CommonUtil.endsWithChar(pkg, &#39;.&#39;)) {</span></pre></td></tr>"
+  "ImportOrderCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (isStatic) {</span></pre></td></tr>"
+  "ImportOrderCheck.java.html:<td class='covered'><pre><span  class='survived'>        return !beforeFirstImport &#38;&#38; line - lastImportLine &#62; 1;</span></pre></td></tr>"
+  "ImportOrderCheck.java.html:<td class='covered'><pre><span  class='survived'>            staticImportSeparator = isStatic &#38;&#38; separated;</span></pre></td></tr>"
+  "PkgImportControl.java.html:<td class='covered'><pre><span  class='survived'>        if (alreadyRegex) {</span></pre></td></tr>"
+  "PkgImportControl.java.html:<td class='covered'><pre><span  class='survived'>        if (regex || parent.regex) {</span></pre></td></tr>"
+  "PkgImportControl.java.html:<td class='covered'><pre><span  class='survived'>        if (regex) {</span></pre></td></tr>"
+  "PkgImportRule.java.html:<td class='covered'><pre><span  class='survived'>        if (isRegExp()) {</span></pre></td></tr>"
+  "RedundantImportCheck.java.html:<td class='covered'><pre><span  class='survived'>            else if (pkgName != null &#38;&#38; isFromPackage(imp.getText(), pkgName)) {</span></pre></td></tr>"
+  "UnusedImportsCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (collect) {</span></pre></td></tr>"
+  );
+  checkPitestReport "${ignoredItems[@]}"
+  ;;
+
+pitest-common)
+  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  declare -a ignoredItems=(
+  "AuditEventDefaultFormatter.java.html:<td class='covered'><pre><span  class='survived'>        if (lastDotIndex == -1) {</span></pre></td></tr>"
+  "Checker.java.html:<td class='covered'><pre><span  class='survived'>                if (cacheFile != null &#38;&#38; cacheFile.isInCache(fileName, timestamp)</span></pre></td></tr>"
+  "ConfigurationLoader.java.html:<td class='covered'><pre><span  class='survived'>            final boolean omitIgnoreModules = ignoredModulesOptions == IgnoredModulesOptions.OMIT;</span></pre></td></tr>"
+  "DefaultLogger.java.html:<td class='covered'><pre><span  class='survived'>        closeError = errorStreamOptions == OutputStreamOptions.CLOSE;</span></pre></td></tr>"
+  "DefaultLogger.java.html:<td class='covered'><pre><span  class='survived'>        closeInfo = infoStreamOptions == OutputStreamOptions.CLOSE;</span></pre></td></tr>"
+  "DefaultLogger.java.html:<td class='covered'><pre><span  class='survived'>        if (closeError) {</span></pre></td></tr>"
+  "DefaultLogger.java.html:<td class='covered'><pre><span  class='survived'>        if (closeInfo) {</span></pre></td></tr>"
+  "DefaultLogger.java.html:<td class='covered'><pre><span  class='survived'>        if (infoStream == errorStream) {</span></pre></td></tr>"
+  "DefaultLogger.java.html:<td class='covered'><pre><span  class='survived'>        if (severityLevel != SeverityLevel.IGNORE) {</span></pre></td></tr>"
+  "PackageObjectFactory.java.html:<td class='covered'><pre><span  class='survived'>        if (instance == null</span></pre></td></tr>"
+  "PackageObjectFactory.java.html:<td class='covered'><pre><span  class='survived'>        if (!name.contains(PACKAGE_SEPARATOR)) {</span></pre></td></tr>"
+  "PackageObjectFactory.java.html:<td class='covered'><pre><span  class='survived'>                if (thirdPartyNameToFullModuleNames == null) {</span></pre></td></tr>"
+  "XMLLogger.java.html:<td class='covered'><pre><span  class='survived'>        if (ent.charAt(0) != &#39;&#38;&#39; || !CommonUtil.endsWithChar(ent, &#39;;&#39;)) {</span></pre></td></tr>"
+  );
+  checkPitestReport "${ignoredItems[@]}"
+  ;;
+
+
+pitest-ant)
+  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  declare -a ignoredItems=(
+  "CheckstyleAntTask.java.html:<td class='covered'><pre><span  class='survived'>            if (toFile == null || !useFile) {</span></pre></td></tr>"
+  "CheckstyleAntTask.java.html:<td class='covered'><pre><span  class='survived'>            if (toFile == null || !useFile) {</span></pre></td></tr>"
+  );
   checkPitestReport "${ignoredItems[@]}"
   ;;
 

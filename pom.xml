@@ -1947,6 +1947,8 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <!-- result in 115 extra survived items, too much to keep in ignore list -->
+                <!--<mutator>REMOVE_CONDITIONALS</mutator>-->
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2036,6 +2038,7 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <mutator>REMOVE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2050,7 +2053,7 @@
                 <param>*.Input*</param>
               </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>100</mutationThreshold>
+              <mutationThreshold>97</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -2080,6 +2083,7 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <mutator>REMOVE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2124,6 +2128,8 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <!-- result in 53 extra survived items, too much to keep in ignore list -->
+                <!--<mutator>REMOVE_CONDITIONALS</mutator>-->
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2168,6 +2174,8 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <!-- result in 64 extra survived items, too much to keep in ignore list -->
+                <!--<mutator>REMOVE_CONDITIONALS</mutator>-->
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2353,6 +2361,7 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <mutator>REMOVE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2367,7 +2376,7 @@
                 <param>*.Input*</param>
               </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>100</mutationThreshold>
+              <mutationThreshold>98</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -2488,6 +2497,7 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <mutator>REMOVE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2502,7 +2512,7 @@
                 <param>*.Input*</param>
               </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>100</mutationThreshold>
+              <mutationThreshold>99</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -2574,6 +2584,7 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <mutator>REMOVE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2617,7 +2628,7 @@
                 <param>com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilterTest</param>
               </targetTests>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>100</mutationThreshold>
+              <mutationThreshold>98</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -2706,6 +2717,7 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <mutator>REMOVE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2717,7 +2729,7 @@
                 <param>com.puppycrawl.tools.checkstyle.MainTest</param>
               </targetTests>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>100</mutationThreshold>
+              <mutationThreshold>99</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -2838,6 +2850,7 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <mutator>REMOVE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2865,7 +2878,7 @@
                 <param>*.Input*</param>
               </excludedTestClasses>
               <coverageThreshold>99</coverageThreshold>
-              <mutationThreshold>100</mutationThreshold>
+              <mutationThreshold>98</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -2895,6 +2908,7 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <mutator>REMOVE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2911,7 +2925,7 @@
                 <param>*.Input*</param>
               </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>100</mutationThreshold>
+              <mutationThreshold>97</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -2941,6 +2955,8 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <!-- result in 58 extra survived items, too much to keep in ignore list -->
+                <!--<mutator>REMOVE_CONDITIONALS</mutator>-->
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -3003,6 +3019,7 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
+                <mutator>REMOVE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
