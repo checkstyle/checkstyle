@@ -86,15 +86,70 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  *    &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
  * &lt;/module&gt;
  * </pre>
- *
+ * <p>Code Example:</p>
+ * <pre>
+ * class MyClass {
+ *   public void myMethod() {} // OK
+ *   public void MyMethod() {} // violation, name "MyMethod"
+ *                             // should match the pattern "^[a-z](_?[a-zA-Z0-9]+)*$"
+ * }
+ * </pre>
  * <p>
- * An example of how to configure the check to allow method names
- * to be equal to the residing class name is:
+ * An example of how to configure the check to allow method names to be equal to the
+ * residing class name is:
  * </p>
  * <pre>
  * &lt;module name="MethodName"&gt;
+ *    &lt;property name="format" value="^[a-zA-Z](_?[a-zA-Z0-9]+)*$"/&gt;
  *    &lt;property name="allowClassName" value="true"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * class MyClass {
+ *   public MyClass() {} // OK
+ *   public void MyClass() {} // OK, method Name 'MyClass' is allowed to be
+ *                            // equal to the enclosing class name
+ * }
+ * </pre>
+ * <p>
+ * An example of how to configure the check to disallow method names to be equal to the
+ * residing class name is:
+ * </p>
+ * <pre>
+ * &lt;module name="MethodName"&gt;
+ *    &lt;property name="format" value="^[a-zA-Z](_?[a-zA-Z0-9]+)*$"/&gt;
+ *    &lt;property name="allowClassName" value="false"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * class MyClass {
+ *   public MyClass() {} // OK
+ *   public void MyClass() {} // violation,  method Name 'MyClass' must not
+ *                            // equal the enclosing class name
+ * }
+ * </pre>
+ * <p>
+ * An example of how to suppress the check to public and protected methods:
+ * </p>
+ * <pre>
+ * &lt;module name="MethodName"&gt;
+ *    &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+ *    &lt;property name="applyToPublic" value="false"&gt;
+ *    &lt;property name="applyToProtected" value="false"&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * class MyClass {
+ *   public void FirstMethod() {} // OK
+ *   protected void SecondMethod() {} // OK
+ *   private void ThirdMethod() {} // violation, name 'ThirdMethod' must match
+ *                                 // pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+ *   void FourthMethod() {} // violation, name 'FourthMethod' must match
+ *                          // pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+ * }
  * </pre>
  *
  * @since 3.0
