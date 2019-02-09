@@ -34,11 +34,21 @@ case $1 in
 pitest-annotation|pitest-design|pitest-header \
 |pitest-metrics|pitest-modifier|pitest-naming \
 |pitest-regexp|pitest-sizes|pitest-whitespace \
-|pitest-api|pitest-filters|pitest-main \
+|pitest-api|pitest-filters \
 |pitest-packagenamesloader|pitest-tree-walker|pitest-utils \
 |pitest-xpath|pitest-common-2|pitest-misc)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=();
+  checkPitestReport "${ignoredItems[@]}"
+  ;;
+
+pitest-main)
+  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  declare -a ignoredItems=(
+  "Main.java.html:<td class='covered'><pre><span  class='survived'>        if (node.canRead()) {</span></pre></td></tr>"
+  "Main.java.html:<td class='covered'><pre><span  class='survived'>        if (options.executeIgnoredModules) {</span></pre></td></tr>"
+  "Main.java.html:<td class='covered'><pre><span  class='survived'>        if (outputPath == null) {</span></pre></td></tr>"
+  );
   checkPitestReport "${ignoredItems[@]}"
   ;;
 
