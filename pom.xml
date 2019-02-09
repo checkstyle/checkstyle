@@ -197,7 +197,7 @@
     <maven.spotbugs.plugin.version>3.1.10</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.11.0</maven.pmd.plugin.version>
     <pmd.version>6.6.0</pmd.version>
-    <maven.jacoco.plugin.version>0.8.2</maven.jacoco.plugin.version>
+    <maven.jacoco.plugin.version>0.8.3</maven.jacoco.plugin.version>
     <powermock.version>2.0.0</powermock.version>
     <saxon.version>9.9.0-2</saxon.version>
     <maven.checkstyle.plugin.version>3.0.0</maven.checkstyle.plugin.version>
