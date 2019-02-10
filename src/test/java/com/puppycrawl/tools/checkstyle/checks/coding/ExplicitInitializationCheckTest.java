@@ -58,6 +58,8 @@ public class ExplicitInitializationCheckTest extends AbstractModuleTestSupport {
             "52:17: " + getCheckMessage(MSG_KEY, "x", 0),
             "53:25: " + getCheckMessage(MSG_KEY, "bar", "null"),
             "54:27: " + getCheckMessage(MSG_KEY, "barArray", "null"),
+            "89:19: " + getCheckMessage(MSG_KEY, "shortVariable", "0"),
+            "90:18: " + getCheckMessage(MSG_KEY, "bite", "0"),
         };
         verify(checkConfig,
                getPath("InputExplicitInitialization.java"),

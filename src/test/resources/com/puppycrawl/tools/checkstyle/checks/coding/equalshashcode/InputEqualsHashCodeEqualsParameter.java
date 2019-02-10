@@ -93,4 +93,12 @@ public class InputEqualsHashCodeEqualsParameter {
     public interface TestClass16 { // no violation
         public int hashCode();
     }
+    public class TestClass17 {
+        public int hashCode() {
+            return 1;
+        }
+        public int hashCode(int val) {
+            return 1;
+        }
+    }
 }

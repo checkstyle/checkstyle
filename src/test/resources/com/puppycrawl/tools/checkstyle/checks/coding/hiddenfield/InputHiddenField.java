@@ -291,4 +291,16 @@ class OneLetterField
     {
         this.i = i;
     }
+    enum Inner {}
+}
+class DuplicateFieldFromPreviousClass
+{
+    public void method() {
+        int i = 0;
+    }
+}
+class NestedEnum {
+    enum Test { A, B, C; int i; }
+
+    void method(int i) {}
 }

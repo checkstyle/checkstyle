@@ -30,6 +30,8 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.URI;
+import java.util.Set;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -307,5 +309,15 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("InputHeaderjava.blank-lines2.header"));
         verify(checkConfig, getPath("InputHeaderBlankLines2.java"));
+    }
+
+    @Test
+    public void testExternalResource() throws Exception {
+        final HeaderCheck check = new HeaderCheck();
+        final URI uri = CommonUtil.getUriByFilename(getPath("InputHeaderjava.header"));
+        check.setHeaderFile(uri);
+        final Set<String> results = check.getExternalResourceLocations();
+        assertEquals("Invalid result size", 1, results.size());
+        assertEquals("Invalid resource location", uri.toString(), results.iterator().next());
     }
 }

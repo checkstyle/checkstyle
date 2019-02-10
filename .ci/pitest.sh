@@ -72,7 +72,6 @@ pitest-regexp)
 pitest-header)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
-  "AbstractHeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (headerFile == null) {</span></pre></td></tr>"
   "HeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (list.length == 0) {</span></pre></td></tr>"
   "RegexpHeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (list.length == 0) {</span></pre></td></tr>"
   "RegexpHeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>                    isMatch = headerLineNo == headerSize</span></pre></td></tr>"
@@ -112,19 +111,13 @@ pitest-filters)
 pitest-api)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
-  "DetailAST.java.html:<td class='covered'><pre><span  class='survived'>            else if (parent != null) {</span></pre></td></tr>"
-  "DetailAST.java.html:<td class='covered'><pre><span  class='survived'>        if (ast != null &#38;&#38; parent != null) {</span></pre></td></tr>"
-  "DetailAST.java.html:<td class='covered'><pre><span  class='survived'>        if (branchTokenTypes == null) {</span></pre></td></tr>"
-  "DetailAST.java.html:<td class='covered'><pre><span  class='survived'>        if (childCount == NOT_INITIALIZED) {</span></pre></td></tr>"
   "DetailAST.java.html:<td class='covered'><pre><span  class='survived'>            if (nextSibling != null) {</span></pre></td></tr>"
   "DetailAST.java.html:<td class='covered'><pre><span  class='survived'>            if (TokenUtil.isCommentType(node.getType())) {</span></pre></td></tr>"
   "FileContents.java.html:<td class='covered'><pre><span  class='survived'>        if (firstLine.contains(&#34;/**&#34;) &#38;&#38; !firstLine.contains(&#34;/**/&#34;)) {</span></pre></td></tr>"
   "FileContents.java.html:<td class='covered'><pre><span  class='survived'>            if (hasIntersection) {</span></pre></td></tr>"
-  "FileText.java.html:<td class='covered'><pre><span  class='survived'>        if (fileText.lineBreaks == null) {</span></pre></td></tr>"
   "FileText.java.html:<td class='covered'><pre><span  class='survived'>        if (lineBreaks == null) {</span></pre></td></tr>"
   "FileText.java.html:<td class='covered'><pre><span  class='survived'>            if (lineNo &#60; lineBreakPositions.length) {</span></pre></td></tr>"
   "LocalizedMessage.java.html:<td class='covered'><pre><span  class='survived'>                    connection.setUseCaches(!reload);</span></pre></td></tr>"
-  "LocalizedMessage.java.html:<td class='covered'><pre><span  class='survived'>            if (columnNo == other.columnNo) {</span></pre></td></tr>"
   );
   checkPitestReport "${ignoredItems[@]}"
   ;;
@@ -186,7 +179,6 @@ pitest-common)
   "PackageObjectFactory.java.html:<td class='covered'><pre><span  class='survived'>        if (instance == null</span></pre></td></tr>"
   "PackageObjectFactory.java.html:<td class='covered'><pre><span  class='survived'>        if (!name.contains(PACKAGE_SEPARATOR)) {</span></pre></td></tr>"
   "PackageObjectFactory.java.html:<td class='covered'><pre><span  class='survived'>                if (thirdPartyNameToFullModuleNames == null) {</span></pre></td></tr>"
-  "XMLLogger.java.html:<td class='covered'><pre><span  class='survived'>        if (ent.charAt(0) != &#39;&#38;&#39; || !CommonUtil.endsWithChar(ent, &#39;;&#39;)) {</span></pre></td></tr>"
   );
   checkPitestReport "${ignoredItems[@]}"
   ;;

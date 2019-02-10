@@ -108,6 +108,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
             "&#X0;",
             "&#x;",
             "&#xg;",
+            "ramp;",
             "ref",
         };
         for (String noReference : noReferences) {

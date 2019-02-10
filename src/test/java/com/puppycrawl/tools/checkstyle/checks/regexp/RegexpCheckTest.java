@@ -174,6 +174,20 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testMessagePropertyBad2()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(RegexpCheck.class);
+        checkConfig.addAttribute("format", "System\\.(out)|(err)\\.print(ln)?\\(");
+        checkConfig.addAttribute("illegalPattern", "true");
+        checkConfig.addAttribute("message", "");
+        final String[] expected = {
+            "69: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
+        };
+        verify(checkConfig, getPath("InputRegexpSemantic.java"), expected);
+    }
+
+    @Test
     public void testIgnoreCaseTrue() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(RegexpCheck.class);

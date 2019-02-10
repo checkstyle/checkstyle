@@ -138,6 +138,18 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testNoPackage() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
+        final String[] expected = {
+            "2: " + getCheckMessage(MSG_KEY_MISSING),
+        };
+
+        verify(checkConfig,
+                getNonCompilablePath("InputPackageDeclarationNoPackage.java"),
+                expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final PackageDeclarationCheck check = new PackageDeclarationCheck();
         Assert.assertNotNull("Acceptable tokens should not be null", check.getAcceptableTokens());

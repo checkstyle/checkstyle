@@ -416,6 +416,10 @@ class TestConcatenations {
         s.equals("a" + "b");
         s.equals(getInt() + s);
         s.equals(getInt() + getInt());
+        s.endsWith("a");
+        String s = "";
+        if (!s.equals("Hello[EOL]" + System.getProperty("line.separator")))
+            foo();
     }
 
     int getInt() {

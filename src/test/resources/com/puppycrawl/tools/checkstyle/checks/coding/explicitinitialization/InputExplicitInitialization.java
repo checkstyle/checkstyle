@@ -53,6 +53,7 @@ enum InputExplicitInit3 {
     private Bar<String> bar = null;
     private Bar<String>[] barArray = null;
     private int y = 1;
+    private Boolean booleanAtt = false;
 }
 
 @interface annotation1{
@@ -85,4 +86,6 @@ class Chars {
 class Doubles {
     final double subZero = -0.0;
     final double nan = Double.NaN;
+    private short shortVariable = 0;
+    private byte bite = 0;
 }

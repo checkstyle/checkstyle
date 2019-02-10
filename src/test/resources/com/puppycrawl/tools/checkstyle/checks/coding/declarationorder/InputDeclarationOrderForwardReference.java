@@ -45,3 +45,18 @@ public class InputDeclarationOrderForwardReference {
         int i = 5;
     }
 }
+class InputDeclarationOrderFieldAnonymousClass {
+
+    private static final String[] REQUIRED_WORKDS = new String[] { "copyright" };
+
+    enum RequiredHeaderPlacement {
+        TEMP;
+        
+        public static String[] labels() {
+            String[] labels = new String[values().length];
+            return labels;
+        }
+    }
+
+    public static final String[] HEADER_PLACEMENT_DESCRIPTOR = RequiredHeaderPlacement.labels();
+}
