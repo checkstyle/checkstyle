@@ -138,8 +138,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         // state of the configuration when test was made until reason found in
         // https://github.com/checkstyle/checkstyle/issues/3730
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AnnotationLocation",
-                Stream.of("TYPECAST", "DOT", "TYPE_ARGUMENT", "LITERAL_NEW", "LITERAL_THROWS",
-                        "IMPLEMENTS_CLAUSE", "CLASS_DEF", "CTOR_DEF", "ENUM_DEF", "INTERFACE_DEF",
+                Stream.of("CLASS_DEF", "CTOR_DEF", "ENUM_DEF", "INTERFACE_DEF",
                         "METHOD_DEF", "VARIABLE_DEF").collect(Collectors.toSet()));
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NoLineWrap", Stream.of(
                 // method declaration could be long due to "parameters/exceptions", it is ok to
@@ -174,8 +173,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AnnotationLocation", Stream.of(
                 // state of the configuration when test was made until reason found in
                 // https://github.com/checkstyle/checkstyle/issues/3730
-                "TYPECAST", "DOT", "TYPE_ARGUMENT", "ANNOTATION_DEF", "LITERAL_NEW",
-                "LITERAL_THROWS", "PARAMETER_DEF", "IMPLEMENTS_CLAUSE", "ANNOTATION_FIELD_DEF")
+                "ANNOTATION_DEF", "PARAMETER_DEF", "ANNOTATION_FIELD_DEF")
                 .collect(Collectors.toSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AbbreviationAsWordInName", Stream.of(
                 // enum values should be uppercase

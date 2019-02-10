@@ -245,12 +245,6 @@ public class AnnotationLocationCheck extends AbstractCheck {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PARAMETER_DEF,
             TokenTypes.ANNOTATION_DEF,
-            TokenTypes.TYPECAST,
-            TokenTypes.LITERAL_THROWS,
-            TokenTypes.IMPLEMENTS_CLAUSE,
-            TokenTypes.TYPE_ARGUMENT,
-            TokenTypes.LITERAL_NEW,
-            TokenTypes.DOT,
             TokenTypes.ANNOTATION_FIELD_DEF,
         };
     }
@@ -263,10 +257,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST modifiersNode = ast.findFirstToken(TokenTypes.MODIFIERS);
-
-        if (modifiersNode != null) {
-            checkAnnotations(modifiersNode, getExpectedAnnotationIndentation(modifiersNode));
-        }
+        checkAnnotations(modifiersNode, getExpectedAnnotationIndentation(modifiersNode));
     }
 
     /**
