@@ -185,8 +185,18 @@ public class DeclarationOrderCheckTest
             "17:5: " + getCheckMessage(MSG_ACCESS),
             "23:5: " + getCheckMessage(MSG_ACCESS),
             "41:5: " + getCheckMessage(MSG_STATIC),
+            "61:5: " + getCheckMessage(MSG_ACCESS),
         };
         verify(checkConfig, getPath("InputDeclarationOrderForwardReference.java"), expected);
+    }
+
+    @Test
+    public void testVariableAccess() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(DeclarationOrderCheck.class);
+        final String[] expected = {
+            "15:5: " + getCheckMessage(MSG_ACCESS),
+        };
+        verify(checkConfig, getPath("InputDeclarationOrderVariableAccess.java"), expected);
     }
 
     @Test

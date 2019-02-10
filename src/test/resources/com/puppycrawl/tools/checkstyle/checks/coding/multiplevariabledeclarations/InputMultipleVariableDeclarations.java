@@ -33,5 +33,6 @@ public class InputMultipleVariableDeclarations
 
     void method3() {
         java.lang.Object obj; Object obj1; Object obj2; Object obj3;
+        for (String s : new String[] {}) {}
     }
 }

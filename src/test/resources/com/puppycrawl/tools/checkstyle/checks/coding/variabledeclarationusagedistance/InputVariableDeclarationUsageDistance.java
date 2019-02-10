@@ -1048,4 +1048,15 @@ class New {
             result = true;
     }
 
+    static int field;
+
+    private void n() {
+        long a = 0;
+
+        New.field = 1;
+        New.field = 2;
+        New.field = 3;
+        New.field = (int)a;
+    }
+
 }

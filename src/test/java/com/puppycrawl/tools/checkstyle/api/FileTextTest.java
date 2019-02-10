@@ -20,6 +20,8 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -28,6 +30,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
 import org.junit.Test;
+import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 
@@ -67,6 +70,7 @@ public class FileTextTest extends AbstractPathTestSupport {
                 charsetName);
         final LineColumn lineColumn = fileText.lineColumn(100);
         final FileText copy = new FileText(fileText);
+        assertNotNull("LineBreaks not copied", Whitebox.getInternalState(copy, "lineBreaks"));
         assertEquals("Invalid linecolumn", lineColumn, copy.lineColumn(100));
     }
 
@@ -76,6 +80,7 @@ public class FileTextTest extends AbstractPathTestSupport {
         final FileText fileText = new FileText(new File(getPath("InputFileTextImportControl.xml")),
                 charsetName);
         final FileText copy = new FileText(fileText);
+        assertNull("LineBreaks not null", Whitebox.getInternalState(copy, "lineBreaks"));
         final LineColumn lineColumn = copy.lineColumn(100);
         assertEquals("Invalid line", 3, lineColumn.getLine());
         if (System.getProperty("os.name").toLowerCase(Locale.ENGLISH).startsWith("windows")) {

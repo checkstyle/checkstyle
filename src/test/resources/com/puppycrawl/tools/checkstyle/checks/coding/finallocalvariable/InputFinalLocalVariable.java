@@ -431,5 +431,20 @@ class class5 {
                 }
             }
         }
+
+        abstract class Bar2 {
+            abstract void method(String param);
+        }
+    }
+
+    public void test5() {
+        InputFinalLocalVariable table = new InputFinalLocalVariable();
+        new Runnable() {
+            @Override
+            public void run() {
+                InputFinalLocalVariable table = null;
+                table = new InputFinalLocalVariable();
+            }
+        };
     }
 }

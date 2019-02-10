@@ -80,6 +80,13 @@ class InputModifiedControlVariableBothForLoops
         for (int i = 0; i < 10; i += 1) {
             for (i = 7; i < 10; i += 1) {}
         }
+        for (String name: new String[] {}) {
+        }
+
+        for (i = 0; i < 10; i++) {
+            String name;
+            name = "";
+        }
     }
     private int i;
 }

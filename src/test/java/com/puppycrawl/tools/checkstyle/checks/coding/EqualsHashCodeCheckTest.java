@@ -115,6 +115,7 @@ public class EqualsHashCodeCheckTest
             "68:9: " + getCheckMessage(MSG_KEY_HASHCODE),
             "75:9: " + getCheckMessage(MSG_KEY_EQUALS),
             "82:9: " + getCheckMessage(MSG_KEY_HASHCODE),
+            "97:9: " + getCheckMessage(MSG_KEY_EQUALS),
         };
         verify(checkConfig, getPath("InputEqualsHashCodeEqualsParameter.java"), expected);
     }

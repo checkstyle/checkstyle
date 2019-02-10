@@ -227,4 +227,9 @@ public class InputHiddenFieldLambdas {
     FunctionWithOneParameter otherObjectToString = someObject -> { // 1 violation
         return someObject.toString();
     };
+
+    private final String l = "";
+    private interface NestedInterface {
+        void print(String l);
+    }
 }

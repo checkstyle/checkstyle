@@ -173,4 +173,5 @@ class NestedFrames {
         }
         return b + b * b;
     }
+    final NestedFrames NestedFrames = new NestedFrames();
 }

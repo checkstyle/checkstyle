@@ -96,6 +96,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
             "415:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "416:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "417:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "421:22: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
         };
         verify(checkConfig, getPath("InputEqualsAvoidNull.java"), expected);
     }
@@ -149,6 +150,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
             "415:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "416:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "417:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "421:22: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
         };
         verify(checkConfig, getPath("InputEqualsAvoidNull.java"), expected);
     }

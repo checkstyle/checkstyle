@@ -222,6 +222,17 @@ public class LocalizedMessageTest {
         assertTrue("Invalid comparing result", message1.compareTo(message2) < 0);
     }
 
+    @Test
+    public void testCompareToWithDifferentColumns() {
+        final LocalizedMessage message1 = createSampleLocalizedMessageWithColumn(1);
+        final LocalizedMessage message1a = createSampleLocalizedMessageWithColumn(1);
+        final LocalizedMessage message2 = createSampleLocalizedMessageWithColumn(2);
+
+        assertTrue("Invalid comparing result", message1.compareTo(message2) < 0);
+        assertTrue("Invalid comparing result", message2.compareTo(message1) > 0);
+        assertEquals("Invalid comparing result", 0, message1.compareTo(message1a));
+    }
+
     private static LocalizedMessage createSampleLocalizedMessage() {
         return createSampleLocalizedMessageWithId("module");
     }
@@ -229,6 +240,12 @@ public class LocalizedMessageTest {
     private static LocalizedMessage createSampleLocalizedMessageWithId(String id) {
         return new LocalizedMessage(1, "com.puppycrawl.tools.checkstyle.checks.coding.messages",
                 "empty.statement", EMPTY_OBJECT_ARRAY, id, LocalizedMessage.class, null);
+    }
+
+    private static LocalizedMessage createSampleLocalizedMessageWithColumn(int column) {
+        return new LocalizedMessage(1, column,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", "empty.statement",
+                EMPTY_OBJECT_ARRAY, "module", LocalizedMessage.class, null);
     }
 
     @After
