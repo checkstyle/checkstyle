@@ -89,7 +89,8 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     public void testIncorrectAllTokens() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
         checkConfig.addAttribute("tokens", "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, "
-                + "CTOR_DEF, VARIABLE_DEF, PARAMETER_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF");
+                + "CTOR_DEF, VARIABLE_DEF, PARAMETER_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF, "
+                + "ENUM_CONSTANT_DEF, PACKAGE_DEF");
         final String[] expected = {
             "6: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnn"),
             "11: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation1"),
@@ -127,6 +128,8 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
         final int[] expected = {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
@@ -189,6 +192,72 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
                 + "CTOR_DEF, VARIABLE_DEF, PARAMETER_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputAnnotationLocationWithoutAnnotations.java"), expected);
+    }
+
+    @Test
+    public void testAnnotation() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
+        checkConfig.addAttribute("tokens", "ANNOTATION_DEF, ANNOTATION_FIELD_DEF");
+        final String[] expected = {
+            "17: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "AnnotationAnnotation", 2, 0),
+            "18: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "AnnotationAnnotation"),
+            "21: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "AnnotationAnnotation", 6, 4),
+            "22: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "AnnotationAnnotation"),
+        };
+        verify(checkConfig, getPath("InputAnnotationLocationAnnotation.java"), expected);
+    }
+
+    @Test
+    public void testClass() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
+        checkConfig.addAttribute("tokens", "CLASS_DEF, CTOR_DEF, VARIABLE_DEF");
+        final String[] expected = {
+            "17: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "ClassAnnotation", 2, 0),
+            "18: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "ClassAnnotation"),
+            "21: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "ClassAnnotation", 6, 4),
+            "22: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "ClassAnnotation"),
+            "25: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "ClassAnnotation", 6, 4),
+            "26: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "ClassAnnotation"),
+        };
+        verify(checkConfig, getPath("InputAnnotationLocationClass.java"), expected);
+    }
+
+    @Test
+    public void testEnum() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
+        checkConfig.addAttribute("tokens", "ENUM_DEF, ENUM_CONSTANT_DEF");
+        final String[] expected = {
+            "17: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "EnumAnnotation", 2, 0),
+            "18: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "EnumAnnotation"),
+            "21: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "EnumAnnotation", 6, 4),
+            "22: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "EnumAnnotation"),
+        };
+        verify(checkConfig, getPath("InputAnnotationLocationEnum.java"), expected);
+    }
+
+    @Test
+    public void testInterface() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
+        checkConfig.addAttribute("tokens", "INTERFACE_DEF, METHOD_DEF, PARAMETER_DEF");
+        final String[] expected = {
+            "17: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "InterfaceAnnotation", 2, 0),
+            "18: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "InterfaceAnnotation"),
+            "21: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "InterfaceAnnotation", 6, 4),
+            "22: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "InterfaceAnnotation"),
+            "25: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "InterfaceAnnotation", 10, 8),
+        };
+        verify(checkConfig, getPath("InputAnnotationLocationInterface.java"), expected);
+    }
+
+    @Test
+    public void testPackage() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
+        checkConfig.addAttribute("tokens", "PACKAGE_DEF");
+        final String[] expected = {
+            "11: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "PackageAnnotation", 2, 0),
+            "12: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "PackageAnnotation"),
+        };
+        verify(checkConfig, getPath("inputs/package-info.java"), expected);
     }
 
     @Test

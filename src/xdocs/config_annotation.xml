@@ -88,6 +88,11 @@ public String getNameIfPresent() { ... }
                   CLASS_DEF</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
                   INTERFACE_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">
+                  PACKAGE_DEF</a>,
+              <a href=
+                  "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                  ENUM_CONSTANT_DEF</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
                   ENUM_DEF</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
@@ -108,6 +113,11 @@ public String getNameIfPresent() { ... }
                   CLASS_DEF</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
                   INTERFACE_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">
+                  PACKAGE_DEF</a>,
+              <a href=
+                  "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                  ENUM_CONSTANT_DEF</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
                   ENUM_DEF</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
