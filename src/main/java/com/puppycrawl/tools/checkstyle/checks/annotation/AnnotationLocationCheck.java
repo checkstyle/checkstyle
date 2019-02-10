@@ -228,6 +228,8 @@ public class AnnotationLocationCheck extends AbstractCheck {
         return new int[] {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
@@ -240,6 +242,8 @@ public class AnnotationLocationCheck extends AbstractCheck {
         return new int[] {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
@@ -257,19 +261,21 @@ public class AnnotationLocationCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final DetailAST modifiersNode = ast.findFirstToken(TokenTypes.MODIFIERS);
-        checkAnnotations(modifiersNode, getExpectedAnnotationIndentation(modifiersNode));
+        DetailAST node = ast.findFirstToken(TokenTypes.MODIFIERS);
+        if (node == null) {
+            node = ast.findFirstToken(TokenTypes.ANNOTATIONS);
+        }
+        checkAnnotations(node, getExpectedAnnotationIndentation(node));
     }
 
     /**
      * Returns an expected annotation indentation.
-     * The expected indentation should be the same as the indentation of the node
-     * which is the parent of the target modifier node.
-     * @param modifierNode modifier node.
+     * The expected indentation should be the same as the indentation of the target node.
+     * @param node modifiers or annotations node.
      * @return the annotation indentation.
      */
-    private static int getExpectedAnnotationIndentation(DetailAST modifierNode) {
-        return modifierNode.getParent().getColumnNo();
+    private static int getExpectedAnnotationIndentation(DetailAST node) {
+        return node.getColumnNo();
     }
 
     /**
