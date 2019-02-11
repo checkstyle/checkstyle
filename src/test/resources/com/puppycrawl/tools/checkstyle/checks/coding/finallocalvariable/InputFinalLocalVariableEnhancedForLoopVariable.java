@@ -30,4 +30,27 @@ public class InputFinalLocalVariableEnhancedForLoopVariable {
         }
         return filteredSnippets;
     }
+
+    public void method4()
+    {
+        final java.util.List<Object> list = new java.util.ArrayList<>();
+
+        for(Object a : list) {
+        }
+
+        Object a;
+        if (list.isEmpty())
+        {
+            a = new String("empty");
+        }
+        else
+        {
+            a = new String("not empty");
+        }
+
+        for(Object b : list) {
+            b = new String("b");
+        }
+    }
+    
 }

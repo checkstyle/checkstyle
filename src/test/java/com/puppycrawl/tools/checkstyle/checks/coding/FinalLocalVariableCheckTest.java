@@ -132,7 +132,8 @@ public class FinalLocalVariableCheckTest
             "21:66: " + getCheckMessage(MSG_KEY, "snippets"),
             "22:32: " + getCheckMessage(MSG_KEY, "filteredSnippets"),
             "23:21: " + getCheckMessage(MSG_KEY, "snippet"),
-            "27:20: " + getCheckMessage(MSG_KEY, "snippet"),
+            "38:20: " + getCheckMessage(MSG_KEY, "a"),
+            "41:16: " + getCheckMessage(MSG_KEY, "a"),
         };
         verify(checkConfig, getPath("InputFinalLocalVariableEnhancedForLoopVariable.java"),
             expected);
@@ -147,6 +148,7 @@ public class FinalLocalVariableCheckTest
             "15:13: " + getCheckMessage(MSG_KEY, "x"),
             "21:66: " + getCheckMessage(MSG_KEY, "snippets"),
             "22:32: " + getCheckMessage(MSG_KEY, "filteredSnippets"),
+            "41:16: " + getCheckMessage(MSG_KEY, "a"),
         };
         verify(checkConfig, getPath("InputFinalLocalVariableEnhancedForLoopVariable.java"),
             expected);
