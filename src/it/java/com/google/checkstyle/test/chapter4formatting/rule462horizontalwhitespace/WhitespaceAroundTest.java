@@ -64,7 +64,6 @@ public class WhitespaceAroundTest extends AbstractModuleTestSupport {
             "150:20: " + getCheckMessage(messages, msgPreceded, ":"),
             "249:14: " + getCheckMessage(messages, msgPreceded, "->"),
             "250:15: " + getCheckMessage(messages, msgFollowed, "->"),
-            "250:17: " + getCheckMessage(messages, msgPreceded, "{"),
         };
 
         final String filePath = getPath("InputWhitespaceAroundBasic.java");

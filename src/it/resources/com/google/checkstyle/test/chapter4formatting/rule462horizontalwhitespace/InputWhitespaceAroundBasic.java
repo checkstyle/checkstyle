@@ -248,7 +248,8 @@ class NewGoogleOperators
 
        l = ()-> { }; //warn
        l = () ->{ }; //warn
-       l = () -> { };
+       l = () -> { }; //ok
+       l = () -> {}; //ok
 
        java.util.Arrays.sort(null, String :: compareToIgnoreCase);
        java.util.Arrays.sort(null, String::compareToIgnoreCase);
