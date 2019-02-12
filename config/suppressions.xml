@@ -6,7 +6,7 @@
 
 <suppressions>
     <!-- can't split long messages between lines -->
-    <suppress checks="RegexpSingleline" files="google_checks\.xml" lines="37,77"/>
+    <suppress checks="RegexpSingleline" files="google_checks\.xml" lines="37,78"/>
 
     <suppress checks="FileLength"
               files="TokenTypes.java|IndentationCheckTest.java"
