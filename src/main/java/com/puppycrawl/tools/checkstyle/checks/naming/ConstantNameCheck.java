@@ -68,10 +68,44 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <pre>
  * &lt;module name=&quot;ConstantName&quot;&gt;
  *   &lt;property name=&quot;format&quot;
- *     value=&quot;^log(ger)?|[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$&quot;/&gt;
+ *     value=&quot;^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- *
+ * <p>Code Example:</p>
+ * <pre>
+ * class MyClass {
+ *   final static int log = 10; // OK
+ *   final static int logger = 50; // OK
+ *   final static int logMYSELF = 10; // violation, name 'logMYSELF' must match
+ *                                    // pattern '^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+ *   final static int loggerMYSELF = 5; // violation, name 'loggerMYSELF' must match
+ *                                      // pattern '^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+ *   final static int MYSELF = 100; // OK
+ *   final static int myselfConstant = 1; // violation, name 'myselfConstant' must match pattern
+ *                                        // '^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+ * }
+ * </pre>
+ * <p>
+ * The following configuration skip validation on
+ * public constant field and protected constant field.
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;ConstantName&quot;&gt;
+ *   &lt;property name="applyToPublic" value="false"/&gt;
+ *   &lt;property name="applyToProtected" value="false"&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * class MyClass {
+ *   public final static int firstConstant = 10; // OK
+ *   protected final static int secondConstant = 100; // OK
+ *   final static int thirdConstant = 1000; // violation, name 'thirdConstant' must
+ *                                          // match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+ *   private final static int fourthConstant = 50; // violation, name 'fourthConstant' must match
+ *                                                 // pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+ * }
+ * </pre>
  * @since 3.0
  */
 public class ConstantNameCheck
