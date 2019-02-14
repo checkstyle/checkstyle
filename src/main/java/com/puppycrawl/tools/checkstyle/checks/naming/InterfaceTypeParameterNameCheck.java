@@ -38,6 +38,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="InterfaceTypeParameterName"/&gt;
  * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * interface FirstInterface&lt;T&gt; {} // OK
+ * interface SecondInterface&lt;t&gt; {} // violation, name 't' must match pattern '^[A-Z]$'
+ * </pre>
  * <p>
  * An example of how to configure the check for names that are only a single
  * letter is:
@@ -46,6 +51,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;module name="InterfaceTypeParameterName"&gt;
  *    &lt;property name="format" value="^[a-zA-Z]$"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * interface FirstInterface&lt;T&gt; {} // OK
+ * interface SecondInterface&lt;t&gt; {} // OK
+ * interface ThirdInterface&lt;type&gt; {} // violation, name 'type' must
+ *                                         // match pattern '^[a-zA-Z]$'
  * </pre>
  *
  * @since 5.8

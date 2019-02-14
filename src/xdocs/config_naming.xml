@@ -721,6 +721,11 @@ class MyClass3&lt;abc&gt; {} // violation, the class type parameter
         <source>
 &lt;module name=&quot;InterfaceTypeParameterName&quot;/&gt;
         </source>
+        <p>Code Example:</p>
+        <pre>
+interface FirstInterface&lt;T&gt; {} // OK
+interface SecondInterface&lt;t&gt; {} // violation, name 't' must match pattern '^[A-Z]$'
+        </pre>
         <p>
           An example of how to configure the check for names that are only a single
           letter is:
@@ -730,6 +735,13 @@ class MyClass3&lt;abc&gt; {} // violation, the class type parameter
    &lt;property name="format" value="^[a-zA-Z]$"/&gt;
 &lt;/module&gt;
         </source>
+        <p>Code Example:</p>
+        <pre>
+interface FirstInterface&lt;T&gt; {} // OK
+interface SecondInterface&lt;t&gt; {} // OK
+interface ThirdInterface&lt;type&gt; {} // violation, name 'type' must
+                                        // match pattern '^[a-zA-Z]$'
+        </pre>
       </subsection>
 
       <subsection name="Example of Usage" id="InterfaceTypeParameterName_Example_of_Usage">
