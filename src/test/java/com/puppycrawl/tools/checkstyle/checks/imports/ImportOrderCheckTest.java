@@ -654,8 +654,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
      *
      * @throws Exception if there is an error.
      */
-    // -@cs[ForbidAnnotationElementValue] Will examine turkish failure
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void testVisitTokenSwitchReflection() throws Exception {
         // Create mock ast
         final DetailAST astImport = mockAST(TokenTypes.IMPORT, "import", "mockfile", 0, 0);
@@ -669,7 +668,13 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         TestUtil.getClassDeclaredField(ImportOrderCheck.class, "option").set(mock, null);
 
         // expecting IllegalStateException
-        mock.visitToken(astImport);
+        try {
+            mock.visitToken(astImport);
+            fail("An exception is expected");
+        }
+        catch (IllegalStateException ex) {
+            assertTrue("invalid exception message", ex.getMessage().endsWith(": null"));
+        }
     }
 
     /**
