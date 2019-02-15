@@ -27,11 +27,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
-import org.powermock.reflect.Whitebox;
 
 import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -39,10 +34,9 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest(ImportOrderOption.class)
 public class ImportOrderCheckTest extends AbstractModuleTestSupport {
 
     @Override
@@ -652,9 +646,17 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
+    /**
+     * This test requires reflection to insert an unsupported option in the check to cover the
+     * exception that gets thrown when a unsupported option is used. The field has a value by
+     * default and the setter for the property will throw it's own exception when an unsupported
+     * option is given, so there is no other way to cover this code.
+     *
+     * @throws Exception if there is an error.
+     */
     // -@cs[ForbidAnnotationElementValue] Will examine turkish failure
     @Test(expected = IllegalStateException.class)
-    public void testVisitTokenSwitchReflection() {
+    public void testVisitTokenSwitchReflection() throws Exception {
         // Create mock ast
         final DetailAST astImport = mockAST(TokenTypes.IMPORT, "import", "mockfile", 0, 0);
         final DetailAST astIdent = mockAST(TokenTypes.IDENT, "myTestImport", "mockfile", 0, 0);
@@ -664,10 +666,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
 
         // Set unsupported option
         final ImportOrderCheck mock = new ImportOrderCheck();
-        final ImportOrderOption importOrderOptionMock = PowerMockito.mock(ImportOrderOption.class);
-        Whitebox.setInternalState(importOrderOptionMock, "name", "NEW_OPTION_FOR_UT");
-        Whitebox.setInternalState(importOrderOptionMock, "ordinal", 5);
-        Whitebox.setInternalState(mock, "option", importOrderOptionMock);
+        TestUtil.getClassDeclaredField(ImportOrderCheck.class, "option").set(mock, null);
 
         // expecting IllegalStateException
         mock.visitToken(astImport);
