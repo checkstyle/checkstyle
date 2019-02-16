@@ -28,7 +28,15 @@
         <p>
           Checks the style of array type definitions.  Some like Java style:
           <code>public static void main(String[] args)</code> and some like
-          C style: public static void main(String args[])
+          C style: <code>public static void main(String args[])</code>.
+        </p>
+        <p>
+          By default the Check enforces Java style.
+        </p>
+        <p>
+          This check strictly enforces only Java style for method return types
+          regardless of the value for 'javaStyle'. For example, <code>byte[] getData()</code>.
+          This is because C doesn't compile methods with array declarations on the name.
         </p>
       </subsection>
 
@@ -60,7 +68,23 @@
         <source>
 &lt;module name=&quot;ArrayTypeStyle&quot;/&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class MyClass {
+  int[] nums; // OK
+  String strings[]; // violation
 
+  char[] toCharArray() { // OK
+    return null;
+  }
+
+  byte getData()[] { // violation
+    return null;
+  }
+}
+        </source>
         <p>
           To configure the check to enforce C style:
         </p>
@@ -68,6 +92,23 @@
 &lt;module name=&quot;ArrayTypeStyle&quot;&gt;
   &lt;property name=&quot;javaStyle&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class MyClass {
+  int[] nums; // violation
+  String strings[]; // OK
+
+  char[] toCharArray() { // OK
+    return null;
+  }
+
+  byte getData()[] { // violation
+    return null;
+  }
+}
         </source>
       </subsection>
 

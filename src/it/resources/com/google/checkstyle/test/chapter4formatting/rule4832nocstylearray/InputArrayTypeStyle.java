@@ -29,11 +29,32 @@ public class InputArrayTypeStyle
 
         public Test[]
             getTests()
-        { // we shouldn't check methods because there is no alternatives.
+        {
             return null;
         }
 
         public Test[] getNewTest() //ok
+        {
+            return null;
+        }
+
+        public Test getOldTest()[] //warn
+        {
+            return null;
+        }
+
+        public Test getOldTests()[][] //warn
+        {
+            return null;
+        }
+
+        public Test[]
+            getMoreTests()[] //warn
+        {
+            return null;
+        }
+
+        public Test[][] getTests2() //ok
         {
             return null;
         }
