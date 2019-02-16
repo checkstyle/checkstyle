@@ -27,9 +27,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Checks the style of array type definitions.
  * Some like Java-style: {@code public static void main(String[] args)}
- * and some like C-style: public static void main(String args[])
+ * and some like C-style: {@code public static void main(String args[])}.
  *
- * <p>By default the Check enforces Java style.
+ * <p>By default the Check enforces Java style.</p>
+ *
+ * <p>This check strictly enforces only Java style for method return types
+ * regardless of the value for 'javaStyle'. For example, {@code byte[] getData()}.
+ * This is because C doesn't compile methods with array declarations on the name.</p>
  */
 @StatelessCheck
 public class ArrayTypeStyleCheck extends AbstractCheck {
@@ -61,17 +65,18 @@ public class ArrayTypeStyleCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST typeAST = ast.getParent();
-        if (typeAST.getType() == TokenTypes.TYPE
-                // Do not check method's return type.
-                // We have no alternatives here.
-                && typeAST.getParent().getType() != TokenTypes.METHOD_DEF) {
+        if (typeAST.getType() == TokenTypes.TYPE) {
             final DetailAST variableAST = typeAST.getNextSibling();
             if (variableAST != null) {
-                final boolean isJavaStyle =
-                    variableAST.getLineNo() > ast.getLineNo()
+                final boolean isMethod = typeAST.getParent().getType() == TokenTypes.METHOD_DEF;
+                final boolean isJavaStyle = variableAST.getLineNo() > ast.getLineNo()
                     || variableAST.getColumnNo() - ast.getColumnNo() > -1;
 
-                if (isJavaStyle != javaStyle) {
+                // force all methods to be Java style (see note in top Javadoc)
+                final boolean isMethodViolation = isMethod && !isJavaStyle;
+                final boolean isVariableViolation = !isMethod && isJavaStyle != javaStyle;
+
+                if (isMethodViolation || isVariableViolation) {
                     log(ast, MSG_KEY);
                 }
             }

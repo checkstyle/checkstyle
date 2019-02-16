@@ -41,8 +41,11 @@ public class ArrayTypeStyleTest extends AbstractModuleTestSupport {
             "15:44: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
             "21:20: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
             "22:23: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
-            "41:16: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
-            "42:19: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
+            "41:33: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
+            "46:36: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
+            "52:27: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
+            "62:16: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
+            "63:19: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
         };
 
         final Configuration checkConfig = getModuleConfig("ArrayTypeStyle");
