@@ -96,7 +96,7 @@ public class MainTest {
           + "                            (experimental) The number of Checker threads (must be"
           + " greater than zero)%n"
           + "  -d, --debug               Print all debug logging of CheckStyle utility%n"
-          + "  -e, --exclude=<exclude>   Directory path to exclude from CheckStyle%n"
+          + "  -e, --exclude=<exclude>   Directory/File path to exclude from CheckStyle%n"
           + "  -f=<format>               Sets the output format. Valid values: xml, plain."
           + " Defaults to plain%n"
           + "  -g, --generate-xpath-suppression%n"
@@ -122,7 +122,7 @@ public class MainTest {
           + "                            (experimental) The number of TreeWalker threads (must be"
           + " greater than zero)%n"
           + "  -x, --exclude-regexp=<excludeRegex>%n"
-          + "                            Regular expression of directory to exclude from"
+          + "                            Regular expression of directory/file to exclude from"
           + " CheckStyle%n");
 
     private static final Logger LOG = Logger.getLogger(MainTest.class.getName()).getParent();
@@ -637,7 +637,8 @@ public class MainTest {
         when(fileMock.isDirectory()).thenReturn(false);
         when(fileMock.isFile()).thenReturn(false);
 
-        final List<File> result = (List<File>) method.invoke(null, fileMock, null);
+        final List<File> result = (List<File>) method.invoke(null, fileMock,
+                new ArrayList<Pattern>());
         assertEquals("Invalid result size", 0, result.size());
     }
 
@@ -1180,6 +1181,18 @@ public class MainTest {
     }
 
     @Test
+    public void testExcludeOptionFile() throws Exception {
+        exit.expectSystemExitWithStatus(-1);
+        exit.checkAssertionAfterwards(() -> {
+            assertEquals("Unexpected output log", "Files to process must be specified, found 0."
+                + System.lineSeparator(), systemOut.getLog());
+            assertEquals("Unexpected system error log", "", systemErr.getLog());
+        });
+        Main.main("-c", "/google_checks.xml", getFilePath("InputMain.java"), "-e",
+                getFilePath("InputMain.java"));
+    }
+
+    @Test
     public void testExcludeRegexpOption() throws Exception {
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(() -> {
@@ -1188,6 +1201,17 @@ public class MainTest {
             assertEquals("Unexpected output log", "", systemErr.getLog());
         });
         Main.main("-c", "/google_checks.xml", getFilePath(""), "-x", ".");
+    }
+
+    @Test
+    public void testExcludeRegexpOptionFile() throws Exception {
+        exit.expectSystemExitWithStatus(-1);
+        exit.checkAssertionAfterwards(() -> {
+            assertEquals("Unexpected output log", "Files to process must be specified, found 0."
+                + System.lineSeparator(), systemOut.getLog());
+            assertEquals("Unexpected output log", "", systemErr.getLog());
+        });
+        Main.main("-c", "/google_checks.xml", getFilePath("InputMain.java"), "-x", ".");
     }
 
     @Test
