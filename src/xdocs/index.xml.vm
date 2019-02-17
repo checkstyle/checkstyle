@@ -124,6 +124,13 @@
       </p>
     </section>
 
+    <section name="Limitations">
+      <p>
+        Checkstyle is a single file static analysis tool, for more details please read
+        the full list of <a href="writingchecks.html#Limitations">limitations</a>.
+      </p>
+    </section>
+
     <section name="Related Tools">
       <p>
         Checkstyle is most useful if you integrate it into your build process or

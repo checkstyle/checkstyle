@@ -633,18 +633,8 @@ java -classpath mycompanychecks.jar;checkstyle-${projectVersion}-all.jar ^
     </section>
 
     <section name="Limitations">
-
       <p>
-        OK, so you have written your first Check, and you have found
-        several flaws in many of your programs. You now know that your
-        boss does not follow the coding conventions he wrote.  And you
-        know that you are the king of the world. To become a programming
-        god, you want to write your second Check - now wait, first you
-        should know what your limits are.
-      </p>
-
-      <p>
-        There are basically only few of them:
+        There are basically only a few limits for Checkstyle:
       </p>
       <ul>
         <li>Java code should be written with
