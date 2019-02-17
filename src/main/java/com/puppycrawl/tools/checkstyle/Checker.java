@@ -273,10 +273,12 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * @throws CheckstyleException if error condition within Checkstyle occurs.
      * @noinspection ProhibitedExceptionThrown
      */
+    //-@cs[CyclomaticComplexity] no easy way to split this logic of processing the file
     private void processFiles(List<File> files) throws CheckstyleException {
         for (final File file : files) {
+            String fileName = null;
             try {
-                final String fileName = file.getAbsolutePath();
+                fileName = file.getAbsolutePath();
                 final long timestamp = file.lastModified();
                 if (cacheFile != null && cacheFile.isInCache(fileName, timestamp)
                         || !acceptFileStarted(fileName)) {
@@ -293,11 +295,19 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
             // -@cs[IllegalCatch] There is no other way to deliver filename that was under
             // processing. See https://github.com/checkstyle/checkstyle/issues/2285
             catch (Exception ex) {
+                if (fileName != null && cacheFile != null) {
+                    cacheFile.remove(fileName);
+                }
+
                 // We need to catch all exceptions to put a reason failure (file name) in exception
                 throw new CheckstyleException("Exception was thrown while processing "
                         + file.getPath(), ex);
             }
             catch (Error error) {
+                if (fileName != null && cacheFile != null) {
+                    cacheFile.remove(fileName);
+                }
+
                 // We need to catch all errors to put a reason failure (file name) in error
                 throw new Error("Error was thrown while processing " + file.getPath(), error);
             }
