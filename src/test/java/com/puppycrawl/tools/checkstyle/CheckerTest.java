@@ -674,6 +674,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             + " or has run out of resources necessary for it to continue operating.";
         final Error expectedError = new IOError(new InternalError(errorMessage));
         when(mock.lastModified()).thenThrow(expectedError);
+        when(mock.getAbsolutePath()).thenReturn("testFile");
         final Checker checker = new Checker();
         final List<File> filesToProcess = new ArrayList<>();
         filesToProcess.add(mock);
@@ -689,6 +690,120 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     error.getCause().getCause(), instanceOf(InternalError.class));
             assertEquals("Error message is not expected",
                     errorMessage, error.getCause().getCause().getMessage());
+        }
+    }
+
+    @Test
+    public void testCatchErrorWithNoFileName() throws Exception {
+        // The idea of the test is to satisfy coverage rate.
+        // An Error indicates serious problems that a reasonable application should not try to
+        // catch, but due to issue https://github.com/checkstyle/checkstyle/issues/2285
+        // we catch errors in 'processFiles' method. Most such errors are abnormal conditions,
+        // that is why we use PowerMockito to reproduce them.
+        final File mock = PowerMockito.mock(File.class);
+        // Assume that I/O error is happened when we try to invoke 'lastModified()' method.
+        final String errorMessage = "Java Virtual Machine is broken"
+            + " or has run out of resources necessary for it to continue operating.";
+        final Error expectedError = new IOError(new InternalError(errorMessage));
+        when(mock.lastModified()).thenThrow(expectedError);
+        final Checker checker = new Checker();
+        final List<File> filesToProcess = new ArrayList<>();
+        filesToProcess.add(mock);
+        try {
+            checker.process(filesToProcess);
+            fail("IOError is expected!");
+        }
+        // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
+        catch (Error error) {
+            assertThat("Error cause differs from IOError",
+                    error.getCause(), instanceOf(IOError.class));
+            assertThat("Error cause is not InternalError",
+                    error.getCause().getCause(), instanceOf(InternalError.class));
+            assertEquals("Error message is not expected",
+                    errorMessage, error.getCause().getCause().getMessage());
+        }
+    }
+
+    @Test
+    public void testCatchErrorWithCache() throws Exception {
+        final File cacheFile = temporaryFolder.newFile();
+
+        final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
+        checkerConfig.addAttribute("charset", StandardCharsets.UTF_8.name());
+        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
+
+        final File mock = PowerMockito.mock(File.class);
+        final String errorMessage = "Java Virtual Machine is broken"
+            + " or has run out of resources necessary for it to continue operating.";
+        final Error expectedError = new IOError(new InternalError(errorMessage));
+        when(mock.getAbsolutePath()).thenReturn("testFile");
+        when(mock.getAbsoluteFile()).thenThrow(expectedError);
+        final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(checkerConfig);
+        final List<File> filesToProcess = new ArrayList<>();
+        filesToProcess.add(mock);
+        try {
+            checker.process(filesToProcess);
+            fail("IOError is expected!");
+        }
+        // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
+        catch (Error error) {
+            assertThat("Error cause differs from IOError",
+                    error.getCause(), instanceOf(IOError.class));
+            assertEquals("Error message is not expected",
+                    errorMessage, error.getCause().getCause().getMessage());
+
+            // destroy is called by Main
+            checker.destroy();
+
+            final Properties cache = new Properties();
+            cache.load(Files.newBufferedReader(cacheFile.toPath()));
+
+            assertEquals("Cache has unexpected size",
+                    1, cache.size());
+            assertNull("testFile is not in cache",
+                    cache.getProperty("testFile"));
+        }
+    }
+
+    @Test
+    public void testCatchErrorWithCacheWithNoFileName() throws Exception {
+        final File cacheFile = temporaryFolder.newFile();
+
+        final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
+        checkerConfig.addAttribute("charset", StandardCharsets.UTF_8.name());
+        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
+
+        final File mock = PowerMockito.mock(File.class);
+        final String errorMessage = "Java Virtual Machine is broken"
+            + " or has run out of resources necessary for it to continue operating.";
+        final Error expectedError = new IOError(new InternalError(errorMessage));
+        when(mock.getAbsolutePath()).thenThrow(expectedError);
+        final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(checkerConfig);
+        final List<File> filesToProcess = new ArrayList<>();
+        filesToProcess.add(mock);
+        try {
+            checker.process(filesToProcess);
+            fail("IOError is expected!");
+        }
+        // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
+        catch (Error error) {
+            assertThat("Error cause differs from IOError",
+                    error.getCause(), instanceOf(IOError.class));
+            assertEquals("Error message is not expected",
+                    errorMessage, error.getCause().getCause().getMessage());
+
+            // destroy is called by Main
+            checker.destroy();
+
+            final Properties cache = new Properties();
+            cache.load(Files.newBufferedReader(cacheFile.toPath()));
+
+            assertEquals("Cache has unexpected size",
+                    1, cache.size());
         }
     }
 
@@ -871,6 +986,115 @@ public class CheckerTest extends AbstractModuleTestSupport {
         catch (CheckstyleException ex) {
             assertEquals("Error message is not expected",
                     "Exception was thrown while processing " + filePath, ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testExceptionWithCache() throws Exception {
+        final File cacheFile = temporaryFolder.newFile();
+
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(CheckWhichThrowsError.class);
+
+        final DefaultConfiguration treewalkerConfig =
+                createModuleConfig(TreeWalker.class);
+        treewalkerConfig.addChild(checkConfig);
+
+        final DefaultConfiguration checkerConfig = createRootConfig(treewalkerConfig);
+        checkerConfig.addAttribute("charset", StandardCharsets.UTF_8.name());
+        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
+        checkerConfig.addChild(treewalkerConfig);
+
+        final Checker checker = createChecker(checkerConfig);
+
+        final String filePath = getPath("InputChecker.java");
+        try {
+            checker.process(Collections.singletonList(new File(filePath)));
+            fail("Exception is expected");
+        }
+        catch (CheckstyleException ex) {
+            assertEquals("Error message is not expected",
+                    "Exception was thrown while processing " + filePath, ex.getMessage());
+
+            // destroy is called by Main
+            checker.destroy();
+
+            final Properties cache = new Properties();
+            cache.load(Files.newBufferedReader(cacheFile.toPath()));
+
+            assertEquals("Cache has unexpected size",
+                    1, cache.size());
+            assertNull("testFile is not in cache",
+                    cache.getProperty(filePath));
+        }
+    }
+
+    @Test
+    public void testExceptionWithNoFileName() {
+        // The idea of the test is to satisfy coverage rate.
+        // An Error indicates serious problems that a reasonable application should not try to
+        // catch, but due to issue https://github.com/checkstyle/checkstyle/issues/2285
+        // we catch errors in 'processFiles' method. Most such errors are abnormal conditions,
+        // that is why we use PowerMockito to reproduce them.
+        final File mock = PowerMockito.mock(File.class);
+        final String errorMessage = "Security Exception";
+        final Exception expectedError = new SecurityException(errorMessage);
+        when(mock.getAbsolutePath()).thenThrow(expectedError);
+        final Checker checker = new Checker();
+        final List<File> filesToProcess = new ArrayList<>();
+        filesToProcess.add(mock);
+        try {
+            checker.process(filesToProcess);
+            fail("IOError is expected!");
+        }
+        catch (CheckstyleException ex) {
+            assertThat("Error cause differs from SecurityException",
+                    ex.getCause(), instanceOf(SecurityException.class));
+            assertEquals("Error message is not expected",
+                    errorMessage, ex.getCause().getMessage());
+        }
+    }
+
+    @Test
+    public void testExceptionWithCacheAndNoFileName() throws Exception {
+        final File cacheFile = temporaryFolder.newFile();
+
+        final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
+        checkerConfig.addAttribute("charset", StandardCharsets.UTF_8.name());
+        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
+
+        // The idea of the test is to satisfy coverage rate.
+        // An Error indicates serious problems that a reasonable application should not try to
+        // catch, but due to issue https://github.com/checkstyle/checkstyle/issues/2285
+        // we catch errors in 'processFiles' method. Most such errors are abnormal conditions,
+        // that is why we use PowerMockito to reproduce them.
+        final File mock = PowerMockito.mock(File.class);
+        final String errorMessage = "Security Exception";
+        final Exception expectedError = new SecurityException(errorMessage);
+        when(mock.getAbsolutePath()).thenThrow(expectedError);
+        final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(checkerConfig);
+        final List<File> filesToProcess = new ArrayList<>();
+        filesToProcess.add(mock);
+        try {
+            checker.process(filesToProcess);
+            fail("IOError is expected!");
+        }
+        catch (CheckstyleException ex) {
+            assertThat("Error cause differs from SecurityException",
+                    ex.getCause(), instanceOf(SecurityException.class));
+            assertEquals("Error message is not expected",
+                    errorMessage, ex.getCause().getMessage());
+
+            // destroy is called by Main
+            checker.destroy();
+
+            final Properties cache = new Properties();
+            cache.load(Files.newBufferedReader(cacheFile.toPath()));
+
+            assertEquals("Cache has unexpected size",
+                    1, cache.size());
         }
     }
 
