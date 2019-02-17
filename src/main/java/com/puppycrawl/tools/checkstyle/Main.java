@@ -202,7 +202,8 @@ public final class Main {
      * a specified list. Subdirectories are also traversed.
      * @param node
      *        the node to process
-     * @param patternsToExclude The list of directory patterns to exclude from searching.
+     * @param patternsToExclude The list of patterns to exclude from searching or being added as
+     *        files.
      * @return found files
      */
     private static List<File> listFiles(File node, List<Pattern> patternsToExclude) {
@@ -211,8 +212,8 @@ public final class Main {
         final List<File> result = new LinkedList<>();
 
         if (node.canRead()) {
-            if (node.isDirectory()) {
-                if (!isDirectoryExcluded(node.getAbsolutePath(), patternsToExclude)) {
+            if (!isPathExcluded(node.getAbsolutePath(), patternsToExclude)) {
+                if (node.isDirectory()) {
                     final File[] files = node.listFiles();
                     // listFiles() can return null, so we need to check it
                     if (files != null) {
@@ -221,22 +222,23 @@ public final class Main {
                         }
                     }
                 }
-            }
-            else if (node.isFile()) {
-                result.add(node);
+                else if (node.isFile()) {
+                    result.add(node);
+                }
             }
         }
         return result;
     }
 
     /**
-     * Checks if a directory {@code path} should be excluded based on if it matches one of the
+     * Checks if a directory/file {@code path} should be excluded based on if it matches one of the
      * patterns supplied.
-     * @param path The path of the directory to check
-     * @param patternsToExclude The list of directory patterns to exclude from searching.
-     * @return True if the directory matches one of the patterns.
+     * @param path The path of the directory/file to check
+     * @param patternsToExclude The list of patterns to exclude from searching or being added as
+     *        files.
+     * @return True if the directory/file matches one of the patterns.
      */
-    private static boolean isDirectoryExcluded(String path, List<Pattern> patternsToExclude) {
+    private static boolean isPathExcluded(String path, List<Pattern> patternsToExclude) {
         boolean result = false;
 
         for (Pattern pattern : patternsToExclude) {
@@ -666,7 +668,7 @@ public final class Main {
          * @noinspection CanBeFinal
          */
         @Option(names = {"-e", "--exclude"},
-                description = "Directory path to exclude from CheckStyle")
+                description = "Directory/File path to exclude from CheckStyle")
         private List<File> exclude = new ArrayList<>();
 
         /** Option that allows users to specify a regex of paths to exclude.
@@ -674,7 +676,7 @@ public final class Main {
          * @noinspection CanBeFinal
          */
         @Option(names = {"-x", "--exclude-regexp"},
-                description = "Regular expression of directory to exclude from CheckStyle")
+                description = "Regular expression of directory/file to exclude from CheckStyle")
         private List<Pattern> excludeRegex = new ArrayList<>();
 
         /** Switch whether to execute ignored modules or not. */

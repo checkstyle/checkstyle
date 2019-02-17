@@ -134,12 +134,12 @@ java -D&lt;property&gt;=&lt;value&gt;  \
           <code>-d, --debug</code> - Print all debug logging of CheckStyle utility.
         </li>
         <li>
-          <code>-e, --exclude excludedDirectory</code> - Directory to exclude from
-          CheckStyle. The directory can be the full, absolute path, or relative to the current path.
+          <code>-e, --exclude excludedPath</code> - Directory/file to exclude from
+          CheckStyle. The path can be the full, absolute path, or relative to the current path.
           Multiple excludes are allowed.
         </li>
         <li>
-          <code>-x, --exclude-regexp excludedDirectoryPattern</code> - Directory pattern to
+          <code>-x, --exclude-regexp excludedPathPattern</code> - Directory/file pattern to
           exclude from CheckStyle. Multiple excludes are allowed.
         </li>
         <li>
