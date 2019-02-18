@@ -58,6 +58,16 @@ public final class BlockCommentPosition {
     }
 
     /**
+     * Node is on package definition.
+     * @param blockComment DetailAST
+     * @return true if node is before package
+     */
+    public static boolean isOnPackage(DetailAST blockComment) {
+        final DetailAST nextSibling = blockComment.getNextSibling();
+        return nextSibling != null && nextSibling.getType() == TokenTypes.PACKAGE_DEF;
+    }
+
+    /**
      * Node is on interface definition.
      * @param blockComment DetailAST
      * @return true if node is before interface

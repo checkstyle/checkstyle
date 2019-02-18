@@ -401,7 +401,8 @@ public final class JavadocUtil {
         }
         return sibling == null
             && (BlockCommentPosition.isOnType(blockComment)
-                || BlockCommentPosition.isOnMember(blockComment));
+                || BlockCommentPosition.isOnMember(blockComment)
+                || BlockCommentPosition.isOnPackage(blockComment));
     }
 
 }
