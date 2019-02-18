@@ -25,6 +25,7 @@
         <li><a href="writingchecks.html">Writing Checks</a>;</li>
         <li><a href="writingjavadocchecks.html">Writing Javadoc Checks</a>;</li>
         <li><a href="writingfilters.html">Writing filters</a>;</li>
+        <li><a href="writingfilefilters.html">Writing file filters</a>;</li>
         <li><a href="writinglisteners.html">Writing listeners</a>.</li>
       </ul>
     </section>
