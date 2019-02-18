@@ -52,6 +52,19 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <pre>
  * &lt;module name="LocalVariableName"/&gt;
  * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * class MyClass {
+ *   void MyMethod() {
+ *     for (int var = 1; var &lt; 10; var++) {} // OK
+ *     for (int VAR = 1; VAR &lt; 10; VAR++) {} // violation, name 'VAR' must match
+ *                                           // pattern '^[a-z][a-zA-Z0-9]*$'
+ *     for (int i = 1; i &lt; 10; i++) {} // OK
+ *     for (int var_1 = 0; var_1 &lt; 10; var_1++) {} // violation, name 'var_1' must match
+ *                                                    // pattern '^[a-z][a-zA-Z0-9]*$'
+ *   }
+ * }
+ * </pre>
  * <p>
  * An example of how to configure the check for names that begin with a lower
  * case letter, followed by letters, digits, and underscores is:
@@ -60,6 +73,18 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * &lt;module name="LocalVariableName"&gt;
  *   &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * class MyClass {
+ *   void MyMethod() {
+ *     for (int var = 1; var &lt; 10; var++) {} // OK
+ *     for (int VAR = 1; VAR &lt; 10; VAR++) {} // violation, name 'VAR' must match
+ *                                              // pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+ *     for (int i = 1; i &lt; 10; i++) {} // OK
+ *     for (int var_1 = 0; var_1 &lt; 10; var_1++) {} // OK
+ *   }
+ * }
  * </pre>
  * <p>
  * An example of one character variable name in
