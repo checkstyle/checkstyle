@@ -19,35 +19,17 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+/**
+ * An interface for filtering Integer.
+ */
+@FunctionalInterface
+interface IntFilterElement {
 
-import org.junit.Test;
-
-import nl.jqno.equalsverifier.EqualsVerifier;
-import nl.jqno.equalsverifier.EqualsVerifierReport;
-
-public class IntMatchFilterTest {
-
-    @Test
-    public void testDecide() {
-        final IntFilter filter = new IntMatchFilter(0);
-        assertFalse("less than", filter.accept(-1));
-        assertTrue("equal", filter.accept(0));
-        assertFalse("greater than", filter.accept(1));
-    }
-
-    @Test
-    public void testEqualsAndHashCode() {
-        final EqualsVerifierReport ev = EqualsVerifier.forClass(IntMatchFilter.class).report();
-        assertEquals("Error: " + ev.getMessage(), EqualsVerifierReport.SUCCESS, ev);
-    }
-
-    @Test
-    public void testToString() {
-        final IntFilter filter = new IntMatchFilter(6);
-        assertEquals("Invalid toString result", "IntMatchFilter[6]", filter.toString());
-    }
+    /**
+     * Determines whether or not a filtered Integer is accepted.
+     * @param intValue the Integer to filter.
+     * @return true if the intValue is accepted.
+     */
+    boolean accept(int intValue);
 
 }

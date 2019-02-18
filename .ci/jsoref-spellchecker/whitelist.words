@@ -1382,6 +1382,7 @@ xpath
 xpathfilegeneratorastfilter
 xpathfilegeneratorauditlistener
 xpathfilter
+xpathfilterelement
 xpathmapper
 xpathquerygenerator
 xsd
