@@ -40,7 +40,7 @@ import net.sf.saxon.trans.XPathException;
  * objects based on the criteria of file, check, module id, xpathQuery.
  *
  */
-public class XpathFilter implements TreeWalkerFilter {
+public class XpathFilterElement implements TreeWalkerFilter {
 
     /** The regexp to match file names against. */
     private final Pattern fileRegexp;
@@ -77,7 +77,7 @@ public class XpathFilter implements TreeWalkerFilter {
      * @param moduleId the module id
      * @param query the xpath query
      */
-    public XpathFilter(String files, String checks,
+    public XpathFilterElement(String files, String checks,
                        String message, String moduleId, String query) {
         filePattern = files;
         if (files == null) {
@@ -124,7 +124,7 @@ public class XpathFilter implements TreeWalkerFilter {
      * @param moduleId the module id
      * @param query the xpath query
      */
-    public XpathFilter(Pattern files, Pattern checks, Pattern message,
+    public XpathFilterElement(Pattern files, Pattern checks, Pattern message,
                            String moduleId, String query) {
         if (files == null) {
             filePattern = null;
@@ -260,7 +260,7 @@ public class XpathFilter implements TreeWalkerFilter {
         if (other == null || getClass() != other.getClass()) {
             return false;
         }
-        final XpathFilter xpathFilter = (XpathFilter) other;
+        final XpathFilterElement xpathFilter = (XpathFilterElement) other;
         return Objects.equals(filePattern, xpathFilter.filePattern)
                 && Objects.equals(checkPattern, xpathFilter.checkPattern)
                 && Objects.equals(messagePattern, xpathFilter.messagePattern)

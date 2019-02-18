@@ -20,16 +20,43 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 /**
- * An interface for filtering Integer.
+ * This filter accepts a matching Integer.
  */
-@FunctionalInterface
-interface IntFilter {
+class IntMatchFilterElement implements IntFilterElement {
+
+    /** The matching Integer. */
+    private final int matchValue;
 
     /**
-     * Determines whether or not a filtered Integer is accepted.
-     * @param intValue the Integer to filter.
-     * @return true if the intValue is accepted.
+     * Constructs a MatchFilter for an int.
+     * @param matchValue the matching int.
      */
-    boolean accept(int intValue);
+    IntMatchFilterElement(int matchValue) {
+        this.matchValue = matchValue;
+    }
+
+    @Override
+    public boolean accept(int intValue) {
+        return matchValue == intValue;
+    }
+
+    @Override
+    public String toString() {
+        return "IntMatchFilterElement[" + matchValue + "]";
+    }
+
+    @Override
+    public final int hashCode() {
+        return Integer.valueOf(matchValue).hashCode();
+    }
+
+    @Override
+    public final boolean equals(Object object) {
+        if (object instanceof IntMatchFilterElement) {
+            final IntMatchFilterElement other = (IntMatchFilterElement) object;
+            return matchValue == other.matchValue;
+        }
+        return false;
+    }
 
 }

@@ -24,7 +24,7 @@ import java.util.Objects;
 /**
  * This filter accepts an Integer in a range.
  */
-class IntRangeFilter implements IntFilter {
+class IntRangeFilterElement implements IntFilterElement {
 
     /** Lower bound of the range. */
     private final Integer lowerBound;
@@ -33,12 +33,12 @@ class IntRangeFilter implements IntFilter {
     private final Integer upperBound;
 
     /**
-     * Constructs a {@code IntRangeFilter} with a
+     * Constructs a {@code IntRangeFilterElement} with a
      * lower bound and an upper bound for the range.
      * @param lowerBound the lower bound of the range.
      * @param upperBound the upper bound of the range.
      */
-    IntRangeFilter(int lowerBound, int upperBound) {
+    IntRangeFilterElement(int lowerBound, int upperBound) {
         this.lowerBound = lowerBound;
         this.upperBound = upperBound;
     }
@@ -62,7 +62,7 @@ class IntRangeFilter implements IntFilter {
         if (other == null || getClass() != other.getClass()) {
             return false;
         }
-        final IntRangeFilter intRangeFilter = (IntRangeFilter) other;
+        final IntRangeFilterElement intRangeFilter = (IntRangeFilterElement) other;
         return Objects.equals(lowerBound, intRangeFilter.lowerBound)
                 && Objects.equals(upperBound, intRangeFilter.upperBound);
     }

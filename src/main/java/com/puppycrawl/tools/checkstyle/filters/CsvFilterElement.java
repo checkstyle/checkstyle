@@ -31,13 +31,13 @@ import java.util.StringTokenizer;
  * each value is an integer or a range of integers.
  * </p>
  */
-class CsvFilter implements IntFilter {
+class CsvFilterElement implements IntFilterElement {
 
     /** Filter set. */
-    private final Set<IntFilter> filters = new HashSet<>();
+    private final Set<IntFilterElement> filters = new HashSet<>();
 
     /**
-     * Constructs a {@code CsvFilter} from a CSV, Comma-Separated Values,
+     * Constructs a {@code CsvFilterElement} from a CSV, Comma-Separated Values,
      * string. Each value is an integer, or a range of integers. A range of
      * integers is of the form integer-integer, such as 1-10.
      * Note: integers must be non-negative.
@@ -45,30 +45,30 @@ class CsvFilter implements IntFilter {
      * @throws NumberFormatException if a component substring does not
      *     contain a parsable integer.
      */
-    CsvFilter(String pattern) {
+    CsvFilterElement(String pattern) {
         final StringTokenizer tokenizer = new StringTokenizer(pattern, ",");
         while (tokenizer.hasMoreTokens()) {
             final String token = tokenizer.nextToken().trim();
             final int index = token.indexOf('-');
             if (index == -1) {
                 final int matchValue = Integer.parseInt(token);
-                addFilter(new IntMatchFilter(matchValue));
+                addFilter(new IntMatchFilterElement(matchValue));
             }
             else {
                 final int lowerBound =
                     Integer.parseInt(token.substring(0, index));
                 final int upperBound =
                     Integer.parseInt(token.substring(index + 1));
-                addFilter(new IntRangeFilter(lowerBound, upperBound));
+                addFilter(new IntRangeFilterElement(lowerBound, upperBound));
             }
         }
     }
 
     /**
-     * Adds a IntFilter to the set.
-     * @param filter the IntFilter to add.
+     * Adds a IntFilterElement to the set.
+     * @param filter the IntFilterElement to add.
      */
-    public final void addFilter(IntFilter filter) {
+    public final void addFilter(IntFilterElement filter) {
         filters.add(filter);
     }
 
@@ -76,7 +76,7 @@ class CsvFilter implements IntFilter {
      * Returns the IntFilters of the filter set.
      * @return the IntFilters of the filter set.
      */
-    protected Set<IntFilter> getFilters() {
+    protected Set<IntFilterElement> getFilters() {
         return Collections.unmodifiableSet(filters);
     }
 
@@ -88,7 +88,7 @@ class CsvFilter implements IntFilter {
     @Override
     public boolean accept(int intValue) {
         boolean result = false;
-        for (IntFilter filter : getFilters()) {
+        for (IntFilterElement filter : getFilters()) {
             if (filter.accept(intValue)) {
                 result = true;
                 break;
@@ -105,7 +105,7 @@ class CsvFilter implements IntFilter {
         if (object == null || getClass() != object.getClass()) {
             return false;
         }
-        final CsvFilter csvFilter = (CsvFilter) object;
+        final CsvFilterElement csvFilter = (CsvFilterElement) object;
         return Objects.equals(filters, csvFilter.filters);
     }
 

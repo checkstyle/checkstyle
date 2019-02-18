@@ -28,11 +28,11 @@ import org.junit.Test;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
 
-public class IntRangeFilterTest {
+public class IntRangeFilterElementTest {
 
     @Test
     public void testDecide() {
-        final IntFilter filter = new IntRangeFilter(0, 10);
+        final IntFilterElement filter = new IntRangeFilterElement(0, 10);
         assertFalse("less than", filter.accept(-1));
         assertTrue("in range", filter.accept(0));
         assertTrue("in range", filter.accept(5));
@@ -42,7 +42,7 @@ public class IntRangeFilterTest {
 
     @Test
     public void testDecideSingle() {
-        final IntFilter filter = new IntRangeFilter(0, 0);
+        final IntFilterElement filter = new IntRangeFilterElement(0, 0);
         assertFalse("less than", filter.accept(-1));
         assertTrue("in range", filter.accept(0));
         assertFalse("greater than", filter.accept(1));
@@ -50,7 +50,7 @@ public class IntRangeFilterTest {
 
     @Test
     public void testDecideEmpty() {
-        final IntFilter filter = new IntRangeFilter(10, 0);
+        final IntFilterElement filter = new IntRangeFilterElement(10, 0);
         assertFalse("out", filter.accept(-1));
         assertFalse("out", filter.accept(0));
         assertFalse("out", filter.accept(5));
@@ -60,7 +60,7 @@ public class IntRangeFilterTest {
 
     @Test
     public void testEqualsAndHashCode() {
-        final EqualsVerifierReport ev = EqualsVerifier.forClass(IntRangeFilter.class)
+        final EqualsVerifierReport ev = EqualsVerifier.forClass(IntRangeFilterElement.class)
                 .usingGetClass().report();
         assertEquals("Error: " + ev.getMessage(), EqualsVerifierReport.SUCCESS, ev);
     }

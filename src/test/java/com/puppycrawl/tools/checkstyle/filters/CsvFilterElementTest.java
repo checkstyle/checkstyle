@@ -28,11 +28,11 @@ import org.junit.Test;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
 
-public class CsvFilterTest {
+public class CsvFilterElementTest {
 
     @Test
     public void testDecideSingle() {
-        final IntFilter filter = new CsvFilter("0");
+        final IntFilterElement filter = new CsvFilterElement("0");
         assertFalse("less than", filter.accept(-1));
         assertTrue("equal", filter.accept(0));
         assertFalse("greater than", filter.accept(1));
@@ -40,7 +40,7 @@ public class CsvFilterTest {
 
     @Test
     public void testDecidePair() {
-        final IntFilter filter = new CsvFilter("0, 2");
+        final IntFilterElement filter = new CsvFilterElement("0, 2");
         assertFalse("less than", filter.accept(-1));
         assertTrue("equal 0", filter.accept(0));
         assertFalse("greater than", filter.accept(1));
@@ -49,7 +49,7 @@ public class CsvFilterTest {
 
     @Test
     public void testDecideRange() {
-        final IntFilter filter = new CsvFilter("0-2");
+        final IntFilterElement filter = new CsvFilterElement("0-2");
         assertFalse("less than", filter.accept(-1));
         assertTrue("equal 0", filter.accept(0));
         assertTrue("equal 1", filter.accept(1));
@@ -59,7 +59,7 @@ public class CsvFilterTest {
 
     @Test
     public void testDecideEmptyRange() {
-        final IntFilter filter = new CsvFilter("2-0");
+        final IntFilterElement filter = new CsvFilterElement("2-0");
         assertFalse("less than", filter.accept(-1));
         assertFalse("equal 0", filter.accept(0));
         assertFalse("equal 1", filter.accept(1));
@@ -69,7 +69,7 @@ public class CsvFilterTest {
 
     @Test
     public void testDecideRangePlusValue() {
-        final IntFilter filter = new CsvFilter("0-2, 10");
+        final IntFilterElement filter = new CsvFilterElement("0-2, 10");
         assertFalse("less than", filter.accept(-1));
         assertTrue("equal 0", filter.accept(0));
         assertTrue("equal 1", filter.accept(1));
@@ -80,40 +80,40 @@ public class CsvFilterTest {
 
     @Test
     public void testEmptyChain() {
-        final CsvFilter filter = new CsvFilter("");
+        final CsvFilterElement filter = new CsvFilterElement("");
         assertFalse("0", filter.accept(0));
     }
 
     @Test
     public void testOneFilter() {
-        final CsvFilter filter = new CsvFilter("");
-        filter.addFilter(new IntMatchFilter(0));
+        final CsvFilterElement filter = new CsvFilterElement("");
+        filter.addFilter(new IntMatchFilterElement(0));
         assertTrue("0", filter.accept(0));
         assertFalse("1", filter.accept(1));
     }
 
     @Test
     public void testMultipleFilter() {
-        final CsvFilter filter = new CsvFilter("");
-        filter.addFilter(new IntMatchFilter(0));
-        filter.addFilter(new IntRangeFilter(0, 2));
+        final CsvFilterElement filter = new CsvFilterElement("");
+        filter.addFilter(new IntMatchFilterElement(0));
+        filter.addFilter(new IntRangeFilterElement(0, 2));
         assertTrue("0", filter.accept(0));
         assertTrue("1", filter.accept(1));
-        filter.addFilter(new IntRangeFilter(3, 4));
+        filter.addFilter(new IntRangeFilterElement(3, 4));
         assertTrue("0 is in [3,4]", filter.accept(0));
     }
 
     @Test
     public void testGetFilters() {
-        final CsvFilter filter = new CsvFilter("");
-        filter.addFilter(new IntMatchFilter(0));
+        final CsvFilterElement filter = new CsvFilterElement("");
+        filter.addFilter(new IntMatchFilterElement(0));
         assertEquals("size is the same", 1, filter.getFilters().size());
     }
 
     @Test
     public void testEqualsAndHashCode() {
-        final EqualsVerifierReport ev = EqualsVerifier.forClass(CsvFilter.class).usingGetClass()
-                .report();
+        final EqualsVerifierReport ev = EqualsVerifier.forClass(CsvFilterElement.class)
+                .usingGetClass().report();
         assertEquals("Error: " + ev.getMessage(), EqualsVerifierReport.SUCCESS, ev);
     }
 

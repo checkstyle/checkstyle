@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
  * </ul>
  *
  */
-public class SuppressElement
+public class SuppressFilterElement
     implements Filter {
 
     /** The regexp to match file names against. */
@@ -62,19 +62,19 @@ public class SuppressElement
     private final String moduleId;
 
     /** Line number filter. */
-    private final CsvFilter lineFilter;
+    private final CsvFilterElement lineFilter;
 
     /** CSV for line number filter. */
     private final String linesCsv;
 
     /** Column number filter. */
-    private final CsvFilter columnFilter;
+    private final CsvFilterElement columnFilter;
 
     /** CSV for column number filter. */
     private final String columnsCsv;
 
     /**
-     * Constructs a {@code SuppressElement} for a
+     * Constructs a {@code SuppressFilterElement} for a
      * file name pattern.
      *
      * @param files   regular expression for names of filtered files.
@@ -84,7 +84,7 @@ public class SuppressElement
      * @param lines   lines CSV values and ranges for line number filtering.
      * @param columns columns CSV values and ranges for column number filtering.
      */
-    public SuppressElement(String files, String checks,
+    public SuppressFilterElement(String files, String checks,
                            String message, String modId, String lines, String columns) {
         filePattern = files;
         if (files == null) {
@@ -113,14 +113,14 @@ public class SuppressElement
             lineFilter = null;
         }
         else {
-            lineFilter = new CsvFilter(lines);
+            lineFilter = new CsvFilterElement(lines);
         }
         columnsCsv = columns;
         if (columns == null) {
             columnFilter = null;
         }
         else {
-            columnFilter = new CsvFilter(columns);
+            columnFilter = new CsvFilterElement(columns);
         }
     }
 
@@ -178,7 +178,7 @@ public class SuppressElement
         if (other == null || getClass() != other.getClass()) {
             return false;
         }
-        final SuppressElement suppressElement = (SuppressElement) other;
+        final SuppressFilterElement suppressElement = (SuppressFilterElement) other;
         return Objects.equals(filePattern, suppressElement.filePattern)
                 && Objects.equals(checkPattern, suppressElement.checkPattern)
                 && Objects.equals(messagePattern, suppressElement.messagePattern)

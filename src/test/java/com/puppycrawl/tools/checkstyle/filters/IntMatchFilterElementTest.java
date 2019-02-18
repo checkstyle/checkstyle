@@ -19,44 +19,36 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-/**
- * This filter accepts a matching Integer.
- */
-class IntMatchFilter implements IntFilter {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-    /** The matching Integer. */
-    private final int matchValue;
+import org.junit.Test;
 
-    /**
-     * Constructs a MatchFilter for an int.
-     * @param matchValue the matching int.
-     */
-    IntMatchFilter(int matchValue) {
-        this.matchValue = matchValue;
+import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.EqualsVerifierReport;
+
+public class IntMatchFilterElementTest {
+
+    @Test
+    public void testDecide() {
+        final IntFilterElement filter = new IntMatchFilterElement(0);
+        assertFalse("less than", filter.accept(-1));
+        assertTrue("equal", filter.accept(0));
+        assertFalse("greater than", filter.accept(1));
     }
 
-    @Override
-    public boolean accept(int intValue) {
-        return matchValue == intValue;
+    @Test
+    public void testEqualsAndHashCode() {
+        final EqualsVerifierReport ev = EqualsVerifier.forClass(IntMatchFilterElement.class)
+                .report();
+        assertEquals("Error: " + ev.getMessage(), EqualsVerifierReport.SUCCESS, ev);
     }
 
-    @Override
-    public String toString() {
-        return "IntMatchFilter[" + matchValue + "]";
-    }
-
-    @Override
-    public final int hashCode() {
-        return Integer.valueOf(matchValue).hashCode();
-    }
-
-    @Override
-    public final boolean equals(Object object) {
-        if (object instanceof IntMatchFilter) {
-            final IntMatchFilter other = (IntMatchFilter) object;
-            return matchValue == other.matchValue;
-        }
-        return false;
+    @Test
+    public void testToString() {
+        final IntFilterElement filter = new IntMatchFilterElement(6);
+        assertEquals("Invalid toString result", "IntMatchFilterElement[6]", filter.toString());
     }
 
 }

@@ -121,20 +121,20 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             SuppressionsLoader.loadSuppressions(getPath("InputSuppressionsLoaderMultiple.xml"));
         final FilterSet fc2 = new FilterSet();
 
-        final SuppressElement se0 =
-                new SuppressElement("file0", "check0", null, null, null, null);
+        final SuppressFilterElement se0 =
+                new SuppressFilterElement("file0", "check0", null, null, null, null);
         fc2.addFilter(se0);
-        final SuppressElement se1 =
-                new SuppressElement("file1", "check1", null, null, "1,2-3", null);
+        final SuppressFilterElement se1 =
+                new SuppressFilterElement("file1", "check1", null, null, "1,2-3", null);
         fc2.addFilter(se1);
-        final SuppressElement se2 =
-                new SuppressElement("file2", "check2", null, null, null, "1,2-3");
+        final SuppressFilterElement se2 =
+                new SuppressFilterElement("file2", "check2", null, null, null, "1,2-3");
         fc2.addFilter(se2);
-        final SuppressElement se3 =
-                new SuppressElement("file3", "check3", null, null, "1,2-3", "1,2-3");
+        final SuppressFilterElement se3 =
+                new SuppressFilterElement("file3", "check3", null, null, "1,2-3", "1,2-3");
         fc2.addFilter(se3);
-        final SuppressElement se4 =
-                new SuppressElement(null, null, "message0", null, null, null);
+        final SuppressFilterElement se4 =
+                new SuppressFilterElement(null, null, "message0", null, null, null);
         fc2.addFilter(se4);
         assertEquals("Multiple suppressions were loaded incorrectly", fc2, fc);
     }
@@ -310,7 +310,8 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
     public void testSettingModuleId() throws Exception {
         final FilterSet fc =
                 SuppressionsLoader.loadSuppressions(getPath("InputSuppressionsLoaderWithId.xml"));
-        final SuppressElement suppressElement = (SuppressElement) fc.getFilters().toArray()[0];
+        final SuppressFilterElement suppressElement = (SuppressFilterElement) fc.getFilters()
+                .toArray()[0];
 
         final String id = Whitebox.getInternalState(suppressElement, "moduleId");
         assertEquals("Id has to be defined", "someId", id);
@@ -322,11 +323,11 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final Set<TreeWalkerFilter> filterSet = SuppressionsLoader.loadXpathSuppressions(fn);
 
         final Set<TreeWalkerFilter> expectedFilterSet = new HashSet<>();
-        final XpathFilter xf0 =
-                new XpathFilter("file1", "test", null, "id1", "/CLASS_DEF");
+        final XpathFilterElement xf0 =
+                new XpathFilterElement("file1", "test", null, "id1", "/CLASS_DEF");
         expectedFilterSet.add(xf0);
-        final XpathFilter xf1 =
-                new XpathFilter(null, null, "message1", null, "/CLASS_DEF");
+        final XpathFilterElement xf1 =
+                new XpathFilterElement(null, null, "message1", null, "/CLASS_DEF");
         expectedFilterSet.add(xf1);
         assertEquals("Multiple xpath suppressions were loaded incorrectly", expectedFilterSet,
                 filterSet);

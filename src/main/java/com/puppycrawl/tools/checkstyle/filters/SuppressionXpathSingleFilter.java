@@ -35,9 +35,9 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 public class SuppressionXpathSingleFilter extends AutomaticBean implements
         TreeWalkerFilter {
     /**
-     * XpathFilter instance.
+     * XpathFilterElement instance.
      */
-    private XpathFilter xpathFilter;
+    private XpathFilterElement xpathFilter;
     /**
      * The pattern for file names.
      */
@@ -116,7 +116,7 @@ public class SuppressionXpathSingleFilter extends AutomaticBean implements
 
     @Override
     protected void finishLocalSetup() {
-        xpathFilter = new XpathFilter(files, checks, message, id, query);
+        xpathFilter = new XpathFilterElement(files, checks, message, id, query);
     }
 
     @Override

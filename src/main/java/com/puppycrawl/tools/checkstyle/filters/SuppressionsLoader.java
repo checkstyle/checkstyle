@@ -137,12 +137,12 @@ public final class SuppressionsLoader
                              Attributes attributes)
             throws SAXException {
         if ("suppress".equals(qName)) {
-            //add SuppressElement filter to the filter chain
-            final SuppressElement suppress = getSuppressElement(attributes);
+            //add SuppressFilterElement filter to the filter chain
+            final SuppressFilterElement suppress = getSuppressElement(attributes);
             filterChain.addFilter(suppress);
         }
         else if ("suppress-xpath".equals(qName)) {
-            final XpathFilter filter = getXpathFilter(attributes);
+            final XpathFilterElement filter = getXpathFilter(attributes);
             treeWalkerFilters.add(filter);
         }
     }
@@ -154,7 +154,8 @@ public final class SuppressionsLoader
      * @return the suppress element
      * @throws SAXException if an error occurs.
      */
-    private static SuppressElement getSuppressElement(Attributes attributes) throws SAXException {
+    private static SuppressFilterElement getSuppressElement(Attributes attributes)
+            throws SAXException {
         final String checks = attributes.getValue(ATTRIBUTE_NAME_CHECKS);
         final String modId = attributes.getValue(ATTRIBUTE_NAME_ID);
         final String message = attributes.getValue(ATTRIBUTE_NAME_MESSAGE);
@@ -162,12 +163,12 @@ public final class SuppressionsLoader
             // -@cs[IllegalInstantiation] SAXException is in the overridden method signature
             throw new SAXException("missing checks or id or message attribute");
         }
-        final SuppressElement suppress;
+        final SuppressFilterElement suppress;
         try {
             final String files = attributes.getValue(ATTRIBUTE_NAME_FILES);
             final String lines = attributes.getValue(ATTRIBUTE_NAME_LINES);
             final String columns = attributes.getValue(ATTRIBUTE_NAME_COLUMNS);
-            suppress = new SuppressElement(files, checks, message, modId, lines, columns);
+            suppress = new SuppressFilterElement(files, checks, message, modId, lines, columns);
         }
         catch (final PatternSyntaxException ex) {
             // -@cs[IllegalInstantiation] SAXException is in the overridden method signature
@@ -183,7 +184,7 @@ public final class SuppressionsLoader
      * @return the xpath filter
      * @throws SAXException if an error occurs.
      */
-    private static XpathFilter getXpathFilter(Attributes attributes) throws SAXException {
+    private static XpathFilterElement getXpathFilter(Attributes attributes) throws SAXException {
         final String checks = attributes.getValue(ATTRIBUTE_NAME_CHECKS);
         final String modId = attributes.getValue(ATTRIBUTE_NAME_ID);
         final String message = attributes.getValue(ATTRIBUTE_NAME_MESSAGE);
@@ -191,11 +192,11 @@ public final class SuppressionsLoader
             // -@cs[IllegalInstantiation] SAXException is in the overridden method signature
             throw new SAXException("missing checks or id or message attribute for suppress-xpath");
         }
-        final XpathFilter filter;
+        final XpathFilterElement filter;
         try {
             final String files = attributes.getValue(ATTRIBUTE_NAME_FILES);
             final String xpathQuery = attributes.getValue(ATTRIBUTE_NAME_QUERY);
-            filter = new XpathFilter(files, checks, message, modId, xpathQuery);
+            filter = new XpathFilterElement(files, checks, message, modId, xpathQuery);
         }
         catch (final PatternSyntaxException ex) {
             // -@cs[IllegalInstantiation] SAXException is in the overridden method signature
