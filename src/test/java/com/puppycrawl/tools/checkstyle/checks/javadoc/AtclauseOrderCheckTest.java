@@ -125,4 +125,12 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputAtclauseOrderIncorrect.java"), expected);
     }
 
+    @Test
+    public void testPackageInfo() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(AtclauseOrderCheck.class);
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("package-info.java"), expected);
+    }
+
 }
