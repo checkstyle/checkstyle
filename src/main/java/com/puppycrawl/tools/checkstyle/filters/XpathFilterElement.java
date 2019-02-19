@@ -168,17 +168,17 @@ public class XpathFilterElement implements TreeWalkerFilter {
 
     @Override
     public boolean accept(TreeWalkerAuditEvent event) {
-        return !isFileNameAndModuleAndCheckNameMatching(event)
+        return !isFileNameAndModuleAndModuleNameMatching(event)
                 || !isMessageNameMatching(event)
                 || !isXpathQueryMatching(event);
     }
 
     /**
-     * Is matching by file name, moduleId and Check name.
+     * Is matching by file name, module id and Check name.
      * @param event event
      * @return true if it is matching
      */
-    private boolean isFileNameAndModuleAndCheckNameMatching(TreeWalkerAuditEvent event) {
+    private boolean isFileNameAndModuleAndModuleNameMatching(TreeWalkerAuditEvent event) {
         return event.getFileName() != null
                 && (fileRegexp == null || fileRegexp.matcher(event.getFileName()).find())
                 && event.getLocalizedMessage() != null
@@ -189,7 +189,7 @@ public class XpathFilterElement implements TreeWalkerFilter {
     /**
      * Is matching by message.
      * @param event event
-     * @return true is matching or not set.
+     * @return true if it is matching or not set.
      */
     private boolean isMessageNameMatching(TreeWalkerAuditEvent event) {
         return messageRegexp == null || messageRegexp.matcher(event.getMessage()).find();
@@ -198,7 +198,7 @@ public class XpathFilterElement implements TreeWalkerFilter {
     /**
      * Is matching by xpath query.
      * @param event event
-     * @return true is matching
+     * @return true if it is matching or not set.
      */
     private boolean isXpathQueryMatching(TreeWalkerAuditEvent event) {
         boolean isMatching;
