@@ -292,7 +292,8 @@ public class MainTest {
         exit.checkAssertionAfterwards(() -> {
             assertEquals("Unexpected output log", "", systemOut.getLog());
             assertEquals("Unexpected system error log",
-                    "Invalid value for option '-f': expected one of [xml, plain] but was 'xmlp'"
+                    "Invalid value for option '-f': expected one of [XML, PLAIN]"
+                        + " (case-insensitive) but was 'xmlp'"
                     + EOL + SHORT_USAGE, systemErr.getLog());
         });
         Main.main("-c", "/google_checks.xml", "-f", "xmlp",
