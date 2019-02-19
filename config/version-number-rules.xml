@@ -28,12 +28,6 @@
                 <ignoreVersion type="regex">3.10.0</ignoreVersion>
             </ignoreVersions>
         </rule>
-        <rule groupId="info.picocli" artifactId="picocli">
-            <ignoreVersions>
-                <!-- till https://github.com/checkstyle/checkstyle/issues/6397 -->
-                <ignoreVersion type="regex">3.9.*</ignoreVersion>
-            </ignoreVersions>
-        </rule>
         <rule groupId="org.apache.maven.plugins" artifactId="maven-release-plugin">
             <ignoreVersions>
                 <!-- we use 2.1 version that is defined at our parent
