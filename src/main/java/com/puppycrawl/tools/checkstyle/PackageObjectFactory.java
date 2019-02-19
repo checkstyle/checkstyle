@@ -827,12 +827,6 @@ public class PackageObjectFactory implements ModuleFactory {
      * Fill short-to-full module names map with modules from filters package.
      */
     private static void fillModulesFromFiltersPackage() {
-        NAME_TO_FULL_MODULE_NAME.put("CsvFilterElement",
-                BASE_PACKAGE + ".filters.CsvFilterElement");
-        NAME_TO_FULL_MODULE_NAME.put("IntMatchFilterElement",
-                BASE_PACKAGE + ".filters.IntMatchFilterElement");
-        NAME_TO_FULL_MODULE_NAME.put("IntRangeFilterElement",
-                BASE_PACKAGE + ".filters.IntRangeFilterElement");
         NAME_TO_FULL_MODULE_NAME.put("SeverityMatchFilter",
                 BASE_PACKAGE + ".filters.SeverityMatchFilter");
         NAME_TO_FULL_MODULE_NAME.put("SuppressWithPlainTextCommentFilter",
