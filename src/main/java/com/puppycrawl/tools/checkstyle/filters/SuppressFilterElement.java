@@ -126,28 +126,28 @@ public class SuppressFilterElement
 
     @Override
     public boolean accept(AuditEvent event) {
-        return isFileNameAndModuleNotMatching(event)
+        return !isFileNameAndModuleNameMatching(event)
                 || !isMessageNameMatching(event)
-                || isLineAndColumnMatch(event);
+                || !isLineAndColumnMatching(event);
     }
 
     /**
-     * Is matching by file name and Check name.
+     * Is matching by file name, module id, and Check name.
      * @param event event
-     * @return true is matching
+     * @return true if it is matching
      */
-    private boolean isFileNameAndModuleNotMatching(AuditEvent event) {
-        return event.getFileName() == null
-                || fileRegexp != null && !fileRegexp.matcher(event.getFileName()).find()
-                || event.getLocalizedMessage() == null
-                || moduleId != null && !moduleId.equals(event.getModuleId())
-                || checkRegexp != null && !checkRegexp.matcher(event.getSourceName()).find();
+    private boolean isFileNameAndModuleNameMatching(AuditEvent event) {
+        return event.getFileName() != null
+                && (fileRegexp == null || fileRegexp.matcher(event.getFileName()).find())
+                && event.getLocalizedMessage() != null
+                && (moduleId == null || moduleId.equals(event.getModuleId()))
+                && (checkRegexp == null || checkRegexp.matcher(event.getSourceName()).find());
     }
 
     /**
      * Is matching by message.
      * @param event event
-     * @return true is matching or not set.
+     * @return true if it is matching or not set.
      */
     private boolean isMessageNameMatching(AuditEvent event) {
         return messageRegexp == null || messageRegexp.matcher(event.getMessage()).find();
@@ -156,12 +156,12 @@ public class SuppressFilterElement
     /**
      * Whether line and column match.
      * @param event event to process.
-     * @return true if line and column match.
+     * @return true if line and column are matching or not set.
      */
-    private boolean isLineAndColumnMatch(AuditEvent event) {
-        return (lineFilter != null || columnFilter != null)
-                && (lineFilter == null || !lineFilter.accept(event.getLine()))
-                && (columnFilter == null || !columnFilter.accept(event.getColumn()));
+    private boolean isLineAndColumnMatching(AuditEvent event) {
+        return lineFilter == null && columnFilter == null
+                || lineFilter != null && lineFilter.accept(event.getLine())
+                || columnFilter != null && columnFilter.accept(event.getColumn());
     }
 
     @Override
