@@ -2109,8 +2109,8 @@ class SomeClass
             <td>3.2</td>
           </tr>
           <tr>
-            <td>format</td>
-            <td>Pattern for illegal class names.</td>
+            <td>illegalAbstractClassNameFormat</td>
+            <td>Pattern for illegal abstract class names.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"^(.*[.])?Abstract.*$"</code></td>
             <td>3.2</td>
