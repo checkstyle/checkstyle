@@ -423,4 +423,12 @@ public class JavadocStyleCheckTest
                 + "closedTag=true, incompleteTag=false]", tag.toString());
     }
 
+    @Test
+    public void testNeverEndingXmlCommentInsideJavadoc() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(JavadocStyleCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getPath("InputJavadocStyleNeverEndingXmlComment.java"), expected);
+    }
+
 }
