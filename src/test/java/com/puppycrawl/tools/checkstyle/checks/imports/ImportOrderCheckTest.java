@@ -218,12 +218,12 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            final String messageStart = "cannot initialize module "
-                + "com.puppycrawl.tools.checkstyle.TreeWalker - Cannot set property 'option' to "
-                + "'invalid_option' in module";
-
-            assertTrue("Invalid exception message, should start with: " + messageStart,
-                ex.getMessage().startsWith(messageStart));
+            assertEquals("Invalid exception message",
+                    "cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+                        + "cannot initialize module com.puppycrawl.tools.checkstyle.checks"
+                        + ".imports.ImportOrderCheck - "
+                        + "Cannot set property 'option' to 'invalid_option'",
+                    ex.getMessage());
         }
     }
 
@@ -613,14 +613,14 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            final String messageStart = "cannot initialize module "
-                + "com.puppycrawl.tools.checkstyle.TreeWalker - Cannot set property"
-                + " 'groups' to '/^javax' in module";
-
-            assertTrue("Invalid exception message, should start with: " + messageStart,
-                ex.getMessage().startsWith(messageStart));
+            assertEquals("Invalid exception message",
+                    "cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+                        + "cannot initialize module com.puppycrawl.tools.checkstyle.checks"
+                        + ".imports.ImportOrderCheck - "
+                        + "Cannot set property 'groups' to '/^javax'",
+                    ex.getMessage());
             assertEquals("Invalid exception message", "Invalid group: /^javax",
-                    ex.getCause().getCause().getCause().getMessage());
+                    ex.getCause().getCause().getCause().getCause().getMessage());
         }
     }
 

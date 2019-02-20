@@ -122,8 +122,7 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         catch (CheckstyleException ex) {
             assertEquals("Invalid exception message", "cannot initialize module"
                     + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
-                    + " - Cannot set property 'charset' to 'XSO-8859-1' in module"
-                    + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck",
+                    + " - Cannot set property 'charset' to 'XSO-8859-1'",
                     ex.getMessage());
             assertEquals("Invalid exception message", "unsupported charset: 'XSO-8859-1'",
                     ex.getCause().getCause().getCause().getMessage());
@@ -141,8 +140,7 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         catch (CheckstyleException ex) {
             assertEquals("Invalid exception message", "cannot initialize module"
                     + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
-                    + " - Cannot set property 'headerFile' to '' in module"
-                    + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck",
+                    + " - Cannot set property 'headerFile' to ''",
                     ex.getMessage());
             assertEquals("Invalid exception message",
                     "property 'headerFile' is missing or invalid in module"
@@ -162,8 +160,7 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         catch (CheckstyleException ex) {
             assertEquals("Invalid exception message", "cannot initialize module"
                     + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
-                    + " - Cannot set property 'headerFile' to 'null' in module"
-                    + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck",
+                    + " - Cannot set property 'headerFile' to 'null'",
                     ex.getMessage());
         }
     }

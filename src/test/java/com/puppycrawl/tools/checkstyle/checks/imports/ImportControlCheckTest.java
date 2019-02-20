@@ -451,7 +451,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
      * @return String message of original exception
      */
     private static String getCheckstyleExceptionMessage(CheckstyleException exception) {
-        return exception.getCause().getCause().getCause().getMessage();
+        return exception.getCause().getCause().getCause().getCause().getMessage();
     }
 
 }

@@ -23,7 +23,6 @@ import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_BREAK_BEFORE;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_SAME;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
@@ -317,11 +316,12 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            final String messageStart =
+            assertEquals("Invalid exception message",
                 "cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
-                    + "Cannot set property 'option' to 'invalid_option' in module";
-            assertTrue("Invalid exception message, should start with: " + messageStart,
-                ex.getMessage().startsWith(messageStart));
+                    + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
+                    + "blocks.RightCurlyCheck - "
+                    + "Cannot set property 'option' to 'invalid_option'",
+                ex.getMessage());
         }
     }
 

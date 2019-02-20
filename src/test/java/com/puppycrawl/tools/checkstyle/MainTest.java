@@ -549,8 +549,9 @@ public class MainTest {
             final String output = errorCounterOneMessage.getMessage() + EOL;
             assertEquals("Unexpected output log", output, systemOut.getLog());
             final String errorOutput = "com.puppycrawl.tools.checkstyle.api."
-                    + "CheckstyleException: cannot initialize module TreeWalker"
-                    + " - JavadocVariable is not allowed as a child in JavadocMethod";
+                    + "CheckstyleException: cannot initialize module TreeWalker - "
+                    + "cannot initialize module JavadocMethod - "
+                    + "JavadocVariable is not allowed as a child in JavadocMethod";
             assertTrue("Unexpected system error log", systemErr.getLog().startsWith(errorOutput));
         });
         Main.main("-c", getPath("InputMainConfig-incorrectChildren2.xml"),

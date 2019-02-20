@@ -48,10 +48,10 @@ public class AutomaticBeanTest {
             fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
-            final String expected = "Property 'NonExistent' in module ";
             assertNull("Exceptions cause should be null", ex.getCause());
-            assertTrue("Invalid exception message, should start with: " + expected,
-                    ex.getMessage().startsWith(expected));
+            assertEquals("Invalid exception message",
+                    "Property 'NonExistent' does not exist, please check the documentation",
+                    ex.getMessage());
         }
     }
 
@@ -65,10 +65,10 @@ public class AutomaticBeanTest {
             fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
-            final String expected = "Property 'privateField' in module ";
             assertNull("Exceptions cause should be null", ex.getCause());
-            assertTrue("Invalid exception message, should start with: " + expected,
-                    ex.getMessage().startsWith(expected));
+            assertEquals("Invalid exception message",
+                    "Property 'privateField' does not exist, please check the documentation",
+                    ex.getMessage());
         }
     }
 
