@@ -93,7 +93,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFormat() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
-        checkConfig.addAttribute("format", "^$");
+        checkConfig.addAttribute("illegalAbstractClassNameFormat", "^$");
 
         final String[] expected = {
             "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),

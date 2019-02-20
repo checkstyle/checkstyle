@@ -41,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * <p>Check has following properties:
  *
- * <p><b>format</b> - Pattern for illegal class names.
+ * <p><b>illegalAbstractClassNameFormat</b> - Pattern for illegal abstract class names.
  *
  * <p><b>legalAbstractClassNames</b> - Abstract classes that may be used as types.
  *
@@ -130,7 +130,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
     private List<Integer> memberModifiers;
 
     /** The regexp to match against. */
-    private Pattern format = Pattern.compile("^(.*[.])?Abstract.*$");
+    private Pattern illegalAbstractClassNameFormat = Pattern.compile("^(.*[.])?Abstract.*$");
 
     /**
      * Controls whether to validate abstract class names.
@@ -147,8 +147,8 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * Set the format for the specified regular expression.
      * @param pattern a pattern.
      */
-    public void setFormat(Pattern pattern) {
-        format = pattern;
+    public void setIllegalAbstractClassNameFormat(Pattern pattern) {
+        illegalAbstractClassNameFormat = pattern;
     }
 
     /**
@@ -460,7 +460,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
                 || illegalShortClassNames.contains(shortName)
                 || validateAbstractClassNames
                     && !legalAbstractClassNames.contains(className)
-                    && format.matcher(className).find();
+                    && illegalAbstractClassNameFormat.matcher(className).find();
     }
 
     /**
