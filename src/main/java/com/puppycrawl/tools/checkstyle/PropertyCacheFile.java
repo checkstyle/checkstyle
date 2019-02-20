@@ -57,7 +57,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * configuration has changed.
  *
  */
-final class PropertyCacheFile {
+public final class PropertyCacheFile {
 
     /**
      * The property key to use for storing the hashcode of the
@@ -93,7 +93,7 @@ final class PropertyCacheFile {
      * @param config the current configuration, not null
      * @param fileName the cache file
      */
-    PropertyCacheFile(Configuration config, String fileName) {
+    public PropertyCacheFile(Configuration config, String fileName) {
         if (config == null) {
             throw new IllegalArgumentException("config can not be null");
         }

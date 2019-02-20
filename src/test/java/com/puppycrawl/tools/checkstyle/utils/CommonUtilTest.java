@@ -25,30 +25,19 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.Dictionary;
 import java.util.regex.Pattern;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-@RunWith(PowerMockRunner.class)
 public class CommonUtilTest {
 
     /** After appending to path produces equivalent, but denormalized path. */
@@ -435,27 +424,6 @@ public class CommonUtilTest {
     }
 
     @Test
-    @PrepareForTest({ CommonUtil.class, CommonUtilTest.class })
-    public void testLoadSuppressionsUriSyntaxException() throws Exception {
-        final URL configUrl = mock(URL.class);
-
-        when(configUrl.toURI()).thenThrow(URISyntaxException.class);
-        mockStatic(CommonUtil.class, Mockito.CALLS_REAL_METHODS);
-        final String fileName = "suppressions_none.xml";
-        when(CommonUtil.class.getResource(fileName)).thenReturn(configUrl);
-
-        try {
-            CommonUtil.getUriByFilename(fileName);
-            fail("Exception is expected");
-        }
-        catch (CheckstyleException ex) {
-            assertTrue("Invalid exception cause", ex.getCause() instanceof URISyntaxException);
-            assertEquals("Invalid exception message",
-                "Unable to find: " + fileName, ex.getMessage());
-        }
-    }
-
-    @Test
     public void testIsIntValidString() {
         assertTrue("Should return true when string is null", CommonUtil.isInt("42"));
     }
@@ -472,11 +440,6 @@ public class CommonUtilTest {
             CommonUtil.isInt(null));
     }
 
-    /**
-     * Non meaningful javadoc just to contain "noinspection" tag.
-     * Till https://youtrack.jetbrains.com/issue/IDEA-187210
-     * @noinspection JUnitTestCaseWithNoTests
-     */
     private static class TestCloseable implements Closeable {
 
         private boolean closed;

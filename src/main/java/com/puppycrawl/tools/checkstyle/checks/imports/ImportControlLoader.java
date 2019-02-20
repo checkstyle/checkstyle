@@ -40,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 /**
  * Responsible for loading the contents of an import control configuration file.
  */
-final class ImportControlLoader extends XmlLoader {
+public final class ImportControlLoader extends XmlLoader {
 
     /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_0 =

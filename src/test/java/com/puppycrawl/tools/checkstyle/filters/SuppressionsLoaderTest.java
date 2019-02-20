@@ -24,20 +24,13 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.junit.runner.RunWith;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.reflect.Whitebox;
-import org.xml.sax.InputSource;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
@@ -47,12 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.FilterSet;
 /**
  * Tests SuppressionsLoader.
  */
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({ SuppressionsLoader.class, SuppressionsLoaderTest.class })
 public class SuppressionsLoaderTest extends AbstractPathTestSupport {
-
-    @Rule
-    public final ExpectedException thrown = ExpectedException.none();
 
     @Override
     protected String getPackageLocation() {
@@ -228,38 +216,6 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             result = false;
         }
         return result;
-    }
-
-    @Test
-    public void testUnableToFindSuppressions() throws Exception {
-        final Class<SuppressionsLoader> loaderClass = SuppressionsLoader.class;
-        final Method loadSuppressions =
-            loaderClass.getDeclaredMethod("loadSuppressions", InputSource.class, String.class);
-        loadSuppressions.setAccessible(true);
-
-        final String sourceName = "InputSuppressionsLoaderNone.xml";
-        final InputSource inputSource = new InputSource(sourceName);
-
-        thrown.expect(CheckstyleException.class);
-        thrown.expectMessage("Unable to find: " + sourceName);
-
-        loadSuppressions.invoke(loaderClass, inputSource, sourceName);
-    }
-
-    @Test
-    public void testUnableToReadSuppressions() throws Exception {
-        final Class<SuppressionsLoader> loaderClass = SuppressionsLoader.class;
-        final Method loadSuppressions =
-            loaderClass.getDeclaredMethod("loadSuppressions", InputSource.class, String.class);
-        loadSuppressions.setAccessible(true);
-
-        final InputSource inputSource = new InputSource();
-
-        thrown.expect(CheckstyleException.class);
-        final String sourceName = "InputSuppressionsLoaderNone.xml";
-        thrown.expectMessage("Unable to read " + sourceName);
-
-        loadSuppressions.invoke(loaderClass, inputSource, sourceName);
     }
 
     @Test

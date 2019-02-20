@@ -20,23 +20,16 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
 
 import java.lang.reflect.Method;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest(AuditEvent.class)
 public class AuditEventDefaultFormatterTest {
 
     @Test
@@ -66,38 +59,6 @@ public class AuditEventDefaultFormatterTest {
     }
 
     @Test
-    public void testFormatModuleNameContainsCheckSuffix() {
-        final AuditEvent mock = PowerMockito.mock(AuditEvent.class);
-        when(mock.getSourceName()).thenReturn("TestModuleCheck");
-        when(mock.getSeverityLevel()).thenReturn(SeverityLevel.WARNING);
-        when(mock.getLine()).thenReturn(1);
-        when(mock.getColumn()).thenReturn(1);
-        when(mock.getMessage()).thenReturn("Mocked message.");
-        when(mock.getFileName()).thenReturn("InputMockFile.java");
-        final AuditEventFormatter formatter = new AuditEventDefaultFormatter();
-
-        final String expected = "[WARN] InputMockFile.java:1:1: Mocked message. [TestModule]";
-
-        assertEquals("Invalid format", expected, formatter.format(mock));
-    }
-
-    @Test
-    public void testFormatModuleNameDoesNotContainCheckSuffix() {
-        final AuditEvent mock = PowerMockito.mock(AuditEvent.class);
-        when(mock.getSourceName()).thenReturn("TestModule");
-        when(mock.getSeverityLevel()).thenReturn(SeverityLevel.WARNING);
-        when(mock.getLine()).thenReturn(1);
-        when(mock.getColumn()).thenReturn(1);
-        when(mock.getMessage()).thenReturn("Mocked message.");
-        when(mock.getFileName()).thenReturn("InputMockFile.java");
-        final AuditEventFormatter formatter = new AuditEventDefaultFormatter();
-
-        final String expected = "[WARN] InputMockFile.java:1:1: Mocked message. [TestModule]";
-
-        assertEquals("Invalid format", expected, formatter.format(mock));
-    }
-
-    @Test
     public void testFormatModuleWithModuleId() {
         final LocalizedMessage message = new LocalizedMessage(1, 1, null, null, null,
                 SeverityLevel.WARNING, "ModuleId", TestModule.class, "Mocked message.");
@@ -124,22 +85,12 @@ public class AuditEventDefaultFormatterTest {
         assertEquals("Buffer length is not expected", 54, result);
     }
 
-    /**
-     * Non meaningful javadoc just to contain "noinspection" tag.
-     * Till https://youtrack.jetbrains.com/issue/IDEA-187210
-     * @noinspection JUnitTestCaseWithNoTests
-     */
     private static class TestModuleCheck {
 
         // no code
 
     }
 
-    /**
-     * Non meaningful javadoc just to contain "noinspection" tag.
-     * Till https://youtrack.jetbrains.com/issue/IDEA-187210
-     * @noinspection JUnitTestCaseWithNoTests
-     */
     private static class TestModule {
 
         // no code

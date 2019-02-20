@@ -32,21 +32,14 @@ import java.util.Locale;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
-import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 
-@RunWith(PowerMockRunner.class)
 public class MainFrameModelTest extends AbstractModuleTestSupport {
 
     private static final String FILE_NAME_TEST_DATA = "InputMainFrameModel.java";
-    private static final String FILE_NAME_NON_JAVA = "NotJavaFile.notjava";
     private static final String FILE_NAME_NON_EXISTENT = "non-existent.file";
     private static final String FILE_NAME_NON_COMPILABLE = "InputMainFrameModelIncorrectClass.java";
 
@@ -87,28 +80,6 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testShouldAcceptFile() throws IOException {
-        final File directory = PowerMockito.mock(File.class);
-        PowerMockito.when(directory.isDirectory()).thenReturn(true);
-        assertTrue("MainFrame should accept directory",
-                MainFrameModel.shouldAcceptFile(directory));
-
-        final File javaFile = new File(getPath(FILE_NAME_TEST_DATA));
-        assertTrue("MainFrame should accept java file",
-                MainFrameModel.shouldAcceptFile(javaFile));
-
-        final File nonJavaFile = PowerMockito.mock(File.class);
-        PowerMockito.when(nonJavaFile.isDirectory()).thenReturn(false);
-        PowerMockito.when(nonJavaFile.getName()).thenReturn(FILE_NAME_NON_JAVA);
-        assertFalse("MainFrame should not accept nonJava file",
-                MainFrameModel.shouldAcceptFile(nonJavaFile));
-
-        final File nonExistentFile = new File(getPath(FILE_NAME_NON_EXISTENT));
-        assertFalse("MainFrame should not accept nonexistent file",
-                MainFrameModel.shouldAcceptFile(nonExistentFile));
-    }
-
-    @Test
     public void testOpenFileWithParseModePlainJava() throws Exception {
         // Default parse mode: Plain Java
         model.openFile(testData);
@@ -132,31 +103,6 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
         model.openFile(testData);
 
         verifyCorrectTestDataInFrameModel();
-    }
-
-    @Test
-    @PrepareForTest(ParseMode.class)
-    public void testOpenFileWithUnknownParseMode() throws CheckstyleException {
-        final ParseMode unknownParseMode = PowerMockito.mock(ParseMode.class);
-        Whitebox.setInternalState(unknownParseMode, "ordinal", 3);
-
-        PowerMockito.when(unknownParseMode.toString()).thenReturn("Unknown parse mode");
-        PowerMockito.mockStatic(ParseMode.class);
-        PowerMockito.when(ParseMode.values()).thenReturn(
-                new ParseMode[] {
-                    ParseMode.PLAIN_JAVA, ParseMode.JAVA_WITH_COMMENTS,
-                    ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS, unknownParseMode, });
-
-        try {
-            model.setParseMode(unknownParseMode);
-            model.openFile(testData);
-
-            fail("Expected IllegalArgumentException is not thrown.");
-        }
-        catch (IllegalArgumentException ex) {
-            assertEquals("Invalid exception message",
-                    "Unknown mode: Unknown parse mode", ex.getMessage());
-        }
     }
 
     @Test

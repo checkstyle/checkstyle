@@ -26,31 +26,19 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URL;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.BDDMockito;
-import org.mockito.Mockito;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.AttributesImpl;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({ImportControlLoader.class, URI.class})
 public class ImportControlLoaderTest {
 
     private static String getPath(String filename) {
@@ -133,53 +121,6 @@ public class ImportControlLoaderTest {
                     CheckstyleException.class, ex.getCause().getClass());
             assertTrue("Invalid exception message: " + ex.getCause().getMessage(),
                     ex.getCause().getMessage().startsWith("unable to read"));
-        }
-    }
-
-    @Test
-    public void testInputStreamThatFailsOnClose() throws Exception {
-        final InputStream inputStream = PowerMockito.mock(InputStream.class);
-        Mockito.doThrow(IOException.class).when(inputStream).close();
-        final int available = Mockito.doThrow(IOException.class).when(inputStream).available();
-
-        final URL url = PowerMockito.mock(URL.class);
-        BDDMockito.given(url.openStream()).willReturn(inputStream);
-
-        final URI uri = PowerMockito.mock(URI.class);
-        BDDMockito.given(uri.toURL()).willReturn(url);
-
-        try {
-            ImportControlLoader.load(uri);
-            //Using available to bypass 'ignored result' warning
-            fail("exception expected " + available);
-        }
-        catch (CheckstyleException ex) {
-            final Throwable[] suppressed = ex.getSuppressed();
-            assertEquals("Expected one suppressed exception", 1, suppressed.length);
-            assertSame("Invalid exception class", IOException.class, suppressed[0].getClass());
-        }
-        Mockito.verify(inputStream).close();
-    }
-
-    @Test
-    public void testInputStreamFailsOnRead() throws Exception {
-        final InputStream inputStream = PowerMockito.mock(InputStream.class);
-        final int available = Mockito.doThrow(IOException.class).when(inputStream).available();
-
-        final URL url = PowerMockito.mock(URL.class);
-        BDDMockito.given(url.openStream()).willReturn(inputStream);
-
-        final URI uri = PowerMockito.mock(URI.class);
-        BDDMockito.given(uri.toURL()).willReturn(url);
-
-        try {
-            ImportControlLoader.load(uri);
-            //Using available to bypass 'ignored result' warning
-            fail("exception expected " + available);
-        }
-        catch (CheckstyleException ex) {
-            assertSame("Invalid exception class",
-                    SAXParseException.class, ex.getCause().getClass());
         }
     }
 

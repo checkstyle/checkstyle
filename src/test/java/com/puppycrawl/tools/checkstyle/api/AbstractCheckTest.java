@@ -19,9 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.nio.charset.Charset;
@@ -29,7 +28,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
@@ -61,7 +59,7 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
             }
         };
         // Eventually it will become clear abstract method
-        Assert.assertArrayEquals("Invalid number of tokens, should be empty",
+        assertArrayEquals("Invalid number of tokens, should be empty",
                 CommonUtil.EMPTY_INT_ARRAY, check.getRequiredTokens());
     }
 
@@ -84,33 +82,17 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
             }
         };
         // Eventually it will become clear abstract method
-        Assert.assertArrayEquals("Invalid number of tokens, should be empty",
+        assertArrayEquals("Invalid number of tokens, should be empty",
                 CommonUtil.EMPTY_INT_ARRAY, check.getAcceptableTokens());
     }
 
     @Test
     public void testVisitToken() {
-        final AbstractCheck check = new AbstractCheck() {
-            @Override
-            public int[] getDefaultTokens() {
-                return CommonUtil.EMPTY_INT_ARRAY;
-            }
-
-            @Override
-            public int[] getAcceptableTokens() {
-                return CommonUtil.EMPTY_INT_ARRAY;
-            }
-
-            @Override
-            public int[] getRequiredTokens() {
-                return CommonUtil.EMPTY_INT_ARRAY;
-            }
-        };
-        final AbstractCheck checkSpy = spy(check);
+        final VisitCounterCheck check = new VisitCounterCheck();
         // Eventually it will become clear abstract method
-        checkSpy.visitToken(null);
+        check.visitToken(null);
 
-        verify(checkSpy, times(1)).visitToken(null);
+        assertEquals("expected call count", 1, check.count);
     }
 
     @Test
@@ -135,7 +117,7 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
             new File(getPath("InputAbstractCheckTestFileContents.java")),
             Charset.defaultCharset().name())));
 
-        Assert.assertEquals("Invalid line content", " * I'm a javadoc", check.getLine(3));
+        assertEquals("Invalid line content", " * I'm a javadoc", check.getLine(3));
     }
 
     @Test
@@ -159,7 +141,7 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
         final int tabWidth = 4;
         check.setTabWidth(tabWidth);
 
-        Assert.assertEquals("Invalid tab width", tabWidth, check.getTabWidth());
+        assertEquals("Invalid tab width", tabWidth, check.getTabWidth());
     }
 
     @Test
@@ -183,7 +165,7 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
         final ClassLoader classLoader = ClassLoader.getSystemClassLoader();
         check.setClassLoader(classLoader);
 
-        Assert.assertEquals("Invalid classloader", classLoader, check.getClassLoader());
+        assertEquals("Invalid classloader", classLoader, check.getClassLoader());
     }
 
     @Test
@@ -208,11 +190,11 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
             }
         };
 
-        Assert.assertArrayEquals("Invalid default tokens",
+        assertArrayEquals("Invalid default tokens",
                 defaultTokens, check.getDefaultTokens());
-        Assert.assertArrayEquals("Invalid acceptable tokens",
+        assertArrayEquals("Invalid acceptable tokens",
                 defaultTokens, check.getAcceptableTokens());
-        Assert.assertArrayEquals("Invalid required tokens",
+        assertArrayEquals("Invalid required tokens",
                 requiredTokens, check.getRequiredTokens());
     }
 
@@ -221,9 +203,9 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
         final AbstractCheck check = new DummyAbstractCheck();
 
         check.log(1, "key", "args");
-        Assert.assertEquals("Invalid message size", 1, check.getMessages().size());
+        assertEquals("Invalid message size", 1, check.getMessages().size());
         check.clearMessages();
-        Assert.assertEquals("Invalid message size", 0, check.getMessages().size());
+        assertEquals("Invalid message size", 0, check.getMessages().size());
     }
 
     private static final class DummyAbstractCheck extends AbstractCheck {
@@ -252,6 +234,32 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
             return messages;
         }
 
+    }
+
+    private static final class VisitCounterCheck extends AbstractCheck {
+
+        private int count;
+
+        @Override
+        public int[] getDefaultTokens() {
+            return CommonUtil.EMPTY_INT_ARRAY;
+        }
+
+        @Override
+        public int[] getAcceptableTokens() {
+            return CommonUtil.EMPTY_INT_ARRAY;
+        }
+
+        @Override
+        public int[] getRequiredTokens() {
+            return CommonUtil.EMPTY_INT_ARRAY;
+        }
+
+        @Override
+        public void visitToken(DetailAST ast) {
+            super.visitToken(ast);
+            count++;
+        }
     }
 
 }
