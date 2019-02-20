@@ -148,11 +148,19 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     public void setupChild(Configuration childConf)
             throws CheckstyleException {
         final String name = childConf.getName();
-        final Object module = moduleFactory.createModule(name);
-        if (module instanceof AutomaticBean) {
-            final AutomaticBean bean = (AutomaticBean) module;
-            bean.contextualize(childContext);
-            bean.configure(childConf);
+        final Object module;
+
+        try {
+            module = moduleFactory.createModule(name);
+            if (module instanceof AutomaticBean) {
+                final AutomaticBean bean = (AutomaticBean) module;
+                bean.contextualize(childContext);
+                bean.configure(childConf);
+            }
+        }
+        catch (final CheckstyleException ex) {
+            throw new CheckstyleException("cannot initialize module " + name
+                    + " - " + ex.getMessage(), ex);
         }
         if (module instanceof AbstractCheck) {
             final AbstractCheck check = (AbstractCheck) module;

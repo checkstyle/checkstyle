@@ -23,7 +23,6 @@ import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractio
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
@@ -124,19 +123,17 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            final String messageStart =
+            assertEquals("Invalid exception message",
                 "cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+                    + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
+                    + "metrics.ClassDataAbstractionCouplingCheck - "
                     + "Cannot set property 'excludedPackages' to "
-                    + "'com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.' in module "
-                    + "com.puppycrawl.tools.checkstyle.checks.metrics."
-                    + "ClassDataAbstractionCouplingCheck";
-
-            assertTrue("Invalid exception message, should start with: " + messageStart,
-                ex.getMessage().startsWith(messageStart));
+                    + "'com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.'",
+                ex.getMessage());
             assertEquals("Invalid exception message,",
                     "the following values are not valid identifiers: ["
                             + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.]", ex
-                            .getCause().getCause().getCause().getMessage());
+                            .getCause().getCause().getCause().getCause().getMessage());
         }
     }
 

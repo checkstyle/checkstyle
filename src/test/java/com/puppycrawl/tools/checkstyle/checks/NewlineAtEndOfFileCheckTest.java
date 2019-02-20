@@ -147,11 +147,11 @@ public class NewlineAtEndOfFileCheckTest
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertTrue("Error message is unexpected",
-                    ex.getMessage().startsWith(
+            assertEquals("Error message is unexpected",
                     "cannot initialize module com.puppycrawl.tools.checkstyle."
                             + "checks.NewlineAtEndOfFileCheck - "
-                            + "Cannot set property 'lineSeparator' to 'ct' in module"));
+                            + "Cannot set property 'lineSeparator' to 'ct'",
+                    ex.getMessage());
         }
     }
 

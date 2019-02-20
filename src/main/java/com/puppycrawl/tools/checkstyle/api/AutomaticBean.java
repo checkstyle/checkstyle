@@ -188,7 +188,7 @@ public abstract class AutomaticBean
         for (final String key : attributes) {
             final String value = config.getAttribute(key);
 
-            tryCopyProperty(config.getName(), key, value, true);
+            tryCopyProperty(key, value, true);
         }
 
         finishLocalSetup();
@@ -201,13 +201,12 @@ public abstract class AutomaticBean
 
     /**
      * Recheck property and try to copy it.
-     * @param moduleName name of the module/class
      * @param key key of value
      * @param value value
      * @param recheck whether to check for property existence before copy
      * @throws CheckstyleException then property defined incorrectly
      */
-    private void tryCopyProperty(String moduleName, String key, Object value, boolean recheck)
+    private void tryCopyProperty(String key, Object value, boolean recheck)
             throws CheckstyleException {
         final BeanUtilsBean beanUtils = createBeanUtilsBean();
 
@@ -219,8 +218,8 @@ public abstract class AutomaticBean
                 final PropertyDescriptor descriptor =
                         PropertyUtils.getPropertyDescriptor(this, key);
                 if (descriptor == null) {
-                    final String message = String.format(Locale.ROOT, "Property '%s' in module %s "
-                            + "does not exist, please check the documentation", key, moduleName);
+                    final String message = String.format(Locale.ROOT, "Property '%s' "
+                            + "does not exist, please check the documentation", key);
                     throw new CheckstyleException(message);
                 }
             }
@@ -234,12 +233,12 @@ public abstract class AutomaticBean
             // so we have to join these exceptions with InvocationTargetException
             // to satisfy UTs coverage
             final String message = String.format(Locale.ROOT,
-                    "Cannot set property '%s' to '%s' in module %s", key, value, moduleName);
+                    "Cannot set property '%s' to '%s'", key, value);
             throw new CheckstyleException(message, ex);
         }
         catch (final IllegalArgumentException | ConversionException ex) {
             final String message = String.format(Locale.ROOT, "illegal value '%s' for property "
-                    + "'%s' of module %s", value, key, moduleName);
+                    + "'%s'", value, key);
             throw new CheckstyleException(message, ex);
         }
     }
@@ -256,7 +255,7 @@ public abstract class AutomaticBean
         for (final String key : attributes) {
             final Object value = context.get(key);
 
-            tryCopyProperty(getClass().getName(), key, value, false);
+            tryCopyProperty(key, value, false);
         }
     }
 
