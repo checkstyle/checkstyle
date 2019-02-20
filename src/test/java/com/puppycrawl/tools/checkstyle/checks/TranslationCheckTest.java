@@ -23,22 +23,28 @@ import static com.puppycrawl.tools.checkstyle.checks.TranslationCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.TranslationCheck.MSG_KEY_MISSING_TRANSLATION_FILE;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.endsWith;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.Writer;
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
+import org.powermock.reflect.Whitebox;
 
 import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractXmlTestSupport;
@@ -50,6 +56,7 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -216,6 +223,51 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
             propertyFiles,
             getPath("app-dev.properties"),
             expected);
+    }
+
+    @Test
+    public void testLogIoExceptionFileNotFound() throws Exception {
+        //I can't put wrong file here. Checkstyle fails before check started.
+        //I saw some usage of file or handling of wrong file in Checker, or somewhere
+        //in checks running part. So I had to do it with reflection to improve coverage.
+        final TranslationCheck check = new TranslationCheck();
+        final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
+        final TestMessageDispatcher dispatcher = new TestMessageDispatcher();
+        check.configure(checkConfig);
+        check.setMessageDispatcher(dispatcher);
+
+        final Set<String> keys = Whitebox.invokeMethod(check, "getTranslationKeys",
+                new File(".no.such.file"));
+        assertTrue("Translation keys should be empty when File is not found", keys.isEmpty());
+
+        assertEquals("expected number of errors to fire", 1, dispatcher.savedErrors.size());
+        final LocalizedMessage localizedMessage = new LocalizedMessage(1,
+                Definitions.CHECKSTYLE_BUNDLE, "general.fileNotFound",
+                null, null, getClass(), null);
+        assertEquals("Invalid message", localizedMessage.getMessage(),
+                dispatcher.savedErrors.iterator().next().getMessage());
+    }
+
+    @Test
+    public void testLogIoException() throws Exception {
+        //I can't put wrong file here. Checkstyle fails before check started.
+        //I saw some usage of file or handling of wrong file in Checker, or somewhere
+        //in checks running part. So I had to do it with reflection to improve coverage.
+        final TranslationCheck check = new TranslationCheck();
+        final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
+        final TestMessageDispatcher dispatcher = new TestMessageDispatcher();
+        check.configure(checkConfig);
+        check.setMessageDispatcher(dispatcher);
+
+        final Exception exception = new IOException("test exception");
+        Whitebox.invokeMethod(check, "logException", exception, new File(""));
+
+        assertEquals("expected number of errors to fire", 1, dispatcher.savedErrors.size());
+        final LocalizedMessage localizedMessage = new LocalizedMessage(1,
+                Definitions.CHECKSTYLE_BUNDLE, "general.exception",
+                new String[] {exception.getMessage()}, null, getClass(), null);
+        assertEquals("Invalid message", localizedMessage.getMessage(),
+                dispatcher.savedErrors.iterator().next().getMessage());
     }
 
     @Test
@@ -561,6 +613,27 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
             assertThat("Error message is unexpected",
                     exceptionMessage, endsWith("[TranslationCheck]"));
         }
+    }
+
+    private static class TestMessageDispatcher implements MessageDispatcher {
+
+        private Set<LocalizedMessage> savedErrors;
+
+        @Override
+        public void fireFileStarted(String fileName) {
+            throw new IllegalStateException(fileName);
+        }
+
+        @Override
+        public void fireFileFinished(String fileName) {
+            throw new IllegalStateException(fileName);
+        }
+
+        @Override
+        public void fireErrors(String fileName, SortedSet<LocalizedMessage> errors) {
+            savedErrors = new TreeSet<>(errors);
+        }
+
     }
 
 }
