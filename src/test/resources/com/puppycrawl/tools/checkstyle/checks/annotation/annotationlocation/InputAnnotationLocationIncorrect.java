@@ -11,7 +11,7 @@ class InputAnnotationLocationIncorrect
     @MyAnnotation2 @MyAnnotation1(value = "")
     public int a;
 
-    @MyAnnotation1(value = "") public int b;
+    @MyAnnotation1(value = "") public int b; //warn
 
     @MyAnnotation2
         @MyAnnotation1 //warn
@@ -42,7 +42,7 @@ class InputAnnotationLocationIncorrect
 (value = "")
         public int a;
 
-        @MyAnnotation1(value = "") public int b;
+        @MyAnnotation1(value = "") public int b; //warn
 
         @MyAnnotation2
             @MyAnnotation1 //warn
@@ -53,7 +53,7 @@ class InputAnnotationLocationIncorrect
         public int d;
 
         @MyAnnotation2
-        @MyAnnotation1(value = "") public InnerClass()
+        @MyAnnotation1(value = "") public InnerClass() //warn
         {
             // comment
         }
@@ -72,7 +72,7 @@ class InputAnnotationLocationIncorrect
     {
         @MyAnnotation2 @MyAnnotation1(value = "") public int a;
 
-        @MyAnnotation1(value = "") public int b;
+        @MyAnnotation1(value = "") public int b; //warn
 
         @MyAnnotation2
         @MyAnnotation1(value = "")
@@ -88,7 +88,7 @@ class InputAnnotationLocationIncorrect
           @MyAnnotation2 //warn
         void foo2() {}
 
-        @MyAnnotation1(value = "") void foo42() {}
+        @MyAnnotation1(value = "") void foo42() {} //warn
     };
 
 }

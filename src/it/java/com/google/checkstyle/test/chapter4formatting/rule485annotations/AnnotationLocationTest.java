@@ -53,6 +53,7 @@ public class AnnotationLocationTest extends AbstractModuleTestSupport {
             "78: " + getCheckMessage(clazz, msgLocation, "MyAnnotation2", "11", "8"),
             "81: " + getCheckMessage(clazz, msgLocation, "MyAnnotation2", "10", "8"),
             "90: " + getCheckMessage(clazz, msgLocation, "MyAnnotation2", "1", "0"),
+            "93: " + getCheckMessage(clazz, msgLocationAlone, "MyAnnotationWithParam"),
         };
 
         final String filePath = getPath("InputAnnotationLocation.java");
