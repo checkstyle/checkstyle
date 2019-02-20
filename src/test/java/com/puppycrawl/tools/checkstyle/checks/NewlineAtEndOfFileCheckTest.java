@@ -21,18 +21,11 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_UNABLE_OPEN;
-import static java.util.Locale.ENGLISH;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -199,35 +192,6 @@ public class NewlineAtEndOfFileCheckTest
         final Iterator<LocalizedMessage> iterator = messages.iterator();
         assertEquals("Violation message differs from expected",
                 getCheckMessage(MSG_KEY_UNABLE_OPEN, ""), iterator.next().getMessage());
-    }
-
-    @Test
-    public void testWrongSeparatorLength() throws Exception {
-        final NewlineAtEndOfFileCheck check = new NewlineAtEndOfFileCheck();
-        final DefaultConfiguration checkConfig = createModuleConfig(NewlineAtEndOfFileCheck.class);
-        check.configure(checkConfig);
-
-        final Method method = NewlineAtEndOfFileCheck.class
-                .getDeclaredMethod("endsWithNewline", RandomAccessFile.class);
-        method.setAccessible(true);
-        final RandomAccessFile file = mock(RandomAccessFile.class);
-        when(file.length()).thenReturn(2_000_000L);
-        try {
-            method.invoke(new NewlineAtEndOfFileCheck(), file);
-            fail("Exception is expected");
-        }
-        catch (InvocationTargetException ex) {
-            assertTrue("Error type is unexpected",
-                    ex.getCause() instanceof IOException);
-            if (System.getProperty("os.name").toLowerCase(ENGLISH).startsWith("windows")) {
-                assertEquals("Error message is unexpected",
-                        "Unable to read 2 bytes, got 0", ex.getCause().getMessage());
-            }
-            else {
-                assertEquals("Error message is unexpected",
-                        "Unable to read 1 bytes, got 0", ex.getCause().getMessage());
-            }
-        }
     }
 
 }

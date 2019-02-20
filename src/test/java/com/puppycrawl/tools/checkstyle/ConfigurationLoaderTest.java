@@ -23,10 +23,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.io.File;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
@@ -36,12 +34,7 @@ import java.util.List;
 import java.util.Properties;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.reflect.Whitebox;
-import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
@@ -51,8 +44,6 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 /**
  * Unit test for ConfigurationLoader.
  */
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({DefaultConfiguration.class, ConfigurationLoader.class})
 public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
     @Override
@@ -458,38 +449,6 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testIncorrectTag() throws Exception {
-        try {
-            final Class<?> aClassParent = ConfigurationLoader.class;
-            final Constructor<?> ctorParent = aClassParent.getDeclaredConstructor(
-                    PropertyResolver.class, boolean.class, ThreadModeSettings.class);
-            ctorParent.setAccessible(true);
-            final Object objParent = ctorParent.newInstance(null, true, null);
-
-            final Class<?> aClass = Class.forName("com.puppycrawl.tools.checkstyle."
-                    + "ConfigurationLoader$InternalLoader");
-            final Constructor<?> constructor = aClass.getConstructor(objParent.getClass());
-            constructor.setAccessible(true);
-
-            final Object obj = constructor.newInstance(objParent);
-
-            final Class<?>[] param = new Class<?>[] {String.class, String.class,
-                String.class, Attributes.class, };
-            final Method method = aClass.getDeclaredMethod("startElement", param);
-
-            method.invoke(obj, "", "", "hello", null);
-
-            fail("Exception is expected");
-        }
-        catch (InvocationTargetException ex) {
-            assertTrue("Invalid exception cause",
-                ex.getCause() instanceof IllegalStateException);
-            assertEquals("Invalid exception cause message",
-                "Unknown name:" + "hello" + ".", ex.getCause().getMessage());
-        }
-    }
-
-    @Test
     public void testNonExistentPropertyName() throws Exception {
         try {
             loadConfiguration("InputConfigurationLoaderNonexistentProperty.xml");
@@ -595,37 +554,6 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         final Configuration[] children = config.getChildren();
         assertEquals("Invalid children count",
             0, children[0].getChildren().length);
-    }
-
-    @Test
-    public void testConfigWithIgnoreExceptionalAttributes() throws Exception {
-        // emulate exception from unrelated code, but that is same try-catch
-        final DefaultConfiguration tested = PowerMockito.mock(DefaultConfiguration.class);
-        when(tested.getAttributeNames()).thenReturn(new String[] {"severity"});
-        when(tested.getName()).thenReturn("MemberName");
-        when(tested.getAttribute("severity")).thenThrow(CheckstyleException.class);
-        // to void creation of 2 other mocks for now reason, only one moc is used for all cases
-        PowerMockito.whenNew(DefaultConfiguration.class)
-                .withArguments("MemberName", ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE)
-                .thenReturn(tested);
-        PowerMockito.whenNew(DefaultConfiguration.class)
-                .withArguments("Checker", ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE)
-                .thenReturn(tested);
-        PowerMockito.whenNew(DefaultConfiguration.class)
-                .withArguments("TreeWalker", ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE)
-                .thenReturn(tested);
-
-        try {
-            ConfigurationLoader.loadConfiguration(
-                    getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml"),
-                    new PropertiesExpander(new Properties()), true);
-            fail("Exception is expected");
-        }
-        catch (CheckstyleException expected) {
-            assertEquals("Invalid exception cause message",
-                "Problem during accessing 'severity' attribute for MemberName",
-                    expected.getCause().getMessage());
-        }
     }
 
     @Test

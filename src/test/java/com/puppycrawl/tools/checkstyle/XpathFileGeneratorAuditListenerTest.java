@@ -22,13 +22,9 @@ package com.puppycrawl.tools.checkstyle;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 
@@ -146,7 +142,7 @@ public class XpathFileGeneratorAuditListenerTest {
     }
 
     @Test
-    public void testCorrectOne() throws IOException {
+    public void testCorrectOne() {
         final AuditEvent event = createAuditEvent("InputXpathFileGeneratorAuditListener.java",
                 FIRST_MESSAGE);
 
@@ -169,7 +165,7 @@ public class XpathFileGeneratorAuditListenerTest {
     }
 
     @Test
-    public void testCorrectTwo() throws IOException {
+    public void testCorrectTwo() {
         final AuditEvent event1 = createAuditEvent("InputXpathFileGeneratorAuditListener.java",
                 SECOND_MESSAGE);
 
@@ -199,7 +195,7 @@ public class XpathFileGeneratorAuditListenerTest {
     }
 
     @Test
-    public void testOnlyOneMatching() throws IOException {
+    public void testOnlyOneMatching() {
         final AuditEvent event1 = createAuditEvent("InputXpathFileGeneratorAuditListener.java",
                 10, 5, MethodParamPadCheck.class);
 
@@ -269,8 +265,8 @@ public class XpathFileGeneratorAuditListenerTest {
                 + filename;
     }
 
-    private static void verifyOutput(String expected, AuditEvent... events) throws IOException {
-        final OutputStream out = spy(new ByteArrayOutputStream());
+    private static void verifyOutput(String expected, AuditEvent... events) {
+        final OutputStream out = new ByteArrayOutputStream();
         final XpathFileGeneratorAuditListener listener =
                 new XpathFileGeneratorAuditListener(out, AutomaticBean.OutputStreamOptions.CLOSE);
 
@@ -279,9 +275,6 @@ public class XpathFileGeneratorAuditListenerTest {
         }
 
         listener.auditFinished(null);
-
-        verify(out, times(1)).flush();
-        verify(out, times(1)).close();
 
         final String actual = out.toString();
         assertEquals("Invalid suppressions file content", expected, actual);

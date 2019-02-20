@@ -24,22 +24,14 @@ import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISS
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.mockito.ArgumentMatchers.any;
 
 import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.net.URI;
 import java.util.Set;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
-import org.junit.runner.RunWith;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -47,8 +39,6 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({ HeaderCheck.class, HeaderCheckTest.class, AbstractHeaderCheck.class })
 public class HeaderCheckTest extends AbstractModuleTestSupport {
 
     @Rule
@@ -200,43 +190,6 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         catch (IllegalArgumentException ex) {
             assertEquals("Invalid exception message", "header has already been set - "
                     + "set either header or headerFile, not both", ex.getMessage());
-        }
-    }
-
-    @Test
-    public void testIoExceptionWhenLoadingHeader() throws Exception {
-        final HeaderCheck check = PowerMockito.spy(new HeaderCheck());
-        PowerMockito.doThrow(new IOException("expected exception")).when(check, "loadHeader",
-                any());
-
-        try {
-            check.setHeader("header");
-            fail("Exception expected");
-        }
-        catch (IllegalArgumentException ex) {
-            assertTrue("Invalid exception cause", ex.getCause() instanceof IOException);
-            assertEquals("Invalid exception message", "unable to load header", ex.getMessage());
-        }
-    }
-
-    @Test
-    public void testIoExceptionWhenLoadingHeaderFile() throws Exception {
-        final HeaderCheck check = PowerMockito.spy(new HeaderCheck());
-        PowerMockito.doThrow(new IOException("expected exception")).when(check, "loadHeader",
-                any());
-
-        check.setHeaderFile(CommonUtil.getUriByFilename(getPath("InputHeaderRegexp.java")));
-
-        final Method loadHeaderFile = AbstractHeaderCheck.class.getDeclaredMethod("loadHeaderFile");
-        loadHeaderFile.setAccessible(true);
-        try {
-            loadHeaderFile.invoke(check);
-            fail("Exception expected");
-        }
-        catch (InvocationTargetException ex) {
-            assertTrue("Invalid exception cause", ex.getCause() instanceof CheckstyleException);
-            assertTrue("Invalid exception cause message",
-                ex.getCause().getMessage().startsWith("unable to load header file "));
         }
     }
 

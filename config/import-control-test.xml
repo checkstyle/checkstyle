@@ -7,6 +7,13 @@
 
   <disallow pkg="junit.framework" />
 
+  <!-- Conflicts with normal tests and pitest.
+       See examples in https://github.com/checkstyle/checkstyle/issues/6439 -->
+  <allow class="org.powermock.reflect.Whitebox" />
+  <allow class="org.mockito.internal.util.Checks" />
+  <disallow pkg="org\.powermock.*" regex="true" />
+  <disallow pkg="org\.mockito.*" regex="true" />
+
   <allow pkg=".*" regex="true" />
 
 </import-control>

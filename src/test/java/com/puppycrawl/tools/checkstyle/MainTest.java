@@ -25,9 +25,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -52,9 +49,6 @@ import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 import org.junit.contrib.java.lang.system.SystemErrRule;
 import org.junit.contrib.java.lang.system.SystemOutRule;
 import org.junit.rules.TemporaryFolder;
-import org.junit.runner.RunWith;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -62,10 +56,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecker;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({Main.class, CommonUtil.class})
 public class MainTest {
 
     private static final String SHORT_USAGE = String.format(Locale.ROOT,
@@ -624,40 +615,6 @@ public class MainTest {
 
         Main.main("-c", getPath("InputMainConfig-filelength.xml"),
                 getPath(""));
-    }
-
-    @Test
-    @SuppressWarnings("unchecked")
-    public void testListFilesNotFile() throws Exception {
-        final Class<?> optionsClass = Class.forName(Main.class.getName());
-        final Method method = optionsClass.getDeclaredMethod("listFiles", File.class, List.class);
-        method.setAccessible(true);
-
-        final File fileMock = mock(File.class);
-        when(fileMock.canRead()).thenReturn(true);
-        when(fileMock.isDirectory()).thenReturn(false);
-        when(fileMock.isFile()).thenReturn(false);
-
-        final List<File> result = (List<File>) method.invoke(null, fileMock,
-                new ArrayList<Pattern>());
-        assertEquals("Invalid result size", 0, result.size());
-    }
-
-    @Test
-    @SuppressWarnings("unchecked")
-    public void testListFilesDirectoryWithNull() throws Exception {
-        final Class<?> optionsClass = Class.forName(Main.class.getName());
-        final Method method = optionsClass.getDeclaredMethod("listFiles", File.class, List.class);
-        method.setAccessible(true);
-
-        final File fileMock = mock(File.class);
-        when(fileMock.canRead()).thenReturn(true);
-        when(fileMock.isDirectory()).thenReturn(true);
-        when(fileMock.listFiles()).thenReturn(null);
-
-        final List<File> result = (List<File>) method.invoke(null, fileMock,
-                new ArrayList<Pattern>());
-        assertEquals("Invalid result size", 0, result.size());
     }
 
     @Test
@@ -1412,23 +1369,6 @@ public class MainTest {
                     "Multi thread mode for Checker module is not implemented",
                 ex.getMessage());
         }
-    }
-
-    /**
-     * This test is a workaround for the Jacoco limitations. A call to {@link System#exit(int)}
-     * will never return, so Jacoco coverage probe will be missing. By mocking the {@code System}
-     * class we turn {@code System.exit()} to noop and the Jacoco coverage probe should succeed.
-     *
-     * @throws Exception if error occurs
-     * @see <a href="https://github.com/jacoco/jacoco/issues/117">Jacoco issue 117</a>
-     */
-    @Test
-    public void testJacocoWorkaround() throws Exception {
-        final String expected = "Missing required parameter: <files>" + EOL + SHORT_USAGE;
-        mockStatic(System.class);
-        Main.main();
-        assertEquals("Unexpected output log", "", systemOut.getLog());
-        assertEquals("Unexpected system error log", expected, systemErr.getLog());
     }
 
     @Test

@@ -97,4 +97,6 @@
 
     <!-- HandlerFactory crosses allowed limit for executable statements -->
     <suppress checks="ExecutableStatementCount" files="HandlerFactory\.java"/>
+
+    <suppress id="ImportControlTest" files="[\\/]powermock[\\/]" message=".* - org\.(powermock|mockito).*" />
 </suppressions>
