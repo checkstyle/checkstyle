@@ -24,6 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Check location of annotation on language elements.
@@ -302,7 +303,10 @@ public class AnnotationLocationCheck extends AbstractCheck {
      * @return true if the annotation has parameters.
      */
     private static boolean isParameterized(DetailAST annotation) {
-        return annotation.findFirstToken(TokenTypes.EXPR) != null;
+        return TokenUtil.findFirstTokenByPredicate(annotation, ast -> {
+            return ast.getType() == TokenTypes.EXPR
+                || ast.getType() == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR;
+        }).isPresent();
     }
 
     /**

@@ -90,6 +90,8 @@ class InputAnnotationLocation
  @MyAnnotation2 //warn
 class Foo {}
 
+@MyAnnotationWithParam(value = "bar") class Bar {} //warn
+
 @interface MyAnnotation1 {}
 
 @interface MyAnnotation2 {}
