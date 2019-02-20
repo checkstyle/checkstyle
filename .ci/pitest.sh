@@ -35,7 +35,7 @@ pitest-annotation|pitest-design \
 |pitest-metrics|pitest-modifier|pitest-naming \
 |pitest-sizes|pitest-whitespace \
 |pitest-packagenamesloader \
-|pitest-common-2)
+|pitest-common-2|pitest-misc)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=();
   checkPitestReport "${ignoredItems[@]}"
@@ -318,16 +318,6 @@ pitest-tree-walker)
   "TreeWalker.java.html:<td class='covered'><pre><span  class='survived'>            if (!commentChecks.isEmpty()) {</span></pre></td></tr>"
   "TreeWalker.java.html:<td class='covered'><pre><span  class='survived'>            if (!ordinaryChecks.isEmpty()) {</span></pre></td></tr>"
   "TreeWalker.java.html:<td class='covered'><pre><span  class='survived'>            if (filters.isEmpty()) {</span></pre></td></tr>"
-  );
-  checkPitestReport "${ignoredItems[@]}"
-  ;;
-
-pitest-misc)
-  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
-  declare -a ignoredItems=(
-  "TranslationCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (exception instanceof NoSuchFileException) {</span></pre></td></tr>"
-  "TranslationCheck.java.html:<td class='uncovered'><pre><span  class=''>            args = null;</span></pre></td></tr>"
-  "TranslationCheck.java.html:<td class='uncovered'><pre><span  class=''>            key = &#34;general.fileNotFound&#34;;</span></pre></td></tr>"
   );
   checkPitestReport "${ignoredItems[@]}"
   ;;
