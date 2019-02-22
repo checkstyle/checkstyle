@@ -20,16 +20,9 @@
 package com.puppycrawl.tools.checkstyle.internal.powermock;
 
 import static org.junit.Assert.assertEquals;
-import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.when;
 
-import java.io.File;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
-import java.util.regex.Pattern;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -72,40 +65,6 @@ public class MainPowerTest {
         Main.main();
         assertEquals("Unexpected output log", "", systemOut.getLog());
         assertEquals("Unexpected system error log", expected, systemErr.getLog());
-    }
-
-    @Test
-    @SuppressWarnings("unchecked")
-    public void testListFilesNotFile() throws Exception {
-        final Class<?> optionsClass = Class.forName(Main.class.getName());
-        final Method method = optionsClass.getDeclaredMethod("listFiles", File.class, List.class);
-        method.setAccessible(true);
-
-        final File fileMock = mock(File.class);
-        when(fileMock.canRead()).thenReturn(true);
-        when(fileMock.isDirectory()).thenReturn(false);
-        when(fileMock.isFile()).thenReturn(false);
-
-        final List<File> result = (List<File>) method.invoke(null, fileMock,
-                new ArrayList<Pattern>());
-        assertEquals("Invalid result size", 0, result.size());
-    }
-
-    @Test
-    @SuppressWarnings("unchecked")
-    public void testListFilesDirectoryWithNull() throws Exception {
-        final Class<?> optionsClass = Class.forName(Main.class.getName());
-        final Method method = optionsClass.getDeclaredMethod("listFiles", File.class, List.class);
-        method.setAccessible(true);
-
-        final File fileMock = mock(File.class);
-        when(fileMock.canRead()).thenReturn(true);
-        when(fileMock.isDirectory()).thenReturn(true);
-        when(fileMock.listFiles()).thenReturn(null);
-
-        final List<File> result = (List<File>) method.invoke(null, fileMock,
-                new ArrayList<Pattern>());
-        assertEquals("Invalid result size", 0, result.size());
     }
 
 }

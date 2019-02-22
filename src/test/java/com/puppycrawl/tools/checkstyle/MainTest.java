@@ -49,6 +49,7 @@ import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 import org.junit.contrib.java.lang.system.SystemErrRule;
 import org.junit.contrib.java.lang.system.SystemOutRule;
 import org.junit.rules.TemporaryFolder;
+import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -615,6 +616,67 @@ public class MainTest {
 
         Main.main("-c", getPath("InputMainConfig-filelength.xml"),
                 getPath(""));
+    }
+
+    /**
+     * Test doesn't need to be serialized.
+     * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     */
+    @Test
+    public void testListFilesNotFile() throws Exception {
+        final File fileMock = new File("") {
+            private static final long serialVersionUID = 1L;
+
+            @Override
+            public boolean canRead() {
+                return true;
+            }
+
+            @Override
+            public boolean isDirectory() {
+                return false;
+            }
+
+            @Override
+            public boolean isFile() {
+                return false;
+            }
+        };
+
+        final List<File> result = Whitebox.invokeMethod(Main.class, "listFiles",
+                fileMock, new ArrayList<Pattern>());
+        assertEquals("Invalid result size", 0, result.size());
+    }
+
+    /**
+     * Test doesn't need to be serialized.
+     * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     */
+    @Test
+    public void testListFilesDirectoryWithNull() throws Exception {
+        final File[] nullResult = null;
+        final File fileMock = new File("") {
+            private static final long serialVersionUID = 1L;
+
+            @Override
+            public boolean canRead() {
+                return true;
+            }
+
+            @Override
+            public boolean isDirectory() {
+                return true;
+            }
+
+            @Override
+            public File[] listFiles() {
+                return nullResult;
+            }
+        };
+
+        final List<File> result = Whitebox.invokeMethod(Main.class, "listFiles",
+                fileMock, new ArrayList<Pattern>());
+        assertEquals("Invalid result size", 0, result.size());
     }
 
     @Test

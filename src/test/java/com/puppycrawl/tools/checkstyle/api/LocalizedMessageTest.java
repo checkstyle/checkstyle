@@ -21,13 +21,20 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_OBJECT_ARRAY;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLStreamHandler;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.junit.After;
 import org.junit.Test;
@@ -36,6 +43,12 @@ import org.powermock.reflect.Whitebox;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
 
+/**
+ * Custom class loader is needed to pass URLs to pretend these are loaded from the classpath
+ * though we can't add/change the files for testing. The class loader is nested in this class,
+ * so the custom class loader we are using is safe.
+ * @noinspection ClassLoaderInstantiation
+ */
 public class LocalizedMessageTest {
 
     private static final Locale DEFAULT_LOCALE = Locale.getDefault();
@@ -70,6 +83,117 @@ public class LocalizedMessageTest {
                 Locale.ENGLISH, "java.class",
                 Thread.currentThread().getContextClassLoader(), true);
         assertNull("Bundle should be null when reload is true and URL is null", bundle);
+    }
+
+    /**
+     * Ignore resource errors for testing.
+     * @noinspection resource, IOResourceOpenedButNotSafelyClosed
+     */
+    @Test
+    public void testBundleReloadUrlNotNull() throws IOException {
+        final AtomicBoolean closed = new AtomicBoolean();
+
+        final InputStream inputStream = new InputStream() {
+            @Override
+            public int read() {
+                return -1;
+            }
+
+            @Override
+            public void close() {
+                closed.set(true);
+            }
+        };
+        final URLConnection urlConnection = new URLConnection(null) {
+            @Override
+            public void connect() {
+                // no code
+            }
+
+            @Override
+            public InputStream getInputStream() {
+                return inputStream;
+            }
+        };
+        final URL url = new URL("test", null, 0, "", new URLStreamHandler() {
+            @Override
+            protected URLConnection openConnection(URL u) {
+                return urlConnection;
+            }
+        });
+
+        final LocalizedMessage.Utf8Control control = new LocalizedMessage.Utf8Control();
+        final ResourceBundle bundle = control.newBundle(
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", Locale.ENGLISH,
+                "java.class", new TestUrlsClassLoader(url), true);
+
+        assertNotNull("Bundle should not be null when stream is not null", bundle);
+        assertFalse("connection should not be using caches", urlConnection.getUseCaches());
+        assertTrue("connection should be closed", closed.get());
+    }
+
+    /**
+     * Ignore resource errors for testing.
+     * @noinspection resource, IOResourceOpenedButNotSafelyClosed
+     */
+    @Test
+    public void testBundleReloadUrlNotNullFalseReload() throws IOException {
+        final AtomicBoolean closed = new AtomicBoolean();
+
+        final InputStream inputStream = new InputStream() {
+            @Override
+            public int read() {
+                return -1;
+            }
+
+            @Override
+            public void close() {
+                closed.set(true);
+            }
+        };
+        final URLConnection urlConnection = new URLConnection(null) {
+            @Override
+            public void connect() {
+                // no code
+            }
+
+            @Override
+            public InputStream getInputStream() {
+                return inputStream;
+            }
+        };
+        final URL url = new URL("test", null, 0, "", new URLStreamHandler() {
+            @Override
+            protected URLConnection openConnection(URL u) {
+                return urlConnection;
+            }
+        });
+
+        final LocalizedMessage.Utf8Control control = new LocalizedMessage.Utf8Control();
+        final ResourceBundle bundle = control.newBundle(
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", Locale.ENGLISH,
+                "java.class", new TestUrlsClassLoader(url), false);
+
+        assertNotNull("Bundle should not be null when stream is not null", bundle);
+        assertTrue("connection should not be using caches", urlConnection.getUseCaches());
+        assertTrue("connection should be closed", closed.get());
+    }
+
+    @Test
+    public void testBundleReloadUrlNotNullStreamNull() throws IOException {
+        final URL url = new URL("test", null, 0, "", new URLStreamHandler() {
+            @Override
+            protected URLConnection openConnection(URL u) {
+                return null;
+            }
+        });
+
+        final LocalizedMessage.Utf8Control control = new LocalizedMessage.Utf8Control();
+        final ResourceBundle bundle = control.newBundle(
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages",
+                Locale.ENGLISH, "java.class",
+                new TestUrlsClassLoader(url), true);
+        assertNull("Bundle should be null when stream is null", bundle);
     }
 
     @Test
@@ -189,6 +313,25 @@ public class LocalizedMessageTest {
         Locale.setDefault(DEFAULT_LOCALE);
         LocalizedMessage.clearCache();
         LocalizedMessage.setLocale(DEFAULT_LOCALE);
+    }
+
+    /**
+     * Custom class loader is needed to pass URLs to pretend these are loaded from the classpath
+     * though we can't add/change the files for testing.
+     * @noinspection CustomClassloader
+     */
+    private static class TestUrlsClassLoader extends ClassLoader {
+
+        private final URL url;
+
+        TestUrlsClassLoader(URL url) {
+            this.url = url;
+        }
+
+        @Override
+        public URL getResource(String name) {
+            return url;
+        }
     }
 
 }
