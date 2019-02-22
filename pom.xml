@@ -1827,7 +1827,7 @@
                 <param>com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilterTest</param>
               </targetTests>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>98</mutationThreshold>
+              <mutationThreshold>99</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -2052,8 +2052,8 @@
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
-              <coverageThreshold>97</coverageThreshold>
-              <mutationThreshold>96</mutationThreshold>
+              <coverageThreshold>98</coverageThreshold>
+              <mutationThreshold>97</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -2553,8 +2553,8 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.PackageNamesLoaderTest</param>
               </targetTests>
-              <coverageThreshold>32</coverageThreshold>
-              <mutationThreshold>20</mutationThreshold>
+              <coverageThreshold>100</coverageThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -2729,7 +2729,7 @@
                 <param>com.puppycrawl.tools.checkstyle.MainTest</param>
               </targetTests>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>98</mutationThreshold>
+              <mutationThreshold>99</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -2878,7 +2878,7 @@
                 <param>*.Input*</param>
               </excludedTestClasses>
               <coverageThreshold>99</coverageThreshold>
-              <mutationThreshold>98</mutationThreshold>
+              <mutationThreshold>99</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -2924,7 +2924,7 @@
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
-              <coverageThreshold>99</coverageThreshold>
+              <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>97</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>

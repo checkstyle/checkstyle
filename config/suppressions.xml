@@ -79,7 +79,7 @@
               files="(Checker|Main|CheckstyleAntTask|JavadocDetailNodeParser)\.java"/>
     <suppress checks="ClassDataAbstractionCoupling"
               files="(CheckerTest|AbstractModuleTestSupport|CheckstyleAntTaskTest|
-                     |TranslationCheckTest)\.java"/>
+                     |TranslationCheckTest|LocalizedMessageTest)\.java"/>
     <suppress checks="ClassDataAbstractionCoupling" files="PropertyCacheFileTest\.java"/>
     <suppress checks="ClassDataAbstractionCoupling"
               files="XpathFileGeneratorAuditListenerTest\.java"/>

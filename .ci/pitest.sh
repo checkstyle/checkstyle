@@ -34,6 +34,7 @@ case $1 in
 pitest-annotation|pitest-design \
 |pitest-metrics|pitest-modifier|pitest-naming \
 |pitest-sizes|pitest-whitespace \
+|pitest-packagenamesloader \
 |pitest-common-2)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=();
@@ -74,9 +75,7 @@ pitest-header)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
   "AbstractHeaderCheck.java.html:<td class='uncovered'><pre><span  class=''>            catch (final IOException ex) {</span></pre></td></tr>"
-  "AbstractHeaderCheck.java.html:<td class='uncovered'><pre><span  class=''>        catch (final IOException ex) {</span></pre></td></tr>"
   "AbstractHeaderCheck.java.html:<td class='uncovered'><pre><span  class='survived'>                throw new IllegalArgumentException(&#34;unable to load header&#34;, ex);</span></pre></td></tr>"
-  "AbstractHeaderCheck.java.html:<td class='uncovered'><pre><span  class='survived'>            throw new CheckstyleException(</span></pre></td></tr>"
   "HeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (list.length == 0) {</span></pre></td></tr>"
   "RegexpHeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (list.length == 0) {</span></pre></td></tr>"
   "RegexpHeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>                    isMatch = headerLineNo == headerSize</span></pre></td></tr>"
@@ -94,10 +93,6 @@ pitest-filters)
   "SuppressionCommentFilter.java.html:<td class='covered'><pre><span  class='survived'>            if (line == object.line) {</span></pre></td></tr>"
   "SuppressionXpathSingleFilter.java.html:<td class='covered'><pre><span  class='survived'>        if (checks == null) {</span></pre></td></tr>"
   "SuppressionXpathSingleFilter.java.html:<td class='covered'><pre><span  class='survived'>        if (files == null) {</span></pre></td></tr>"
-  "SuppressionsLoader.java.html:<td class='uncovered'><pre><span  class=''>        catch (final FileNotFoundException ex) {</span></pre></td></tr>"
-  "SuppressionsLoader.java.html:<td class='uncovered'><pre><span  class=''>        catch (final IOException ex) {</span></pre></td></tr>"
-  "SuppressionsLoader.java.html:<td class='uncovered'><pre><span  class='survived'>            throw new CheckstyleException(&#34;Unable to read &#34; + sourceName, ex);</span></pre></td></tr>"
-  "SuppressionsLoader.java.html:<td class='uncovered'><pre><span  class='survived'>            throw new CheckstyleException(UNABLE_TO_FIND_ERROR_MESSAGE + sourceName, ex);</span></pre></td></tr>"
   "SuppressWithNearbyCommentFilter.java.html:<td class='covered'><pre><span  class='survived'>                else if (tagMessageRegexp == null) {</span></pre></td></tr>"
   "SuppressWithNearbyCommentFilter.java.html:<td class='covered'><pre><span  class='survived'>                if (CommonUtil.startsWithChar(format, &#39;+&#39;)) {</span></pre></td></tr>"
   "SuppressWithNearbyCommentFilter.java.html:<td class='covered'><pre><span  class='survived'>        if (event.getLocalizedMessage() != null) {</span></pre></td></tr>"
@@ -126,11 +121,6 @@ pitest-api)
   "FileContents.java.html:<td class='covered'><pre><span  class='survived'>            if (hasIntersection) {</span></pre></td></tr>"
   "FileText.java.html:<td class='covered'><pre><span  class='survived'>        if (lineBreaks == null) {</span></pre></td></tr>"
   "FileText.java.html:<td class='covered'><pre><span  class='survived'>            if (lineNo &#60; lineBreakPositions.length) {</span></pre></td></tr>"
-  "LocalizedMessage.java.html:<td class='covered'><pre><span  class='survived'>                            StandardCharsets.UTF_8.name())) {</span></pre></td></tr>"
-  "LocalizedMessage.java.html:<td class='covered'><pre><span  class='survived'>                        resourceBundle = new PropertyResourceBundle(streamReader);</span></pre></td></tr>"
-  "LocalizedMessage.java.html:<td class='covered'><pre><span  class='survived'>                    connection.setUseCaches(!reload);</span></pre></td></tr>"
-  "LocalizedMessage.java.html:<td class='covered'><pre><span  class='survived'>                if (connection != null) {</span></pre></td></tr>"
-  "LocalizedMessage.java.html:<td class='covered'><pre><span  class='survived'>            if (url != null) {</span></pre></td></tr>"
   );
   checkPitestReport "${ignoredItems[@]}"
   ;;
@@ -138,8 +128,6 @@ pitest-api)
 pitest-main)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
-  "Main.java.html:<td class='covered'><pre><span  class='survived'>                    if (files != null) {</span></pre></td></tr>"
-  "Main.java.html:<td class='covered'><pre><span  class='survived'>                else if (node.isFile()) {</span></pre></td></tr>"
   "Main.java.html:<td class='covered'><pre><span  class='survived'>        if (node.canRead()) {</span></pre></td></tr>"
   "Main.java.html:<td class='covered'><pre><span  class='survived'>        if (options.executeIgnoredModules) {</span></pre></td></tr>"
   "Main.java.html:<td class='covered'><pre><span  class='survived'>        if (outputPath == null) {</span></pre></td></tr>"
@@ -337,15 +325,6 @@ pitest-tree-walker)
 pitest-misc)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
-  "NewlineAtEndOfFileCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (readBytes != len) {</span></pre></td></tr>"
-  "NewlineAtEndOfFileCheck.java.html:<td class='uncovered'><pre><span  class='survived'>                throw new IOException(&#34;Unable to read &#34; + len + &#34; bytes, got &#34;</span></pre></td></tr>"
-  "SuppressWarningsHolder.java.html:<td class='covered'><pre><span  class='survived'>                .getLastColumn() &#62;= column;</span></pre></td></tr>"
-  "SuppressWarningsHolder.java.html:<td class='covered'><pre><span  class='survived'>                ALL_WARNING_MATCHING_ID.equals(entry.getCheckName())</span></pre></td></tr>"
-  "SuppressWarningsHolder.java.html:<td class='covered'><pre><span  class='survived'>            &#38;&#38; (column == 0 || entry.getFirstColumn() &#60;= column);</span></pre></td></tr>"
-  "SuppressWarningsHolder.java.html:<td class='covered'><pre><span  class='survived'>            return firstColumn;</span></pre></td></tr>"
-  "SuppressWarningsHolder.java.html:<td class='covered'><pre><span  class='survived'>            || entry.getFirstLine() == line</span></pre></td></tr>"
-  "SuppressWarningsHolder.java.html:<td class='covered'><pre><span  class='survived'>            || entry.getLastLine() == line &#38;&#38; entry</span></pre></td></tr>"
-  "SuppressWarningsHolder.java.html:<td class='covered'><pre><span  class='survived'>        return entry.getFirstLine() &#60; line</span></pre></td></tr>"
   "TranslationCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (exception instanceof NoSuchFileException) {</span></pre></td></tr>"
   "TranslationCheck.java.html:<td class='uncovered'><pre><span  class=''>            args = null;</span></pre></td></tr>"
   "TranslationCheck.java.html:<td class='uncovered'><pre><span  class=''>            key = &#34;general.fileNotFound&#34;;</span></pre></td></tr>"
@@ -360,45 +339,6 @@ pitest-utils)
   "CommonUtil.java.html:<td class='uncovered'><pre><span  class=''>                catch (final URISyntaxException ex) {</span></pre></td></tr>"
   "CommonUtil.java.html:<td class='uncovered'><pre><span  class=''>                }</span></pre></td></tr>"
   "CommonUtil.java.html:<td class='uncovered'><pre><span  class='survived'>                    throw new CheckstyleException(UNABLE_TO_FIND_EXCEPTION_PREFIX + filename, ex);</span></pre></td></tr>"
-  );
-  checkPitestReport "${ignoredItems[@]}"
-  ;;
-
-pitest-packagenamesloader)
-  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
-  declare -a ignoredItems=(
-  "PackageNamesLoader.java.html:<td class='covered'><pre><span  class='survived'>            while (packageFiles.hasMoreElements()) {</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='covered'><pre><span  class='survived'>    private final Deque&#60;String&#62; packageStack = new ArrayDeque&#60;&#62;();</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class=''>                buf.append(&#39;.&#39;);</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class=''>            buf.append(subPackage);</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class=''>            final String name = attributes.getValue(&#34;name&#34;);</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class=''>            final String subPackage = iterator.next();</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class=''>            packageNames.add(getPackageName());</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class=''>            packageStack.pop();</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class=''>        catch (IOException ex) {</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class=''>        catch (IOException ex) {</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class=''>        catch (ParserConfigurationException | SAXException ex) {</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class=''>        final Iterator&#60;String&#62; iterator = packageStack.descendingIterator();</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class='survived'>                processFile(packageFiles.nextElement(), namesLoader);</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class='survived'>            final InputSource source = new InputSource(stream);</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class='survived'>            if (!CommonUtil.endsWithChar(subPackage, &#39;.&#39;) &#38;&#38; iterator.hasNext()) {</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class='survived'>            namesLoader.parseInputSource(source);</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class='survived'>            packageStack.push(name);</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class='survived'>            throw new CheckstyleException(&#34;unable to get package file resources&#34;, ex);</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class='survived'>            throw new CheckstyleException(&#34;unable to open &#34; + packageFile, ex);</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class='survived'>            throw new CheckstyleException(&#34;unable to open one of package files&#34;, ex);</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class='survived'>        final StringBuilder buf = new StringBuilder(256);</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class='survived'>        if (PACKAGE_ELEMENT_NAME.equals(qName)) {</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class='survived'>        if (PACKAGE_ELEMENT_NAME.equals(qName)) {</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class='survived'>        return buf.toString();</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class='survived'>        try (InputStream stream = new BufferedInputStream(packageFile.openStream())) {</span></pre></td></tr>"
-  "PackageNamesLoader.java.html:<td class='uncovered'><pre><span  class='survived'>        while (iterator.hasNext()) {</span></pre></td></tr>"
   );
   checkPitestReport "${ignoredItems[@]}"
   ;;

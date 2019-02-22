@@ -31,6 +31,7 @@ import java.util.Set;
 
 import org.junit.Test;
 import org.powermock.reflect.Whitebox;
+import org.xml.sax.InputSource;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
@@ -216,6 +217,36 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             result = false;
         }
         return result;
+    }
+
+    @Test
+    public void testUnableToFindSuppressions() throws Exception {
+        final String sourceName = "InputSuppressionsLoaderNone.xml";
+
+        try {
+            Whitebox.invokeMethod(SuppressionsLoader.class, "loadSuppressions",
+                    new InputSource(sourceName), sourceName);
+            fail("CheckstyleException is expected");
+        }
+        catch (CheckstyleException ex) {
+            assertEquals("Invalid exception message", "Unable to find: " + sourceName,
+                    ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testUnableToReadSuppressions() throws Exception {
+        final String sourceName = "InputSuppressionsLoaderNone.xml";
+
+        try {
+            Whitebox.invokeMethod(SuppressionsLoader.class, "loadSuppressions",
+                    new InputSource(), sourceName);
+            fail("CheckstyleException is expected");
+        }
+        catch (CheckstyleException ex) {
+            assertEquals("Invalid exception message", "Unable to read " + sourceName,
+                    ex.getMessage());
+        }
     }
 
     @Test

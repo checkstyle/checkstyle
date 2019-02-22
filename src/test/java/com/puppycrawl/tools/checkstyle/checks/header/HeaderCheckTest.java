@@ -194,6 +194,21 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testIoExceptionWhenLoadingHeaderFile() throws Exception {
+        final HeaderCheck check = new HeaderCheck();
+        check.setHeaderFile(new URI("test://bad"));
+
+        try {
+            Whitebox.invokeMethod(check, "loadHeaderFile");
+            fail("Exception expected");
+        }
+        catch (CheckstyleException ex) {
+            assertTrue("Invalid exception cause message",
+                ex.getMessage().startsWith("unable to load header file "));
+        }
+    }
+
+    @Test
     public void testCacheHeaderFile() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("InputHeaderjava.header"));
