@@ -29,7 +29,6 @@ import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.PACKAGE_SEPAR
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.STRING_SEPARATOR;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
@@ -42,6 +41,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import org.junit.Test;
@@ -341,8 +341,19 @@ public class PackageObjectFactoryTest {
         final Field field = packageObjectFactoryClass.getDeclaredField("NAME_TO_FULL_MODULE_NAME");
         field.setAccessible(true);
         final Collection<String> canonicalNames = ((Map<String, String>) field.get(null)).values();
-        assertFalse("Invalid canonical name", classes.stream()
-                .anyMatch(clazz -> !canonicalNames.contains(clazz.getCanonicalName())));
+
+        final Optional<Class<?>> optional1 = classes.stream()
+                .filter(clazz -> !canonicalNames.contains(clazz.getCanonicalName())).findFirst();
+        if (optional1.isPresent()) {
+            fail("Invalid canonical name: " + optional1.get());
+        }
+        final Optional<String> optional2 = canonicalNames.stream().filter(canonicalName -> {
+            return classes.stream().map(Class::getCanonicalName)
+                    .noneMatch(clssCanonicalName -> clssCanonicalName.equals(canonicalName));
+        }).findFirst();
+        if (optional2.isPresent()) {
+            fail("Invalid class: " + optional2.get());
+        }
     }
 
     @Test
