@@ -96,13 +96,13 @@
   </rule>
   <rule ref="category/java/codestyle.xml/ClassNamingConventions">
     <properties>
-     <!-- Definitions and XmlLoader.FeaturesForVerySecureJavaInstallations aren't utility classes.
+     <!-- Definitions and XmlLoader.LoadExternalDtdFeatureProvider aren't utility classes.
           JavadocTokenTypes and TokenTypes aren't utility classes.
             They are token definition classes. Also, they are part of the API. -->
      <property name="violationSuppressXPath"
                value="//ClassOrInterfaceDeclaration[@Image='Definitions'
                    or @Image='JavadocTokenTypes' or @Image='TokenTypes'
-                   or @Image='FeaturesForVerySecureJavaInstallations']"/>
+                   or @Image='LoadExternalDtdFeatureProvider']"/>
     </properties>
   </rule>
   <rule ref="category/java/codestyle.xml/ConfusingTernary">

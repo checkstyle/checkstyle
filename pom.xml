@@ -2678,12 +2678,12 @@
               </targetTests>
               <excludedMethods>
                 <!--cause of https://github.com/checkstyle/checkstyle/issues/3605-->
-                <param>addFeaturesForVerySecureJavaInstallations</param>
+                <param>setFeaturesBySystemProperty</param>
               </excludedMethods>
               <avoidCallsTo>
                 <!--cause of https://github.com/checkstyle/checkstyle/issues/3605-->
                 <avoidCallsTo>
-                  com.puppycrawl.tools.checkstyle.XmlLoader$FeaturesForVerySecureJavaInstallations
+                  com.puppycrawl.tools.checkstyle.XmlLoader$LoadExternalDtdFeatureProvider
                 </avoidCallsTo>
               </avoidCallsTo>
               <coverageThreshold>100</coverageThreshold>

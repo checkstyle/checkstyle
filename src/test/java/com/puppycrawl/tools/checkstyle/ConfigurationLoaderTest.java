@@ -406,6 +406,8 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         final Properties props = new Properties();
         props.setProperty("checkstyle.basedir", "basedir");
 
+        System.setProperty("org.checkstyle.allowExternalDtdLoad", "true");
+
         final DefaultConfiguration config =
             (DefaultConfiguration) loadConfiguration(
                 "InputConfigurationLoaderExternalEntity.xml", props);
@@ -421,6 +423,8 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         final Properties props = new Properties();
         props.setProperty("checkstyle.basedir", "basedir");
 
+        System.setProperty("org.checkstyle.allowExternalDtdLoad", "true");
+
         final DefaultConfiguration config =
             (DefaultConfiguration) loadConfiguration(
                 "subdir/InputConfigurationLoaderExternalEntitySubDir.xml", props);
@@ -435,6 +439,8 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     public void testExternalEntityFromUri() throws Exception {
         final Properties props = new Properties();
         props.setProperty("checkstyle.basedir", "basedir");
+
+        System.setProperty("org.checkstyle.allowExternalDtdLoad", "true");
 
         final File file = new File(
                 getPath("subdir/InputConfigurationLoaderExternalEntitySubDir.xml"));

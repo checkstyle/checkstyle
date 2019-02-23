@@ -65,7 +65,7 @@ public class XmlLoader
             throws SAXException, ParserConfigurationException {
         this.publicIdToResourceNameMap = new HashMap<>(publicIdToResourceNameMap);
         final SAXParserFactory factory = SAXParserFactory.newInstance();
-        FeaturesForVerySecureJavaInstallations.addFeaturesForVerySecureJavaInstallations(factory);
+        LoadExternalDtdFeatureProvider.setFeaturesBySystemProperty(factory);
         factory.setValidating(true);
         parser = factory.newSAXParser().getXMLReader();
         parser.setContentHandler(this);
@@ -113,7 +113,7 @@ public class XmlLoader
      * Used for setting specific for secure java installations features to SAXParserFactory.
      * Pulled out as a separate class in order to suppress Pitest mutations.
      */
-    public static final class FeaturesForVerySecureJavaInstallations {
+    public static final class LoadExternalDtdFeatureProvider {
 
         /** Feature that enables loading external DTD when loading XML files. */
         private static final String LOAD_EXTERNAL_DTD =
@@ -123,20 +123,26 @@ public class XmlLoader
                 "http://xml.org/sax/features/external-general-entities";
 
         /** Stop instances being created. **/
-        private FeaturesForVerySecureJavaInstallations() {
+        private LoadExternalDtdFeatureProvider() {
         }
 
         /**
          * Configures SAXParserFactory with features required
-         * for execution on very secured environments.
+         * to use extrnal DTD file loading, this is not activated by default to no allow
+         * usage of schema files that checkstyle do not know
+         * it is even security problem to allow files from outside.
          * @param factory factory to be configured with special features
          * @throws SAXException if an error occurs
          * @throws ParserConfigurationException if an error occurs
          */
-        public static void addFeaturesForVerySecureJavaInstallations(SAXParserFactory factory)
+        public static void setFeaturesBySystemProperty(SAXParserFactory factory)
                 throws SAXException, ParserConfigurationException {
-            factory.setFeature(LOAD_EXTERNAL_DTD, true);
-            factory.setFeature(EXTERNAL_GENERAL_ENTITIES, true);
+
+            final boolean allowExternalDtdLoad = Boolean.valueOf(
+                System.getProperty("org.checkstyle.allowExternalDtdLoad", "false"));
+
+            factory.setFeature(LOAD_EXTERNAL_DTD, allowExternalDtdLoad);
+            factory.setFeature(EXTERNAL_GENERAL_ENTITIES, allowExternalDtdLoad);
         }
 
     }
