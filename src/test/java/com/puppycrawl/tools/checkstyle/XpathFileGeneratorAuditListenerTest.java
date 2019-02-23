@@ -266,7 +266,8 @@ public class XpathFileGeneratorAuditListenerTest {
     }
 
     private static void verifyOutput(String expected, AuditEvent... events) {
-        final OutputStream out = new ByteArrayOutputStream();
+        final TestByteArrayOutputStream out = new TestByteArrayOutputStream();
+
         final XpathFileGeneratorAuditListener listener =
                 new XpathFileGeneratorAuditListener(out, AutomaticBean.OutputStreamOptions.CLOSE);
 
@@ -276,7 +277,27 @@ public class XpathFileGeneratorAuditListenerTest {
 
         listener.auditFinished(null);
 
+        assertEquals("expected number of flushes", 1, out.flushCount);
+        assertEquals("expected number of closes", 1, out.closeCount);
+
         final String actual = out.toString();
         assertEquals("Invalid suppressions file content", expected, actual);
+    }
+
+    private static class TestByteArrayOutputStream extends ByteArrayOutputStream {
+
+        private int closeCount;
+        private int flushCount;
+
+        @Override
+        public void close() {
+            closeCount++;
+        }
+
+        @Override
+        public void flush() {
+            flushCount++;
+        }
+
     }
 }

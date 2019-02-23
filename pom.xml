@@ -1329,6 +1329,8 @@
           <exclude>**/GeneratedJavaLexer.class</exclude>
           <exclude>**/JavadocParser.class</exclude>
           <exclude>**/Input*</exclude>
+          <!-- tests need forbidden apis to test the main code fully -->
+          <exclude>**/XpathFileGeneratorAuditListenerTest.class</exclude>
         </excludes>
       </configuration>
       <executions>
@@ -2627,8 +2629,8 @@
                 <!-- this test is required for Checker -->
                 <param>com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilterTest</param>
               </targetTests>
-              <coverageThreshold>98</coverageThreshold>
-              <mutationThreshold>94</mutationThreshold>
+              <coverageThreshold>99</coverageThreshold>
+              <mutationThreshold>95</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -3108,7 +3110,7 @@
                 <param>*.Input*</param>
               </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>93</mutationThreshold>
+              <mutationThreshold>96</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
