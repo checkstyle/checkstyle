@@ -69,5 +69,16 @@
         to an empty string.
       </p>
     </section>
+
+    <section name="Enable External DTD load">
+      <p>
+        The property <code>checkstyle.enableExternalDtdLoad</code>
+        defines ability use custom DTD files inconfig and load them from some location.
+        The property type
+        is <a href="property_types.html#boolean">boolean</a> and defaults
+        to <code>false</code>.
+      </p>
+    </section>
+
   </body>
 </document>
