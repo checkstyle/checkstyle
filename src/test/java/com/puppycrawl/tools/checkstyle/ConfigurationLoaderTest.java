@@ -25,6 +25,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
@@ -455,6 +456,32 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         atts.setProperty("tabWidth", "4");
         atts.setProperty("basedir", "basedir");
         verifyConfigNode(config, "Checker", 2, atts);
+    }
+
+    @Test
+    public void testIncorrectTag() throws Exception {
+        final Class<?> aClassParent = ConfigurationLoader.class;
+        final Constructor<?> ctorParent = aClassParent.getDeclaredConstructor(
+                PropertyResolver.class, boolean.class, ThreadModeSettings.class);
+        ctorParent.setAccessible(true);
+        final Object objParent = ctorParent.newInstance(null, true, null);
+
+        final Class<?> aClass = Class.forName("com.puppycrawl.tools.checkstyle."
+                + "ConfigurationLoader$InternalLoader");
+        final Constructor<?> constructor = aClass.getDeclaredConstructor(objParent.getClass());
+        constructor.setAccessible(true);
+
+        final Object obj = constructor.newInstance(objParent);
+
+        try {
+            Whitebox.invokeMethod(obj, "startElement", "", "", "hello", null);
+
+            fail("Exception is expected");
+        }
+        catch (IllegalStateException ex) {
+            assertEquals("Invalid exception cause message",
+                "Unknown name:" + "hello" + ".", ex.getMessage());
+        }
     }
 
     @Test
