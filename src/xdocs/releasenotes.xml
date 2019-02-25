@@ -15,6 +15,157 @@
 
   <body>
     <!-- placeholder for a new section -->
+
+    <div class="releaseDate">25.02.2019</div>
+    <section name="Release 8.18">
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Disable loading external DTDs by default, create system property to activate it.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6474">#6474</a>
+          </li>
+          <li>
+            IllegalType: rename &quot;format&quot; property to
+            &quot;illegalAbstractClassNameFormat&quot;.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/5900">#5900</a>
+          </li>
+          <li>
+            AnnotationLocation: Remove unused tokens.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6416">#6416</a>
+          </li>
+          <li>
+            Command Line arguments should be allow to exclude a file.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6399">#6399</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            ArrayTypeStyle: add support for brackets in method definition after parameters.
+            Author: Erik Silkensen
+            <a href="https://github.com/checkstyle/checkstyle/issues/6301">#6301</a>
+          </li>
+          <li>
+            new filter SuppressionXpathSingleFilter.
+            Author: jack870131
+            <a href="https://github.com/checkstyle/checkstyle/issues/5879">#5879</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            AnnotationLocation: named parameters must be considered parameters.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6440">#6440</a>
+          </li>
+          <li>
+            JavadocStyleCheck crashes for some Javadoc comments with HTML comments.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/4564">#4564</a>
+          </li>
+          <li>
+            Incorrect warning for empty lambda bodies with google_checks.xml.
+            Author: WANG CHAO
+            <a href="https://github.com/checkstyle/checkstyle/issues/6381">#6381</a>
+          </li>
+          <li>
+            FinalLocalVariable: IllegalStateException.
+            Author: Erik Silkensen
+            <a href="https://github.com/checkstyle/checkstyle/issues/6377">#6377</a>
+          </li>
+          <li>
+            Slowdown with UnusedImportsCheck.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6403">#6403</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            review TreeWalker.setupChild method for exceptional cases.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/4814">#4814</a>
+          </li>
+          <li>
+            Remove powermock.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6439">#6439</a>
+          </li>
+          <li>
+            refactoring in configs.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/4877">#4877</a>
+          </li>
+          <li>
+            update to picocli 3.9.1 result in UT MainTest.testNonExistentOutputFormat failure.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6397">#6397</a>
+          </li>
+          <li>
+            Negate SuppressElement.accept.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/4979">#4979</a>
+          </li>
+          <li>
+            Code samples for Naming Checks.
+            Author: jack870131
+            <a href="https://github.com/checkstyle/checkstyle/issues/5832">#5832</a>
+          </li>
+          <li>
+            Rename Filters which aren&#39;t module filters to FilterElement.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/4978">#4978</a>
+          </li>
+          <li>
+            doc: add File Filter section in extending.xml.
+            Author: WANG CHAO
+          </li>
+          <li>
+            Cache: file skipped on 2nd run when exception happened on it in first run.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6297">#6297</a>
+          </li>
+          <li>
+            Move UTF-8 limitation info in documentation.
+            Author: WANG CHAO
+            <a href="https://github.com/checkstyle/checkstyle/issues/6083">#6083</a>
+          </li>
+          <li>
+            use ForbidAnnotationElementValueCheck from sevntu.checkstyle.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/3567">#3567</a>
+          </li>
+          <li>
+            minor: solved pitest issues with ImportOrderCheck.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6424">#6424</a>
+          </li>
+          <li>
+            Pitest: add new mutator REMOVE_CONDITIONALS.
+            Author: rnveach, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6320">#6320</a>
+          </li>
+          <li>
+            Add build instructions to README.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6236">#6236</a>
+          </li>
+          <li>
+            Indentation: indentation level is being corrupted in class fields.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6308">#6308</a>
+          </li>
+          <li>
+            doc: Fixed grammar errors.
+            Author: Glusk2
+          </li>
+        </ul>
+    </section>
+
     <div class="releaseDate">27.01.2019</div>
     <section name="Release 8.17">
       <p>Breaking backward compatibility:</p>
