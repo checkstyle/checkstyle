@@ -520,7 +520,7 @@ public int foo() { ... }
             <td>When this property is set to true check ignore cases
             when JavaDoc is missing, but still warns when JavaDoc is
             present but either @deprecated is missing from JavaDoc or
-            @deprecated is missing from the element.
+            @Deprecated is missing from the element.
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
