@@ -57,13 +57,17 @@ h2:hover .anchor, h3:hover .anchor {
   white-space: nowrap;
 }
 
-.wrap-content {
-  white-space: pre-wrap !important;
-  white-space: -moz-pre-wrap !important;
-  white-space: -o-pre-wrap !important;
+.wrap-content pre {
+  white-space: pre-line !important;
   word-wrap: break-word !important;
 }
 
+.section {
+  position: relative;
+}
+
 .releaseDate {
-  float: right;
+  position: absolute;
+  top: 0;
+  right: 0;
 }

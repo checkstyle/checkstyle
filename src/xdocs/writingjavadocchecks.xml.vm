@@ -143,7 +143,9 @@ public class MyClass {
       <a href="#Tight-HTML_rules">Tight-HTML</a> code. It is done just to not fail on every
       Javadoc comment, because there are tons of using unclosed tags, etc.
       </p>
+      <p>
       Other rules:
+      </p>
       <ul>
         <li>Document Structure elements (DOCTYPE, &lt;html&gt;, &lt;body&gt;, etc) are
             not mandatory.</li>
@@ -242,7 +244,11 @@ public class MyClass {
 }
       ]]></source>
       <p>Command:</p>
-      <source class="wrap-content">java -jar checkstyle-X.XX-all.jar -J MyClass.java</source>
+      <div class="wrap-content">
+        <source>
+          java -jar checkstyle-X.XX-all.jar -J MyClass.java
+        </source>
+      </div>
       <p>Output:</p>
       <source><![CDATA[
 CLASS_DEF -> CLASS_DEF [5:0]
@@ -302,8 +308,12 @@ CLASS_DEF -> CLASS_DEF [5:0]
  * @see AbstractClass
       ]]></source>
       <p>Command:</p>
-      <source class="wrap-content">java -jar checkstyle-X.XX-all.jar \
-        -j MyJavadocComment.javadoc</source>
+      <div class="wrap-content">
+        <source>
+          java -jar checkstyle-X.XX-all.jar \
+          &#xa0;&#xa0;&#xa0;&#xa0;-j MyJavadocComment.javadoc
+        </source>
+      </div>
       <p>Output:</p>
       <source><![CDATA[
 JAVADOC -> JAVADOC [0:0]
@@ -335,10 +345,12 @@ JAVADOC -> JAVADOC [0:0]
     </section>
 
     <section name="Access Java AST from Javadoc Check">
+      <p>
       As you already know Javadoc parse tree is a result of parsing block comment. There is a
       method to get the original block comment from Javadoc Check.
       You may need this block comment to check its position or something else in java
       <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> tree.
+      </p>
       <p>
       For example, to write a JavadocCheck that verifies @param tags in Javadoc comment of
       a method definition, you also need all method's parameter names. To get method
@@ -468,9 +480,14 @@ JAVADOC -> JAVADOC [0:0]
       Input:
       <source>&lt;audio&gt;test</source>
       Output:
-      <source class="wrap-content">[ERROR:0] Javadoc comment at column 1 has parse error. Missed
-      HTML close tag 'audio'. Sometimes it means that close tag missed for one of previous
-      tags.</source>
+    </p>
+    <div class="wrap-content">
+      <source>
+        [ERROR:0] Javadoc comment at column 1 has parse error. Missed HTML close tag 'audio'.
+        Sometimes it means that close tag missed for one of previous tags.
+      </source>
+    </div>
+    <p>
       As you see Javadoc parser prints error and doesn't build AST if unknown HTML tag doesn't
       have matching end tag. If that a case please create an issue against Checkstyle to
       upgrade parser.
@@ -719,9 +736,11 @@ Checkstyle ends with 5 errors.
       <p>
        Checkstyle GUI allows to showing javadoc tree in java files. To run in use
       </p>
-      <source class="wrap-content">
-java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gui.Main
-      </source>
+      <div class="wrap-content">
+        <source>
+          java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gui.Main
+        </source>
+      </div>
       <p>
        and choose "JAVA WITH JAVADOC MODE" in dropdown list in bottom of frame.
       </p>
@@ -799,30 +818,38 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
     </section>
 
     <section name="Integrating new Javadoc Check">
+      <p>
       Javadoc Checks as well as regular Checks extend
         <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html">
         AbstractCheck</a> class. So integrating new Javadoc Check is similar to
         <a href="writingchecks.html#Integrate_your_Check">integrating other Checks</a>.
+      </p>
     </section>
 
     <section name="Declare check's external resource locations">
-        See <a href="writingchecks.html#Declare_checks_external_resource_locations">Declare check's
-        external resource locations</a>.
+      <p>
+      See <a href="writingchecks.html#Declare_checks_external_resource_locations">Declare check's
+      external resource locations</a>.
+      </p>
     </section>
 
     <section name="Examples of Javadoc Checks">
+      <p>
       The best source knowledge about how to write Javadoc Checks
       could be taken from
       <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fjava+repo%3Acheckstyle%2Fcheckstyle+%22extends+AbstractJavadocCheck%22">
         existing Checks</a>.
+      </p>
     </section>
 
     <section name="Javadoc parser behavior for current HTML version and new HTML version">
+      <p>
       This section shows how parser should/will behave during parsing of current HTML version
       and any new HTML version. Current version is HTML4, new version that need to be supported
       is HTML5.
       GeneralToken - mean that after parsing there will be general AstToken - HTML_TAG.
       SpecialToken - mean that after parsing there will be special AstToken - PARAGRAPH, .... .
+      </p>
       <p><b>Tags with optional (omittable) end tag:</b></p>
       <table style="table-layout: fixed;">
         <tr>
@@ -889,8 +916,10 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
       </table>
       <br/>
       <p><b>Void tags:</b></p>
+      <p>
       Note: "Nested"/"Non-Nested" is not applicable for this type of tags - all of them are looks
       like Non-Nested. Flas "hasUnclosedTag" is "false" for all cases.
+      </p>
       <table style="table-layout: fixed;">
         <tr>
           <th>Input</th>

@@ -968,8 +968,7 @@
         <version>${maven.site.plugin.version}</version>
         <configuration>
           <xdocDirectory>${basedir}/src/xdocs</xdocDirectory>
-          <!-- false till https://issues.apache.org/jira/browse/MSITE-774 -->
-          <validate>false</validate>
+          <validate>true</validate>
         </configuration>
       </plugin>
 

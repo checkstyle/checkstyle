@@ -172,49 +172,49 @@
         </p>
         <p>
           This check processes files in the following way:
-          <ol>
-            <li>
-              Iterates over the list of tokens (defined below) and counts all mentioned classes.
-              <ul>
-                <li>
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
-                PACKAGE_DEF</a>
-                </li>
-                <li>
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
-                IMPORT</a>
-                </li>
-                <li>
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                CLASS_DEF</a>
-                </li>
-                <li>
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                INTERFACE_DEF</a>
-                </li>
-                <li>
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                ENUM_DEF</a>
-                </li>
-                <li>
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
-                LITERAL_NEW</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              If a class was imported with direct import (i.e.
-              <code>import java.math.BigDecimal</code>), or the class was referenced with the
-              package name (i.e. <code>java.math.BigDecimal value</code>) and the package was
-              added to the <code>excludedPackages</code> parameter, the class does not
-              increase complexity.
-            </li>
-            <li>
-              If a class name was added to the <code>excludedClasses</code> parameter,
-              the class does not increase complexity.
-            </li>
-          </ol>
         </p>
+        <ol>
+          <li>
+            Iterates over the list of tokens (defined below) and counts all mentioned classes.
+            <ul>
+              <li>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
+              PACKAGE_DEF</a>
+              </li>
+              <li>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
+              IMPORT</a>
+              </li>
+              <li>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+              CLASS_DEF</a>
+              </li>
+              <li>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+              INTERFACE_DEF</a>
+              </li>
+              <li>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+              ENUM_DEF</a>
+              </li>
+              <li>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
+              LITERAL_NEW</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            If a class was imported with direct import (i.e.
+            <code>import java.math.BigDecimal</code>), or the class was referenced with the
+            package name (i.e. <code>java.math.BigDecimal value</code>) and the package was
+            added to the <code>excludedPackages</code> parameter, the class does not
+            increase complexity.
+          </li>
+          <li>
+            If a class name was added to the <code>excludedClasses</code> parameter,
+            the class does not increase complexity.
+          </li>
+        </ol>
       </subsection>
 
       <subsection name="Properties" id="ClassDataAbstractionCoupling_Properties">
@@ -369,19 +369,19 @@ public class InputClassCoupling {
         <p>
           Override property <code>excludedPackages</code> to mark some packages as excluded.
           Each member of <code>excludedPackages</code> should be a valid identifier:
-          <ul>
-            <li>
-              <code>java.util</code> - valid, excludes all classes inside <code>java.util</code>,
-              but not from the subpackages.
-            </li>
-            <li>
-              <code>java.util.</code> - invalid, should not end with a dot.
-            </li>
-            <li>
-              <code>java.util.*</code> - invalid, should not end with a star.
-            </li>
-          </ul>
         </p>
+        <ul>
+          <li>
+            <code>java.util</code> - valid, excludes all classes inside <code>java.util</code>,
+            but not from the subpackages.
+          </li>
+          <li>
+            <code>java.util.</code> - invalid, should not end with a dot.
+          </li>
+          <li>
+            <code>java.util.*</code> - invalid, should not end with a star.
+          </li>
+        </ul>
         <p>
           Note, that checkstyle will ignore all classes from the <code>java.lang</code>
           package and its subpackages, even if the <code>java.lang</code> was not listed
@@ -485,23 +485,23 @@ public class Foo {
         </p>
         <p>
           This check processes files in the following way:
-          <ol>
-            <li>
-              Iterates over all tokens that might contain type reference.
-            </li>
-            <li>
-              If a class was imported with direct import (i.e.
-              <code>import java.math.BigDecimal</code>), or the class was referenced with the
-              package name (i.e. <code>java.math.BigDecimal value</code>) and the package was
-              added to the <code>excludedPackages</code> parameter, the class does not increase
-              complexity.
-            </li>
-            <li>
-              If a class name was added to the <code>excludedClasses</code> parameter,
-              the class does not increase complexity.
-            </li>
-          </ol>
         </p>
+        <ol>
+          <li>
+            Iterates over all tokens that might contain type reference.
+          </li>
+          <li>
+            If a class was imported with direct import (i.e.
+            <code>import java.math.BigDecimal</code>), or the class was referenced with the
+            package name (i.e. <code>java.math.BigDecimal value</code>) and the package was
+            added to the <code>excludedPackages</code> parameter, the class does not increase
+            complexity.
+          </li>
+          <li>
+            If a class name was added to the <code>excludedClasses</code> parameter,
+            the class does not increase complexity.
+          </li>
+        </ol>
       </subsection>
 
       <subsection name="Properties" id="ClassFanOutComplexity_Properties">
@@ -571,19 +571,19 @@ public class Foo {
         <p>
           Override property <code>excludedPackages</code> to mark some packages as excluded.
           Each member of <code>excludedPackages</code> should be a valid identifier:
-          <ul>
-            <li>
-              <code>java.util</code> - valid, excludes all classes inside <code>java.util</code>,
-              but not from the subpackages.
-            </li>
-            <li>
-              <code>java.util.</code> - invalid, should not end with a dot.
-            </li>
-            <li>
-              <code>java.util.*</code> - invalid, should not end with a star.
-            </li>
-          </ul>
         </p>
+        <ul>
+          <li>
+            <code>java.util</code> - valid, excludes all classes inside <code>java.util</code>,
+            but not from the subpackages.
+          </li>
+          <li>
+            <code>java.util.</code> - invalid, should not end with a dot.
+          </li>
+          <li>
+            <code>java.util.*</code> - invalid, should not end with a star.
+          </li>
+        </ul>
         <p>
           Note, that checkstyle will ignore all classes from the <code>java.lang</code>
           package and its subpackages, even if the <code>java.lang</code> was not listed in

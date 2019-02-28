@@ -16,8 +16,8 @@
   <body>
     <!-- placeholder for a new section -->
 
-    <div class="releaseDate">25.02.2019</div>
     <section name="Release 8.18">
+      <div class="releaseDate">25.02.2019</div>
       <p>Breaking backward compatibility:</p>
         <ul>
           <li>
@@ -166,8 +166,8 @@
         </ul>
     </section>
 
-    <div class="releaseDate">27.01.2019</div>
     <section name="Release 8.17">
+      <div class="releaseDate">27.01.2019</div>
       <p>Breaking backward compatibility:</p>
         <ul>
           <li>
@@ -234,8 +234,8 @@
         </ul>
     </section>
 
-    <div class="releaseDate">30.12.2018</div>
     <section name="Release 8.16">
+      <div class="releaseDate">30.12.2018</div>
       <p>New:</p>
         <ul>
           <li>
@@ -363,8 +363,8 @@ explicit in class members.
         </ul>
     </section>
 
-    <div class="releaseDate">30.11.2018</div>
     <section name="Release 8.15">
+      <div class="releaseDate">30.11.2018</div>
       <p>Breaking backward compatibility:</p>
         <ul>
           <li>
@@ -460,8 +460,8 @@ explicit in class members.
         </ul>
     </section>
 
-    <div class="releaseDate">21.10.2018</div>
     <section name="Release 8.14">
+      <div class="releaseDate">21.10.2018</div>
       <p>New:</p>
         <ul>
           <li>
@@ -485,8 +485,8 @@ explicit in class members.
         </ul>
     </section>
 
-    <div class="releaseDate">04.10.2018</div>
     <section name="Release 8.13">
+      <div class="releaseDate">04.10.2018</div>
       <p>New:</p>
         <ul>
           <li>
@@ -536,8 +536,8 @@ annotations/extends/implements/methods params.
         </ul>
     </section>
 
-    <div class="releaseDate">11.08.2018</div>
     <section name="Release 8.12">
+      <div class="releaseDate">11.08.2018</div>
       <p>New:</p>
         <ul>
           <li>

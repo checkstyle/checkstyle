@@ -324,7 +324,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
  *
  * According to this logic, HttpHeaders.Names should come after HttpHeaders.
- * </p> Example for {@code useContainerOrderingForStatic=true}
+ * </p>
+ * <p>
+ * Example for {@code useContainerOrderingForStatic=true}
+ * </p>
  * <pre>
  * &lt;module name=&quot;ImportOrder&quot;&gt;
  *   &lt;property name=&quot;useContainerOrderingForStatic&quot; value=&quot;true&quot;/&gt;
@@ -341,7 +344,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import static io.netty.handler.codec.http.HttpHeaders.Names.DATE;
  *
  * public class InputEclipseStaticImportsOrder { }
- * </pre> Example for {@code useContainerOrderingForStatic=false}
+ * </pre>
+ * <p>
+ * Example for {@code useContainerOrderingForStatic=false}
+ * </p>
  * <pre>
  * &lt;module name=&quot;ImportOrder&quot;&gt;
  *   &lt;property name=&quot;useContainerOrderingForStatic&quot; value=&quot;false&quot;/&gt;
