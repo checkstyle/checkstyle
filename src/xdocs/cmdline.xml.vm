@@ -184,10 +184,14 @@ java -D&lt;property&gt;=&lt;value&gt;  \
             "https://github.com/checkstyle/checkstyle/releases/download/checkstyle-${projectVersion}/checkstyle-${projectVersion}-all.jar">
           checkstyle-${projectVersion}-all.jar</a>.
           An example of run would be:
-        <source class="wrap-content">
-java -jar checkstyle-${projectVersion}-all.jar -c /sun_checks.xml MyClass.java
-java -jar checkstyle-${projectVersion}-all.jar -c /google_checks.xml MyClass.java
+      </p>
+      <div class="wrap-content">
+        <source>
+          java -jar checkstyle-${projectVersion}-all.jar -c /sun_checks.xml MyClass.java
+          java -jar checkstyle-${projectVersion}-all.jar -c /google_checks.xml MyClass.java
         </source>
+      </div>
+      <p>
         It is recommended to use configuration files that are embedded in jar files, but latest
         configuration files are there:
         <a href=
@@ -205,37 +209,53 @@ java -jar checkstyle-${projectVersion}-all.jar -c /google_checks.xml MyClass.jav
             "https://github.com/checkstyle/checkstyle/releases/download/checkstyle-${projectVersion}/checkstyle-${projectVersion}-all.jar">
           checkstyle-${projectVersion}-all.jar</a>.
           An example of run would be (path to java file is optional):
-        <source class="wrap-content">
-java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gui.Main MyClass.java
-        </source>
       </p>
+      <div class="wrap-content">
+        <source>
+          java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gui.Main \
+          &#xa0;&#xa0;&#xa0;&#xa0;MyClass.java
+        </source>
+      </div>
     </section>
 
     <section name="Run after compilation">
       <p>
         Download and compile:
-        <source class="wrap-content">
-git clone https://github.com/checkstyle/checkstyle.git
-cd checkstyle
-mvn clean compile
-        </source>
-
-        Run validation with arguments:
-        <source class="wrap-content">
-mvn exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.Main" \
-    -Dexec.args="-c /sun_checks.xml src/main/java "
-        </source>
-        Run UI application for file :
-        <source class="wrap-content">
-mvn exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.gui.Main" \
-    -Dexec.args="src/main/java/com/puppycrawl/tools/checkstyle/Checker.java"
-        </source>
-        Build all jars, and launch CLI from new build:
-        <source class="wrap-content">
-mvn clean package -Passembly
-java -jar target/checkstyle-X.X-SNAPSHOT-all.jar -c /sun_checks.xml MyClass.java
-        </source>
       </p>
+      <div class="wrap-content">
+        <source>
+          git clone https://github.com/checkstyle/checkstyle.git
+          cd checkstyle
+          mvn clean compile
+        </source>
+      </div>
+      <p>
+        Run validation with arguments:
+      </p>
+      <div class="wrap-content">
+        <source>
+          mvn exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.Main" \
+          &#xa0;&#xa0;&#xa0;&#xa0;-Dexec.args="-c /sun_checks.xml src/main/java"
+        </source>
+      </div>
+      <p>
+        Run UI application for file :
+      </p>
+      <div class="wrap-content">
+        <source>
+          mvn exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.gui.Main" -Dexec.args=\
+          &#xa0;&#xa0;&#xa0;&#xa0;"src/main/java/com/puppycrawl/tools/checkstyle/Checker.java"
+        </source>
+      </div>
+      <p>
+        Build all jars, and launch CLI from new build:
+      </p>
+      <div class="wrap-content">
+        <source>
+          mvn clean package -Passembly
+          java -jar target/checkstyle-X.X-SNAPSHOT-all.jar -c /sun_checks.xml MyClass.java
+        </source>
+      </div>
     </section>
 
     <section name="Usage by Classpath update">
@@ -261,9 +281,11 @@ java -jar target/checkstyle-X.X-SNAPSHOT-all.jar -c /sun_checks.xml MyClass.java
           <code>docs/sun_checks.xml</code> on a filesystem
         </b>
       </p>
-      <source class="wrap-content">
-java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml Check.java
-      </source>
+      <div class="wrap-content">
+        <source>
+          java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml Check.java
+        </source>
+      </div>
 
       <p>
         <b>
@@ -271,9 +293,11 @@ java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml Check.java
           <code>docs/sun_checks.xml</code> on all Java files in a directory
         </b>
       </p>
-      <source class="wrap-content">
-java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml src/
-      </source>
+      <div class="wrap-content">
+        <source>
+          java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml src/
+        </source>
+      </div>
 
       <p>
         <b>
@@ -282,10 +306,12 @@ java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml src/
           property
         </b>
       </p>
-      <source class="wrap-content">
-java -Dcheckstyle.cache.file=target/cachefile com.puppycrawl.tools.checkstyle.Main \
-    -c docs/sun_checks.xml Check.java
-      </source>
+      <div class="wrap-content">
+        <source>
+          java -Dcheckstyle.cache.file=target/cachefile com.puppycrawl.tools.checkstyle.Main \
+          &#xa0;&#xa0;&#xa0;&#xa0;-c docs/sun_checks.xml Check.java
+        </source>
+      </div>
 
       <p>
         <b>
@@ -294,10 +320,12 @@ java -Dcheckstyle.cache.file=target/cachefile com.puppycrawl.tools.checkstyle.Ma
           file
         </b>
       </p>
-      <source class="wrap-content">
-java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
-  -p myCheckstyle.properties Check.java
-      </source>
+      <div class="wrap-content">
+        <source>
+          java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
+          &#xa0;&#xa0;&#xa0;&#xa0;-p myCheckstyle.properties Check.java
+        </source>
+      </div>
 
       <p>
         <b>
@@ -306,10 +334,12 @@ java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
           XML format
         </b>
       </p>
-      <source class="wrap-content">
-java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml -f xml \
-    -o build/checkstyle_errors.xml Check.java
-      </source>
+      <div class="wrap-content">
+        <source>
+          java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml -f xml \
+          &#xa0;&#xa0;&#xa0;&#xa0;-o build/checkstyle_errors.xml Check.java
+        </source>
+      </div>
 
       <p>
         <b>
@@ -317,10 +347,12 @@ java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml -f xml \
           (Root module, Checks, etc)</a> in configuration file:
         </b>
       </p>
-      <source class="wrap-content">
-java -classpath MyCustom.jar;checkstyle-${projectVersion}-all.jar \
-    com.puppycrawl.tools.checkstyle.Main -c config.xml Check.java
-      </source>
+      <div class="wrap-content">
+        <source>
+          java -classpath MyCustom.jar;checkstyle-${projectVersion}-all.jar \
+          &#xa0;&#xa0;&#xa0;&#xa0;com.puppycrawl.tools.checkstyle.Main -c config.xml Check.java
+        </source>
+      </div>
       <p>
         <b>Note</b>: Custom modules should be specified with the class'
         <a href="writingchecks.html#Integrate_your_Check">full classpath</a>

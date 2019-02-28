@@ -2407,9 +2407,11 @@ try {
     k = 5 / i;
 } catch (ArithmeticException ex) {}
         </code></pre>
+      <p>
         With this property turned off, this raises violation because the beginning of the
         catch block (left curly bracket) is not separated from the end of the catch
         block (right curly bracket).
+      </p>
       </subsection>
 
       <subsection name="Properties" id="WhitespaceAround_Properties">

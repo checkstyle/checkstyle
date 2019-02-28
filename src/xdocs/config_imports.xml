@@ -687,11 +687,11 @@ public class InputIllegalImport { }
         </source>
         <p>
           The following example shows class with two illegal imports
-          <ul>
-            <li><b>java.io.*</b>, illegalPkgs property contains this package</li>
-            <li><b>java.sql.Connection</b> is inside java.sql package</li>
-          </ul>
         </p>
+        <ul>
+          <li><b>java.io.*</b>, illegalPkgs property contains this package</li>
+          <li><b>java.sql.Connection</b> is inside java.sql package</li>
+        </ul>
         <source>
 import java.io.*;           // violation
 import java.lang.ArithmeticException;
@@ -729,11 +729,11 @@ public class InputIllegalImport { }
         </source>
         <p>
           The following example shows class with two illegal imports
-          <ul>
-            <li><b>java.sql.Connection</b>, illegalClasses property contains this class</li>
-            <li><b>java.util.Date</b>, illegalClasses property contains this class</li>
-          </ul>
         </p>
+        <ul>
+          <li><b>java.sql.Connection</b>, illegalClasses property contains this class</li>
+          <li><b>java.util.Date</b>, illegalClasses property contains this class</li>
+        </ul>
         <source>
 import java.io.*;
 import java.lang.ArithmeticException;
@@ -770,12 +770,14 @@ public class InputIllegalImport { }
         </source>
         <p>
           The following example shows class with four illegal imports
-          <ul>
-            <li><b>java.util.List</b></li>
-            <li><b>java.util.Enumeration</b></li>
-            <li><b>java.util.Arrays</b></li>
-            <li><b>java.util.Date</b></li>
-          </ul>
+        </p>
+        <ul>
+          <li><b>java.util.List</b></li>
+          <li><b>java.util.Enumeration</b></li>
+          <li><b>java.util.Arrays</b></li>
+          <li><b>java.util.Date</b></li>
+        </ul>
+        <p>
           All four imports match "java\.util" regular expression
         </p>
         <source>
@@ -817,12 +819,12 @@ public class InputIllegalImport { }
         </source>
         <p>
           The following example shows class with three illegal imports
-          <ul>
-            <li><b>java.sql.Connection</b> matches "^java\.sql\.Connection" regular expression</li>
-            <li><b>java.util.List</b> matches "^java\.util\.(List|Arrays)" regular expression</li>
-            <li><b>java.util.Arrays</b> matches "^java\.util\.(List|Arrays)" regular expression</li>
-          </ul>
         </p>
+        <ul>
+          <li><b>java.sql.Connection</b> matches "^java\.sql\.Connection" regular expression</li>
+          <li><b>java.util.List</b> matches "^java\.util\.(List|Arrays)" regular expression</li>
+          <li><b>java.util.Arrays</b> matches "^java\.util\.(List|Arrays)" regular expression</li>
+        </ul>
         <source>
 import java.io.*;
 import java.lang.ArithmeticException;
@@ -895,34 +897,34 @@ public class InputIllegalImport { }
 
         <p>
           Short description of the behaviour:
-          <ul>
-              <li>Check starts checking from the longest matching subpackage (later 'current
-                  subpackage') or the first file name match described inside import
-                  control file to package defined in class file.
-                  <ul>
-                    <li>The longest matching subpackage is found by starting with the root package
-                        and examining if the any of the sub-packages or file definitions match the
-                        current class' package or file name.</li>
-                    <li>If a file name is matched first, that is considered the longest
-                        match and becomes the current file/subpackage.</li>
-                    <li>If another subpackage is matched, then it's subpackages and file
-                        names are examined for the next longest match and the process repeats
-                        recursively.</li>
-                    <li>If no subpackages or file names are matched, the current subpackage
-                        is then used.</li>
-                  </ul>
-              </li>
-              <li>Order of rules in the same subpackage/root are defined by the order of
-                  declaration in the XML file, which is from top (first) to bottom (last).</li>
-              <li>If there is matching allow/disallow rule inside the current file/subpackage
-                  then the Check returns the first "allowed" or "disallowed" message.</li>
-              <li>If there is no matching allow/disallow rule inside the current file/subpackage
-                  then it continues checking in the parent subpackage.</li>
-              <li>If there is no matching allow/disallow rule in any of the files/subpackages,
-                  including the root level (import-control), then the import is disallowed by
-                  default.</li>
-          </ul>
         </p>
+        <ul>
+            <li>Check starts checking from the longest matching subpackage (later 'current
+                subpackage') or the first file name match described inside import
+                control file to package defined in class file.
+                <ul>
+                  <li>The longest matching subpackage is found by starting with the root package
+                      and examining if the any of the sub-packages or file definitions match the
+                      current class' package or file name.</li>
+                  <li>If a file name is matched first, that is considered the longest
+                      match and becomes the current file/subpackage.</li>
+                  <li>If another subpackage is matched, then it's subpackages and file
+                      names are examined for the next longest match and the process repeats
+                      recursively.</li>
+                  <li>If no subpackages or file names are matched, the current subpackage
+                      is then used.</li>
+                </ul>
+            </li>
+            <li>Order of rules in the same subpackage/root are defined by the order of
+                declaration in the XML file, which is from top (first) to bottom (last).</li>
+            <li>If there is matching allow/disallow rule inside the current file/subpackage
+                then the Check returns the first "allowed" or "disallowed" message.</li>
+            <li>If there is no matching allow/disallow rule inside the current file/subpackage
+                then it continues checking in the parent subpackage.</li>
+            <li>If there is no matching allow/disallow rule in any of the files/subpackages,
+                including the root level (import-control), then the import is disallowed by
+                default.</li>
+        </ul>
 
         <p>
           The DTD for a import control XML document is at <a
@@ -1062,24 +1064,26 @@ public class InputIllegalImport { }
           Property <code>strategyOnMismatch</code> is attribute of <code>import-control</code> and
           <code>subpackage</code> tags.
           Property can have following values for <code>import-control</code> tag:
-          <ul>
-            <li>disallowed (default value) - if there is no matching allow/disallow rule in any of
-                the subpackages, including the root level (import-control), then the import is
-                disallowed.</li>
-            <li>allowed - if there is no matching allow/disallow rule in any of the subpackages,
-                including the root level, then the import is allowed.</li>
-          </ul>
-          And following values for <code>subpackage</code> tags:
-          <ul>
-            <li>delegateToParent (default value) - if there is no matching allow/disallow rule
-                inside the current subpackage, then it continues checking in the parent
-                subpackage.</li>
-            <li>allowed - if there is no matching allow/disallow rule inside the current
-                subpackage, then the import is allowed.</li>
-            <li>disallowed - if there is no matching allow/disallow rule inside the current
-                subpackage, then the import is disallowed.</li>
-          </ul>
         </p>
+        <ul>
+          <li>disallowed (default value) - if there is no matching allow/disallow rule in any of
+              the subpackages, including the root level (import-control), then the import is
+              disallowed.</li>
+          <li>allowed - if there is no matching allow/disallow rule in any of the subpackages,
+              including the root level, then the import is allowed.</li>
+        </ul>
+        <p>
+          And following values for <code>subpackage</code> tags:
+        </p>
+        <ul>
+          <li>delegateToParent (default value) - if there is no matching allow/disallow rule
+              inside the current subpackage, then it continues checking in the parent
+              subpackage.</li>
+          <li>allowed - if there is no matching allow/disallow rule inside the current
+              subpackage, then the import is allowed.</li>
+          <li>disallowed - if there is no matching allow/disallow rule inside the current
+              subpackage, then the import is disallowed.</li>
+        </ul>
 
         <p>
           The following example demonstrates usage of <code>strategyOnMismatch</code> property for
@@ -1673,7 +1677,9 @@ public class SomeClass { ... }
 
           According to this logic, HttpHeaders.Names should come after HttpHeaders.
         </p>
-        Example for <code>useContainerOrderingForStatic=true</code>
+        <p>
+          Example for <code>useContainerOrderingForStatic=true</code>
+        </p>
         <source>
 &lt;module name=&quot;ImportOrder&quot;&gt;
   &lt;property name=&quot;useContainerOrderingForStatic&quot; value=&quot;true&quot;/&gt;
@@ -1691,7 +1697,9 @@ import static io.netty.handler.codec.http.HttpHeaders.Names.DATE;
 
 public class InputEclipseStaticImportsOrder { }
         </source>
-        Example for <code>useContainerOrderingForStatic=false</code>
+        <p>
+          Example for <code>useContainerOrderingForStatic=false</code>
+        </p>
         <source>
 &lt;module name=&quot;ImportOrder&quot;&gt;
   &lt;property name=&quot;useContainerOrderingForStatic&quot; value=&quot;false&quot;/&gt;

@@ -187,9 +187,11 @@ CLASS_DEF -> CLASS_DEF [5:0]
         Still with us? Great, you have mastered the basic theory so here
         is your reward - a GUI that displays the structure of a Java source file. To run it type
       </p>
-      <source class="wrap-content">
-java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gui.Main
-      </source>
+      <div class="wrap-content">
+        <source>
+          java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gui.Main
+        </source>
+      </div>
 
       <p>
         on the command line. Click the button at the bottom of the frame
@@ -606,16 +608,20 @@ public class MethodLimitCheck extends AbstractCheck
       </p>
 
       <p>For Linux/Unix OS:</p>
-      <source class="wrap-content">
-java -classpath mycompanychecks.jar:checkstyle-${projectVersion}-all.jar \
-    com.puppycrawl.tools.checkstyle.Main -c config.xml myproject
-      </source>
+      <div class="wrap-content">
+        <source>
+          java -classpath mycompanychecks.jar:checkstyle-${projectVersion}-all.jar \
+          &#xa0;&#xa0;&#xa0;&#xa0;com.puppycrawl.tools.checkstyle.Main -c config.xml myproject
+        </source>
+      </div>
 
       <p>For Windows OS:</p>
-      <source class="wrap-content">
-java -classpath mycompanychecks.jar;checkstyle-${projectVersion}-all.jar ^
-    com.puppycrawl.tools.checkstyle.Main -c config.xml myproject
-      </source>
+      <div class="wrap-content">
+        <source>
+          java -classpath mycompanychecks.jar;checkstyle-${projectVersion}-all.jar ^
+          &#xa0;&#xa0;&#xa0;&#xa0;com.puppycrawl.tools.checkstyle.Main -c config.xml myproject
+        </source>
+      </div>
 
       <p>
         Did you see all those errors about &quot;too many methods&quot;
@@ -752,6 +758,8 @@ public class LimitImplementationFiles extends AbstractFileSetCheck
        </p>
        <p>
          ATTENTION!
+       </p>
+       <ul>
          <li>
            If
            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">
@@ -769,7 +777,7 @@ public class LimitImplementationFiles extends AbstractFileSetCheck
            <a href="apidocs/com/puppycrawl/tools/checkstyle/TreeWalker.html">
              TreeWalker</a>.
          </li>
-       </p>
+       </ul>
       </section>
 
       <section name="Huh? I can&#39;t figure it out!">
