@@ -1655,6 +1655,7 @@
         <jacoco.skip>true</jacoco.skip>
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <linkcheck.skip>true</linkcheck.skip>
+        <jdepend.skip>true</jdepend.skip>
       </properties>
     </profile>
 
@@ -1673,6 +1674,7 @@
         <jacoco.skip>true</jacoco.skip>
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <linkcheck.skip>true</linkcheck.skip>
+        <jdepend.skip>true</jdepend.skip>
         <!-- difference from "no-validations" -->
         <maven.site.skip>true</maven.site.skip>
       </properties>
