@@ -70,6 +70,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     private static final String[] COMPATIBLE_CHECKS = {
         "AbbreviationAsWordInName",
         "AbstractClassName",
+        "AnnotationLocation",
         "AtclauseOrder",
         "CatchParameterName",
         "ClassMemberImpliedModifier",

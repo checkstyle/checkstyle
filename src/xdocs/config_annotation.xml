@@ -23,8 +23,8 @@
     </section>
 
     <section name="AnnotationLocation">
+      <p>Since Checkstyle 6.0</p>
       <subsection name="Description" id="AnnotationLocation_Description">
-        <p>Since Checkstyle 6.0</p>
         <p>
           Check location of annotation on language elements.
           By default, Check enforce to locate annotations immediately after documentation block
@@ -33,10 +33,12 @@
         </p>
         <p>
           Attention: Annotations among modifiers are ignored (looks like false-negative)
-          as there might be a problem with annotations for return types
-          <source>public @Nullable Long getStartTimeOrNull() { ... }</source>
+          as there might be a problem with annotations for return types:
+        </p>
+        <source>public @Nullable Long getStartTimeOrNull() { ... }</source>
+        <p>
           Such annotations are better to keep close to type.
-          Due to limitations Checkstyle can not examine target of annotation.
+          Due to limitations, Checkstyle can not examine the target of an annotation.
         </p>
         <p>
           Example:
@@ -59,14 +61,14 @@ public String getNameIfPresent() { ... }
           </tr>
           <tr>
             <td>allowSamelineMultipleAnnotations</td>
-            <td>To allow annotation(s) to be located on the same line as target element.</td>
+            <td>Allow annotation(s) to be located on the same line as target element.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
            <td><code>false</code></td>
             <td>6.0</td>
           </tr>
           <tr>
             <td>allowSamelineSingleParameterlessAnnotation</td>
-            <td>To allow single parameterless annotation to be located on the same line as
+            <td>Allow single parameterless annotation to be located on the same line as
                 target element.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
@@ -74,7 +76,7 @@ public String getNameIfPresent() { ... }
           </tr>
           <tr>
             <td>allowSamelineParameterizedAnnotation</td>
-            <td>To allow one and only parameterized annotation to be located on the same line as
+            <td>Allow one and only parameterized annotation to be located on the same line as
                 target element.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
@@ -140,7 +142,7 @@ public String getNameIfPresent() { ... }
 @SuppressWarnings("deprecation") @Mock DataLoader loader; // no violations
         </source>
         <p>
-          Use following configuration:
+          Use the following configuration:
         </p>
         <source>
 &lt;module name=&quot;AnnotationLocation&quot;&gt;
@@ -158,7 +160,7 @@ public String getNameIfPresent() { ... }
 @SuppressWarnings("deprecation") public int foo() { ... } // violation
         </source>
         <p>
-          Use following configuration:
+          Use the following configuration:
         </p>
         <source>
 &lt;module name=&quot;AnnotationLocation&quot;&gt;
@@ -176,7 +178,7 @@ public String getNameIfPresent() { ... }
 @Mock DataLoader loader; // violation
         </source>
         <p>
-          Use following configuration:
+          Use the following configuration:
         </p>
         <source>
 &lt;module name=&quot;AnnotationLocation&quot;&gt;
