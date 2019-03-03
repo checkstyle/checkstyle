@@ -54,7 +54,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             SuppressionsLoader.loadSuppressions(getPath("InputSuppressionsLoaderNone.xml"));
         final FilterSet fc2 = new FilterSet();
         assertEquals("No suppressions should be loaded, but found: " + fc.getFilters().size(),
-            fc2, fc);
+            fc2.getFilters(), fc.getFilters());
     }
 
     @Test
@@ -77,7 +77,8 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         // when https://github.com/jayway/powermock/issues/428 will be fixed
         if (actualFilterSet != null) {
             final FilterSet expectedFilterSet = new FilterSet();
-            assertEquals("Failed to load from url", expectedFilterSet, actualFilterSet);
+            assertEquals("Failed to load from url", expectedFilterSet.getFilters(),
+                    actualFilterSet.getFilters());
         }
     }
 
@@ -125,7 +126,8 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final SuppressFilterElement se4 =
                 new SuppressFilterElement(null, null, "message0", null, null, null);
         fc2.addFilter(se4);
-        assertEquals("Multiple suppressions were loaded incorrectly", fc2, fc);
+        assertEquals("Multiple suppressions were loaded incorrectly", fc2.getFilters(),
+                fc.getFilters());
     }
 
     @Test
@@ -290,7 +292,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final FilterSet fc =
             SuppressionsLoader.loadSuppressions(getPath("InputSuppressionsLoaderNone.xml"));
         final FilterSet fc2 = new FilterSet();
-        assertEquals("Suppressions were not loaded", fc2, fc);
+        assertEquals("Suppressions were not loaded", fc2.getFilters(), fc.getFilters());
     }
 
     @Test
