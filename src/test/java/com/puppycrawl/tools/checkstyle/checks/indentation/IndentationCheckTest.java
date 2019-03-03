@@ -29,7 +29,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -164,7 +163,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             final IndentComment... linesWithWarn) throws Exception {
         final Checker checker = createChecker(config);
         checker.addListener(new IndentAudit(linesWithWarn));
-        verify(checker, new File[] {new File(filePath)}, filePath, expected);
+        verify(checker, filePath, expected);
     }
 
     @Override
