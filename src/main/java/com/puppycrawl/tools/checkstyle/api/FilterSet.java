@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -62,23 +61,6 @@ public class FilterSet
     @Override
     public String toString() {
         return filters.toString();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (other == null || getClass() != other.getClass()) {
-            return false;
-        }
-        final FilterSet filterSet = (FilterSet) other;
-        return Objects.equals(filters, filterSet.filters);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(filters);
     }
 
     @Override
