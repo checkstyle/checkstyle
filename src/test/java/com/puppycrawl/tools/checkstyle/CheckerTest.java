@@ -1203,6 +1203,32 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testTabViolationDefault() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(VerifyPositionAfterTabFileSet.class);
+        final String[] expected = {
+            "2:9: violation",
+            "3:17: violation",
+        };
+        verify(checkConfig, getPath("InputCheckerTabCharacter.txt"),
+            expected);
+    }
+
+    @Test
+    public void testTabViolation() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(VerifyPositionAfterTabFileSet.class);
+        final DefaultConfiguration checkerConfig = createRootConfig(checkConfig);
+        checkerConfig.addAttribute("tabWidth", "4");
+        final String[] expected = {
+            "2:5: violation",
+            "3:9: violation",
+        };
+        verify(checkerConfig, getPath("InputCheckerTabCharacter.txt"),
+            expected);
+    }
+
+    @Test
     public void testCheckerProcessCallAllNeededMethodsOfFileSets() throws Exception {
         final DummyFileSet fileSet = new DummyFileSet();
         final Checker checker = new Checker();
@@ -1641,6 +1667,23 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         public MessageDispatcher getInternalMessageDispatcher() {
             return getMessageDispatcher();
+        }
+
+    }
+
+    private static class VerifyPositionAfterTabFileSet extends AbstractFileSetCheck {
+
+        @Override
+        protected void processFiltered(File file, FileText fileText) {
+            int lineNumber = 0;
+            for (String line : getFileContents().getLines()) {
+                final int position = line.lastIndexOf('\t');
+                lineNumber++;
+
+                if (position != -1) {
+                    log(lineNumber, position + 1, "violation");
+                }
+            }
         }
 
     }

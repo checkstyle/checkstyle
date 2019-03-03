@@ -51,9 +51,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 @FileStatefulCheck
 public final class TreeWalker extends AbstractFileSetCheck implements ExternalResourceHolder {
 
-    /** Default distance between tab stops. */
-    private static final int DEFAULT_TAB_WIDTH = 8;
-
     /** Maps from token name to ordinary checks. */
     private final Map<String, Set<AbstractCheck>> tokenToOrdinaryChecks =
         new HashMap<>();
@@ -74,9 +71,6 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     /** The sorted set of messages. */
     private final SortedSet<LocalizedMessage> messages = new TreeSet<>();
 
-    /** The distance between tab stops. */
-    private int tabWidth = DEFAULT_TAB_WIDTH;
-
     /** Class loader to resolve classes with. **/
     private ClassLoader classLoader;
 
@@ -91,14 +85,6 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      */
     public TreeWalker() {
         setFileExtensions("java");
-    }
-
-    /**
-     * Sets tab width.
-     * @param tabWidth the distance between tab stops
-     */
-    public void setTabWidth(int tabWidth) {
-        this.tabWidth = tabWidth;
     }
 
     /**
@@ -135,7 +121,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
         final DefaultContext checkContext = new DefaultContext();
         checkContext.add("classLoader", classLoader);
         checkContext.add("severity", getSeverity());
-        checkContext.add("tabWidth", String.valueOf(tabWidth));
+        checkContext.add("tabWidth", String.valueOf(getTabWidth()));
 
         childContext = checkContext;
     }
@@ -183,7 +169,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
         // check if already checked and passed the file
         if (!ordinaryChecks.isEmpty() || !commentChecks.isEmpty()) {
-            final FileContents contents = new FileContents(fileText);
+            final FileContents contents = getFileContents();
             final DetailAST rootAST = JavaParser.parse(contents);
             if (!ordinaryChecks.isEmpty()) {
                 walk(rootAST, contents, AstState.ORDINARY);

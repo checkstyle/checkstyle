@@ -361,6 +361,14 @@
             <td><code>true</code></td>
             <td>7.4</td>
           </tr>
+          <tr>
+            <td>tabWidth</td>
+            <td>number of expanded spaces for a tab character (<code>'\t'</code>); used in
+            messages and Checks that print violations on files with tabs</td>
+            <td><a href="property_types.html#integer">Integer</a></td>
+            <td><code>8</code></td>
+            <td>8.19</td>
+          </tr>
         </table>
       </subsection>
 
@@ -510,15 +518,6 @@
             <th>type</th>
             <th>default value</th>
             <th>since</th>
-          </tr>
-          <tr>
-            <td>tabWidth</td>
-            <td>number of expanded spaces for a tab character (<code>'\t'</code>); used in
-            messages and Checks that require a tab width, such as <a
-            href="config_sizes.html#LineLength"><code>LineLength</code></a></td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>8</code></td>
-            <td>3.0</td>
           </tr>
           <tr>
             <td>fileExtensions</td>

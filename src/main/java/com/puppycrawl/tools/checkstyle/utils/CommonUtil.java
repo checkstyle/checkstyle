@@ -49,6 +49,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class CommonUtil {
 
+    /** Default tab width for column reporting. */
+    public static final int DEFAULT_TAB_WIDTH = 8;
+
     /** Copied from org.apache.commons.lang3.ArrayUtils. */
     public static final String[] EMPTY_STRING_ARRAY = new String[0];
     /** Copied from org.apache.commons.lang3.ArrayUtils. */

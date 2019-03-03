@@ -25,6 +25,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.regex.Pattern;
 
 import org.junit.Test;
@@ -32,6 +33,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
@@ -243,7 +245,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
         try {
             final RegexpOnFilenameCheck check = new RegexpOnFilenameCheck();
             check.setFileNamePattern(Pattern.compile("BAD"));
-            check.process(file, null);
+            check.process(file, new FileText(file, Collections.emptyList()));
             fail("CheckstyleException expected");
         }
         catch (CheckstyleException ex) {

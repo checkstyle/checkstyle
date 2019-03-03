@@ -36,9 +36,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  */
 public abstract class AbstractCheck extends AbstractViolationReporter {
 
-    /** Default tab width for column reporting. */
-    private static final int DEFAULT_TAB_WIDTH = 8;
-
     /**
      * The check context.
      * @noinspection ThreadLocalNotStaticFinal
@@ -49,7 +46,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     private final Set<String> tokens = new HashSet<>();
 
     /** The tab width for column reporting. */
-    private int tabWidth = DEFAULT_TAB_WIDTH;
+    private int tabWidth = CommonUtil.DEFAULT_TAB_WIDTH;
 
     /**
      * The class loader to load external classes. Not initialized as this must
