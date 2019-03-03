@@ -24,7 +24,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
-import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -50,11 +49,8 @@ public class AbstractFileSetCheckTest {
         assertEquals("Invalid message", "File should not be empty.",
             firstFileMessages.first().getMessage());
 
-        final Field field = AbstractFileSetCheck.class.getDeclaredField("MESSAGE_COLLECTOR");
-        field.setAccessible(true);
-        @SuppressWarnings("unchecked")
         final SortedSet<LocalizedMessage> internalMessages =
-                ((ThreadLocal<SortedSet<LocalizedMessage>>) field.get(null)).get();
+                check.getMessages();
         assertTrue("Internal message should be empty, but was not", internalMessages.isEmpty());
 
         final File secondFile = new File("inputAbstractFileSetCheck.txt");
@@ -81,11 +77,8 @@ public class AbstractFileSetCheckTest {
             assertEquals("Invalid exception message", "Test", ex.getMessage());
         }
 
-        final Field field = AbstractFileSetCheck.class.getDeclaredField("MESSAGE_COLLECTOR");
-        field.setAccessible(true);
-        @SuppressWarnings("unchecked")
         final SortedSet<LocalizedMessage> internalMessages =
-                ((ThreadLocal<SortedSet<LocalizedMessage>>) field.get(null)).get();
+                check.getMessages();
         assertEquals("Internal message should only have 1", 1, internalMessages.size());
 
         // again to prove only 1 violation exists
@@ -99,9 +92,8 @@ public class AbstractFileSetCheckTest {
             assertEquals("Invalid exception message", "Test", ex.getMessage());
         }
 
-        @SuppressWarnings("unchecked")
         final SortedSet<LocalizedMessage> internalMessages2 =
-            ((ThreadLocal<SortedSet<LocalizedMessage>>) field.get(null)).get();
+            check.getMessages();
         assertEquals("Internal message should only have 1 again", 1, internalMessages2.size());
     }
 

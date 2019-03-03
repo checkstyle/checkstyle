@@ -581,9 +581,6 @@ public final class Main {
         /** The default number of threads to use for checker and the tree walker. */
         private static final int DEFAULT_THREAD_COUNT = 1;
 
-        /** Default distance between tab stops. */
-        private static final int DEFAULT_TAB_WIDTH = 8;
-
         /** Name for the moduleConfig attribute 'tabWidth'. */
         private static final String ATTRIB_TAB_WIDTH_NAME = "tabWidth";
 
@@ -622,7 +619,7 @@ public final class Main {
          */
         @Option(names = "--tabWidth", description = "Sets the length of the tab character. "
                 + "Used only with \"-s\" option. Default value is ${DEFAULT-VALUE}")
-        private int tabWidth = DEFAULT_TAB_WIDTH;
+        private int tabWidth = CommonUtil.DEFAULT_TAB_WIDTH;
 
         /** Switch whether to generate suppressions file or not. */
         @Option(names = {"-g", "--generate-xpath-suppression"},

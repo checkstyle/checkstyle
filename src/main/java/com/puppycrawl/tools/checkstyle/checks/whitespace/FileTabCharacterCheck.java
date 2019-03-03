@@ -55,10 +55,10 @@ public class FileTabCharacterCheck extends AbstractFileSetCheck {
             final int tabPosition = line.indexOf('\t');
             if (tabPosition != -1) {
                 if (eachLine) {
-                    log(lineNum, tabPosition + 1, MSG_CONTAINS_TAB);
+                    log(lineNum, tabPosition, MSG_CONTAINS_TAB);
                 }
                 else {
-                    log(lineNum, tabPosition + 1, MSG_FILE_CONTAINS_TAB);
+                    log(lineNum, tabPosition, MSG_FILE_CONTAINS_TAB);
                     break;
                 }
             }

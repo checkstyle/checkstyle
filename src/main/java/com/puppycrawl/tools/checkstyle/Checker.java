@@ -131,6 +131,9 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
     /** Controls whether exceptions should halt execution or not. */
     private boolean haltOnException = true;
 
+    /** The tab width for column reporting. */
+    private int tabWidth = CommonUtil.DEFAULT_TAB_WIDTH;
+
     /**
      * Creates a new {@code Checker} instance.
      * The instance needs to be contextualized and configured.
@@ -446,6 +449,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
         context.add("moduleFactory", moduleFactory);
         context.add("severity", severity.getName());
         context.add("basedir", basedir);
+        context.add("tabWidth", String.valueOf(tabWidth));
         childContext = context;
     }
 
@@ -622,6 +626,14 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      */
     public void setHaltOnException(boolean haltOnException) {
         this.haltOnException = haltOnException;
+    }
+
+    /**
+     * Set the tab width to report errors with.
+     * @param tabWidth an {@code int} value
+     */
+    public final void setTabWidth(int tabWidth) {
+        this.tabWidth = tabWidth;
     }
 
     /**
