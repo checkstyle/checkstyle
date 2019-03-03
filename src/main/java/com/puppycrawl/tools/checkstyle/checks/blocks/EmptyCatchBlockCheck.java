@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
@@ -133,44 +132,32 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
      */
     public static final String MSG_KEY_CATCH_BLOCK_EMPTY = "catch.block.empty";
 
-    /** Format of skipping exception's variable name. */
-    private String exceptionVariableName = "^$";
-
-    /** Format of comment. */
-    private String commentFormat = ".*";
-
     /**
      * Regular expression pattern compiled from exception's variable name.
      */
-    private Pattern variableNameRegexp = Pattern.compile(exceptionVariableName);
+    private Pattern exceptionVariableName = Pattern.compile("^$");
 
     /**
      * Regular expression pattern compiled from comment's format.
      */
-    private Pattern commentRegexp = Pattern.compile(commentFormat);
+    private Pattern commentFormat = Pattern.compile(".*");
 
     /**
-     * Setter for exception's variable name format.
-     * @param exceptionVariableName
-     *        format of exception's variable name.
-     * @throws org.apache.commons.beanutils.ConversionException
-     *         if unable to create Pattern object.
+     * Setter for exception's variable name pattern.
+     * @param exceptionVariablePattern
+     *        pattern of exception's variable name.
      */
-    public void setExceptionVariableName(String exceptionVariableName) {
-        this.exceptionVariableName = exceptionVariableName;
-        variableNameRegexp = CommonUtil.createPattern(exceptionVariableName);
+    public void setExceptionVariableName(Pattern exceptionVariablePattern) {
+        exceptionVariableName = exceptionVariablePattern;
     }
 
     /**
-     * Setter for comment format.
-     * @param commentFormat
-     *        format of comment.
-     * @throws org.apache.commons.beanutils.ConversionException
-     *         if unable to create Pattern object.
+     * Setter for comment pattern.
+     * @param commentPattern
+     *        pattern of comment.
      */
-    public void setCommentFormat(String commentFormat) {
-        this.commentFormat = commentFormat;
-        commentRegexp = CommonUtil.createPattern(commentFormat);
+    public void setCommentFormat(Pattern commentPattern) {
+        commentFormat = commentPattern;
     }
 
     @Override
@@ -250,10 +237,10 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
      */
     private boolean isVerifiable(DetailAST emptyCatchAst, String commentContent) {
         final String variableName = getExceptionVariableName(emptyCatchAst);
-        final boolean isMatchingVariableName = variableNameRegexp
+        final boolean isMatchingVariableName = exceptionVariableName
                 .matcher(variableName).find();
         final boolean isMatchingCommentContent = !commentContent.isEmpty()
-                 && commentRegexp.matcher(commentContent).find();
+                 && commentFormat.matcher(commentContent).find();
         return !isMatchingVariableName && !isMatchingCommentContent;
     }
 
