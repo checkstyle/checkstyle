@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 /**
- * This filter accepts a matching Integer.
+ * This filter element is immutable and accepts a matching Integer.
  */
 class IntMatchFilterElement implements IntFilterElement {
 

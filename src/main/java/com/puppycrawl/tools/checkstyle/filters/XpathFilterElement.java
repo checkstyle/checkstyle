@@ -36,7 +36,7 @@ import net.sf.saxon.sxpath.XPathExpression;
 import net.sf.saxon.trans.XPathException;
 
 /**
- * This filter processes {@link TreeWalkerAuditEvent}
+ * This filter element is immutable and processes {@link TreeWalkerAuditEvent}
  * objects based on the criteria of file, check, module id, xpathQuery.
  *
  */

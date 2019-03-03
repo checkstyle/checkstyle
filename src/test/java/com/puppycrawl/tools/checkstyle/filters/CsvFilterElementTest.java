@@ -85,32 +85,6 @@ public class CsvFilterElementTest {
     }
 
     @Test
-    public void testOneFilter() {
-        final CsvFilterElement filter = new CsvFilterElement("");
-        filter.addFilter(new IntMatchFilterElement(0));
-        assertTrue("0", filter.accept(0));
-        assertFalse("1", filter.accept(1));
-    }
-
-    @Test
-    public void testMultipleFilter() {
-        final CsvFilterElement filter = new CsvFilterElement("");
-        filter.addFilter(new IntMatchFilterElement(0));
-        filter.addFilter(new IntRangeFilterElement(0, 2));
-        assertTrue("0", filter.accept(0));
-        assertTrue("1", filter.accept(1));
-        filter.addFilter(new IntRangeFilterElement(3, 4));
-        assertTrue("0 is in [3,4]", filter.accept(0));
-    }
-
-    @Test
-    public void testGetFilters() {
-        final CsvFilterElement filter = new CsvFilterElement("");
-        filter.addFilter(new IntMatchFilterElement(0));
-        assertEquals("size is the same", 1, filter.getFilters().size());
-    }
-
-    @Test
     public void testEqualsAndHashCode() {
         final EqualsVerifierReport ev = EqualsVerifier.forClass(CsvFilterElement.class)
                 .usingGetClass().report();

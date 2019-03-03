@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 import java.util.Objects;
 
 /**
- * This filter accepts an Integer in a range.
+ * This filter element is immutable and accepts an Integer in a range.
  */
 class IntRangeFilterElement implements IntFilterElement {
 
