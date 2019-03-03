@@ -22,8 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.MSG_CONTAINS_TAB;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.MSG_FILE_CONTAINS_TAB;
 
-import java.io.File;
-
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -47,10 +45,7 @@ public class FileTabCharacterCheckTest
         final String[] expected = {
             "19:25: " + getCheckMessage(MSG_FILE_CONTAINS_TAB),
         };
-        final File[] files = {
-            new File(getPath("InputFileTabCharacterSimple.java")),
-        };
-        verify(createChecker(checkConfig), files, getPath("InputFileTabCharacterSimple.java"),
+        verify(createChecker(checkConfig), getPath("InputFileTabCharacterSimple.java"),
             expected);
     }
 
@@ -69,10 +64,7 @@ public class FileTabCharacterCheckTest
             "157:3: " + getCheckMessage(MSG_CONTAINS_TAB),
             "158:3: " + getCheckMessage(MSG_CONTAINS_TAB),
         };
-        final File[] files = {
-            new File(getPath("InputFileTabCharacterSimple.java")),
-        };
-        verify(createChecker(checkConfig), files, getPath("InputFileTabCharacterSimple.java"),
+        verify(createChecker(checkConfig), getPath("InputFileTabCharacterSimple.java"),
             expected);
     }
 
@@ -90,10 +82,7 @@ public class FileTabCharacterCheckTest
         final String[] expected = {
             "1: " + localizedMessage.getMessage(),
         };
-        final File[] files = {
-            new File(path),
-        };
-        verify(createChecker(checkConfig), files, path, expected);
+        verify(createChecker(checkConfig), path, expected);
     }
 
 }
