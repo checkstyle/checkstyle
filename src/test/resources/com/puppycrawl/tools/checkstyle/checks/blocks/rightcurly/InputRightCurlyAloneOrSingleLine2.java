@@ -65,4 +65,8 @@ public class InputRightCurlyAloneOrSingleLine2 {
     class TestClass3 {
         private int field;
     };  //violation
+
+    class TestClass4 { }
+
+    class TestClass5 { } { }
 }

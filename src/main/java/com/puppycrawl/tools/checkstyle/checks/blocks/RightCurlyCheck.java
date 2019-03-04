@@ -236,8 +236,7 @@ public class RightCurlyCheck extends AbstractCheck {
      */
     private static boolean shouldBeAloneOnLineWithAloneOption(Details details,
                                                               String targetSrcLine) {
-        return !isAloneOnLine(details, targetSrcLine)
-                && !isEmptyBody(details.lcurly);
+        return !isAloneOnLine(details, targetSrcLine);
     }
 
     /**
