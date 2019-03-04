@@ -141,15 +141,15 @@ class FooInner
  */
 class Absent_CustomFieldSerializer3 {
 
-    public static void serialize() {} //Expected nothing but was "'}' should be alone on a line."
+    public static void serialize() {} //empty body - violation
 }
 
 class Absent_CustomFieldSerializer4
 {
-    public Absent_CustomFieldSerializer4() {}
+    public Absent_CustomFieldSerializer4() {} //empty body - violation
 }
 
-class EmptyClass2 {}
+class EmptyClass2 {} //empty body - violation
 
 interface EmptyInterface3 {}
 
