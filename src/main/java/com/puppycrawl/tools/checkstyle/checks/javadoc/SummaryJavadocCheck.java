@@ -25,7 +25,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import com.google.common.base.CharMatcher;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
@@ -256,10 +255,39 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @return true, if first sentence contains forbidden summary fragment.
      */
     private boolean containsForbiddenFragment(String firstSentence) {
-        String javadocText = JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN
-                .matcher(firstSentence).replaceAll(" ");
-        javadocText = CharMatcher.whitespace().trimAndCollapseFrom(javadocText, ' ');
-        return forbiddenSummaryFragments.matcher(javadocText).find();
+        final String javadocText = JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN
+                .matcher(firstSentence).replaceAll(" ").trim();
+        return forbiddenSummaryFragments.matcher(trimExcessWhitespaces(javadocText)).find();
+    }
+
+    /**
+     * Trims the given {@code text} of duplicate whitespaces.
+     * @param text The text to transform.
+     * @return The finalized form of the text.
+     */
+    private static String trimExcessWhitespaces(String text) {
+        final StringBuilder result = new StringBuilder(100);
+        boolean previousWhitespace = true;
+
+        for (char letter : text.toCharArray()) {
+            final char print;
+            if (Character.isWhitespace(letter)) {
+                if (previousWhitespace) {
+                    continue;
+                }
+
+                previousWhitespace = true;
+                print = ' ';
+            }
+            else {
+                previousWhitespace = false;
+                print = letter;
+            }
+
+            result.append(print);
+        }
+
+        return result.toString();
     }
 
 }
