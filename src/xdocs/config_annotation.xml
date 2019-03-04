@@ -510,11 +510,32 @@ public int foo() { ... }
     </section>
 
     <section name="MissingDeprecated">
+      <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="MissingDeprecated_Description">
-        <p>Since Checkstyle 5.0</p>
-        <p> Verifies that both the java.lang.Deprecated annotation is
-            present and the @deprecated Javadoc tag is present when
-            either is present.</p>
+        <p>
+          Verifies that both the @Deprecated annotation is present
+          and the @deprecated javadoc tag are present when either one is present.
+        </p>
+        <p>
+          Both ways of flagging deprecation serve their own purpose.
+          The @Deprecated annotation is used for compilers and development tools.
+          The @deprecated javadoc tag is used to document why something is deprecated
+          and what, if any, alternatives exist.
+        </p>
+        <p>
+          In order to properly mark something as deprecated both forms of
+          deprecation should be present.
+        </p>
+        <p>
+          Package deprecation is a exception to the rule of always using the
+          javadoc tag and annotation to deprecate.  Only the package-info.java
+          file can contain a Deprecated annotation and it CANNOT contain
+          a deprecated javadoc tag.  This is the case with
+          Sun's javadoc tool released with JDK 1.6.0_11.  As a result, this check
+          does not deal with Deprecated packages in any way.  <b>No official
+          documentation was found confirming this behavior is correct
+          (of the javadoc tool).</b>
+        </p>
       </subsection>
       <subsection name="Properties" id="MissingDeprecated_Properties">
         <table>
@@ -527,13 +548,12 @@ public int foo() { ... }
           </tr>
           <tr>
             <td>skipNoJavadoc</td>
-            <td>When this property is set to true check ignore cases
-            when JavaDoc is missing, but still warns when JavaDoc is
+            <td>Ignore cases when JavaDoc is missing, but still warns when JavaDoc is
             present but either @deprecated is missing from JavaDoc or
             @Deprecated is missing from the element.
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>false</td>
+            <td><code>false</code></td>
             <td>6.16</td>
           </tr>
         </table>
@@ -543,7 +563,13 @@ public int foo() { ... }
         <source>
 &lt;module name=&quot;MissingDeprecated&quot;/&gt;
         </source>
-        <p> In addition you can configure this check with skipNoJavadoc option: </p>
+        <p>
+          In addition you can configure this check with skipNoJavadoc
+          option to allow it to ignore cases when JavaDoc is missing,
+          but still warns when JavaDoc is present but either
+          @deprecated is missing from JavaDoc or
+          @Deprecated is missing from the element.
+          To configure this check to allow it use: </p>
         <source>
 &lt;module name=&quot;MissingDeprecated&quot;&gt;
   &lt;property name="skipNoJavadoc" value="true" /&gt;
