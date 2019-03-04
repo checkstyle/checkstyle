@@ -11,6 +11,9 @@
   <disallow class="java.io.FileInputStream"/>
   <disallow class="java.io.FileOutputStream"/>
 
+  <!-- guava causes issues with other libraries since not everyone is on the same version -->
+  <disallow pkg="com\.google.*" regex="true"/>
+
   <allow pkg="antlr"/>
   <allow pkg="com.puppycrawl.tools.checkstyle.api"/>
   <allow pkg="com.puppycrawl.tools.checkstyle.checks"/>
@@ -40,20 +43,13 @@
   <allow class="java.lang.annotation.Target" local-only="true"/>
   <allow class="com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator" local-only="true"/>
 
-  <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
-  <allow class="com.google.common.base.CaseFormat" local-only="true"/>
-  <allow class="com.google.common.io.BaseEncoding" local-only="true"/>
-  <allow class="com.google.common.io.ByteStreams" local-only="true"/>
-
   <allow class="com.puppycrawl.tools.checkstyle.XpathFileGeneratorAstFilter"
          local-only="true"/>
   <allow class="com.puppycrawl.tools.checkstyle.XpathFileGeneratorAuditListener"
          local-only="true"/>
 
   <file name="PropertyCacheFile">
-    <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
-    <allow class="com.google.common.io.Closeables"/>
-    <allow class="com.google.common.io.Flushables"/>
+    <allow class="java.math.BigInteger"/>
   </file>
 
   <subpackage name="utils">
@@ -123,9 +119,6 @@
         local-only="true"/>
       <allow class="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.+"
             regex="true" local-only="true"/>
-
-      <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
-      <allow class="com.google.common.base.CharMatcher" local-only="true"/>
     </subpackage>
   </subpackage>
 
