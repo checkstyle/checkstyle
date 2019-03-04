@@ -33,25 +33,19 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * This class is used to verify that both the
- * {@link Deprecated Deprecated} annotation
- * and the deprecated javadoc tag are present when
- * either one is present.
+ * Verifies that both the &#64;Deprecated annotation is present
+ * and the &#64;deprecated javadoc tag are present when either one is present.
  * </p>
- *
  * <p>
- * Both ways of flagging deprecation serve their own purpose.  The
- * {@link Deprecated Deprecated} annotation is used for
- * compilers and development tools.  The deprecated javadoc tag is
- * used to document why something is deprecated and what, if any,
- * alternatives exist.
+ * Both ways of flagging deprecation serve their own purpose.
+ * The &#64;Deprecated annotation is used for compilers and development tools.
+ * The &#64;deprecated javadoc tag is used to document why something is deprecated
+ * and what, if any, alternatives exist.
  * </p>
- *
  * <p>
  * In order to properly mark something as deprecated both forms of
  * deprecation should be present.
  * </p>
- *
  * <p>
  * Package deprecation is a exception to the rule of always using the
  * javadoc tag and annotation to deprecate.  Only the package-info.java
@@ -62,39 +56,45 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * documentation was found confirming this behavior is correct
  * (of the javadoc tool).</b>
  * </p>
- *
+ * <ul>
+ * <li>
+ * Property {@code skipNoJavadoc} - Ignore cases when JavaDoc is missing, but still warns when
+ * JavaDoc is present but either &#64;deprecated is missing from JavaDoc
+ * or &#64;Deprecated is missing from the element. Default value is {@code false}.
+ * </li>
+ * </ul>
  * <p>
- * To configure this check do the following:
+ * To configure the check:
  * </p>
- *
  * <pre>
- * &lt;module name="JavadocDeprecated"/&gt;
+ * &lt;module name=&quot;MissingDeprecated&quot;/&gt;
  * </pre>
- *
  * <p>
  * In addition you can configure this check with skipNoJavadoc
  * option to allow it to ignore cases when JavaDoc is missing,
  * but still warns when JavaDoc is present but either
- * {@link Deprecated Deprecated} is missing from JavaDoc or
- * {@link Deprecated Deprecated} is missing from the element.
+ * &#64;deprecated is missing from JavaDoc or
+ * &#64;Deprecated is missing from the element.
  * To configure this check to allow it use:
  * </p>
- *
- * <pre>   &lt;property name="skipNoJavadoc" value="true" /&gt;</pre>
- *
- * <p>Examples of validating source code with skipNoJavadoc:</p>
- *
  * <pre>
- * <code>
- * {@literal @}deprecated
+ * &lt;module name=&quot;MissingDeprecated&quot;&gt;
+ *   &lt;property name=&quot;skipNoJavadoc&quot; value=&quot;true&quot; /&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Examples of validating source code with skipNoJavadoc:
+ * </p>
+ * <pre>
+ * &#64;deprecated
  * public static final int MY_CONST = 123456; // no violation
  *
  * &#47;** This javadoc is missing deprecated tag. *&#47;
- * {@literal @}deprecated
+ * &#64;deprecated
  * public static final int COUNTER = 10; // violation as javadoc exists
- * </code>
  * </pre>
  *
+ * @since 5.0
  */
 @StatelessCheck
 public final class MissingDeprecatedCheck extends AbstractCheck {
@@ -142,11 +142,16 @@ public final class MissingDeprecatedCheck extends AbstractCheck {
     /** Multiline finished at next Javadoc. */
     private static final String NEXT_TAG = "@";
 
-    /** Is deprecated element valid without javadoc. */
+    /**
+     * Ignore cases when JavaDoc is missing, but still warns when JavaDoc is present but either
+     * &#64;deprecated is missing from JavaDoc or &#64;Deprecated is missing from the element.
+     */
     private boolean skipNoJavadoc;
 
     /**
-     * Set skipJavadoc value.
+     * Setter to ignore cases when JavaDoc is missing, but still warns when JavaDoc is present
+     * but either &#64;deprecated is missing from JavaDoc or &#64;Deprecated is missing
+     * from the element.
      * @param skipNoJavadoc user's value of skipJavadoc
      */
     public void setSkipNoJavadoc(boolean skipNoJavadoc) {
