@@ -342,7 +342,7 @@ public class JavadocStyleCheckTest
             "1: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
-        verify(createChecker(checkConfig),
+        verify(checkConfig,
                getPath("pkginfo" + File.separator + "invalidinherit" + File.separator
                    + "package-info.java"),
                expected);
@@ -356,7 +356,7 @@ public class JavadocStyleCheckTest
             "1: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
-        verify(createChecker(checkConfig),
+        verify(checkConfig,
                getPath("pkginfo" + File.separator + "invalidformat" + File.separator
                    + "package-info.java"),
                expected);
@@ -368,7 +368,7 @@ public class JavadocStyleCheckTest
             createModuleConfig(JavadocStyleCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(createChecker(checkConfig),
+        verify(checkConfig,
                getPath("pkginfo" + File.separator + "annotation" + File.separator
                    + "package-info.java"),
                expected);
@@ -382,7 +382,7 @@ public class JavadocStyleCheckTest
             "1: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
 
-        verify(createChecker(checkConfig),
+        verify(checkConfig,
                getPath("bothfiles" + File.separator + "package-info.java"),
                expected);
     }
@@ -393,7 +393,7 @@ public class JavadocStyleCheckTest
             createModuleConfig(JavadocStyleCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(createChecker(checkConfig),
+        verify(checkConfig,
                getPath("pkginfo" + File.separator + "valid" + File.separator + "package-info.java"),
                expected);
     }
