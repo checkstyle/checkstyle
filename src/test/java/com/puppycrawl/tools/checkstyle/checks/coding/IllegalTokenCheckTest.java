@@ -21,10 +21,14 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck.MSG_KEY;
 
+import java.io.File;
+import java.nio.charset.StandardCharsets;
+
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 public class IllegalTokenCheckTest
@@ -79,20 +83,29 @@ public class IllegalTokenCheckTest
                 createModuleConfig(IllegalTokenCheck.class);
         checkConfig.addAttribute("tokens", "COMMENT_CONTENT");
 
+        final String path = getPath("InputIllegalTokens.java");
+        final String lineSeparator;
+        if (new FileText(new File(path), StandardCharsets.UTF_8.name())
+                .getFullText().chars().anyMatch(character -> character == '\r')) {
+            lineSeparator = "\r\n";
+        }
+        else {
+            lineSeparator = "\n";
+        }
         final String[] expected = {
             "3:3: " + getCheckMessage(MSG_KEY,
                         JavadocUtil.escapeAllControlChars(
-                            "*" + System.lineSeparator()
+                            "*" + lineSeparator
                             + " * Test for illegal tokens"
-                            + System.lineSeparator() + " ")),
+                            + lineSeparator + " ")),
             "31:29: " + getCheckMessage(MSG_KEY,
                         JavadocUtil.escapeAllControlChars(
-                            " some comment href" + System.lineSeparator())),
+                            " some comment href" + lineSeparator)),
             "35:28: " + getCheckMessage(MSG_KEY,
                         JavadocUtil.escapeAllControlChars(
-                            " some a href" + System.lineSeparator())),
+                            " some a href" + lineSeparator)),
         };
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, path, expected);
     }
 
     @Test

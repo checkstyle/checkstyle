@@ -53,7 +53,7 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
         final String expectedContents = readFile(expectedTextPrintFileName);
 
         final String actualContents = AstTreeStringPrinter.printFileAst(
-                new File(actualJavaFileName), withComments).replaceAll(CRLF_REGEX, LF_REGEX);
+                new File(actualJavaFileName), withComments).replaceAll(CRLF_REGEX, "");
 
         assertEquals("Generated AST from Java file should match pre-defined AST", expectedContents,
                 actualContents);
@@ -86,7 +86,7 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
         final String expectedContents = readFile(expectedTextPrintFilename);
 
         final String actualContents = AstTreeStringPrinter.printJavaAndJavadocTree(
-                new File(actualJavaFilename)).replaceAll(CRLF_REGEX, LF_REGEX);
+                new File(actualJavaFilename)).replaceAll(CRLF_REGEX, "");
 
         assertEquals("Generated AST from the java file should match the pre-defined AST",
                 expectedContents, actualContents);
@@ -104,7 +104,7 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
         final String expectedContents = readFile(expectedTextPrintFilename);
 
         final String actualContents = DetailNodeTreeStringPrinter.printFileAst(
-                new File(actualJavadocFilename)).replaceAll(CRLF_REGEX, LF_REGEX);
+                new File(actualJavadocFilename)).replaceAll(CRLF_REGEX, "");
 
         assertEquals("Generated tree from the javadoc file should match the pre-defined tree",
                 expectedContents, actualContents);

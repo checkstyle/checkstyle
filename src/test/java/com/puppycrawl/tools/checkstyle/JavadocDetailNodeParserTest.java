@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static java.util.Locale.ENGLISH;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
@@ -32,8 +31,6 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 public class JavadocDetailNodeParserTest extends AbstractModuleTestSupport {
-
-    private static final String OS_NAME = System.getProperty("os.name").toLowerCase(ENGLISH);
 
     @Override
     protected String getPackageLocation() {
@@ -48,23 +45,11 @@ public class JavadocDetailNodeParserTest extends AbstractModuleTestSupport {
                 .getNextSibling().getFirstChild().getFirstChild();
         final JavadocDetailNodeParser parser = new JavadocDetailNodeParser();
         final JavadocDetailNodeParser.ParseStatus status = parser.parseJavadocAsDetailNode(ast);
-        final String actual = DetailNodeTreeStringPrinter.printTree(status.getTree(), "", "");
-        final String expected;
-
-        // line separators in the input file while running this test on Windows are different,
-        // so when we try to print tree, output also will have different line separators on windows
-        // and linux.
-        if (OS_NAME.startsWith("windows")) {
-            expected = new String(Files.readAllBytes(Paths.get(
-                    getPath("ExpectedJavadocDetailNodeParserWindows.txt"))),
-                    StandardCharsets.UTF_8);
-        }
-        else {
-            expected = new String(Files.readAllBytes(Paths.get(
-                    getPath("ExpectedJavadocDetailNodeParser.txt"))),
-                    StandardCharsets.UTF_8);
-        }
-
+        final String actual = DetailNodeTreeStringPrinter.printTree(status.getTree(), "", "")
+                .replaceAll(CRLF_REGEX, "");
+        final String expected = new String(Files.readAllBytes(Paths.get(
+                getPath("ExpectedJavadocDetailNodeParser.txt"))),
+                StandardCharsets.UTF_8).replaceAll(CRLF_REGEX, "");
         assertEquals("Invalid parse result", expected, actual);
     }
 

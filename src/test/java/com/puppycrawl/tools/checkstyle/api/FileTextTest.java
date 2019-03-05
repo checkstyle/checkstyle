@@ -27,7 +27,6 @@ import static org.junit.Assert.fail;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.Locale;
 
 import org.junit.Test;
 import org.powermock.reflect.Whitebox;
@@ -83,7 +82,7 @@ public class FileTextTest extends AbstractPathTestSupport {
         assertNull("LineBreaks not null", Whitebox.getInternalState(copy, "lineBreaks"));
         final LineColumn lineColumn = copy.lineColumn(100);
         assertEquals("Invalid line", 3, lineColumn.getLine());
-        if (System.getProperty("os.name").toLowerCase(Locale.ENGLISH).startsWith("windows")) {
+        if (fileText.getFullText().chars().anyMatch(character -> character == '\r')) {
             assertEquals("Invalid column", 44, lineColumn.getColumn());
         }
         else {

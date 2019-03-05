@@ -27,9 +27,7 @@ import java.nio.file.Paths;
 
 public abstract class AbstractPathTestSupport {
 
-    protected static final String LF_REGEX = "\\\\n";
-
-    protected static final String CRLF_REGEX = "\\\\r\\\\n";
+    protected static final String CRLF_REGEX = "\\\\r(?=\\\\n)|\\r(?=\\n)";
 
     /**
      * Returns the exact location for the package where the file is present.
@@ -63,7 +61,7 @@ public abstract class AbstractPathTestSupport {
     protected static String readFile(String filename) throws IOException {
         return new String(Files.readAllBytes(
                 Paths.get(filename)), StandardCharsets.UTF_8)
-                .replaceAll(CRLF_REGEX, LF_REGEX);
+                .replaceAll(CRLF_REGEX, "");
     }
 
 }

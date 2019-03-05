@@ -48,6 +48,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.ConfigurationUtil;
@@ -254,14 +255,18 @@ public class AllChecksTest extends AbstractModuleTestSupport {
             }
 
             final DefaultConfiguration moduleConfig = createModuleConfig(module);
-            final Checker checker;
             if (module.equals(ImportControlCheck.class)) {
                 // ImportControlCheck must have the import control configuration file to avoid
                 // violation.
                 moduleConfig.addAttribute("file", getPath(
                         "InputAllChecksImportControl.xml"));
             }
-            checker = createChecker(moduleConfig);
+            else if (module.equals(NewlineAtEndOfFileCheck.class)) {
+                // Line separator must be newline to not fail test
+                // for example on windows with LF line endings.
+                moduleConfig.addAttribute("lineSeparator", "lf");
+            }
+            final Checker checker = createChecker(moduleConfig);
             verify(checker, inputFilePath, expected);
         }
     }
