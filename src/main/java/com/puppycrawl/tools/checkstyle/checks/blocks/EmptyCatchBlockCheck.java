@@ -28,100 +28,127 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Checks for empty catch blocks. There are two options to make validation more precise:
- * </p>
- *
- * <p><b>exceptionVariableName</b> - the name of variable associated with exception,
- * if Check meets variable name matching specified value - empty block is suppressed.<br>
- *  default value: &quot;^$&quot;
- * </p>
- *
- * <p><b>commentFormat</b> - the format of the first comment inside empty catch
- * block, if Check meets comment inside empty catch block matching specified format
- *  - empty block is suppressed. If it is multi-line comment - only its first line is analyzed.<br>
- * default value: &quot;.*&quot;<br>
- * So, by default Check allows empty catch block with any comment inside.
+ * Checks for empty catch blocks.
+ * By default check allows empty catch block with any comment inside.
  * </p>
  * <p>
+ * There are two options to make validation more precise: <b>exceptionVariableName</b> and
+ * <b>commentFormat</b>.
  * If both options are specified - they are applied by <b>any of them is matching</b>.
  * </p>
- * Examples:
+ * <ul>
+ * <li>
+ * Property {@code exceptionVariableName} - Specify the RegExp for the name of the variable
+ * associated with exception. If check meets variable name matching specified value - empty
+ * block is suppressed.
+ * Default value is {@code "^$" (empty)}.
+ * </li>
+ * <li>
+ * Property {@code commentFormat} - Specify the RegExp for the first comment inside empty
+ * catch block. If check meets comment inside empty catch block matching specified format
+ * - empty block is suppressed. If it is multi-line comment - only its first line is analyzed.
+ * Default value is {@code ".*"}.
+ * </li>
+ * </ul>
  * <p>
- * To configure the Check to suppress empty catch block if exception's variable name is
- *  <b>expected</b> or <b>ignore</b>:
+ * To configure the check to suppress empty catch block if exception's variable name is
+ * {@code expected} or {@code ignore} or there's any comment inside:
  * </p>
  * <pre>
  * &lt;module name=&quot;EmptyCatchBlock&quot;&gt;
- *    &lt;property name=&quot;exceptionVariableName&quot; value=&quot;ignore|expected;/&gt;
+ *   &lt;property name=&quot;exceptionVariableName&quot; value=&quot;expected|ignore&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- *
- * <p>Such empty blocks would be both suppressed:<br>
+ * <p>
+ * Such empty blocks would be both suppressed:
  * </p>
  * <pre>
- * {@code
  * try {
- *     throw new RuntimeException();
+ *   throw new RuntimeException();
  * } catch (RuntimeException expected) {
  * }
- * }
- * {@code
  * try {
- *     throw new RuntimeException();
+ *   throw new RuntimeException();
  * } catch (RuntimeException ignore) {
  * }
- * }
  * </pre>
  * <p>
- * To configure the Check to suppress empty catch block if single-line comment inside
- *  is &quot;//This is expected&quot;:
+ * To configure the check to suppress empty catch block if single-line comment inside
+ * is &quot;//This is expected&quot;:
  * </p>
  * <pre>
  * &lt;module name=&quot;EmptyCatchBlock&quot;&gt;
- *    &lt;property name=&quot;commentFormat&quot; value=&quot;This is expected&quot;/&gt;
+ *   &lt;property name=&quot;commentFormat&quot; value=&quot;This is expected&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- *
- * <p>Such empty block would be suppressed:<br>
+ * <p>
+ * Such empty block would be suppressed:
  * </p>
  * <pre>
- * {@code
  * try {
- *     throw new RuntimeException();
+ *   throw new RuntimeException();
  * } catch (RuntimeException ex) {
- *     //This is expected
- * }
+ *   //This is expected
  * }
  * </pre>
  * <p>
- * To configure the Check to suppress empty catch block if single-line comment inside
- *  is &quot;//This is expected&quot; or exception's variable name is &quot;myException&quot;:
+ * To configure the check to suppress empty catch block if single-line comment inside
+ * is &quot;//This is expected&quot; or exception's
+ * variable name is &quot;myException&quot; (any option is matching):
  * </p>
  * <pre>
  * &lt;module name=&quot;EmptyCatchBlock&quot;&gt;
- *    &lt;property name=&quot;commentFormat&quot; value=&quot;This is expected&quot;/&gt;
- *    &lt;property name=&quot;exceptionVariableName&quot; value=&quot;myException&quot;/&gt;
+ *   &lt;property name=&quot;commentFormat&quot; value=&quot;This is expected&quot;/&gt;
+ *   &lt;property name=&quot;exceptionVariableName&quot; value=&quot;myException&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- *
- * <p>Such empty blocks would be both suppressed:<br>
+ * <p>
+ * Such empty blocks would be suppressed:
  * </p>
  * <pre>
- * {@code
  * try {
- *     throw new RuntimeException();
- * } catch (RuntimeException ex) {
- *     //This is expected
+ *   throw new RuntimeException();
+ * } catch (RuntimeException e) {
+ *   //This is expected
  * }
- * }
- * {@code
+ * ...
  * try {
- *     throw new RuntimeException();
+ *   throw new RuntimeException();
+ * } catch (RuntimeException e) {
+ *   //   This is expected
+ * }
+ * ...
+ * try {
+ *   throw new RuntimeException();
+ * } catch (RuntimeException e) {
+ *   // This is expected
+ *   // some another comment
+ * }
+ * ...
+ * try {
+ *   throw new RuntimeException();
+ * } catch (RuntimeException e) {
+ *   &#47;* This is expected *&#47;
+ * }
+ * ...
+ * try {
+ *   throw new RuntimeException();
+ * } catch (RuntimeException e) {
+ *   &#47;*
+ *   *
+ *   * This is expected
+ *   * some another comment
+ *   *&#47;
+ * }
+ * ...
+ * try {
+ *   throw new RuntimeException();
  * } catch (RuntimeException myException) {
  *
  * }
- * }
  * </pre>
+ *
+ * @since 6.4
  */
 @StatelessCheck
 public class EmptyCatchBlockCheck extends AbstractCheck {
@@ -133,17 +160,21 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
     public static final String MSG_KEY_CATCH_BLOCK_EMPTY = "catch.block.empty";
 
     /**
-     * Regular expression pattern compiled from exception's variable name.
+     * Specify the RegExp for the name of the variable associated with exception.
+     * If check meets variable name matching specified value - empty block is suppressed.
      */
     private Pattern exceptionVariableName = Pattern.compile("^$");
 
     /**
-     * Regular expression pattern compiled from comment's format.
+     * Specify the RegExp for the first comment inside empty catch block.
+     * If check meets comment inside empty catch block matching specified format - empty
+     * block is suppressed. If it is multi-line comment - only its first line is analyzed.
      */
     private Pattern commentFormat = Pattern.compile(".*");
 
     /**
-     * Setter for exception's variable name pattern.
+     * Setter to specify the RegExp for the name of the variable associated with exception.
+     * If check meets variable name matching specified value - empty block is suppressed.
      * @param exceptionVariablePattern
      *        pattern of exception's variable name.
      */
@@ -152,7 +183,9 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
     }
 
     /**
-     * Setter for comment pattern.
+     * Setter to specify the RegExp for the first comment inside empty catch block.
+     * If check meets comment inside empty catch block matching specified format - empty
+     * block is suppressed. If it is multi-line comment - only its first line is analyzed.
      * @param commentPattern
      *        pattern of comment.
      */
