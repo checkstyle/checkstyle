@@ -1030,8 +1030,8 @@ public static final int COUNTER = 10; // violation as javadoc exists
     </section>
 
     <section name="SuppressWarningsHolder">
+      <p>Since Checkstyle 5.7</p>
       <subsection name="Description" id="SuppressWarningsHolder_Description">
-        <p>Since Checkstyle 5.7</p>
         <p>
           Maintains a set of check suppressions from
           <code>@SuppressWarnings</code> annotations. It allows to
@@ -1053,11 +1053,12 @@ public static final int COUNTER = 10; // violation as javadoc exists
           </tr>
           <tr>
             <td>aliasList</td>
-            <td>Aliases for check names that can be used in code within
-                <code>SuppressWarnings</code></td>
-            <td><a href="property_types.html#stringSet">String Set</a> in a format of comma separated attribute=value entries.
+            <td>Specify aliases for check names that can be used in code within
+                <code>SuppressWarnings</code>.</td>
+            <td><a href="property_types.html#stringSet">String Set</a>
+                in a format of comma separated attribute=value entries.
             The attribute is the fully qualified name of the Check and value is its alias.</td>
-            <td>null</td>
+            <td><code>null</code></td>
             <td>5.7</td>
           </tr>
         </table>
@@ -1070,48 +1071,46 @@ public static final int COUNTER = 10; // violation as javadoc exists
 @SuppressWarnings("foo") enum E { }
 @SuppressWarnings("foo") InputSuppressWarningsFilter() { }
         </source>
-        <br />
         <p>Some real check examples:</p>
-        <p>This will prevent from invocation of the MemberNameCheck:
-          <source>
+        <p>This will prevent from invocation of the MemberNameCheck:</p>
+        <source>
 @SuppressWarnings({"membername"})
 private int J;
-           </source>
-        </p>
-
+        </source>
         <p>You can also use a <code>checkstyle</code> prefix to prevent compiler from
            processing this annotations.
-           For example this will prevent ConstantNameCheck
-          <source>
+           For example this will prevent ConstantNameCheck:
+        </p>
+        <source>
 @SuppressWarnings("checkstyle:constantname")
 private static final int m = 0;
-          </source>
-        </p>
+        </source>
 
         <p>The general rule is that the argument of the <code>@SuppressWarnings</code> will be
           matched against class name of the checker in lower case and without <code>Check</code>
-          suffix if present</p>
-          <p>If <code>aliasList</code> property was provided you can use your own names e.g below
+          suffix if present.
+        </p>
+        <p>If <code>aliasList</code> property was provided you can use your own names e.g below
              code will work if there was provided a <code>ParameterNumberCheck=paramnum</code> in
-             the <code>aliasList</code>
-          <source>
+             the <code>aliasList</code>:
+        </p>
+        <source>
 @SuppressWarnings("paramnum")
 public void needsLotsOfParameters(@SuppressWarnings("unused") int a,
   int b, int c, int d, int e, int f, int g, int h) {
   ...
 }
-          </source>
-      </p>
+        </source>
 
-      <p>It is possible to suppress all the checkstyle warnings with the argument
+        <p>It is possible to suppress all the checkstyle warnings with the argument
          <code>"all"</code>:
-          <source>
+        </p>
+        <source>
 @SuppressWarnings("all")
 public void someFunctionWithInvalidStyle() {
   //...
 }
-          </source>
-      </p>
+        </source>
 
       </subsection>
 
