@@ -29,107 +29,98 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * Checks for braces around code blocks.
  * </p>
- * <p> By default the check will check the following blocks:
- *  {@link TokenTypes#LITERAL_DO LITERAL_DO},
- *  {@link TokenTypes#LITERAL_ELSE LITERAL_ELSE},
- *  {@link TokenTypes#LITERAL_FOR LITERAL_FOR},
- *  {@link TokenTypes#LITERAL_IF LITERAL_IF},
- *  {@link TokenTypes#LITERAL_WHILE LITERAL_WHILE}.
- * </p>
+ * <ul>
+ * <li>
+ * Property {@code allowSingleLineStatement} - allow single-line statements without braces.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code allowEmptyLoopBody} - allow loops with empty bodies.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
+ * LITERAL_DO</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
+ * LITERAL_ELSE</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
+ * LITERAL_FOR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
+ * LITERAL_IF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
+ * LITERAL_WHILE</a>.
+ * </li>
+ * </ul>
  * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
  * &lt;module name="NeedBraces"/&gt;
  * </pre>
- * <p> An example of how to configure the check for {@code if} and
- * {@code else} blocks is:
- * </p>
- * <pre>
- * &lt;module name="NeedBraces"&gt;
- *     &lt;property name="tokens" value="LITERAL_IF, LITERAL_ELSE"/&gt;
- * &lt;/module&gt;
- * </pre>
- * Check has the following options:
- * <p><b>allowSingleLineStatement</b> which allows single-line statements without braces, e.g.:</p>
  * <p>
- * {@code
- * if (obj.isValid()) return true;
- * }
+ * To configure the check for {@code if} and {@code else} blocks:
  * </p>
- * <p>
- * {@code
- * while (obj.isValid()) return true;
- * }
- * </p>
- * <p>
- * {@code
- * do this.notify(); while (o != null);
- * }
- * </p>
- * <p>
- * {@code
- * for (int i = 0; ; ) this.notify();
- * }
- * </p>
- * <p><b>allowEmptyLoopBody</b> which allows loops with empty bodies, e.g.:</p>
- * <p>
- * {@code
- * while (value.incrementValue() < 5);
- * }
- * </p>
- * <p>
- * {@code
- * for(int i = 0; i < 10; value.incrementValue());
- * }
- * </p>
- * <p>Default value for allowEmptyLoopBody option is <b>false</b>.</p>
- * <p>
- * To configure the Check to allow {@code case, default} single-line statements
- * without braces:
- * </p>
- *
  * <pre>
  * &lt;module name=&quot;NeedBraces&quot;&gt;
- *     &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_CASE, LITERAL_DEFAULT&quot;/&gt;
- *     &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_IF, LITERAL_ELSE&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- *
  * <p>
- * Such statements would be allowed:
+ * To configure the check to allow single-line statements
+ * ({@code if, while, do-while, for}) without braces:
  * </p>
- *
  * <pre>
- * {@code
+ * &lt;module name=&quot;NeedBraces&quot;&gt;
+ *   &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Next statements won't be violated by check:
+ * </p>
+ * <pre>
+ * if (obj.isValid()) return true; // OK
+ * while (obj.isValid()) return true; // OK
+ * do this.notify(); while (o != null); // OK
+ * for (int i = 0; ; ) this.notify(); // OK
+ * </pre>
+ * <p>
+ * To configure the check to allow {@code case, default} single-line statements without braces:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;NeedBraces&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_CASE, LITERAL_DEFAULT&quot;/&gt;
+ *   &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Next statements won't be violated by check:
+ * </p>
+ * <pre>
  * switch (num) {
- *     case 1: counter++; break; // OK
- *     case 6: counter += 10; break; // OK
- *     default: counter = 100; break; // OK
- * }
+ *   case 1: counter++; break; // OK
+ *   case 6: counter += 10; break; // OK
+ *   default: counter = 100; break; // OK
  * }
  * </pre>
  * <p>
- * To configure the Check to allow {@code while, for} loops with empty bodies:
+ * To configure the check to allow loops ({@code while, for}) with empty bodies:
  * </p>
- *
  * <pre>
  * &lt;module name=&quot;NeedBraces&quot;&gt;
- *     &lt;property name=&quot;allowEmptyLoopBody&quot; value=&quot;true&quot;/&gt;
+ *   &lt;property name=&quot;allowEmptyLoopBody&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- *
  * <p>
- * Such statements would be allowed:
+ * Next statements won't be violated by check:
  * </p>
- *
  * <pre>
- * {@code
  * while (value.incrementValue() &lt; 5); // OK
  * for(int i = 0; i &lt; 10; value.incrementValue()); // OK
- * }
  * </pre>
  *
+ * @since 3.0
  */
 @StatelessCheck
 public class NeedBracesCheck extends AbstractCheck {
@@ -141,17 +132,17 @@ public class NeedBracesCheck extends AbstractCheck {
     public static final String MSG_KEY_NEED_BRACES = "needBraces";
 
     /**
-     * Check's option for skipping single-line statements.
+     * Allow single-line statements without braces.
      */
     private boolean allowSingleLineStatement;
 
     /**
-     * Check's option for allowing loops with empty body.
+     * Allow loops with empty bodies.
      */
     private boolean allowEmptyLoopBody;
 
     /**
-     * Setter.
+     * Setter to allow single-line statements without braces.
      * @param allowSingleLineStatement Check's option for skipping single-line statements
      */
     public void setAllowSingleLineStatement(boolean allowSingleLineStatement) {
@@ -159,7 +150,7 @@ public class NeedBracesCheck extends AbstractCheck {
     }
 
     /**
-     * Sets whether to allow empty loop body.
+     * Setter to allow loops with empty bodies.
      * @param allowEmptyLoopBody Check's option for allowing loops with empty body.
      */
     public void setAllowEmptyLoopBody(boolean allowEmptyLoopBody) {
