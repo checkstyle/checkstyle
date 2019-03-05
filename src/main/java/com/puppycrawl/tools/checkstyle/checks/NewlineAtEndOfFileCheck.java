@@ -71,7 +71,7 @@ public class NewlineAtEndOfFileCheck
     public static final String MSG_KEY_NO_NEWLINE_EOF = "noNewlineAtEOF";
 
     /** The line separator to check against. */
-    private LineSeparatorOption lineSeparator = LineSeparatorOption.SYSTEM;
+    private LineSeparatorOption lineSeparator = LineSeparatorOption.LF_CR_CRLF;
 
     @Override
     protected void processFiltered(File file, FileText fileText) {
