@@ -26,8 +26,51 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
+ * <p>
  * The check does verifying that annotations are located on the same line with their targets.
  * Verifying with this check is not good practice, but it is using by some style guides.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+ * CLASS_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+ * INTERFACE_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+ * ENUM_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+ * METHOD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+ * CTOR_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+ * VARIABLE_DEF</a>.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;AnnotationOnSameLine&quot;/&gt;
+ * </pre>
+ * <p>
+ * Example to allow annotations on the same line
+ * </p>
+ * <pre>
+ * &#64;Override public int toString() { ... } // no violations
+ * &#64;Before &#64;Override public void set() { ... } // no violation
+ * </pre>
+ * <p>
+ * Example to disallow annotations on previous line
+ * </p>
+ * <pre>
+ * &#64;SuppressWarnings("deprecation") // violation
+ * &#64;Override // violation
+ * public int foo() { ... }
+ * </pre>
+ *
+ * @since 8.2
  */
 @StatelessCheck
 public class AnnotationOnSameLineCheck extends AbstractCheck {

@@ -259,8 +259,8 @@ public void test(&#64;MyAnnotation String s) { // OK
     </section>
 
     <section name="AnnotationOnSameLine">
+      <p>Since Checkstyle 8.2</p>
       <subsection name="Description" id="AnnotationOnSameLine_Description">
-        <p>Since Checkstyle 8.2</p>
         <p>
           The check does verifying that annotations are located on the same line with their targets.
           Verifying with this check is not good practice, but it is using by some style guides.
