@@ -1236,7 +1236,7 @@ void foo(String aFooString,
             <td>lineSeparator</td>
             <td>type of line separator</td>
             <td><a href="property_types.html#lineSeparator">Line Separator Policy</a></td>
-            <td>system</td>
+            <td>lf_cr_crlf</td>
             <td>3.1</td>
           </tr>
           <tr>
