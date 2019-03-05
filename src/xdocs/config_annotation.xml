@@ -797,8 +797,8 @@ public static final int COUNTER = 10; // violation as javadoc exists
     </section>
 
     <section name="PackageAnnotation">
+      <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="PackageAnnotation_Description">
-        <p>Since Checkstyle 5.0</p>
         <p>  This check makes sure that all package annotations are in the
              package-info.java file.
         </p>
@@ -813,8 +813,8 @@ public static final int COUNTER = 10; // violation as javadoc exists
             placed in the package-info.java file.
 
             See <a
-            href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-7.html#jls-7.4.1">
-            Java Language Specification, section 7.4.1</a>.
+            href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-7.html#jls-7.4.1">
+            Java Language Specification, &#167;7.4.1</a>.
         </p>
       </subsection>
 
