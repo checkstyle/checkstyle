@@ -258,7 +258,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             String[] expected,
             Integer... warnsExpected)
             throws Exception {
-        stream.flush();
+        stream.reset();
         final List<File> theFiles = new ArrayList<>();
         Collections.addAll(theFiles, processedFiles);
         final List<Integer> theWarnings = new ArrayList<>();

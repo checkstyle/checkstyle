@@ -272,7 +272,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                           String messageFileName,
                           String... expected)
             throws Exception {
-        stream.flush();
+        stream.reset();
         final List<File> theFiles = new ArrayList<>();
         Collections.addAll(theFiles, processedFiles);
         final int errs = checker.process(theFiles);
@@ -309,7 +309,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                           File[] processedFiles,
                           Map<String, List<String>> expectedViolations)
             throws Exception {
-        stream.flush();
+        stream.reset();
         final List<File> theFiles = new ArrayList<>();
         Collections.addAll(theFiles, processedFiles);
         final int errs = checker.process(theFiles);
