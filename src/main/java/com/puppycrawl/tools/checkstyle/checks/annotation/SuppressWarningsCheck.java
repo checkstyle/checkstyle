@@ -32,62 +32,95 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * <p>
  * This check allows you to specify what warnings that
- * {@link SuppressWarnings SuppressWarnings} is not
- * allowed to suppress.  You can also specify a list
- * of TokenTypes that the configured warning(s) cannot
- * be suppressed on.
+ * &#64;SuppressWarnings is not allowed to suppress.
+ * You can also specify a list of TokenTypes that
+ * the configured warning(s) cannot be suppressed on.
  * </p>
- *
  * <p>
- * The {@link #setFormat warnings} property is a
- * regex pattern.  Any warning being suppressed matching
- * this pattern will be flagged.
+ * Limitations:  This check does not consider conditionals
+ * inside the &#64;SuppressWarnings annotation.
  * </p>
- *
  * <p>
- * By default, any warning specified will be disallowed on
- * all legal TokenTypes unless otherwise specified via
- * the
- * {@link AbstractCheck#setTokens(String[]) tokens}
- * property.
- *
- * Also, by default warnings that are empty strings or all
- * whitespace (regex: ^$|^\s+$) are flagged.  By specifying,
- * the format property these defaults no longer apply.
- * </p>
- *
- * <p>Limitations:  This check does not consider conditionals
- * inside the SuppressWarnings annotation. <br>
  * For example:
  * {@code @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")}.
  * According to the above example, the "unused" warning is being suppressed
  * not the "unchecked" or "foo" warnings.  All of these warnings will be
  * considered and matched against regardless of what the conditional
  * evaluates to.
- * <br>
  * The check also does not support code like {@code @SuppressWarnings("un" + "used")},
  * {@code @SuppressWarnings((String) "unused")} or
  * {@code @SuppressWarnings({('u' + (char)'n') + (""+("used" + (String)"")),})}.
  * </p>
- *
+ * <p>
+ * By default, any warning specified will be disallowed on
+ * all legal TokenTypes unless otherwise specified via
+ * the tokens property.
+ * </p>
+ * <p>
+ * Also, by default warnings that are empty strings or all
+ * whitespace (regex: ^$|^\s+$) are flagged.  By specifying,
+ * the format property these defaults no longer apply.
+ * </p>
  * <p>This check can be configured so that the "unchecked"
  * and "unused" warnings cannot be suppressed on
  * anything but variable and parameter declarations.
  * See below of an example.
  * </p>
- *
+ * <ul>
+ * <li>
+ * Property {@code format} - Specify the RegExp to match against warnings. Any warning
+ * being suppressed matching this pattern will be flagged.
+ * Default value is {@code "^\s*+$"}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+ * CLASS_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+ * INTERFACE_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+ * ENUM_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+ * ANNOTATION_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+ * ANNOTATION_FIELD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+ * ENUM_CONSTANT_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
+ * PARAMETER_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+ * VARIABLE_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+ * METHOD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+ * CTOR_DEF</a>.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;SuppressWarnings&quot;/&gt;
+ * </pre>
+ * <p>
+ * To configure the check so that the "unchecked" and "unused"
+ * warnings cannot be suppressed on anything but variable and parameter declarations.
+ * </p>
  * <pre>
  * &lt;module name=&quot;SuppressWarnings&quot;&gt;
- *    &lt;property name=&quot;format&quot;
- *        value=&quot;^unchecked$|^unused$&quot;/&gt;
- *    &lt;property name=&quot;tokens&quot;
- *        value=&quot;
- *        CLASS_DEF,INTERFACE_DEF,ENUM_DEF,
- *        ANNOTATION_DEF,ANNOTATION_FIELD_DEF,
- *        ENUM_CONSTANT_DEF,METHOD_DEF,CTOR_DEF
- *        &quot;/&gt;
+ *   &lt;property name=&quot;format&quot;
+ *       value=&quot;^unchecked$|^unused$&quot;/&gt;
+ *   &lt;property name=&quot;tokens&quot;
+ *     value=&quot;
+ *     CLASS_DEF,INTERFACE_DEF,ENUM_DEF,
+ *     ANNOTATION_DEF,ANNOTATION_FIELD_DEF,
+ *     ENUM_CONSTANT_DEF,METHOD_DEF,CTOR_DEF
+ *     &quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ *
+ * @since 5.0
  */
 @StatelessCheck
 public class SuppressWarningsCheck extends AbstractCheck {
@@ -109,11 +142,15 @@ public class SuppressWarningsCheck extends AbstractCheck {
     private static final String FQ_SUPPRESS_WARNINGS =
         "java.lang." + SUPPRESS_WARNINGS;
 
-    /** The regexp to match against. */
+    /**
+     * Specify the RegExp to match against warnings. Any warning
+     * being suppressed matching this pattern will be flagged.
+     */
     private Pattern format = Pattern.compile("^\\s*+$");
 
     /**
-     * Set the format for the specified regular expression.
+     * Setter to specify the RegExp to match against warnings. Any warning
+     * being suppressed matching this pattern will be flagged.
      * @param pattern the new pattern
      */
     public final void setFormat(Pattern pattern) {
