@@ -8,7 +8,7 @@
 
     <!-- Input files for NewlineAtEndOfFileCheckTest, intentional no new line at the end. -->
     <suppress checks="NewlineAtEndOfFile"
-              files="[\\/]test[\\/].*[\\/]InputNewlineAtEndOfFile.*\.java"/>
+              files="[\\/]test[\\/].*[\\/]InputNewlineAtEndOfFile.*\.(java|txt)"/>
 
     <!-- Intentional no new line at the end. -->
      <suppress checks="NewlineAtEndOfFile"
