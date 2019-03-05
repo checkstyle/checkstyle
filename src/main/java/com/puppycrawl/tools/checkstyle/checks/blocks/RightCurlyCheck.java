@@ -30,43 +30,54 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * Checks the placement of right curly braces.
- * The policy to verify is specified using the {@link RightCurlyOption} class
- * and defaults to {@link RightCurlyOption#SAME}.
+ * Checks the placement of right curly braces (<code>'}'</code>)
+ * for if-else, try-catch-finally blocks, while-loops, for-loops,
+ * method definitions, class definitions, constructor definitions,
+ * instance and static initialization blocks.
+ * For right curly brace of expression blocks please follow issue
+ * <a href="https://github.com/checkstyle/checkstyle/issues/5945">#5945</a>.
  * </p>
- * <p> By default the check will check the following tokens:
- *  {@link TokenTypes#LITERAL_TRY LITERAL_TRY},
- *  {@link TokenTypes#LITERAL_CATCH LITERAL_CATCH},
- *  {@link TokenTypes#LITERAL_FINALLY LITERAL_FINALLY},
- *  {@link TokenTypes#LITERAL_IF LITERAL_IF},
- *  {@link TokenTypes#LITERAL_ELSE LITERAL_ELSE}.
- * Other acceptable tokens are:
- *  {@link TokenTypes#CLASS_DEF CLASS_DEF},
- *  {@link TokenTypes#METHOD_DEF METHOD_DEF},
- *  {@link TokenTypes#CTOR_DEF CTOR_DEF}.
- *  {@link TokenTypes#LITERAL_FOR LITERAL_FOR}.
- *  {@link TokenTypes#LITERAL_WHILE LITERAL_WHILE}.
- *  {@link TokenTypes#LITERAL_DO LITERAL_DO}.
- *  {@link TokenTypes#STATIC_INIT STATIC_INIT}.
- *  {@link TokenTypes#INSTANCE_INIT INSTANCE_INIT}.
- * </p>
+ * <ul>
+ * <li>
+ * Property {@code option} - Specify the policy on placement of a right curly brace
+ * (<code>'}'</code>).
+ * Default value is {@code same}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
+ * LITERAL_TRY</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
+ * LITERAL_CATCH</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
+ * LITERAL_FINALLY</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
+ * LITERAL_IF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
+ * LITERAL_ELSE</a>.
+ * </li>
+ * </ul>
  * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
  * &lt;module name="RightCurly"/&gt;
  * </pre>
  * <p>
- * An example of how to configure the check with policy
- * {@link RightCurlyOption#ALONE} for {@code else} and
- * {@code {@link TokenTypes#METHOD_DEF METHOD_DEF}}tokens is:
+ * To configure the check with policy {@code alone} for {@code else} and
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+ * METHOD_DEF</a> tokens:
  * </p>
  * <pre>
- * &lt;module name="RightCurly"&gt;
- *     &lt;property name="tokens" value="LITERAL_ELSE"/&gt;
- *     &lt;property name="option" value="alone"/&gt;
+ * &lt;module name=&quot;RightCurly&quot;&gt;
+ *   &lt;property name=&quot;option&quot; value=&quot;alone&quot;/&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_ELSE, METHOD_DEF&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ *
+ * @since 3.0
+ * @noinspection HtmlTagCanBeJavadocTag
  *
  */
 @StatelessCheck
@@ -90,13 +101,17 @@ public class RightCurlyCheck extends AbstractCheck {
      */
     public static final String MSG_KEY_LINE_SAME = "line.same";
 
-    /** The policy to enforce. */
+    /**
+     * Specify the policy on placement of a right curly brace (<code>'}'</code>).
+     * @noinspection HtmlTagCanBeJavadocTag
+     */
     private RightCurlyOption option = RightCurlyOption.SAME;
 
     /**
-     * Sets the option to enforce.
+     * Setter to specify the policy on placement of a right curly brace (<code>'}'</code>).
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
+     * @noinspection HtmlTagCanBeJavadocTag
      */
     public void setOption(String optionStr) {
         option = RightCurlyOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
