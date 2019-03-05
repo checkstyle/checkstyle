@@ -76,6 +76,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "ClassTypeParameterName",
         "ConstantName",
         "CustomImportOrder",
+        "EmptyBlock",
         "ImportOrder",
         "InterfaceMemberImpliedModifier",
         "InterfaceTypeParameterName",
