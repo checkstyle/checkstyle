@@ -329,11 +329,19 @@ switch (a) {
     </section>
 
     <section name="EmptyCatchBlock">
+      <p>Since Checkstyle 6.4</p>
       <subsection name="Description" id="EmptyCatchBlock_Description">
-        <p>Since Checkstyle 6.4</p>
         <p>
-          Checks for empty catch blocks. There are two options to make validation more precise
-          (by default Check allows empty catch block with any comment inside):
+          Checks for empty catch blocks.
+          By default check allows empty catch block with any comment inside.
+        </p>
+      </subsection>
+
+      <subsection name="Notes" id="EmptyCatchBlock_Notes">
+        <p>
+          There are two options to make validation more precise: <b>exceptionVariableName</b> and
+          <b>commentFormat</b>.
+          If both options are specified - they are applied by <b>any of them is matching</b>.
         </p>
       </subsection>
 
@@ -348,16 +356,23 @@ switch (a) {
           </tr>
           <tr>
             <td>exceptionVariableName</td>
-            <td>The name of variable associated with exception</td>
+            <td>
+              Specify the RegExp for the name of the variable associated with exception.
+              If check meets variable name matching specified value - empty block is suppressed.
+            </td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td>&quot;^$&quot; (empty)</td>
+            <td><code>&quot;^$&quot; (empty)</code></td>
             <td>6.4</td>
           </tr>
           <tr>
             <td>commentFormat</td>
-            <td>The format of the first comment inside empty catch</td>
+            <td>
+              Specify the RegExp for the first comment inside empty catch block.
+              If check meets comment inside empty catch block matching specified format - empty
+              block is suppressed. If it is multi-line comment - only its first line is analyzed.
+            </td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td>&quot;.*&quot;</td>
+            <td><code>&quot;.*&quot;</code></td>
             <td>6.4</td>
           </tr>
         </table>
@@ -365,7 +380,7 @@ switch (a) {
 
       <subsection name="Examples" id="EmptyCatchBlock_Examples">
         <p>
-          To configure the Check to suppress empty catch block if exception's variable name is
+          To configure the check to suppress empty catch block if exception's variable name is
            <code>expected</code> or <code>ignore</code> or there's any comment inside:
         </p>
         <source>
@@ -374,7 +389,20 @@ switch (a) {
 &lt;/module&gt;
         </source>
         <p>
-          To configure the Check to suppress empty catch block if single-line comment inside
+          Such empty blocks would be both suppressed:
+        </p>
+        <source>
+try {
+  throw new RuntimeException();
+} catch (RuntimeException expected) {
+}
+try {
+  throw new RuntimeException();
+} catch (RuntimeException ignore) {
+}
+        </source>
+        <p>
+          To configure the check to suppress empty catch block if single-line comment inside
            is &quot;//This is expected&quot;:
         </p>
         <source>
@@ -383,9 +411,19 @@ switch (a) {
 &lt;/module&gt;
         </source>
         <p>
-          To configure the Check to suppress empty catch block if single-line comment inside
-           is &quot;//This is expected&quot; or exception's
-            variable name is &quot;myException&quot; (any option is matching):
+          Such empty block would be suppressed:
+        </p>
+        <source>
+try {
+  throw new RuntimeException();
+} catch (RuntimeException ex) {
+  //This is expected
+}
+        </source>
+        <p>
+          To configure the check to suppress empty catch block if single-line comment inside
+          is &quot;//This is expected&quot; or exception's
+          variable name is &quot;myException&quot; (any option is matching):
         </p>
         <source>
 &lt;module name=&quot;EmptyCatchBlock&quot;&gt;
