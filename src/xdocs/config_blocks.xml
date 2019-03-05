@@ -901,14 +901,13 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
     </section>
 
     <section name="RightCurly">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="RightCurly_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
           Checks the placement of right curly braces (<code>'}'</code>)
           for if-else, try-catch-finally blocks, while-loops, for-loops,
           method definitions, class definitions, constructor definitions,
           instance and static initialization blocks.
-          The policy to verify is specified using the property <code> option</code>.
           For right curly brace of expression blocks please follow issue
           <a href="https://github.com/checkstyle/checkstyle/issues/5945">#5945</a>.
         </p>
@@ -925,7 +924,7 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
           </tr>
           <tr>
             <td>option</td>
-            <td>policy on placement of a right curly brace (<code>'}'</code>)</td>
+            <td>Specify the policy on placement of a right curly brace (<code>'}'</code>).</td>
             <td><a href="property_types.html#rcurly">Right Curly Brace Policy</a></td>
             <td><code>same</code></td>
             <td>3.0</td>
@@ -933,7 +932,6 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
           <tr>
             <td>tokens</td>
             <td>tokens to check</td>
-
             <td>subset of tokens <a
              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
                 LITERAL_TRY</a>,
