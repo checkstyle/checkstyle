@@ -74,6 +74,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "AnnotationOnSameLine",
         "AnnotationUseStyle",
         "AtclauseOrder",
+        "AvoidNestedBlocks",
         "CatchParameterName",
         "ClassMemberImpliedModifier",
         "ClassTypeParameterName",
