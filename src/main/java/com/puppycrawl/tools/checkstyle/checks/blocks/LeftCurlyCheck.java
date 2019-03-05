@@ -29,56 +29,93 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * Checks the placement of left curly braces.
- * The policy to verify is specified using the {@link LeftCurlyOption} class
- * and the default one being {@link LeftCurlyOption#EOL}.
+ * Checks for the placement of left curly braces (<code>'{'</code>) for code blocks.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code option} - Specify the policy on placement of a left curly brace
+ * (<code>'{'</code>).
+ * Default value is {@code eol}.
+ * </li>
+ * <li>
+ * Property {@code ignoreEnums} - Allow to ignore enums when left curly brace policy is EOL.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+ * ANNOTATION_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+ * CLASS_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+ * CTOR_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+ * ENUM_CONSTANT_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+ * ENUM_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+ * INTERFACE_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+ * LAMBDA</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
+ * LITERAL_CASE</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
+ * LITERAL_CATCH</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DEFAULT">
+ * LITERAL_DEFAULT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
+ * LITERAL_DO</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
+ * LITERAL_ELSE</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
+ * LITERAL_FINALLY</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
+ * LITERAL_FOR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
+ * LITERAL_IF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
+ * LITERAL_SWITCH</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">
+ * LITERAL_SYNCHRONIZED</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
+ * LITERAL_TRY</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
+ * LITERAL_WHILE</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+ * METHOD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#OBJBLOCK">
+ * OBJBLOCK</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
+ * STATIC_INIT</a>.
+ * </li>
+ * </ul>
  * <p>
- * By default the following tokens are checked:
- *  {@link TokenTypes#LAMBDA LAMBDA},
- *  {@link TokenTypes#LITERAL_CASE LITERAL_CASE},
- *  {@link TokenTypes#LITERAL_CATCH LITERAL_CATCH},
- *  {@link TokenTypes#LITERAL_DEFAULT LITERAL_DEFAULT},
- *  {@link TokenTypes#LITERAL_DO LITERAL_DO},
- *  {@link TokenTypes#LITERAL_ELSE LITERAL_ELSE},
- *  {@link TokenTypes#LITERAL_FINALLY LITERAL_FINALLY},
- *  {@link TokenTypes#LITERAL_FOR LITERAL_FOR},
- *  {@link TokenTypes#LITERAL_IF LITERAL_IF},
- *  {@link TokenTypes#LITERAL_SWITCH LITERAL_SWITCH},
- *  {@link TokenTypes#LITERAL_SYNCHRONIZED LITERAL_SYNCHRONIZED},
- *  {@link TokenTypes#LITERAL_TRY LITERAL_TRY},
- *  {@link TokenTypes#LITERAL_WHILE LITERAL_WHILE},
- *  {@link TokenTypes#STATIC_INIT STATIC_INIT}.
- * </p>
- *
- * <p>
- * The policy to verify is specified using the {@link LeftCurlyOption} class and
- * defaults to {@link LeftCurlyOption#EOL}.
- * </p>
- * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
  * &lt;module name="LeftCurly"/&gt;
  * </pre>
  * <p>
- * An example of how to configure the check with policy
- * {@link LeftCurlyOption#NLOW} is:
+ * To configure the check to apply the {@code nl} policy to type blocks:
  * </p>
  * <pre>
- * &lt;module name="LeftCurly"&gt;
- *      &lt;property name="option" value="nlow"/&gt;
+ * &lt;module name=&quot;LeftCurly&quot;&gt;
+ *   &lt;property name=&quot;option&quot; value=&quot;nl&quot;/&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF,INTERFACE_DEF&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
  * An example of how to configure the check to validate enum definitions:
  * </p>
  * <pre>
- * &lt;module name="LeftCurly"&gt;
- *      &lt;property name="ignoreEnums" value="false"/&gt;
+ * &lt;module name=&quot;LeftCurly&quot;&gt;
+ *   &lt;property name=&quot;ignoreEnums&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  *
+ * @since 3.0
+ * @noinspection HtmlTagCanBeJavadocTag
  */
 @StatelessCheck
 public class LeftCurlyCheck
@@ -105,23 +142,27 @@ public class LeftCurlyCheck
     /** Open curly brace literal. */
     private static final String OPEN_CURLY_BRACE = "{";
 
-    /** If true, Check will ignore enums. */
+    /** Allow to ignore enums when left curly brace policy is EOL. */
     private boolean ignoreEnums = true;
 
-    /** The policy to enforce. */
+    /**
+     * Specify the policy on placement of a left curly brace (<code>'{'</code>).
+     * @noinspection HtmlTagCanBeJavadocTag
+     * */
     private LeftCurlyOption option = LeftCurlyOption.EOL;
 
     /**
-     * Set the option to enforce.
+     * Setter to specify the policy on placement of a left curly brace (<code>'{'</code>).
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
+     * @noinspection HtmlTagCanBeJavadocTag
      */
     public void setOption(String optionStr) {
         option = LeftCurlyOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
     }
 
     /**
-     * Sets whether check should ignore enums when left curly brace policy is EOL.
+     * Setter to allow to ignore enums when left curly brace policy is EOL.
      * @param ignoreEnums check's option for ignoring enums.
      */
     public void setIgnoreEnums(boolean ignoreEnums) {
