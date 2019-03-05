@@ -85,6 +85,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "InterfaceMemberImpliedModifier",
         "InterfaceTypeParameterName",
         "LambdaParameterName",
+        "LeftCurly",
         "LocalFinalVariableName",
         "LocalVariableName",
         "MemberName",
