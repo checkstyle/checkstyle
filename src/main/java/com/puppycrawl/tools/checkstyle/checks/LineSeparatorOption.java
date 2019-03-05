@@ -42,7 +42,7 @@ public enum LineSeparatorOption {
      * Matches CR, LF and CRLF line separators.
      * Only the length is used - the actual value is ignored.
      */
-    LF_CR_CRLF("##"),
+    LF_CR_CRLF("#"),
 
     /** System default line separators. **/
     SYSTEM(System.getProperty("line.separator"));
@@ -69,8 +69,7 @@ public enum LineSeparatorOption {
         if (this == LF_CR_CRLF) {
             // this silently assumes LF and CR are of length 1
             // CRLF always matches LF, so CRLF isn't tested
-            result = LF.matches(Arrays.copyOfRange(bytes, 1, 2))
-                || CR.matches(Arrays.copyOfRange(bytes, 1, 2));
+            result = LF.matches(bytes) || CR.matches(bytes);
         }
         else {
             result = Arrays.equals(bytes, lineSeparator);
