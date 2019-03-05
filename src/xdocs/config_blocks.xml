@@ -683,8 +683,8 @@ try {
     </section>
 
     <section name="NeedBraces">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="NeedBraces_Description">
-        <p>Since Checkstyle 3.0</p>
         <p> Checks for braces around code blocks. </p>
       </subsection>
 
@@ -699,22 +699,21 @@ try {
           </tr>
           <tr>
             <td>allowSingleLineStatement</td>
-            <td>allows single-line statements without braces</td>
+            <td>allow single-line statements without braces.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>false</td>
+            <td><code>false</code></td>
             <td>6.5</td>
           </tr>
           <tr>
             <td>allowEmptyLoopBody</td>
-            <td>allows loops with empty bodies</td>
+            <td>allow loops with empty bodies.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>false</td>
+            <td><code>false</code></td>
             <td>6.12.1</td>
           </tr>
           <tr>
             <td>tokens</td>
             <td>tokens to check</td>
-
             <td>subset of tokens
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
                 LITERAL_DO</a>,
@@ -778,7 +777,7 @@ try {
         </source>
 
         <p>
-          Next statements won't be violated by Check:
+          Next statements won't be violated by check:
         </p>
         <source>
 if (obj.isValid()) return true; // OK
@@ -788,7 +787,7 @@ for (int i = 0; ; ) this.notify(); // OK
         </source>
 
         <p>
-          To configure the Check to allow <code>case, default</code> single-line statements
+          To configure the check to allow <code>case, default</code> single-line statements
           without braces:
         </p>
         <source>
@@ -799,7 +798,7 @@ for (int i = 0; ; ) this.notify(); // OK
         </source>
 
         <p>
-          Next statements won't be violated by Check:
+          Next statements won't be violated by check:
         </p>
         <source>
 switch (num) {
@@ -818,7 +817,7 @@ switch (num) {
           </source>
 
           <p>
-              Next statements won't be violated by Check:
+              Next statements won't be violated by check:
           </p>
           <source>
 while (value.incrementValue() &lt; 5); // OK
