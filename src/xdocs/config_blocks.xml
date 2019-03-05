@@ -23,8 +23,8 @@
     </section>
 
     <section name="AvoidNestedBlocks">
+      <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="AvoidNestedBlocks_Description">
-        <p>Since Checkstyle 3.1</p>
         <p>
           Finds nested blocks, i.e. blocks that are used freely in the code.
         </p>
@@ -42,7 +42,7 @@ public void guessTheOutput()
 {
   int whichIsWhich = 0;
   {
-      int whichIsWhich = 2;
+    int whichIsWhich = 2;
   }
   System.out.println("value = " + whichIsWhich);
 }
@@ -79,11 +79,11 @@ switch (a)
       x = 2;
       break;
     }
-  case 1:
+  case 2:
     // OK if allowInSwitchCase is true
     {
       System.out.println("Hello");
-      x = 2;
+      x = 3;
       break;
     }
 }
@@ -101,7 +101,7 @@ switch (a)
           </tr>
           <tr>
             <td>allowInSwitchCase</td>
-            <td>Allow nested blocks in case statements</td>
+            <td>Allow nested blocks if they are the only child of a switch case.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>3.2</td>
