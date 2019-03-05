@@ -160,6 +160,11 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
     public static final String MSG_KEY_CATCH_BLOCK_EMPTY = "catch.block.empty";
 
     /**
+     * A pattern to split on line ends.
+     */
+    private static final Pattern LINE_END_PATTERN = Pattern.compile("\\r?+\\n|\\r");
+
+    /**
      * Specify the RegExp for the name of the variable associated with exception.
      * If check meets variable name matching specified value - empty block is suppressed.
      */
@@ -250,7 +255,7 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
         }
         else if (firstElementInBlock.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
             commentContent = firstElementInBlock.getFirstChild().getText();
-            final String[] lines = commentContent.split(System.getProperty("line.separator"));
+            final String[] lines = LINE_END_PATTERN.split(commentContent);
             for (String line : lines) {
                 if (!line.isEmpty()) {
                     commentContent = line;

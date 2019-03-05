@@ -35,6 +35,10 @@
     <suppress checks="NewlineAtEndOfFile"
               files="[\\/]test[\\/].*[\\/]grammar[\\/]InputAstRegressionNewlineCrAtEndOfFile\.java"/>
 
+    <!-- File with LF line separators used for testing -->
+    <suppress checks="NewlineAtEndOfFile"
+              files="[\\/]test[\\/].*[\\/]checks[\\/]blocks[\\/]emptycatchblock[\\/]InputEmptyCatchBlockDefaultLF\.java"/>
+
     <!-- For the testing purposes -->
     <suppress checks="NewlineAtEndOfFile"
               files="[\\/]test[\\/].*[\\/]checks[\\/]uniqueproperties[\\/]InputUniquePropertiesWithDuplicates\.properties"/>
