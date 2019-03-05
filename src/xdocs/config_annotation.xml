@@ -385,9 +385,72 @@ public int foo() { ... }
     </section>
 
     <section name="AnnotationUseStyle">
+      <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="AnnotationUseStyle_Description">
-        <p>Since Checkstyle 5.0</p>
-        <p> This check controls the style with the usage of annotations.
+        <p>
+          This check controls the style with the usage of annotations.
+        </p>
+        <p>
+          Annotations have three element styles starting with the least verbose.
+        </p>
+        <ul>
+          <li><code>ElementStyle.COMPACT_NO_ARRAY</code></li>
+          <li><code>ElementStyle.COMPACT</code></li>
+          <li><code>ElementStyle.EXPANDED</code></li>
+        </ul>
+        <p>
+          To not enforce an element style a <code>ElementStyle.IGNORE</code> type is provided.
+          The desired style can be set through the <code>elementStyle</code> property.
+        </p>
+        <p>
+          Using the <code>ElementStyle.EXPANDED</code> style is more verbose.
+          The expanded version is sometimes referred to as "named parameters" in other languages.
+        </p>
+        <p>
+          Using the <code>ElementStyle.COMPACT</code> style is less verbose.
+          This style can only be used when there is an element called 'value' which is either
+          the sole element or all other elements have default values.
+        </p>
+        <p>
+          Using the <code>ElementStyle.COMPACT_NO_ARRAY</code> style is less verbose.
+          It is similar to the <code>ElementStyle.COMPACT</code> style but single value arrays
+          are flagged.
+          With annotations a single value array does not need to be placed in an array initializer.
+          This style can only be used when there is an element called 'value' which is either
+          the sole element or all other elements have default values.
+        </p>
+        <p>
+          The ending parenthesis are optional when using annotations with no elements.
+          To always require ending parenthesis use the <code>ClosingParens.ALWAYS</code> type.
+          To never have ending parenthesis use the <code>ClosingParens.NEVER</code> type.
+          To not enforce a closing parenthesis preference a <code>ClosingParens.IGNORE</code>
+          type is provided. Set this through the <code>closingParens</code> property.
+        </p>
+        <p>
+          Annotations also allow you to specify arrays of elements in a standard format.
+          As with normal arrays, a trailing comma is optional.
+          To always require a trailing comma use the <code>TrailingArrayComma.ALWAYS</code> type.
+          To never have a trailing comma use the <code>TrailingArrayComma.NEVER</code> type.
+          To not enforce a trailing array comma preference a <code>TrailingArrayComma.IGNORE</code>
+          type is provided.
+          Set this through the <code>trailingArrayComma</code> property.
+        </p>
+        <p>
+          By default the <code>ElementStyle</code> is set to <code>COMPACT_NO_ARRAY</code>,
+          the <code>TrailingArrayComma</code> is set to <code>NEVER</code>,
+          and the <code>ClosingParens</code> is set to <code>NEVER</code>.
+        </p>
+        <p>
+          According to the JLS, it is legal to include a trailing comma
+          in arrays used in annotations but Sun's Java 5 &amp; 6 compilers will not
+          compile with this syntax. This may in be a bug in Sun's compilers
+          since eclipse 3.4's built-in compiler does allow this syntax as
+          defined in the JLS. Note: this was tested with compilers included with
+          JDK versions 1.5.0.17 and 1.6.0.11 and the compiler included with eclipse 3.4.1.
+        </p>
+        <p>
+          See <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-9.html#jls-9.7">
+          Java Language specification, &#167;9.7</a>.
         </p>
       </subsection>
       <subsection name="Properties" id="AnnotationUseStyle_Properties">
@@ -402,9 +465,7 @@ public int foo() { ... }
           <tr>
             <td>elementStyle</td>
             <td>
-              <p>
-                Defines the annotation element styles.
-              </p>
+              Define the annotation element styles.
             </td>
             <td>
               <a href="property_types.html#elementStyle">Element Style</a>
@@ -417,7 +478,7 @@ public int foo() { ... }
           <tr>
             <td>closingParens</td>
             <td>
-              Defines the policy for ending parenthesis.
+              Define the policy for ending parenthesis.
             </td>
             <td>
               <a href="property_types.html#closingParens">Closing Parens</a>
@@ -430,7 +491,7 @@ public int foo() { ... }
           <tr>
             <td>trailingArrayComma</td>
             <td>
-              Defines the policy for trailing comma in arrays.
+              Define the policy for trailing comma in arrays.
             </td>
             <td>
               <a href="property_types.html#trailingArrayComma">Trailing Comma</a>
@@ -449,11 +510,9 @@ public int foo() { ... }
         </source>
 
         <p>
-          To configure the check to enforce an
-          <code>expanded</code> style, with a
-          trailing array comma set to <code>never</code>
-          and always including the closing
-          parenthesis.
+          To configure the check to enforce an <code>expanded</code> style,
+          with a trailing array comma set to <code>never</code>
+          and always including the closing parenthesis.
         </p>
         <source>
 &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
