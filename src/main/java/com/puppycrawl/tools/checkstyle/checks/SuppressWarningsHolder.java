@@ -33,8 +33,73 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Maintains a set of check suppressions from {@link SuppressWarnings}
- * annotations.
+ * <p>
+ * Maintains a set of check suppressions from {@code @SuppressWarnings} annotations.
+ * It allows to prevent Checkstyle from reporting errors from parts of code that were
+ * annotated with {@code @SuppressWarnings} and using name of the check to be excluded.
+ * You can also define aliases for check names that need to be suppressed.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code aliasList} - Specify aliases for check names that can be used in code
+ * within {@code SuppressWarnings}.
+ * Default value is {@code null}.
+ * </li>
+ * </ul>
+ * <p>
+ * To prevent {@code FooCheck} errors from being reported write:
+ * </p>
+ * <pre>
+ * &#64;SuppressWarnings("foo") interface I { }
+ * &#64;SuppressWarnings("foo") enum E { }
+ * &#64;SuppressWarnings("foo") InputSuppressWarningsFilter() { }
+ * </pre>
+ * <p>
+ * Some real check examples:
+ * </p>
+ * <p>
+ * This will prevent from invocation of the MemberNameCheck:
+ * </p>
+ * <pre>
+ * &#64;SuppressWarnings({"membername"})
+ * private int J;
+ * </pre>
+ * <p>
+ * You can also use a {@code checkstyle} prefix to prevent compiler from
+ * processing this annotations. For example this will prevent ConstantNameCheck:
+ * </p>
+ * <pre>
+ * &#64;SuppressWarnings("checkstyle:constantname")
+ * private static final int m = 0;
+ * </pre>
+ * <p>
+ * The general rule is that the argument of the {@code @SuppressWarnings} will be
+ * matched against class name of the checker in lower case and without {@code Check}
+ * suffix if present.
+ * </p>
+ * <p>
+ * If {@code aliasList} property was provided you can use your own names e.g below
+ * code will work if there was provided a {@code ParameterNumberCheck=paramnum} in
+ * the {@code aliasList}:
+ * </p>
+ * <pre>
+ * &#64;SuppressWarnings("paramnum")
+ * public void needsLotsOfParameters(@SuppressWarnings("unused") int a,
+ *   int b, int c, int d, int e, int f, int g, int h) {
+ *   ...
+ * }
+ * </pre>
+ * <p>
+ * It is possible to suppress all the checkstyle warnings with the argument {@code "all"}:
+ * </p>
+ * <pre>
+ * &#64;SuppressWarnings("all")
+ * public void someFunctionWithInvalidStyle() {
+ *   //...
+ * }
+ * </pre>
+ *
+ * @since 5.7
  */
 @StatelessCheck
 public class SuppressWarningsHolder
@@ -118,10 +183,8 @@ public class SuppressWarningsHolder
     }
 
     /**
-     * Registers a list of source name aliases based on a comma-separated list
-     * of {@code source=alias} items, such as {@code
-     * com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=
-     * paramnum}.
+     * Setter to specify aliases for check names that can be used in code
+     * within {@code SuppressWarnings}.
      * @param aliasList the list of comma-separated alias assignments
      */
     public void setAliasList(String... aliasList) {
