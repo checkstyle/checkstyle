@@ -74,6 +74,32 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testLinesAreProperlySplitSystemIndependently() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(EmptyCatchBlockCheck.class);
+        checkConfig.addAttribute("exceptionVariableName", "expected|ignore|myException");
+        checkConfig.addAttribute("commentFormat", "This is expected");
+        final String[] expected = {
+            "35: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "63: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "97: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "186: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "195: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "214: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "230: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "239: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+        };
+        final String originalLineSeparator = System.getProperty("line.separator");
+        try {
+            System.setProperty("line.separator", "\r\n");
+            verify(checkConfig, getPath("InputEmptyCatchBlockDefaultLF.java"), expected);
+        }
+        finally {
+            System.setProperty("line.separator", originalLineSeparator);
+        }
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final EmptyCatchBlockCheck constantNameCheckObj = new EmptyCatchBlockCheck();
         final int[] actual = constantNameCheckObj.getAcceptableTokens();
