@@ -86,6 +86,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "MethodName",
         "MethodTypeParameterName",
         "MissingDeprecated",
+        "MissingOverride",
         "PackageName",
         "ParameterName",
         "StaticVariableName",

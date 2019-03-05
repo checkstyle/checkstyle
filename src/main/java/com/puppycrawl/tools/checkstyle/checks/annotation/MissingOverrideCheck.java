@@ -33,47 +33,56 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * This class is used to verify that the {@link Override Override}
- * annotation is present when the inheritDoc javadoc tag is present.
+ * Verifies that the &#64;Override annotation is present
+ * when the &#64;inheritDoc javadoc tag is present.
  * </p>
- *
  * <p>
- * Rationale: The {@link Override Override} annotation helps
+ * Rationale: The &#64;Override annotation helps
  * compiler tools ensure that an override is actually occurring.  It is
  * quite easy to accidentally overload a method or hide a static method
- * and using the {@link Override Override} annotation points
- * out these problems.
+ * and using the &#64;Override annotation points out these problems.
  * </p>
- *
  * <p>
- * This check will log a violation if using the inheritDoc tag on a method that
+ * This check will log a violation if using the &#64;inheritDoc tag on a method that
  * is not valid (ex: private, or static method).
  * </p>
- *
  * <p>
- * There is a slight difference between the Override annotation in Java 5 versus
+ * There is a slight difference between the &#64;Override annotation in Java 5 versus
  * Java 6 and above. In Java 5, any method overridden from an interface cannot
- * be annotated with Override. In Java 6 this behavior is allowed.
+ * be annotated with &#64;Override. In Java 6 this behavior is allowed.
  * </p>
- *
  * <p>
  * As a result of the aforementioned difference between Java 5 and Java 6, a
- * property called {@code javaFiveCompatibility } is available. This
+ * property called {@code javaFiveCompatibility} is available. This
  * property will only check classes, interfaces, etc. that do not contain the
  * extends or implements keyword or are not anonymous classes. This means it
- * only checks methods overridden from {@code java.lang.Object}
- *
+ * only checks methods overridden from {@code java.lang.Object}.
  * <b>Java 5 Compatibility mode severely limits this check. It is recommended to
- * only use it on Java 5 source</b>
+ * only use it on Java 5 source.</b>
  * </p>
- *
+ * <ul>
+ * <li>
+ * Property {@code javaFiveCompatibility} - Enable java 5 compatibility mode.
+ * Default value is {@code false}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
  * <pre>
- * &lt;module name=&quot;MissingOverride&quot;&gt;
- *    &lt;property name=&quot;javaFiveCompatibility&quot;
- *        value=&quot;true&quot;/&gt;
+ * &lt;module name=&quot;MissingOverride&quot;/&gt;
+ * </pre>
+ * <p>
+ * To configure the check for the {@code javaFiveCompatibility} mode:
+ * </p>
+ * <pre>
+ * &lt;module name="MissingOverride"&gt;
+ *   &lt;property name="javaFiveCompatibility"
+ *       value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
  *
+ * @since 5.0
  */
 @StatelessCheck
 public final class MissingOverrideCheck extends AbstractCheck {
@@ -102,25 +111,12 @@ public final class MissingOverrideCheck extends AbstractCheck {
             CommonUtil.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
 
     /**
-     * Java 5 compatibility option.
-     * @see #setJavaFiveCompatibility(boolean)
+     * Enable java 5 compatibility mode.
      */
     private boolean javaFiveCompatibility;
 
     /**
-     * Sets Java 5 compatibility mode.
-     *
-     * <p>
-     * In Java 5, this check could flag code that is not valid for the Override
-     * annotation even though it is a proper override. See the class
-     * documentation for more information.
-     * </p>
-     *
-     * <p>
-     * Set this to true to turn on Java 5 compatibility mode. Set this to
-     * false to turn off Java 5 compatibility mode.
-     * </p>
-     *
+     * Setter to enable java 5 compatibility mode.
      * @param compatibility compatibility or not
      */
     public void setJavaFiveCompatibility(final boolean compatibility) {
