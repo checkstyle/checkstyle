@@ -28,40 +28,91 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
+ * <p>
  * Checks for empty blocks. This check does not validate sequential blocks.
- * The policy to verify is specified using the {@link
- * BlockOption} class and defaults to {@link BlockOption#STATEMENT}.
- *
- * <p> By default the check will check the following blocks:
- *  {@link TokenTypes#LITERAL_WHILE LITERAL_WHILE},
- *  {@link TokenTypes#LITERAL_TRY LITERAL_TRY},
- *  {@link TokenTypes#LITERAL_FINALLY LITERAL_FINALLY},
- *  {@link TokenTypes#LITERAL_DO LITERAL_DO},
- *  {@link TokenTypes#LITERAL_IF LITERAL_IF},
- *  {@link TokenTypes#LITERAL_ELSE LITERAL_ELSE},
- *  {@link TokenTypes#LITERAL_FOR LITERAL_FOR},
- *  {@link TokenTypes#STATIC_INIT STATIC_INIT},
- *  {@link TokenTypes#LITERAL_SWITCH LITERAL_SWITCH}.
- *  {@link TokenTypes#LITERAL_SYNCHRONIZED LITERAL_SYNCHRONIZED}.
  * </p>
- *
- * <p> An example of how to configure the check is:
+ * <p>
+ * Sequential blocks won't be checked. Also, no violations for fallthrough:
+ * </p>
+ * <pre>
+ * switch (a) {
+ *   case 1:                          // no violation
+ *   case 2:                          // no violation
+ *   case 3: someMethod(); { }        // no violation
+ *   default: break;
+ * }
+ * </pre>
+ * <p>
+ * This check processes LITERAL_CASE and LITERAL_DEFAULT separately.
+ * So, if tokens=LITERAL_DEFAULT, following code will not trigger any violation,
+ * as the empty block belongs to LITERAL_CASE:
+ * </p>
+ * <p>
+ * Configuration:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;EmptyBlock&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Result:
+ * </p>
+ * <pre>
+ * switch (a) {
+ *   default:        // no violation for "default:" as empty block belong to "case 1:"
+ *   case 1: { }
+ * }
+ * </pre>
+ * <ul>
+ * <li>
+ * Property {@code option} - specify the policy on block contents.
+ * Default value is {@code statement}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
+ * LITERAL_WHILE</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
+ * LITERAL_TRY</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
+ * LITERAL_FINALLY</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
+ * LITERAL_DO</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
+ * LITERAL_IF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
+ * LITERAL_ELSE</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
+ * LITERAL_FOR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
+ * INSTANCE_INIT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
+ * STATIC_INIT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
+ * LITERAL_SWITCH</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">
+ * LITERAL_SYNCHRONIZED</a>.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
  * </p>
  * <pre>
  * &lt;module name="EmptyBlock"/&gt;
  * </pre>
- *
- * <p> An example of how to configure the check for the {@link
- * BlockOption#TEXT} policy and only try blocks is:
+ * <p>
+ * To configure the check for the {@code text} policy and only {@code try} blocks:
  * </p>
- *
  * <pre>
- * &lt;module name="EmptyBlock"&gt;
- *    &lt;property name="tokens" value="LITERAL_TRY"/&gt;
- *    &lt;property name="option" value="text"/&gt;
+ * &lt;module name=&quot;EmptyBlock&quot;&gt;
+ *   &lt;property name=&quot;option&quot; value=&quot;text&quot;/&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_TRY&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  *
+ * @since 3.0
  */
 @StatelessCheck
 public class EmptyBlockCheck
@@ -79,11 +130,11 @@ public class EmptyBlockCheck
      */
     public static final String MSG_KEY_BLOCK_EMPTY = "block.empty";
 
-    /** The policy to enforce. */
+    /** Specify the policy on block contents. */
     private BlockOption option = BlockOption.STATEMENT;
 
     /**
-     * Set the option to enforce.
+     * Setter to specify the policy on block contents.
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
      */

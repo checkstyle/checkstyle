@@ -152,8 +152,8 @@ switch (a)
     </section>
 
     <section name="EmptyBlock">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="EmptyBlock_Description">
-        <p>Since Checkstyle 3.0</p>
         <p> Checks for empty blocks. This check does not validate sequential blocks. </p>
 
         <p> Sequential blocks won't be checked. Also, no violations for fallthrough: </p>
@@ -197,7 +197,7 @@ switch (a) {
           </tr>
           <tr>
             <td>option</td>
-            <td>policy on block contents</td>
+            <td>specify the policy on block contents.</td>
             <td><a href="property_types.html#block">Block Policy</a></td>
             <td><code>statement</code></td>
             <td>3.0</td>
@@ -205,7 +205,6 @@ switch (a) {
           <tr>
             <td>tokens</td>
             <td>tokens to check</td>
-
             <td>
               subset of tokens
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
