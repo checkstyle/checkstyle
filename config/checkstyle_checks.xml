@@ -174,9 +174,7 @@
     </module>
     <module name="AnnotationUseStyle"/>
     <module name="MissingDeprecated"/>
-    <module name="MissingOverride">
-      <property name="javaFiveCompatibility" value="true"/>
-    </module>
+    <module name="MissingOverride"/>
     <module name="PackageAnnotation"/>
     <module name="SuppressWarnings">
         <property name="format" value="^((?!unchecked|deprecation|rawtypes|resource).)*$"/>
