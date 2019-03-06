@@ -64,7 +64,9 @@ public class RedundantImportCheckTest
         final String inputWithoutWarnings = getPath("InputRedundantImportWithoutWarnings.java");
         final List<String> expectedFirstInput = Arrays.asList(
             "4:1: " + getCheckMessage(MSG_DUPLICATE, 3, "java.util.Arrays.asList"),
-            "7:1: " + getCheckMessage(MSG_DUPLICATE, 6, "java.util.List")
+            "7:1: " + getCheckMessage(MSG_DUPLICATE, 6, "java.util.List"),
+            "8:1: " + getCheckMessage(MSG_DUPLICATE, 6, "java.util.List"),
+            "8:1: " + getCheckMessage(MSG_DUPLICATE, 7, "java.util.List")
         );
         final List<String> expectedSecondInput = Arrays.asList(CommonUtil.EMPTY_STRING_ARRAY);
         final File[] inputs = {new File(inputWithWarnings), new File(inputWithoutWarnings)};
@@ -104,6 +106,53 @@ public class RedundantImportCheckTest
         };
         verify(checkConfig, getNonCompilablePath("InputRedundantImport_UnnamedPackage.java"),
             expected);
+    }
+
+    @Test
+    public void testStarAndSpecificImportsFromSamePkg() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RedundantImportCheck.class);
+        final String[] expected = {
+            "4:1: " + getCheckMessage(MSG_DUPLICATE, 3, "java.util.ArrayList"),
+            "5:1: " + getCheckMessage(MSG_DUPLICATE, 3, "java.util.List"),
+        };
+        verify(
+            checkConfig,
+            getPath("InputRedundantImportStarAndSpecificImportsFromSamePkg.java"),
+            expected
+        );
+    }
+
+    @Test
+    public void testSameSuffixDifferentPrefix() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RedundantImportCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(
+            checkConfig,
+            getPath("InputRedundantImportSameSuffixDifferentPrefix.java"),
+            expected
+        );
+    }
+
+    @Test
+    public void testStarImportDifferentLength() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RedundantImportCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(
+            checkConfig,
+            getPath("InputRedundantImportStarImportDifferentLength.java"),
+            expected
+        );
+    }
+
+    @Test
+    public void testStarImportDifferentLength2() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RedundantImportCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(
+            checkConfig,
+            getPath("InputRedundantImportStarImportDifferentLength2.java"),
+            expected
+        );
     }
 
     @Test

@@ -19,7 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
@@ -76,6 +78,8 @@ public class RedundantImportCheck
     private final Set<FullIdent> imports = new HashSet<>();
     /** Set of static imports. */
     private final Set<FullIdent> staticImports = new HashSet<>();
+    /** List of star imports. */
+    private final List<FullIdent> starImports = new ArrayList<>();
 
     /** Name of package in file. */
     private String pkgName;
@@ -85,6 +89,7 @@ public class RedundantImportCheck
         pkgName = null;
         imports.clear();
         staticImports.clear();
+        starImports.clear();
     }
 
     @Override
@@ -121,12 +126,15 @@ public class RedundantImportCheck
                 log(ast, MSG_SAME, imp.getText());
             }
             // Check for a duplicate import
-            imports.stream().filter(full -> imp.getText().equals(full.getText()))
-                .forEach(full -> log(ast,
-                    MSG_DUPLICATE, full.getLineNo(),
-                    imp.getText()));
+            imports.stream()
+                .filter(full -> imp.getText().equals(full.getText()))
+                .forEach(full -> log(ast, MSG_DUPLICATE, full.getLineNo(), imp.getText()));
 
             imports.add(imp);
+
+            if (isStarImport(imp)) {
+                starImports.add(imp);
+            }
         }
         else {
             // Check for a duplicate static import
@@ -138,6 +146,31 @@ public class RedundantImportCheck
                     MSG_DUPLICATE, full.getLineNo(), imp.getText()));
 
             staticImports.add(imp);
+        }
+    }
+
+    @Override
+    public void finishTree(DetailAST ast) {
+
+        // check for types already imported by star imports
+        // we should run this only if there is only 1 star import in file
+        // 0 star imports -- there will be no violations
+        // > 1 star imports -- false positives are possible
+        if (starImports.size() == 1) {
+            final FullIdent starImp = starImports.get(0);
+
+            imports.stream()
+                .filter(imp -> !isStarImport(imp))
+                .filter(imp -> isDuplicatedByStarImport(starImp, imp))
+                .forEach(imp -> {
+                    log(
+                        imp.getLineNo(),
+                        imp.getColumnNo() - imp.getText().length(),
+                        MSG_DUPLICATE,
+                        starImp.getLineNo(),
+                        imp.getText()
+                    );
+                });
         }
     }
 
@@ -156,4 +189,39 @@ public class RedundantImportCheck
         return front.equals(pkg);
     }
 
+    /**
+     * Determines if an import statement is a star import.
+     * @param imp the import
+     * @return whether imp is a start import
+     */
+    private static boolean isStarImport(FullIdent imp) {
+        return imp.getText().endsWith(".*");
+    }
+
+    /**
+     * Determines if a package imported by {@code imp} can be imported using {@code starImp}.
+     * @param starImp the star import
+     * @param imp the import
+     * @return whether package imported by {@code imp} can be imported using {@code starImp}
+     */
+    private static boolean isDuplicatedByStarImport(FullIdent starImp, FullIdent imp) {
+        final String importSplitRegexp = "\\.";
+
+        final String[] impSplitted = imp.getText().split(importSplitRegexp);
+        final String[] starImpSplited = starImp.getText().split(importSplitRegexp);
+
+        boolean isEquals = true;
+
+        if (impSplitted.length == starImpSplited.length) {
+            // check for common prefix
+            for (int i = 0; i < impSplitted.length - 1 && isEquals; i++) {
+                isEquals = impSplitted[i].equals(starImpSplited[i]);
+            }
+        }
+        else {
+            isEquals = false;
+        }
+
+        return isEquals;
+    }
 }
