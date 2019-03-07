@@ -306,8 +306,6 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "23: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Annotation"),
             "25: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Annotation"),
             "27: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Annotation"),
-            "31: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Annotation"),
-            "33: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Annotation"),
         };
         verify(checkConfig, getPath("InputAnnotationLocationSingleParameterless.java"), expected);
     }
