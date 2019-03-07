@@ -132,7 +132,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Distance for variable 'sum' = 3.
  * </pre>
  * <p>
- * As the distance is more then the default one, the Check raises warning for variable
+ * As the distance is more than the default one, the Check raises warning for variable
  * 'sum' to move it into the 'for(...)' block. But there is situation when
  * variable 'sum' hasn't to be 0 within each iteration. So, to avoid such
  * warnings you can use Suppression Filter, provided by Checkstyle, for the
@@ -557,7 +557,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                     variableUsageExpressions.add(currentStatementAst);
                 }
                 // If expression doesn't contain variable and this variable
-                // hasn't been met yet, than distance + 1.
+                // hasn't been met yet, then distance + 1.
                 else if (variableUsageExpressions.isEmpty()
                         && currentStatementAst.getType() != TokenTypes.VARIABLE_DEF) {
                     distance++;
@@ -576,7 +576,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * @param variable
      *        Variable which is checked for content in block.
      * @return If variable usage is met only inside the block
-     *         (not in its declaration!) than return the first Ast node
+     *         (not in its declaration!) then return the first Ast node
      *         of this block, otherwise - null.
      */
     private static DetailAST getFirstNodeInsideForWhileDoWhileBlocks(
@@ -618,7 +618,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * @param variable
      *        Variable which is checked for content in block.
      * @return If variable usage is met only inside the block
-     *         (not in its declaration!) than return the first Ast node
+     *         (not in its declaration!) then return the first Ast node
      *         of this block, otherwise - null.
      */
     private static DetailAST getFirstNodeInsideIfBlock(
@@ -652,7 +652,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 }
             }
 
-            // If IF block doesn't include ELSE than analyze variable usage
+            // If IF block doesn't include ELSE then analyze variable usage
             // only inside IF block.
             if (currentNode != null
                     && isChild(currentNode, variable)) {
@@ -679,7 +679,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * @param variable
      *        Variable which is checked for content in block.
      * @return If variable usage is met only inside the block
-     *         (not in its declaration!) than return the first Ast node
+     *         (not in its declaration!) then return the first Ast node
      *         of this block, otherwise - null.
      */
     private static DetailAST getFirstNodeInsideSwitchBlock(
@@ -720,7 +720,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * @param variable
      *        Variable which is checked for content in block.
      * @return If variable usage is met only inside the block
-     *         (not in its declaration!) than return the first Ast node
+     *         (not in its declaration!) then return the first Ast node
      *         of this block, otherwise - null.
      */
     private static DetailAST getFirstNodeInsideTryCatchFinallyBlocks(

@@ -204,7 +204,7 @@ public abstract class AutomaticBean
      * @param key key of value
      * @param value value
      * @param recheck whether to check for property existence before copy
-     * @throws CheckstyleException then property defined incorrectly
+     * @throws CheckstyleException when property defined incorrectly
      */
     private void tryCopyProperty(String key, Object value, boolean recheck)
             throws CheckstyleException {

@@ -131,7 +131,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </pre>
  * <p>
  * Result: import will be assigned to SPECIAL_IMPORTS. Matching substring length is 5 for both
- * patterns. However, "Avoid" position is lower then "Check" position.
+ * patterns. However, "Avoid" position is lower than "Check" position.
  * </p>
  * <ul>
  * <li>
@@ -835,7 +835,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
      * @param packageFullPath
      *        full identifier containing path to package or imported object.
      * @return String with defined amount of domains or full identifier
-     *        (if full identifier had less domain then specified)
+     *        (if full identifier had less domain than specified)
      */
     private static String getFirstDomainsFromIdent(
             final int firstPackageDomainsCount, final String packageFullPath) {

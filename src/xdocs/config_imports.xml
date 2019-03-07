@@ -330,7 +330,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </source>
         <p>
           Result: import will be assigned to SPECIAL_IMPORTS. Matching substring length is 5 for
-          both patterns. However, "Avoid" position is lower then "Check" position.
+          both patterns. However, "Avoid" position is lower than "Check" position.
         </p>
       </subsection>
 

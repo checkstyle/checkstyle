@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * This class checks line-wrapping into definitions and expressions. The
- * line-wrapping indentation should be not less then value of the
+ * line-wrapping indentation should be not less than value of the
  * lineWrappingIndentation parameter.
  *
  */
