@@ -110,7 +110,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
         "java.lang." + SUPPRESS_WARNINGS;
 
     /** The regexp to match against. */
-    private Pattern format = Pattern.compile("^$|^\\s+$");
+    private Pattern format = Pattern.compile("^\\s*+$");
 
     /**
      * Set the format for the specified regular expression.
