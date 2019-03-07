@@ -29,7 +29,13 @@
           Check location of annotation on language elements.
           By default, Check enforce to locate annotations immediately after documentation block
           and before target element, annotation should be located on separate line from target
-          element.
+          element. This check also verifies that the annotations are on the same indenting level as
+          the annotated element if they are not on the same line.
+        </p>
+        <p>
+          Attention: Elements that cannot have JavaDoc comments like local variables are not in the
+          scope of this check even though a token type like <code>VARIABLE_DEF</code> would match
+          them.
         </p>
         <p>
           Attention: Annotations among modifiers are ignored (looks like false-negative)
@@ -186,30 +192,6 @@ public String getNameIfPresent() { ... }
   &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
-       <p>
-         The following example demonstrates how the check validates annotations of
-         for-each and for-loop variable definitions.
-       </p>
-       <p>Configuration:</p>
-       <source>
-&lt;module name=&quot;AnnotationLocation&quot;&gt;
-  &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
-    value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
- &lt;/module&gt;
-       </source>
-       <p>Code example:</p>
-       <source>
-public void test(String s) {
-  ...
-  for (&#64;MyAnnotation char c : s.toCharArray()) { ... }  // OK
-  ...
-  for (&#64;MyAnnotation int i = 0; i &lt; 10; i++) { ... } // OK
-  ...
-}
-       </source>
       </subsection>
 
       <subsection name="Example of Usage" id="AnnotationLocation_Example_of_Usage">
