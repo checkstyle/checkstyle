@@ -814,7 +814,7 @@ public static final int COUNTER = 10; // violation as javadoc exists
               <a href="property_types.html#regexp">Regular Expression</a>
             </td>
             <td>
-              <code>"^$|^\s+$"</code>
+              <code>"^\s*+$"</code>
             </td>
             <td>5.0</td>
           </tr>
