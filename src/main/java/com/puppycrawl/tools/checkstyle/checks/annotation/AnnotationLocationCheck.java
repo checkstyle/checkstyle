@@ -31,13 +31,18 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Check location of annotation on language elements.
  * By default, Check enforce to locate annotations immediately after
  * documentation block and before target element, annotation should be located
- * on separate line from target element.
+ * on separate line from target element. Elements that cannot have JavaDoc comments
+ * like local variables are not in the scope of this check even though a token type like
+ * {@code VARIABLE_DEF} would match them. This check also verifies that the annotations
+ * are on the same indenting level as the annotated element if they are not on the same line.
  * </p>
  * <p>
  * Attention: Annotations among modifiers are ignored (looks like false-negative)
  * as there might be a problem with annotations for return types:
  * </p>
- * <pre>public @Nullable Long getStartTimeOrNull() { ... }</pre>
+ * <pre>
+ * public @Nullable Long getStartTimeOrNull() { ... }
+ * </pre>
  * <p>
  * Such annotations are better to keep close to type.
  * Due to limitations, Checkstyle can not examine the target of an annotation.
@@ -140,39 +145,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- * <p>
- * The following example demonstrates how the check validates annotations of
- * catch parameters, foreach, for-loop variable definitions.
- * </p>
- * <p>
- * Configuration:
- * </p>
- * <pre>
- * &lt;module name=&quot;AnnotationLocation&quot;&gt;
- *   &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
- *   &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
- *     value=&quot;false&quot;/&gt;
- *   &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
- *  &lt;/module&gt;
- * </pre>
- * <p>
- * Code example:
- * </p>
- * <pre>
- * public void test(String s) {
- *   ...
- *   for (&#64;MyAnnotation char c : s.toCharArray()) { ... }  // OK
- *   ...
- *   try { ... }
- *   catch (&#64;MyAnnotation Exception ex) { ... } // OK
- *   ...
- *   for (&#64;MyAnnotation int i = 0; i &lt; 10; i++) { ... } // OK
- *   ...
- *   MathOperation c = (&#64;MyAnnotation int a, &#64;MyAnnotation int b) -&gt; a + b; // OK
- *   ...
- * }
- * </pre>
  *
  * @since 6.0
  */
@@ -190,10 +162,6 @@ public class AnnotationLocationCheck extends AbstractCheck {
      * file.
      */
     public static final String MSG_KEY_ANNOTATION_LOCATION = "annotation.location";
-
-    /** Array of single line annotation parents. */
-    private static final int[] SINGLELINE_ANNOTATION_PARENTS = {TokenTypes.FOR_EACH_CLAUSE,
-                                                                TokenTypes.FOR_INIT, };
 
     /**
      * Allow single parameterless annotation to be located on the same line as
@@ -277,11 +245,15 @@ public class AnnotationLocationCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        DetailAST node = ast.findFirstToken(TokenTypes.MODIFIERS);
-        if (node == null) {
-            node = ast.findFirstToken(TokenTypes.ANNOTATIONS);
+        // ignore variable def tokens that are not field definitions
+        if (ast.getType() != TokenTypes.VARIABLE_DEF
+                || ast.getParent().getType() == TokenTypes.OBJBLOCK) {
+            DetailAST node = ast.findFirstToken(TokenTypes.MODIFIERS);
+            if (node == null) {
+                node = ast.findFirstToken(TokenTypes.ANNOTATIONS);
+            }
+            checkAnnotations(node, getExpectedAnnotationIndentation(node));
         }
-        checkAnnotations(node, getExpectedAnnotationIndentation(node));
     }
 
     /**
@@ -353,8 +325,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
      * the value of {@link AnnotationLocationCheck#allowSamelineParameterizedAnnotation};
      * 2) checks parameterless annotation location considering
      * the value of {@link AnnotationLocationCheck#allowSamelineSingleParameterlessAnnotation};
-     * 3) checks annotation location considering the elements
-     * of {@link AnnotationLocationCheck#SINGLELINE_ANNOTATION_PARENTS};
+     * 3) checks annotation location;
      * @param annotation annotation node.
      * @param hasParams whether an annotation has parameters.
      * @return true if the annotation has a correct location.
@@ -370,8 +341,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
         }
         return allowSamelineMultipleAnnotations
             || allowingCondition && !hasNodeBefore(annotation)
-            || !allowingCondition && (!hasNodeBeside(annotation)
-            || isAllowedPosition(annotation, SINGLELINE_ANNOTATION_PARENTS));
+            || !hasNodeBeside(annotation);
     }
 
     /**
@@ -409,41 +379,6 @@ public class AnnotationLocationCheck extends AbstractCheck {
         }
 
         return annotationLineNo == nextNode.getLineNo();
-    }
-
-    /**
-     * Checks whether position of annotation is allowed.
-     * @param annotation annotation token.
-     * @param allowedPositions an array of allowed annotation positions.
-     * @return true if position of annotation is allowed.
-     */
-    private static boolean isAllowedPosition(DetailAST annotation, int... allowedPositions) {
-        boolean allowed = false;
-        for (int position : allowedPositions) {
-            if (isInSpecificCodeBlock(annotation, position)) {
-                allowed = true;
-                break;
-            }
-        }
-        return allowed;
-    }
-
-    /**
-     * Checks whether the scope of a node is restricted to a specific code block.
-     * @param node node.
-     * @param blockType block type.
-     * @return true if the scope of a node is restricted to a specific code block.
-     */
-    private static boolean isInSpecificCodeBlock(DetailAST node, int blockType) {
-        boolean returnValue = false;
-        for (DetailAST token = node.getParent(); token != null; token = token.getParent()) {
-            final int type = token.getType();
-            if (type == blockType) {
-                returnValue = true;
-                break;
-            }
-        }
-        return returnValue;
     }
 
 }

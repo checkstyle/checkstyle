@@ -29,7 +29,10 @@
           Check location of annotation on language elements.
           By default, Check enforce to locate annotations immediately after documentation block
           and before target element, annotation should be located on separate line from target
-          element.
+          element. Elements that cannot have JavaDoc comments like local variables are not in the
+          scope of this check even though a token type like <code>VARIABLE_DEF</code> would match
+          them. This check also verifies that the annotations are on the same indenting level as
+          the annotated element if they are not on the same line.
         </p>
         <p>
           Attention: Annotations among modifiers are ignored (looks like false-negative)
@@ -142,14 +145,14 @@ public String getNameIfPresent() { ... }
         <p>
           Use the following configuration:
         </p>
-        <source>
-&lt;module name=&quot;AnnotationLocation&quot;&gt;
-  &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
-    value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
-&lt;/module&gt;
-        </source>
+        <source><![CDATA[
+<module name="AnnotationLocation">
+  <property name="allowSamelineMultipleAnnotations" value="true"/>
+  <property name="allowSamelineSingleParameterlessAnnotation"
+    value="false"/>
+  <property name="allowSamelineParameterizedAnnotation" value="false"/>
+</module>
+        ]]></source>
         <p>
           Example to allow one single parameterless annotation on the same line
         </p>
@@ -160,14 +163,14 @@ public String getNameIfPresent() { ... }
         <p>
           Use the following configuration:
         </p>
-        <source>
-&lt;module name=&quot;AnnotationLocation&quot;&gt;
-  &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
-    value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
-&lt;/module&gt;
-        </source>
+        <source><![CDATA[
+<module name="AnnotationLocation">
+  <property name="allowSamelineMultipleAnnotations" value="false"/>
+  <property name="allowSamelineSingleParameterlessAnnotation"
+    value="true"/>
+  <property name="allowSamelineParameterizedAnnotation" value="false"/>
+</module>
+        ]]></source>
         <p>
           Example to allow only one and only parameterized annotation on the same line
         </p>
@@ -178,43 +181,14 @@ public String getNameIfPresent() { ... }
         <p>
           Use the following configuration:
         </p>
-        <source>
-&lt;module name=&quot;AnnotationLocation&quot;&gt;
-  &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
-    value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;true&quot;/&gt;
-&lt;/module&gt;
-        </source>
-       <p>
-         The following example demonstrates how the check validates annotations of
-         catch parameters, foreach, for-loop variable definitions.
-       </p>
-       <p>Configuration:</p>
-       <source>
-&lt;module name=&quot;AnnotationLocation&quot;&gt;
-  &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
-    value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
- &lt;/module&gt;
-       </source>
-       <p>Code example:</p>
-       <source>
-public void test(String s) {
-  ...
-  for (&#64;MyAnnotation char c : s.toCharArray()) { ... }  // OK
-  ...
-  try { ... }
-  catch (&#64;MyAnnotation Exception ex) { ... } // OK
-  ...
-  for (&#64;MyAnnotation int i = 0; i &lt; 10; i++) { ... } // OK
-  ...
-  MathOperation c = (&#64;MyAnnotation int a, &#64;MyAnnotation int b) -&gt; a + b; // OK
-  ...
-}
-       </source>
+        <source><![CDATA[
+<module name="AnnotationLocation">
+  <property name="allowSamelineMultipleAnnotations" value="false"/>
+  <property name="allowSamelineSingleParameterlessAnnotation"
+    value="false"/>
+  <property name="allowSamelineParameterizedAnnotation" value="true"/>
+</module>
+        ]]></source>
       </subsection>
 
       <subsection name="Example of Usage" id="AnnotationLocation_Example_of_Usage">
