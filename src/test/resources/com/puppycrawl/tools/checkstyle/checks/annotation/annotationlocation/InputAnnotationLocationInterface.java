@@ -22,7 +22,7 @@ import java.lang.annotation.Target;
     @InterfaceAnnotation("bar") void method( //warn
         int param1,
         @InterfaceAnnotation(value = "foo")
-          @InterfaceAnnotation //warn
+          @InterfaceAnnotation
         @InterfaceAnnotation("bar") int param2,
         int param3);
 

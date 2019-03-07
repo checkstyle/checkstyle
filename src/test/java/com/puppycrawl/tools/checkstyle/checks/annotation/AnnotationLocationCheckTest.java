@@ -89,7 +89,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     public void testIncorrectAllTokens() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
         checkConfig.addAttribute("tokens", "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, "
-                + "CTOR_DEF, VARIABLE_DEF, PARAMETER_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF, "
+                + "CTOR_DEF, VARIABLE_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF, "
                 + "ENUM_CONSTANT_DEF, PACKAGE_DEF");
         final String[] expected = {
             "6: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnn"),
@@ -116,7 +116,6 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "88: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation2", 10, 8),
             "91: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation1"),
             "98: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation2", 0, 3),
-            "100: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation2"),
         };
         verify(checkConfig, getPath("InputAnnotationLocationIncorrect.java"), expected);
     }
@@ -134,7 +133,6 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.VARIABLE_DEF,
-            TokenTypes.PARAMETER_DEF,
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.ANNOTATION_FIELD_DEF,
             };
@@ -189,7 +187,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     public void testAllTokens() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
         checkConfig.addAttribute("tokens", "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, "
-                + "CTOR_DEF, VARIABLE_DEF, PARAMETER_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF");
+                + "CTOR_DEF, VARIABLE_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputAnnotationLocationWithoutAnnotations.java"), expected);
     }
@@ -238,13 +236,12 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testInterface() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
-        checkConfig.addAttribute("tokens", "INTERFACE_DEF, METHOD_DEF, PARAMETER_DEF");
+        checkConfig.addAttribute("tokens", "INTERFACE_DEF, METHOD_DEF");
         final String[] expected = {
             "17: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "InterfaceAnnotation", 2, 0),
             "18: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "InterfaceAnnotation"),
             "21: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "InterfaceAnnotation", 6, 4),
             "22: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "InterfaceAnnotation"),
-            "25: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "InterfaceAnnotation", 10, 8),
         };
         verify(checkConfig, getPath("InputAnnotationLocationInterface.java"), expected);
     }
@@ -264,7 +261,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     public void testAnnotationInForEachLoopParameterAndVariableDef() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
         checkConfig.addAttribute("tokens", "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF,"
-            + " CTOR_DEF, VARIABLE_DEF, PARAMETER_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF");
+            + " CTOR_DEF, VARIABLE_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF");
         checkConfig.addAttribute("allowSamelineMultipleAnnotations", "false");
         checkConfig.addAttribute("allowSamelineSingleParameterlessAnnotation", "false");
         checkConfig.addAttribute("allowSamelineParameterizedAnnotation", "false");
