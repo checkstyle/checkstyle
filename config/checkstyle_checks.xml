@@ -97,12 +97,12 @@
   <module name="RegexpSingleline">
     <property name="format" value="^(?!(.*http|import)).{101,}$"/>
     <property name="fileExtensions" value="g, g4"/>
-    <property name="message" value="Line should not be longer then 100 symbols"/>
+    <property name="message" value="Line should not be longer than 100 symbols"/>
   </module>
   <module name="RegexpSingleline">
     <property name="format" value="^(?!(.*href=&quot;|.*http)).{101,}$"/>
     <property name="fileExtensions" value="xml, vm"/>
-    <property name="message" value="Line should not be longer then 100 symbols"/>
+    <property name="message" value="Line should not be longer than 100 symbols"/>
   </module>
   <module name="RegexpOnFilename" />
   <module name="RegexpOnFilename">

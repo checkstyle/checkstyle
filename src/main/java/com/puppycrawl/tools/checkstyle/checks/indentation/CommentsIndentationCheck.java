@@ -448,7 +448,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      *    ...
      *    case OPTION_ONE:
      *        int someVariable = 1;
-     *    // than init variable a - OK
+     *    // then init variable a - OK
      *    case OPTION_TWO:
      *        int a = 5;
      *        break;

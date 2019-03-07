@@ -169,7 +169,7 @@ public abstract class AbstractFileSetCheck
     /**
      * Notify all listeners about the errors in a file.
      * Calls {@code MessageDispatcher.fireErrors()} with
-     * all logged errors and than clears errors' list.
+     * all logged errors and then clears errors' list.
      * @param fileName the audited file
      */
     protected final void fireErrors(String fileName) {

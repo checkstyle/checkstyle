@@ -4840,7 +4840,7 @@ for (int i = 0; i &lt; 20; i++) {
            Distance for variable 'sum' = 3.
          </p>
          <p>
-           As the distance is more then the default one, the Check
+           As the distance is more than the default one, the Check
            raises warning for variable 'sum' to move it into the 'for(...)' block.
            But there is situation when variable 'sum' hasn't to be 0 within each iteration.
            So, to avoid such warnings you can use Suppression Filter, provided by
