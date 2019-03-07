@@ -141,8 +141,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * The following example demonstrates how the check validates annotations of method parameters,
- * catch parameters, foreach, for-loop variable definitions.
+ * The following example demonstrates how the check validates annotations of
+ * for-each and for-loop variable definitions.
  * </p>
  * <p>
  * Configuration:
@@ -153,23 +153,18 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
  *     value=&quot;false&quot;/&gt;
  *   &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF, PARAMETER_DEF&quot;/&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
  *  &lt;/module&gt;
  * </pre>
  * <p>
  * Code example:
  * </p>
  * <pre>
- * public void test(&#64;MyAnnotation String s) { // OK
+ * public void test(String s) {
  *   ...
  *   for (&#64;MyAnnotation char c : s.toCharArray()) { ... }  // OK
  *   ...
- *   try { ... }
- *   catch (&#64;MyAnnotation Exception ex) { ... } // OK
- *   ...
  *   for (&#64;MyAnnotation int i = 0; i &lt; 10; i++) { ... } // OK
- *   ...
- *   MathOperation c = (&#64;MyAnnotation int a, &#64;MyAnnotation int b) -&gt; a + b; // OK
  *   ...
  * }
  * </pre>
@@ -193,7 +188,6 @@ public class AnnotationLocationCheck extends AbstractCheck {
 
     /** Array of single line annotation parents. */
     private static final int[] SINGLELINE_ANNOTATION_PARENTS = {TokenTypes.FOR_EACH_CLAUSE,
-                                                                TokenTypes.PARAMETER_DEF,
                                                                 TokenTypes.FOR_INIT, };
 
     /**
@@ -266,7 +260,6 @@ public class AnnotationLocationCheck extends AbstractCheck {
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.VARIABLE_DEF,
-            TokenTypes.PARAMETER_DEF,
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.ANNOTATION_FIELD_DEF,
         };

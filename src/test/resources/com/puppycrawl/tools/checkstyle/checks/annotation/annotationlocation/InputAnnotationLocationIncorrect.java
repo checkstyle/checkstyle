@@ -98,6 +98,10 @@ class InputAnnotationLocationIncorrect
 @MyAnnotation2
 class Foo {
     public void method1(@MyAnnotation3 @MyAnnotation2 Object param1) {
+        try {
+        }
+        catch (@MyAnnotation3 @MyAnnotation2 Exception e) {
+        }
         return;
     }
 }
