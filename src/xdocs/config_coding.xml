@@ -202,10 +202,6 @@ String b = (a==null || a.length&lt;1) ? null : a.substring(1);
       <subsection name="Example of Usage" id="AvoidInlineConditionals_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidInlineConditionals">
-            Sun Style</a>
-          </li>
-          <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidInlineConditionals">
             Checkstyle Style</a>
           </li>
