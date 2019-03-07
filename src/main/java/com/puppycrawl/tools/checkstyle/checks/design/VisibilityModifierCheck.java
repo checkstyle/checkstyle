@@ -118,7 +118,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * that type will match to any named the same type without consideration of package.
  * </p>
  * <p>
- * <b>Rationale</b>: Forcing all fields of class to have private modified by default is good
+ * <b>Rationale</b>: Forcing all fields of class to have private modifier by default is good
  * in most cases, but in some cases it drawbacks in too much boilerplate get/set code.
  * One of such cases are immutable classes.
  * </p>
