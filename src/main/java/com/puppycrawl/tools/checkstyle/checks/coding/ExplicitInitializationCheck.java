@@ -35,16 +35,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <p>
  * Rationale: each instance variable gets
- * initialized twice, to the same value.  Java
+ * initialized twice, to the same value. Java
  * initializes each instance variable to its default
  * value (0 or null) before performing any
- * initialization specified in the code.  So in this case,
- * x gets initialized to 0 twice, and bar gets initialized
- * to null twice.  So there is a minor inefficiency.  This style of
- * coding is a hold-over from C/C++ style coding,
- * and it shows that the developer isn't really confident that
- * Java really initializes instance variables to default
- * values.
+ * initialization specified in the code.
+ * So there is a minor inefficiency.
  * </p>
  *
  */
