@@ -227,7 +227,8 @@ public final class BlockCommentPosition {
     private static boolean isOnPlainClassMember(DetailAST blockComment, int memberType) {
         DetailAST parent = blockComment.getParent();
         // type could be in fully qualified form, so we go up to Type token
-        while (parent != null && parent.getType() == TokenTypes.DOT) {
+        while (parent != null && (parent.getType() == TokenTypes.DOT
+                || parent.getType() == TokenTypes.ARRAY_DECLARATOR)) {
             parent = parent.getParent();
         }
         return parent != null

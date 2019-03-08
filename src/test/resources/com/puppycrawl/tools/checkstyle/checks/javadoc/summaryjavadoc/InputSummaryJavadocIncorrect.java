@@ -136,4 +136,7 @@ class InputSummaryJavadocIncorrect {
 
     /** */
     <T> T foo8(T t) {return null;}
+
+    /** */
+    String[] foo9() {return null;}
 }
