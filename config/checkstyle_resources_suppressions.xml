@@ -55,5 +55,11 @@
     files="[\\/]InputOuterType.*\.java"/>
   <suppress checks="OuterTypeFilename"
     files="rule522typenames[\\/]InputTypeName\.java"/>
+  <suppress checks="OuterTypeFilename"
+    files="outertypefilename[\\/]InputOuterTypeFilename5\.java"/>
+  <suppress checks="OuterTypeFilename"
+    files="outertypefilename[\\/]InputOuterTypeFilenameNoPublic\.java"/>
+  <suppress checks="OuterTypeFilename"
+    files="[\\/]package-info\.java"/>
 
 </suppressions>

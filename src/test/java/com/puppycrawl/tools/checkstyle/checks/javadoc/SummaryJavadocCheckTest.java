@@ -146,4 +146,14 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("package-info.java"), expected);
     }
 
+    @Test
+    public void testPackageInfoWithAnnotation() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+        };
+
+        verify(checkConfig, getPath("inputs/package-info.java"), expected);
+    }
+
 }
