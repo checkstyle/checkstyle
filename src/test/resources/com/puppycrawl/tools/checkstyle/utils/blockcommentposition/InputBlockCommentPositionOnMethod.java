@@ -36,4 +36,11 @@ public class InputBlockCommentPositionOnMethod {
     <T> T method4(T t){
         return null;
     }
+
+    /**
+     * I'm a javadoc
+     */
+    String[] method5(){
+        return null;
+    }
 }
