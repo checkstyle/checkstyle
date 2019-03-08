@@ -64,7 +64,8 @@ public final class BlockCommentPosition {
      */
     public static boolean isOnPackage(DetailAST blockComment) {
         final DetailAST nextSibling = blockComment.getNextSibling();
-        return nextSibling != null && nextSibling.getType() == TokenTypes.PACKAGE_DEF;
+        return isOnTokenWithAnnotation(blockComment, TokenTypes.PACKAGE_DEF)
+                || nextSibling != null && nextSibling.getType() == TokenTypes.PACKAGE_DEF;
     }
 
     /**
@@ -213,7 +214,6 @@ public final class BlockCommentPosition {
         return blockComment.getParent() != null
                 && blockComment.getParent().getType() == TokenTypes.ANNOTATION
                 && getPrevSiblingSkipComments(blockComment.getParent()) == null
-                && blockComment.getParent().getParent().getType() == TokenTypes.MODIFIERS
                 && blockComment.getParent().getParent().getParent().getType() == tokenType
                 && getPrevSiblingSkipComments(blockComment) == null;
     }
