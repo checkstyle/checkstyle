@@ -133,4 +133,7 @@ class InputSummaryJavadocIncorrect {
      * M m m m {@inheritDoc}
      */
     void foo7() {}
+
+    /** */
+    <T> T foo8(T t) {return null;}
 }
