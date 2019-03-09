@@ -16,10 +16,10 @@ Please note that PRs are looked only for approved issues. Follow the PR guide fo
 #### [Pull Request Template](https://github.com/checkstyle/checkstyle/blob/master/.github/PULL_REQUEST_TEMPLATE.md)
 
 Please follow the below links in order to start contributing to the checkstyle project
-#### [Beginning Development](http://checkstyle.sourceforge.net/beginning_development.html)
-#### [Contribution Guidelines](http://checkstyle.sourceforge.net/contributing.html)
+#### [Beginning Development](https://checkstyle.org/beginning_development.html)
+#### [Contribution Guidelines](https://checkstyle.org/contributing.html)
 
 Find the links below to import the checkstyle project to an IDE
-#### [Importing checkstyle project to IntelliJ](http://checkstyle.sourceforge.net/idea.html)
-#### [Importing checkstyle project to Eclipse](http://checkstyle.sourceforge.net/eclipse.html)
-#### [Importing checkstyle project to Netbeans](http://checkstyle.sourceforge.net/netbeans.html)
+#### [Importing checkstyle project to IntelliJ](https://checkstyle.org/idea.html)
+#### [Importing checkstyle project to Eclipse](https://checkstyle.org/eclipse.html)
+#### [Importing checkstyle project to Netbeans](https://checkstyle.org/netbeans.html)
