@@ -22,12 +22,6 @@
                 <ignoreVersion type="regex">20030911</ignoreVersion>
             </ignoreVersions>
         </rule>
-        <rule groupId="org.apache.maven.plugins" artifactId="maven-pmd-plugin">
-            <ignoreVersions>
-                <!-- till https://github.com/checkstyle/checkstyle/issues/5790 -->
-                <ignoreVersion type="regex">3.10.0</ignoreVersion>
-            </ignoreVersions>
-        </rule>
         <rule groupId="org.apache.maven.plugins" artifactId="maven-release-plugin">
             <ignoreVersions>
                 <!-- we use 2.1 version that is defined at our parent

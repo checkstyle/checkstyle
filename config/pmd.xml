@@ -15,8 +15,6 @@
     <exclude name="AccessorMethodGeneration"/>
     <!-- The PMD mistakes the AbstractViolationReporter::log() as a debug log. -->
     <exclude name="GuardLogStatement"/>
-    <!-- Till https://github.com/pmd/pmd/issues/1181 -->
-    <exclude name="UnusedPrivateMethod"/>
   </rule>
   <rule ref="category/java/bestpractices.xml/AvoidPrintStackTrace">
     <properties>
@@ -73,6 +71,8 @@
     <!-- Calling super() is completely pointless, no matter if class inherits anything or not;
          it is meaningful only if you do not call implicit constructor of the base class. -->
     <exclude name="CallSuperInConstructor"/>
+    <!-- Till https://github.com/checkstyle/checkstyle/issues/6578 -->
+    <exclude name="LinguisticNaming"/>
     <!-- Pollutes code with modifiers. -->
     <exclude name="LocalVariableCouldBeFinal"/>
     <!-- Pollutes the code with modifiers. We use the ParameterAssignmentCheck to protect the
@@ -83,6 +83,8 @@
     <exclude name="OnlyOneReturn"/>
     <!-- We use CheckstyleCustomShortVariable, to control the length and skip Override methods. -->
     <exclude name="ShortVariable"/>
+    <!-- Till https://github.com/checkstyle/checkstyle/issues/6579 -->
+    <exclude name="UseUnderscoresInNumericLiterals"/>
   </rule>
   <rule ref="category/java/codestyle.xml/ClassNamingConventions">
     <properties>
@@ -272,7 +274,7 @@
   </rule>
   <rule ref="category/java/design.xml/CyclomaticComplexity">
     <properties>
-      <property name="classReportLevel" value="76"/>
+      <property name="classReportLevel" value="75"/>
       <property name="methodReportLevel" value="11"/>
       <!-- RequireThisCheck, VariableDeclarationUsageDistanceCheck, XdocsPagesTest,
              JavadocMethodCheck and CommentsIndentationCheck are big classes and should not
@@ -289,12 +291,13 @@
              validated by checkstyle version of Npath, we think that pmd is wrong here.
            Checker.processFiles is validated by checkstyle version of Npath, we think that pmd is
              wrong here.
+           CommonUtil is clearly designed for a large number of small methods for common use.
            XdocsJavaDocsTest.testAllCheckSectionJavaDocs is needed until all suppressions are
              removed. -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@Image='RequireThisCheck'
       or @Image='VariableDeclarationUsageDistanceCheck' or @Image='XdocsPagesTest'
-      or @Image='JavadocMethodCheck' or @Image='CommentsIndentationCheck']
+      or @Image='JavadocMethodCheck' or @Image='CommentsIndentationCheck' or @Image='CommonUtil']
     | //ClassOrInterfaceDeclaration[@Image='Main']//MethodDeclaration[@Name='validateCli']
     | //ClassOrInterfaceDeclaration[@Image='Checker']//MethodDeclaration[@Name='processFiles']
     | //ClassOrInterfaceDeclaration[@Image='FallThroughCheck']
