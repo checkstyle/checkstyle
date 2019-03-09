@@ -86,8 +86,14 @@
     <!-- We use CheckstyleCustomShortVariable, to control the length and skip Override methods. -->
     <exclude name="ShortVariable"/>
   </rule>
-  <rule ref="category/java/codestyle.xml/AbstractNaming">
+  <rule ref="category/java/codestyle.xml/ClassNamingConventions">
     <properties>
+     <property name="classPattern" value="[A-Z][a-zA-Z0-9]*" />
+     <property name="abstractClassPattern" value="Abstract[A-Z][a-zA-Z0-9]*" />
+     <property name="interfacePattern" value="[A-Z][a-zA-Z0-9]*" />
+     <property name="enumPattern" value="[A-Z][a-zA-Z0-9]*" />
+     <property name="annotationPattern" value="[A-Z][a-zA-Z0-9]*" />
+     <property name="utilityClassPattern" value="[A-Z][a-zA-Z0-9]*Util" />
      <!-- We can not brake compatibility with previous versions. -->
      <property name="violationSuppressXPath"
                value="//ClassOrInterfaceDeclaration

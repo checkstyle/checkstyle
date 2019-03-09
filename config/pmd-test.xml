@@ -32,7 +32,7 @@
             file to ease navigation and search for test-->
         <exclude name="ExcessiveImports"/>
         <!--test should be named as their main class-->
-        <exclude name="AbstractNaming"/>
+        <exclude name="ClassNamingConventions"/>
         <!--checkstyle do not use IP in configuration, so all values in tests are ok to use,
             they just another test string data-->
         <exclude name="AvoidUsingHardCodedIP"/>
