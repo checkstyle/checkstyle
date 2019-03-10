@@ -20,9 +20,15 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -30,18 +36,27 @@ import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
+import java.net.URI;
+import java.nio.charset.StandardCharsets;
 import java.util.Dictionary;
 import java.util.regex.Pattern;
 
+import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 
+import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class CommonUtilTest {
+public class CommonUtilTest extends AbstractPathTestSupport {
 
     /** After appending to path produces equivalent, but denormalized path. */
     private static final String PATH_DENORMALIZER = "/levelDown/.././";
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/utils/commonutil";
+    }
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
@@ -438,6 +453,45 @@ public class CommonUtilTest {
     public void testIsIntNull() {
         assertFalse("Should return false when null is passed",
             CommonUtil.isInt(null));
+    }
+
+    @Test
+    public void testGetUriByFilenameFindsAbsoluteResourceOnClasspath() throws Exception {
+        final String filename =
+            "/" + getPackageLocation() + "/InputCommonUtilTest_empty_checks.xml";
+        final URI uri = CommonUtil.getUriByFilename(filename);
+        assertThat("URI is null for: " + filename, uri, is(not(nullValue())));
+    }
+
+    @Test
+    public void testGetUriByFilenameFindsRelativeResourceOnClasspath() throws Exception {
+        final String filename =
+            getPackageLocation() + "/InputCommonUtilTest_empty_checks.xml";
+        final URI uri = CommonUtil.getUriByFilename(filename);
+        assertThat("URI is null for: " + filename, uri, is(not(nullValue())));
+    }
+
+    /**
+     * This test illustrates #6232.
+     * Without fix, the assertion will fail because the URL under test
+     * "com/puppycrawl/tools/checkstyle/utils/commonutil/InputCommonUtilTest_resource.txt"
+     * will be interpreted relative to the current package
+     * "com/puppycrawl/tools/checkstyle/utils/"
+     */
+    @Test
+    public void testGetUriByFilenameFindsResourceRelativeToRootClasspath() throws Exception {
+        final String filename =
+                getPackageLocation() + "/InputCommonUtilTest_resource.txt";
+        final URI uri = CommonUtil.getUriByFilename(filename);
+        assertThat("URI is null for: " + filename, uri, is(not(nullValue())));
+        final String uriRelativeToPackage =
+                "com/puppycrawl/tools/checkstyle/utils/"
+                        + getPackageLocation() + "/InputCommonUtilTest_resource.txt";
+        assertThat("URI is relative to package " + uriRelativeToPackage,
+            uri.toString(), not(containsString(uriRelativeToPackage)));
+        final String content = IOUtils.toString(uri.toURL(), StandardCharsets.UTF_8);
+        assertThat("Content mismatches for: " + uri,
+                content, startsWith("good"));
     }
 
     private static class TestCloseable implements Closeable {

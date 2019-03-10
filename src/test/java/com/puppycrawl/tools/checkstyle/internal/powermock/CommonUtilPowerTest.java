@@ -49,7 +49,7 @@ public class CommonUtilPowerTest {
 
         when(configUrl.toURI()).thenThrow(URISyntaxException.class);
         mockStatic(CommonUtil.class, Mockito.CALLS_REAL_METHODS);
-        final String fileName = "suppressions_none.xml";
+        final String fileName = "/suppressions_none.xml";
         when(CommonUtil.class.getResource(fileName)).thenReturn(configUrl);
 
         try {
