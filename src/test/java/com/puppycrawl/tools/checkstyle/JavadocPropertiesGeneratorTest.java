@@ -35,7 +35,7 @@ import org.junit.Test;
 import org.junit.contrib.java.lang.system.SystemErrRule;
 import org.junit.contrib.java.lang.system.SystemOutRule;
 
-import antlr.ANTLRException;
+import antlr.MismatchedTokenException;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
@@ -252,10 +252,10 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             assertTrue("Invalid error message",
                 ex.getMessage().contains("InputJavadocPropertiesGeneratorParseError.java"));
 
-            final Throwable cause = ex.getCause();
-            assertTrue("Invalid error message", cause instanceof ANTLRException);
+            final Throwable cause = ex.getCause().getCause();
+            assertTrue("Invalid error message", cause instanceof MismatchedTokenException);
             assertTrue("Invalid error message",
-                cause.getMessage().contains("Unexpected character 0x23 in identifier"));
+                cause.getMessage().contains("expecting RCURLY, found '!'"));
         }
     }
 
