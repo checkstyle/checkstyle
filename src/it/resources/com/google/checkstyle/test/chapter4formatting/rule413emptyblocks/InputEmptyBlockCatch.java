@@ -8,7 +8,7 @@ import java.io.*;
 import java.awt.Dimension;
 import java.awt.Color;
 
-class Catch {
+class InputEmptyBlockCatch {
     boolean flag;
     void doSm() {}
     void foo() {

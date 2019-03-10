@@ -6,7 +6,7 @@ package com.google.checkstyle.test.chapter7javadoc.rule712paragraphs;
  * /^ WARN/   Some Javadoc.<p> //warn
  *
  */
-class InputCorrectJavaDocParagraphCheck1 {
+class InputIncorrectJavadocParagraphCheck {
 
     /**
      * Some Javadoc.<P>  //warn

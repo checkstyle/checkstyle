@@ -2,7 +2,7 @@ package com.google.checkstyle.test.chapter5naming.rule528typevariablenames;
 
 import java.io.Serializable;
 
-class InputTypeParameterName <t> //warn
+class InputClassTypeParameterName <t> //warn
 {
     public <TT> void foo() { }
     

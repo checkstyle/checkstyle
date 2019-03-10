@@ -8,13 +8,13 @@ import java.io.*;
 import java.awt.Dimension;
 import java.awt.Color;
 
-class UpdateClass
+class InputEmptyBlockBasic
 {
     static {} //ok
     
     public void fooMethod()
     {
-        UpdateClass r = new UpdateClass();
+        InputEmptyBlockBasic r = new InputEmptyBlockBasic();
         int a = 1;
         if (a == 1) {} // warn 
         char[] s = {'1', '2'};
@@ -39,9 +39,9 @@ class UpdateClass
 
 class IO
 {
-    public UpdateClass read()
+    public InputEmptyBlockBasic read()
     {
-        return new UpdateClass();
+        return new InputEmptyBlockBasic();
     }
 }
 class Empty {} //ok
@@ -63,7 +63,7 @@ class WithInner
     {
         private void withEmpty()
         {
-            UpdateClass r = new UpdateClass();
+            InputEmptyBlockBasic r = new InputEmptyBlockBasic();
             int a = 1;
             if (a == 1) {} // warn 
             char[] s = {'1', '2'};
@@ -93,7 +93,7 @@ class WithAnon
             public void emptyMethod() {}
 
             public void fooEmpty() {
-                UpdateClass r = new UpdateClass();
+                InputEmptyBlockBasic r = new InputEmptyBlockBasic();
                 int a = 1;
                 if (a == 1) {} //warn
                 char[] s = {'1', '2'};

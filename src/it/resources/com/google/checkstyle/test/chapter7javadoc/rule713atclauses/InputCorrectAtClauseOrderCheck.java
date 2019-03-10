@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @since Some javadoc.
  * @deprecated Some javadoc.
  */
-class WithAnnotations implements Serializable
+class InputCorrectAtClauseOrderCheck implements Serializable
 {
 
     /**

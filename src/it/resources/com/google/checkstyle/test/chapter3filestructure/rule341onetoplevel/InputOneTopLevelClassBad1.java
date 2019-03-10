@@ -1,4 +1,4 @@
 package com.google.checkstyle.test.chapter3filestructure.rule341onetoplevel;
 
-class Foo {} //ok
+class InputOneTopLevelClassBad1 {} //ok
 enum FooEnum {} // warn 

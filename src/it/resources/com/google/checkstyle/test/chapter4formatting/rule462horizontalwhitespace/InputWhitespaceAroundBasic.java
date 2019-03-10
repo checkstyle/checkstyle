@@ -4,7 +4,7 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
  * Class for testing whitespace issues.
  * error missing author tag
  **/
-class InputWhitespace
+class InputWhitespaceAroundBasic
 {
     /** warn **/
     private int mVar1= 1; // warn
@@ -185,7 +185,7 @@ class InputWhitespace
     /** bug  806243 (NoWhitespaceBeforeCheck error for anonymous inner class) */
     void bug806243()
     {
-        Object o = new InputWhitespace() {
+        Object o = new InputWhitespaceAroundBasic() {
             private int j ;
             //           ^ whitespace
         };

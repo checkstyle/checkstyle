@@ -52,10 +52,8 @@
 
   <!-- intentional problem for testing -->
   <suppress checks="OuterTypeFilename"
-    files="outertypefilename[\\/]InputOuterTypeFilename1a\.java"/>
+    files="[\\/]InputOuterType.*\.java"/>
   <suppress checks="OuterTypeFilename"
-    files="outertypefilename[\\/]InputOuterTypeFilename5\.java"/>
-  <suppress checks="OuterTypeFilename"
-    files="outertypefilename[\\/]InputOuterTypeFilenameNoPublic\.java"/>
+    files="rule522typenames[\\/]InputTypeName\.java"/>
 
 </suppressions>

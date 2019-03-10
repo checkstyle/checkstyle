@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter6programpractice.rule64finalizers;
 
-class NormalFinalizer {
+class InputNoFinalizeExtend {
 
     public static void doStuff() {
         // This method do some stuff

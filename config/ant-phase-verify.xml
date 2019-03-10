@@ -137,7 +137,8 @@
                 executeIgnoredModules="true"
                 >
       <path>
-        <fileset dir="src" includes="test/resources/**/*,test/resources-noncompilable/**/*">
+        <fileset dir="src"
+            includes="it/resources/**/*,test/resources/**/*,test/resources-noncompilable/**/*">
          <!-- bad syntax, permanent exclude -->
          <exclude name="**/InputAstTreeStringPrinter.java" />
          <exclude name="**/InputSuppressionsStringPrinter.java"/>

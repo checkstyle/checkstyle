@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule4841indentation; //indent:0 exp:0
 
-class FooFieldClass { //indent:0 exp:0
+class InputIndentationCorrectFieldAndParameter { //indent:0 exp:0
 
   boolean flag = conditionFirst("Loooooooooooooooooong", new //indent:2 exp:2
       SecondFieldLongName("Loooooooooooooooooog"). //indent:6 exp:6
@@ -124,3 +124,4 @@ class SecondFieldLongName { //indent:0 exp:0
         + "oongString"); //indent:8 exp:8
   } //indent:2 exp:2
 } //indent:0 exp:0
+class FooFieldClass {} //indent:0 exp:0
