@@ -508,8 +508,13 @@ public final class CommonUtil {
             else {
                 // check to see if the file is in the classpath
                 try {
-                    final URL configUrl = CommonUtil.class
-                            .getResource(filename);
+                    final URL configUrl;
+                    if (filename.charAt(0) == '/') {
+                        configUrl = CommonUtil.class.getResource(filename);
+                    }
+                    else {
+                        configUrl = ClassLoader.getSystemResource(filename);
+                    }
                     if (configUrl == null) {
                         throw new CheckstyleException(UNABLE_TO_FIND_EXCEPTION_PREFIX + filename);
                     }
