@@ -248,6 +248,11 @@ matrix:
         - DESC="find missing pitests"
         - CMD="./.ci/travis/travis.sh check-missing-pitests"
 
+    # Ensure that all modules are used in no exception configs
+    - env:
+        - DESC="ensure that all modules are used in no exception configs"
+        - CMD="./.ci/travis/travis.sh verify-no-exception-configs"
+
 script:
   - SKIP_FILES1=".github|codeship-*|buddy.yml|appveyor.yml|circleci|distelli-manifest.yml"
   - SKIP_FILES2="|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr"

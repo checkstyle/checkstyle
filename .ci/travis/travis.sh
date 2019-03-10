@@ -386,6 +386,22 @@ check-missing-pitests)
   exit $fail
   ;;
 
+verify-no-exception-configs)
+  wget -q \
+    https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-nonjavadoc-error.xml
+  wget -q \
+    https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-only-javadoc-error.xml
+  MODULES_WITH_EXTERNAL_FILES="Filter|ImportControl"
+  xmlstarlet sel --net --template -m .//module -v "@name" \
+    -n checks-nonjavadoc-error.xml -n checks-only-javadoc-error.xml \
+    | grep -vE $MODULES_WITH_EXTERNAL_FILES | grep -v "^$" \
+    | sort | uniq | sed "s/Check$//" > web.txt
+  xmlstarlet sel --net --template -m .//module -v "@name" -n config/checkstyle_checks.xml \
+    | grep -vE $MODULES_WITH_EXTERNAL_FILES | grep -v "^$" \
+    | sort | uniq | sed "s/Check$//" > file.txt
+  diff -u web.txt file.txt
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s
