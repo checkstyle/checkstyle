@@ -78,6 +78,26 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
             AnnotationUseStyleCheck.ClosingParens.ALWAYS, option);
     }
 
+    @Test
+    public void testDefault() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(AnnotationUseStyleCheck.class);
+        final String[] expected = {
+            "5: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
+            "13: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
+            "20: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
+            "30: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
+            "33: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
+            "41: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
+            "43: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
+            "47: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
+            "71: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
+            "75: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
+            "77: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
+        };
+
+        verify(checkConfig, getPath("InputAnnotationUseStyleDifferentStyles.java"), expected);
+    }
+
     /**
      * Test that annotation parens are always present.
      */
@@ -91,6 +111,8 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
             "3: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
             "18: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
             "23: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
+            "71: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
+            "73: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
         };
 
         verify(checkConfig, getPath("InputAnnotationUseStyleDifferentStyles.java"), expected);
@@ -109,6 +131,9 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
             "13: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
             "30: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
             "33: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
+            "71: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
+            "75: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
+            "77: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
         };
 
         verify(checkConfig, getPath("InputAnnotationUseStyleDifferentStyles.java"), expected);
@@ -143,6 +168,8 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
             "43: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
             "47: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
             "67: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
+            "73: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
+            "77: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
         };
 
         verify(checkConfig, getPath("InputAnnotationUseStyleDifferentStyles.java"), expected);
