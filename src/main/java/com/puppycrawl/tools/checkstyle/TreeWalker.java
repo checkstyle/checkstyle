@@ -88,19 +88,6 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     }
 
     /**
-     * Sets cache file.
-     * @deprecated Use {@link Checker#setCacheFile} instead. It does not do anything now. We just
-     *             keep the setter for transition period to the same option in Checker. The
-     *             method will be completely removed in Checkstyle 8.0. See
-     *             <a href="https://github.com/checkstyle/checkstyle/issues/2883">issue#2883</a>
-     * @param fileName the cache file
-     */
-    @Deprecated
-    public void setCacheFile(String fileName) {
-        // Deprecated
-    }
-
-    /**
      * Sets classLoader to load class.
      * @param classLoader class loader to resolve classes with.
      */
