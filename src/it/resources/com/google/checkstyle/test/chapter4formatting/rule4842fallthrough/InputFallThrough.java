@@ -126,15 +126,15 @@ public class InputFallThrough
             }
         }
     }
-    
-    
-    
+
+
+
     /* Like above, but all fall throughs with relief comment */
     void methodFallThru(int i, int j, boolean cond) {
       while (true) {
           switch (i) {
           case -1: // FALLTHRU
-              
+
           case 0: // no problem
           case 1:
               i++;
@@ -142,7 +142,7 @@ public class InputFallThrough
           case 2:
               i++;
               // fallthru
-          case 3: 
+          case 3:
               i++;
               break;
           case 4:
@@ -167,7 +167,7 @@ public class InputFallThrough
               i++;
           }
           // fallthru
-          case 12: 
+          case 12:
               if (false)
                   break;
               else
@@ -246,10 +246,10 @@ public class InputFallThrough
                   return;
               default:
                   return;
-              }        
+              }
           case 24:
               i++;
-          /* fallthru */ case 25: 
+          /* fallthru */ case 25:
               i++;
               break;
 
@@ -261,7 +261,7 @@ public class InputFallThrough
                   break;
               default:
                   return;
-              } 
+              }
               // fallthru
           default:
               // this is the last label
@@ -270,7 +270,7 @@ public class InputFallThrough
          }
       }
    }
-    
+
    /* Test relief comment. */
    void methodFallThruCC(int i, int j, boolean cond) {
       while (true) {
@@ -295,7 +295,7 @@ public class InputFallThrough
           }
       }
    }
-    
+
    /* Like above, but C-style comments. */
    void methodFallThruC(int i, int j, boolean cond) {
       while (true) {
@@ -337,7 +337,7 @@ public class InputFallThrough
           }
       }
    }
-    
+
    /* C-style comments with other default fallthru-comment. */
    void methodFallThruCOtherWords(int i, int j, boolean cond) {
       while (true) {
@@ -358,7 +358,7 @@ public class InputFallThrough
           }
       }
    }
-    
+
    /* C-style comments with custom fallthru-comment. */
    void methodFallThruCustomWords(int i, int j, boolean cond) {
       while (true) {
@@ -379,7 +379,7 @@ public class InputFallThrough
           }
       }
    }
-   
+
    void methodFallThruLastCaseGroup(int i, int j, boolean cond) {
        while (true) {
            switch (i){
@@ -388,12 +388,12 @@ public class InputFallThrough
            }
            switch (i){
            case 0:
-               i++; 
+               i++;
                // fallthru
            }
            switch (i){
            case 0:
-               i++; 
+               i++;
            /* fallthru */ }
        }
     }

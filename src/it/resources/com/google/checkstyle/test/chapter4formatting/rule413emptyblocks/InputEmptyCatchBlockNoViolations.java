@@ -14,52 +14,52 @@ public class InputEmptyCatchBlockNoViolations
             int k = 0;
         }
     }
-    
+
     public void testTryCatch()
     {
         try {
             int y=0;
             int u=8;
             int e=u-y;
-            return; 
-        } 
+            return;
+        }
         catch (Exception e) {
             System.identityHashCode(e);
-            return; 
+            return;
         }
         finally
         {
-            return; 
+            return;
         }
     }
-    
+
     public void testTryCatch3()
     {
         try {
             int y=0;
             int u=8;
             int e=u-y;
-        } 
+        }
         catch (IllegalArgumentException e) {
             System.identityHashCode(e); //some comment
-            return; 
+            return;
         }
         catch (IllegalStateException ex) {
                 System.identityHashCode(ex);
-                return; 
+                return;
         }
     }
-    
+
     public void testTryCatch4()
     {
         int y=0;
         int u=8;
         try {
             int e=u-y;
-        } 
+        }
         catch (IllegalArgumentException e) {
             System.identityHashCode(e);
-            return; 
+            return;
         }
     }
     public void setFormats() {
@@ -70,7 +70,7 @@ public class InputEmptyCatchBlockNoViolations
             if (k != null)
                 k = "ss";
             else {
-                return; 
+                return;
             }
         }
     }

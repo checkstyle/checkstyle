@@ -8,8 +8,8 @@ class InputOperatorWrap
 {
     void test()
     {
-        /*warn*/int x = 1 + 
-                /*warn*/ 2 - 
+        /*warn*/int x = 1 +
+                /*warn*/ 2 -
             3
             -
             4;
@@ -17,7 +17,7 @@ class InputOperatorWrap
         boolean y = true
             &&
             false;
-        /*warn*/ y = true && 
+        /*warn*/ y = true &&
             false;
         y = false
             && true;
@@ -30,7 +30,7 @@ class InputOperatorWrap
         Arrays.sort(null, String
                     ::compareToIgnoreCase);
     }
-    
+
     void testAssignment()
     {
         int x
@@ -40,7 +40,7 @@ class InputOperatorWrap
     }
 
     <
-    T extends Comparable & 
+    T extends Comparable &
         java.io.Serializable
     >
     void testGenerics1()
@@ -53,40 +53,40 @@ class InputOperatorWrap
         Map<String, String> map = new HashMap<String, String>();
 
         boolean flag = false;
-        
+
         int init = 9;
-        
+
         /*ok*/ for (Map.Entry<String, String> entry :
             map.entrySet())
         {
             /*warn*/int i = flag == true ?
                     1 : 2;
         }
-        
+
         /*warn*/ if (init !=
                 9)
         {
-            
+
         }
-        
+
         /*warn*/ while (init ==
                 10)
         {
-            
+
         }
-        
+
         /*warn*/ if (init >
                 10)
         {
-            
+
         } else {}
-        
+
         /*warn*/ while (init < 10 ||
                 !flag) {
-            
+
         }
     }
-    
+
     class Inner {
         void testGenerics1
         ()
@@ -98,41 +98,41 @@ class InputOperatorWrap
                 c = new String();
             Map<String, String> map = new HashMap<String, String>();
             boolean flag = false;
-            
+
             int init = 9;
-            
+
             /*ok*/ for (Map.Entry<String, String> entry :
                 map.entrySet())
             {
                 /*warn*/int i = flag == true ?
                         1 : 2;
             }
-            
+
             /*warn*/ if (init !=
                     9)
             {
-                
+
             }
-            
+
             /*warn*/ while (init ==
                     10)
             {
-                
+
             }
-            
+
             /*warn*/ if (init >
                     10)
             {
-                
+
             } else {}
-            
+
             /*warn*/ while (init < 10 ||
                     !flag) {
-                
+
             }
         }
     }
-    
+
     Inner anon = new Inner
             (){
         void testGenerics1
@@ -146,35 +146,35 @@ class InputOperatorWrap
             Map<String, String> map = new HashMap<String, String>();
             boolean flag = false;
             int init = 9;
-            
+
             /*ok*/ for (Map.Entry<String, String> entry :
                 map.entrySet())
             {
                 /*warn*/int i = flag == true ?
                         1 : 2;
             }
-            
+
             /*warn*/ if (init !=
                     9)
             {
-                
+
             }
-            
+
             /*warn*/ while (init ==
                     10)
             {
-                
+
             }
-            
+
             /*warn*/ if (init >
                     10)
             {
-                
+
             } else {}
-            
+
             /*warn*/ while (init < 10 ||
                     !flag) {
-                
+
             }
         }
     };
@@ -192,17 +192,17 @@ class Ternary {
     void foo() {
         boolean flag = true;
         /*warn*/int i = flag == true ?
-                1 : 
+                1 :
                 2;
-        int i2 = flag == true 
+        int i2 = flag == true
                 ?
-                1 
-                : 
+                1
+                :
                 2;
-        int i3 = flag == true 
+        int i3 = flag == true
                 ? 1
                 : 2;
-        
+
     }
 }
 
@@ -255,7 +255,7 @@ class AssignClass {
         j
             <<= 2;
     }
-    
+
     class InnerClass {
         void foo() {
             int i = 0;
@@ -306,7 +306,7 @@ class AssignClass {
                 <<= 2;
         }
     }
-    
+
     InnerClass anon = new InnerClass() {
         void foo() {
             int i = 0;

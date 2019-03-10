@@ -17,7 +17,7 @@ class InputNonEmptyAtclauseDescriptionCheck
     }
 
     /**
-     * 
+     *
      * @param a Some javadoc
      * @param b Some javadoc
      * @param c Some javadoc
@@ -28,9 +28,9 @@ class InputNonEmptyAtclauseDescriptionCheck
     {
         return 1;
     }
-    
+
     /**
-     * 
+     *
      * @param a
      * @param b
      * @param c
@@ -42,9 +42,9 @@ class InputNonEmptyAtclauseDescriptionCheck
     {
         return 1;
     }
-    
+
     /**
-     * 
+     *
      * @param a
      * @param b
      * @param c

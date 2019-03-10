@@ -3,17 +3,17 @@ package com.google.checkstyle.test.chapter5naming.rule527localvariablenames;
 final class InputLocalVariableNameSimple
 {
     public static final int badConstant = 2;
-    
+
     public static final int MAX_ROWS = 2;
 
     private static int badStatic = 2;
-    
+
     private static int sNumCreated = 0;
 
     private int badMember = 2;
-    
+
     private int mNumCreated1 = 0;
-     
+
     protected int mNumCreated2 = 0;
 
     private int[] mInts = new int[] {1,2, 3,
@@ -34,7 +34,7 @@ final class InputLocalVariableNameSimple
         int aaa$aaa; //warn
         int $aaaaaa; //warn
         int aaaaaa$; //warn
-        
+
         //good examples
         int aa;
         int aaAa1a;

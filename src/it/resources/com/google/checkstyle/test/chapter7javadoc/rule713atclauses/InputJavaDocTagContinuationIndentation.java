@@ -22,21 +22,21 @@ class InputJavaDocTagContinuationIndentation implements Serializable
      *     Some javadoc.
      */
     private String fFirstName;
-     
+
     /**
      * The client's first name.
      * @serial
      *     Some javadoc.
      */
     private String sSecondName;
-      
+
     /**
      * The client's first name.
      * @serialField
      *     Some javadoc.
      */
     private String tThirdName;
-    
+
     /**
      * Some text.
      * @param aString Some javadoc.
@@ -72,7 +72,7 @@ class InputJavaDocTagContinuationIndentation implements Serializable
      * @param aString Some text.
      */
     void method2(String aString) throws Exception {}
-    
+
     /**
      * Some text.
      * @deprecated Some text.
@@ -80,7 +80,7 @@ class InputJavaDocTagContinuationIndentation implements Serializable
      *     Some javadoc.
      */
     void method3() throws Exception {}
-    
+
     /**
      * Some text.
      * @return Some text.
@@ -101,7 +101,7 @@ class InputJavaDocTagContinuationIndentation implements Serializable
     {
         return "null";
     }
-    
+
     /**
      * Some text.
      * @param aString Some text.
@@ -118,10 +118,10 @@ class InputJavaDocTagContinuationIndentation implements Serializable
     {
         return "null";
     }
-    
+
     /**
      * Some javadoc.
-     * 
+     *
      * @version 1.0
      * @since Some javadoc.
      * @serialData Some javadoc.
@@ -165,14 +165,14 @@ class InputJavaDocTagContinuationIndentation implements Serializable
          * @throws Exception Some text.
          */
         void method2(String aString) throws Exception {}
-        
+
         /**
          * Some text.
          * @deprecated Some text.
          * @throws Exception Some text.
          */
         void method3() throws Exception {}
-        
+
         /**
          * Some text.
          * @throws Exception Some text.
@@ -194,7 +194,7 @@ class InputJavaDocTagContinuationIndentation implements Serializable
         {
             return "null";
         }
-        
+
         /**
          * Some text.
          * @param aString Some text.
@@ -211,7 +211,7 @@ class InputJavaDocTagContinuationIndentation implements Serializable
             return "null";
         }
     }
-    
+
     InnerClassWithAnnotations anon = new InnerClassWithAnnotations()
     {
         /**
@@ -248,7 +248,7 @@ class InputJavaDocTagContinuationIndentation implements Serializable
          * @param aString Some text.
          */
         void method2(String aString) throws Exception {}
-        
+
         /**
          * Some text.
          * @deprecated Some text.
@@ -256,7 +256,7 @@ class InputJavaDocTagContinuationIndentation implements Serializable
          * @throws Exception Some text.
          */
         void method3() throws Exception {}
-        
+
         /**
          * Some text.
          * @throws Exception Some text.
@@ -277,7 +277,7 @@ class InputJavaDocTagContinuationIndentation implements Serializable
         {
             return "null";
         }
-        
+
         /**
          * Some text.
          *       Some javadoc.
@@ -300,7 +300,7 @@ class InputJavaDocTagContinuationIndentation implements Serializable
 
 /**
  * Some javadoc.
- * 
+ *
  * @since Some javadoc.
  * @version 1.0
  * @deprecated Some javadoc.
@@ -314,7 +314,7 @@ enum Foo3 {}
 
 /**
  * Some javadoc.
- * 
+ *
  * @version 1.0
  * @since Some javadoc.
  *     Some javadoc.

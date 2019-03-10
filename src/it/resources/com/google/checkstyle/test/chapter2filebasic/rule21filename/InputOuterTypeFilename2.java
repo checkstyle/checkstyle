@@ -16,9 +16,9 @@ public class InputOuterTypeFilename2 //ok
                 break;
         }
     }
-    
+
     public native void nativeMethod();
-    
+
     public void methodWithLiterals()
     {
         final String ref = "<a href=\"";

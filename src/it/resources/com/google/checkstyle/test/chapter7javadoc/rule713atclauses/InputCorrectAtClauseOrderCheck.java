@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * Some javadoc.
- * 
+ *
  * @author max
  * @version 1.0
  * @see Some javadoc.
@@ -19,13 +19,13 @@ class InputCorrectAtClauseOrderCheck implements Serializable
      * @serial
      */
     private String fFirstName;
-     
+
     /**
      * The client's first name.
      * @serial
      */
     private String sSecondName;
-      
+
     /**
      * The client's first name.
      * @serialField
@@ -63,14 +63,14 @@ class InputCorrectAtClauseOrderCheck implements Serializable
      * @throws Exception Some text.
      */
     void method2(String aString) throws Exception {}
-    
+
     /**
      * Some text.
      * @throws Exception Some text.
      * @deprecated Some text.
      */
     void method3() throws Exception {}
-    
+
     /**
      * Some text.
      * @return Some text.
@@ -92,7 +92,7 @@ class InputCorrectAtClauseOrderCheck implements Serializable
     {
         return "null";
     }
-    
+
     /**
      * Some text.
      * @param aString Some text.
@@ -106,9 +106,9 @@ class InputCorrectAtClauseOrderCheck implements Serializable
     {
         return "null";
     }
-    
+
     /**
-     * 
+     *
      * @author max
      * @version 1.0
      * @since Some javadoc.
@@ -145,14 +145,14 @@ class InputCorrectAtClauseOrderCheck implements Serializable
          * @throws Exception Some text.
          */
         void method2(String aString) throws Exception {}
-        
+
         /**
          * Some text.
          * @throws Exception Some text.
          * @deprecated Some text.
          */
         void method3() throws Exception {}
-        
+
         /**
          * Some text.
          * @return Some text.
@@ -175,7 +175,7 @@ class InputCorrectAtClauseOrderCheck implements Serializable
         {
             return "null";
         }
-        
+
         /**
          * Some text.
          * @param aString Some text.
@@ -190,7 +190,7 @@ class InputCorrectAtClauseOrderCheck implements Serializable
             return "null";
         }
     }
-    
+
     InnerClassWithAnnotations anon = new InnerClassWithAnnotations()
     {
         /**
@@ -223,14 +223,14 @@ class InputCorrectAtClauseOrderCheck implements Serializable
          * @serialData Some javadoc.
          */
         void method2(String aString) throws Exception {}
-        
+
         /**
          * Some text.
          * @throws Exception Some text.
          * @deprecated Some text.
          */
         void method3() throws Exception {}
-        
+
         /**
          * Some text.
          * @return Some text.
@@ -251,7 +251,7 @@ class InputCorrectAtClauseOrderCheck implements Serializable
         {
             return "null";
         }
-        
+
         /**
          * Some text.
          * @param aString Some text.
@@ -270,7 +270,7 @@ class InputCorrectAtClauseOrderCheck implements Serializable
 
 /**
  * Some javadoc.
- * 
+ *
  * @author max
  * @version 1.0
  * @see Some javadoc.
@@ -281,7 +281,7 @@ enum Foo {}
 
 /**
  * Some javadoc.
- * 
+ *
  * @author max
  * @version 1.0
  * @see Some javadoc.

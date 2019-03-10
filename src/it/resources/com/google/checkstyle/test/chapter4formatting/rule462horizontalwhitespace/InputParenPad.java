@@ -129,7 +129,7 @@ public class InputParenPad
 enum MyEnum {
     SOME_CONSTANT( ) { // warning
         int i = (int) (2 * (4 / 2)
-                ); 
+                );
     };
 
     public void myMethod() {

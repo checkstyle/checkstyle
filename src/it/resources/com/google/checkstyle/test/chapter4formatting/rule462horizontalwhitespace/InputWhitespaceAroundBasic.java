@@ -67,7 +67,7 @@ class InputWhitespaceAroundBasic
     {
         if ( true )
         {
-            return(2); // //warn 
+            return(2); // //warn
         }
         else
         {
@@ -174,7 +174,7 @@ class InputWhitespaceAroundBasic
         }
     }
 
-    
+
     /** bug  806243 (NoWhitespaceBeforeCheck error for anonymous inner class) */
     private int i ;
     //           ^ whitespace

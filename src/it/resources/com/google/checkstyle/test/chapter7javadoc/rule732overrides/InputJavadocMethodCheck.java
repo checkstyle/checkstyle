@@ -12,7 +12,7 @@ public class InputJavadocMethodCheck extends OverrideClass
      * Some javadoc.
      * @return Some javadoc.
      */
-    int foo1() 
+    int foo1()
     {
         return 1;
     }
@@ -21,7 +21,7 @@ public class InputJavadocMethodCheck extends OverrideClass
      * Some javadoc.
      *
      */
-    String foo2() 
+    String foo2()
     {
         return "Fooooooooooooooo"
                 + "ooooo"
@@ -31,7 +31,7 @@ public class InputJavadocMethodCheck extends OverrideClass
     /**
      * Some javadoc.
      */
-    void foo3() 
+    void foo3()
     {
         foo2();
     }
@@ -43,12 +43,12 @@ public class InputJavadocMethodCheck extends OverrideClass
 
     //without comments
 
-    int foo5() 
+    int foo5()
     {
         return 1;
     }
 
-    String foo6() 
+    String foo6()
     {
         return "Fooooooooooooooo"
                 + "oooooooo";
@@ -61,21 +61,21 @@ public class InputJavadocMethodCheck extends OverrideClass
                 + "ooo";
     }
 
-    void foo81() 
+    void foo81()
     {
         foo2();
     }
 
     void foo82() {
-        
-        
-        
-        
-        
+
+
+
+
+
     }
 
     @MyAnnotation
-    String foo91() 
+    String foo91()
     {
         return "Fooooooooooooooo"
                 + "ooooo"
@@ -83,7 +83,7 @@ public class InputJavadocMethodCheck extends OverrideClass
     }
 
     @Override
-    public String foo92() 
+    public String foo92()
     {
         return "Fooooo"
                 + "ooo"

@@ -4,9 +4,9 @@ class InputUpperEll
 {
     /** test **/
     private final long IGNORE = 666l + 666L; //warn
-    
+
     private String notWarn = "666l"; //ok
-    
+
     private long foo()
     {
         processUpperEll(66l); //warn
@@ -16,7 +16,7 @@ class InputUpperEll
 
         return 666l + 666L; //warn
     }
-    
+
     private void processUpperEll(long aLong) {
         long bad = (4+5*7^66l/7+890) //warn
                 & (88l + 78 * 4); //warn
@@ -26,15 +26,15 @@ class InputUpperEll
             66L, //ok
         };
     }
-    
+
     private void processUpperEll(String s, long l) {}
-    
+
     class Inner {
         /** test **/
         private static final long IGNORE = 666l + 666L; //warn
-        
+
         private static final String notWarn = "666l"; //ok
-        
+
         private long foo()
         {
             processUpperEll(66l); //warn
@@ -44,7 +44,7 @@ class InputUpperEll
 
             return 666l + 666L; //warn
         }
-        
+
         private void processUpperEll(long aLong)
         {
             long bad = (4+5*7^66l/7+890) //warn
@@ -63,9 +63,9 @@ class InputUpperEll
             Foo foo = new Foo() {
                 /** test **/
                 private final long IGNORE = 666l + 666L; //warn
-                
+
                 private String notWarn = "666l"; //ok
-                
+
                 private long foo()
                 {
                     processUpperEll(66l); //warn
@@ -75,7 +75,7 @@ class InputUpperEll
 
                     return 666l + 666L; //warn
                 }
-                
+
                 private void processUpperEll(long aLong) {
                     long bad = (4+5*7^66l/7+890) //warn
                             & (88l + 78 * 4); //warn
@@ -85,14 +85,14 @@ class InputUpperEll
                         66L, //ok
                     };
                 }
-                
+
                 private void processUpperEll (String s, long aLong) {}
             };
         }
     }
-    
+
     class Foo {}
-    
+
     interface Long {
         public static final long IGNORE = 666l + 666L; //warn
         public static final String notWarn = "666l"; //ok

@@ -33,7 +33,7 @@ import org.apache.commons.beanutils.locale.converters.ByteLocaleConverter;
 class InputEmptyLineSeparator //warn
 {
     public static final double FOO_PI = 3.1415;
-    private boolean flag = true; 
+    private boolean flag = true;
     static {  //warn
         //empty static initializer
     }
@@ -43,9 +43,9 @@ class InputEmptyLineSeparator //warn
     }
 
     /**
-     * 
-     * 
-     * 
+     *
+     *
+     *
      */
     private InputEmptyLineSeparator()
     {
@@ -58,7 +58,7 @@ class InputEmptyLineSeparator //warn
         return 0;
     }
     /**
-     * 
+     *
      * @param task
      * @param result
      * @return
@@ -76,9 +76,9 @@ class InputEmptyLineSeparator //warn
     }
 
     class InnerClass {
-        
+
         public static final double FOO_PI_INNER = 3.1415;
-        private boolean flagInner = true; 
+        private boolean flagInner = true;
         { //warn
             //empty instance initializer
         }
@@ -89,7 +89,7 @@ class InputEmptyLineSeparator //warn
         }
 
     }
-    
+
     class InnerClass2 { //ok
         private InnerClass2() //ok
         {
@@ -109,7 +109,7 @@ class InputEmptyLineSeparator //warn
 
 class Class1 { //ok
     private Class1() {} //ok
-} 
+}
 class Class2{ //warn
     public int compareTo(InputEmptyLineSeparator aObject) //ok
     {

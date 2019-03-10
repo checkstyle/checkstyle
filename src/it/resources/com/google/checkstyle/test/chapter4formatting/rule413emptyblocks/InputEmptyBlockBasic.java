@@ -4,19 +4,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.google.checkstyle.test.chapter4formatting.rule413emptyblocks;
 
-import java.io.*; 
+import java.io.*;
 import java.awt.Dimension;
 import java.awt.Color;
 
 class InputEmptyBlockBasic
 {
     static {} //ok
-    
+
     public void fooMethod()
     {
         InputEmptyBlockBasic r = new InputEmptyBlockBasic();
         int a = 1;
-        if (a == 1) {} // warn 
+        if (a == 1) {} // warn
         char[] s = {'1', '2'};
         int index = 2;
         if (doSideEffect() == 1) {} // warn
@@ -33,7 +33,7 @@ class InputEmptyBlockBasic
     {
         return 1;
     }
-    
+
     public void emptyMethod() {}
 }
 
@@ -51,9 +51,9 @@ interface EmptyImplement {} //ok
 class WithInner
 {
     static {} //ok
-    
+
     public void emptyMethod() {}
-    
+
     public int doSideEffect()
     {
         return 1;
@@ -65,12 +65,12 @@ class WithInner
         {
             InputEmptyBlockBasic r = new InputEmptyBlockBasic();
             int a = 1;
-            if (a == 1) {} // warn 
+            if (a == 1) {} // warn
             char[] s = {'1', '2'};
             int index = 2;
             if (doSideEffect() == 1) {} //warn
             IO in = new IO();
-            while ((r = in.read()) != null) {} // ok 
+            while ((r = in.read()) != null) {} // ok
             for (; index < s.length && s[index] != 'x'; index++) {} // ok
             if (a == 1) {} else {System.identityHashCode("a");} // warn
             do {} while(a == 1); //ok
@@ -85,11 +85,11 @@ class WithAnon
     interface AnonWithEmpty {
         public void fooEmpty();
     }
-    
+
     void method()
     {
         AnonWithEmpty foo = new AnonWithEmpty() {
-            
+
             public void emptyMethod() {}
 
             public void fooEmpty() {
@@ -100,14 +100,14 @@ class WithAnon
                 int index = 2;
                 if (doSideEffect() == 1) {} //warn
                 IO in = new IO();
-                while ((r = in.read()) != null) {} // ok 
+                while ((r = in.read()) != null) {} // ok
                 for (; index < s.length && s[index] != 'x'; index++) {} // ok
                 if (a == 1) {} else {System.identityHashCode("a");} // warn
                 do {} while(a == 1); //ok
                 switch (a) {} //warn
                 int[] z = {}; // ok
             }
-            
+
             public int doSideEffect()
             {
                 return 1;
@@ -134,7 +134,7 @@ class NewClass {
         } else {
             System.identityHashCode("a");
         } // ok
-        
+
         if (a == 1) {
             System.identityHashCode("a");
         } else if (a != 1) {
@@ -142,7 +142,7 @@ class NewClass {
         } else {
             /*ignore*/
         }
-        
+
         if (a == 1) {
             /*ignore*/
         } else if (a != 1) {
@@ -150,7 +150,7 @@ class NewClass {
         } else {
             /*ignore*/
         }
-        
+
         if (a == 1) {
             /*ignore*/
         } else if (a != 1) {
@@ -158,7 +158,7 @@ class NewClass {
         } else {
             System.identityHashCode("a");
         }
-        
+
         if (a == 1) {
             /*ignore*/
         } else if (a != 1) {
@@ -166,18 +166,18 @@ class NewClass {
         } else {
             /*ignore*/
         }
-        
+
         if (a == 1) {
             /*ignore*/
         } else if (a != 1) {} //warn
         else {} //warn
-        
+
         if (a == 1) {} //warn
         else if (a != 1) {
             /*ignore*/
         }
         else {} //warn
-        
+
         if (a == 1) {} //warn
         else if (a != 1) {} //warn
         else {
@@ -203,7 +203,7 @@ class NewClass {
             } else {
                 System.identityHashCode("a");
             } // ok
-            
+
             if (a == 1) {
                 System.identityHashCode("a");
             } else if (a != 1) {
@@ -211,7 +211,7 @@ class NewClass {
             } else {
                 /*ignore*/
             }
-            
+
             if (a == 1) {
                 /*ignore*/
             } else if (a != 1) {
@@ -219,7 +219,7 @@ class NewClass {
             } else {
                 /*ignore*/
             }
-            
+
             if (a == 1) {
                 /*ignore*/
             } else if (a != 1) {
@@ -227,7 +227,7 @@ class NewClass {
             } else {
                 System.identityHashCode("a");
             }
-            
+
             if (a == 1) {
                 /*ignore*/
             } else if (a != 1) {
@@ -235,25 +235,25 @@ class NewClass {
             } else {
                 /*ignore*/
             }
-            
+
             if (a == 1) {
                 /*ignore*/
             } else if (a != 1) {} //warn
             else {} //warn
-            
+
             if (a == 1) {} //warn
             else if (a != 1) {
                 /*ignore*/
             }
             else {} //warn
-            
+
             if (a == 1) {} //warn
             else if (a != 1) {} //warn
             else {
                 /*ignore*/
             }
         }
-        
+
         NewInner anon = new NewInner() {
 
             void foo() {
@@ -272,7 +272,7 @@ class NewClass {
                 } else {
                     System.identityHashCode("a");
                 } // ok
-                
+
                 if (a == 1) {
                     System.identityHashCode("a");
                 } else if (a != 1) {
@@ -280,7 +280,7 @@ class NewClass {
                 } else {
                     /*ignore*/
                 }
-                
+
                 if (a == 1) {
                     /*ignore*/
                 } else if (a != 1) {
@@ -288,7 +288,7 @@ class NewClass {
                 } else {
                     /*ignore*/
                 }
-                
+
                 if (a == 1) {
                     /*ignore*/
                 } else if (a != 1) {
@@ -296,7 +296,7 @@ class NewClass {
                 } else {
                     System.identityHashCode("a");
                 }
-                
+
                 if (a == 1) {
                     /*ignore*/
                 } else if (a != 1) {
@@ -304,18 +304,18 @@ class NewClass {
                 } else {
                     /*ignore*/
                 }
-                
+
                 if (a == 1) {
                     /*ignore*/
                 } else if (a != 1) {} //warn
                 else {} //warn
-                
+
                 if (a == 1) {} //warn
                 else if (a != 1) {
                     /*ignore*/
                 }
                 else {} //warn
-                
+
                 if (a == 1) {} //warn
                 else if (a != 1) {} //warn
                 else {

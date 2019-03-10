@@ -27,17 +27,17 @@ final class InputLineLength
 
     /** commas are wrong **/
     private int[] mInts = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24}; //warn
-    
+
     /**
      * Very long url: https://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java
      */
     public void fooMethod() {}
-    
+
     /**
      * Long url without wrapping: http://ftp.dlink.ru/pub/D-Link_Solutions/D-Link_Solutions_for_Business.pdf
      */
     public void fooMethodLongFtp() {}
-    
+
     public void fooLongStringUrl() {
         String url = "https://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java"; //ok
         processUrl("https://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java"); //ok
@@ -49,28 +49,28 @@ final class InputLineLength
             "http://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java", //ok
             "Some long foooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo line", //warn
         };
-        
+
         String fakehttps = "Some long foooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo line"; //warn
-        
+
         processUrl(new String[] {
             "http://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java", //ok
             "Some long foooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo line", //warn
         });
-        
+
         String s = "text"
                 + "text"
                 + "text something more.. <a href=\"https://groups.google.com/forum/#!topic/checkstyle-devel/E0z89fzvxGs%5B226-250-false%5D\">long url name, long url name, long url name</a>" //ok
                 + "other text";
     }
-    
+
     /**
-     * 
+     *
      * @param url
      */
     public void processUrl(String url) {}
 
     /**
-     * 
+     *
      * @param urls
      */
     public void processUrl(String[] urls){}

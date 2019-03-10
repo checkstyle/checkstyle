@@ -5,13 +5,13 @@ class inputHeaderClass { //warn
     public interface InputHeader___Interface {}; //warn
 
     public enum inputHeaderEnum { one, two }; //warn
-    
+
     class NoValid$Name {} //warn
-    
+
     class $NoValidName {} //warn
-    
+
     class NoValidName$ {} //warn
-    
+
 }
 
 class ValidName {} //ok
@@ -50,15 +50,15 @@ enum Foo$Enum {} //warn
 
 enum FooEnum$ {} //warn
 
-class aaa {} //warn 
+class aaa {} //warn
 
-interface bbb {} //warn 
+interface bbb {} //warn
 
-enum ccc {} //warn 
+enum ccc {} //warn
 
 @interface Annotation {} //ok
 
-@interface _Annotation {} //warn 
+@interface _Annotation {} //warn
 
 @interface Annot_ation {} //warn
 

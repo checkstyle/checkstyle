@@ -7,7 +7,7 @@ public class InputNoFinalizer
         // It's not enough to check if the METHOD_DEF branch contains a PARAMETER_DEF, as that would
         // treat this method as having a parameter.
         Runnable runnable = new Runnable() {
-        
+
             public void run() {
                 reallyFinalize("hi");
             }
@@ -19,7 +19,7 @@ public class InputNoFinalizer
         };
         runnable.run();
     }
-    
+
     // should not be reported by NoFinalizer check
     public void finalize(String x)
     {

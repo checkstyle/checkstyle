@@ -42,7 +42,7 @@ class InputGenericWhitespace implements Comparable<InputGenericWhitespace>, Seri
         Collections. <Object> emptySet(); // warn
         return 666;
     }
-    
+
     <T> InputGenericWhitespace(List<T> things, int i)
     {
     }

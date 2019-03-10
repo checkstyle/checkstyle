@@ -18,7 +18,7 @@ public class InputArrayTypeStyle
         final boolean isOK1 = aCStyle instanceof String[]; //ok
         final boolean isOK2 = aCStyle instanceof java.lang.String[]; //ok
         final boolean isOK3 = blah instanceof int[]; //ok
-        int[] array[] = new int [2][2]; //warn 
+        int[] array[] = new int [2][2]; //warn
         int array2[][][] = new int[3][3][3]; //warn
     }
 
