@@ -54,7 +54,7 @@ enum E {
 }
 
 @interface Another {
-    String[] value();
+    String[] value() default {};
     @Another({"foo", "bar"}) //compact style
     String value1() default "";
 }
@@ -66,4 +66,17 @@ class Closing {
 
     @SuppressWarnings(value = UN_U)
     int d;
+}
+
+@AnnotationWithAnnotationValue(@Another)
+class Example1 {}
+@AnnotationWithAnnotationValue(value = @Another)
+class Example2 {}
+@AnnotationWithAnnotationValue(@Another())
+class Example3 {}
+@AnnotationWithAnnotationValue(value = @Another())
+class Example4 {}
+
+@interface AnnotationWithAnnotationValue {
+    Another value();
 }
