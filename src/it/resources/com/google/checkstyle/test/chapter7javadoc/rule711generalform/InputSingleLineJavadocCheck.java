@@ -2,7 +2,7 @@ package com.google.checkstyle.test.chapter7javadoc.rule711generalform;
 
 class InputSingleLineJavadocCheck{
 
-	/** As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)} */ //warn
+    /** As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)} */ //warn
     void foo1() {}
 
     /**

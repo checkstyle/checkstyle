@@ -102,4 +102,4 @@ class Foo {}
 
 @interface MyAnnotationWithParam {
 
-	String value();}
+    String value();}

@@ -42,7 +42,7 @@ public class ParameterNameTest extends AbstractModuleTestSupport {
         final Map<String, String> messages = config.getMessages();
         final String[] expected = {
             "10:21: " + getCheckMessage(messages, MSG_KEY, "bB", format),
-            "33:22: " + getCheckMessage(messages, MSG_KEY, "llll_llll", format),
+            "33:18: " + getCheckMessage(messages, MSG_KEY, "llll_llll", format),
             "34:21: " + getCheckMessage(messages, MSG_KEY, "bB", format),
             "64:13: " + getCheckMessage(messages, MSG_KEY, "$arg1", format),
             "65:13: " + getCheckMessage(messages, MSG_KEY, "ar$g2", format),
