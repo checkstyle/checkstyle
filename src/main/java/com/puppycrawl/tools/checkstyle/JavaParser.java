@@ -85,13 +85,18 @@ public final class JavaParser {
         filter.hide(TokenTypes.SINGLE_LINE_COMMENT);
         filter.hide(TokenTypes.BLOCK_COMMENT_BEGIN);
 
-        final GeneratedJavaRecognizer parser = new GeneratedJavaRecognizer(filter);
+        final GeneratedJavaRecognizer parser = new GeneratedJavaRecognizer(filter) {
+            @Override
+            public void reportError(RecognitionException ex) {
+                throw new IllegalStateException(ex);
+            }
+        };
         parser.setFilename(contents.getFileName());
         parser.setASTNodeClass(DetailAST.class.getName());
         try {
             parser.compilationUnit();
         }
-        catch (RecognitionException | TokenStreamException ex) {
+        catch (RecognitionException | TokenStreamException | IllegalStateException ex) {
             final String exceptionMsg = String.format(Locale.ROOT,
                 "%s occurred while parsing file %s.",
                 ex.getClass().getSimpleName(), contents.getFileName());
