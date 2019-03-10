@@ -272,7 +272,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     }
 
     private static String getNodeText(Node node, boolean fixLinks) {
-        final StringBuffer result = new StringBuffer(20);
+        final StringBuilder result = new StringBuilder(20);
 
         for (Node child = node.getFirstChild(); child != null; child = child.getNextSibling()) {
             if (child.getNodeType() == Node.TEXT_NODE) {
@@ -297,7 +297,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     }
 
     // -@cs[CyclomaticComplexity] No simple way to split this apart.
-    private static void appendNodeText(StringBuffer result, Node node, boolean fixLinks) {
+    private static void appendNodeText(StringBuilder result, Node node, boolean fixLinks) {
         final String name = transformXmlToJavaDocName(node.getNodeName());
         final boolean list = "ol".equals(name) || "ul".equals(name);
         final boolean newLineOpenBefore = list || "p".equals(name) || "pre".equals(name)
@@ -351,7 +351,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         }
     }
 
-    private static boolean shouldAppendSpace(StringBuffer text, char firstCharToAppend) {
+    private static boolean shouldAppendSpace(StringBuilder text, char firstCharToAppend) {
         final boolean result;
 
         if (text.length() == 0) {
