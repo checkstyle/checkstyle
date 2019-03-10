@@ -1,4 +1,4 @@
-package org.checkstyle.suppressionxpathfilter.whitespaceafter;
+package org.checkstyle.suppressionxpathfilter.whitespacearound;
 
 public class SuppressionXpathRegressionWhitespaceAroundNotPreceded {
     int bad= 0; //warn

@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @see Some javadoc.
  * @author max
  */
-class WithAnnotations12 implements Serializable
+class InputIncorrectAtClauseOrderCheck implements Serializable
 {
     /**
      * The client's first name.

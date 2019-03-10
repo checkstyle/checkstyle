@@ -6,7 +6,7 @@ import java.util.Iterator; //indent:0 exp:0
 import java.util.List; //indent:0 exp:0
 import java.util.Map; //indent:0 exp:0
 
-class FooForClass { //indent:0 exp:0
+class InputIndentationCorrectForAndParameter { //indent:0 exp:0
 
   String getString(int someInt, String someString) { //indent:2 exp:2
     return "String"; //indent:4 exp:4
@@ -110,3 +110,4 @@ class SecondForLongName //indent:0 exp:0
     return null; //indent:4 exp:4
   } //indent:2 exp:2
 } //indent:0 exp:0
+class FooForClass {} //indent:0 exp:0

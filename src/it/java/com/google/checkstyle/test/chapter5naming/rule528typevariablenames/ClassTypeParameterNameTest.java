@@ -42,7 +42,7 @@ public class ClassTypeParameterNameTest extends AbstractModuleTestSupport {
         final Map<String, String> messages = configuration.getMessages();
 
         final String[] expected = {
-            "5:31: " + getCheckMessage(messages, MSG_KEY, "t", format),
+            "5:36: " + getCheckMessage(messages, MSG_KEY, "t", format),
             "13:14: " + getCheckMessage(messages, MSG_KEY, "foo", format),
             "27:24: " + getCheckMessage(messages, MSG_KEY, "$foo", format),
         };

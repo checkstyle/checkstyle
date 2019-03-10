@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter5naming.rule527localvariablenames;
 
-final class InputSimple
+final class InputLocalVariableNameSimple
 {
     public static final int badConstant = 2;
     

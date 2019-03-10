@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule452indentcontinuationlines; //indent:0 exp:0
 
-class FooWhileClass { //indent:0 exp:0
+class InputIndentationCorrectWhileDoWhileAndParameter { //indent:0 exp:0
 
   String getString(int someInt, String someString) { //indent:2 exp:2
     return "String"; //indent:4 exp:4
@@ -218,3 +218,4 @@ class SecondWhileLongName { //indent:0 exp:0
         + "oongString"); //indent:8 exp:8
   } //indent:2 exp:2
 } //indent:0 exp:0
+class FooWhileClass {} //indent:0 exp:0

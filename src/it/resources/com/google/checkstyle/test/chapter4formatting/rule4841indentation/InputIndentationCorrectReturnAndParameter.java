@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule4841indentation; //indent:0 exp:0
 
-class FooReturnClass { //indent:0 exp:0
+class InputIndentationCorrectReturnAndParameter { //indent:0 exp:0
     
   String getString(int someInt, String someString) { //indent:2 exp:2
     return "String"; //indent:4 exp:4
@@ -140,3 +140,4 @@ class SecondClassLongName { //indent:0 exp:0
         + "oongString"); //indent:8 exp:8
   } //indent:2 exp:2
 } //indent:0 exp:0
+class FooReturnClass {} //indent:0 exp:0

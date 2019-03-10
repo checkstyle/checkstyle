@@ -1,7 +1,7 @@
 package com.google.checkstyle.test.chapter5naming.rule525nonconstantfieldnames;
 import java.io.*;
 
-final class InputSimple
+final class InputMemberNameSimple
 {
 
     public static final int badConstant = 2;

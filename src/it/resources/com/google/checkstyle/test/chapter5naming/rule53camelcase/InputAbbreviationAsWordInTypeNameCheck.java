@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter5naming.rule53camelcase;
 
-class AbbreviationsCorrect {
+class InputAbbreviationAsWordInTypeNameCheck {
     
     int newCustomerId;
     
@@ -29,7 +29,8 @@ class AbbreviationsCorrect {
         void YoutubeImporter() {}
     }
     
-        AbbreviationsCorrect anonymousGood = new AbbreviationsCorrect() {
+        InputAbbreviationAsWordInTypeNameCheck anonymousGood
+            = new InputAbbreviationAsWordInTypeNameCheck() {
         
             int newCustomerId;
         
@@ -62,7 +63,8 @@ class AbbreviationsIncorrect {
         void XMLHTTPRequest() {} //warn
     }
     
-        AbbreviationsCorrect anonymousBad = new AbbreviationsCorrect() {
+        InputAbbreviationAsWordInTypeNameCheck anonymousBad
+            = new InputAbbreviationAsWordInTypeNameCheck() {
         
             int newCustomerID;
             
