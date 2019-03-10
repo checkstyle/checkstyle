@@ -66,7 +66,7 @@ class InputCorrectJavadocParagraphCheck {
     
     InnerInputCorrectJavaDocParagraphCheck anon = new InnerInputCorrectJavaDocParagraphCheck() {
 
-    	/**
+        /**
          * Some Javadoc.
          *
          * <p>Some Javadoc.

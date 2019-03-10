@@ -100,4 +100,4 @@ class FooVariables {}
 
 @interface MyAnnotationWithParamVariables {
 
-	String value();}
+    String value();}

@@ -30,7 +30,7 @@ enum MyEnum1
     private int someMember;
     
     public void doEnum(int aaaL,
-    		long llll_llll, //warn
+            long llll_llll, //warn
             boolean bB) {} //warn 
 }
 
