@@ -325,7 +325,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
             i--;
         }
     }
-    
+
     protected JMenuItem createSubMenuItem(LogLevel level) {
         final JMenuItem result = new JMenuItem(level.toString());
         final LogLevel logLevel = level;
@@ -340,7 +340,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
         return result;
 
       }
-    
+
     public static Color darker(Color color, double fraction) {
         int red = (int) Math.round(color.getRed() * (1.0 - fraction));
         int green = (int) Math.round(color.getGreen() * (1.0 - fraction));
@@ -364,7 +364,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
 
         return new Color(red, green, blue, alpha);
     }
-    
+
     public void testFinal() {
         AuthUpdateTask task = null;
         final long intervalMs = 30 * 60000L;
@@ -380,7 +380,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
         timer.schedule(task, intervalMs / 2, intervalMs); // DECLARATION OF VARIABLE 'intervalMs'
                                                           // SHOULD BE HERE (distance = 2)
     }
-    
+
     public void testForCycle() {
         int filterCount = 0;
         for (int i = 0; i < 10; i++, filterCount++) {
@@ -393,7 +393,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
             }
         }
     }
-    
+
     public void testIssue32_1()
     {
         Option srcDdlFile = OptionBuilder.create("f");
@@ -419,7 +419,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
         cal.set(Calendar.HOUR_OF_DAY, mm);
         cal.set(Calendar.MINUTE, mm); // distance=1
     }
-    
+
     public void testIssue32_3(MyObject[] objects) {
         Calendar cal = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
         for(int i=0; i<objects.length; i++) {
@@ -430,7 +430,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
             objects[i].setCalendar(cal); // distance=1
         }
     }
-    
+
     public String testIssue32_4(boolean flag) {
         StringBuilder builder = new StringBuilder();
         builder.append("flag is ");
@@ -444,7 +444,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
         }
         return builder.toString();
     }
-    
+
     public void testIssue32_5() {
         Option a = null;
         Option b = null;
@@ -453,7 +453,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
         boolean isBNull = isNull(b); // distance=1
         boolean isANull = isNull(a); // distance=1
     }
-  
+
     public void testIssue32_6() {
         Option aOpt = null;
         Option bOpt = null;
@@ -462,7 +462,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
         isNull(bOpt); // distance = 2
         isNull(aOpt); // distance = 3
     }
-    
+
     public void testIssue32_7() {
         String line = "abc";
         otherWriter.write(line);
@@ -470,14 +470,14 @@ public class InputVariableDeclarationUsageDistanceCheck {
         builder.append(line);
         test(line, line, line);
     }
-    
+
     public void testIssue32_8(Writer w1, Writer w2, Writer w3) {
         String l1="1";
 
-        
+
         w3.write(l1); //distance=3
     }
-    
+
     public void testIssue32_9() {
         Options options = new Options();
         Option myOption = null; //warn
@@ -489,7 +489,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
         System.identityHashCode("message");
         myOption.setArgName("abc"); // distance=7
     }
-    
+
     public void testIssue32_10() {
         Options options = new Options();
         Option myOption = null; //warn
@@ -500,8 +500,8 @@ public class InputVariableDeclarationUsageDistanceCheck {
         options.addBindFile(null);
         myOption.setArgName("q"); // distance=6
     }
-    
-    
+
+
     public int testIssue32_11(String toDir)
             throws Exception
     {
@@ -531,12 +531,12 @@ public class InputVariableDeclarationUsageDistanceCheck {
 
         return count;
     }
-    
+
     private Session openSession() {
         return null;
-        
+
     }
-    
+
     class Session {
 
         public Transaction beginTransaction() {
@@ -553,78 +553,78 @@ public class InputVariableDeclarationUsageDistanceCheck {
         public Serializable save(A a) {
             return null;
         }
-        
+
     }
-    
+
     class Transaction {
 
         public void commit() {
-            
+
         }
-        
+
     }
-    
+
     class A {
 
         public void setForward(E d1) {
-            
+
         }
-        
+
     }
-    
+
     class E {
 
         public void setReverse(C1 c) {
-            
+
         }
 
         public void setReverse(A a) {
-            
+
         }
-        
+
     }
-    
+
     class C1 {
 
         public void setForward(E d2) {
-            
+
         }
-        
+
     }
-    
+
     class Serializable {
-        
+
     }
-    
+
     class JMenuItem {
 
         public JMenuItem(String string) {
         }
 
         public void addActionListener(ActionListener actionListener) {
-            
+
         }
 
         public void setMnemonic(char charAt) {
-            
+
         }
-        
+
     }
-    
+
     class LogLevel {
-        
+
     }
-    
+
     class ActionListener {
-        
+
     }
-    
+
     class ActionEvent {
-        
+
     }
-    
+
     private void showLogLevelColorChangeDialog(JMenuItem j, LogLevel l) {   }
-    
+
     static class Color {
 
         public Color(int red, int green, int blue, int alpha) {
@@ -645,25 +645,25 @@ public class InputVariableDeclarationUsageDistanceCheck {
         public double getGreen() {
             return 0;
         }
-        
+
     }
-    
+
     class AuthUpdateTask {
 
         public AuthUpdateTask(Object authCheckUrl, Object authInfo,
                 IAuthListener iAuthListener) {
         }
-        
+
     }
-    
+
     interface IAuthListener {
 
         void authTokenChanged(String cookie, String token);
-        
+
     }
-    
+
     void fireAuthTokenChanged(String s, String s1) {}
-    
+
     class Timer {
 
         public Timer(String string, boolean b) {
@@ -672,46 +672,46 @@ public class InputVariableDeclarationUsageDistanceCheck {
         public void schedule(AuthUpdateTask authUpdateTask, long l,
                 long intervalMs) {
         }
-        
+
     }
-    
+
     class Option {
 
         public void setArgName(String string) {
         }
-        
+
     }
-    
+
     boolean isNull(Option o) {
         return false;}
-    
+
     class Writer {
 
         public void write(String l3) {
-            
+
         }
-        
+
     }
-    
+
     class Options {
 
         public void addBindFile(Object object) {
-            
+
         }
 
         public void
                 addOption(Option srcDdlFile, Option logDdlFile, Option help)
         {
-            
+
         }
 
         public void something()
         {
-            
+
         }
-        
+
     }
-    
+
     class TreeMapNode {
 
         public TreeMapNode(String label, double d, DefaultValue defaultValue) {
@@ -719,88 +719,88 @@ public class InputVariableDeclarationUsageDistanceCheck {
 
         public TreeMapNode(String label) {
         }
-        
+
     }
 
     class DefaultValue {
 
         public DefaultValue(double d) {
         }
-        
+
     }
-    
+
     static class LogLog {
 
         public static void warn(String string)
         {
-            
+
         }
 
         public static void setInternalDebugging(String confDebug, boolean b)
         {
-            
+
         }
-        
+
     }
-    
+
     static class OptionBuilder {
 
         public static Option create(String string)
         {
             return null;
         }
-        
+
     }
-    
+
     class MyObject {
 
         public void setEnabled(boolean b)
         {
-            
+
         }
 
         public void setCalendar(Calendar cal)
         {
-            
+
         }
 
         public void setSize(int i)
         {
-            
+
         }
 
         public void setUrl(String string)
         {
-            
+
         }
 
         public void setColor(int i)
         {
-            
+
         }
-        
+
     }
-    
+
     static class otherWriter {
 
         public static void write(String line)
         {
-            
+
         }
-        
+
     }
-    
+
     void test(String s, String s1, String s2) {
-        
+
     }
-    
+
     static class builder {
 
         public static void append(String line)
         {
-            
+
         }
-        
+
     }
-    
+
 }

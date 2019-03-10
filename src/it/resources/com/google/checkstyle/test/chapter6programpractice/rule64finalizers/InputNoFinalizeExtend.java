@@ -103,15 +103,15 @@ class WithoutFinalize {
 class WithoutMethods {}
 
 class WithAnonymousClass {
-    
+
     public static void doStuff() {
         // This method do some stuff
     }
-    
+
     public void foo() {
-        
+
         Ball b = new Ball() {
-            
+
             public void hit() {
                 System.identityHashCode("You hit it!");
             }

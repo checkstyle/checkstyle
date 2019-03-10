@@ -37,14 +37,14 @@ class InputAnnotationLocation
         public int a;
 
         @MyAnnotation1 public int b;
-        
+
         @MyAnnotation2
         @MyAnnotation1
         public int c;
-        
+
         @MyAnnotation1
         public int d;
-        
+
         @MyAnnotation2
         @MyAnnotation1 public InnerClass()
         {
@@ -53,7 +53,7 @@ class InputAnnotationLocation
         @MyAnnotation1
             @MyAnnotation2 //warn
         void foo1() {}
-        
+
         @MyAnnotation1
             @MyAnnotation2 //warn
         void foo2() {}
@@ -66,24 +66,24 @@ class InputAnnotationLocation
         @MyAnnotation2 @MyAnnotation1 public int a;
 
         @MyAnnotation1 public int b;
-        
+
         @MyAnnotation2
         @MyAnnotation1
         public int c;
-        
+
         @MyAnnotation1
         public int d;
-        
+
         @MyAnnotation1
            @MyAnnotation2 void foo1() {} //warn
-        
+
         @MyAnnotation1
           @MyAnnotation2 //warn
         void foo2() {}
-        
+
         @MyAnnotation1 void foo42() {}
     };
-    
+
 }
 
 @MyAnnotation1

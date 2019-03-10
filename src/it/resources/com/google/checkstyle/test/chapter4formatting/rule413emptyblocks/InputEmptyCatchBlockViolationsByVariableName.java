@@ -9,26 +9,26 @@ public class InputEmptyCatchBlockViolationsByVariableName
             throw new RuntimeException();
         } catch (Exception expected) //ok
         {
-            
+
         }
     }
-    
+
     private void foo1() {
         try {
             throw new RuntimeException();
         } catch (Exception e) //warn
         {}
-        
+
     }
-    
+
     private void foo2() {
         try {
             throw new IOException();
-        } catch (IOException | NullPointerException | ArithmeticException expected) //ok 
+        } catch (IOException | NullPointerException | ArithmeticException expected) //ok
         {
         }
     }
-    
+
     private void foo3() { // comment
         try {
             throw new IOException();
@@ -36,7 +36,7 @@ public class InputEmptyCatchBlockViolationsByVariableName
         {
         }
     }
-    
+
     private void foo4() {
         try {
             throw new IOException();
@@ -44,7 +44,7 @@ public class InputEmptyCatchBlockViolationsByVariableName
         {
         }
     }
-    
+
     private void foo5() {
         try {
             throw new IOException();
@@ -57,7 +57,7 @@ public class InputEmptyCatchBlockViolationsByVariableName
             throw new IOException();
         } catch (IOException e) //warn
         {
-            
+
         }
     }
 }

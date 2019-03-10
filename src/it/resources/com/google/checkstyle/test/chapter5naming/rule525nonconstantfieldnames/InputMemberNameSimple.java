@@ -8,12 +8,12 @@ final class InputMemberNameSimple
 
     public static final int MAX_ROWS = 2;
 
-    
+
     private int bad$Static = 2; //warn
-   
+
     private static int sum_Created = 0;
 
-   
+
     private int bad_Member = 2; //warn
 
     private int m = 0; //warn
@@ -35,13 +35,13 @@ final class InputMemberNameSimple
     int mTest1; //warn
 
     public int mTest2; //warn
-    
+
     public int $mTest2; //warn
-    
+
     public int mTes$t2; //warn
 
     public int mTest2$; //warn
-    
+
     /** test local variables. This Check doesn't verify local variables, only members.*/
     private void localVariables()
     {
@@ -56,29 +56,29 @@ final class InputMemberNameSimple
         int aaa$aaa;
         int $aaaaaa;
         int aaaaaa$;
-        
+
         int aa;
         int aaAa1a;
         int aaAaaAa2a1;
     }
-    
+
     interface Foo {
         public void greet();
-    
+
     }
-    
+
     class InnerClass
     {
         public static final int badConstant = 2;
 
         public static final int MAX_ROWS = 2;
 
-        
+
         private int bad$Static = 2; //warn
-       
+
         private  int sum_Created = 0; //warn
 
-       
+
         private int bad_Member = 2; //warn
 
         private int m = 0; //warn
@@ -93,22 +93,22 @@ final class InputMemberNameSimple
         int mTest1; //warn
 
         public int mTest2; //warn
-        
+
         public int $mTest2; //warn
-        
+
         public int mTes$t2; //warn
 
         public int mTest2$; //warn
-        
+
         void fooMethod()
         {
             Foo foo = new Foo() {
-                    
+
                     int bad$Static = 2; //warn
-                   
+
                     int sum_Created = 0; //warn
 
-                   
+
                     int bad_Member = 2; //warn
 
                     int m = 0; //warn
@@ -123,9 +123,9 @@ final class InputMemberNameSimple
                     int mTest1; //warn
 
                     int mTest2; //warn
-                    
+
                     int $mTest2; //warn
-                    
+
                     int mTes$t2; //warn
 
                     int mTest2$; //warn

@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class InputWhitespaceAroundGenerics
 {
-    
+
 }
 
 //No whitespace after commas
@@ -22,7 +22,7 @@ class Wildcard
         // issues with parsing the wildcard in the signature
         collection.size();
     }
-    
+
     public static void foo2(Collection<?extends Wildcard[]> collection) {
         // A statement is important in this method to flush out any
         // issues with parsing the wildcard in the signature

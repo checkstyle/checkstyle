@@ -11,20 +11,20 @@ public class InputIllegalTokenText
         final String ref = "<a href=\"";
         final String refCase = "<A hReF=\"";
     }
-    
-    public String wrongEscapeSequences() 
+
+    public String wrongEscapeSequences()
     {
         final String r1 = "\u0008"; //ok
         final String r2 = "\u0009"; //warn
         final String r3 = "\u000csssdfsd"; //warn
         final String r4  = "\u1111sdfsd\444"; // ok
-        
+
         final char r5 = '\012'; //warn
         final char r6 = '\u0022'; //warn
         final char r7 = '\b'; //ok
         return "\u000csssdfsd"; //warn
     }
-    
+
     public void specialCharsWithoutWarn()
     {
         String r1 = "\b"; //ok
@@ -48,7 +48,7 @@ public class InputIllegalTokenText
         String r7 = "\\u0027"; // warn
         String r8 = "\\u005c"; // warn
     }
-    
+
     public void specialCharsWithWarn2()
     {
         String r1 = "\\010"; // warn
@@ -60,22 +60,22 @@ public class InputIllegalTokenText
         String r7 = "\\047"; // warn
         String r8 = "\\134"; // warn
     }
-    
+
     class Inner
     {
-        public String wrongEscapeSequences() 
+        public String wrongEscapeSequences()
         {
             final String r1 = "\u0008"; //ok
             final String r2 = "\u0009"; //warn
             final String r3 = "\u000csssdfsd"; //warn
             final String r4  = "\u1111sdfsd\444"; //ok
-            
+
             final char r5 = '\012'; //warn
             final char r6 = '\u0022'; //warn
             final char r7 = '\b'; //ok
             return "\u000csssdfsd"; //warn
         }
-        
+
         public void specialCharsWithoutWarn()
         {
             String r1 = "\b"; //ok
@@ -99,7 +99,7 @@ public class InputIllegalTokenText
             String r7 = "\\u0027"; // warn
             String r8 = "\\u005c"; // warn
         }
-        
+
         public void specialCharsWithWarn2()
         {
             String r1 = "\\010"; // warn
@@ -113,19 +113,19 @@ public class InputIllegalTokenText
         }
 
         Inner anoInner = new Inner(){
-            public String wrongEscapeSequences() 
+            public String wrongEscapeSequences()
             {
                 final String r1 = "\u0008"; //ok
                 final String r2 = "\u0009"; //warn
                 final String r3 = "\u000csssdfsd"; //warn
                 final String r4  = "\u1111sdfsd\444"; //ok
-                
+
                 final char r5 = '\012'; //warn
                 final char r6 = '\u0022'; //warn
                 final char r7 = '\b'; //ok
                 return "\u000csssdfsd"; //warn
             }
-            
+
             public void specialCharsWithoutWarn()
             {
                 String r1 = "\b"; //ok
@@ -149,7 +149,7 @@ public class InputIllegalTokenText
                 String r7 = "\\u0027"; // warn
                 String r8 = "\\u005c"; // warn
             }
-            
+
             public void specialCharsWithWarn2()
             {
                 String r1 = "\\010"; // warn
@@ -160,7 +160,7 @@ public class InputIllegalTokenText
                 String r6 = "\\042"; // warn
                 String r7 = "\\047"; // warn
                 String r8 = "\\134"; // warn
-            }  
+            }
         };
     }
 }

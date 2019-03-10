@@ -27,7 +27,7 @@ class InputOverloadMethodsDeclarationOrder
     {
         //some foo code
     }
-    
+
     InputOverloadMethodsDeclarationOrder anonymous = new InputOverloadMethodsDeclarationOrder()
     {
         public void overloadMethod(int i)
@@ -70,21 +70,21 @@ enum FooType {
     Strategy(""),
     Shooter(""),
     RPG("");
- 
+
     private String description;
- 
+
     private FooType(String description) {
         this.description = description;
     }
- 
+
     public String getDescription() {
         return description;
     }
- 
+
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
     public void overloadMethod(int i)
     {
         //some foo code

@@ -5,17 +5,17 @@ package com.google.checkstyle.test.chapter7javadoc.rule72thesummaryfragment;
  * is a simple Javadoc. Some javadoc.
  */
 class InputIncorrectSummaryJavaDocCheck {
-    
+
     /**
      * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}
      */
     void foo3() {}
-    
+
 /*warn*//**
      * @throws Exception if an error occurs
      */
     void foo4() throws Exception {}
-    
+
     /** An especially short bit of Javadoc. */
     void foo5() {}
 
@@ -30,7 +30,7 @@ class InputIncorrectSummaryJavaDocCheck {
     public static final byte NUL = 0;
 
 /*warn*//**
-     * <a href="mailto:vlad@htmlbook.ru"/> 
+     * <a href="mailto:vlad@htmlbook.ru"/>
      */
      class InnerInputCorrectJavaDocParagraphCheck {
 
@@ -49,7 +49,7 @@ class InputIncorrectSummaryJavaDocCheck {
          * returns some javadoc. Some javadoc.
          */
         boolean emulated() {return false;}
-        
+
 /*warn*//**
          * <a href="mailto:vlad@htmlbook.ru"/>
          */
@@ -59,18 +59,18 @@ class InputIncorrectSummaryJavaDocCheck {
          * @return the
          * customer ID some javadoc.
          */
-        int geId() {return 666;} 
+        int geId() {return 666;}
 
         /**
          * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}.
          */
         void foo3() {}
-        
+
 /*warn*//**
          * @throws Exception if an error occurs
          */
         void foo4() throws Exception {}
-        
+
         /** An especially short bit of Javadoc. */
         void foo5() {}
 

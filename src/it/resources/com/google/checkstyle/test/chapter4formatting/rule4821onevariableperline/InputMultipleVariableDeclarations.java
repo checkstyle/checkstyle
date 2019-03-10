@@ -23,10 +23,10 @@ public class InputMultipleVariableDeclarations
         }
 
         for(int i=0; i<4;i++) {
-            
+
         }
     }
-    
+
     class Inner {
         int i, j; //warn
         int i1; int j1; //warn
@@ -49,7 +49,7 @@ public class InputMultipleVariableDeclarations
             }
 
             for(int i=0; i<4;i++) {
-                
+
             }
         }
         Inner anon = new Inner()
@@ -75,9 +75,9 @@ public class InputMultipleVariableDeclarations
                 }
 
                 for(int i=0; i<4;i++) {
-                    
+
                 }
-            }  
+            }
         };
     }
 }
@@ -85,6 +85,6 @@ public class InputMultipleVariableDeclarations
 class Suppress {
     @SuppressWarnings("unused") //warn
     long q1, q2, q3;
-    
+
     @SuppressWarnings("unused") long q4, q5, q6;  //warn
 }

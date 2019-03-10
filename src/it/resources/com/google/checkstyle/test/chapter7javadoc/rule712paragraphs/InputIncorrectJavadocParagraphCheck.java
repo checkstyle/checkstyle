@@ -16,7 +16,7 @@ class InputIncorrectJavadocParagraphCheck {
      * @since 8.0
      */
     public static final byte NUL = 0;
-       
+
     /**
      * Some <p>Javadoc.//warn
      *
@@ -26,7 +26,7 @@ class InputIncorrectJavadocParagraphCheck {
      *     Documentation about GWT emulated source</a>
      */
     boolean emulated() {return false;}
-    
+
     /**<p>Some Javadoc. //warn
      * <p> //warn
      * <p><p> //warn
@@ -39,7 +39,7 @@ class InputIncorrectJavadocParagraphCheck {
          * @since 8.0
          */
         public static final byte NUL = 0;
-           
+
         /**<p> //warn
          * /^WARN/ Some Javadoc.
          *

@@ -12,37 +12,37 @@ public class InputEmptyCatchBlockViolationsByComment
             //Expected
         }
     }
-    
+
     private void foo1() {
         try {
             throw new RuntimeException();
         } catch (Exception e) //warn
         {}
-        
+
     }
-    
+
     private void foo2() {
         try {
             throw new IOException();
-        } catch (IOException | NullPointerException | ArithmeticException ignore) //warn 
+        } catch (IOException | NullPointerException | ArithmeticException ignore) //warn
         {
         }
     }
-    
+
     private void foo3() { // comment
         try {
             throw new IOException();
         } catch (IOException | NullPointerException | ArithmeticException e) { //This is expected
         }
     }
-    
+
     private void foo4() {
         try {
             throw new IOException();
         } catch (IOException | NullPointerException | ArithmeticException e) { /* This is expected*/
         }
     }
-    
+
     private void foo5() {
         try {
             throw new IOException();

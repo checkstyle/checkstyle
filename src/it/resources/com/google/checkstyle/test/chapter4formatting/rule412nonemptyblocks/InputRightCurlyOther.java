@@ -15,7 +15,7 @@ class InputRightCurlyOther
                 {
                     break;
                 } else if (x < 0) {  //ok
-                
+
                     ;
                 } //warn
                 else
@@ -52,17 +52,17 @@ class InputRightCurlyOther
             String innerBlockVariable = "";
         }//ok
 
-        
+
         if (System.currentTimeMillis() > 1000)
             return 1;
         else
             return 2;
     }//ok
 
-    
+
     static
     {
-        int x = 1; 
+        int x = 1;
     }//ok
 
     public enum GreetingsEnum
@@ -78,15 +78,15 @@ class InputRightCurlyOther
             System.identityHashCode("heh");
             flag = !flag; } System. //warn
               identityHashCode("Xe-xe");
-        
-       
+
+
         if (flag) { System.identityHashCode("some foo"); }
     } //ok
 } //ok
 
 /**
- * Test input for closing brace if that brace terminates 
- * a statement or the body of a constructor. 
+ * Test input for closing brace if that brace terminates
+ * a statement or the body of a constructor.
  */
 class FooCtor
 {
@@ -97,8 +97,8 @@ class FooCtor
     }} //ok
 
 /**
-* Test input for closing brace if that brace terminates 
-* a statement or the body of a method. 
+* Test input for closing brace if that brace terminates
+* a statement or the body of a method.
 */
 class FooMethod
 {
@@ -108,8 +108,8 @@ class FooMethod
     }} //ok
 
 /**
-* Test input for closing brace if that brace terminates 
-* a statement or the body of a named class. 
+* Test input for closing brace if that brace terminates
+* a statement or the body of a named class.
 */
 class FooInner
 {
@@ -117,7 +117,7 @@ class FooInner
     {
         public void fooInnerMethod ()
         {
-            
+
         }
     }} //ok
 

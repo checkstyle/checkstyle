@@ -113,13 +113,13 @@ class InputNeedBraces
 
     /** Empty constructor block. **/
     public InputNeedBraces() {}
-    
+
     /** Empty method block. **/
     public void emptyImplementation() {}
 }
 
 class EmptyBlocks {
-    boolean flag = true;    
+    boolean flag = true;
     int[] a = {1, 2, 3, 4, };
 
     void foo() {
@@ -148,9 +148,9 @@ class EmptyBlocks {
         for(int b : a) {}
         for(int b : a) {/*foo*/}
     }
-    
+
     class InnerEmptyBlocks {
-        boolean flag = true;    
+        boolean flag = true;
         int[] a = {1, 2, 3, 4, };
 
         void foo() {
@@ -182,7 +182,7 @@ class EmptyBlocks {
     }
 
     InnerEmptyBlocks anon = new InnerEmptyBlocks() {
-        boolean flag = true;    
+        boolean flag = true;
         int[] a = {1, 2, 3, 4, };
 
         void foo() {

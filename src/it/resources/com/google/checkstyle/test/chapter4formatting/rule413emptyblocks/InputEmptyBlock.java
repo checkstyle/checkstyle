@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.google.checkstyle.test.chapter4formatting.rule413emptyblocks;
 
-import java.io.*; 
+import java.io.*;
 import java.awt.Dimension;
 import java.awt.Color;
 
@@ -50,7 +50,7 @@ class InputEmptyBlock {
             finally {} //warn
         }
     }
-    
+
     Inner anon = new Inner(){
         boolean flag;
         void doSm() {}
