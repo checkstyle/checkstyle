@@ -44,7 +44,7 @@ no-error-orekit)
   # of 8.2 and above are applied
   #git checkout develop
   # due to temporal compilation problems(20180522) we use latest commit where compilation pass
-  git checkout 9862be9
+  git checkout 768201c
   mvn -e compile checkstyle:check -Dorekit.checkstyle.version=${CS_POM_VERSION}
   cd ../
   rm -rf Orekit
