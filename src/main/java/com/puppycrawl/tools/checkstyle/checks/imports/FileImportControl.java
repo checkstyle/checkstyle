@@ -40,7 +40,7 @@ class FileImportControl extends AbstractImportControl {
      * @param name the name of the file.
      * @param regex flags interpretation of name as regex pattern.
      */
-    FileImportControl(PkgImportControl parent, String name, boolean regex) {
+    /* package */ FileImportControl(PkgImportControl parent, String name, boolean regex) {
         super(parent, MismatchStrategy.DELEGATE_TO_PARENT);
 
         this.regex = regex;

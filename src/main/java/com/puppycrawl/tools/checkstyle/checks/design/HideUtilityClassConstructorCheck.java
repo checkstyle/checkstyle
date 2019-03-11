@@ -128,7 +128,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
          * C-tor.
          * @param ast class ast
          * */
-        Details(DetailAST ast) {
+        /* package */ Details(DetailAST ast) {
             this.ast = ast;
         }
 

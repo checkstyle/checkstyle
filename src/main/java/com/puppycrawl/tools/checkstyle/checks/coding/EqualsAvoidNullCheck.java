@@ -521,7 +521,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
          * Creates new frame.
          * @param parent parent frame.
          */
-        FieldFrame(FieldFrame parent) {
+        /* package */ FieldFrame(FieldFrame parent) {
             this.parent = parent;
         }
 

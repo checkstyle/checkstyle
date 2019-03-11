@@ -173,7 +173,7 @@ public abstract class AbstractXpathTestSupport extends AbstractModuleTestSupport
         private final int violationLineNumber;
         private final int violationColumnNumber;
 
-        ViolationPosition(int violationLineNumber,
+        /* package */ ViolationPosition(int violationLineNumber,
                               int violationColumnNumber) {
             this.violationLineNumber = violationLineNumber;
             this.violationColumnNumber = violationColumnNumber;

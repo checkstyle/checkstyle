@@ -57,7 +57,8 @@ class PkgImportControl extends AbstractImportControl {
      * @param regex flags interpretation of name as regex pattern.
      * @param strategyOnMismatch strategy in a case if matching allow/disallow rule was not found.
      */
-    PkgImportControl(String packageName, boolean regex, MismatchStrategy strategyOnMismatch) {
+    /* package */ PkgImportControl(String packageName, boolean regex,
+            MismatchStrategy strategyOnMismatch) {
         super(null, strategyOnMismatch);
 
         this.regex = regex;
@@ -82,7 +83,7 @@ class PkgImportControl extends AbstractImportControl {
      * @param regex flags interpretation of name as regex pattern.
      * @param strategyOnMismatch strategy in a case if matching allow/disallow rule was not found.
      */
-    PkgImportControl(PkgImportControl parent, String subPackageName, boolean regex,
+    /* package */ PkgImportControl(PkgImportControl parent, String subPackageName, boolean regex,
             MismatchStrategy strategyOnMismatch) {
         super(parent, strategyOnMismatch);
         if (regex || parent.regex) {

@@ -68,7 +68,7 @@ public class XmlLoaderTest {
 
     private static final class DummyLoader extends XmlLoader {
 
-        DummyLoader(Map<String, String> publicIdToResourceNameMap)
+        /* package */ DummyLoader(Map<String, String> publicIdToResourceNameMap)
                 throws SAXException, ParserConfigurationException {
             super(publicIdToResourceNameMap);
         }

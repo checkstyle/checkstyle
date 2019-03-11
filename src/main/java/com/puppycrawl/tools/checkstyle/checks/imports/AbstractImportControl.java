@@ -41,7 +41,8 @@ abstract class AbstractImportControl {
      * @param parent the parent node.
      * @param strategyOnMismatch strategy in a case if matching allow/disallow rule was not found.
      */
-    AbstractImportControl(AbstractImportControl parent, MismatchStrategy strategyOnMismatch) {
+    protected AbstractImportControl(AbstractImportControl parent,
+            MismatchStrategy strategyOnMismatch) {
         this.parent = parent;
         this.strategyOnMismatch = strategyOnMismatch;
     }

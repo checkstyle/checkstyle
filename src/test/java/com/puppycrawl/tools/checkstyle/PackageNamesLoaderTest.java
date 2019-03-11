@@ -213,7 +213,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
 
         private final Enumeration<URL> urls;
 
-        TestUrlsClassLoader(Enumeration<URL> urls) {
+        /* package */ TestUrlsClassLoader(Enumeration<URL> urls) {
             this.urls = urls;
         }
 

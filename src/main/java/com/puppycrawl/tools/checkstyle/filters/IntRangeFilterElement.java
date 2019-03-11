@@ -38,7 +38,7 @@ class IntRangeFilterElement implements IntFilterElement {
      * @param lowerBound the lower bound of the range.
      * @param upperBound the upper bound of the range.
      */
-    IntRangeFilterElement(int lowerBound, int upperBound) {
+    /* package */ IntRangeFilterElement(int lowerBound, int upperBound) {
         this.lowerBound = lowerBound;
         this.upperBound = upperBound;
     }

@@ -307,12 +307,12 @@ public class CommitValidationTest {
         private final Iterator<RevCommit> first;
         private final Iterator<RevCommit> second;
 
-        RevCommitsPair() {
+        /* package */ RevCommitsPair() {
             first = Collections.emptyIterator();
             second = Collections.emptyIterator();
         }
 
-        RevCommitsPair(Iterator<RevCommit> first, Iterator<RevCommit> second) {
+        /* package */ RevCommitsPair(Iterator<RevCommit> first, Iterator<RevCommit> second) {
             this.first = first;
             this.second = second;
         }
@@ -331,7 +331,7 @@ public class CommitValidationTest {
 
         private final Iterator<RevCommit> revCommitIterator;
 
-        OmitMergeCommitsIterator(Iterator<RevCommit> revCommitIterator) {
+        /* package */ OmitMergeCommitsIterator(Iterator<RevCommit> revCommitIterator) {
             this.revCommitIterator = revCommitIterator;
         }
 
