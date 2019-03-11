@@ -49,7 +49,7 @@ class SinglelineDetector {
      * Creates an instance.
      * @param options the options to use.
      */
-    SinglelineDetector(DetectorOptions options) {
+    /* package */ SinglelineDetector(DetectorOptions options) {
         this.options = options;
     }
 

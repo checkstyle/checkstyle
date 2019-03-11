@@ -179,7 +179,7 @@ public class CheckstyleAntTaskPowerTest extends AbstractPathTestSupport {
         private final String msg;
         private final int level;
 
-        MessageLevelPair(String msg, int level) {
+        /* package */ MessageLevelPair(String msg, int level) {
             this.msg = msg;
             this.level = level;
         }

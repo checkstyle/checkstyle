@@ -536,7 +536,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
          * @param path common path of files which are included in the resource bundle.
          * @param extension common extension of files which are included in the resource bundle.
          */
-        ResourceBundle(String baseName, String path, String extension) {
+        /* package */ ResourceBundle(String baseName, String path, String extension) {
             this.baseName = baseName;
             this.path = path;
             this.extension = extension;

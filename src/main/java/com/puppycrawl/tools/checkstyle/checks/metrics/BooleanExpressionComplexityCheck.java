@@ -219,7 +219,7 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
          * Creates new instance.
          * @param checking should we check in current context or not.
          */
-        Context(boolean checking) {
+        /* package */ Context(boolean checking) {
             this.checking = checking;
             count = 0;
         }

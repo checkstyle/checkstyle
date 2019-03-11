@@ -31,7 +31,7 @@ class IntMatchFilterElement implements IntFilterElement {
      * Constructs a MatchFilter for an int.
      * @param matchValue the matching int.
      */
-    IntMatchFilterElement(int matchValue) {
+    /* package */ IntMatchFilterElement(int matchValue) {
         this.matchValue = matchValue;
     }
 

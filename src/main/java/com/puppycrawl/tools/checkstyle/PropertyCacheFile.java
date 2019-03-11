@@ -388,7 +388,7 @@ public final class PropertyCacheFile {
          * @param location resource location.
          * @param contentHashSum content hash sum.
          */
-        ExternalResource(String location, String contentHashSum) {
+        /* package */ ExternalResource(String location, String contentHashSum) {
             this.location = location;
             this.contentHashSum = contentHashSum;
         }

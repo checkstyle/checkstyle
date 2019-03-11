@@ -52,7 +52,7 @@ class TreeTableCellRenderer extends JTree implements
      * @param treeTable tree table to render.
      * @param model Tree model.
      */
-    TreeTableCellRenderer(TreeTable treeTable, TreeModel model) {
+    /* package */ TreeTableCellRenderer(TreeTable treeTable, TreeModel model) {
         super(model);
         this.treeTable = treeTable;
     }

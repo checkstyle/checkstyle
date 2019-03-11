@@ -879,7 +879,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
          * @param staticImport
          *        if import is static.
          */
-        ImportDetails(String importFullPath,
+        /* package */ ImportDetails(String importFullPath,
                 int lineNumber, String importGroup, boolean staticImport) {
             this.importFullPath = importFullPath;
             this.lineNumber = lineNumber;
@@ -942,7 +942,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
          * @param position
          *        Matching position.
          */
-        RuleMatchForImport(String group, int length, int position) {
+        /* package */ RuleMatchForImport(String group, int length, int position) {
             this.group = group;
             matchLength = length;
             matchPosition = position;

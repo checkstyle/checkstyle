@@ -367,7 +367,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
          * @param className name of the given class.
          * @param ast ast of class definition.
          */
-        ClassContext(FileContext parentContext, String className, DetailAST ast) {
+        /* package */ ClassContext(FileContext parentContext, String className, DetailAST ast) {
             this.parentContext = parentContext;
             this.className = className;
             classAst = ast;

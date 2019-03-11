@@ -571,7 +571,7 @@ public class SuppressWarningsHolder
          * @param lastLine the last line of the suppression region
          * @param lastColumn the last column of the suppression region
          */
-        Entry(String checkName, int firstLine, int firstColumn,
+        /* package */ Entry(String checkName, int firstLine, int firstColumn,
             int lastLine, int lastColumn) {
             this.checkName = checkName;
             this.firstLine = firstLine;
