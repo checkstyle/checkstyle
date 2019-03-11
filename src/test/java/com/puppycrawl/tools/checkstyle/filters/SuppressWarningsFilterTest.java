@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_JAVADOC_MISSING;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck.MSG_JAVADOC_MISSING;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 
 import java.util.Arrays;
@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder;
 import com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
@@ -46,9 +46,9 @@ public class SuppressWarningsFilterTest
     extends AbstractModuleTestSupport {
 
     private static final String[] ALL_MESSAGES = {
-        "16: " + getCheckMessage(JavadocTypeCheck.class, MSG_JAVADOC_MISSING),
-        "17: " + getCheckMessage(JavadocTypeCheck.class, MSG_JAVADOC_MISSING),
-        "19: " + getCheckMessage(JavadocTypeCheck.class, MSG_JAVADOC_MISSING),
+        "16: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
+        "17: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
+        "19: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
         "22:45: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "I", "^[a-z][a-zA-Z0-9]*$"),
@@ -76,15 +76,15 @@ public class SuppressWarningsFilterTest
             + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
         "56:9: "
             + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
-        "61: " + getCheckMessage(JavadocTypeCheck.class, MSG_JAVADOC_MISSING),
+        "61: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
         "71: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
-        "76: " + getCheckMessage(JavadocTypeCheck.class, MSG_JAVADOC_MISSING),
+        "76: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
         "77: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
-        "83: " + getCheckMessage(JavadocTypeCheck.class, MSG_JAVADOC_MISSING),
+        "83: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
         "84: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
-        "90: " + getCheckMessage(JavadocTypeCheck.class, MSG_JAVADOC_MISSING),
+        "90: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
         "91: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
-        "97: " + getCheckMessage(JavadocTypeCheck.class, MSG_JAVADOC_MISSING),
+        "97: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
     };
 
     @Override
@@ -121,7 +121,6 @@ public class SuppressWarningsFilterTest
             "77: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
             "84: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
             "91: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
-            "97: " + getCheckMessage(JavadocTypeCheck.class, MSG_JAVADOC_MISSING),
         };
         verifySuppressed(filterConfig, suppressed);
     }
@@ -161,7 +160,11 @@ public class SuppressWarningsFilterTest
         treewalkerConfig.addChild(createModuleConfig(ParameterNumberCheck.class));
         treewalkerConfig.addChild(createModuleConfig(IllegalCatchCheck.class));
         treewalkerConfig.addChild(uncommentedMainCheckConfig);
-        treewalkerConfig.addChild(createModuleConfig(JavadocTypeCheck.class));
+
+        final DefaultConfiguration missingJavadocConfig =
+                createModuleConfig(MissingJavadocTypeCheck.class);
+        missingJavadocConfig.addAttribute("scope", "private");
+        treewalkerConfig.addChild(missingJavadocConfig);
 
         final DefaultConfiguration checkerConfig =
                 createRootConfig(treewalkerConfig);
@@ -192,7 +195,7 @@ public class SuppressWarningsFilterTest
                 + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
         };
         final String[] expectedViolationMessages = {
-            "3: " + getCheckMessage(JavadocTypeCheck.class, MSG_JAVADOC_MISSING),
+            "3: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
             "6:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),

@@ -1,8 +1,4 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
 /**
    Checks javadoc scoping for inner classes.
@@ -10,10 +6,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
    Once the Javadoc Check Scope has been left,
    all inner elements should not be reported as error,
    even if they belong to the checkscope if isolated.
-
-   @author lkuehne
  */
-public class InputJavadocTypeScopeInnerClasses
+public class InputMissingJavadocTypeScopeInnerClasses
 {
     public class InnerPublic
     {
@@ -38,9 +32,5 @@ public class InputJavadocTypeScopeInnerClasses
                 }
             }
         }
-    }
-    /** */
-    protected class InnerPublic2<T>
-    {
     }
 }
