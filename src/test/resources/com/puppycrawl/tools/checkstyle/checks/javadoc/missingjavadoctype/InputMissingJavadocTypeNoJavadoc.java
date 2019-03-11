@@ -1,7 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
-/** */
-public class InputJavadocTypeNoJavadoc<T> //comment test
+public class InputMissingJavadocTypeNoJavadoc //comment test
 {
     public int i1;
     protected int i2;
@@ -118,8 +117,4 @@ class PackageClass {
 
     /**/
     void methodWithTwoStarComment() {}
-
-    /** */
-    protected class ProtectedInner2<T> {
-    }
 }

@@ -53,12 +53,6 @@ public class JavadocTypeCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_JAVADOC_MISSING = "javadoc.missing";
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
     public static final String MSG_UNKNOWN_TAG = "javadoc.unknownTag";
 
     /**
@@ -202,10 +196,7 @@ public class JavadocTypeCheck
             final FileContents contents = getFileContents();
             final int lineNo = ast.getLineNo();
             final TextBlock textBlock = contents.getJavadocBefore(lineNo);
-            if (textBlock == null) {
-                log(lineNo, MSG_JAVADOC_MISSING);
-            }
-            else {
+            if (textBlock != null) {
                 final List<JavadocTag> tags = getJavadocTags(textBlock);
                 if (ScopeUtil.isOuterMostType(ast)) {
                     // don't check author/version for inner classes

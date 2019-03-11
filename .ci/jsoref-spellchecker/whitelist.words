@@ -790,6 +790,7 @@ misconfigured
 Misordered
 missingctor
 missingdeprecated
+missingjavadoctype
 missingoverride
 missingswitchdefault
 missingtag
