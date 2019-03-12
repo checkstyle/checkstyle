@@ -167,4 +167,25 @@ class ClassWithStaticInitializers
         }
     }
 
+    public void emptyBlocks() {
+        try {
+            // comment
+        } catch (RuntimeException e) { // violation except for SAME
+            new Object();
+        } catch (Exception e) { // violation except for SAME
+            // comment
+        } catch (Throwable e) { // violation except for SAME
+        } finally { // violation except for SAME
+            // comment
+        }
+
+        do {
+        } while (true); // violation except for SAME
+    }
+
+    public void codeAfterLastRightCurly() {
+        while (new Object().equals(new Object())) {
+        }; // violation
+        for (int i = 0; i < 1; i++) { new Object(); }; // violation
+    }
 }
