@@ -2068,7 +2068,10 @@ class SomeClass
       <subsection name="Description" id="IllegalType_Description">
         <p>Since Checkstyle 3.2</p>
         <p>
-          Checks that particular classes or interfaces are never used.
+          Checks that particular classes or interfaces are never used. This includes usage as type
+          parameters, type arguments or type bounds in various places, classes or interfaces to
+          extend or implement, method return types, field types, local variable types and
+          parameter types.
         </p>
 
         <p>
@@ -2101,9 +2104,25 @@ class SomeClass
             <td>Classes that should not be used as types in variable
             declarations, return values or parameters</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>LinkedHashSet, java.util.HashSet, java.util.LinkedHashMap,
-            java.util.TreeMap, HashMap, TreeSet, java.util.HashMap, TreeMap,
-            java.util.LinkedHashSet, java.util.TreeSet, HashSet, LinkedHashMap</td>
+            <td>LinkedHashSet, HashMap, java.util.PriorityQueue, IdentityHashMap, ArrayList,
+            LinkedBlockingQueue, DelayQueue, LinkedHashMap,
+            java.util.concurrent.PriorityBlockingQueue, java.util.Vector, ArrayBlockingQueue,
+            TreeSet, SynchronousQueue, EnumMap, Vector, java.util.EnumSet, HashSet,
+            java.util.IdentityHashMap, java.util.EnumMap, java.util.concurrent.SynchronousQueue,
+            java.util.concurrent.ConcurrentHashMap, PriorityQueue,
+            java.util.concurrent.CopyOnWriteArraySet, java.util.concurrent.LinkedBlockingQueue,
+            LinkedList, PriorityBlockingQueue, Stack, java.util.concurrent.ArrayBlockingQueue,
+            ConcurrentLinkedQueue, WeakHashMap, CopyOnWriteArrayList,
+            java.util.concurrent.ConcurrentLinkedQueue, java.util.concurrent.CopyOnWriteArrayList,
+            LinkedBlockingDeque, java.util.HashMap, CopyOnWriteArraySet, java.util.Stack,
+            java.util.TreeSet, java.util.ArrayList, java.util.HashSet, java.util.LinkedHashMap,
+            java.lang.StringBuffer, java.util.concurrent.DelayQueue, ConcurrentHashMap,
+            java.util.LinkedList, java.util.Hashtable, java.util.LinkedHashSet,
+            java.util.WeakHashMap, ConcurrentSkipListMap, ConcurrentSkipListSet, Hashtable, EnumSet,
+            TreeMap, ArrayDeque, java.util.concurrent.ConcurrentLinkedDeque, ConcurrentLinkedDeque,
+            StringBuffer, java.util.concurrent.ConcurrentSkipListMap, java.util.TreeMap,
+            java.util.concurrent.ConcurrentSkipListSet, java.util.concurrent.LinkedBlockingDeque,
+            java.util.ArrayDeque</td>
             <td>3.2</td>
           </tr>
           <tr>
@@ -2129,8 +2148,8 @@ class SomeClass
           </tr>
           <tr>
             <td>memberModifiers</td>
-            <td>To check only methods and fields with any of the specified modifiers.
-                This property does not affect method calls nor method references.</td>
+            <td>To check only methods, fields, classes and interfaces with any of the specified
+                modifiers. This property does not affect method calls nor method references.</td>
             <td>subset of tokens
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
             <td/>

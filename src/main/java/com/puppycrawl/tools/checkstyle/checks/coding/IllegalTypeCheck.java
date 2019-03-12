@@ -35,6 +35,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Checks that particular classes or interfaces are never used.
+ * This includes usage as type parameters, type arguments or type bounds in various places,
+ * classes or interfaces to extend or implement, method return types, field types,
+ * local variable types and parameter types.
  *
  * <p>Rationale:
  * Helps reduce coupling on concrete classes.
@@ -70,8 +73,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * <p><b>ignoredMethodNames</b> - Methods that should not be checked.
  *
- * <p><b>memberModifiers</b> - To check only methods and fields with any of the specified modifiers.
- * This property does not affect method calls nor method references.
+ * <p><b>memberModifiers</b> - To check only methods, fields, classes and interface with any of the
+ * specified modifiers. This property does not affect method calls nor method references.
  *
  * <p>In most cases it's justified to put following classes to <b>illegalClassNames</b>:
  * <ul>
@@ -98,18 +101,68 @@ public final class IllegalTypeCheck extends AbstractCheck {
 
     /** Types illegal by default. */
     private static final String[] DEFAULT_ILLEGAL_TYPES = {
-        "HashSet",
+        "StringBuffer",
+        "ArrayDeque",
+        "ArrayList",
+        "EnumMap",
+        "EnumSet",
         "HashMap",
+        "HashSet",
+        "Hashtable",
+        "IdentityHashMap",
         "LinkedHashMap",
         "LinkedHashSet",
-        "TreeSet",
+        "LinkedList",
+        "PriorityQueue",
+        "Stack",
         "TreeMap",
-        "java.util.HashSet",
+        "TreeSet",
+        "Vector",
+        "WeakHashMap",
+        "ArrayBlockingQueue",
+        "ConcurrentHashMap",
+        "ConcurrentLinkedDeque",
+        "ConcurrentLinkedQueue",
+        "ConcurrentSkipListMap",
+        "ConcurrentSkipListSet",
+        "CopyOnWriteArrayList",
+        "CopyOnWriteArraySet",
+        "DelayQueue",
+        "LinkedBlockingDeque",
+        "LinkedBlockingQueue",
+        "PriorityBlockingQueue",
+        "SynchronousQueue",
+        "java.lang.StringBuffer",
+        "java.util.ArrayDeque",
+        "java.util.ArrayList",
+        "java.util.EnumMap",
+        "java.util.EnumSet",
         "java.util.HashMap",
+        "java.util.HashSet",
+        "java.util.Hashtable",
+        "java.util.IdentityHashMap",
         "java.util.LinkedHashMap",
         "java.util.LinkedHashSet",
-        "java.util.TreeSet",
+        "java.util.LinkedList",
+        "java.util.PriorityQueue",
+        "java.util.Stack",
         "java.util.TreeMap",
+        "java.util.TreeSet",
+        "java.util.Vector",
+        "java.util.WeakHashMap",
+        "java.util.concurrent.ArrayBlockingQueue",
+        "java.util.concurrent.ConcurrentHashMap",
+        "java.util.concurrent.ConcurrentLinkedDeque",
+        "java.util.concurrent.ConcurrentLinkedQueue",
+        "java.util.concurrent.ConcurrentSkipListMap",
+        "java.util.concurrent.ConcurrentSkipListSet",
+        "java.util.concurrent.CopyOnWriteArrayList",
+        "java.util.concurrent.CopyOnWriteArraySet",
+        "java.util.concurrent.DelayQueue",
+        "java.util.concurrent.LinkedBlockingDeque",
+        "java.util.concurrent.LinkedBlockingQueue",
+        "java.util.concurrent.PriorityBlockingQueue",
+        "java.util.concurrent.SynchronousQueue",
     };
 
     /** Default ignored method names. */
@@ -126,7 +179,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
     private final Set<String> legalAbstractClassNames = new HashSet<>();
     /** Methods which should be ignored. */
     private final Set<String> ignoredMethodNames = new HashSet<>();
-    /** Check methods and fields with only corresponding modifiers. */
+    /** Check methods, fields, classes and interfaces with any corresponding modifier. */
     private List<Integer> memberModifiers;
 
     /** The regexp to match against. */
@@ -225,16 +278,16 @@ public final class IllegalTypeCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if current method's return type or variable's type is verifiable
+     * Checks if given method, field, class or interface is verifiable
      * according to <b>memberModifiers</b> option.
-     * @param methodOrVariableDef METHOD_DEF or VARIABLE_DEF ast node.
+     * @param typeDef {@code CLASS_DEF}, {@code INTERFACE_DEF}, {@code METHOD_DEF},
+     *            {@code VARIABLE_DEF} or {@code ANNOTATION_FIELD_DEF} ast node.
      * @return true if member is verifiable according to <b>memberModifiers</b> option.
      */
-    private boolean isVerifiable(DetailAST methodOrVariableDef) {
+    private boolean isVerifiable(DetailAST typeDef) {
         boolean result = true;
         if (memberModifiers != null) {
-            final DetailAST modifiersAst = methodOrVariableDef
-                    .findFirstToken(TokenTypes.MODIFIERS);
+            final DetailAST modifiersAst = typeDef.findFirstToken(TokenTypes.MODIFIERS);
             result = isContainVerifiableType(modifiersAst);
         }
         return result;
@@ -564,7 +617,8 @@ public final class IllegalTypeCheck extends AbstractCheck {
     }
 
     /**
-     * Set the list of member modifiers (of methods and fields) which should be checked.
+     * Set the list of member modifiers (of methods, fields, classes and interfaces) which should
+     * be checked.
      * @param modifiers String contains modifiers.
      */
     public void setMemberModifiers(String modifiers) {
