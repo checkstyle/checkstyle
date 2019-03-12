@@ -25,18 +25,16 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Check the number of nested {@code for} -statements. The maximum
+ * Check the number of nested {@code for}-statements. The maximum
  * number of nested layers can be configured. The default value is 1.
- * The code for the class is copied from the NestedIfDepthCheck-class.
- * The only difference is the intercepted token (for instead of if).
- * Example:
+ * The code for the class is copied from the {@code NestedIfDepthCheck}-class.
+ * The only difference is the intercepted token ({@code for} instead of {@code if}).
+ *
+ * <p>Example:
  * <pre>
- *  &lt;!-- Restricts nested for blocks to a specified depth (default = 1).
- *                                                                        --&gt;
- *  &lt;module name=&quot;com.puppycrawl.tools.checkstyle.checks.coding
- *                                            .CatchWithLostStackCheck&quot;&gt;
- *    &lt;property name=&quot;severity&quot; value=&quot;info&quot;/&gt;
- *    &lt;property name=&quot;max&quot; value=&quot;1&quot;/&gt;
+ *  &lt;!-- Restricts nested for blocks to a specified depth (default = 1). --&gt;
+ *  &lt;module name="NestedForDepth"&gt;
+ *    &lt;property name="max" value="2"/&gt;
  *  &lt;/module&gt;
  * </pre>
  * @see NestedIfDepthCheck
