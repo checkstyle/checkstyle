@@ -35,22 +35,32 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Rationale: Certain language features can harm readability, lead to
  * confusion or are not obvious to novice developers. Other features
  * may be discouraged in certain frameworks, such as not having
- * native methods in EJB components.
+ * native methods in Enterprise JavaBeans components.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LABELED_STAT">
+ * LABELED_STAT</a>.
+ * </li>
+ * </ul>
  * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
- * &lt;module name="IllegalToken"/&gt;
+ * &lt;module name=&quot;IllegalToken&quot;/&gt;
  * </pre>
- * <p> An example of how to configure the check to forbid
- * a {@link TokenTypes#LITERAL_NATIVE LITERAL_NATIVE} token is:
+ * <p>
+ * To configure the check to find token LITERAL_NATIVE:
  * </p>
  * <pre>
- * &lt;module name="IllegalToken"&gt;
- *     &lt;property name="tokens" value="LITERAL_NATIVE"/&gt;
+ * &lt;module name=&quot;IllegalToken&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_NATIVE&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ *
+ * @since 3.2
  */
 @StatelessCheck
 public class IllegalTokenCheck

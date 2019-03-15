@@ -96,6 +96,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "IllegalCatch",
         "IllegalInstantiation",
         "IllegalThrows",
+        "IllegalToken",
         "IllegalTokenText",
         "IllegalType",
         "ImportOrder",
