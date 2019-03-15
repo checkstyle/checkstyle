@@ -524,11 +524,11 @@ class K {
     </section>
 
     <section name="DefaultComesLast">
+      <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="DefaultComesLast_Description">
-        <p>Since Checkstyle 3.4</p>
         <p>
           Check that the <code>default</code> is after all the
-          <code>case</code>s in a <code>switch</code> statement.
+          cases in a <code>switch</code> statement.
         </p>
 
         <p>
@@ -548,9 +548,12 @@ class K {
           </tr>
           <tr>
             <td>skipIfLastAndSharedWithCase</td>
-            <td>whether to allow <code>default</code> along with case if they are not last</td>
+            <td>
+              Control whether to allow <code>default</code> along with
+              <code>case</code> if they are not last.
+            </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>false</td>
+            <td><code>false</code></td>
             <td>7.7</td>
           </tr>
         </table>
