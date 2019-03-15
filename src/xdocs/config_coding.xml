@@ -1863,8 +1863,8 @@ class SomeClass
     </section>
 
     <section name="IllegalToken">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="IllegalToken_Description">
-        <p>Since Checkstyle 3.2</p>
         <p>
           Checks for illegal tokens. By default labels are prohibited.
         </p>
@@ -1902,6 +1902,12 @@ class SomeClass
       </subsection>
 
       <subsection name="Examples" id="IllegalToken_Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;IllegalToken&quot;/&gt;
+        </source>
         <p>
           To configure the check to find token LITERAL_NATIVE:
         </p>
