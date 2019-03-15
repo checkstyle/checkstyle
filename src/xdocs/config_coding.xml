@@ -2078,8 +2078,8 @@ class SomeClass
     </section>
 
     <section name="IllegalType">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="IllegalType_Description">
-        <p>Since Checkstyle 3.2</p>
         <p>
           Checks that particular classes or interfaces are never used.
         </p>
@@ -2089,7 +2089,8 @@ class SomeClass
         </p>
         <p>
           For additional restriction of type usage see also:
-          <a href="#IllegalInstantiation">IllegalInstantiation</a>, <a href="config_imports.html#IllegalImport">IllegalImport</a>
+          <a href="#IllegalInstantiation">IllegalInstantiation</a>,
+          <a href="config_imports.html#IllegalImport">IllegalImport</a>
         </p>
       </subsection>
 
@@ -2104,48 +2105,53 @@ class SomeClass
           </tr>
           <tr>
             <td>validateAbstractClassNames</td>
-            <td>Whether to validate abstract class names</td>
+            <td>Control whether to validate abstract class names.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>false</td>
+            <td><code>false</code></td>
             <td>6.10</td>
           </tr>
           <tr>
             <td>illegalClassNames</td>
-            <td>Classes that should not be used as types in variable
-            declarations, return values or parameters</td>
+            <td>Specify classes that should not be used as types in variable
+            declarations, return values or parameters.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>LinkedHashSet, java.util.HashSet, java.util.LinkedHashMap,
-            java.util.TreeMap, HashMap, TreeSet, java.util.HashMap, TreeMap,
-            java.util.LinkedHashSet, java.util.TreeSet, HashSet, LinkedHashMap</td>
+            <td>
+              <code>LinkedHashSet, java.util.HashSet, java.util.LinkedHashMap,
+              java.util.TreeMap, HashMap, TreeSet, java.util.HashMap, TreeMap,
+              java.util.LinkedHashSet, java.util.TreeSet, HashSet, LinkedHashMap</code>
+            </td>
             <td>3.2</td>
           </tr>
           <tr>
           <td>legalAbstractClassNames</td>
-          <td>Abstract classes that may be used as types. </td>
+          <td>Define abstract classes that may be used as types. </td>
           <td><a href="property_types.html#stringSet">String Set</a></td>
-          <td>{}</td>
+          <td><code>{}</code></td>
           <td>4.2</td>
         </tr>
         <tr>
             <td>ignoredMethodNames</td>
-            <td>Methods that should not be checked.</td>
+            <td>Specify methods that should not be checked.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>getInitialContext, getEnvironment</td>
+            <td><code>getInitialContext, getEnvironment</code></td>
             <td>3.2</td>
           </tr>
           <tr>
             <td>illegalAbstractClassNameFormat</td>
-            <td>Pattern for illegal abstract class names.</td>
+            <td>Specify RegExp for illegal abstract class names.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"^(.*[.])?Abstract.*$"</code></td>
             <td>3.2</td>
           </tr>
           <tr>
             <td>memberModifiers</td>
-            <td>To check only methods and fields with any of the specified modifiers.
-                This property does not affect method calls nor method references.</td>
+            <td>
+              Control whether to check only methods and fields with any of the specified modifiers.
+              This property does not affect method calls nor method references.
+            </td>
             <td>subset of tokens
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
+            </td>
             <td>no tokens</td>
             <td>6.3</td>
           </tr>
@@ -2194,6 +2200,40 @@ class SomeClass
         </table>
       </subsection>
 
+      <subsection name="Notes" id="IllegalType_Notes">
+        <p>
+          It is possible to set illegal class names via short or
+          <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-6.html#jls-6.7">
+          canonical</a> name.
+          Specifying illegal type invokes analyzing imports and Check puts violations at
+          corresponding declarations
+          (of variables, methods or parameters). This helps to avoid ambiguous cases, e.g.:
+          <code>java.awt.List</code> was set as illegal class name, then, code like:
+        </p>
+        <pre>
+import java.util.List;
+...
+List list; //No violation here
+        </pre>
+        <p>
+          will be ok.
+        </p>
+        <p>
+          In most cases it's justified to put following classes to <b>illegalClassNames</b>:
+        </p>
+        <ul>
+          <li>GregorianCalendar</li>
+          <li>Hashtable</li>
+          <li>ArrayList</li>
+          <li>LinkedList</li>
+          <li>Vector</li>
+        </ul>
+        <p>
+          as methods that are differ from interface methods are rarely used, so in most cases user
+          will benefit from checking for them.
+        </p>
+      </subsection>
+
       <subsection name="Examples" id="IllegalType_Examples">
         <p>
           To configure the check so that it ignores getInstance() methods:
@@ -2233,7 +2273,7 @@ public class Test {
     final Consumer&lt;Foo&gt; consumer = Foo&lt;Boolean&gt;::foo; // violation
   }
 
-  public &lt;T extends Boolean, U extends Serializable&gt; void typeParameter(T a) {} // violation
+  public &lt;T extends Boolean, U extends Serializable&gt; void typeParam(T a) {} // violation
 
   public void fullName(java.util.ArrayList&lt;? super Boolean&gt; a) {} // violation
 
