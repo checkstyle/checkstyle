@@ -119,10 +119,10 @@ public class XmlLoader
         public static final String ENABLE_EXTERNAL_DTD_LOAD = "checkstyle.enableExternalDtdLoad";
 
         /** Feature that enables loading external DTD when loading XML files. */
-        private static final String LOAD_EXTERNAL_DTD =
+        public static final String LOAD_EXTERNAL_DTD =
                 "http://apache.org/xml/features/nonvalidating/load-external-dtd";
         /** Feature that enables including external general entities in XML files. */
-        private static final String EXTERNAL_GENERAL_ENTITIES =
+        public static final String EXTERNAL_GENERAL_ENTITIES =
                 "http://xml.org/sax/features/external-general-entities";
 
         /** Stop instances being created. **/
