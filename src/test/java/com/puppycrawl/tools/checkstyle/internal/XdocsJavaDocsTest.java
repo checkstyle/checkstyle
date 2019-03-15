@@ -93,6 +93,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "ExplicitInitialization",
         "FallThrough",
         "FinalLocalVariable",
+        "IllegalCatch",
         "IllegalInstantiation",
         "IllegalThrows",
         "IllegalTokenText",
