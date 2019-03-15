@@ -29,14 +29,42 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * Checks for fall through in switch statements
- * Finds locations where a case <b>contains</b> Java code -
- * but lacks a break, return, throw or continue statement.
- *
  * <p>
- * The check honors special comments to suppress warnings about
- * the fall through. By default the comments "fallthru",
- * "fall through", "falls through" and "fallthrough" are recognized.
+ * Checks for fall-through in {@code switch} statements.
+ * Finds locations where a {@code case} <b>contains</b> Java code but lacks a
+ * {@code break}, {@code return}, {@code throw} or {@code continue} statement.
+ * </p>
+ * <p>
+ * The check honors special comments to suppress the warning.
+ * By default the text "fallthru", "fall through", "fallthrough",
+ * "falls through" and "fallsthrough" are recognized (case sensitive).
+ * The comment containing these words must be all on one line,
+ * and must be on the last non-empty line before the {@code case} triggering
+ * the warning or on the same line before the {@code case}(ugly, but possible).
+ * </p>
+ * <pre>
+ * switch (i) {
+ * case 0:
+ *   i++; // fall through
+ *
+ * case 1:
+ *   i++;
+ *   // falls through
+ * case 2:
+ * case 3:
+ * case 4: {
+ *   i++;
+ * }
+ * // fallthrough
+ * case 5:
+ *   i++;
+ * &#47;* fallthru *&#47;case 6:
+ *   i++
+ *   break;
+ * }
+ * </pre>
+ * <p>
+ * Note: The check assumes that there is no unreachable code in the {@code case}.
  * </p>
  * <p>
  * The following fragment of code will NOT trigger the check,
@@ -52,21 +80,33 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * case 6:
  *     break;
  * </pre>
+ * <ul>
+ * <li>
+ * Property {@code checkLastCaseGroup} - Control whether the last case group must be checked.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code reliefPattern} - Define the RegExp to match the relief comment that suppresses
+ * the warning about a fall through.
+ * Default value is {@code "fallthru|falls? ?through"}.
+ * </li>
+ * </ul>
  * <p>
- * The recognized relief comment can be configured with the property
- * {@code reliefPattern}. Default value of this regular expression
- * is "fallthru|fall through|fallthrough|falls through".
- * </p>
- * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
- * &lt;module name="FallThrough"&gt;
- *     &lt;property name=&quot;reliefPattern&quot;
- *                  value=&quot;Fall Through&quot;/&gt;
+ * &lt;module name=&quot;FallThrough&quot;/&gt;
+ * </pre>
+ * <p>
+ * or
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;FallThrough&quot;&gt;
+ *   &lt;property name=&quot;reliefPattern&quot; value=&quot;continue in next case&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  *
+ * @since 3.4
  */
 @StatelessCheck
 public class FallThroughCheck extends AbstractCheck {
@@ -83,10 +123,13 @@ public class FallThroughCheck extends AbstractCheck {
      */
     public static final String MSG_FALL_THROUGH_LAST = "fall.through.last";
 
-    /** Do we need to check last case group. */
+    /** Control whether the last case group must be checked. */
     private boolean checkLastCaseGroup;
 
-    /** Relief regexp to allow fall through to the next case branch. */
+    /**
+     * Define the RegExp to match the relief comment that suppresses
+     * the warning about a fall through.
+     */
     private Pattern reliefPattern = Pattern.compile("fallthru|falls? ?through");
 
     @Override
@@ -105,7 +148,8 @@ public class FallThroughCheck extends AbstractCheck {
     }
 
     /**
-     * Set the relief pattern.
+     * Setter to define the RegExp to match the relief comment that suppresses
+     * the warning about a fall through.
      *
      * @param pattern
      *            The regular expression pattern.
@@ -115,7 +159,7 @@ public class FallThroughCheck extends AbstractCheck {
     }
 
     /**
-     * Configures whether we need to check last case group or not.
+     * Setter to control whether the last case group must be checked.
      * @param value new value of the property.
      */
     public void setCheckLastCaseGroup(boolean value) {

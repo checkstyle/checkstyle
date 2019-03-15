@@ -996,8 +996,8 @@ public class Test {
     </section>
 
     <section name="FallThrough">
+      <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="FallThrough_Description">
-        <p>Since Checkstyle 3.4</p>
         <p>
           Checks for fall-through in <code>switch</code>
           statements. Finds locations where a <code>case</code>
@@ -1016,7 +1016,7 @@ public class Test {
           (ugly, but possible).
         </p>
         <source>
-switch (i){
+switch (i) {
 case 0:
   i++; // fall through
 
@@ -1040,6 +1040,20 @@ case 5:
           Note: The check assumes that there is no unreachable
           code in the <code>case</code>.
         </p>
+        <p>
+          The following fragment of code will NOT trigger the check,
+          because of the comment "fallthru" and absence of any Java code
+          in case 5.
+        </p>
+        <pre>
+case 3:
+    x = 2;
+    // fallthru
+case 4:
+case 5:
+case 6:
+    break;
+        </pre>
       </subsection>
 
       <subsection name="Properties" id="FallThrough_Properties">
@@ -1054,7 +1068,7 @@ case 5:
           <tr>
             <td>checkLastCaseGroup</td>
             <td>
-              Whether the last case group must be checked.
+              Control whether the last case group must be checked.
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
@@ -1063,7 +1077,7 @@ case 5:
           <tr>
             <td>reliefPattern</td>
             <td>
-              Regular expression to match the relief comment that suppresses
+              Define the RegExp to match the relief comment that suppresses
               the warning about a fall through.
             </td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
