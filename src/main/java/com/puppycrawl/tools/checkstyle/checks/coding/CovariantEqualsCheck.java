@@ -30,17 +30,82 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
- * <p>Checks that if a class defines a covariant method equals,
- * then it defines method equals(java.lang.Object).
- * Inspired by findbugs,
- * http://findbugs.sourceforge.net/bugDescriptions.html#EQ_SELF_NO_OBJECT
+ * <p>
+ * Checks that classes which define a covariant {@code equals()} method
+ * also override method {@code equals(Object)}.
  * </p>
  * <p>
- * An example of how to configure the check is:
+ * Covariant {@code equals()}- method that is similar to {@code equals(Object)},
+ * but with a covariant parameter type (any subtype of Object).
+ * </p>
+ * <p>
+ * <strong>Notice</strong>: the enums are also checked,
+ * even though they cannot override {@code equals(Object)}.
+ * The reason is to point out that implementing {@code equals()} in enums
+ * is considered an awful practice: it may cause having two different enum values
+ * that are equal using covariant enum method, and not equal when compared normally.
+ * </p>
+ * <p>
+ * Inspired by <a href="https://cs.nyu.edu/~lharris/papers/findbugsPaper.pdf">
+ * Finding Bugs is Easy, chapter '2.3.1 Bad Covariant Definition of Equals (Eq)'</a>:
+ * </p>
+ * <p>
+ * Java classes may override the {@code equals(Object)} method to define
+ * a predicate for object equality. This method is used by many of the Java
+ * runtime library classes; for example, to implement generic containers.
+ * </p>
+ * <p>
+ * Programmers sometimes mistakenly use the type of their class {@code Foo}
+ * as the type of the parameter to {@code equals()}:
  * </p>
  * <pre>
- * &lt;module name="CovariantEquals"/&gt;
+ * public boolean equals(Foo obj) {...}
  * </pre>
+ * <p>
+ * This covariant version of {@code equals()} does not override the version in
+ * the {@code Object} class, and it may lead to unexpected behavior at runtime,
+ * especially if the class is used with one of the standard collection classes
+ * which expect that the standard {@code equals(Object)} method is overridden.
+ * </p>
+ * <p>
+ * This kind of bug is not obvious because it looks correct, and in circumstances
+ * where the class is accessed through the references of the class type (rather
+ * than a supertype), it will work correctly. However, the first time it is used
+ * in a container, the behavior might be mysterious. For these reasons, this type
+ * of bug can elude testing and code inspections.
+ * </p>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;CovariantEquals&quot;/&gt;
+ * </pre>
+ * <p>
+ * For example:
+ * </p>
+ * <pre>
+ * class Test {
+ *   public boolean equals(Test i) {  // violation
+ *     return false;
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * The same class without violations:
+ * </p>
+ * <pre>
+ * class Test {
+ *   public boolean equals(Test i) {  // no violation
+ *     return false;
+ *   }
+ *
+ *   public boolean equals(Object i) {
+ *     return false;
+ *   }
+ * }
+ * </pre>
+ *
+ * @since 3.2
  */
 @FileStatefulCheck
 public class CovariantEqualsCheck extends AbstractCheck {

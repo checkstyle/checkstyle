@@ -235,13 +235,17 @@ String b = (a==null || a.length&lt;1) ? null : a.substring(1);
     </section>
 
     <section name="CovariantEquals">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="CovariantEquals_Description">
-        <p>Since Checkstyle 3.2</p>
         <p>
           Checks that classes which define a covariant <code>equals()</code> method
-          also override method <code>equals(Object)</code>.<br/>
+          also override method <code>equals(Object)</code>.
+        </p>
+        <p>
           Covariant <code>equals()</code> - method that is similar to <code>equals(Object)</code>,
-          but with a covariant parameter type (any subtype of Object).<br/>
+          but with a covariant parameter type (any subtype of Object).
+        </p>
+        <p>
           <strong>Notice</strong>: the enums are also checked, even
           though they cannot override <code>equals(Object)</code>. The reason is
           to point out that implementing <code>equals()</code> in enums is considered an
@@ -295,17 +299,18 @@ public boolean equals(Foo obj) {...}
 
         <p>
           For example:
-          <source>
+        </p>
+        <source>
 class Test {
   public boolean equals(Test i) {  // violation
     return false;
   }
 }
-          </source>
-        </p>
+        </source>
         <p>
           The same class without violations:
-          <source>
+        </p>
+        <source>
 class Test {
   public boolean equals(Test i) {  // no violation
     return false;
@@ -315,8 +320,7 @@ class Test {
     return false;
   }
 }
-          </source>
-        </p>
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="CovariantEquals_Example_of_Usage">
