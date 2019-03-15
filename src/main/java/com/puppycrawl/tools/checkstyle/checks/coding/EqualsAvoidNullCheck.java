@@ -29,33 +29,46 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
+ * <p>
  * Checks that any combination of String literals
- * is on the left side of an equals() comparison.
+ * is on the left side of an {@code equals()} comparison.
  * Also checks for String literals assigned to some field
  * (such as {@code someString.equals(anotherString = "text")}).
- *
- * <p>Rationale: Calling the equals() method on String literals
- * will avoid a potential NullPointerException.  Also, it is
- * pretty common to see null check right before equals comparisons
- * which is not necessary in the below example.
- *
- * <p>For example:
- *
+ * </p>
+ * <p>Rationale: Calling the {@code equals()} method on String literals
+ * will avoid a potential {@code NullPointerException}. Also, it is
+ * pretty common to see null checks right before equals comparisons,
+ * which is not necessary in the example below.
+ * </p>
+ * <p>
+ * For example, this code:
+ * </p>
  * <pre>
- *  {@code
- *    String nullString = null;
- *    nullString.equals(&quot;My_Sweet_String&quot;);
- *  }
+ * String nullString = null;
+ * nullString.equals(&quot;My_Sweet_String&quot;);
  * </pre>
- * should be refactored to
- *
+ * <p>
+ * should be refactored to:
+ * </p>
  * <pre>
- *  {@code
- *    String nullString = null;
- *    &quot;My_Sweet_String&quot;.equals(nullString);
- *  }
+ * String nullString = null;
+ * &quot;My_Sweet_String&quot;.equals(nullString);
+ * </pre>
+ * <ul>
+ * <li>
+ * Property {@code ignoreEqualsIgnoreCase} - Control whether to ignore
+ * {@code String.equalsIgnoreCase(String)} invocations.
+ * Default value is {@code false}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;EqualsAvoidNull&quot;/&gt;
  * </pre>
  *
+ * @since 5.0
  */
 @FileStatefulCheck
 public class EqualsAvoidNullCheck extends AbstractCheck {
@@ -81,7 +94,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
     /** Curly for comparison. */
     private static final String LEFT_CURLY = "{";
 
-    /** Whether to process equalsIgnoreCase() invocations. */
+    /** Control whether to ignore {@code String.equalsIgnoreCase(String)} invocations. */
     private boolean ignoreEqualsIgnoreCase;
 
     /** Stack of sets of field names, one for each class of a set of nested classes. */
@@ -120,7 +133,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
     }
 
     /**
-     * Whether to ignore checking {@code String.equalsIgnoreCase(String)}.
+     * Setter to control whether to ignore {@code String.equalsIgnoreCase(String)} invocations.
      * @param newValue whether to ignore checking
      *    {@code String.equalsIgnoreCase(String)}.
      */
