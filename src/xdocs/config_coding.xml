@@ -23,8 +23,8 @@
     </section>
 
     <section name="ArrayTrailingComma">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="ArrayTrailingComma_Description">
-        <p>Since Checkstyle 3.2</p>
         <p>
           Checks that array initialization contains a trailing comma.
         </p>
@@ -68,7 +68,7 @@ return new int[] {
         </source>
         <p>
           If closing brace is on the same line as training comma, this benefit is gone
-          (as the Check does not demand a certain location of curly braces the following
+          (as the check does not demand a certain location of curly braces the following
           two cases will not produce a violation):
         </p>
         <source>
