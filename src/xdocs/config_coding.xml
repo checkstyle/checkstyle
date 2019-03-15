@@ -686,11 +686,11 @@ switch (i) {
     </section>
 
     <section name="EqualsAvoidNull">
+      <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="EqualsAvoidNull_Description">
-        <p>Since Checkstyle 5.0</p>
         <p>
           Checks that any combination of String literals
-          is on the left side of an equals() comparison.
+          is on the left side of an <code>equals()</code> comparison.
           Also checks for String literals assigned to some field
           (such as <code>someString.equals(anotherString = "text")</code>).
         </p>
@@ -698,7 +698,7 @@ switch (i) {
         <p>
           Rationale: Calling the <code>equals()</code>
           method on String literals will avoid a potential
-          NullPointerException. Also, it is pretty common to see null
+          <code>NullPointerException</code>. Also, it is pretty common to see null
           checks right before equals comparisons, which is not necessary
           in the example below.
         </p>
@@ -730,9 +730,11 @@ String nullString = null;
           </tr>
           <tr>
             <td>ignoreEqualsIgnoreCase</td>
-            <td>whether to ignore <code>String.equalsIgnoreCase()</code> invocations</td>
+            <td>
+              Control whether to ignore <code>String.equalsIgnoreCase(String)</code> invocations.
+            </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>false</td>
+            <td><code>false</code></td>
             <td>5.4</td>
           </tr>
         </table>
