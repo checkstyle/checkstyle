@@ -499,7 +499,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                         CHECK_TEXT.get("Description")
                                 + CHECK_TEXT.computeIfAbsent("Rule Description", unused -> "")
                                 + CHECK_TEXT.computeIfAbsent("Notes", unused -> "")
-                                + CHECK_TEXT.get("Properties")
+                                + CHECK_TEXT.computeIfAbsent("Properties", unused -> "")
                                 + CHECK_TEXT.get("Examples") + " @since "
                                 + CHECK_TEXT.get("since"), getJavaDocText(ast));
             }
