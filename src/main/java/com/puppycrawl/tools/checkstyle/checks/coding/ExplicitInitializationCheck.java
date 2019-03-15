@@ -28,20 +28,72 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <p>
- * Checks if any class or object member explicitly initialized
+ * Checks if any class or object member is explicitly initialized
  * to default for its type value ({@code null} for object
  * references, zero for numeric types and {@code char}
  * and {@code false} for {@code boolean}.
  * </p>
  * <p>
- * Rationale: each instance variable gets
+ * Rationale: Each instance variable gets
  * initialized twice, to the same value. Java
  * initializes each instance variable to its default
- * value (0 or null) before performing any
+ * value ({@code 0} or {@code null}) before performing any
  * initialization specified in the code.
  * So there is a minor inefficiency.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code onlyObjectReferences} - control whether only explicit
+ * initializations made to null for objects should be checked.
+ * Default value is {@code false}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;ExplicitInitialization&quot;/&gt;
+ * </pre>
+ * <p>
+ * To configure the check so that it only checks for objects that explicitly initialize to null:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;ExplicitInitialization&quot;&gt;
+ *   &lt;property name=&quot;onlyObjectReferences&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class Test {
+ *   private int a = 0;
+ *   private int b = 1;
+ *   private int c = 2;
  *
+ *   private boolean a = true;
+ *   private boolean b = false;
+ *   private boolean c = true;
+ *   private boolean d = false;
+ *   private boolean e = false;
+ *
+ *   private A a = new A();
+ *   private A b = null; // violation
+ *   private C c = null; // violation
+ *   private D d = new D();
+ *
+ *   int ar1[] = null; // violation
+ *   int ar2[] = new int[];
+ *   int ar3[];
+ *   private Bar&lt;String&gt; bar = null; // violation
+ *   private Bar&lt;String&gt;[] barArray = null; // violation
+ *
+ *   public static void main( String [] args ) {
+ *   }
+ * }
+ * </pre>
+ *
+ * @since 3.2
  */
 @StatelessCheck
 public class ExplicitInitializationCheck extends AbstractCheck {
@@ -52,7 +104,9 @@ public class ExplicitInitializationCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "explicit.init";
 
-    /** Whether only explicit initialization made to null should be checked.**/
+    /**
+     * Control whether only explicit initializations made to null for objects should be checked.
+     **/
     private boolean onlyObjectReferences;
 
     @Override
@@ -71,7 +125,8 @@ public class ExplicitInitializationCheck extends AbstractCheck {
     }
 
     /**
-     * Sets whether only explicit initialization made to null should be checked.
+     * Setter to control whether only explicit initializations made to null
+     * for objects should be checked.
      * @param onlyObjectReferences whether only explicit initialization made to null
      *                             should be checked
      */
