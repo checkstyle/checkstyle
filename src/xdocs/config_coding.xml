@@ -874,8 +874,8 @@ String nullString = null;
     </section>
 
     <section name="ExplicitInitialization">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="ExplicitInitialization_Description">
-        <p>Since Checkstyle 3.2</p>
         <p>
           Checks if any class or object member is explicitly initialized to
           default for its type value (<code>null</code> for
@@ -885,8 +885,8 @@ String nullString = null;
 
         <p>
           Rationale: Each instance variable gets initialized twice, to the
-          same value. Java initializes each instance variable to its default
-          value (0 or null) before performing any initialization specified in
+          same value. Java initializes each instance variable to its default value
+          (<code>0</code> or <code>null</code>) before performing any initialization specified in
           the code. So there is a minor inefficiency.
         </p>
       </subsection>
@@ -902,8 +902,8 @@ String nullString = null;
           </tr>
           <tr>
             <td>onlyObjectReferences</td>
-            <td>whether only explicit initializations made to
-                null for objects should be checked</td>
+            <td>control whether only explicit initializations made to
+                null for objects should be checked.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>7.8</td>
@@ -929,8 +929,7 @@ String nullString = null;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
-        <p>
-          <source>
+        <source>
 public class Test {
   private int a = 0;
   private int b = 1;
@@ -956,8 +955,7 @@ public class Test {
   public static void main( String [] args ) {
   }
 }
-          </source>
-        </p>
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="ExplicitInitialization_Example_of_Usage">
