@@ -1612,8 +1612,8 @@ class SomeClass
     </section>
 
     <section name="IllegalInstantiation">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="IllegalInstantiation_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
           Checks for illegal instantiations where a factory method is
           preferred.
@@ -1658,9 +1658,9 @@ class SomeClass
           </tr>
           <tr>
             <td>classes</td>
-            <td>classes that should not be instantiated</td>
+            <td>Specify fully qualified class names that should not be instantiated.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>{}</td>
+            <td><code>{}</code></td>
             <td>3.0</td>
           </tr>
 
@@ -1670,11 +1670,13 @@ class SomeClass
 
             <td>
               subset of tokens
-              CLASS_DEF.
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+              CLASS_DEF</a>.
             </td>
 
             <td>
-              CLASS_DEF.
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+              CLASS_DEF</a>.
             </td>
             <td>3.0</td>
           </tr>
@@ -1683,7 +1685,7 @@ class SomeClass
 
       <subsection name="Examples" id="IllegalInstantiation_Examples">
         <p>
-          To configure the check to find instantiations of java.lang.Boolean:
+          To configure the check to find instantiations of <code>java.lang.Boolean</code>:
         </p>
         <source>
 &lt;module name=&quot;IllegalInstantiation&quot;&gt;
