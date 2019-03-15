@@ -1134,8 +1134,8 @@ case 5:
     </section>
 
     <section name="FinalLocalVariable">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="FinalLocalVariable_Description">
-        <p>Since Checkstyle 3.2</p>
         <p>
           Checks that local variables that never have their values changed are
           declared final. The check can be configured to also check that
@@ -1161,7 +1161,10 @@ case 5:
           </tr>
           <tr>
             <td>validateEnhancedForLoopVariable</td>
-            <td>Controls whether to check <a href = "https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">enhanced for-loop</a> variable.</td>
+            <td>
+              Control whether to check
+              <a href = "https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
+              enhanced for-loop</a> variable.</td>
             <td>
               <a
               href="property_types.html#boolean">Boolean</a>
@@ -1213,7 +1216,7 @@ case 5:
         </source>
         <p>
          By default, this Check skip final validation on
-         <a href = "https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">
+         <a href = "https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
          Enhanced For-Loop</a>.
          </p>
          <p>
@@ -1231,25 +1234,22 @@ case 5:
 &lt;/module&gt;
          </source>
          <p>Example:</p>
-         <p>
          <source>
 for (int number : myNumbers) { // violation
   System.out.println(number);
 }
          </source>
-         </p>
          <p>
          An example of how to configure check on local variables and parameters
          but do not validate loop variables:
          </p>
          <source>
  &lt;module name="FinalLocalVariable"&gt;
-     &lt;property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/&gt;
-     &lt;property name="validateEnhancedForLoopVariable" value="false"/&gt;
+   &lt;property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/&gt;
+   &lt;property name="validateEnhancedForLoopVariable" value="false"/&gt;
  &lt;/module&gt;
          </source>
          <p>Example:</p>
-         <p>
          <source>
 public class MyClass {
   static int foo(int x, int y) { //violations, parameters should be final
@@ -1257,13 +1257,12 @@ public class MyClass {
   }
   public static void main (String []args) { //violation, parameters should be final
     for (String i : args) {
-        System.out.println(i);
+      System.out.println(i);
     }
     int result=foo(1,2); // violation
   }
 }
          </source>
-        </p>
       </subsection>
 
       <subsection name="Example of Usage" id="FinalLocalVariable_Example_of_Usage">

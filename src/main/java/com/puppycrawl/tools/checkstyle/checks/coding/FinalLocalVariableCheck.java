@@ -36,21 +36,45 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <p>
- * Ensures that local variables that never get their values changed,
- * must be declared final.
+ * Checks that local variables that never have their values changed are declared final.
+ * The check can be configured to also check that unchanged parameters are declared final.
  * </p>
  * <p>
- * An example of how to configure the check to validate variable definition is:
+ * When configured to check parameters, the check ignores parameters of interface
+ * methods and abstract methods.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code validateEnhancedForLoopVariable} - Control whether to check
+ * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
+ * enhanced for-loop</a> variable.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+ * VARIABLE_DEF</a>.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
  * </p>
  * <pre>
- * &lt;module name="FinalLocalVariable"&gt;
- *     &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
+ * &lt;module name=&quot;FinalLocalVariable&quot;/&gt;
+ * </pre>
+ * <p>
+ * To configure the check so that it checks local variables and parameters:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;FinalLocalVariable&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF,PARAMETER_DEF&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
  * By default, this Check skip final validation on
- *  <a href = "https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">
- * Enhanced For-Loop</a>
+ *  <a href = "https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
+ * Enhanced For-Loop</a>.
  * </p>
  * <p>
  * Option 'validateEnhancedForLoopVariable' could be used to make Check to validate even variable
@@ -60,19 +84,45 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * An example of how to configure the check so that it also validates enhanced For Loop Variable is:
  * </p>
  * <pre>
- * &lt;module name="FinalLocalVariable"&gt;
- *     &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
- *     &lt;property name="validateEnhancedForLoopVariable" value="true"/&gt;
+ * &lt;module name=&quot;FinalLocalVariable&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+ *   &lt;property name=&quot;validateEnhancedForLoopVariable&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>Example:</p>
- * <p>
- * {@code
+ * <pre>
  * for (int number : myNumbers) { // violation
- *    System.out.println(number);
+ *   System.out.println(number);
  * }
- * }
+ * </pre>
+ * <p>
+ * An example of how to configure check on local variables and parameters
+ * but do not validate loop variables:
  * </p>
+ * <pre>
+ * &lt;module name=&quot;FinalLocalVariable&quot;&gt;
+ *    &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF,PARAMETER_DEF&quot;/&gt;
+ *    &lt;property name=&quot;validateEnhancedForLoopVariable&quot; value=&quot;false&quot;/&gt;
+ *  &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class MyClass {
+ *   static int foo(int x, int y) { //violations, parameters should be final
+ *     return x+y;
+ *   }
+ *   public static void main (String []args) { //violation, parameters should be final
+ *     for (String i : args) {
+ *       System.out.println(i);
+ *     }
+ *     int result=foo(1,2); // violation
+ *   }
+ * }
+ * </pre>
+ *
+ * @since 3.2
  */
 @FileStatefulCheck
 public class FinalLocalVariableCheck extends AbstractCheck {
@@ -125,7 +175,11 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private final Deque<Deque<DetailAST>> currentScopeAssignedVariables =
             new ArrayDeque<>();
 
-    /** Controls whether to check enhanced for-loop variable. */
+    /**
+     * Control whether to check
+     * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
+     * enhanced for-loop</a> variable.
+     */
     private boolean validateEnhancedForLoopVariable;
 
     static {
@@ -135,7 +189,9 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Whether to check enhanced for-loop variable or not.
+     * Setter to control whether to check
+     * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
+     * enhanced for-loop</a> variable.
      * @param validateEnhancedForLoopVariable whether to check for-loop variable
      */
     public final void setValidateEnhancedForLoopVariable(boolean validateEnhancedForLoopVariable) {

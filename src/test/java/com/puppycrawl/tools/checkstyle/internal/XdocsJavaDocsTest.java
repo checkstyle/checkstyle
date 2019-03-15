@@ -90,6 +90,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "EmptyStatement",
         "EqualsAvoidNull",
         "EqualsHashCode",
+        "FinalLocalVariable",
         "IllegalInstantiation",
         "ImportOrder",
         "InterfaceMemberImpliedModifier",
