@@ -1933,8 +1933,8 @@ class SomeClass
     </section>
 
     <section name="IllegalTokenText">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="IllegalTokenText_Description">
-        <p>Since Checkstyle 3.2</p>
         <p>
           Checks specified tokens text for matching an illegal pattern from
           <code>format</code> property. By default no tokens are specified.
@@ -1952,21 +1952,21 @@ class SomeClass
           </tr>
           <tr>
             <td>format</td>
-            <td>illegal pattern</td>
+            <td>Define the RegExp for illegal pattern.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>&quot;^$&quot; (empty)</code></td>
             <td>3.2</td>
           </tr>
           <tr>
             <td>ignoreCase</td>
-            <td>Controls whether to ignore case when matching.</td>
+            <td>Control whether to ignore case when matching.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>3.2</td>
           </tr>
           <tr>
             <td>message</td>
-            <td>Message which is used to notify about violations;
+            <td>Define the message which is used to notify about violations;
             if empty then the default message is used.</td>
             <td><a href="property_types.html#string">String</a></td>
             <td><code>&quot;&quot;</code></td>
