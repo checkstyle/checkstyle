@@ -1313,11 +1313,47 @@ public class MyClass {
     </section>
 
     <section name="HiddenField">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="HiddenField_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
           Checks that a local variable or a parameter does not shadow a field
           that is defined in the same class.
+        </p>
+      </subsection>
+      <subsection name="Notes" id="HiddenField_Notes">
+        <p>
+          It is possible to configure the check to ignore all property setter methods.
+        </p>
+        <p>
+          A method is recognized as a setter if it is in the following form
+        </p>
+        <source>
+${returnType} set${Name}(${anyType} ${name}) { ... }
+        </source>
+        <p>
+          where ${anyType} is any primitive type, class or interface name;
+          ${name} is name of the variable that is being set and ${Name} its
+          capitalized form that appears in the method name. By default it is expected
+          that setter returns void, i.e. ${returnType} is 'void'. For example
+        </p>
+        <source>
+void setTime(long time) { ... }
+        </source>
+        <p>
+          Any other return types will not let method match a setter pattern. However,
+          by setting <em>setterCanReturnItsClass</em> property to <em>true</em>
+          definition of a setter is expanded, so that setter return type can also
+          be a class in which setter is declared. For example
+        </p>
+        <source>
+class PageBuilder {
+  PageBuilder setName(String name) { ... }
+}
+        </source>
+        <p>
+          Such methods are known as chain-setters and a common when Builder-pattern
+          is used. Property <em>setterCanReturnItsClass</em> has effect only if
+          <em>ignoreSetter</em> is set to true.
         </p>
       </subsection>
 
@@ -1332,7 +1368,7 @@ public class MyClass {
           </tr>
           <tr>
             <td>ignoreFormat</td>
-            <td>pattern for names of variables and parameters to ignore</td>
+            <td>Define the RegExp for names of variables and parameters to ignore.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>null</code></td>
             <td>3.2</td>
@@ -1340,7 +1376,7 @@ public class MyClass {
 
           <tr>
             <td>ignoreConstructorParameter</td>
-            <td>Controls whether to ignore constructor parameters.</td>
+            <td>Control whether to ignore constructor parameters.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>3.2</td>
@@ -1349,13 +1385,7 @@ public class MyClass {
           <tr>
             <td>ignoreSetter</td>
             <td>
-              Controls whether to ignore the parameter of a property setter
-              method, where the property setter method for field
-              &quot;xyz&quot; has name &quot;setXyz&quot;, one parameter named
-              &quot;xyz&quot; and return type of <code>void</code>
-              ( default behavior) or class in which method is declared (only
-              if property <code>setterCanReturnItsClass</code> is set
-              to <code>true</code>).
+              Allow to ignore the parameter of a property setter method.
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
@@ -1365,24 +1395,8 @@ public class MyClass {
           <tr>
             <td>setterCanReturnItsClass</td>
             <td>
-              Used in conjunction with <code>ignoreSetter</code> property it
-              controls rule that recognizes method as a setter. By default
-              setter is a method with signature of type
-              <pre>
-                void setXyz(${someType} xyz)
-              </pre>
-              By setting this property (<code>setterCanReturnItsClass</code>)
-              to <code>true</code> we expand definition of setter to also
-              include returning class in which setter is defined. For example
-              <pre>
-                class Foo {
-                    int prop;
-                    Foo setProp(int prop) {
-                        this.prop = prop;
-                        return this;
-                    }
-                }
-              </pre>
+              Allow to expand the definition of a setter method
+              to include methods that return the class' instance.
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
@@ -1391,7 +1405,7 @@ public class MyClass {
 
           <tr>
             <td>ignoreAbstractMethods</td>
-            <td>Controls whether to ignore parameters of abstract methods.</td>
+            <td>Control whether to ignore parameters of abstract methods.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>4.0</td>
@@ -1407,7 +1421,9 @@ public class MyClass {
               <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
                 PARAMETER_DEF</a>,
-              LAMBDA.
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                LAMBDA</a>.
             </td>
 
             <td>
@@ -1417,7 +1433,9 @@ public class MyClass {
               <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
                 PARAMETER_DEF</a>,
-              LAMBDA.
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                LAMBDA</a>.
             </td>
             <td>3.0</td>
           </tr>
