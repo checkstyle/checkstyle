@@ -34,21 +34,58 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
  * <p>
- * Throwing java.lang.Error or java.lang.RuntimeException
- * is almost never acceptable.
+ * This check can be used to ensure that types are not declared to be thrown.
+ * Declaring that a method throws {@code java.lang.Error} or
+ * {@code java.lang.RuntimeException} is almost never acceptable.
  * </p>
- * Check has following properties:
+ * <ul>
+ * <li>
+ * Property {@code illegalClassNames} - Specify throw class names to reject.
+ * Default value is {@code java.lang.Throwable, RuntimeException, Error, Throwable,
+ * java.lang.Error, java.lang.RuntimeException}.
+ * </li>
+ * <li>
+ * Property {@code ignoredMethodNames} - Specify names of methods to ignore.
+ * Default value is {@code finalize}.
+ * </li>
+ * <li>
+ * Property {@code ignoreOverriddenMethods} - allow to ignore checking overridden methods
+ * (marked with {@code Override} or {@code java.lang.Override} annotation).
+ * Default value is {@code true}.
+ * </li>
+ * </ul>
  * <p>
- * <b>illegalClassNames</b> - throw class names to reject.
+ * To configure the check:
  * </p>
+ * <pre>
+ * &lt;module name="IllegalThrows"/&gt;
+ * </pre>
  * <p>
- * <b>ignoredMethodNames</b> - names of methods to ignore.
+ * To configure the check rejecting throws NullPointerException from methods:
  * </p>
+ * <pre>
+ * &lt;module name="IllegalThrows"&gt;
+ *   &lt;property name="illegalClassNames" value="NullPointerException"/&gt;
+ * &lt;/module&gt;
+ * </pre>
  * <p>
- * <b>ignoreOverriddenMethods</b> - ignore checking overridden methods (marked with Override
- *  or java.lang.Override annotation) default value is <b>true</b>.
+ * To configure the check ignoring method named "foo()":
  * </p>
+ * <pre>
+ * &lt;module name="IllegalThrows"&gt;
+ *   &lt;property name="ignoredMethodNames" value="foo"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check to warn on overridden methods:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;IllegalThrows&quot;&gt;
+ *   &lt;property name=&quot;ignoreOverriddenMethods&quot; value=&quot;false&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
  *
+ * @since 4.0
  */
 @StatelessCheck
 public final class IllegalThrowsCheck extends AbstractCheck {
@@ -59,21 +96,24 @@ public final class IllegalThrowsCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "illegal.throw";
 
-    /** Methods which should be ignored. */
+    /** Specify names of methods to ignore. */
     private final Set<String> ignoredMethodNames =
         Arrays.stream(new String[] {"finalize", }).collect(Collectors.toSet());
 
-    /** Illegal class names. */
+    /** Specify throw class names to reject. */
     private final Set<String> illegalClassNames = Arrays.stream(
         new String[] {"Error", "RuntimeException", "Throwable", "java.lang.Error",
                       "java.lang.RuntimeException", "java.lang.Throwable", })
         .collect(Collectors.toSet());
 
-    /** Property for ignoring overridden methods. */
+    /**
+     * Allow to ignore checking overridden methods (marked with {@code Override}
+     * or {@code java.lang.Override} annotation).
+     */
     private boolean ignoreOverriddenMethods = true;
 
     /**
-     * Set the list of illegal classes.
+     * Setter to specify throw class names to reject.
      *
      * @param classNames
      *            array of illegal exception classes
@@ -139,7 +179,7 @@ public final class IllegalThrowsCheck extends AbstractCheck {
     }
 
     /**
-     * Set the list of ignore method names.
+     * Setter to specify names of methods to ignore.
      * @param methodNames array of ignored method names
      */
     public void setIgnoredMethodNames(String... methodNames) {
@@ -148,7 +188,8 @@ public final class IllegalThrowsCheck extends AbstractCheck {
     }
 
     /**
-     * Sets <b>ignoreOverriddenMethods</b> property value.
+     * Setter to allow to ignore checking overridden methods
+     * (marked with {@code Override} or {@code java.lang.Override} annotation).
      * @param ignoreOverriddenMethods Check's property.
      */
     public void setIgnoreOverriddenMethods(boolean ignoreOverriddenMethods) {
