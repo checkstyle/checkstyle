@@ -174,8 +174,8 @@ int[] a2 = new int[]{
     </section>
 
     <section name="AvoidInlineConditionals">
+      <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="AvoidInlineConditionals_Description">
-        <p>Since Checkstyle 3.1</p>
         <p>
           Detects inline conditionals. Here is one example of an inline conditional:
         </p>

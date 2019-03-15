@@ -76,6 +76,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "ArrayTrailingComma",
         "AtclauseOrder",
         "AvoidNestedBlocks",
+        "AvoidInlineConditionals",
         "CatchParameterName",
         "ClassMemberImpliedModifier",
         "ClassTypeParameterName",
