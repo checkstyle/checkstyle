@@ -88,6 +88,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "EmptyCatchBlock",
         "EqualsAvoidNull",
         "EqualsHashCode",
+        "IllegalInstantiation",
         "ImportOrder",
         "InterfaceMemberImpliedModifier",
         "InterfaceTypeParameterName",
