@@ -1542,19 +1542,20 @@ class SomeClass
     </section>
 
     <section name="IllegalCatch">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="IllegalCatch_Description">
-        <p>Since Checkstyle 3.2</p>
         <p>
         Checks that certain exception types do not appear in a <code>catch</code> statement.
         </p>
 
         <p>
           Rationale:
-          Catching java.lang.Exception, java.lang.Error or
-          java.lang.RuntimeException is almost never acceptable.
+          catching <code>java.lang.Exception</code>, <code>java.lang.Error</code> or
+          <code>java.lang.RuntimeException</code> is almost never acceptable.
           Novice developers often simply catch Exception in an
           attempt to handle multiple exception classes. This unfortunately
-          leads to code that inadvertently catches NullPointerException, OutOfMemoryError, etc.
+          leads to code that inadvertently catches <code>NullPointerException</code>,
+          <code>OutOfMemoryError</code>, etc.
         </p>
       </subsection>
 
@@ -1569,7 +1570,7 @@ class SomeClass
           </tr>
           <tr>
             <td>illegalClassNames</td>
-            <td>exception class names to reject</td>
+            <td>Specify exception class names to reject.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>java.lang.Throwable, RuntimeException, Error, Throwable, java.lang.Error,
                 java.lang.RuntimeException, Exception, java.lang.Exception</code></td>
