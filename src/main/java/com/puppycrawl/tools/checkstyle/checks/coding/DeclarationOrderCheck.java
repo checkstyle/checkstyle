@@ -32,80 +32,92 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
- * Checks that the parts of a class or interface declaration
- * appear in the order suggested by the
- * <a href=
- * "https://www.oracle.com/technetwork/java/javase/documentation/codeconventions-141855.html#1852">
- * Code Conventions for the Java Programming Language</a>.
- *
- *
+ * <p>
+ * Checks the order in which parts of the class or interface declaration are defined.
+ * </p>
+ * <p>
+ * According to
+ * <a href="https://www.oracle.com/technetwork/java/javase/documentation/codeconventions-141855.html#1852">
+ * Code Conventions for the Java Programming Language</a>, the parts of a class
+ * or interface declaration should appear in the following order:
+ * </p>
  * <ol>
- * <li> Class (static) variables. First the public class variables, then
- *      the protected, then package level (no access modifier), and then
- *      the private. </li>
+ * <li>
+ * Class (static) variables. First the public class variables, then
+ * protected, then package level (no access modifier), and then private.
+ * </li>
  * <li> Instance variables. First the public class variables, then
- *      the protected, then package level (no access modifier), and then
- *      the private. </li>
+ * protected, then package level (no access modifier), and then private.
+ * </li>
  * <li> Constructors </li>
  * <li> Methods </li>
  * </ol>
- *
- * <p>ATTENTION: the check skips class fields which have
- * <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.3.3">
- * forward references </a> from validation due to the fact that we have Checkstyle's limitations
- * to clearly detect user intention of fields location and grouping. For example,
- * <pre>{@code
- *      public class A {
- *          private double x = 1.0;
- *          private double y = 2.0;
- *          public double slope = x / y; // will be skipped from validation due to forward reference
- *      }
- * }</pre>
- *
- * <p>Available options:
- * <ul>
- * <li>ignoreModifiers</li>
- * <li>ignoreConstructors</li>
- * </ul>
- *
- * <p>Purpose of <b>ignore*</b> option is to ignore related violations,
+ * <p>
+ * Purpose of <b>ignore*</b> option is to ignore related violations,
  * however it still impacts on other class members.
- *
- * <p>For example:
- * <pre>{@code
- *     class K {
- *         int a;
- *         void m(){}
- *         K(){}  &lt;-- "Constructor definition in wrong order"
- *         int b; &lt;-- "Instance variable definition in wrong order"
- *     }
- * }</pre>
- *
- * <p>With <b>ignoreConstructors</b> option:
- * <pre>{@code
- *     class K {
- *         int a;
- *         void m(){}
- *         K(){}
- *         int b; &lt;-- "Instance variable definition in wrong order"
- *     }
- * }</pre>
- *
- * <p>With <b>ignoreConstructors</b> option and without a method definition in a source class:
- * <pre>{@code
- *     class K {
- *         int a;
- *         K(){}
- *         int b; &lt;-- "Instance variable definition in wrong order"
- *     }
- * }</pre>
- *
- * <p>An example of how to configure the check is:
- *
+ * </p>
+ * <p>ATTENTION: the check skips class fields which have
+ * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-8.html#jls-8.3.3">
+ * forward references </a> from validation due to the fact that we have Checkstyle's limitations
+ * to clearly detect user intention of fields location and grouping. For example:
+ * </p>
  * <pre>
- * &lt;module name="DeclarationOrder"/&gt;
+ * public class A {
+ *   private double x = 1.0;
+ *   private double y = 2.0;
+ *   public double slope = x / y; // will be skipped from validation due to forward reference
+ * }
+ * </pre>
+ * <ul>
+ * <li>
+ * Property {@code ignoreConstructors} - control whether to ignore constructors.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code ignoreModifiers} - control whether to ignore modifiers (fields, ...).
+ * Default value is {@code false}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;DeclarationOrder&quot;/&gt;
+ * </pre>
+ * <p>
+ * With default options:
+ * </p>
+ * <pre>
+ * class K {
+ *   int a;
+ *   void m(){}
+ *   K(){}  &lt;-- &quot;Constructor definition in wrong order&quot;
+ *   int b; &lt;-- &quot;Instance variable definition in wrong order&quot;
+ * }
+ * </pre>
+ * <p>
+ * With <b>ignoreConstructors</b> option:
+ * </p>
+ * <pre>
+ * class K {
+ *   int a;
+ *   void m(){}
+ *   K(){}
+ *   int b; &lt;-- &quot;Instance variable definition in wrong order&quot;
+ * }
+ * </pre>
+ * <p>
+ * With <b>ignoreConstructors</b> option and without a method definition in a source class:
+ * </p>
+ * <pre>
+ * class K {
+ *   int a;
+ *   K(){}
+ *   int b; &lt;-- &quot;Instance variable definition in wrong order&quot;
+ * }
  * </pre>
  *
+ * @since 3.2
  */
 @FileStatefulCheck
 public class DeclarationOrderCheck extends AbstractCheck {
@@ -155,9 +167,9 @@ public class DeclarationOrderCheck extends AbstractCheck {
     /** Set of all class field names.*/
     private Set<String> classFieldNames;
 
-    /** If true, ignores the check to constructors. */
+    /** Control whether to ignore constructors. */
     private boolean ignoreConstructors;
-    /** If true, ignore the check to modifiers (fields, ...). */
+    /** Control whether to ignore modifiers (fields, ...). */
     private boolean ignoreModifiers;
 
     @Override
@@ -362,7 +374,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
     }
 
     /**
-     * Sets whether to ignore constructors.
+     * Setter to control whether to ignore constructors.
      * @param ignoreConstructors whether to ignore constructors.
      */
     public void setIgnoreConstructors(boolean ignoreConstructors) {
@@ -370,7 +382,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
     }
 
     /**
-     * Sets whether to ignore modifiers.
+     * Setter to control whether to ignore modifiers (fields, ...).
      * @param ignoreModifiers whether to ignore modifiers.
      */
     public void setIgnoreModifiers(boolean ignoreModifiers) {
