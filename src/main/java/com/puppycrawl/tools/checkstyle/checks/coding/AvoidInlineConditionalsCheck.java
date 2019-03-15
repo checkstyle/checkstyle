@@ -25,16 +25,25 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Detects inline conditionals.
- *
- * <p>An example inline conditional is this:
+ * <p>
+ * Detects inline conditionals. Here is one example of an inline conditional:
+ * </p>
  * <pre>
  * String a = getParameter("a");
  * String b = (a==null || a.length&lt;1) ? null : a.substring(1);
  * </pre>
- * Rationale: Some developers find inline conditionals hard to read,
- * so their company's coding standards forbids them.
+ * <p>
+ * Rationale: Some developers find inline conditionals hard to read, so
+ * their employer's coding standards forbid them.
+ * </p>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;AvoidInlineConditionals&quot;/&gt;
+ * </pre>
  *
+ * @since 3.1
  */
 @StatelessCheck
 public class AvoidInlineConditionalsCheck extends AbstractCheck {
