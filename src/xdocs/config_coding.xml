@@ -359,8 +359,11 @@ class Test {
     </section>
 
     <section name="DeclarationOrder">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="DeclarationOrder_Description">
-        <p>Since Checkstyle 3.2</p>
+        <p>
+          Checks the order in which parts of the class or interface declaration are defined.
+        </p>
         <p>
           According to <a
           href="https://www.oracle.com/technetwork/java/javase/documentation/codeconventions-141855.html#1852">
@@ -391,18 +394,18 @@ class Test {
 
         <p>
           ATTENTION: the check skips class fields which have
-          <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.3.3">
+          <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-8.html#jls-8.3.3">
               forward references</a>
            from validation due to the fact that we have Checkstyle's limitations to clearly
-          detect user intention of fields location and grouping. For example,
-          <source>
+          detect user intention of fields location and grouping. For example:
+        </p>
+        <source>
 public class A {
   private double x = 1.0;
   private double y = 2.0;
   public double slope = x / y; // will be skipped from validation due to forward reference
 }
-          </source>
-        </p>
+        </source>
       </subsection>
 
       <subsection name="Properties" id="DeclarationOrder_Properties">
@@ -416,14 +419,14 @@ public class A {
           </tr>
           <tr>
             <td>ignoreConstructors</td>
-            <td>whether to ignore constructors</td>
+            <td>control whether to ignore constructors.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>5.2</td>
           </tr>
           <tr>
             <td>ignoreModifiers</td>
-            <td>whether to ignore modifiers</td>
+            <td>control whether to ignore modifiers (fields, ...).</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>5.2</td>
@@ -440,7 +443,8 @@ public class A {
         </source>
 
         <p>
-        For example:
+          With default options:
+        </p>
         <source>
 class K {
   int a;
@@ -449,9 +453,9 @@ class K {
   int b; &lt;-- "Instance variable definition in wrong order"
 }
         </source>
-        </p>
         <p>
-        With <b>ignoreConstructors</b> option:
+          With <b>ignoreConstructors</b> option:
+        </p>
         <source>
 class K {
   int a;
@@ -460,9 +464,9 @@ class K {
   int b; &lt;-- "Instance variable definition in wrong order"
 }
         </source>
-        </p>
         <p>
-        With <b>ignoreConstructors</b> option and without a method definition in a source class:
+          With <b>ignoreConstructors</b> option and without a method definition in a source class:
+        </p>
         <source>
 class K {
   int a;
@@ -470,7 +474,6 @@ class K {
   int b; &lt;-- "Instance variable definition in wrong order"
 }
         </source>
-        </p>
       </subsection>
 
       <subsection name="Example of Usage" id="DeclarationOrder_Example_of_Usage">
