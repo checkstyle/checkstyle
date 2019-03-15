@@ -792,13 +792,13 @@ String nullString = null;
     </section>
 
     <section name="EqualsHashCode">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="EqualsHashCode_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
           Checks that classes that either override <code>equals()</code>
           or <code>hashCode()</code> also overrides the other.
-          This checks only verifies that the method declarations match
-          <code>Object.equals(Object)}</code> and <code>Object.hashCode()</code> exactly to be
+          This check only verifies that the method declarations match
+          <code>Object.equals(Object)</code> and <code>Object.hashCode()</code> exactly to be
           considered an override. This check does not verify invalid method names, parameters
           other than <code>Object</code>, or anything else.
         </p>
