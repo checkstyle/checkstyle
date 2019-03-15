@@ -84,6 +84,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "CovariantEquals",
         "CustomImportOrder",
         "DeclarationOrder",
+        "DefaultComesLast",
         "EmptyBlock",
         "EmptyCatchBlock",
         "EqualsAvoidNull",
