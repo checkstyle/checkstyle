@@ -636,11 +636,17 @@ switch (i) {
     </section>
 
     <section name="EmptyStatement">
+      <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="EmptyStatement_Description">
-        <p>Since Checkstyle 3.1</p>
         <p>
-          Detects empty statements (standalone ";" semicolon).
+          Detects empty statements (standalone {@code ";"} semicolon).
+          Empty statements often introduce bugs that are hard to spot, such as in
         </p>
+        <source>
+if (someCondition);
+  doConditionalStuff();
+doUnconditionalStuff();
+        </source>
       </subsection>
 
       <subsection name="Examples" id="EmptyStatement_Examples">
