@@ -34,6 +34,8 @@ import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import com.puppycrawl.tools.checkstyle.XmlLoader;
+
 /**
  * XmlUtil.
  * @noinspection ClassOnlyUsedInOnePackage
@@ -49,6 +51,10 @@ public final class XmlUtil {
         try {
             final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             factory.setValidating(false);
+            factory.setFeature(
+                    XmlLoader.LoadExternalDtdFeatureProvider.EXTERNAL_GENERAL_ENTITIES, false);
+            factory.setFeature(
+                    XmlLoader.LoadExternalDtdFeatureProvider.LOAD_EXTERNAL_DTD, false);
 
             final DocumentBuilder builder = factory.newDocumentBuilder();
 
