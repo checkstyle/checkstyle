@@ -490,11 +490,11 @@ public class VisibilityModifierCheckTest
             new File(getPath("InputVisibilityModifierIsStarImport.java")),
             JavaParser.Options.WITHOUT_COMMENTS).getNextSibling();
         final VisibilityModifierCheck check = new VisibilityModifierCheck();
-        final Method isStarImport = Whitebox.getMethod(VisibilityModifierCheck.class,
+        final Method method = Whitebox.getMethod(VisibilityModifierCheck.class,
             "isStarImport", DetailAST.class);
 
         assertTrue("Should return true when star import is passed",
-            (boolean) isStarImport.invoke(check, importAst));
+            (boolean) method.invoke(check, importAst));
     }
 
     @Test
