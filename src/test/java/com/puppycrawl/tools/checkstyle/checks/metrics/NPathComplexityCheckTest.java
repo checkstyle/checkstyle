@@ -156,7 +156,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
 
         final NPathComplexityCheck check = new NPathComplexityCheck();
         Assert.assertTrue("Stateful field is not cleared after beginTree",
-            TestUtil.isStatefulFieldClearedDuringBeginTree(check, ast, "isAfterValues",
+            TestUtil.isStatefulFieldClearedDuringBeginTree(check, ast, "afterValues",
                 isAfterValues -> ((Collection<Context>) isAfterValues).isEmpty()));
     }
 

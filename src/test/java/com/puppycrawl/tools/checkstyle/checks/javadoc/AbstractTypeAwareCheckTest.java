@@ -47,11 +47,11 @@ public class AbstractTypeAwareCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIsSubclassWithNulls() throws Exception {
         final JavadocMethodCheck check = new JavadocMethodCheck();
-        final Method isSubclass = check.getClass().getSuperclass()
+        final Method method = check.getClass().getSuperclass()
                 .getDeclaredMethod("isSubclass", Class.class, Class.class);
-        isSubclass.setAccessible(true);
+        method.setAccessible(true);
         assertFalse("Should return false if at least one of the params is null",
-            (boolean) isSubclass.invoke(check, null, null));
+            (boolean) method.invoke(check, null, null));
     }
 
     @Test
