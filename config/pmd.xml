@@ -81,8 +81,6 @@
     <exclude name="OnlyOneReturn"/>
     <!-- We use CheckstyleCustomShortVariable, to control the length and skip Override methods. -->
     <exclude name="ShortVariable"/>
-    <!-- Till https://github.com/checkstyle/checkstyle/issues/6579 -->
-    <exclude name="UseUnderscoresInNumericLiterals"/>
   </rule>
   <rule ref="category/java/codestyle.xml/ClassNamingConventions">
     <properties>
@@ -132,6 +130,12 @@
                 value="//ClassOrInterfaceDeclaration[@Image='AbstractFileSetCheck'
         or @Image='AbstractCheck' or @Image='AbstractJavadocCheck' or @Image='AbstractNode'
         or @Image='AbstractViolationReporter']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/codestyle.xml/UseUnderscoresInNumericLiterals">
+    <properties>
+      <!-- Numbers up to 6 digits are easy to read without underscores. -->
+      <property name="acceptableDecimalLength" value="6"/>
     </properties>
   </rule>
   <rule ref="category/java/codestyle.xml/LongVariable">
