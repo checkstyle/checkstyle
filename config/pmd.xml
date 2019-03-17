@@ -169,7 +169,8 @@
     <!-- We reuse Check instances between java files, we need to clear state of
          class in beginTree() methods. -->
     <exclude name="NullAssignment"/>
-    <!-- Till https://github.com/checkstyle/checkstyle/issues/5680 -->
+    <!-- We cannot change the class loader because it breaks the build.
+         See https://github.com/checkstyle/checkstyle/issues/5680 for details. -->
     <exclude name="UseProperClassLoader"/>
   </rule>
   <rule ref="category/java/errorprone.xml/AvoidDuplicateLiterals">
