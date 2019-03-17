@@ -69,6 +69,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * value is {@code true}.
  * </li>
  * <li>
+ * Property {@code ignoreStaticFinal} - Allow to skip variables with {@code static final} modifier.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
  * Property {@code ignoreOverriddenMethods} - Allow to ignore methods tagged with {@code @Override}
  * annotation (that usually mean inherited name). Default value is {@code true}.
  * </li>
@@ -182,6 +186,9 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     /** Allow to skip variables with {@code static} modifier. */
     private boolean ignoreStatic = true;
 
+    /** Allow to skip variables with {@code static final} modifier. */
+    private boolean ignoreStaticFinal = true;
+
     /**
      * Allow to ignore methods tagged with {@code @Override} annotation (that
      * usually mean inherited name).
@@ -204,6 +211,15 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      */
     public void setIgnoreStatic(boolean ignoreStatic) {
         this.ignoreStatic = ignoreStatic;
+    }
+
+    /**
+     * Setter to allow to skip variables with {@code static final} modifier.
+     * @param ignoreStaticFinal
+     *        Defines if ignore variables with 'static final' modifier or not.
+     */
+    public void setIgnoreStaticFinal(boolean ignoreStaticFinal) {
+        this.ignoreStaticFinal = ignoreStaticFinal;
     }
 
     /**
@@ -299,16 +315,17 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
 
         final boolean result;
         if (ast.getType() == TokenTypes.VARIABLE_DEF) {
-            if ((ignoreFinal || ignoreStatic)
+            if ((ignoreFinal || ignoreStatic || ignoreStaticFinal)
                     && isInterfaceDeclaration(ast)) {
-                // field declarations in interface are static/final
+                // field declarations in interface are static final
                 result = true;
             }
             else {
-                result = ignoreFinal
-                          && modifiers.findFirstToken(TokenTypes.FINAL) != null
-                    || ignoreStatic
-                        && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+                final boolean isFinal = modifiers.findFirstToken(TokenTypes.FINAL) != null;
+                final boolean isStatic = modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+                result = ignoreFinal && isFinal
+                    || ignoreStatic && isStatic
+                    || ignoreStaticFinal && isFinal && isStatic;
             }
         }
         else if (ast.getType() == TokenTypes.METHOD_DEF) {
