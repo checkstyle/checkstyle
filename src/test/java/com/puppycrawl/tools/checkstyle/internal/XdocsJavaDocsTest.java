@@ -94,6 +94,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "LeftCurly",
         "LocalFinalVariableName",
         "LocalVariableName",
+        "MagicNumber",
         "MemberName",
         "MethodName",
         "MethodTypeParameterName",

@@ -32,7 +32,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
- * Checks that there are no <a href="https://en.wikipedia.org/wiki/Magic_number_%28programming%29">
+ * Checks that there are no
+ * <a href="https://en.wikipedia.org/wiki/Magic_number_%28programming%29">
  * &quot;magic numbers&quot;</a> where a magic
  * number is a numeric literal that is not defined as a constant.
  * By default, -1, 0, 1, and 2 are not considered to be magic numbers.
@@ -40,19 +41,76 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * <p>Constant definition is any variable/field that has 'final' modifier.
  * It is fine to have one constant defining multiple numeric literals within one expression:
+ * </p>
  * <pre>
- * {@code static final int SECONDS_PER_DAY = 24 * 60 * 60;
+ * static final int SECONDS_PER_DAY = 24 * 60 * 60;
  * static final double SPECIAL_RATIO = 4.0 / 3.0;
  * static final double SPECIAL_SUM = 1 + Math.E;
  * static final double SPECIAL_DIFFERENCE = 4 - Math.PI;
  * static final Border STANDARD_BORDER = BorderFactory.createEmptyBorder(3, 3, 3, 3);
- * static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);}
+ * static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
  * </pre>
- *
- * <p>Check have following options:
- * ignoreHashCodeMethod - ignore magic numbers in hashCode methods;
- * ignoreAnnotation - ignore magic numbers in annotation declarations;
- * ignoreFieldDeclaration - ignore magic numbers in field declarations.
+ * <ul>
+ * <li>
+ * Property {@code ignoreNumbers} - Specify non-magic numbers.
+ * Default value is {@code -1, 0, 1, 2}.
+ * </li>
+ * <li>
+ * Property {@code ignoreHashCodeMethod} - Ignore magic numbers in hashCode methods.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code ignoreAnnotation} - Ignore magic numbers in annotation declarations.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code ignoreFieldDeclaration} - Ignore magic numbers in field declarations.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code constantWaiverParentToken} - Specify tokens that are allowed in the AST path
+ * from the number literal to the enclosing constant definition.
+ * Default value is
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPECAST">
+ * TYPECAST</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
+ * METHOD_CALL</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXPR">
+ * EXPR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_INIT">
+ * ARRAY_INIT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_MINUS">
+ * UNARY_MINUS</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_PLUS">
+ * UNARY_PLUS</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELIST">
+ * ELIST</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR">
+ * STAR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">
+ * ASSIGN</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS">
+ * PLUS</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS">
+ * MINUS</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV">
+ * DIV</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
+ * LITERAL_NEW</a>.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">
+ * NUM_DOUBLE</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
+ * NUM_FLOAT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
+ * NUM_INT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
+ * NUM_LONG</a>.
+ * </li>
+ * </ul>
  * <p>
  * To configure the check with default configuration:
  * </p>
@@ -63,15 +121,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * results is following violations:
  * </p>
  * <pre>
- * {@code
- *   {@literal @}MyAnnotation(6) // violation
- *   class MyClass {
- *       private field = 7; // violation
+ * &#64;MyAnnotation(6) // violation
+ * class MyClass {
+ *   private field = 7; // violation
  *
- *       void foo() {
- *          int i = i + 1; // no violation
- *          int j = j + 8; // violation
- *       }
+ *   void foo() {
+ *     int i = i + 1; // no violation
+ *     int j = j + 8; // violation
  *   }
  * }
  * </pre>
@@ -80,26 +136,24 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * that are not 0, 0.5, or 1:
  * </p>
  * <pre>
- *   &lt;module name=&quot;MagicNumber&quot;&gt;
- *       &lt;property name=&quot;tokens&quot; value=&quot;NUM_DOUBLE, NUM_FLOAT&quot;/&gt;
- *       &lt;property name=&quot;ignoreNumbers&quot; value=&quot;0, 0.5, 1&quot;/&gt;
- *       &lt;property name=&quot;ignoreFieldDeclaration&quot; value=&quot;true&quot;/&gt;
- *       &lt;property name=&quot;ignoreAnnotation&quot; value=&quot;true&quot;/&gt;
- *   &lt;/module&gt;
+ * &lt;module name=&quot;MagicNumber&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;NUM_DOUBLE, NUM_FLOAT&quot;/&gt;
+ *   &lt;property name=&quot;ignoreNumbers&quot; value=&quot;0, 0.5, 1&quot;/&gt;
+ *   &lt;property name=&quot;ignoreFieldDeclaration&quot; value=&quot;true&quot;/&gt;
+ *   &lt;property name=&quot;ignoreAnnotation&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
  * </pre>
  * <p>
  * results is following violations:
  * </p>
  * <pre>
- * {@code
- *   {@literal @}MyAnnotation(6) // no violation
- *   class MyClass {
- *       private field = 7; // no violation
+ * &#64;MyAnnotation(6) // no violation
+ * class MyClass {
+ *   private field = 7; // no violation
  *
- *       void foo() {
- *          int i = i + 1; // no violation
- *          int j = j + (int)0.5; // no violation
- *       }
+ *   void foo() {
+ *     int i = i + 1; // no violation
+ *     int j = j + 8; // violation
  *   }
  * }
  * </pre>
@@ -107,33 +161,33 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Config example of constantWaiverParentToken option:
  * </p>
  * <pre>
- *   &lt;module name=&quot;MagicNumber&quot;&gt;
- *       &lt;property name=&quot;constantWaiverParentToken&quot; value=&quot;ASSIGN,ARRAY_INIT,EXPR,
- *       UNARY_PLUS, UNARY_MINUS, TYPECAST, ELIST, DIV, PLUS &quot;/&gt;
- *   &lt;/module&gt;
+ * &lt;module name=&quot;MagicNumber&quot;&gt;
+ *   &lt;property name=&quot;constantWaiverParentToken&quot; value=&quot;ASSIGN,ARRAY_INIT,EXPR,
+ *   UNARY_PLUS, UNARY_MINUS, TYPECAST, ELIST, DIV, PLUS &quot;/&gt;
+ * &lt;/module&gt;
  * </pre>
  * <p>
  * result is following violation:
  * </p>
  * <pre>
- * {@code
  * class TestMethodCall {
- *     public void method2() {
- *         final TestMethodCall dummyObject = new TestMethodCall(62);    //violation
- *         final int a = 3;        // ok as waiver is ASSIGN
- *         final int [] b = {4, 5} // ok as waiver is ARRAY_INIT
- *         final int c = -3;       // ok as waiver is UNARY_MINUS
- *         final int d = +4;       // ok as waiver is UNARY_PLUS
- *         final int e = method(1, 2) // ELIST is there but violation due to METHOD_CALL
- *         final int x = 3 * 4;    // violation
- *         final int y = 3 / 4;    // ok as waiver is DIV
- *         final int z = 3 + 4;    // ok as waiver is PLUS
- *         final int w = 3 - 4;    // violation
- *         final int x = (int)(3.4);    //ok as waiver is TYPECAST
- *     }
- * }
+ *   public void method2() {
+ *     final TestMethodCall dummyObject = new TestMethodCall(62);    //violation
+ *     final int a = 3;        // ok as waiver is ASSIGN
+ *     final int [] b = {4, 5} // ok as waiver is ARRAY_INIT
+ *     final int c = -3;       // ok as waiver is UNARY_MINUS
+ *     final int d = +4;       // ok as waiver is UNARY_PLUS
+ *     final int e = method(1, 2) // ELIST is there but violation due to METHOD_CALL
+ *     final int x = 3 * 4;    // violation
+ *     final int y = 3 / 4;    // ok as waiver is DIV
+ *     final int z = 3 + 4;    // ok as waiver is PLUS
+ *     final int w = 3 - 4;    // violation
+ *     final int x = (int)(3.4);    //ok as waiver is TYPECAST
+ *   }
  * }
  * </pre>
+ *
+ * @since 3.1
  */
 @StatelessCheck
 public class MagicNumberCheck extends AbstractCheck {
@@ -145,7 +199,7 @@ public class MagicNumberCheck extends AbstractCheck {
     public static final String MSG_KEY = "magic.number";
 
     /**
-     * The token types that are allowed in the AST path from the
+     * Specify tokens that are allowed in the AST path from the
      * number literal to the enclosing constant definition.
      */
     private int[] constantWaiverParentToken = {
@@ -164,16 +218,16 @@ public class MagicNumberCheck extends AbstractCheck {
         TokenTypes.MINUS,
     };
 
-    /** The numbers to ignore in the check, sorted. */
+    /** Specify non-magic numbers. */
     private double[] ignoreNumbers = {-1, 0, 1, 2};
 
-    /** Whether to ignore magic numbers in a hash code method. */
+    /** Ignore magic numbers in hashCode methods. */
     private boolean ignoreHashCodeMethod;
 
-    /** Whether to ignore magic numbers in annotation. */
+    /** Ignore magic numbers in annotation declarations. */
     private boolean ignoreAnnotation;
 
-    /** Whether to ignore magic numbers in field declaration. */
+    /** Ignore magic numbers in field declarations. */
     private boolean ignoreFieldDeclaration;
 
     /**
@@ -373,7 +427,8 @@ public class MagicNumberCheck extends AbstractCheck {
     }
 
     /**
-     * Sets the tokens which are allowed between Magic Number and defined Object.
+     * Setter to specify tokens that are allowed in the AST path from the
+     * number literal to the enclosing constant definition.
      * @param tokens The string representation of the tokens interested in
      */
     public void setConstantWaiverParentToken(String... tokens) {
@@ -385,8 +440,7 @@ public class MagicNumberCheck extends AbstractCheck {
     }
 
     /**
-     * Sets the numbers to ignore in the check.
-     * BeanUtils converts numeric token list to double array automatically.
+     * Setter to specify non-magic numbers.
      * @param list list of numbers to ignore.
      */
     public void setIgnoreNumbers(double... list) {
@@ -401,7 +455,7 @@ public class MagicNumberCheck extends AbstractCheck {
     }
 
     /**
-     * Set whether to ignore hashCode methods.
+     * Setter to ignore magic numbers in hashCode methods.
      * @param ignoreHashCodeMethod decide whether to ignore
      *     hash code methods
      */
@@ -410,7 +464,7 @@ public class MagicNumberCheck extends AbstractCheck {
     }
 
     /**
-     * Set whether to ignore Annotations.
+     * Setter to ignore magic numbers in annotation declarations.
      * @param ignoreAnnotation decide whether to ignore annotations
      */
     public void setIgnoreAnnotation(boolean ignoreAnnotation) {
@@ -418,7 +472,7 @@ public class MagicNumberCheck extends AbstractCheck {
     }
 
     /**
-     * Set whether to ignore magic numbers in field declaration.
+     * Setter to ignore magic numbers in field declarations.
      * @param ignoreFieldDeclaration decide whether to ignore magic numbers
      *     in field declaration
      */
