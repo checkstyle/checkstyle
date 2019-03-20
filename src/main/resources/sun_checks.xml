@@ -41,6 +41,12 @@
 
     <property name="fileExtensions" value="java, properties, xml"/>
 
+    <!-- Excludes all 'module-info.java' files              -->
+    <!-- See https://checkstyle.org/config_filefilters.html -->
+    <module name="BeforeExecutionExclusionFileFilter">
+        <property name="fileNamePattern" value="module\-info\.java$"/>
+    </module>
+
     <!-- Checks that a package-info.java file exists for each package.     -->
     <!-- See http://checkstyle.sourceforge.net/config_javadoc.html#JavadocPackage -->
     <module name="JavadocPackage"/>
