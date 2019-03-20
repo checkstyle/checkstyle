@@ -76,6 +76,14 @@
       <subsection name="Example of Usage" id="BeforeExecutionExclusionFileFilter_Example_of_Usage">
         <ul>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+BeforeExecutionExclusionFileFilter">
+              Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+BeforeExecutionExclusionFileFilter">
+              Sun Style</a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+BeforeExecutionExclusionFileFilter">
             Checkstyle Style</a>
           </li>
