@@ -2592,8 +2592,8 @@ class TestMethodCall {
     </section>
 
     <section name="MissingCtor">
+      <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="MissingCtor_Description">
-        <p>Since Checkstyle 3.4</p>
         <p>
           Checks that classes (except abstract ones) define a constructor and don't
           rely on the default one.
