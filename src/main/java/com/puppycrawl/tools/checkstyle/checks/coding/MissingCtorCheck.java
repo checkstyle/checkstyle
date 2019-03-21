@@ -26,16 +26,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Checks that classes (except abstract one) define a ctor and don't rely
+ * Checks that classes (except abstract ones) define a constructor and don't rely
  * on the default one.
  * </p>
  * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
- * &lt;module name="MissingCtor"/&gt;
+ * &lt;module name=&quot;MissingCtor&quot;/&gt;
  * </pre>
  *
+ * @since 3.4
  */
 @StatelessCheck
 public class MissingCtorCheck extends AbstractCheck {
