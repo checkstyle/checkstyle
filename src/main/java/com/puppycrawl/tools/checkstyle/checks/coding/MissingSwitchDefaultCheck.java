@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Checks that switch statement has &quot;default&quot; clause.
+ * Checks that switch statement has a &quot;default&quot; clause.
  * </p>
  * <p>
  * Rationale: It's usually a good idea to introduce a
@@ -38,11 +38,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * introduction of new types in an enumeration type.
  * </p>
  * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
- * &lt;module name="MissingSwitchDefault"/&gt;
+ * &lt;module name=&quot;MissingSwitchDefault&quot;/&gt;
  * </pre>
+ *
+ * @since 3.1
  */
 @StatelessCheck
 public class MissingSwitchDefaultCheck extends AbstractCheck {

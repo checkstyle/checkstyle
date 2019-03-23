@@ -2653,8 +2653,8 @@ class TestMethodCall {
     </section>
 
     <section name="MissingSwitchDefault">
+      <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="MissingSwitchDefault_Description">
-        <p>Since Checkstyle 3.1</p>
         <p>
           Checks that switch statement has a &quot;default&quot; clause.
         </p>
