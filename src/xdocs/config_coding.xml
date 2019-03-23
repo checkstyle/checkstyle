@@ -4485,10 +4485,33 @@ if (&quot;something&quot;.equals(x))
     </section>
 
     <section name="UnnecessaryParentheses">
+      <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="UnnecessaryParentheses_Description">
-        <p>Since Checkstyle 3.4</p>
         <p>
-          Checks for the use of unnecessary parentheses.
+          Checks if unnecessary parentheses are used in a statement or expression.
+          The check will flag the following with warnings:
+        </p>
+        <source>
+    return (x);          // parens around identifier
+    return (x + 1);      // parens around return value
+    int x = (y / 2 + 1); // parens around assignment rhs
+    for (int i = (0); i &lt; 10; i++) {  // parens around literal
+    t -= (z + 1);        // parens around assignment rhs
+        </source>
+      </subsection>
+
+      <subsection name="Notes" id="UnnecessaryParentheses_Notes">
+        <p>
+          The check is not "type aware", that is to say, it can't tell if parentheses
+          are unnecessary based on the types in an expression.  It also doesn't know about
+          operator precedence and associativity; therefore it won't catch something like
+        </p>
+        <source>
+            int x = (a + b) + c;
+        </source>
+        <p>
+          In the above case, given that <em>a</em>,<em>b</em>, and <em>c</em> are all
+          <code>int</code> variables, the parentheses around <code>a + b</code> are not needed.
         </p>
       </subsection>
 

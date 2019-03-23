@@ -117,6 +117,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "SuppressWarnings",
         "SuppressWarningsHolder",
         "TypeName",
+        "UnnecessaryParentheses",
     };
 
     private static Checker checker;
