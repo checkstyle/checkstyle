@@ -699,7 +699,7 @@
 
     <section name="Severity">
       <p>
-        Each check has a <a
+        Each module has a <a
         href="property_types.html#severity">severity</a> property that a
         Checkstyle audit assigns to all violations of the check. The
         default severity level of a check is <code>error</code>.
@@ -726,6 +726,21 @@
         The XML formatter reports the severity level of every violation
         as an attribute of the violation's <code>error</code> element.
       </p>
+    </section>
+
+    <section name="tabWidth">
+      <p>
+        Each module has a <code>tabWidth</code> property that can specify how many spaces
+        a tab character uses. The default width by all modules is 8 spaces. Overriding the
+        width for a parent module, will apply those changes automatically to the children.
+        This is only used to control the spacing when violations from modules are printed.
+      </p>
+
+      <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;property name=&quot;tabWidth&quot; value=&quot;4&quot;/&gt;
+&lt;/module&gt;
+      </source>
     </section>
 
     <section name="Id">
