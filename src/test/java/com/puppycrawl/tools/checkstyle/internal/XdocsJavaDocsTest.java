@@ -109,6 +109,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "PackageAnnotation",
         "PackageName",
         "ParameterName",
+        "RequireThis",
         "RightCurly",
         "StaticVariableName",
         "SuppressWarnings",

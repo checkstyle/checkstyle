@@ -3741,8 +3741,8 @@ public class AnnotationLocationCheck extends AbstractCheck {
     </section>
 
     <section name="RequireThis">
+      <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="RequireThis_Description">
-        <p>Since Checkstyle 3.4</p>
         <p>
           Checks that references to instance variables and methods of the present
           object are explicitly of the form &quot;this.varName&quot; or
@@ -3770,6 +3770,15 @@ public class AnnotationLocationCheck extends AbstractCheck {
           </li>
         </ol>
       </subsection>
+      <subsection name="Notes" id="RequireThis_Notes">
+            <p>
+              Limitations: Nothing is currently done about static variables
+              or catch-blocks.  Static methods invoked on a class name seem to be OK;
+              both the class name and the method name have a DOT parent.
+              Non-static methods invoked on either this or a variable name seem to be
+              OK, likewise.
+            </p>
+      </subsection>
 
       <subsection name="Properties" id="RequireThis_Properties">
         <table>
@@ -3782,21 +3791,21 @@ public class AnnotationLocationCheck extends AbstractCheck {
           </tr>
           <tr>
             <td>checkFields</td>
-            <td>Whether to check references to fields.</td>
+            <td>Control whether to check references to fields.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
             <td>3.4</td>
           </tr>
           <tr>
             <td>checkMethods</td>
-            <td>Whether to check references to methods.</td>
+            <td>Control whether to check references to methods.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
             <td>3.4</td>
           </tr>
           <tr>
             <td>validateOnlyOverlapping</td>
-            <td>Whether to check only overlapping by variables or arguments.</td>
+            <td>Control whether to check only overlapping by variables or arguments.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
             <td>6.17</td>
@@ -3843,15 +3852,15 @@ public static class A {
 }
 
 public static class B {
-  private int field1;
+  private int field;
 
   public A(int f) {
-    field1 = f;
+    field = f;
   }
 
-  String addSuffixToField(String field1) {
-    // Overlapping by method argument. Equal to "return field1 = field1 + "suffix";"
-    return field1 += "suffix"; // violation: Reference to instance variable "field1" needs "this".
+  String addSuffixToField(String field) {
+    // Overlapping by method argument. Equal to "return field = field + "suffix";"
+    return field += "suffix"; // violation: Reference to instance variable "field" needs "this".
   }
 }
        </source>
@@ -3910,14 +3919,14 @@ public static class A {
 }
 
 public static class B {
-  private int field1;
+  private int field;
 
   public A(int f) {
-    field1 = f; // violation:  Reference to instance variable "field1" needs "this".
+    field = f; // violation:  Reference to instance variable "field" needs "this".
   }
 
-  String addSuffixToField(String field1) {
-    return field1 += "suffix"; // violation: Reference to instance variable "field1" needs "this".
+  String addSuffixToField(String field) {
+    return field += "suffix"; // violation: Reference to instance variable "field" needs "this".
   }
 }
 
