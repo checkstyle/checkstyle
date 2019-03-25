@@ -1402,7 +1402,7 @@ public class RequireThisCheck extends AbstractCheck {
     /**
      * A frame initiated on entering a catch block; holds local catch variable names.
      */
-    public static class CatchFrame extends AbstractFrame {
+    private static class CatchFrame extends AbstractFrame {
 
         /**
          * Creates catch frame.
@@ -1423,7 +1423,7 @@ public class RequireThisCheck extends AbstractCheck {
     /**
      * A frame initiated on entering a for block; holds local for variable names.
      */
-    public static class ForFrame extends AbstractFrame {
+    private static class ForFrame extends AbstractFrame {
 
         /**
          * Creates for frame.
