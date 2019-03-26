@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -382,7 +383,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * @param methodDef method for check.
      */
     private void visitMethodDef(DetailAST methodDef) {
-        if (isVerifiable(methodDef) && isCheckedMethod(methodDef)) {
+        if (isCheckedMethod(methodDef)) {
             checkClassName(methodDef);
         }
     }
@@ -394,9 +395,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
     private void visitParameterDef(DetailAST parameterDef) {
         final DetailAST grandParentAST = parameterDef.getParent().getParent();
 
-        if (grandParentAST.getType() == TokenTypes.METHOD_DEF
-            && isCheckedMethod(grandParentAST)
-            && isVerifiable(grandParentAST)) {
+        if (grandParentAST.getType() == TokenTypes.METHOD_DEF && isCheckedMethod(grandParentAST)) {
             checkClassName(parameterDef);
         }
     }
@@ -629,7 +628,8 @@ public final class IllegalTypeCheck extends AbstractCheck {
     private boolean isCheckedMethod(DetailAST ast) {
         final String methodName =
             ast.findFirstToken(TokenTypes.IDENT).getText();
-        return !ignoredMethodNames.contains(methodName);
+        return isVerifiable(ast) && !ignoredMethodNames.contains(methodName)
+                && !AnnotationUtil.containsAnnotation(ast, "Override");
     }
 
     /**

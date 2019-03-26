@@ -68,6 +68,8 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
             "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "42:14: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "44:5: " + getCheckMessage(MSG_KEY, "HashMap"),
         };
 
         verify(checkConfig, getPath("InputIllegalType.java"), expected);
@@ -85,6 +87,8 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
                     + "InputIllegalType.AbstractClass"),
             "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
             "25:36: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
+            "42:14: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "44:5: " + getCheckMessage(MSG_KEY, "HashMap"),
         };
 
         verify(checkConfig, getPath("InputIllegalType.java"), expected);
@@ -98,6 +102,8 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
             "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "42:14: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "44:5: " + getCheckMessage(MSG_KEY, "HashMap"),
         };
 
         verify(checkConfig, getPath("InputIllegalType.java"), expected);
@@ -115,6 +121,8 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
                     + "InputIllegalType.AbstractClass"),
             "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
             "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "42:14: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "44:5: " + getCheckMessage(MSG_KEY, "HashMap"),
         };
 
         verify(checkConfig, getPath("InputIllegalType.java"), expected);
