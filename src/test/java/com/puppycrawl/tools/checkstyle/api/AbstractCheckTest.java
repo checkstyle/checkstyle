@@ -35,11 +35,12 @@ import java.util.SortedSet;
 
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class AbstractCheckTest extends AbstractPathTestSupport {
+public class AbstractCheckTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -323,7 +324,7 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
         check.setFileContents(new FileContents(theText));
         check.clearMessages();
 
-        final DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAstImpl();
         ast.setLineNo(1);
         ast.setColumnNo(4);
         check.visitToken(ast);
@@ -335,6 +336,16 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
         final LocalizedMessage firstMessage = internalMessages.iterator().next();
         assertEquals("expected line", 1, firstMessage.getLineNo());
         assertEquals("expected column", 5, firstMessage.getColumnNo());
+    }
+
+    @Test
+    public void testCheck() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(ViolationAstCheck.class);
+
+        final String[] expected = {
+            "1:1: Violation.",
+        };
+        verify(checkConfig, getPath("InputAbstractCheckTestFileContents.java"), expected);
     }
 
     private static final class DummyAbstractCheck extends AbstractCheck {
@@ -424,17 +435,19 @@ public class AbstractCheckTest extends AbstractPathTestSupport {
 
         @Override
         public int[] getDefaultTokens() {
-            return CommonUtil.EMPTY_INT_ARRAY;
+            return getRequiredTokens();
         }
 
         @Override
         public int[] getAcceptableTokens() {
-            return CommonUtil.EMPTY_INT_ARRAY;
+            return getRequiredTokens();
         }
 
         @Override
         public int[] getRequiredTokens() {
-            return CommonUtil.EMPTY_INT_ARRAY;
+            return new int[] {
+                TokenTypes.PACKAGE_DEF,
+            };
         }
 
         @Override

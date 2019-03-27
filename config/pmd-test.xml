@@ -109,7 +109,7 @@
         <!-- PMD cannot find assert if it is located in private method of this class called from
                the test method or method of another class. -->
         <properties>
-            <!-- In AllChecksTest, AstRegressionTest, DetailASTTest and ImportControlCheckTest
+            <!-- In AllChecksTest, AstRegressionTest, DetailAstImplTest and ImportControlCheckTest
                    PMD does not find asserts in private methods of the test class called from the
                    test method.
                  In MainTest PMD does not find asserts in lambdas called in the method
@@ -121,7 +121,7 @@
                  method. -->
             <property name="violationSuppressXPath"
                       value="//ClassOrInterfaceDeclaration[@Image='AllChecksTest'
-              or @Image='AstRegressionTest' or @Image='DetailASTTest'
+              or @Image='AstRegressionTest' or @Image='DetailAstImplTest'
               or @Image='ImportControlCheckTest']//PrimaryPrefix/Name[@Image='verify']
             | //ClassOrInterfaceDeclaration[@Image='MainTest']
                   //PrimaryPrefix//Name[starts-with(@Image, 'assert')]

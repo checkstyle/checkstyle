@@ -31,6 +31,7 @@ import org.junit.Test;
 import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -657,8 +658,8 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testVisitTokenSwitchReflection() throws Exception {
         // Create mock ast
-        final DetailAST astImport = mockAST(TokenTypes.IMPORT, "import", "mockfile", 0, 0);
-        final DetailAST astIdent = mockAST(TokenTypes.IDENT, "myTestImport", "mockfile", 0, 0);
+        final DetailAstImpl astImport = mockAST(TokenTypes.IMPORT, "import", "mockfile", 0, 0);
+        final DetailAstImpl astIdent = mockAST(TokenTypes.IDENT, "myTestImport", "mockfile", 0, 0);
         astImport.addChild(astIdent);
         final DetailAST astSemi = mockAST(TokenTypes.SEMI, ";", "mockfile", 0, 0);
         astIdent.addNextSibling(astSemi);
@@ -686,7 +687,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
      * @param tokenColumn token position in a file (column)
      * @return AST node for the token
      */
-    private static DetailAST mockAST(final int tokenType, final String tokenText,
+    private static DetailAstImpl mockAST(final int tokenType, final String tokenText,
             final String tokenFileName, final int tokenRow, final int tokenColumn) {
         final CommonHiddenStreamToken tokenImportSemi = new CommonHiddenStreamToken();
         tokenImportSemi.setType(tokenType);
@@ -694,7 +695,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         tokenImportSemi.setLine(tokenRow);
         tokenImportSemi.setColumn(tokenColumn);
         tokenImportSemi.setFilename(tokenFileName);
-        final DetailAST astSemi = new DetailAST();
+        final DetailAstImpl astSemi = new DetailAstImpl();
         astSemi.initialize(tokenImportSemi);
         return astSemi;
     }

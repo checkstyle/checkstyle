@@ -30,8 +30,8 @@ import org.junit.Test;
 import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -172,7 +172,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     public void testWrongToken() {
         final ClassDataAbstractionCouplingCheck classDataAbstractionCouplingCheckObj =
             new ClassDataAbstractionCouplingCheck();
-        final DetailAST ast = new DetailAST();
+        final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.CTOR_DEF, "ctor"));
         try {
             classDataAbstractionCouplingCheckObj.visitToken(ast);

@@ -26,6 +26,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 
 public class FullIdentTest extends AbstractModuleTestSupport {
@@ -37,7 +38,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
 
     @Test
     public void testToString() {
-        final DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAstImpl();
         ast.setType(TokenTypes.LITERAL_NEW);
         ast.setColumnNo(14);
         ast.setLineNo(15);
@@ -52,7 +53,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCreateFullIdentBelow() {
-        final DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAstImpl();
 
         final FullIdent indent = FullIdent.createFullIdentBelow(ast);
         Assert.assertEquals("Invalid full indent", "", indent.getText());
@@ -97,19 +98,19 @@ public class FullIdentTest extends AbstractModuleTestSupport {
     }
 
     private static FullIdent prepareFullIdentWithCoordinates(int columnNo, int lineNo) {
-        final DetailAST ast = new DetailAST();
+        final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(TokenTypes.DOT);
         ast.setColumnNo(1);
         ast.setLineNo(2);
         ast.setText("Root");
 
-        final DetailAST ast2 = new DetailAST();
+        final DetailAstImpl ast2 = new DetailAstImpl();
         ast2.setType(TokenTypes.LE);
         ast2.setColumnNo(columnNo);
         ast2.setLineNo(lineNo);
         ast2.setText("MyTestik");
 
-        final DetailAST ast1 = new DetailAST();
+        final DetailAstImpl ast1 = new DetailAstImpl();
         ast1.setType(TokenTypes.LITERAL_NEW);
         ast1.setColumnNo(14);
         ast1.setLineNo(15);

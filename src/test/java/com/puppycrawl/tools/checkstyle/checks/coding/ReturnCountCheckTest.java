@@ -33,6 +33,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -123,7 +124,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
     public void testImproperToken() {
         final ReturnCountCheck check = new ReturnCountCheck();
 
-        final DetailAST classDefAst = new DetailAST();
+        final DetailAST classDefAst = new DetailAstImpl();
         classDefAst.setType(TokenTypes.CLASS_DEF);
 
         try {

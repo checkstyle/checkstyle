@@ -107,7 +107,7 @@
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@Image='XMLLogger']
                            //MethodDeclarator[@Image='isReference']
-      | //ClassOrInterfaceDeclaration[@Image='DetailAST']
+      | //ClassOrInterfaceDeclaration[@Image='DetailAstImpl']
               //MethodDeclarator[@Image='addPreviousSibling']
       | //ClassOrInterfaceDeclaration[@Image='AnnotationLocationCheck']
               //MethodDeclarator[@Image='checkAnnotations']

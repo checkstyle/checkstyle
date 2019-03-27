@@ -28,6 +28,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -72,13 +73,13 @@ public class XpathUtilTest {
     }
 
     private static DetailAST createDetailAST(int type) {
-        final DetailAST detailAST = new DetailAST();
+        final DetailAST detailAST = new DetailAstImpl();
         detailAST.setType(type);
         return detailAST;
     }
 
     private static DetailAST createDetailAST(int type, String text) {
-        final DetailAST detailAST = new DetailAST();
+        final DetailAST detailAST = new DetailAstImpl();
         detailAST.setType(type);
         detailAST.setText(text);
         return detailAST;

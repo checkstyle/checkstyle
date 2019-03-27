@@ -28,7 +28,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
@@ -110,7 +110,7 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
     public void testCallVisitToken() {
         final TrailingCommentCheck check = new TrailingCommentCheck();
         try {
-            check.visitToken(new DetailAST());
+            check.visitToken(new DetailAstImpl());
             Assert.fail("IllegalStateException is expected");
         }
         catch (IllegalStateException ex) {

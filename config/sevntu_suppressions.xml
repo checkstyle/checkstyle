@@ -29,7 +29,7 @@
 
     <!-- Tone down the checking for test code -->
     <suppress checks="ForbidCertainImports"
-              files="DetailASTTest\.java"/>
+              files="DetailAstImplTest\.java"/>
     <suppress checks="SingleBreakOrContinue" files="[\\/]XdocsPagesTest\.java"/>
 
     <!-- Main and MainTest are technically not part of the checkstyle library,

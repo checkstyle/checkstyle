@@ -14,7 +14,9 @@
   <!-- guava causes issues with other libraries since not everyone is on the same version -->
   <disallow pkg="com\.google.*" regex="true"/>
 
-  <allow pkg="antlr"/>
+  <!-- until https://github.com/checkstyle/checkstyle/issues/6628 -->
+  <allow class="com.puppycrawl.tools.checkstyle.DetailAstImpl"/>
+
   <allow pkg="com.puppycrawl.tools.checkstyle.api"/>
   <allow pkg="com.puppycrawl.tools.checkstyle.checks"/>
   <allow pkg="java.io"/>
@@ -33,7 +35,6 @@
   <allow pkg="com.puppycrawl.tools.checkstyle.utils" local-only="true"/>
   <allow pkg="com.puppycrawl.tools.checkstyle.grammar" local-only="true"/>
   <allow pkg="picocli" local-only="true"/>
-  <allow pkg="org.antlr.v4.runtime" local-only="true"/>
   <allow class="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.+"
           local-only="true" regex="true"/>
   <allow class="java.lang.annotation.ElementType" local-only="true"/>
@@ -48,11 +49,21 @@
   <allow class="com.puppycrawl.tools.checkstyle.XpathFileGeneratorAuditListener"
          local-only="true"/>
 
+  <file name="DetailAstImpl|JavaParser" regex="true">
+    <allow pkg="antlr"/>
+  </file>
+  <file name="JavadocDetailNodeParser">
+    <allow pkg="org.antlr.v4.runtime"/>
+  </file>
   <file name="PropertyCacheFile">
     <allow class="java.math.BigInteger"/>
   </file>
 
   <subpackage name="utils">
+    <!-- until https://github.com/checkstyle/checkstyle/issues/6628 -->
+    <allow pkg="antlr"/>
+    <allow class="com.puppycrawl.tools.checkstyle.DetailAstImpl"/>
+
     <allow pkg="java.lang.reflect" local-only="true" />
     <allow pkg="java.nio" local-only="true" />
     <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerFilter"/>
@@ -71,6 +82,8 @@
   </subpackage>
 
   <subpackage name="api">
+    <disallow pkg="org.antlr.v4.runtime"/>
+
     <allow pkg="com.puppycrawl.tools.checkstyle.grammar"/>
     <allow pkg="java.lang.reflect" local-only="true"/>
     <allow pkg="java.nio.charset" local-only="true"/>
@@ -83,7 +96,6 @@
     its usage by API clients till https://github.com/checkstyle/checkstyle/issues/3511-->
     <allow class="com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier"
            local-only="true"/>
-    <allow pkg="org.antlr.v4.runtime" local-only="true"/>
 
     <allow class="com.puppycrawl.tools.checkstyle.Checker" local-only="true"/>
     <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3817 -->
@@ -136,7 +148,10 @@
   </subpackage>
 
   <subpackage name="gui" strategyOnMismatch="disallowed">
+    <!-- until https://github.com/checkstyle/checkstyle/issues/3095 -->
     <allow pkg="antlr"/>
+    <allow class="com.puppycrawl.tools.checkstyle.DetailAstImpl"/>
+
     <allow pkg="java.awt"/>
     <allow pkg="java.io"/>
     <allow pkg="javax.swing"/>

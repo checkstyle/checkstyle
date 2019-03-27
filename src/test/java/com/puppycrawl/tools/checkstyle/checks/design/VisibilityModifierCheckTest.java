@@ -34,6 +34,7 @@ import org.powermock.reflect.Whitebox;
 import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -418,7 +419,7 @@ public class VisibilityModifierCheckTest
     @Test
     public void testWrongTokenType() {
         final VisibilityModifierCheck obj = new VisibilityModifierCheck();
-        final DetailAST ast = new DetailAST();
+        final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.CLASS_DEF, "class"));
         try {
             obj.visitToken(ast);

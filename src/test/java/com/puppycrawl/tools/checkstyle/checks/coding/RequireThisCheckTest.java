@@ -34,6 +34,7 @@ import org.junit.Test;
 import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
@@ -167,7 +168,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     public void testDefaultSwitch() {
         final RequireThisCheck check = new RequireThisCheck();
 
-        final DetailAST ast = new DetailAST();
+        final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.ENUM, "ENUM"));
 
         check.visitToken(ast);
@@ -364,7 +365,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testUnusedMethod() throws Exception {
-        final DetailAST ident = new DetailAST();
+        final DetailAST ident = new DetailAstImpl();
         ident.setText("testName");
 
         final Class<?> cls = Class.forName(RequireThisCheck.class.getName() + "$CatchFrame");

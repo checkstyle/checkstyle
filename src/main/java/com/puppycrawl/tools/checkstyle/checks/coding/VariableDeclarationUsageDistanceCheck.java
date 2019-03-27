@@ -858,7 +858,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         DetailAST curNode = parent.getFirstChild();
 
         while (curNode != null) {
-            if (curNode.equals(ast)) {
+            if (curNode.getType() == ast.getType() && curNode.getText().equals(ast.getText())) {
                 isChild = true;
                 break;
             }

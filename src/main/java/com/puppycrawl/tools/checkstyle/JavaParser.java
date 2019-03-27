@@ -26,6 +26,7 @@ import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
+import antlr.CommonASTWithHiddenTokens;
 import antlr.CommonHiddenStreamToken;
 import antlr.RecognitionException;
 import antlr.Token;
@@ -44,6 +45,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Helper methods to parse java source files.
  *
  */
+// -@cs[ClassDataAbstractionCoupling] No way to split up class usage.
 public final class JavaParser {
 
     /**
@@ -92,7 +94,7 @@ public final class JavaParser {
             }
         };
         parser.setFilename(contents.getFileName());
-        parser.setASTNodeClass(DetailAST.class.getName());
+        parser.setASTNodeClass(DetailAstImpl.class.getName());
         try {
             parser.compilationUnit();
         }
@@ -153,7 +155,8 @@ public final class JavaParser {
         while (curNode != null) {
             lastNode = curNode;
 
-            CommonHiddenStreamToken tokenBefore = curNode.getHiddenBefore();
+            CommonHiddenStreamToken tokenBefore = ((CommonASTWithHiddenTokens) curNode)
+                    .getHiddenBefore();
             DetailAST currentSibling = curNode;
             while (tokenBefore != null) {
                 final DetailAST newCommentNode =
@@ -177,7 +180,8 @@ public final class JavaParser {
             curNode = toVisit;
         }
         if (lastNode != null) {
-            CommonHiddenStreamToken tokenAfter = lastNode.getHiddenAfter();
+            CommonHiddenStreamToken tokenAfter = ((CommonASTWithHiddenTokens) lastNode)
+                    .getHiddenAfter();
             DetailAST currentSibling = lastNode;
             while (tokenAfter != null) {
                 final DetailAST newCommentNode =
@@ -215,7 +219,7 @@ public final class JavaParser {
      * @return DetailAST with SINGLE_LINE_COMMENT type
      */
     private static DetailAST createSlCommentNode(Token token) {
-        final DetailAST slComment = new DetailAST();
+        final DetailAstImpl slComment = new DetailAstImpl();
         slComment.setType(TokenTypes.SINGLE_LINE_COMMENT);
         slComment.setText("//");
 
@@ -223,7 +227,7 @@ public final class JavaParser {
         slComment.setColumnNo(token.getColumn() - 1);
         slComment.setLineNo(token.getLine());
 
-        final DetailAST slCommentContent = new DetailAST();
+        final DetailAstImpl slCommentContent = new DetailAstImpl();
         slCommentContent.setType(TokenTypes.COMMENT_CONTENT);
 
         // column counting begins from 0

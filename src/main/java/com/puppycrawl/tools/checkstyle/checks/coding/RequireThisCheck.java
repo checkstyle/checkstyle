@@ -746,7 +746,7 @@ public class RequireThisCheck extends AbstractCheck {
     private static boolean isAstInside(DetailAST tree, DetailAST ast) {
         boolean result = false;
 
-        if (tree.equals(ast)) {
+        if (isAstSimilar(tree, ast)) {
             result = true;
         }
         else {
@@ -971,7 +971,7 @@ public class RequireThisCheck extends AbstractCheck {
                 vertex = stack.pop();
             }
             while (vertex != null) {
-                if (token.equals(vertex)
+                if (isAstSimilar(token, vertex)
                         && vertex.getLineNo() <= endLineNumber) {
                     result.add(vertex);
                 }
@@ -1120,6 +1120,16 @@ public class RequireThisCheck extends AbstractCheck {
             }
         }
         return isLambdaParameter;
+    }
+
+    /**
+     * Checks if 2 AST are similar by their type and text.
+     * @param left The first AST to check.
+     * @param right The second AST to check.
+     * @return {@code true} if they are similar.
+     */
+    private static boolean isAstSimilar(DetailAST left, DetailAST right) {
+        return left.getType() == right.getType() && left.getText().equals(right.getText());
     }
 
     /** An AbstractFrame type. */
@@ -1414,7 +1424,7 @@ public class RequireThisCheck extends AbstractCheck {
             for (DetailAST member : instanceMembers) {
                 final DetailAST mods = member.getParent().findFirstToken(TokenTypes.MODIFIERS);
                 final boolean finalMod = mods.findFirstToken(TokenTypes.FINAL) != null;
-                if (finalMod && member.equals(instanceMember)) {
+                if (finalMod && isAstSimilar(member, instanceMember)) {
                     result = true;
                     break;
                 }

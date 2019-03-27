@@ -36,6 +36,7 @@ import java.util.Set;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -62,17 +63,17 @@ public class CheckUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testElseWithCurly() {
-        final DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAstImpl();
         ast.setType(TokenTypes.ASSIGN);
         ast.setText("ASSIGN");
         assertFalse("Invalid elseIf check result 'ASSIGN' is not 'else if'",
                 CheckUtil.isElseIf(ast));
 
-        final DetailAST parentAst = new DetailAST();
+        final DetailAstImpl parentAst = new DetailAstImpl();
         parentAst.setType(TokenTypes.LCURLY);
         parentAst.setText("LCURLY");
 
-        final DetailAST ifAst = new DetailAST();
+        final DetailAstImpl ifAst = new DetailAstImpl();
         ifAst.setType(TokenTypes.LITERAL_IF);
         ifAst.setText("IF");
         parentAst.addChild(ifAst);
@@ -80,7 +81,7 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         assertFalse("Invalid elseIf check result: 'IF' is not 'else if'",
                 CheckUtil.isElseIf(ifAst));
 
-        final DetailAST parentAst2 = new DetailAST();
+        final DetailAstImpl parentAst2 = new DetailAstImpl();
         parentAst2.setType(TokenTypes.SLIST);
         parentAst2.setText("SLIST");
 
@@ -89,7 +90,7 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         assertFalse("Invalid elseIf check result: 'SLIST' is not 'else if'",
                 CheckUtil.isElseIf(ifAst));
 
-        final DetailAST elseAst = new DetailAST();
+        final DetailAstImpl elseAst = new DetailAstImpl();
         elseAst.setType(TokenTypes.LITERAL_ELSE);
 
         elseAst.setFirstChild(ifAst);
@@ -98,14 +99,14 @@ public class CheckUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testEquals() {
-        final DetailAST litStatic = new DetailAST();
+        final DetailAstImpl litStatic = new DetailAstImpl();
         litStatic.setType(TokenTypes.LITERAL_STATIC);
 
-        final DetailAST modifiers = new DetailAST();
+        final DetailAstImpl modifiers = new DetailAstImpl();
         modifiers.setType(TokenTypes.MODIFIERS);
         modifiers.addChild(litStatic);
 
-        final DetailAST metDef = new DetailAST();
+        final DetailAstImpl metDef = new DetailAstImpl();
         metDef.setType(TokenTypes.METHOD_DEF);
         metDef.addChild(modifiers);
 
@@ -114,19 +115,19 @@ public class CheckUtilTest extends AbstractPathTestSupport {
 
         metDef.removeChildren();
 
-        final DetailAST metName = new DetailAST();
+        final DetailAstImpl metName = new DetailAstImpl();
         metName.setType(TokenTypes.IDENT);
         metName.setText("equals");
         metDef.addChild(metName);
 
-        final DetailAST modifiers2 = new DetailAST();
+        final DetailAstImpl modifiers2 = new DetailAstImpl();
         modifiers2.setType(TokenTypes.MODIFIERS);
         metDef.addChild(modifiers2);
 
-        final DetailAST parameter1 = new DetailAST();
-        final DetailAST parameter2 = new DetailAST();
+        final DetailAstImpl parameter1 = new DetailAstImpl();
+        final DetailAstImpl parameter2 = new DetailAstImpl();
 
-        final DetailAST parameters = new DetailAST();
+        final DetailAstImpl parameters = new DetailAstImpl();
         parameters.setType(TokenTypes.PARAMETERS);
 
         parameters.addChild(parameter2);
@@ -140,7 +141,7 @@ public class CheckUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testGetAccessModifierFromModifiersTokenWrongTokenType() {
-        final DetailAST modifiers = new DetailAST();
+        final DetailAST modifiers = new DetailAstImpl();
         modifiers.setType(TokenTypes.METHOD_DEF);
 
         try {
@@ -296,11 +297,11 @@ public class CheckUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testGetFirstNode1() {
-        final DetailAST child = new DetailAST();
+        final DetailAstImpl child = new DetailAstImpl();
         child.setLineNo(5);
         child.setColumnNo(6);
 
-        final DetailAST root = new DetailAST();
+        final DetailAstImpl root = new DetailAstImpl();
         root.setLineNo(5);
         root.setColumnNo(6);
 
@@ -311,11 +312,11 @@ public class CheckUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testGetFirstNode2() {
-        final DetailAST child = new DetailAST();
+        final DetailAstImpl child = new DetailAstImpl();
         child.setLineNo(6);
         child.setColumnNo(5);
 
-        final DetailAST root = new DetailAST();
+        final DetailAstImpl root = new DetailAstImpl();
         root.setLineNo(5);
         root.setColumnNo(6);
 

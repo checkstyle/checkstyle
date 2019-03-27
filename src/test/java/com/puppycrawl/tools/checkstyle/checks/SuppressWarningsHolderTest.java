@@ -40,6 +40,7 @@ import org.powermock.reflect.Whitebox;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -275,16 +276,16 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
                 .getDeclaredMethod("getAllAnnotationValues", DetailAST.class);
         getAllAnnotationValues.setAccessible(true);
 
-        final DetailAST methodDef = new DetailAST();
+        final DetailAstImpl methodDef = new DetailAstImpl();
         methodDef.setType(TokenTypes.METHOD_DEF);
         methodDef.setText("Method Def");
         methodDef.setLineNo(0);
         methodDef.setColumnNo(0);
 
-        final DetailAST lparen = new DetailAST();
+        final DetailAstImpl lparen = new DetailAstImpl();
         lparen.setType(TokenTypes.LPAREN);
 
-        final DetailAST parent = new DetailAST();
+        final DetailAstImpl parent = new DetailAstImpl();
         parent.addChild(lparen);
         parent.addChild(methodDef);
 
@@ -307,7 +308,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
                 .getDeclaredMethod("getAnnotationValues", DetailAST.class);
         getAllAnnotationValues.setAccessible(true);
 
-        final DetailAST methodDef = new DetailAST();
+        final DetailAST methodDef = new DetailAstImpl();
         methodDef.setType(TokenTypes.METHOD_DEF);
         methodDef.setText("Method Def");
         methodDef.setLineNo(0);
@@ -333,11 +334,11 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
                 .getDeclaredMethod("getAnnotationTarget", DetailAST.class);
         getAnnotationTarget.setAccessible(true);
 
-        final DetailAST methodDef = new DetailAST();
+        final DetailAstImpl methodDef = new DetailAstImpl();
         methodDef.setType(TokenTypes.METHOD_DEF);
         methodDef.setText("Method Def");
 
-        final DetailAST parent = new DetailAST();
+        final DetailAstImpl parent = new DetailAstImpl();
         parent.setType(TokenTypes.ASSIGN);
         parent.setText("Parent ast");
         parent.addChild(methodDef);
@@ -359,7 +360,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     @Test
     public void testAstWithoutChildren() {
         final SuppressWarningsHolder holder = new SuppressWarningsHolder();
-        final DetailAST methodDef = new DetailAST();
+        final DetailAST methodDef = new DetailAstImpl();
         methodDef.setType(TokenTypes.METHOD_DEF);
 
         try {

@@ -24,6 +24,7 @@ import java.util.Map;
 
 import antlr.ASTFactory;
 import antlr.collections.AST;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -75,7 +76,7 @@ public class ParseTreeTablePresentation {
      * @param parseTree DetailAST parse tree.
      */
     protected final void setParseTree(DetailAST parseTree) {
-        ((AST) root).setFirstChild(parseTree);
+        ((AST) root).setFirstChild((AST) parseTree);
     }
 
     /**
@@ -256,7 +257,7 @@ public class ParseTreeTablePresentation {
      */
     private static DetailAST createArtificialTreeRoot() {
         final ASTFactory factory = new ASTFactory();
-        factory.setASTNodeClass(DetailAST.class.getName());
+        factory.setASTNodeClass(DetailAstImpl.class.getName());
         return (DetailAST) factory.create(TokenTypes.EOF, "ROOT");
     }
 

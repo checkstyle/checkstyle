@@ -36,6 +36,7 @@ import java.util.TreeMap;
 
 import org.junit.Test;
 
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -261,11 +262,11 @@ public class TokenUtilTest {
 
     @Test
     public void testFindFirstTokenByPredicate() {
-        final DetailAST astForTest = new DetailAST();
-        final DetailAST child = new DetailAST();
-        final DetailAST firstSibling = new DetailAST();
-        final DetailAST secondSibling = new DetailAST();
-        final DetailAST thirdSibling = new DetailAST();
+        final DetailAstImpl astForTest = new DetailAstImpl();
+        final DetailAstImpl child = new DetailAstImpl();
+        final DetailAstImpl firstSibling = new DetailAstImpl();
+        final DetailAstImpl secondSibling = new DetailAstImpl();
+        final DetailAstImpl thirdSibling = new DetailAstImpl();
         firstSibling.setText("first");
         secondSibling.setText("second");
         thirdSibling.setText("third");
@@ -281,11 +282,11 @@ public class TokenUtilTest {
 
     @Test
     public void testForEachChild() {
-        final DetailAST astForTest = new DetailAST();
-        final DetailAST child = new DetailAST();
-        final DetailAST firstSibling = new DetailAST();
-        final DetailAST secondSibling = new DetailAST();
-        final DetailAST thirdSibling = new DetailAST();
+        final DetailAstImpl astForTest = new DetailAstImpl();
+        final DetailAstImpl child = new DetailAstImpl();
+        final DetailAstImpl firstSibling = new DetailAstImpl();
+        final DetailAstImpl secondSibling = new DetailAstImpl();
+        final DetailAstImpl thirdSibling = new DetailAstImpl();
         firstSibling.setType(TokenTypes.DOT);
         secondSibling.setType(TokenTypes.CLASS_DEF);
         thirdSibling.setType(TokenTypes.IDENT);

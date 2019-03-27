@@ -4423,7 +4423,8 @@
                 <option value="WeakerAccess"/>
                 <!-- we need to work with AntClassLoader, there is no way to avoid this -->
                 <option value="ClassLoaderInstantiation"/>
-                <!-- There are asserts in DetailASTTest#checkNode, but idea does not see them -->
+                <!-- There are asserts in DetailAstImplTest#checkNode,
+                       but idea does not see them -->
                 <option value="JUnitTestMethodWithNoAssertions"/>
                 <!-- we use it in Main class -->
                 <option value="CallToSystemExit"/>
