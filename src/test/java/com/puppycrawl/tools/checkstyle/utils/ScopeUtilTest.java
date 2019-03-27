@@ -26,6 +26,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import antlr.collections.AST;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -41,7 +43,7 @@ public class ScopeUtilTest {
     @Test
     public void testInClassBlock() {
         assertFalse("Should return false when passed is not class",
-                ScopeUtil.isInClassBlock(new DetailAST()));
+                ScopeUtil.isInClassBlock(new DetailAstImpl()));
         assertFalse("Should return false when passed is not class",
                 ScopeUtil.isInClassBlock(getNode(TokenTypes.LITERAL_NEW,
                         TokenTypes.MODIFIERS)));
@@ -67,7 +69,7 @@ public class ScopeUtilTest {
     @Test
     public void testInEnumBlock() {
         assertFalse("Should return false when passed is not enum",
-                ScopeUtil.isInEnumBlock(new DetailAST()));
+                ScopeUtil.isInEnumBlock(new DetailAstImpl()));
         assertFalse("Should return false when passed is not enum",
                 ScopeUtil.isInEnumBlock(getNode(TokenTypes.LITERAL_NEW,
                         TokenTypes.MODIFIERS)));
@@ -259,11 +261,11 @@ public class ScopeUtilTest {
                 getNode(TokenTypes.ENUM_DEF, TokenTypes.OBJBLOCK)));
     }
 
-    private static DetailAST getNode(int... nodeTypes) {
-        DetailAST ast = new DetailAST();
+    private static DetailAstImpl getNode(int... nodeTypes) {
+        DetailAstImpl ast = new DetailAstImpl();
         ast.setType(nodeTypes[0]);
         for (int i = 1; i < nodeTypes.length; i++) {
-            final DetailAST astChild = new DetailAST();
+            final DetailAstImpl astChild = new DetailAstImpl();
             astChild.setType(nodeTypes[i]);
             ast.addChild(astChild);
             ast = astChild;
@@ -275,8 +277,8 @@ public class ScopeUtilTest {
                                                     int parentTokenType) {
         final DetailAST ast = getNode(parentTokenType, TokenTypes.MODIFIERS, literal);
         ast.setText(scope);
-        final DetailAST ast2 = getNode(TokenTypes.OBJBLOCK);
-        ast.getParent().getParent().addChild(ast2);
+        final DetailAstImpl ast2 = getNode(TokenTypes.OBJBLOCK);
+        ((AST) ast.getParent().getParent()).addChild(ast2);
         return ast;
     }
 

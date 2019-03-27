@@ -19,8 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import org.antlr.v4.runtime.Recognizer;
-
 import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocParser;
 
 /**
@@ -1204,9 +1202,11 @@ public final class JavadocTokenTypes {
     public static final int WS = JavadocParser.WS;
 
     /**
-     * End Of File symbol.
+     * End Of File symbol. Copied from
+     * {@link org.antlr.v4.runtime.Recognizer#EOF} to avoid ANTLR dependency in
+     * API.
      */
-    public static final int EOF = Recognizer.EOF;
+    public static final int EOF = -1;
 
     //--------------------------------------------------------------------------------------------//
     //------- JAVADOC TAGS DEPENDING ON RULE TYPES OFFSET ----------------------------------------//

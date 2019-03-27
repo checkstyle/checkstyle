@@ -34,7 +34,7 @@ import antlr.CommonHiddenStreamToken;
 import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -119,7 +119,7 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWrongTokenType() {
         final MutableExceptionCheck obj = new MutableExceptionCheck();
-        final DetailAST ast = new DetailAST();
+        final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.INTERFACE_DEF, "interface"));
         try {
             obj.visitToken(ast);

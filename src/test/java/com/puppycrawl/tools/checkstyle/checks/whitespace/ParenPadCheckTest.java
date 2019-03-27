@@ -34,6 +34,7 @@ import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -480,7 +481,7 @@ public class ParenPadCheckTest
         final ParenPadCheck check = new ParenPadCheck();
         final Method method = Whitebox.getMethod(ParenPadCheck.class,
             "isAcceptableToken", DetailAST.class);
-        final DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAstImpl();
         final String message = "Expected that all acceptable tokens will pass isAcceptableToken "
             + "method, but some token don't: ";
 

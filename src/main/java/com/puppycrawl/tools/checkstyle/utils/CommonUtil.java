@@ -39,6 +39,7 @@ import java.util.regex.PatternSyntaxException;
 import org.apache.commons.beanutils.ConversionException;
 
 import antlr.Token;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -119,13 +120,13 @@ public final class CommonUtil {
      * @return DetailAST block comment
      */
     public static DetailAST createBlockCommentNode(String content) {
-        final DetailAST blockCommentBegin = new DetailAST();
+        final DetailAstImpl blockCommentBegin = new DetailAstImpl();
         blockCommentBegin.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
         blockCommentBegin.setText(BLOCK_MULTIPLE_COMMENT_BEGIN);
         blockCommentBegin.setLineNo(0);
         blockCommentBegin.setColumnNo(-JAVADOC_START.length());
 
-        final DetailAST commentContent = new DetailAST();
+        final DetailAstImpl commentContent = new DetailAstImpl();
         commentContent.setType(TokenTypes.COMMENT_CONTENT);
         commentContent.setText("*" + content);
         commentContent.setLineNo(0);
@@ -133,7 +134,7 @@ public final class CommonUtil {
         // that contains javadoc identifier has -1 column
         commentContent.setColumnNo(-1);
 
-        final DetailAST blockCommentEnd = new DetailAST();
+        final DetailAstImpl blockCommentEnd = new DetailAstImpl();
         blockCommentEnd.setType(TokenTypes.BLOCK_COMMENT_END);
         blockCommentEnd.setText(BLOCK_MULTIPLE_COMMENT_END);
 
@@ -149,14 +150,14 @@ public final class CommonUtil {
      * @return DetailAST with BLOCK_COMMENT type.
      */
     public static DetailAST createBlockCommentNode(Token token) {
-        final DetailAST blockComment = new DetailAST();
+        final DetailAstImpl blockComment = new DetailAstImpl();
         blockComment.initialize(TokenTypes.BLOCK_COMMENT_BEGIN, BLOCK_MULTIPLE_COMMENT_BEGIN);
 
         // column counting begins from 0
         blockComment.setColumnNo(token.getColumn() - 1);
         blockComment.setLineNo(token.getLine());
 
-        final DetailAST blockCommentContent = new DetailAST();
+        final DetailAstImpl blockCommentContent = new DetailAstImpl();
         blockCommentContent.setType(TokenTypes.COMMENT_CONTENT);
 
         // column counting begins from 0
@@ -165,7 +166,7 @@ public final class CommonUtil {
         blockCommentContent.setLineNo(token.getLine());
         blockCommentContent.setText(token.getText());
 
-        final DetailAST blockCommentClose = new DetailAST();
+        final DetailAstImpl blockCommentClose = new DetailAstImpl();
         blockCommentClose.initialize(TokenTypes.BLOCK_COMMENT_END, BLOCK_MULTIPLE_COMMENT_END);
 
         final Map.Entry<Integer, Integer> linesColumns = countLinesColumns(

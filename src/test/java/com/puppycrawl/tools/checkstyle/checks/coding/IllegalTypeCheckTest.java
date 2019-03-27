@@ -28,6 +28,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -324,7 +325,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     public void testImproperToken() {
         final IllegalTypeCheck check = new IllegalTypeCheck();
 
-        final DetailAST classDefAst = new DetailAST();
+        final DetailAST classDefAst = new DetailAstImpl();
         classDefAst.setType(TokenTypes.DOT);
 
         try {

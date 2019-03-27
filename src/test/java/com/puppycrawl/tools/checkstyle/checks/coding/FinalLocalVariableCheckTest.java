@@ -26,6 +26,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -185,7 +186,7 @@ public class FinalLocalVariableCheckTest
     public void testImproperToken() {
         final FinalLocalVariableCheck check = new FinalLocalVariableCheck();
 
-        final DetailAST lambdaAst = new DetailAST();
+        final DetailAST lambdaAst = new DetailAstImpl();
         lambdaAst.setType(TokenTypes.LAMBDA);
 
         try {

@@ -1,5 +1,5 @@
-package com.puppycrawl.tools.checkstyle.api.detailast;
-public class InputDetailASTJustToMakeStackoverflowError {
+package com.puppycrawl.tools.checkstyle.detailastimpl;
+public class InputDetailAstImplJustToMakeStackoverflowError {
   private String str = ""
       +""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""
       +""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""

@@ -35,11 +35,11 @@ import java.util.TreeSet;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
-public class AbstractFileSetCheckTest extends AbstractPathTestSupport {
+public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -184,6 +184,16 @@ public class AbstractFileSetCheckTest extends AbstractPathTestSupport {
         check.setMessageDispatcher(checker);
 
         assertEquals("Invalid message dispatcher", checker, check.getMessageDispatcher());
+    }
+
+    @Test
+    public void testCheck() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(ViolationFileSetCheck.class);
+
+        final String[] expected = {
+            "1:6: Violation.",
+        };
+        verify(checkConfig, getPath("InputAbstractFileSetLineColumn.txt"), expected);
     }
 
     @Test

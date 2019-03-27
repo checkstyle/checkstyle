@@ -32,6 +32,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -75,7 +76,7 @@ public class AnnotationUtilTest {
 
     @Test
     public void testContainsAnnotationFalse() {
-        final DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAstImpl();
         ast.setType(1);
         assertFalse("AnnotationUtil should not contain " + ast,
                 AnnotationUtil.containsAnnotation(ast));
@@ -83,9 +84,9 @@ public class AnnotationUtilTest {
 
     @Test
     public void testContainsAnnotationFalse2() {
-        final DetailAST ast = new DetailAST();
+        final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(1);
-        final DetailAST ast2 = new DetailAST();
+        final DetailAstImpl ast2 = new DetailAstImpl();
         ast2.setType(TokenTypes.MODIFIERS);
         ast.addChild(ast2);
         assertFalse("AnnotationUtil should not contain " + ast,
@@ -94,12 +95,12 @@ public class AnnotationUtilTest {
 
     @Test
     public void testContainsAnnotationTrue() {
-        final DetailAST ast = new DetailAST();
+        final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(1);
-        final DetailAST ast2 = new DetailAST();
+        final DetailAstImpl ast2 = new DetailAstImpl();
         ast2.setType(TokenTypes.MODIFIERS);
         ast.addChild(ast2);
-        final DetailAST ast3 = new DetailAST();
+        final DetailAstImpl ast3 = new DetailAstImpl();
         ast3.setType(TokenTypes.ANNOTATION);
         ast2.addChild(ast3);
         assertTrue("AnnotationUtil should contain " + ast,
@@ -133,7 +134,7 @@ public class AnnotationUtilTest {
     @Test
     public void testAnnotationNull2() {
         try {
-            AnnotationUtil.getAnnotation(new DetailAST(), null);
+            AnnotationUtil.getAnnotation(new DetailAstImpl(), null);
             Assert.fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException ex) {
@@ -145,7 +146,7 @@ public class AnnotationUtilTest {
     @Test
     public void testAnnotationEmpty() {
         try {
-            AnnotationUtil.getAnnotation(new DetailAST(), "");
+            AnnotationUtil.getAnnotation(new DetailAstImpl(), "");
             Assert.fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException ex) {
@@ -180,7 +181,7 @@ public class AnnotationUtilTest {
 
     @Test
     public void testContainsAnnotationListWithNullList() {
-        final DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAstImpl();
         final List<String> annotations = null;
         try {
             AnnotationUtil.containsAnnotation(ast, annotations);
@@ -194,7 +195,7 @@ public class AnnotationUtilTest {
 
     @Test
     public void testContainsAnnotationListWithEmptyList() {
-        final DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAstImpl();
         final List<String> annotations = new ArrayList<>();
         final boolean result = AnnotationUtil.containsAnnotation(ast, annotations);
         assertFalse("An empty list should lead to a false result", result);
@@ -202,8 +203,8 @@ public class AnnotationUtilTest {
 
     @Test
     public void testContainsAnnotationListWithNoAnnotationNode() {
-        final DetailAST ast = new DetailAST();
-        final DetailAST modifiersAst = new DetailAST();
+        final DetailAstImpl ast = new DetailAstImpl();
+        final DetailAstImpl modifiersAst = new DetailAstImpl();
         modifiersAst.setType(TokenTypes.MODIFIERS);
         ast.addChild(modifiersAst);
         final List<String> annotations = Collections.singletonList("Override");
@@ -213,8 +214,8 @@ public class AnnotationUtilTest {
 
     @Test
     public void testContainsAnnotationListWithEmptyAnnotationNode() {
-        final DetailAST ast = new DetailAST();
-        final DetailAST modifiersAst = create(
+        final DetailAstImpl ast = new DetailAstImpl();
+        final DetailAstImpl modifiersAst = create(
                 TokenTypes.MODIFIERS,
                 create(
                         TokenTypes.ANNOTATION,
@@ -234,8 +235,8 @@ public class AnnotationUtilTest {
 
     @Test
     public void testContainsAnnotationListWithNoMatchingAnnotation() {
-        final DetailAST ast = new DetailAST();
-        final DetailAST modifiersAst = create(
+        final DetailAstImpl ast = new DetailAstImpl();
+        final DetailAstImpl modifiersAst = create(
                 TokenTypes.MODIFIERS,
                 create(
                         TokenTypes.ANNOTATION,
@@ -255,13 +256,13 @@ public class AnnotationUtilTest {
 
     @Test
     public void testContainsAnnotation() {
-        final DetailAST astForTest = new DetailAST();
+        final DetailAstImpl astForTest = new DetailAstImpl();
         astForTest.setType(TokenTypes.PACKAGE_DEF);
-        final DetailAST child = new DetailAST();
-        final DetailAST annotations = new DetailAST();
-        final DetailAST annotation = new DetailAST();
-        final DetailAST annotationNameHolder = new DetailAST();
-        final DetailAST annotationName = new DetailAST();
+        final DetailAstImpl child = new DetailAstImpl();
+        final DetailAstImpl annotations = new DetailAstImpl();
+        final DetailAstImpl annotation = new DetailAstImpl();
+        final DetailAstImpl annotationNameHolder = new DetailAstImpl();
+        final DetailAstImpl annotationName = new DetailAstImpl();
         annotations.setType(TokenTypes.ANNOTATIONS);
         annotation.setType(TokenTypes.ANNOTATION);
         annotationNameHolder.setType(TokenTypes.AT);
@@ -279,13 +280,13 @@ public class AnnotationUtilTest {
 
     @Test
     public void testContainsAnnotationWithStringFalse() {
-        final DetailAST astForTest = new DetailAST();
+        final DetailAstImpl astForTest = new DetailAstImpl();
         astForTest.setType(TokenTypes.PACKAGE_DEF);
-        final DetailAST child = new DetailAST();
-        final DetailAST annotations = new DetailAST();
-        final DetailAST annotation = new DetailAST();
-        final DetailAST annotationNameHolder = new DetailAST();
-        final DetailAST annotationName = new DetailAST();
+        final DetailAstImpl child = new DetailAstImpl();
+        final DetailAstImpl annotations = new DetailAstImpl();
+        final DetailAstImpl annotation = new DetailAstImpl();
+        final DetailAstImpl annotationNameHolder = new DetailAstImpl();
+        final DetailAstImpl annotationName = new DetailAstImpl();
         annotations.setType(TokenTypes.ANNOTATIONS);
         annotation.setType(TokenTypes.ANNOTATION);
         annotationNameHolder.setType(TokenTypes.AT);
@@ -303,14 +304,14 @@ public class AnnotationUtilTest {
 
     @Test
     public void testContainsAnnotationWithComment() {
-        final DetailAST astForTest = new DetailAST();
+        final DetailAstImpl astForTest = new DetailAstImpl();
         astForTest.setType(TokenTypes.PACKAGE_DEF);
-        final DetailAST child = new DetailAST();
-        final DetailAST annotations = new DetailAST();
-        final DetailAST annotation = new DetailAST();
-        final DetailAST annotationNameHolder = new DetailAST();
-        final DetailAST annotationName = new DetailAST();
-        final DetailAST comment = new DetailAST();
+        final DetailAstImpl child = new DetailAstImpl();
+        final DetailAstImpl annotations = new DetailAstImpl();
+        final DetailAstImpl annotation = new DetailAstImpl();
+        final DetailAstImpl annotationNameHolder = new DetailAstImpl();
+        final DetailAstImpl annotationName = new DetailAstImpl();
+        final DetailAstImpl comment = new DetailAstImpl();
         annotations.setType(TokenTypes.ANNOTATIONS);
         annotation.setType(TokenTypes.ANNOTATION);
         annotationNameHolder.setType(TokenTypes.AT);
@@ -328,20 +329,20 @@ public class AnnotationUtilTest {
                 AnnotationUtil.containsAnnotation(astForTest, "Annotation"));
     }
 
-    private static DetailAST create(int tokenType) {
-        final DetailAST ast = new DetailAST();
+    private static DetailAstImpl create(int tokenType) {
+        final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(tokenType);
         return ast;
     }
 
-    private static DetailAST create(int tokenType, String text) {
-        final DetailAST ast = create(tokenType);
+    private static DetailAstImpl create(int tokenType, String text) {
+        final DetailAstImpl ast = create(tokenType);
         ast.setText(text);
         return ast;
     }
 
-    private static DetailAST create(int tokenType, DetailAST child) {
-        final DetailAST ast = create(tokenType);
+    private static DetailAstImpl create(int tokenType, DetailAstImpl child) {
+        final DetailAstImpl ast = create(tokenType);
         ast.addChild(child);
         return ast;
     }

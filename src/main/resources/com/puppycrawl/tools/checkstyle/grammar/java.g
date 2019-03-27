@@ -19,7 +19,7 @@
 header {
 package com.puppycrawl.tools.checkstyle.grammar;
 
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import java.text.MessageFormat;
 import antlr.CommonHiddenStreamToken;
 }
@@ -138,13 +138,13 @@ tokens {
      * AST nodes we emit to have '<' & '>' balanced trees when encountering
      * SR and BSR tokens.
      */
-    private DetailAST currentGtSequence = null;
+    private DetailAstImpl currentGtSequence = null;
 
     /**
      * Consume a sequence of '>' characters (GT, SR or BSR)
      * and match these against the '<' characters seen.
      */
-    private void consumeCurrentGtSequence(DetailAST gtSequence)
+    private void consumeCurrentGtSequence(DetailAstImpl gtSequence)
     {
         currentGtSequence = gtSequence;
         gtToReconcile += currentGtSequence.getText().length();
@@ -159,14 +159,14 @@ tokens {
      *
      * @see #areThereGtsToEmit
      */
-    private DetailAST emitSingleGt()
+    private DetailAstImpl emitSingleGt()
     {
         gtToReconcile -= 1;
         CommonHiddenStreamToken gtToken = new CommonHiddenStreamToken(GENERIC_END, ">");
         gtToken.setLine(currentGtSequence.getLineNo());
         gtToken.setColumn(currentGtSequence.getColumnNo()
                             + (currentGtSequence.getText().length() - gtToReconcile));
-        return (DetailAST)astFactory.create(gtToken);
+        return (DetailAstImpl)astFactory.create(gtToken);
     }
 
     /**
@@ -349,9 +349,9 @@ typeArguments[boolean addImagNode]
 // this gobbles up *some* amount of '>' characters, and counts how many
 // it gobbled.
 protected typeArgumentsOrParametersEnd!
-    :   g:GT {consumeCurrentGtSequence((DetailAST)#g);}
-    |   sr:SR {consumeCurrentGtSequence((DetailAST)#sr);}
-    |   bsr:BSR {consumeCurrentGtSequence((DetailAST)#bsr);}
+    :   g:GT {consumeCurrentGtSequence((DetailAstImpl)#g);}
+    |   sr:SR {consumeCurrentGtSequence((DetailAstImpl)#sr);}
+    |   bsr:BSR {consumeCurrentGtSequence((DetailAstImpl)#bsr);}
     ;
 
 typeArgumentBounds[boolean addImagNode]

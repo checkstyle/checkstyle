@@ -48,7 +48,7 @@
     <Match>
       <!-- have never been a case for years, Eclipse does not show any other classes
            inherited from CommonASTWithHiddenTokens -->
-      <Class name="com.puppycrawl.tools.checkstyle.api.DetailAST" />
+      <Class name="com.puppycrawl.tools.checkstyle.DetailAstImpl" />
       <Bug pattern="BC_UNCONFIRMED_CAST" />
     </Match>
     <Match>

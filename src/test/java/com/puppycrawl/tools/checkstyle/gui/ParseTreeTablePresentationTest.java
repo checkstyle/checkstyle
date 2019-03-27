@@ -27,6 +27,7 @@ import org.junit.Test;
 
 import antlr.collections.AST;
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -187,7 +188,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         }
 
         Assert.assertEquals("Invalid child index",
-                -1, parseTree.getIndexOfChild(tree, new DetailAST()));
+                -1, parseTree.getIndexOfChild(tree, new DetailAstImpl()));
     }
 
     /**

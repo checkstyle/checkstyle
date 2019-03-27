@@ -313,6 +313,7 @@ DEST
 destfile
 Destructuring
 detailast
+detailastimpl
 detailnodetreestringprinter
 Dexec
 dfn

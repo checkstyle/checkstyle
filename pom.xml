@@ -2667,11 +2667,13 @@
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
               <targetClasses>
+                <param>com.puppycrawl.tools.checkstyle.DetailAstImpl*</param>
                 <param>com.puppycrawl.tools.checkstyle.JavadocPropertiesGenerator*</param>
                 <param>com.puppycrawl.tools.checkstyle.XmlLoader*</param>
                 <param>com.puppycrawl.tools.checkstyle.JavaParser*</param>
               </targetClasses>
               <targetTests>
+                <param>com.puppycrawl.tools.checkstyle.DetailAstImplTest</param>
                 <param>com.puppycrawl.tools.checkstyle.JavadocPropertiesGeneratorTest</param>
                 <param>com.puppycrawl.tools.checkstyle.XmlLoaderTest</param>
                 <param>com.puppycrawl.tools.checkstyle.JavaParserTest</param>

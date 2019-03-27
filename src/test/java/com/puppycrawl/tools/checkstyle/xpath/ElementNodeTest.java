@@ -31,6 +31,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -104,7 +105,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
 
     @Test
     public void testGetAttributeValue() {
-        final DetailAST detailAST = new DetailAST();
+        final DetailAST detailAST = new DetailAstImpl();
         detailAST.setType(TokenTypes.IDENT);
         detailAST.setText("HelloWorld");
 
@@ -116,7 +117,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
 
     @Test
     public void testGetAttributeValueNoAttribute() {
-        final DetailAST detailAST = new DetailAST();
+        final DetailAST detailAST = new DetailAstImpl();
         detailAST.setType(TokenTypes.CLASS_DEF);
         detailAST.setText("HelloWorld");
 
@@ -127,7 +128,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
 
     @Test
     public void testGetAttributeValueWrongAttribute() {
-        final DetailAST detailAST = new DetailAST();
+        final DetailAST detailAST = new DetailAstImpl();
         detailAST.setType(TokenTypes.IDENT);
         detailAST.setText("HelloWorld");
 
@@ -138,7 +139,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
 
     @Test
     public void testIterateAxisEmptyChildren() {
-        final DetailAST detailAST = new DetailAST();
+        final DetailAST detailAST = new DetailAstImpl();
         detailAST.setType(TokenTypes.METHOD_DEF);
         final ElementNode elementNode = new ElementNode(rootNode, null, detailAST);
         try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.CHILD)) {
@@ -151,9 +152,9 @@ public class ElementNodeTest extends AbstractPathTestSupport {
 
     @Test
     public void testIterateAxisWithChildren() {
-        final DetailAST detailAST = new DetailAST();
+        final DetailAstImpl detailAST = new DetailAstImpl();
         detailAST.setType(TokenTypes.METHOD_DEF);
-        final DetailAST childAst = new DetailAST();
+        final DetailAstImpl childAst = new DetailAstImpl();
         childAst.setType(TokenTypes.VARIABLE_DEF);
         detailAST.addChild(childAst);
         final ElementNode elementNode = new ElementNode(rootNode, null, detailAST);

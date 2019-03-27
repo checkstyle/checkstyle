@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import java.util.Locale;
 
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -535,7 +536,7 @@ public class RightCurlyCheck extends AbstractCheck {
             if (next == null) {
                 // a DetailAST object with DetailAST#NOT_INITIALIZED for line and column numbers
                 // that no 'actual' DetailAST objects can have.
-                next = new DetailAST();
+                next = new DetailAstImpl();
             }
             else {
                 next = CheckUtil.getFirstNode(next);

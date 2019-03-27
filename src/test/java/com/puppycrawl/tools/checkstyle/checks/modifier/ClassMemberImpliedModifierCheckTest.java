@@ -27,7 +27,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -112,12 +112,12 @@ public class ClassMemberImpliedModifierCheckTest
 
     @Test
     public void testIllegalState() {
-        final DetailAST init = new DetailAST();
+        final DetailAstImpl init = new DetailAstImpl();
         init.setType(TokenTypes.STATIC_INIT);
-        final DetailAST objBlock = new DetailAST();
+        final DetailAstImpl objBlock = new DetailAstImpl();
         objBlock.setType(TokenTypes.OBJBLOCK);
         objBlock.addChild(init);
-        final DetailAST interfaceAst = new DetailAST();
+        final DetailAstImpl interfaceAst = new DetailAstImpl();
         interfaceAst.setType(TokenTypes.CLASS_DEF);
         interfaceAst.addChild(objBlock);
         final ClassMemberImpliedModifierCheck check =
