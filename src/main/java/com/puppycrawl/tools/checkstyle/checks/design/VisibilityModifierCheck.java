@@ -28,7 +28,6 @@ import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import antlr.collections.AST;
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -603,10 +602,10 @@ public class VisibilityModifierCheck
      * @return the set of modifier Strings for defAST.
      */
     private static Set<String> getModifiers(DetailAST defAST) {
-        final AST modifiersAST = defAST.findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST modifiersAST = defAST.findFirstToken(TokenTypes.MODIFIERS);
         final Set<String> modifiersSet = new HashSet<>();
         if (modifiersAST != null) {
-            AST modifier = modifiersAST.getFirstChild();
+            DetailAST modifier = modifiersAST.getFirstChild();
             while (modifier != null) {
                 modifiersSet.add(modifier.getText());
                 modifier = modifier.getNextSibling();

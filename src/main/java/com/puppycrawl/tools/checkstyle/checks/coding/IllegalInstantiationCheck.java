@@ -24,7 +24,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import antlr.collections.AST;
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -215,7 +214,7 @@ public class IllegalInstantiationCheck
      */
     private void postProcessLiteralNew(DetailAST newTokenAst) {
         final DetailAST typeNameAst = newTokenAst.getFirstChild();
-        final AST nameSibling = typeNameAst.getNextSibling();
+        final DetailAST nameSibling = typeNameAst.getNextSibling();
         if (nameSibling.getType() != TokenTypes.ARRAY_DECLARATOR) {
             // ast != "new Boolean[]"
             final FullIdent typeIdent = FullIdent.createFullIdent(typeNameAst);

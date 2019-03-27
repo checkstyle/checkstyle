@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.Arrays;
 
-import antlr.collections.AST;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -173,7 +172,7 @@ public class InnerAssignmentCheck
         boolean result = false;
         if (isInContext(ast, CONTROL_CONTEXT)) {
             final DetailAST expr = ast.getParent();
-            final AST exprNext = expr.getNextSibling();
+            final DetailAST exprNext = expr.getNextSibling();
             result = exprNext.getType() == TokenTypes.SEMI;
         }
         return result;
