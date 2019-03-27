@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import java.util.Deque;
 import java.util.LinkedList;
 
-import antlr.collections.AST;
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -146,7 +145,7 @@ public abstract class AbstractSuperCheck
      * @return true if method name is the same
      */
     private boolean isSameNameMethod(DetailAST ast) {
-        AST sibling = ast.getNextSibling();
+        DetailAST sibling = ast.getNextSibling();
         // ignore type parameters
         if (sibling != null
             && sibling.getType() == TokenTypes.TYPE_ARGUMENTS) {

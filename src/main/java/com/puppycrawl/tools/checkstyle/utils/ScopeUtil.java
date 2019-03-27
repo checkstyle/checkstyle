@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
-import antlr.collections.AST;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -43,7 +42,7 @@ public final class ScopeUtil {
     public static Scope getScopeFromMods(DetailAST aMods) {
         // default scope
         Scope returnValue = Scope.PACKAGE;
-        for (AST token = aMods.getFirstChild(); token != null
+        for (DetailAST token = aMods.getFirstChild(); token != null
                 && returnValue == Scope.PACKAGE;
                 token = token.getNextSibling()) {
             if ("public".equals(token.getText())) {

@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import antlr.collections.AST;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -64,8 +63,8 @@ public class StringLiteralEqualityCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         // no need to check for nulls here, == and != always have two children
-        final AST firstChild = ast.getFirstChild();
-        final AST secondChild = firstChild.getNextSibling();
+        final DetailAST firstChild = ast.getFirstChild();
+        final DetailAST secondChild = firstChild.getNextSibling();
 
         if (firstChild.getType() == TokenTypes.STRING_LITERAL
                 || secondChild.getType() == TokenTypes.STRING_LITERAL) {

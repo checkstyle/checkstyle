@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks;
 import java.util.Arrays;
 import java.util.Set;
 
-import antlr.collections.AST;
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -314,7 +313,7 @@ public class DescendantTokenCheck extends AbstractCheck {
      * @param ast the root token for descendants.
      * @param depth the maximum depth of the counted descendants.
      */
-    private void countTokens(AST ast, int depth) {
+    private void countTokens(DetailAST ast, int depth) {
         if (depth <= maximumDepth) {
             //update count
             if (depth >= minimumDepth) {
@@ -323,7 +322,7 @@ public class DescendantTokenCheck extends AbstractCheck {
                     counts[type - 1]++;
                 }
             }
-            AST child = ast.getFirstChild();
+            DetailAST child = ast.getFirstChild();
             final int nextDepth = depth + 1;
             while (child != null) {
                 countTokens(child, nextDepth);

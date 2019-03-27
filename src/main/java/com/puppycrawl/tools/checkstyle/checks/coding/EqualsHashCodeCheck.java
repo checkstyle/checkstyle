@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import java.util.HashMap;
 import java.util.Map;
 
-import antlr.collections.AST;
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -134,8 +133,8 @@ public class EqualsHashCodeCheck
      */
     private static boolean isHashCodeMethod(DetailAST ast) {
         final DetailAST modifiers = ast.getFirstChild();
-        final AST type = ast.findFirstToken(TokenTypes.TYPE);
-        final AST methodName = ast.findFirstToken(TokenTypes.IDENT);
+        final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
+        final DetailAST methodName = ast.findFirstToken(TokenTypes.IDENT);
         final DetailAST parameters = ast.findFirstToken(TokenTypes.PARAMETERS);
 
         return type.getFirstChild().getType() == TokenTypes.LITERAL_INT

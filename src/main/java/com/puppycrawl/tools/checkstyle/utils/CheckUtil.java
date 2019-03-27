@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import antlr.collections.AST;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -423,7 +422,7 @@ public final class CheckUtil {
 
         // default access modifier
         AccessModifier accessModifier = AccessModifier.PACKAGE;
-        for (AST token = modifiersToken.getFirstChild(); token != null;
+        for (DetailAST token = modifiersToken.getFirstChild(); token != null;
              token = token.getNextSibling()) {
             final int tokenType = token.getType();
             if (tokenType == TokenTypes.LITERAL_PUBLIC) {
