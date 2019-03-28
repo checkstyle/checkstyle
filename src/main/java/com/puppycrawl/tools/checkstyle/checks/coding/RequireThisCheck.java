@@ -606,12 +606,34 @@ public class RequireThisCheck extends AbstractCheck {
 
         boolean returnedVariable = false;
         for (DetailAST returnToken : returnsInsideBlock) {
-            returnedVariable = returnToken.findAll(ident).hasMoreNodes();
+            returnedVariable = isAstInside(returnToken, ident);
             if (returnedVariable) {
                 break;
             }
         }
         return returnedVariable;
+    }
+
+    /**
+     * Checks if the given {@code ast} is equal to the {@code tree} or a child of it.
+     * @param tree The tree to search.
+     * @param ast The AST to look for.
+     * @return {@code true} if the {@code ast} was found.
+     */
+    private static boolean isAstInside(DetailAST tree, DetailAST ast) {
+        boolean result = false;
+
+        if (tree.equals(ast)) {
+            result = true;
+        }
+        else {
+            for (DetailAST child = tree.getFirstChild(); child != null
+                    && !result; child = child.getNextSibling()) {
+                result = isAstInside(child, ast);
+            }
+        }
+
+        return result;
     }
 
     /**
