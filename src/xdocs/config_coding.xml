@@ -2305,16 +2305,6 @@ while ((line = bufferedReader.readLine()) != null) {
         <source>
 &lt;module name=&quot;InnerAssignment&quot;/&gt;
         </source>
-
-        <p>
-          To configure the check for only <code>=</code>, <code> +=</code>, and <code>-=</code>
-          operators:
-        </p>
-        <source>
-&lt;module name=&quot;InnerAssignment&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;ASSIGN,PLUS_ASSIGN,MINUS_ASSIGN&quot;/&gt;
-&lt;/module&gt;
-        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="InnerAssignment_Example_of_Usage">
