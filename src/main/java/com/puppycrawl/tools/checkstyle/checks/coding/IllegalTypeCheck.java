@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -351,7 +352,8 @@ public final class IllegalTypeCheck extends AbstractCheck {
 
         if (grandParentAST.getType() == TokenTypes.METHOD_DEF
             && isCheckedMethod(grandParentAST)
-            && isVerifiable(grandParentAST)) {
+            && isVerifiable(grandParentAST)
+            && !AnnotationUtil.containsAnnotation(grandParentAST, "Override")) {
             checkClassName(parameterDef);
         }
     }
