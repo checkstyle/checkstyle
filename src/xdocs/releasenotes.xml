@@ -16,6 +16,254 @@
   <body>
     <!-- placeholder for a new section -->
 
+    <section name="Release 8.19">
+      <div class="releaseDate">31.03.2019</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Xpath: change implementation of the @text attribute.
+            Author: Timur Tibeyev
+            <a href="https://github.com/checkstyle/checkstyle/issues/6356">#6356</a>
+          </li>
+          <li>
+            Remove `cache` field from TreeWalker in Checkstyle 8.0.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/2883">#2883</a>
+          </li>
+          <li>
+            Remove DTDs from http://checkstyle.sourceforge.net and from http://puppycrawl.com/.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6478">#6478</a>
+          </li>
+          <li>
+            Remove hashCode and equals methods from FilterSet.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6494">#6494</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            Add tabWidth to Checker and FileSets.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6485">#6485</a>
+          </li>
+          <li>
+            AnnotationLocation: add support for PACKAGE_DEF, ENUM_CONSTANT_DEF.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6379">#6379</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            JavadocUtil doesn&#39;t recognize Javadocs in certain places.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6516">#6516</a>
+          </li>
+          <li>
+            False positive in AnnotationUseStyle for version 8.17.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6446">#6446</a>
+          </li>
+          <li>
+            Overly complex default regex in SuppressWarnings format.
+            Author: Björn Kautler
+            <a href="https://github.com/checkstyle/checkstyle/issues/6453">#6453</a>
+          </li>
+          <li>
+            Remove AvoidInlineConditionals from sun_checks.xml.
+            Author: Björn Kautler
+            <a href="https://github.com/checkstyle/checkstyle/issues/6470">#6470</a>
+          </li>
+          <li>
+            Javadoc for package-info file is not validated.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/5769">#5769</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Wrong documentation for InnerAssignment.
+            Author: Björn Kautler
+            <a href="https://github.com/checkstyle/checkstyle/issues/6488">#6488</a>
+          </li>
+          <li>
+            doc: added documentation for global tabWidth.
+            Author: rnveach
+          </li>
+          <li>
+            Align XDocs and Javadocs for coding package.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6586">#6586</a>
+          </li>
+          <li>
+            Exclude module-info.java from Google and Sun configurations.
+            Author: Martin Kröning
+            <a href="https://github.com/checkstyle/checkstyle/issues/6570">#6570</a>
+          </li>
+          <li>
+            Fix PMD violation UseProperClassLoader.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/5680">#5680</a>
+          </li>
+          <li>
+            Enable PMD rule UseUnderscoresInNumericLiterals.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6579">#6579</a>
+          </li>
+          <li>
+            Verify all modules are listed in contribution no exception configurations.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/5897">#5897</a>
+          </li>
+          <li>
+            Enable PMD rule LinguisticNaming.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6578">#6578</a>
+          </li>
+          <li>
+            Java Grammar: Hard to understand message.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/4632">#4632</a>
+          </li>
+          <li>
+            Site files are not schema-valid.
+            Author: Björn Kautler
+            <a href="https://github.com/checkstyle/checkstyle/issues/6563">#6563</a>
+          </li>
+          <li>
+            minor: reset the test stream for each test.
+            Author: Björn Kautler
+            <a href="https://github.com/checkstyle/checkstyle/issues/6557">#6557</a>
+          </li>
+          <li>
+            Upgrade to PMD 6.12.0.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6536">#6536</a>
+          </li>
+          <li>
+            Align XDocs and Javadocs for annotations package.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6531">#6531</a>
+          </li>
+          <li>
+            Disable XML External Entity load in XmlUtil.java in tests.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6133">#6133</a>
+          </li>
+          <li>
+            Align XDocs and Javadocs for blocks package.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6532">#6532</a>
+          </li>
+          <li>
+            Wrong JavaDoc example for NestedForDepthCheck.
+            Author: Björn Kautler
+            <a href="https://github.com/checkstyle/checkstyle/issues/6491">#6491</a>
+          </li>
+          <li>
+            Fix PMD violation CommentDefaultAccessModifier.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/5665">#5665</a>
+          </li>
+          <li>
+            Enforce FileTabCharacter and RegexpSingleline for trailing whitespace over resources.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/5941">#5941</a>
+          </li>
+          <li>
+            Setup checkstyle validation to forbid type StringBuffer.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/5506">#5506</a>
+          </li>
+          <li>
+            Cut down on Checkstyle&#39;s dependencies on Guava, phase II.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/3484">#3484</a>
+          </li>
+          <li>
+            resolve warning in build output from PMD .
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6226">#6226</a>
+          </li>
+          <li>
+            Expand checkstyle_resources_checks.xml to IT resources.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6542">#6542</a>
+          </li>
+          <li>
+            links in header comment block of sun_checks.xml are outdated .
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6420">#6420</a>
+          </li>
+          <li>
+            Align XDocs and Javadocs.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/5750">#5750</a>
+          </li>
+          <li>
+            MissingOverride javaFiveCompatibility true in checkstyle_checks.xml.
+            Author: Björn Kautler
+            <a href="https://github.com/checkstyle/checkstyle/issues/6452">#6452</a>
+          </li>
+          <li>
+            Typo in Lcurly docs.
+            Author: Björn Kautler
+            <a href="https://github.com/checkstyle/checkstyle/issues/6458">#6458</a>
+          </li>
+          <li>
+            Unclear rational in ExplicitInitialization.
+            Author: Björn Kautler
+            <a href="https://github.com/checkstyle/checkstyle/issues/6472">#6472</a>
+          </li>
+          <li>
+            Wrong public identifier in doctype of example empty suppressions file.
+            Author: Björn Kautler
+            <a href="https://github.com/checkstyle/checkstyle/issues/6449">#6449</a>
+          </li>
+          <li>
+            Typo in docs of VisibilityModifier.
+            Author: Björn Kautler
+            <a href="https://github.com/checkstyle/checkstyle/issues/6468">#6468</a>
+          </li>
+          <li>
+            spelling: fix then / than typos.
+            Author: Björn Kautler
+          </li>
+          <li>
+            spelling: update messages for french translation.
+            Author: sebastienaubry
+          </li>
+          <li>
+            Code samples for Naming Checks.
+            Author: jack870131
+            <a href="https://github.com/checkstyle/checkstyle/issues/5832">#5832</a>
+          </li>
+          <li>
+            EmptyCatchBlock change property types to Regexp.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6455">#6455</a>
+          </li>
+          <li>
+            Make all FilterElements immutable.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6496">#6496</a>
+          </li>
+          <li>
+            Remove hashCode/equals from SuppressionFilter and mark SuppressFilterElement immutable.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/4734">#4734</a>
+          </li>
+          <li>
+            MissingDeprecated description has a typo.
+            Author: ejaksla
+            <a href="https://github.com/checkstyle/checkstyle/issues/6451">#6451</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 8.18">
       <div class="releaseDate">25.02.2019</div>
       <p>Breaking backward compatibility:</p>
