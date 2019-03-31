@@ -440,6 +440,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "61:42: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 42),
             "63:43: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 43),
             "67:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "74:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
         };
         verify(checkConfig, getPath("InputRightCurlyAlone.java"),
                 expected);

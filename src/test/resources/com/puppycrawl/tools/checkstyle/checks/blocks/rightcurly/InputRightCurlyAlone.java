@@ -65,4 +65,13 @@ public class InputRightCurlyAlone {
     class TestClass3 {
         private int field;
     };  //violation
+
+    void method6(int a) {
+        java.util.Map<String, String> map3 = new java.util.LinkedHashMap<String, String>() {{
+            put("Hello", "World");
+            put("first", "second");
+            put("polygene", "lubricants");
+        }{}; // violation
+        };
+    }
 }
