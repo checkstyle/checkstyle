@@ -147,6 +147,72 @@ public class XdocsPagesTest {
 
     private static final Set<String> SUN_MODULES = Collections.unmodifiableSet(
         new HashSet<>(CheckUtil.getConfigSunStyleModules()));
+    // ignore the not yet properly covered modules while testing newly added ones
+    // add proper sections to the coverage report and integration tests
+    // and then remove this list eventually
+    private static final List<String> IGNORED_SUN_MODULES = Arrays.asList(
+            "ArrayTypeStyle",
+            "AvoidNestedBlocks",
+            "AvoidStarImport",
+            "ConstantName",
+            "DesignForExtension",
+            "EmptyBlock",
+            "EmptyForIteratorPad",
+            "EmptyStatement",
+            "EqualsHashCode",
+            "FileLength",
+            "FileTabCharacter",
+            "FinalClass",
+            "FinalParameters",
+            "GenericWhitespace",
+            "HiddenField",
+            "HideUtilityClassConstructor",
+            "IllegalImport",
+            "IllegalInstantiation",
+            "InnerAssignment",
+            "InterfaceIsType",
+            "JavadocMethod",
+            "JavadocPackage",
+            "JavadocStyle",
+            "JavadocType",
+            "JavadocVariable",
+            "LeftCurly",
+            "LineLength",
+            "LocalFinalVariableName",
+            "LocalVariableName",
+            "MagicNumber",
+            "MemberName",
+            "MethodLength",
+            "MethodName",
+            "MethodParamPad",
+            "MissingSwitchDefault",
+            "ModifierOrder",
+            "NeedBraces",
+            "NewlineAtEndOfFile",
+            "NoWhitespaceAfter",
+            "NoWhitespaceBefore",
+            "OperatorWrap",
+            "PackageName",
+            "ParameterName",
+            "ParameterNumber",
+            "ParenPad",
+            "RedundantImport",
+            "RedundantModifier",
+            "RegexpSingleline",
+            "RightCurly",
+            "SimplifyBooleanExpression",
+            "SimplifyBooleanReturn",
+            "StaticVariableName",
+            "TodoComment",
+            "Translation",
+            "TypecastParenPad",
+            "TypeName",
+            "UnusedImports",
+            "UpperEll",
+            "VisibilityModifier",
+            "WhitespaceAfter",
+            "WhitespaceAround"
+    );
     private static final Set<String> GOOGLE_MODULES = Collections.unmodifiableSet(
         new HashSet<>(CheckUtil.getConfigGoogleStyleModules()));
 
@@ -1338,16 +1404,25 @@ public class XdocsPagesTest {
     public void testAllStyleRules() throws Exception {
         for (Path path : XdocUtil.getXdocsStyleFilePaths(XdocUtil.getXdocsFilePaths())) {
             final String fileName = path.getFileName().toString();
+            final String styleName = fileName.substring(0, fileName.lastIndexOf('_'));
             final String input = new String(Files.readAllBytes(path), UTF_8);
             final Document document = XmlUtil.getRawXml(fileName, input, input);
             final NodeList sources = document.getElementsByTagName("tr");
-            Set<String> styleChecks = null;
 
-            if (path.toFile().getName().contains("google")) {
-                styleChecks = new HashSet<>(GOOGLE_MODULES);
-            }
-            else if (path.toFile().getName().contains("sun")) {
-                styleChecks = new HashSet<>();
+            final Set<String> styleChecks;
+            switch (styleName) {
+                case "google":
+                    styleChecks = new HashSet<>(GOOGLE_MODULES);
+                    break;
+
+                case "sun":
+                    styleChecks = new HashSet<>(SUN_MODULES);
+                    styleChecks.removeAll(IGNORED_SUN_MODULES);
+                    break;
+
+                default:
+                    Assert.fail("Missing modules list for style file '" + fileName + "'");
+                    styleChecks = null;
             }
 
             String lastRuleName = null;
@@ -1372,7 +1447,7 @@ public class XdocsPagesTest {
                 }
 
                 validateStyleModules(XmlUtil.findChildElementsByTag(columns.get(2), "a"),
-                        XmlUtil.findChildElementsByTag(columns.get(3), "a"), styleChecks, fileName,
+                        XmlUtil.findChildElementsByTag(columns.get(3), "a"), styleChecks, styleName,
                         ruleName);
 
                 lastRuleName = ruleName;
@@ -1486,7 +1561,7 @@ public class XdocsPagesTest {
     }
 
     private static void validateStyleModules(Set<Node> checks, Set<Node> configs,
-            Set<String> styleChecks, String fileName, String ruleName) {
+            Set<String> styleChecks, String styleName, String ruleName) {
         final Iterator<Node> itrChecks = checks.iterator();
         final Iterator<Node> itrConfigs = configs.iterator();
 
@@ -1499,7 +1574,7 @@ public class XdocsPagesTest {
                 continue;
             }
 
-            Assert.assertTrue(fileName + " rule '" + ruleName + "' module '" + moduleName
+            Assert.assertTrue(styleName + "_style.xml rule '" + ruleName + "' module '" + moduleName
                     + "' shouldn't end with 'Check'", !moduleName.endsWith("Check"));
 
             styleChecks.remove(moduleName);
@@ -1511,43 +1586,45 @@ public class XdocsPagesTest {
                     config = itrConfigs.next();
                 }
                 catch (NoSuchElementException ignore) {
-                    Assert.fail(fileName + " rule '" + ruleName + "' module '" + moduleName
-                            + "' is missing the config link: " + configName);
+                    Assert.fail(styleName + "_style.xml rule '" + ruleName + "' module '"
+                            + moduleName + "' is missing the config link: " + configName);
                 }
 
-                Assert.assertEquals(fileName + " rule '" + ruleName + "' module '" + moduleName
-                        + "' has mismatched config/test links", configName, config.getTextContent()
-                        .trim());
+                Assert.assertEquals(styleName + "_style.xml rule '" + ruleName + "' module '"
+                        + moduleName + "' has mismatched config/test links", configName,
+                        config.getTextContent().trim());
 
                 final String configUrl = config.getAttributes().getNamedItem("href")
                         .getTextContent();
 
                 if ("config".equals(configName)) {
                     final String expectedUrl = "https://github.com/search?q="
-                            + "path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+"
-                            + "repo%3Acheckstyle%2Fcheckstyle+" + moduleName;
+                            + "path%3Asrc%2Fmain%2Fresources+filename%3A" + styleName
+                            + "_checks.xml+repo%3Acheckstyle%2Fcheckstyle+" + moduleName;
 
-                    Assert.assertEquals(fileName + " rule '" + ruleName + "' module '" + moduleName
-                            + "' should have matching " + configName + " url", expectedUrl,
-                            configUrl);
+                    Assert.assertEquals(styleName + "_style.xml rule '" + ruleName + "' module '"
+                                    + moduleName + "' should have matching " + configName + " url",
+                            expectedUrl, configUrl);
                 }
                 else if ("test".equals(configName)) {
-                    Assert.assertTrue(fileName + " rule '" + ruleName + "' module '" + moduleName
-                            + "' should have matching " + configName + " url",
+                    Assert.assertTrue(styleName + "_style.xml rule '" + ruleName + "' module '"
+                                    + moduleName + "' should have matching " + configName + " url",
                             configUrl.startsWith("https://github.com/checkstyle/checkstyle/"
-                                    + "blob/master/src/it/java/com/google/checkstyle/test/"));
-                    Assert.assertTrue(fileName + " rule '" + ruleName + "' module '" + moduleName
-                            + "' should have matching " + configName + " url",
+                                    + "blob/master/src/it/java/com/" + styleName
+                                    + "/checkstyle/test/"));
+                    Assert.assertTrue(styleName + "_style.xml rule '" + ruleName + "' module '"
+                                    + moduleName + "' should have matching " + configName + " url",
                             configUrl.endsWith("/" + moduleName + "Test.java"));
 
-                    Assert.assertTrue(fileName + " rule '" + ruleName + "' module '" + moduleName
-                            + "' should have a test that exists", new File(configUrl.substring(53)
-                            .replace('/', File.separatorChar)).exists());
+                    Assert.assertTrue(styleName + "_style.xml rule '" + ruleName + "' module '"
+                            + moduleName + "' should have a test that exists",
+                            new File(configUrl.substring(53)
+                                    .replace('/', File.separatorChar)).exists());
                 }
             }
         }
 
-        Assert.assertFalse(fileName + " rule '" + ruleName + "' has too many configs",
+        Assert.assertFalse(styleName + "_style.xml rule '" + ruleName + "' has too many configs",
                 itrConfigs.hasNext());
     }
 
