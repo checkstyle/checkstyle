@@ -1,6 +1,6 @@
 //non-compiled with javac: contains specially crafted set of imports for testing
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
-import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_ORDERING;
+import static com.some.Class.MESSAGE_ORDERING;
 import static java.awt.Button.ABORT;
 import static java.io.File.createTempFile;
 import static javax.swing.WindowConstants.*;
@@ -17,7 +17,7 @@ import sun.tools.java.ArrayType;
 import org.junit.Test;
 import org.powermock.api.mockito.PowerMockito;
 
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.some.api.DetailClass;
 
 public class InputImportOrder_EclipseDefaultNegative {
 }
