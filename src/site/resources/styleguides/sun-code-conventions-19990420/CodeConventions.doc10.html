@@ -1,0 +1,100 @@
+<html><head><title></title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="CodeConvTOC.doc.html">[Contents]</a> <a href="CodeConventions.doc9.html">[Prev]</a> 
+<hr><br>
+ 
+<a name="a186"> </a>
+<h2 align="center">11 - 	 Code Examples</h2>
+<a name="a182"> </a>
+<h3> 11.1	 Java Source File Example</h3>
+<p><a name="688"> </a>
+The following example shows how to format a Java source file containing a single public class. Interfaces are formatted similarly. For more information, see <a href="CodeConventions.doc2.html#a1852">"Class and Interface Declarations" on page 4</a> and <a href="CodeConventions.doc4.html#a16838">"Documentation Comments" on page 9</a>
+</p><blockquote><pre>
+/*
+ * @(#)Blah.java        1.82 99/03/18
+ *
+ * Copyright (c) 1994-1999 Sun Microsystems, Inc.
+ * 901 San Antonio Road, Palo Alto, California, 94303, U.S.A.
+ * All rights reserved.
+ *
+ * This software is the confidential and proprietary information of Sun
+ * Microsystems, Inc. ("Confidential Information").  You shall not
+ * disclose such Confidential Information and shall use it only in
+ * accordance with the terms of the license agreement you entered into
+ * with Sun.
+ */
+
+
+package java.blah;
+
+import java.blah.blahdy.BlahBlah;
+
+/**
+ * <em>Class description goes here</em>.
+ *
+ * @version 	<em>1.82 18 Mar 1999
+</em> * @author 	<em>Firstname Lastname
+</em> */
+public class Blah extends SomeClass {
+<em>    /* A class implementation comment can go here. */
+</em>
+    /** <em>classVar1 documentation comment</em> */
+    public static int classVar1;
+
+    /** 
+<em>     </em>* <em>classVar2 documentation comment that happens to be
+</em>     * <em>more than one line long
+</em>     */
+    private static Object classVar2;
+
+    /** <em>instanceVar1 documentation comment</em> */
+    public Object instanceVar1;
+
+    /** <em>instanceVar2 documentation comment</em> */
+    protected int instanceVar2;
+
+    /** <em>instanceVar3 documentation comment</em> */
+    private Object[] instanceVar3;
+
+    /** 
+     * ...<em>constructor Blah documentation comment...
+</em>     */
+    public Blah() {
+ <em>       // ...implementation goes here...
+</em>    }
+
+    /**
+     * ...<em>method doSomething documentation comment...
+</em>     */
+    public void doSomething() {
+<em>        // ...implementation goes here... 
+</em>    }
+
+    /**
+     * ...method doSomethingElse <em>documentation comment...
+</em>     * @param someParam <em>description
+</em>     */
+    public void doSomethingElse(Object someParam) {
+<em>        // ...implementation goes here... 
+</em>    }
+}
+
+
+</pre></blockquote>
+<hr><br>
+ 
+<a href="CodeConvTOC.doc.html">[Contents]</a> <a href="CodeConventions.doc9.html">[Prev]</a> 
+<hr><br>
+
+
+
+
+<i><a href="Copyright.doc.html">Copyright</a> &#169; 1995-1999, Sun Microsystems, Inc.   All rights
+reserved.</i>
+
+
+<!-- Last updated: Thu Apr 15 09:03:50 1999 -->
+
+</body>
+</html>

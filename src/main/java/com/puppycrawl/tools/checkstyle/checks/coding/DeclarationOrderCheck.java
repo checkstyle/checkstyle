@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <p>
  * According to
- * <a href="https://www.oracle.com/technetwork/java/javase/documentation/codeconventions-141855.html#1852">
+ * <a href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852">
  * Code Conventions for the Java Programming Language</a>, the parts of a class
  * or interface declaration should appear in the following order:
  * </p>

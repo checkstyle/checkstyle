@@ -1,0 +1,106 @@
+<html><head><title></title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="CodeConvTOC.doc.html">[Contents]</a> <a href="CodeConventions.doc7.html">[Prev]</a> <a href="CodeConventions.doc9.html">[Next]</a> 
+<hr><br>
+ 
+<a name="a367"> </a>
+<h2 align="center">9 - 	 Naming Conventions</h2>
+<p><a name="200"> </a>
+Naming conventions make programs more understandable by making them easier to read. They can also give information about the function of the identifier-for example, whether it's a constant, package, or class-which can be helpful in understanding the code.
+</p><p><a name="683"> </a>
+ 
+<Table Border="3">
+<tr><th><br><a name="15405"> </a>
+<h2> Identifier Type</h2>
+</th><th><br><a name="15407"> </a>
+<h2> Rules for Naming</h2>
+</th><th><br><a name="15409"> </a>
+<h2> Examples</h2>
+</th></tr>
+<tr><td><br><p><a name="28840"> </a>
+ Packages
+</p></td><td><br><p><a name="34793"> </a>
+ The prefix of a unique package name  is always written in all-lowercase ASCII letters and should be one of the top-level domain names, currently com, edu, gov, mil, net, org, or one of the English two-letter codes identifying countries as specified in ISO Standard 3166, 1981.
+</p><p><a name="28865"> </a>
+ Subsequent components of the package name vary according to an organization's own internal naming conventions. Such conventions might specify that certain directory name components be division, department, project, machine, or login names. 
+</p></td><td><p><a name="34962"> </a>
+com.sun.eng
+</p>
+
+<p><a name="34966"> </a>
+com.apple.quicktime.v2
+</p><p><a name="34967"> </a>
+
+</p><p><a name="28894"> </a>
+edu.cmu.cs.bovik.cheese
+</p></td></tr>
+<tr><td><br><p><a name="15411"> </a>
+ Classes
+</p></td><td><br><p><a name="15413"> </a>
+ Class names should be nouns, in mixed case with the first letter of each internal word capitalized. Try to keep your class names simple and descriptive. Use whole words-avoid acronyms and abbreviations (unless the abbreviation is much more widely used than the long form, such as URL or HTML). 
+</p></td><td><br><p><a name="15415"> </a>
+class Raster;<br>
+class ImageSprite;
+</p></td></tr>
+<tr><td><br><p><a name="15417"> </a>
+ Interfaces
+</p></td><td><br><p><a name="15419"> </a>
+ Interface names should be capitalized like class names.
+</p></td><td><br><p><a name="15421"> </a>
+interface RasterDelegate;<br>
+interface Storing;
+</p></td></tr>
+<tr><td><br><p><a name="15423"> </a>
+ Methods
+</p></td><td><br><p><a name="15425"> </a>
+ Methods should be verbs, in mixed case with the first letter lowercase, with the first letter of each internal word capitalized. 
+</p></td><td><br><p><a name="15427"> </a>
+run();<br>
+runFast();<br>
+getBackground();
+</p></td></tr>
+<tr><td><br><p><a name="15429"> </a>
+ Variables 
+</p></td><td><br><p><a name="34851"> </a>
+ Except for variables, all instance, class,   and class constants are in mixed case with a lowercase first letter. Internal words start with capital letters. Variable names should not start with underscore _ or dollar sign $ characters, even though both are allowed.
+</p><p><a name="15432"> </a>
+ Variable names should be short yet meaningful. The choice of a variable name should be mnemonic- that is, designed to indicate to the casual observer the intent of its use. One-character variable names should be avoided except for temporary "throwaway" variables. Common names for temporary variables are <code>i</code>, <code>j</code>, <code>k</code>, <code>m</code>, and <code>n</code> for integers; <code>c</code>, <code>d</code>, and <code>e</code> for characters.
+</p></td><td><br><p><a name="15434"> </a>
+<pre>int             i;
+char            c;
+float           myWidth;
+</pre>
+</p></td></tr>
+<tr><td><br><p><a name="15436"> </a>
+ Constants
+</p></td><td><br><p><a name="15438"> </a>
+ The names of variables declared class constants  and of ANSI constants should be all uppercase with words separated by underscores ("_"). (ANSI constants should be avoided, for ease of debugging.)
+</p></td><td><br><p><a name="15440"> </a>
+static final int MIN_WIDTH = 4;
+</p><p><a name="18753"> </a>
+static final int MAX_WIDTH = 999;
+</p><p><a name="33897"> </a>
+static final int GET_THE_CPU = 1;
+</p></td></tr>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+
+</p>
+<hr><br>
+ 
+<a href="CodeConvTOC.doc.html">[Contents]</a> <a href="CodeConventions.doc7.html">[Prev]</a> <a href="CodeConventions.doc9.html">[Next]</a> 
+<hr><br>
+
+<i><a href="Copyright.doc.html">Copyright</a> &#169; 1995-1999, Sun Microsystems, Inc.   All rights
+reserved.</i>
+
+
+<!-- Last updated: Thu Apr 15 09:03:50 1999 -->
+
+</body>
+</html>

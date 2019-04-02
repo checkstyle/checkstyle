@@ -1,0 +1,85 @@
+<html><head><title></title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="CodeConvTOC.doc.html">[Contents]</a> <a href="CodeConventions.doc6.html">[Prev]</a> <a href="CodeConventions.doc8.html">[Next]</a> 
+<hr><br>
+ 
+<a name="a475"> </a>
+<h2 align="center">8 - 	 White Space</h2>
+<a name="a487"> </a>
+<h3> 8.1	 Blank Lines</h3>
+<p><a name="476"> </a>
+Blank lines improve readability by setting off sections of code that are logically related.
+</p><p><a name="478"> </a>
+Two blank lines should always be used in the following circumstances:
+</p><ul><a name="477"> </a>
+<li>Between sections of a source file
+<a name="479"> </a>
+<li>Between class and interface definitions
+</ul>
+<p><a name="480"> </a>
+One blank line should always be used in the following circumstances:
+</p><a name="485"> </a>
+<ul>
+<li>Between methods
+<a name="486"> </a>
+<li>Between the local variables in a method and its first statement
+<a name="592"> </a>
+<li>Before a block<a href="CodeConventions.doc4.html#a680"> (see section 5.1.1)</a> or single-line<a href="CodeConventions.doc4.html#a341"> (see section 5.1.2)</a> comment
+<a name="609"> </a>
+<li>Between logical sections inside a method to improve readability
+</ul><a name="a682"> </a>
+<h3> 8.2	 Blank Spaces</h3>
+<p><a name="489"> </a>
+Blank spaces should be used in the following circumstances:
+</p><ul><a name="490"> </a>
+<li>A keyword followed by a parenthesis should be separated by a space. Example:
+</ul><blockquote><pre>       while (true) {
+           ...
+       }
+
+</pre></blockquote><ul><p>
+Note that a blank space should not be used between a method name and its opening 
+parenthesis. This helps to distinguish keywords from  method calls.
+
+<p></ul><ul><a name="493"> </a>
+<li>A blank space should appear after commas in argument lists.
+<a name="3176"> </a>
+<li>All binary operators except <code>.</code> should be separated from their operands by spaces. Blank spaces should never separate unary operators such as unary minus, increment ("++"), and decrement ("--") from their operands. Example:
+</ul><blockquote><pre>
+    a += c + d;
+    a = (a + b) / (c * d);
+    
+    while (d++ = s++) {
+        n++;
+    }
+    printSize("size is " + foo + "\n");
+
+</pre></blockquote><ul><a name="496"> </a>
+<li>The expressions in a <code>for</code> statement should be separated by blank spaces. Example:
+</ul><blockquote><pre>
+    for (expr1; expr2; expr3)
+
+</pre></blockquote><ul><a name="498"> </a>
+<li>Casts should be followed by a blank space. Examples: 
+</ul><blockquote><pre>
+    myMethod((byte) aNum, (Object) x);
+    myMethod((int) (cp + 5), ((int) (i + 3)) 
+                                  + 1);
+</pre></blockquote>
+<hr><br>
+ 
+<a href="CodeConvTOC.doc.html">[Contents]</a> <a href="CodeConventions.doc6.html">[Prev]</a> <a href="CodeConventions.doc8.html">[Next]</a> 
+<hr><br>
+
+
+
+
+<i><a href="Copyright.doc.html">Copyright</a> &#169; 1995-1999, Sun Microsystems, Inc.   All rights
+reserved.</i>
+
+
+<!-- Last updated: Thu Apr 15 09:03:50 1999 -->
+
+</body>
+</html>
