@@ -7,7 +7,7 @@ my @excludes=qw(
   (^|/)images/
   ^src/it/resources/
   ^src/test/resources/
-  ^src/site/resources/styleguides/google-java-style-.*
+  ^src/site/resources/styleguides/
   ^src/test/resources-noncompilable/
   /messages.*_..\.properties$
   /releasenotes_old\.xml$

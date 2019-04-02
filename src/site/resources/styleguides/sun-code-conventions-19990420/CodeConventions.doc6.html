@@ -1,0 +1,152 @@
+<html><head><title></title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="CodeConvTOC.doc.html">[Contents]</a> <a href="CodeConventions.doc5.html">[Prev]</a> <a href="CodeConventions.doc7.html">[Next]</a>
+<hr><br>
+ 
+<a name="a430"> </a>
+<h2 align="center">7 - 	 Statements</h2>
+<a name="a431"> </a>
+<h3> 7.1	 Simple Statements</h3>
+<p><a name="434"> </a>
+Each line should contain at most one statement. Example:
+</p><blockquote>
+<pre>
+argv++;       // Correct
+argc--;       // Correct  
+argv++; argc--;       // AVOID!
+</pre></blockquote><a name="a15395"> </a>
+<h3> 7.2	 Compound Statements</h3>
+<p><a name="15396"> </a>
+Compound statements are statements that contain lists of statements enclosed in braces &#32; "<code>{ &#32;statements }</code>". See the following sections for examples.
+</p><ul><a name="445"> </a>
+<li>The enclosed statements should be indented one more level than the compound statement.
+<a name="446"> </a>
+<li>The opening brace should be at the end of the line that begins the compound statement; the closing brace should begin a line and be indented to the beginning of the compound statement.
+<a name="448"> </a>
+<li>Braces are used around all statements, even single statements, when they are part of a control structure, such as a <code>if-else</code> or <code>for</code> statement. This makes it easier to add statements without accidentally introducing bugs due to forgetting to add braces.
+</ul><a name="a438"> </a>
+<h3> 7.3	 return Statements</h3>
+<p><a name="439"> </a>
+A <code>return</code> statement with a value should not use parentheses unless they make the return value more obvious in some way. Example:
+</p><blockquote><pre>return;
+
+return myDisk.size();
+
+return (size ? size : defaultSize);
+
+</pre></blockquote><a name="a449"> </a>
+<h3> 7.4	 if, if-else, if else-if else Statements</h3>
+<p><a name="450"> </a>
+The <code>if-else</code> class of statements should have the following form:
+</p><blockquote><pre>if (<em>condition</em>) {
+    <em>statements</em>;
+}
+
+if (<em>condition</em>) {
+    <em>statements</em>;
+} else {
+    <em>statements</em>;
+}
+
+if (<em>condition</em>) {
+    <em>statements</em>;
+} else if (<em>condition</em>) {
+    <em>statements</em>;
+} else{
+    <em>statements</em>;
+}
+<a name="1734"> </a>
+</pre></blockquote><p><B>Note:</b> <code>if</code> statements always use braces {}. Avoid the following error-prone form:</blockquote>
+<blockquote><pre>if (<em>condition</em>) //AVOID! THIS OMITS THE BRACES {}!
+    <em>statement</em>;
+</pre></blockquote><a name="a454"> </a>
+<h3> 7.5	 for Statements</h3>
+<p><a name="455"> </a>
+A <code>for</code> statement should have the following form:
+</p><blockquote><pre>for (<em>initialization</em>; <em>condition</em>; <em>update</em>) {
+    <em>statements</em>;
+}
+</pre></blockquote><p><a name="457"> </a>
+An empty <code>for</code> statement (one in which all the work is done in the initialization, condition, and update clauses) should have the following form:
+</p><blockquote><pre>for (<em>initialization</em>; <em>condition</em>; <em>update</em>);
+</pre></blockquote><p><a name="458"> </a>
+When using the comma operator in the initialization or update clause of a <code>for</code> statement, avoid the complexity of using more than three variables. If needed, use separate statements before the <code>for</code> loop (for the initialization clause) or at the end of the loop (for the update clause).
+</p></pre></blockquote><a name="a460"> </a>
+<h3> 7.6	 while Statements</h3>
+<p><a name="461"> </a>
+A <code>while</code> statement should have the following form:
+</p><blockquote><pre>while (<em>condition</em>) {
+    <em>statements</em>;
+}
+</pre></blockquote><p><a name="463"> </a>
+An empty <code>while</code> statement should have the following form:
+</p><blockquote><pre>while (<em>condition</em>);
+</pre></blockquote><a name="a465"> </a>
+<h3> 7.7	 do-while Statements</h3>
+<p><a name="466"> </a>
+A <code>do-while</code> statement should have the following form:
+</p><blockquote><pre>do {
+    <em>statements</em>;
+} while (<em>condition</em>);
+</pre></blockquote><a name="a468"> </a>
+<h3> 7.8	 switch Statements</h3>
+<p><a name="469"> </a>
+A <code>switch</code> statement should have the following form:
+</p><blockquote><pre>switch (<em>condition</em>) {
+case ABC:
+    <em>statements</em>;
+    /* falls through */
+
+case DEF:
+    <em>statements</em>;
+    break;
+
+case XYZ:
+    <em>statements</em>;
+    break;
+
+default:
+    <em>statements</em>;
+    break;
+}
+</pre></blockquote><p><a name="15591"> </a>
+Every time a case falls through (doesn't include a <code>break</code> statement), add a comment where the <code>break</code> statement would normally be. This is shown in the preceding code example with the &#32;     /<code>* &#32;falls through */</code> comment. 
+</p><p><a name="320"> </a>
+Every <code>switch</code> statement should include a default case. The <code>break</code> in the default case is redundant, but it prevents a fall-through error if later another <code>case</code> is added.
+</p></pre></blockquote><a name="a472"> </a>
+<h3> 7.9	 try-catch Statements</h3>
+<p><a name="18717"> </a>
+A <code>try-catch</code> statement should have the following format:
+</p><blockquote><pre>try {
+    <em>statements</em>;
+} catch (ExceptionClass e) {
+    <em>statements</em>;
+}
+</pre></blockquote><p><a name="18715"> </a>
+A <code>try-catch</code> statement may also be followed by  <code>finally</code>, which executes regardless of whether or not the <code>try</code> block has completed successfully. 
+</p><blockquote><pre>try {
+    <em>statements</em>;
+} catch (ExceptionClass e) {
+    <em>statements</em>;
+} finally {
+    <em>statements;
+</em>}
+
+</pre></blockquote>
+<hr><br>
+ 
+<a href="CodeConvTOC.doc.html">[Contents]</a> <a href="CodeConventions.doc5.html">[Prev]</a> <a href="CodeConventions.doc7.html">[Next]</a> 
+<hr><br>
+
+
+
+
+<i><a href="Copyright.doc.html">Copyright</a> &#169; 1995-1999, Sun Microsystems, Inc.   All rights
+reserved.</i>
+
+
+<!-- Last updated: Thu Apr 15 09:03:50 1999 -->
+
+</body>
+</html>
