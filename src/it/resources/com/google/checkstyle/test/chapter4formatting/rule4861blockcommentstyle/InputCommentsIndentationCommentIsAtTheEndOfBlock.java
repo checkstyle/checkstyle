@@ -1,7 +1,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule4861blockcommentstyle;
 
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
+
+
 
 /**
  * Contains examples of using comments at the end of the block.
@@ -59,61 +59,61 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     //    }
 
     public void foo11() {
-        CheckUtil
-            .getFirstNode(new DetailAST())
-            .getFirstChild()
-            .getNextSibling();
+        String
+            .valueOf(new Integer(0))
+            .trim()
+            .length();
         // comment
     }
 
     public void foo12() {
-        CheckUtil
-            .getFirstNode(new DetailAST())
-            .getFirstChild()
-            .getNextSibling();
+        String
+            .valueOf(new Integer(0))
+            .trim()
+            .length();
                   // warn
     }
 
     public void foo13() {
-        CheckUtil.getFirstNode(new DetailAST())
-                .getFirstChild()
-                .getNextSibling();
+        String.valueOf(new Integer(0))
+                .trim()
+                .length();
         // comment
     }
 
     public void foo14() {
-        CheckUtil.getFirstNode(new DetailAST())
-            .getFirstChild()
-            .getNextSibling();
+        String.valueOf(new Integer(0))
+            .trim()
+            .length();
                                // warn
     }
 
     public void foo15() {
-        CheckUtil
-              .getFirstNode(new DetailAST());
+        String
+              .valueOf(new Integer(0));
         // comment
     }
 
     public void foo16() {
-        CheckUtil
-            .getFirstNode(new DetailAST());
+        String
+            .valueOf(new Integer(0));
                      // warn
     }
 
     public void foo17() {
-        CheckUtil
-            .getFirstNode(new DetailAST())
-            .getFirstChild()
+        String
+            .valueOf(new Integer(0))
+            .trim()
             // comment
-            .getNextSibling();
+            .length();
     }
 
     public void foo18() {
-        CheckUtil
-            .getFirstNode(new DetailAST())
-            .getFirstChild()
+        String
+            .valueOf(new Integer(0))
+            .trim()
                              // warn
-            .getNextSibling();
+            .length();
     }
 
     public void foo19() {

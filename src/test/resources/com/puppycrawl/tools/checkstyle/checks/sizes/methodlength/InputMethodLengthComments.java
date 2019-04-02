@@ -1,26 +1,33 @@
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodlength;
 
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-
 public class InputMethodLengthComments {
-    public void visitToken(DetailAST ast) {
+    static class DetailClass {
+        public DetailClass find(int type) {
+            return null;
+        }
+    }
+    static class Tokens {
+        public static int ZERO = 0;
+        public static int ONE = 1;
+    }
 
-        final DetailAST openingBrace = ast.findFirstToken(TokenTypes.SLIST);
+    public void visitToken(DetailClass ast) {
+
+        final DetailClass openingBrace = ast.find(Tokens.ZERO);
 
         if (openingBrace != null) {
-            final DetailAST closingBrace =
-                    openingBrace.findFirstToken(TokenTypes.RCURLY);
+            final DetailClass closingBrace =
+                    openingBrace.find(Tokens.ONE);
         }
 
     }
 
-    public DetailAST visit(DetailAST ast) {
-        final DetailAST openingBrace = ast.findFirstToken(TokenTypes.SLIST);
-        DetailAST closingBrace = null;
+    public DetailClass visit(DetailClass ast) {
+        final DetailClass openingBrace = ast.find(Tokens.ZERO);
+        DetailClass closingBrace = null;
 
         if (openingBrace != null) {
-            closingBrace = openingBrace.findFirstToken(TokenTypes.RCURLY);
+            closingBrace = openingBrace.find(Tokens.ONE);
         }
         return closingBrace;
     }
