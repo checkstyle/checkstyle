@@ -253,7 +253,7 @@ commerical
 Compat
 Compiletime
 Comspace
-Concat
+concat
 config
 configurationloader
 Connell's
@@ -908,6 +908,7 @@ nts
 nullanalysis
 NULLCHECK
 nullness
+numberperline
 numericliterals
 nutsandbolts
 nyu

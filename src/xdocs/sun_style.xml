@@ -414,8 +414,21 @@
                                     6.1 Number Per Line
                                 </a>
                             </td>
-                            <td>???</td>
-                            <td/>
+                            <td>
+                                <img src="images/ok_green.png" alt=""/>
+                                <a href="config_coding.html#MultipleVariableDeclarations">
+                                    MultipleVariableDeclarations
+                                </a>
+                            </td>
+                            <td>
+                                <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultipleVariableDeclarations">
+                                    config
+                                </a>
+                                <br/>
+                                <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/sun/checkstyle/test/chapter6declarations/rule61numberperline/MultipleVariableDeclarationsTest.java">
+                                    test
+                                </a>
+                            </td>
                         </tr>
                         <tr>
                             <td>
