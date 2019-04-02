@@ -19,7 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
+import static java.lang.Integer.parseInt;
 import static java.nio.charset.StandardCharsets.UTF_8;
+import static org.hamcrest.CoreMatchers.describedAs;
+import static org.hamcrest.CoreMatchers.is;
 
 import java.beans.PropertyDescriptor;
 import java.io.File;
@@ -46,6 +49,7 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.junit.Assert;
@@ -1347,6 +1351,7 @@ public class XdocsPagesTest {
             }
 
             String lastRuleName = null;
+            String[] lastRuleNumberParts = null;
 
             for (int position = 0; position < sources.getLength(); position++) {
                 final Node row = sources.item(position);
@@ -1358,14 +1363,8 @@ public class XdocsPagesTest {
                 }
 
                 final String ruleName = columns.get(1).getTextContent().trim();
-
-                if (lastRuleName != null) {
-                    Assert.assertTrue(
-                            fileName + " rule '" + ruleName + "' is out of order compared to '"
-                                    + lastRuleName + "'",
-                            ruleName.toLowerCase(Locale.ENGLISH).compareTo(
-                                    lastRuleName.toLowerCase(Locale.ENGLISH)) >= 0);
-                }
+                lastRuleNumberParts = validateRuleNameOrder(
+                        fileName, lastRuleName, lastRuleNumberParts, ruleName);
 
                 if (!"--".equals(ruleName)) {
                     validateStyleAnchors(XmlUtil.findChildElementsByTag(columns.get(0), "a"),
@@ -1387,6 +1386,70 @@ public class XdocsPagesTest {
             Assert.assertTrue(fileName + " requires the following check(s) to appear: "
                     + styleChecks, styleChecks.isEmpty());
         }
+    }
+
+    private static String[] validateRuleNameOrder(String fileName, String lastRuleName,
+                                                  String[] lastRuleNumberParts, String ruleName) {
+        final String[] ruleNumberParts = ruleName.split(" ", 2)[0].split("\\.");
+
+        if (lastRuleName != null) {
+            final int ruleNumberPartsAmount = ruleNumberParts.length;
+            final int lastRuleNumberPartsAmount = lastRuleNumberParts.length;
+            final String outOfOrderReason = fileName + " rule '" + ruleName
+                    + "' is out of order compared to '" + lastRuleName + "'";
+            boolean lastRuleNumberPartWasEqual = false;
+            int partIndex;
+            for (partIndex = 0; partIndex < ruleNumberPartsAmount; partIndex++) {
+                if (lastRuleNumberPartsAmount <= partIndex) {
+                    // equal up to here and last rule has less parts,
+                    // thus order is correct, stop comparing
+                    break;
+                }
+
+                final String ruleNumberPart = ruleNumberParts[partIndex];
+                final String lastRuleNumberPart = lastRuleNumberParts[partIndex];
+                final boolean ruleNumberPartsAreNumeric = IntStream.concat(
+                        ruleNumberPart.chars(),
+                        lastRuleNumberPart.chars()
+                ).allMatch(Character::isDigit);
+
+                if (ruleNumberPartsAreNumeric) {
+                    final int numericRuleNumberPart = parseInt(ruleNumberPart);
+                    final int numericLastRuleNumberPart = parseInt(lastRuleNumberPart);
+                    Assert.assertThat(
+                            outOfOrderReason,
+                            numericRuleNumberPart < numericLastRuleNumberPart,
+                            describedAs("'%0' should not be less than '%1'",
+                                    is(false),
+                                    numericRuleNumberPart, numericLastRuleNumberPart));
+                }
+                else {
+                    Assert.assertThat(
+                            outOfOrderReason,
+                            ruleNumberPart.compareToIgnoreCase(lastRuleNumberPart) < 0,
+                            describedAs("'%0' should not be less than '%1'",
+                                    is(false),
+                                    ruleNumberPart, lastRuleNumberPart));
+                }
+                lastRuleNumberPartWasEqual = ruleNumberPart.equalsIgnoreCase(lastRuleNumberPart);
+                if (!lastRuleNumberPartWasEqual) {
+                    // number part is not equal but properly ordered,
+                    // thus order is correct, stop comparing
+                    break;
+                }
+            }
+            if (ruleNumberPartsAmount == partIndex && lastRuleNumberPartWasEqual) {
+                if (lastRuleNumberPartsAmount == partIndex) {
+                    Assert.fail(fileName + " rule '" + ruleName + "' and rule '"
+                            + lastRuleName + "' have the same rule number");
+                }
+                else {
+                    Assert.fail(outOfOrderReason);
+                }
+            }
+        }
+
+        return ruleNumberParts;
     }
 
     private static void validateStyleAnchors(Set<Node> anchors, String fileName, String ruleName) {
