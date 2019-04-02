@@ -48,6 +48,8 @@ tar -xzvf checkstyle.github.io.tar.gz
 mv htdocs htdocs-$PREV_RELEASE
 mv checkstyle.github.io htdocs
 ln -s /home/project-web/checkstyle/reports htdocs/reports
+echo "remove dtds folder from unsecure web site"
+rm -r htdocs/dtds
 echo "restore folder with links to old releases"
 mv htdocs-$PREV_RELEASE/version htdocs
 
