@@ -54,7 +54,8 @@ public final class DetectorOptions {
     private Pattern pattern;
 
     /** Default constructor.*/
-    private DetectorOptions() { }
+    private DetectorOptions() {
+    }
 
     /**
      * Returns new Builder object.
