@@ -26,7 +26,6 @@ import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import antlr.collections.ASTEnumeration;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -831,20 +830,25 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      */
     private static boolean isChild(DetailAST parent, DetailAST ast) {
         boolean isChild = false;
-        final ASTEnumeration astList = parent.findAllPartial(ast);
+        DetailAST curNode = parent.getFirstChild();
 
-        while (astList.hasMoreNodes()) {
-            final DetailAST astNode = (DetailAST) astList.nextNode();
-            DetailAST astParent = astNode.getParent();
+        while (curNode != null) {
+            if (curNode.equals(ast)) {
+                isChild = true;
+                break;
+            }
 
-            while (astParent != null) {
-                if (astParent.equals(parent)
-                        && astParent.getLineNo() == parent.getLineNo()) {
-                    isChild = true;
+            DetailAST toVisit = curNode.getFirstChild();
+            while (toVisit == null) {
+                toVisit = curNode.getNextSibling();
+                curNode = curNode.getParent();
+
+                if (curNode == parent) {
                     break;
                 }
-                astParent = astParent.getParent();
             }
+
+            curNode = toVisit;
         }
 
         return isChild;
