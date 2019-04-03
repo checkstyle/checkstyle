@@ -432,9 +432,8 @@
     </section>
 
     <section name="scope">
-      <p>This property represents a Java scope. The scope is treated
-      inclusively (as javadoc does): 'package' means all 'package', 'protected'
-      and 'public' methods/fields/classes. The valid options are:</p>
+      <p>This property represents a Java scope. Checks use this to determine which
+      methods/fields/classes will be examined by it's logic. The valid options are:</p>
 
       <ul>
         <li><code>nothing</code></li>
@@ -444,6 +443,15 @@
         <li><code>private</code></li>
         <li><code>anoninner</code></li>
       </ul>
+
+      <p>Using a specific scope means not only will that modifier be examined, but also all the
+      modifiers listed above it in the previous list. Specifying <code>public</code> means only
+      items with <code>public</code> modifiers are checked. Specifying <code>protected</code>
+      means only <code>public</code> and <code>protected</code> modifiers are checked.
+      If you wish to only validate items with <code>private</code> modifiers and ignore any
+      others, then you must set the exclude scope property, if available, to the scope above
+      it in the table. In this case you would exclude <code>package</code>.
+      </p>
     </section>
 
       <section name="access_modifiers">
