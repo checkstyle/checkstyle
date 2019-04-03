@@ -208,8 +208,9 @@ public class RedundantImportCheck
         final String impText = imp.getText();
         final String starImpText = starImp.getText();
 
-        final int impLastDotIndex = impText.lastIndexOf('.'); // there is at least one '.' in every import
-        final int starImpLastDotIndex = starImpText.lastIndexOf('.'); // there is at least one '.' in every import
+        // there is at least one '.' in every import
+        final int impLastDotIndex = impText.lastIndexOf('.');
+        final int starImpLastDotIndex = starImpText.lastIndexOf('.');
 
         // the import is duplicated by star import if their prefixes before last dot are equal.
         return impLastDotIndex == starImpLastDotIndex
