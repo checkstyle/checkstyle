@@ -205,23 +205,15 @@ public class RedundantImportCheck
      * @return whether package imported by {@code imp} can be imported using {@code starImp}
      */
     private static boolean isDuplicatedByStarImport(FullIdent starImp, FullIdent imp) {
-        final String importSplitRegexp = "\\.";
+        final String impText = imp.getText();
+        final String starImpText = starImp.getText();
 
-        final String[] impSplitted = imp.getText().split(importSplitRegexp);
-        final String[] starImpSplited = starImp.getText().split(importSplitRegexp);
+        final int impLastDotIndex = impText.lastIndexOf('.'); // there is at least one '.' in every import
+        final int starImpLastDotIndex = starImpText.lastIndexOf('.'); // there is at least one '.' in every import
 
-        boolean isEquals = true;
+        // the import is duplicated by star import if their prefixes before last dot are equal.
+        return impLastDotIndex == starImpLastDotIndex
+            && impText.regionMatches(0, starImpText, 0, impLastDotIndex);
 
-        if (impSplitted.length == starImpSplited.length) {
-            // check for common prefix
-            for (int i = 0; i < impSplitted.length - 1 && isEquals; i++) {
-                isEquals = impSplitted[i].equals(starImpSplited[i]);
-            }
-        }
-        else {
-            isEquals = false;
-        }
-
-        return isEquals;
     }
 }
