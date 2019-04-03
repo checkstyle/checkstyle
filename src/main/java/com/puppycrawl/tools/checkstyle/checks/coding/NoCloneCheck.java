@@ -29,12 +29,25 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Checks that the clone method is not overridden from the
  * Object class.
  * </p>
- *
- * <p>Rationale: The clone method relies on strange/hard to follow rules that
- * do not work it all situations.  Consequently, it is difficult to
- * override correctly.  Below are some of the rules/reasons why the clone
- * method should be avoided.
- *
+ * <p>
+ * This check is almost exactly the same as the {@code NoFinalizerCheck}.
+ * </p>
+ * <p>
+ * See
+ * <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html#clone()">
+ * Object.clone()</a>
+ * </p>
+ * <p>
+ * Rationale: The clone method relies on strange, hard to follow rules that
+ * are difficult to get right and do not work in all situations. In some cases,
+ * either a copy constructor or a static factory method can be used instead of
+ * the clone method to return copies of an object. For more information on rules
+ * for the clone method and its issues, see Effective Java:
+ * Programming Language Guide First Edition by Joshua Bloch pages 45-52.
+ * </p>
+ * <p>
+ * Below are some of the rules/reasons why the clone method should be avoided.
+ * </p>
  * <ul>
  * <li>
  * Classes supporting the clone method should implement the Cloneable
@@ -79,42 +92,49 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * force the calling client to handle a CloneNotSupportedException.  They also
  * are typed therefore no casting is necessary. Finally, they are more
  * flexible since they can take interface types rather than concrete classes.
- *
+ * </p>
  * <p>Sometimes a copy constructor or static factory is not an acceptable
  * alternative to the clone method.  The example below highlights the
  * limitation of a copy constructor (or static factory). Assume
  * Square is a subclass for Shape.
- *
+ * </p>
  * <pre>
  * Shape s1 = new Square();
  * System.out.println(s1 instanceof Square); //true
  * </pre>
+ * <p>
  * ...assume at this point the code knows nothing of s1 being a Square
  *    that's the beauty of polymorphism but the code wants to copy
  *    the Square which is declared as a Shape, its super type...
- *
+ * </p>
  * <pre>
  * Shape s2 = new Shape(s1); //using the copy constructor
  * System.out.println(s2 instanceof Square); //false
  * </pre>
+ * <p>
  * The working solution (without knowing about all subclasses and doing many
  * casts) is to do the following (assuming correct clone implementation).
- *
+ * </p>
  * <pre>
  * Shape s2 = s1.clone();
  * System.out.println(s2 instanceof Square); //true
  * </pre>
+ * <p>
  * Just keep in mind if this type of polymorphic cloning is required
  * then a properly implemented clone method may be the best choice.
- *
+ * </p>
  * <p>Much of this information was taken from Effective Java:
  * Programming Language Guide First Edition by Joshua Bloch
  * pages 45-52.  Give Bloch credit for writing an excellent book.
  * </p>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;NoClone&quot;/&gt;
+ * </pre>
  *
- * <p>This check is almost exactly the same as the {@link NoFinalizerCheck}
- *
- * @see Object#clone()
+ * @since 5.0
  */
 @StatelessCheck
 public class NoCloneCheck extends AbstractCheck {
