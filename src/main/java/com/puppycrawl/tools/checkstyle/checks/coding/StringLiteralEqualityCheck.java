@@ -29,11 +29,25 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * {@code ==} or <code>&#33;=</code>.
  * </p>
  * <p>
- * Rationale: Novice Java programmers often use code like
- * {@code if (x == "something")} when they mean
- * {@code if ("something".equals(x))}.
+ * Rationale: Novice Java programmers often use code like:
  * </p>
+ * <pre>
+ * if (x == "something")
+ * </pre>
+ * <p>
+ * when they mean
+ * </p>
+ * <pre>
+ * if ("something".equals(x))
+ * </pre>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;StringLiteralEquality&quot;/&gt;
+ * </pre>
  *
+ * @since 3.2
  * @noinspection HtmlTagCanBeJavadocTag
  */
 @StatelessCheck
