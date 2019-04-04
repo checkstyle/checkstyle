@@ -4301,8 +4301,8 @@ return !valid();
     </section>
 
     <section name="StringLiteralEquality">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="StringLiteralEquality_Description">
-        <p>Since Checkstyle 3.2</p>
         <p>
           Checks that string literals are not used with <code>==</code> or
           <code>&#33;=</code>.
