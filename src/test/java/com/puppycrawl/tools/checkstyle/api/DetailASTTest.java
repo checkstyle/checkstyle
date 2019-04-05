@@ -100,6 +100,30 @@ public class DetailASTTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testGetChildCountType() throws Exception {
+        final DetailAST root = new DetailAST();
+        final DetailAST firstLevelA = new DetailAST();
+        final DetailAST firstLevelB = new DetailAST();
+
+        root.setFirstChild(firstLevelA);
+
+        final Method setParentMethod = getSetParentMethod();
+        setParentMethod.invoke(firstLevelA, root);
+        firstLevelA.setNextSibling(firstLevelB);
+
+        firstLevelA.setType(TokenTypes.IDENT);
+        firstLevelB.setType(TokenTypes.EXPR);
+
+        setParentMethod.invoke(firstLevelB, root);
+
+        assertEquals("Invalid child count", 0, firstLevelB.getChildCount(0));
+        assertEquals("Invalid child count", 0, firstLevelA.getChildCount(TokenTypes.EXPR));
+        assertEquals("Invalid child count", 1, root.getChildCount(TokenTypes.IDENT));
+        assertEquals("Invalid child count", 1, root.getChildCount(TokenTypes.EXPR));
+        assertEquals("Invalid child count", 0, root.getChildCount(0));
+    }
+
+    @Test
     public void testSetSiblingNull() throws Exception {
         final DetailAST root = new DetailAST();
         final DetailAST firstLevelA = new DetailAST();
@@ -113,6 +137,29 @@ public class DetailASTTest extends AbstractModuleTestSupport {
         firstLevelA.addNextSibling(null);
 
         assertEquals("Invalid child count", 1, root.getChildCount());
+    }
+
+    @Test
+    public void testAddPreviousSibling() {
+        final DetailAST previousSibling = new DetailAST();
+        final DetailAST instance = new DetailAST();
+        final DetailAST parent = new DetailAST();
+
+        parent.setFirstChild(instance);
+
+        instance.addPreviousSibling(previousSibling);
+
+        assertEquals("unexpected result", previousSibling, instance.getPreviousSibling());
+        assertEquals("unexpected result", previousSibling, parent.getFirstChild());
+
+        final DetailAST newPreviousSibling = new DetailAST();
+
+        instance.addPreviousSibling(newPreviousSibling);
+
+        assertEquals("unexpected result", newPreviousSibling, instance.getPreviousSibling());
+        assertEquals("unexpected result", previousSibling, newPreviousSibling.getPreviousSibling());
+        assertEquals("unexpected result", newPreviousSibling, previousSibling.getNextSibling());
+        assertEquals("unexpected result", previousSibling, parent.getFirstChild());
     }
 
     @Test
@@ -277,6 +324,78 @@ public class DetailASTTest extends AbstractModuleTestSupport {
         assertEquals("Invalid parent", oldParent, newSibling.getParent());
         assertNull("Invalid next sibling", newSibling.getNextSibling());
         assertEquals("Invalid child", newSibling, child.getNextSibling());
+    }
+
+    @Test
+    public void testGetLineNo() {
+        final DetailAST root1 = new DetailAST();
+        root1.setLineNo(1);
+        assertEquals("Invalid line number", 1, root1.getLineNo());
+
+        final DetailAST root2 = new DetailAST();
+        final DetailAST firstChild = new DetailAST();
+        firstChild.setLineNo(2);
+        root2.setFirstChild(firstChild);
+        assertEquals("Invalid line number", 2, root2.getLineNo());
+
+        final DetailAST root3 = new DetailAST();
+        final DetailAST nextSibling = new DetailAST();
+        nextSibling.setLineNo(3);
+        root3.setNextSibling(nextSibling);
+        assertEquals("Invalid line number", 3, root3.getLineNo());
+
+        final DetailAST root4 = new DetailAST();
+        final DetailAST comment = new DetailAST();
+        comment.setType(TokenTypes.SINGLE_LINE_COMMENT);
+        comment.setLineNo(3);
+        root4.setFirstChild(comment);
+        assertEquals("Invalid line number", Integer.MIN_VALUE, root4.getLineNo());
+    }
+
+    @Test
+    public void testGetColumnNo() {
+        final DetailAST root1 = new DetailAST();
+        root1.setColumnNo(1);
+        assertEquals("Invalid column number", 1, root1.getColumnNo());
+
+        final DetailAST root2 = new DetailAST();
+        final DetailAST firstChild = new DetailAST();
+        firstChild.setColumnNo(2);
+        root2.setFirstChild(firstChild);
+        assertEquals("Invalid column number", 2, root2.getColumnNo());
+
+        final DetailAST root3 = new DetailAST();
+        final DetailAST nextSibling = new DetailAST();
+        nextSibling.setColumnNo(3);
+        root3.setNextSibling(nextSibling);
+        assertEquals("Invalid column number", 3, root3.getColumnNo());
+
+        final DetailAST root4 = new DetailAST();
+        final DetailAST comment = new DetailAST();
+        comment.setType(TokenTypes.SINGLE_LINE_COMMENT);
+        comment.setColumnNo(3);
+        root4.setFirstChild(comment);
+        assertEquals("Invalid column number", Integer.MIN_VALUE, root4.getColumnNo());
+    }
+
+    @Test
+    public void testFindFirstToken() {
+        final DetailAST root = new DetailAST();
+        final DetailAST firstChild = new DetailAST();
+        firstChild.setType(TokenTypes.IDENT);
+        final DetailAST secondChild = new DetailAST();
+        secondChild.setType(TokenTypes.EXPR);
+        final DetailAST thirdChild = new DetailAST();
+        thirdChild.setType(TokenTypes.IDENT);
+
+        root.addChild(firstChild);
+        root.addChild(secondChild);
+        root.addChild(thirdChild);
+
+        assertNull("Invalid result", firstChild.findFirstToken(TokenTypes.IDENT));
+        assertEquals("Invalid result", firstChild, root.findFirstToken(TokenTypes.IDENT));
+        assertEquals("Invalid result", secondChild, root.findFirstToken(TokenTypes.EXPR));
+        assertNull("Invalid result", root.findFirstToken(0));
     }
 
     @Test

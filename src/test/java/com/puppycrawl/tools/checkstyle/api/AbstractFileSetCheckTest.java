@@ -20,22 +20,47 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.SortedSet;
+import java.util.TreeSet;
 
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
-public class AbstractFileSetCheckTest {
+public class AbstractFileSetCheckTest extends AbstractPathTestSupport {
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/api/abstractfileset";
+    }
+
+    @Test
+    public void testTabWidth() {
+        final DummyFileSetCheck check = new DummyFileSetCheck();
+        check.setTabWidth(12345);
+        assertEquals("expected tab width", 12345, check.getTabWidth());
+    }
+
+    @Test
+    public void testFileContents() {
+        final FileContents contents = new FileContents(
+                new FileText(new File("inputAbstractFileSetCheck.tmp"), Collections.emptyList()));
+        final DummyFileSetCheck check = new DummyFileSetCheck();
+        check.setFileContents(contents);
+        assertSame("expected file contents", contents, check.getFileContents());
+    }
 
     @Test
     public void testProcessSequential() throws Exception {
@@ -59,6 +84,19 @@ public class AbstractFileSetCheckTest {
             check.process(secondFile, new FileText(secondFile, lines));
 
         assertTrue("Message should be empty, but was not", secondFileMessages.isEmpty());
+    }
+
+    @Test
+    public void testNotProcessed() throws Exception {
+        final ExceptionFileSetCheck check = new ExceptionFileSetCheck();
+        check.setFileExtensions("java");
+        final File firstFile = new File("inputAbstractFileSetCheck.tmp");
+
+        check.process(firstFile, new FileText(firstFile, Collections.emptyList()));
+
+        final SortedSet<LocalizedMessage> internalMessages =
+                check.getMessages();
+        assertTrue("Internal message should be empty", internalMessages.isEmpty());
     }
 
     @Test
@@ -124,12 +162,54 @@ public class AbstractFileSetCheckTest {
     }
 
     @Test
+    public void testLineColumnLog() throws Exception {
+        final ViolationFileSetCheck check = new ViolationFileSetCheck();
+        check.configure(new DefaultConfiguration("filesetcheck"));
+        final File file = new File(getPath("InputAbstractFileSetLineColumn.txt"));
+        final FileText theText = new FileText(file.getAbsoluteFile(),
+                StandardCharsets.UTF_8.name());
+        final SortedSet<LocalizedMessage> internalMessages = check.process(file, theText);
+
+        assertEquals("Internal message should only have 1", 1, internalMessages.size());
+
+        final LocalizedMessage message = internalMessages.iterator().next();
+        assertEquals("expected line", 1, message.getLineNo());
+        assertEquals("expected column", 6, message.getColumnNo());
+    }
+
+    @Test
     public void testGetMessageDispatcher() {
         final DummyFileSetCheck check = new DummyFileSetCheck();
         final Checker checker = new Checker();
         check.setMessageDispatcher(checker);
 
         assertEquals("Invalid message dispatcher", checker, check.getMessageDispatcher());
+    }
+
+    @Test
+    public void testMultiFileFireErrors() throws Exception {
+        final MultiFileViolationFileSetCheck check = new MultiFileViolationFileSetCheck();
+        check.configure(new DefaultConfiguration("filesetcheck"));
+        final ViolationDispatcher dispatcher = new ViolationDispatcher();
+        check.setMessageDispatcher(dispatcher);
+
+        check.finishProcessing();
+
+        assertEquals("Invalid fileName reported", "fileName", dispatcher.name);
+
+        assertEquals("errors should only have 1", 1, dispatcher.errorList.size());
+
+        final LocalizedMessage message = dispatcher.errorList.iterator().next();
+        assertEquals("expected line", 1, message.getLineNo());
+        assertEquals("expected column", 0, message.getColumnNo());
+
+        // re-running erases previous errors
+
+        check.finishProcessing();
+
+        assertEquals("errors should still have 1 after re-run", 1, dispatcher.errorList.size());
+        assertEquals("finishProcessing was called twice", 2,
+                MultiFileViolationFileSetCheck.finishProcessingCount);
     }
 
     private static class DummyFileSetCheck extends AbstractFileSetCheck {
@@ -145,6 +225,39 @@ public class AbstractFileSetCheckTest {
 
     }
 
+    private static class ViolationFileSetCheck extends AbstractFileSetCheck {
+
+        private static final String MSG_KEY = "Violation.";
+
+        @Override
+        protected void processFiltered(File file, FileText fileText) {
+            log(1, 5, MSG_KEY);
+        }
+
+    }
+
+    private static class MultiFileViolationFileSetCheck extends AbstractFileSetCheck {
+
+        private static final String MSG_KEY = "Violation.";
+        private static int finishProcessingCount;
+
+        @Override
+        protected void processFiltered(File file, FileText fileText) {
+            // no code needed
+        }
+
+        @Override
+        public void finishProcessing() {
+            final String fileName = "fileName";
+
+            log(1, MSG_KEY + finishProcessingCount);
+            fireErrors(fileName);
+
+            finishProcessingCount++;
+        }
+
+    }
+
     private static class ExceptionFileSetCheck extends AbstractFileSetCheck {
 
         private static final String MSG_KEY = "Test.";
@@ -155,6 +268,28 @@ public class AbstractFileSetCheckTest {
             log(count, MSG_KEY);
             count++;
             throw new IllegalArgumentException("Test");
+        }
+
+    }
+
+    private static class ViolationDispatcher implements MessageDispatcher {
+        private String name;
+        private SortedSet<LocalizedMessage> errorList;
+
+        @Override
+        public void fireFileStarted(String fileName) {
+            // no code needed
+        }
+
+        @Override
+        public void fireFileFinished(String fileName) {
+            // no code needed
+        }
+
+        @Override
+        public void fireErrors(String fileName, SortedSet<LocalizedMessage> errors) {
+            name = fileName;
+            errorList = new TreeSet<>(errors);
         }
 
     }

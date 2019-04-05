@@ -202,12 +202,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
         do {
             instance.clearBranchTokenTypes();
             instance.parent = parent;
-            final DetailAST nextSibling = instance.getNextSibling();
-            if (nextSibling != null) {
-                nextSibling.previousSibling = instance;
-            }
-
-            instance = nextSibling;
+            instance = instance.getNextSibling();
         } while (instance != null);
     }
 

@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -26,6 +27,9 @@ import static org.junit.Assert.fail;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URI;
+import java.util.Arrays;
+import java.util.regex.Pattern;
 
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.beanutils.ConvertUtilsBean;
@@ -35,6 +39,7 @@ import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DefaultContext;
+import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier;
 
 public class AutomaticBeanTest {
 
@@ -170,6 +175,63 @@ public class AutomaticBeanTest {
                 81, convertUtilsBean.getRegisterCount());
     }
 
+    @Test
+    public void testBeanConverters() throws Exception {
+        final ConverterBean bean = new ConverterBean();
+
+        // methods are not seen as used by reflection
+        bean.setStrings("BAD");
+        bean.setPattern(null);
+        bean.setSeverityLevel(null);
+        bean.setScope(null);
+        bean.setUri(null);
+        bean.setAccessModifiers(AccessModifier.PACKAGE);
+
+        final DefaultConfiguration config = new DefaultConfiguration("bean");
+        config.addAttribute("strings", "a, b, c");
+        config.addAttribute("pattern", ".*");
+        config.addAttribute("severityLevel", "error");
+        config.addAttribute("scope", "public");
+        config.addAttribute("uri", "http://github.com");
+        config.addAttribute("accessModifiers", "public, private");
+        bean.configure(config);
+
+        assertArrayEquals("invalid result", new String[] {"a", "b", "c"}, bean.strings);
+        assertEquals("invalid result", ".*", bean.pattern.pattern());
+        assertEquals("invalid result", SeverityLevel.ERROR, bean.severityLevel);
+        assertEquals("invalid result", Scope.PUBLIC, bean.scope);
+        assertEquals("invalid result", new URI("http://github.com"), bean.uri);
+        assertArrayEquals("invalid result",
+                new AccessModifier[] {AccessModifier.PUBLIC, AccessModifier.PRIVATE},
+                bean.accessModifiers);
+    }
+
+    @Test
+    public void testBeanConvertersUri2() throws Exception {
+        final ConverterBean bean = new ConverterBean();
+        final DefaultConfiguration config = new DefaultConfiguration("bean");
+        config.addAttribute("uri", "");
+        bean.configure(config);
+
+        assertNull("invalid result", bean.uri);
+    }
+
+    @Test
+    public void testBeanConvertersUri3() {
+        final ConverterBean bean = new ConverterBean();
+        final DefaultConfiguration config = new DefaultConfiguration("bean");
+        config.addAttribute("uri", "BAD");
+
+        try {
+            bean.configure(config);
+            fail("Exception is expected");
+        }
+        catch (CheckstyleException ex) {
+            assertEquals("Error message is not expected",
+                    "illegal value 'BAD' for property 'uri'", ex.getMessage());
+        }
+    }
+
     private static class ConvertUtilsBeanStub extends ConvertUtilsBean {
 
         private int registerCount;
@@ -215,6 +277,73 @@ public class AutomaticBeanTest {
         @Override
         protected void finishLocalSetup() {
             // No code by default
+        }
+
+    }
+
+    /**
+     * This class has to be public for reflection to access the methods.
+     */
+    public static class ConverterBean extends AutomaticBean {
+
+        private String[] strings;
+        private Pattern pattern;
+        private SeverityLevel severityLevel;
+        private Scope scope;
+        private URI uri;
+        private AccessModifier[] accessModifiers;
+
+        /**
+         * Setter for strings.
+         * @param strings strings.
+         */
+        public void setStrings(String... strings) {
+            this.strings = Arrays.copyOf(strings, strings.length);
+        }
+
+        /**
+         * Setter for pattern.
+         * @param pattern pattern.
+         */
+        public void setPattern(Pattern pattern) {
+            this.pattern = pattern;
+        }
+
+        /**
+         * Setter for severity level.
+         * @param severityLevel severity level.
+         */
+        public void setSeverityLevel(SeverityLevel severityLevel) {
+            this.severityLevel = severityLevel;
+        }
+
+        /**
+         * Setter for scope.
+         * @param scope scope.
+         */
+        public void setScope(Scope scope) {
+            this.scope = scope;
+        }
+
+        /**
+         * Setter for uri.
+         * @param uri uri.
+         */
+        public void setUri(URI uri) {
+            this.uri = uri;
+        }
+
+        /**
+         * Setter for access modifiers.
+         * @param accessModifiers access modifiers.
+         */
+        public void setAccessModifiers(AccessModifier... accessModifiers) {
+            this.accessModifiers = Arrays.copyOf(accessModifiers, accessModifiers.length);
+        }
+
+        @Override
+        protected void finishLocalSetup() {
+            // no code
         }
 
     }
