@@ -791,6 +791,7 @@ misconfigured
 Misordered
 missingctor
 missingdeprecated
+missingjavadocmethod
 missingjavadoctype
 missingoverride
 missingswitchdefault

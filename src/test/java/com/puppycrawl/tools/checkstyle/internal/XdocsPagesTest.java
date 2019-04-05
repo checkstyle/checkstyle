@@ -142,7 +142,12 @@ public class XdocsPagesTest {
             "SuppressWarningsHolder.aliasList",
             // loads string into memory similar to file
             "Header.header",
-            "RegexpHeader.header"
+            "RegexpHeader.header",
+            // deprecated fields
+            "JavadocMethod.minLineCount",
+            "JavadocMethod.allowMissingJavadoc",
+            "JavadocMethod.allowMissingPropertyJavadoc",
+            "JavadocMethod.ignoreMethodNamesRegex"
     );
 
     private static final Set<String> SUN_MODULES = Collections.unmodifiableSet(
@@ -185,6 +190,7 @@ public class XdocsPagesTest {
             "MethodLength",
             "MethodName",
             "MethodParamPad",
+            "MissingJavadocMethod",
             "MissingSwitchDefault",
             "ModifierOrder",
             "NeedBraces",

@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
-public class InputJavadocMethodNoJavadoc //comment test
+public class InputMissingJavadocMethodNoJavadoc //comment test
 {
     public int i1;
     protected int i2;
@@ -11,15 +11,6 @@ public class InputJavadocMethodNoJavadoc //comment test
     protected void foo2() {}
     void foo3() {}
     private void foo4() {}
-
-    /** @return wrong */
-    public void foo5() {}
-    /** @return wrong */
-    protected void foo6() {}
-    /** @return wrong */
-    void foo7() {}
-    /** @return wrong */
-    private void foo8() {}
 
     protected class ProtectedInner {
         public int i1;

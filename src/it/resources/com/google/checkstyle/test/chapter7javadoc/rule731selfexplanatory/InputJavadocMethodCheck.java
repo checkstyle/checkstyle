@@ -54,7 +54,7 @@ public class InputJavadocMethodCheck extends OverrideClass
                 + "oooooooo";
     }
 
-    public String foo7() //warn
+    public String foo7()
     {
         return "Fooooooooooooooo"
                 + "ooooo"

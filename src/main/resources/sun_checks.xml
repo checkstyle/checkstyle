@@ -91,6 +91,7 @@
         <module name="JavadocType"/>
         <module name="JavadocVariable"/>
         <module name="JavadocStyle"/>
+        <module name="MissingJavadocMethod"/>
 
         <!-- Checks for Naming Conventions.                  -->
         <!-- See http://checkstyle.sourceforge.net/config_naming.html -->

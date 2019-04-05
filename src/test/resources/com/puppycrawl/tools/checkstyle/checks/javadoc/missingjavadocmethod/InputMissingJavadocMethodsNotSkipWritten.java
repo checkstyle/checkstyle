@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
-public class InputJavadocMethodsNotSkipWritten {
+public class InputMissingJavadocMethodsNotSkipWritten {
     /**
      * Description.
      * 
@@ -8,7 +8,7 @@ public class InputJavadocMethodsNotSkipWritten {
      *            This param doesn't exist.
      */
     @MyAnnotation
-    public void InputJavadocMethodsNotSkipWritten() {
+    public void InputMissingJavadocMethodsNotSkipWritten() {
     }
 
     /**
@@ -32,4 +32,3 @@ public class InputJavadocMethodsNotSkipWritten {
         return "";
     }
 }
-@interface MyAnnotation {}

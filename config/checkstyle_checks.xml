@@ -438,7 +438,6 @@
     <module name="JavadocMethod">
       <property name="allowUndeclaredRTE" value="true"/>
       <property name="allowThrowsTagsForSubclasses" value="true"/>
-      <property name="allowMissingPropertyJavadoc" value="true"/>
       <property name="validateThrows" value="true"/>
     </module>
     <module name="JavadocParagraph"/>
@@ -451,6 +450,9 @@
       <property name="allowUnknownTags" value="true"/>
     </module>
     <module name="JavadocVariable"/>
+    <module name="MissingJavadocMethod">
+      <property name="allowMissingPropertyJavadoc" value="true"/>
+    </module>
     <module name="MissingJavadocType"/>
     <module name="NonEmptyAtclauseDescription"/>
     <module name="SingleLineJavadoc"/>

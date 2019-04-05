@@ -1,10 +1,10 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
+package com.google.checkstyle.test.chapter7javadoc.rule731selfexplanatory;
 
 /**
  * The following is a bad tag.
  * @mytag Hello
  */
-public class InputJavadocMethodSmallMethods extends Some
+public class InputMissingJavadocMethodCheck extends OverrideClass
 {
     //with comments
 
@@ -12,18 +12,18 @@ public class InputJavadocMethodSmallMethods extends Some
      * Some javadoc.
      * @return Some javadoc.
      */
-    int foo1() 
+    int foo1()
     {
         return 1;
     }
 
     /**
      * Some javadoc.
-     * @return Some javadoc.
+     *
      */
-    String foo2() 
+    String foo2()
     {
-    	return "Fooooooooooooooo"
+        return "Fooooooooooooooo"
                 + "ooooo"
                 + "ooo";
     }
@@ -31,7 +31,7 @@ public class InputJavadocMethodSmallMethods extends Some
     /**
      * Some javadoc.
      */
-    void foo3() 
+    void foo3()
     {
         foo2();
     }
@@ -43,39 +43,39 @@ public class InputJavadocMethodSmallMethods extends Some
 
     //without comments
 
-    int foo5() 
+    int foo5()
     {
         return 1;
     }
 
-    String foo6() 
+    String foo6()
     {
         return "Fooooooooooooooo"
                 + "oooooooo";
     }
 
-    String foo7() 
+    public String foo7() //warn
     {
         return "Fooooooooooooooo"
                 + "ooooo"
                 + "ooo";
     }
 
-    void foo8() 
+    void foo81()
     {
         foo2();
     }
 
-    void foo9() {
-        
-        
-        
-        
-        
+    void foo82() {
+
+
+
+
+
     }
 
     @MyAnnotation
-    String foo10() 
+    String foo91()
     {
         return "Fooooooooooooooo"
                 + "ooooo"
@@ -83,20 +83,25 @@ public class InputJavadocMethodSmallMethods extends Some
     }
 
     @Override
-    protected String foo11() 
+    public String foo92()
     {
         return "Fooooo"
-        		+ "ooo"
-        		+ "ooooooo"
+                + "ooo"
+                + "ooooooo"
                 + "ooooo"
                 + "ooo";
     }
 }
 
-@interface MyAnnotation {}
 
-class Some {
-    protected String foo11() {
-        return "4";
+class MissingOverrideClass {
+
+    public String foo92()
+    {
+        return "Fooooo"
+                + "ooo"
+                + "ooooooo"
+                + "ooooo"
+                + "ooo";
     }
 }
