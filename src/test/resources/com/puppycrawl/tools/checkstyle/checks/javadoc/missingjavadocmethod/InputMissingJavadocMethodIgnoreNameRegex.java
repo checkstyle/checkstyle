@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
-public class InputJavadocMethodIgnoreNameRegex
+public class InputMissingJavadocMethodIgnoreNameRegex
 {
     private void foo() {
         

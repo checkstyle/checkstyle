@@ -2000,9 +2000,20 @@
                                     src="images/ok_green.png"
                                     alt="" />
                                 <a
+                                    href="config_javadoc.html#MissingJavadocMethod">MissingJavadocMethod</a>
+                            <img
+                                    src="images/ok_green.png"
+                                    alt="" />
+                                <a
                                     href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
                             </td>
                             <td>
+                                <a
+                                    href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocMethod">
+                                    config</a><br/>
+                                <a
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule731selfexplanatory/MissingJavadocMethodTest.java">
+                                    test</a>
                                 <a
                                     href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">
                                     config</a><br/>
@@ -2026,9 +2037,19 @@
                             <img
                                     src="images/ok_green.png"
                                     alt="" />
+                                <a href="config_javadoc.html#MissingJavadocMethod">MissingJavadocMethod</a>
+                            <img
+                                    src="images/ok_green.png"
+                                    alt="" />
                                 <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
                             </td>
                             <td>
+                                <a
+                                    href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocMethod">
+                                    config</a><br/>
+                                <a
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule731selfexplanatory/MissingJavadocMethodTest.java">
+                                    test</a>
                                 <a
                                     href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">
                                     config</a><br/>
@@ -2049,6 +2070,10 @@
                                     7.3.2 Exception: overrides</a>
                             </td>
                             <td>
+                            <img
+                                    src="images/ok_green.png"
+                                    alt="" />
+                                <a href="config_javadoc.html#MissingJavadocMethod">MissingJavadocMethod</a>
                                 <img
                                     src="images/ok_blue.png"
                                     alt="" />
@@ -2057,6 +2082,12 @@
                                 method.
                             </td>
                             <td>
+                                <a
+                                    href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocMethod">
+                                    config</a><br/>
+                                <a
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule731selfexplanatory/MissingJavadocMethodTest.java">
+                                    test</a>
                                 <a
                                     href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">
                                     config</a><br/>
