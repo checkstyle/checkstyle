@@ -33,6 +33,15 @@ import com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileF
 public class BeforeExecutionFileFilterSetTest {
 
     @Test
+    public void testRemoveFilters() {
+        final BeforeExecutionFileFilterSet filterSet = new BeforeExecutionFileFilterSet();
+        final BeforeExecutionFileFilter filter = new BeforeExecutionExclusionFileFilter();
+        filterSet.addBeforeExecutionFileFilter(filter);
+        filterSet.removeBeforeExecutionFileFilter(filter);
+        assertEquals("size is the same", 0, filterSet.getBeforeExecutionFileFilters().size());
+    }
+
+    @Test
     public void testAccept() {
         final String fileName = "BAD";
         final BeforeExecutionExclusionFileFilter filter = new BeforeExecutionExclusionFileFilter();

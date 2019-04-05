@@ -20,7 +20,11 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.Objects;
 
 import org.junit.Test;
 
@@ -33,6 +37,15 @@ public class FilterSetTest {
         final FilterSet filterSet = new FilterSet();
         filterSet.addFilter(new SeverityMatchFilter());
         assertEquals("size is the same", 1, filterSet.getFilters().size());
+    }
+
+    @Test
+    public void testRemoveFilters() {
+        final FilterSet filterSet = new FilterSet();
+        final Filter filter = new SeverityMatchFilter();
+        filterSet.addFilter(filter);
+        filterSet.removeFilter(filter);
+        assertEquals("size is the same", 0, filterSet.getFilters().size());
     }
 
     @Test
@@ -52,6 +65,57 @@ public class FilterSetTest {
         filterSet.clear();
 
         assertEquals("Invalid filter set size", 0, filterSet.getFilters().size());
+    }
+
+    @Test
+    public void testAccept() {
+        final FilterSet filterSet = new FilterSet();
+        filterSet.addFilter(new DummyFilter(true));
+        assertTrue("invalid accept response", filterSet.accept(null));
+    }
+
+    @Test
+    public void testNotAccept() {
+        final FilterSet filterSet = new FilterSet();
+        filterSet.addFilter(new DummyFilter(false));
+        assertFalse("invalid accept response", filterSet.accept(null));
+    }
+
+    @Test
+    public void testNotAcceptEvenIfOneAccepts() {
+        final FilterSet filterSet = new FilterSet();
+        filterSet.addFilter(new DummyFilter(true));
+        filterSet.addFilter(new DummyFilter(false));
+        assertFalse("invalid accept response", filterSet.accept(null));
+    }
+
+    private static class DummyFilter implements Filter {
+
+        private final boolean acceptValue;
+
+        /* package */ DummyFilter(boolean accept) {
+            acceptValue = accept;
+        }
+
+        @Override
+        public boolean accept(AuditEvent event) {
+            return acceptValue;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(!acceptValue);
+        }
+
+        @Override
+        public boolean equals(Object object) {
+            if (getClass() != object.getClass()) {
+                return false;
+            }
+            final DummyFilter other = (DummyFilter) object;
+            return Boolean.compare(acceptValue, other.acceptValue) == 0;
+        }
+
     }
 
 }

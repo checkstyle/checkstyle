@@ -2863,26 +2863,12 @@
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.api.*</param>
-                <param>com.puppycrawl.tools.checkstyle.TreeWalkerTest</param>
-                <param>com.puppycrawl.tools.checkstyle.grammar.comments.CommentsTest</param>
-                <param>com.puppycrawl.tools.checkstyle.filefilters.*</param>
-                <param>com.puppycrawl.tools.checkstyle.filters.*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheckTest</param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheckTest
-                </param>
-                <param>com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest</param>
-                <param>com.puppycrawl.tools.checkstyle.CheckerTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.TranslationCheckTest</param>
               </targetTests>
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
-              <coverageThreshold>99</coverageThreshold>
-              <mutationThreshold>99</mutationThreshold>
+              <coverageThreshold>100</coverageThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>

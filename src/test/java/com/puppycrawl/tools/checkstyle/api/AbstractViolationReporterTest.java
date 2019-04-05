@@ -72,6 +72,16 @@ public class AbstractViolationReporterTest {
     }
 
     @Test
+    public void testSeverity() throws Exception {
+        final DefaultConfiguration config = createModuleConfig(emptyCheck.getClass());
+        config.addMessage("severity", "error");
+        emptyCheck.configure(config);
+
+        assertEquals("Invalid severity level", SeverityLevel.ERROR, emptyCheck.getSeverityLevel());
+        assertEquals("Invalid severity", "error", emptyCheck.getSeverity());
+    }
+
+    @Test
     public void testCustomMessage() throws Exception {
         final DefaultConfiguration config = createModuleConfig(emptyCheck.getClass());
         config.addMessage("msgKey", "This is a custom message.");

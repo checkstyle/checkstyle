@@ -34,6 +34,7 @@ case $1 in
 pitest-annotation|pitest-design \
 |pitest-metrics|pitest-modifier|pitest-naming \
 |pitest-sizes|pitest-whitespace \
+|pitest-api \
 |pitest-packagenamesloader \
 |pitest-common-2|pitest-misc|pitest-xpath)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
@@ -88,19 +89,6 @@ pitest-filters)
   "XpathFilterElement.java.html:<td class='covered'><pre><span  class='survived'>        if (files == null) {</span></pre></td></tr>"
   "XpathFilterElement.java.html:<td class='covered'><pre><span  class='survived'>                isMatching = abstractNode.getTokenType() == event.getTokenType()</span></pre></td></tr>"
   "XpathFilterElement.java.html:<td class='covered'><pre><span  class='survived'>        return event.getFileName() != null</span></pre></td></tr>"
-  );
-  checkPitestReport "${ignoredItems[@]}"
-  ;;
-
-pitest-api)
-  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
-  declare -a ignoredItems=(
-  "DetailAST.java.html:<td class='covered'><pre><span  class='survived'>            if (nextSibling != null) {</span></pre></td></tr>"
-  "DetailAST.java.html:<td class='covered'><pre><span  class='survived'>            if (TokenUtil.isCommentType(node.getType())) {</span></pre></td></tr>"
-  "FileContents.java.html:<td class='covered'><pre><span  class='survived'>        if (firstLine.contains(&#34;/**&#34;) &#38;&#38; !firstLine.contains(&#34;/**/&#34;)) {</span></pre></td></tr>"
-  "FileContents.java.html:<td class='covered'><pre><span  class='survived'>            if (hasIntersection) {</span></pre></td></tr>"
-  "FileText.java.html:<td class='covered'><pre><span  class='survived'>        if (lineBreaks == null) {</span></pre></td></tr>"
-  "FileText.java.html:<td class='covered'><pre><span  class='survived'>            if (lineNo &#60; lineBreakPositions.length) {</span></pre></td></tr>"
   );
   checkPitestReport "${ignoredItems[@]}"
   ;;

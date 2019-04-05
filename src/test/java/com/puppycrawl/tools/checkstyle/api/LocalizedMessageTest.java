@@ -61,10 +61,26 @@ public class LocalizedMessageTest {
     }
 
     @Test
+    public void testGetSeverityLevel() {
+        final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
+
+        assertEquals("Invalid severity level", SeverityLevel.ERROR,
+                localizedMessage.getSeverityLevel());
+    }
+
+    @Test
     public void testGetModuleId() {
         final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
 
         assertEquals("Invalid module id", "module", localizedMessage.getModuleId());
+    }
+
+    @Test
+    public void testGetSourceName() {
+        final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
+
+        assertEquals("Invalid source name", "com.puppycrawl.tools.checkstyle.api.LocalizedMessage",
+                localizedMessage.getSourceName());
     }
 
     @Test
@@ -283,6 +299,17 @@ public class LocalizedMessageTest {
     }
 
     @Test
+    public void testCompareToWithDifferentLines() {
+        final LocalizedMessage message1 = createSampleLocalizedMessageWithLine(1);
+        final LocalizedMessage message1a = createSampleLocalizedMessageWithLine(1);
+        final LocalizedMessage message2 = createSampleLocalizedMessageWithLine(2);
+
+        assertTrue("Invalid comparing result", message1.compareTo(message2) < 0);
+        assertTrue("Invalid comparing result", message2.compareTo(message1) > 0);
+        assertEquals("Invalid comparing result", 0, message1.compareTo(message1a));
+    }
+
+    @Test
     public void testCompareToWithDifferentColumns() {
         final LocalizedMessage message1 = createSampleLocalizedMessageWithColumn(1);
         final LocalizedMessage message1a = createSampleLocalizedMessageWithColumn(1);
@@ -300,6 +327,11 @@ public class LocalizedMessageTest {
     private static LocalizedMessage createSampleLocalizedMessageWithId(String id) {
         return new LocalizedMessage(1, "com.puppycrawl.tools.checkstyle.checks.coding.messages",
                 "empty.statement", EMPTY_OBJECT_ARRAY, id, LocalizedMessage.class, null);
+    }
+
+    private static LocalizedMessage createSampleLocalizedMessageWithLine(int line) {
+        return new LocalizedMessage(line, "com.puppycrawl.tools.checkstyle.checks.coding.messages",
+                "empty.statement", EMPTY_OBJECT_ARRAY, "module", LocalizedMessage.class, null);
     }
 
     private static LocalizedMessage createSampleLocalizedMessageWithColumn(int column) {
