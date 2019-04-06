@@ -7,8 +7,6 @@
 <file name="">
 <error line="1" severity="error" message="$0" source="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"/>
 </file>
-<file name="InputTranslationCheckFireErrors.properties">
-</file>
 <file name="InputTranslationCheckFireErrors_de.properties">
 <error line="1" severity="error" message="$1" source="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"/>
 </file>
