@@ -240,7 +240,8 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
         try {
             clazz = getClassResolver().resolve(resolvableClassName, className);
         }
-        catch (final ClassNotFoundException ignored) {
+        // -@cs[IllegalCatch] Exception type is not predictable.
+        catch (final Exception ignored) {
             clazz = null;
         }
         return clazz;
