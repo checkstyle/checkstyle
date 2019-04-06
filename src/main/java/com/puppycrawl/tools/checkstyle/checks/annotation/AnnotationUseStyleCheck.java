@@ -513,17 +513,13 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
     private void checkCheckClosingParens(final DetailAST ast) {
         if (closingParens != ClosingParens.IGNORE) {
             final DetailAST paren = ast.getLastChild();
-            final boolean parenExists = paren.getType() == TokenTypes.RPAREN;
 
             if (closingParens == ClosingParens.ALWAYS) {
-                if (!parenExists) {
+                if (paren.getType() != TokenTypes.RPAREN) {
                     log(ast.getLineNo(), MSG_KEY_ANNOTATION_PARENS_MISSING);
                 }
             }
-            else if (parenExists
-                     && !ast.branchContains(TokenTypes.EXPR)
-                     && !ast.branchContains(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR)
-                     && !ast.branchContains(TokenTypes.ANNOTATION_ARRAY_INIT)) {
+            else if (paren.getPreviousSibling().getType() == TokenTypes.LPAREN) {
                 log(ast.getLineNo(), MSG_KEY_ANNOTATION_PARENS_PRESENT);
             }
         }

@@ -90,7 +90,6 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
             "41: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
             "43: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
             "47: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
-            "71: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
             "75: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
             "77: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
         };
@@ -131,7 +130,6 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
             "13: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
             "30: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
             "33: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
-            "71: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
             "75: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
             "77: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
         };
