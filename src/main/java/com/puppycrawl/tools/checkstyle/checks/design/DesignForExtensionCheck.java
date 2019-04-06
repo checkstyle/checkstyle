@@ -289,7 +289,38 @@ public class DesignForExtensionCheck extends AbstractCheck {
      */
     private static boolean hasJavadocCommentOnToken(DetailAST methodDef, int tokenType) {
         final DetailAST token = methodDef.findFirstToken(tokenType);
-        return token.branchContains(TokenTypes.BLOCK_COMMENT_BEGIN);
+        return branchContains(token, TokenTypes.BLOCK_COMMENT_BEGIN);
+    }
+
+    /**
+     * Checks whether a specified token type exist under token.
+     *
+     * @param token tree token.
+     * @param tokenType token type.
+     * @return true if a tokenType exists under token.
+     */
+    private static boolean branchContains(DetailAST token, int tokenType) {
+        boolean result = false;
+        DetailAST curNode = token;
+        while (curNode != null) {
+            if (curNode.getType() == tokenType) {
+                result = true;
+                break;
+            }
+
+            DetailAST toVisit = curNode.getFirstChild();
+            while (toVisit == null) {
+                if (curNode == token) {
+                    break;
+                }
+
+                toVisit = curNode.getNextSibling();
+                curNode = curNode.getParent();
+            }
+            curNode = toVisit;
+        }
+
+        return result;
     }
 
     /**
