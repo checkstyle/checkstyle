@@ -206,12 +206,15 @@
       <!-- Checker: There is no other way to deliver the filename that was under processing.
            See https://github.com/checkstyle/checkstyle/issues/2285
            TranslationCheck: It is better to catch all exceptions since it can throw
-           a runtime exception. -->
+           a runtime exception.
+           AbstractTypeAwareCheck: Exception type is not predictable. -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@Image='Checker']
                              //MethodDeclaration[@Name='processFiles']
                       |//ClassOrInterfaceDeclaration[@Image='TranslationCheck']
-                             //MethodDeclaration[@Name='getTranslationKeys']"/>
+                             //MethodDeclaration[@Name='getTranslationKeys']
+                      |//ClassOrInterfaceDeclaration[@Image='AbstractTypeAwareCheck']
+                             //MethodDeclaration[@Name='resolveClass']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/AvoidDeeplyNestedIfStmts">
