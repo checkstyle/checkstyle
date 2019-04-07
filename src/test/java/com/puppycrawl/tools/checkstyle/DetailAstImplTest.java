@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -31,6 +32,7 @@ import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
 import java.util.List;
@@ -450,13 +452,20 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         verify(checkConfig, file.getAbsolutePath(), expected);
     }
 
-    /**
-     * There are asserts in checkNode, but idea does not see them.
-     * @noinspection JUnitTestMethodWithNoAssertions
-     */
     @Test
     public void testTreeStructure() throws Exception {
-        checkDir(new File("src/test/resources/com/puppycrawl/tools/checkstyle"));
+        final List<File> files = getAllFiles(
+                new File("src/test/resources/com/puppycrawl/tools/checkstyle"));
+
+        for (File file : files) {
+            final String fileName = file.getCanonicalPath();
+            final DetailAST rootAST = JavaParser.parseFile(new File(fileName),
+                    JavaParser.Options.WITHOUT_COMMENTS);
+
+            assertNotNull("file must return a root node: " + fileName, rootAST);
+
+            assertTrue("tree is valid", checkTree(fileName, rootAST));
+        }
     }
 
     @Test
@@ -468,31 +477,29 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         assertEquals("Invalid text", "text[0x0]", ast.toString());
     }
 
-    private static void checkDir(File dir) throws Exception {
-        final File[] files = dir.listFiles(file -> {
-            return (file.getName().endsWith(".java")
-                || file.isDirectory())
-                && !file.getName().endsWith("InputGrammar.java");
+    private static List<File> getAllFiles(File dir) {
+        final List<File> result = new ArrayList<>();
+
+        dir.listFiles(file -> {
+            if (file.isDirectory()) {
+                result.addAll(getAllFiles(file));
+            }
+            else if (file.getName().endsWith(".java")
+                    // fails with unexpected character
+                    && !file.getName().endsWith("InputGrammar.java")
+                    // comment only files, no root
+                    && !file.getName().endsWith("InputPackageDeclarationWithCommentOnly.java")
+                    && !file.getName().endsWith("InputSingleSpaceSeparatorEmpty.java")) {
+                result.add(file);
+            }
+
+            return false;
         });
-        for (File file : files) {
-            if (file.isFile()) {
-                checkFile(file.getCanonicalPath());
-            }
-            else if (file.isDirectory()) {
-                checkDir(file);
-            }
-        }
+
+        return result;
     }
 
-    private static void checkFile(String filename) throws Exception {
-        final DetailAST rootAST =
-            JavaParser.parseFile(new File(filename), JavaParser.Options.WITHOUT_COMMENTS);
-        if (rootAST != null) {
-            checkTree(filename, rootAST);
-        }
-    }
-
-    private static void checkTree(final String filename, final DetailAST root) {
+    private static boolean checkTree(final String filename, final DetailAST root) {
         DetailAST curNode = root;
         DetailAST parent = null;
         DetailAST prev = null;
@@ -520,6 +527,8 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
                 prev = null;
             }
         }
+
+        return true;
     }
 
     private static void checkNode(final DetailAST node,
