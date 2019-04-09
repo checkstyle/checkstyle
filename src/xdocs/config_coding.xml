@@ -2269,8 +2269,8 @@ public class Test {
     </section>
 
     <section name="InnerAssignment">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="InnerAssignment_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
           Checks for assignments in subexpressions, such as in
           <code>String s = Integer.toString(i = 2);</code>.
@@ -2285,12 +2285,14 @@ public class Test {
 
         <p>
           Note: Check allows usage of the popular assignment in <code>while</code> idiom:
-          <source>
+        </p>
+        <source>
 String line;
 while ((line = bufferedReader.readLine()) != null) {
   // process the line
 }
-          </source>
+        </source>
+        <p>
           Assignment inside a condition is not a problem here, as the assignment is surrounded by
           an extra pair of parentheses. The comparison is <code>!= null</code> and there is no
           chance that intention was to write <code>line == reader.readLine()</code>.
