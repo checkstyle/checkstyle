@@ -32,12 +32,33 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * {@code String s = Integer.toString(i = 2);}.
  * </p>
  * <p>
- * Rationale: With the exception of {@code for} iterators, all assignments
- * should occur in their own top-level statement to increase readability.
- * With inner assignments like the above it is difficult to see all places
+ * Rationale: With the exception of {@code for} iterators and assignment in {@code while} idiom,
+ * all assignments should occur in their own top-level statement to increase readability.
+ * With inner assignments like the one given above, it is difficult to see all places
  * where a variable is set.
  * </p>
+ * <p>
+ * Note: Check allows usage of the popular assignment in {@code while} idiom:
+ * </p>
+ * <pre>
+ * String line;
+ * while ((line = bufferedReader.readLine()) != null) {
+ *   // process the line
+ * }
+ * </pre>
+ * <p>
+ * Assignment inside a condition is not a problem here, as the assignment is surrounded
+ * by an extra pair of parentheses. The comparison is {@code != null} and there is no chance that
+ * intention was to write {@code line == reader.readLine()}.
+ * </p>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;InnerAssignment"/&gt;
+ * </pre>
  *
+ * @since 3.0
  */
 @StatelessCheck
 public class InnerAssignmentCheck
