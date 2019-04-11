@@ -28,15 +28,62 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Ensures there is a package declaration.
- * Optionally checks if directory structure matches package name.
- * Rationale: Classes that live in the null package cannot be
- * imported. Many novice developers are not aware of this.
+ * <p>
+ * Ensures that a class has a package declaration, and (optionally) whether
+ * the package name matches the directory name for the source file.
+ * </p>
+ * <p>
+ * Rationale: Classes that live in the null package cannot be imported.
+ * Many novice developers are not aware of this.
+ * </p>
+ * <p>
  * Packages provide logical namespace to classes and should be stored in
  * the form of directory levels to provide physical grouping to your classes.
  * These directories are added to the classpath so that your classes
  * are visible to JVM when it runs the code.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code matchDirectoryStructure} - Control whether to check for
+ * directory and package name match.
+ * Default value is {@code true}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;PackageDeclaration&quot;/&gt;
+ * </pre>
+ * <p>
+ * Let us consider the class AnnotationLocationCheck which is in the directory
+ * /com/puppycrawl/tools/checkstyle/checks/annotations/
+ * </p>
+ * <pre>
+ * package com.puppycrawl.tools.checkstyle.checks; //Violation
+ * public class AnnotationLocationCheck extends AbstractCheck {
+ *   //...
+ * }
+ * </pre>
+ * <p>
+ * Example of how the check works when matchDirectoryStructure option is set to false.
+ * Let us again consider the AnnotationLocationCheck class located at directory
+ * /com/puppycrawl/tools/checkstyle/checks/annotations/ along with the following setup,
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;PackageDeclaration&quot;&gt;
+ * &lt;property name=&quot;matchDirectoryStructure&quot; value=&quot;false&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * package com.puppycrawl.tools.checkstyle.checks;  //No Violation
  *
+ * public class AnnotationLocationCheck extends AbstractCheck {
+ *   //...
+ * }
+ * </pre>
+ *
+ * @since 3.2
  */
 @FileStatefulCheck
 public final class PackageDeclarationCheck extends AbstractCheck {
@@ -59,11 +106,11 @@ public final class PackageDeclarationCheck extends AbstractCheck {
     /** Is package defined. */
     private boolean defined;
 
-    /** Whether to check for directory and package name match. */
+    /** Control whether to check for directory and package name match. */
     private boolean matchDirectoryStructure = true;
 
     /**
-     * Set whether to check for directory and package name match.
+     * Setter to control whether to check for directory and package name match.
      * @param matchDirectoryStructure the new value.
      */
     public void setMatchDirectoryStructure(boolean matchDirectoryStructure) {

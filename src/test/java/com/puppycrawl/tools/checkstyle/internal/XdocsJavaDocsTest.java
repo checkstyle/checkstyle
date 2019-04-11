@@ -114,6 +114,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "NeedBraces",
         "NoClone",
         "PackageAnnotation",
+        "PackageDeclaration",
         "PackageName",
         "ParameterName",
         "RequireThis",

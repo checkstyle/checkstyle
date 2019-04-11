@@ -3663,8 +3663,8 @@ public void foo(int i, String s) {}
     </section>
 
     <section name="PackageDeclaration">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="PackageDeclaration_Description">
-        <p>Since Checkstyle 3.2</p>
         <p>
           Ensures that a class has a package declaration, and (optionally) whether
           the package name matches the directory name for the source file.
@@ -3692,7 +3692,7 @@ public void foo(int i, String s) {}
           </tr>
           <tr>
             <td>matchDirectoryStructure</td>
-            <td>Whether to check for directory and package name match.</td>
+            <td>Control whether to check for directory and package name match.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
             <td>7.6.1</td>
