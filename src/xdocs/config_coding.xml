@@ -4800,8 +4800,8 @@ if (&quot;something&quot;.equals(x))
     </section>
 
     <section name="VariableDeclarationUsageDistance">
+      <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="VariableDeclarationUsageDistance_Description">
-        <p>Since Checkstyle 5.8</p>
         <p>
           Checks the distance between declaration of variable and its first usage.
         </p>
@@ -4819,16 +4819,18 @@ if (&quot;something&quot;.equals(x))
 
           <tr>
             <td>allowedDistance</td>
-            <td>A distance between declaration of variable and its first usage.
+            <td>Specify distance between declaration of variable and its first usage.
                 Values should be greater than 0.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td>3</td>
+            <td><code>3</code></td>
             <td>5.8</td>
           </tr>
 
           <tr>
             <td>ignoreVariablePattern</td>
-            <td>pattern for ignoring the distance calculation</td>
+            <td>
+              Define RegExp to ignore distance calculation for variables listed in this pattern.
+            </td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>""</code></td>
             <td>5.8</td>
@@ -4836,7 +4838,7 @@ if (&quot;something&quot;.equals(x))
 
           <tr>
             <td>validateBetweenScopes</td>
-            <td>Allows to calculate the distance between declaration of variable and its
+            <td>Allow to calculate the distance between declaration of variable and its
                 first usage in the different scopes.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
@@ -4845,7 +4847,7 @@ if (&quot;something&quot;.equals(x))
 
           <tr>
             <td>ignoreFinal</td>
-            <td>Allows to ignore variables with a 'final' modifier.</td>
+            <td>Allow to ignore variables with a 'final' modifier.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
             <td>5.8</td>
@@ -4872,7 +4874,7 @@ int count;
 {
   a = a + b;
   count = b; // DECLARATION OF VARIABLE 'count'
-            // SHOULD BE HERE (distance = 2)
+             // SHOULD BE HERE (distance = 2)
 }
         </source>
         <p>
