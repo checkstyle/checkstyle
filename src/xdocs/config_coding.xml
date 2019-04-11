@@ -2975,8 +2975,8 @@ for ( String line: lines ) {
     </section>
 
     <section name="MultipleVariableDeclarations">
+      <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="MultipleVariableDeclarations_Description">
-        <p>Since Checkstyle 3.4</p>
         <p>
           Checks that each variable declaration is in its own statement and on
           its own line.
@@ -2984,7 +2984,7 @@ for ( String line: lines ) {
 
         <p>
           Rationale: <a
-          href="styleguides/sun-code-conventions-19990420/CodeConventions.doc5.html#a2992">
+          href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc5.html#a2992">
           the Java code conventions chapter 6.1</a> recommends that
           declarations should be one per line/statement.
         </p>
