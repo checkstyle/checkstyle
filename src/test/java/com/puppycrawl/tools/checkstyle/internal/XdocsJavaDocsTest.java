@@ -127,6 +127,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "SuppressWarningsHolder",
         "TypeName",
         "UnnecessaryParentheses",
+        "VariableDeclarationUsageDistance",
     };
 
     private static Checker checker;
