@@ -4265,8 +4265,8 @@ class C {
     </section>
 
     <section name="SimplifyBooleanExpression">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="SimplifyBooleanExpression_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
           Checks for over-complicated boolean expressions. Currently finds
           code like <code> if (b == true)</code>, <code>b || true</code>, <code>!false</code>,
