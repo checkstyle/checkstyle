@@ -388,7 +388,9 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         else {
             final char last = text.charAt(text.length() - 1);
 
-            result = (last == ':' || firstCharToAppend == '@' || Character.isAlphabetic(last)
+            result = (firstCharToAppend == '@'
+                    || Character.getType(last) == Character.OTHER_PUNCTUATION
+                    || Character.isAlphabetic(last)
                     || Character.isAlphabetic(firstCharToAppend)) && !Character.isWhitespace(last);
         }
 

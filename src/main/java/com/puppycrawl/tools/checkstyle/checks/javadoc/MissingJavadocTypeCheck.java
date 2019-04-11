@@ -52,7 +52,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </li>
  * <li>
  * Property {@code skipAnnotations} - specify the list of annotations that allow missed
- * documentation. Only short names are allowed, e.g.{@code Generated}. Default value is
+ * documentation. Only short names are allowed, e.g. {@code Generated}. Default value is
  * {@code Generated}.
  * </li>
  * <li>
@@ -151,7 +151,7 @@ public class MissingJavadocTypeCheck extends AbstractCheck {
 
     /**
      * Specify the list of annotations that allow missed documentation.
-     * Only short names are allowed, e.g.{@code Generated}.
+     * Only short names are allowed, e.g. {@code Generated}.
      */
     private List<String> skipAnnotations = Collections.singletonList("Generated");
 
@@ -173,7 +173,7 @@ public class MissingJavadocTypeCheck extends AbstractCheck {
 
     /**
      * Setter to specify the list of annotations that allow missed documentation.
-     * Only short names are allowed, e.g.{@code Generated}.
+     * Only short names are allowed, e.g. {@code Generated}.
      * @param userAnnotations user's value.
      */
     public void setSkipAnnotations(String... userAnnotations) {
