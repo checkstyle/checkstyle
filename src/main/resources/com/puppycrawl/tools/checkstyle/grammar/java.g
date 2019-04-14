@@ -1076,7 +1076,8 @@ traditionalStatement
         |    "do"^ statement w:"while" {#w.setType(DO_WHILE);} LPAREN expression RPAREN SEMI
 
         // get out of a loop (or switch)
-        |    "break"^ (IDENT)? SEMI
+        // Java12 extended the break statement to allow it to take an argument
+        |    "break"^ (expression)? SEMI
 
         // do next iteration of a loop
         |    "continue"^ (IDENT)? SEMI
@@ -1265,8 +1266,6 @@ finallyHandler
 // Once you have a precedence chart, writing the appropriate rules as below
 //   is usually very straightfoward
 
-
-
 // the mother of all expressions
 expression
     :    (lambdaExpression) => lambdaExpression
@@ -1384,12 +1383,30 @@ multiplicativeExpression
     :    unaryExpression ((STAR^ | DIV^ | MOD^ ) unaryExpression)*
     ;
 
+constantExpression
+    : IDENT
+    | constant
+    ;
+
+switchExpressionCasesGroup
+    :   ("case"^ (constantExpression) (COMMA constantExpression)*) LAMBDA^ statement
+    |   "default"^ LAMBDA^ statement
+    ;
+
+// Extended switch expression from Java12
+switchExpression
+    :   "switch"^ LPAREN expression RPAREN LCURLY
+             ( switchExpressionCasesGroup ) +
+        RCURLY
+    ;
+
 unaryExpression
     :    INC^ unaryExpression
     |    DEC^ unaryExpression
     |    MINUS^ {#MINUS.setType(UNARY_MINUS);} unaryExpression
     |    PLUS^  {#PLUS.setType(UNARY_PLUS);} unaryExpression
     |    unaryExpressionNotPlusMinus
+    |    switchExpression
     ;
 
 unaryExpressionNotPlusMinus

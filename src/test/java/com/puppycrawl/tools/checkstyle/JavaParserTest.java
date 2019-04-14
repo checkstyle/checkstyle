@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
@@ -179,6 +180,14 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         assertArrayEquals("Invalid block comments",
                 Arrays.asList("5,4", "8,0").toArray(),
                 counter.blockComments.toArray());
+    }
+
+    @Test
+    public void testSwitchExpressionDoesNotFail() throws Exception {
+        final String testFilename = "InputJavaParserSwitchExpressionTest.java";
+        final DetailAST ast = JavaParser.parseFile(new File(getNonCompilablePath(testFilename)),
+                JavaParser.Options.WITHOUT_COMMENTS);
+        assertNotNull("Unable to parse a Java file with Java12 swith expressions", ast);
     }
 
     private static final class CountComments {
