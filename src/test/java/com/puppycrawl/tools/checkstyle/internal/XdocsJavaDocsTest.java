@@ -121,6 +121,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "RequireThis",
         "RightCurly",
         "SimplifyBooleanExpression",
+        "SimplifyBooleanReturn",
         "StaticVariableName",
         "StringLiteralEquality",
         "SuppressWarnings",
