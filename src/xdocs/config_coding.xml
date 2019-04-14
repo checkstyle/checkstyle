@@ -4328,8 +4328,8 @@ class C {
     </section>
 
     <section name="SimplifyBooleanReturn">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="SimplifyBooleanReturn_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
           Checks for over-complicated boolean return statements. For example
           the following code

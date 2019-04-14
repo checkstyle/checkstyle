@@ -26,15 +26,33 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Checks for overly complicated boolean return statements.
- * Idea shamelessly stolen from the equivalent PMD rule (pmd.sourceforge.net).
- * </p>
- * <p>
- * An example of how to configure the check is:
+ * Checks for over-complicated boolean return statements.
+ * For example the following code
  * </p>
  * <pre>
- * &lt;module name="SimplifyBooleanReturn"/&gt;
+ * if (valid())
+ *   return false;
+ * else
+ *   return true;
  * </pre>
+ * <p>
+ * could be written as
+ * </p>
+ * <pre>
+ * return !valid();
+ * </pre>
+ * <p>
+ * The idea for this Check has been shamelessly stolen from the equivalent
+ * <a href="http://pmd.sourceforge.net">PMD</a> rule.
+ * </p>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;SimplifyBooleanReturn&quot;/&gt;
+ * </pre>
+ *
+ * @since 3.0
  */
 @StatelessCheck
 public class SimplifyBooleanReturnCheck
