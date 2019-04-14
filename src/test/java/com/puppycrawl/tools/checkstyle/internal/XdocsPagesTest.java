@@ -990,10 +990,12 @@ public class XdocsPagesTest {
                 }
 
                 if (isPropertyTokenType(sectionName, propertyName)) {
-                    result = "";
                     boolean first = true;
 
-                    if (value instanceof BitSet) {
+                    if (value == null) {
+                        result = "no tokens";
+                    }
+                    else if (value instanceof BitSet) {
                         final BitSet list = (BitSet) value;
                         final StringBuilder sb = new StringBuilder(20);
 
@@ -1012,7 +1014,7 @@ public class XdocsPagesTest {
 
                         result = sb.toString();
                     }
-                    else if (value != null) {
+                    else {
                         final StringBuilder sb = new StringBuilder(20);
 
                         for (int i = 0; i < Array.getLength(value); i++) {
