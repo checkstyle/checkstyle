@@ -46,6 +46,8 @@ Build instructions and Contribution
 
 [Report Issue](https://checkstyle.org/contributing.html#Report_an_issue)
 
+Test.
+
 Continuous integration and Quality reports
 ======================
 Travis (Linux & MacOS build): [![][travis img]][travis]
