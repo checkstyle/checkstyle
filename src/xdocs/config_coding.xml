@@ -2146,7 +2146,7 @@ class SomeClass
                 This property does not affect method calls nor method references.</td>
             <td>subset of tokens
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
-            <td/>
+            <td>no tokens</td>
             <td>6.3</td>
           </tr>
           <tr>
