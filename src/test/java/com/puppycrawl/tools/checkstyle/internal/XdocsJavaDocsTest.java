@@ -116,6 +116,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "MissingSwitchDefault",
         "MultipleVariableDeclarations",
         "NeedBraces",
+        "NestedIfDepth",
         "NoClone",
         "PackageAnnotation",
         "PackageDeclaration",
