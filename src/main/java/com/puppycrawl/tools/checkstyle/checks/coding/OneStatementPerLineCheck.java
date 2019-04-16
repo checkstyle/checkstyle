@@ -28,42 +28,51 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Restricts the number of statements per line to one.
  * <p>
- *     Rationale: It's very difficult to read multiple statements on one line.
+ * Checks that there is only one statement per line.
  * </p>
  * <p>
- *     In the Java programming language, statements are the fundamental unit of
- *     execution. All statements except blocks are terminated by a semicolon.
- *     Blocks are denoted by open and close curly braces.
+ * Rationale: It's very difficult to read multiple statements on one line.
  * </p>
  * <p>
- *     OneStatementPerLineCheck checks the following types of statements:
- *     variable declaration statements, empty statements, assignment statements,
- *     expression statements, increment statements, object creation statements,
- *     'for loop' statements, 'break' statements, 'continue' statements,
- *     'return' statements, import statements.
+ * In the Java programming language, statements are the fundamental unit of
+ * execution. All statements except blocks are terminated by a semicolon.
+ * Blocks are denoted by open and close curly braces.
  * </p>
  * <p>
- *     The following examples will be flagged as a violation:
+ * OneStatementPerLineCheck checks the following types of statements:
+ * variable declaration statements, empty statements, import statements,
+ * assignment statements, expression statements, increment statements,
+ * object creation statements, 'for loop' statements, 'break' statements,
+ * 'continue' statements, 'return' statements.
+ * </p>
+ * <p>
+ * The following examples will be flagged as a violation:
  * </p>
  * <pre>
- *     //Each line causes violation:
- *     int var1; int var2;
- *     var1 = 1; var2 = 2;
- *     int var1 = 1; int var2 = 2;
- *     var1++; var2++;
- *     Object obj1 = new Object(); Object obj2 = new Object();
- *     import java.io.EOFException; import java.io.BufferedReader;
- *     ;; //two empty statements on the same line.
+ * //Each line causes violation:
+ * int var1; int var2;
+ * var1 = 1; var2 = 2;
+ * int var1 = 1; int var2 = 2;
+ * var1++; var2++;
+ * Object obj1 = new Object(); Object obj2 = new Object();
+ * import java.io.EOFException; import java.io.BufferedReader;
+ * ;; //two empty statements on the same line.
  *
- *     //Multi-line statements:
- *     int var1 = 1
- *     ; var2 = 2; //violation here
- *     int o = 1, p = 2,
- *     r = 5; int t; //violation here
+ * //Multi-line statements:
+ * int var1 = 1
+ * ; var2 = 2; //violation here
+ * int o = 1, p = 2,
+ * r = 5; int t; //violation here
+ * </pre>
+ * <p>
+ * An example of how to configure this Check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;OneStatementPerLine&quot;/&gt;
  * </pre>
  *
+ * @since 5.3
  */
 @FileStatefulCheck
 public final class OneStatementPerLineCheck extends AbstractCheck {
