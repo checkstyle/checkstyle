@@ -23,20 +23,24 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 
 /**
  * <p>
- * Checks that an overriding finalize() method invokes super.finalize().
+ * Checks that an overriding {@code finalize()} method invokes {@code super.finalize()}.
  * Does not check native methods, as they have no possible java defined implementation.
  * </p>
  * <p>
- * Reference:<a
- * href="https://javarevisited.blogspot.com/2012/03/finalize-method-in-java-tutorial.html">
+ * References:
+ * <a href="https://www.oracle.com/technetwork/java/javamail/finalization-137655.html">
+ * How to Handle Java Finalization's Memory-Retention Issues</a>;
+ * <a href="https://javarevisited.blogspot.com/2012/03/finalize-method-in-java-tutorial.html">
  * 10 points on finalize method in Java</a>.
  * </p>
  * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
- * &lt;module name="SuperFinalize"/&gt;
+ * &lt;module name=&quot;SuperFinalize&quot;/&gt;
  * </pre>
+ *
+ * @since 3.2
  */
 @StatelessCheck
 public class SuperFinalizeCheck extends AbstractSuperCheck {

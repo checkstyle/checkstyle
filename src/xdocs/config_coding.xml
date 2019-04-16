@@ -4569,8 +4569,8 @@ if (&quot;something&quot;.equals(x))
     </section>
 
     <section name="SuperFinalize">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="SuperFinalize_Description">
-        <p>Since Checkstyle 3.2</p>
         <p>
           Checks that an overriding <code>finalize()</code> method invokes
           <code>super.finalize()</code>. Does not check native methods, as
@@ -4578,9 +4578,11 @@ if (&quot;something&quot;.equals(x))
         </p>
 
         <p>
-          Reference: <a
-          href="https://www.oracle.com/technetwork/java/javamail/finalization-137655.html">
-          Use Finalization Only When You Must</a>.
+          References:
+          <a href="https://www.oracle.com/technetwork/java/javamail/finalization-137655.html">
+          How to Handle Java Finalization's Memory-Retention Issues</a>;
+          <a href="https://javarevisited.blogspot.com/2012/03/finalize-method-in-java-tutorial.html">
+          10 points on finalize method in Java</a>.
         </p>
       </subsection>
 
