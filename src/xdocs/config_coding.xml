@@ -3549,8 +3549,8 @@ System.out.println(s2 instanceof Square); //true
     </section>
 
     <section name="OneStatementPerLine">
+      <p>Since Checkstyle 5.3</p>
       <subsection name="Description" id="OneStatementPerLine_Description">
-          <p>Since Checkstyle 5.3</p>
           <p>
           Checks that there is only one statement per line.
           </p>
