@@ -2895,8 +2895,8 @@ for ( String line: lines ) {
     </section>
 
     <section name="MultipleStringLiterals">
+      <p>Since Checkstyle 3.5</p>
       <subsection name="Description" id="MultipleStringLiterals_Description">
-        <p>Since Checkstyle 3.5</p>
         <p>
           Checks for multiple occurrences of the same string literal within a
           single file.
@@ -2920,17 +2920,17 @@ for ( String line: lines ) {
           <tr>
             <td>allowedDuplicates</td>
             <td>
-              The maximum number of occurrences to allow without generating a
-              warning
+              Specify the maximum number of occurrences to allow without generating a
+              warning.
             </td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td>1</td>
+            <td><code>1</code></td>
             <td>3.5</td>
           </tr>
           <tr>
             <td>ignoreStringsRegexp</td>
             <td>
-              Regular expression pattern for ignored strings (with quotation marks)
+              Specify RegExp for ignored strings (with quotation marks).
             </td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"^""$"</code></td>
@@ -2939,7 +2939,7 @@ for ( String line: lines ) {
           <tr>
             <td>ignoreOccurrenceContext</td>
             <td>
-              Token type names where duplicate strings are ignored even if they don't match
+              Specify token type names where duplicate strings are ignored even if they don't match
               ignoredStringsRegexp. This allows you to exclude syntactical contexts like
               annotations or static initializers from the check.
             </td>
@@ -2978,7 +2978,8 @@ for ( String line: lines ) {
         </p>
         <source>
 &lt;module name=&quot;MultipleStringLiterals&quot;&gt;
-  &lt;property name=&quot;ignoreStringsRegexp&quot; value='^((&quot;&quot;)|(&quot;, &quot;))$'/&gt;
+  &lt;property name=&quot;ignoreStringsRegexp&quot;
+    value='^((&quot;&quot;)|(&quot;, &quot;))$'/&gt;
 &lt;/module&gt;
         </source>
 
