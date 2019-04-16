@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
  * <p>
- * Disallow assignment of parameters.
+ * Disallows assignment of parameters.
  * </p>
  * <p>
  * Rationale:
@@ -43,6 +43,14 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * ensure that parameters are never assigned would give
  * the best of both worlds.
  * </p>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;ParameterAssignment&quot;/&gt;
+ * </pre>
+ *
+ * @since 3.2
  */
 @FileStatefulCheck
 public final class ParameterAssignmentCheck extends AbstractCheck {
