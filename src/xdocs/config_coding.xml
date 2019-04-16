@@ -3817,8 +3817,8 @@ public class AnnotationLocationCheck extends AbstractCheck {
     </section>
 
     <section name="ParameterAssignment">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="ParameterAssignment_Description">
-        <p>Since Checkstyle 3.2</p>
         <p> Disallows assignment of parameters.</p>
         <p>
           Rationale: Parameter assignment is often considered poor programming
