@@ -114,12 +114,6 @@
                    test method.
                  In MainTest PMD does not find asserts in lambdas called in the method
                    exit.checkAssertionAfterwards.
-                 In FilterSetTest, LineColumnTest, LocalizedMessageTest, CsvFilterTest,
-                   IntMatchFilterTest, IntRangeFilterTest, SuppressElementTest,
-                   SuppressWithNearbyCommentFilterTest, SuppressWithPlainTextCommentFilterTest,
-                   SuppressionCommentFilterTest, SuppressionFilterTest, SuppressionXpathFilterTest,
-                   XpathFilterTest PMD does not accept nl.jqno.equalsverifier.EqualsVerifier.verify
-                   as correctness check method.
                  In AstRegressionTest PMD does not find asserts in inner classes methods called
                    from the test method.
                  In XdocsPagesTest PMD does not find asserts in lambdas.
@@ -131,15 +125,6 @@
               or @Image='ImportControlCheckTest']//PrimaryPrefix/Name[@Image='verify']
             | //ClassOrInterfaceDeclaration[@Image='MainTest']
                   //PrimaryPrefix//Name[starts-with(@Image, 'assert')]
-            | //ClassOrInterfaceDeclaration[@Image='FilterSetTest' or @Image='LineColumnTest'
-              or @Image='LocalizedMessageTest' or @Image='CsvFilterTest'
-              or @Image='IntMatchFilterTest'
-              or @Image='IntRangeFilterTest' or @Image='SuppressElementTest'
-              or @Image='SuppressWithNearbyCommentFilterTest'
-              or @Image='SuppressionCommentFilterTest'
-              or @Image='SuppressionFilterTest' or @Image='SuppressionXpathFilterTest'
-              or @Image='SuppressWithPlainTextCommentFilterTest'
-              or @Image='XpathFilterTest']//PrimarySuffix[@Image='verify']
             | //ClassOrInterfaceDeclaration[@Image='XdocsPagesTest']
                   //MethodDeclaration[@Name='testAllChecksPresentOnAvailableChecksPage']
             | //ClassOrInterfaceDeclaration[@Image='XdocsJavaDocsTest']
@@ -187,8 +172,7 @@
         <properties>
             <!-- This inherited from GeneratedJavaLexer. -->
             <property name="violationSuppressXPath"
-                      value="//ClassOrInterfaceDeclaration[@Image='AstRegressionTest']
-            | //ClassOrInterfaceDeclaration[@Image='AssertGeneratedJavaLexer']
+                      value="//ClassOrInterfaceDeclaration[@Image='AssertGeneratedJavaLexer']
                   //MethodDeclarator[@Image='LA']"/>
         </properties>
     </rule>
