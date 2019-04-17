@@ -48,15 +48,9 @@
   </rule>
   <rule ref="category/java/documentation.xml/CommentRequired">
     <properties>
-      <!-- *TokenTypes are special class, comments are as trailing comments.
-           RequireThisCheck$AbstractFrame is a private class, no comment is required.
-           Main.runCli has a false positive for an anonymous class.
-      -->
+      <!-- RequireThisCheck$AbstractFrame is a private class, no comment is required. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypes']
-      | //ClassOrInterfaceDeclaration[@Image='RequireThisCheck']
-      | //ClassOrInterfaceDeclaration[@Image='AbstractFrame']
-      | //ClassOrInterfaceDeclaration[@Image='Main']//MethodDeclaration[@Name='runCli']"/>
+                value="//ClassOrInterfaceDeclaration[@Image='RequireThisCheck']"/>
     </properties>
   </rule>
 
@@ -249,8 +243,8 @@
   <rule ref="category/java/design.xml/NcssCount">
     <properties>
       <property name="methodReportLevel" value="32"/>
-      <!-- Main, PackageObjectFactory, CheckstyleAntTask, RequireThisCheck, HandlerFactory,
-             VariableDeclarationUsageDistanceCheck, CommentsIndentationCheck, JavadocMethodCheck,
+      <!-- Main, PackageObjectFactory, RequireThisCheck, HandlerFactory,
+             VariableDeclarationUsageDistanceCheck,
              are big and should not be split without a good reason.
            The methods visitToken/leaveToken are a big SWITCH block with a number of IF blocks.
              If we split the block to several methods it will damage the readability.
@@ -258,12 +252,12 @@
              NoWhitespaceAfterCheck.getArrayDeclaratorPreviousElement are also huge switches,
              they has to be monolithic. -->
       <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main'
-        or @Image='PackageObjectFactory' or @Image='CheckstyleAntTask' or @Image='RequireThisCheck'
-        or @Image='VariableDeclarationUsageDistanceCheck' or @Image='CommentsIndentationCheck'
-        or @Image='JavadocMethodCheck' or @Image='HandlerFactory']
+        or @Image='PackageObjectFactory' or @Image='RequireThisCheck'
+        or @Image='VariableDeclarationUsageDistanceCheck'
+        or @Image='HandlerFactory']
       | //ClassOrInterfaceDeclaration[@Image='XMLLogger']//MethodDeclaration[@Name='encode']
       | //ClassOrInterfaceDeclaration[@Image='LeftCurlyCheck' or @Image='FinalLocalVariableCheck'
-        or @Image='ImportOrderCheck' or @Image='NPathComplexityCheck']
+        or @Image='NPathComplexityCheck']
              //MethodDeclaration[@Name='visitToken']
       | //ClassOrInterfaceDeclaration[@Image='FallThroughCheck']
              //MethodDeclaration[@Name='isTerminated']
@@ -314,7 +308,7 @@
     | //ClassOrInterfaceDeclaration[@Image='ElementNode' or @Image='RootNode']
           //MethodDeclaration[@Name='iterateAxis']
     | //ClassOrInterfaceDeclaration[@Image='NPathComplexityCheck'
-      or @Image='EmptyLineSeparatorCheck' or @Image='LeftCurlyCheck' or @Image='ImportOrderCheck'
+      or @Image='EmptyLineSeparatorCheck' or @Image='LeftCurlyCheck'
       or @Image='DeclarationOrderCheck' or @Image='MissingOverrideCheck'
       or @Image='FinalLocalVariableCheck' or @Image='ModifiedControlVariableCheck'
       or @Image='ParameterAssignmentCheck' or @Image='UnnecessaryParenthesesCheck'
@@ -344,22 +338,18 @@
   <rule ref="category/java/design.xml/TooManyMethods">
     <properties>
       <property name="maxmethods" value="20"/>
-      <!-- Reducing the number of methods in RequireThisCheck requires making an excessive hierarchy
-             or duplicating the code, or making existing methods too complex.
-           The class PackageObjectFactory has many boilerplate methods. -->
+      <!-- The class PackageObjectFactory has many boilerplate methods. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='RequireThisCheck'
-        or @Image='PackageObjectFactory']"/>
+                value="//ClassOrInterfaceDeclaration[@Image='PackageObjectFactory']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveClassLength">
     <properties>
       <!-- *TokenTypes are special classes that are big due to a lot of description comments.
-           JavadocMethodCheck is a deprecated class, till it is redone to use JavadocAst.
            RequireThisCheck has to work with and identify many frames. -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypes'
-        or @Image='TokenTypes' or @Image='JavadocMethodCheck' or @Image='RequireThisCheck']"/>
+        or @Image='TokenTypes' or @Image='RequireThisCheck']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveParameterList">
@@ -374,10 +364,9 @@
       <!-- Main actively uses Checkstyle, logging and command line parsing API.
            Checker collects external resource locations and sets up the configuration.
            CheckstyleAntTask integrates Checkstyle with Ant.
-           TranslationCheck just get one extra import by annotation usage.
             -->
       <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main'
-        or @Image='Checker' or @Image='CheckstyleAntTask' or @Image='TranslationCheck']"/>
+        or @Image='Checker' or @Image='CheckstyleAntTask']"/>
     </properties>
   </rule>
 
@@ -400,13 +389,6 @@
     <exclude name="AvoidInstantiatingObjectsInLoops"/>
     <!-- Not configurable, decreases readability. -->
     <exclude name="UseStringBufferForStringAppends"/>
-  </rule>
-  <rule ref="category/java/performance.xml/AvoidUsingShortType">
-    <properties>
-      <!-- This class uses the class java.lang.Short for properties only. -->
-      <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='AutomaticBean']"/>
-    </properties>
   </rule>
 
   <!-- Checkstyle own rules. -->
