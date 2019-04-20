@@ -87,6 +87,17 @@ javac8)
   done
   ;;
 
+jdk12)
+  # powermock doesn't support modifying final fields in JDK12
+  exclude1="\!FileContentsTest#testGetJavadocBefore,\!FileTextTest#testFindLine*,"
+  exclude2="\!MainFrameModelPowerTest#testOpenFileWithUnknownParseMode,"
+  exclude3="\!TokenUtilTest#testTokenValueIncorrect2,"
+  exclude4="\!ImportControlLoaderPowerTest#testInputStreamThatFailsOnClose"
+
+  mvn -e package -Passembly -Dtest=$exclude1$exclude2$exclude3$exclude4
+  mvn -e site -Dlinkcheck.skip=true
+  ;;
+
 nondex)
   mvn -e --fail-never clean nondex:nondex -DargLine='-Xms1024m -Xmx2048m'
   cat `grep -RlE 'td class=.x' .nondex/ | cat` < /dev/null > output.txt
