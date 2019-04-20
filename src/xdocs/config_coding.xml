@@ -3646,8 +3646,8 @@ r = 5; int t; //violation here
     </section>
 
     <section name="OverloadMethodsDeclarationOrder">
+      <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="OverloadMethodsDeclarationOrder_Description">
-        <p>Since Checkstyle 5.8</p>
         <p>
           Checks that overload methods are grouped together.
         </p>
