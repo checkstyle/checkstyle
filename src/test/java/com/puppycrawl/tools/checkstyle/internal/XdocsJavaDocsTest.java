@@ -131,6 +131,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "ParameterAssignment",
         "ParameterName",
         "RequireThis",
+        "ReturnCount",
         "RightCurly",
         "SimplifyBooleanExpression",
         "SimplifyBooleanReturn",

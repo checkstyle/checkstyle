@@ -4123,8 +4123,8 @@ class C {
     </section>
 
     <section name="ReturnCount">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="ReturnCount_Description">
-        <p>Since Checkstyle 3.2</p>
         <p>
           Restricts the number of return statements in methods, constructors and lambda expressions
           (2 by default). Ignores specified methods (<code>equals()</code> by default).
@@ -4160,22 +4160,24 @@ class C {
           </tr>
           <tr>
             <td>max</td>
-            <td>maximum allowed number of return statements in non-void methods/lambdas</td>
+            <td>
+              Specify maximum allowed number of return statements in non-void methods/lambdas.
+            </td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>2</code></td>
             <td>3.2</td>
           </tr>
           <tr>
             <td>maxForVoid</td>
-            <td>maximum allowed number of return statements in void
-                methods/constructors/lambdas</td>
+            <td>Specify maximum allowed number of return statements in void
+                methods/constructors/lambdas.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>1</code></td>
             <td>6.19</td>
           </tr>
           <tr>
             <td>format</td>
-            <td>method names to ignore</td>
+            <td>Specify method names to ignore.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"^equals$"</code></td>
             <td>3.4</td>
