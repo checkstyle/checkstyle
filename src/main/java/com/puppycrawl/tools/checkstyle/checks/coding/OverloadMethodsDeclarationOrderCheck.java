@@ -29,23 +29,26 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Checks that overload methods are grouped together. Example:
+ * Checks that overload methods are grouped together.
+ * </p>
+ * <p>
+ * Example of incorrect grouping overload methods:
  * </p>
  * <pre>
- * {@code
  * public void foo(int i) {}
  * public void foo(String s) {}
  * public void notFoo() {} // Have to be after foo(int i, String s)
  * public void foo(int i, String s) {}
- * }
  * </pre>
  * <p>
  * An example of how to configure the check is:
  * </p>
  *
  * <pre>
- * &lt;module name="OverloadMethodsDeclarationOrder"/&gt;
+ * &lt;module name=&quot;OverloadMethodsDeclarationOrder&quot;/&gt;
  * </pre>
+ *
+ * @since 5.8
  */
 @StatelessCheck
 public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
