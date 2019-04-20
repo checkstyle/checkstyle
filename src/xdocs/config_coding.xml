@@ -3270,8 +3270,8 @@ for ( String line: lines ) {
     </section>
 
     <section name="NestedTryDepth">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="NestedTryDepth_Description">
-        <p>Since Checkstyle 3.2</p>
         <p>
           Restricts nested try blocks to a specified depth (default = 1).
         </p>
@@ -3288,7 +3288,7 @@ for ( String line: lines ) {
           </tr>
           <tr>
             <td>max</td>
-            <td>allowed nesting depth</td>
+            <td>Specify maximum allowed nesting depth.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>1</code></td>
             <td>3.2</td>
