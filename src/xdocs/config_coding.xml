@@ -2774,8 +2774,8 @@ class TestMethodCall {
     </section>
 
     <section name="ModifiedControlVariable">
+      <p>Since Checkstyle 3.5</p>
       <subsection name="Description" id="ModifiedControlVariable_Description">
-        <p>Since Checkstyle 3.5</p>
         <p>
             Check for ensuring that for loop control variables are not modified inside
             the for block. An example is:
@@ -2787,9 +2787,9 @@ for (int i = 0; i &lt; 1; i++) {
         </source>
           <p>
             Rationale: If the control variable is modified inside the loop
-            body, the program flow becomes more difficult to follow.<br/>
-            See <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14">
-              FOR statement</a> specification for more details.
+            body, the program flow becomes more difficult to follow. See
+            <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14">
+            FOR statement</a> specification for more details.
           </p>
         <p>
             Such loop would be suppressed:
@@ -2813,9 +2813,9 @@ for (int i = 0; i &lt; 10;) {
 
           <tr>
             <td>skipEnhancedForLoopVariable</td>
-            <td>Controls whether to check
-                <a href = "https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">
-                    enhanced for-loop</a> variable.</td>
+            <td>Control whether to check
+              <a href = "https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
+              enhanced for-loop</a> variable.</td>
             <td>
               <a
               href="property_types.html#boolean">Boolean</a>
@@ -2840,7 +2840,7 @@ for (int i = 0; i &lt; 10;) {
 
         <p>
          By default, This Check validates
-         <a href = "https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">
+         <a href = "https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
          Enhanced For-Loop</a>.
          </p>
          <p>
@@ -2856,13 +2856,11 @@ for (int i = 0; i &lt; 10;) {
 &lt;/module&gt;
          </source>
          <p>Example:</p>
-         <p>
          <source>
-for ( String line: lines ) {
+for (String line: lines) {
   line = line.trim();   // it will skip this violation
 }
          </source>
-         </p>
       </subsection>
 
       <subsection name="Example of Usage" id="ModifiedControlVariable_Example_of_Usage">
