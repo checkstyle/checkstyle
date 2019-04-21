@@ -25,19 +25,31 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Check the number of nested {@code for}-statements. The maximum
- * number of nested layers can be configured. The default value is 1.
- * The code for the class is copied from the {@code NestedIfDepthCheck}-class.
- * The only difference is the intercepted token ({@code for} instead of {@code if}).
- *
- * <p>Example:
+ * <p>
+ * Restricts nested {@code for} blocks to a specified depth (default = 1).
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code max} - Specify maximum allowed nesting depth.
+ * Default value is {@code 1}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
  * <pre>
- *  &lt;!-- Restricts nested for blocks to a specified depth (default = 1). --&gt;
- *  &lt;module name="NestedForDepth"&gt;
- *    &lt;property name="max" value="2"/&gt;
- *  &lt;/module&gt;
+ * &lt;module name=&quot;NestedForDepth&quot;/&gt;
  * </pre>
- * @see NestedIfDepthCheck
+ * <p>
+ * To configure the check to allow nesting depth 3:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;NestedForDepth&quot;&gt;
+ *   &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ *
+ * @since 5.3
  */
 @FileStatefulCheck
 public final class NestedForDepthCheck extends AbstractCheck {
@@ -48,13 +60,13 @@ public final class NestedForDepthCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "nested.for.depth";
 
-    /** Maximum allowed nesting depth. */
+    /** Specify maximum allowed nesting depth. */
     private int max = 1;
     /** Current nesting depth. */
     private int depth;
 
     /**
-     * Setter for maximum allowed nesting depth.
+     * Setter to specify maximum allowed nesting depth.
      * @param max maximum allowed nesting depth.
      */
     public void setMax(int max) {

@@ -120,6 +120,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "MultipleStringLiterals",
         "MultipleVariableDeclarations",
         "NeedBraces",
+        "NestedForDepth",
         "NestedIfDepth",
         "NestedTryDepth",
         "NoClone",
