@@ -379,7 +379,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
                     beginIndex = index;
                 }
             }
-            else if (abbrStarted) {
+            else if (abbrStarted && !Character.isDigit(symbol)) {
                 abbrStarted = false;
 
                 final int endIndex = index - 1;
