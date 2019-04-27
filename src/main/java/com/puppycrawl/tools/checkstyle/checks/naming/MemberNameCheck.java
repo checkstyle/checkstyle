@@ -54,17 +54,71 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;module name="MemberName"/&gt;
+ * &lt;module name=&quot;MemberName&quot;/&gt;
+ * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * class MyClass {
+ *   public int num1; // OK
+ *   protected int num2; // OK
+ *   int num3; // OK
+ *   private int num4; // OK
+ *
+ *   public int NUM1; // violation, name 'NUM1'
+ *                    // must match pattern '^[a-z][a-zA-Z0-9]*$'
+ *   protected int NUM2; // violation, name 'NUM2'
+ *                       // must match pattern '^[a-z][a-zA-Z0-9]*$'
+ *   int NUM3; // violation, name 'NUM3'
+ *             // must match pattern '^[a-z][a-zA-Z0-9]*$'
+ *   private int NUM4; // violation, name 'NUM4'
+ *                     // must match pattern '^[a-z][a-zA-Z0-9]*$'
+ * }
  * </pre>
  * <p>
  * An example of how to configure the check for names that begin with
- * {@code "m"}, followed by an upper case letter, and then letters and
- * digits is:
+ * {@code &quot;m&quot;}, followed by an upper case letter, and then letters
+ * and digits. Also, suppress the check from being applied to protected
+ * and package-private member:
+ * </p>
+ *
+ * <pre>
+ * &lt;module name=&quot;MemberName&quot;&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;^m[A-Z][a-zA-Z0-9]*$&quot;/&gt;
+ *   &lt;property name=&quot;applyToProtected&quot; value=&quot;false&quot;/&gt;
+ *   &lt;property name=&quot;applyToPackage&quot; value=&quot;false&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * class MyClass {
+ *   public int num1; // violation, name 'num1'
+ *                    // must match pattern '^m[A-Z][a-zA-Z0-9]*$'
+ *   protected int num2; // OK
+ *   int num3; // OK
+ *   private int num4; // violation, name 'num4'
+ *                     // must match pattern '^m[A-Z][a-zA-Z0-9]*$'
+ * }
+ * </pre>
+ * <p>
+ * An example of how to suppress the check which is applied to
+ * public and private member:
  * </p>
  * <pre>
- * &lt;module name="MemberName"&gt;
- *   &lt;property name="format" value="^m[A-Z][a-zA-Z0-9]*$"/&gt;
+ * &lt;module name=&quot;MemberName&quot;&gt;
+ *   &lt;property name=&quot;applyToPublic&quot; value=&quot;false&quot;/&gt;
+ *   &lt;property name=&quot;applyToPrivate&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * class MyClass {
+ *   public int NUM1; // OK
+ *   protected int NUM2; // violation, name 'NUM2'
+ *                       // must match pattern '^[a-z][a-zA-Z0-9]*$'
+ *   int NUM3; // violation, name 'NUM3'
+ *             // must match pattern '^[a-z][a-zA-Z0-9]*$'
+ *   private int NUM4; // OK
+ * }
  * </pre>
  *
  * @since 3.0
