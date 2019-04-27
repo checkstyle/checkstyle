@@ -42,7 +42,9 @@ public class TokenTypesTest {
         final ResourceBundle bundle = ResourceBundle.getBundle(tokenTypes, Locale.ROOT);
 
         final Set<String> expected = Arrays.stream(TokenUtil.getAllTokenIds())
-            .mapToObj(TokenUtil::getTokenName).collect(Collectors.toSet());
+            .mapToObj(TokenUtil::getTokenName)
+            .filter(name -> name.charAt(0) != '$')
+            .collect(Collectors.toSet());
         final Set<String> actual = bundle.keySet();
         assertEquals("TokenTypes without description", expected, actual);
     }
@@ -50,7 +52,9 @@ public class TokenTypesTest {
     @Test
     public void testAllDescriptionsEndsWithPeriod() {
         final Set<String> badDescriptions = Arrays.stream(TokenUtil.getAllTokenIds())
-            .mapToObj(TokenUtil::getTokenName).map(TokenUtil::getShortDescription)
+            .mapToObj(TokenUtil::getTokenName)
+            .filter(name -> name.charAt(0) != '$')
+            .map(TokenUtil::getShortDescription)
             .filter(desc -> desc.charAt(desc.length() - 1) != '.').collect(Collectors.toSet());
         assertEquals("Malformed TokenType descriptions", Collections.emptySet(), badDescriptions);
     }
