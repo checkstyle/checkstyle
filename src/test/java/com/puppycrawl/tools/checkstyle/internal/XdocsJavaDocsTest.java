@@ -70,7 +70,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         // file filters
         "BeforeExecutionExclusionFileFilter",
         // filters
-        "SuppressionXpathFilter",
         "SuppressionXpathSingleFilter",
         // javadoc
         "JavadocMethod",

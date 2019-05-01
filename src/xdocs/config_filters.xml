@@ -656,11 +656,12 @@ public class UserService {
     </section>
 
     <section name="SuppressionXpathFilter">
+      <p>Since Checkstyle 8.6</p>
       <subsection name="Description" id="SuppressionXpathFilter_Description">
-        <p>Since Checkstyle 8.6</p>
         <p>
           Filter <code>SuppressionXpathFilter</code> works as
-          <a href="config_filters.html#SuppressionFilter">SuppressionFilter</a>.
+          <a href="https://checkstyle.org/config_filters.html#SuppressionFilter">
+          SuppressionFilter</a>.
           Additionally, filter processes <code>suppress-xpath</code> elements,
           which contains xpath-expressions. Xpath-expressions
           are queries for suppressed nodes inside the AST tree.
@@ -775,9 +776,26 @@ public class UserService {
           You can use the command line helper tool to generate xpath
           suppressions based on your configuration file and input files.
           See
-          <a href="cmdline.html">here</a>
+          <a href="https://checkstyle.org/cmdline.html">here</a>
           for more details.
         </p>
+      </subsection>
+      <subsection name="Notes" id="SuppressionXpathFilter_Notes">
+        <p>
+          The suppression file location is checked in following order:
+        </p>
+        <ol>
+          <li>as a filesystem location</li>
+          <li>
+            if no file found, and the location starts with either
+            <code>http://</code> or <code>https://</code>, then it
+            is interpreted as a URL
+          </li>
+          <li>
+            if no file found, then passed to the
+            <code>ClassLoader.getResource()</code> method.
+          </li>
+        </ol>
       </subsection>
       <subsection name="Properties" id="SuppressionXpathFilter_Properties">
         <table>
@@ -791,20 +809,7 @@ public class UserService {
           <tr>
             <td>file</td>
             <td>
-              the location of the <em>suppressions XML document</em> file.
-              The order the location is checked is:
-              <ol>
-                <li>as a filesystem location</li>
-                <li>
-                  if no file found, and the location starts with either
-                  <code>http://</code> or <code>https://</code>, then it
-                  is interpreted as a URL
-                </li>
-                <li>
-                  if no file found, then passed to the
-                  <code>ClassLoader.getResource()</code> method.
-                </li>
-              </ol>
+              Specify the location of the <em>suppressions XML document</em> file.
             </td>
             <td><a href="property_types.html#string">String</a></td>
             <td><code>null</code></td>
@@ -813,7 +818,7 @@ public class UserService {
           <tr>
             <td>optional</td>
             <td>
-              Tells what to do when the file is not existing. If
+              Control what to do when the file is not existing. If
               optional is set to false the file must exist, or else
               it ends with error. On the other hand if optional is
               true and file is not found, the filter accepts all
@@ -862,13 +867,13 @@ public class UserService {
             <code>message</code> -
             a <a href="property_types.html#regexp">Regular Expression</a>
             matched against the message of the check associated with an audit
-            event.  Optional as long as <code>checks</code> or <code>id</code> is specified.
+            event. Optional as long as <code>checks</code> or <code>id</code> is specified.
           </li>
           <li>
             <code>id</code> -
             a <a href="property_types.html#string">string</a>
             matched against the ID of the check associated with an audit
-            event.  Optional as long as <code>checks</code> or <code>message</code> is specified.
+            event. Optional as long as <code>checks</code> or <code>message</code> is specified.
           </li>
           <li>
             <code>query</code> -
@@ -968,7 +973,8 @@ public class UserService {
           variable <i>age</i> inside <i>changeAge</i> method.
         </p>
         <source>
-&lt;suppress-xpath checks=&quot;RequireThis&quot; query=&quot;/CLASS_DEF[./IDENT[@text='InputTest']]
+&lt;suppress-xpath checks=&quot;RequireThis&quot;
+     query=&quot;/CLASS_DEF[./IDENT[@text='InputTest']]
           //METHOD_DEF[./IDENT[@text='changeAge']]//ASSIGN/IDENT[@text='age']&quot;/&gt;
         </source>
         <source>
