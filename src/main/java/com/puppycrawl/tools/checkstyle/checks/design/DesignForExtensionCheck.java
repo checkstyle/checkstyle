@@ -34,8 +34,9 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
+ * <p>
  * The check finds classes that are designed for extension (subclass creation).
- *
+ * </p>
  * <p>
  * Nothing wrong could be with founded classes.
  * This check makes sense only for library projects (not application projects)
@@ -61,33 +62,151 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * ignoredAnnotations set as in a subclass the method which has the annotation can also be
  * overridden in its subclass.
  * </p>
- *
  * <p>
- * More specifically, the check enforces a programming style where superclasses provide empty
- * "hooks" that can be implemented by subclasses.
+ * Problem is described at "Effective Java, 2nd Edition by Joshua Bloch" book, chapter
+ * "Item 17: Design and document for inheritance or else prohibit it".
  * </p>
- *
+ * <p>
+ * Some quotes from book:
+ * </p>
+ * <blockquote>The class must document its self-use of overridable methods.
+ * By convention, a method that invokes overridable methods contains a description
+ * of these invocations at the end of its documentation comment. The description
+ * begins with the phrase “This implementation.”
+ * </blockquote>
+ * <blockquote>
+ * The best solution to this problem is to prohibit subclassing in classes that
+ * are not designed and documented to be safely subclassed.
+ * </blockquote>
+ * <blockquote>
+ * If a concrete class does not implement a standard interface, then you may
+ * inconvenience some programmers by prohibiting inheritance. If you feel that you
+ * must allow inheritance from such a class, one reasonable approach is to ensure
+ * that the class never invokes any of its overridable methods and to document this
+ * fact. In other words, eliminate the class’s self-use of overridable methods entirely.
+ * In doing so, you’ll create a class that is reasonably safe to subclass. Overriding a
+ * method will never affect the behavior of any other method.
+ * </blockquote>
  * <p>
  * The check finds classes that have overridable methods (public or protected methods
  * that are non-static, not-final, non-abstract) and have non-empty implementation.
  * </p>
- *
  * <p>
- * This protects superclasses against being broken by subclasses. The downside is that subclasses
- * are limited in their flexibility, in particular, they cannot prevent execution of code in the
- * superclass, but that also means that subclasses cannot forget to call their super method.
+ * Rationale: This library design style protects superclasses against being broken
+ * by subclasses. The downside is that subclasses are limited in their flexibility,
+ * in particular they cannot prevent execution of code in the superclass, but that
+ * also means that subclasses cannot corrupt the state of the superclass by forgetting
+ * to call the superclass's method.
  * </p>
- *
  * <p>
- * The check has the following options:
+ * More specifically, it enforces a programming style where superclasses provide
+ * empty "hooks" that can be implemented by subclasses.
  * </p>
+ * <p>
+ * Example of code that cause violation as it is designed for extension:
+ * </p>
+ * <pre>
+ * public abstract class Plant {
+ *   private String roots;
+ *   private String trunk;
+ *
+ *   protected void validate() {
+ *     if (roots == null) throw new IllegalArgumentException("No roots!");
+ *     if (trunk == null) throw new IllegalArgumentException("No trunk!");
+ *   }
+ *
+ *   public abstract void grow();
+ * }
+ *
+ * public class Tree extends Plant {
+ *   private List leaves;
+ *
+ *   &#64;Overrides
+ *   protected void validate() {
+ *     super.validate();
+ *     if (leaves == null) throw new IllegalArgumentException("No leaves!");
+ *   }
+ *
+ *   public void grow() {
+ *     validate();
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * Example of code without violation:
+ * </p>
+ * <pre>
+ * public abstract class Plant {
+ *   private String roots;
+ *   private String trunk;
+ *
+ *   private void validate() {
+ *     if (roots == null) throw new IllegalArgumentException("No roots!");
+ *     if (trunk == null) throw new IllegalArgumentException("No trunk!");
+ *     validateEx();
+ *   }
+ *
+ *   protected void validateEx() { }
+ *
+ *   public abstract void grow();
+ * }
+ * </pre>
  * <ul>
  * <li>
- * ignoredAnnotations - annotations which allow the check to skip the method from validation.
- * Default value is <b>Test, Before, After, BeforeClass, AfterClass</b>.
+ * Property {@code ignoredAnnotations} - Specify annotations which allow the check to
+ * skip the method from validation.
+ * Default value is {@code Before, BeforeClass, Test, After, AfterClass}.
  * </li>
  * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;DesignForExtension&quot;/&gt;
+ * </pre>
+ * <p>
+ * To configure the check to allow methods which have @Override and @Test annotations
+ * to be designed for extension.
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;DesignForExtension&quot;&gt;
+ *   &lt;property name=&quot;ignoredAnnotations&quot; value=&quot;Override, Test&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * public class A extends B {
+ *   &#64;Override
+ *   public int foo() {
+ *     return 2;
+ *   }
  *
+ *   public int foo2() {return 8;} // violation
+ * }
+ *
+ * public class B {
+ *   &#47;**
+ *    * This implementation ...
+ *      &#64;return some int value.
+ *    *&#47;
+ *   public int foo() {
+ *     return 1;
+ *   }
+ *
+ *   public int foo3() {return 3;} // violation
+ * }
+ *
+ * public class FooTest {
+ *   &#64;Test
+ *   public void testFoo() {
+ *     final B b = new A();
+ *     assertEquals(2, b.foo());
+ *   }
+ *
+ *   public int foo4() {return 4;} // violation
+ * }
+ *</pre>
+ *
+ * @since 3.1
  */
 @StatelessCheck
 public class DesignForExtensionCheck extends AbstractCheck {
@@ -99,13 +218,13 @@ public class DesignForExtensionCheck extends AbstractCheck {
     public static final String MSG_KEY = "design.forExtension";
 
     /**
-     * A set of annotations which allow the check to skip the method from validation.
+     * Specify annotations which allow the check to skip the method from validation.
      */
     private Set<String> ignoredAnnotations = Arrays.stream(new String[] {"Test", "Before", "After",
         "BeforeClass", "AfterClass", }).collect(Collectors.toSet());
 
     /**
-     * Sets annotations which allow the check to skip the method from validation.
+     * Setter to specify annotations which allow the check to skip the method from validation.
      * @param ignoredAnnotations method annotations.
      */
     public void setIgnoredAnnotations(String... ignoredAnnotations) {

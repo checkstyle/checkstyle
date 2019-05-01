@@ -23,8 +23,8 @@
     </section>
 
     <section name="DesignForExtension">
+      <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="DesignForExtension_Description">
-        <p>Since Checkstyle 3.1</p>
         <p>
           The check finds classes that are designed for extension (subclass creation).
         </p>
@@ -156,7 +156,7 @@ public abstract class Plant {
                 <tr>
                     <td>ignoredAnnotations</td>
                     <td>
-                        Annotations which allow the check to skip the method from validation.
+                      Specify annotations which allow the check to skip the method from validation.
                     </td>
                     <td><a href="property_types.html#stringSet">String Set</a></td>
                     <td><code>Before, BeforeClass, Test, After, AfterClass</code></td>
