@@ -454,8 +454,8 @@ public class StringUtils // not final to allow subclassing
     </section>
 
     <section name="InterfaceIsType">
+      <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="InterfaceIsType_Description">
-        <p>Since Checkstyle 3.1</p>
         <p>
           Implements Joshua Bloch, Effective Java, Item 17 - Use Interfaces only to
           define types.
@@ -489,7 +489,7 @@ public class StringUtils // not final to allow subclassing
           <tr>
             <td>allowMarkerInterfaces</td>
             <td>
-              Controls whether marker interfaces like Serializable are
+              Control whether marker interfaces like Serializable are
               allowed.
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
