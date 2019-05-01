@@ -548,8 +548,8 @@ public class StringUtils // not final to allow subclassing
     </section>
 
     <section name="MutableException">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="MutableException_Description">
-        <p>Since Checkstyle 3.2</p>
         <p>
           Ensures that exception classes (classes with names conforming to some regular
           expression and explicitly extending classes with names conforming to other
@@ -558,9 +558,9 @@ public class StringUtils // not final to allow subclassing
 
         <p>
           The current algorithm is very simple: it checks that all members of
-          exception are final.  The user can still mutate an exception's instance
+          exception are final. The user can still mutate an exception's instance
           (e.g. Throwable has a method called <code>setStackTrace</code>
-          which changes the exception's stack trace).  But, at least, all information
+          which changes the exception's stack trace). But, at least, all information
           provided by this exception type is unchangeable.
         </p>
 
@@ -585,14 +585,14 @@ public class StringUtils // not final to allow subclassing
           </tr>
           <tr>
             <td>format</td>
-            <td>pattern for exception class names</td>
+            <td>Specify pattern for exception class names.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"^.*Exception$|^.*Error$|^.*Throwable$"</code></td>
             <td>3.2</td>
           </tr>
           <tr>
             <td>extendedClassNameFormat</td>
-            <td>pattern for extended class names</td>
+            <td>Specify pattern for extended class names.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"^.*Exception$|^.*Error$|^.*Throwable$"</code></td>
             <td>6.2</td>
