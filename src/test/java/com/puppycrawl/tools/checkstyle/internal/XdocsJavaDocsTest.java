@@ -96,6 +96,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "FinalClass",
         "FinalLocalVariable",
         "HiddenField",
+        "HideUtilityClassConstructor",
         "IllegalCatch",
         "IllegalInstantiation",
         "IllegalThrows",
