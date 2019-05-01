@@ -23,8 +23,8 @@
     </section>
 
     <section name="SeverityMatchFilter">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="SeverityMatchFilter_Description">
-        <p>Since Checkstyle 3.2</p>
         <p>
           Filter <code>SeverityMatchFilter</code> decides
           audit events according to the <a href="config.html#Severity">severity
@@ -42,7 +42,7 @@
           </tr>
           <tr>
             <td>severity</td>
-            <td>the severity level of this filter</td>
+            <td>Specify the severity level of this filter.</td>
             <td><a href="property_types.html#severity">Severity</a></td>
             <td><code>error</code></td>
             <td>3.2</td>
@@ -50,8 +50,7 @@
           <tr>
             <td>acceptOnMatch</td>
             <td>
-               If acceptOnMatch is <code>true</code>, then
-               the filter accepts an audit event if and only if there is
+               Control whether the filter accepts an audit event if and only if there is
                a match between the event's severity level and property
                severity. If acceptOnMatch
                is <code>false</code>, then the filter
