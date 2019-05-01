@@ -30,58 +30,58 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
+ * <p>
  * Checks that each top-level class, interface
  * or enum resides in a source file of its own.
- * <p>
- * Official description of a 'top-level' term:<a
- * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-7.html#jls-7.6">
+ * Official description of a 'top-level' term:
+ * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-7.html#jls-7.6">
  * 7.6. Top Level Type Declarations</a>. If file doesn't contains
  * public class, enum or interface, top-level type is the first type in file.
  * </p>
  * <p>
- * An example of code with violations:
- * </p>
- * <pre>{@code
- * public class Foo{
- *     //methods
- * }
- *
- * class Foo2{
- *     //methods
- * }
- * }</pre>
- * <p>
- * An example of code without top-level public type:
- * </p>
- * <pre>{@code
- * class Foo{ //top-level class
- *     //methods
- * }
- *
- * class Foo2{
- *     //methods
- * }
- * }</pre>
- * <p>
  * An example of check's configuration:
  * </p>
  * <pre>
- * &lt;module name="OneTopLevelClass"/&gt;
+ * &lt;module name=&quot;OneTopLevelClass&quot;/&gt;
  * </pre>
+ * <p>
+ * <b>ATTENTION:</b> This Check does not support customization of validated tokens,
+ * so do not use the "tokens" property.
+ * </p>
+ * <p>
+ * An example of code with violations:
+ * </p>
+ * <pre>
+ * public class Foo{
+ *   //methods
+ * }
  *
+ * class Foo2{
+ *   //methods
+ * }
+ * </pre>
+ * <p>
+ * An example of code without public top-level type:
+ * </p>
+ * <pre>
+ * class Foo{ // top-level class
+ *   //methods
+ * }
+ *
+ * class Foo2{
+ *   //methods
+ * }
+ * </pre>
  * <p>
  * An example of code without violations:
  * </p>
- * <pre>{@code
+ * <pre>
  * public class Foo{
- *     //methods
+ *   //methods
  * }
- * }</pre>
+ * </pre>
  *
- * <p> ATTENTION: This Check does not support customization of validated tokens,
- *  so do not use the "tokens" property.
- * </p>
- *
+ * @since 5.8
  */
 @FileStatefulCheck
 public class OneTopLevelClassCheck extends AbstractCheck {
