@@ -1553,11 +1553,11 @@ public class TestClass {
     </section>
 
     <section name="SuppressWarningsFilter">
+      <p>Since Checkstyle 5.7</p>
       <subsection name="Description" id="SuppressWarningsFilter_Description">
-          <p>Since Checkstyle 5.7</p>
           <p>
-              Filter <code>SuppressWarningsFilter</code> uses annotations to
-              suppress audit events.
+              Filter <code>SuppressWarningsFilter</code> uses annotation
+              {@code SuppressWarnings} to suppress audit events.
           </p>
           <p>
               Rationale: Same as for
@@ -1617,7 +1617,8 @@ private int [] ARRAY; // should NOT fail MemberNameCheck and NoWhitespaceAfterCh
 &lt;module name="RegexpSinglelineJava&quot;&gt;
   &lt;property name="id" value="systemout"/&gt;
   &lt;property name="format" value=&quot;^.*System\.(out|err).*$&quot;/&gt;
-  &lt;property name="message" value="Don't use System.out/err, use SLF4J instead."/&gt;
+  &lt;property name="message"
+    value="Don't use System.out/err, use SLF4J instead."/&gt;
 &lt;/module&gt;
           </source>
           <p>
