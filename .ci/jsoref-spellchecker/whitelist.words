@@ -627,6 +627,7 @@ jarchitect
 javac
 javadoc
 javadocblocktaglocation
+javadoccontentlocation
 javadocdetailnodeparser
 javadocmethod
 javadocpackage

@@ -624,6 +624,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.javadoc.InvalidJavadocPositionCheck");
         NAME_TO_FULL_MODULE_NAME.put("JavadocBlockTagLocationCheck",
                 BASE_PACKAGE + ".checks.javadoc.JavadocBlockTagLocationCheck");
+        NAME_TO_FULL_MODULE_NAME.put("JavadocContentLocationCheck",
+                BASE_PACKAGE + ".checks.javadoc.JavadocContentLocationCheck");
         NAME_TO_FULL_MODULE_NAME.put("JavadocMethodCheck",
                 BASE_PACKAGE + ".checks.javadoc.JavadocMethodCheck");
         NAME_TO_FULL_MODULE_NAME.put("JavadocPackageCheck",
