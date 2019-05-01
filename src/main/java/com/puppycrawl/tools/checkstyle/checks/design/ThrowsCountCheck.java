@@ -26,22 +26,22 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Restricts throws statements to a specified count (default = 4).
+ * Restricts throws statements to a specified count (4 by default).
  * Methods with "Override" or "java.lang.Override" annotation are skipped
  * from validation as current class cannot change signature of these methods.
  * </p>
  * <p>
  * Rationale:
- * Exceptions form part of a methods interface. Declaring
+ * Exceptions form part of a method's interface. Declaring
  * a method to throw too many differently rooted
  * exceptions makes exception handling onerous and leads
- * to poor programming practices such as catch
- * (Exception). 4 is the empirical value which is based
+ * to poor programming practices such as writing code like
+ * {@code catch(Exception ex)}. 4 is the empirical value which is based
  * on reports that we had for the ThrowsCountCheck over big projects
  * such as OpenJDK. This check also forces developers to put exceptions
  * into a hierarchy such that in the simplest
  * case, only one type of exception need be checked for by
- * a caller but allows any sub-classes to be caught
+ * a caller but any subclasses can be caught
  * specifically if necessary. For more information on rules
  * for the exceptions and their issues, see Effective Java:
  * Programming Language Guide Second Edition
@@ -51,6 +51,34 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <b>ignorePrivateMethods</b> - allows to skip private methods as they do
  * not cause problems for other classes.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code max} - Specify maximum allowed number of throws statements.
+ * Default value is {@code 4}.
+ * </li>
+ * <li>
+ * Property {@code ignorePrivateMethods} - Allow private methods to be ignored.
+ * Default value is {@code true}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check so that it doesn't allow more than two throws per method:
+ * </p>
+ * <pre>
+ * &lt;module name="ThrowsCount"&gt;
+ *   &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check so that it doesn't skip private methods:
+ * </p>
+ * <pre>
+ * &lt;module name="ThrowsCount"&gt;
+ *   &lt;property name=&quot;ignorePrivateMethods&quot; value=&quot;false&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ *
+ * @since 3.2
  */
 @StatelessCheck
 public final class ThrowsCountCheck extends AbstractCheck {
@@ -64,10 +92,10 @@ public final class ThrowsCountCheck extends AbstractCheck {
     /** Default value of max property. */
     private static final int DEFAULT_MAX = 4;
 
-    /** Whether private methods must be ignored. **/
+    /** Allow private methods to be ignored. */
     private boolean ignorePrivateMethods = true;
 
-    /** Maximum allowed throws statements. */
+    /** Specify maximum allowed number of throws statements. */
     private int max;
 
     /** Creates new instance of the check. */
@@ -93,7 +121,7 @@ public final class ThrowsCountCheck extends AbstractCheck {
     }
 
     /**
-     * Sets whether private methods must be ignored.
+     * Setter to allow private methods to be ignored.
      * @param ignorePrivateMethods whether private methods must be ignored.
      */
     public void setIgnorePrivateMethods(boolean ignorePrivateMethods) {
@@ -101,7 +129,7 @@ public final class ThrowsCountCheck extends AbstractCheck {
     }
 
     /**
-     * Setter for max property.
+     * Setter to specify maximum allowed number of throws statements.
      * @param max maximum allowed throws statements.
      */
     public void setMax(int max) {

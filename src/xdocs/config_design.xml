@@ -743,8 +743,8 @@ public class Foo{
     </section>
 
     <section name="ThrowsCount">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="ThrowsCount_Description">
-        <p>Since Checkstyle 3.2</p>
         <p>
           Restricts throws statements to a specified count (4 by default).
           Methods with "Override" or "java.lang.Override" annotation are skipped
@@ -761,7 +761,7 @@ public class Foo{
           This check also forces developers to put exceptions into a hierarchy
           such that in the simplest case, only one type of exception need be
           checked for by a caller but any subclasses can be caught specifically
-          if necessary.For more information on rules for the exceptions and
+          if necessary. For more information on rules for the exceptions and
           their issues, see Effective Java: Programming Language Guide
           Second Edition by Joshua Bloch pages 264-273.
         </p>
@@ -783,14 +783,14 @@ public class Foo{
           </tr>
           <tr>
             <td>max</td>
-            <td>maximum allowed number of throws statements</td>
+            <td>Specify maximum allowed number of throws statements.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>4</code></td>
             <td>3.2</td>
           </tr>
           <tr>
             <td>ignorePrivateMethods</td>
-            <td>whether private methods must be ignored</td>
+            <td>Allow private methods to be ignored.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
             <td>6.7</td>
