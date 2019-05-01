@@ -27,10 +27,17 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <p>
- * Check nested (internal) classes/interfaces are declared at the bottom of the
+ * Check nested (inner) classes/interfaces are declared at the bottom of the
  * class after all method and field declarations.
  * </p>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;InnerTypeLast&quot;/&gt;
+ * </pre>
  *
+ * @since 5.2
  */
 @FileStatefulCheck
 public class InnerTypeLastCheck extends AbstractCheck {

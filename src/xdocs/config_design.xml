@@ -401,8 +401,8 @@ public class StringUtils // not final to allow subclassing
     </section>
 
     <section name="InnerTypeLast">
+      <p>Since Checkstyle 5.2</p>
       <subsection name="Description" id="InnerTypeLast_Description">
-        <p>Since Checkstyle 5.2</p>
         <p>
           Check nested (inner) classes/interfaces are declared at the
           bottom of the class after all method and field declarations.
