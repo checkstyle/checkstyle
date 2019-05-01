@@ -85,6 +85,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "CustomImportOrder",
         "DeclarationOrder",
         "DefaultComesLast",
+        "DesignForExtension",
         "EmptyBlock",
         "EmptyCatchBlock",
         "EmptyStatement",
