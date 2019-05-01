@@ -855,8 +855,8 @@ public class Foo{
     </section>
 
     <section name="VisibilityModifier">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="VisibilityModifier_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
           Checks visibility of class members. Only static final, immutable or annotated
           by specified annotation members may be public; other class members must be private
@@ -883,22 +883,25 @@ public class Foo{
         <p>
           <b>ignoreAnnotationCanonicalNames</b> - the list of annotations which ignore variables
           in consideration. If user will provide short annotation name that type will match to any
-          named the same type without consideration of package
+          named the same type without consideration of package.
         </p>
         <p>
           <b>allowPublicFinalFields</b> - which allows public final fields.
-          Default value is <b>false</b>
         </p>
         <p>
           <b>allowPublicImmutableFields</b> - which allows immutable fields to be declared as
-          public if defined in final class. Default value is <b>false</b>
+          public if defined in final class.
         </p>
         <p>
           Field is known to be immutable if:
-          - It's declared as final
-          - Has either a primitive type or instance of class user defined to be immutable
-          (such as String, ImmutableCollection from Guava and etc)
         </p>
+        <ul>
+          <li>It's declared as final</li>
+          <li>
+            Has either a primitive type or instance of class user defined to be immutable
+            (such as String, ImmutableCollection from Guava and etc)
+          </li>
+        </ul>
         <p>
           Classes known to be immutable are listed in <b>immutableClassCanonicalNames</b> by their
           <b>canonical</b> names.
@@ -934,56 +937,59 @@ public class Foo{
           </tr>
           <tr>
             <td>packageAllowed</td>
-            <td>whether package visible members are allowed</td>
+            <td>Control whether package visible members are allowed.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>3.0</td>
           </tr>
           <tr>
             <td>protectedAllowed</td>
-            <td>whether protected members are allowed</td>
+            <td>Control whether protected members are allowed.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>3.0</td>
           </tr>
           <tr>
             <td>publicMemberPattern</td>
-            <td>pattern for public members that should be ignored</td>
+            <td>Specify pattern for public members that should be ignored.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"^serialVersionUID$"</code></td>
             <td>3.0</td>
           </tr>
           <tr>
             <td>allowPublicFinalFields</td>
-            <td>allows public final fields</td>
+            <td>Allow final fields to be declared as public.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>7.0</td>
           </tr>
           <tr>
             <td>allowPublicImmutableFields</td>
-            <td>allows immutable fields to be declared as public if defined in final class</td>
+            <td>Allow immutable fields to be declared as public if defined in final class.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>6.4</td>
           </tr>
           <tr>
             <td>immutableClassCanonicalNames</td>
-            <td>immutable classes canonical names</td>
+            <td>Specify immutable classes canonical names.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>java.lang.String, java.lang.Integer, java.lang.Byte, java.lang.Character,
+            <td><code>java.lang.String, java.lang.Integer, java.lang.Byte, java.lang.Character,
             java.lang.Short, java.lang.Boolean, java.lang.Long, java.lang.Double, java.lang.Float,
             java.lang.StackTraceElement, java.math.BigInteger, java.math.BigDecimal, java.io.File,
             java.util.Locale, java.util.UUID, java.net.URL, java.net.URI,
-            java.net.Inet4Address, java.net.Inet6Address, java.net.InetSocketAddress</td>
+            java.net.Inet4Address, java.net.Inet6Address, java.net.InetSocketAddress</code></td>
             <td>6.4.1</td>
           </tr>
           <tr>
             <td>ignoreAnnotationCanonicalNames</td>
-            <td>ignore annotations canonical names</td>
+            <td>
+              Specify the list of annotations canonical names which ignore variables in
+              consideration.
+            </td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>org.junit.Rule, org.junit.ClassRule,
-                com.google.common.annotations.VisibleForTesting</td>
+            <td><code>org.junit.Rule, org.junit.ClassRule,
+                com.google.common.annotations.VisibleForTesting</code></td>
             <td>6.5</td>
           </tr>
         </table>
