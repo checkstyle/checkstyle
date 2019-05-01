@@ -105,6 +105,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "ImportOrder",
         "InnerAssignment",
         "InnerTypeLast",
+        "InterfaceIsType",
         "InterfaceMemberImpliedModifier",
         "InterfaceTypeParameterName",
         "LambdaParameterName",

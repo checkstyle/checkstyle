@@ -25,21 +25,36 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Implements Bloch, Effective Java, Item 17 -
+ * <p>
+ * Implements Joshua Bloch, Effective Java, Item 17 -
  * Use Interfaces only to define types.
- *
+ * </p>
  * <p>
- * An interface should describe a <em>type</em>, it is therefore
+ * According to Bloch, an interface should describe a <em>type</em>. It is therefore
  * inappropriate to define an interface that does not contain any methods
- * but only constants.
+ * but only constants. The Standard interface
+ * <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/SwingConstants.html">
+ * javax.swing.SwingConstants</a> is an example of an interface that would be flagged by this check.
  * </p>
- *
  * <p>
- * The check can be configured to also disallow marker interfaces like
- * {@code java.io.Serializable}, that do not contain methods or
- * constants at all.
+ * The check can be configured to also disallow marker interfaces like {@code java.io.Serializable},
+ * that do not contain methods or constants at all.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code allowMarkerInterfaces} - Control whether marker interfaces
+ * like Serializable are allowed.
+ * Default value is {@code true}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name="InterfaceIsType"/&gt;
+ * </pre>
  *
+ * @since 3.1
  */
 @StatelessCheck
 public final class InterfaceIsTypeCheck
@@ -51,7 +66,7 @@ public final class InterfaceIsTypeCheck
      */
     public static final String MSG_KEY = "interface.type";
 
-    /** Flag to control whether marker interfaces are allowed. */
+    /** Control whether marker interfaces like Serializable are allowed. */
     private boolean allowMarkerInterfaces = true;
 
     @Override
@@ -86,7 +101,7 @@ public final class InterfaceIsTypeCheck
     }
 
     /**
-     * Controls whether marker interfaces like Serializable are allowed.
+     * Setter to control whether marker interfaces like Serializable are allowed.
      * @param flag whether to allow marker interfaces or not
      */
     public void setAllowMarkerInterfaces(boolean flag) {
