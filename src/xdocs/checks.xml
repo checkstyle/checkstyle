@@ -391,6 +391,14 @@
         <td>Custom Checkstyle Check to validate Javadoc.</td>
       </tr>
       <tr>
+        <td><a href="config_javadoc.html#JavadocSummaryLocation">
+          JavadocSummaryLocation</a></td>
+        <td>
+          Checks that Javadoc summary is in the same position for all javadoc
+          in the project.
+        </td>
+      </tr>
+      <tr>
         <td><a href="config_javadoc.html#JavadocTagContinuationIndentation">
           JavadocTagContinuationIndentation</a></td>
         <td>Checks the indentation of the continuation lines in at-clauses.</td>

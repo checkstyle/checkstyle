@@ -480,6 +480,7 @@
     <module name="JavadocStyle">
       <property name="scope" value="public"/>
     </module>
+    <module name="JavadocSummaryLocation"/>
     <module name="JavadocTagContinuationIndentation"/>
     <module name="JavadocType">
       <!-- avoid errors on tag '@noinspection' -->

@@ -705,5 +705,51 @@
         </tr>
       </table>
     </section>
+
+    <section name="javadocSummaryLocation">
+      <p>
+        This type represents policy on placement of the javadoc summary.
+        The following table describes the valid options:
+      </p>
+
+      <table summary="javadocSummaryLocation options">
+        <tr>
+          <td>Option</td>
+          <td>Definition</td>
+        </tr>
+
+        <tr>
+          <td><code>FIRST_LINE</code></td>
+          <td>
+            Represents the policy for placing the summary on the same line as <code>/**</code>.
+            Example:
+            <pre>
+            &#47;** Summary text.
+              * More details.
+              *&#47;
+            public void method();
+            </pre>
+            This style is also known as "scala" style.
+          </td>
+        </tr>
+
+        <tr>
+          <td><code>SECOND_LINE</code></td>
+          <td>
+            Represents the policy for placing the summary on the next line after <code>/**</code>.
+            Example:
+            <pre>
+              &#47;**
+              * Summary text.
+              * More details.
+              *&#47;
+              public void method();
+            </pre>
+            This style is common to java projects.
+          </td>
+        </tr>
+
+      </table>
+    </section>
   </body>
 </document>
