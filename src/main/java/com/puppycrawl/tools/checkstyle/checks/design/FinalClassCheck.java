@@ -31,16 +31,18 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <p>
- * Checks that class which has only private ctors
+ * Checks that a class which has only private constructors
  * is declared as final. Doesn't check for classes nested in interfaces
  * or annotations, as they are always {@code final} there.
  * </p>
  * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
- * &lt;module name="FinalClass"/&gt;
+ * &lt;module name=&quot;FinalClass&quot;/&gt;
  * </pre>
+ *
+ * @since 3.1
  */
 @FileStatefulCheck
 public class FinalClassCheck
