@@ -73,7 +73,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "SeverityMatchFilter",
         "SuppressionXpathFilter",
         "SuppressionXpathSingleFilter",
-        "SuppressWarningsFilter",
         // javadoc
         "JavadocMethod",
         "JavadocPackage",
