@@ -471,6 +471,7 @@
       <!-- additional tags used in the project -->
       <property name="tags" value="noinspection"/>
     </module>
+    <module name="JavadocContentLocation"/>
     <module name="JavadocMethod">
       <property name="allowUndeclaredRTE" value="true"/>
       <property name="allowThrowsTagsForSubclasses" value="true"/>

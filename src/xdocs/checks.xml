@@ -375,6 +375,14 @@
         <td>Checks that a javadoc block tag appears only at the beginning of a line.</td>
       </tr>
       <tr>
+        <td><a href="config_javadoc.html#JavadocContentLocation">
+          JavadocContentLocation</a></td>
+        <td>
+          Checks that the Javadoc content begins from the same position
+          for all Javadoc comments in the project.
+        </td>
+      </tr>
+      <tr>
         <td><a href="config_javadoc.html#JavadocMethod">JavadocMethod</a></td>
         <td>Checks the Javadoc of a method or constructor.</td>
       </tr>
