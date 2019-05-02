@@ -1661,18 +1661,18 @@ public static void foo() {
     </section>
 
     <section name="SuppressWithNearbyCommentFilter">
-        <subsection name="Description" id="SuppressWithNearbyCommentFilter_Description">
-            <p>Since Checkstyle 5.0</p>
+      <p>Since Checkstyle 5.0</p>
+      <subsection name="Description" id="SuppressWithNearbyCommentFilter_Description">
             <p>
                 Filter <code>SuppressWithNearbyCommentFilter</code> uses
-                individual comments to suppress audit events.
+                nearby comments to suppress audit events.
             </p>
             <p>
                 Rationale: Same as <code>SuppressionCommentFilter</code>.
                 Whereas the SuppressionCommentFilter uses matched pairs of
                 filters to turn on/off comment matching,
                 <code>SuppressWithNearbyCommentFilter</code> uses
-                single comments.  This requires fewer lines to mark a region, and
+                single comments. This requires fewer lines to mark a region, and
                 may be aesthetically preferable in some contexts.
             </p>
             <p>
@@ -1695,43 +1695,43 @@ public static void foo() {
                 </tr>
                 <tr>
                     <td>commentFormat</td>
-                    <td>comment pattern to trigger filter to begin suppression</td>
+                    <td>Specify comment pattern to trigger filter to begin suppression.</td>
                     <td><a href="property_types.html#regexp">Regular Expression</a></td>
                     <td><code>"SUPPRESS CHECKSTYLE (\w+)"</code></td>
                     <td>5.0</td>
                 </tr>
                 <tr>
                     <td>checkFormat</td>
-                    <td>check pattern to suppress</td>
+                    <td>Specify check pattern to suppress.</td>
                     <td><a href="property_types.html#regexp">Regular Expression</a></td>
                     <td><code>".*"</code></td>
                     <td>5.0</td>
                 </tr>
                 <tr>
                     <td>messageFormat</td>
-                    <td>message pattern to suppress</td>
+                    <td>Define message pattern to suppress.</td>
                     <td><a href="property_types.html#regexp">Regular Expression</a></td>
                     <td><code>null</code></td>
                     <td>5.0</td>
                 </tr>
                 <tr>
                     <td>influenceFormat</td>
-                    <td>a negative/zero/positive value that defines the number of
-                        lines preceding/at/following the suppression comment</td>
+                    <td>Specify negative/zero/positive value that defines the number of
+                        lines preceding/at/following the suppression comment.</td>
                     <td><a href="property_types.html#regexp">Regular Expression</a></td>
                     <td><code>"0"</code></td>
                     <td>5.0</td>
                 </tr>
                 <tr>
                     <td>checkCPP</td>
-                    <td>whether to check C++ style comments (<code>//</code>)</td>
+                    <td>Control whether to check C++ style comments (<code>//</code>).</td>
                     <td><a href="property_types.html#boolean">Boolean</a></td>
                     <td><code>true</code></td>
                     <td>5.0</td>
                 </tr>
                 <tr>
                     <td>checkC</td>
-                    <td>whether to check C style comments (<code>/* ... */</code>)</td>
+                    <td>Control whether to check C style comments (<code>/* ... */</code>).</td>
                     <td><a href="property_types.html#boolean">Boolean</a></td>
                     <td><code>true</code></td>
                     <td>5.0</td>
@@ -1799,18 +1799,19 @@ catch (Throwable th) { ... }
 &lt;/module&gt;
             </source>
             <source>
-public static final int lowerCaseConstant; // CHECKSTYLE IGNORE ConstantNameCheck FOR NEXT 3 LINES
-public static final int lowerCaseConstant1;
-public static final int lowerCaseConstant2;
-public static final int lowerCaseConstant3;
-public static final int lowerCaseConstant4; // will warn here
+static final int lowerCaseConstant; // CHECKSTYLE IGNORE ConstantNameCheck FOR NEXT 3 LINES
+static final int lowerCaseConstant1;
+static final int lowerCaseConstant2;
+static final int lowerCaseConstant3;
+static final int lowerCaseConstant4; // will warn here
             </source>
             <p>
                 To configure a filter to avoid any audits on code like:
             </p>
             <source>
 &lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
-  &lt;property name=&quot;commentFormat&quot; value=&quot;ALLOW (\\w+) ON PREVIOUS LINE&quot;/&gt;
+  &lt;property name=&quot;commentFormat&quot;
+    value=&quot;ALLOW (\\w+) ON PREVIOUS LINE&quot;/&gt;
   &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
   &lt;property name=&quot;influenceFormat&quot; value=&quot;-1&quot;/&gt;
 &lt;/module&gt;
