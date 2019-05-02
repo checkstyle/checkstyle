@@ -37,36 +37,207 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * A filter that uses nearby comments to suppress audit events.
+ * Filter {@code SuppressWithNearbyCommentFilter} uses nearby comments to suppress audit events.
  * </p>
- *
- * <p>This check is philosophically similar to {@link SuppressionCommentFilter}.
- * Unlike {@link SuppressionCommentFilter}, this filter does not require
- * pairs of comments.  This check may be used to suppress warnings in the
- * current line:
+ * <p>
+ * Rationale: Same as {@code SuppressionCommentFilter}.
+ * Whereas the SuppressionCommentFilter uses matched pairs of filters to turn
+ * on/off comment matching, {@code SuppressWithNearbyCommentFilter} uses single comments.
+ * This requires fewer lines to mark a region, and may be aesthetically preferable in some contexts.
+ * </p>
+ * <p>
+ * Attention: This filter may only be specified within the TreeWalker module
+ * ({@code &lt;module name="TreeWalker"/&gt;}) and only applies to checks which are also
+ * defined within this module. To filter non-TreeWalker checks like {@code RegexpSingleline},
+ * a <a href="config_filters.html#SuppressWithPlainTextCommentFilter">
+ * SuppressWithPlainTextCommentFilter</a> or similar filter must be used.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code commentFormat} - Specify comment pattern to trigger filter to begin suppression.
+ * Default value is {@code "SUPPRESS CHECKSTYLE (\w+)"}.
+ * </li>
+ * <li>
+ * Property {@code checkFormat} - Specify check pattern to suppress.
+ * Default value is {@code ".*"}.
+ * </li>
+ * <li>
+ * Property {@code messageFormat} - Define message pattern to suppress.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code influenceFormat} - Specify negative/zero/positive value that
+ * defines the number of lines preceding/at/following the suppression comment.
+ * Default value is {@code "0"}.
+ * </li>
+ * <li>
+ * Property {@code checkCPP} - Control whether to check C++ style comments ({@code //}).
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code checkC} - Control whether to check C style comments ({@code &#47;* ... *&#47;}).
+ * Default value is {@code true}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure a filter to suppress audit events for <i>check</i> on any line
+ * with a comment {@code SUPPRESS CHECKSTYLE <i>check</i>}:
+ * </p>
  * <pre>
- *    offendingLine(for, whatever, reason); // SUPPRESS ParameterNumberCheck
+ * &lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;/&gt;
  * </pre>
- * or it may be configured to span multiple lines, either forward:
  * <pre>
- *    // PERMIT MultipleVariableDeclarations NEXT 3 LINES
- *    double x1 = 1.0, y1 = 0.0, z1 = 0.0;
- *    double x2 = 0.0, y2 = 1.0, z2 = 0.0;
- *    double x3 = 0.0, y3 = 0.0, z3 = 1.0;
+ * private int [] array; // SUPPRESS CHECKSTYLE
  * </pre>
- * or reverse:
+ * <p>
+ * To configure a filter to suppress all audit events on any line containing
+ * the comment {@code CHECKSTYLE IGNORE THIS LINE}:
+ * </p>
  * <pre>
- *   try {
- *     thirdPartyLibrary.method();
- *   } catch (RuntimeException ex) {
- *     // ALLOW ILLEGAL CATCH BECAUSE third party API wraps everything
- *     // in RuntimeExceptions.
- *     ...
- *   }
+ * &lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
+ *   &lt;property name=&quot;commentFormat&quot; value=&quot;CHECKSTYLE IGNORE THIS LINE&quot;/&gt;
+ *   &lt;property name=&quot;checkFormat&quot; value=&quot;.*&quot;/&gt;
+ *   &lt;property name=&quot;influenceFormat&quot; value=&quot;0&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * public static final int lowerCaseConstant; // CHECKSTYLE IGNORE THIS LINE
+ * </pre>
+ * <p>
+ * To configure a filter so that {@code // OK to catch (Throwable|Exception|RuntimeException) here}
+ * permits the current and previous line to avoid generating an IllegalCatch audit event:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
+ *   &lt;property name=&quot;commentFormat&quot; value=&quot;OK to catch (\w+) here&quot;/&gt;
+ *   &lt;property name=&quot;checkFormat&quot; value=&quot;IllegalCatchCheck&quot;/&gt;
+ *   &lt;property name=&quot;messageFormat&quot; value=&quot;$1&quot;/&gt;
+ *   &lt;property name=&quot;influenceFormat&quot; value=&quot;-1&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * . . .
+ * catch (RuntimeException re) {
+ * // OK to catch RuntimeException here
+ * }
+ * catch (Throwable th) { ... }
+ * . . .
+ * </pre>
+ * <p>
+ * To configure a filter so that {@code CHECKSTYLE IGNORE <i>check</i> FOR NEXT
+ * <i>var</i> LINES} avoids triggering any audits for the given check for
+ * the current line and the next <i>var</i> lines (for a total of <i>var</i>+1 lines):
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
+ *   &lt;property name=&quot;commentFormat&quot;
+ *       value=&quot;CHECKSTYLE IGNORE (\w+) FOR NEXT (\d+) LINES&quot;/&gt;
+ *   &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
+ *   &lt;property name=&quot;influenceFormat&quot; value=&quot;$2&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * static final int lowerCaseConstant; // CHECKSTYLE IGNORE ConstantNameCheck FOR NEXT 3 LINES
+ * static final int lowerCaseConstant1;
+ * static final int lowerCaseConstant2;
+ * static final int lowerCaseConstant3;
+ * static final int lowerCaseConstant4; // will warn here
+ * </pre>
+ * <p>
+ * To configure a filter to avoid any audits on code like:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
+ *   &lt;property name=&quot;commentFormat&quot;
+ *     value=&quot;ALLOW (\\w+) ON PREVIOUS LINE&quot;/&gt;
+ *   &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
+ *   &lt;property name=&quot;influenceFormat&quot; value=&quot;-1&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * private int D2;
+ * // ALLOW MemberName ON PREVIOUS LINE
+ * . . .
+ * </pre>
+ * <p>
+ * To configure a filter to allow suppress one or more Checks (separated by "|")
+ * and demand comment no less than 14 symbols:
+ * </p>
+ * <pre>
+ * &lt;module name="SuppressWithNearbyCommentFilter"&gt;
+ *   &lt;property name="commentFormat"
+ *     value="@cs\.suppress \[(\w+(\|\w+)*)\] \w[-\.'`,:;\w ]{14,}"/&gt;
+ *   &lt;property name="checkFormat" value="$1"/&gt;
+ *   &lt;property name="influenceFormat" value="1"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * public static final int [] array; // @cs.suppress [ConstantName|NoWhitespaceAfter] A comment here
+ * </pre>
+ * <p>
+ * It is possible to specify an ID of checks, so that it can be leveraged by
+ * the SuppressWithNearbyCommentFilter to skip validations. The following examples show how to skip
+ * validations near code that has comment like {@code // @cs-: &lt;ID/&gt; (reason)},
+ * where ID is the ID of checks you want to suppress.
+ * </p>
+ * <p>
+ * Examples of Checkstyle checks configuration:
+ * </p>
+ * <pre>
+ * &lt;module name="RegexpSinglelineJava"&gt;
+ *   &lt;property name="id" value="ignore"/&gt;
+ *   &lt;property name="format" value="^.*@Ignore\s*$"/&gt;
+ *   &lt;property name="message" value="@Ignore should have a reason."/&gt;
+ * &lt;/module&gt;
+ *
+ * &lt;module name="RegexpSinglelineJava"&gt;
+ *   &lt;property name="id" value="systemout"/&gt;
+ *   &lt;property name="format" value="^.*System\.(out|err).*$"/&gt;
+ *   &lt;property name="message" value="Don't use System.out/err, use SLF4J instead."/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example of SuppressWithNearbyCommentFilter configuration (checkFormat which is set to
+ * '$1' points that ID of the checks is in the first group of commentFormat regular expressions):
+ * </p>
+ * <pre>
+ * &lt;module name="SuppressWithNearbyCommentFilter"&gt;
+ *   &lt;property name="commentFormat" value="@cs-: (\w+) \(\w+\)"/&gt;
+ *   &lt;property name="checkFormat" value="$1"/&gt;
+ *   &lt;property name="influenceFormat" value="0"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * &#64;Ignore // @cs-: ignore (test has not been implemented yet)
+ * &#64;Test
+ * public void testMethod() { }
+ *
+ * public static void foo() {
+ *   System.out.println("Debug info."); // @cs-: systemout (should not fail RegexpSinglelineJava)
+ * }
+ * </pre>
+ * <p>
+ * Example of how to configure the check to suppress more than one checks.
+ * The influence format format is specified in the second regexp group.
+ * </p>
+ * <pre>
+ * &lt;module name="SuppressWithNearbyCommentFilter"&gt;
+ *   &lt;property name="commentFormat" value="@cs-\: ([\w\|]+) influence (\d+)"/&gt;
+ *   &lt;property name="checkFormat" value="$1"/&gt;
+ *   &lt;property name="influenceFormat" value="$2"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * // @cs-: ClassDataAbstractionCoupling influence 2
+ * // @cs-: MagicNumber influence 4
+ * &#64;Service // no violations from ClassDataAbstractionCoupling here
+ * &#64;Transactional
+ * public class UserService {
+ *   private int value = 10022; // no violations from MagicNumber here
+ * }
  * </pre>
  *
- * <p>See {@link SuppressionCommentFilter} for usage notes.
- *
+ * @since 5.0
  */
 public class SuppressWithNearbyCommentFilter
     extends AutomaticBean
@@ -85,24 +256,27 @@ public class SuppressWithNearbyCommentFilter
     /** Tagged comments. */
     private final List<Tag> tags = new ArrayList<>();
 
-    /** Whether to look for trigger in C-style comments. */
+    /** Control whether to check C style comments ({@code &#47;* ... *&#47;}). */
     private boolean checkC = true;
 
-    /** Whether to look for trigger in C++-style comments. */
+    /** Control whether to check C++ style comments ({@code //}). */
     // -@cs[AbbreviationAsWordInName] We can not change it as,
     // check's property is a part of API (used in configurations).
     private boolean checkCPP = true;
 
-    /** Parsed comment regexp that marks checkstyle suppression region. */
+    /** Specify comment pattern to trigger filter to begin suppression. */
     private Pattern commentFormat = Pattern.compile(DEFAULT_COMMENT_FORMAT);
 
-    /** The comment pattern that triggers suppression. */
+    /** Specify check pattern to suppress. */
     private String checkFormat = DEFAULT_CHECK_FORMAT;
 
-    /** The message format to suppress. */
+    /** Define message pattern to suppress. */
     private String messageFormat;
 
-    /** The influence of the suppression comment. */
+    /**
+     * Specify negative/zero/positive value that defines the number of lines
+     * preceding/at/following the suppression comment.
+     */
     private String influenceFormat = DEFAULT_INFLUENCE_FORMAT;
 
     /**
@@ -115,7 +289,7 @@ public class SuppressWithNearbyCommentFilter
     private WeakReference<FileContents> fileContentsReference = new WeakReference<>(null);
 
     /**
-     * Set the format for a comment that turns off reporting.
+     * Setter to specify comment pattern to trigger filter to begin suppression.
      * @param pattern a pattern.
      */
     public final void setCommentFormat(Pattern pattern) {
@@ -140,7 +314,7 @@ public class SuppressWithNearbyCommentFilter
     }
 
     /**
-     * Set the format for a check.
+     * Setter to specify check pattern to suppress.
      * @param format a {@code String} value
      */
     public final void setCheckFormat(String format) {
@@ -148,7 +322,7 @@ public class SuppressWithNearbyCommentFilter
     }
 
     /**
-     * Set the format for a message.
+     * Setter to define message pattern to suppress.
      * @param format a {@code String} value
      */
     public void setMessageFormat(String format) {
@@ -156,7 +330,8 @@ public class SuppressWithNearbyCommentFilter
     }
 
     /**
-     * Set the format for the influence of this check.
+     * Setter to specify negative/zero/positive value that defines the number
+     * of lines preceding/at/following the suppression comment.
      * @param format a {@code String} value
      */
     public final void setInfluenceFormat(String format) {
@@ -164,7 +339,7 @@ public class SuppressWithNearbyCommentFilter
     }
 
     /**
-     * Set whether to look in C++ comments.
+     * Setter to control whether to check C++ style comments ({@code //}).
      * @param checkCpp {@code true} if C++ comments are checked.
      */
     // -@cs[AbbreviationAsWordInName] We can not change it as,
@@ -174,7 +349,7 @@ public class SuppressWithNearbyCommentFilter
     }
 
     /**
-     * Set whether to look in C comments.
+     * Setter to control whether to check C style comments ({@code &#47;* ... *&#47;}).
      * @param checkC {@code true} if C comments are checked.
      */
     public void setCheckC(boolean checkC) {
