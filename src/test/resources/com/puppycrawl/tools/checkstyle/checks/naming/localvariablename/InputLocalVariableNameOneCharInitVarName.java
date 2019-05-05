@@ -4,7 +4,7 @@
 // Ignore error
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.naming.localvariablename;
-import java.io.*;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,9 +13,11 @@ class InputLocalVariableNameOneCharInitVarName
 	public void fooMethod()
 	{
 		for(int i = 1; i <10; i++) {
-			//come code
+			int j = 1;
 		}
-		
+        for(int K = 1; K < 10; K++) {
+            int A = 1;
+        }
 		int i = 0;
 		
         for(int index = 1; index < 10; index++) {
@@ -39,7 +41,10 @@ class InputLocalVariableNameOneCharInitVarName
 		Map<String, String> map = new HashMap<String, String>();
 		
 		for (Map.Entry<String, String> e : map.entrySet()) {
-			//some code
+			String a = "";
+		}
+		for (Map.Entry<String, String> E : map.entrySet()) {
+			String B = "";
 		}
 	}
 }

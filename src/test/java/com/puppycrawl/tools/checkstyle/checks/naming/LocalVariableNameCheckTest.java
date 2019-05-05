@@ -83,8 +83,12 @@ public class LocalVariableNameCheckTest
         final String pattern = "^[a-z]{2,}[a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "19:21: " + getCheckMessage(MSG_INVALID_PATTERN, "i", pattern),
-            "25:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Index", pattern),
+            "16:29: " + getCheckMessage(MSG_INVALID_PATTERN, "j", pattern),
+            "19:17: " + getCheckMessage(MSG_INVALID_PATTERN, "A", pattern),
+            "21:21: " + getCheckMessage(MSG_INVALID_PATTERN, "i", pattern),
+            "27:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Index", pattern),
+            "44:32: " + getCheckMessage(MSG_INVALID_PATTERN, "a", pattern),
+            "47:32: " + getCheckMessage(MSG_INVALID_PATTERN, "B", pattern),
         };
         verify(checkConfig, getPath("InputLocalVariableNameOneCharInitVarName.java"), expected);
     }
