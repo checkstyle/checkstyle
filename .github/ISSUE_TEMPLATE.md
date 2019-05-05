@@ -21,3 +21,5 @@ Describe what you expect in detail.
 
 Still not clear ???
 see example - https://checkstyle.org/report_issue.html#How_to_report_a_bug
+
+ATTENTION: FAILURE TO FOLLOW THE ABOVE TEMPLATE WILL RESULT IN ISSUE BEING CLOSED.
