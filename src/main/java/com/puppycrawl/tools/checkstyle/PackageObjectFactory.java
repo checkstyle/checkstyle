@@ -617,6 +617,8 @@ public class PackageObjectFactory implements ModuleFactory {
     private static void fillChecksFromJavadocPackage() {
         NAME_TO_FULL_MODULE_NAME.put("AtclauseOrderCheck",
                 BASE_PACKAGE + ".checks.javadoc.AtclauseOrderCheck");
+        NAME_TO_FULL_MODULE_NAME.put("InvalidJavadocPositionCheck",
+                BASE_PACKAGE + ".checks.javadoc.InvalidJavadocPositionCheck");
         NAME_TO_FULL_MODULE_NAME.put("JavadocMethodCheck",
                 BASE_PACKAGE + ".checks.javadoc.JavadocMethodCheck");
         NAME_TO_FULL_MODULE_NAME.put("JavadocPackageCheck",

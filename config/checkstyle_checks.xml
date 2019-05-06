@@ -447,6 +447,7 @@
 
     <!-- Javadoc Comments -->
     <module name="AtclauseOrder"/>
+    <module name="InvalidJavadocPosition"/>
     <module name="JavadocMethod">
       <property name="allowUndeclaredRTE" value="true"/>
       <property name="allowThrowsTagsForSubclasses" value="true"/>
