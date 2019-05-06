@@ -1500,7 +1500,7 @@ class DatabaseConfiguration {}
     </section>
 
     <section name="MissingJavadocMethod">
-      <p>Since Checkstyle 8.20</p>
+      <p>Since Checkstyle 8.21</p>
       <subsection name="Description" id="MissingJavadocMethod_Description">
         <p>
           Checks for missing Javadoc comments for a method or constructor.
@@ -1556,28 +1556,28 @@ public boolean isSomething()
             <td>Control the minimal amount of lines in method to allow no documentation.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>-1</code></td>
-            <td>8.20</td>
+            <td>8.21</td>
           </tr>
           <tr>
             <td>allowedAnnotations</td>
             <td>Configure the list of annotations that allow missed documentation.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>Override</code></td>
-            <td>8.20</td>
+            <td>8.21</td>
           </tr>
           <tr>
             <td>scope</td>
             <td>Specify the visibility scope where Javadoc comments are checked.</td>
             <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>public</code></td>
-            <td>8.20</td>
+            <td>8.21</td>
           </tr>
           <tr>
             <td>excludeScope</td>
             <td>Specify the visibility scope where Javadoc comments are not checked.</td>
             <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>null</code></td>
-            <td>8.20</td>
+            <td>8.21</td>
           </tr>
           <tr>
             <td>allowMissingPropertyJavadoc</td>
@@ -1587,14 +1587,14 @@ public boolean isSomething()
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
-            <td>8.20</td>
+            <td>8.21</td>
           </tr>
           <tr>
             <td>ignoreMethodNamesRegex</td>
             <td>ignore method whose names are matching specified regex.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>null</code></td>
-            <td>8.20</td>
+            <td>8.21</td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -1617,7 +1617,7 @@ public boolean isSomething()
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
                 ANNOTATION_FIELD_DEF</a>.
             </td>
-            <td>8.20</td>
+            <td>8.21</td>
           </tr>
         </table>
       </subsection>

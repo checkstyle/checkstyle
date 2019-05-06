@@ -133,7 +133,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   &lt;property name="ignoreMethodNamesRegex" value="^foo.*$"/&gt;
  * &lt;/module&gt;
  * </pre>
- * @since 8.20
+ * @since 8.21
  */
 @FileStatefulCheck
 public class MissingJavadocMethodCheck extends AbstractCheck {
