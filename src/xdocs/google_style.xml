@@ -1885,6 +1885,9 @@
                                 addressed at
                                 <a href="https://github.com/checkstyle/checkstyle/issues/4052">
                                     #4052</a>
+                                <br />
+                                <a href="config_javadoc.html#InvalidJavadocPosition">
+                                    InvalidJavadocPosition</a>
                             </td>
                             <td>
                                 <a
@@ -1892,6 +1895,12 @@
                                     config</a><br/>
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule711generalform/SingleLineJavadocTest.java">
+                                    test</a>
+                                <a
+                                    href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InvalidJavadocPosition">
+                                    config</a><br/>
+                                <a
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule711generalform/InvalidJavadocPositionTest.java">
                                     test</a>
                             </td>
                         </tr>
@@ -2119,8 +2128,21 @@
                                     href="styleguides/google-java-style-20180523/javaguide.html#s7.3.4-javadoc-non-required">
                                     7.3.4 Non-required Javadoc</a>
                             </td>
-                            <td>--</td>
-                            <td/>
+                            <td>
+                                <img
+                                    src="images/ok_blue.png"
+                                    alt="" />
+                                <a href="config_javadoc.html#InvalidJavadocPosition">
+                                    InvalidJavadocPosition</a>
+                            </td>
+                            <td>
+                                <a
+                                    href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InvalidJavadocPosition">
+                                    config</a><br/>
+                                <a
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule734nonrequiredjavadoc/InvalidJavadocPositionTest.java">
+                                    test</a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

@@ -168,7 +168,7 @@ public final class JavadocUtil {
      *        block comment AST.
      * @return content of block comment.
      */
-    private static String getBlockCommentContent(DetailAST blockCommentBegin) {
+    public static String getBlockCommentContent(DetailAST blockCommentBegin) {
         final DetailAST commentContent = blockCommentBegin.getFirstChild();
         return commentContent.getText();
     }
@@ -380,7 +380,7 @@ public final class JavadocUtil {
      * @see <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
      *     Javadoc util documentation</a>
      */
-    private static boolean isCorrectJavadocPosition(DetailAST blockComment) {
+    public static boolean isCorrectJavadocPosition(DetailAST blockComment) {
         // We must be sure that after this one there are no other documentation comments.
         DetailAST sibling = blockComment.getNextSibling();
         while (sibling != null) {

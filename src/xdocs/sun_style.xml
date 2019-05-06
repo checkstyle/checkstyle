@@ -384,8 +384,21 @@
                                     5.2 Documentation Comments
                                 </a>
                             </td>
-                            <td>???</td>
-                            <td/>
+                            <td>
+                                <img src="images/ok_blue.png" alt=""/>
+                                <a href="config_javadoc.html#InvalidJavadocPosition">
+                                    InvalidJavadocPosition
+                                </a>
+                            </td>
+                            <td>
+                                <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InvalidJavadocPosition">
+                                    config
+                                </a>
+                                <br/>
+                                <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/sun/checkstyle/test/chapter5comments/rule52documentationcomments/InvalidJavadocPositionTest.java">
+                                    test
+                                </a>
+                            </td>
                         </tr>
                         <tr>
                             <td>

@@ -336,6 +336,7 @@ doccheck
 Dockter
 doclet
 DOCTYPE
+documentationcomments
 Don''t
 donotignoreexceptions
 Dorekit
@@ -603,6 +604,7 @@ interfacememberimpliedmodifier
 interfacetypeparametername
 invalidformat
 invalidinherit
+invalidjavadocposition
 ioe
 ioffset
 IPv
@@ -896,6 +898,7 @@ NONGROUP
 NONJAVA
 nonjavadoc
 nonnull
+nonrequiredjavadoc
 nonvalidating
 noparentfile
 noscript
