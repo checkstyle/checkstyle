@@ -277,7 +277,9 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * false.
      *
      * @param flag a {@code Boolean} value
+     * @deprecated Use {@link MissingJavadocMethodCheck} instead.
      */
+    @Deprecated
     public void setAllowMissingJavadoc(boolean flag) {
         // deprecated
     }
@@ -287,7 +289,9 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * property accessor (setter/getter methods). Defaults to false.
      *
      * @param flag a {@code Boolean} value
+     * @deprecated Use {@link MissingJavadocMethodCheck} instead.
      */
+    @Deprecated
     public void setAllowMissingPropertyJavadoc(final boolean flag) {
         // deprecated
     }
