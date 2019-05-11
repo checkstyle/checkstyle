@@ -70,8 +70,8 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
             "81:10: " + getCheckMessage(MSG_KEY),
             "90:28: " + getCheckMessage(MSG_KEY),
             "135:39: " + getCheckMessage(MSG_KEY),
-            "168:100: " + getCheckMessage(MSG_KEY),
-            "179:91: " + getCheckMessage(MSG_KEY),
+            "168:53: " + getCheckMessage(MSG_KEY),
+            "179:52: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig,
@@ -92,6 +92,21 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
         };
 
         verify(checkConfig, getNonCompilablePath("InputOneStatementPerLine.java"), expected);
+    }
+
+    @Test
+    public void testResourceReferenceVariableIgnored() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(OneStatementPerLineCheck.class);
+        final String[] expected = {
+            "22:42: " + getCheckMessage(MSG_KEY),
+            "26:43: " + getCheckMessage(MSG_KEY),
+            "32:46: " + getCheckMessage(MSG_KEY),
+            "36:46: " + getCheckMessage(MSG_KEY),
+        };
+
+        verify(checkConfig,
+                getNonCompilablePath("InputOneStatementPerLineTryWithResources.java"),
+                expected);
     }
 
 }
