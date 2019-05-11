@@ -3600,7 +3600,7 @@ System.out.println(s2 instanceof Square); //true
               variable declaration statements, empty statements, import statements,
               assignment statements, expression statements, increment statements,
               object creation statements, 'for loop' statements, 'break' statements,
-              'continue' statements, 'return' statements.
+              'continue' statements, 'return' statements, resources statements.
           </p>
       </subsection>
 
@@ -3624,6 +3624,25 @@ int var1 = 1
 int o = 1, p = 2,
 r = 5; int t; //violation here
           </source>
+          <p>
+              Note: resource declarations can contain variable definitions
+              and variable references (from java9).
+              This check is only applied to variable definitions.
+              If there are one or more variable references
+              and one variable definition on the same line in resources declaration,
+              there is no violation.
+              The following examples will illustrate difference:
+          </p>
+          <source>
+OutputStream s1 = new PipedOutputStream();
+OutputStream s2 = new PipedOutputStream();
+// only one statement(variable definition) with two variable references
+try (s1; s2; OutputStream s3 = new PipedOutputStream();) // OK
+{}
+// two statements with variable definitions
+try (Reader r = new PipedReader(); s2; Reader s3 = new PipedReader() // violation
+) {}
+         </source>
         <p>
             An example of how to configure this Check:
         </p>

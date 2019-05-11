@@ -209,7 +209,8 @@ public class CommitValidationTest {
     private static RevCommitsPair resolveRevCommitsPair(Repository repo) {
         RevCommitsPair revCommitIteratorPair;
 
-        try (RevWalk revWalk = new RevWalk(repo); Git git = new Git(repo)) {
+        try (RevWalk revWalk = new RevWalk(repo);
+             Git git = new Git(repo)) {
             final Iterator<RevCommit> first;
             final Iterator<RevCommit> second;
             final ObjectId headId = repo.resolve(Constants.HEAD);

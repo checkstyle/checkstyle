@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * variable declaration statements, empty statements, import statements,
  * assignment statements, expression statements, increment statements,
  * object creation statements, 'for loop' statements, 'break' statements,
- * 'continue' statements, 'return' statements.
+ * 'continue' statements, 'return' statements, resources statements.
  * </p>
  * <p>
  * The following examples will be flagged as a violation:
@@ -64,6 +64,25 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * ; var2 = 2; //violation here
  * int o = 1, p = 2,
  * r = 5; int t; //violation here
+ * </pre>
+ * <p>
+ * Note: resource declarations can contain variable definitions
+ * and variable references (from java9).
+ * This check is only applied to variable definitions.
+ * If there are one or more variable references
+ * and one variable definition on the same line in resources declaration,
+ * there is no violation.
+ * The following examples will illustrate difference:
+ * </p>
+ * <pre>
+ * OutputStream s1 = new PipedOutputStream();
+ * OutputStream s2 = new PipedOutputStream();
+ * // only one statement(variable definition) with two variable references
+ * try (s1; s2; OutputStream s3 = new PipedOutputStream();) // OK
+ * {}
+ * // two statements with variable definitions
+ * try (Reader r = new PipedReader(); s2; Reader s3 = new PipedReader() // violation
+ * ) {}
  * </pre>
  * <p>
  * An example of how to configure this Check:
@@ -113,6 +132,11 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
      */
     private int lambdaStatementEnd = -1;
 
+    /**
+     * Hold the line-number where the last resource variable statement ended.
+     */
+    private int lastVariableResourceStatementEnd = -1;
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -139,6 +163,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
         lastStatementEnd = -1;
         forStatementEnd = -1;
         isInLambda = false;
+        lastVariableResourceStatementEnd = -1;
     }
 
     @Override
@@ -196,19 +221,43 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
             currentStatement = ast.getPreviousSibling();
         }
         if (isInLambda) {
-            int countOfSemiInCurrentLambda = countOfSemiInLambda.pop();
-            countOfSemiInCurrentLambda++;
-            countOfSemiInLambda.push(countOfSemiInCurrentLambda);
-            if (!inForHeader && countOfSemiInCurrentLambda > 1
-                    && isOnTheSameLine(currentStatement,
-                    lastStatementEnd, forStatementEnd,
-                    lambdaStatementEnd)) {
-                log(ast, MSG_KEY);
-            }
+            checkLambda(ast, currentStatement);
+        }
+        else if (isResource(ast.getParent())) {
+            checkResourceVariable(ast);
         }
         else if (!inForHeader && isOnTheSameLine(currentStatement, lastStatementEnd,
                 forStatementEnd, lambdaStatementEnd)) {
             log(ast, MSG_KEY);
+        }
+    }
+
+    private void checkLambda(DetailAST ast, DetailAST currentStatement) {
+        int countOfSemiInCurrentLambda = countOfSemiInLambda.pop();
+        countOfSemiInCurrentLambda++;
+        countOfSemiInLambda.push(countOfSemiInCurrentLambda);
+        if (!inForHeader && countOfSemiInCurrentLambda > 1
+                && isOnTheSameLine(currentStatement,
+                lastStatementEnd, forStatementEnd,
+                lambdaStatementEnd)) {
+            log(ast, MSG_KEY);
+        }
+    }
+
+    private static boolean isResource(DetailAST ast) {
+        return ast != null
+            && (ast.getType() == TokenTypes.RESOURCES
+                 || ast.getType() == TokenTypes.RESOURCE_SPECIFICATION);
+    }
+
+    private void checkResourceVariable(DetailAST currentStatement) {
+        final DetailAST nextNode = currentStatement.getNextSibling();
+        if (currentStatement.getPreviousSibling().branchContains(TokenTypes.ASSIGN)) {
+            lastVariableResourceStatementEnd = currentStatement.getLineNo();
+        }
+        if (nextNode.branchContains(TokenTypes.ASSIGN)
+                && nextNode.getLineNo() == lastVariableResourceStatementEnd) {
+            log(currentStatement, MSG_KEY);
         }
     }
 
