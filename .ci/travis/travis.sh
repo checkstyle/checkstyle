@@ -57,9 +57,31 @@ test-tr)
     -DargLine='-Duser.language=tr -Duser.country=TR -Xms1024m -Xmx2048m'
   ;;
 
-travis-osx)
-  mvn -e package -Dlinkcheck.skip=true
+osx-assembly)
+  export JAVA_HOME=$(/usr/libexec/java_home)
   mvn -e package -Passembly
+  ;;
+
+osx-package)
+  export JAVA_HOME=$(/usr/libexec/java_home)
+  mvn -e package -Dlinkcheck.skip=true
+  ;;
+
+osx-jdk12-package)
+  exclude1="!FileContentsTest#testGetJavadocBefore,!FileTextTest#testFindLine*,"
+  exclude2="!MainFrameModelPowerTest#testOpenFileWithUnknownParseMode,"
+  exclude3="!TokenUtilTest#testTokenValueIncorrect2,"
+  exclude4="!ImportControlLoaderPowerTest#testInputStreamThatFailsOnClose"
+  export JAVA_HOME=$(/usr/libexec/java_home)
+  mvn -e package -Dlinkcheck.skip=true -Dtest=${exclude1}${exclude2}${exclude3}${exclude4}
+  ;;
+
+osx-jdk12-assembly)
+  exclude1="!FileContentsTest#testGetJavadocBefore,!FileTextTest#testFindLine*,"
+  exclude2="!MainFrameModelPowerTest#testOpenFileWithUnknownParseMode,"
+  exclude3="!TokenUtilTest#testTokenValueIncorrect2,"
+  export JAVA_HOME=$(/usr/libexec/java_home)
+  mvn -e package -Passembly -Dtest=${exclude1}${exclude2}${exclude3}
   ;;
 
 site)
@@ -108,7 +130,7 @@ nondex)
   ;;
 
 versions)
-  if [[ -v TRAVIS_EVENT_TYPE && $TRAVIS_EVENT_TYPE != "cron" ]]; then exit 0; fi
+  if [ -v TRAVIS_EVENT_TYPE ] && [ $TRAVIS_EVENT_TYPE != "cron" ] ; then exit 0; fi
   mvn -e clean versions:dependency-updates-report versions:plugin-updates-report
   if [ $(grep "<nextVersion>" target/*-updates-report.xml | cat | wc -l) -gt 0 ]; then
     echo "Version reports (dependency-updates-report.xml):"
@@ -143,7 +165,7 @@ assembly-run-all-jar)
 sonarqube)
   # token could be generated at https://sonarcloud.io/account/security/
   # executon on local: SONAR_TOKEN=xxxxxxxxxx ./.ci/travis/travis.sh sonarqube
-  if [[ -v TRAVIS_PULL_REQUEST && $TRAVIS_PULL_REQUEST && $TRAVIS_PULL_REQUEST =~ ^([0-9]*)$ ]];
+  if [ -v TRAVIS_PULL_REQUEST ] && [[ $TRAVIS_PULL_REQUEST && $TRAVIS_PULL_REQUEST =~ ^([0-9]*)$ ]];
     then
       exit 0;
   fi
