@@ -156,31 +156,27 @@ matrix:
       osx_image: xcode9.3
       env:
         - DESC="MacOS JDK8 verify, site, assembly
-        - CMD1="mvn -e package -Dlinkcheck.skip=true"
-        - CMD2="mvn -e package -Passembly"
-        - CMD="export JAVA_HOME=$(/usr/libexec/java_home) && $CMD1 && $CMD2"
+        - CMD1="./.ci/travis/travis.sh osx-package"
+        - CMD2="./.ci/travis/travis.sh osx-assembly"
+        - CMD="$CMD1 && $CMD2"
 
     # MacOS JDK11 verify (till cache is not working, we can not do verify)
     - os: osx
       osx_image: xcode10.1
       env:
         - DESC="MacOS JDK11 verify, site, assembly
-        - CMD1="mvn -e package -Dlinkcheck.skip=true"
-        - CMD2="mvn -e package -Passembly"
-        - CMD="export JAVA_HOME=$(/usr/libexec/java_home) && $CMD1 && $CMD2"
+        - CMD1="./.ci/travis/travis.sh osx-package"
+        - CMD2="./.ci/travis/travis.sh osx-assembly"
+        - CMD="$CMD1 && $CMD2"
 
     # MacOS JDK12 verify (till cache is not working, we can not do verify)
     - os: osx
       osx_image: xcode10.2
       env:
         - DESC="MacOS JDK12 verify, site, assembly
-        - exclude1="!FileContentsTest#testGetJavadocBefore,!FileTextTest#testFindLine*,"
-        - exclude2="!MainFrameModelPowerTest#testOpenFileWithUnknownParseMode,"
-        - exclude3="!TokenUtilTest#testTokenValueIncorrect2,"
-        - exclude4="!ImportControlLoaderPowerTest#testInputStreamThatFailsOnClose"
-        - CMD1="mvn -e package -Dlinkcheck.skip=true -Dtest=$exclude1$exclude2$exclude3$exclude4"
-        - CMD2="mvn -e package -Passembly -Dtest=$exclude1$exclude2$exclude3"
-        - CMD="export JAVA_HOME=$(/usr/libexec/java_home) && $CMD1 && $CMD2"
+        - CMD1="./.ci/travis/travis.sh osx-jdk12-package"
+        - CMD2="./.ci/travis/travis.sh osx-jdk12-assembly"
+        - CMD="$CMD1 && $CMD2"
 
     # https://sonarcloud.io (oraclejdk8)
     - jdk: oraclejdk8
