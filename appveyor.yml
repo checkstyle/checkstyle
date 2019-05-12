@@ -61,93 +61,58 @@ matrix:
 
 environment:
   global:
-    CMD1: " "
-    CMD2: " "
-    CMD3: " "
-    CMD4: " "
-    CMD5: " "
-    CMD6: " "
-    CMD7: " "
-    CMD8: " "
-    CMD9: " "
-    CMD10: " "
+    CMD: " "
   # We do matrix as AppVeyor could fail to finish simple "mvn verify"
   #    if he loose maven cache (happens from time to time)
   matrix:
     # checkstyle and sevntu.checkstyle
     - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
       DESC: "checkstyle and sevntu.checkstyle"
-      CMD1: "mvn -e verify -DskipTests -DskipITs"
-      CMD2: " -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dxml.skip=true"
+      CMD: "./.ci/appveyor.bat sevntu"
     # verify without checkstyle (JDK8)
     - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
       DESC: "verify without checkstyle (JDK8)"
-      CMD1: "mvn -e verify -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true"
+      CMD: "./.ci/appveyor.bat verify_without_checkstyle"
     # verify without checkstyle (JDK9)
     - JAVA_HOME: C:\Program Files\Java\jdk9
       DESC: "verify without checkstyle (JDK9)"
-      CMD1: "mvn -e verify -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true"
+      CMD: "./.ci/appveyor.bat verify_without_checkstyle"
     # verify without checkstyle (JDK10)
     - JAVA_HOME: C:\Program Files\Java\jdk10
       DESC: "verify without checkstyle (JDK10)"
-      CMD1: "mvn -e verify -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true"
+      CMD: "./.ci/appveyor.bat verify_without_checkstyle"
     # verify without checkstyle (JDK11)
-    # Spotbugs check is disabled till https://github.com/spotbugs/spotbugs/issues/259
     - JAVA_HOME: C:\Program Files\Java\jdk11
       DESC: "verify without checkstyle (JDK11)"
-      CMD1: "mvn -e verify -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dspotbugs.skip=true"
+      CMD: "./.ci/appveyor.bat verify_without_checkstyle_JDK11"
     # verify without checkstyle (JDK12)
-    # Spotbugs check is disabled till https://github.com/spotbugs/spotbugs/issues/259
     - JAVA_HOME: C:\Program Files\Java\jdk12
       DESC: "verify without checkstyle (JDK12)"
-      CMD1: "mvn -e verify -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dspotbugs.skip=true"
-      CMD2: "   -Dtest=!FileContentsTest#testGetJavadocBefore,!FileTextTest#testFindLine*,"
-      CMD3: "!MainFrameModelPowerTest#testOpenFileWithUnknownParseMode,"
-      CMD4: "!TokenUtilTest#testTokenValueIncorrect2,"
-      CMD5: "!ImportControlLoaderPowerTest#testInputStreamThatFailsOnClose"
-      CMD6: "   -Djacoco.skip=true"
+      CMD: "./.ci/appveyor.bat verify_without_checkstyle_JDK12"
     # site, without verify (JDK8)
     - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
       DESC: "site, without verify (JDK8)"
-      CMD1: "mvn -e -Pno-validations site"
+      CMD: "./.ci/appveyor.bat site_without_verify"
     # site, without verify (JDK9)
     - JAVA_HOME: C:\Program Files\Java\jdk9
       DESC: "site, without verify (JDK9)"
-      CMD1: "mvn -e -Pno-validations site"
+      CMD: "./.ci/appveyor.bat site_without_verify"
     # site, without verify (JDK10)
     - JAVA_HOME: C:\Program Files\Java\jdk10
       DESC: "site, without verify (JDK10)"
-      CMD1: "mvn -e -Pno-validations site"
+      CMD: "./.ci/appveyor.bat site_without_verify"
     # site, without verify (JDK11)
     - JAVA_HOME: C:\Program Files\Java\jdk11
       DESC: "site, without verify (JDK11)"
-      CMD1: "mvn -e -Pno-validations site"
+      CMD: "./.ci/appveyor.bat site_without_verify"
     # site, without verify (JDK12)
     - JAVA_HOME: C:\Program Files\Java\jdk12
       DESC: "site, without verify (JDK12)"
-      CMD1: "mvn -e -Pno-validations site"
-      CMD2: "   -Dtest=!FileContentsTest#testGetJavadocBefore,!FileTextTest#testFindLine*,"
-      CMD3: "!MainFrameModelPowerTest#testOpenFileWithUnknownParseMode,"
-      CMD4: "!TokenUtilTest#testTokenValueIncorrect2,"
-      CMD5: "!ImportControlLoaderPowerTest#testInputStreamThatFailsOnClose"
-      CMD6: "   -Djacoco.skip=true"
+      CMD: "./.ci/appveyor.bat site_without_verify_jdk12"
 
 build_script:
   - ps: >
-       (get-content env:CMD1)
-       + (get-content env:CMD2)
-       + (get-content env:CMD3)
-       + (get-content env:CMD4)
-       + (get-content env:CMD5)
-       + (get-content env:CMD6)
-       + (get-content env:CMD7)
-       + (get-content env:CMD8)
-       + (get-content env:CMD9)
-       + (get-content env:CMD10)
-       | Out-File appveyor.cmd -encoding ASCII
-  - ps: get-content appveyor.cmd
-  # We need to use cmd there as ps1 is failing each time error output appear from any command line
-  - appveyor.cmd
+          Invoke-Expression (get-content env:CMD)
   - ps: echo "Size of caches (bytes):"
   - ps: Get-ChildItem -Recurse 'C:\maven\apache-maven-3.2.5' | Measure-Object -Property Length -Sum
   - ps: Get-ChildItem -Recurse 'C:\Users\appveyor\.m2' | Measure-Object -Property Length -Sum
