@@ -88,6 +88,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "DesignForExtension",
         "EmptyBlock",
         "EmptyCatchBlock",
+        "EmptyForInitializerPad",
         "EmptyStatement",
         "EqualsAvoidNull",
         "EqualsHashCode",

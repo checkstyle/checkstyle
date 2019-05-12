@@ -23,8 +23,8 @@
     </section>
 
     <section name="EmptyForInitializerPad">
+      <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="EmptyForInitializerPad_Description">
-        <p>Since Checkstyle 3.4</p>
         <p>
           Checks the padding of an empty for initializer; that is whether
           white space is required at an empty for initializer, or such white
@@ -49,7 +49,7 @@ for (
           </tr>
           <tr>
             <td>option</td>
-            <td>policy on how to pad an empty for iterator</td>
+            <td>Specify policy on how to pad an empty for iterator.</td>
             <td><a href="property_types.html#parenPad">Pad Policy</a></td>
             <td><code>nospace</code></td>
             <td>3.4</td>
