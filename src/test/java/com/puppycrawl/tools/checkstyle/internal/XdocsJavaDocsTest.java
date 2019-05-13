@@ -93,6 +93,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "EqualsHashCode",
         "ExplicitInitialization",
         "FallThrough",
+        "FileTabCharacter",
         "FinalClass",
         "FinalLocalVariable",
         "HiddenField",
