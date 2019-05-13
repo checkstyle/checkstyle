@@ -38,22 +38,262 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- *     A filter that uses comments to suppress audit events.
- *     The filter can be used only to suppress audit events received from
- *     {@link com.puppycrawl.tools.checkstyle.api.FileSetCheck} checks.
- *     SuppressWithPlainTextCommentFilter knows nothing about AST,
- *     it treats only plain text comments and extracts the information required for suppression from
- *     the plain text comments. Currently the filter supports only single line comments.
+ * Filter {@code SuppressWithPlainTextCommentFilter} uses plain text to suppress
+ * audit events. The filter can be used only to suppress audit events received
+ * from the checks which implement FileSetCheck interface. In other words, the
+ * checks which have Checker as a parent module. The filter knows nothing about
+ * AST, it treats only plain text comments and extracts the information required
+ * for suppression from the plain text comments. Currently the filter supports
+ * only single line comments.
  * </p>
  * <p>
- *     Rationale:
- *     Sometimes there are legitimate reasons for violating a check. When
- *     this is a matter of the code in question and not personal
- *     preference, the best place to override the policy is in the code
- *     itself.  Semi-structured comments can be associated with the check.
- *     This is sometimes superior to a separate suppressions file, which
- *     must be kept up-to-date as the source file is edited.
+ * Please, be aware of the fact that, it is not recommended to use the filter
+ * for Java code anymore, however you still are able to use it to suppress audit
+ * events received from the checks which implement FileSetCheck interface.
  * </p>
+ * <p>
+ * Rationale: Sometimes there are legitimate reasons for violating a check.
+ * When this is a matter of the code in question and not personal preference,
+ * the best place to override the policy is in the code itself. Semi-structured
+ * comments can be associated with the check. This is sometimes superior to
+ * a separate suppressions file, which must be kept up-to-date as the source
+ * file is edited.
+ * </p>
+ * <p>
+ * Note that the suppression comment should be put before the violation.
+ * You can use more than one suppression comment each on separate line.
+ * </p>
+ * <p>
+ * Properties {@code offCommentFormat} and {@code onCommentFormat} must have equal
+ * <a href="https://docs.oracle.com/javase/11/docs/api/java/util/regex/Matcher.html#groupCount()">
+ * paren counts</a>.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code offCommentFormat} - Specify comment pattern to trigger filter
+ * to begin suppression.
+ * Default value is {@code "// CHECKSTYLE:OFF"}.
+ * </li>
+ * <li>
+ * Property {@code onCommentFormat} - Specify comment pattern to trigger filter
+ * to end suppression.
+ * Default value is {@code "// CHECKSTYLE:ON"}.
+ * </li>
+ * <li>
+ * Property {@code checkFormat} - Specify check pattern to suppress.
+ * Default value is {@code ".*"}.
+ * </li>
+ * <li>
+ * Property {@code messageFormat} - Specify message pattern to suppress.
+ * Default value is {@code null}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure a filter to suppress audit events between a comment containing
+ * {@code CHECKSTYLE:OFF} and a comment containing {@code CHECKSTYLE:ON}:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;Checker&quot;&gt;
+ *   ...
+ *   &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;/&gt;
+ *   ...
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure a filter to suppress audit events between a comment containing
+ * line {@code BEGIN GENERATED CONTENT} and a comment containing line
+ * {@code END GENERATED CONTENT}(Checker is configured to check only properties files):
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;Checker&quot;&gt;
+ *   &lt;property name=&quot;fileExtensions&quot; value=&quot;properties&quot;/&gt;
+ *
+ *   &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
+ *     &lt;property name=&quot;offCommentFormat&quot; value=&quot;BEGIN GENERATED CONTENT&quot;/&gt;
+ *     &lt;property name=&quot;onCommentFormat&quot; value=&quot;END GENERATED CONTENT&quot;/&gt;
+ *   &lt;/module&gt;
+ *
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * //BEGIN GENERATED CONTENT
+ * my.property=value1 // No violation events will be reported
+ * my.property=value2 // No violation events will be reported
+ * //END GENERATED CONTENT
+ * . . .
+ * </pre>
+ * <p>
+ * To configure a filter so that {@code -- stop tab check} and {@code -- resume tab check}
+ * marks allowed tab positions (Checker is configured to check only sql files):
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;Checker&quot;&gt;
+ *   &lt;property name=&quot;fileExtensions&quot; value=&quot;sql&quot;/&gt;
+ *
+ *   &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
+ *     &lt;property name=&quot;offCommentFormat&quot; value=&quot;stop tab check&quot;/&gt;
+ *     &lt;property name=&quot;onCommentFormat&quot; value=&quot;resume tab check&quot;/&gt;
+ *     &lt;property name=&quot;checkFormat&quot; value=&quot;FileTabCharacterCheck&quot;/&gt;
+ *   &lt;/module&gt;
+ *
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * -- stop tab check
+ *   SELECT * FROM users // won't warn here if there is a tab character on line
+ * -- resume tab check
+ *   SELECT 1 // will warn here if there is a tab character on line
+ * </pre>
+ * <p>
+ * To configure a filter so that name of suppressed check mentioned in comment
+ * {@code CSOFF: <i>regexp</i>} and {@code CSON: <i>regexp</i>} mark a matching
+ * check (Checker is configured to check only xml files):
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;Checker&quot;&gt;
+ *   &lt;property name=&quot;fileExtensions&quot; value=&quot;xml&quot;/&gt;
+ *
+ *   &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
+ *     &lt;property name=&quot;offCommentFormat&quot; value=&quot;CSOFF\: ([\w\|]+)&quot;/&gt;
+ *     &lt;property name=&quot;onCommentFormat&quot; value=&quot;CSON\: ([\w\|]+)&quot;/&gt;
+ *     &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
+ *   &lt;/module&gt;
+ *
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * // CSOFF: RegexpSinglelineCheck
+ *  // RegexpSingleline check won't warn any lines below here if the line matches regexp
+ * &lt;condition property=&quot;checkstyle.ant.skip&quot;&gt;
+ *   &lt;isset property=&quot;checkstyle.ant.skip&quot;/&gt;
+ * &lt;/condition&gt;
+ * // CSON: RegexpSinglelineCheck
+ * // RegexpSingleline check will warn below here if the line matches regexp
+ * &lt;property name=&quot;checkstyle.pattern.todo&quot; value=&quot;NOTHingWillMatCH_-&quot;/&gt;
+ * </pre>
+ * <p>
+ * To configure a filter to suppress all audit events between a comment containing
+ * {@code CHECKSTYLE_OFF: ALMOST_ALL} and a comment containing {@code CHECKSTYLE_OFF: ALMOST_ALL}
+ * except for the <em>EqualsHashCode</em> check (Checker is configured to check only java files):
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;Checker&quot;&gt;
+ *   &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
+ *
+ *   &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
+ *     &lt;property name=&quot;offCommentFormat&quot;
+ *       value=&quot;CHECKSTYLE_OFF: ALMOST_ALL&quot;/&gt;
+ *     &lt;property name=&quot;onCommentFormat&quot;
+ *       value=&quot;CHECKSTYLE_ON: ALMOST_ALL&quot;/&gt;
+ *     &lt;property name=&quot;checkFormat&quot;
+ *       value=&quot;^((?!(FileTabCharacterCheck)).)*$&quot;/&gt;
+ *   &lt;/module&gt;
+ *
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * // CHECKSTYLE_OFF: ALMOST_ALL
+ * public static final int array [];
+ * private String [] strArray;
+ * // CHECKSTYLE_ON: ALMOST_ALL
+ * private int array1 [];
+ * </pre>
+ * <p>
+ * To configure a filter to suppress Check's violation message <b>which matches
+ * specified message in messageFormat</b>(so suppression will not be only by
+ * Check's name, but also by message text, as the same Check can report violations
+ * with different message format) between a comment containing {@code stop} and
+ * comment containing {@code resume}:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;Checker&quot;&gt;
+ *   &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
+ *     &lt;property name=&quot;offCommentFormat&quot; value=&quot;stop&quot;/&gt;
+ *     &lt;property name=&quot;onCommentFormat&quot; value=&quot;resume&quot;/&gt;
+ *     &lt;property name=&quot;checkFormat&quot; value=&quot;FileTabCharacterCheck&quot;/&gt;
+ *     &lt;property name=&quot;messageFormat&quot;
+ *         value=&quot;^File contains tab characters (this is the first instance)\.$&quot;/&gt;
+ *   &lt;/module&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * It is possible to specify an ID of checks, so that it can be leveraged by the
+ * SuppressWithPlainTextCommentFilter to skip validations. The following examples
+ * show how to skip validations near code that is surrounded with
+ * {@code -- CSOFF &lt;ID&gt; (reason)} and {@code -- CSON &lt;ID&gt;},
+ * where ID is the ID of checks you want to suppress.
+ * </p>
+ * <p>
+ * Examples of Checkstyle checks configuration:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
+ *   &lt;property name=&quot;id&quot; value=&quot;count&quot;/&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;^.*COUNT(*).*$&quot;/&gt;
+ *   &lt;property name=&quot;message&quot;
+ *     value=&quot;Don't use COUNT(*), use COUNT(1) instead.&quot;/&gt;
+ * &lt;/module&gt;
+ *
+ * &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
+ *   &lt;property name=&quot;id&quot; value=&quot;join&quot;/&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;^.*JOIN\s.+\s(ON|USING)$&quot;/&gt;
+ *   &lt;property name=&quot;message&quot;
+ *     value=&quot;Don't use JOIN, use sub-select instead.&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example of SuppressWithPlainTextCommentFilter configuration (checkFormat which
+ * is set to '$1' points that ID of the checks is in the first group of offCommentFormat
+ * and onCommentFormat regular expressions):
+ * </p>
+ * <pre>
+ * &lt;module name="Checker"&gt;
+ *   &lt;property name="fileExtensions" value="sql"/&gt;
+ *
+ *   &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
+ *     &lt;property name="offCommentFormat" value="CSOFF (\w+) \(\w+\)"/&gt;
+ *     &lt;property name="onCommentFormat" value="CSON (\w+)"/&gt;
+ *     &lt;property name="checkFormat" value="$1"/&gt;
+ *   &lt;/module&gt;
+ *
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * -- CSOFF join (it is ok to use join here for performance reasons)
+ * SELECT name, job_name
+ * FROM users AS u
+ * JOIN jobs AS j ON u.job_id = j.id
+ * -- CSON join
+ *
+ * -- CSOFF count (test query execution plan)
+ * EXPLAIN SELECT COUNT(*) FROM restaurants
+ * -- CSON count
+ * </pre>
+ * <p>
+ * Example of how to configure the check to suppress more than one check
+ * (Checker is configured to check only sql files).
+ * </p>
+ * <pre>
+ * &lt;module name="Checker"&gt;
+ *   &lt;property name="fileExtensions" value="sql"/&gt;
+ *
+ *   &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
+ *     &lt;property name="offCommentFormat" value="@cs-\: ([\w\|]+)"/&gt;
+ *     &lt;property name="checkFormat" value="$1"/&gt;
+ *   &lt;/module&gt;
+ *
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * -- @cs-: RegexpSinglelineCheck
+ * -- @cs-: FileTabCharacterCheck
+ * CREATE TABLE STATION (
+ *   ID INTEGER PRIMARY KEY,
+ *   CITY CHAR(20),
+ *   STATE CHAR(2),
+ *   LAT_N REAL,
+ *   LONG_W REAL);
+ * </pre> @since 8.6
  */
 public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements Filter {
 
@@ -66,20 +306,20 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
     /** Default check format to suppress. By default the filter suppress all checks. */
     private static final String DEFAULT_CHECK_FORMAT = ".*";
 
-    /** Regexp which turns checkstyle reporting off. */
+    /** Specify comment pattern to trigger filter to begin suppression. */
     private Pattern offCommentFormat = CommonUtil.createPattern(DEFAULT_OFF_FORMAT);
 
-    /** Regexp which turns checkstyle reporting on. */
+    /** Specify comment pattern to trigger filter to end suppression. */
     private Pattern onCommentFormat = CommonUtil.createPattern(DEFAULT_ON_FORMAT);
 
-    /** The check format to suppress. */
+    /** Specify check pattern to suppress. */
     private String checkFormat = DEFAULT_CHECK_FORMAT;
 
-    /** The message format to suppress.*/
+    /** Specify message pattern to suppress. */
     private String messageFormat;
 
     /**
-     * Sets an off comment format pattern.
+     * Setter to specify comment pattern to trigger filter to begin suppression.
      * @param pattern off comment format pattern.
      */
     public final void setOffCommentFormat(Pattern pattern) {
@@ -87,7 +327,7 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
     }
 
     /**
-     * Sets an on comment format pattern.
+     * Setter to specify comment pattern to trigger filter to end suppression.
      * @param pattern  on comment format pattern.
      */
     public final void setOnCommentFormat(Pattern pattern) {
@@ -95,7 +335,7 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
     }
 
     /**
-     * Sets a pattern for check format.
+     * Setter to specify check pattern to suppress.
      * @param format pattern for check format.
      */
     public final void setCheckFormat(String format) {
@@ -103,7 +343,7 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
     }
 
     /**
-     * Sets a pattern for message format.
+     * Setter to specify message pattern to suppress.
      * @param format pattern for message format.
      */
     public final void setMessageFormat(String format) {
@@ -217,7 +457,7 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
     }
 
     /** The class which represents the suppression. */
-    public static class Suppression {
+    /* package */ static class Suppression {
 
         /** The regexp which is used to match the event source.*/
         private final Pattern eventSourceRegexp;

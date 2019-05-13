@@ -1920,8 +1920,8 @@ public class UserService {
       </section>
 
     <section name="SuppressWithPlainTextCommentFilter">
+          <p>Since Checkstyle 8.6</p>
           <subsection name="Description" id="SuppressWithPlainTextCommentFilter_Description">
-              <p>Since Checkstyle 8.6</p>
               <p>
                   Filter <code>SuppressWithPlainTextCommentFilter</code> uses plain text to suppress
                   audit events. The filter can be used only to suppress audit events received from
@@ -1938,10 +1938,10 @@ public class UserService {
               </p>
               <p>
                   Rationale: Sometimes there are legitimate reasons for violating
-                  a check.  When this is a matter of the code in question and not
+                  a check. When this is a matter of the code in question and not
                   personal preference, the best place to override the policy is in
-                  the code itself.  Semi-structured comments can be associated
-                  with the check.  This is sometimes superior to a separate
+                  the code itself. Semi-structured comments can be associated
+                  with the check. This is sometimes superior to a separate
                   suppressions file, which must be kept up-to-date as the source
                   file is edited.
               </p>
@@ -1961,28 +1961,28 @@ public class UserService {
                   </tr>
                   <tr>
                       <td>offCommentFormat</td>
-                      <td>comment pattern to trigger filter to begin suppression</td>
+                      <td>Specify comment pattern to trigger filter to begin suppression.</td>
                       <td><a href="property_types.html#regexp">Regular Expression</a></td>
                       <td><code>"// CHECKSTYLE:OFF"</code></td>
                       <td>8.6</td>
                   </tr>
                   <tr>
                       <td>onCommentFormat</td>
-                      <td>comment pattern to trigger filter to end suppression</td>
+                      <td>Specify comment pattern to trigger filter to end suppression.</td>
                       <td><a href="property_types.html#regexp">Regular Expression</a></td>
                       <td><code>"// CHECKSTYLE:ON"</code></td>
                       <td>8.6</td>
                   </tr>
                   <tr>
                       <td>checkFormat</td>
-                      <td>check pattern to suppress</td>
+                      <td>Specify check pattern to suppress.</td>
                       <td><a href="property_types.html#regexp">Regular Expression</a></td>
                       <td><code>".*"</code></td>
                       <td>8.6</td>
                   </tr>
                   <tr>
                       <td>messageFormat</td>
-                      <td>message pattern to suppress</td>
+                      <td>Specify message pattern to suppress.</td>
                       <td><a href="property_types.html#regexp">Regular Expression</a></td>
                       <td><code>null</code></td>
                       <td>8.6</td>
@@ -1991,8 +1991,9 @@ public class UserService {
           </subsection>
           <subsection name="Notes" id="SuppressWithPlainTextCommentFilter_Notes">
               <p>
-                  offCommentFormat and onCommentFormat must have equal
-                  <a href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Matcher.html#groupCount()">
+                  Properties <code>offCommentFormat</code> and <code>onCommentFormat</code>
+                  must have equal
+                  <a href="https://docs.oracle.com/javase/11/docs/api/java/util/regex/Matcher.html#groupCount()">
                   paren counts</a>.
               </p>
           </subsection>
@@ -2095,8 +2096,10 @@ my.property=value2 // No violation events will be reported
   &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
 
   &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
-    &lt;property name=&quot;offCommentFormat&quot; value=&quot;CHECKSTYLE_OFF: ALMOST_ALL&quot;/&gt;
-    &lt;property name=&quot;onCommentFormat&quot; value=&quot;CHECKSTYLE_ON: ALMOST_ALL&quot;/&gt;
+    &lt;property name=&quot;offCommentFormat&quot;
+      value=&quot;CHECKSTYLE_OFF: ALMOST_ALL&quot;/&gt;
+    &lt;property name=&quot;onCommentFormat&quot;
+      value=&quot;CHECKSTYLE_ON: ALMOST_ALL&quot;/&gt;
     &lt;property name=&quot;checkFormat&quot;
       value=&quot;^((?!(FileTabCharacterCheck)).)*$&quot;/&gt;
   &lt;/module&gt;
@@ -2142,13 +2145,15 @@ private int array1 [];
 &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
   &lt;property name=&quot;id&quot; value=&quot;count&quot;/&gt;
   &lt;property name="format" value="^.*COUNT(*).*$"/&gt;
-  &lt;property name="message" value="Don't use COUNT(*), use COUNT(1) instead."/&gt;
+  &lt;property name="message"
+    value="Don't use COUNT(*), use COUNT(1) instead."/&gt;
 &lt;/module&gt;
 
 &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
   &lt;property name=&quot;id&quot; value=&quot;join&quot;/&gt;
   &lt;property name="format" value="^.*JOIN\s.+\s(ON|USING)$"/&gt;
-  &lt;property name="message" value="Don't use JOIN, use sub-select instead."/&gt;
+  &lt;property name="message"
+    value="Don't use JOIN, use sub-select instead."/&gt;
 &lt;/module&gt;
               </source>
               <p>
