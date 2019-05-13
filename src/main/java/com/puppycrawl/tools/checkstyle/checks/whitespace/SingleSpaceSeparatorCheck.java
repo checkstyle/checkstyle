@@ -30,11 +30,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * whitespace. Separating characters by tabs or multiple spaces will be
  * reported. Currently the check doesn't permit horizontal alignment. To inspect
  * whitespaces before and after comments, set the property
- * <b>validateComments</b> to true.
+ * {@code validateComments} to true.
  * </p>
  *
  * <p>
- * Setting <b>validateComments</b> to false will ignore cases like:
+ * Setting {@code validateComments} to false will ignore cases like:
  * </p>
  *
  * <pre>
@@ -50,19 +50,16 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  *
  * <pre>
- * public long toNanos(long d)  { return d;             }  &#47;&#47; 2 violations
+ * public long toNanos(long d)  { return d;             } &#47;&#47; 2 violations
  * public long toMicros(long d) { return d / (C1 / C0); }
  * </pre>
- *
- * <p>
- * Check have following options:
- * </p>
- *
  * <ul>
- * <li>validateComments - Boolean when set to {@code true}, whitespaces
- * surrounding comments will be ignored. Default value is {@code false}.</li>
+ * <li>
+ * Property {@code validateComments} - Control whether to validate whitespaces
+ * surrounding comments.
+ * Default value is {@code false}.
+ * </li>
  * </ul>
- *
  * <p>
  * To configure the check:
  * </p>
@@ -77,10 +74,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * <pre>
  * &lt;module name=&quot;SingleSpaceSeparator&quot;&gt;
- * &lt;property name=&quot;validateComments&quot; value=&quot;true&quot;/&gt;
+ *   &lt;property name=&quot;validateComments&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  *
+ * @since 6.19
  */
 @StatelessCheck
 public class SingleSpaceSeparatorCheck extends AbstractCheck {
@@ -91,11 +89,11 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "single.space.separator";
 
-    /** Indicates if whitespaces surrounding comments will be ignored. */
+    /** Control whether to validate whitespaces surrounding comments. */
     private boolean validateComments;
 
     /**
-     * Sets whether or not to validate surrounding whitespaces at comments.
+     * Setter to control whether to validate whitespaces surrounding comments.
      *
      * @param validateComments {@code true} to validate surrounding whitespaces at comments.
      */
