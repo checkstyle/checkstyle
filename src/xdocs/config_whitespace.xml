@@ -2119,8 +2119,8 @@ public long toMicros(long d) { return d / (C1 / C0); }
     </section>
 
     <section name="TypecastParenPad">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="TypecastParenPad_Description">
-        <p>Since Checkstyle 3.2</p>
         <p>
           Checks the policy on the padding of parentheses for typecasts. That
           is, whether a space is required after a left parenthesis and before
@@ -2139,7 +2139,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
           </tr>
           <tr>
             <td>option</td>
-            <td>policy on how to pad parentheses</td>
+            <td>Specify policy on how to pad parentheses.</td>
             <td><a href="property_types.html#parenPad">Pad Policy</a></td>
             <td><code>nospace</code></td>
             <td>3.2</td>

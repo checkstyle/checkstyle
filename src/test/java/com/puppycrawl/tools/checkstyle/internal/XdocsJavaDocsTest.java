@@ -153,6 +153,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "SuppressWarnings",
         "SuppressWarningsHolder",
         "ThrowsCount",
+        "TypecastParenPad",
         "TypeName",
         "UnnecessaryParentheses",
         "VariableDeclarationUsageDistance",
