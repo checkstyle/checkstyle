@@ -1575,8 +1575,8 @@ public void foo(final char @NotNull [] param) {} // No violation
     </section>
 
     <section name="ParenPad">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="ParenPad_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
           Checks the policy on the padding of parentheses; i.e. whether a
           space is required after a left parenthesis and before a right
@@ -1586,12 +1586,13 @@ public void foo(final char @NotNull [] param) {} // No violation
           parenthesis of a try-with-resources resource specification where
           the last resource variable has a trailing semi-colon.
           Use Check <a
-          href="config_whitespace.html#EmptyForIteratorPad">EmptyForIteratorPad</a>
-          to validate empty for iterators and <a
-          href="config_whitespace.html#EmptyForInitializerPad">EmptyForInitializerPad</a>
-          to validate empty for initializers. Typecasts are also not checked, as there is <a
-          href="config_whitespace.html#TypecastParenPad">TypecastParenPad</a>
-          to validate them.
+          href="https://checkstyle.org/config_whitespace.html#EmptyForIteratorPad">
+          EmptyForIteratorPad</a> to validate empty for iterators and <a
+          href="https://checkstyle.org/config_whitespace.html#EmptyForInitializerPad">
+          EmptyForInitializerPad</a> to validate empty for initializers.
+          Typecasts are also not checked, as there is <a
+          href="https://checkstyle.org/config_whitespace.html#TypecastParenPad">
+          TypecastParenPad</a> to validate them.
         </p>
       </subsection>
 
@@ -1606,7 +1607,7 @@ public void foo(final char @NotNull [] param) {} // No violation
           </tr>
           <tr>
             <td>option</td>
-            <td>policy on how to pad parentheses</td>
+            <td>Specify policy on how to pad parentheses.</td>
             <td><a href="property_types.html#parenPad">Pad Policy</a></td>
             <td><code>nospace</code></td>
             <td>3.0</td>
