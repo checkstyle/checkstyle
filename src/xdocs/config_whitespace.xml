@@ -478,8 +478,8 @@ class Foo
     </section>
 
     <section name="FileTabCharacter">
+      <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="FileTabCharacter_Description">
-        <p>Since Checkstyle 5.0</p>
         <p>
           Checks that there are no tab characters (<code>'\t'</code>) in the source code.
         </p>
@@ -513,14 +513,16 @@ class Foo
           </tr>
           <tr>
             <td>eachLine</td>
-            <td>whether to report on each line containing a tab, or just the first instance</td>
+            <td>
+              Control whether to report on each line containing a tab, or just the first instance.
+            </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>5.0</td>
           </tr>
           <tr>
             <td>fileExtensions</td>
-            <td>file type extension of files to process</td>
+            <td>Specify file type extension of files to process.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>all files</code></td>
             <td>5.0</td>
