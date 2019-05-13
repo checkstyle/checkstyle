@@ -162,6 +162,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "UnnecessaryParentheses",
         "VariableDeclarationUsageDistance",
         "VisibilityModifier",
+        "WhitespaceAfter",
     };
 
     private static Checker checker;
