@@ -698,16 +698,16 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
     </section>
 
     <section name="MethodParamPad">
+      <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="MethodParamPad_Description">
-        <p>Since Checkstyle 3.4</p>
         <p>
           Checks the padding between the identifier of a method definition,
           constructor definition, method call, or constructor invocation; and
-          the left parenthesis of the parameter list.  That is, if the
+          the left parenthesis of the parameter list. That is, if the
           identifier and left parenthesis are on the same line, checks whether
           a space is required immediately after the identifier or such a space
-          is forbidden.  If they are not on the same line, reports an error,
-          unless configured to allow line breaks.  To allow linebreaks after
+          is forbidden. If they are not on the same line, reports an error,
+          unless configured to allow line breaks. To allow linebreaks after
           the identifier, set property <code>allowLineBreaks</code> to <code>
           true</code>.
         </p>
@@ -725,8 +725,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
           <tr>
             <td>allowLineBreaks</td>
             <td>
-              whether a line break between the identifier and left parenthesis
-              is allowed
+              Allow a line break between the identifier and left parenthesis.
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
@@ -734,7 +733,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
           </tr>
           <tr>
             <td>option</td>
-            <td>policy on how to pad method parameter</td>
+            <td>Specify policy on how to pad method parameter.</td>
             <td>
               <a href="property_types.html#parenPad">Pad Policy</a>
             </td>
