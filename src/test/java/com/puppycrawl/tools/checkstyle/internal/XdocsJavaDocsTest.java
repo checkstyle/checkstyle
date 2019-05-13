@@ -116,6 +116,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "MagicNumber",
         "MemberName",
         "MethodName",
+        "MethodParamPad",
         "MethodTypeParameterName",
         "MissingCtor",
         "MissingDeprecated",

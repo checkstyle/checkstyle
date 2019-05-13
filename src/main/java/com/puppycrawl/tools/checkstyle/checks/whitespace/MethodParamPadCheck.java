@@ -36,32 +36,56 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * checks whether a space is required immediately after the identifier or
  * such a space is forbidden.
  * If they are not on the same line, reports an error, unless configured to
- * allow line breaks.
+ * allow line breaks. To allow linebreaks after the identifier, set property
+ * {@code allowLineBreaks} to {@code true}.
  * </p>
- * <p> By default the check will check the following tokens:
- *  {@link TokenTypes#CTOR_DEF CTOR_DEF},
- *  {@link TokenTypes#LITERAL_NEW LITERAL_NEW},
- *  {@link TokenTypes#METHOD_CALL METHOD_CALL},
- *  {@link TokenTypes#METHOD_DEF METHOD_DEF},
- *  {@link TokenTypes#SUPER_CTOR_CALL SUPER_CTOR_CALL}.
- * </p>
+ * <ul>
+ * <li>
+ * Property {@code allowLineBreaks} - Allow a line break between the identifier
+ * and left parenthesis.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code option} - Specify policy on how to pad method parameter.
+ * Default value is {@code nospace}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+ * CTOR_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
+ * LITERAL_NEW</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
+ * METHOD_CALL</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+ * METHOD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SUPER_CTOR_CALL">
+ * SUPER_CTOR_CALL</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+ * ENUM_CONSTANT_DEF</a>.
+ * </li>
+ * </ul>
  * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
  * &lt;module name="MethodParamPad"/&gt;
  * </pre>
- * <p> An example of how to configure the check to require a space
+ * <p>
+ * To configure the check to require a space
  * after the identifier of a method definition, except if the left
- * parenthesis occurs on a new line, is:
+ * parenthesis occurs on a new line:
  * </p>
  * <pre>
  * &lt;module name="MethodParamPad"&gt;
- *     &lt;property name="tokens" value="METHOD_DEF"/&gt;
- *     &lt;property name="option" value="space"/&gt;
- *     &lt;property name="allowLineBreaks" value="true"/&gt;
+ *   &lt;property name="tokens" value="METHOD_DEF"/&gt;
+ *   &lt;property name="option" value="space"/&gt;
+ *   &lt;property name="allowLineBreaks" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
+ *
+ * @since 3.4
  */
 
 @StatelessCheck
@@ -87,12 +111,11 @@ public class MethodParamPadCheck
     public static final String MSG_WS_NOT_PRECEDED = "ws.notPreceded";
 
     /**
-     * Whether whitespace is allowed if the method identifier is at a
-     * linebreak.
+     * Allow a line break between the identifier and left parenthesis.
      */
     private boolean allowLineBreaks;
 
-    /** The policy to enforce. */
+    /** Specify policy on how to pad method parameter. */
     private PadOption option = PadOption.NOSPACE;
 
     @Override
@@ -150,7 +173,7 @@ public class MethodParamPadCheck
     }
 
     /**
-     * Control whether whitespace is flagged at line breaks.
+     * Setter to allow a line break between the identifier and left parenthesis.
      * @param allowLineBreaks whether whitespace should be
      *     flagged at line breaks.
      */
@@ -159,7 +182,7 @@ public class MethodParamPadCheck
     }
 
     /**
-     * Set the option to enforce.
+     * Setter to specify policy on how to pad method parameter.
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
      */
