@@ -26,62 +26,100 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>Checks the padding of parentheses; that is whether a space is required
+ * <p>
+ * Checks the policy on the padding of parentheses; i.e. whether a space is required
  * after a left parenthesis and before a right parenthesis, or such spaces are
  * forbidden. No check occurs at the right parenthesis after an empty for
  * iterator, at the left parenthesis before an empty for initialization, or at
  * the right parenthesis of a try-with-resources resource specification where
  * the last resource variable has a trailing semi-colon.
- * Use Check {@link EmptyForIteratorPadCheck EmptyForIteratorPad} to validate
- * empty for iterators and {@link EmptyForInitializerPadCheck EmptyForInitializerPad}
- * to validate empty for initializers. Typecasts are also not checked, as there is
- * {@link TypecastParenPadCheck TypecastParenPad} to validate them.
+ * Use Check <a href="https://checkstyle.org/config_whitespace.html#EmptyForIteratorPad">
+ * EmptyForIteratorPad</a> to validate empty for iterators and
+ * <a href="https://checkstyle.org/config_whitespace.html#EmptyForInitializerPad">
+ * EmptyForInitializerPad</a> to validate empty for initializers.
+ * Typecasts are also not checked, as there is
+ * <a href="https://checkstyle.org/config_whitespace.html#TypecastParenPad">
+ * TypecastParenPad</a> to validate them.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code option} - Specify policy on how to pad parentheses.
+ * Default value is {@code nospace}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION">
+ * ANNOTATION</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+ * ANNOTATION_FIELD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_CALL">
+ * CTOR_CALL</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+ * CTOR_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">
+ * DOT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+ * ENUM_CONSTANT_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXPR">
+ * EXPR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
+ * LITERAL_CATCH</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
+ * LITERAL_DO</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
+ * LITERAL_FOR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
+ * LITERAL_IF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
+ * LITERAL_NEW</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
+ * LITERAL_SWITCH</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">
+ * LITERAL_SYNCHRONIZED</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
+ * LITERAL_WHILE</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
+ * METHOD_CALL</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+ * METHOD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#QUESTION">
+ * QUESTION</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RESOURCE_SPECIFICATION">
+ * RESOURCE_SPECIFICATION</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SUPER_CTOR_CALL">
+ * SUPER_CTOR_CALL</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+ * LAMBDA</a>.
+ * </li>
+ * </ul>
  * <p>
- * The policy to verify is specified using the {@link PadOption} class and
- * defaults to {@link PadOption#NOSPACE}.
- * </p>
- * <p> By default the check will check parentheses that occur with the following
- * tokens:
- *  {@link TokenTypes#ANNOTATION ANNOTATION},
- *  {@link TokenTypes#ANNOTATION_FIELD_DEF ANNOTATION_FIELD_DEF},
- *  {@link TokenTypes#CTOR_DEF CTOR_DEF},
- *  {@link TokenTypes#CTOR_CALL CTOR_CALL},
- *  {@link TokenTypes#DOT DOT},
- *  {@link TokenTypes#ENUM_CONSTANT_DEF ENUM_CONSTANT_DEF},
- *  {@link TokenTypes#EXPR EXPR},
- *  {@link TokenTypes#LITERAL_CATCH LITERAL_CATCH},
- *  {@link TokenTypes#LITERAL_DO LITERAL_DO},
- *  {@link TokenTypes#LITERAL_FOR LITERAL_FOR},
- *  {@link TokenTypes#LITERAL_IF LITERAL_IF},
- *  {@link TokenTypes#LITERAL_NEW LITERAL_NEW},
- *  {@link TokenTypes#LITERAL_SWITCH LITERAL_SWITCH},
- *  {@link TokenTypes#LITERAL_SYNCHRONIZED LITERAL_SYNCHRONIZED},
- *  {@link TokenTypes#LITERAL_WHILE LITERAL_WHILE},
- *  {@link TokenTypes#METHOD_CALL METHOD_CALL},
- *  {@link TokenTypes#METHOD_DEF METHOD_DEF},
- *  {@link TokenTypes#RESOURCE_SPECIFICATION RESOURCE_SPECIFICATION},
- *  {@link TokenTypes#SUPER_CTOR_CALL SUPER_CTOR_CALL},
- *  {@link TokenTypes#QUESTION QUESTION},
- *  {@link TokenTypes#LAMBDA LAMBDA},
- * </p>
- * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
- * &lt;module name="ParenPad"/&gt;
+ * &lt;module name=&quot;ParenPad&quot;/&gt;
  * </pre>
  * <p>
- * An example of how to configure the check to require spaces for the
- * parentheses of constructor, method, and super constructor invocations is:
+ * To configure the check to require spaces for the
+ * parentheses of constructor, method, and super constructor calls:
  * </p>
  * <pre>
- * &lt;module name="ParenPad"&gt;
- *     &lt;property name="tokens"
- *               value="CTOR_CALL, METHOD_CALL, SUPER_CTOR_CALL"/&gt;
- *     &lt;property name="option" value="space"/&gt;
+ * &lt;module name=&quot;ParenPad&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;CTOR_CALL, METHOD_CALL,
+ *     SUPER_CTOR_CALL&quot;/&gt;
+ *   &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * The following cases not checked:
+ * </p>
+ * <pre>
+ * for ( ; i &lt; j; i++, j--) // no check after left parenthesis
+ * for (Iterator it = xs.iterator(); it.hasNext(); ) // no check before right parenthesis
+ * try (Closeable resource = acquire(); ) // no check before right parenthesis
+ * </pre>
+ *
+ * @since 3.0
  */
 public class ParenPadCheck extends AbstractParenPadCheck {
 
