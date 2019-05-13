@@ -23,29 +23,33 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>Checks the padding of parentheses for typecasts. That is whether a space
+ * <p>
+ * Checks the policy on the padding of parentheses for typecasts. That is, whether a space
  * is required after a left parenthesis and before a right parenthesis, or such
  * spaces are forbidden.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code option} - Specify policy on how to pad parentheses.
+ * Default value is {@code nospace}.
+ * </li>
+ * </ul>
  * <p>
- * The policy to verify is specified using the {@link PadOption} class and
- * defaults to {@link PadOption#NOSPACE}.
- * </p>
- * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
- * &lt;module name="TypecastParenPad"/&gt;
+ * &lt;module name=&quot;TypecastParenPad&quot;/&gt;
  * </pre>
  * <p>
- * An example of how to configure the check to require spaces for the
- * parentheses of constructor, method, and super constructor invocations is:
+ * To configure the check to require spaces:
  * </p>
  * <pre>
- * &lt;module name="TypecastParenPad"&gt;
- *     &lt;property name="option" value="space"/&gt;
+ * &lt;module name=&quot;TypecastParenPad&quot;&gt;
+ *   &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ *
+ * @since 3.2
  */
 public class TypecastParenPadCheck extends AbstractParenPadCheck {
 
