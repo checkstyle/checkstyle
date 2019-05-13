@@ -865,8 +865,8 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
     </section>
 
     <section name="NoLineWrap">
+      <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="NoLineWrap_Description">
-        <p>Since Checkstyle 5.8</p>
         <p>
           Checks that chosen statements are not line-wrapped. By default this
           Check restricts wrapping import and package statements, but it's possible to check
