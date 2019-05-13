@@ -133,6 +133,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "NestedTryDepth",
         "NoClone",
         "NoFinalizer",
+        "NoLineWrap",
         "OneStatementPerLine",
         "OneTopLevelClass",
         "OverloadMethodsDeclarationOrder",

@@ -30,20 +30,36 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * By default this Check restricts wrapping import and package statements,
  * but it's possible to check any statement.
  * </p>
- *
+ * <ul>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">
+ * PACKAGE_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
+ * IMPORT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
+ * STATIC_IMPORT</a>.
+ * </li>
+ * </ul>
  * <p>Examples of line-wrapped statements (bad case):
- * <pre>{@code package com.puppycrawl.
- *    tools.checkstyle.checks;
+ * </p>
+ * <pre>
+ * package com.puppycrawl. //violation
+ *     tools.checkstyle.checks;
  *
- * import com.puppycrawl.tools.
- *    checkstyle.api.AbstractCheck;
- * }</pre>
+ * import com.puppycrawl.tools. //violation
+ *     checkstyle.api.AbstractCheck;
+ *
+ * import static java.math. //violation
+ *     BigInteger.ZERO;
+ * </pre>
  *
  * <p>
  * To configure the check to force no line-wrapping
  * in package and import statements (default values):
  * </p>
- * <pre class="body">
+ * <pre>
  * &lt;module name=&quot;NoLineWrap&quot;/&gt;
  * </pre>
  *
@@ -51,16 +67,20 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * To configure the check to force no line-wrapping only
  * in import statements:
  * </p>
- * <pre class="body">
+ * <pre>
  * &lt;module name=&quot;NoLineWrap&quot;&gt;
- *     &lt;property name="tokens" value="IMPORT"/&gt;
+ *   &lt;property name="tokens" value="IMPORT"/&gt;
  * &lt;/module&gt;
  * </pre>
  *
  * <p>Examples of not line-wrapped statements (good case):
- * <pre>{@code import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
- * }</pre>
+ * </p>
+ * <pre>
+ * import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+ * import static java.math.BigInteger.ZERO;
+ * </pre>
  *
+ * @since 5.8
  */
 @StatelessCheck
 public class NoLineWrapCheck extends AbstractCheck {
