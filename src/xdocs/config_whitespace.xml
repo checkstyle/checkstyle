@@ -596,8 +596,8 @@ class Foo
     </section>
 
     <section name="GenericWhitespace">
+      <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="GenericWhitespace_Description">
-        <p>Since Checkstyle 5.0</p>
         <p>
           Checks that the whitespace around the Generic tokens (angle brackets)
           "&lt;" and "&gt;" are correct to the <i>typical</i> convention.
@@ -625,13 +625,20 @@ class Foo
           Examples with correct spacing:
         </p>
         <source>
-public void &lt;K, V extends Number&gt; boolean foo(K, V) {} // Generic methods definitions
-class name&lt;T1, T2, ..., Tn&gt; {}                         // Generic type definition
-OrderedPair&lt;String, Box&lt;Integer&gt;&gt; p;                   // Generic type reference
-boolean same = Util.&lt;Integer, String&gt;compare(p1, p2);  // Generic preceded method name
-Pair&lt;Integer, String> p1 = new Pair&lt;&gt;(1, "apple");     // Diamond operator
-List&lt;T&gt; list = ImmutableList.Builder&lt;T&gt;::new;          // Method reference
-sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
+// Generic methods definitions
+public void &lt;K, V extends Number&gt; boolean foo(K, V) {}
+// Generic type definition
+class name&lt;T1, T2, ..., Tn&gt; {}
+// Generic type reference
+OrderedPair&lt;String, Box&lt;Integer&gt;&gt; p;
+// Generic preceded method name
+boolean same = Util.&lt;Integer, String&gt;compare(p1, p2);
+// Diamond operator
+Pair&lt;Integer, String&gt; p1 = new Pair&lt;&gt;(1, "apple");
+// Method reference
+List&lt;T&gt; list = ImmutableList.Builder&lt;T&gt;::new;
+// Method reference
+sort(list, Comparable::&lt;String&gt;compareTo);
         </source>
       </subsection>
 

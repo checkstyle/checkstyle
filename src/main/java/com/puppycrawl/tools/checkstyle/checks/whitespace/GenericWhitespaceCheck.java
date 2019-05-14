@@ -31,11 +31,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * "&lt;" and "&gt;" are correct to the <i>typical</i> convention.
  * The convention is not configurable.
  * </p>
- * <br>
  * <p>
  * Left angle bracket ("&lt;"):
  * </p>
- * <br>
  * <ul>
  * <li> should be preceded with whitespace only
  *   in generic methods definitions.</li>
@@ -43,29 +41,40 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   when it is precede method name or following type name.</li>
  * <li> should not be followed with whitespace in all cases.</li>
  * </ul>
- * <br>
  * <p>
  * Right angle bracket ("&gt;"):
  * </p>
- * <br>
  * <ul>
  * <li> should not be preceded with whitespace in all cases.</li>
  * <li> should be followed with whitespace in almost all cases,
  *   except diamond operators and when preceding method name.</li></ul>
- * <br>
  * <p>
  * Examples with correct spacing:
  * </p>
- * <br>
  * <pre>
- * public void &lt;K, V extends Number&gt; boolean foo(K, V) {}  // Generic methods definitions
- * class name&lt;T1, T2, ..., Tn&gt; {}                          // Generic type definition
- * OrderedPair&lt;String, Box&lt;Integer&gt;&gt; p;              // Generic type reference
- * boolean same = Util.&lt;Integer, String&gt;compare(p1, p2);   // Generic preceded method name
- * Pair&lt;Integer, String&gt; p1 = new Pair&lt;&gt;(1, "apple");// Diamond operator
- * List&lt;T&gt; list = ImmutableList.Builder&lt;T&gt;::new;     // Method reference
- * sort(list, Comparable::&lt;String&gt;compareTo);              // Method reference
+ * // Generic methods definitions
+ * public void &lt;K, V extends Number&gt; boolean foo(K, V) {}
+ * // Generic type definition
+ * class name&lt;T1, T2, ..., Tn&gt; {}
+ * // Generic type reference
+ * OrderedPair&lt;String, Box&lt;Integer&gt;&gt; p;
+ * // Generic preceded method name
+ * boolean same = Util.&lt;Integer, String&gt;compare(p1, p2);
+ * // Diamond operator
+ * Pair&lt;Integer, String&gt; p1 = new Pair&lt;&gt;(1, "apple");
+ * // Method reference
+ * List&lt;T&gt; list = ImmutableList.Builder&lt;T&gt;::new;
+ * // Method reference
+ * sort(list, Comparable::&lt;String&gt;compareTo);
  * </pre>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;GenericWhitespace&quot;/&gt;
+ * </pre>
+ *
+ * @since 5.0
  */
 @FileStatefulCheck
 public class GenericWhitespaceCheck extends AbstractCheck {

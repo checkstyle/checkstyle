@@ -97,6 +97,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "FileTabCharacter",
         "FinalClass",
         "FinalLocalVariable",
+        "GenericWhitespace",
         "HiddenField",
         "HideUtilityClassConstructor",
         "IllegalCatch",
