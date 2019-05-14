@@ -137,6 +137,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "NoClone",
         "NoFinalizer",
         "NoLineWrap",
+        "NoWhitespaceAfter",
         "OneStatementPerLine",
         "OneTopLevelClass",
         "OverloadMethodsDeclarationOrder",
