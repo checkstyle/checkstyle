@@ -1006,8 +1006,8 @@ import static java.math.BigInteger.ZERO;
     </section>
 
     <section name="NoWhitespaceAfter">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="NoWhitespaceAfter_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
           Checks that there is no whitespace after a token. More specifically,
           it checks that it is not followed by whitespace, or (if linebreaks
@@ -1052,7 +1052,7 @@ import static java.math.BigInteger.ZERO;
           <tr>
             <td>allowLineBreaks</td>
             <td>
-              whether whitespace is allowed if the token is at a linebreak
+              Control whether whitespace is flagged at linebreaks.
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
