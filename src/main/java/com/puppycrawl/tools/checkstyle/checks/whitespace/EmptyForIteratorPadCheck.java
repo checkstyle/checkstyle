@@ -27,26 +27,38 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>Checks the padding of an empty for iterator; that is whether a
- * space is required at an empty for iterator, or such spaces are
+ * <p>
+ * Checks the padding of an empty for iterator; that is whether a white
+ * space is required at an empty for iterator, or such white spaces are
  * forbidden. No check occurs if there is a line wrap at the iterator, as in
  * </p>
- * <pre class="body">
+ * <pre>
 for (Iterator foo = very.long.line.iterator();
       foo.hasNext();
      )
    </pre>
+ * <ul>
+ * <li>
+ * Property {@code option} - Specify policy on how to pad an empty for iterator.
+ * Default value is {@code nospace}.
+ * </li>
+ * </ul>
  * <p>
- * The policy to verify is specified using the {@link PadOption} class and
- * defaults to {@link PadOption#NOSPACE}.
- * </p>
- * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
- * &lt;module name="EmptyForIteratorPad"/&gt;
+ * &lt;module name=&quot;EmptyForIteratorPad&quot;/&gt;
+ * </pre>
+ * <p>
+ * To configure the check to require white space at an empty for iterator:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;EmptyForIteratorPad&quot;&gt;
+ *   &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
+ * &lt;/module&gt;
  * </pre>
  *
+ * @since 3.0
  */
 @StatelessCheck
 public class EmptyForIteratorPadCheck
@@ -67,11 +79,11 @@ public class EmptyForIteratorPadCheck
     /** Semicolon literal. */
     private static final String SEMICOLON = ";";
 
-    /** The policy to enforce. */
+    /** Specify policy on how to pad an empty for iterator. */
     private PadOption option = PadOption.NOSPACE;
 
     /**
-     * Set the option to enforce.
+     * Setter to specify policy on how to pad an empty for iterator.
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
      */
