@@ -1059,7 +1059,7 @@ import static java.math.BigInteger.ZERO;
           <tr>
             <td>allowLineBreaks</td>
             <td>
-              Control whether whitespace is flagged at linebreaks.
+              Control whether whitespace is allowed if the token is at a linebreak.
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
