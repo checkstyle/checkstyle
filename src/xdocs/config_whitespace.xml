@@ -118,12 +118,12 @@ for (
     </section>
 
     <section name="EmptyForIteratorPad">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="EmptyForIteratorPad_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
-          Checks the padding of an empty for iterator; that is whether white
-          space is required at an empty for iterator, or such white space is
-          forbidden.  No check occurs if there is a line wrap at the iterator,
+          Checks the padding of an empty for iterator; that is whether a white
+          space is required at an empty for iterator, or such white spaces are
+          forbidden. No check occurs if there is a line wrap at the iterator,
           as in
         </p>
         <source>
@@ -144,7 +144,7 @@ for (Iterator foo = very.long.line.iterator();
           </tr>
           <tr>
             <td>option</td>
-            <td>policy on how to pad an empty for iterator</td>
+            <td>Specify policy on how to pad an empty for iterator.</td>
             <td><a href="property_types.html#parenPad">Pad Policy</a></td>
             <td><code>nospace</code></td>
             <td>3.0</td>
