@@ -49,7 +49,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code allowLineBreaks} - Control whether whitespace is flagged at linebreaks.
+ * Property {@code allowLineBreaks} - Control whether whitespace is allowed
+ * if the token is at a linebreak.
  * Default value is {@code true}.
  * </li>
  * <li>
@@ -111,7 +112,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "ws.followed";
 
-    /** Control whether whitespace is flagged at linebreaks. */
+    /** Control whether whitespace is allowed if the token is at a linebreak. */
     private boolean allowLineBreaks = true;
 
     @Override
@@ -157,7 +158,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
     }
 
     /**
-     * Setter to control whether whitespace is flagged at linebreaks.
+     * Setter to control whether whitespace is allowed if the token is at a linebreak.
      * @param allowLineBreaks whether whitespace should be
      *     flagged at linebreaks.
      */
