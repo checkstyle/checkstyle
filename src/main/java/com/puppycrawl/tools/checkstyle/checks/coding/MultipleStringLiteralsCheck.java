@@ -188,12 +188,7 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
         if (!isInIgnoreOccurrenceContext(ast)) {
             final String currentString = ast.getText();
             if (ignoreStringsRegexp == null || !ignoreStringsRegexp.matcher(currentString).find()) {
-                List<DetailAST> hitList = stringMap.get(currentString);
-                if (hitList == null) {
-                    hitList = new ArrayList<>();
-                    stringMap.put(currentString, hitList);
-                }
-                hitList.add(ast);
+                stringMap.computeIfAbsent(currentString, key -> new ArrayList<>()).add(ast);
             }
         }
     }
