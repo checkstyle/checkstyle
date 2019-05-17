@@ -29,36 +29,49 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * Checks that there is no whitespace before a token.
  * More specifically, it checks that it is not preceded with whitespace,
- * or (if line breaks are allowed) all characters on the line before are
- * whitespace. To allow line breaks before a token, set property
- * allowLineBreaks to true. No check occurs before semi-colons in empty
+ * or (if linebreaks are allowed) all characters on the line before are
+ * whitespace. To allow linebreaks before a token, set property
+ * {@code allowLineBreaks} to {@code true}. No check occurs before semi-colons in empty
  * for loop initializers or conditions.
  * </p>
- * <p> By default the check will check the following operators:
- *  {@link TokenTypes#COMMA COMMA},
- *  {@link TokenTypes#SEMI SEMI},
- *  {@link TokenTypes#POST_DEC POST_DEC},
- *  {@link TokenTypes#POST_INC POST_INC},
- *  {@link TokenTypes#ELLIPSIS ELLIPSIS}.
- * {@link TokenTypes#DOT DOT} is also an acceptable token in a configuration
- * of this check.
- * </p>
- *
+ * <ul>
+ * <li>
+ * Property {@code allowLineBreaks} - Control whether whitespace is allowed
+ * if the token is at a linebreak.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">
+ * COMMA</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SEMI">
+ * SEMI</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_INC">
+ * POST_INC</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
+ * POST_DEC</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
+ * ELLIPSIS</a>.
+ * </li>
+ * </ul>
  * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
- * &lt;module name="NoWhitespaceBefore"/&gt;
+ * &lt;module name=&quot;NoWhitespaceBefore&quot;/&gt;
  * </pre>
- * <p> An example of how to configure the check to allow line breaks before
- * a {@link TokenTypes#DOT DOT} token is:
+ * <p>
+ * To configure the check to allow linebreaks before a DOT token:
  * </p>
  * <pre>
- * &lt;module name="NoWhitespaceBefore"&gt;
- *     &lt;property name="tokens" value="DOT"/&gt;
- *     &lt;property name="allowLineBreaks" value="true"/&gt;
+ * &lt;module name=&quot;NoWhitespaceBefore&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;DOT&quot;/&gt;
+ *   &lt;property name=&quot;allowLineBreaks&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ *
+ * @since 3.0
  */
 @StatelessCheck
 public class NoWhitespaceBeforeCheck
@@ -70,7 +83,7 @@ public class NoWhitespaceBeforeCheck
      */
     public static final String MSG_KEY = "ws.preceded";
 
-    /** Whether whitespace is allowed if the AST is at a linebreak. */
+    /** Control whether whitespace is allowed if the token is at a linebreak. */
     private boolean allowLineBreaks;
 
     @Override
@@ -143,7 +156,7 @@ public class NoWhitespaceBeforeCheck
     }
 
     /**
-     * Control whether whitespace is flagged at line breaks.
+     * Setter to control whether whitespace is allowed if the token is at a linebreak.
      * @param allowLineBreaks whether whitespace should be
      *     flagged at line breaks.
      */
