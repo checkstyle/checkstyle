@@ -1220,8 +1220,8 @@ public void foo(final char @NotNull [] param) {} // No violation
     </section>
 
     <section name="NoWhitespaceBefore">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="NoWhitespaceBefore_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
           Checks that there is no whitespace before a token. More
           specifically, it checks that it is not preceded with whitespace, or
@@ -1244,7 +1244,7 @@ public void foo(final char @NotNull [] param) {} // No violation
           <tr>
             <td>allowLineBreaks</td>
             <td>
-              whether whitespace is allowed if the token is at a linebreak
+              Control whether whitespace is allowed if the token is at a linebreak.
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
