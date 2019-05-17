@@ -30,55 +30,76 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * <p>
  * Checks line wrapping with separators.
- * The policy to verify is specified using the {@link WrapOption} class
- * and defaults to {@link WrapOption#EOL}.
  * </p>
- * <p> By default the check will check the following separators:
- *  {@link TokenTypes#DOT DOT},
- *  {@link TokenTypes#COMMA COMMA},
- * Other acceptable tokens are
- *  {@link TokenTypes#SEMI SEMI},
- *  {@link TokenTypes#ELLIPSIS ELLIPSIS},
- *  {@link TokenTypes#AT AT},
- *  {@link TokenTypes#LPAREN LPAREN},
- *  {@link TokenTypes#RPAREN RPAREN},
- *  {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR},
- *  {@link TokenTypes#RBRACK RBRACK},
- * </p>
+ * <ul>
+ * <li>
+ * Property {@code option} - Specify policy on how to wrap lines.
+ * Default value is {@code eol}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">
+ * DOT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">
+ * COMMA</a>.
+ * </li>
+ * </ul>
  * <p>
  * Code example for comma and dot at the new line:
  * </p>
  * <pre>
  * s
- *    .isEmpty();
+ *     .isEmpty();
  * foo(i
- *    ,s);
+ *     ,s);
  * </pre>
  *  <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
- * &lt;module name="SeparatorWrap"/&gt;
+ * &lt;module name=&quot;SeparatorWrap&quot;/&gt;
  * </pre>
  * <p>
  * Code example for comma and dot at the previous line:
  * </p>
  * <pre>
  * s.
- *    isEmpty();
+ *     isEmpty();
  * foo(i,
- *    s);
+ *     s);
  * </pre>
- * <p> An example of how to configure the check for comma at the
- * new line is:
+ * <p>
+ * Example for checking method reference at new line (good case and bad case):
  * </p>
  * <pre>
- * &lt;module name="SeparatorWrap"&gt;
- *     &lt;property name="tokens" value="COMMA"/&gt;
- *     &lt;property name="option" value="nl"/&gt;
+ * Arrays.sort(stringArray, String:: // violation
+ *     compareToIgnoreCase);
+ * Arrays.sort(stringArray, String
+ *     ::compareToIgnoreCase); // good
+ * </pre>
+ * <p>
+ * To configure the check for
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
+ * METHOD_REF</a> at new line:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;SeparatorWrap&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;METHOD_REF&quot;/&gt;
+ *   &lt;property name=&quot;option&quot; value=&quot;nl&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check for comma at the new line:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;SeparatorWrap&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;COMMA&quot;/&gt;
+ *   &lt;property name=&quot;option&quot; value=&quot;nl&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  *
+ * @since 5.8
  */
 @StatelessCheck
 public class SeparatorWrapCheck
@@ -96,11 +117,11 @@ public class SeparatorWrapCheck
      */
     public static final String MSG_LINE_NEW = "line.new";
 
-    /** The policy to enforce. */
+    /** Specify policy on how to wrap lines. */
     private WrapOption option = WrapOption.EOL;
 
     /**
-     * Set the option to enforce.
+     * Setter to specify policy on how to wrap lines.
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
      */
