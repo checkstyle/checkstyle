@@ -1846,8 +1846,8 @@ try (Closeable resource = acquire(); ) // no check before right parenthesis
     </section>
 
     <section name="SeparatorWrap">
+      <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="SeparatorWrap_Description">
-        <p>Since Checkstyle 5.8</p>
         <p>
           Checks line wrapping with separators.
         </p>
@@ -1864,7 +1864,7 @@ try (Closeable resource = acquire(); ) // no check before right parenthesis
           </tr>
           <tr>
             <td>option</td>
-            <td>policy on how to wrap lines</td>
+            <td>Specify policy on how to wrap lines.</td>
             <td>
               <a href="property_types.html#wrapOp">Wrap Operator Policy</a>
             </td>
@@ -1932,7 +1932,7 @@ foo(i
     ,s);
         </source>
         <p>
-          An example of how to configure the check is:
+          To configure the check:
         </p>
         <source>
 &lt;module name="SeparatorWrap"/&gt;
@@ -1956,7 +1956,7 @@ Arrays.sort(stringArray, String
     ::compareToIgnoreCase); // good
         </source>
         <p>
-          An example of how to configure the check for <a
+          To configure the check for <a
                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
             METHOD_REF</a> at new line:
         </p>
@@ -1967,7 +1967,7 @@ Arrays.sort(stringArray, String
 &lt;/module&gt;
         </source>
         <p>
-          An example of how to configure the check for comma at the new line is:
+          To configure the check for comma at the new line:
         </p>
         <source>
 &lt;module name="SeparatorWrap"&gt;
