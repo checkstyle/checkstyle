@@ -167,9 +167,7 @@ public class EqualsHashCodeCheck
                 final DetailAST equalsAST = detailASTDetailASTEntry.getValue();
                 log(equalsAST, MSG_KEY_HASHCODE);
             });
-        objBlockWithHashCode.forEach((key, equalsAST) -> {
-            log(equalsAST, MSG_KEY_EQUALS);
-        });
+        objBlockWithHashCode.forEach((key, equalsAST) -> log(equalsAST, MSG_KEY_EQUALS));
     }
 
 }

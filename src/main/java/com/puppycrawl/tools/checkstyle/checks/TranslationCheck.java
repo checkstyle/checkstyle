@@ -260,10 +260,8 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * @param bundle resource bundle.
      */
     private void checkExistenceOfDefaultTranslation(ResourceBundle bundle) {
-        final Optional<String> fileName = getMissingFileName(bundle, null);
-        if (fileName.isPresent()) {
-            logMissingTranslation(bundle.getPath(), fileName.get());
-        }
+        getMissingFileName(bundle, null)
+            .ifPresent(fileName -> logMissingTranslation(bundle.getPath(), fileName));
     }
 
     /**
@@ -275,10 +273,8 @@ public class TranslationCheck extends AbstractFileSetCheck {
      */
     private void checkExistenceOfRequiredTranslations(ResourceBundle bundle) {
         for (String languageCode : requiredTranslations) {
-            final Optional<String> fileName = getMissingFileName(bundle, languageCode);
-            if (fileName.isPresent()) {
-                logMissingTranslation(bundle.getPath(), fileName.get());
-            }
+            getMissingFileName(bundle, languageCode)
+                .ifPresent(fileName -> logMissingTranslation(bundle.getPath(), fileName));
         }
     }
 

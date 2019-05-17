@@ -274,7 +274,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
 
     @Override
     public final void finishTree(DetailAST rootAST) {
-        // No code by default
+        // No code, prevent override in subclasses
     }
 
     @Override
