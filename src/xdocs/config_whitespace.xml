@@ -2378,10 +2378,10 @@ public long toMicros(long d) { return d / (C1 / C0); }
     </section>
 
     <section name="WhitespaceAround">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="WhitespaceAround_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
-        Checks that a token is surrounded by whitespace.  Empty constructor,
+        Checks that a token is surrounded by whitespace. Empty constructor,
         method, class, enum, interface, loop bodies (blocks), lambdas of the form
         </p>
 
@@ -2401,7 +2401,7 @@ public @interface Beta {} // empty annotation type
         <p>
         may optionally be exempted from the policy using the <code>
         allowEmptyMethods</code>, <code>allowEmptyConstructors
-        </code>, <code>allowEmptyTypes</code>, <code>allowEmptyLoops</code>
+        </code>, <code>allowEmptyTypes</code>, <code>allowEmptyLoops</code>,
         <code>allowEmptyLambdas</code> and <code>allowEmptyCatches</code>
         properties.
         </p>
@@ -2437,49 +2437,51 @@ try {
           </tr>
           <tr>
             <td>allowEmptyConstructors</td>
-            <td>allow empty constructor bodies</td>
+            <td>Allow empty constructor bodies.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>4.0</td>
           </tr>
           <tr>
             <td>allowEmptyMethods</td>
-            <td>allow empty method bodies</td>
+            <td>Allow empty method bodies.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>4.0</td>
           </tr>
           <tr>
             <td>allowEmptyTypes</td>
-            <td>allow empty class, interface and enum bodies</td>
+            <td>Allow empty class, interface and enum bodies.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>5.8</td>
           </tr>
           <tr>
             <td>allowEmptyLoops</td>
-            <td>allow empty loop bodies</td>
+            <td>Allow empty loop bodies.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>5.8</td>
           </tr>
           <tr>
             <td>allowEmptyLambdas</td>
-            <td>allow empty lambda bodies</td>
+            <td>Allow empty lambda bodies.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>6.14</td>
           </tr>
           <tr>
             <td>allowEmptyCatches</td>
-            <td>allow empty catch bodies</td>
+            <td>Allow empty catch bodies.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>7.6</td>
           </tr>
           <tr>
             <td>ignoreEnhancedForColon</td>
-            <td>ignore whitespace around colon in for-each loops</td>
+            <td>Ignore whitespace around colon in
+              <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
+                enhanced for</a> loop.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
             <td>5.5</td>
@@ -2719,14 +2721,83 @@ try {
         <source>
 &lt;module name=&quot;WhitespaceAround&quot;/&gt;
         </source>
-
         <p>
-          To configure the check for whitespace around the assignment
-          operator, <code>=</code>:
+          To configure the check for whitespace only around assignment operators:
+        </p>
+        <source>
+&lt;module name="WhitespaceAround"&gt;
+  &lt;property name="tokens"
+    value="ASSIGN,DIV_ASSIGN,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,
+           MOD_ASSIGN,SR_ASSIGN,BSR_ASSIGN,SL_ASSIGN,BXOR_ASSIGN,
+           BOR_ASSIGN,BAND_ASSIGN"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          To configure the check for whitespace only around curly braces:
+        </p>
+        <source>
+&lt;module name="WhitespaceAround"&gt;
+  &lt;property name="tokens" value="LCURLY,RCURLY"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          To configure the check to allow empty method bodies:
         </p>
         <source>
 &lt;module name=&quot;WhitespaceAround&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;ASSIGN&quot;/&gt;
+  &lt;property name=&quot;allowEmptyMethods&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          To configure the check to allow empty constructor bodies:
+        </p>
+        <source>
+&lt;module name=&quot;WhitespaceAround&quot;&gt;
+  &lt;property name=&quot;allowEmptyConstructors&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          To configure the check to allow empty type bodies:
+        </p>
+        <source>
+&lt;module name=&quot;WhitespaceAround&quot;&gt;
+  &lt;property name=&quot;allowEmptyTypes&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          To configure the check to allow empty loop bodies:
+        </p>
+        <source>
+&lt;module name=&quot;WhitespaceAround&quot;&gt;
+  &lt;property name=&quot;allowEmptyLoops&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          To configure the check to allow empty lambda bodies:
+        </p>
+        <source>
+&lt;module name=&quot;WhitespaceAround&quot;&gt;
+  &lt;property name=&quot;allowEmptyLambdas&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          To configure the check to allow empty catch bodies:
+        </p>
+        <source>
+&lt;module name=&quot;WhitespaceAround&quot;&gt;
+  &lt;property name=&quot;allowEmptyCatches&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Also, this check can be configured to ignore the colon in an enhanced for loop.
+          The colon in an enhanced for loop is ignored by default.
+        </p>
+        <p>
+          To configure the check to ignore the colon:
+        </p>
+        <source>
+&lt;module name=&quot;WhitespaceAround&quot;&gt;
+  &lt;property name="ignoreEnhancedForColon" value="true" /&gt;
 &lt;/module&gt;
         </source>
       </subsection>

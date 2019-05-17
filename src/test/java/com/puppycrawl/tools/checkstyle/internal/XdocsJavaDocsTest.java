@@ -170,6 +170,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "VariableDeclarationUsageDistance",
         "VisibilityModifier",
         "WhitespaceAfter",
+        "WhitespaceAround",
     };
 
     private static Checker checker;
