@@ -33,23 +33,56 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
+ * <p>
  * Checks for empty line separators after header, package, all import declarations,
  * fields, constructors, methods, nested classes,
  * static initializers and instance initializers.
- *
- * <p> By default the check will check the following statements:
- *  {@link TokenTypes#PACKAGE_DEF PACKAGE_DEF},
- *  {@link TokenTypes#IMPORT IMPORT},
- *  {@link TokenTypes#STATIC_IMPORT STATIC_IMPORT},
- *  {@link TokenTypes#CLASS_DEF CLASS_DEF},
- *  {@link TokenTypes#INTERFACE_DEF INTERFACE_DEF},
- *  {@link TokenTypes#STATIC_INIT STATIC_INIT},
- *  {@link TokenTypes#INSTANCE_INIT INSTANCE_INIT},
- *  {@link TokenTypes#METHOD_DEF METHOD_DEF},
- *  {@link TokenTypes#CTOR_DEF CTOR_DEF},
- *  {@link TokenTypes#VARIABLE_DEF VARIABLE_DEF}.
  * </p>
- *
+ * <p>
+ * ATTENTION: empty line separator is required between AST siblings,
+ * not after line where token is found.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code allowNoEmptyLineBetweenFields} - Allow no empty line between fields.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code allowMultipleEmptyLines} - Allow multiple empty lines between class members.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code allowMultipleEmptyLinesInsideClassMembers} - Allow multiple
+ * empty lines inside class members.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">
+ * PACKAGE_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
+ * IMPORT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
+ * STATIC_IMPORT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+ * CLASS_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+ * INTERFACE_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+ * ENUM_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+ * STATIC_INIT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
+ * INSTANCE_INIT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+ * METHOD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+ * CTOR_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+ * VARIABLE_DEF</a>.
+ * </li>
+ * </ul>
  * <p>
  * Example of declarations without empty line separator:
  * </p>
@@ -62,16 +95,17 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * import java.io.Serializable;
  * class Foo
  * {
- *     public static final int FOO_CONST = 1;
- *     public void foo() {} //should be separated from previous statement.
+ *   public static final int FOO_CONST = 1;
+ *   public void foo() {} //should be separated from previous statement.
  * }
  * </pre>
  *
- * <p> An example of how to configure the check with default parameters is:
+ * <p>
+ * To configure the check with default parameters:
  * </p>
  *
  * <pre>
- * &lt;module name="EmptyLineSeparator"/&gt;
+ * &lt;module name=&quot;EmptyLineSeparator&quot;/&gt;
  * </pre>
  *
  * <p>
@@ -90,28 +124,31 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  *
  * class Foo
  * {
- *     public static final int FOO_CONST = 1;
+ *   public static final int FOO_CONST = 1;
  *
- *     public void foo() {}
+ *   public void foo() {}
  * }
  * </pre>
- * <p> An example how to check empty line after
- * {@link TokenTypes#VARIABLE_DEF VARIABLE_DEF} and
- * {@link TokenTypes#METHOD_DEF METHOD_DEF}:
+ * <p>
+ * To check empty line after
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+ * VARIABLE_DEF</a> and
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+ * METHOD_DEF</a>:
  * </p>
  *
  * <pre>
- * &lt;module name="EmptyLineSeparator"&gt;
- *    &lt;property name="tokens" value="VARIABLE_DEF, METHOD_DEF"/&gt;
+ * &lt;module name=&quot;EmptyLineSeparator&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF, METHOD_DEF&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  *
  * <p>
- * An example how to allow no empty line between fields:
+ * To allow no empty line between fields:
  * </p>
  * <pre>
  * &lt;module name="EmptyLineSeparator"&gt;
- *    &lt;property name="allowNoEmptyLineBetweenFields" value="true"/&gt;
+ *   &lt;property name="allowNoEmptyLineBetweenFields" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
  *
@@ -134,39 +171,47 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  *
  * class Foo
  * {
- *     public static final int FOO_CONST = 1;
+ *   public static final int FOO_CONST = 1;
  *
  *
  *
- *     public void foo() {}
+ *   public void foo() {} //should be separated from previous statement.
  * }
  * </pre>
  * <p>
- * An example how to disallow multiple empty lines between class members:
+ * To disallow multiple empty lines between class members:
  * </p>
  * <pre>
- * &lt;module name="EmptyLineSeparator"&gt;
- *    &lt;property name="allowMultipleEmptyLines" value="false"/&gt;
+ * &lt;module name=&quot;EmptyLineSeparator&quot;&gt;
+ *   &lt;property name=&quot;allowMultipleEmptyLines&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  *
  * <p>
- * An example how to disallow multiple empty line inside methods, constructors, etc.:
+ * To disallow multiple empty lines inside constructor, initialization block and method:
  * </p>
  * <pre>
  * &lt;module name="EmptyLineSeparator"&gt;
- *    &lt;property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/&gt;
+ *   &lt;property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/&gt;
  * &lt;/module&gt;
  * </pre>
  *
- * <p> The check is valid only for statements that have body:
- * {@link TokenTypes#CLASS_DEF},
- * {@link TokenTypes#INTERFACE_DEF},
- * {@link TokenTypes#ENUM_DEF},
- * {@link TokenTypes#STATIC_INIT},
- * {@link TokenTypes#INSTANCE_INIT},
- * {@link TokenTypes#METHOD_DEF},
- * {@link TokenTypes#CTOR_DEF}
+ * <p>
+ * The check is valid only for statements that have body:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+ * CLASS_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+ * INTERFACE_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+ * ENUM_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+ * STATIC_INIT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
+ * INSTANCE_INIT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+ * METHOD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+ * CTOR_DEF</a>.
  * </p>
  * <p>
  * Example of declarations with multiple empty lines inside method:
@@ -182,13 +227,15 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * class Foo
  * {
  *
- *     public void foo() {
+ *   public void foo() {
  *
  *
- *          System.out.println(1); // violation since method has 2 empty lines subsequently
- *     }
+ *     System.out.println(1); // violation since method has 2 empty lines subsequently
+ *   }
  * }
  * </pre>
+ *
+ * @since 5.8
  */
 @StatelessCheck
 public class EmptyLineSeparatorCheck extends AbstractCheck {
@@ -225,17 +272,17 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             Arrays.asList(TokenTypes.PACKAGE_DEF, TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT,
                     TokenTypes.STATIC_INIT);
 
-    /** Allows no empty line between fields. */
+    /** Allow no empty line between fields. */
     private boolean allowNoEmptyLineBetweenFields;
 
-    /** Allows multiple empty lines between class members. */
+    /** Allow multiple empty lines between class members. */
     private boolean allowMultipleEmptyLines = true;
 
-    /** Allows multiple empty lines inside class members. */
+    /** Allow multiple empty lines inside class members. */
     private boolean allowMultipleEmptyLinesInsideClassMembers = true;
 
     /**
-     * Allow no empty line between fields.
+     * Setter to allow no empty line between fields.
      * @param allow
      *        User's value.
      */
@@ -244,7 +291,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     }
 
     /**
-     * Allow multiple empty lines between class members.
+     * Setter to allow multiple empty lines between class members.
      * @param allow User's value.
      */
     public void setAllowMultipleEmptyLines(boolean allow) {
@@ -252,7 +299,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     }
 
     /**
-     * Allow multiple empty lines inside class members.
+     * Setter to allow multiple empty lines inside class members.
      * @param allow User's value.
      */
     public void setAllowMultipleEmptyLinesInsideClassMembers(boolean allow) {
