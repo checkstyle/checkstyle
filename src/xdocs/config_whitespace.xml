@@ -217,8 +217,8 @@ for (Iterator foo = very.long.line.iterator();
     </section>
 
     <section name="EmptyLineSeparator">
+      <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="EmptyLineSeparator_Description">
-        <p>Since Checkstyle 5.8</p>
         <p>
           Checks for empty line separators after header, package, all import declarations,
           fields, constructors, methods, nested classes,
@@ -241,25 +241,25 @@ for (Iterator foo = very.long.line.iterator();
           </tr>
           <tr>
             <td>allowNoEmptyLineBetweenFields</td>
-            <td>Allow no empty line between fields</td>
+            <td>Allow no empty line between fields.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>false</td>
+            <td><code>false</code></td>
             <td>5.8</td>
           </tr>
           <tr>
-             <td>allowMultipleEmptyLines</td>
-             <td>Allow multiple empty lines between class members</td>
-             <td><a href="property_types.html#boolean">Boolean</a></td>
-             <td>true</td>
-             <td>6.3</td>
+            <td>allowMultipleEmptyLines</td>
+            <td>Allow multiple empty lines between class members.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+            <td>6.3</td>
           </tr>
-            <tr>
-                <td>allowMultipleEmptyLinesInsideClassMembers</td>
-                <td>Allow multiple empty lines inside class members</td>
-                <td><a href="property_types.html#boolean">Boolean</a></td>
-                <td>true</td>
-                <td>6.18</td>
-            </tr>
+          <tr>
+            <td>allowMultipleEmptyLinesInsideClassMembers</td>
+            <td>Allow multiple empty lines inside class members.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+            <td>6.18</td>
+          </tr>
           <tr>
             <td>tokens</td>
             <td>tokens to check</td>
@@ -333,7 +333,7 @@ class Foo
 }
       </source>
       <p>
-        An example of how to configure the check with default parameters is:
+        To configure the check with default parameters:
       </p>
       <source>
 &lt;module name="EmptyLineSeparator"/&gt;
@@ -354,11 +354,11 @@ class Foo
 {
   public static final int FOO_CONST = 1;
 
-  public void foo() {} //should be separated from previous statement.
+  public void foo() {}
 }
       </source>
       <p>
-        An example how to check empty line after  <a
+        To check empty line after  <a
                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
                 VARIABLE_DEF</a> and <a
                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
@@ -370,7 +370,7 @@ class Foo
 &lt;/module&gt;
       </source>
       <p>
-        An example how to allow no empty line between fields:
+        To allow no empty line between fields:
       </p>
       <source>
 &lt;module name="EmptyLineSeparator"&gt;
@@ -378,7 +378,35 @@ class Foo
 &lt;/module&gt;
       </source>
       <p>
-          An example how to disallow multiple empty lines inside constructor,
+        Example of declarations with multiple empty lines between class members
+        (allowed by default):
+      </p>
+      <source>
+///////////////////////////////////////////////////
+//HEADER
+///////////////////////////////////////////////////&#10;
+
+package com.puppycrawl.tools.checkstyle.whitespace;&#10;&#10;
+
+import java.io.Serializable;&#10;
+
+class Foo
+{
+  public static final int FOO_CONST = 1;&#10;&#10;
+
+  public void foo() {} //should be separated from previous statement.
+}
+      </source>
+      <p>
+        To disallow multiple empty lines between class members:
+      </p>
+      <source>
+&lt;module name="EmptyLineSeparator"&gt;
+  &lt;property name="allowMultipleEmptyLines" value="false"/&gt;
+&lt;/module&gt;
+      </source>
+      <p>
+        To disallow multiple empty lines inside constructor,
           initialization block and method:
       </p>
       <source>
@@ -402,7 +430,7 @@ class Foo
           <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
                 METHOD_DEF</a>,
           <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                CTOR_DEF</a>,
+                CTOR_DEF</a>.
       </p>
       <p>
           Example of declarations with multiple empty lines inside method:
@@ -417,8 +445,7 @@ package com.puppycrawl.tools.checkstyle.whitespace;
 class Foo
 {
 
-  public void foo() {
-  <br/>
+  public void foo() {&#10;
 
     System.out.println(1); // violation since method has 2 empty lines subsequently
   }
