@@ -1355,8 +1355,8 @@ public void foo(final char @NotNull [] param) {} // No violation
     </section>
 
     <section name="OperatorWrap">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="OperatorWrap_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
           Checks the policy on how to wrap lines on operators.
         </p>
@@ -1373,7 +1373,7 @@ public void foo(final char @NotNull [] param) {} // No violation
           </tr>
           <tr>
             <td>option</td>
-            <td>policy on how to wrap lines</td>
+            <td>Specify policy on how to wrap lines.</td>
             <td>
               <a href="property_types.html#wrapOp">Wrap Operator Policy</a>
             </td>
@@ -1522,12 +1522,14 @@ public void foo(final char @NotNull [] param) {} // No violation
         </source>
 
         <p>
-          To configure the check for the assignment operator, <code>=</code>, at the end of a line:
+          To configure the check for assignment operators at the end of a line:
         </p>
         <source>
 &lt;module name=&quot;OperatorWrap&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;ASSIGN&quot;/&gt;
-  &lt;property name=&quot;option&quot; value=&quot;eol&quot;/&gt;
+  &lt;property name="tokens"
+    value="ASSIGN,DIV_ASSIGN,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,MOD_ASSIGN,
+           SR_ASSIGN,BSR_ASSIGN,SL_ASSIGN,BXOR_ASSIGN,BOR_ASSIGN,BAND_ASSIGN"/&gt;
+  &lt;property name="option" value="eol"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
