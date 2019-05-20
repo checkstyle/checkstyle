@@ -537,6 +537,9 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.SuperFinalizeCheck");
         NAME_TO_FULL_MODULE_NAME.put("UnnecessaryParenthesesCheck",
                 BASE_PACKAGE + ".checks.coding.UnnecessaryParenthesesCheck");
+        NAME_TO_FULL_MODULE_NAME.put("UnnecessarySemicolonAfterTypeMemberDeclarationCheck",
+                BASE_PACKAGE
+                    + ".checks.coding.UnnecessarySemicolonAfterTypeMemberDeclarationCheck");
         NAME_TO_FULL_MODULE_NAME.put("UnnecessarySemicolonInEnumerationCheck",
                 BASE_PACKAGE + ".checks.coding.UnnecessarySemicolonInEnumerationCheck");
         NAME_TO_FULL_MODULE_NAME.put("UnnecessarySemicolonInTryWithResourcesCheck",
