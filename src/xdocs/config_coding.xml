@@ -4950,6 +4950,139 @@ if (&quot;something&quot;.equals(x))
       </subsection>
     </section>
 
+    <section name="UnnecessarySemicolonAfterTypeMemberDeclaration">
+      <p>Since Checkstyle 8.24</p>
+      <subsection name="Description"
+                  id="UnnecessarySemicolonAfterTypeMemberDeclaration_Description">
+        <p>
+          Checks if unnecessary semicolon is used after type member declaration.
+        </p>
+      </subsection>
+      <subsection name="Properties" id="UnnecessarySemicolonAfterTypeMemberDeclaration_Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+            <th>since</th>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>tokens to check</td>
+            <td>
+                subset of tokens <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                 CLASS_DEF</a>,
+                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                 INTERFACE_DEF</a>,
+                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                 ENUM_DEF</a>,
+                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                 ANNOTATION_DEF</a>,
+                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                 VARIABLE_DEF</a>,
+                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                 ANNOTATION_FIELD_DEF</a>,
+                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
+                 STATIC_INIT</a>,
+                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
+                 INSTANCE_INIT</a>,
+                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                 CTOR_DEF</a>,
+                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                 METHOD_DEF</a>,
+                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                 ENUM_CONSTANT_DEF</a>.
+            </td>
+            <td>
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                    ANNOTATION_DEF</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                    VARIABLE_DEF</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                    ANNOTATION_FIELD_DEF</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
+                    STATIC_INIT</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
+                    INSTANCE_INIT</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                    CTOR_DEF</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                    ENUM_CONSTANT_DEF</a>.
+            </td>
+            <td>8.24</td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples" id="UnnecessarySemicolonAfterTypeMemberDeclaration_Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;UnnecessarySemicolonAfterTypeMemberDeclaration&quot;/&gt;
+        </source>
+        <p>
+          Results in following:
+        </p>
+        <source>
+class A {
+    ; // violation, standalone semicolon
+    {}; // violation, extra semicolon after init block
+    static {}; // violation, extra semicolon after static init block
+    A(){}; // violation, extra semicolon after constructor definition
+    void method() {}; // violation, extra semicolon after method definition
+    int field = 10;; // violation, extra semicolon after field declaration
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage"
+                  id="UnnecessarySemicolonAfterTypeMemberDeclaration_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessarySemicolonAfterTypeMemberDeclaration">
+              Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Error Messages"
+                  id="UnnecessarySemicolonAfterTypeMemberDeclaration_Error_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.semicolon%22">
+                unnecessary.semicolon</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="UnnecessarySemicolonAfterTypeMemberDeclaration_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module"
+                  id="UnnecessarySemicolonAfterTypeMemberDeclaration_Parent_Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="UnnecessarySemicolonInEnumeration">
       <p>Since Checkstyle 8.22</p>
       <subsection name="Description" id="UnnecessarySemicolonInEnumeration_Description">
