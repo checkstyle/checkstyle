@@ -143,6 +143,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "NoWhitespaceBefore",
         "OneStatementPerLine",
         "OneTopLevelClass",
+        "OperatorWrap",
         "OverloadMethodsDeclarationOrder",
         "PackageAnnotation",
         "PackageDeclaration",

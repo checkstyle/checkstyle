@@ -29,66 +29,83 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * Checks line wrapping for operators.
- * The policy to verify is specified using the {@link WrapOption} class
- * and defaults to {@link WrapOption#NL}.
+ * Checks the policy on how to wrap lines on operators.
  * </p>
- * <p> By default the check will check the following operators:
- *  {@link TokenTypes#BAND BAND},
- *  {@link TokenTypes#BOR BOR},
- *  {@link TokenTypes#BSR BSR},
- *  {@link TokenTypes#BXOR BXOR},
- *  {@link TokenTypes#COLON COLON},
- *  {@link TokenTypes#DIV DIV},
- *  {@link TokenTypes#EQUAL EQUAL},
- *  {@link TokenTypes#GE GE},
- *  {@link TokenTypes#GT GT},
- *  {@link TokenTypes#LAND LAND},
- *  {@link TokenTypes#LE LE},
- *  {@link TokenTypes#LITERAL_INSTANCEOF LITERAL_INSTANCEOF},
- *  {@link TokenTypes#LOR LOR},
- *  {@link TokenTypes#LT LT},
- *  {@link TokenTypes#MINUS MINUS},
- *  {@link TokenTypes#MOD MOD},
- *  {@link TokenTypes#NOT_EQUAL NOT_EQUAL},
- *  {@link TokenTypes#PLUS PLUS},
- *  {@link TokenTypes#QUESTION QUESTION},
- *  {@link TokenTypes#SL SL},
- *  {@link TokenTypes#SR SR},
- *  {@link TokenTypes#STAR STAR}.
- * Other acceptable tokens are
- *  {@link TokenTypes#ASSIGN ASSIGN},
- *  {@link TokenTypes#BAND_ASSIGN BAND_ASSIGN},
- *  {@link TokenTypes#BOR_ASSIGN BOR_ASSIGN},
- *  {@link TokenTypes#BSR_ASSIGN BSR_ASSIGN},
- *  {@link TokenTypes#BXOR_ASSIGN BXOR_ASSIGN},
- *  {@link TokenTypes#DIV_ASSIGN DIV_ASSIGN},
- *  {@link TokenTypes#MINUS_ASSIGN MINUS_ASSIGN},
- *  {@link TokenTypes#MOD_ASSIGN MOD_ASSIGN},
- *  {@link TokenTypes#PLUS_ASSIGN PLUS_ASSIGN},
- *  {@link TokenTypes#SL_ASSIGN SL_ASSIGN},
- *  {@link TokenTypes#SR_ASSIGN SR_ASSIGN},
- *  {@link TokenTypes#STAR_ASSIGN STAR_ASSIGN}.
- *  {@link TokenTypes#METHOD_REF METHOD_REF}.
- * </p>
- *  <p>
- * An example of how to configure the check is:
+ * <ul>
+ * <li>
+ * Property {@code option} - Specify policy on how to wrap lines.
+ * Default value is {@code nl}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#QUESTION">
+ * QUESTION</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COLON">
+ * COLON</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EQUAL">
+ * EQUAL</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NOT_EQUAL">
+ * NOT_EQUAL</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV">
+ * DIV</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS">
+ * PLUS</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS">
+ * MINUS</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR">
+ * STAR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MOD">
+ * MOD</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SR">
+ * SR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BSR">
+ * BSR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GE">
+ * GE</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GT">
+ * GT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SL">
+ * SL</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LE">
+ * LE</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LT">
+ * LT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR">
+ * BXOR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR">
+ * BOR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">
+ * LOR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND">
+ * BAND</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">
+ * LAND</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPE_EXTENSION_AND">
+ * TYPE_EXTENSION_AND</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_INSTANCEOF">
+ * LITERAL_INSTANCEOF</a>.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
  * </p>
  * <pre>
  * &lt;module name="OperatorWrap"/&gt;
  * </pre>
- * <p> An example of how to configure the check for assignment operators at the
- * end of a line is:
+ * <p>
+ * To configure the check for assignment operators at the end of a line:
  * </p>
  * <pre>
  * &lt;module name="OperatorWrap"&gt;
- *     &lt;property name="tokens"
- *               value="ASSIGN,DIV_ASSIGN,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,MOD_ASSIGN
- *               ,SR_ASSIGN,BSR_ASSIGN,SL_ASSIGN,BXOR_ASSIGN,BOR_ASSIGN,BAND_ASSIGN"/&gt;
- *     &lt;property name="option" value="eol"/&gt;
+ *   &lt;property name="tokens"
+ *     value="ASSIGN,DIV_ASSIGN,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,MOD_ASSIGN,
+ *            SR_ASSIGN,BSR_ASSIGN,SL_ASSIGN,BXOR_ASSIGN,BOR_ASSIGN,BAND_ASSIGN"/&gt;
+ *   &lt;property name="option" value="eol"/&gt;
  * &lt;/module&gt;
  * </pre>
  *
+ * @since 3.0
  */
 @StatelessCheck
 public class OperatorWrapCheck
@@ -106,11 +123,11 @@ public class OperatorWrapCheck
      */
     public static final String MSG_LINE_PREVIOUS = "line.previous";
 
-    /** The policy to enforce. */
+    /** Specify policy on how to wrap lines. */
     private WrapOption option = WrapOption.NL;
 
     /**
-     * Set the option to enforce.
+     * Setter to specify policy on how to wrap lines.
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
      */
