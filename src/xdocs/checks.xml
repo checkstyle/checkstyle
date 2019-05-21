@@ -811,6 +811,10 @@
         Checks if unnecessary parentheses are used in a statement or expression.</td>
       </tr>
       <tr>
+        <td><a href="config_coding.html#UnnecessarySemicolonInEnumeration">UnnecessarySemicolonInEnumeration</a></td>
+        <td>Checks if unnecessary semicolon is in enum definitions.</td>
+      </tr>
+      <tr>
         <td><a href="config_imports.html#UnusedImports">UnusedImports</a></td>
         <td>
         Checks for unused import statements.</td>
