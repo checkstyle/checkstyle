@@ -340,6 +340,7 @@
     <module name="SuperFinalize"/>
     <module name="UnnecessaryParentheses"/>
     <module name="UnnecessarySemicolonInEnumeration"/>
+    <module name="UnnecessarySemicolonInTryWithResources"/>
     <module name="VariableDeclarationUsageDistance"/>
 
     <!-- Filters-->
