@@ -89,16 +89,16 @@ public class MyClass {
     @return double value.
       ]]></source>
       <p>
-      Attention that java comment starts with <code>/*</code>, following with Identificator of
-      comment type. Javadoc Identificator is <code>*</code>. All symbols after Javadoc
-      Identificator till <code>*/</code> are part of javadoc comment.
+      Attention that java comment starts with <code>/*</code>, following with Identifier of
+      comment type. Javadoc Identifier is <code>*</code>. All symbols after Javadoc
+      Identifier till <code>*/</code> are part of javadoc comment.
       </p>
-      <p>Please note that javadoc-like (multiline comment with javadoc identificator) comment inside
+      <p>Please note that javadoc-like (multiline comment with javadoc identifier) comment inside
       a method is not a javadoc comment and skipped by Sun/Oracle javadoc tool and by our javadoc
       comment matcher, but such comment will be in AST.
       </p>
       <p>You can find different types of documentation generation tools similar to javadoc on the
-      Internet. Such tools rely on specific Identificator: "!", "#", "$".
+      Internet. Such tools rely on specific Identifier: "!", "#", "$".
       Comments look like <code>"/*! some comment */"</code> , <code>"/*# some comment */"</code> ,
       <code>"/*$ some comment */"</code>. Such multiline comments are not a javadoc.
       </p>
@@ -205,7 +205,7 @@ public class MyClass {
         Java compiler doesn't know about Javadoc because it is just a multiline comment.
         To parse multiline comment as a Javadoc comment, checkstyle has special Parser
         that is based on ANTLR Javadoc grammar. So, it's supposed to process block comments
-        that start with Javadoc Identificator and parse them to Abstract Syntax Tree (AST).
+        that start with Javadoc Identifier and parse them to Abstract Syntax Tree (AST).
       </p>
       <p>
         The difference is that Java grammar uses ANTLR v2, while Javadoc grammar uses ANTLR v4.
