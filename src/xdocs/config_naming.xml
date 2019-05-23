@@ -1673,14 +1673,32 @@ class MyClass {
         <source>
 &lt;module name=&quot;MethodTypeParameterName&quot;/&gt;
         </source>
+        <p>Code Example:</p>
+        <pre>
+class MyClass {
+  public &lt;T&gt; void method1() {} // OK
+  public &lt;a&gt; void method2() {} // violation,  name 'a' must match pattern '^[A-Z]$'
+  public &lt;K, V&gt; void method3() {} // OK
+  public &lt;k, V&gt; void method4() {} // violation, name 'k' must match pattern '^[A-Z]$'
+}
+        </pre>
         <p>
           An example of how to configure the check for names that are only a single letter is:
         </p>
         <source>
-&lt;module name="MethodTypeParameterName"&gt;
-   &lt;property name="format" value="^[a-zA-Z]$"/&gt;
+&lt;module name=&quot;MethodTypeParameterName&quot;&gt;
+   &lt;property name=&quot;format&quot; value=&quot;^[a-zA-Z]$&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>Code Example:</p>
+        <pre>
+class MyClass {
+  public &lt;T&gt; void method1() {} // OK
+  public &lt;a&gt; void method2() {} // OK
+  public &lt;K, V&gt; void method3() {} // OK
+  public &lt;k, V&gt; void method4() {} // OK
+}
+        </pre>
       </subsection>
 
       <subsection name="Example of Usage" id="MethodTypeParameterName_Example_of_Usage">
