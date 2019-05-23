@@ -49,5 +49,5 @@ if [[ $(grep -R "<problems" $RESULTS_DIR/ | cat | wc -l ) > 0 ]]; then
     grep -Rl "<problems" $RESULTS_DIR/
     exit 1;
 else
-    echo "Inpection did not found any problems"
+    echo "Inspection did not found any problems"
 fi

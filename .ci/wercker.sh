@@ -299,7 +299,7 @@ no-warning-imports-guava)
   cd ../../
   rm -rf contribution
   if [ -z "$RESULT" ]; then
-    echo "Inpection did not find any warnings"
+    echo "Inspection did not find any warnings"
   else
     echo "$RESULT"
     echo "Some warnings have been found. Verification failed."
@@ -323,7 +323,7 @@ no-warning-imports-java-design-patterns)
   cd ../../
   rm -rf contribution
   if [ -z "$RESULT" ]; then
-    echo "Inpection did not find any warnings"
+    echo "Inspection did not find any warnings"
   else
     echo "$RESULT"
     echo "Some warnings have been found. Verification failed."
