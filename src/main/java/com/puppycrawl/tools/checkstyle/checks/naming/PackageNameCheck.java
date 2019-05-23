@@ -52,6 +52,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="PackageName"/&gt;
  * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * package com; // OK
+ * package COM; // violation, name 'COM' must match pattern '^[a-z]+(\.[a-zA-Z_][a-zA-Z0-9_]*)*$'
+ * package com.checkstyle.checks; // OK
+ * package com.A.checkstyle.checks; // OK
+ * package com.checkstyle1.checks; // OK
+ * package com.checkSTYLE.checks; // OK
+ * package com._checkstyle.checks_; // OK
+ * </pre>
  * <p>
  * An example of how to configure the check to ensure with packages start with a lowercase letter
  * and only contains lowercase letters or numbers is:
@@ -61,6 +71,19 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   &lt;property name=&quot;format&quot;
  *     value=&quot;^[a-z]+(\.[a-z][a-z0-9]*)*$&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * package com; // OK
+ * package COM; // violation, name 'COM' must match pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'
+ * package com.checkstyle.checks; // OK
+ * package com.A.checkstyle.checks; // violation, name 'com.A.checkstyle' must match
+ *                                  // pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'
+ * package com.checkstyle1.checks; // OK
+ * package com.checkSTYLE.checks; // violation, name 'com.checkSTYLE.checks' must
+ *                                // match pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'
+ * package com._checkstyle.checks_; // violation, name 'com._checkstyle.checks_' must match
+ *                                  // pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'
  * </pre>
  *
  * @since 3.0
