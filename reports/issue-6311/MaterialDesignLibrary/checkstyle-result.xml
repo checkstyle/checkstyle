@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.21-SNAPSHOT">
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesignDemo/gen/com/gc/materialdesigndemo/R.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesignDemo/gen/com/gc/materialdesigndemo/BuildConfig.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesignDemo/gen/com/gc/materialdesign/R.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesignDemo/src/com/gc/materialdesigndemo/ui/ButtonsActivity.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesignDemo/src/com/gc/materialdesigndemo/ui/WidgetActivity.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesignDemo/src/com/gc/materialdesigndemo/ui/ProgressActivity.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesignDemo/src/com/gc/materialdesigndemo/ui/SwitchActivity.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesignDemo/src/com/gc/materialdesigndemo/ui/MainActivity.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesign/src/com/gc/materialdesign/views/Switch.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesign/src/com/gc/materialdesign/views/ButtonRectangle.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesign/src/com/gc/materialdesign/views/ProgressBarDeterminate.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesign/src/com/gc/materialdesign/views/ButtonIcon.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesign/src/com/gc/materialdesign/views/ButtonFlat.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesign/src/com/gc/materialdesign/views/CustomView.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesign/src/com/gc/materialdesign/views/Slider.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesign/src/com/gc/materialdesign/views/Button.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesign/src/com/gc/materialdesign/views/ButtonFloat.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesign/src/com/gc/materialdesign/views/ProgressBarCircularIndeterminate.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesign/src/com/gc/materialdesign/views/ProgressBarIndeterminateDeterminate.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesign/src/com/gc/materialdesign/views/LayoutRipple.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesign/src/com/gc/materialdesign/views/ButtonFloatSmall.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesign/src/com/gc/materialdesign/views/CheckBox.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesign/src/com/gc/materialdesign/views/ProgressBarIndeterminate.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesign/src/com/gc/materialdesign/views/ScrollView.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesign/src/com/gc/materialdesign/views/Card.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesign/src/com/gc/materialdesign/widgets/Dialog.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesign/src/com/gc/materialdesign/widgets/SnackBar.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesign/src/com/gc/materialdesign/widgets/ProgressDialog.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesign/src/com/gc/materialdesign/widgets/ColorSelector.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/MaterialDesignLibrary/MaterialDesign/src/com/gc/materialdesign/utils/Utils.java">
+</file>
+</checkstyle>

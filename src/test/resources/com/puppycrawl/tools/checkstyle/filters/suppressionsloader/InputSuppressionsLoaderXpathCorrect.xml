@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suppressions PUBLIC
-    "-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
-    "https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd">
-<suppressions>
-  <suppress-xpath files="file1" id="id1" checks="test" query="/CLASS_DEF"/>
-  <suppress-xpath message="message1" query="/CLASS_DEF"/>
-</suppressions>

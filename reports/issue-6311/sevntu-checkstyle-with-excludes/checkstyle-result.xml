@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.21-SNAPSHOT">
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checkstyle-sonar-plugin/src/main/java/com/github/sevntu/checkstyle/sonar/package-info.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checkstyle-sonar-plugin/src/main/java/com/github/sevntu/checkstyle/sonar/CheckstyleExtensionRepository.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checkstyle-sonar-plugin/src/main/java/com/github/sevntu/checkstyle/sonar/CheckstyleExtensionPlugin.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources-noncompilable/com/github/sevntu/checkstyle/checks/design/InputStaticMethodCandidateCheckInterfaceMethod.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources-noncompilable/com/github/sevntu/checkstyle/checks/design/InputStaticMethodCandidateCheckLambda.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources-noncompilable/com/github/sevntu/checkstyle/checks/coding/InputRedundantReturnCheckTestNPE.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources-noncompilable/com/github/sevntu/checkstyle/checks/coding/InputNumericLiteralNeedsUnderscoreCheck3.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/annotation/RequiredParameterForAnnotationCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/annotation/ForbidAnnotationElementValueCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/annotation/ForbidAnnotationCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/design/AvoidConditionInversionCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/design/StaticMethodCandidateCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/design/ConstructorWithoutParamsCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/design/PublicReferenceToPrivateTypeCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/design/InnerClassCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/design/NestedSwitchCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/design/CauseParameterInExceptionCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/design/HideUtilityClassConstructorCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/design/NoMainMethodInAbstractClassCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/design/CheckstyleTestMakeupCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/design/ForbidWildcardAsReturnTypeCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/design/ChildBlockLengthCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/naming/InterfaceTypeParameterNameCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/naming/UniformEnumConstantNameCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/naming/EnumValueNameCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/sizes/LineLengthExtendedCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/NumericLiteralNeedsUnderscoreCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/LogicConditionNeedOptimizationCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/UselessSingleCatchCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/EitherLogOrThrowCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/ForbidInstantiationCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/ReturnNullInsteadOfBooleanCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/NameConventionForJunit4TestClassesCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/MapIterationInForEachLoopCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/ForbidReturnInFinallyBlockCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/RequireFailForTryCatchInJunitCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/DiamondOperatorForVariableDefinitionCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/TernaryPerExpressionCountCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/NoNullForCollectionReturnCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/ForbidCertainMethodCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/ForbidCCommentsInMethodsCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/ReturnBooleanFromTernaryCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/AvoidHidingCauseExceptionCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/EmptyPublicCtorInClassCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/SingleBreakOrContinueCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/WhitespaceBeforeArrayInitializerCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/ReturnCountExtendedCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/FinalizeImplementationCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/AvoidConstantAsFirstOperandInConditionCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/AvoidNotShortCircuitOperatorsForBooleanCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/MultipleVariableDeclarationsExtendedCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/ForbidCertainImportsCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/AvoidModifiersForTypesCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/SimpleAccessorNameNotationCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/UnnecessaryParenthesesExtendedCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/UselessSuperCtorCallCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/ConfusingConditionCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/RedundantReturnCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/MoveVariableInsideIfCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/IllegalCatchExtendedCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/CustomDeclarationOrderCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/ForbidThrowAnonymousExceptionsCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/OverridableMethodInConstructorCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/MultipleStringLiteralsExtendedCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/checks/coding/AvoidDefaultSerializableInInnerClassesCheckTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/internal/CheckUtil.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/internal/CommitValidationTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/internal/AllChecksTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/internal/ChecksTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/internal/CheckstyleRegressionTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/internal/SevntuXmlUtil.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/java/com/github/sevntu/checkstyle/SevntuUtilTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/annotation/InputRequiredParameterForAnnotationCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/annotation/InputForbidAnnotationElementValueCheck2.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/annotation/InputForbidAnnotationCheck2.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/annotation/InputForbidAnnotationCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/annotation/InputForbidAnnotationElementValueCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputPublicReferenceToPrivateTypeCheck11.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputChildBlockLengthCheckManyBlocksOnOneScope.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputHideUtilityClassConstructorCheck2.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputPublicReferenceToPrivateTypeCheck14.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputPublicReferenceToPrivateTypeCheck12.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputPublicReferenceToPrivateTypeCheck1.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputCauseParameterInExceptionCheck3.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputHideUtilityClassConstructorCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputCauseParameterInExceptionCheck2.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputHideUtilityClassConstructorCheck5.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputAvoidConditionInversionCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputInnerClassCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputPublicReferenceToPrivateTypeCheck4.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputChildBlockLengthCheckDoubleNested.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputCheckstyleTestMakeupCheckValid.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputCauseParameterInExceptionCheck4.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputCheckstyleTestMakeupCheckInvalid.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputChildBlockLengthCheckCheckNPE.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputPublicReferenceToPrivateTypeCheck17.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputPublicReferenceToPrivateTypeCheck19.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputHideUtilityClassConstructorCheck1.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputForbidWildcardAsReturnTypeCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputChildBlockLengthCheckNested.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputPublicReferenceToPrivateTypeCheck13.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputCauseParameterInExceptionCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputPublicReferenceToPrivateTypeCheck20.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputPublicReferenceToPrivateTypeCheck2.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputCheckstyleTestMakeupCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputPublicReferenceToPrivateTypeCheck18.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputNoMainMethodInAbstractClassCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputStaticMethodCandidateCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputPublicReferenceToPrivateTypeCheck9.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputHideUtilityClassConstructorCheck4.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputPublicReferenceToPrivateTypeCheck7.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputChildBlockLengthCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputPublicReferenceToPrivateTypeCheck5.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputPublicReferenceToPrivateTypeCheck16.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputNestedSwitchCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputPublicReferenceToPrivateTypeCheck15.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputPublicReferenceToPrivateTypeCheck8.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputCauseParameterInExceptionCheck5.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputStaticMethodCandidateCheckSkippedMethods.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputPublicReferenceToPrivateTypeCheck3.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputPublicReferenceToPrivateTypeCheck10.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputHideUtilityClassConstructorCheck3.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputChildBlockLengthCheckNestedClass.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputPublicReferenceToPrivateTypeCheck6.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputConstructorWithoutParamsCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputForbidWildcardAsReturnTypeCheckQualifiedAnnotation.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/design/InputHideUtilityClassConstructorCheck6.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/naming/InputInterfaceTypeParameterNameCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/naming/InputEnumValueNameCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/naming/InputUniformEnumConstantNameCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/sizes/InputLineLengthExtendedCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputUselessSingleCatchCheck5.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputAvoidHidingCauseExceptionCheckWrapping.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputCustomDeclarationOrderCheckInnerInterfaceEnum.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputRequireFailForTryCatchInJunitCheck1.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputUselessSuperCtorCallCheck2.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputNameConventionForJunit4TestClassesCheck3.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputNameConventionForJunit4TestClassesCheck1.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputNameConventionForJunit4TestClassesCheck2.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputForbidCertainImportsCheckSinglePackage.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputForbidThrowAnonymousExceptionsCheckAnotherClassName.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputSimpleAccessorNameNotationCheck5.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputRedundantReturnCheckMethodInEmptyMethod.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputNoNullForCollectionReturnCheck5.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck24.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputForbidThrowAnonymousExceptionsCheck2.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputMultipleVariableDeclarationsExtendedCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/external/InputMyMap.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputMoveVariableInsideIfCheckViolations.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputMapIterationInForEachLoopCheckImport.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputNameConventionForJunit4TestClassesCheck5.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputFinalizeImplementationCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputTernaryPerExpressionCountCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputForbidCertainImportsCheckDefaultPackageWithoutImports.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck12.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputMoveVariableInsideIfCheckFalsePositives.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputUselessSingleCatchCheck4.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputAvoidDefaultSerializableInInnerClassesCheck3.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputNoNullForCollectionReturnCheck6.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputForbidInstantiationCheckWithoutDots.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputEmptyPublicCtorInClassCheck2.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputForbidCertainMethodCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputRedundantReturnCheckFalsePositive.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputSimpleAccessorNameNotationCheck2.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputForbidThrowAnonymousExceptionsCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputReturnCountExtendedCheckMethodsInMethods.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputReturnNullInsteadOfBooleanCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputReturnBooleanFromTernaryCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputAvoidDefaultSerializableInInnerClassesCheck1.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputUnnecessaryParenthesesExtendedCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputEmptyPublicCtorInClassCheck1.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputMapIterationInForEachLoopCheckExtendingMap.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputAvoidModifiersForTypesCheck2.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputEitherLogOrThrowCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck16.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputMultipleStringLiteralsExtendedCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputSimpleAccessorNameNotationCheck3.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputReturnCountExtendedCheckMethods.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputNumericLiteralNeedsUnderscoreCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputSimpleAccessorNameNotationCheck1.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck3.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputMoveVariableInsideIfCheckNoViolations.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputAvoidDefaultSerializableInInnerClassesCheck2.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputForbidInstantiationCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck1.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck25.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputForbidReturnInFinallyBlockCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputNameConventionForJunit4TestClassesCheck6.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputEmptyPublicCtorInClassCheck6.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck11.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck19.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputUselessSingleCatchCheck2.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputSingleBreakOrContinueCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck23.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputSimpleAccessorNameNotationCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputSimpleAccessorNameNotationCheck4.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck22.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputUselessSuperCtorCallCheck6.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck21.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck28.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputAvoidNotShortCircuitOperatorsForBooleanCheck1.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck7.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputSimpleAccessorNameNotationCheck7.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputSimpleAccessorNameNotationCheck6.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputUselessSuperCtorCallCheck7.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck2.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputForbidThrowAnonymousExceptionsCheck3.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputNumericLiteralNeedsUnderscoreCheck2.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputRequireFailForTryCatchInJunitCheck2.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputAvoidHidingCauseExceptionCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputUselessSingleCatchCheck3.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck27.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck14.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck18.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputRedundantReturnCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputAvoidConstantAsFirstOperandInConditionCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputCustomDeclarationOrderCheckAnonymousClasses.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputNameConventionForJunit4TestClassesCheck4.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputForbidInstantiationCheckWithAsterisk.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputAvoidNotShortCircuitOperatorsForBooleanCheckNonClasses.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputNoNullForCollectionReturnCheck4.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputForbidCCommentsInMethodsCheck2.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputNameConventionForJunit4TestClassesCheck8.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputUselessSuperCtorCallCheck5.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputEmptyPublicCtorInClassCheck3.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputNameConventionForJunit4TestClassesCheck7.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputUselessSuperCtorCallCheck3.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputRedundantReturnCheckMethodInInterface.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck17.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputEmptyPublicCtorInClassCheck9.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck5.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputUnnecessaryParenthesesExtendedCheck2.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputNoNullForCollectionReturnCheck7.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputConfusingConditionCheck2.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputEmptyPublicCtorInClassCheck10.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputForbidCCommentsInMethodsCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputCustomDeclarationOrderCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputUselessSingleCatchCheck1.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputForbidCertainImportsCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputRequireFailForTryCatchInJunitCheck5.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputReturnCountExtendedCheckLambdas.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputUselessSuperCtorCallCheck4.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputAvoidModifiersForTypesCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputCustomDeclarationOrderCheckMainMethod.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputWhitespaceBeforeArrayInitializerCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputMapIterationInForEachLoopCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck15.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck8.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck10.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputCustomDeclarationOrderCheckGettersSetters.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputIllegalCatchExtendedCheckNew.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputEmptyPublicCtorInClassCheck4.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputAvoidNotShortCircuitOperatorsForBooleanCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputEmptyPublicCtorInClassCheck7.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck26.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputRequireFailForTryCatchInJunitCheck3.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputAvoidHidingCauseExceptionCheck2.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputEmptyPublicCtorInClassCheck5.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputUnnecessaryParenthesesExtendedCheckUbv.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputMapIterationInForEachLoopCheckSkipIf.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck9.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputFinalizeImplementationCheckSpecial.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputReturnCountExtendedCheckCtors.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputUselessSuperCtorCallCheck1.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck20.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck6.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputConfusingConditionCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck4.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputRedundantReturnCheckNestedMethods.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputLogicConditionNeedOptimizationCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputOverridableMethodInConstructorCheck13.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputEmptyPublicCtorInClassCheck8.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputReturnCountExtendedCheckAnonymousClasses.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputForbidCCommentsInMethodsCheck3.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputAvoidNotShortCircuitOperatorsForBooleanCheckLambdaWithMultiCatch.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputDiamondOperatorForVariableDefinitionCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputNoNullForCollectionReturnCheck1.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputNoNullForCollectionReturnCheck2.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputRequireFailForTryCatchInJunitCheck4.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputNoNullForCollectionReturnCheck3.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/test/resources/com/github/sevntu/checkstyle/checks/coding/InputNoNullForCollectionReturnCheckConstructor.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/package-info.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/SevntuUtil.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/annotation/package-info.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/annotation/ForbidAnnotationCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/annotation/ForbidAnnotationElementValueCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/annotation/RequiredParameterForAnnotationCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/design/PublicReferenceToPrivateTypeCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/design/ConstructorWithoutParamsCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/design/package-info.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/design/AvoidConditionInversionCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/design/CheckstyleTestMakeupCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/design/ChildBlockLengthCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/design/InnerClassCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/design/NoMainMethodInAbstractClassCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/design/NestedSwitchCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/design/HideUtilityClassConstructorCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/design/StaticMethodCandidateCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/design/ForbidWildcardAsReturnTypeCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/design/CauseParameterInExceptionCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/naming/package-info.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/naming/EnumValueNameCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/naming/UniformEnumConstantNameCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/naming/InterfaceTypeParameterNameCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/sizes/package-info.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/sizes/LineLengthExtendedCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/MoveVariableInsideIfCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/WhitespaceBeforeArrayInitializerCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/package-info.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/NumericLiteralNeedsUnderscoreCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/FinalizeImplementationCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/ForbidCertainMethodCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/ForbidThrowAnonymousExceptionsCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/AvoidDefaultSerializableInInnerClassesCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/ForbidInstantiationCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/AvoidNotShortCircuitOperatorsForBooleanCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/ForbidReturnInFinallyBlockCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/SimpleAccessorNameNotationCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/ForbidCCommentsInMethodsCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/MapIterationInForEachLoopCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/UselessSuperCtorCallCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/UselessSingleCatchCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/RequireFailForTryCatchInJunitCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/MultipleVariableDeclarationsExtendedCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/NoNullForCollectionReturnCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/ReturnCountExtendedCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/RedundantReturnCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/UnnecessaryParenthesesExtendedCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/CustomDeclarationOrderCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/OverridableMethodInConstructorCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/NameConventionForJunit4TestClassesCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/ReturnBooleanFromTernaryCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/ReturnNullInsteadOfBooleanCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/DiamondOperatorForVariableDefinitionCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/ForbidCertainImportsCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/IllegalCatchExtendedCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/AvoidConstantAsFirstOperandInConditionCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/LogicConditionNeedOptimizationCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/ConfusingConditionCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/AvoidHidingCauseExceptionCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/EitherLogOrThrowCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/TernaryPerExpressionCountCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/MultipleStringLiteralsExtendedCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/EmptyPublicCtorInClassCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/SingleBreakOrContinueCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/AvoidModifiersForTypesCheck.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/sevntu-checkstyle-with-excludes/sevntu-checkstyle-idea-extension/src/Dummy.java">
+</file>
+</checkstyle>

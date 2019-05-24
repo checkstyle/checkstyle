@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<!DOCTYPE import-control PUBLIC
-    "-//Checkstyle//DTD ImportControl Configuration 1.0//EN"
-    "https://checkstyle.org/dtds/import_control_1_0.dtd">
-
-<import-control pkg="wrong">
-</import-control>

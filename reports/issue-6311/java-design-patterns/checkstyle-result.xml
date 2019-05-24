@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.21-SNAPSHOT">
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/service-locator/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/service-locator/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/service-locator/src/main/java/com/iluwatar/ServiceLocator.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/service-locator/src/main/java/com/iluwatar/Service.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/service-locator/src/main/java/com/iluwatar/InitContext.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/service-locator/src/main/java/com/iluwatar/ServiceImpl.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/service-locator/src/main/java/com/iluwatar/ServiceCache.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/servant/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/servant/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/servant/src/main/java/com/iluwatar/King.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/servant/src/main/java/com/iluwatar/Servant.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/servant/src/main/java/com/iluwatar/Royalty.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/servant/src/main/java/com/iluwatar/Queen.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/interpreter/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/interpreter/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/interpreter/src/main/java/com/iluwatar/Expression.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/interpreter/src/main/java/com/iluwatar/MinusExpression.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/interpreter/src/main/java/com/iluwatar/MultiplyExpression.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/interpreter/src/main/java/com/iluwatar/NumberExpression.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/interpreter/src/main/java/com/iluwatar/PlusExpression.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/composite/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/composite/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/composite/src/main/java/com/iluwatar/Sentence.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/composite/src/main/java/com/iluwatar/Messenger.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/composite/src/main/java/com/iluwatar/Letter.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/composite/src/main/java/com/iluwatar/Word.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/composite/src/main/java/com/iluwatar/LetterComposite.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/proxy/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/proxy/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/proxy/src/main/java/com/iluwatar/WizardTower.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/proxy/src/main/java/com/iluwatar/WizardTowerProxy.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/proxy/src/main/java/com/iluwatar/Wizard.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/bridge/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/bridge/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/bridge/src/main/java/com/iluwatar/FlyingMagicWeaponImp.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/bridge/src/main/java/com/iluwatar/FlyingMagicWeapon.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/bridge/src/main/java/com/iluwatar/MagicWeapon.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/bridge/src/main/java/com/iluwatar/SoulEatingMagicWeaponImp.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/bridge/src/main/java/com/iluwatar/BlindingMagicWeapon.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/bridge/src/main/java/com/iluwatar/Mjollnir.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/bridge/src/main/java/com/iluwatar/Excalibur.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/bridge/src/main/java/com/iluwatar/BlindingMagicWeaponImp.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/bridge/src/main/java/com/iluwatar/MagicWeaponImp.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/bridge/src/main/java/com/iluwatar/SoulEatingMagicWeapon.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/bridge/src/main/java/com/iluwatar/Stormbringer.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/strategy/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/strategy/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/strategy/src/main/java/com/iluwatar/MeleeStrategy.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/strategy/src/main/java/com/iluwatar/DragonSlayingStrategy.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/strategy/src/main/java/com/iluwatar/ProjectileStrategy.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/strategy/src/main/java/com/iluwatar/SpellStrategy.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/strategy/src/main/java/com/iluwatar/DragonSlayer.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/prototype/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/prototype/src/main/java/com/iluwatar/ElfBeast.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/prototype/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/prototype/src/main/java/com/iluwatar/HeroFactory.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/prototype/src/main/java/com/iluwatar/Warlord.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/prototype/src/main/java/com/iluwatar/OrcMage.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/prototype/src/main/java/com/iluwatar/Prototype.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/prototype/src/main/java/com/iluwatar/HeroFactoryImpl.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/prototype/src/main/java/com/iluwatar/OrcBeast.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/prototype/src/main/java/com/iluwatar/Mage.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/prototype/src/main/java/com/iluwatar/ElfWarlord.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/prototype/src/main/java/com/iluwatar/ElfMage.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/prototype/src/main/java/com/iluwatar/OrcWarlord.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/prototype/src/main/java/com/iluwatar/Beast.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/null-object/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/null-object/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/null-object/src/main/java/com/iluwatar/NullNode.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/null-object/src/main/java/com/iluwatar/NodeImpl.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/null-object/src/main/java/com/iluwatar/Node.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/state/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/state/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/state/src/main/java/com/iluwatar/Mammoth.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/state/src/main/java/com/iluwatar/PeacefulState.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/state/src/main/java/com/iluwatar/State.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/state/src/main/java/com/iluwatar/AngryState.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/chain/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/chain/src/main/java/com/iluwatar/RequestHandler.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/chain/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/chain/src/main/java/com/iluwatar/OrcKing.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/chain/src/main/java/com/iluwatar/RequestType.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/chain/src/main/java/com/iluwatar/OrcSoldier.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/chain/src/main/java/com/iluwatar/OrcOfficer.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/chain/src/main/java/com/iluwatar/Request.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/chain/src/main/java/com/iluwatar/OrcCommander.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/singleton/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/singleton/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/singleton/src/main/java/com/iluwatar/EnumIvoryTower.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/singleton/src/main/java/com/iluwatar/InitializingOnDemandHolderIdiom.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/singleton/src/main/java/com/iluwatar/IvoryTower.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/singleton/src/main/java/com/iluwatar/ThreadSafeLazyLoadedIvoryTower.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/singleton/src/main/java/com/iluwatar/ThreadSafeDoubleCheckLocking.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/facade/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/facade/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/facade/src/main/java/com/iluwatar/DwarvenCartOperator.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/facade/src/main/java/com/iluwatar/DwarvenTunnelDigger.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/facade/src/main/java/com/iluwatar/DwarvenGoldDigger.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/facade/src/main/java/com/iluwatar/DwarvenMineWorker.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/facade/src/main/java/com/iluwatar/DwarvenGoldmineFacade.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/memento/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/memento/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/memento/src/main/java/com/iluwatar/StarMementoInternal.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/memento/src/main/java/com/iluwatar/StarType.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/memento/src/main/java/com/iluwatar/Star.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/memento/src/main/java/com/iluwatar/StarMemento.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/decorator/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/decorator/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/decorator/src/main/java/com/iluwatar/SmartTroll.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/decorator/src/main/java/com/iluwatar/Troll.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/decorator/src/main/java/com/iluwatar/Hostile.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/event-aggregator/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/event-aggregator/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/event-aggregator/src/main/java/com/iluwatar/EventEmitter.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/event-aggregator/src/main/java/com/iluwatar/Event.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/event-aggregator/src/main/java/com/iluwatar/LordVarys.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/event-aggregator/src/main/java/com/iluwatar/KingsHand.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/event-aggregator/src/main/java/com/iluwatar/Weekday.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/event-aggregator/src/main/java/com/iluwatar/LordBaelish.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/event-aggregator/src/main/java/com/iluwatar/Scout.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/event-aggregator/src/main/java/com/iluwatar/EventObserver.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/event-aggregator/src/main/java/com/iluwatar/KingJoffrey.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/double-checked-locking/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/double-checked-locking/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/double-checked-locking/src/main/java/com/iluwatar/Inventory.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/double-checked-locking/src/main/java/com/iluwatar/Item.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/adapter/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/adapter/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/adapter/src/main/java/com/iluwatar/Engineer.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/adapter/src/main/java/com/iluwatar/GoblinGlider.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/adapter/src/main/java/com/iluwatar/GnomeEngineeringManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/adapter/src/main/java/com/iluwatar/GnomeEngineer.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/template-method/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/template-method/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/template-method/src/main/java/com/iluwatar/HalflingThief.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/template-method/src/main/java/com/iluwatar/HitAndRunMethod.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/template-method/src/main/java/com/iluwatar/StealingMethod.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/template-method/src/main/java/com/iluwatar/SubtleMethod.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/visitor/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/visitor/src/main/java/com/iluwatar/SoldierVisitor.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/visitor/src/main/java/com/iluwatar/Soldier.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/visitor/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/visitor/src/main/java/com/iluwatar/Unit.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/visitor/src/main/java/com/iluwatar/Sergeant.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/visitor/src/main/java/com/iluwatar/SergeantVisitor.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/visitor/src/main/java/com/iluwatar/UnitVisitor.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/visitor/src/main/java/com/iluwatar/CommanderVisitor.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/visitor/src/main/java/com/iluwatar/Commander.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/command/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/command/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/command/src/main/java/com/iluwatar/Target.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/command/src/main/java/com/iluwatar/Goblin.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/command/src/main/java/com/iluwatar/InvisibilitySpell.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/command/src/main/java/com/iluwatar/Visibility.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/command/src/main/java/com/iluwatar/Size.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/command/src/main/java/com/iluwatar/Command.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/command/src/main/java/com/iluwatar/Wizard.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/command/src/main/java/com/iluwatar/ShrinkSpell.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/abstract-factory/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/abstract-factory/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/abstract-factory/src/main/java/com/iluwatar/ElfCastle.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/abstract-factory/src/main/java/com/iluwatar/OrcKing.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/abstract-factory/src/main/java/com/iluwatar/OrcCastle.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/abstract-factory/src/main/java/com/iluwatar/OrcArmy.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/abstract-factory/src/main/java/com/iluwatar/Castle.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/abstract-factory/src/main/java/com/iluwatar/King.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/abstract-factory/src/main/java/com/iluwatar/ElfKingdomFactory.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/abstract-factory/src/main/java/com/iluwatar/Army.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/abstract-factory/src/main/java/com/iluwatar/ElfKing.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/abstract-factory/src/main/java/com/iluwatar/ElfArmy.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/abstract-factory/src/main/java/com/iluwatar/KingdomFactory.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/abstract-factory/src/main/java/com/iluwatar/OrcKingdomFactory.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/flyweight/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/flyweight/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/flyweight/src/main/java/com/iluwatar/HolyWaterPotion.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/flyweight/src/main/java/com/iluwatar/PotionType.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/flyweight/src/main/java/com/iluwatar/InvisibilityPotion.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/flyweight/src/main/java/com/iluwatar/AlchemistShop.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/flyweight/src/main/java/com/iluwatar/Potion.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/flyweight/src/main/java/com/iluwatar/HealingPotion.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/flyweight/src/main/java/com/iluwatar/PotionFactory.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/flyweight/src/main/java/com/iluwatar/StrengthPotion.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/flyweight/src/main/java/com/iluwatar/PoisonPotion.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/model-view-presenter/src/test/java/com/iluwatar/FileSelectorPresenterTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/model-view-presenter/src/main/java/com/iluwatar/FileSelectorStub.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/model-view-presenter/src/main/java/com/iluwatar/FileSelectorView.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/model-view-presenter/src/main/java/com/iluwatar/FileLoader.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/model-view-presenter/src/main/java/com/iluwatar/FileSelectorPresenter.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/model-view-presenter/src/main/java/com/iluwatar/FileSelectorJFrame.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/model-view-presenter/src/main/java/com/iluwatar/MainApp.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/factory-method/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/factory-method/src/main/java/com/iluwatar/ElfWeapon.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/factory-method/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/factory-method/src/main/java/com/iluwatar/Blacksmith.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/factory-method/src/main/java/com/iluwatar/OrcBlacksmith.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/factory-method/src/main/java/com/iluwatar/Weapon.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/factory-method/src/main/java/com/iluwatar/WeaponType.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/factory-method/src/main/java/com/iluwatar/ElfBlacksmith.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/factory-method/src/main/java/com/iluwatar/OrcWeapon.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/iterator/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/iterator/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/iterator/src/main/java/com/iluwatar/TreasureChest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/iterator/src/main/java/com/iluwatar/ItemType.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/iterator/src/main/java/com/iluwatar/TreasureChestItemIterator.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/iterator/src/main/java/com/iluwatar/ItemIterator.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/iterator/src/main/java/com/iluwatar/Item.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/mediator/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/mediator/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/mediator/src/main/java/com/iluwatar/PartyMemberBase.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/mediator/src/main/java/com/iluwatar/Rogue.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/mediator/src/main/java/com/iluwatar/Party.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/mediator/src/main/java/com/iluwatar/Hobbit.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/mediator/src/main/java/com/iluwatar/PartyMember.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/mediator/src/main/java/com/iluwatar/Hunter.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/mediator/src/main/java/com/iluwatar/PartyImpl.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/mediator/src/main/java/com/iluwatar/Action.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/mediator/src/main/java/com/iluwatar/Wizard.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/observer/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/observer/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/observer/src/main/java/com/iluwatar/Orcs.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/observer/src/main/java/com/iluwatar/WeatherType.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/observer/src/main/java/com/iluwatar/generic/GOrcs.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/observer/src/main/java/com/iluwatar/generic/GWeather.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/observer/src/main/java/com/iluwatar/generic/Observer.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/observer/src/main/java/com/iluwatar/generic/Observable.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/observer/src/main/java/com/iluwatar/generic/Race.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/observer/src/main/java/com/iluwatar/generic/GHobbits.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/observer/src/main/java/com/iluwatar/WeatherObserver.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/observer/src/main/java/com/iluwatar/Hobbits.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/observer/src/main/java/com/iluwatar/Weather.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/builder/src/test/java/com/iluwatar/AppTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/builder/src/main/java/com/iluwatar/App.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/builder/src/main/java/com/iluwatar/Hero.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/builder/src/main/java/com/iluwatar/Weapon.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/builder/src/main/java/com/iluwatar/HairColor.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/builder/src/main/java/com/iluwatar/Profession.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/builder/src/main/java/com/iluwatar/HairType.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/java-design-patterns/builder/src/main/java/com/iluwatar/Armor.java">
+</file>
+</checkstyle>

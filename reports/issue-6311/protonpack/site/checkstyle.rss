@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<rss version="0.91">
+  <channel>
+    <title>sample - Checkstyle report</title>
+    <link>${project.url}</link>
+    <description>sample - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2019</copyright>
+    <item>
+      <title>File: 41,
+             Errors: 0,
+             Warnings: 0,
+             Infos: 0
+      </title>
+            <link>${project.url}/checkstyle.html</link>
+      <description>
+        <p>Click <a href="${project.url}/checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.test.java.com.codepoetics.protonpack.NoCombinerTest.java">protonpack/src/test/java/com/codepoetics/protonpack/NoCombinerTest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.test.java.com.codepoetics.protonpack.TakeWhileTest.java">protonpack/src/test/java/com/codepoetics/protonpack/TakeWhileTest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.main.java.com.codepoetics.protonpack.collectors.CollectorUtils.java">protonpack/src/main/java/com/codepoetics/protonpack/collectors/CollectorUtils.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.main.java.com.codepoetics.protonpack.SkipUntilSpliterator.java">protonpack/src/main/java/com/codepoetics/protonpack/SkipUntilSpliterator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.test.java.com.codepoetics.protonpack.OptionalTest.java">protonpack/src/test/java/com/codepoetics/protonpack/OptionalTest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.main.java.com.codepoetics.protonpack.functions.TriFunction.java">protonpack/src/main/java/com/codepoetics/protonpack/functions/TriFunction.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.test.java.com.codepoetics.protonpack.ZipTest.java">protonpack/src/test/java/com/codepoetics/protonpack/ZipTest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.main.java.com.codepoetics.protonpack.WindowedSpliterator.java">protonpack/src/main/java/com/codepoetics/protonpack/WindowedSpliterator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.main.java.com.codepoetics.protonpack.Seq.java">protonpack/src/main/java/com/codepoetics/protonpack/Seq.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.test.java.com.codepoetics.protonpack.StreamableTest.java">protonpack/src/test/java/com/codepoetics/protonpack/StreamableTest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.main.java.com.codepoetics.protonpack.AggregatingSpliterator.java">protonpack/src/main/java/com/codepoetics/protonpack/AggregatingSpliterator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.main.java.com.codepoetics.protonpack.UnfoldSpliterator.java">protonpack/src/main/java/com/codepoetics/protonpack/UnfoldSpliterator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.main.java.com.codepoetics.protonpack.PairSeq.java">protonpack/src/main/java/com/codepoetics/protonpack/PairSeq.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.main.java.com.codepoetics.protonpack.TakeWhileSpliterator.java">protonpack/src/main/java/com/codepoetics/protonpack/TakeWhileSpliterator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.main.java.com.codepoetics.protonpack.collectors.NonUniqueValueException.java">protonpack/src/main/java/com/codepoetics/protonpack/collectors/NonUniqueValueException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.test.java.com.codepoetics.protonpack.UniqueTest.java">protonpack/src/test/java/com/codepoetics/protonpack/UniqueTest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.main.java.com.codepoetics.protonpack.Streamable.java">protonpack/src/main/java/com/codepoetics/protonpack/Streamable.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.test.java.com.codepoetics.protonpack.NullableTest.java">protonpack/src/test/java/com/codepoetics/protonpack/NullableTest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.main.java.com.codepoetics.protonpack.selectors.Selectors.java">protonpack/src/main/java/com/codepoetics/protonpack/selectors/Selectors.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.main.java.com.codepoetics.protonpack.selectors.Selector.java">protonpack/src/main/java/com/codepoetics/protonpack/selectors/Selector.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.main.java.com.codepoetics.protonpack.maps.DefaultMapStream.java">protonpack/src/main/java/com/codepoetics/protonpack/maps/DefaultMapStream.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.test.java.com.codepoetics.protonpack.MinMaxByProjectionTest.java">protonpack/src/test/java/com/codepoetics/protonpack/MinMaxByProjectionTest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.main.java.com.codepoetics.protonpack.maps.MapStream.java">protonpack/src/main/java/com/codepoetics/protonpack/maps/MapStream.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.main.java.com.codepoetics.protonpack.InterleavingSpliterator.java">protonpack/src/main/java/com/codepoetics/protonpack/InterleavingSpliterator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.main.java.com.codepoetics.protonpack.GroupRunsSpliterator.java">protonpack/src/main/java/com/codepoetics/protonpack/GroupRunsSpliterator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.main.java.com.codepoetics.protonpack.MergingSpliterator.java">protonpack/src/main/java/com/codepoetics/protonpack/MergingSpliterator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.test.java.com.codepoetics.protonpack.SkipWhileTest.java">protonpack/src/test/java/com/codepoetics/protonpack/SkipWhileTest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.test.java.com.codepoetics.protonpack.SeqTest.java">protonpack/src/test/java/com/codepoetics/protonpack/SeqTest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.main.java.com.codepoetics.protonpack.EmptySeq.java">protonpack/src/main/java/com/codepoetics/protonpack/EmptySeq.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.main.java.com.codepoetics.protonpack.ZippingSpliterator.java">protonpack/src/main/java/com/codepoetics/protonpack/ZippingSpliterator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.main.java.com.codepoetics.protonpack.TriZippingSpliterator.java">protonpack/src/main/java/com/codepoetics/protonpack/TriZippingSpliterator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.test.java.com.codepoetics.protonpack.MergeTest.java">protonpack/src/test/java/com/codepoetics/protonpack/MergeTest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.main.java.com.codepoetics.protonpack.TappedSpliterator.java">protonpack/src/main/java/com/codepoetics/protonpack/TappedSpliterator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.test.java.com.codepoetics.protonpack.InterleaveTest.java">protonpack/src/test/java/com/codepoetics/protonpack/InterleaveTest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.test.java.com.codepoetics.protonpack.MapStreamTest.java">protonpack/src/test/java/com/codepoetics/protonpack/MapStreamTest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.main.java.com.codepoetics.protonpack.Indexed.java">protonpack/src/main/java/com/codepoetics/protonpack/Indexed.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.test.java.com.codepoetics.protonpack.UnfoldTest.java">protonpack/src/test/java/com/codepoetics/protonpack/UnfoldTest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.test.java.com.codepoetics.protonpack.GroupRunsTest.java">protonpack/src/test/java/com/codepoetics/protonpack/GroupRunsTest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.test.java.com.codepoetics.protonpack.WindowedTest.java">protonpack/src/test/java/com/codepoetics/protonpack/WindowedTest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.main.java.com.codepoetics.protonpack.StreamUtils.java">protonpack/src/main/java/com/codepoetics/protonpack/StreamUtils.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#protonpack.src.test.java.com.codepoetics.protonpack.AggregateTest.java">protonpack/src/test/java/com/codepoetics/protonpack/AggregateTest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+

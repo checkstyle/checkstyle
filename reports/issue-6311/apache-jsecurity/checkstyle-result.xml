@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.21-SNAPSHOT">
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/AtUnitTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/subject/DelegatingSubjectTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/web/servlet/JSecurityFilterTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/web/DefaultWebSecurityManagerTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/web/attr/CookieAttributeTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/web/WebRememberMeManagerTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/realm/UsernamePrincipal.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/realm/activedirectory/ActiveDirectoryRealmTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/realm/AuthorizingRealmTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/realm/UserIdPrincipal.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/io/ResourceExceptionTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/io/SerializationExceptionTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/authc/UnknownAccountExceptionTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/authc/ExpiredCredentialsExceptionTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/authc/IncorrectCredentialsExceptionTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/authc/credential/Sha256CredentialsMatcherTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/authc/credential/Md5CredentialsMatcherTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/authc/credential/Sha384CredentialsMatcherTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/authc/credential/HashedCredentialsMatcherTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/authc/credential/Sha512CredentialsMatcherTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/authc/credential/SimpleCredentialsMatcherTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/authc/credential/Sha1CredentialsMatcherTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/authc/credential/AllowAllCredentialsMatcherTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/authc/credential/Md2CredentialsMatcherTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/authc/pam/AllSuccessfulModularAuthenticationStrategyTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/authc/ExcessiveAttemptsExceptionTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/authc/ConcurrentAccessExceptionTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/authc/support/AbstractAuthenticatorTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/authc/LockedAccountExceptionTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/ExceptionTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/mgt/VMSingletonDefaultSecurityManagerTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/mgt/DefaultSecurityManagerTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/util/StringUtilsTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/authz/MissingAccountExceptionTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/authz/AuthorizationExceptionTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/authz/HostUnauthorizedExceptionTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/authz/UnauthenticatedExceptionTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/authz/permission/WildcardPermissionTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/authz/permission/AllPermissionTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/test/org/jsecurity/authz/UnauthorizedExceptionTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/samples/spring/src/org/jsecurity/samples/spring/SampleManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/samples/spring/src/org/jsecurity/samples/spring/web/LogoutController.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/samples/spring/src/org/jsecurity/samples/spring/web/LoginController.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/samples/spring/src/org/jsecurity/samples/spring/web/IndexController.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/samples/spring/src/org/jsecurity/samples/spring/web/SessionValueCommand.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/samples/spring/src/org/jsecurity/samples/spring/web/LoginCommand.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/samples/spring/src/org/jsecurity/samples/spring/web/JnlpController.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/samples/spring/src/org/jsecurity/samples/spring/BootstrapDataPopulator.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/samples/spring/src/org/jsecurity/samples/spring/ui/WebStartView.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/samples/spring/src/org/jsecurity/samples/spring/ui/WebStartDriver.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/samples/spring/src/org/jsecurity/samples/spring/DefaultSampleManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/samples/spring-hibernate/src/org/jsecurity/samples/sprhib/security/DefaultRealm.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/samples/spring-hibernate/src/org/jsecurity/samples/sprhib/security/Role.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/samples/spring-hibernate/src/org/jsecurity/samples/sprhib/entity/Identifiable.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/samples/spring-hibernate/src/org/jsecurity/samples/sprhib/entity/Entity.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/samples/spring-hibernate/src/org/jsecurity/samples/sprhib/party/Person.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/samples/spring-hibernate/src/org/jsecurity/samples/sprhib/party/Gender.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/samples/spring-hibernate/src/org/jsecurity/samples/sprhib/party/eis/UserDAO.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/samples/spring-hibernate/src/org/jsecurity/samples/sprhib/party/eis/HibernateUserDAO.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/samples/spring-hibernate/src/org/jsecurity/samples/sprhib/party/User.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/samples/spring-hibernate/src/org/jsecurity/samples/sprhib/eis/PrimaryClassDAO.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/samples/spring-hibernate/src/org/jsecurity/samples/sprhib/eis/DataAccessObject.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/samples/spring-hibernate/src/org/jsecurity/samples/sprhib/eis/hibernate/GenericEnumUserType.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/samples/spring-hibernate/src/org/jsecurity/samples/sprhib/eis/hibernate/HibernateDAO.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/samples/spring-hibernate/src/org/jsecurity/samples/sprhib/eis/hibernate/PrimaryClassHibernateDAO.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/subject/RememberMeManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/subject/PrincipalCollection.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/subject/AbstractRememberMeManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/subject/InvalidSubjectException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/subject/SubjectException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/subject/DelegatingSubject.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/subject/SimplePrincipalCollection.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/subject/Subject.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/subject/MutablePrincipalCollection.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/RedirectView.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/servlet/JSecurityHttpServletResponse.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/servlet/FilterChainWrapper.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/servlet/OncePerRequestFilter.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/servlet/JSecurityHttpServletRequest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/servlet/AdviceFilter.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/servlet/JSecurityHttpSession.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/servlet/ServletContextSupport.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/servlet/JSecurityFilter.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/WebUtils.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/config/IniWebConfiguration.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/config/WebConfiguration.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/filter/PathConfigProcessor.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/filter/authc/FormAuthenticationFilter.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/filter/authc/BasicHttpAuthenticationFilter.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/filter/authc/UserFilter.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/filter/authc/AuthenticationFilter.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/filter/authc/AnonymousFilter.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/filter/authc/PassThruAuthenticationFilter.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/filter/PathMatchingFilter.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/filter/AccessControlFilter.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/filter/authz/AuthorizationFilter.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/filter/authz/PermissionsAuthorizationFilter.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/filter/authz/RolesAuthorizationFilter.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/session/WebSessionManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/session/WebSession.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/session/DefaultWebSessionManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/session/ServletContainerSessionManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/DefaultWebSecurityManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/SavedRequest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/attr/AbstractWebAttribute.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/attr/RequestParamAttribute.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/attr/WebAttribute.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/attr/CookieAttribute.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/WebRememberMeManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/tags/HasPermissionTag.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/tags/PrincipalTag.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/tags/NotAuthenticatedTag.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/tags/HasRoleTag.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/tags/LacksRoleTag.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/tags/AuthenticatedTag.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/tags/LacksPermissionTag.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/tags/SecureTag.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/tags/GuestTag.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/tags/RoleTag.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/tags/UserTag.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/tags/PermissionTag.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/web/tags/HasAnyRolesTag.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/realm/AuthenticatingRealm.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/realm/text/PropertiesRealm.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/realm/text/package-info.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/realm/text/TextConfigurationRealm.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/realm/AuthorizingRealm.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/realm/jndi/JndiRealmFactory.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/realm/RealmFactory.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/realm/jdbc/JdbcRealm.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/realm/ldap/LdapUtils.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/realm/ldap/LdapContextFactory.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/realm/ldap/DefaultLdapContextFactory.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/realm/ldap/AbstractLdapRealm.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/realm/SimpleAccountRealm.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/realm/activedirectory/ActiveDirectoryRealm.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/realm/Realm.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/realm/CachingRealm.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/cache/package-info.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/cache/HashtableCache.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/cache/ehcache/package-info.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/cache/ehcache/EhCache.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/cache/ehcache/EhCacheManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/cache/CacheManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/cache/HashtableCacheManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/cache/CacheManagerAware.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/cache/CacheException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/cache/Cache.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/crypto/package-info.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/crypto/Cipher.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/crypto/BlowfishCipher.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/crypto/hash/package-info.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/crypto/hash/Sha1Hash.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/crypto/hash/Md5Hash.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/crypto/hash/Hash.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/crypto/hash/Sha512Hash.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/crypto/hash/Sha384Hash.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/crypto/hash/AbstractHash.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/crypto/hash/Md2Hash.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/crypto/hash/Sha256Hash.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/config/TextConfiguration.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/config/ConfigurationException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/config/Configuration.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/config/ResourceConfiguration.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/config/ReflectionBuilder.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/config/IniConfiguration.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/SessionException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/Session.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/StoppedSessionException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/SessionListenerRegistrar.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/SessionListener.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/InvalidSessionException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/mgt/DelegatingSession.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/mgt/SessionManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/mgt/SimpleSession.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/mgt/DefaultSessionManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/mgt/quartz/QuartzSessionValidationScheduler.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/mgt/quartz/QuartzSessionValidationJob.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/mgt/ExecutorServiceSessionValidationScheduler.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/mgt/AbstractValidatingSessionManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/mgt/ValidatingSession.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/mgt/ValidatingSessionManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/mgt/eis/CachingSessionDAO.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/mgt/eis/MemorySessionDAO.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/mgt/eis/SessionDAO.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/mgt/AbstractSessionManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/mgt/SessionValidationScheduler.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/mgt/ImmutableProxiedSession.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/SessionFactory.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/ExpiredSessionException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/ProxiedSession.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/session/UnknownSessionException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/io/package-info.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/io/ResourceUtils.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/io/AbstractResource.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/io/DefaultSerializer.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/io/IniResource.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/io/SerializationException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/io/TextResource.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/io/Serializer.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/io/XmlSerializer.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/io/ResourceException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/Authenticator.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/MergableAuthenticationInfo.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/SimpleAuthenticationInfo.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/AccountException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/AuthenticationListenerRegistrar.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/CredentialsException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/ExcessiveAttemptsException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/AuthenticationInfo.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/UsernamePasswordToken.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/InetAuthenticationToken.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/LogoutAware.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/RememberMeAuthenticationToken.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/credential/package-info.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/credential/Sha512CredentialsMatcher.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/credential/CredentialsMatcher.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/credential/Sha1CredentialsMatcher.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/credential/AllowAllCredentialsMatcher.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/credential/Sha256CredentialsMatcher.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/credential/SimpleCredentialsMatcher.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/credential/Md5CredentialsMatcher.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/credential/HashedCredentialsMatcher.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/credential/Md2CredentialsMatcher.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/credential/Sha384CredentialsMatcher.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/pam/ModularAuthenticationStrategy.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/pam/AbstractAuthenticationStrategy.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/pam/UnsupportedTokenException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/pam/ModularRealmAuthenticator.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/pam/AtLeastOneSuccessfulModularAuthenticationStrategy.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/pam/FirstSuccessfulAuthenticationStrategy.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/pam/AllSuccessfulModularAuthenticationStrategy.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/SimpleAccount.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/DisabledAccountException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/ConcurrentAccessException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/AuthenticationException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/IncorrectCredentialsException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/AuthenticationListener.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/ExpiredCredentialsException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/AbstractAuthenticator.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/AuthenticationToken.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/UnknownAccountException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/Account.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authc/LockedAccountException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/jndi/JndiCallback.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/jndi/JndiLocator.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/jndi/JndiTemplate.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/JSecurityException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/mgt/package-info.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/mgt/AuthorizingSecurityManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/mgt/DefaultSecurityManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/mgt/SessionsSecurityManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/mgt/CachingSecurityManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/mgt/SecurityManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/mgt/AuthenticatingSecurityManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/mgt/SecurityManagerFactory.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/mgt/RealmSecurityManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/util/InstantiationException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/util/UnavailableConstructorException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/util/JavaEnvironment.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/util/UnknownClassException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/util/Initializable.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/util/ClassUtils.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/util/CollectionUtils.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/util/ThreadContext.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/util/AntPathMatcher.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/util/Nameable.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/util/Destroyable.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/util/LifecycleUtils.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/util/JdbcUtils.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/util/PermissionUtils.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/util/StringUtils.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/aop/AnnotationMethodInterceptor.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/aop/MethodInterceptor.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/aop/MethodInterceptorSupport.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/aop/MethodInvocation.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/annotation/RequiresPermissions.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/annotation/RequiresRoles.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/SimpleAuthorizationInfo.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/Permission.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/AuthorizingAccount.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/SimpleRole.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/ModularRealmAuthorizer.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/MissingAccountException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/permission/InvalidPermissionStringException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/permission/AllPermission.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/permission/WildcardPermission.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/permission/PermissionResolverAware.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/permission/PermissionResolver.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/permission/WildcardPermissionResolver.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/UnauthenticatedException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/AuthorizationException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/aop/AuthorizingMethodInterceptor.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/aop/PermissionAnnotationMethodInterceptor.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/aop/AnnotationsAuthorizingMethodInterceptor.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/aop/RoleAnnotationMethodInterceptor.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/aop/AuthorizingAnnotationMethodInterceptor.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/AuthorizationInfo.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/Authorizer.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/HostUnauthorizedException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/SimpleAuthorizingAccount.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/authz/UnauthorizedException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/SecurityUtils.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/codec/CodecSupport.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/codec/package-info.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/codec/Hex.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/codec/CodecException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/src/org/jsecurity/codec/Base64.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/support/spring/test/org/jsecurity/spring/SpringJSecurityFilterTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/support/spring/src/org/jsecurity/spring/security/interceptor/AuthorizationAttributeSourceAdvisor.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/support/spring/src/org/jsecurity/spring/security/interceptor/AopAllianceAnnotationsAuthorizingMethodInterceptor.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/support/spring/src/org/jsecurity/spring/SpringWebConfiguration.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/support/spring/src/org/jsecurity/spring/remoting/SecureRemoteInvocationExecutor.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/support/spring/src/org/jsecurity/spring/remoting/SecureRemoteInvocationFactory.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/support/spring/src/org/jsecurity/spring/SpringJSecurityFilter.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-jsecurity/support/spring/src/org/jsecurity/spring/LifecycleBeanPostProcessor.java">
+</file>
+</checkstyle>

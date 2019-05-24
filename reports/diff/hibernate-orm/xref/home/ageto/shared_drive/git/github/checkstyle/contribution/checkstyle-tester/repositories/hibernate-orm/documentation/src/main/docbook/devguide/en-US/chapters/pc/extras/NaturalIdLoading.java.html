@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>NaturalIdLoading xref</title>
+<link type="text/css" rel="stylesheet" href="../stylesheet.css" />
+</head>
+<body>
+<pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">import</strong> java.lang.String;
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   @Entity
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> User {
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   	@Id
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   	@GeneratedValue
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   	Long id;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   	@NaturalId
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  	String system;
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  	@NaturalId
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  	String userName;
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  	...
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  }
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_comment">// use getReference() to create associations...</em>
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  Resource aResource = (Resource) session.byId( Resource.<strong class="jxr_keyword">class</strong> ).getReference( 123 );
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  User aUser = (User) session.byNaturalId( User.<strong class="jxr_keyword">class</strong> )
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  		.using( <span class="jxr_string">"system"</span>, <span class="jxr_string">"prod"</span> )
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  		.using( <span class="jxr_string">"userName"</span>, <span class="jxr_string">"steve"</span> )
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  		.getReference();
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  aResource.assignTo( user );
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_comment">// use load() to pull initialzed data</em>
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <strong class="jxr_keyword">return</strong> session.byNaturalId( User.<strong class="jxr_keyword">class</strong> )
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  		.using( <span class="jxr_string">"system"</span>, <span class="jxr_string">"prod"</span> )
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  		.using( <span class="jxr_string">"userName"</span>, <span class="jxr_string">"steve"</span> )
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  		.load();
+</pre>
+<hr/>
+<div id="footer"></div>
+</body>
+</html>

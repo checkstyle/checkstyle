@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.21-SNAPSHOT">
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/test/java/com/codepoetics/protonpack/MergeTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/test/java/com/codepoetics/protonpack/InterleaveTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/test/java/com/codepoetics/protonpack/MapStreamTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/test/java/com/codepoetics/protonpack/UniqueTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/test/java/com/codepoetics/protonpack/AggregateTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/test/java/com/codepoetics/protonpack/GroupRunsTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/test/java/com/codepoetics/protonpack/TakeWhileTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/test/java/com/codepoetics/protonpack/NullableTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/test/java/com/codepoetics/protonpack/StreamableTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/test/java/com/codepoetics/protonpack/SkipWhileTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/test/java/com/codepoetics/protonpack/UnfoldTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/test/java/com/codepoetics/protonpack/SeqTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/test/java/com/codepoetics/protonpack/MinMaxByProjectionTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/test/java/com/codepoetics/protonpack/NoCombinerTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/test/java/com/codepoetics/protonpack/WindowedTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/test/java/com/codepoetics/protonpack/OptionalTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/test/java/com/codepoetics/protonpack/ZipTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/main/java/com/codepoetics/protonpack/functions/TriFunction.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/main/java/com/codepoetics/protonpack/GroupRunsSpliterator.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/main/java/com/codepoetics/protonpack/ZippingSpliterator.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/main/java/com/codepoetics/protonpack/selectors/Selectors.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/main/java/com/codepoetics/protonpack/selectors/Selector.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/main/java/com/codepoetics/protonpack/WindowedSpliterator.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/main/java/com/codepoetics/protonpack/Streamable.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/main/java/com/codepoetics/protonpack/PairSeq.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/main/java/com/codepoetics/protonpack/TakeWhileSpliterator.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/main/java/com/codepoetics/protonpack/TriZippingSpliterator.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/main/java/com/codepoetics/protonpack/collectors/CollectorUtils.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/main/java/com/codepoetics/protonpack/collectors/NonUniqueValueException.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/main/java/com/codepoetics/protonpack/UnfoldSpliterator.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/main/java/com/codepoetics/protonpack/StreamUtils.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/main/java/com/codepoetics/protonpack/TappedSpliterator.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/main/java/com/codepoetics/protonpack/Seq.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/main/java/com/codepoetics/protonpack/maps/MapStream.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/main/java/com/codepoetics/protonpack/maps/DefaultMapStream.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/main/java/com/codepoetics/protonpack/EmptySeq.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/main/java/com/codepoetics/protonpack/Indexed.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/main/java/com/codepoetics/protonpack/InterleavingSpliterator.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/main/java/com/codepoetics/protonpack/AggregatingSpliterator.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/main/java/com/codepoetics/protonpack/SkipUntilSpliterator.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/protonpack/src/main/java/com/codepoetics/protonpack/MergingSpliterator.java">
+</file>
+</checkstyle>

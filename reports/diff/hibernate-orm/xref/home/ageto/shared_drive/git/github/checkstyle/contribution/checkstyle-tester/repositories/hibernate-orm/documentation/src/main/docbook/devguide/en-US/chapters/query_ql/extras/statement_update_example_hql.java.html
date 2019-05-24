@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/hibernate-orm/documentation/src/main/docbook/devguide/en-US/chapters/query_ql/extras/statement_update_example_hql.java xref</title>
+<link type="text/css" rel="stylesheet" href="../stylesheet.css" />
+</head>
+<body>
+<pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   String hqlUpdate =
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   		<span class="jxr_string">"update Customer c "</span> +
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   		<span class="jxr_string">"set c.name = :newName "</span> +
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   		<span class="jxr_string">"where c.name = :oldName"</span>;
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">int</strong> updatedEntities = session.createQuery( hqlUpdate )
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>           .setString( <span class="jxr_string">"newName"</span>, newName )
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>           .setString( <span class="jxr_string">"oldName"</span>, oldName )
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>           .executeUpdate();
+</pre>
+<hr/>
+<div id="footer"></div>
+</body>
+</html>

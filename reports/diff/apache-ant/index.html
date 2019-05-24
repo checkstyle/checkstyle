@@ -1,0 +1,571 @@
+<html>
+	<head>
+		<title>checkstyle xml difference report</title>
+		<style type="text/css" media="all">@import url("./css/maven-base.css");@import url("./css/maven-theme.css"); );</style>
+		<http-equiv http-equiv="Content-Language" content="en"></http-equiv>
+	</head>
+	<body class="composite">
+		<div id="contentBox">
+			<div class="section">
+				<h2 a="Checkstyle XML difference report">Checkstyle XML difference report</h2>
+				This is symmetric difference generated from two checkstyle-result.xml reports. <br/>
+				All matching records from each XML file are deleted, then remaining records are merged into single report. <br>
+		        <a href="https://github.com/checkstyle/contribution/tree/master/patch-diff-report-tool">Utility that generated this report.</a>
+			</div>
+
+			
+				<h2 a="Checkstyle configuration report">Checkstyle configuration report</h2>
+				<div class="section">
+					<table border="0" class="bodyTable">
+							<tr class="a">
+								<th>Module Name</th>
+								<th>Base properties</th>
+								<th>Patch properties</th>
+							</tr>
+							
+								
+									<tr>
+										<td class="c">Checker</td>
+										
+										
+										<td> </td>
+										<td class="a">
+											
+												severity
+												
+													<li>warning</li>
+												
+												<br/>
+											
+												charset
+												
+													<li>UTF-8</li>
+												
+												<br/>
+											
+												haltOnException
+												
+													<li>false</li>
+												
+												<br/>
+											
+										</td>
+										
+										
+									</tr>
+									
+										
+									<tr>
+										<td class="c">BeforeExecutionExclusionFileFilter</td>
+										
+										
+										<td> </td>
+										<td class="a">
+											
+												fileNamePattern
+												
+													<li>module\-info\.java$</li>
+												
+												<br/>
+											
+										</td>
+										
+										
+									</tr>
+									
+								
+									
+										
+									<tr>
+										<td class="c">TreeWalker</td>
+										
+										
+										<td> </td>
+										<td class="a">
+											
+										</td>
+										
+										
+									</tr>
+									
+										
+									<tr>
+										<td class="c">ThrowsCount</td>
+										
+										
+										<td> </td>
+										<td class="a">
+											
+												max
+												
+													<li>20000000</li>
+												
+												<br/>
+											
+										</td>
+										
+										
+									</tr>
+									
+								
+									
+								
+									
+										
+									<tr>
+										<td class="c">OrderedProperties</td>
+										
+										
+										<td> </td>
+										<td class="a">
+											
+										</td>
+										
+										
+									</tr>
+									
+								
+									
+								
+								
+					</table>	
+				</div>
+			
+
+			<div class="section">
+				<h2 a="Summary:">Summary:</h2>
+				<div class="section">
+					<table border="0" class="bodyTable">
+						<tr class="a">
+							<th>Report id</th>
+							<th>Files</th>
+							<th>Violations</th>
+							
+								<th>Severity-error</th>
+							
+						</tr>
+						<tr class="b">
+							<td>base</td>
+							<td id="filesBase">0</td>
+							<td id="totalBase">0</td>
+							
+								<td id="errorSeverityNumBase">0</td>
+							
+						</tr>
+						<tr class="a">
+							<td>patch</td>
+							<td id="filesPatch">1233</td>
+							<td id="totalPatch">4</td>
+							
+								<td id="errorSeverityNumPatch">4</td>
+							
+						</tr>
+						<tr class="d">
+							<td>difference</td>
+							<td id="filesDiff">4</td>
+							<td id="totalDiff">4</td>
+							
+								<td id="errorSeverityNumDiff">4</td>
+							
+						<tr>
+					</table>
+
+					
+						<br />
+						<table border="0" class="bodyTable">
+							<tr class="a">
+								<th>Report id</th>
+								
+									<th>com.puppycrawl.tools.checkstyle.Checker</th>
+								
+							</tr>
+							<tr class="b">
+								<td>base</td>
+								
+									<td id="com.puppycrawl.tools.checkstyle.CheckerModuleNumBase">0</td>
+								
+							</tr>
+							<tr class="a">
+								<td>patch</td>
+								
+									<td id="com.puppycrawl.tools.checkstyle.CheckerModuleNumPatch">4</td>
+								
+							</tr>
+							<tr class="d">
+								<td>difference</td>
+								
+									<td id="com.puppycrawl.tools.checkstyle.CheckerModuleNumDiff">4</td>
+								
+							<tr>
+						</table>
+					
+
+					<br />
+					Number of unique base messages reported below: <span id="uniqueMessagesBase">0</span><br />
+					Number of unique patch messages reported below: <span id="uniqueMessagesPatch">4</span><br />
+				</div>
+			</div>
+
+			<div class="section">
+				<h2 a="Violations:">Violations:</h2>
+				<div class="section">
+					<h3>/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-ant/src/etc/testcases/taskdefs/fixcrlf/expected/Junk5.java</h3>
+					<tr class="b">
+					<table border="0" class="bodyTable">
+					        <th></th>
+							<th>Severity</th>
+							<th>Rule</th>
+							<th>Message</th>
+							<th>Line</th>
+							<th>Col</th>
+						</tr>
+						
+							
+								<tr class="a">
+							
+								<td><a name="A1" href = "#A1">#</a></td>
+								<td>error</td>
+								<td>Checker</td>
+								<td>Got an exception - com.puppycrawl.tools.checkstyle.api.CheckstyleException: TokenStreamRecognitionException occurred while parsing file /home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-ant/src/etc/testcases/taskdefs/fixcrlf/expected/Junk5.java.<br />
+#x9;at com.puppycrawl.tools.checkstyle.JavaParser.parse(JavaParser.java:105)<br />
+#x9;at com.puppycrawl.tools.checkstyle.TreeWalker.processFiltered(TreeWalker.java:160)<br />
+#x9;at com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.process(AbstractFileSetCheck.java:85)<br />
+#x9;at com.puppycrawl.tools.checkstyle.Checker.processFile(Checker.java:332)<br />
+#x9;at com.puppycrawl.tools.checkstyle.Checker.processFiles(Checker.java:294)<br />
+#x9;at com.puppycrawl.tools.checkstyle.Checker.process(Checker.java:220)<br />
+#x9;at org.apache.maven.plugins.checkstyle.exec.DefaultCheckstyleExecutor.executeCheckstyle(DefaultCheckstyleExecutor.java:248)<br />
+#x9;at org.apache.maven.plugins.checkstyle.AbstractCheckstyleReport.executeReport(AbstractCheckstyleReport.java:463)<br />
+#x9;at org.apache.maven.plugins.checkstyle.CheckstyleReport.executeReport(CheckstyleReport.java:57)<br />
+#x9;at org.apache.maven.reporting.AbstractMavenReport.generate(AbstractMavenReport.java:255)<br />
+#x9;at org.apache.maven.plugins.site.ReportDocumentRenderer.renderDocument(ReportDocumentRenderer.java:219)<br />
+#x9;at org.apache.maven.doxia.siterenderer.DefaultSiteRenderer.renderModule(DefaultSiteRenderer.java:319)<br />
+#x9;at org.apache.maven.doxia.siterenderer.DefaultSiteRenderer.render(DefaultSiteRenderer.java:135)<br />
+#x9;at org.apache.maven.plugins.site.SiteMojo.renderLocale(SiteMojo.java:175)<br />
+#x9;at org.apache.maven.plugins.site.SiteMojo.execute(SiteMojo.java:138)<br />
+#x9;at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:134)<br />
+#x9;at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:207)<br />
+#x9;at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:153)<br />
+#x9;at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:145)<br />
+#x9;at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:116)<br />
+#x9;at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:80)<br />
+#x9;at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:51)<br />
+#x9;at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:128)<br />
+#x9;at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:307)<br />
+#x9;at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:193)<br />
+#x9;at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:106)<br />
+#x9;at org.apache.maven.cli.MavenCli.execute(MavenCli.java:863)<br />
+#x9;at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:288)<br />
+#x9;at org.apache.maven.cli.MavenCli.main(MavenCli.java:199)<br />
+#x9;at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)<br />
+#x9;at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)<br />
+#x9;at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)<br />
+#x9;at java.lang.reflect.Method.invoke(Method.java:498)<br />
+#x9;at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:289)<br />
+#x9;at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:229)<br />
+#x9;at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)<br />
+#x9;at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)<br />
+Caused by: line 8:39: expecting &#39;&#39;&#39;, found &#39; &#39;<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaLexer.nextToken(GeneratedJavaLexer.java:405)<br />
+#x9;at antlr.TokenStreamHiddenTokenFilter.consume(TokenStreamHiddenTokenFilter.java:38)<br />
+#x9;at antlr.TokenStreamHiddenTokenFilter.nextToken(TokenStreamHiddenTokenFilter.java:134)<br />
+#x9;at antlr.TokenBuffer.fill(TokenBuffer.java:69)<br />
+#x9;at antlr.TokenBuffer.LA(TokenBuffer.java:80)<br />
+#x9;at antlr.LLkParser.LA(LLkParser.java:52)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.declaratorBrackets(GeneratedJavaRecognizer.java:3089)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.variableDeclarator(GeneratedJavaRecognizer.java:4517)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.variableDefinitions(GeneratedJavaRecognizer.java:1555)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.declaration(GeneratedJavaRecognizer.java:1534)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.traditionalStatement(GeneratedJavaRecognizer.java:5399)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.statement(GeneratedJavaRecognizer.java:4276)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.compoundStatement(GeneratedJavaRecognizer.java:3942)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.traditionalStatement(GeneratedJavaRecognizer.java:5093)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.statement(GeneratedJavaRecognizer.java:4276)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.traditionalStatement(GeneratedJavaRecognizer.java:5114)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.statement(GeneratedJavaRecognizer.java:4276)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.compoundStatement(GeneratedJavaRecognizer.java:3942)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.field(GeneratedJavaRecognizer.java:3332)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.classBlock(GeneratedJavaRecognizer.java:2542)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.classDefinition(GeneratedJavaRecognizer.java:634)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.typeDefinitionInternal(GeneratedJavaRecognizer.java:556)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.typeDefinition(GeneratedJavaRecognizer.java:389)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.compilationUnit(GeneratedJavaRecognizer.java:202)<br />
+#x9;at com.puppycrawl.tools.checkstyle.JavaParser.parse(JavaParser.java:99)<br />
+#x9;... 36 more<br />
+</td>
+								
+									
+									<td><a href = "xref/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-ant/src/etc/testcases/taskdefs/fixcrlf/expected/Junk5.java.html#L1">1</a></td>
+								
+								
+									<td> </td>
+									
+								
+							</tr>
+						
+					</table>
+				</div>
+				<div class="section">
+					<h3>/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-ant/src/etc/testcases/taskdefs/fixcrlf/expected/Junk8.java</h3>
+					<tr class="b">
+					<table border="0" class="bodyTable">
+					        <th></th>
+							<th>Severity</th>
+							<th>Rule</th>
+							<th>Message</th>
+							<th>Line</th>
+							<th>Col</th>
+						</tr>
+						
+							
+								<tr class="a">
+							
+								<td><a name="A2" href = "#A2">#</a></td>
+								<td>error</td>
+								<td>Checker</td>
+								<td>Got an exception - com.puppycrawl.tools.checkstyle.api.CheckstyleException: TokenStreamRecognitionException occurred while parsing file /home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-ant/src/etc/testcases/taskdefs/fixcrlf/expected/Junk8.java.<br />
+#x9;at com.puppycrawl.tools.checkstyle.JavaParser.parse(JavaParser.java:105)<br />
+#x9;at com.puppycrawl.tools.checkstyle.TreeWalker.processFiltered(TreeWalker.java:160)<br />
+#x9;at com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.process(AbstractFileSetCheck.java:85)<br />
+#x9;at com.puppycrawl.tools.checkstyle.Checker.processFile(Checker.java:332)<br />
+#x9;at com.puppycrawl.tools.checkstyle.Checker.processFiles(Checker.java:294)<br />
+#x9;at com.puppycrawl.tools.checkstyle.Checker.process(Checker.java:220)<br />
+#x9;at org.apache.maven.plugins.checkstyle.exec.DefaultCheckstyleExecutor.executeCheckstyle(DefaultCheckstyleExecutor.java:248)<br />
+#x9;at org.apache.maven.plugins.checkstyle.AbstractCheckstyleReport.executeReport(AbstractCheckstyleReport.java:463)<br />
+#x9;at org.apache.maven.plugins.checkstyle.CheckstyleReport.executeReport(CheckstyleReport.java:57)<br />
+#x9;at org.apache.maven.reporting.AbstractMavenReport.generate(AbstractMavenReport.java:255)<br />
+#x9;at org.apache.maven.plugins.site.ReportDocumentRenderer.renderDocument(ReportDocumentRenderer.java:219)<br />
+#x9;at org.apache.maven.doxia.siterenderer.DefaultSiteRenderer.renderModule(DefaultSiteRenderer.java:319)<br />
+#x9;at org.apache.maven.doxia.siterenderer.DefaultSiteRenderer.render(DefaultSiteRenderer.java:135)<br />
+#x9;at org.apache.maven.plugins.site.SiteMojo.renderLocale(SiteMojo.java:175)<br />
+#x9;at org.apache.maven.plugins.site.SiteMojo.execute(SiteMojo.java:138)<br />
+#x9;at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:134)<br />
+#x9;at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:207)<br />
+#x9;at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:153)<br />
+#x9;at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:145)<br />
+#x9;at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:116)<br />
+#x9;at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:80)<br />
+#x9;at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:51)<br />
+#x9;at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:128)<br />
+#x9;at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:307)<br />
+#x9;at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:193)<br />
+#x9;at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:106)<br />
+#x9;at org.apache.maven.cli.MavenCli.execute(MavenCli.java:863)<br />
+#x9;at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:288)<br />
+#x9;at org.apache.maven.cli.MavenCli.main(MavenCli.java:199)<br />
+#x9;at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)<br />
+#x9;at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)<br />
+#x9;at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)<br />
+#x9;at java.lang.reflect.Method.invoke(Method.java:498)<br />
+#x9;at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:289)<br />
+#x9;at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:229)<br />
+#x9;at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)<br />
+#x9;at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)<br />
+Caused by: line 13:1: Unexpected character 0x1a in identifier<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaLexer.nextToken(GeneratedJavaLexer.java:405)<br />
+#x9;at antlr.TokenStreamHiddenTokenFilter.consume(TokenStreamHiddenTokenFilter.java:38)<br />
+#x9;at antlr.TokenStreamHiddenTokenFilter.nextToken(TokenStreamHiddenTokenFilter.java:134)<br />
+#x9;at antlr.TokenBuffer.fill(TokenBuffer.java:69)<br />
+#x9;at antlr.TokenBuffer.LA(TokenBuffer.java:80)<br />
+#x9;at antlr.LLkParser.LA(LLkParser.java:52)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.traditionalStatement(GeneratedJavaRecognizer.java:5121)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.statement(GeneratedJavaRecognizer.java:4276)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.compoundStatement(GeneratedJavaRecognizer.java:3942)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.field(GeneratedJavaRecognizer.java:3332)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.classBlock(GeneratedJavaRecognizer.java:2542)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.classDefinition(GeneratedJavaRecognizer.java:634)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.typeDefinitionInternal(GeneratedJavaRecognizer.java:556)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.typeDefinition(GeneratedJavaRecognizer.java:389)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.compilationUnit(GeneratedJavaRecognizer.java:202)<br />
+#x9;at com.puppycrawl.tools.checkstyle.JavaParser.parse(JavaParser.java:99)<br />
+#x9;... 36 more<br />
+</td>
+								
+									
+									<td><a href = "xref/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-ant/src/etc/testcases/taskdefs/fixcrlf/expected/Junk8.java.html#L1">1</a></td>
+								
+								
+									<td> </td>
+									
+								
+							</tr>
+						
+					</table>
+				</div>
+				<div class="section">
+					<h3>/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-ant/src/etc/testcases/taskdefs/fixcrlf/input/Junk9.java</h3>
+					<tr class="b">
+					<table border="0" class="bodyTable">
+					        <th></th>
+							<th>Severity</th>
+							<th>Rule</th>
+							<th>Message</th>
+							<th>Line</th>
+							<th>Col</th>
+						</tr>
+						
+							
+								<tr class="a">
+							
+								<td><a name="A3" href = "#A3">#</a></td>
+								<td>error</td>
+								<td>Checker</td>
+								<td>Got an exception - com.puppycrawl.tools.checkstyle.api.CheckstyleException: TokenStreamRecognitionException occurred while parsing file /home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-ant/src/etc/testcases/taskdefs/fixcrlf/input/Junk9.java.<br />
+#x9;at com.puppycrawl.tools.checkstyle.JavaParser.parse(JavaParser.java:105)<br />
+#x9;at com.puppycrawl.tools.checkstyle.TreeWalker.processFiltered(TreeWalker.java:160)<br />
+#x9;at com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.process(AbstractFileSetCheck.java:85)<br />
+#x9;at com.puppycrawl.tools.checkstyle.Checker.processFile(Checker.java:332)<br />
+#x9;at com.puppycrawl.tools.checkstyle.Checker.processFiles(Checker.java:294)<br />
+#x9;at com.puppycrawl.tools.checkstyle.Checker.process(Checker.java:220)<br />
+#x9;at org.apache.maven.plugins.checkstyle.exec.DefaultCheckstyleExecutor.executeCheckstyle(DefaultCheckstyleExecutor.java:248)<br />
+#x9;at org.apache.maven.plugins.checkstyle.AbstractCheckstyleReport.executeReport(AbstractCheckstyleReport.java:463)<br />
+#x9;at org.apache.maven.plugins.checkstyle.CheckstyleReport.executeReport(CheckstyleReport.java:57)<br />
+#x9;at org.apache.maven.reporting.AbstractMavenReport.generate(AbstractMavenReport.java:255)<br />
+#x9;at org.apache.maven.plugins.site.ReportDocumentRenderer.renderDocument(ReportDocumentRenderer.java:219)<br />
+#x9;at org.apache.maven.doxia.siterenderer.DefaultSiteRenderer.renderModule(DefaultSiteRenderer.java:319)<br />
+#x9;at org.apache.maven.doxia.siterenderer.DefaultSiteRenderer.render(DefaultSiteRenderer.java:135)<br />
+#x9;at org.apache.maven.plugins.site.SiteMojo.renderLocale(SiteMojo.java:175)<br />
+#x9;at org.apache.maven.plugins.site.SiteMojo.execute(SiteMojo.java:138)<br />
+#x9;at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:134)<br />
+#x9;at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:207)<br />
+#x9;at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:153)<br />
+#x9;at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:145)<br />
+#x9;at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:116)<br />
+#x9;at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:80)<br />
+#x9;at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:51)<br />
+#x9;at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:128)<br />
+#x9;at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:307)<br />
+#x9;at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:193)<br />
+#x9;at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:106)<br />
+#x9;at org.apache.maven.cli.MavenCli.execute(MavenCli.java:863)<br />
+#x9;at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:288)<br />
+#x9;at org.apache.maven.cli.MavenCli.main(MavenCli.java:199)<br />
+#x9;at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)<br />
+#x9;at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)<br />
+#x9;at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)<br />
+#x9;at java.lang.reflect.Method.invoke(Method.java:498)<br />
+#x9;at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:289)<br />
+#x9;at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:229)<br />
+#x9;at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)<br />
+#x9;at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)<br />
+Caused by: line 13:1: Unexpected character 0x1a in identifier<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaLexer.nextToken(GeneratedJavaLexer.java:405)<br />
+#x9;at antlr.TokenStreamHiddenTokenFilter.consume(TokenStreamHiddenTokenFilter.java:38)<br />
+#x9;at antlr.TokenStreamHiddenTokenFilter.nextToken(TokenStreamHiddenTokenFilter.java:134)<br />
+#x9;at antlr.TokenBuffer.fill(TokenBuffer.java:69)<br />
+#x9;at antlr.TokenBuffer.LA(TokenBuffer.java:80)<br />
+#x9;at antlr.LLkParser.LA(LLkParser.java:52)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.traditionalStatement(GeneratedJavaRecognizer.java:5121)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.statement(GeneratedJavaRecognizer.java:4276)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.compoundStatement(GeneratedJavaRecognizer.java:3942)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.field(GeneratedJavaRecognizer.java:3332)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.classBlock(GeneratedJavaRecognizer.java:2542)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.classDefinition(GeneratedJavaRecognizer.java:634)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.typeDefinitionInternal(GeneratedJavaRecognizer.java:556)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.typeDefinition(GeneratedJavaRecognizer.java:389)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.compilationUnit(GeneratedJavaRecognizer.java:202)<br />
+#x9;at com.puppycrawl.tools.checkstyle.JavaParser.parse(JavaParser.java:99)<br />
+#x9;... 36 more<br />
+</td>
+								
+									
+									<td><a href = "xref/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-ant/src/etc/testcases/taskdefs/fixcrlf/input/Junk9.java.html#L1">1</a></td>
+								
+								
+									<td> </td>
+									
+								
+							</tr>
+						
+					</table>
+				</div>
+				<div class="section">
+					<h3>/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-ant/src/tests/antunit/taskdefs/javac-dir/bad-src/Bad.java</h3>
+					<tr class="b">
+					<table border="0" class="bodyTable">
+					        <th></th>
+							<th>Severity</th>
+							<th>Rule</th>
+							<th>Message</th>
+							<th>Line</th>
+							<th>Col</th>
+						</tr>
+						
+							
+								<tr class="a">
+							
+								<td><a name="A4" href = "#A4">#</a></td>
+								<td>error</td>
+								<td>Checker</td>
+								<td>Got an exception - com.puppycrawl.tools.checkstyle.api.CheckstyleException: TokenStreamRecognitionException occurred while parsing file /home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-ant/src/tests/antunit/taskdefs/javac-dir/bad-src/Bad.java.<br />
+#x9;at com.puppycrawl.tools.checkstyle.JavaParser.parse(JavaParser.java:105)<br />
+#x9;at com.puppycrawl.tools.checkstyle.TreeWalker.processFiltered(TreeWalker.java:160)<br />
+#x9;at com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.process(AbstractFileSetCheck.java:85)<br />
+#x9;at com.puppycrawl.tools.checkstyle.Checker.processFile(Checker.java:332)<br />
+#x9;at com.puppycrawl.tools.checkstyle.Checker.processFiles(Checker.java:294)<br />
+#x9;at com.puppycrawl.tools.checkstyle.Checker.process(Checker.java:220)<br />
+#x9;at org.apache.maven.plugins.checkstyle.exec.DefaultCheckstyleExecutor.executeCheckstyle(DefaultCheckstyleExecutor.java:248)<br />
+#x9;at org.apache.maven.plugins.checkstyle.AbstractCheckstyleReport.executeReport(AbstractCheckstyleReport.java:463)<br />
+#x9;at org.apache.maven.plugins.checkstyle.CheckstyleReport.executeReport(CheckstyleReport.java:57)<br />
+#x9;at org.apache.maven.reporting.AbstractMavenReport.generate(AbstractMavenReport.java:255)<br />
+#x9;at org.apache.maven.plugins.site.ReportDocumentRenderer.renderDocument(ReportDocumentRenderer.java:219)<br />
+#x9;at org.apache.maven.doxia.siterenderer.DefaultSiteRenderer.renderModule(DefaultSiteRenderer.java:319)<br />
+#x9;at org.apache.maven.doxia.siterenderer.DefaultSiteRenderer.render(DefaultSiteRenderer.java:135)<br />
+#x9;at org.apache.maven.plugins.site.SiteMojo.renderLocale(SiteMojo.java:175)<br />
+#x9;at org.apache.maven.plugins.site.SiteMojo.execute(SiteMojo.java:138)<br />
+#x9;at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:134)<br />
+#x9;at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:207)<br />
+#x9;at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:153)<br />
+#x9;at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:145)<br />
+#x9;at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:116)<br />
+#x9;at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:80)<br />
+#x9;at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:51)<br />
+#x9;at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:128)<br />
+#x9;at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:307)<br />
+#x9;at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:193)<br />
+#x9;at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:106)<br />
+#x9;at org.apache.maven.cli.MavenCli.execute(MavenCli.java:863)<br />
+#x9;at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:288)<br />
+#x9;at org.apache.maven.cli.MavenCli.main(MavenCli.java:199)<br />
+#x9;at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)<br />
+#x9;at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)<br />
+#x9;at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)<br />
+#x9;at java.lang.reflect.Method.invoke(Method.java:498)<br />
+#x9;at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:289)<br />
+#x9;at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:229)<br />
+#x9;at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)<br />
+#x9;at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)<br />
+Caused by: line 21:21: expecting &#39;&quot;&#39;, found &#39;&lt;EOF&gt;&#39;<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaLexer.nextToken(GeneratedJavaLexer.java:405)<br />
+#x9;at antlr.TokenStreamHiddenTokenFilter.consume(TokenStreamHiddenTokenFilter.java:38)<br />
+#x9;at antlr.TokenStreamHiddenTokenFilter.nextToken(TokenStreamHiddenTokenFilter.java:134)<br />
+#x9;at antlr.TokenBuffer.fill(TokenBuffer.java:69)<br />
+#x9;at antlr.TokenBuffer.LA(TokenBuffer.java:80)<br />
+#x9;at antlr.LLkParser.LA(LLkParser.java:52)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.classOrInterfaceType(GeneratedJavaRecognizer.java:961)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.classTypeSpec(GeneratedJavaRecognizer.java:818)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.typeSpec(GeneratedJavaRecognizer.java:780)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.field(GeneratedJavaRecognizer.java:3292)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.classBlock(GeneratedJavaRecognizer.java:2542)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.classDefinition(GeneratedJavaRecognizer.java:634)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.typeDefinitionInternal(GeneratedJavaRecognizer.java:556)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.typeDefinition(GeneratedJavaRecognizer.java:389)<br />
+#x9;at com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer.compilationUnit(GeneratedJavaRecognizer.java:202)<br />
+#x9;at com.puppycrawl.tools.checkstyle.JavaParser.parse(JavaParser.java:99)<br />
+#x9;... 36 more<br />
+</td>
+								
+									
+									<td><a href = "xref/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/apache-ant/src/tests/antunit/taskdefs/javac-dir/bad-src/Bad.java.html#L1">1</a></td>
+								
+								
+									<td> </td>
+									
+								
+							</tr>
+						
+					</table>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

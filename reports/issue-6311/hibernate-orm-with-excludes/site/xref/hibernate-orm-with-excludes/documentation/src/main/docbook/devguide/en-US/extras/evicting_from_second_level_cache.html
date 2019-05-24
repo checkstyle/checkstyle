@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/src/main/java/hibernate-orm-with-excludes/documentation/src/main/docbook/devguide/en-US/extras/evicting_from_second_level_cache.java xref</title>
+<link type="text/css" rel="stylesheet" href="../stylesheet.css" />
+</head>
+<body>
+<pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   sessionFactory.getCache().containsEntity(Cat.<strong class="jxr_keyword">class</strong>, catId); <em class="jxr_comment">// is this particular Cat currently in the cache</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   sessionFactory.getCache().evictEntity(Cat.<strong class="jxr_keyword">class</strong>, catId); <em class="jxr_comment">// evict a particular Cat</em>
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   sessionFactory.getCache().evictEntityRegion(Cat.<strong class="jxr_keyword">class</strong>);  <em class="jxr_comment">// evict all Cats</em>
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   sessionFactory.getCache().evictEntityRegions();  <em class="jxr_comment">// evict all entity data</em>
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   sessionFactory.getCache().containsCollection(<span class="jxr_string">"Cat.kittens"</span>, catId); <em class="jxr_comment">// is this particular collection currently in the cache</em>
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  sessionFactory.getCache().evictCollection(<span class="jxr_string">"Cat.kittens"</span>, catId); <em class="jxr_comment">// evict a particular collection of kittens</em>
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  sessionFactory.getCache().evictCollectionRegion(<span class="jxr_string">"Cat.kittens"</span>); <em class="jxr_comment">// evict all kitten collections</em>
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  sessionFactory.getCache().evictCollectionRegions(); <em class="jxr_comment">// evict all collection data</em>
+</pre>
+<hr/>
+<div id="footer">Copyright &#169; 2019. All rights reserved.</div>
+</body>
+</html>

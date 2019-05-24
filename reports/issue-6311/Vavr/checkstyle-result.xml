@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.21-SNAPSHOT">
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/CheckedFunction5Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/Function6Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/Function3Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/CheckedFunction3Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/Tuple6Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/Tuple2Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/CheckedFunction0Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/CheckedFunction8Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/Function8Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/Function0Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/Function7Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/CheckedFunction1Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/Function1Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/Tuple0Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/CheckedFunction4Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/APITest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/CheckedFunction6Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/Tuple5Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/Tuple3Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/CheckedFunction7Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/Function5Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/Tuple7Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/CheckedFunction2Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/Function2Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/Tuple1Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/Tuple4Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/Tuple8Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/test/java/io/vavr/Function4Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/CheckedFunction0.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/Tuple2.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/Function2.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/API.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/CheckedFunction6.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/Tuple.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/Tuple5.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/Function1.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/CheckedFunction1.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/Function6.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/collection/ArrayType.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/Tuple0.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/Tuple8.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/Function3.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/Tuple3.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/CheckedFunction4.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/Function0.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/Function8.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/CheckedFunction7.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/CheckedFunction2.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/Function4.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/Function7.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/Tuple1.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/Function5.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/CheckedFunction3.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/Tuple7.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/CheckedFunction8.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/Tuple6.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/Tuple4.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src-gen/main/java/io/vavr/CheckedFunction5.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/outside_of_vavr/IllegalAccessErrorTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/TestComparators.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/LazyTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/JavaCollections.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/control/EitherTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/control/OptionTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/control/EitherRightProjectionTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/control/ValidationTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/control/TryTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/control/EitherLeftProjectionTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/TupleTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/ValueTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/concurrent/ExecutorServices.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/concurrent/FutureTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/concurrent/Concurrent.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/concurrent/PromiseTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/IterableTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/QueueTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/CharSeqTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/AbstractSeqTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/QuickSortTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/AbstractTraversableTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/HashMapTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/TreeSetTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/TreeTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/AbstractSetTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/LinkedHashMapTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/IntMap.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/AbstractMapTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/TreeMapTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/VectorPropertyTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/AbstractSortedMapTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/AbstractIndexedSeqTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/StringTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/IntMultimap.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/HashMultimapTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler27Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler30Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler45Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler14Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler43Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler08Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/PrimeNumbers.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler67Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler71Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler39Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler57Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler23Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler11Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler35Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler04Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler01Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler13Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler17Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler48Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler06Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler21Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler20Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler15Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler99Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler31Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler05Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler29Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler24Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler03Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Sieve.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler16Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler26Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler34Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler33Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler37Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler25Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler12Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler40Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler02Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler07Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler19Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler41Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler38Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler32Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler09Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler28Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Utils.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler42Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler10Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler55Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler22Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler36Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/euler/Euler18Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/LinkedHashSetTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/StreamTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/AbstractLinearSeqTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/LinkedHashMultimapTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/BitSetTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/IteratorTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/HashArrayMappedTrieTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/AbstractTraversableRangeTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/ArrayTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/HashSetTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/ListTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/RedBlackTreeTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/AbstractSortedSetTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/AbstractMultimapTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/IntMod2Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/PriorityQueueTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/VectorTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/ComparatorsTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/JavaConvertersTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/TreeMultimapTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/IntMod2.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/collection/CollectionsTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/MatchTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/AssertionsExtensions.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/Serializables.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/MatchErrorTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/PredicatesTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/test/java/io/vavr/AbstractValueTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/GwtIncompatible.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/package-info.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/control/Validation.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/control/GwtIncompatible.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/control/Option.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/control/package-info.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/control/Try.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/control/Either.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/Lambda.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/Value.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/Predicates.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/MatchError.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/NotImplementedError.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/concurrent/GwtIncompatible.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/concurrent/package-info.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/concurrent/FutureImpl.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/concurrent/Future.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/concurrent/Promise.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/concurrent/GuardedBy.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/CheckedPredicate.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/CheckedConsumer.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/Lazy.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/GwtIncompatible.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/AbstractIterator.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/Traversable.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/package-info.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/SortedMultimap.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/AbstractMultimap.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/LinkedHashMap.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/TreeMap.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/IndexedSeq.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/HashMultimap.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/Map.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/HashMap.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/RedBlackTree.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/Multimaps.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/Queue.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/Foldable.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/Stream.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/LinkedHashMultimap.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/Collections.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/PriorityQueue.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/Ordered.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/LinearSeq.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/Multimap.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/Set.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/BitSet.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/TreeMultimap.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/Comparators.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/Seq.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/AbstractQueue.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/HashSet.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/List.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/Maps.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/HashArrayMappedTrie.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/BitMappedTrie.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/CharSeq.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/LinkedHashSet.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/JavaConverters.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/Vector.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/SortedMap.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/Iterator.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/Array.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/SortedSet.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/TreeSet.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/collection/Tree.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/$.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/PartialFunction.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr/src/main/java/io/vavr/CheckedRunnable.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-test/src-gen/test/java/io/vavr/test/PropertyCheck5Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-test/src-gen/test/java/io/vavr/test/PropertyTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-test/src-gen/test/java/io/vavr/test/PropertyCheck6Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-test/src-gen/test/java/io/vavr/test/PropertyCheck7Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-test/src-gen/test/java/io/vavr/test/PropertyCheck1Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-test/src-gen/test/java/io/vavr/test/PropertyCheck2Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-test/src-gen/test/java/io/vavr/test/PropertyCheck8Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-test/src-gen/test/java/io/vavr/test/PropertyCheck4Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-test/src-gen/test/java/io/vavr/test/PropertyCheck3Test.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-test/src-gen/main/java/io/vavr/test/Property.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-test/src/test/java/io/vavr/test/CheckResultTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-test/src/test/java/io/vavr/test/ArbitraryTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-test/src/test/java/io/vavr/test/ConditionTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-test/src/test/java/io/vavr/test/GenTest.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-test/src/main/java/io/vavr/test/package-info.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-test/src/main/java/io/vavr/test/CheckResult.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-test/src/main/java/io/vavr/test/Arbitrary.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-test/src/main/java/io/vavr/test/Gen.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-test/src/main/java/io/vavr/test/Checkable.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-benchmark/src/test/java/io/vavr/control/LazyBenchmark.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-benchmark/src/test/java/io/vavr/collection/VectorBenchmark.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-benchmark/src/test/java/io/vavr/collection/BitSetBenchmark.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-benchmark/src/test/java/io/vavr/collection/ArrayBenchmark.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-benchmark/src/test/java/io/vavr/collection/CharSeqBenchmark.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-benchmark/src/test/java/io/vavr/collection/PriorityQueueBenchmark.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-benchmark/src/test/java/io/vavr/collection/IteratorBenchmark.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-benchmark/src/test/java/io/vavr/collection/HashSetBenchmark.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-benchmark/src/test/java/io/vavr/collection/ListBenchmark.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-benchmark/src/test/java/io/vavr/BenchmarkPerformanceReporter.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-benchmark/src/test/java/io/vavr/JmhRunner.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-benchmark/src/test/java/io/vavr/idiom/TryBenchmark.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-benchmark/src/test/java/io/vavr/idiom/TupleBenchmark.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-benchmark/src/test/java/io/vavr/idiom/PatternMatchingBenchmark.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-benchmark/src/test/java/io/vavr/idiom/ForBenchmark.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-benchmark/src/test/java/io/vavr/MemoryUsage.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-match/src/main/java/io/vavr/match/annotation/Unapply.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-match/src/main/java/io/vavr/match/annotation/Patterns.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-match/src/main/java/io/vavr/match/model/MethodModel.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-match/src/main/java/io/vavr/match/model/ParameterModel.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-match/src/main/java/io/vavr/match/model/ClassModel.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-match/src/main/java/io/vavr/match/model/TypeParameterModel.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-match/src/main/java/io/vavr/match/generator/ImportManager.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-match/src/main/java/io/vavr/match/generator/Generator.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-match/src/main/java/io/vavr/match/UnapplyChecker.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/Vavr/vavr-match/src/main/java/io/vavr/match/PatternsProcessor.java">
+</file>
+</checkstyle>

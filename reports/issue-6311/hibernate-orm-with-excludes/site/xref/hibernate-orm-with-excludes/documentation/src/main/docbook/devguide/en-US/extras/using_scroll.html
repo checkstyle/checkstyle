@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/src/main/java/hibernate-orm-with-excludes/documentation/src/main/docbook/devguide/en-US/extras/using_scroll.java xref</title>
+<link type="text/css" rel="stylesheet" href="../stylesheet.css" />
+</head>
+<body>
+<pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   Session session = sessionFactory.openSession();
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   Transaction tx = session.beginTransaction();
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>      
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   ScrollableResults customers = session.getNamedQuery(<span class="jxr_string">"GetCustomers"</span>)
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>       .setCacheMode(CacheMode.IGNORE)
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>       .scroll(ScrollMode.FORWARD_ONLY);
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">int</strong> count=0;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">while</strong> ( customers.next() ) {
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>       Customer customer = (Customer) customers.get(0);
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>      customer.updateStuff(...);
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>      <strong class="jxr_keyword">if</strong> ( ++count % 20 == 0 ) {
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>          <em class="jxr_comment">//flush a batch of updates and release memory:</em>
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>          session.flush();
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>          session.clear();
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>      }
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  }
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>     
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  tx.commit();
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  session.close();
+</pre>
+<hr/>
+<div id="footer">Copyright &#169; 2019. All rights reserved.</div>
+</body>
+</html>

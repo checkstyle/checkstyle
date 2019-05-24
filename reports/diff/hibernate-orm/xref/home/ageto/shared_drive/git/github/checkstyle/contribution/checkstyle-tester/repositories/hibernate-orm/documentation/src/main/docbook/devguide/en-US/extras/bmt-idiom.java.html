@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/hibernate-orm/documentation/src/main/docbook/devguide/en-US/extras/bmt-idiom.java xref</title>
+<link type="text/css" rel="stylesheet" href="../stylesheet.css" />
+</head>
+<body>
+<pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">// BMT idiom</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   Session sess = factory.openSession();
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   Transaction tx = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>       tx = sess.beginTransaction();
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>       <em class="jxr_comment">// do some work</em>
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>       ...
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>          tx.commit();
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  }
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">catch</strong> (RuntimeException e) {
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>      <strong class="jxr_keyword">if</strong> (tx != <strong class="jxr_keyword">null</strong>) tx.rollback();
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>      <strong class="jxr_keyword">throw</strong> e; <em class="jxr_comment">// or display error message</em>
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  }
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">finally</strong> {
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>      sess.close();
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  }
+</pre>
+<hr/>
+<div id="footer"></div>
+</body>
+</html>

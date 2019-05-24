@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>select_wrapper xref</title>
+<link type="text/css" rel="stylesheet" href="../stylesheet.css" />
+</head>
+<body>
+<pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> PersonWrapper {
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Long id;
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Integer age;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   	<strong class="jxr_keyword">public</strong> PersonWrapper(Long id, Integer age) {
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   		<strong class="jxr_keyword">this</strong>.id = id;
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   		<strong class="jxr_keyword">this</strong>.age = age;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   	}
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   	...
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   }
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  ...
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  CriteriaQuery&lt;PersonWrapper&gt; criteria = builder.createQuery( PersonWrapper.<strong class="jxr_keyword">class</strong> );
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  Root&lt;Person&gt; personRoot = criteria.from( Person.<strong class="jxr_keyword">class</strong> );
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  criteria.select(
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  		builder.construct(
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  			PersonWrapper.<strong class="jxr_keyword">class</strong>,
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  			personRoot.get( Person_.id ),
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  			personRoot.get( Person_.age )
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  		)
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  );
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  criteria.where( builder.equal( personRoot.get( Person_.eyeColor ), <span class="jxr_string">"brown"</span> ) );
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  List&lt;PersonWrapper&gt; people = em.createQuery( criteria ).getResultList();
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">for</strong> ( PersonWrapper person : people ) {
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>      ...
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  }
+</pre>
+<hr/>
+<div id="footer"></div>
+</body>
+</html>

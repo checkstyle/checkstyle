@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+          "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+          "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
+
+
+<module name = "Checker">
+    <property name="charset" value="UTF-8"/>
+
+    <!-- do not change severity to 'error', as that will hide errors caused by exceptions -->
+    <property name="severity" value="warning"/>
+
+    <!-- haltOnException is required for exception fixes and reporting of all exceptions -->
+    <property name="haltOnException" value="false"/>
+
+    <!-- BeforeExecutionFileFilters is required for sources of java9 -->
+    <module name="BeforeExecutionExclusionFileFilter">
+        <property name="fileNamePattern" value="module\-info\.java$" />
+    </module>
+
+    <module name="TreeWalker">
+         <!-- Example of sevntu.checkstyle Check usage -->
+         <!-- <module name="NestedSwitchCheck"/> -->
+
+         <!-- Example of checkstyle Check usage -->
+         <module name="ThrowsCount">
+             <property name="max" value="20000000"/>
+         </module>
+    </module>
+
+    <module name="OrderedProperties"/>
+
+<!--
+    <module name="SeverityMatchFilter">
+        <property name="severity" value="warning"/>
+        <property name="acceptOnMatch" value="false"/>
+    </module>
+-->
+</module>

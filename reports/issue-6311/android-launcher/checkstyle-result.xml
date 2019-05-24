@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.21-SNAPSHOT">
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/LauncherSettings.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/HandleView.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/Search.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/LiveFolder.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/Widget.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/LauncherProvider.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/Workspace.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/InstallShortcutReceiver.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/FolderIcon.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/UserFolder.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/FolderInfo.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/BubbleTextView.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/FastBitmapDrawable.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/LauncherAppWidgetHost.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/CellLayout.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/Launcher.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/ItemInfo.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/LauncherModel.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/ApplicationsAdapter.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/ApplicationInfo.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/DragLayer.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/LiveFolderInfo.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/DragSource.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/DragController.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/AddAdapter.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/AllAppsGridView.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/LiveFolderAdapter.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/DeleteZone.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/Folder.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/WallpaperChooser.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/LiveFolderIcon.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/LauncherApplication.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/UninstallShortcutReceiver.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/Utilities.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/LauncherAppWidgetHostView.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/DragScroller.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/LauncherAppWidgetInfo.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/UserFolderInfo.java">
+</file>
+<file name="/home/ageto/shared_drive/git/github/checkstyle/contribution/checkstyle-tester/repositories/android-launcher/src/com/android/launcher/DropTarget.java">
+</file>
+</checkstyle>

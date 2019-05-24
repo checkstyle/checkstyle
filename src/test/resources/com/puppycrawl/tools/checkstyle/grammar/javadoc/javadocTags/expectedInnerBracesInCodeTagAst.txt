@@ -1,8 +1,0 @@
-JAVADOC -> JAVADOC [0:0]
-|--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG [0:0]
-|   |--JAVADOC_INLINE_TAG_START -> { [0:0]
-|   |--CODE_LITERAL -> @code [0:1]
-|   |--WS ->   [0:6]
-|   |--TEXT -> {{{}}{{}}}  [0:7]
-|   `--JAVADOC_INLINE_TAG_END -> } [0:19]
-`--EOF -> <EOF> [0:20]

@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>select_multiple_values_array xref</title>
+<link type="text/css" rel="stylesheet" href="../stylesheet.css" />
+</head>
+<body>
+<pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   CriteriaQuery&lt;Object[]&gt; criteria = builder.createQuery( Object[].<strong class="jxr_keyword">class</strong> );
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   Root&lt;Person&gt; personRoot = criteria.from( Person.<strong class="jxr_keyword">class</strong> );
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   Path&lt;Long&gt; idPath = personRoot.get( Person_.id );
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   Path&lt;Integer&gt; agePath = personRoot.get( Person_.age );
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   criteria.select( builder.array( idPath, agePath ) );
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   criteria.where( builder.equal( personRoot.get( Person_.eyeColor ), <span class="jxr_string">"brown"</span> ) );
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   List&lt;Object[]&gt; valueArray = em.createQuery( criteria ).getResultList();
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">for</strong> ( Object[] values : valueArray ) {
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  	<strong class="jxr_keyword">final</strong> Long id = (Long) values[0];
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  	<strong class="jxr_keyword">final</strong> Integer age = (Integer) values[1];
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  	...
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  }
+</pre>
+<hr/>
+<div id="footer"></div>
+</body>
+</html>
