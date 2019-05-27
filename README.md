@@ -155,7 +155,7 @@ are in the file named "LICENSE.apache20" in this directory.
 [buddy]: https://app.buddy.works/ivanovjr/checkstyle/pipelines/pipeline/135806
 [buddy img]: https://app.buddy.works/ivanovjr/checkstyle/pipelines/pipeline/135806/badge.svg?token=240176b1ce495d0a03a141f3f2f77971f43fe892a98de31cbc0e392ce5341f76 "buddy pipeline"
 
-[snyk]: https://snyk.io/test/github/checkstyle/checkstyle:pom.xml?targetFile=pom.xml
+[snyk]: https://app.snyk.io/org/checkstyle/project/7925c77b-98f3-4e70-93eb-5015337e58db
 [snyk img]: https://snyk.io/test/github/checkstyle/checkstyle/badge.svg
 
 [flattr]:https://flattr.com/submit/auto?fid=g39d10&amp;url=http%3A%2F%2Fcheckstyle.sourceforge.net
