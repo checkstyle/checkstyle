@@ -321,7 +321,7 @@
           <groupId>com.ibm.icu</groupId>
           <artifactId>icu4j</artifactId>
         </exclusion>
-      </exclusions> 
+      </exclusions>
     </dependency>
   </dependencies>
 
