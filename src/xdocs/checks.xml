@@ -483,6 +483,10 @@
         <td>Checks for missing Javadoc comments for a method or constructor.</td>
       </tr>
       <tr>
+        <td><a href="config_javadoc.html#MissingJavadocPackage">MissingJavadocPackage</a></td>
+        <td>Checks for missing Javadoc comments in package-info.java files.</td>
+      </tr>
+      <tr>
         <td><a href="config_javadoc.html#MissingJavadocType">MissingJavadocType</a></td>
         <td>Checks for missing Javadoc comments for class, enum, interface, and annotation
         interface definitions.</td>

@@ -1704,6 +1704,76 @@ public boolean isSomething()
       </subsection>
     </section>
 
+    <section name="MissingJavadocPackage">
+      <p>Since Checkstyle 8.22</p>
+      <subsection name="Description" id="MissingJavadocPackage_Description">
+        <p>
+            Checks for missing Javadoc comments in package-info.java files.
+        </p>
+
+        <p>
+          Rationale: description and other related documentation for a package can be written up
+          in the package-info.java file and it gets used in the production of the Javadocs.
+          See <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#packagecomment">
+          link</a> for more info.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="MissingJavadocPackage_Examples">
+        <p>
+            To configure the check:
+        </p>
+        <source>
+&lt;module name="MissingJavadocPackage"/&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+/**
+* Provides API classes
+*/
+package com.checkstyle.api; // no violation
+/*
+* Block comment is not a javadoc
+*/
+package com.checkstyle.api; // violation
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="MissingJavadocPackage_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocPackage">
+                Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Error Messages" id="MissingJavadocPackage_Error_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22package.javadoc.missing%22">
+                package.javadoc.missing</a>
+          </li>
+        </ul>
+        <p>
+            All messages can be customized if the default message doesn't suit you.
+            Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="MissingJavadocPackage_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="MissingJavadocPackage_Parent_Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="MissingJavadocType">
       <p>Since Checkstyle 8.20</p>
       <subsection name="Description" id="MissingJavadocType_Description">

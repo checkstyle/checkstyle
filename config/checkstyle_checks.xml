@@ -452,6 +452,7 @@
     <module name="MissingJavadocMethod">
       <property name="allowMissingPropertyJavadoc" value="true"/>
     </module>
+    <module name="MissingJavadocPackage"/>
     <module name="MissingJavadocType"/>
     <module name="NonEmptyAtclauseDescription"/>
     <module name="SingleLineJavadoc"/>
