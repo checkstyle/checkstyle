@@ -129,6 +129,7 @@ blablabla
 bleh
 Blic
 blockandinlinetags
+blockcomment
 blockcommentposition
 blockcommentstyle
 blockquote
@@ -793,6 +794,7 @@ Misordered
 missingctor
 missingdeprecated
 missingjavadocmethod
+missingjavadocpackage
 missingjavadoctype
 missingoverride
 missingswitchdefault
@@ -880,6 +882,7 @@ nofinalizer
 NOI
 noinfo
 noinspection
+nojavadoc
 nolinewrap
 nonascii
 noncompilable
@@ -951,6 +954,7 @@ overridable
 Overriden
 OVERRIDERS
 packageannotation
+packagecomment
 packagedeclaration
 packagediffdirectory
 packageinfo
