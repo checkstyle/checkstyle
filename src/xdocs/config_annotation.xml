@@ -391,8 +391,6 @@ public int foo() { ... }
           It is similar to the <code>ElementStyle.COMPACT</code> style but single value arrays
           are flagged.
           With annotations a single value array does not need to be placed in an array initializer.
-          This style can only be used when there is an element called 'value' which is either
-          the sole element or all other elements have default values.
         </p>
         <p>
           The ending parenthesis are optional when using annotations with no elements.
