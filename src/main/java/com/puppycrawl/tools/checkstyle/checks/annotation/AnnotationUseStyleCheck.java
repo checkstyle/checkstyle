@@ -63,8 +63,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Using the {@code ElementStyle.COMPACT_NO_ARRAY} style is less verbose.
  * It is similar to the {@code ElementStyle.COMPACT} style but single value arrays are flagged.
  * With annotations a single value array does not need to be placed in an array initializer.
- * This style can only be used when there is an element called 'value' which is either
- * the sole element or all other elements have default values.
  * </p>
  * <p>
  * The ending parenthesis are optional when using annotations with no elements.
@@ -159,7 +157,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
         COMPACT,
 
         /**
-         * Compact example.]
+         * Compact example
          *
          * <pre>@SuppressWarnings("unchecked")</pre>.
          */
@@ -428,28 +426,24 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
         final DetailAST arrayInit =
             annotation.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
 
-        final int valuePairCount =
-            annotation.getChildCount(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
-
         //in compact style with one value
         if (arrayInit != null
             && arrayInit.getChildCount(TokenTypes.EXPR) == 1) {
             log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                 ElementStyle.COMPACT_NO_ARRAY);
         }
-        //in expanded style with one value and the correct element name
-        else if (valuePairCount == 1) {
-            final DetailAST valuePair =
-                    annotation.findFirstToken(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
-            final DetailAST nestedArrayInit =
-                valuePair.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
-
-            if (nestedArrayInit != null
-                && ANNOTATION_ELEMENT_SINGLE_NAME.equals(
-                    valuePair.getFirstChild().getText())
+        //in expanded style with pairs
+        else {
+            DetailAST ast = annotation.getFirstChild();
+            while (ast != null) {
+                final DetailAST nestedArrayInit =
+                    ast.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
+                if (nestedArrayInit != null
                     && nestedArrayInit.getChildCount(TokenTypes.EXPR) == 1) {
-                log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
-                    ElementStyle.COMPACT_NO_ARRAY);
+                    log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
+                        ElementStyle.COMPACT_NO_ARRAY);
+                }
+                ast = ast.getNextSibling();
             }
         }
     }
