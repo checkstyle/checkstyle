@@ -21,11 +21,11 @@ package com.google.checkstyle.test.chapter2filebasic.rule231filetab;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck;
 
-public class FileTabCharacterTest extends AbstractModuleTestSupport {
+public class FileTabCharacterTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {

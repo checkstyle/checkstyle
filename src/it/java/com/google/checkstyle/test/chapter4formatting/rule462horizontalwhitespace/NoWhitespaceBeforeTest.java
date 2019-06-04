@@ -21,11 +21,11 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck;
 
-public class NoWhitespaceBeforeTest extends AbstractModuleTestSupport {
+public class NoWhitespaceBeforeTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {

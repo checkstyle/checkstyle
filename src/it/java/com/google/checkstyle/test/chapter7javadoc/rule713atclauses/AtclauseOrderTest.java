@@ -21,12 +21,12 @@ package com.google.checkstyle.test.chapter7javadoc.rule713atclauses;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class AtclauseOrderTest extends AbstractModuleTestSupport {
+public class AtclauseOrderTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {

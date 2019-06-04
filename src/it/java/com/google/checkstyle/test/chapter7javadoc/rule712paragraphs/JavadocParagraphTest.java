@@ -21,12 +21,12 @@ package com.google.checkstyle.test.chapter7javadoc.rule712paragraphs;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class JavadocParagraphTest extends AbstractModuleTestSupport {
+public class JavadocParagraphTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {

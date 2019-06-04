@@ -21,11 +21,11 @@ package com.google.checkstyle.test.chapter6programpractice.rule64finalizers;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck;
 
-public class NoFinalizerTest extends AbstractModuleTestSupport {
+public class NoFinalizerTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {

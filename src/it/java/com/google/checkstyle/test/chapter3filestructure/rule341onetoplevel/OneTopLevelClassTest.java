@@ -21,12 +21,12 @@ package com.google.checkstyle.test.chapter3filestructure.rule341onetoplevel;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class OneTopLevelClassTest extends AbstractModuleTestSupport {
+public class OneTopLevelClassTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {

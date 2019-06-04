@@ -21,11 +21,11 @@ package com.google.checkstyle.test.chapter3filestructure.rule3421overloadsplit;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck;
 
-public class OverloadMethodsDeclarationOrderTest extends AbstractModuleTestSupport {
+public class OverloadMethodsDeclarationOrderTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {

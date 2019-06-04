@@ -23,11 +23,11 @@ import static com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck.MSG_K
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
 
-public class LeftCurlyTest extends AbstractModuleTestSupport {
+public class LeftCurlyTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {

@@ -33,7 +33,7 @@ import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public abstract class AbstractIndentationTestSupport extends AbstractModuleTestSupport {
+public abstract class AbstractIndentationTestSupport extends AbstractGoogleModuleTestSupport {
 
     private static final int TAB_WIDTH = 4;
 

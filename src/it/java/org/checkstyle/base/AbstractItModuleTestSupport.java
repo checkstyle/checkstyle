@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.google.checkstyle.test.base;
+package org.checkstyle.base;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -39,23 +39,18 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
-import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
-import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 
-public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport {
+public abstract class AbstractItModuleTestSupport extends AbstractPathTestSupport {
 
     /**
      * Enum to specify options for checker creation.
@@ -75,34 +70,26 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
 
     }
 
-    private static final String ROOT_MODULE_NAME = "root";
+    protected static final String ROOT_MODULE_NAME = "root";
 
     private static final Pattern WARN_PATTERN = CommonUtil
             .createPattern(".*[ ]*//[ ]*warn[ ]*|/[*]\\s?warn\\s?[*]/");
 
-    private static final String XML_NAME = "/google_checks.xml";
-
-    private static final Configuration CONFIGURATION;
-
-    private static final Set<Class<?>> CHECKSTYLE_MODULES;
-
     private final ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
-    static {
-        try {
-            CONFIGURATION = ConfigurationLoader.loadConfiguration(XML_NAME,
-                    new PropertiesExpander(System.getProperties()));
-        }
-        catch (CheckstyleException ex) {
-            throw new IllegalStateException(ex);
-        }
-        try {
-            CHECKSTYLE_MODULES = CheckUtil.getCheckstyleModules();
-        }
-        catch (IOException ex) {
-            throw new IllegalStateException(ex);
-        }
-    }
+    /**
+     * Find the module creation option to use for the module name.
+     * @param moduleName The module name.
+     * @return The module creation option.
+     */
+    protected abstract ModuleCreationOption findModuleCreationOption(String moduleName);
+
+    /**
+     * Creates {@link DefaultConfiguration} instance for the given module class.
+     * @param clazz module class.
+     * @return {@link DefaultConfiguration} instance.
+     */
+    protected abstract DefaultConfiguration createModuleConfig(Class<?> clazz);
 
     /**
      * Returns test logger.
@@ -122,17 +109,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @throws IOException if I/O exception occurs while forming the path.
      */
     protected final String getNonCompilablePath(String filename) throws IOException {
-        return new File("src/it/resources-noncompilable/" + getPackageLocation() + "/"
-                + filename).getCanonicalPath();
-    }
-
-    /**
-     * Creates {@link DefaultConfiguration} instance for the given module class.
-     * @param clazz module class.
-     * @return {@link DefaultConfiguration} instance.
-     */
-    protected static DefaultConfiguration createModuleConfig(Class<?> clazz) {
-        return new DefaultConfiguration(clazz.getSimpleName());
+        return new File("src/" + getResourceLocation() + "/resources-noncompilable/"
+                + getPackageLocation() + "/" + filename).getCanonicalPath();
     }
 
     /**
@@ -144,20 +122,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     protected final Checker createChecker(Configuration moduleConfig)
             throws Exception {
         final String name = moduleConfig.getName();
-        ModuleCreationOption moduleCreationOption = ModuleCreationOption.IN_CHECKER;
 
-        for (Class<?> moduleClass : CHECKSTYLE_MODULES) {
-            if (moduleClass.getSimpleName().equals(name)
-                    || moduleClass.getSimpleName().equals(name + "Check")) {
-                if (ModuleReflectionUtil.isCheckstyleTreeWalkerCheck(moduleClass)
-                        || ModuleReflectionUtil.isTreeWalkerFilterModule(moduleClass)) {
-                    moduleCreationOption = ModuleCreationOption.IN_TREEWALKER;
-                }
-                break;
-            }
-        }
-
-        return createChecker(moduleConfig, moduleCreationOption);
+        return createChecker(moduleConfig, findModuleCreationOption(name));
     }
 
     /**
@@ -201,7 +167,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param config {@link Configuration} instance.
      * @return {@link DefaultConfiguration} for the {@link Checker}.
      */
-    protected static DefaultConfiguration createTreeWalkerConfig(Configuration config) {
+    protected final DefaultConfiguration createTreeWalkerConfig(Configuration config) {
         final DefaultConfiguration dc =
                 new DefaultConfiguration("configuration");
         final DefaultConfiguration twConf = createModuleConfig(TreeWalker.class);
@@ -228,7 +194,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * Expected messages are represented by the array of strings, warning line numbers are
      * represented by the array of integers.
      * This implementation uses overloaded
-     * {@link AbstractModuleTestSupport#verify(Checker, File[], String, String[], Integer...)}
+     * {@link AbstractItModuleTestSupport#verify(Checker, File[], String, String[], Integer...)}
      * method inside.
      * @param config configuration.
      * @param fileName file name to verify.
@@ -334,69 +300,6 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         return checkMessage;
     }
 
-    /**
-     * Returns {@link Configuration} instance for the given module name.
-     * This implementation uses {@link #getModuleConfig(String, String)} method inside.
-     * @param moduleName module name.
-     * @return {@link Configuration} instance for the given module name.
-     */
-    protected static Configuration getModuleConfig(String moduleName) {
-        return getModuleConfig(moduleName, null);
-    }
-
-    /**
-     * Returns {@link Configuration} instance for the given module name.
-     * This implementation uses {@link #getModuleConfig(String)} method inside.
-     * @param moduleName module name.
-     * @param moduleId module id.
-     * @return {@link Configuration} instance for the given module name.
-     */
-    protected static Configuration getModuleConfig(String moduleName, String moduleId) {
-        final Configuration result;
-        final List<Configuration> configs = getModuleConfigs(moduleName);
-        if (configs.size() == 1) {
-            result = configs.get(0);
-        }
-        else if (moduleId == null) {
-            throw new IllegalStateException("multiple instances of the same Module are detected");
-        }
-        else {
-            result = configs.stream().filter(conf -> {
-                try {
-                    return conf.getAttribute("id").equals(moduleId);
-                }
-                catch (CheckstyleException ex) {
-                    throw new IllegalStateException("problem to get ID attribute from " + conf, ex);
-                }
-            })
-            .findFirst().orElseGet(null);
-        }
-
-        return result;
-    }
-
-    /**
-     * Returns a list of all {@link Configuration} instances for the given module name.
-     * @param moduleName module name.
-     * @return {@link Configuration} instance for the given module name.
-     */
-    protected static List<Configuration> getModuleConfigs(String moduleName) {
-        final List<Configuration> result = new ArrayList<>();
-        for (Configuration currentConfig : CONFIGURATION.getChildren()) {
-            if ("TreeWalker".equals(currentConfig.getName())) {
-                for (Configuration moduleConfig : currentConfig.getChildren()) {
-                    if (moduleName.equals(moduleConfig.getName())) {
-                        result.add(moduleConfig);
-                    }
-                }
-            }
-            else if (moduleName.equals(currentConfig.getName())) {
-                result.add(currentConfig);
-            }
-        }
-        return result;
-    }
-
     private static String removeDeviceFromPathOnWindows(String path) {
         String fixedPath = path;
         final String os = System.getProperty("os.name", "Unix");
@@ -430,6 +333,11 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             }
         }
         return result.toArray(new Integer[0]);
+    }
+
+    @Override
+    protected String getResourceLocation() {
+        return "it";
     }
 
 }

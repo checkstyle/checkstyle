@@ -21,11 +21,11 @@ package com.google.checkstyle.test.chapter4formatting.rule451wheretobreak;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck;
 
-public class MethodParamPadTest extends AbstractModuleTestSupport {
+public class MethodParamPadTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {

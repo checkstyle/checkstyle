@@ -23,11 +23,11 @@ import static com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharacte
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck;
 
-public class AvoidEscapedUnicodeCharactersTest extends AbstractModuleTestSupport {
+public class AvoidEscapedUnicodeCharactersTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {

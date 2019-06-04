@@ -21,11 +21,11 @@ package com.google.checkstyle.test.chapter7javadoc.rule711generalform;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck;
 
-public class SingleLineJavadocTest extends AbstractModuleTestSupport {
+public class SingleLineJavadocTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {

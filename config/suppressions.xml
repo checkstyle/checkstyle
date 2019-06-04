@@ -78,7 +78,8 @@
     <suppress checks="ClassDataAbstractionCoupling"
               files="(Checker|Main|CheckstyleAntTask|JavadocDetailNodeParser)\.java"/>
     <suppress checks="ClassDataAbstractionCoupling"
-              files="(CheckerTest|AbstractModuleTestSupport|CheckstyleAntTaskTest|
+              files="(CheckerTest|AbstractModuleTestSupport|AbstractItModuleTestSupport|
+                     |CheckstyleAntTaskTest|
                      |TranslationCheckTest|LocalizedMessageTest|AbstractFileSetCheckTest|
                      |AbstractCheckTest|AutomaticBeanTest)\.java"/>
     <suppress checks="ClassDataAbstractionCoupling" files="PropertyCacheFileTest\.java"/>

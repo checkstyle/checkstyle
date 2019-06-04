@@ -21,11 +21,11 @@ package com.sun.checkstyle.test.chapter6declarations.rule61numberperline;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck;
+import com.sun.checkstyle.test.base.AbstractSunModuleTestSupport;
 
-public class MultipleVariableDeclarationsTest extends AbstractModuleTestSupport {
+public class MultipleVariableDeclarationsTest extends AbstractSunModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {

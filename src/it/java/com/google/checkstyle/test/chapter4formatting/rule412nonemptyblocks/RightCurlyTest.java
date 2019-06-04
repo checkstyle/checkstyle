@@ -25,12 +25,12 @@ import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class RightCurlyTest extends AbstractModuleTestSupport {
+public class RightCurlyTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {

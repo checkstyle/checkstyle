@@ -21,11 +21,11 @@ package com.google.checkstyle.test.chapter7javadoc.rule713atclauses;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck;
 
-public class NonEmptyAtclauseDescriptionTest extends AbstractModuleTestSupport {
+public class NonEmptyAtclauseDescriptionTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {

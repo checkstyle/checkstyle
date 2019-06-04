@@ -21,11 +21,11 @@ package com.google.checkstyle.test.chapter4formatting.rule4842fallthrough;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck;
 
-public class FallThroughTest extends AbstractModuleTestSupport {
+public class FallThroughTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {

@@ -38,6 +38,14 @@ public abstract class AbstractPathTestSupport {
     protected abstract String getPackageLocation();
 
     /**
+     * Retrieves the name of the folder location for resources.
+     * @return The name of the folder.
+     */
+    protected String getResourceLocation() {
+        return "test";
+    }
+
+    /**
      * Returns canonical path for the file with the given file name.
      * The path is formed base on the root location.
      * This implementation uses 'src/test/resources/'
@@ -47,8 +55,8 @@ public abstract class AbstractPathTestSupport {
      * @throws IOException if I/O exception occurs while forming the path.
      */
     protected final String getPath(String filename) throws IOException {
-        return new File("src/test/resources/" + getPackageLocation() + "/" + filename)
-                .getCanonicalPath();
+        return new File("src/" + getResourceLocation() + "/resources/" + getPackageLocation() + "/"
+                + filename).getCanonicalPath();
     }
 
     protected final String getResourcePath(String filename) {

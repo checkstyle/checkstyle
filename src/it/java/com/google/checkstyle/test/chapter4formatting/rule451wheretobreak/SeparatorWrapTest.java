@@ -23,11 +23,11 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapChe
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck;
 
-public class SeparatorWrapTest extends AbstractModuleTestSupport {
+public class SeparatorWrapTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
