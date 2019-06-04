@@ -21,11 +21,11 @@ package com.google.checkstyle.test.chapter3filestructure.rule32packagestate;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 
-public class LineLengthTest extends AbstractModuleTestSupport {
+public class LineLengthTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {

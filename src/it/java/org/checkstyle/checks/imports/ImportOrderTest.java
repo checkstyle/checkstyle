@@ -19,14 +19,14 @@
 
 package org.checkstyle.checks.imports;
 
+import org.checkstyle.base.AbstractCheckstyleModuleTestSupport;
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class ImportOrderTest extends AbstractModuleTestSupport {
+public class ImportOrderTest extends AbstractCheckstyleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {

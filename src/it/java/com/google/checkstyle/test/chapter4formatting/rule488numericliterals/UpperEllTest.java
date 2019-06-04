@@ -21,10 +21,10 @@ package com.google.checkstyle.test.chapter4formatting.rule488numericliterals;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public class UpperEllTest extends AbstractModuleTestSupport {
+public class UpperEllTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {

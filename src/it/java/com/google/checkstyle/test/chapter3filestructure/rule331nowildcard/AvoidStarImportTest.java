@@ -21,10 +21,10 @@ package com.google.checkstyle.test.chapter3filestructure.rule331nowildcard;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public class AvoidStarImportTest extends AbstractModuleTestSupport {
+public class AvoidStarImportTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {

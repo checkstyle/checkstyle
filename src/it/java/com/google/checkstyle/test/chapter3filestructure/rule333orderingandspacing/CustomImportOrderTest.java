@@ -21,12 +21,12 @@ package com.google.checkstyle.test.chapter3filestructure.rule333orderingandspaci
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class CustomImportOrderTest extends AbstractModuleTestSupport {
+public class CustomImportOrderTest extends AbstractGoogleModuleTestSupport {
 
     /** Shortcuts to make code more compact. */
     private static final String MSG_LINE_SEPARATOR = CustomImportOrderCheck.MSG_LINE_SEPARATOR;

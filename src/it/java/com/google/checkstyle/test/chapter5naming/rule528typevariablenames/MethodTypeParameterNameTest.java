@@ -24,11 +24,11 @@ import java.util.Map;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public class MethodTypeParameterNameTest extends AbstractModuleTestSupport {
+public class MethodTypeParameterNameTest extends AbstractGoogleModuleTestSupport {
 
     private static final String MSG_KEY = "name.invalidPattern";
     private static String format;

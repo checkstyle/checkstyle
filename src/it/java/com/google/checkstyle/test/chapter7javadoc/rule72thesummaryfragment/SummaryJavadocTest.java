@@ -21,12 +21,12 @@ package com.google.checkstyle.test.chapter7javadoc.rule72thesummaryfragment;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class SummaryJavadocTest extends AbstractModuleTestSupport {
+public class SummaryJavadocTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {

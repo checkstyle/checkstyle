@@ -21,12 +21,12 @@ package com.google.checkstyle.test.chapter4formatting.rule413emptyblocks;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.EmptyCatchBlockCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class EmptyCatchBlockTest extends AbstractModuleTestSupport {
+public class EmptyCatchBlockTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {

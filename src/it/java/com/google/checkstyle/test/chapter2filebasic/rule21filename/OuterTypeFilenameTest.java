@@ -23,12 +23,12 @@ import static com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck.MSG_
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class OuterTypeFilenameTest extends AbstractModuleTestSupport {
+public class OuterTypeFilenameTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {

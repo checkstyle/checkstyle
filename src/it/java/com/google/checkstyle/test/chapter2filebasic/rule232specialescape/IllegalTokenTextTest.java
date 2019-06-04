@@ -21,10 +21,10 @@ package com.google.checkstyle.test.chapter2filebasic.rule232specialescape;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public class IllegalTokenTextTest extends AbstractModuleTestSupport {
+public class IllegalTokenTextTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {

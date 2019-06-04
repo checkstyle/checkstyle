@@ -23,11 +23,11 @@ import java.io.File;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck;
 
-public class OneStatementPerLineTest extends AbstractModuleTestSupport {
+public class OneStatementPerLineTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {

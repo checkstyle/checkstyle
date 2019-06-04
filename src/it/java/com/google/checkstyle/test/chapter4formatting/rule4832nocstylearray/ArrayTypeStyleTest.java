@@ -23,11 +23,11 @@ import static com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck.MSG_KEY
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.AbstractModuleTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck;
 
-public class ArrayTypeStyleTest extends AbstractModuleTestSupport {
+public class ArrayTypeStyleTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
