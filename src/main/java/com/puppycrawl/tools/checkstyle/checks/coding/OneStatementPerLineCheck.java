@@ -252,10 +252,10 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
 
     private void checkResourceVariable(DetailAST currentStatement) {
         final DetailAST nextNode = currentStatement.getNextSibling();
-        if (currentStatement.getPreviousSibling().branchContains(TokenTypes.ASSIGN)) {
+        if (currentStatement.getPreviousSibling().findFirstToken(TokenTypes.ASSIGN) != null) {
             lastVariableResourceStatementEnd = currentStatement.getLineNo();
         }
-        if (nextNode.branchContains(TokenTypes.ASSIGN)
+        if (nextNode.findFirstToken(TokenTypes.ASSIGN) != null
                 && nextNode.getLineNo() == lastVariableResourceStatementEnd) {
             log(currentStatement, MSG_KEY);
         }
