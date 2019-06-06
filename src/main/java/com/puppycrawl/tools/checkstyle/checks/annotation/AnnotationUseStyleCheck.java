@@ -390,11 +390,20 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
         final int valuePairCount =
             annotation.getChildCount(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
 
-        if (valuePairCount == 0
-            && annotation.branchContains(TokenTypes.EXPR)) {
-            log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
-                ElementStyle.EXPANDED);
+        if (valuePairCount == 0 && hasArguments(annotation)) {
+            log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE, ElementStyle.EXPANDED);
         }
+    }
+
+    /**
+     * Checks that annotation has arguments.
+     *
+     * @param annotation to check
+     * @return true if annotation has arguments, false otherwise
+     */
+    private static boolean hasArguments(DetailAST annotation) {
+        final DetailAST firstToken = annotation.findFirstToken(TokenTypes.LPAREN);
+        return firstToken != null && firstToken.getNextSibling().getType() != TokenTypes.RPAREN;
     }
 
     /**
