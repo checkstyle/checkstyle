@@ -595,7 +595,17 @@ public class XdocsPagesTest {
             Assert.assertTrue(fileName + " section '" + sectionName
                     + "' should have no properties to show", !properties.isEmpty());
 
-            validatePropertySectionProperties(fileName, sectionName, subSection, instance,
+            final Set<Node> nodes = XmlUtil.getChildrenElements(subSection);
+            Assert.assertEquals(fileName + " section '" + sectionName
+                    + "' subsection 'Properties' should have one child node",
+                1, nodes.size());
+
+            final Node table = nodes.iterator().next();
+            Assert.assertEquals(fileName + " section '" + sectionName
+                    + "' subsection 'Properties' has unexpected child node",
+                "table", table.getNodeName());
+
+            validatePropertySectionProperties(fileName, sectionName, table, instance,
                     properties);
         }
 
@@ -663,12 +673,12 @@ public class XdocsPagesTest {
     }
 
     private static void validatePropertySectionProperties(String fileName, String sectionName,
-            Node subSection, Object instance, Set<String> properties) throws Exception {
+            Node table, Object instance, Set<String> properties) throws Exception {
         boolean skip = true;
         boolean didJavadocTokens = false;
         boolean didTokens = false;
 
-        for (Node row : XmlUtil.getChildrenElements(XmlUtil.getFirstChildElement(subSection))) {
+        for (Node row : XmlUtil.getChildrenElements(table)) {
             final List<Node> columns = new ArrayList<>(XmlUtil.getChildrenElements(row));
 
             Assert.assertEquals(fileName + " section '" + sectionName
