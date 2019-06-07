@@ -175,6 +175,8 @@
                   <td>3.5</td>
               </tr>
           </table>
+      </subsection>
+      <subsection name="Notes" id="SuppressionCommentFilter_Notes">
           <p>
               offCommentFormat and onCommentFormat must have equal
               <a href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Matcher.html#groupCount()">
@@ -476,6 +478,8 @@ public class UserService {
                <td>6.15</td>
              </tr>
           </table>
+      </subsection>
+      <subsection name="Notes" id="SuppressionFilter_Notes">
           <p>
             A <a href="dtds/suppressions_1_2.dtd"><em>suppressions XML
             document</em></a> contains a set
@@ -1982,6 +1986,8 @@ public class UserService {
                       <td>8.6</td>
                   </tr>
               </table>
+          </subsection>
+          <subsection name="Notes" id="SuppressWithPlainTextCommentFilter_Notes">
               <p>
                   offCommentFormat and onCommentFormat must have equal
                   <a href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Matcher.html#groupCount()">
