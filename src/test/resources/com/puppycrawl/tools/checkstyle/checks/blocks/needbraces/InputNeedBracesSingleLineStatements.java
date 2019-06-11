@@ -116,4 +116,18 @@ public class InputNeedBracesSingleLineStatements
         for (;;)
         ;
     }
+    private void method(){
+        if(false) {
+            switch (0) {
+                case -1:
+                    return;
+                default:
+                    return;
+            }
+        }
+        switch(1){
+            case 1: return;
+            default: throw new RuntimeException("");
+        }
+    }
 }

@@ -93,7 +93,6 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "106: " + getCheckMessage(MSG_KEY_NEED_BRACES, "do"),
             "107: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
             "108: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
-            "110: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
         };
         verify(checkConfig, getPath("InputNeedBraces.java"), expected);
     }
@@ -132,6 +131,19 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testDoNotAllowSingleLineLambda() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(NeedBracesCheck.class);
+        checkConfig.addAttribute("tokens", "LAMBDA");
+        final String[] expected = {
+            "5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "6: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "7: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+        };
+        verify(checkConfig, getPath("InputNeedBracesSingleLineLambda.java"), expected);
+    }
+
+    @Test
     public void testSingleLineCaseDefault() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(NeedBracesCheck.class);
@@ -140,6 +152,8 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "72: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "75: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "122: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "124: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
         };
         verify(checkConfig, getPath("InputNeedBracesSingleLineStatements.java"), expected);
     }
@@ -152,6 +166,22 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("allowSingleLineStatement", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputNeedBracesEmptyDefault.java"), expected);
+    }
+
+    @Test
+    public void testSingleLineCaseDefaultNoSingleLine() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(NeedBracesCheck.class);
+        checkConfig.addAttribute("tokens", "LITERAL_CASE, LITERAL_DEFAULT");
+        final String[] expected = {
+            "14: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "15: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "18: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "21: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "29: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "30: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+        };
+        verify(checkConfig, getPath("InputNeedBracesCaseDefaultNoSingleLine.java"), expected);
     }
 
     @Test
@@ -169,13 +199,8 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tokens", "LITERAL_ELSE, LITERAL_CASE, LITERAL_DEFAULT");
         checkConfig.addAttribute("allowSingleLineStatement", "true");
         final String[] expected = {
-            "29: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "35: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "36: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "38: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "41: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "44: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "49: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
             "56: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
         };
         verify(checkConfig, getPath("InputNeedBracesConditional.java"), expected);

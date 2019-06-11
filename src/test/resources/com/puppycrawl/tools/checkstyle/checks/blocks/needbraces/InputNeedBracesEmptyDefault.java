@@ -17,3 +17,7 @@ public class InputNeedBracesEmptyDefault {
 @interface Example {
     String priority() default "value";
 }
+
+interface IntefaceWithDefaultMethod {
+    default void doIt(){}
+}
