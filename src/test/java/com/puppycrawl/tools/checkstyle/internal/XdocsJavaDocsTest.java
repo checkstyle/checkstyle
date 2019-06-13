@@ -404,6 +404,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             final char last = text.charAt(text.length() - 1);
 
             result = (firstCharToAppend == '@'
+                    || Character.getType(firstCharToAppend) == Character.DASH_PUNCTUATION
                     || Character.getType(last) == Character.OTHER_PUNCTUATION
                     || Character.isAlphabetic(last)
                     || Character.isAlphabetic(firstCharToAppend)) && !Character.isWhitespace(last);
