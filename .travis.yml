@@ -221,20 +221,14 @@ matrix:
         - DESC="build with OpenJDK12"
         - CMD="./.ci/travis/travis.sh jdk12"
 
-    # OracleJDK9 build
-    - jdk: oraclejdk9
-      env:
-        - DESC="build with OracleJDK9"
-        - CMD="mvn -e package -Passembly && mvn -e site -Dlinkcheck.skip=true"
-
     # OracleJDK11 build
     - jdk: oraclejdk11
       env:
         - DESC="build with OracleJDK11"
         - CMD="mvn -e package -Passembly && mvn -e site -Dlinkcheck.skip=true"
 
-    # OracleJDK9 compile input files with jdk9 specific syntax
-    - jdk: oraclejdk9
+    # OpenJDK9 compile input files with jdk9 specific syntax
+    - jdk: openjdk9
       env:
         - DESC="compile input files with jdk9 specific syntax"
         - CMD="./.ci/travis/travis.sh javac9"
