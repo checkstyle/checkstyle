@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * also override method {@code equals(Object)}.
  * </p>
  * <p>
- * Covariant {@code equals()}- method that is similar to {@code equals(Object)},
+ * Covariant {@code equals()} - method that is similar to {@code equals(Object)},
  * but with a covariant parameter type (any subtype of Object).
  * </p>
  * <p>
