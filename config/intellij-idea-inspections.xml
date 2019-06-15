@@ -4607,6 +4607,7 @@
     ,com.puppycrawl.tools.checkstyle.internal.TestUtil,assert.*, ,
     ,com.puppycrawl.tools.checkstyle.grammar.AstRegressionTest.AssertGeneratedJavaLexer,verify.*, ,
     ,nl.jqno.equalsverifier.EqualsVerifier,verify.*, ,
+    ,org.checkstyle.base.AbstractItModuleTestSupport,verify.*, ,
     ,org.powermock.api.mockito.PowerMockito,verify.*"/>
         <option name="assertKeywordIsAssertion" value="false"/>
     </inspection_tool>
