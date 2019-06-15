@@ -419,8 +419,8 @@ public class XdocsPagesTest {
                     continue;
                 }
 
-                Assert.assertTrue(fileName + " section '" + sectionName
-                        + "' shouldn't end with 'Check'", !sectionName.endsWith("Check"));
+                Assert.assertFalse(fileName + " section '" + sectionName
+                        + "' shouldn't end with 'Check'", sectionName.endsWith("Check"));
                 if (lastSectionName != null) {
                     Assert.assertTrue(
                             fileName + " section '" + sectionName
@@ -592,8 +592,8 @@ public class XdocsPagesTest {
         fixCapturedProperties(sectionName, instance, clss, properties);
 
         if (subSection != null) {
-            Assert.assertTrue(fileName + " section '" + sectionName
-                    + "' should have no properties to show", !properties.isEmpty());
+            Assert.assertFalse(fileName + " section '" + sectionName
+                    + "' should have no properties to show", properties.isEmpty());
 
             final Set<Node> nodes = XmlUtil.getChildrenElements(subSection);
             Assert.assertEquals(fileName + " section '" + sectionName
@@ -1592,8 +1592,8 @@ public class XdocsPagesTest {
                 continue;
             }
 
-            Assert.assertTrue(styleName + "_style.xml rule '" + ruleName + "' module '" + moduleName
-                    + "' shouldn't end with 'Check'", !moduleName.endsWith("Check"));
+            Assert.assertFalse(styleName + "_style.xml rule '" + ruleName + "' module '" + moduleName
+                    + "' shouldn't end with 'Check'", moduleName.endsWith("Check"));
 
             styleChecks.remove(moduleName);
 

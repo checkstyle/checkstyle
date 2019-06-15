@@ -49,7 +49,7 @@ public class AllTestsTest {
             grabAllTests(allTests, filePath.toFile());
         });
 
-        Assert.assertTrue("found tests", !allTests.keySet().isEmpty());
+        Assert.assertFalse("tests should exists", allTests.keySet().isEmpty());
 
         walk(Paths.get("src/test/resources/com/puppycrawl"), filePath -> {
             verifyInputFile(allTests, filePath.toFile());
@@ -67,7 +67,7 @@ public class AllTestsTest {
             grabAllFiles(allTests, filePath.toFile());
         });
 
-        Assert.assertTrue("found tests", !allTests.keySet().isEmpty());
+        Assert.assertFalse("tests should exists", allTests.keySet().isEmpty());
 
         walk(Paths.get("src/test/java"), filePath -> {
             verifyHasProductionFile(allTests, filePath.toFile());
