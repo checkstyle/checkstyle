@@ -239,7 +239,7 @@ public class TokenUtilTest {
 
     @Test
     public void testGetTokenNameWithGreatestPossibleId() {
-        final Integer id = TokenTypes.COMMENT_CONTENT;
+        final int id = TokenTypes.COMMENT_CONTENT;
         final String tokenName = TokenUtil.getTokenName(id);
 
         assertEquals("Invalid token name", "COMMENT_CONTENT", tokenName);
