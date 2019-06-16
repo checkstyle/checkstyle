@@ -103,7 +103,7 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
             bw.write(checkName);
             bw.write("\"\n");
             bw.write("       query=\"");
-            bw.write(xpathQueries.stream().collect(Collectors.joining(DELIMITER)));
+            bw.write(String.join(DELIMITER, xpathQueries));
             bw.write("\"/>\n");
             bw.write("</suppressions>");
         }
