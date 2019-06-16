@@ -16,7 +16,7 @@ branches:
     - master
 
 install:
-  -
+  - ""
 
 matrix:
   fast_finish: true
