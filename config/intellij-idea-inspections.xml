@@ -4001,7 +4001,9 @@
                      enabled_by_default="true"/>
     <inspection_tool class="SimplifiableIfStatement" enabled="true" level="ERROR"
                      enabled_by_default="true"/>
-    <inspection_tool class="SimplifiableJUnitAssertion" enabled="true" level="ERROR"
+    <!-- if asserts methods use messages such simplification damage ease of read
+         see details at https://github.com/checkstyle/checkstyle/pull/6823 -->
+    <inspection_tool class="SimplifiableJUnitAssertion" enabled="false" level="ERROR"
                      enabled_by_default="true"/>
     <inspection_tool class="SimplifyAssertNotNull" enabled="false" level="INFO"
                      enabled_by_default="false"/>
