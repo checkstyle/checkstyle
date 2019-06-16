@@ -115,7 +115,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </pre>
  *
  * @since 3.0
- * @noinspection HtmlTagCanBeJavadocTag
  */
 @StatelessCheck
 public class LeftCurlyCheck
@@ -147,7 +146,6 @@ public class LeftCurlyCheck
 
     /**
      * Specify the policy on placement of a left curly brace (<code>'{'</code>).
-     * @noinspection HtmlTagCanBeJavadocTag
      * */
     private LeftCurlyOption option = LeftCurlyOption.EOL;
 
@@ -155,7 +153,6 @@ public class LeftCurlyCheck
      * Setter to specify the policy on placement of a left curly brace (<code>'{'</code>).
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
-     * @noinspection HtmlTagCanBeJavadocTag
      */
     public void setOption(String optionStr) {
         option = LeftCurlyOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));

@@ -1359,7 +1359,6 @@ public final class TokenTypes {
      * @see #OBJBLOCK
      * @see #ARRAY_INIT
      * @see #SLIST
-     * @noinspection HtmlTagCanBeJavadocTag
      **/
     public static final int LCURLY = GeneratedJavaTokenTypes.LCURLY;
     /**
@@ -1368,7 +1367,6 @@ public final class TokenTypes {
      * @see #OBJBLOCK
      * @see #ARRAY_INIT
      * @see #SLIST
-     * @noinspection HtmlTagCanBeJavadocTag
      **/
     public static final int RCURLY = GeneratedJavaTokenTypes.RCURLY;
     /**

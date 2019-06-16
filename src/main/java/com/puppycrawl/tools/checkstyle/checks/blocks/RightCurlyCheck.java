@@ -78,7 +78,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </pre>
  *
  * @since 3.0
- * @noinspection HtmlTagCanBeJavadocTag
  *
  */
 @StatelessCheck
@@ -104,7 +103,6 @@ public class RightCurlyCheck extends AbstractCheck {
 
     /**
      * Specify the policy on placement of a right curly brace (<code>'}'</code>).
-     * @noinspection HtmlTagCanBeJavadocTag
      */
     private RightCurlyOption option = RightCurlyOption.SAME;
 
@@ -112,7 +110,6 @@ public class RightCurlyCheck extends AbstractCheck {
      * Setter to specify the policy on placement of a right curly brace (<code>'}'</code>).
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
-     * @noinspection HtmlTagCanBeJavadocTag
      */
     public void setOption(String optionStr) {
         option = RightCurlyOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
