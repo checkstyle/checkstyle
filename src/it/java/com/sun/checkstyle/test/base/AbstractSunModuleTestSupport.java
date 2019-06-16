@@ -148,9 +148,4 @@ public abstract class AbstractSunModuleTestSupport extends AbstractItModuleTestS
         return result;
     }
 
-    @Override
-    protected String getResourceLocation() {
-        return "it";
-    }
-
 }

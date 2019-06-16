@@ -148,9 +148,4 @@ public abstract class AbstractGoogleModuleTestSupport extends AbstractItModuleTe
         return result;
     }
 
-    @Override
-    protected String getResourceLocation() {
-        return "it";
-    }
-
 }
