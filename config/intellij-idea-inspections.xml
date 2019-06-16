@@ -1631,6 +1631,8 @@
                      enabled_by_default="false"/>
     <inspection_tool class="ELValidationInJSP" enabled="false" level="ERROR"
                      enabled_by_default="false"/>
+    <inspection_tool class="ES6ConvertVarToLetConst" enabled="false" level="WEAK WARNING"
+                     enabled_by_default="false" />
     <inspection_tool class="ES6Validation" enabled="true" level="WARNING"
                      enabled_by_default="true"/>
     <inspection_tool class="EjbClassBasicInspection" enabled="true" level="WARNING"
