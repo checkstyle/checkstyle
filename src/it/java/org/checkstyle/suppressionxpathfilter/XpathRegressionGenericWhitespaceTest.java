@@ -21,6 +21,7 @@ package org.checkstyle.suppressionxpathfilter;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
@@ -50,7 +51,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
                     GenericWhitespaceCheck.MSG_WS_PRECEDED, ">"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionProcessEnd']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='bad']]/PARAMETERS/PARAMETER_DEF[./IDENT[@text='cls']]"
                 + "/TYPE[./IDENT[@text='Class']]/TYPE_ARGUMENTS/GENERIC_END"
@@ -73,7 +74,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
                     GenericWhitespaceCheck.MSG_WS_NOT_PRECEDED, "&"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT["
                 + "@text='SuppressionXpathRegressionProcessNestedGenericsOne']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='bad']]/TYPE_PARAMETERS"
@@ -98,7 +99,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
                     GenericWhitespaceCheck.MSG_WS_FOLLOWED, ">"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT["
                 + "@text='SuppressionXpathRegressionProcessNestedGenericsTwo']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='bad']]/TYPE_PARAMETERS"
@@ -123,7 +124,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
                     GenericWhitespaceCheck.MSG_WS_FOLLOWED, ">"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT["
                 + "@text='SuppressionXpathRegressionProcessNestedGenericsThree']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='bad']]/TYPE_PARAMETERS"
@@ -148,7 +149,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
                     GenericWhitespaceCheck.MSG_WS_FOLLOWED, ">"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT["
                 + "@text='SuppressionXpathRegressionProcessSingleGenericOne']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN/EXPR/METHOD_CALL"
@@ -173,7 +174,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
                     GenericWhitespaceCheck.MSG_WS_ILLEGAL_FOLLOW, ">"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT["
                 + "@text='SuppressionXpathRegressionProcessSingleGenericTwo']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='bad']]/TYPE_PARAMETERS/GENERIC_END"
