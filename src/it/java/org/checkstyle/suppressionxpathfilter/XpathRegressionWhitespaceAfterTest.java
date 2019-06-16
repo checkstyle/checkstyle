@@ -20,7 +20,7 @@
 package org.checkstyle.suppressionxpathfilter;
 
 import java.io.File;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
@@ -50,7 +50,7 @@ public class XpathRegressionWhitespaceAfterTest extends AbstractXpathTestSupport
                     WhitespaceAfterCheck.MSG_WS_TYPECAST, "-"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT["
                 + "@text='SuppressionXpathRegressionWhitespaceAfterTypecast']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN/EXPR/TYPECAST/RPAREN"
@@ -73,7 +73,7 @@ public class XpathRegressionWhitespaceAfterTest extends AbstractXpathTestSupport
                     WhitespaceAfterCheck.MSG_WS_NOT_FOLLOWED, ","),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT["
                 + "@text='SuppressionXpathRegressionWhitespaceAfterNotFollowed']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN/ARRAY_INIT/COMMA"

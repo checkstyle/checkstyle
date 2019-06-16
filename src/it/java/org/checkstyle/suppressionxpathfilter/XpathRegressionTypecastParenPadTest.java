@@ -21,6 +21,7 @@ package org.checkstyle.suppressionxpathfilter;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
@@ -101,7 +102,7 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
                     AbstractParenPadCheck.MSG_WS_PRECEDED, ")"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionTypecastParenPadRightPreceded']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN/EXPR/TYPECAST/RPAREN"
         );
@@ -124,7 +125,7 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
                     AbstractParenPadCheck.MSG_WS_NOT_PRECEDED, ")"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT["
                 + "@text='SuppressionXpathRegressionTypecastParenPadRightNotPreceded']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN/EXPR/TYPECAST/RPAREN"

@@ -20,7 +20,7 @@
 package org.checkstyle.suppressionxpathfilter;
 
 import java.io.File;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
@@ -50,7 +50,7 @@ public class XpathRegressionSingleSpaceSeparatorTest extends AbstractXpathTestSu
                     SingleSpaceSeparatorCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionSingleSpaceSeparator']]/OBJBLOCK"
                 + "/VARIABLE_DEF/IDENT[@text='bad']"
         );
