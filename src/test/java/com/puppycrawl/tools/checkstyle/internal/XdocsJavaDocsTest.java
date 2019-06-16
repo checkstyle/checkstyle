@@ -251,13 +251,9 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 CHECK_TEXT.put(subSectionName, createPropertiesText());
                 break;
             case "Example of Usage":
-                break;
             case "Error Messages":
-                break;
             case "Package":
-                break;
             case "Parent Module":
-                break;
             default:
                 break;
         }

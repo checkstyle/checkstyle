@@ -119,16 +119,12 @@ public class ParseTreeTablePresentation {
                 columnClass = ParseTreeTableModel.class;
                 break;
             case 1:
+            case 4:
                 columnClass = String.class;
                 break;
             case 2:
-                columnClass = Integer.class;
-                break;
             case 3:
                 columnClass = Integer.class;
-                break;
-            case 4:
-                columnClass = String.class;
                 break;
             default:
                 throw new IllegalStateException(UNKNOWN_COLUMN_MSG);

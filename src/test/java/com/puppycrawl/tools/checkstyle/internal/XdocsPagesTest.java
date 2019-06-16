@@ -507,12 +507,8 @@ public class XdocsPagesTest {
                     subSectionName);
 
             switch (subSectionPos) {
-                case 0:
-                    break;
                 case 1:
                     validatePropertySection(fileName, sectionName, subSection, instance);
-                    break;
-                case 2:
                     break;
                 case 3:
                     validateUsageExample(fileName, sectionName, subSection);
@@ -526,6 +522,8 @@ public class XdocsPagesTest {
                 case 6:
                     validateParentSection(fileName, sectionName, subSection);
                     break;
+                case 0:
+                case 2:
                 default:
                     break;
             }
