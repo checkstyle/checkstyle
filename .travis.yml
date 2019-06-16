@@ -2,7 +2,6 @@ language: java
 sudo: false
 
 cache:
-  apt: true
   directories:
     - ~/.m2
 
@@ -15,9 +14,6 @@ addons:
 branches:
   only:
     - master
-
-install:
-  -
 
 matrix:
   fast_finish: true
