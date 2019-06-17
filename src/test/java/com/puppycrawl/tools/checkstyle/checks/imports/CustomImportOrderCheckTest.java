@@ -315,9 +315,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("separateLineBetweenGroups", "true");
         checkConfig.addAttribute("customImportOrderRules",
                 "SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE###STATIC");
-        final String[] expected = {
-            "5: " + getCheckMessage(MSG_LINE_SEPARATOR, "org.junit.*"),
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig,
             getNonCompilablePath("InputCustomImportOrderThirdPartyPackage.java"), expected);
@@ -723,9 +721,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("separateLineBetweenGroups", "true");
 
         createChecker(checkConfig);
-        final String[] expected = {
-            "5: " + getCheckMessage(MSG_LINE_SEPARATOR, "java.util.*"),
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath("InputCustomImportOrderNoPackage.java"),
             expected);
     }
@@ -741,16 +737,59 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
 
         createChecker(checkConfig);
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_LINE_SEPARATOR,
-                "com.puppycrawl.tools.checkstyle.utils.AnnotationUtil.containsAnnotation"),
             "7: " + getCheckMessage(MSG_LINE_SEPARATOR,
                 "com.sun.accessibility.internal.resources.*"),
-            "11: " + getCheckMessage(MSG_LINE_SEPARATOR, "java.util.Arrays"),
-            "19: " + getCheckMessage(MSG_LINE_SEPARATOR,
-                "org.apache.commons.beanutils.converters.ArrayConverter"),
         };
         verify(checkConfig, getNonCompilablePath("InputCustomImportOrderNoPackage2.java"),
             expected);
     }
 
+    @Test
+    public void testNoPackage3() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("customImportOrderRules",
+                "STATIC###STANDARD_JAVA_PACKAGE###THIRD_PARTY_PACKAGE###SPECIAL_IMPORTS");
+        checkConfig.addAttribute("specialImportsRegExp", "^org\\..+");
+        checkConfig.addAttribute("thirdPartyPackageRegExp", "^com\\.google\\..+");
+        checkConfig.addAttribute("separateLineBetweenGroups", "true");
+
+        createChecker(checkConfig);
+        final String[] expected = {
+            "6: " + getCheckMessage(MSG_LINE_SEPARATOR,
+                "java.util.Map"),
+            "14: " + getCheckMessage(MSG_LINE_SEPARATOR,
+                "org.apache.*"),
+            "18: " + getCheckMessage(MSG_LINE_SEPARATOR,
+                "antlr.*"),
+        };
+        verify(checkConfig, getNonCompilablePath("InputCustomImportOrderNoPackage3.java"),
+            expected);
+    }
+
+    @Test
+    public void testInputCustomImportOrderSingleLine() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("customImportOrderRules",
+                "STATIC###STANDARD_JAVA_PACKAGE###THIRD_PARTY_PACKAGE###SPECIAL_IMPORTS"
+                        + "###SAME_PACKAGE(3)");
+        checkConfig.addAttribute("specialImportsRegExp", "^org\\..+");
+        checkConfig.addAttribute("thirdPartyPackageRegExp", "^com\\.google\\..+");
+        checkConfig.addAttribute("separateLineBetweenGroups", "true");
+
+        createChecker(checkConfig);
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_LINE_SEPARATOR,
+                "java.util.Map"),
+            "2: " + getCheckMessage(MSG_LINE_SEPARATOR,
+                "com.google.common.annotations.Beta"),
+            "9: " + getCheckMessage(MSG_LINE_SEPARATOR,
+                "com.puppycrawl.tools.*"),
+            "13: " + getCheckMessage(MSG_LINE_SEPARATOR,
+                "antlr.*"),
+        };
+        verify(checkConfig, getPath("InputCustomImportOrderSingleLine.java"),
+            expected);
+    }
 }

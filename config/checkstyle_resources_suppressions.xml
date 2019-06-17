@@ -26,6 +26,8 @@
   <suppress checks="PackageDeclarationCheck"
     files="customimportorder[\\/]InputCustomImportOrderNoPackage2\.java"/>
   <suppress checks="PackageDeclarationCheck"
+    files="customimportorder[\\/]InputCustomImportOrderNoPackage3\.java"/>
+  <suppress checks="PackageDeclarationCheck"
     files="customimportorder[\\/]InputCustomImportOrderDefaultPackage\.java"/>
   <suppress checks="PackageDeclarationCheck"
     files="customimportorder[\\/]InputCustomImportOrderSamePackage\.java"/>

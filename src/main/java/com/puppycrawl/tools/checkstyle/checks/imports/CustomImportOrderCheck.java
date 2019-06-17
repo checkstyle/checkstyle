@@ -553,9 +553,6 @@ public class CustomImportOrderCheck extends AbstractCheck {
             final String importGroup = importObject.getImportGroup();
             final String fullImportIdent = importObject.getImportFullPath();
 
-            if (getCountOfEmptyLinesBefore(importObject.getLineNumber()) > 1) {
-                log(importObject.getLineNumber(), MSG_LINE_SEPARATOR, fullImportIdent);
-            }
             if (importGroup.equals(currentGroup)) {
                 if (sortImportsInGroupAlphabetically
                         && previousImportFromCurrentGroup != null
@@ -573,7 +570,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
                     final String nextGroup = getNextImportGroup(currentGroupNumber + 1);
                     if (importGroup.equals(nextGroup)) {
                         if (separateLineBetweenGroups
-                                && getCountOfEmptyLinesBefore(importObject.getLineNumber()) == 0) {
+                                && getCountOfEmptyLinesBefore(importObject.getLineNumber()) != 1) {
                             log(importObject.getLineNumber(), MSG_LINE_SEPARATOR, fullImportIdent);
                         }
                         currentGroup = nextGroup;
@@ -767,7 +764,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
         //  [lineNo - 2] is the number of the previous line
         //  because the numbering starts from zero.
         int lineBeforeIndex = lineNo - 2;
-        while (lineBeforeIndex >= 0
+        while (lineBeforeIndex > -1
                 && CommonUtil.isBlank(lines[lineBeforeIndex])) {
             lineBeforeIndex--;
             result++;
