@@ -566,8 +566,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
                 if (previousImportObjectFromCurrentGroup != null
                         && getCountOfEmptyLinesBetween(
                             previousImportObjectFromCurrentGroup.getLineNumber(),
-                            // https://github.com/checkstyle/checkstyle/issues/7119
-                            importObject.getLineNumber()) > 1) {
+                            importObject.getLineNumber()) > 0) {
                     log(importObject.getLineNumber(), MSG_SEPARATED_INTERNALLY, fullImportIdent);
                 }
                 if (sortImportsInGroupAlphabetically
