@@ -37,7 +37,7 @@ import antlr.CommonASTWithHiddenTokens;
 
 import antlr.Token;  // warn
 
-import antlr.collections.AST;
+import antlr.collections.AST; // warn
 
 public class InputCustomImportOrderThirdPartyAndSpecial2 {
 }

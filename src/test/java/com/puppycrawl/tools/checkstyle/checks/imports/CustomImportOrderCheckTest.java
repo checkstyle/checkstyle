@@ -120,6 +120,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "16: " + getCheckMessage(MSG_LEX, "java.io.IOException", "javax.swing.JTable"),
             "17: " + getCheckMessage(MSG_LEX, "java.io.InputStream", "javax.swing.JTable"),
             "18: " + getCheckMessage(MSG_LEX, "java.io.Reader", "javax.swing.JTable"),
+            "22: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "com.google.common.collect.*"),
             "22: " + getCheckMessage(MSG_LEX, "com.google.common.collect.*",
                 "com.puppycrawl.tools.*"),
         };
@@ -167,6 +168,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "4: " + getCheckMessage(MSG_LEX, "java.awt.Button.ABORT",
                 "java.io.File.createTempFile"),
+            "7: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.List"),
             "7: " + getCheckMessage(MSG_LEX, "java.util.List", "javax.swing.WindowConstants.*"),
             "8: " + getCheckMessage(MSG_LEX, "java.util.StringTokenizer",
                 "javax.swing.WindowConstants.*"),
@@ -176,6 +178,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "11: " + getCheckMessage(MSG_LEX, "java.util.concurrent.*",
                 "javax.swing.WindowConstants.*"),
             "14: " + getCheckMessage(MSG_LEX, "com.*", "com.puppycrawl.tools.*"),
+            "16: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "com.google.common.base.*"),
             "16: " + getCheckMessage(MSG_LEX, "com.google.common.base.*", "com.puppycrawl.tools.*"),
         };
 
@@ -301,6 +304,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "17: " + getCheckMessage(MSG_ORDER, STD, THIRD, "java.io.IOException"),
             "18: " + getCheckMessage(MSG_ORDER, STD, THIRD, "java.io.InputStream"),
             "19: " + getCheckMessage(MSG_ORDER, STD, THIRD, "java.io.Reader"),
+            "23: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "com.google.common.*"),
             "23: " + getCheckMessage(MSG_LEX, "com.google.common.*", "com.puppycrawl.tools.*"),
         };
 
@@ -633,7 +637,11 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(CustomImportOrderCheck.class);
 
         createChecker(checkConfig);
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "8: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.awt.Button"),
+            "20: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "com.puppycrawl.tools.*"),
+            "22: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "com.google.common.collect.*"),
+        };
         verify(checkConfig, getPath("InputCustomImportOrderDefault.java"), expected);
     }
 
@@ -725,6 +733,9 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         createChecker(checkConfig);
         final String[] expected = {
             "5: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.*"),
+            "7: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.HashMap"),
+            "11: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "javax.net.ServerSocketFactory"),
+            "14: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "javax.net.SocketFactory"),
         };
         verify(checkConfig, getNonCompilablePath("InputCustomImportOrderNoPackage.java"),
             expected);
@@ -844,6 +855,8 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                 "com.puppycrawl.tools.checkstyle.checks.imports.AbstractImportRule"),
             "38: " + getCheckMessage(MSG_SEPARATED_IN_GROUP,
                 "antlr.Token"),
+            "40: " + getCheckMessage(MSG_SEPARATED_IN_GROUP,
+                "antlr.collections.AST"),
         };
         verify(checkConfig,
             getNonCompilablePath("InputCustomImportOrderThirdPartyAndSpecial2.java"), expected);
@@ -890,7 +903,38 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "37: " + getCheckMessage(MSG_LINE_SEPARATOR, "org.apache.tools.ant.*"),
             "42: " + getCheckMessage(MSG_LINE_SEPARATOR, "com.puppycrawl.tools.checkstyle.*"),
             "46: " + getCheckMessage(MSG_LINE_SEPARATOR, "antlr.*"),
+            "49: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "antlr.Token"),
         };
         verify(checkConfig, getPath("InputCustomImportOrderSpanMultipleLines.java"), expected);
+    }
+
+    @Test
+    public void testInputCustomImportOrderEclipseDefaultPositive() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("customImportOrderRules",
+                "STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE"
+                    + "###SAME_PACKAGE(2)###STATIC");
+
+        checkConfig.addAttribute("standardPackageRegExp", "^java\\.");
+        checkConfig.addAttribute("specialImportsRegExp", "^javax\\.");
+        checkConfig.addAttribute("thirdPartyPackageRegExp", "^org\\.");
+        checkConfig.addAttribute("separateLineBetweenGroups", "true");
+        checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
+
+        createChecker(checkConfig);
+        final String[] expected = {
+            "9: " + getCheckMessage(MSG_NONGROUP_EXPECTED, STD, "java.awt.Button"),
+            "10: " + getCheckMessage(MSG_NONGROUP_EXPECTED, STD, "java.awt.Dialog"),
+            "11: " + getCheckMessage(MSG_NONGROUP_EXPECTED, STD, "java.io.InputStream"),
+            "13: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SPECIAL, "javax.swing.JComponent"),
+            "14: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SPECIAL, "javax.swing.JTable"),
+            "16: " + getCheckMessage(MSG_NONGROUP_EXPECTED, THIRD, "org.junit.Test"),
+            "17: " + getCheckMessage(MSG_NONGROUP_EXPECTED, THIRD,
+                "org.powermock.api.mockito.PowerMockito"),
+            "21: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "sun.tools.java.ArrayType"),
+        };
+        verify(checkConfig,
+            getNonCompilablePath("InputCustomImportOrderEclipseDefaultPositive.java"), expected);
     }
 }
