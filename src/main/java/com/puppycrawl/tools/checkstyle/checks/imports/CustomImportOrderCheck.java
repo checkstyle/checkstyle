@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
@@ -383,6 +384,13 @@ public class CustomImportOrderCheck extends AbstractCheck {
      */
     public static final String MSG_ORDER = "custom.import.order";
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_SEPARATED_INTERNALLY =
+        "custom.import.order.groups.separated.internally";
+
     /** STATIC group name. */
     public static final String STATIC_RULE_GROUP = "STATIC";
 
@@ -547,16 +555,20 @@ public class CustomImportOrderCheck extends AbstractCheck {
         String currentGroup = getImportGroup(firstImport.isStaticImport(),
                 firstImport.getImportFullPath());
         int currentGroupNumber = customImportOrderRules.indexOf(currentGroup);
+        ImportDetails previousImportObjectFromCurrentGroup = null;
         String previousImportFromCurrentGroup = null;
 
-        for (ImportDetails importObject : importToGroupList) {
+        for (final ImportDetails importObject : importToGroupList) {
             final String importGroup = importObject.getImportGroup();
             final String fullImportIdent = importObject.getImportFullPath();
 
-            if (getCountOfEmptyLinesBefore(importObject.getLineNumber()) > 1) {
-                log(importObject.getLineNumber(), MSG_LINE_SEPARATOR, fullImportIdent);
-            }
             if (importGroup.equals(currentGroup)) {
+                if (previousImportObjectFromCurrentGroup != null
+                        && getCountOfEmptyLinesBetween(
+                            previousImportObjectFromCurrentGroup.getLineNumber(),
+                            importObject.getLineNumber()) > 0) {
+                    log(importObject.getLineNumber(), MSG_SEPARATED_INTERNALLY, fullImportIdent);
+                }
                 if (sortImportsInGroupAlphabetically
                         && previousImportFromCurrentGroup != null
                         && compareImports(fullImportIdent, previousImportFromCurrentGroup) < 0) {
@@ -566,6 +578,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
                 else {
                     previousImportFromCurrentGroup = fullImportIdent;
                 }
+                previousImportObjectFromCurrentGroup = importObject;
             }
             else {
                 //not the last group, last one is always NON_GROUP
@@ -573,7 +586,9 @@ public class CustomImportOrderCheck extends AbstractCheck {
                     final String nextGroup = getNextImportGroup(currentGroupNumber + 1);
                     if (importGroup.equals(nextGroup)) {
                         if (separateLineBetweenGroups
-                                && getCountOfEmptyLinesBefore(importObject.getLineNumber()) == 0) {
+                                && getCountOfEmptyLinesBetween(
+                                    previousImportObjectFromCurrentGroup.getLineNumber(),
+                                    importObject.getLineNumber()) != 1) {
                             log(importObject.getLineNumber(), MSG_LINE_SEPARATOR, fullImportIdent);
                         }
                         currentGroup = nextGroup;
@@ -584,6 +599,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
                         logWrongImportGroupOrder(importObject.getLineNumber(),
                                 importGroup, nextGroup, fullImportIdent);
                     }
+                    previousImportObjectFromCurrentGroup = importObject;
                 }
                 else {
                     logWrongImportGroupOrder(importObject.getLineNumber(),
@@ -756,21 +772,23 @@ public class CustomImportOrderCheck extends AbstractCheck {
     }
 
     /**
-     * Counts empty lines before given.
-     * @param lineNo
+     * Counts empty lines between given.
+     * @param lineNoFrom
+     *        Line number of previous import.
+     * @param lineNoTo
      *        Line number of current import.
-     * @return count of empty lines before given.
+     * @return count of empty lines between given, exclusive, eg., (lineNoFrom, lineNoTo).
      */
-    private int getCountOfEmptyLinesBefore(int lineNo) {
+    private int getCountOfEmptyLinesBetween(int lineNoFrom, int lineNoTo) {
         int result = 0;
-        final String[] lines = getLines();
-        //  [lineNo - 2] is the number of the previous line
-        //  because the numbering starts from zero.
-        int lineBeforeIndex = lineNo - 2;
-        while (lineBeforeIndex >= 0
-                && CommonUtil.isBlank(lines[lineBeforeIndex])) {
-            lineBeforeIndex--;
-            result++;
+        if (lineNoFrom != lineNoTo) {
+            final String[] lines = Arrays.copyOfRange(getLines(), lineNoFrom, lineNoTo - 1);
+
+            for (String line : lines) {
+                if (CommonUtil.isBlank(line)) {
+                    result++;
+                }
+            }
         }
         return result;
     }

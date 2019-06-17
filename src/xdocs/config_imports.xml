@@ -584,6 +584,10 @@ import android.*;
             custom.import.order</a>
           </li>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22custom.import.order.groups.separated.internally%22">
+            custom.import.order.groups.separated.internally</a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22custom.import.order.lex%22">
             custom.import.order.lex</a>
           </li>
