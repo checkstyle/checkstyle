@@ -493,6 +493,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.InnerAssignmentCheck");
         NAME_TO_FULL_MODULE_NAME.put("MagicNumberCheck",
                 BASE_PACKAGE + ".checks.coding.MagicNumberCheck");
+        NAME_TO_FULL_MODULE_NAME.put("PreferMethodReferenceCheck",
+                BASE_PACKAGE + ".checks.coding.PreferMethodReferenceCheck");
         NAME_TO_FULL_MODULE_NAME.put("MissingCtorCheck",
                 BASE_PACKAGE + ".checks.coding.MissingCtorCheck");
         NAME_TO_FULL_MODULE_NAME.put("MissingSwitchDefaultCheck",

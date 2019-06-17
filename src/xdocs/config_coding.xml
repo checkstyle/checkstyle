@@ -3951,6 +3951,78 @@ public class AnnotationLocationCheck extends AbstractCheck {
       </subsection>
     </section>
 
+    <section name="PreferMethodReference">
+      <p>Since Checkstyle 8.23</p>
+      <subsection name="Description" id="PreferMethodReference_Description">
+        <p>
+          Checks that lambda usage can be replaced with method reference.
+        </p>
+        <p>
+          Rationale: method references are easier to read.
+          See <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html">link</a>
+          for more info.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="PreferMethodReference_Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+          &lt;module name=&quot;PreferMethodReference&quot;/&gt;
+        </source>
+        <p>
+          Example of violations:
+        </p>
+        <source>
+Runnable r = () -&gt; System.out.println(); // violation
+BiConsumer&lt;Long, Long&gt; c = (a, b) -&gt; Long.sum(a,b); // violation
+        </source>
+        <p>
+          Note: This check is not type-aware, so some cases cannot be detected, e.g.
+        </p>
+        <source>
+Function&lt;String, Object&gt; f1 =
+    a -&gt; (Object) "string".concat(a); // no violation because of cast
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage"
+                  id="PreferMethodReference_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PreferMethodReference">
+                Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Error Messages" id="PreferMethodReference_Error_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22method.reference%22">
+              method.reference</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="PreferMethodReference_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="PreferMethodReference_Parent_Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="RequireThis">
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="RequireThis_Description">

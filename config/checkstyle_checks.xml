@@ -317,6 +317,7 @@
     </module>
     <module name="InnerAssignment"/>
     <module name="MagicNumber"/>
+    <module name="PreferMethodReference"/>
     <module name="MissingCtor">
       <!--
         we will not use that fanatic validation, extra code is not good

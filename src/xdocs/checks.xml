@@ -437,6 +437,10 @@
         Checks for magic numbers.</td>
       </tr>
       <tr>
+        <td><a href="config_coding.html#PreferMethodReference">PreferMethodReference</a></td>
+        <td>Checks that lambda usage can be replaced with method reference.</td>
+      </tr>
+      <tr>
         <td><a href="config_naming.html#MemberName">MemberName</a></td>
         <td>
           Checks that instance variable names conform to a format specified
