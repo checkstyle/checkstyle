@@ -14,7 +14,7 @@ import java.util.List;
 
 import java.util.StringTokenizer; //warn
 
-import java.util.concurrent.AbstractExecutorService;
+import java.util.concurrent.AbstractExecutorService; // warn
 
 public class InputCustomImportOrder4 {
 }

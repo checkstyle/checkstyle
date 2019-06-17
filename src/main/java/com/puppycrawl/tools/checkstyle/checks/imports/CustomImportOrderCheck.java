@@ -663,7 +663,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
         return previousImportObject != null
                 && getCountOfEmptyLinesBetween(
                      previousImportObject.getEndLineNumber(),
-                     currentImportObject.getStartLineNumber()) > 1;
+                     currentImportObject.getStartLineNumber()) > 0;
     }
 
     /**
