@@ -110,6 +110,12 @@
     <property name="message"
               value="Old site links should not be used, please use https://checkstyle.org"/>
   </module>
+  <module name="RegexpSingleline">
+    <property name="id" value="noSourceforgeIoLinks"/>
+    <property name="format" value="checkstyle\.sourceforge\.io"/>
+    <property name="message"
+              value="Old site links should not be used, please use https://checkstyle.org"/>
+  </module>
   <module name="RegexpOnFilename" />
   <module name="RegexpOnFilename">
       <property name="folderPattern" value="[\\/]src[\\/]\w+[\\/]java[\\/]"/>

@@ -102,7 +102,10 @@
 
     <suppress id="ImportControlTest" files="[\\/]powermock[\\/]"
               message=".* - org\.(powermock|mockito).*" />
+
     <suppress id="noSourceforgeNetLinks" files="[\\/]google_style.xml" lines="31"/>
     <suppress id="noSourceforgeNetLinks" files="[\\/]releasenotes.xml"/>
+    <suppress id="noSourceforgeIoLinks" files="[\\/]sun_style.xml" lines="31"/>
+    <suppress id="noSourceforgeIoLinks" files="[\\/]index.xml.vm"/>
 
 </suppressions>
