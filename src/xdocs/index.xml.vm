@@ -83,10 +83,10 @@
         an older version and latest version describe some features that does not work for you.
         <br/>
         You can find documentation for most old versions using a URL format like
-        http://checkstyle.sourceforge.net/version/X.X where "X.X" is the version number.<br/>
+        https://checkstyle.sourceforge.io/version/X.X where "X.X" is the version number.<br/>
         Example:
-        <a href="http://checkstyle.sourceforge.net/version/6.18/">
-          http://checkstyle.sourceforge.net/version/6.18
+        <a href="https://checkstyle.sourceforge.io/version/6.18/">
+          https://checkstyle.sourceforge.io/version/6.18
         </a>
         for version 6.18.
       </p>
@@ -398,13 +398,6 @@
                   <th>Main/Initial Author</th>
                   <th>Available from</th>
                   <th>Remarks</th>
-              </tr>
-              <tr>
-                  <td><a href="https://www.bluej.org/">BlueJ</a></td>
-                  <td>Rick Giles</td>
-                  <td><a href="http://bluejcheckstyle.sourceforge.net/">
-                      bluejcheckstyle home page</a></td>
-                  <td/>
               </tr>
               <tr>
                   <td><a href="http://qalab.sourceforge.net/">QALab</a></td>
