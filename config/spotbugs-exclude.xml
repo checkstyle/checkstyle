@@ -179,6 +179,12 @@
         <Bug pattern="NP_GUARANTEED_DEREF_ON_EXCEPTION_PATH"/>
     </Match>
     <Match>
+        <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/6343 -->
+        <Class
+        name="com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck$SequencedProperties"/>
+        <Bug pattern="EQ_DOESNT_OVERRIDE_EQUALS"/>
+    </Match>
+    <Match>
         <!-- It is better to catch all exceptions since it can throw a runtime exception. -->
         <Class name="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"/>
         <Method name="getTranslationKeys"/>

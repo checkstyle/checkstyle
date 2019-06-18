@@ -114,6 +114,7 @@ public class XdocsPagesTest {
             "name=\"RegexpMultiline\"",
             "name=\"JavadocPackage\"",
             "name=\"NewlineAtEndOfFile\"",
+            "name=\"OrderedProperties\"",
             "name=\"UniqueProperties\"",
             "name=\"FileLength\"",
             "name=\"FileTabCharacter\""
@@ -296,10 +297,10 @@ public class XdocsPagesTest {
                 final String unserializedSource = sources.item(position).getTextContent()
                         .replace("...", "").trim();
 
-                if (unserializedSource.charAt(0) != '<'
+                if (unserializedSource.length() > 1 && (unserializedSource.charAt(0) != '<'
                         || unserializedSource.charAt(unserializedSource.length() - 1) != '>'
                         // no dtd testing yet
-                        || unserializedSource.contains("<!")) {
+                        || unserializedSource.contains("<!"))) {
                     continue;
                 }
 

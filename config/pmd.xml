@@ -379,11 +379,12 @@
   </rule>
   <rule ref="category/java/multithreading.xml/AvoidSynchronizedAtMethodLevel">
     <properties>
-      <!-- UniqueProperties#put overloads a synchronized method, so it should have synchronized
-           modifier. -->
+      <!-- UniqueProperties#put and OrderedProperties#keys
+      overloads a synchronized method, so it should have synchronized
+      modifier. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='UniqueProperties']
-                           //MethodDeclarator[@Image='put']"/>
+        value="//ClassOrInterfaceDeclaration[@Image='UniqueProperties'
+          or @Image='SequencedProperties']//MethodDeclarator[@Image='keys' or @Image='put']"/>
     </properties>
   </rule>
 

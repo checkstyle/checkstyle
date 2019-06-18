@@ -69,6 +69,7 @@
     <property name="requiredTranslations" value="de, fr, fi, es, pt, ja, tr, zh"/>
   </module>
   <module name="UniqueProperties"/>
+  <module name="OrderedProperties" />
 
   <!-- Regexp -->
   <module name="RegexpMultiline"/>
