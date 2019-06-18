@@ -807,6 +807,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.NewlineAtEndOfFileCheck");
         NAME_TO_FULL_MODULE_NAME.put("OuterTypeFilenameCheck",
                 BASE_PACKAGE + ".checks.OuterTypeFilenameCheck");
+        NAME_TO_FULL_MODULE_NAME.put("OrderedPropertiesCheck",
+                BASE_PACKAGE + ".checks.OrderedPropertiesCheck");
         NAME_TO_FULL_MODULE_NAME.put("SuppressWarningsHolder",
                 BASE_PACKAGE + ".checks.SuppressWarningsHolder");
         NAME_TO_FULL_MODULE_NAME.put("TodoCommentCheck",

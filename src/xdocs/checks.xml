@@ -602,6 +602,10 @@
         Checks line wrapping for operators.</td>
       </tr>
       <tr>
+        <td><a href="config_misc.html#OrderedProperties">OrderedProperties</a></td>
+        <td>Detects if keys in properties files are in correct order.</td>
+      </tr>
+      <tr>
         <td><a href="config_misc.html#OuterTypeFilename">OuterTypeFilename</a></td>
         <td>Checks that the outer type name and the file name match.</td>
       </tr>
