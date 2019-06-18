@@ -158,7 +158,7 @@ are in the file named "LICENSE.apache20" in this directory.
 [snyk]: https://snyk.io/test/github/checkstyle/checkstyle?targetFile=pom.xml
 [snyk img]: https://snyk.io/test/github/checkstyle/checkstyle/badge.svg
 
-[flattr]:https://flattr.com/submit/auto?fid=g39d10&amp;url=http%3A%2F%2Fcheckstyle.sourceforge.net
+[flattr]:https://flattr.com/submit/auto?fid=g39d10&amp;url=https%3A%2F%2Fcheckstyle.org
 [flattr img]:https://button.flattr.com/flattr-badge-large.png
 
 [liberapay]:https://liberapay.com/checkstyle/

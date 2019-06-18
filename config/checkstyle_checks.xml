@@ -105,6 +105,12 @@
     <property name="fileExtensions" value="xml, vm"/>
     <property name="message" value="Line should not be longer than 100 symbols"/>
   </module>
+  <module name="RegexpSingleline">
+    <property name="id" value="noSourceforgeNetLinks"/>
+    <property name="format" value="checkstyle\.sourceforge\.net"/>
+    <property name="message"
+              value="Old site links should not be used, please use https://checkstyle.org"/>
+  </module>
   <module name="RegexpOnFilename" />
   <module name="RegexpOnFilename">
       <property name="folderPattern" value="[\\/]src[\\/]\w+[\\/]java[\\/]"/>
