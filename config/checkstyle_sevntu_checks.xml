@@ -202,6 +202,14 @@
         </module>
         <module name="MoveVariableInsideIfCheck" />
         <module name="RequireFailForTryCatchInJunit" />
+        <module name="com.github.sevntu.checkstyle.checks.coding.Jsr305AnnotationsCheck">
+          <property name="packages"
+            value="com.puppycrawl.tools.checkstyle"/>
+          <property name="excludePackages"
+            value="com.puppycrawl.tools.checkstyle.gui"/>
+          <property name="allowOverridingReturnValue" value="false"/>
+          <property name="allowOverridingParameter" value="false"/>
+        </module>
         <module name="CheckstyleTestMakeupCheck" />
         <module name="com.github.sevntu.checkstyle.checks.coding.ForbidCertainMethodCheck">
           <property name="methodName" value="assert(True|False)"/>
