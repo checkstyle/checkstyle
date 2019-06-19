@@ -207,6 +207,8 @@ all-sevntu-checks)
     | grep "<li>" | cut -d '>' -f 3 | sed "s/<\/a//" \
     | grep -E "Check$" \
     | sort | uniq | sed "s/Check$//" > web.txt
+  # temporal ignore list
+  sed -i.bak '/Jsr305Annotations/d' web.txt
   diff -u web.txt file.txt
   ;;
 
