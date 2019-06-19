@@ -201,7 +201,7 @@
     <powermock.version>2.0.2</powermock.version>
     <saxon.version>9.9.1-3</saxon.version>
     <maven.checkstyle.plugin.version>3.1.0</maven.checkstyle.plugin.version>
-    <maven.sevntu.checkstyle.plugin.version>1.33.0</maven.sevntu.checkstyle.plugin.version>
+    <maven.sevntu.checkstyle.plugin.version>1.34.0</maven.sevntu.checkstyle.plugin.version>
     <maven.sevntu-checkstyle-check.checkstyle.version>
       8.18
     </maven.sevntu-checkstyle-check.checkstyle.version>
