@@ -95,18 +95,18 @@
     </section>
 
     <section name="SuppressionCommentFilter">
+      <p>Since Checkstyle 3.5</p>
       <subsection name="Description" id="SuppressionCommentFilter_Description">
-          <p>Since Checkstyle 3.5</p>
           <p>
             Filter <code>SuppressionCommentFilter</code> uses
             pairs of comments to suppress audit events.
           </p>
           <p>
             Rationale: Sometimes there are legitimate reasons for violating
-            a check.  When this is a matter of the code in question and not
+            a check. When this is a matter of the code in question and not
             personal preference, the best place to override the policy is in
-            the code itself.  Semi-structured comments can be associated
-            with the check.  This is sometimes superior to a separate
+            the code itself. Semi-structured comments can be associated
+            with the check. This is sometimes superior to a separate
             suppressions file, which must be kept up-to-date as the source
             file is edited.
           </p>
@@ -119,9 +119,16 @@
             (<code>&lt;module name=&quot;TreeWalker&quot;/&gt;</code>) and only
             applies to checks which are also defined within this module.
             To filter non-TreeWalker checks like <code>RegexpSingleline</code>,
-            a <a href="config_filters.html#SuppressWithPlainTextCommentFilter">
+            a <a href="https://checkstyle.org/config_filters.html#SuppressWithPlainTextCommentFilter">
             SuppressWithPlainTextCommentFilter</a> or similar filter must be used.
           </p>
+      </subsection>
+      <subsection name="Notes" id="SuppressionCommentFilter_Notes">
+        <p>
+          <code>offCommentFormat</code> and <code>onCommentFormat</code> must have equal
+          <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Matcher.html#groupCount()">
+            paren counts</a>.
+        </p>
       </subsection>
       <subsection name="Properties" id="SuppressionCommentFilter_Properties">
           <table>
@@ -134,54 +141,47 @@
               </tr>
               <tr>
                   <td>offCommentFormat</td>
-                  <td>comment pattern to trigger filter to begin suppression</td>
+                  <td>Specify comment pattern to trigger filter to begin suppression.</td>
                   <td><a href="property_types.html#regexp">Regular Expression</a></td>
                   <td><code>"CHECKSTYLE:OFF"</code></td>
                   <td>3.5</td>
               </tr>
               <tr>
                   <td>onCommentFormat</td>
-                  <td>comment pattern to trigger filter to end suppression</td>
+                  <td>Specify comment pattern to trigger filter to end suppression.</td>
                   <td><a href="property_types.html#regexp">Regular Expression</a></td>
                   <td><code>"CHECKSTYLE:ON"</code></td>
                   <td>3.5</td>
               </tr>
               <tr>
                   <td>checkFormat</td>
-                  <td>check pattern to suppress</td>
+                  <td>Specify check pattern to suppress.</td>
                   <td><a href="property_types.html#regexp">Regular Expression</a></td>
                   <td><code>".*"</code></td>
                   <td>3.5</td>
               </tr>
               <tr>
                   <td>messageFormat</td>
-                  <td>message pattern to suppress</td>
+                  <td>Specify message pattern to suppress.</td>
                   <td><a href="property_types.html#regexp">Regular Expression</a></td>
                   <td><code>null</code></td>
                   <td>3.5</td>
               </tr>
               <tr>
                   <td>checkCPP</td>
-                  <td>whether to check C++ style comments (<code>//</code>)</td>
+                  <td>Control whether to check C++ style comments (<code>//</code>).</td>
                   <td><a href="property_types.html#boolean">Boolean</a></td>
                   <td><code>true</code></td>
                   <td>3.5</td>
               </tr>
               <tr>
                   <td>checkC</td>
-                  <td>whether to check C style comments (<code>/* ... */</code>)</td>
+                  <td>Control whether to check C style comments (<code>/* ... */</code>).</td>
                   <td><a href="property_types.html#boolean">Boolean</a></td>
                   <td><code>true</code></td>
                   <td>3.5</td>
               </tr>
           </table>
-      </subsection>
-      <subsection name="Notes" id="SuppressionCommentFilter_Notes">
-          <p>
-              offCommentFormat and onCommentFormat must have equal
-              <a href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Matcher.html#groupCount()">
-              paren counts</a>.
-          </p>
       </subsection>
       <subsection name="Examples" id="SuppressionCommentFilter_Examples">
           <p>
