@@ -208,7 +208,7 @@ all-sevntu-checks)
     | grep -E "Check$" \
     | sort | uniq | sed "s/Check$//" > web.txt
   # temporal ignore list
-  sed -i.bak '/Jsr305Annotations/d' web.txt
+  sed -i.backup '/Jsr305Annotations/d' web.txt
   diff -u web.txt file.txt
   ;;
 
