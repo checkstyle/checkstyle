@@ -2488,6 +2488,13 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
               <td>6.6</td>
           </tr>
           <tr>
+            <td>ignoreAnnotationElementDefaults</td>
+            <td>Ignore magic numbers in annotation elements defaults.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+            <td>8.23</td>
+          </tr>
+          <tr>
               <td>constantWaiverParentToken</td>
               <td>Specify tokens that are allowed in the AST path from the number literal to the
                   enclosing constant definition.</td>
@@ -2572,6 +2579,9 @@ class MyClass {
     int j = j + 8; // violation
   }
 }
+@interface anno {
+  int value() default 10; // no violation
+}
         </source>
 
         <p>
@@ -2598,6 +2608,23 @@ class MyClass {
     int i = i + 1; // no violation
     int j = j + 8; // violation
   }
+}
+        </source>
+        <p>
+        To configure the check to check annotation element defaults:
+        </p>
+        <source>
+&lt;module name=&quot;MagicNumber&quot;&gt;
+  &lt;property name=&quot;ignoreAnnotationElementDefaults&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+        results in following violations:
+        </p>
+        <source>
+@interface anno {
+  int value() default 10; // violation
+  int[] value2() default {10}; // violation
 }
         </source>
         <p>
