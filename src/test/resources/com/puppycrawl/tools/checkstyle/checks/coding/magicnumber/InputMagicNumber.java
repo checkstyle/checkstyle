@@ -214,3 +214,15 @@ class Binary {
     int intValue = 0b101;
     long longValue = 0b1010000101000101101000010100010110100001010001011010000101000101L;
 }
+@interface AnnotationWithDefaultValue {
+    int value() default 101;
+    int[] ar() default {102};
+}
+class A {
+    {
+        switch (Blah2.LOW) {
+        default:
+            int b = 122; // violation
+        }
+    }
+}
