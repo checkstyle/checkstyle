@@ -202,11 +202,12 @@
         </module>
         <module name="MoveVariableInsideIfCheck" />
         <module name="RequireFailForTryCatchInJunit" />
+        <!-- we are not ready to activate this Check, too much violations
+             and it requires bunch of refactoring -->
         <module name="com.github.sevntu.checkstyle.checks.coding.Jsr305AnnotationsCheck">
-          <property name="packages"
-            value="com.puppycrawl.tools.checkstyle"/>
-          <property name="excludePackages"
-            value="com.puppycrawl.tools.checkstyle.gui"/>
+          <property name="severity" value="ignore"/>
+          <property name="packages" value="com.puppycrawl.tools.checkstyle"/>
+          <property name="excludePackages" value="com.puppycrawl.tools.checkstyle.gui"/>
           <property name="allowOverridingReturnValue" value="false"/>
           <property name="allowOverridingParameter" value="false"/>
         </module>
