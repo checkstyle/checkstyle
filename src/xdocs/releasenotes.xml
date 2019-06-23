@@ -15,6 +15,94 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.22">
+      <div class="releaseDate">22.06.2019</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            new check: MissingJavadocPackageCheck .
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/6705">#6705</a>
+          </li>
+          <li>
+            new check: UnnecessarySemicolonInTryWithResources.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/6774">#6774</a>
+          </li>
+          <li>
+            new check: UnnecessarySemicolonInEnumeration.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/6773">#6773</a>
+          </li>
+          <li>
+            new check: OrderedProperties.
+            Author: Thomas Senger
+            <a href="https://github.com/checkstyle/checkstyle/issues/6311">#6311</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            NeedBraces: False Positives for LITERAL_CASE and LITERAL_DEFAULT.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/4764">#4764</a>
+          </li>
+          <li>
+            AnnotationUseStyle does not detect all violations in EXPANDED style.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/6818">#6818</a>
+          </li>
+          <li>
+            AnnotationUseStyle: compact_no_array does not violate extended and
+            multi param annotations.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/3210">#3210</a>
+          </li>
+          <li>
+            Loading config.xml from classpath doesn&#39;t work properly.
+            Author: Peter De Maeyer
+            <a href="https://github.com/checkstyle/checkstyle/issues/6232">#6232</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Suppression documentation links to old DTDs.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6804">#6804</a>
+          </li>
+          <li>
+            Align XDocs and Javadocs for filters package .
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6726">#6726</a>
+          </li>
+          <li>
+            Resolve violations from IDEA 20191.3.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6821">#6821</a>
+          </li>
+          <li>
+            Align XDocs and Javadocs.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/5750">#5750</a>
+          </li>
+          <li>
+            Remove usage of DetailAST.branchContains.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/5124">#5124</a>
+          </li>
+          <li>
+            Limit xdoc Properties subsection to one table.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6800">#6800</a>
+          </li>
+          <li>
+            split it module test support between different configurations.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6801">#6801</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 8.21">
       <div class="releaseDate">26.05.2019</div>
       <p>Breaking backward compatibility:</p>
