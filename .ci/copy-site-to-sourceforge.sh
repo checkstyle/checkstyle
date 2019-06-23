@@ -49,10 +49,10 @@ mv htdocs htdocs-$PREV_RELEASE
 mv checkstyle.github.io htdocs
 
 echo "create .htaccess for dtds redirection"
-cat <<EOF >> htdocs/.htaccess
+cat <<EOA >> htdocs/.htaccess
 Redirect 301 "/dtds" "https://checkstyle.org/dtds"
 RedirectMatch 301 "/version/.*/dtds/(.*)" "https://checkstyle.org/dtds/\$1"
-EOF
+EOA
 chmod o+r htdocs/.htaccess
 
 ln -s /home/project-web/checkstyle/reports htdocs/reports
