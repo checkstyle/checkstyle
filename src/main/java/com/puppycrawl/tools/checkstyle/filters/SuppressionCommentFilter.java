@@ -293,7 +293,7 @@ public class SuppressionCommentFilter
      * A Tag holds a suppression comment and its location, and determines
      * whether the suppression turns checkstyle reporting on or off.
      */
-    public static class Tag
+    private static final class Tag
         implements Comparable<Tag> {
 
         /** The text of the tag. */
@@ -323,7 +323,7 @@ public class SuppressionCommentFilter
          * @param filter the {@code SuppressionCommentFilter} with the context
          * @throws IllegalArgumentException if unable to parse expanded text.
          */
-        public Tag(int line, int column, String text, TagType tagType,
+        /* package */ Tag(int line, int column, String text, TagType tagType,
                    SuppressionCommentFilter filter) {
             this.line = line;
             this.column = column;
