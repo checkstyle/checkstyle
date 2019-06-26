@@ -760,6 +760,7 @@ public class UserService {
           <li>ThrowsCount</li>
           <li>TypecastParenPad</li>
           <li>TypeName</li>
+          <li>UnnecessarySemicolonInTryWithResources</li>
           <li>UnusedImports</li>
           <li>UpperEll</li>
           <li>VisibilityModifier</li>
