@@ -761,6 +761,7 @@ public class UserService {
           <li>TypecastParenPad</li>
           <li>TypeName</li>
           <li>UnnecessarySemicolonInEnumeration</li>
+          <li>UnnecessarySemicolonInTryWithResources</li>
           <li>UnusedImports</li>
           <li>UpperEll</li>
           <li>VisibilityModifier</li>
