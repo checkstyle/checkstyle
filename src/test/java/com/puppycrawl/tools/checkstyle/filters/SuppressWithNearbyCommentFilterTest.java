@@ -287,8 +287,11 @@ public class SuppressWithNearbyCommentFilterTest
 
     @Test
     public void testEqualsAndHashCodeOfTagClass() {
+        final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
+        final Object tag =
+                getTagsAfterExecution(filter, "filename", "//SUPPRESS CHECKSTYLE ignore").get(0);
         final EqualsVerifierReport ev = EqualsVerifier
-                .forClass(SuppressWithNearbyCommentFilter.Tag.class).usingGetClass().report();
+                .forClass(tag.getClass()).usingGetClass().report();
         assertEquals("Error: " + ev.getMessage(), EqualsVerifierReport.SUCCESS, ev);
     }
 
@@ -411,11 +414,11 @@ public class SuppressWithNearbyCommentFilterTest
 
     @Test
     public void testToStringOfTagClass() {
-        final SuppressWithNearbyCommentFilter.Tag tag = new SuppressWithNearbyCommentFilter.Tag(
-                "text", 7, new SuppressWithNearbyCommentFilter()
-        );
+        final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
+        final Object tag =
+                getTagsAfterExecution(filter, "filename", "//SUPPRESS CHECKSTYLE ignore").get(0);
         assertEquals("Invalid toString result",
-            "Tag[text='text', firstLine=7, lastLine=7, "
+            "Tag[text='SUPPRESS CHECKSTYLE ignore', firstLine=1, lastLine=1, "
                     + "tagCheckRegexp=.*, tagMessageRegexp=null]", tag.toString());
     }
 
@@ -469,21 +472,31 @@ public class SuppressWithNearbyCommentFilterTest
     public void testTagsAreClearedEachRun() {
         final SuppressWithNearbyCommentFilter suppressionCommentFilter =
                 new SuppressWithNearbyCommentFilter();
-        final FileContents contents =
-                new FileContents("filename", "//SUPPRESS CHECKSTYLE ignore", "line2");
+        final List<?> tags1 = getTagsAfterExecution(suppressionCommentFilter,
+                "filename1", "//SUPPRESS CHECKSTYLE ignore this");
+        assertEquals("Invalid tags size", 1, tags1.size());
+        final List<?> tags2 = getTagsAfterExecution(suppressionCommentFilter,
+                "filename2", "No comments in this file");
+        assertEquals("Invalid tags size", 0, tags2.size());
+    }
+
+    /**
+     * Calls the filter with a minimal set of inputs and returns a list of
+     * {@link SuppressWithNearbyCommentFilter} internal type {@code Tag}.
+     * Our goal is 100% test coverage, for this we use white-box testing.
+     * So we need access to the implementation details. For this reason,
+     * it is necessary to use reflection to gain access to the inner field here.
+     *
+     * @return {@code Tag} list
+     */
+    private static List<?> getTagsAfterExecution(SuppressWithNearbyCommentFilter filter,
+            String filename, String... lines) {
+        final FileContents contents = new FileContents(filename, lines);
         contents.reportSingleLineComment(1, 0);
-        final TreeWalkerAuditEvent dummyEvent = new TreeWalkerAuditEvent(contents, "filename",
+        final TreeWalkerAuditEvent dummyEvent = new TreeWalkerAuditEvent(contents, filename,
                 new LocalizedMessage(1, null, null, null, null, Object.class, null), null);
-        suppressionCommentFilter.accept(dummyEvent);
-        final FileContents contents2 =
-                new FileContents("filename2", "some line", "//SUPPRESS CHECKSTYLE ignore");
-        contents2.reportSingleLineComment(2, 0);
-        final TreeWalkerAuditEvent dummyEvent2 = new TreeWalkerAuditEvent(contents2, "filename",
-                new LocalizedMessage(1, null, null, null, null, Object.class, null), null);
-        suppressionCommentFilter.accept(dummyEvent2);
-        final List<SuppressionCommentFilter.Tag> tags =
-                Whitebox.getInternalState(suppressionCommentFilter, "tags");
-        assertEquals("Invalid tags size", 1, tags.size());
+        filter.accept(dummyEvent);
+        return Whitebox.getInternalState(filter, "tags");
     }
 
 }
