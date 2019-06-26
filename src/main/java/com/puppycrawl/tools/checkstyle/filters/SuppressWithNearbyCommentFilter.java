@@ -281,7 +281,7 @@ public class SuppressWithNearbyCommentFilter
     /**
      * A Tag holds a suppression comment and its location.
      */
-    public static class Tag {
+    private static final class Tag {
 
         /** The text of the tag. */
         private final String text;
@@ -305,7 +305,7 @@ public class SuppressWithNearbyCommentFilter
          * @param filter the {@code SuppressWithNearbyCommentFilter} with the context
          * @throws IllegalArgumentException if unable to parse expanded text.
          */
-        public Tag(String text, int line, SuppressWithNearbyCommentFilter filter) {
+        /* package */ Tag(String text, int line, SuppressWithNearbyCommentFilter filter) {
             this.text = text;
 
             //Expand regexp for check and message
