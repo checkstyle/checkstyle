@@ -52,6 +52,7 @@ public class InvalidJavadocPositionTest extends AbstractSunModuleTestSupport {
             "41:19: " + message,
             "42:21: " + message,
             "43:23: " + message,
+            "44:23: " + message,
             "47:1: " + message,
             "52:7: " + message,
             "53:36: " + message,

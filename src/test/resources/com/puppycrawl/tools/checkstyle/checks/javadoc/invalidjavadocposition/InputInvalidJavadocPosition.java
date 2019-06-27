@@ -51,4 +51,11 @@ class InputInvalidJavadocPosition3 {}
 class InputInvalidJavadocPosition4 {}
 class /** violation */ InputInvalidJavadocPosition5 {}
 class InputInvalidJavadocPosition6 /** violation */ {}
+class InputInvalidJavadocPosition7 {
+    void method() {
+        /** violation */ int variable1;
+        /** violation */ final int variable2;
+        /** violation */ @Deprecated int variable3;
+    }
+}
 /** violation */
