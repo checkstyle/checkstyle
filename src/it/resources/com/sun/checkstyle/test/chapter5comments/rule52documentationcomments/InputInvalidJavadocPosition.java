@@ -41,7 +41,7 @@ class InputInvalidJavadocPosition2 {
     void method22(/** warn */) {}
     void method23() /** warn */ {}
     void method24() { /** warn */ }
-    void method25() { /** invalid */ int variable; }
+    void method25() { /** warn */ int variable; }
 }
 @Deprecated
 /** warn */

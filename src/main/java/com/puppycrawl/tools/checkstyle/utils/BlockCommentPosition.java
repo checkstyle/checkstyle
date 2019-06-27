@@ -134,7 +134,11 @@ public final class BlockCommentPosition {
     public static boolean isOnField(DetailAST blockComment) {
         return isOnPlainClassMember(blockComment, TokenTypes.VARIABLE_DEF)
                 || isOnTokenWithModifiers(blockComment, TokenTypes.VARIABLE_DEF)
-                || isOnTokenWithAnnotation(blockComment, TokenTypes.VARIABLE_DEF);
+                    && blockComment.getParent().getParent().getParent()
+                        .getType() == TokenTypes.OBJBLOCK
+                || isOnTokenWithAnnotation(blockComment, TokenTypes.VARIABLE_DEF)
+                    && blockComment.getParent().getParent().getParent()
+                        .getParent().getType() == TokenTypes.OBJBLOCK;
     }
 
     /**
@@ -236,7 +240,8 @@ public final class BlockCommentPosition {
                     || parent.getType() == TokenTypes.TYPE_PARAMETERS)
                 && parent.getParent().getType() == memberType
                 // previous parent sibling is always TokenTypes.MODIFIERS
-                && parent.getPreviousSibling().getChildCount() == 0;
+                && parent.getPreviousSibling().getChildCount() == 0
+                && parent.getParent().getParent().getType() == TokenTypes.OBJBLOCK;
     }
 
     /**
