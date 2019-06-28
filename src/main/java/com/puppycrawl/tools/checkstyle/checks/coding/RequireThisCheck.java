@@ -451,17 +451,14 @@ public class RequireThisCheck extends AbstractCheck {
      */
     private AbstractFrame getFieldWithoutThis(DetailAST ast, int parentType) {
         final boolean importOrPackage = ScopeUtil.getSurroundingScope(ast) == null;
-        final boolean methodNameInMethodCall = parentType == TokenTypes.DOT
-                && ast.getPreviousSibling() != null;
-        final boolean typeName = parentType == TokenTypes.TYPE
-                || parentType == TokenTypes.LITERAL_NEW;
         AbstractFrame frame = null;
 
         if (!importOrPackage
-                && !methodNameInMethodCall
-                && !typeName
+                && !isMethodNameInMethodCall(ast, parentType)
+                && !isTypeName(parentType)
                 && !isDeclarationToken(parentType)
-                && !isLambdaParameter(ast)) {
+                && !isLambdaParameter(ast)
+                && !isResource(ast)) {
             final AbstractFrame fieldFrame = findClassFrame(ast, false);
 
             if (fieldFrame != null && ((ClassFrame) fieldFrame).hasInstanceMember(ast)) {
@@ -618,8 +615,7 @@ public class RequireThisCheck extends AbstractCheck {
         final DetailAST prevSibling = ast.getPreviousSibling();
         if (variableDeclarationFrameType == FrameType.CLASS_FRAME
                 && !validateOnlyOverlapping
-                && prevSibling == null
-                && canBeReferencedFromStaticContext(ast)) {
+                && prevSibling == null) {
             frameWhereViolationIsFound = variableDeclarationFrame;
         }
         else if (variableDeclarationFrameType == FrameType.METHOD_FRAME) {
@@ -782,40 +778,13 @@ public class RequireThisCheck extends AbstractCheck {
         if (staticInitializationBlock) {
             staticContext = true;
         }
-        else {
-            if (variableDeclarationFrame.getType() == FrameType.CLASS_FRAME) {
-                final DetailAST codeBlockDefinition = getCodeBlockDefinitionToken(ident);
-                if (codeBlockDefinition != null) {
-                    final DetailAST modifiers = codeBlockDefinition.getFirstChild();
-                    staticContext = codeBlockDefinition.getType() == TokenTypes.STATIC_INIT
-                        || modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
-                }
-            }
-            else {
-                final DetailAST frameNameIdent = variableDeclarationFrame.getFrameNameIdent();
-                final DetailAST definitionToken = frameNameIdent.getParent();
-                staticContext = definitionToken.findFirstToken(TokenTypes.MODIFIERS)
-                        .findFirstToken(TokenTypes.LITERAL_STATIC) != null;
-            }
+        else if (variableDeclarationFrame.getType() != FrameType.CLASS_FRAME) {
+            final DetailAST frameNameIdent = variableDeclarationFrame.getFrameNameIdent();
+            final DetailAST definitionToken = frameNameIdent.getParent();
+            staticContext = definitionToken.findFirstToken(TokenTypes.MODIFIERS)
+                    .findFirstToken(TokenTypes.LITERAL_STATIC) != null;
         }
         return !staticContext;
-    }
-
-    /**
-     * Returns code block definition token for current identifier.
-     * @param ident ident token.
-     * @return code block definition token for current identifier or null if code block
-     *         definition was not found.
-     */
-    private static DetailAST getCodeBlockDefinitionToken(DetailAST ident) {
-        DetailAST parent = ident.getParent();
-        while (parent != null
-               && parent.getType() != TokenTypes.METHOD_DEF
-               && parent.getType() != TokenTypes.CTOR_DEF
-               && parent.getType() != TokenTypes.STATIC_INIT) {
-            parent = parent.getParent();
-        }
-        return parent;
     }
 
     /**
@@ -1130,6 +1099,83 @@ public class RequireThisCheck extends AbstractCheck {
      */
     private static boolean isAstSimilar(DetailAST left, DetailAST right) {
         return left.getType() == right.getType() && left.getText().equals(right.getText());
+    }
+
+    private static boolean isMethodNameInMethodCall(DetailAST ast, int parentType) {
+        return parentType == TokenTypes.DOT
+                && ast.getPreviousSibling() != null;
+    }
+
+    private static boolean isTypeName(int parentType) {
+        return parentType == TokenTypes.TYPE || parentType == TokenTypes.LITERAL_NEW;
+    }
+
+    /**
+     * Checks if the token is a resource (declared in a try-with-resources statement).
+     * @param ast the {@code DetailAST} value of the token to be checked.
+     * @return true if the token is a resource.
+     */
+    private static boolean isResource(DetailAST ast) {
+        boolean isResource = false;
+        boolean skipNextTry = false;
+        final String nameToFind = ast.getText();
+        for (DetailAST parent = ast.getParent(); parent != null && !isResource;
+                parent = parent.getParent()) {
+            if (parent.getType() == TokenTypes.RESOURCE) {
+                skipNextTry = true;
+                for (DetailAST sibling = parent.getPreviousSibling(); sibling != null;
+                        sibling = sibling.getPreviousSibling()) {
+                    isResource = isResource(sibling, nameToFind);
+                    if (isResource) {
+                        break;
+                    }
+                }
+            }
+            else if (parent.getType() == TokenTypes.LITERAL_TRY) {
+                if (skipNextTry) {
+                    skipNextTry = false;
+                    continue;
+                }
+                isResource = isResourceInTryWithResources(parent, nameToFind);
+            }
+        }
+        return isResource;
+    }
+
+    /**
+     * Checks if the token is a resource with the specified name.
+     * @param ast the {@code DetailAST} value to be checked.
+     * @param name the resource name to be tested against.
+     * @return true if the token is a resource with the specified name.
+     */
+    private static boolean isResource(DetailAST ast, String name) {
+        return ast.getType() == TokenTypes.RESOURCE
+                && ast.findFirstToken(TokenTypes.IDENT).getText().equals(name);
+    }
+
+    /**
+     * Checks if the token is a try-with-resources construct that declares a resource with the
+     * specified name.
+     * @param ast the {@code DetailAST} value to be checked.
+     * @param name the resource name to look for.
+     * @return true if the token is a try-with-resources construct that declares a resource with the
+     *         specified name.
+     */
+    private static boolean isResourceInTryWithResources(DetailAST ast, String name) {
+        boolean result = false;
+        final DetailAST resourceSpecification = ast
+                .findFirstToken(TokenTypes.RESOURCE_SPECIFICATION);
+        if (resourceSpecification != null) {
+            for (DetailAST child = resourceSpecification
+                    .findFirstToken(TokenTypes.RESOURCES).getFirstChild();
+                    child != null; child = child.getNextSibling()) {
+                if (isResource(child, name)) {
+                    result = true;
+                    break;
+                }
+            }
+        }
+        return result;
     }
 
     /** An AbstractFrame type. */

@@ -401,4 +401,17 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
                     current -> ((Collection<?>) current).isEmpty()));
     }
 
+    @Test
+    public void testGithubIssue6845() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RequireThisCheck.class);
+        checkConfig.addAttribute("validateOnlyOverlapping", "false");
+        final String[] expected = {
+            "12:32: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+            "19:36: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+        };
+        verify(checkConfig,
+                getPath("InputRequireThisTryWithResources.java"),
+                expected);
+    }
+
 }
