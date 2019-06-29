@@ -531,7 +531,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
             try {
                 result = CheckUtil.getCheckMessage(module, locale, messageString);
             }
-            catch (IllegalArgumentException ex) {
+            // -@cs[IllegalCatch] There is no other way to deliver filename that was used
+            catch (Exception ex) {
                 Assert.fail(module.getSimpleName() + " with the message '" + messageString
                         + "' in locale '" + locale.getLanguage() + "' failed with: "
                         + ex.getClass().getSimpleName() + " - " + ex.getMessage());
