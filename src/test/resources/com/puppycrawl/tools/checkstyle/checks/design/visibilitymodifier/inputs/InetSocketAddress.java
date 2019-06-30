@@ -4,6 +4,6 @@ package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier.inputs;
 public class InetSocketAddress
 {
     public class Arrays {
-        
+
     }
 }

@@ -16,7 +16,7 @@ public class InputIllegalCatch2 {
         } catch (OneMoreException | SQLException | RuntimeException e) {}
 
     }
-    
+
     private void foo1() throws RuntimeException, SQLException, OneMoreException {
 
     }

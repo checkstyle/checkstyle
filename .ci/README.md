@@ -4,4 +4,4 @@ ATTENTION:
 Example of usage:
   export GOAL="all-sevntu-checks" && ./.ci/travis/travis.sh
 
-  export TRAVIS_PULL_REQUEST="" && export GOAL="releasenotes-gen" && ./.ci/travis/travis.sh 
+  export TRAVIS_PULL_REQUEST="" && export GOAL="releasenotes-gen" && ./.ci/travis/travis.sh

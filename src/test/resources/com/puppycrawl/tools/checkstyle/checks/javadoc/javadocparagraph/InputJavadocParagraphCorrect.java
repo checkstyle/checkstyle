@@ -16,15 +16,15 @@ class InputJavadocParagraphCorrect {
      * @since 8.0
      */
     public static final byte NUL = 0;
-       
+
     /**
      * Some Javadoc.
      *
      * <p>Some Javadoc.
-     * 
+     *
      * <pre>
      * class Foo {
-     * 
+     *
      *   void foo() {}
      * }
      * </pre>
@@ -33,20 +33,20 @@ class InputJavadocParagraphCorrect {
      *     Documentation about GWT emulated source</a>
      */
     boolean emulated() {return false;}
-    
+
     /**
      * Some Javadoc.
-     * 
+     *
      *<pre>
      * Test
      * </pre>
-     * 
+     *
      * <pre>
      * Test
      * </pre>
      */
     boolean test() {return false;}
-    
+
     /**
      * Some Javadoc.
      *
@@ -65,7 +65,7 @@ class InputJavadocParagraphCorrect {
          * @since 8.0
          */
         public static final byte NUL = 0;
-           
+
         /**
          * Some Javadoc.
          *
@@ -76,7 +76,7 @@ class InputJavadocParagraphCorrect {
          */
         boolean emulated() {return false;}
     }
-    
+
      InnerInputJavadocParagraphCorrect anon = new InnerInputJavadocParagraphCorrect() {
 
     	/**
@@ -89,7 +89,7 @@ class InputJavadocParagraphCorrect {
          * @since 8.0
          */
         public static final byte NUL = 0;
-           
+
         /** 
          * Some Javadoc with space at the end of first line.
          *

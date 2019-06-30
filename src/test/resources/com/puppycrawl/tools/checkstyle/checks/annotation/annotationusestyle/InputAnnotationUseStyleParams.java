@@ -7,6 +7,6 @@ public class InputAnnotationUseStyleParams
 {
     @Target({})
     public @interface myAnn {
-        
+
     }
 }

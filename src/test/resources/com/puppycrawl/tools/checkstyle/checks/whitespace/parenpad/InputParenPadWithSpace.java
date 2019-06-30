@@ -11,7 +11,7 @@ public class InputParenPadWithSpace
     {
         super ();
     }
-    
+
     public void enhancedFor ()
     {
         int[] i = new int[2];

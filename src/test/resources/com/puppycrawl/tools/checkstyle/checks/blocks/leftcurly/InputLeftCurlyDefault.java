@@ -23,11 +23,11 @@ public class InputLeftCurlyDefault
     }
 
     private
-    class 
+    class
     MyClass1 {
     }
 
-    class 
+    class
     MyClass2 {
     }
 
@@ -44,7 +44,7 @@ public class InputLeftCurlyDefault
     enum
     MyEnum {
     }
-    
+
     private
     @interface
     MyAnnotation {

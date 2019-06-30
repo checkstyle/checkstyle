@@ -35,7 +35,7 @@ class InputOperatorWrap
         Arrays.sort(null, String
                     ::compareToIgnoreCase);
     }
-    
+
     void testAssignment()
     {
         int x
@@ -43,7 +43,7 @@ class InputOperatorWrap
         int y =
             0;
     }
-    
+
     <
         T extends Comparable &
         java.io.Serializable
@@ -54,7 +54,7 @@ class InputOperatorWrap
             <
             String
             >
-            c = new String(); 
+            c = new String();
     }
 }
 

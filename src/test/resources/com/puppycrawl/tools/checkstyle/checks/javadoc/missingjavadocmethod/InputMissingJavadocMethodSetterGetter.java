@@ -49,7 +49,7 @@ public class InputMissingJavadocMethodSetterGetter
     {
         return false;
     }
-    
+
     private void firePropertyChanged(){}
 
     Object setObject(Object object) {

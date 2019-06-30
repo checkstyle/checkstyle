@@ -6,17 +6,17 @@ public class InputSuperFinalizeVariations
         super.equals(new String());
         super.finalize();
     }
-    
+
     public void finalize() /**comment test*/throws Throwable
     {
         super.finalize();
     }
-    
+
     public void method() throws Throwable
     {
         super.finalize();
     }
-    
+
     {
         super.finalize();
     }
@@ -57,7 +57,7 @@ class TestNative {
 }
 
 class OneMore {
-    
+
     public void doSmt() throws Throwable {
         {
             {

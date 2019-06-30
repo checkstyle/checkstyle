@@ -209,7 +209,7 @@ class class2 {
         do {
             int n;
            n = 0;
-        } while (true);        
+        } while (true);
     }
 
     private void foo() {
@@ -333,7 +333,7 @@ class Class3 {
         } else {
             x = 2;
         }
-        
+
         if(b) {
             x = 3;
         }

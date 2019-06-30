@@ -7,7 +7,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 public class InputLeftCurlyCoverageIncrease {
     // inner interfaces with different scopes
 
-    
+
     private interface PrivateInterface
     {
         public String CA = "CONST A";
@@ -45,11 +45,11 @@ public class InputLeftCurlyCoverageIncrease {
     }
 
     private
-    class 
+    class
  MyClass1
   {
     }
-    class 
+    class
     MyClass2 {
     }
 
@@ -66,7 +66,7 @@ public class InputLeftCurlyCoverageIncrease {
     enum
     MyEnum {
     }
-    
+
     private
     @interface
     MyAnnotation {

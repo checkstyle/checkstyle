@@ -173,7 +173,7 @@ class InputRegexpSinglelineJavaSemantic
         if (true)
             return;
     }
-    
+
     // empty instance initializer
     {
     }
@@ -193,13 +193,13 @@ class InputRegexpSinglelineJavaSemantic
             return true;
         }
     }
-    
+
     private class InputBraces {
-        
+
     }
-    
+
     private class InputModifier {
-        
+
     }
 
     synchronized void foo() {
@@ -210,13 +210,13 @@ class InputRegexpSinglelineJavaSemantic
             }
         }
     }
-    
-    
+
+
     static {
-       
+
     int a = 0;}
-    
+
     static {
-        
+
     }
 }

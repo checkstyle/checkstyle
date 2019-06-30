@@ -189,7 +189,7 @@ class TestHashCodeMethod {
     @InputMagicNumberIntMethodAnnotation(value=43)
     public void another2() {
     }
-    
+
     @InputMagicNumberIntMethodAnnotation(-44)
     public void anotherNegative() {
     }

@@ -104,7 +104,7 @@ class InputIllegalInstantiationSemantic
         if (true)
             return;
     }
-    
+
     // empty instance initializer
     {
     }
@@ -126,10 +126,10 @@ class InputIllegalInstantiationSemantic
     }
 
     private class InputBraces {
-        
+
     }
 
     private class InputModifier {
-        
+
     }
 }

@@ -7,7 +7,7 @@ public class InputRedundantModifierStaticModifierInNestedEnum {
         VAL;
         static enum NestedEnumWithRedundantStatic {} // violation
     }
-    
+
     interface NestedInterface {
         static enum NestedEnumWithRedundantStatic {} // violation
     }

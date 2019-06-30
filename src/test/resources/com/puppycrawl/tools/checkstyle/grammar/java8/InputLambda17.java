@@ -6,7 +6,7 @@ public class InputLambda17{
 
     void initPartialTraversalState() {
             SpinedBuffer<P_OUT> b = new SpinedBuffer<>();
-            
+
         P_OUT spliterator = new P_OUT();
         Supplier pusher = () -> spliterator.tryAdvance(b);
         }

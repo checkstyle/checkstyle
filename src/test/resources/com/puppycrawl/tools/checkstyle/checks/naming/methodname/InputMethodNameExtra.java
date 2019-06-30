@@ -20,11 +20,11 @@ public class InputMethodNameExtra
 
 	private
 			void
-			createNameHistoryDetails(Object historyDetails, Object previousNameService, 
-					Object entityId, More.ViewChangeHistoryBaseAction.ChangeHistoryDisplayName 
+			createNameHistoryDetails(Object historyDetails, Object previousNameService,
+					Object entityId, More.ViewChangeHistoryBaseAction.ChangeHistoryDisplayName
 							changeHistoryDisplayName)
 	{
-		
+
 	}
 
 	protected String getPreviousName()
@@ -32,12 +32,12 @@ public class InputMethodNameExtra
 		return null;
 	}
 
-	private void createNameHistoryDetails(Object historyDetails, Object previousNameService, 
+	private void createNameHistoryDetails(Object historyDetails, Object previousNameService,
 			Object entityId, ChangeHistoryDisplayName changeHistoryDisplayName)
 	{
-		
+
 	}
-	
+
 	private static class More {
 		public static class ViewChangeHistoryBaseAction {
 			public static class ChangeHistoryDisplayName {
@@ -46,12 +46,12 @@ public class InputMethodNameExtra
 				{
 
 				}
-				
+
 			}
 		}
 	}
-	
+
 	private class ChangeHistoryDisplayName {
-		
+
 	}
 }

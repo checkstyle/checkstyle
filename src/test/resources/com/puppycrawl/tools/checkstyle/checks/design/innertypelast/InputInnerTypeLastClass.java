@@ -70,11 +70,11 @@ class Temp2 {
 }
 
 class Temp3 {
-    
+
     class InnerCheck {
         private int I = 0;
     }
-    
+
     public int[] getDefaultTokens()
     {
         return new int[]{1, };

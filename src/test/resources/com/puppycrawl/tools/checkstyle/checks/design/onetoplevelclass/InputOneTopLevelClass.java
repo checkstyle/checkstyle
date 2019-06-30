@@ -6,9 +6,9 @@ public class InputOneTopLevelClass
 
     // error public before package
     public static final int FOO = 3;
-    
+
     private static final int FOO3 = 3;
-   
+
     // eror public before package and private
     public static final int FOO4 = 3;
 
@@ -16,12 +16,12 @@ public class InputOneTopLevelClass
 
     // error protected before private
     protected static final String ERROR1 = "error";
-   
+
     // error public before private
     public static final String WARNING = "warning";
-    
+
     private int mMaxInitVars = 3;
-    
+
     // error statics should be before instance members
     // error publics before private
     public static final int MAX_ITER_VARS = 3;
@@ -29,7 +29,7 @@ public class InputOneTopLevelClass
     private class InnerClass
     {
         private static final int INNER_FOO = 2;
-       
+
         // error public before private
         public static final int INNER_FOO2 = 2;
 

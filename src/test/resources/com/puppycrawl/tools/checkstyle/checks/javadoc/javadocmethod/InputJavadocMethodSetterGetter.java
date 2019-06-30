@@ -49,7 +49,7 @@ public class InputJavadocMethodSetterGetter
     {
         return false;
     }
-    
+
     private void firePropertyChanged(){}
 
     Object setObject(Object object) {

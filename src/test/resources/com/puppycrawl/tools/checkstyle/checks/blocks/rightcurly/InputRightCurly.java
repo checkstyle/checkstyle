@@ -8,16 +8,16 @@ class InputRightCurly
 {
     void foo() throws InterruptedException
     {
-        
+
             try
             {
-               
+
             }
             catch (Exception e)
             {
                 return;
             }
-           
+
         }
 
     }

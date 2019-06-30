@@ -50,7 +50,7 @@ class MoreJunk extends InputMissingOverrideGoodOverrideFromOther {
         @Override
         public void doFoo2() { }
     }
-    
+
     class EvenMoreMoreJunk extends MoreJunk implements Serializable {
 
         /**

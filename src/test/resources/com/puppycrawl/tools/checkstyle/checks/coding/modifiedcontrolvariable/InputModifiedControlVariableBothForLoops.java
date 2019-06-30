@@ -40,7 +40,7 @@ class InputModifiedControlVariableBothForLoops
             };
         }
         for (int k = 0; k < 1; k++) {
-            this.k++;   
+            this.k++;
         }
 
         String[] sa = {"a", "b"};
@@ -70,7 +70,7 @@ class InputModifiedControlVariableBothForLoops
         for (int i = 0,j = 0 ; i <10; i++) {
             j++;
         }
-        
+
         for (String v : sa) {
             new NestedClass() {
                 public void method() {}

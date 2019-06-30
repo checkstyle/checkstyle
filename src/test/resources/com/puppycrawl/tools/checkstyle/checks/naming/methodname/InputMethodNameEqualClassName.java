@@ -42,15 +42,15 @@ public class InputMethodNameEqualClassName {
 }
 
 interface SweetInterface {
-	
+
 	//illegal name
     int SweetInterface();
 }
 
 class Outer {
-	
+
 	//illegal name
     public void Outer() {
-		
+
 	}
 }

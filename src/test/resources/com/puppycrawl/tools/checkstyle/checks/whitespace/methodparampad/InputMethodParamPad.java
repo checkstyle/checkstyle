@@ -7,27 +7,27 @@ public class InputMethodParamPad
     {
         super();
     }
-    
+
     public InputMethodParamPad (int aParam)
     {
         super ();
     }
-    
+
     public InputMethodParamPad
         (double aParam)
     {
         super
             ();
-    }    
+    }
 
     public void method()
     {
     }
-    
+
     public void method (int aParam)
     {
     }
-    
+
     public void method
         (double aParam)
     {
@@ -43,14 +43,14 @@ public class InputMethodParamPad
         method
             ();
     }
-    
+
     public void dottedCalls()
     {
         this.method();
         this.method ();
         this.method
             ();
-        
+
         InputMethodParamPad p = new InputMethodParamPad();
         p.method();
         p.method ();
@@ -60,9 +60,9 @@ public class InputMethodParamPad
         java.lang.Integer.parseInt("0");
         java.lang.Integer.parseInt ("0");
         java.lang.Integer.parseInt
-            ("0");    
+            ("0");
     }
-    
+
     public void newArray()
     {
         int[] a = new int[]{0, 1};

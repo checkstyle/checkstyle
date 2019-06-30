@@ -104,7 +104,7 @@ class InputEqualsHashCodeSemantic
         if (true)
             return;
     }
-    
+
     // empty instance initializer
     {
     }
@@ -126,10 +126,10 @@ class InputEqualsHashCodeSemantic
     }
 
     private class InputBraces {
-        
+
     }
 
     private class InputModifier {
-        
+
     }
 }

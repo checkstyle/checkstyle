@@ -19,9 +19,9 @@ class InputWriteTag
 	 * @todo Add a constructor comment
 	 */
 	public InputWriteTag()
-	{	
+	{
 	}
-	
+
     public void method()
     {
     }

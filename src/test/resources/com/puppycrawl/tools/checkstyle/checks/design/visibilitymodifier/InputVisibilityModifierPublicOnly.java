@@ -9,7 +9,7 @@ public class InputVisibilityModifierPublicOnly
     private interface InnerInterface
     {
         String CONST = "InnerInterface";
-        
+
         class InnerInnerClass
         {
             private int mData;

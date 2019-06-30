@@ -26,7 +26,7 @@ public class InputJavadocMethodInheritDoc
     public void publicMethod()
     {
     }
-    
+
     /** {@inheritDoc} */
     private static void privateStaticMethod()
     {

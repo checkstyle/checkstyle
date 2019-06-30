@@ -12,7 +12,7 @@ public class InputMissingJavadocMethodSmallMethods extends Some
      * Some javadoc.
      * @return Some javadoc.
      */
-    int foo1() 
+    int foo1()
     {
         return 1;
     }
@@ -21,7 +21,7 @@ public class InputMissingJavadocMethodSmallMethods extends Some
      * Some javadoc.
      * @return Some javadoc.
      */
-    String foo2() 
+    String foo2()
     {
     	return "Fooooooooooooooo"
                 + "ooooo"
@@ -31,7 +31,7 @@ public class InputMissingJavadocMethodSmallMethods extends Some
     /**
      * Some javadoc.
      */
-    void foo3() 
+    void foo3()
     {
         foo2();
     }
@@ -43,39 +43,39 @@ public class InputMissingJavadocMethodSmallMethods extends Some
 
     //without comments
 
-    int foo5() 
+    int foo5()
     {
         return 1;
     }
 
-    String foo6() 
+    String foo6()
     {
         return "Fooooooooooooooo"
                 + "oooooooo";
     }
 
-    String foo7() 
+    String foo7()
     {
         return "Fooooooooooooooo"
                 + "ooooo"
                 + "ooo";
     }
 
-    void foo8() 
+    void foo8()
     {
         foo2();
     }
 
     void foo9() {
-        
-        
-        
-        
-        
+
+
+
+
+
     }
 
     @MyAnnotation
-    String foo10() 
+    String foo10()
     {
         return "Fooooooooooooooo"
                 + "ooooo"
@@ -83,7 +83,7 @@ public class InputMissingJavadocMethodSmallMethods extends Some
     }
 
     @Override
-    protected String foo11() 
+    protected String foo11()
     {
         return "Fooooo"
         		+ "ooo"

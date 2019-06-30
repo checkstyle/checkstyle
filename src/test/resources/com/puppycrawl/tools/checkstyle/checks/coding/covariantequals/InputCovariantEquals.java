@@ -20,10 +20,10 @@ public class InputCovariantEquals
         {
             return false;
         }
-        
+
         public boolean equals(Object aObj)
         {
-            return false;       
+            return false;
         }
     }
 
@@ -34,12 +34,12 @@ public class InputCovariantEquals
 }
 
 class InputCovariant2
-{   
+{
     public boolean equals(InputCovariant2 aInputCovariant2)
     {
         return false;
     }
-    
+
     public boolean equals(Object aObject)
     {
         return false;
@@ -47,12 +47,12 @@ class InputCovariant2
 }
 
 class InputCovariant3
-{   
+{
     public boolean equals(InputCovariant3 aInputCovariant3)
     {
         return false;
     }
-    
+
     public boolean equals(java.lang.Object aObject)
     {
         return false;
@@ -80,12 +80,12 @@ class AnonymousIC
                 return false;
             }
         };
-    
+
     public boolean equals(Object aObject)
     {
         return false;
     }
-    
+
     public void method()
     {
         Double d = new Double(1);

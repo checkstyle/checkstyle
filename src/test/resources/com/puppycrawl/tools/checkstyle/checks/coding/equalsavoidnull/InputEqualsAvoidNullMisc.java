@@ -5,7 +5,7 @@ import java.util.function.Function;
 
 public enum InputEqualsAvoidNullMisc {
     TEST;
-    
+
     public void method() {}
 }
 class Receiver {

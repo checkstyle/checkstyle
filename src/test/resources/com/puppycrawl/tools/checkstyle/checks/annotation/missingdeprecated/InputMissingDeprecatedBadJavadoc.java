@@ -24,7 +24,7 @@ public class InputMissingDeprecatedBadJavadoc
     enum Rock {
 
         /**
-         * 
+         *
          */
         @Bleh2(bleh=1)
         @Deprecated
@@ -49,7 +49,7 @@ interface Foo2 {
 @interface Bleh2 {
 
     /**
-     * 
+     *
      * @return
      */
     @Deprecated

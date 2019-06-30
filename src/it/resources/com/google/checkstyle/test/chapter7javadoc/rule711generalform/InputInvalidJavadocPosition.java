@@ -6,7 +6,7 @@ import java.lang.String;
 /** warn */
 /** valid */
 class InputInvalidJavadocPosition {
-    /** warn */    
+    /** warn */
 }
 /** valid */
 /* ignore */

@@ -13,6 +13,6 @@ public class InputOuterTypeFilenameIllegalTokens
                 break;
         }
     }
-    
+
     public native void nativeMethod();
 }

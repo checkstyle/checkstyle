@@ -10,5 +10,5 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.CLASS)
 @Target(ElementType.PACKAGE)
-@interface Example {    
+@interface Example {
 }

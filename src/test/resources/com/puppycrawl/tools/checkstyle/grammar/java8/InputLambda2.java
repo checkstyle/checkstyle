@@ -11,8 +11,8 @@ public class InputLambda2 {
 		LOG.info("Method called");
 		test.doSmth();
 	}
-	
-	
+
+
 	public static void main(String[] args) {
 		testVoidLambda(() -> LOG.info("Method in interface called"));
 	}

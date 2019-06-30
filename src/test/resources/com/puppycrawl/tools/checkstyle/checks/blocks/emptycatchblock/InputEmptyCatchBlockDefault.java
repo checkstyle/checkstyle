@@ -20,7 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.emptycatchblock;
 import java.io.IOException;
 public class InputEmptyCatchBlockDefault
 {
-    
+
     private void foo() {
         try {
             throw new RuntimeException();
@@ -28,42 +28,42 @@ public class InputEmptyCatchBlockDefault
             //Expected
         }
     }
-    
+
     private void foo1() {
         try {
             throw new RuntimeException();
         } catch (Exception e) {}
-        
+
     }
-    
+
     private void foo2() {
         try {
             throw new IOException();
         } catch (IOException | NullPointerException | ArithmeticException ignore) {
         }
     }
-    
+
     private void foo3() { // comment
         try {
             throw new IOException();
         } catch (IOException | NullPointerException | ArithmeticException e) { //This is expected
         }
     }
-    
+
     private void foo4() {
         try {
             throw new IOException();
         } catch (IOException | NullPointerException | ArithmeticException e) { /* This is expected*/
         }
     }
-    
+
     private void foo5() {
         try {
             throw new IOException();
         } catch (IOException | NullPointerException | ArithmeticException e) { // Some singleline comment
         }
     }
-    
+
     private void foo6() {
         try {
             throw new IOException();
@@ -71,29 +71,29 @@ public class InputEmptyCatchBlockDefault
             int k = 0;
         }
     }
-    
+
     public void testTryCatch()
     {
         try {
             int y=0;
             int u=8;
             int e=u-y;
-            return; 
-        } 
+            return;
+        }
         catch (Exception e) {
             System.identityHashCode(e);
-            return; 
+            return;
         }
         finally
         {
-            return; 
+            return;
         }
     }
-    
+
     public void testTryCatch2()
     {
         try {
-        } 
+        }
         catch (Exception e) { //OK
             //This is expected
             /* This is expected */
@@ -103,34 +103,34 @@ public class InputEmptyCatchBlockDefault
         {
         }
     }
-    
+
     public void testTryCatch3()
     {
         try {
             int y=0;
             int u=8;
             int e=u-y;
-        } 
+        }
         catch (IllegalArgumentException e) {
             System.identityHashCode(e); //some comment
-            return; 
+            return;
         }
         catch (IllegalStateException ex) {
                 System.identityHashCode(ex);
-                return; 
+                return;
         }
     }
-    
+
     public void testTryCatch4()
     {
         int y=0;
         int u=8;
         try {
             int e=u-y;
-        } 
+        }
         catch (IllegalArgumentException e) {
             System.identityHashCode(e);
-            return; 
+            return;
         }
     }
     public void setFormats() {
@@ -141,7 +141,7 @@ public class InputEmptyCatchBlockDefault
             if (k != null)
                 k = "ss";
             else {
-                return; 
+                return;
             }
         }
     }
@@ -153,7 +153,7 @@ public class InputEmptyCatchBlockDefault
             if (k != null) {
                 k = "ss";
             } else {
-                return; 
+                return;
             }
         }
     }
@@ -165,7 +165,7 @@ public class InputEmptyCatchBlockDefault
             if (k != null) {
                 k = "ss";
                 return;
-            } 
+            }
         }
     }
     public void setFormats3() {
@@ -175,11 +175,11 @@ public class InputEmptyCatchBlockDefault
             Object k = null;
             if (k != null) {
                 k = "ss";
-                
-            } 
+
+            }
         }
     }
-    
+
     private void some() {
         try {
             throw new IOException();
@@ -232,7 +232,7 @@ public class InputEmptyCatchBlockDefault
             //This is expected
         }
     }
-    
+
     private void emptyMultilineComment() {
         try {
             throw new IOException();

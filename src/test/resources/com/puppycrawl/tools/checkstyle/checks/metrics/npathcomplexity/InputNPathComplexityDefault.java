@@ -70,9 +70,9 @@ public class InputNPathComplexityDefault {
         } else {
         }
     }
-    
+
     // STATIC_INIT
-    // NP = 3 
+    // NP = 3
     static {
         int i = 1;
         // NP = (if-range=1) + (else-range=2) + 0 = 3
@@ -82,9 +82,9 @@ public class InputNPathComplexityDefault {
         } else {
         }
     }
-    
-    // INSTANCE_INIT  
-    // NP = 3 
+
+    // INSTANCE_INIT
+    // NP = 3
     {
         int i = 1;
         // NP = (if-range=1) + (else-range=2) + 0 = 3
@@ -94,7 +94,7 @@ public class InputNPathComplexityDefault {
         } else {
         }
     }
-    
+
     /** Inner */
     // NP = 0
     public InputNPathComplexityDefault(int aParam)
@@ -107,7 +107,7 @@ public class InputNPathComplexityDefault {
                 }
             }
         };
-        new Thread(runnable).start();       
+        new Thread(runnable).start();
     }
 
     public void InputNestedTernaryCheck() {
@@ -120,7 +120,7 @@ public class InputNPathComplexityDefault {
                         .sin(300 * (12 + 30))); // bad (nested in second
                                                 // position)
     }
-    public boolean getSmth() { return true; }; 
+    public boolean getSmth() { return true; };
     public int apply(Object o) { return 0; }
 
     public void inClass(int type, Short s, int color) {

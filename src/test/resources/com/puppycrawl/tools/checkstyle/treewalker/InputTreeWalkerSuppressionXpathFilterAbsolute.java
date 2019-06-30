@@ -1,7 +1,7 @@
 package com.puppycrawl.tools.checkstyle.treewalker;
 
 public class InputTreeWalkerSuppressionXpathFilterAbsolute {
-    public void test() 
+    public void test()
     {
         int a = 1;
         int b = 2;

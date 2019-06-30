@@ -41,11 +41,11 @@ public class InputMissingJavadocTypeScopeInnerInterfaces
     }
 
     private
-    class 
+    class
     MyClass1 {
     }
 
-    class 
+    class
     MyClass2 {
     }
 
@@ -62,7 +62,7 @@ public class InputMissingJavadocTypeScopeInnerInterfaces
     enum
     MyEnum {
     }
-    
+
     private
     @interface
     MyAnnotation {

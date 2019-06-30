@@ -1027,7 +1027,7 @@ class New {
         System.lineSeparator();
 
         if (false) {
-            
+
         }
         else if (c == 1) {
             if (c != 2) {

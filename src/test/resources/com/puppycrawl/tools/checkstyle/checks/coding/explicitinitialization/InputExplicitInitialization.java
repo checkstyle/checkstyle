@@ -80,7 +80,7 @@ class Chars {
     char b = a;
     byte c = 1;
     short d = 1;
-    final long e = 0; 
+    final long e = 0;
 }
 
 class Doubles {

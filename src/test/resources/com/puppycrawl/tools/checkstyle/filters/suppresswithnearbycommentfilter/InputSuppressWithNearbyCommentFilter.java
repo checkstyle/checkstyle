@@ -6,29 +6,29 @@ package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbycommentfilter;
 
 /**
  * Test input for using comments to suppress errors.
- * 
+ *
  * @author Mick Killianey
  */
 class InputSuppressWithNearbyCommentFilter
 {
     private int A1;  // SUPPRESS CHECKSTYLE MemberNameCheck
     private int A2;  /* SUPPRESS CHECKSTYLE MemberNameCheck */
-    /* SUPPRESS CHECKSTYLE MemberNameCheck */ private int A3;  
-    
+    /* SUPPRESS CHECKSTYLE MemberNameCheck */ private int A3;
+
     private int B1;  // SUPPRESS CHECKSTYLE MemberNameCheck
     private int B2;  /* SUPPRESS CHECKSTYLE MemberNameCheck */
-    /* SUPPRESS CHECKSTYLE MemberNameCheck */ private int B3;  
-    
+    /* SUPPRESS CHECKSTYLE MemberNameCheck */ private int B3;
+
     private int C1;
     // ALLOW MemberName ON NEXT LINE
     private int C2;
-    private int C3;  
-    
+    private int C3;
+
     private int D1;
     private int D2;
     // ALLOW MemberName ON PREVIOUS LINE
-    private int D3;  
-    
+    private int D3;
+
     private static final int e1 = 0;
     private int E2;
     private int E3;    // ALLOW ConstantName UNTIL THIS LINE+2
@@ -38,7 +38,7 @@ class InputSuppressWithNearbyCommentFilter
     private int E7;
     private int E8;    /* ALLOW MemberName UNTIL THIS LINE-3 */
     private static final int e9 = 0;
-    
+
     // ALLOW Unused UNTIL THIS LINE+5
     public static void doit1(int aInt) // this is +1
     {

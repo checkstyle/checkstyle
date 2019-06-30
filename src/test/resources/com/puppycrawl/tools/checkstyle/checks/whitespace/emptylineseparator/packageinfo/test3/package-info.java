@@ -1,4 +1,4 @@
-/*violation: for test that there's warning when block comment isn't 
+/*violation: for test that there's warning when block comment isn't
   separated from PACKAGE_DEF by line.*/
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.test3;
 

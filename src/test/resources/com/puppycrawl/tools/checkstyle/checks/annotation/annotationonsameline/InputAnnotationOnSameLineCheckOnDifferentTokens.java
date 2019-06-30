@@ -43,7 +43,7 @@ public @Ann
         return (@Ann
                 @Ann2 Integer) x;
     }
-    
+
     public <T> T getXAs() {
         return (T) x;
     }
@@ -55,5 +55,5 @@ public @Ann
 
     @Ann
     @Ann2 int x();
-    
+
 }

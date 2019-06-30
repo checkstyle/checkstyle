@@ -8,9 +8,9 @@ class InputNonEmptyAtclauseDescription
 	 */
 	public InputNonEmptyAtclauseDescription(String a, int b)
 	{
-		
+
 	}
-	
+
 	/**
 	 * Some javadoc.
 	 * @param a Some javadoc.
@@ -18,31 +18,31 @@ class InputNonEmptyAtclauseDescription
 	 */
 	public InputNonEmptyAtclauseDescription(String a)
 	{
-		
+
 	}
-	
+
 	/**
 	 * Some javadoc.
-	 * @param a                     
-	 * @param b           
-	 * @param c     
+	 * @param a
+	 * @param b
+	 * @param c
 	 */
 	public InputNonEmptyAtclauseDescription(String a, int b, double c)
 	{
-		
+
 	}
-	
+
 	/**
-	 * 
-	 * @param a  
-	 * @param e     
-	 * @deprecated     
+	 *
+	 * @param a
+	 * @param e
+	 * @deprecated
 	 */
 	public InputNonEmptyAtclauseDescription(String a, boolean e)
 	{
-		
+
 	}
-	
+
 	/**
 	 * Some javadoc
 	 * @param a Some javadoc
@@ -58,7 +58,7 @@ class InputNonEmptyAtclauseDescription
 	}
 
 	/**
-	 * 
+	 *
 	 * @param a Some javadoc
 	 * @param b Some javadoc
 	 * @param c Some javadoc
@@ -69,9 +69,9 @@ class InputNonEmptyAtclauseDescription
 	{
 		return 1;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param a
 	 * @param b
 	 * @param c
@@ -83,9 +83,9 @@ class InputNonEmptyAtclauseDescription
 	{
 		return 1;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param a
 	 * @param b
 	 * @param c

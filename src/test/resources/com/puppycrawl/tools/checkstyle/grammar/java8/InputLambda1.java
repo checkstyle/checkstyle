@@ -9,7 +9,7 @@ public class InputLambda1 {
 
 	static Runnable r1 = ()->LOG.info("Hello world one!");
 	static Runnable r2 = () -> LOG.info("Hello world two!");
-	
+
 	public static void main(String[] args) {
 		r1.run();
 		r2.run();

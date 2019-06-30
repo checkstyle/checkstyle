@@ -1,5 +1,5 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
-	
+
 public class InputFinalLocalVariableEnhancedForLoopVariable {
     public void method1()
     {
@@ -8,14 +8,14 @@ public class InputFinalLocalVariableEnhancedForLoopVariable {
         for(Object a : list){
         }
     }
-    
+
     public void method2()
     {
         final int[] squares = {0, 1, 4, 9, 16, 25};
         int x;
         for (final int i : squares) {
         }
-        
+
     }
 
     public java.util.List<String> method3(java.util.List<String> snippets) {
@@ -52,5 +52,5 @@ public class InputFinalLocalVariableEnhancedForLoopVariable {
             b = new String("b");
         }
     }
-    
+
 }

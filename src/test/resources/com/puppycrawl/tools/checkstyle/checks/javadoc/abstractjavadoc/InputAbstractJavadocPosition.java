@@ -13,16 +13,16 @@ import java.lang.annotation.Target;
 class/**nope*/ InputAbstractJavadocPosition/**nope*/{
 	/**Javadoc*/
 	protected/**nope*/ class/**nope*/ B/**nope*/{/**nope*/}
-	
+
 	/**Javadoc*/
 	private/**nope*/ static/**nope*/ class/**nope*/ C/**nope*/{/**nope*/}
-	
+
 	/**Javadoc*/
 	@Component/**nope*/ class/**nope*/ D/**nope*/{/**nope*/}
-	
+
 	/**Javadoc*/
 	@Component/**nope*/ private/**nope*/ class/**nope*/ E/**nope*/{/**nope*/}
-	
+
 	/**Javadoc*/
 	private/**nope*/ @Component/**nope*/ class/**nope*/ F/**nope*/{/**nope*/}
 }
@@ -131,13 +131,13 @@ enum/**nope*/ AAAAA/**nope*/ {}
 class ASD {
 	/**Javadoc*/
 	private/**nope*/ enum/**nope*/ BBBBB/**nope*/ {/**nope*/}
-	
+
 	/**Javadoc*/
 	@Component/**nope*/ enum/**nope*/ CCCCC/**nope*/ {/**nope*/}
-	
+
 	/**Javadoc*/
 	@Component/**nope*/ private/**nope*/ enum/**nope*/ DDDDD/**nope*/ {/**nope*/}
-	
+
 	/**Javadoc*/
 	private/**nope*/ @Component/**nope*/ enum/**nope*/ EEEEE/**nope*/ {/**nope*/}
 }
@@ -206,14 +206,14 @@ class EEEEEE {
 
 enum AAAAAAA {
 	/**Javadoc*/
-	ONE/**nope*/, 
+	ONE/**nope*/,
 	/**Javadoc*/
 	TWO/**nope*/
 }
 
 enum BBBBBBB {
 	/**Javadoc*/
-	ONE/**nope*/(/**nope*/1/**nope*/)/**nope*/, 
+	ONE/**nope*/(/**nope*/1/**nope*/)/**nope*/,
 	/**Javadoc*/
 	TWO/**nope*/(/**nope*/2/**nope*/)/**nope*/;
 	BBBBBBB(int i){}
@@ -221,7 +221,7 @@ enum BBBBBBB {
 
 enum CCCCCCC {
 	/**Javadoc*/
-	@Component/**nope*/ ONE/**nope*/(/**nope*/1/**nope*/)/**nope*/, 
+	@Component/**nope*/ ONE/**nope*/(/**nope*/1/**nope*/)/**nope*/,
 	/**Javadoc*/
 	@Component/**nope*/ TWO/**nope*/(/**nope*/2/**nope*/)/**nope*/;
 	CCCCCCC(int i){}

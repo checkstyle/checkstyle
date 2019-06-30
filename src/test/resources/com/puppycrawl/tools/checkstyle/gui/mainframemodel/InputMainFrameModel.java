@@ -11,7 +11,7 @@ class InputMainFrameModel {
     /**
     * method javadoc
     */
-    public void method() { 
+    public void method() {
         /* just comment */
     }
 

@@ -47,12 +47,12 @@ public abstract class InputHideUtilityClassConstructorDesignForExtension
     {
         System.identityHashCode("nonempty and overriding possible");
     }
-    
+
     public final void aFinalMethod()
     {
     	System.identityHashCode("no way to override");
     }
-    
+
     public static void aStaticMethod()
     {
     	System.identityHashCode("no way to override");
@@ -74,7 +74,7 @@ public abstract class InputHideUtilityClassConstructorDesignForExtension
             }
         }
     }
-    
+
     public final class aFinalClass
     {
         public void someMethod()
@@ -82,27 +82,27 @@ public abstract class InputHideUtilityClassConstructorDesignForExtension
         	System.identityHashCode("nonempty and overriding is possible");
         }
     }
-    
+
     public class nonFinalClass
     {
     	//private ctor
-    	private nonFinalClass(){}    	
+    	private nonFinalClass(){}
         public void someMethod()
         {
         	System.identityHashCode("nonempty and overriding is possible");
         }
     }
-    
+
     public class anotherNonFinalClass
     {
     	//nonPrivate ctor
-    	public anotherNonFinalClass(){}    	
+    	public anotherNonFinalClass(){}
         public void someMethod()
         {
         	System.identityHashCode("nonempty and overriding is possible");
         }
     }
-    
+
     // enums should be skipped
     public enum TEnum
     {

@@ -14,7 +14,7 @@ public class InputMemberNameExtended
     protected int _protected;
     int _package;
     private int _private;
-    
+
     class Inner {
         public int mPublic;
         protected int mProtected;
@@ -36,7 +36,7 @@ public class InputMemberNameExtended
         public int _public;
         protected int _protected;
         int _package;
-        private int _private;  
+        private int _private;
     };
 }
 

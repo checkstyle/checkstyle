@@ -16,9 +16,9 @@ public class InputIllegalTokenTextTokens
                 break;
         }
     }
-    
+
     public native void nativeMethod();
-    
+
     public void methodWithLiterals()
     {
         final String ref = "<a href=\"";

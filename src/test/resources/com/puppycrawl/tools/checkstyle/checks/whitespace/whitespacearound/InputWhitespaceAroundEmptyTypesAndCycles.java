@@ -62,10 +62,10 @@ class WithEmptyAnonymous
 	@interface Require {
 
 		String[] value();
-		
+
 	}
 }
 
 class MyClass {
-	
+
 }

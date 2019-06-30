@@ -7,11 +7,11 @@ public class InputRequireThisCaseGroup {
         switch (val) {
             case 0:
                 String aVariable = "";
-                
+
                 if (this.aVariable != null) {
                     aVariable = this.aVariable;
                 }
-                
+
                 return aVariable;
             default:
                 return null;
@@ -22,11 +22,11 @@ public class InputRequireThisCaseGroup {
         switch (val) {
             case 0:
                 String aVariable = "";
-                
+
                 if (this.aVariable != null) {
                     aVariable = this.aVariable;
                 }
-                
+
                 return aVariable;
         }
         return null;
@@ -36,11 +36,11 @@ public class InputRequireThisCaseGroup {
         switch (val) {
             case 0:
                 String other = "";
-                
+
                 if (aVariable != null) {
                     other = aVariable;
                 }
-                
+
                 return other;
         }
         return null;

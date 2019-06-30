@@ -51,7 +51,7 @@ class InputDeclarationOrderFieldAnonymousClass {
 
     enum RequiredHeaderPlacement {
         TEMP;
-        
+
         public static String[] labels() {
             String[] labels = new String[values().length];
             return labels;
