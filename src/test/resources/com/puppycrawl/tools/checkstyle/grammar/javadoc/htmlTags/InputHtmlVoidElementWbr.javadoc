@@ -36,7 +36,7 @@
 * <wbr attr="something"/>
 * <wbr attr="something" attr2="someotherthing">
 * <wbr attr="something" attr2="someotherthing"/>
-* <wbr attr="something" 
+* <wbr attr="something"
 * attr2="someotherting">
-* <wbr attr="something" 
+* <wbr attr="something"
 * attr2="someotherting"/>

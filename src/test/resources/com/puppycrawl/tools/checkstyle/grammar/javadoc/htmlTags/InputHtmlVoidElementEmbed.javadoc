@@ -36,7 +36,7 @@
 * <embed attr="something"/>
 * <embed attr="something" attr2="someotherthing">
 * <embed attr="something" attr2="someotherthing"/>
-* <embed attr="something" 
+* <embed attr="something"
 * attr2="someotherting">
-* <embed attr="something" 
+* <embed attr="something"
 * attr2="someotherting"/>

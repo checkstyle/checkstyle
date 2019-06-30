@@ -38,7 +38,7 @@
 * <rtc> <tfoot> </tfoot> </RTC>
 * <rtc> <tfoot> </RTC>
 * <rtc> </tfoot> </RTC>
-* <rtc style="color:red" 
+* <rtc style="color:red"
 *
 * > <!--HTML COMMENT-->  </Rtc
 *

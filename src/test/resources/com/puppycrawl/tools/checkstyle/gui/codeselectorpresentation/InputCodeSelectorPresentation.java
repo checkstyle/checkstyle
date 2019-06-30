@@ -11,7 +11,7 @@ class InputCodeSelectorPresentation {
     /**
     * method javadoc
     */
-    public void method() { 
+    public void method() {
         /* just comment */
     }
 

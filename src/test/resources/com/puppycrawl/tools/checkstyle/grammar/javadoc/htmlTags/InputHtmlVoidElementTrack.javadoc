@@ -36,7 +36,7 @@
 * <track attr="something"/>
 * <track attr="something" attr2="someotherthing">
 * <track attr="something" attr2="someotherthing"/>
-* <track attr="something" 
+* <track attr="something"
 * attr2="someotherting">
-* <track attr="something" 
+* <track attr="something"
 * attr2="someotherting"/>

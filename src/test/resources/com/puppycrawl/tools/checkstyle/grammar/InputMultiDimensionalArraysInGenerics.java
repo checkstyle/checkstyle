@@ -21,5 +21,5 @@ public class InputMultiDimensionalArraysInGenerics {
               .getGenericParameterTypes()[0];
       return (WildcardType) parameterType.getActualTypeArguments()[0];
     }
-  
+
 }
