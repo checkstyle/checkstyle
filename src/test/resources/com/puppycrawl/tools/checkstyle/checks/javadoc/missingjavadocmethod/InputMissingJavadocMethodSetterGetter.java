@@ -36,7 +36,7 @@ public class InputMissingJavadocMethodSetterGetter
 
     public int getCost2()
     {
-    	mNumber = 4;
+            mNumber = 4;
         return 666;
     }
 

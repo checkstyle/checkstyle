@@ -15,12 +15,12 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
  */
 class InputWriteTag
 {
-	/**
-	 * @todo Add a constructor comment
-	 */
-	public InputWriteTag()
-	{
-	}
+        /**
+         * @todo Add a constructor comment
+         */
+        public InputWriteTag()
+        {
+        }
 
     public void method()
     {

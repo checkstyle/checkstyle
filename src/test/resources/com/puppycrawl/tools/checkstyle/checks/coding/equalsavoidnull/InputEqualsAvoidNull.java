@@ -194,9 +194,9 @@ public class InputEqualsAvoidNull {
 
 class InputEqualsAvoidNullOutter {
     public class InputEqualsAvoidNullInner {
-    	public boolean equals(Object o) {
-    	    return true;
-    	}
+            public boolean equals(Object o) {
+                return true;
+            }
     }
 }
 

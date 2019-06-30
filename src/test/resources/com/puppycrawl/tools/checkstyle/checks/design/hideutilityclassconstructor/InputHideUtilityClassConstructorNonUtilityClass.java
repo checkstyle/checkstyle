@@ -11,11 +11,11 @@ public class InputHideUtilityClassConstructorNonUtilityClass extends JPanel
     /** HideUtilityClassConstructorCheck should not report this */
     public InputHideUtilityClassConstructorNonUtilityClass()
     {
-	this.setPreferredSize(new Dimension(100, 100));
+this.setPreferredSize(new Dimension(100, 100));
     }
 
     public static void utilMethod()
     {
-	System.identityHashCode("I'm a utility method");
+System.identityHashCode("I'm a utility method");
     }
 }

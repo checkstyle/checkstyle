@@ -77,7 +77,7 @@ class MyClassWithGenericSuperMethod
      * @return a cloned Object?
      */
     public static Object clone(Object o) {
-	return null;
+        return null;
     }
 }
 
@@ -90,7 +90,7 @@ class AnotherClass {
      * @return a cloned type?
      */
     public <T> T clone(T t) {
-	return null;
+        return null;
     }
 }
 

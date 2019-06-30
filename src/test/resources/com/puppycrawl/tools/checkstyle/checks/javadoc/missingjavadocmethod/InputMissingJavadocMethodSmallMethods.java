@@ -23,7 +23,7 @@ public class InputMissingJavadocMethodSmallMethods extends Some
      */
     String foo2()
     {
-    	return "Fooooooooooooooo"
+            return "Fooooooooooooooo"
                 + "ooooo"
                 + "ooo";
     }
@@ -86,8 +86,8 @@ public class InputMissingJavadocMethodSmallMethods extends Some
     protected String foo11()
     {
         return "Fooooo"
-        		+ "ooo"
-        		+ "ooooooo"
+                        + "ooo"
+                        + "ooooooo"
                 + "ooooo"
                 + "ooo";
     }

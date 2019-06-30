@@ -16,7 +16,7 @@ import java.io.Serializable;
  */
 class InputJavadocTagContinuationIndentation implements Serializable
 {
-	/**
+        /**
      * The client's first name.
      * @serial Some javadoc.
      *     Some javadoc.

@@ -13,10 +13,10 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctagcontinuationind
  *     Some javadoc.
  */
 class InputJavadocTagContinuationIndentationOffset3 {
-	/**
+        /**
      * The client's first name.
      * @serial Some javadoc.
-	*   Some javadoc. // warn
+        *   Some javadoc. // warn
      */
     private String fFirstName;
 

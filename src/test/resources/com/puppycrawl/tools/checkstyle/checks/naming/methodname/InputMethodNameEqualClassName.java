@@ -8,7 +8,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
  */
 public class InputMethodNameEqualClassName {
 
-	//illegal name
+        //illegal name
     public int InputMethodNameEqualClassName() {
         return 0;
     }
@@ -19,38 +19,38 @@ public class InputMethodNameEqualClassName {
     }
 
     class Inner {
-		//illegal name
+                //illegal name
         public int Inner() {
-			return 0;
-		}
+                        return 0;
+                }
 
-		//OK name - name of the outter class's ctor
+                //OK name - name of the outter class's ctor
         public int InputMethodNameEqualClassName() {
-			return 0;
-		}
-	}
+                        return 0;
+                }
+        }
 
-	public void anotherMethod() {
-		new InputMethodNameEqualClassName() {
+        public void anotherMethod() {
+                new InputMethodNameEqualClassName() {
 
-			//illegal name
+                        //illegal name
             public int InputMethodNameEqualClassName() {
-				return 1;
-			}
-		};
-	}
+                                return 1;
+                        }
+                };
+        }
 }
 
 interface SweetInterface {
 
-	//illegal name
+        //illegal name
     int SweetInterface();
 }
 
 class Outer {
 
-	//illegal name
+        //illegal name
     public void Outer() {
 
-	}
+        }
 }

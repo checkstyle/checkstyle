@@ -50,12 +50,12 @@ public abstract class InputHideUtilityClassConstructorDesignForExtension
 
     public final void aFinalMethod()
     {
-    	System.identityHashCode("no way to override");
+    System.identityHashCode("no way to override");
     }
 
     public static void aStaticMethod()
     {
-    	System.identityHashCode("no way to override");
+    System.identityHashCode("no way to override");
     }
 
     // tries to trigger bug #884035
@@ -79,27 +79,27 @@ public abstract class InputHideUtilityClassConstructorDesignForExtension
     {
         public void someMethod()
         {
-        	System.identityHashCode("nonempty and overriding is possible");
+        System.identityHashCode("nonempty and overriding is possible");
         }
     }
 
     public class nonFinalClass
     {
-    	//private ctor
-    	private nonFinalClass(){}
+    //private ctor
+    private nonFinalClass(){}
         public void someMethod()
         {
-        	System.identityHashCode("nonempty and overriding is possible");
+        System.identityHashCode("nonempty and overriding is possible");
         }
     }
 
     public class anotherNonFinalClass
     {
-    	//nonPrivate ctor
-    	public anotherNonFinalClass(){}
+    //nonPrivate ctor
+    public anotherNonFinalClass(){}
         public void someMethod()
         {
-        	System.identityHashCode("nonempty and overriding is possible");
+        System.identityHashCode("nonempty and overriding is possible");
         }
     }
 
