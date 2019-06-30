@@ -36,7 +36,7 @@
 * <source attr="something"/>
 * <source attr="something" attr2="someotherthing">
 * <source attr="something" attr2="someotherthing"/>
-* <source attr="something" 
+* <source attr="something"
 * attr2="someotherting">
-* <source attr="something" 
+* <source attr="something"
 * attr2="someotherting"/>

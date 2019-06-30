@@ -48,8 +48,8 @@ public class InputRegressionJavaClass1 {
     native void m1();
     void m2() {}
     synchronized void m4() {}
-    strictfp void m5() {}    
-    
+    strictfp void m5() {}
+
     // returns
     public int[] m6() {return null;}
     public int m7() [] {return null;}
@@ -74,7 +74,7 @@ public class InputRegressionJavaClass1 {
     public <T extends Enum<T>> void m22() {}
     public <T> void m23() {};
     public <T extends RuntimeException & java.io.Serializable> void m24() {}
-    
+
     // annotations
     @SuppressWarnings({})
     public void m50() {}
@@ -221,7 +221,7 @@ public class InputRegressionJavaClass1 {
         vstring = null;
         vstring = "";
         vstring = "\\";
-        
+
         // assignments and operators
         vint = 1 + 1;
         vint = 1 - 1;
@@ -264,7 +264,7 @@ public class InputRegressionJavaClass1 {
         String[] arrayinit = {};
         String[] arrayinit2 = {""};
         String[] arrayinit3 = {"", "",};
-        
+
         // new
         varray = new int[]{};
         varray = new int[]{0};
@@ -277,7 +277,7 @@ public class InputRegressionJavaClass1 {
         // statements
         ;
         this.f1 = 0;
-        
+
         // labels
         test_label1:
 
@@ -298,7 +298,7 @@ public class InputRegressionJavaClass1 {
         if (b) { while (true) {} }
         do {} while (false);
         synchronized (f9) {}
-        
+
         switch (0) {
             case 1:
             case 0: break;
@@ -315,7 +315,7 @@ public class InputRegressionJavaClass1 {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(null, "utf-8"))) {}
         try (BufferedReader br1 = new BufferedReader(new InputStreamReader(null, "utf-8"));
                 BufferedReader br2 = new BufferedReader(new InputStreamReader(null, "utf-8"));) {}
-        
+
         // access
         test4 = InputRegressionJavaClass1.class;
         test4 = List[].class;
@@ -338,7 +338,7 @@ public class InputRegressionJavaClass1 {
         f9.equals(((vstring = "")));
         for (int i = 0; ((i) < (6+6)); i++) ;
         if ((b & b)) {}
-        
+
         // ast error handling
         vint = vboolean ? (vint = 1) : (vint = 0);
         varray[vint] = Integer.parseInt("0");

@@ -1,18 +1,18 @@
 * {@link
-*     reference     
+*     reference
 *     Description-on-multiple-
 *     lines}
 
 * {@linkplain
-*     reference     
+*     reference
 *     Description-on-multiple-
 *     lines}
 
 
-* {@customlink     
-*     reference     
+* {@customlink
+*     reference
 *     Description-on-multiple-
 *     lines}
 
-* {@value    
+* {@value
 *     Reference}

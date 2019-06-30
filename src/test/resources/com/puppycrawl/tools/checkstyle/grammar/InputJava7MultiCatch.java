@@ -15,14 +15,14 @@ public class InputJava7MultiCatch
     public static void main(String[] args) {
         try {
             FileInputStream in = new FileInputStream("InputJava7MultiCatch.java");
-            throw new CustomException(); 
+            throw new CustomException();
         } catch (FileNotFoundException | CustomException e) {
             logException(e);
         }
 
         try {
             FileInputStream in = new FileInputStream("InputJava7MultiCatch.java");
-            throw new CustomException(); 
+            throw new CustomException();
         } catch (final FileNotFoundException | CustomException | com.puppycrawl.tools.checkstyle.grammar.InputJava7MultiCatch.AnotherCustomException e) {
             logException(e);
         }

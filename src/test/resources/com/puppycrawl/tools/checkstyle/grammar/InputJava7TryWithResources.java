@@ -23,12 +23,12 @@ public class InputJava7TryWithResources
         catch (Exception e) { }
         catch (Throwable t) { }
         finally { }
-       
+
         try (MyResource resource = new MyResource(); MyResource resource2 = new MyResource()) { }
         catch (Exception e) { }
         catch (Throwable t) { }
         finally { }
-       
+
         try (MyResource resource = new MyResource(); MyResource resource2 = new MyResource();) { }
         catch (Exception e) { }
         catch (Throwable t) { }

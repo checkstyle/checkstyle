@@ -14,7 +14,7 @@ public enum InputRegressionJavaEnum1 {
         {;}
     }
     ;
-    
+
     public void override() {}
 }
 enum e1 {

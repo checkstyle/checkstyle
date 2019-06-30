@@ -36,7 +36,7 @@
 * <keygen attr="something"/>
 * <keygen attr="something" attr2="someotherthing">
 * <keygen attr="something" attr2="someotherthing"/>
-* <keygen attr="something" 
+* <keygen attr="something"
 * attr2="someotherting">
-* <keygen attr="something" 
+* <keygen attr="something"
 * attr2="someotherting"/>

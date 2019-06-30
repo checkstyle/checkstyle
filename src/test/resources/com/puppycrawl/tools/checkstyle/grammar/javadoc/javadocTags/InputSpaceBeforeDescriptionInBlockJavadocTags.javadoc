@@ -1,10 +1,10 @@
-* @author  
+* @author
       author-name <br attr="value"/>
 
 * @deprecated
       deprecated-text
 
-* @exception      CustomEx  
+* @exception      CustomEx
       {@link CustomEx} <b>Internal</b>
 
 * @param         ParamName
@@ -17,7 +17,7 @@
       DESCRIPTION
 
 * @serial
-include    
+include
 
 * @serialData
       DESCRIPTION
@@ -37,8 +37,8 @@ include
              8.2 - 8.3 - 8.4...
 
 * @customTag
-     
+
      DESCRIPTION
 
-* @see package.Class#member(Object, Object)             
+* @see package.Class#member(Object, Object)
 *         Description
