@@ -13,6 +13,6 @@ public class InputFileSetIllegalTokens
                 break;
         }
     }
-    
+
     public native void nativeMethod();
 }

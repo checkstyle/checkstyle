@@ -31,7 +31,7 @@ public class InputThrowsCount {
 
     void method6() {
     }
-    
+
     private void method7() throws Exception, AWTException, SQLException,
             FileNotFoundException, EOFException {
     }
@@ -39,7 +39,7 @@ public class InputThrowsCount {
 
 class SubClass extends InputThrowsCount {
     @Override
-    void method1() {        
+    void method1() {
     }
 
     @Deprecated
@@ -50,12 +50,12 @@ class SubClass extends InputThrowsCount {
     @Override
     void method5() throws Exception, AWTException, Throwable {
     }
-    
+
     @SuppressWarnings("deprecation")
     final void method2(Object ...objects) throws Exception, AWTException, SQLException,
             FileNotFoundException, EOFException{
     }
-    
+
     @java.lang.Override
     void method3() throws Exception {
     }

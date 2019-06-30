@@ -67,7 +67,7 @@ public class InputMissingJavadocMethodMissingJavadocTags {
      *
      * @param number to return
      * @return
-     * 
+     *
      */
     private int missingReturnAtTheEndFollowedByEmptyLine(int number) {
         return number;

@@ -22,9 +22,9 @@ public class InputMultipleVariableDeclarations
         }
 
         for(int i=0; i<4;i++) {
-            
+
         }
-        
+
         switch("") {
         case "6":
             int k = 7;

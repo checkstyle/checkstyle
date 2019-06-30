@@ -62,27 +62,27 @@ abstract class NonAAAAbstractClassName2 {
 }
 
 interface Interface1 {
-	
+
 	String VALUEEEE = "value"; // in interface this is final/static
-	
+
 }
 
 interface Interface2 {
-	
+
 	static String VALUEEEE = "value"; // in interface this is final/static
-	
+
 }
 
 interface Interface3 {
-	
+
 	final String VALUEEEE = "value"; // in interface this is final/static
-	
+
 }
 
 interface Interface4 {
-	
+
 	final static String VALUEEEE = "value"; // in interface this is final/static
-	
+
 }
 
 class FIleNameFormatException extends Exception {
@@ -97,7 +97,7 @@ class FIleNameFormatException extends Exception {
 class StateX {
     int userID;
     int scaleX, scaleY, scaleZ;
-    
+
     int getScaleX() {
         return this.scaleX;
     }

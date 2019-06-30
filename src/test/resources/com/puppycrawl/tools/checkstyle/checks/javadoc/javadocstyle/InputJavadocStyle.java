@@ -6,9 +6,9 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 
 /**
- * Test input for the JavadocStyleCheck.  This check is used to perform 
- * some additional Javadoc validations.  
- * 
+ * Test input for the JavadocStyleCheck.  This check is used to perform
+ * some additional Javadoc validations.
+ *
  * @author Chris Stillwell
  * @version 1.0
  */
@@ -16,47 +16,47 @@ public class InputJavadocStyle
 {
    // This is OK. We don't flag missing javadoc.  That's left for other checks.
    private String first;
-   
+
    /** This Javadoc is missing an ending period */
    private String second;
-   
+
    /**
-    * We don't want {@link com.puppycrawl.tools.checkstyle.checks.JavadocStyleCheck} 
-    * tags to stop the scan for the end of sentence. 
+    * We don't want {@link com.puppycrawl.tools.checkstyle.checks.JavadocStyleCheck}
+    * tags to stop the scan for the end of sentence.
     * @see Something
     */
    public InputJavadocStyle()
    {
    }
-   
+
    /**
     * This is ok!
     */
    private void method1()
    {
    }
-   
+
    /**
     * This is ok?
     */
    private void method2()
    {
    }
-   
+
    /**
     * And This is ok.<br>
     */
    private void method3()
    {
    }
-   
+
    /**
     * This should fail even.though.there are embedded periods
     */
    private void method4()
    {
    }
-   
+
    /**
     * Test HTML in Javadoc comment
     * <dl>
@@ -64,27 +64,27 @@ public class InputJavadocStyle
     * <dd>The dt and dd don't require end tags.
     * </dl>
     * </td>Extra tag shouldn't be here
-    * 
+    *
     * @param arg1 <code>dummy.
     */
    private void method5(int arg1)
    {
    }
-   
+
    /**
     * Protected check <b>should fail
     */
    protected void method6()
    {
    }
-   
+
    /**
     * Package protected check <b>should fail
     */
    void method7()
    {
    }
-   
+
    /**
     * Public check should fail</code>
     * should fail <
@@ -92,13 +92,13 @@ public class InputJavadocStyle
    public void method8()
    {
    }
-   
+
    /** {@inheritDoc} **/
    public void method9()
    {
    }
 
-    
+
     // Testcases to exercise the Tag parser (bug 843887)
 
     /**
@@ -119,7 +119,7 @@ public class InputJavadocStyle
      * </p>
      * <p>
      * Sometimes it's not.
-     * 
+     *
      * <span style="font-family:'Times New Roman',Times,serif;font-size:200%">
      * Attributes can contain spaces and nested quotes.
      * </span>
@@ -222,7 +222,7 @@ public class InputJavadocStyle
     { // should report empty javadoc (no text before exception)
     }
 
-    /** 
+    /**
      */
     private static int ASDF = 0;
     // should report empty javadoc
@@ -272,10 +272,10 @@ public class InputJavadocStyle
         {
             return null;
         }
-        
+
         /**
          * Retrieves Z.
-         * 
+         *
          * @param <KEY_T1> this is not an unclosed KEY_T tag
          * @return a value
          */
@@ -283,20 +283,20 @@ public class InputJavadocStyle
         {
             return null;
         }
-        
+
         /**
          * Retrieves something.
-         * 
+         *
          * @param <KEY_T_$_1_t> strange type
          * @return a value
          */
         public <KEY_T_$_1_t> KEY_T_$_1_t getEh_1649020_2() {
             return null;
         }
-        
+
         /**
          * Retrieves more something.
-         * 
+         *
          * @param <$_12_xY_z> strange type
          * @return a value
          */
@@ -321,7 +321,7 @@ public class InputJavadocStyle
 
 		/**
 		 * Checks generics javadoc.
-		 * 
+		 *
 		 * @param strings this is a List<String>
 		 * @param test Map<String, List<String>> a map indexed on String of Lists of Strings.
 		 */
@@ -330,7 +330,7 @@ public class InputJavadocStyle
 
 		/**
 		 * Checks HTML tags in javadoc.
-		 * 
+		 *
 		 * HTML no good tag
 		 * <string>Tests</string>
 		 *
@@ -344,8 +344,8 @@ public class InputJavadocStyle
          * /a>
          */
         void tagClosedInNextLine() {
-            
-        } 
+
+        }
 
         /**
          * Link to some page in two lines.
@@ -353,7 +353,7 @@ public class InputJavadocStyle
          * href="someLink"/>
          */
         void tagInTwoLines() {
-            
+
         }
 
         /**
@@ -401,7 +401,7 @@ public class InputJavadocStyle
          * @throws Exception if an error occurs
          */
         void foo() throws Exception {}
-        
+
         /**
          * text /
          * @throws Exception if an error occurs
@@ -414,7 +414,7 @@ public class InputJavadocStyle
          * @throws IllegalArgumentException with errMsg as its message
          */
         void inheritDocWithThrows() {}
-        
+
         /**
          * /
          *

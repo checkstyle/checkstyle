@@ -13,5 +13,5 @@ import static sun.tools.util.ModifierFilter.ALL_ACCESS;
 
 public class InputCustomImportOrderThirdPartyPackage
 {
-    
+
 }

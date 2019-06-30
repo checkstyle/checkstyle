@@ -10,7 +10,7 @@ class InputEmptyForInitializerPadDefaultConfig
     {
         for (int i = 0; i < 1; i++) {
         }
-        
+
         for (int i = 0; i < 1;i++) {
         }
 
@@ -27,7 +27,7 @@ class InputEmptyForInitializerPadDefaultConfig
         for (int i = 0; i < 1; ) {
             i++;
         }
-        
+
         // test eol, there is no space after second SEMI
         for (int i = 0; i < 1;
             ) {
@@ -39,7 +39,7 @@ class InputEmptyForInitializerPadDefaultConfig
     {
         for ( int i = 0; i < 1; i++ ) {
         }
-        
+
         for ( int i = 0; i < 1; ) {
             i++;
         }

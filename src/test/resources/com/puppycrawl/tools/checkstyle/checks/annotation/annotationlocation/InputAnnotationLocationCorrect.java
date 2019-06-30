@@ -7,21 +7,21 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 @MyAnnotation5
 class InputAnnotationLocationCorrect
 {
-    
+
     @MyAnnotation6
     @MyAnnotation5
     public int a;
 
     @MyAnnotation5
     public int b;
-    
+
     @MyAnnotation6
     @MyAnnotation5
     public int c;
-    
+
     @MyAnnotation5
     public int d;
-    
+
     @MyAnnotation6
     @MyAnnotation5
     public InputAnnotationLocationCorrect()
@@ -31,11 +31,11 @@ class InputAnnotationLocationCorrect
     @MyAnnotation5
     @MyAnnotation6
     void foo1() {}
-    
+
     @MyAnnotation5
     @MyAnnotation6
     void foo2() {}
-    
+
     @MyAnnotation5
     @MyAnnotation6
     @MyAnnotation3
@@ -48,14 +48,14 @@ class InputAnnotationLocationCorrect
 
         @MyAnnotation5
         public int b;
-        
+
         @MyAnnotation6
         @MyAnnotation5
         public int c;
-        
+
         @MyAnnotation5
         public int d;
-        
+
         @MyAnnotation6
         public InnerClass()
         {
@@ -63,7 +63,7 @@ class InputAnnotationLocationCorrect
         }
         @MyAnnotation5
         @MyAnnotation6 void foo1(int a) {}
-        
+
         @MyAnnotation5
         @MyAnnotation6
         void foo2() {}
@@ -78,22 +78,22 @@ class InputAnnotationLocationCorrect
         public int a;
 
         @MyAnnotation5 public int b;
-        
+
         @MyAnnotation6
         @MyAnnotation5
         public int c;
-        
+
         @MyAnnotation5
         public int d;
-        
+
         @MyAnnotation5
         @MyAnnotation6 void foo1() {}
-        
+
         @MyAnnotation5
         @MyAnnotation6
         void foo2() {}
     };
-    
+
 }
 
 @MyAnnotation5

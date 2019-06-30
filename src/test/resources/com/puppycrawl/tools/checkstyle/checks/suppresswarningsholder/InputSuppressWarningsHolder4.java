@@ -4,7 +4,7 @@ public class InputSuppressWarningsHolder4 {
 
     @CustomAnnotation()
     int a;
-    
+
 }
 @interface CustomAnnotation {
 }

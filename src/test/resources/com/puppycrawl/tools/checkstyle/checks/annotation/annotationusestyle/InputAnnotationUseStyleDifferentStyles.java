@@ -5,21 +5,21 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 @SuppressWarnings({""})
 public class InputAnnotationUseStyleDifferentStyles
 {
-    
+
 }
 
 @SomeArrays(pooches={DOGS.LEO}, um={}, duh={"bleh"})
 @SuppressWarnings("") //compact_no_array
 @Deprecated()
 class Dep {
-    
+
 }
 
 @Deprecated
 @SomeArrays(pooches={DOGS.LEO})
 @SuppressWarnings({""})
 enum SON {
-    
+
     @Deprecated
     @SomeArrays(pooches={DOGS.LEO}, um={""}, duh={"bleh"})
     @APooch(dog=DOGS.HERBIE)
@@ -29,7 +29,7 @@ enum SON {
 
 @InputAnnotationUseStyleCustomAnnotation()
 enum DOGS {
-    
+
     @Deprecated()
     LEO,
     HERBIE
@@ -46,7 +46,7 @@ enum DOGS {
 
 @Another(value={""}) //expanded
 enum E {
-    
+
 }
 
 @interface APooch {

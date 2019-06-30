@@ -10,21 +10,21 @@ class InputAbstractJavadocCorrectParagraph {
 
     /**
      * Some Javadoc.
-     *   
+     *
      * <p>{@code function} will never be invoked with a null value.
      *
      * @since 8.0
      */
     public static final byte NUL = 0;
-       
+
     /**
      * Some Javadoc.
      *
      * <p>Some Javadoc.
-     * 
+     *
      * <pre>
      * class Foo {
-     * 
+     *
      *   void foo() {}
      * }
      * </pre>
@@ -33,20 +33,20 @@ class InputAbstractJavadocCorrectParagraph {
      *     Documentation about GWT emulated source</a>
      */
     boolean emulated() {return false;}
-    
+
     /**
      * Some Javadoc.
-     * 
+     *
      *<pre>
      * Test
      * </pre>
-     * 
+     *
      * <pre>
      * Test
      * </pre>
      */
     boolean test() {return false;}
-    
+
     /**
      * Some Javadoc.
      *
@@ -65,7 +65,7 @@ class InputAbstractJavadocCorrectParagraph {
          * @since 8.0
          */
         public static final byte NUL = 0;
-           
+
         /**
          * Some Javadoc.
          *
@@ -76,7 +76,7 @@ class InputAbstractJavadocCorrectParagraph {
          */
         boolean emulated() {return false;}
     }
-    
+
     InnerInputCorrectJavaDocParagraphCheck anon = new InnerInputCorrectJavaDocParagraphCheck() {
 
     	/**
@@ -89,8 +89,8 @@ class InputAbstractJavadocCorrectParagraph {
          * @since 8.0
          */
         public static final byte NUL = 0;
-           
-        /** 
+
+        /**
          * Some Javadoc with space at the end of first line.
          *
          * <p>Some Javadoc.

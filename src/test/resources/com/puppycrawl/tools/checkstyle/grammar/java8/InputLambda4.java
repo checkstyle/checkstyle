@@ -10,7 +10,7 @@ public class InputLambda4 {
 
 	public void doSomething() {
 		List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-		
+
 		numbers.forEach((Integer value) -> LOG.info(value.toString()));
 	}
 }

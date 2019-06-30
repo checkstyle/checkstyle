@@ -113,7 +113,7 @@ class InputLeftCurlyMissingBraces
 
     /** Empty constructor block. **/
     public InputLeftCurlyMissingBraces() {}
-    
+
     /** Empty method block. **/
     public void emptyImplementation() {}
 }

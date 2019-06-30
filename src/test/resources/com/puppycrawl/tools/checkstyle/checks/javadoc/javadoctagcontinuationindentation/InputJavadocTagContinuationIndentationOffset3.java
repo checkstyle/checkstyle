@@ -19,14 +19,14 @@ class InputJavadocTagContinuationIndentationOffset3 {
 	*   Some javadoc. // warn
      */
     private String fFirstName;
-     
+
     /**
      * The client's first name.
      * @serial
      *    Some javadoc.
      */
     private String sSecondName;
-      
+
     /**
      * The client's first name.
      * @serialField

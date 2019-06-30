@@ -5,15 +5,15 @@ public class InputAnnotationLocationCustomAnnotationsDeclared {
 
     @MyAnnotation13
     void method() {
-        
+
     }
-    
+
     @MyAnnotation13
     @MyAnnotation12
     void method2() {
-        
+
     }
-	
+
 }
 
 @interface MyAnnotation11 {

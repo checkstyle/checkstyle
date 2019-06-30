@@ -16,16 +16,16 @@ public class InputIllegalTypeMemberModifiers {
     private java.util.TreeSet<Object> table1() { return null; } //WARNING
     private TreeSet<Object> table2() { return null; } //WARNING
     static class SomeStaticClass {
-        
+
     }
-    
+
     //WARNING if memberModifiers is set and contains TokenTypes.LITERAL_PROTECTED
     protected com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalTypeMemberModifiers.AbstractClass c1 = null;
     //NO WARNING if memberModifiers is set and does not contain TokenTypes.LITERAL_PUBLIC
     public final static java.util.TreeSet<Object> table3() { return null; }
-    
+
     java.util.TreeSet<Object> table4() { java.util.TreeSet<Object> treeSet = null; return null; }
-    
+
     private class Some {
         java.util.TreeSet<Object> treeSet = null;
     }

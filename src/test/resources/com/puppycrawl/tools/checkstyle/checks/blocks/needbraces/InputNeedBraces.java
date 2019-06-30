@@ -122,7 +122,7 @@ class InputNeedBraces
 
     /** Empty constructor block. **/
     public InputNeedBraces() {}
-    
+
     /** Empty method block. **/
     public void emptyImplementation() {}
 }

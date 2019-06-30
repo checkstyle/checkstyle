@@ -13,7 +13,7 @@ public class InputSuppressWarningsHolder5{
         Object object = new @SuppressWarnings("unused") Object();
         try {
             return null;
-            
+
         } catch (@SuppressWarnings("unused") Exception ex) {
             return "";
         }
@@ -37,9 +37,9 @@ public class InputSuppressWarningsHolder5{
     }
 
     class MyObject{
-        
+
         public void myMethod(){};
-        
+
         class MyObject2{}
     }
 

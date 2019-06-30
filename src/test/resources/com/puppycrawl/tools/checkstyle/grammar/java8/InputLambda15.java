@@ -25,7 +25,7 @@ public class InputLambda15
         //exp:sin:log:-0.23
         LOG.info(compose.calculate(sin.andThen(log).andThen(exp), 0.8).toString());
         //sin:log:exp:0.71
- 
+
     }
 
     public Double calculate(Function<Double, Double> operator, Double d)

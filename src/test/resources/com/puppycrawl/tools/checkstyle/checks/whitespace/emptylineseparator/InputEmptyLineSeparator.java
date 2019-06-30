@@ -38,7 +38,7 @@ import org.apache.commons.beanutils.BasicDynaBean;
 class InputEmptyLineSeparator
 {
     public static final double FOO_PI = 3.1415;
-    private boolean flag = true; 
+    private boolean flag = true;
     static {
         //empty static initializer
     }
@@ -53,9 +53,9 @@ class InputEmptyLineSeparator
     }
     // no blank line - fail
     /**
-     * 
-     * 
-     * 
+     *
+     *
+     *
      */
     private InputEmptyLineSeparator()
     {
@@ -100,7 +100,7 @@ class InputEmptyLineSeparator
      * @param result
      * @return
      */
-    
+
     public static <T> Callable<T> callable3(Runnable task, T result)
     {
         return null;
@@ -114,10 +114,10 @@ class InputEmptyLineSeparator
     }
 
     class InnerClass {
-        
+
         public static final double FOO_PI_INNER = 3.1415;
 
-        private boolean flagInner = true; 
+        private boolean flagInner = true;
 
         {
             //empty instance initializer
@@ -142,7 +142,7 @@ class Class2{
         int number = 0;
         return 0;
     }
-    
+
     Class2 anon = new Class2(){
         public int compareTo(InputEmptyLineSeparator aObject) //ok
         {

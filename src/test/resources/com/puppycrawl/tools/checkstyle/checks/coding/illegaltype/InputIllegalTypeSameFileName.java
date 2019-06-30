@@ -10,16 +10,16 @@ public class InputIllegalTypeSameFileName
     InputIllegalTypeGregorianCalendar cal = AnObject.getInstance(); //WARNING
     java.util.Date date = null;
     SubCalendar subCalendar = null; //WARNING
-    
+
     private static class AnObject extends InputIllegalTypeGregorianCalendar {
 
         public static InputIllegalTypeGregorianCalendar getInstance() //WARNING
         {
             return null;
         }
-        
+
     }
-    
+
     private void foo() {
         List l; //WARNING
         java.io.File file = null; //WARNING

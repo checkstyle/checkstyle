@@ -50,9 +50,9 @@ public abstract class InputMissingJavadocMethodExtendAnnotation<E>
   }
 
   private void assertZeroToZero() {
-      
+
   }
-  
+
   @interface CollectionFeature {
       @interface Require {
       }

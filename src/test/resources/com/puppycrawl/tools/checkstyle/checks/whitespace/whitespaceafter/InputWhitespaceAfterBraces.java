@@ -109,7 +109,7 @@ class InputWhitespaceAfterBraces
 
     /** Empty constructor block. **/
     public InputWhitespaceAfterBraces() {}
-    
+
     /** Empty method block. **/
     public void emptyImplementation() {}
 }

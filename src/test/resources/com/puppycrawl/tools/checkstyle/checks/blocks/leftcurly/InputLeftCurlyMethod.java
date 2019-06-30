@@ -60,7 +60,7 @@ enum InputLeftCurlyMethodEnum
     CONSTANT2("hello") {
 
     },
-    
+
     CONSTANT3("hellohellohellohellohellohellohellohellohellohellohellohellohellohello")
     {
     };

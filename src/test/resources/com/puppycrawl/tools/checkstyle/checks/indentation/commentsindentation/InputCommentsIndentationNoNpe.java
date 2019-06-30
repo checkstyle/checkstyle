@@ -24,7 +24,7 @@ import java.lang.reflect.Method;
 /**
  * Represents either a {@link Field}, a {@link Method} or a {@link Constructor}.
  * Provides convenience methods such as {@link #isPublic} and {@link #isPackagePrivate}.
- * 
+ *
  */
 class InputCommentsIndentationNoNpe {
 

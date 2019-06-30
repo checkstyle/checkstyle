@@ -12,7 +12,7 @@ public class InputMethodParamPadWhitespaceAround
     {
         super ();
     }
-    
+
     public void enhancedFor ()
     {
         int[] i = new int[2];
@@ -23,7 +23,7 @@ public class InputMethodParamPadWhitespaceAround
 }
 
 @interface CronExpression {
-	Class<?>[] groups() default {}; 
+	Class<?>[] groups() default {};
 }
 
 @interface CronExpression1 {

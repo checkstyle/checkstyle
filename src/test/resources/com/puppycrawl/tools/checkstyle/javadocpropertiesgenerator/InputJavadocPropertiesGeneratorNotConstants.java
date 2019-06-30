@@ -6,7 +6,7 @@ public final class InputJavadocPropertiesGeneratorNotConstants {
      * The end of file token.
      **/
     public final int EOF = 0; // must be static
-    
+
     /**
      * Modifiers for type, method, and field declarations.
      **/

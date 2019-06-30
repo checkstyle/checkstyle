@@ -13,6 +13,6 @@ public class InputDescendantTokenIllegalTokens
                 break;
         }
     }
-    
+
     public native void nativeMethod();
 }

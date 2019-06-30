@@ -6,14 +6,14 @@ public class InputNPathComplexity {
         // NP = (if-range=1) + 1 + (expr=3) = 5
         if (true && true || (true || true)) { }
     }
-    
+
     //NP = 5
     void testIfElseWithExpression() {
         // NP = (if-range=1) + (else-range=1) + (expr=3) = 5
         if (true && true || (true || true)) { }
         else { }
     }
-    
+
     //NP = 4
     int testSimpleSwitch() {
         int a = 0;
@@ -28,7 +28,7 @@ public class InputNPathComplexity {
         }
         return a;
     }
-    
+
     //NP = 4
     void testSimpleSwitchWithDefault() {
         int a = 0;
@@ -44,7 +44,7 @@ public class InputNPathComplexity {
             break;
         }
     }
-    
+
     //NP = 6
     void testSwitchWithExpression() {
         int a = 0;
@@ -60,7 +60,7 @@ public class InputNPathComplexity {
             break;
         }
     }
-    
+
     //NP = 15
     void testComplexSwitch() {
         int a = 0;
@@ -85,8 +85,8 @@ public class InputNPathComplexity {
             break;
         }
     }
-    
-    // NP = 11   
+
+    // NP = 11
     void testComplexIfElse() {
         // NP = (if-range=1) + (else-range=9) + (expr=1) = 11
         if (true && true) { }
@@ -95,7 +95,7 @@ public class InputNPathComplexity {
         // NP(else-range) = (if-range=1) + 1 + (expr=4) = 6
         else if (true && true && true || true || true) { }
     }
-    
+
     // NP = 8
     boolean testComplexReturn() {
         // NP = (if-range=3) + (else-range=4) + (expr=1) = 8
@@ -107,7 +107,7 @@ public class InputNPathComplexity {
             return true ? true && true : true || true;
         }
     }
-    
+
     // NP = (for-statement[1]=2) * (for-statement[2]=3)
     //         * (for-statement[3]=4) * (for-statement[4]=5) = 120
     void testForCyclesComplex() {
@@ -120,7 +120,7 @@ public class InputNPathComplexity {
         // NP(for-statement) = (for-range=1) + (expr(1)=0) + (expr(2)=1+2) + (expr(3)=0) + 1 = 5
         for (int i = 0; true ? i < 10 : true || true; i++);
     }
-    
+
     // NP = (while-statement[1]=2) * (while-statement[2]=3) = 6
     boolean testWhileCyclesComplex() {
         int a = 0;
@@ -130,20 +130,20 @@ public class InputNPathComplexity {
         while (a != 0 && a == 0) { return a == 0 || a == 0; }
         return true;
     }
-    
+
     // NP = (do-statement[1]=6) * (do-statement[2]=3) = 21
     void testDoWhileCyclesComplex() {
         int a = 0;
         // NP(do-statement) = (do-range=1) + (expr=1) + 1 = 3
         do { } while (a < 10 && true);
-        // NP(do-statement) = 
+        // NP(do-statement) =
         //         (do-range=3) + ((expr(1)=0) + (expr(2)=0) + (expr(3)=1) + 2) + 1 = 7
         do {
             // NP(do-range) = (do-range=1) + (expr=1) + 1 = 3
             do { } while (a < 10 || true);
         } while (true ? a > 10 : (a < 10 || true));
     }
-    
+
     // NP = (question-statement[1]=5) * (question-statement[2]=7) = 35
     void testComplexTernaryOperator() {
         // NP(question-statement) = (expr(1)=0) + (expr(2)=2) + (expr(3)=1+2) + 2 = 7
@@ -151,7 +151,7 @@ public class InputNPathComplexity {
         // NP(question-statement) = (expr(1)=0) + (expr(2)=2) + (expr(3)=1) + 2 = 5;
         boolean b = true ? (true ? true : true) : true || true;
     }
-    
+
     // NP = (if-expression[1]=5) * (if-expression[2]=5) = 25
     void testSimpleTernaryBadFormatting() {
         // NP(if-expression) = (if-range=2) + 1 + (expr=2) = 5

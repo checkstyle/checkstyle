@@ -36,7 +36,7 @@ public class InputMutableException {
                 if(true) {
                     final int i = 0;
                 }
-            } 
+            }
         }
     }
 

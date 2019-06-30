@@ -35,7 +35,7 @@ public class InputMissingOverrideGoodOverride
             }
         });
     }
-    
+
     void doFoo2(Runnable r) {
         doFoo(new Runnable() {
 

@@ -13,5 +13,5 @@ public class InputAnnotations6 {
 	@Target(ElementType.TYPE_USE)
 	@interface Readonly {
 
-	}	
+	}
 }

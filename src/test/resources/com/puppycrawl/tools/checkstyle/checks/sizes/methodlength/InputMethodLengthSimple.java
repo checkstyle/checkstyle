@@ -144,7 +144,7 @@ final class InputMethodLengthSimple
     // A very, very long line that is OK because it matches the regexp "^.*is OK.*regexp.*$"
     // long line that has a tab ->	<- and would be OK if tab counted as 1 char
     // tabs that count as one char because of their position ->	<-   ->	<-, OK
- 
+
     /** some lines to test the error column after tabs */
     void errorColumnAfterTabs()
     {

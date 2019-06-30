@@ -100,7 +100,7 @@ abstract interface InnerImplementation // violation
             {
             }
         };
-    
+
     void method();
 }
 
@@ -125,7 +125,7 @@ class SafeVarargsUsage {
     @Deprecated
     @SafeVarargs
     private final void foo(int... k) {}
-    
+
     @Deprecated
     @SafeVarargs
     @SuppressWarnings("")

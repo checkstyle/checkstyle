@@ -64,7 +64,7 @@ class InputEmptyBlockSemantic
     }
 
     private class InputBraces {
-        
+
     }
 
     synchronized void foo() {
@@ -75,13 +75,13 @@ class InputEmptyBlockSemantic
             }
         }
     }
-    
-    
+
+
     static {
-       
+
     int a = 0;}
-    
+
     static {
-        
+
     }
 }

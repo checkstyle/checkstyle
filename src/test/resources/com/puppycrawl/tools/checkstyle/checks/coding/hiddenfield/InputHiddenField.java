@@ -12,50 +12,50 @@ package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
 class InputHiddenField
 {
     private int hidden = 0;
-    
+
     public InputHiddenField()
     {
         int hidden = 0; //shadows field
     }
-    
+
     public InputHiddenField(int hidden) //parameter shadows field
     {
     }
-    
+
     public void shadow()
     {
         int hidden = 0; //shadows field
     }
-    
+
     public void shadowFor()
     {
         for (int hidden = 0; hidden < 1; hidden++) { //shadows field
         }
     }
-    
+
     public void shadowParam(int hidden) //parameter shadows field
     {
     }
-    
+
     public class Inner
     {
         private int innerHidden = 0;
-        
+
         public Inner()
         {
             int innerHidden = 0; //shadows field
         }
-    
+
         public Inner(int innerHidden) //shadows field
         {
         }
-        
+
         private void innerShadow()
         {
             int innerHidden = 0; //shadows inner field
             int hidden = 0; //shadows outer field
         }
-        
+
         private void innerShadowFor()
         {
             for (int innerHidden = 0; innerHidden < 1; innerHidden++) {
@@ -64,14 +64,14 @@ class InputHiddenField
             for (int hidden = 0; hidden < 1; hidden++) {
             }
         }
-        
+
         private void shadowParam(
             int innerHidden, //parameter shadows inner field
             int hidden //parameter shadows outer field
         )
         {
         }
-        
+
         {
             int innerHidden = 0;//shadows inner field
             int hidden = 0; //shadows outer field
@@ -80,13 +80,13 @@ class InputHiddenField
 
     {
         int hidden = 0;//shadows field
-    }       
+    }
 }
-    
+
 interface NothingHidden
 {
     public static int notHidden = 0;
-    
+
     // not an error
     public void noShadow(int notHidden);
 }
@@ -95,7 +95,7 @@ interface NothingHidden
 class PropertySetter
 {
     private int prop;
-    
+
     /** setter */
     public void setProp(int prop)
     {
@@ -119,7 +119,7 @@ class PropertySetter
 class PropertySetter2
 {
     private int prop;
-    
+
     /** error - not a void method */
     public int setProp(int prop)
     {
@@ -132,22 +132,22 @@ class PropertySetter2
 class StaticFields
 {
     private static int hidden;
-    
+
     public static void staticMethod()
     {
         int hidden;
     }
-    
+
     public void method()
     {
         int hidden;
     }
-    
+
     static
     {
         int hidden;
     }
-    
+
     {
         int hidden;
     }
@@ -157,13 +157,13 @@ class StaticFields
 class StaticMethods
 {
     private int notHidden;
-    
+
     public static void method()
     {
         // local variables of static methods don't hide instance fields.
         int notHidden;
     }
-    
+
     static
     {
         // local variables of static initializers don't hide instance fields.
@@ -243,12 +243,12 @@ class PropertySetter3
 {
     private int prop;
 
-    /** 
-     * if setterCanReturnItsClass == false then 
+    /**
+     * if setterCanReturnItsClass == false then
      *     error - not a void method
-     * 
-     * if setterCanReturnItsClass == true then 
-     *     success as it is then considered to be a setter  
+     *
+     * if setterCanReturnItsClass == true then
+     *     success as it is then considered to be a setter
      */
     public PropertySetter3 setProp(int prop)
     {
@@ -257,23 +257,23 @@ class PropertySetter3
     }
 }
 
-/** tests setters (both regular and the chain one) on the enum */ 
+/** tests setters (both regular and the chain one) on the enum */
 enum PropertySetter4 {
     INSTANCE;
-    
+
     private int prop;
     private int prop2;
-    
+
     public void setProp(int prop) {
         this.prop = prop;
     }
 
-    /** 
-     * if setterCanReturnItsClass == false then 
+    /**
+     * if setterCanReturnItsClass == false then
      *     error - not a void method
-     * 
-     * if setterCanReturnItsClass == true then 
-     *     success as it is then considered to be a setter  
+     *
+     * if setterCanReturnItsClass == true then
+     *     success as it is then considered to be a setter
      */
     public PropertySetter4 setProp2(int prop2)
     {

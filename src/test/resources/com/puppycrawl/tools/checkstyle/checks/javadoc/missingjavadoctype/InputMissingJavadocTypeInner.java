@@ -36,18 +36,18 @@ class InputMissingJavadocTypeInner
     protected static Object sWeird = new Object();
     /** demonstrate bug in handling static final **/
     static Object sWeird2 = new Object();
-    
+
     /** demonstrate bug in local final variable */
     public interface Inter
     {
     }
-    
+
      public static void main()
      {
         Inter m = new Inter()
         {
             private static final int CDS = 1;
-            
+
             private int ABC;
         };
      }

@@ -107,6 +107,6 @@ public class InputCyclomaticComplexity {
                 }
             }
         };
-        new Thread(runnable).start();       
+        new Thread(runnable).start();
     }
 }

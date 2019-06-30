@@ -28,20 +28,20 @@ import java.io.*;
 
 public class InputEmptyLineSeparatorMultipleEmptyLines
 {
-    
-    
+
+
     private int counter;
-    
-    
-    
-    
+
+
+
+
     private Object obj = null;
-    
+
     private int k;
-    
-    
+
+
     private static void foo() {}
-    
+
     private static void foo1() {}
 
 

@@ -24,7 +24,7 @@ public class InputParameterNameCatchOnly {
     {
         return;
     }
-    
+
     class InnerFoo
     {
         public void fooInnerMethod ()

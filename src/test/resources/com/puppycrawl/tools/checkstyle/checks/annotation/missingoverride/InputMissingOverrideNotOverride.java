@@ -15,11 +15,11 @@ public class InputMissingOverrideNotOverride
     public static void eh() {
 
     }
-    
+
     /**
      * {@inheritDoc}
      */
     public String junk = "";
-    
+
     void dodoo() {}
 }

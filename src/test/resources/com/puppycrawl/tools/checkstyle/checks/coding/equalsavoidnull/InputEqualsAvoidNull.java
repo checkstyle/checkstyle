@@ -204,21 +204,21 @@ class MyString {
     public boolean equals() {
         return true;
     }
-    
+
     public boolean equals(String s1) {
         return true;
     }
-    
+
     public boolean equalsIgnoreCase() {
         return true;
     }
-    
+
     public boolean equalsIgnoreCase(String s1) {
         return true;
     }
-    
+
     private String pizza;
-    
+
     public void main() {
         MyString myString = new MyString();
         myString.equals();
@@ -378,11 +378,11 @@ class NewTest {
     Object o3 = new Object();
     private void bar() {
         foo().equals(""); // methods are not checked
-        foo(0).equals(""); 
+        foo(0).equals("");
         this.foo().equals("");
         Object o1 = new Object(); o1.equals("");
         o2.equals(""); String o2 = "";
-        o3.equals(""); 
+        o3.equals("");
 String o3 = "";
     }
 }

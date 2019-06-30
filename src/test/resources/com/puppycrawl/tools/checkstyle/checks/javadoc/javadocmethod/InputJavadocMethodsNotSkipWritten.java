@@ -3,7 +3,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 public class InputJavadocMethodsNotSkipWritten {
     /**
      * Description.
-     * 
+     *
      * @param BAD
      *            This param doesn't exist.
      */
@@ -13,7 +13,7 @@ public class InputJavadocMethodsNotSkipWritten {
 
     /**
      * Description.
-     * 
+     *
      * @param BAD
      *            This param doesn't exist.
      */

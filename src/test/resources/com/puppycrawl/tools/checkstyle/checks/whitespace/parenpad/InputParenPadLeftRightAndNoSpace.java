@@ -129,7 +129,7 @@ public class InputParenPadLeftRightAndNoSpace
 enum MyEnum {
     SOME_CONSTANT( ) {
         int i = (int) (2 * (4 / 2)
-                ); 
+                );
     };
 
     public void myMethod() {
@@ -215,6 +215,6 @@ enum MyEnum {
 enum MyEnum2 {
     SOME_CONSTANT( ) {
         int i = (int) (2 * (4 / 2
-)                   ); 
+)                   );
     };
 }

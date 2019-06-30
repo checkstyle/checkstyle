@@ -11,10 +11,10 @@ public class InputLambda11 {
 		LOG.info("Method called");
 		test.doSmth("fef");
 	}
-	
-	
+
+
 	public static void main(String[] args) {
-		
+
 		testVoidLambda(s1 -> {LOG.info(s1);});
 	}
 
