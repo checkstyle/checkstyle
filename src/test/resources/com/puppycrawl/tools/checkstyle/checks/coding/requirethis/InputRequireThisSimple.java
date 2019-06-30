@@ -1,7 +1,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
 public class InputRequireThisSimple {
-	private final int number = 1;
+        private final int number = 1;
 
     public int check() {
         int sum = number;
@@ -10,6 +10,6 @@ public class InputRequireThisSimple {
     }
 
     private int other() {
-    	return 0;
+            return 0;
     }
 }

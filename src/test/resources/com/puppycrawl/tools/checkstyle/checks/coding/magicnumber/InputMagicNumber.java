@@ -201,13 +201,13 @@ class TestHashCodeMethod {
 
 class TestMethodCall {
 
-	public TestMethodCall(int x){
+        public TestMethodCall(int x){
 
     }
 
-	public void method2() {
+        public void method2() {
         final TestMethodCall dummyObject = new TestMethodCall(62);
-	}
+        }
 }
 
 class Binary {

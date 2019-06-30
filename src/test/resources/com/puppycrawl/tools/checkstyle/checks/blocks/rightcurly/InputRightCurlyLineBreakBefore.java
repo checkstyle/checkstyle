@@ -41,7 +41,7 @@ class InputRightCurlyLineBreakBefore
         for (int k = 0; k < 1; k++) { String innerBlockVariable = ""; }
 
         for (int k = 0; k < 1; k++) {}
-		return a;
+                return a;
     }
 
     static { int x = 1; }

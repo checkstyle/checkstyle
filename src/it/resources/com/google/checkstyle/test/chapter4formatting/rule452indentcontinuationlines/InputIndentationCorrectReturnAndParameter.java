@@ -108,10 +108,10 @@ class InputIndentationCorrectReturnAndParameter { //indent:0 exp:0
       } //indent:6 exp:6
 
       boolean fooReturn() { //indent:6 exp:6
-    	return conditionFirst("Loooooooooooooooooong", new //indent:8 exp:8
+        return conditionFirst("Loooooooooooooooooong", new //indent:8 exp:8
             SecondClassLongName("Loooooooooooooooooog"). //indent:12 exp:12
-    	        getInteger(new FooReturnClass(), "Loooooooooooooooooog"), //indent:16 exp:>=12
-    	           new InnerClassFoo()); //indent:19 exp:>=12
+                getInteger(new FooReturnClass(), "Loooooooooooooooooog"), //indent:16 exp:>=12
+                   new InnerClassFoo()); //indent:19 exp:>=12
       } //indent:6 exp:6
     }; //indent:4 exp:4
   } //indent:2 exp:2

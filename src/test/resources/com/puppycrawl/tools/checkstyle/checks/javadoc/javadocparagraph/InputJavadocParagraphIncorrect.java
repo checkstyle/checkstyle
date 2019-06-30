@@ -57,7 +57,7 @@ class InputJavadocParagraphIncorrect {
 
     InnerInputJavadocParagraphIncorrect anon = new InnerInputJavadocParagraphIncorrect() {
 
-    	/**
+            /**
          * <p>Some Javadoc. //WARN
          *
          * Some Javadoc.

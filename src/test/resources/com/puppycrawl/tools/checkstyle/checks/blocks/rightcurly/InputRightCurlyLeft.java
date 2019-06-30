@@ -104,10 +104,10 @@ class InputRightCurlyLeft
  */
 class FooCtor
 {
-	int i;
-	public FooCtor()
+        int i;
+        public FooCtor()
     {
-		i = 1;
+                i = 1;
     }}
 
 /**
@@ -116,9 +116,9 @@ class FooCtor
 */
 class FooMethod
 {
-	public void fooMethod()
+        public void fooMethod()
     {
-		int i = 1;
+                int i = 1;
     }}
 
 /**
@@ -127,12 +127,12 @@ class FooMethod
 */
 class FooInner
 {
-	class InnerFoo
+        class InnerFoo
     {
-		public void fooInnerMethod ()
+                public void fooInnerMethod ()
         {
 
-		}
+                }
     }}
 
 /**

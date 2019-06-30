@@ -108,7 +108,7 @@ class Foo {
 
 @interface MyAnnotation1 {
 
-	String value();}
+        String value();}
 
 @interface MyAnnotation2 {}
 

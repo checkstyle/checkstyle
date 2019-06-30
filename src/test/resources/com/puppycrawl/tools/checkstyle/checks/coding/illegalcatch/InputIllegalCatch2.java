@@ -3,16 +3,16 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegalcatch;
 public class InputIllegalCatch2 {
     public void foo() throws OneMoreException {
         try {
-        	foo1();
+                foo1();
         } catch (RuntimeException | SQLException e) {}
         try {
-        	foo1();
+                foo1();
         } catch (RuntimeException | SQLException | OneMoreException e) {}
         try {
-        	foo1();
+                foo1();
         } catch (OneMoreException | RuntimeException | SQLException e) {}
         try {
-        	foo1();
+                foo1();
         } catch (OneMoreException | SQLException | RuntimeException e) {}
 
     }
