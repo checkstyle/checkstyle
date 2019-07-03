@@ -296,7 +296,7 @@
     <dependency>
       <groupId>org.eclipse.jgit</groupId>
       <artifactId>org.eclipse.jgit</artifactId>
-      <version>5.3.1.201904271842-r</version>
+      <version>5.4.0.201906121030-r</version>
       <scope>test</scope>
     </dependency>
     <dependency>
