@@ -106,6 +106,7 @@ public class XdocsPagesTest {
             "name=\"SeverityMatchFilter\"",
             "name=\"SuppressWithPlainTextCommentFilter\"",
             "name=\"SuppressionFilter\"",
+            "name=\"SuppressionSingleFilter\"",
             "name=\"SuppressWarningsFilter\"",
             "name=\"BeforeExecutionExclusionFileFilter\"",
             "name=\"RegexpHeader\"",

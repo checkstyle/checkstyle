@@ -124,6 +124,60 @@ public class SuppressFilterElement
         }
     }
 
+    /**
+     * Creates a {@code SuppressFilterElement} instance.
+     * @param files regular expression for filtered file names
+     * @param checks regular expression for filtered check classes
+     * @param message regular expression for messages.
+     * @param moduleId the module id
+     * @param lines CSV for lines
+     * @param columns CSV for columns
+     */
+    public SuppressFilterElement(Pattern files, Pattern checks, Pattern message, String moduleId,
+            String lines, String columns) {
+        if (files == null) {
+            filePattern = null;
+            fileRegexp = null;
+        }
+        else {
+            filePattern = files.pattern();
+            fileRegexp = files;
+        }
+        if (checks == null) {
+            checkPattern = null;
+            checkRegexp = null;
+        }
+        else {
+            checkPattern = checks.pattern();
+            checkRegexp = checks;
+        }
+        if (message == null) {
+            messagePattern = null;
+            messageRegexp = null;
+        }
+        else {
+            messagePattern = message.pattern();
+            messageRegexp = message;
+        }
+        this.moduleId = moduleId;
+        if (lines == null) {
+            linesCsv = null;
+            lineFilter = null;
+        }
+        else {
+            linesCsv = lines;
+            lineFilter = new CsvFilterElement(lines);
+        }
+        if (columns == null) {
+            columnsCsv = null;
+            columnFilter = null;
+        }
+        else {
+            columnsCsv = columns;
+            columnFilter = new CsvFilterElement(columns);
+        }
+    }
+
     @Override
     public boolean accept(AuditEvent event) {
         return !isFileNameAndModuleNameMatching(event)
