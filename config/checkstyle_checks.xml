@@ -36,6 +36,15 @@
   <module name="SuppressionFilter">
     <property name="file" value="${checkstyle.suppressions.file}"/>
   </module>
+  <!-- Tone down the checking for test code -->
+  <module name="SuppressionSingleFilter">
+    <property name="checks" value="JavadocPackage"/>
+    <property name="files" value=".*[\\/]src[\\/](test|it)[\\/]"/>
+  </module>
+  <module name="SuppressionSingleFilter">
+    <property name="checks" value="JavadocMethod"/>
+    <property name="files" value=".*[\\/]src[\\/](test|it)[\\/].*(?&lt;!Support)\.java"/>
+  </module>
   <module name="SuppressWarningsFilter"/>
   <module name="SuppressWithPlainTextCommentFilter">
     <!--

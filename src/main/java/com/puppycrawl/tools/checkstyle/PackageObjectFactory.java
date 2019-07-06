@@ -849,6 +849,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".filters.SuppressionCommentFilter");
         NAME_TO_FULL_MODULE_NAME.put("SuppressionFilter",
                 BASE_PACKAGE + ".filters.SuppressionFilter");
+        NAME_TO_FULL_MODULE_NAME.put("SuppressionSingleFilter",
+                BASE_PACKAGE + ".filters.SuppressionSingleFilter");
         NAME_TO_FULL_MODULE_NAME.put("SuppressionXpathFilter",
                 BASE_PACKAGE + ".filters.SuppressionXpathFilter");
         NAME_TO_FULL_MODULE_NAME.put("SuppressionXpathSingleFilter",

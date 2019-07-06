@@ -253,7 +253,8 @@
              If we split the block to several methods it will damage the readability.
            XMLLogger.encode, FallThroughCheck.isTerminated, ElementNode.iterateAxis,
              NoWhitespaceAfterCheck.getArrayDeclaratorPreviousElement are also huge switches,
-             they has to be monolithic. -->
+             they has to be monolithic.
+           SuppressFilterElement is a single constructor and can't be split easily -->
       <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main'
         or @Image='PackageObjectFactory' or @Image='RequireThisCheck'
         or @Image='VariableDeclarationUsageDistanceCheck'
@@ -269,6 +270,8 @@
       | //ClassOrInterfaceDeclaration[@Image='NoWhitespaceAfterCheck']
              //MethodDeclaration[@Name='getArrayDeclaratorPreviousElement']
       | //ClassOrInterfaceDeclaration[@Image='ElementNode']//MethodDeclaration[@Name='iterateAxis']
+      | //ClassOrInterfaceDeclaration[@Image='SuppressFilterElement']
+             //ConstructorDeclaration
       "/>
     </properties>
   </rule>

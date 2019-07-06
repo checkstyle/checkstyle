@@ -1209,6 +1209,7 @@ Superinterface
 supertype
 suppressioncommentfilter
 suppressionfilter
+suppressionsinglefilter
 suppressionsloader
 suppressionsstringprinter
 suppressionxpathfilter
