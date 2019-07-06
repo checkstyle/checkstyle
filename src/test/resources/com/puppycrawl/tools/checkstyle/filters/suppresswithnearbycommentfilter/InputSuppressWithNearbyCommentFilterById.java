@@ -11,4 +11,7 @@ public class InputSuppressWithNearbyCommentFilterById {
     private long ID = 1; // Suppression @cs-:
     /*
         Suppression @cs-: ignore (reason)*/private long ID3 = 1;
+
+    private int DEF = 4; // @cs-: ignore (allow DEF)
+    private int XYZ = 3; // @cs-: ignore (allow xyz)
 }
