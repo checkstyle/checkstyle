@@ -13,4 +13,10 @@ public class InputSuppressionCommentFilterSuppressById {
     //CSON ignore
 
     private long ID = 1;
+
+    // CSOFF ignore (allow DEF)
+    private int DEF = 2;
+
+    // CSOFF ignore (allow xyz)
+    private int XYZ = 3;
 }
