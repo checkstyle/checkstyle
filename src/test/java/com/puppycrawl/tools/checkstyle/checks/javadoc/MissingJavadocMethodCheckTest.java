@@ -52,6 +52,14 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testGetRequiredTokens() {
+        final MissingJavadocMethodCheck missingJavadocMethodCheck = new MissingJavadocMethodCheck();
+        final int[] actual = missingJavadocMethodCheck.getRequiredTokens();
+        final int[] expected = CommonUtil.EMPTY_INT_ARRAY;
+        assertArrayEquals("Required tokens are invalid", expected, actual);
+    }
+
+    @Test
     public void extendAnnotationTest() throws Exception {
         final DefaultConfiguration config = createModuleConfig(MissingJavadocMethodCheck.class);
         config.addAttribute("allowedAnnotations", "MyAnnotation, Override");

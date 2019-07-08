@@ -124,6 +124,20 @@ public class CyclomaticComplexityCheckTest
     }
 
     @Test
+    public void testGetRequiredTokens() {
+        final CyclomaticComplexityCheck cyclomaticComplexityCheckObj =
+            new CyclomaticComplexityCheck();
+        final int[] actual = cyclomaticComplexityCheckObj.getRequiredTokens();
+        final int[] expected = {
+            TokenTypes.CTOR_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.INSTANCE_INIT,
+            TokenTypes.STATIC_INIT,
+        };
+        Assert.assertArrayEquals("Invalid required tokens", expected, actual);
+    }
+
+    @Test
     public void testHighMax() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(CyclomaticComplexityCheck.class);
