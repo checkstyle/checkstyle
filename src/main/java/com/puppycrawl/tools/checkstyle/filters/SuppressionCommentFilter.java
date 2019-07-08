@@ -707,20 +707,46 @@ public class SuppressionCommentFilter
          * @return true if the source of event matches the text of this tag.
          */
         public boolean isMatch(TreeWalkerAuditEvent event) {
+            return (isCheckMatch(event) || isIdMatch(event)) && isMessageMatch(event);
+        }
+
+        /**
+         * Checks whether {@link TreeWalkerAuditEvent} source name matches the check format.
+         * @param event {@link TreeWalkerAuditEvent} instance.
+         * @return true if the {@link TreeWalkerAuditEvent} source name matches the check format.
+         */
+        private boolean isCheckMatch(TreeWalkerAuditEvent event) {
+            final Matcher checkMatcher = tagCheckRegexp.matcher(event.getSourceName());
+            return checkMatcher.find();
+        }
+
+        /**
+         * Checks whether the {@link TreeWalkerAuditEvent} module ID matches the ID format.
+         * @param event {@link TreeWalkerAuditEvent} instance.
+         * @return true if the {@link TreeWalkerAuditEvent} module ID matches the ID format.
+         */
+        private boolean isIdMatch(TreeWalkerAuditEvent event) {
             boolean match = false;
-            final Matcher tagMatcher = tagCheckRegexp.matcher(event.getSourceName());
-            if (tagMatcher.find()) {
-                if (tagMessageRegexp == null) {
-                    match = true;
-                }
-                else {
-                    final Matcher messageMatcher = tagMessageRegexp.matcher(event.getMessage());
-                    match = messageMatcher.find();
-                }
-            }
-            else if (event.getModuleId() != null) {
+            if (event.getModuleId() != null) {
                 final Matcher idMatcher = tagCheckRegexp.matcher(event.getModuleId());
                 match = idMatcher.find();
+            }
+            return match;
+        }
+
+        /**
+         * Checks whether the {@link TreeWalkerAuditEvent} message matches the message format.
+         * @param event {@link TreeWalkerAuditEvent} instance.
+         * @return true if the {@link TreeWalkerAuditEvent} message matches the message format.
+         */
+        private boolean isMessageMatch(TreeWalkerAuditEvent event) {
+            final boolean match;
+            if (tagMessageRegexp == null) {
+                match = true;
+            }
+            else {
+                final Matcher messageMatcher = tagMessageRegexp.matcher(event.getMessage());
+                match = messageMatcher.find();
             }
             return match;
         }
