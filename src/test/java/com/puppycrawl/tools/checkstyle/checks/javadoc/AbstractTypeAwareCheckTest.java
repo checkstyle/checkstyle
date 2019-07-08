@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_CLASS_INFO;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
@@ -35,6 +36,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class AbstractTypeAwareCheckTest extends AbstractModuleTestSupport {
@@ -52,6 +54,20 @@ public class AbstractTypeAwareCheckTest extends AbstractModuleTestSupport {
         method.setAccessible(true);
         assertFalse("Should return false if at least one of the params is null",
             (boolean) method.invoke(check, null, null));
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        final int[] expected = {
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.IMPORT,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.ENUM_DEF,
+        };
+        final JavadocMethodCheck check = new JavadocMethodCheck();
+        final int[] actual = check.getRequiredTokens();
+        assertArrayEquals("Required tokens differ from expected", expected, actual);
     }
 
     @Test

@@ -301,26 +301,6 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testRequiredTokenIsNotInDefaultTokens() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RequiredTokenIsNotInDefaultsCheck.class);
-        final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-
-        try {
-            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-            verify(checkConfig, pathToEmptyFile, expected);
-            fail("CheckstyleException is expected");
-        }
-        catch (CheckstyleException ex) {
-            assertTrue("Error message is unexpected",
-                    ex.getMessage().startsWith("cannot initialize module"
-                + " com.puppycrawl.tools.checkstyle.TreeWalker - Token \""
-                + TokenTypes.ASSIGN + "\" from required"
-                + " tokens was not found in default tokens list in check"));
-        }
-    }
-
-    @Test
     public void testRequiredTokenIsEmptyIntArray() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(RequiredTokenIsEmptyIntArray.class);
@@ -603,25 +583,6 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         @Override
         public boolean isCommentNodesRequired() {
             return true;
-        }
-
-    }
-
-    private static class RequiredTokenIsNotInDefaultsCheck extends AbstractCheck {
-
-        @Override
-        public int[] getRequiredTokens() {
-            return new int[] {TokenTypes.ASSIGN};
-        }
-
-        @Override
-        public int[] getDefaultTokens() {
-            return new int[] {TokenTypes.ANNOTATION};
-        }
-
-        @Override
-        public int[] getAcceptableTokens() {
-            return CommonUtil.EMPTY_INT_ARRAY;
         }
 
     }

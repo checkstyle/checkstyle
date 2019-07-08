@@ -47,6 +47,17 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testGetRequiredTokens() {
+        final int[] expected = {
+            TokenTypes.BLOCK_COMMENT_BEGIN,
+        };
+        final InvalidJavadocPositionCheck check = new InvalidJavadocPositionCheck();
+        final int[] actual = check.getRequiredTokens();
+
+        assertArrayEquals("Required tokens differ from expected", expected, actual);
+    }
+
+    @Test
     public void testDefault() throws Exception {
         final Configuration checkConfig = createModuleConfig(InvalidJavadocPositionCheck.class);
         final String[] expected = {

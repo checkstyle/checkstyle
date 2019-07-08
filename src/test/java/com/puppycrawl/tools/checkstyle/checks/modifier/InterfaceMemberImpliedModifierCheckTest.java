@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import static com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Assert;
@@ -53,6 +54,20 @@ public class InterfaceMemberImpliedModifierCheckTest
         };
         verify(checkConfig, getPath("InputInterfaceMemberImpliedModifierMethodsOnInterface.java"),
             expected);
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        final InterfaceMemberImpliedModifierCheck check = new InterfaceMemberImpliedModifierCheck();
+        final int[] actual = check.getRequiredTokens();
+        final int[] expected = {
+            TokenTypes.METHOD_DEF,
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+        };
+        assertArrayEquals("Required tokens are invalid", expected, actual);
     }
 
     @Test
