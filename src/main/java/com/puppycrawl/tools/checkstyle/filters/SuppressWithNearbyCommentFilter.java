@@ -501,9 +501,6 @@ public class SuppressWithNearbyCommentFilter
                 format = CommonUtil.fillTemplateWithStringsByRegexp(
                         filter.influenceFormat, text, filter.commentFormat);
 
-                if (CommonUtil.startsWithChar(format, '+')) {
-                    format = format.substring(1);
-                }
                 final int influence = parseInfluence(format, filter.influenceFormat, text);
 
                 if (influence >= 1) {

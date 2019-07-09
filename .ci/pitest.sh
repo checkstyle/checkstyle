@@ -36,7 +36,8 @@ pitest-annotation|pitest-design \
 |pitest-sizes|pitest-whitespace \
 |pitest-api \
 |pitest-packagenamesloader \
-|pitest-common-2|pitest-misc|pitest-xpath)
+|pitest-common-2|pitest-misc|pitest-xpath \
+|pitest-filters)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=();
   checkPitestReport "${ignoredItems[@]}"
@@ -61,32 +62,6 @@ pitest-header)
   "RegexpHeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (list.length == 0) {</span></pre></td></tr>"
   "RegexpHeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>                    isMatch = headerLineNo == headerSize</span></pre></td></tr>"
   "RegexpHeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>                            || isMatch(line, headerLineNo);</span></pre></td></tr>"
-  );
-  checkPitestReport "${ignoredItems[@]}"
-  ;;
-
-pitest-filters)
-  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
-  declare -a ignoredItems=(
-  "SuppressionCommentFilter.java.html:<td class='covered'><pre><span  class='survived'>        if (event.getLocalizedMessage() != null) {</span></pre></td></tr>"
-  "SuppressionCommentFilter.java.html:<td class='covered'><pre><span  class='survived'>                    if (filter.messageFormat == null) {</span></pre></td></tr>"
-  "SuppressionCommentFilter.java.html:<td class='covered'><pre><span  class='survived'>            if (getFileContents() != currentContents) {</span></pre></td></tr>"
-  "SuppressionCommentFilter.java.html:<td class='covered'><pre><span  class='survived'>            if (line == object.line) {</span></pre></td></tr>"
-  "SuppressionXpathSingleFilter.java.html:<td class='covered'><pre><span  class='survived'>        if (checks == null) {</span></pre></td></tr>"
-  "SuppressionXpathSingleFilter.java.html:<td class='covered'><pre><span  class='survived'>        if (files == null) {</span></pre></td></tr>"
-  "SuppressWithNearbyCommentFilter.java.html:<td class='covered'><pre><span  class='survived'>                if (CommonUtil.startsWithChar(format, &#39;+&#39;)) {</span></pre></td></tr>"
-  "SuppressWithNearbyCommentFilter.java.html:<td class='covered'><pre><span  class='survived'>        if (event.getLocalizedMessage() != null) {</span></pre></td></tr>"
-  "SuppressWithNearbyCommentFilter.java.html:<td class='covered'><pre><span  class='survived'>            if (getFileContents() != currentContents) {</span></pre></td></tr>"
-  "SuppressWithPlainTextCommentFilter.java.html:<td class='covered'><pre><span  class='survived'>                    if (filter.messageFormat == null) {</span></pre></td></tr>"
-  "XpathFilterElement.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; (checkRegexp == null || checkRegexp.matcher(event.getSourceName()).find());</span></pre></td></tr>"
-  "XpathFilterElement.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; event.getLocalizedMessage() != null</span></pre></td></tr>"
-  "XpathFilterElement.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; (fileRegexp == null || fileRegexp.matcher(event.getFileName()).find())</span></pre></td></tr>"
-  "XpathFilterElement.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; (moduleId == null || moduleId.equals(event.getModuleId()))</span></pre></td></tr>"
-  "XpathFilterElement.java.html:<td class='covered'><pre><span  class='survived'>        if (checks == null) {</span></pre></td></tr>"
-  "XpathFilterElement.java.html:<td class='covered'><pre><span  class='survived'>        if (checks == null) {</span></pre></td></tr>"
-  "XpathFilterElement.java.html:<td class='covered'><pre><span  class='survived'>        if (files == null) {</span></pre></td></tr>"
-  "XpathFilterElement.java.html:<td class='covered'><pre><span  class='survived'>                isMatching = abstractNode.getTokenType() == event.getTokenType()</span></pre></td></tr>"
-  "XpathFilterElement.java.html:<td class='covered'><pre><span  class='survived'>        return event.getFileName() != null</span></pre></td></tr>"
   );
   checkPitestReport "${ignoredItems[@]}"
   ;;
