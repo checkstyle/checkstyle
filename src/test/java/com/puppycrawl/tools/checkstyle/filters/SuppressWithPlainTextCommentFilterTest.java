@@ -33,6 +33,7 @@ import java.util.stream.Collectors;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -297,10 +298,17 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         Assert.assertNull("File name should not be null", auditEvent.getFileName());
     }
 
+    /**
+     * Our goal is 100% test coverage, for this we use white-box testing.
+     * So we need access to the implementation details. For this reason, it is necessary
+     * to use reflection to gain access to the inner type {@code Suppression} here.
+     */
     @Test
-    public void testEqualsAndHashCodeOfTagClass() {
+    public void testEqualsAndHashCodeOfSuppressionClass() throws ClassNotFoundException {
+        final Class<?> suppressionClass = Whitebox.getInnerClassType(
+                SuppressWithPlainTextCommentFilter.class, "Suppression");
         final EqualsVerifierReport ev = EqualsVerifier
-                .forClass(SuppressWithPlainTextCommentFilter.Suppression.class).usingGetClass()
+                .forClass(suppressionClass).usingGetClass()
                 .report();
         assertEquals("Error: " + ev.getMessage(), EqualsVerifierReport.SUCCESS, ev);
     }
