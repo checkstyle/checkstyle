@@ -119,8 +119,20 @@ public class InnerAssignmentCheck
         TokenTypes.NOT_EQUAL,
     };
 
+    /**
+     * The token types that are ignored while checking "while-idiom".
+     */
+    private static final int[] WHILE_IDIOM_IGNORED_PARENTS = {
+        TokenTypes.LAND,
+        TokenTypes.LOR,
+        TokenTypes.LNOT,
+        TokenTypes.BOR,
+        TokenTypes.BAND,
+    };
+
     static {
         Arrays.sort(COMPARISON_TYPES);
+        Arrays.sort(WHILE_IDIOM_IGNORED_PARENTS);
     }
 
     @Override
@@ -217,8 +229,10 @@ public class InnerAssignmentCheck
     private static boolean isInWhileIdiom(DetailAST ast) {
         boolean result = false;
         if (isComparison(ast.getParent())) {
-            result = isInContext(
-                    ast.getParent(), ALLOWED_ASSIGNMENT_IN_COMPARISON_CONTEXT);
+            result = isInContext(ast.getParent(),
+                ALLOWED_ASSIGNMENT_IN_COMPARISON_CONTEXT,
+                WHILE_IDIOM_IGNORED_PARENTS
+            );
         }
         return result;
     }
@@ -239,15 +253,16 @@ public class InnerAssignmentCheck
      *
      * @param ast the AST from which to start walking towards root
      * @param contextSet the contexts to test against.
+     * @param skipTokens parent token types to ignore
      *
      * @return whether the parents nodes of ast match one of the allowed type paths.
      */
-    private static boolean isInContext(DetailAST ast, int[]... contextSet) {
+    private static boolean isInContext(DetailAST ast, int[][] contextSet, int... skipTokens) {
         boolean found = false;
         for (int[] element : contextSet) {
             DetailAST current = ast;
             for (int anElement : element) {
-                current = current.getParent();
+                current = getParent(current, skipTokens);
                 if (current.getType() == anElement) {
                     found = true;
                 }
@@ -262,6 +277,21 @@ public class InnerAssignmentCheck
             }
         }
         return found;
+    }
+
+    /**
+     * Get ast parent, ignoring token types from {@code skipTokens}.
+     *
+     * @param ast token to get parent
+     * @param skipTokens token types to skip
+     * @return first not ignored parent of ast
+     */
+    private static DetailAST getParent(DetailAST ast, int... skipTokens) {
+        DetailAST result = ast.getParent();
+        while (Arrays.binarySearch(skipTokens, result.getType()) > -1) {
+            result = result.getParent();
+        }
+        return result;
     }
 
 }

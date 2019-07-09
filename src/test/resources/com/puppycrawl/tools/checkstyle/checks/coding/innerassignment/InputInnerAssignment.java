@@ -111,4 +111,22 @@ public class InputInnerAssignment
             return this;
         }
     }
+
+    void method() throws IOException {
+        Integer line;
+        FileInputStream file = null;
+        while (!((line = file.read()) != null)) {}
+        while ((line = file.read()) != null && line < 3) {}
+        while ((line = file.read()) != null && line < 3 && line > 5) {}
+        while ((line = file.read()) != null || line < 3) {}
+        while ((line = file.read()) != null || line < 3 || line > 5) {}
+        while ((line = file.read()) != null & line < 3) {}
+        while ((line = file.read()) != null & line < 3 & line > 5) {}
+        while ((line = file.read()) != null | line < 3) {}
+        while ((line = file.read()) != null | line < 3 | line > 5) {}
+        while (line < 3 && (line = file.read()) != null) {}
+        while (line < 3 || (line = file.read()) != null) {}
+        while (line < 3 & (line = file.read()) != null) {}
+        while (line < 3 | (line = file.read()) != null) {}
+    }
 }
