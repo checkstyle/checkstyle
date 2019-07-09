@@ -457,7 +457,7 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
     }
 
     /** The class which represents the suppression. */
-    /* package */ static class Suppression {
+    private static final class Suppression {
 
         /** The regexp which is used to match the event source.*/
         private final Pattern eventSourceRegexp;
@@ -481,7 +481,7 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
          * @param suppressionType suppression type.
          * @param filter the {@link SuppressWithPlainTextCommentFilter} with the context.
          */
-        protected Suppression(
+        /* package */ Suppression(
             String text,
             int lineNo,
             int columnNo,
