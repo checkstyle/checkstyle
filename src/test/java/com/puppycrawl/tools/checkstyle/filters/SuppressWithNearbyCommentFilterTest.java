@@ -368,7 +368,7 @@ public class SuppressWithNearbyCommentFilterTest
     public void testInfluenceFormat() throws Exception {
         final DefaultConfiguration filterConfig =
                 createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addAttribute("influenceFormat", "1");
+        filterConfig.addAttribute("influenceFormat", "+1");
 
         final String[] suppressed = {
             "14:17: "
@@ -420,8 +420,21 @@ public class SuppressWithNearbyCommentFilterTest
     @Test
     public void testAcceptNullLocalizedMessage() {
         final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
-        final TreeWalkerAuditEvent auditEvent = new TreeWalkerAuditEvent(null, null, null, null);
+        final FileContents contents =
+                new FileContents("filename", "//SUPPRESS CHECKSTYLE ignore");
+        contents.reportSingleLineComment(1, 0);
+        final TreeWalkerAuditEvent auditEvent =
+                new TreeWalkerAuditEvent(contents, null, null, null);
         assertTrue("Filter should accept null localized message", filter.accept(auditEvent));
+    }
+
+    @Test
+    public void testAcceptNullFileContents() {
+        final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
+        final FileContents contents = null;
+        final TreeWalkerAuditEvent auditEvent = new TreeWalkerAuditEvent(contents, null,
+                new LocalizedMessage(1, null, null, null, null, Object.class, null), null);
+        assertTrue("Filter should accept audit event", filter.accept(auditEvent));
     }
 
     @Test

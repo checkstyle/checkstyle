@@ -291,6 +291,38 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
+    public void testInvalidMessageFormatInSqlFile() throws Exception {
+        final DefaultConfiguration filterCfg =
+            createModuleConfig(SuppressWithPlainTextCommentFilter.class);
+        filterCfg.addAttribute("onCommentFormat", "CSON (\\w+)");
+        filterCfg.addAttribute("messageFormat", "e[l");
+
+        final DefaultConfiguration checkCfg = createModuleConfig(RegexpSinglelineCheck.class);
+        checkCfg.addAttribute("format", "^.*COUNT\\(\\*\\).*$");
+
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+
+        final String[] violationMessages = {
+            "2: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                    "^.*COUNT\\(\\*\\).*$"),
+        };
+
+        try {
+            verifySuppressed(
+                "InputSuppressWithPlainTextCommentFilterWithCustomOnComment.sql",
+                removeSuppressed(violationMessages, suppressed),
+                filterCfg, checkCfg
+            );
+            fail("CheckstyleException is expected");
+        }
+        catch (CheckstyleException ex) {
+            final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
+            assertEquals("Invalid exception message",
+                "unable to parse expanded comment e[l", cause.getMessage());
+        }
+    }
+
+    @Test
     public void testAcceptNullLocalizedMessage() {
         final SuppressWithPlainTextCommentFilter filter = new SuppressWithPlainTextCommentFilter();
         final AuditEvent auditEvent = new AuditEvent(this);

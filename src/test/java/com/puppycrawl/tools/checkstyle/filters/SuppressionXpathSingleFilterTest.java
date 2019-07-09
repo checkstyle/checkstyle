@@ -25,6 +25,7 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.util.regex.PatternSyntaxException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -163,6 +164,32 @@ public class SuppressionXpathSingleFilterTest
         final TreeWalkerAuditEvent ev = createEvent(3, 0,
                 TokenTypes.CLASS_DEF);
         assertTrue("Event should be accepted", filter.accept(ev));
+    }
+
+    @Test
+    public void testInvalidFileRegexp() {
+        final SuppressionXpathSingleFilter filter = new SuppressionXpathSingleFilter();
+        try {
+            filter.setFiles("e[l");
+            fail("PatternSyntaxException is expected");
+        }
+        catch (PatternSyntaxException ex) {
+            assertTrue("Message should be: Unclosed character class",
+                    ex.getMessage().contains("Unclosed character class"));
+        }
+    }
+
+    @Test
+    public void testInvalidCheckRegexp() {
+        final SuppressionXpathSingleFilter filter = new SuppressionXpathSingleFilter();
+        try {
+            filter.setChecks("e[l");
+            fail("PatternSyntaxException is expected");
+        }
+        catch (PatternSyntaxException ex) {
+            assertTrue("Message should be: Unclosed character class",
+                    ex.getMessage().contains("Unclosed character class"));
+        }
     }
 
     @Test
