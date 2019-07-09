@@ -6,9 +6,9 @@ import java.io.PipedOutputStream;
 import java.io.OutputStream;
 
 /**
- * Config treatTryResourcesAsStatement = true
+ * Config treatTryResourcesAsStatement = false
  */
-public class InputOneStatementPerLineTryWithResources {
+public class InputOneStatementPerLineTryWithResourcesIgnore {
 
     void method() throws IOException {
         OutputStream s1 = new PipedOutputStream();
@@ -22,21 +22,21 @@ public class InputOneStatementPerLineTryWithResources {
         try (s1; OutputStream s6 = new PipedOutputStream(); s2) {
         }
         try (
-OutputStream s7 = new PipedOutputStream();OutputStream s8 = new PipedOutputStream(); // VIOLATION
+OutputStream s7 = new PipedOutputStream();OutputStream s8 = new PipedOutputStream();
            s2;
         ) {}
         try (
-OutputStream s9=new PipedOutputStream();s2;OutputStream s10 = new PipedOutputStream()) // VIOLATION
+OutputStream s9=new PipedOutputStream();s2;OutputStream s10 = new PipedOutputStream())
         {}
         try (s1; OutputStream s11 = new PipedOutputStream();
              s2;) {
         }
         try (OutputStream
-             s12 = new PipedOutputStream();s1;OutputStream s3 = new PipedOutputStream() // VIOLATION
+             s12 = new PipedOutputStream();s1;OutputStream s3 = new PipedOutputStream()
              ;s2;) {
         }
         try (OutputStream
-             s12 = new PipedOutputStream();s1;OutputStream s3 // VIOLATION
+             s12 = new PipedOutputStream();s1;OutputStream s3
                 = new PipedOutputStream()) {}
         try (s1; s2; OutputStream stream3 =
              new PipedOutputStream()) {}
