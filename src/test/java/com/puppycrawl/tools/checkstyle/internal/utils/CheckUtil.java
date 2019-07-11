@@ -170,11 +170,20 @@ public final class CheckUtil {
         return classPath.getTopLevelClassesRecursive(packageName).stream()
                 .map(ClassPath.ClassInfo::load)
                 .filter(ModuleReflectionUtil::isCheckstyleModule)
-                .filter(cls -> !cls.getCanonicalName()
-                        .startsWith("com.puppycrawl.tools.checkstyle.internal.testmodules"))
-                .filter(cls -> !cls.getCanonicalName()
-                        .startsWith("com.puppycrawl.tools.checkstyle.packageobjectfactory"))
+                .filter(CheckUtil::isFromAllowedPackages)
                 .collect(Collectors.toSet());
+    }
+
+    /**
+     * Checks that class is from allowed packages.
+     *
+     * @param cls class to check
+     * @return true if class is from allowed packages, false otherwise
+     */
+    private static boolean isFromAllowedPackages(Class<?> cls) {
+        final String canonicalName = cls.getCanonicalName();
+        return !canonicalName.startsWith("com.puppycrawl.tools.checkstyle.packageobjectfactory")
+            && !canonicalName.startsWith("com.puppycrawl.tools.checkstyle.internal.testmodules");
     }
 
     /**

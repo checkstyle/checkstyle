@@ -36,6 +36,7 @@ import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -702,9 +703,11 @@ public final class Main {
          * @return List of exclusion patterns.
          */
         private List<Pattern> getExclusions() {
-            final List<Pattern> result = new ArrayList<>();
-            exclude.forEach(file -> result.add(
-                    Pattern.compile("^" + Pattern.quote(file.getAbsolutePath()) + "$")));
+            final List<Pattern> result = exclude.stream()
+                    .map(File::getAbsolutePath)
+                    .map(Pattern::quote)
+                    .map(pattern -> Pattern.compile("^" + pattern + "$"))
+                    .collect(Collectors.toCollection(ArrayList::new));
             result.addAll(excludeRegex);
             return result;
         }

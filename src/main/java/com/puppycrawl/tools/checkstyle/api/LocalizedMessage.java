@@ -373,8 +373,10 @@ public final class LocalizedMessage
      * @return a ResourceBundle
      */
     private ResourceBundle getBundle(String bundleName) {
-        return BUNDLE_CACHE.computeIfAbsent(bundleName, name -> ResourceBundle.getBundle(
-                name, sLocale, sourceClass.getClassLoader(), new Utf8Control()));
+        return BUNDLE_CACHE.computeIfAbsent(bundleName, name -> {
+            return ResourceBundle.getBundle(
+                name, sLocale, sourceClass.getClassLoader(), new Utf8Control());
+        });
     }
 
     /**
