@@ -1195,8 +1195,8 @@ public class MainTest {
 
     @Test
     public void testDebugOption() throws Exception {
-        exit.checkAssertionAfterwards(() -> assertNotEquals("Unexpected system error log",
-                        "", systemErr.getLog()));
+        exit.checkAssertionAfterwards(
+            () -> assertNotEquals("Unexpected system error log", "", systemErr.getLog()));
         Main.main("-c", "/google_checks.xml", getPath("InputMain.java"), "-d");
     }
 

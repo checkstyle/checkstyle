@@ -126,6 +126,9 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("allowSingleLineStatement", "true");
         final String[] expected = {
             "7: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "10: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "15: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "16: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
         };
         verify(checkConfig, getPath("InputNeedBracesSingleLineLambda.java"), expected);
     }
@@ -139,6 +142,9 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
             "6: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
             "7: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "10: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "15: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "16: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
         };
         verify(checkConfig, getPath("InputNeedBracesSingleLineLambda.java"), expected);
     }

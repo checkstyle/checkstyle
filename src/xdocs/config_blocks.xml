@@ -859,6 +859,29 @@ switch (num) {
 while (value.incrementValue() &lt; 5); // OK
 for(int i = 0; i &lt; 10; value.incrementValue()); // OK
           </source>
+          <p>
+            To configure the check to lambdas:
+          </p>
+          <pre>
+&lt;module name=&quot;NeedBraces&quot;&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;LAMBDA&quot;/&gt;
+  &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+          </pre>
+          <p>
+            Results in following:
+          </p>
+          <pre>
+allowedFuture.addCallback(result -> assertEquals("Invalid response",
+  EnumSet.of(HttpMethod.GET, HttpMethod.OPTIONS), result), // violation, lambda spans 2 lines
+  ex -> fail(ex.getMessage())); // OK
+
+allowedFuture.addCallback(result -> {
+  return assertEquals("Invalid response",
+    EnumSet.of(HttpMethod.GET, HttpMethod.OPTIONS), result);
+  }, // OK
+  ex -> fail(ex.getMessage()));
+          </pre>
       </subsection>
 
       <subsection name="Example of Usage" id="NeedBraces_Example_of_Usage">

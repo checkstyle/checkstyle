@@ -121,6 +121,29 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * while (value.incrementValue() &lt; 5); // OK
  * for(int i = 0; i &lt; 10; value.incrementValue()); // OK
  * </pre>
+ * <p>
+ * To configure the check to lambdas:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;NeedBraces&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LAMBDA&quot;/&gt;
+ *   &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Results in following:
+ * </p>
+ * <pre>
+ * allowedFuture.addCallback(result -> assertEquals("Invalid response",
+ *   EnumSet.of(HttpMethod.GET, HttpMethod.OPTIONS), result), // violation, lambda spans 2 lines
+ *   ex -> fail(ex.getMessage())); // OK
+ *
+ * allowedFuture.addCallback(result -> {
+ *   return assertEquals("Invalid response",
+ *     EnumSet.of(HttpMethod.GET, HttpMethod.OPTIONS), result);
+ *   }, // OK
+ *   ex -> fail(ex.getMessage()));
+ * </pre>
  *
  * @since 3.0
  */
@@ -416,8 +439,22 @@ public class NeedBracesCheck extends AbstractCheck {
      * @return true if current lambda statement is single-line statement.
      */
     private static boolean isSingleLineLambda(DetailAST lambda) {
-        final DetailAST block = lambda.getLastChild();
-        return isOnSameLine(lambda, block);
+        final DetailAST lastLambdaToken = getLastLambdaToken(lambda);
+        return isOnSameLine(lambda, lastLambdaToken);
+    }
+
+    /**
+     * Looks for the last token in lambda.
+     *
+     * @param lambda token to check.
+     * @return last token in lambda
+     */
+    private static DetailAST getLastLambdaToken(DetailAST lambda) {
+        DetailAST node = lambda;
+        do {
+            node = node.getLastChild();
+        } while (node.getLastChild() != null);
+        return node;
     }
 
     /**
