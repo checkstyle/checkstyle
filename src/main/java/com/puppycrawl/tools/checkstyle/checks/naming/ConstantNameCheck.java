@@ -92,7 +92,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <pre>
  * &lt;module name=&quot;ConstantName&quot;&gt;
  *   &lt;property name="applyToPublic" value="false"/&gt;
- *   &lt;property name="applyToProtected" value="false"&gt;
+ *   &lt;property name="applyToProtected" value="false"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>Code Example:</p>
