@@ -379,32 +379,33 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * A <a href="/dtds/suppressions_1_2_xpath_experimental.dtd"><em>suppressions XML document</em></a>
+ * A <a href="https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"><em>
+ * suppressions XML document</em></a>
  * contains a set of {@code suppress} and {@code suppress-xpath} elements,
  * where each {@code suppress-xpath} element can have the following attributes:
  * </p>
  * <ul>
  * <li>
- * {@code files} - a <a href="property_types.html#regexp">Regular Expression</a>
+ * {@code files} - a <a href="https://checkstyle.org/property_types.html#regexp">Regular Expression</a>
  * matched against the file name associated with an audit event. It is optional.
  * </li>
  * <li>
- * {@code checks} - a <a href="property_types.html#regexp">Regular Expression</a>
+ * {@code checks} - a <a href="https://checkstyle.org/property_types.html#regexp">Regular Expression</a>
  * matched against the name of the check associated with an audit event.
  * Optional as long as {@code id} or {@code message} is specified.
  * </li>
  * <li>
- * {@code message} - a <a href="property_types.html#regexp">Regular Expression</a>
+ * {@code message} - a <a href="https://checkstyle.org/property_types.html#regexp">Regular Expression</a>
  * matched against the message of the check associated with an audit event.
  * Optional as long as {@code checks} or {@code id} is specified.
  * </li>
  * <li>
- * {@code id} - a <a href="property_types.html#string">string</a> matched against
+ * {@code id} - a <a href="https://checkstyle.org/property_types.html#string">string</a> matched against
  * the ID of the check associated with an audit event.
  * Optional as long as {@code checks} or {@code message} is specified.
  * </li>
  * <li>
- * {@code query} - a <a href="property_types.html#string">string</a> xpath query. It is optional.
+ * {@code query} - a <a href="https://checkstyle.org/property_types.html#string">string</a> xpath query. It is optional.
  * </li>
  * </ul>
  * <p>

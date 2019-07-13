@@ -45,7 +45,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * Property {@code violateExecutionOnNonTightHtml} - If turned on, will print violations if the
  * Javadoc being examined by this check violates the tight html rules defined at
- * <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
+ * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
  * Default value is {@code false}.
  * </li>
  * <li>

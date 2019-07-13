@@ -30,7 +30,8 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Checks for implicit modifiers on nested types in classes.
  * </p>
  * <p>
- * This check is effectively the opposite of <a href="#RedundantModifier">RedundantModifier</a>.
+ * This check is effectively the opposite of
+ * <a href="https://checkstyle.org/config_modifier.html#RedundantModifier">RedundantModifier</a>.
  * It checks the modifiers on nested types in classes, ensuring that certain modifiers are
  * explicitly specified even though they are actually redundant.
  * </p>

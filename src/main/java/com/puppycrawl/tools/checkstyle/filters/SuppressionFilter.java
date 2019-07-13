@@ -60,7 +60,8 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </li>
  * <li>
  * {@code id} - a <a href="https://checkstyle.org/property_types.html#string">string</a>
- * matched against the <a href="config.html#Id">check id</a> associated with an audit event.
+ * matched against the <a href="https://checkstyle.org/config.html#Id">check id</a>
+ * associated with an audit event.
  * Optional as long as {@code checks} or {@code message} is specified.
  * </li>
  * <li>

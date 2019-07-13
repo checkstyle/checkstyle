@@ -366,7 +366,7 @@ class Test {
         </p>
         <p>
           According to <a
-          href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852">
+          href="styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852">
           Code Conventions for the Java Programming Language</a> , the parts
           of a class or interface declaration should appear in the following
           order:
@@ -2114,7 +2114,7 @@ class SomeClass
         </p>
         <p>
           For additional restriction of type usage see also:
-          <a href="#IllegalInstantiation">IllegalInstantiation</a>,
+          <a href="config_coding.html#IllegalInstantiation">IllegalInstantiation</a>,
           <a href="config_imports.html#IllegalImport">IllegalImport</a>
         </p>
       </subsection>
@@ -3089,7 +3089,7 @@ for (String line: lines) {
 
         <p>
           Rationale: <a
-          href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc5.html#a2992">
+          href="styleguides/sun-code-conventions-19990420/CodeConventions.doc5.html#a2992">
           the Java code conventions chapter 6.1</a> recommends that
           declarations should be one per line/statement.
         </p>
