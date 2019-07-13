@@ -501,6 +501,40 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
+    public void testFilterWithIdAndCustomMessageFormat() throws Exception {
+        final DefaultConfiguration filterCfg =
+            createModuleConfig(SuppressWithPlainTextCommentFilter.class);
+        filterCfg.addAttribute("offCommentFormat", "CHECKSTYLE stop (\\w+) (\\w+)");
+        filterCfg.addAttribute("onCommentFormat", "CHECKSTYLE resume (\\w+) (\\w+)");
+        filterCfg.addAttribute("checkFormat", "$1");
+        filterCfg.addAttribute("messageFormat", "$2");
+
+        final DefaultConfiguration regexpCheckCfg = createModuleConfig(RegexpSinglelineCheck.class);
+        regexpCheckCfg.addAttribute("id", "warning");
+        regexpCheckCfg.addAttribute("format", "^.*COUNT\\(\\*\\).*$");
+
+        final String[] suppressedViolationMessages = {
+            "2: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                "^.*COUNT\\(\\*\\).*$"),
+        };
+
+        final String[] expectedViolationMessages = {
+            "2: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                "^.*COUNT\\(\\*\\).*$"),
+            "5: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                "^.*COUNT\\(\\*\\).*$"),
+            "8: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                "^.*COUNT\\(\\*\\).*$"),
+        };
+
+        verifySuppressed(
+            "InputSuppressWithPlainTextCommentFilterCustomMessageFormat.sql",
+            removeSuppressed(expectedViolationMessages, suppressedViolationMessages),
+            filterCfg, regexpCheckCfg
+        );
+    }
+
+    @Test
     public void testFilterWithDirectory() throws IOException {
         final SuppressWithPlainTextCommentFilter filter = new SuppressWithPlainTextCommentFilter();
         final AuditEvent event = new AuditEvent(this, getPath(""), new LocalizedMessage(1, 1,
