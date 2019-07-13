@@ -41,7 +41,8 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <p>
  * Checks for missing Javadoc comments for a method or constructor. The scope to verify is
  * specified using the {@code Scope} class and defaults to {@code Scope.PUBLIC}. To verify
- * another scope, set property scope to a different <a href="property_types.html#scope">scope</a>.
+ * another scope, set property scope to a different
+ * <a href="https://checkstyle.org/property_types.html#scope">scope</a>.
  * </p>
  * <p>
  * Javadoc is not required on a method that is tagged with the {@code @Override} annotation.

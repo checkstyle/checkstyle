@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.internal;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
+import static org.junit.Assert.assertNotEquals;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -217,7 +218,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     private static void examineCheckSectionChildren(Node section) {
         for (Node subSection : XmlUtil.getChildrenElements(section)) {
             if (!"subsection".equals(subSection.getNodeName())) {
-                final String text = getNodeText(subSection, false);
+                final String text = getNodeText(subSection);
                 if (text.startsWith("Since Checkstyle")) {
                     CHECK_TEXT.put("since", text.substring(17));
                 }
@@ -237,7 +238,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             case "Examples":
             case "Notes":
             case "Rule Description":
-                CHECK_TEXT.put(subSectionName, getNodeText(subSection, true).replace("\r", ""));
+                CHECK_TEXT.put(subSectionName, getNodeText(subSection).replace("\r", ""));
                 break;
             case "Properties":
                 populateProperties(subSection);
@@ -271,13 +272,13 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         result.append("\n<ul>");
 
         for (List<Node> property : CHECK_PROPERTIES) {
-            final String propertyName = getNodeText(property.get(0), true);
+            final String propertyName = getNodeText(property.get(0));
 
             result.append("\n<li>\nProperty {@code ");
             result.append(propertyName);
             result.append("} - ");
 
-            final String temp = getNodeText(property.get(1), true);
+            final String temp = getNodeText(property.get(1));
 
             result.append(temp);
             CHECK_PROPERTY_DOC.put(propertyName, temp);
@@ -289,7 +290,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 result.append(" Default value is ");
             }
 
-            result.append(getNodeText(property.get(3), true));
+            result.append(getNodeText(property.get(3)));
 
             if (result.charAt(result.length() - 1) != '.') {
                 result.append('.');
@@ -303,7 +304,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         return result.toString();
     }
 
-    private static String getNodeText(Node node, boolean fixLinks) {
+    private static String getNodeText(Node node) {
         final StringBuilder result = new StringBuilder(20);
 
         for (Node child = node.getFirstChild(); child != null; child = child.getNextSibling()) {
@@ -321,7 +322,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 }
             }
             else {
-                appendNodeText(result, child, fixLinks);
+                appendNodeText(result, child);
             }
         }
 
@@ -329,7 +330,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     }
 
     // -@cs[CyclomaticComplexity] No simple way to split this apart.
-    private static void appendNodeText(StringBuilder result, Node node, boolean fixLinks) {
+    private static void appendNodeText(StringBuilder result, Node node) {
         final String name = transformXmlToJavaDocName(node.getNodeName());
         final boolean list = "ol".equals(name) || "ul".equals(name);
         final boolean newLineOpenBefore = list || "p".equals(name) || "pre".equals(name)
@@ -354,7 +355,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         else {
             result.append('<');
             result.append(name);
-            result.append(getAttributeText(name, node.getAttributes(), fixLinks));
+            result.append(getAttributeText(name, node.getAttributes()));
             result.append('>');
         }
 
@@ -366,7 +367,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             result.append(sanitizeXml(node.getTextContent()));
         }
         else {
-            result.append(getNodeText(node, fixLinks));
+            result.append(getNodeText(node));
         }
 
         if (newLineClose) {
@@ -415,8 +416,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         return result;
     }
 
-    private static String getAttributeText(String nodeName, NamedNodeMap attributes,
-            boolean fixLinks) {
+    private static String getAttributeText(String nodeName, NamedNodeMap attributes) {
         final StringBuilder result = new StringBuilder(20);
 
         for (int i = 0; i < attributes.getLength(); i++) {
@@ -426,9 +426,22 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             final String attrName = attribute.getNodeName();
             final String attrValue;
 
-            if (fixLinks && "a".equals(nodeName) && "href".equals(attrName)
-                    && attribute.getNodeValue().startsWith("apidocs/")) {
-                attrValue = "https://checkstyle.org/" + attribute.getNodeValue();
+            if ("a".equals(nodeName) && "href".equals(attrName)) {
+                String value = attribute.getNodeValue();
+
+                assertNotEquals("links starting with '#' aren't supported: " + value,
+                        '#', value.charAt(0));
+
+                if (value.contains("://")) {
+                    attrValue = value;
+                }
+                else {
+                    if (value.charAt(0) == '/') {
+                        value = value.substring(1);
+                    }
+
+                    attrValue = "https://checkstyle.org/" + value;
+                }
             }
             else {
                 attrValue = attribute.getNodeValue();
@@ -587,8 +600,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             String result = null;
 
             try {
-                result = getNodeText(XmlUtil.getRawXml(checkName, text, text).getFirstChild(),
-                        false).replace("\r", "");
+                result = getNodeText(XmlUtil.getRawXml(checkName, text, text).getFirstChild())
+                        .replace("\r", "");
             }
             catch (ParserConfigurationException ex) {
                 Assert.fail("Exception: " + ex.getClass() + " - " + ex.getMessage());

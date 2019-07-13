@@ -30,7 +30,7 @@
         </p>
         <p>
           This check is effectively the opposite of
-          <a href="#RedundantModifier">RedundantModifier</a>.
+          <a href="config_modifier.html#RedundantModifier">RedundantModifier</a>.
           It checks the modifiers on nested types in classes, ensuring that certain
           modifiers are explicitly specified even though they are actually redundant.
         </p>
@@ -159,7 +159,7 @@ public final class Person {
         </p>
         <p>
           This check is effectively the opposite of
-          <a href="#RedundantModifier">RedundantModifier</a>.
+          <a href="config_modifier.html#RedundantModifier">RedundantModifier</a>.
           It checks the modifiers on interface members, ensuring that certain
           modifiers are explicitly specified even though they are actually redundant.
         </p>

@@ -118,7 +118,7 @@
             (<code>&lt;module name=&quot;TreeWalker&quot;/&gt;</code>) and only
             applies to checks which are also defined within this module.
             To filter non-TreeWalker checks like <code>RegexpSingleline</code>,
-            a <a href="https://checkstyle.org/config_filters.html#SuppressWithPlainTextCommentFilter">
+            a <a href="config_filters.html#SuppressWithPlainTextCommentFilter">
             SuppressWithPlainTextCommentFilter</a> or similar filter must be used.
           </p>
       </subsection>
@@ -426,7 +426,7 @@ public class UserService {
           <p>
             Filter <code>SuppressionFilter</code> rejects
             audit events for Check errors according to
-            a <a href="https://checkstyle.org/dtds/suppressions_1_2.dtd">suppressions XML
+            a <a href="dtds/suppressions_1_2.dtd">suppressions XML
             document</a> in a file. If there is no configured
             suppressions file or the optional is set to true and
             suppressions file was not found the Filter accepts all audit events.
@@ -467,32 +467,32 @@ public class UserService {
       </subsection>
       <subsection name="Notes" id="SuppressionFilter_Notes">
         <p>
-          A <a href="https://checkstyle.org/dtds/suppressions_1_2.dtd">suppressions XML
+          A <a href="dtds/suppressions_1_2.dtd">suppressions XML
           document</a> contains a set of <code>suppress</code> elements, where
           each <code>suppress</code> element can have the following attributes:
         </p>
         <ul>
           <li>
             <code>files</code> -
-            a <a href="https://checkstyle.org/property_types.html#regexp">Regular Expression</a>
+            a <a href="property_types.html#regexp">Regular Expression</a>
             matched against the file name associated with an audit
             event. It is optional.
           </li>
           <li>
             <code>checks</code> -
-            a <a href="https://checkstyle.org/property_types.html#regexp">Regular Expression</a>
+            a <a href="property_types.html#regexp">Regular Expression</a>
             matched against the name of the check associated with an audit
             event. Optional as long as <code>id</code> or <code>message</code> is specified.
           </li>
           <li>
             <code>message</code> -
-            a <a href="https://checkstyle.org/property_types.html#regexp">Regular Expression</a>
+            a <a href="property_types.html#regexp">Regular Expression</a>
             matched against the message of the check associated with an audit
             event. Optional as long as <code>checks</code> or <code>id</code> is specified.
           </li>
           <li>
             <code>id</code> -
-            a <a href="https://checkstyle.org/property_types.html#string">string</a>
+            a <a href="property_types.html#string">string</a>
             matched against the <a href="config.html#Id">check id</a> associated with an audit
             event. Optional as long as <code>checks</code> or <code>message</code>
             is specified.
@@ -500,13 +500,13 @@ public class UserService {
           <li>
             <code>lines</code> - a comma-separated list of
             values, where each value is
-            an <a href="https://checkstyle.org/property_types.html#integer">integer</a> or a
+            an <a href="property_types.html#integer">integer</a> or a
             range of integers denoted by integer-integer. It is optional.
           </li>
           <li>
             <code>columns</code> - a comma-separated list of
             values, where each value is
-            an <a href="https://checkstyle.org/property_types.html#integer">integer</a> or a
+            an <a href="property_types.html#integer">integer</a> or a
             range of integers denoted by integer-integer. It is optional.
           </li>
         </ul>
@@ -520,7 +520,7 @@ public class UserService {
         </p>
         <p>
           You can download template of empty suppression filter
-          <a href="https://checkstyle.org/files/suppressions_none.xml">here</a>.
+          <a href="files/suppressions_none.xml">here</a>.
         </p>
         <p>
           Location of the file defined in <code>file</code> property is checked
@@ -581,7 +581,7 @@ public class UserService {
 &lt;/suppressions&gt;
           </source>
           <p>
-            Suppress check by <a href="https://checkstyle.org/config.html#Id">module id</a>
+            Suppress check by <a href="config.html#Id">module id</a>
             when config have two instances on the same check:
           </p>
           <source>
@@ -660,7 +660,7 @@ public class UserService {
       <subsection name="Description" id="SuppressionXpathFilter_Description">
         <p>
           Filter <code>SuppressionXpathFilter</code> works as
-          <a href="https://checkstyle.org/config_filters.html#SuppressionFilter">
+          <a href="config_filters.html#SuppressionFilter">
           SuppressionFilter</a>.
           Additionally, filter processes <code>suppress-xpath</code> elements,
           which contains xpath-expressions. Xpath-expressions
@@ -776,7 +776,7 @@ public class UserService {
           You can use the command line helper tool to generate xpath
           suppressions based on your configuration file and input files.
           See
-          <a href="https://checkstyle.org/cmdline.html">here</a>
+          <a href="cmdline.html">here</a>
           for more details.
         </p>
       </subsection>

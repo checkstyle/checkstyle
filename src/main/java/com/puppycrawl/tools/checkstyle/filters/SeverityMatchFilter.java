@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 /**
  * <p>
  * Filter {@code SeverityMatchFilter} decides audit events according to the
- * <a href="config.html#Severity">severity level</a> of the event.
+ * <a href="https://checkstyle.org/config.html#Severity">severity level</a> of the event.
  * </p>
  * <ul>
  * <li>

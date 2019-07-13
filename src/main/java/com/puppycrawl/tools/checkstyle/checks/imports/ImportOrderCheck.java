@@ -56,7 +56,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * <li>
  * arrange static imports: ensures the relative order between type imports and static imports
- * (see <a href="property_types.html#importOrder">import orders</a>)
+ * (see <a href="https://checkstyle.org/property_types.html#importOrder">import orders</a>)
  * </li>
  * </ul>
  * <ul>
@@ -212,7 +212,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
- * Note: a <a href="config_filters.html#SuppressionXpathSingleFilter">
+ * Note: a <a href="https://checkstyle.org/config_filters.html#SuppressionXpathSingleFilter">
  * suppression xpath single filter</a> is needed because
  * IDEA has no blank line between "javax" and "java".
  * ImportOrder has a limitation by design to enforce an empty line between groups ("java", "javax").

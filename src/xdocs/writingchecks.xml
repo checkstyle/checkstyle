@@ -784,7 +784,7 @@ public class LimitImplementationFiles extends AbstractFileSetCheck
       <p>
         That&#39;s probably our fault, and it means that we have to provide
         better documentation. Please do not hesitate to ask questions on
-        the user <a href="https://checkstyle.org/mail-lists.html">
+        the user <a href="mail-lists.html">
         mailing lists</a>, this will help us to improve this
         document.  Please ask your questions as precisely as possible.
         We will not be able to answer questions like &quot;I want to

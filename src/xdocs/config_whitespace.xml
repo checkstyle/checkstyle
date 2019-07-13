@@ -1622,12 +1622,12 @@ public void foo(final char @NotNull [] param) {} // No violation
           parenthesis of a try-with-resources resource specification where
           the last resource variable has a trailing semi-colon.
           Use Check <a
-          href="https://checkstyle.org/config_whitespace.html#EmptyForIteratorPad">
+          href="config_whitespace.html#EmptyForIteratorPad">
           EmptyForIteratorPad</a> to validate empty for iterators and <a
-          href="https://checkstyle.org/config_whitespace.html#EmptyForInitializerPad">
+          href="config_whitespace.html#EmptyForInitializerPad">
           EmptyForInitializerPad</a> to validate empty for initializers.
           Typecasts are also not checked, as there is <a
-          href="https://checkstyle.org/config_whitespace.html#TypecastParenPad">
+          href="config_whitespace.html#TypecastParenPad">
           TypecastParenPad</a> to validate them.
         </p>
       </subsection>
@@ -2260,7 +2260,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
         <p>
           Checks that a token is followed by whitespace, with the exception that it
           does not check for whitespace after the semicolon of an empty for iterator. Use Check
-          <a href="https://checkstyle.org/config_whitespace.html#EmptyForIteratorPad">
+          <a href="config_whitespace.html#EmptyForIteratorPad">
           EmptyForIteratorPad</a> to validate empty for iterators.
         </p>
       </subsection>
