@@ -564,19 +564,9 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
          * @return true if the suppression matches {@link AuditEvent}.
          */
         private boolean isMatch(AuditEvent event) {
-            boolean match = false;
-            if (isInScopeOfSuppression(event)) {
-                final Matcher sourceNameMatcher = eventSourceRegexp.matcher(event.getSourceName());
-                if (sourceNameMatcher.find()) {
-                    match = eventMessageRegexp == null
-                        || eventMessageRegexp.matcher(event.getMessage()).find();
-                }
-                else {
-                    match = event.getModuleId() != null
-                        && eventSourceRegexp.matcher(event.getModuleId()).find();
-                }
-            }
-            return match;
+            return isInScopeOfSuppression(event)
+                    && (isCheckMatch(event) || isIdMatch(event))
+                    && isMessageMatch(event);
         }
 
         /**
@@ -588,6 +578,43 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
             return lineNo <= event.getLine();
         }
 
+        /**
+         * Checks whether {@link AuditEvent} source name matches the check format.
+         * @param event {@link AuditEvent} instance.
+         * @return true if the {@link AuditEvent} source name matches the check format.
+         */
+        private boolean isCheckMatch(AuditEvent event) {
+            final Matcher checkMatcher = eventSourceRegexp.matcher(event.getSourceName());
+            return checkMatcher.find();
+        }
+
+        /**
+         * Checks whether the {@link AuditEvent} module ID matches the ID format.
+         * @param event {@link AuditEvent} instance.
+         * @return true if the {@link AuditEvent} module ID matches the ID format.
+         */
+        private boolean isIdMatch(AuditEvent event) {
+            boolean match = false;
+            if (event.getModuleId() != null) {
+                final Matcher idMatcher = eventSourceRegexp.matcher(event.getModuleId());
+                match = idMatcher.find();
+            }
+            return match;
+        }
+
+        /**
+         * Checks whether the {@link AuditEvent} message matches the message format.
+         * @param event {@link AuditEvent} instance.
+         * @return true if the {@link AuditEvent} message matches the message format.
+         */
+        private boolean isMessageMatch(AuditEvent event) {
+            boolean match = true;
+            if (eventMessageRegexp != null) {
+                final Matcher messageMatcher = eventMessageRegexp.matcher(event.getMessage());
+                match = messageMatcher.find();
+            }
+            return match;
+        }
     }
 
 }
