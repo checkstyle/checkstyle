@@ -12,6 +12,12 @@ public class InputUnnecessaryParentheses15Extensions
 
 }
 
+@MyAnnotation1(name = ("ABC" + "DEF"), version = (1))
+class AnnotationWithUnnecessaryParentheses
+{
+
+}
+
 enum Enum2
 {
     A, B, C;

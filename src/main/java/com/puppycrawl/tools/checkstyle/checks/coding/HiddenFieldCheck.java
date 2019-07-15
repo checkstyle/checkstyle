@@ -275,10 +275,6 @@ public class HiddenFieldCheck
                 log(firstChild, MSG_KEY, untypedLambdaParameterName);
             }
         }
-        else {
-            // Type of lambda parameter is not omitted.
-            processVariable(ast);
-        }
     }
 
     /**
