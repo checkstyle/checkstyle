@@ -451,14 +451,11 @@ public class RequireThisCheck extends AbstractCheck {
      */
     private AbstractFrame getFieldWithoutThis(DetailAST ast, int parentType) {
         final boolean importOrPackage = ScopeUtil.getSurroundingScope(ast) == null;
-        final boolean methodNameInMethodCall = parentType == TokenTypes.DOT
-                && ast.getPreviousSibling() != null;
         final boolean typeName = parentType == TokenTypes.TYPE
                 || parentType == TokenTypes.LITERAL_NEW;
         AbstractFrame frame = null;
 
         if (!importOrPackage
-                && !methodNameInMethodCall
                 && !typeName
                 && !isDeclarationToken(parentType)
                 && !isLambdaParameter(ast)) {
