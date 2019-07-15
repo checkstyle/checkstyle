@@ -609,11 +609,8 @@ public class SuppressWithNearbyCommentFilter
          * @return true if the {@link TreeWalkerAuditEvent} message matches the message format.
          */
         private boolean isMessageMatch(TreeWalkerAuditEvent event) {
-            final boolean match;
-            if (tagMessageRegexp == null) {
-                match = true;
-            }
-            else {
+            boolean match = true;
+            if (tagMessageRegexp != null) {
                 final Matcher messageMatcher = tagMessageRegexp.matcher(event.getMessage());
                 match = messageMatcher.find();
             }
