@@ -20,20 +20,20 @@ jobs:
             echo -n "|intellij-idea-inspections.xml" >> .ci-temp/skip_ci_files
             echo -n "|org.eclipse.jdt.core.prefs" >> .ci-temp/skip_ci_files
             echo -n "|Jenkinsfile" >> .ci-temp/skip_ci_files
-            SKIP_CI=false;
+            SKIP_CI_BY_FILES=false;
             if [ $(git diff --name-only HEAD HEAD~1 \
                    | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
-                SKIP_CI=false;
+                SKIP_CI_BY_FILES=false;
               else
-                SKIP_CI=true;
+                SKIP_CI_BY_FILES=true;
             fi
-            echo $SKIP_CI > .ci-temp/skip_ci
+            echo $SKIP_CI_BY_FILES > .ci-temp/skip_ci
       - run:
           name: download all maven dependencies and groovy
           command: |
-            SKIP_CI=`cat .ci-temp/skip_ci`
-            echo "SKIP_CI="$SKIP_CI
-            if [[ $SKIP_CI == 'false' ]]; then
+            SKIP_CI_BY_FILES=`cat .ci-temp/skip_ci`
+            echo "SKIP_CI_BY_FILES="$SKIP_CI_BY_FILES
+            if [[ $SKIP_CI_BY_FILES == 'false' ]]; then
               pwd
               ls -la
               java -version
@@ -57,9 +57,9 @@ jobs:
           at: /home/circleci/
       - run:
           command: |
-            SKIP_CI=`cat .ci-temp/skip_ci`
-            echo "SKIP_CI="$SKIP_CI
-            if [[ $SKIP_CI == 'false' ]]; then
+            SKIP_CI_BY_FILES=`cat .ci-temp/skip_ci`
+            echo "SKIP_CI_BY_FILES="$SKIP_CI_BY_FILES
+            if [[ $SKIP_CI_BY_FILES == 'false' ]]; then
               echo "./.ci/pitest.sh pitest-coding"  >> commands.txt
               echo "./.ci/pitest.sh pitest-common"  >> commands.txt
               echo "./.ci/pitest.sh pitest-imports" >> commands.txt
@@ -79,9 +79,9 @@ jobs:
           at: /home/circleci/
       - run:
           command: |
-            SKIP_CI=`cat .ci-temp/skip_ci`
-            echo "SKIP_CI="$SKIP_CI
-            if [[ $SKIP_CI == 'false' ]]; then
+            SKIP_CI_BY_FILES=`cat .ci-temp/skip_ci`
+            echo "SKIP_CI_BY_FILES="$SKIP_CI_BY_FILES
+            if [[ $SKIP_CI_BY_FILES == 'false' ]]; then
               echo "./.ci/pitest.sh pitest-main"        >> commands.txt
               echo "./.ci/pitest.sh pitest-javadoc"     >> commands.txt
               echo "./.ci/pitest.sh pitest-indentation" >> commands.txt
@@ -101,9 +101,9 @@ jobs:
           at: /home/circleci/
       - run:
           command: |
-            SKIP_CI=`cat .ci-temp/skip_ci`
-            echo "SKIP_CI="$SKIP_CI
-            if [[ $SKIP_CI == 'false' ]]; then
+            SKIP_CI_BY_FILES=`cat .ci-temp/skip_ci`
+            echo "SKIP_CI_BY_FILES="$SKIP_CI_BY_FILES
+            if [[ $SKIP_CI_BY_FILES == 'false' ]]; then
               echo "./.ci/pitest.sh pitest-misc"    >> commands.txt
               echo "./.ci/pitest.sh pitest-design"  >> commands.txt
               echo "./.ci/pitest.sh pitest-api"     >> commands.txt
@@ -123,9 +123,9 @@ jobs:
           at: /home/circleci/
       - run:
           command: |
-            SKIP_CI=`cat .ci-temp/skip_ci`
-            echo "SKIP_CI="$SKIP_CI
-            if [[ $SKIP_CI == 'false' ]]; then
+            SKIP_CI_BY_FILES=`cat .ci-temp/skip_ci`
+            echo "SKIP_CI_BY_FILES="$SKIP_CI_BY_FILES
+            if [[ $SKIP_CI_BY_FILES == 'false' ]]; then
               echo "./.ci/pitest.sh pitest-whitespace" >> commands.txt
               echo "./.ci/pitest.sh pitest-filters"    >> commands.txt
               echo "./.ci/pitest.sh pitest-header"     >> commands.txt
@@ -145,9 +145,9 @@ jobs:
           at: /home/circleci/
       - run:
           command: |
-            SKIP_CI=`cat .ci-temp/skip_ci`
-            echo "SKIP_CI="$SKIP_CI
-            if [[ $SKIP_CI == 'false' ]]; then
+            SKIP_CI_BY_FILES=`cat .ci-temp/skip_ci`
+            echo "SKIP_CI_BY_FILES="$SKIP_CI_BY_FILES
+            if [[ $SKIP_CI_BY_FILES == 'false' ]]; then
               echo "./.ci/pitest.sh pitest-packagenamesloader" >> commands.txt
               echo "./.ci/pitest.sh pitest-tree-walker"        >> commands.txt
               echo "./.ci/pitest.sh pitest-naming"             >> commands.txt
@@ -167,9 +167,9 @@ jobs:
           at: /home/circleci/
       - run:
           command: |
-            SKIP_CI=`cat .ci-temp/skip_ci`
-            echo "SKIP_CI="$SKIP_CI
-            if [[ $SKIP_CI == 'false' ]]; then
+            SKIP_CI_BY_FILES=`cat .ci-temp/skip_ci`
+            echo "SKIP_CI_BY_FILES="$SKIP_CI_BY_FILES
+            if [[ $SKIP_CI_BY_FILES == 'false' ]]; then
               echo "./.ci/pitest.sh pitest-blocks"   >> commands.txt
               echo "./.ci/pitest.sh pitest-sizes"    >> commands.txt
               echo "./.ci/pitest.sh pitest-modifier" >> commands.txt
@@ -189,9 +189,9 @@ jobs:
           at: /home/circleci/
       - run:
           command: |
-            SKIP_CI=`cat .ci-temp/skip_ci`
-            echo "SKIP_CI="$SKIP_CI
-            if [[ $SKIP_CI == 'false' ]]; then
+            SKIP_CI_BY_FILES=`cat .ci-temp/skip_ci`
+            echo "SKIP_CI_BY_FILES="$SKIP_CI_BY_FILES
+            if [[ $SKIP_CI_BY_FILES == 'false' ]]; then
               echo "./.ci/pitest.sh pitest-gui"   >> commands.txt
               CMD="$(circleci tests split commands.txt)"
               echo "Command: $CMD"
@@ -208,9 +208,9 @@ jobs:
           at: /home/circleci/
       - run:
           command: |
-            SKIP_CI=`cat .ci-temp/skip_ci`
-            echo "SKIP_CI="$SKIP_CI
-            if [[ $SKIP_CI == 'false' ]]; then
+            SKIP_CI_BY_FILES=`cat .ci-temp/skip_ci`
+            echo "SKIP_CI_BY_FILES="$SKIP_CI_BY_FILES
+            if [[ $SKIP_CI_BY_FILES == 'false' ]]; then
               echo "./.ci/pitest.sh pitest-common-2"   >> commands.txt
               CMD="$(circleci tests split commands.txt)"
               echo "Command: $CMD"
