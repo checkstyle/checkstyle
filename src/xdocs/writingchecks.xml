@@ -38,18 +38,18 @@
         be plugged into Checkstyle. Modules can be containers for other
         modules, i.e. they form a tree structure. The top level modules
         that are known directly to the Checkstyle kernel (which is also a
-        module and forms the root of the tree) implement the <a
-        href="apidocs/com/puppycrawl/tools/checkstyle/api/FileSetCheck.html">FileSetCheck</a>
+        module and forms the root of the tree) implement the
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/FileSetCheck.html">FileSetCheck</a>
         interface. These are pretty simple to grasp: they take a set of
         input files and fire error messages.
       </p>
 
       <p>
         Checkstyle provides a few FileSetCheck implementations by default
-        and one of them happens to be the <a
-        href="apidocs/com/puppycrawl/tools/checkstyle/TreeWalker.html">TreeWalker</a>. A
-        TreeWalker supports submodules that are derived from the <a
-        href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html">AbstractCheck</a>
+        and one of them happens to be the
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/TreeWalker.html">TreeWalker</a>. A
+        TreeWalker supports submodules that are derived from the
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html">AbstractCheck</a>
         class. The TreeWalker operates by separately transforming each of
         the Java input files into an abstract syntax tree and then handing
         the result over to each of the Check submodules which in turn have
@@ -80,8 +80,8 @@
 
       <p> This chapter is organized as a tour that takes you
       through the process step by step and explains both the theoretical
-      foundations and the <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/package-summary.html">Checkstyle
+      foundations and the
+      <a href="apidocs/com/puppycrawl/tools/checkstyle/api/package-summary.html">Checkstyle
       API</a> along the way.  </p>
 
     </section>
@@ -209,8 +209,8 @@ CLASS_DEF -> CLASS_DEF [5:0]
       in the tree.  The second column displays a token type for each node. As
       you navigate from the root of the tree to one of the leafs, you&#39;ll
       notice that the token type denotes smaller and smaller units of your
-      source file, i.e. close to the root you might see the token type <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>
+      source file, i.e. close to the root you might see the token type
+      <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>
       (a node that represents a class definition) while you will see token
       types like IDENT (an identifier) near the leaves of the tree.  </p>
 
@@ -270,39 +270,38 @@ CLASS_DEF -> CLASS_DEF [5:0]
 
       <p> Hence Checkstyle&#39;s AST classes do not have any
       methods that implement checking functionality. Instead,
-      Checkstyle&#39;s <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/TreeWalker.html">TreeWalker</a>
-      takes a set of objects that conform to a <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html">AbstractCheck</a>
+      Checkstyle&#39;s
+      <a href="apidocs/com/puppycrawl/tools/checkstyle/TreeWalker.html">TreeWalker</a>
+      takes a set of objects that conform to a
+      <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html">AbstractCheck</a>
       interface. OK, you&#39;re right - actually it&#39;s not an interface
       but an abstract class to provide some helper methods. A Check provides
       methods that take an AST as an argument and perform the checking process
-      for that AST, most prominently <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#visitToken-com.puppycrawl.tools.checkstyle.api.DetailAST-">
+      for that AST, most prominently
+      <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#visitToken-com.puppycrawl.tools.checkstyle.api.DetailAST-">
               <code>visitToken()</code></a>.  </p>
 
       <p> It is important to understand that the individual
       Checks do no drive the AST traversal (it possible to traverse itself, but not recommended).
       Instead, the TreeWalker initiates
       a recursive descend from the root of the AST to the leaf nodes and calls
-      the Check methods. The traversal is done using a <a
-      href="https://en.wikipedia.org/wiki/Tree_traversal">tree traversal (depth-first)</a>
+      the Check methods. The traversal is done using a
+      <a href="https://en.wikipedia.org/wiki/Tree_traversal">tree traversal (depth-first)</a>
       algorithm.  </p>
 
-      <p> Before any visitor method is called, the TreeWalker
-      will call <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#beginTree-com.puppycrawl.tools.checkstyle.api.DetailAST-">
+      <p> Before any visitor method is called, the TreeWalker will call
+      <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#beginTree-com.puppycrawl.tools.checkstyle.api.DetailAST-">
               <code>beginTree()</code></a> to give the Check a chance to do
       some initialization. Then, when performing the recursive descend from
       the root to the leaf nodes, the <code>visitToken()</code>
       method is called. Unlike the basic examples in the pattern book, there
-      is a <code>visitToken()</code> counterpart called <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#leaveToken-com.puppycrawl.tools.checkstyle.api.DetailAST-">
+      is a <code>visitToken()</code> counterpart called
+      <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#leaveToken-com.puppycrawl.tools.checkstyle.api.DetailAST-">
               <code>leaveToken()</code></a>. The TreeWalker will call that
       method to signal that the subtree below the node has been processed and
       the TreeWalker is backtracking from the node. After the root node has
-      been left, the TreeWalker will call <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#finishTree-com.puppycrawl.tools.checkstyle.api.DetailAST-">
+      been left, the TreeWalker will call
+      <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#finishTree-com.puppycrawl.tools.checkstyle.api.DetailAST-">
               <code>finishTree()</code></a>.  </p>
 
     </section>
@@ -418,8 +417,8 @@ public class MethodLimitCheck extends AbstractCheck
       </p>
       <p>
         Since 6.0, there is a new method in AbstractCheck class that allow you to see or not
-        comment nodes in AST Tree - <a
-        href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#isCommentNodesRequired--">
+        comment nodes in AST Tree -
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#isCommentNodesRequired--">
         isCommentNodesRequired()</a>. It should return TRUE if Check want to see comments in AST
         Tree.
       </p>
@@ -552,8 +551,8 @@ public class MethodLimitCheck extends AbstractCheck
         the symbolic representation and use one of the log helper
         methods to provide the dynamic part of the message (mMax in this
         case): <code>log(&quot;too.many.methods&quot;,
-        mMax);</code>. Please consult the documentation of Java&#39;s <a
-        href="https://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html">
+        mMax);</code>. Please consult the documentation of Java&#39;s
+        <a href="https://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html">
           MessageFormat</a>
         to learn about the syntax of format strings (especially about
         those funny numbers in the translated text).
@@ -680,11 +679,11 @@ public class MethodLimitCheck extends AbstractCheck
       </p>
 
       <p> Writing a FileSetCheck is pretty straightforward: Just
-      inherit from <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html">
+      inherit from
+      <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html">
               AbstractFileSetCheck</a>
-      and override the abstract <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html#processFiltered-java.io.File-java.util.List-">
+      and override the abstract
+      <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html#processFiltered-java.io.File-java.util.List-">
               <code>processFiltered(java.io.File, java.util.List)</code></a> method and you&#39;re
       done. A very simple example could fire an error if the number of files
       exceeds a certain limit. Here is a FileSetCheck that does just that:</p>
