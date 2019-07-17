@@ -35,7 +35,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * The default value of {@code format} for module {@code PackageName} has been chosen to match
  * the requirements in the
- * <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.5.3">Java Language specification</a>
+ * <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.5.3">
+ * Java Language specification</a>
  * and the Sun coding conventions. However both underscores and uppercase letters are rather
  * uncommon, so most configurations should probably assign value
  * {@code ^[a-z]+(\.[a-z][a-z0-9]*)*$} to {@code format} for module {@code PackageName}.

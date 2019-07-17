@@ -103,4 +103,17 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void shouldNotLogLongLinks() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(LineLengthCheck.class);
+        checkConfig.addAttribute("max", "80");
+        checkConfig.addAttribute("ignorePattern",
+            "^ *\\* *([^ ]+|\\{@code .*|<a href=\"[^\"]+\">)$");
+        final String[] expected = {
+            "4: " + getCheckMessage(MSG_KEY, 80, 98),
+        };
+        verify(checkConfig, getPath("InputLineLengthLongLink.java"), expected);
+    }
+
 }

@@ -825,11 +825,17 @@
         Checks if unnecessary parentheses are used in a statement or expression.</td>
       </tr>
       <tr>
-        <td><a href="config_coding.html#UnnecessarySemicolonInEnumeration">UnnecessarySemicolonInEnumeration</a></td>
+        <td>
+          <a href="config_coding.html#UnnecessarySemicolonInEnumeration">
+          UnnecessarySemicolonInEnumeration</a>
+        </td>
         <td>Checks if unnecessary semicolon is in enum definitions.</td>
       </tr>
       <tr>
-        <td><a href="config_coding.html#UnnecessarySemicolonInTryWithResources">UnnecessarySemicolonInTryWithResources</a></td>
+        <td>
+          <a href="config_coding.html#UnnecessarySemicolonInTryWithResources">
+          UnnecessarySemicolonInTryWithResources</a>
+        </td>
         <td>Checks if unnecessary semicolon is used in last resource declaration.</td>
       </tr>
       <tr>

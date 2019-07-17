@@ -36,7 +36,8 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </li>
  * <li>
  * Property {@code allowOneCharVarInForLoop} - Allow one character variable name in
- * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">initialization expressions</a>
+ * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
+ * initialization expressions</a>
  * in FOR loop if one char variable name is prohibited by {@code format} regexp. For example:
  * <pre>
  * for (int i = 1; i &lt; 10; i++) { // OK
@@ -167,7 +168,8 @@ public class LocalVariableNameCheck
 
     /**
      * Allow one character variable name in
-     * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">initialization expressions</a>
+     * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
+     * initialization expressions</a>
      * in FOR loop if one char variable name is prohibited by {@code format} regexp. For example:
      * <pre>
      * for (int i = 1; i &lt; 10; i++) { // OK
@@ -194,7 +196,8 @@ public class LocalVariableNameCheck
 
     /**
      * Setter to allow one character variable name in
-     * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">initialization expressions</a>
+     * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
+     * initialization expressions</a>
      * in FOR loop if one char variable name is prohibited by {@code format} regexp. For example:
      * <pre>
      * for (int i = 1; i &lt; 10; i++) { // OK
