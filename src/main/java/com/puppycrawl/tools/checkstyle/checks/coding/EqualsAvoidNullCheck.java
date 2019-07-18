@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
  * <p>
@@ -475,18 +476,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
      */
     private static boolean checkLineNo(DetailAST field, DetailAST objCalledOn) {
         boolean result = false;
-        // Required for pitest coverage. We should specify columnNo passing condition
-        // in such a way, so that the minimal possible distance between field and
-        // objCalledOn will be the maximal condition to pass this check.
-        // The minimal distance between objCalledOn and field (of type String) initialization
-        // is calculated as follows:
-        // String(6) + space(1) + variableName(1) + assign(1) +
-        // anotherStringVariableName(1) + semicolon(1) = 11
-        // Example: length of "String s=d;" is 11 symbols.
-        final int minimumSymbolsBetween = 11;
-        if (field.getLineNo() < objCalledOn.getLineNo()
-                || field.getLineNo() == objCalledOn.getLineNo()
-                    && field.getColumnNo() + minimumSymbolsBetween <= objCalledOn.getColumnNo()) {
+        if (CheckUtil.isBeforeInSource(field, objCalledOn)) {
             result = true;
         }
         return result;

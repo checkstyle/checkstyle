@@ -162,6 +162,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = {
             "7:28: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "14:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
         };
         verify(checkConfig, getPath("InputEqualsAvoidNullOnTheSameLine.java"), expected);
     }
