@@ -241,15 +241,25 @@ public final class CheckUtil {
         DetailAST child = node.getFirstChild();
         while (child != null) {
             final DetailAST newNode = getFirstNode(child);
-            if (newNode.getLineNo() < currentNode.getLineNo()
-                || newNode.getLineNo() == currentNode.getLineNo()
-                    && newNode.getColumnNo() < currentNode.getColumnNo()) {
+            if (isBeforeInSource(newNode, currentNode)) {
                 currentNode = newNode;
             }
             child = child.getNextSibling();
         }
 
         return currentNode;
+    }
+
+    /**
+     * Retrieves whether ast1 is located before ast2.
+     * @param ast1 the first node.
+     * @param ast2 the second node.
+     * @return true, if ast1 is located before ast2.
+     */
+    public static boolean isBeforeInSource(DetailAST ast1, DetailAST ast2) {
+        return ast1.getLineNo() < ast2.getLineNo()
+            || ast1.getLineNo() == ast2.getLineNo()
+                && ast1.getColumnNo() < ast2.getColumnNo();
     }
 
     /**
