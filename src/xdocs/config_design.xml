@@ -883,7 +883,8 @@ public class Foo{
         <p>
           <b>ignoreAnnotationCanonicalNames</b> - the list of annotations which ignore variables
           in consideration. If user will provide short annotation name that type will match to any
-          named the same type without consideration of package.
+          named the same type without consideration of package. This option should be used if
+          some framework with annotation based field injection is used (like JUnit rules).
         </p>
         <p>
           <b>allowPublicFinalFields</b> - which allows public final fields.
@@ -899,7 +900,7 @@ public class Foo{
           <li>It's declared as final</li>
           <li>
             Has either a primitive type or instance of class user defined to be immutable
-            (such as String, ImmutableCollection from Guava and etc)
+            (such as String, ImmutableCollection from Guava etc.)
           </li>
         </ul>
         <p>
@@ -988,7 +989,7 @@ public class Foo{
               consideration.
             </td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>org.junit.Rule, org.junit.ClassRule,
+            <td><code>org.junit.Rule, org.junit.ClassRule, org.junit.jupiter.api.io.TempDir,
                 com.google.common.annotations.VisibleForTesting</code></td>
             <td>6.5</td>
           </tr>

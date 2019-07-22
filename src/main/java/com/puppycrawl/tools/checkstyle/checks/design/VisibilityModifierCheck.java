@@ -444,6 +444,7 @@ public class VisibilityModifierCheck
         Arrays.stream(new String[] {
             "org.junit.Rule",
             "org.junit.ClassRule",
+            "org.junit.jupiter.api.io.TempDir",
             "com.google.common.annotations.VisibleForTesting",
         }).collect(Collectors.toList()));
 
