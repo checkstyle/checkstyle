@@ -201,7 +201,7 @@
     <powermock.version>2.0.2</powermock.version>
     <saxon.version>9.9.1-4</saxon.version>
     <maven.checkstyle.plugin.version>3.1.0</maven.checkstyle.plugin.version>
-    <maven.sevntu-checkstyle-check.sevntu-checks.version>1.35.0</maven.sevntu-checkstyle-check.sevntu-checks.version>
+    <maven.sevntu.checkstyle.plugin.version>1.35.0</maven.sevntu.checkstyle.plugin.version>
     <maven.sevntu-checkstyle-check.checkstyle.version>
       8.18
     </maven.sevntu-checkstyle-check.checkstyle.version>
@@ -553,7 +553,7 @@
           <dependency>
             <groupId>com.github.sevntu-checkstyle</groupId>
             <artifactId>sevntu-checks</artifactId>
-            <version>${maven.sevntu-checkstyle-check.sevntu-checks.version}</version>
+            <version>${maven.sevntu.checkstyle.plugin.version}</version>
           </dependency>
           <dependency>
             <groupId>com.puppycrawl.tools</groupId>
