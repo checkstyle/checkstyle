@@ -70,8 +70,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     private static final String[] INCOMPATIBLE_CHECKS = {
         // file filters
         "BeforeExecutionExclusionFileFilter",
-        // filters
-        "SuppressionXpathSingleFilter",
         // javadoc
         "JavadocMethod",
         "JavadocPackage",
