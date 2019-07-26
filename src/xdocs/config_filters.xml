@@ -1372,8 +1372,8 @@ CLASS_DEF -> CLASS_DEF [1:0]
     </section>
 
     <section name="SuppressionXpathSingleFilter">
+      <p>Since Checkstyle 8.18</p>
       <subsection name="Description" id="SuppressionXpathSingleFilter_Description">
-        <p>Since Checkstyle 8.18</p>
         <p>
           Filter <code>SuppressionXpathSingleFilter</code> suppresses audit events for
           Checks violations in the specified file, class, checks, message, module id,
@@ -1406,15 +1406,15 @@ CLASS_DEF -> CLASS_DEF [1:0]
           </tr>
           <tr>
             <td>files</td>
-            <td>a Regular Expression matched against the file name associated
-                with an audit event</td>
+            <td>Define a Regular Expression matched against the file name associated
+                with an audit event.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>null</code></td>
             <td>8.18</td>
           </tr>
           <tr>
             <td>checks</td>
-            <td>a Regular Expression matched against the name of the check
+            <td>Define a Regular Expression matched against the name of the check
                 associated with an audit event.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>null</code></td>
@@ -1422,7 +1422,7 @@ CLASS_DEF -> CLASS_DEF [1:0]
           </tr>
           <tr>
             <td>message</td>
-            <td>a Regular Expression matched against the message of the check associated
+            <td>Define a Regular Expression matched against the message of the check associated
                 with an audit event.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>null</code></td>
@@ -1430,7 +1430,7 @@ CLASS_DEF -> CLASS_DEF [1:0]
           </tr>
           <tr>
             <td>id</td>
-            <td>a string matched against the ID of the check associated with an audit
+            <td>Define a string matched against the ID of the check associated with an audit
                 event.</td>
             <td><a href="property_types.html#string">String</a></td>
             <td><code>null</code></td>
@@ -1438,7 +1438,7 @@ CLASS_DEF -> CLASS_DEF [1:0]
           </tr>
           <tr>
             <td>query</td>
-            <td>a string xpath query.</td>
+            <td>Define a string xpath query.</td>
             <td><a href="property_types.html#string">String</a></td>
             <td><code>null</code></td>
             <td>8.18</td>
@@ -1688,7 +1688,7 @@ public class InputTest {
 &lt;module name="SuppressionXpathSingleFilter"&gt;
   &lt;property name="checks" value="IllegalThrows"/&gt;
   &lt;property name="query" value="//LITERAL_THROWS/IDENT[
-          ..[@text='RuntimeException'] and ./ancestor::METHOD_DEF[@text='throwsMethod']]"/&gt;
+      ..[@text='RuntimeException'] and ./ancestor::METHOD_DEF[@text='throwsMethod']]"/&gt;
 &lt;/module&gt;
         </pre>
         <p>Code Example:</p>
