@@ -458,6 +458,14 @@
     <!-- Javadoc Comments -->
     <module name="AtclauseOrder"/>
     <module name="InvalidJavadocPosition"/>
+    <module name="JavadocBlockTagLocation">
+      <!-- default tags -->
+      <property name="tags" value="author, deprecated, exception, hidden, param, provides"/>
+      <property name="tags" value="return, see, serial, serialData, serialField, since, throws"/>
+      <property name="tags" value="uses, version"/>
+      <!-- additional tags used in the project -->
+      <property name="tags" value="noinspection"/>
+    </module>
     <module name="JavadocMethod">
       <property name="allowUndeclaredRTE" value="true"/>
       <property name="allowThrowsTagsForSubclasses" value="true"/>
