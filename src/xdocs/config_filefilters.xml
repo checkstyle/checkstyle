@@ -23,8 +23,8 @@
     </section>
 
     <section name="BeforeExecutionExclusionFileFilter">
+      <p>Since Checkstyle 7.2</p>
       <subsection name="Description" id="BeforeExecutionExclusionFileFilter_Description">
-        <p>Since Checkstyle 7.2</p>
         <p>
           File filter <code>BeforeExecutionExclusionFileFilter</code> decides which files should be
           excluded from being processed by the utility.
@@ -56,7 +56,7 @@
           </tr>
           <tr>
             <td>fileNamePattern</td>
-            <td>Regular expression to match the file name against.</td>
+            <td>Define regular expression to match the file name against.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>null</code></td>
             <td>7.2</td>

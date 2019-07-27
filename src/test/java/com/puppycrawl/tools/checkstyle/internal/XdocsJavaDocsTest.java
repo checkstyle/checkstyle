@@ -68,8 +68,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
      * The list of checks that are not yet compatible with this rule.
      */
     private static final String[] INCOMPATIBLE_CHECKS = {
-        // file filters
-        "BeforeExecutionExclusionFileFilter",
         // javadoc
         "JavadocMethod",
         "JavadocPackage",
