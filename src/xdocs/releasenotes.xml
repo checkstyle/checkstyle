@@ -15,6 +15,148 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.23">
+      <div class="releaseDate">27.07.2019</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            new filter SuppressionSingleFilter.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6402">#6402</a>
+          </li>
+          <li>
+            OneStatementPerLine: add treatTryResourcesAsStatement property.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/6790">#6790</a>
+          </li>
+          <li>
+            MagicNumber: new proprty ignoreAnnotationElementDefaults to ignore magic numbers
+            in annotation default values.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/4383">#4383</a>
+          </li>
+          <li>
+            new check: InvalidJavadocPosition.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6649">#6649</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            InnerAssignment reports violation when &amp;&amp; condition is in WHILE expression.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/6805">#6805</a>
+          </li>
+          <li>
+            SuppressWithPlainTextCommentFilter ignores messageFormat when matching on ID.
+            Author: Erik Silkensen
+            <a href="https://github.com/checkstyle/checkstyle/issues/6887">#6887</a>
+          </li>
+          <li>
+            Javadoc mishandling NEWLINE when next to ATTRIBUTE.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6865">#6865</a>
+          </li>
+          <li>
+            SuppressWithNearbyCommentFilter does not match messages.
+            Author: Erik Silkensen
+            <a href="https://github.com/checkstyle/checkstyle/issues/6875">#6875</a>
+          </li>
+          <li>
+            SuppressionCommentFilter ignores messageFormat when matching on ID.
+            Author: Erik Silkensen
+            <a href="https://github.com/checkstyle/checkstyle/issues/6879">#6879</a>
+          </li>
+          <li>
+            InvalidJavadocPositionCheck: false negative on javadocs with local variables.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6857">#6857</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            doc: Serialisation -&gt; serialization.
+            Author: Andrei Paikin
+          </li>
+          <li>
+            Replace sevntu-checkstyle-maven-plugin with explicit dependency to sevntu-checks.
+            Author: Ruslan Diachenko
+            <a href="https://github.com/checkstyle/checkstyle/issues/6910">#6910</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checks-coding profile to 100%.
+            Author: Emil Bremer Orloff
+            <a href="https://github.com/checkstyle/checkstyle/issues/5008">#5008</a>
+          </li>
+          <li>
+            Skip dry run build item for maven release commit.
+            Author: ashabib
+            <a href="https://github.com/checkstyle/checkstyle/issues/3383">#3383</a>
+          </li>
+          <li>
+            format xdoc/javadoc files to follow rule of LineLength (max ia 100).
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6902">#6902</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-filters profile to 100%.
+            Author: Erik Silkensen
+            <a href="https://github.com/checkstyle/checkstyle/issues/6659">#6659</a>
+          </li>
+          <li>
+            Don&#39;t use absolute checkstyle links in xdocs.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6900">#6900</a>
+          </li>
+          <li>
+            Create appveyor.bat for CI commands.
+            Author: ahmadshabib
+            <a href="https://github.com/checkstyle/checkstyle/issues/6696">#6696</a>
+          </li>
+          <li>
+            Align XDocs and Javadocs for filters package .
+            Author: pbludov, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6726">#6726</a>
+          </li>
+          <li>
+            doc: Add missing slash for constant name check doc.
+            Author: utzcoz
+          </li>
+          <li>
+            Make inner class SuppressWithPlainTextCommentFilter.Suppression private.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6890">#6890</a>
+          </li>
+          <li>
+            Enforce FileTabCharacter and RegexpSingleline for trailing whitespace over resources.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/5941">#5941</a>
+          </li>
+          <li>
+            Remove TreeWalker#validateDefaultTokens.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/6858">#6858</a>
+          </li>
+          <li>
+            Make inner class SuppressionCommentFilter.Tag private.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6844">#6844</a>
+          </li>
+          <li>
+            Make inner class SuppressWithNearbyCommentFilter.Tag private.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6854">#6854</a>
+          </li>
+          <li>
+            Add xpath tests for new Checks of 8.22.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/6848">#6848</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 8.22">
       <div class="releaseDate">22.06.2019</div>
       <p>New:</p>
