@@ -16,7 +16,7 @@ branches:
     - master
 
 install:
-  - export TRAVIS_MVN_VERSION=3.6.1
+  - export TRAVIS_MVN_VERSION=3.6.1;
   - echo "Download Maven ${TRAVIS_MVN_VERSION}....";
   - MVN_URL="https://archive.apache.org/dist/maven/maven-3/${TRAVIS_MVN_VERSION}/binaries/apache-maven-${TRAVIS_MVN_VERSION}-bin.zip"
   - wget $MVN_URL || travis_terminate 1;
@@ -24,8 +24,8 @@ install:
   - export M2_HOME=$PWD/apache-maven-${TRAVIS_MVN_VERSION};
   - export PATH=$M2_HOME/bin:$PATH;
   - mvn -version;
-  - export MAVEN_OPTS='--no-transfer-progress'
-  - echo "MAVEN_OPTS: $MAVEN_OPTS"
+  - export MAVEN_OPTS='--no-transfer-progress';
+  - echo "MAVEN_OPTS: ${MAVEN_OPTS}";
 
 matrix:
   fast_finish: true
