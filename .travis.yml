@@ -24,8 +24,8 @@ install:
   - export M2_HOME=$PWD/apache-maven-${TRAVIS_MVN_VERSION};
   - export PATH=$M2_HOME/bin:$PATH;
   - mvn -version;
-  - export MAVEN_OPTS='--no-transfer-progress';
-  - echo "MAVEN_OPTS ${MAVEN_OPTS}";
+  - export TRAVIS_MAVEN_ARGS='--no-transfer-progress';
+  - echo "TRAVIS_MAVEN_ARGS ${TRAVIS_MAVEN_ARGS}";
 
 matrix:
   fast_finish: true
@@ -61,7 +61,7 @@ matrix:
     - jdk: openjdk8
       env:
         - DESC="spotbugs,pmd"
-        - CMD="export MAVEN_OPTS='$MAVEN_OPTS -Xmx2000m' && mvn -e clean compile pmd:check spotbugs:check"
+        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean compile pmd:check spotbugs:check"
 
     # eclipse static analysis
     - jdk: openjdk8
