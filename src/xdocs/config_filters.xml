@@ -167,6 +167,13 @@
                   <td>3.5</td>
               </tr>
               <tr>
+                  <td>idFormat</td>
+                  <td>Specify check ID pattern to suppress.</td>
+                  <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                  <td><code>null</code></td>
+                  <td>8.24</td>
+              </tr>
+              <tr>
                   <td>checkCPP</td>
                   <td>Control whether to check C++ style comments (<code>//</code>).</td>
                   <td><a href="property_types.html#boolean">Boolean</a></td>
@@ -368,7 +375,7 @@ HashSet hashSet;
 &lt;module name="SuppressionCommentFilter&quot;&gt;
   &lt;property name="offCommentFormat" value="CSOFF (\w+) \(\w+\)"/&gt;
   &lt;property name="onCommentFormat" value="CSON (\w+)"/&gt;
-  &lt;property name="checkFormat" value="$1"/&gt;
+  &lt;property name="idFormat" value="$1"/&gt;
 &lt;/module&gt;
           </source>
           <source>
