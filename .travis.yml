@@ -25,7 +25,7 @@ install:
   - export PATH=$M2_HOME/bin:$PATH;
   - mvn -version;
   - export MAVEN_OPTS='--no-transfer-progress';
-  - echo "MAVEN_OPTS: ${MAVEN_OPTS}";
+  - echo "MAVEN_OPTS ${MAVEN_OPTS}";
 
 matrix:
   fast_finish: true
