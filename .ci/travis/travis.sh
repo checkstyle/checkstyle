@@ -5,12 +5,12 @@ set -e
 case $1 in
 
 checkstyle-and-sevntu)
-  export MAVEN_OPTS='-Xmx2000m'
+  export MAVEN_OPTS=$MAVEN_OPTS' -Xmx2000m'
   mvn -e clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true
   ;;
 
 jacoco)
-  export MAVEN_OPTS='-Xmx2000m'
+  export MAVEN_OPTS=$MAVEN_OPTS' -Xmx2000m'
   mvn -e clean test \
     jacoco:restore-instrumented-classes \
     jacoco:report@default-report \
@@ -170,7 +170,7 @@ sonarqube)
       exit 0;
   fi
   if [[ -z $SONAR_TOKEN ]]; then echo "SONAR_TOKEN is not set"; sleep 5s; exit 1; fi
-  export MAVEN_OPTS='-Xmx2000m'
+  export MAVEN_OPTS=$MAVEN_OPTS' -Xmx2000m'
   mvn -e clean package sonar:sonar \
        -Dsonar.host.url=https://sonarcloud.io \
        -Dsonar.login=$SONAR_TOKEN \
@@ -239,7 +239,7 @@ no-exception-test-checkstyle-sevntu-checkstyle)
   cd ../../
   mvn -e clean install -Pno-validations
   cd contribution/checkstyle-tester
-  export MAVEN_OPTS="-Xmx2048m"
+  export MAVEN_OPTS=$MAVEN_OPTS" -Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
     --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
   ;;
@@ -255,7 +255,7 @@ no-exception-test-guava)
   cd ../../
   mvn -e clean install -Pno-validations
   cd contribution/checkstyle-tester
-  export MAVEN_OPTS="-Xmx2048m"
+  export MAVEN_OPTS=$MAVEN_OPTS" -Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties
      --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
   ;;
@@ -272,7 +272,7 @@ no-exception-test-guava-with-google-checks)
   mvn -e clean install -Pno-validations
   sed -i.'' 's/warning/ignore/' src/main/resources/google_checks.xml
   cd contribution/checkstyle-tester
-  export MAVEN_OPTS="-Xmx2048m"
+  export MAVEN_OPTS=$MAVEN_OPTS" -Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config ../../src/main/resources/google_checks.xml --checkstyleVersion $CS_POM_VERSION
   ;;
@@ -288,7 +288,7 @@ no-exception-test-hibernate)
   cd ../../
   mvn -e clean install -Pno-validations
   cd contribution/checkstyle-tester
-  export MAVEN_OPTS="-Xmx2048m"
+  export MAVEN_OPTS=$MAVEN_OPTS" -Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
      --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
   ;;
@@ -304,7 +304,7 @@ no-exception-test-spotbugs)
   cd ../../
   mvn -e clean install -Pno-validations
   cd contribution/checkstyle-tester
-  export MAVEN_OPTS="-Xmx2048m"
+  export MAVEN_OPTS=$MAVEN_OPTS" -Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
     --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
   ;;
@@ -320,7 +320,7 @@ no-exception-test-spring-framework)
   cd ../../
   mvn -e clean install -Pno-validations
   cd contribution/checkstyle-tester
-  export MAVEN_OPTS="-Xmx2048m"
+  export MAVEN_OPTS=$MAVEN_OPTS" -Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
     --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
   ;;
@@ -336,7 +336,7 @@ no-exception-test-hbase)
   cd ../../
   mvn -e clean install -Pno-validations
   cd contribution/checkstyle-tester
-  export MAVEN_OPTS="-Xmx2048m"
+  export MAVEN_OPTS=$MAVEN_OPTS" -Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
   ;;
@@ -354,7 +354,7 @@ no-exception-test-Pmd-elasticsearch-lombok-ast)
   cd ../../
   mvn -e clean install -Pno-validations
   cd contribution/checkstyle-tester
-  export MAVEN_OPTS="-Xmx2048m"
+  export MAVEN_OPTS=$MAVEN_OPTS" -Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
   ;;
@@ -375,7 +375,7 @@ no-exception-test-alot-of-project1)
   cd ../../
   mvn -e clean install -Pno-validations
   cd contribution/checkstyle-tester
-  export MAVEN_OPTS="-Xmx2048m"
+  export MAVEN_OPTS=$MAVEN_OPTS" -Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
   ;;
