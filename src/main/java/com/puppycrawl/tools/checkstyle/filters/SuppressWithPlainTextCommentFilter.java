@@ -293,7 +293,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   STATE CHAR(2),
  *   LAT_N REAL,
  *   LONG_W REAL);
- * </pre> @since 8.6
+ * </pre>
+ *
+ * @since 8.6
  */
 public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements Filter {
 
