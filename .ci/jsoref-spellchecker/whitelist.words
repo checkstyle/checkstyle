@@ -626,6 +626,7 @@ Jakub
 jarchitect
 javac
 javadoc
+javadocblocktaglocation
 javadocdetailnodeparser
 javadocmethod
 javadocpackage
@@ -666,6 +667,7 @@ jdt
 jedit
 jenkins
 Jenkinsfile
+jep
 jetbrains
 JFile
 JFrame
