@@ -835,6 +835,7 @@ public class XdocsPagesTest {
                 || "SuppressWithPlainTextCommentFilter".equals(sectionName))
                     && ("checkFormat".equals(propertyName)
                         || "messageFormat".equals(propertyName)
+                        || "idFormat".equals(propertyName)
                         || "influenceFormat".equals(propertyName))
                 || ("RegexpMultiline".equals(sectionName)
                     || "RegexpSingleline".equals(sectionName)

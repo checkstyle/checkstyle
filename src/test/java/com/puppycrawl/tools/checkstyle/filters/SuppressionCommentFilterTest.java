@@ -312,7 +312,8 @@ public class SuppressionCommentFilterTest
         final Object tag = getTagsAfterExecutionOnDefaultFilter("//CHECKSTYLE:OFF").get(0);
         assertEquals("Invalid toString result",
             "Tag[text='CHECKSTYLE:OFF', line=1, column=0, type=OFF,"
-                    + " tagCheckRegexp=.*, tagMessageRegexp=null]", tag.toString());
+                    + " tagCheckRegexp=.*, tagMessageRegexp=null, tagIdRegexp=null]",
+                    tag.toString());
     }
 
     @Test
@@ -323,7 +324,7 @@ public class SuppressionCommentFilterTest
                 getTagsAfterExecution(filter, "filename", "//CHECKSTYLE:ON").get(0);
         assertEquals("Invalid toString result",
             "Tag[text='CHECKSTYLE:ON', line=1, column=0, type=ON,"
-                + " tagCheckRegexp=.*, tagMessageRegexp=.*]", tag.toString());
+                + " tagCheckRegexp=.*, tagMessageRegexp=.*, tagIdRegexp=null]", tag.toString());
     }
 
     @Test
@@ -406,12 +407,93 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
+    public void testSuppressByCheck() throws Exception {
+        final DefaultConfiguration filterConfig =
+            createModuleConfig(SuppressionCommentFilter.class);
+        filterConfig.addAttribute("offCommentFormat", "CSOFF (\\w+) \\(\\w+\\)");
+        filterConfig.addAttribute("onCommentFormat", "CSON (\\w+)");
+        filterConfig.addAttribute("checkFormat", "MemberNameCheck");
+        final String[] suppressedViolationMessages = {
+            "6:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
+            "12:9: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "line_length", "^[a-z][a-zA-Z0-9]*$"),
+            };
+        final String[] expectedViolationMessages = {
+            "6:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
+            "9:30: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "abc", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+            "12:9: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "line_length", "^[a-z][a-zA-Z0-9]*$"),
+            "15:18: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "ID", "^[a-z][a-zA-Z0-9]*$"),
+            "18:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "DEF", "^[a-z][a-zA-Z0-9]*$"),
+            "21:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "XYZ", "^[a-z][a-zA-Z0-9]*$"),
+            };
+
+        verifySuppressed(filterConfig, getPath("InputSuppressionCommentFilterSuppressById.java"),
+                expectedViolationMessages, suppressedViolationMessages);
+    }
+
+    @Test
     public void testSuppressById() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("offCommentFormat", "CSOFF (\\w+) \\(\\w+\\)");
         filterConfig.addAttribute("onCommentFormat", "CSON (\\w+)");
-        filterConfig.addAttribute("checkFormat", "$1");
+        filterConfig.addAttribute("idFormat", "$1");
+        final String[] suppressedViolationMessages = {
+            "6:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
+            "12:9: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "line_length", "^[a-z][a-zA-Z0-9]*$"),
+            };
+        final String[] expectedViolationMessages = {
+            "6:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
+            "9:30: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "abc", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+            "12:9: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "line_length", "^[a-z][a-zA-Z0-9]*$"),
+            "15:18: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "ID", "^[a-z][a-zA-Z0-9]*$"),
+            "18:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "DEF", "^[a-z][a-zA-Z0-9]*$"),
+            "21:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "XYZ", "^[a-z][a-zA-Z0-9]*$"),
+            };
+
+        verifySuppressed(filterConfig, getPath("InputSuppressionCommentFilterSuppressById.java"),
+                expectedViolationMessages, suppressedViolationMessages);
+    }
+
+    @Test
+    public void testSuppressByCheckAndId() throws Exception {
+        final DefaultConfiguration filterConfig =
+            createModuleConfig(SuppressionCommentFilter.class);
+        filterConfig.addAttribute("offCommentFormat", "CSOFF (\\w+) \\(\\w+\\)");
+        filterConfig.addAttribute("onCommentFormat", "CSON (\\w+)");
+        filterConfig.addAttribute("checkFormat", "MemberNameCheck");
+        filterConfig.addAttribute("idFormat", "$1");
         final String[] suppressedViolationMessages = {
             "6:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -451,7 +533,45 @@ public class SuppressionCommentFilterTest
             createModuleConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("offCommentFormat", "CSOFF (\\w+) \\(allow (\\w+)\\)");
         filterConfig.addAttribute("onCommentFormat", "CSON (\\w+)");
-        filterConfig.addAttribute("checkFormat", "$1");
+        filterConfig.addAttribute("idFormat", "$1");
+        filterConfig.addAttribute("messageFormat", "$2");
+        final String[] suppressedViolationMessages = {
+            "18:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "DEF", "^[a-z][a-zA-Z0-9]*$"),
+            };
+        final String[] expectedViolationMessages = {
+            "6:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
+            "9:30: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "abc", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+            "12:9: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "line_length", "^[a-z][a-zA-Z0-9]*$"),
+            "15:18: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "ID", "^[a-z][a-zA-Z0-9]*$"),
+            "18:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "DEF", "^[a-z][a-zA-Z0-9]*$"),
+            "21:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "XYZ", "^[a-z][a-zA-Z0-9]*$"),
+            };
+
+        verifySuppressed(filterConfig, getPath("InputSuppressionCommentFilterSuppressById.java"),
+                expectedViolationMessages, suppressedViolationMessages);
+    }
+
+    @Test
+    public void testSuppressByCheckAndMessage() throws Exception {
+        final DefaultConfiguration filterConfig =
+            createModuleConfig(SuppressionCommentFilter.class);
+        filterConfig.addAttribute("offCommentFormat", "CSOFF (\\w+) \\(allow (\\w+)\\)");
+        filterConfig.addAttribute("onCommentFormat", "CSON (\\w+)");
+        filterConfig.addAttribute("checkFormat", "MemberNameCheck");
         filterConfig.addAttribute("messageFormat", "$2");
         final String[] suppressedViolationMessages = {
             "18:17: "

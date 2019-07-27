@@ -84,6 +84,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code null}.
  * </li>
  * <li>
+ * Property {@code idFormat} - Specify check ID pattern to suppress.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
  * Property {@code checkCPP} - Control whether to check C++ style comments ({@code //}).
  * Default value is {@code true}.
  * </li>
@@ -272,7 +276,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;module name="SuppressionCommentFilter"&gt;
  *   &lt;property name="offCommentFormat" value="CSOFF (\w+) \(\w+\)"/&gt;
  *   &lt;property name="onCommentFormat" value="CSON (\w+)"/&gt;
- *   &lt;property name="checkFormat" value="$1"/&gt;
+ *   &lt;property name="idFormat" value="$1"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <pre>
@@ -361,6 +365,9 @@ public class SuppressionCommentFilter
     /** Specify message pattern to suppress. */
     private String messageFormat;
 
+    /** Specify check ID pattern to suppress. */
+    private String idFormat;
+
     /**
      * References the current FileContents for this filter.
      * Since this is a weak reference to the FileContents, the FileContents
@@ -417,6 +424,14 @@ public class SuppressionCommentFilter
      */
     public void setMessageFormat(String format) {
         messageFormat = format;
+    }
+
+    /**
+     * Setter to specify check ID pattern to suppress.
+     * @param format a {@code String} value
+     */
+    public void setIdFormat(String format) {
+        idFormat = format;
     }
 
     /**
@@ -573,6 +588,9 @@ public class SuppressionCommentFilter
         /** The parsed message regexp, expanded for the text of this tag. */
         private final Pattern tagMessageRegexp;
 
+        /** The parsed check ID regexp, expanded for the text of this tag. */
+        private final Pattern tagIdRegexp;
+
         /**
          * Constructs a tag.
          * @param line the line number.
@@ -589,35 +607,38 @@ public class SuppressionCommentFilter
             this.text = text;
             this.tagType = tagType;
 
+            final Pattern commentFormat;
+            if (this.tagType == TagType.ON) {
+                commentFormat = filter.onCommentFormat;
+            }
+            else {
+                commentFormat = filter.offCommentFormat;
+            }
+
             //Expand regexp for check and message
             //Does not intern Patterns with Utils.getPattern()
             String format = "";
             try {
-                if (this.tagType == TagType.ON) {
-                    format = CommonUtil.fillTemplateWithStringsByRegexp(
-                            filter.checkFormat, text, filter.onCommentFormat);
-                    tagCheckRegexp = Pattern.compile(format);
-                    if (filter.messageFormat == null) {
-                        tagMessageRegexp = null;
-                    }
-                    else {
-                        format = CommonUtil.fillTemplateWithStringsByRegexp(
-                                filter.messageFormat, text, filter.onCommentFormat);
-                        tagMessageRegexp = Pattern.compile(format);
-                    }
+                format = CommonUtil.fillTemplateWithStringsByRegexp(
+                        filter.checkFormat, text, commentFormat);
+                tagCheckRegexp = Pattern.compile(format);
+
+                if (filter.messageFormat == null) {
+                    tagMessageRegexp = null;
                 }
                 else {
                     format = CommonUtil.fillTemplateWithStringsByRegexp(
-                            filter.checkFormat, text, filter.offCommentFormat);
-                    tagCheckRegexp = Pattern.compile(format);
-                    if (filter.messageFormat == null) {
-                        tagMessageRegexp = null;
-                    }
-                    else {
-                        format = CommonUtil.fillTemplateWithStringsByRegexp(
-                                filter.messageFormat, text, filter.offCommentFormat);
-                        tagMessageRegexp = Pattern.compile(format);
-                    }
+                            filter.messageFormat, text, commentFormat);
+                    tagMessageRegexp = Pattern.compile(format);
+                }
+
+                if (filter.idFormat == null) {
+                    tagIdRegexp = null;
+                }
+                else {
+                    format = CommonUtil.fillTemplateWithStringsByRegexp(
+                            filter.idFormat, text, commentFormat);
+                    tagIdRegexp = Pattern.compile(format);
                 }
             }
             catch (final PatternSyntaxException ex) {
@@ -692,12 +713,14 @@ public class SuppressionCommentFilter
                     && Objects.equals(tagType, tag.tagType)
                     && Objects.equals(text, tag.text)
                     && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)
-                    && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp);
+                    && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp)
+                    && Objects.equals(tagIdRegexp, tag.tagIdRegexp);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(text, line, column, tagType, tagCheckRegexp, tagMessageRegexp);
+            return Objects.hash(text, line, column, tagType, tagCheckRegexp, tagMessageRegexp,
+                    tagIdRegexp);
         }
 
         /**
@@ -707,7 +730,7 @@ public class SuppressionCommentFilter
          * @return true if the source of event matches the text of this tag.
          */
         public boolean isMatch(TreeWalkerAuditEvent event) {
-            return (isCheckMatch(event) || isIdMatch(event)) && isMessageMatch(event);
+            return isCheckMatch(event) && isIdMatch(event) && isMessageMatch(event);
         }
 
         /**
@@ -726,10 +749,15 @@ public class SuppressionCommentFilter
          * @return true if the {@link TreeWalkerAuditEvent} module ID matches the ID format.
          */
         private boolean isIdMatch(TreeWalkerAuditEvent event) {
-            boolean match = false;
-            if (event.getModuleId() != null) {
-                final Matcher idMatcher = tagCheckRegexp.matcher(event.getModuleId());
-                match = idMatcher.find();
+            boolean match = true;
+            if (tagIdRegexp != null) {
+                if (event.getModuleId() == null) {
+                    match = false;
+                }
+                else {
+                    final Matcher idMatcher = tagIdRegexp.matcher(event.getModuleId());
+                    match = idMatcher.find();
+                }
             }
             return match;
         }
@@ -755,7 +783,8 @@ public class SuppressionCommentFilter
                     + ", column=" + column
                     + ", type=" + tagType
                     + ", tagCheckRegexp=" + tagCheckRegexp
-                    + ", tagMessageRegexp=" + tagMessageRegexp + ']';
+                    + ", tagMessageRegexp=" + tagMessageRegexp
+                    + ", tagIdRegexp=" + tagIdRegexp + ']';
         }
 
     }
