@@ -18,6 +18,9 @@ branches:
 install:
   - ""
 
+before_script:
+  - "mvn -B site -Pno-validations"
+
 matrix:
   fast_finish: true
   include:
