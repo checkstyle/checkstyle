@@ -65,30 +65,28 @@ public class MainTest {
             + "Try 'checkstyle --help' for more information.%n");
 
     private static final String USAGE = String.format(Locale.ROOT,
-          "Usage: checkstyle [-dghjJtTV] [--executeIgnoredModules] [--tabWidth=<tabWidth>]%n"
-          + "                  [-c=<configurationFile>] [-C=<checkerThreadsNumber>]"
+          "Usage: checkstyle [-dEghjJtTV] [-c=<configurationFile>] [-C=<checkerThreadsNumber>]"
           + " [-f=<format>]%n"
           + "                  [-o=<outputPath>] [-p=<propertiesFile>]"
           + " [-s=<suppressionLineColumnNumber>]%n"
-          + "                  [-W=<treeWalkerThreadsNumber>] [-e=<exclude>]..."
-          + " [-x=<excludeRegex>]... <files>...%n"
+          + "                  [-w=<tabWidth>] [-W=<treeWalkerThreadsNumber>]"
+          + " [-e=<exclude>]...%n"
+          + "                  [-x=<excludeRegex>]..."
+          + " <files>...%n"
           + "Checkstyle verifies that the specified source code files adhere to the specified"
           + " rules. By default%n"
           + "errors are reported to standard out in plain format. Checkstyle requires a"
           + " configuration XML file%n"
           + "that configures the checks to apply.%n"
           + "      <files>...            One or more source files to verify%n"
-          + "      --executeIgnoredModules%n"
-          + "                            Allows ignored modules to be run.%n"
-          + "      --tabWidth=<tabWidth> Sets the length of the tab character. Used only with"
-          + " \"-s\" option. Default%n"
-          + "                              value is 8%n"
           + "  -c=<configurationFile>    Sets the check configuration file to use.%n"
           + "  -C, --checker-threads-number=<checkerThreadsNumber>%n"
           + "                            (experimental) The number of Checker threads (must be"
           + " greater than zero)%n"
           + "  -d, --debug               Print all debug logging of CheckStyle utility%n"
           + "  -e, --exclude=<exclude>   Directory/File path to exclude from CheckStyle%n"
+          + "  -E, --executeIgnoredModules%n"
+          + "                            Allows ignored modules to be run.%n"
           + "  -f=<format>               Sets the output format. Valid values: xml, plain."
           + " Defaults to plain%n"
           + "  -g, --generate-xpath-suppression%n"
@@ -110,6 +108,9 @@ public class MainTest {
           + "  -T, --treeWithComments    Print Abstract Syntax Tree(AST) of the file including"
           + " comments%n"
           + "  -V, --version             Print version information and exit.%n"
+          + "  -w, --tabWidth=<tabWidth> Sets the length of the tab character. Used only with"
+          + " \"-s\" option. Default%n"
+          + "                              value is 8%n"
           + "  -W, --tree-walker-threads-number=<treeWalkerThreadsNumber>%n"
           + "                            (experimental) The number of TreeWalker threads (must be"
           + " greater than zero)%n"
@@ -213,7 +214,7 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(() -> {
-            final String usage = "Unknown option: -w" + EOL
+            final String usage = "Unknown option: -q" + EOL
                     + SHORT_USAGE;
             assertEquals("Unexpected output log", "", systemOut.getLog());
             assertEquals("Unexpected system error log", usage, systemErr.getLog());
@@ -221,7 +222,7 @@ public class MainTest {
         // need to specify a file:
         // <files> is defined as a required positional param;
         // picocli verifies required parameters before checking unknown options
-        Main.main("-w", "file");
+        Main.main("-q", "file");
     }
 
     @Test
@@ -236,7 +237,7 @@ public class MainTest {
             assertEquals("Unexpected output log", "", systemOut.getLog());
             assertEquals("Unexpected system error log", usage, systemErr.getLog());
         });
-        Main.main("-w");
+        Main.main("-q");
     }
 
     @Test
