@@ -618,7 +618,7 @@ public final class Main {
          *  Suppression: CanBeFinal - we use picocli and it use  reflection to manage such fields
          * @noinspection CanBeFinal
          */
-        @Option(names = "--tabWidth", description = "Sets the length of the tab character. "
+        @Option(names = {"-w", "--tabWidth"}, description = "Sets the length of the tab character. "
                 + "Used only with \"-s\" option. Default value is ${DEFAULT-VALUE}")
         private int tabWidth = CommonUtil.DEFAULT_TAB_WIDTH;
 
@@ -678,7 +678,7 @@ public final class Main {
         private List<Pattern> excludeRegex = new ArrayList<>();
 
         /** Switch whether to execute ignored modules or not. */
-        @Option(names = "--executeIgnoredModules",
+        @Option(names = {"-E", "--executeIgnoredModules"},
                 description = "Allows ignored modules to be run.")
         private boolean executeIgnoredModules;
 
