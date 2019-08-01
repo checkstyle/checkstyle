@@ -18,14 +18,6 @@ branches:
 install:
   - ""
 
-before_script:
-  - |
-    if [[ $USE_MAVEN_REPO == 'true' && ! -d "~/.m2" ]]; then
-      echo "Maven local repo cache is not found, initializing it ..."
-      mvn -B site -Pno-validations;
-    fi
-
-
 matrix:
   fast_finish: true
   include:
@@ -310,6 +302,10 @@ script:
   - echo "SKIP_CI_BY_COMMIT="$SKIP_CI_BY_COMMIT
   - |
     if [[ $SKIP_CI_BY_FILES == 'false' && $SKIP_CI_BY_COMMIT == 'false' ]]; then
+         if [[ $USE_MAVEN_REPO == 'true' && ! -d "~/.m2" ]]; then
+           echo "Maven local repo cache is not found, initializing it ..."
+           mvn -B install -Pno-validations;
+         fi
          eval $CMD;
          echo "eval of CMD is completed";
     else
