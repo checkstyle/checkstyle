@@ -19,7 +19,12 @@ install:
   - ""
 
 before_script:
-  - "mvn -B site -Pno-validations"
+  - |
+    if [[ $USE_MAVEN_REPO == 'true' && ! -d "~/.m2" ]]; then
+      echo "Maven local repo cache is not found, initializing it ..."
+      mvn -B site -Pno-validations;
+    fi
+
 
 matrix:
   fast_finish: true
@@ -36,6 +41,7 @@ matrix:
         - DESC="tests and deploy"
         - CMD="mvn -e clean integration-test failsafe:verify -DargLine='-Xms1024m -Xmx2048m'"
         - DEPLOY="true"
+        - USE_MAVEN_REPO="true"
 
     # checkstyle (openjdk8)
     - jdk: openjdk8
@@ -43,6 +49,7 @@ matrix:
         - DESC="checkstyle and sevntu-checkstyle"
         - CMD="./.ci/travis/travis.sh checkstyle-and-sevntu"
         - SKIP_CI_BY_FILES="false"
+        - USE_MAVEN_REPO="true"
 
     # jacoco and codecov (openjdk8)
     - jdk: openjdk8
@@ -50,18 +57,21 @@ matrix:
         - DESC="jacoco and codecov"
         - CMD="./.ci/travis/travis.sh jacoco"
         - CMD_AFTER_SUCCESS="bash <(curl -s https://codecov.io/bash)"
+        - USE_MAVEN_REPO="true"
 
     # spotbugs and pmd (openjdk8)
     - jdk: openjdk8
       env:
         - DESC="spotbugs,pmd"
         - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean compile pmd:check spotbugs:check"
+        - USE_MAVEN_REPO="true"
 
     # eclipse static analysis
     - jdk: openjdk8
       env:
         - DESC="eclipse static analysis"
         - CMD="mvn -e clean compile exec:exec -Peclipse-compiler"
+        - USE_MAVEN_REPO="true"
 
     # Releasenotes generation - validation
     - jdk: openjdk8
@@ -69,77 +79,91 @@ matrix:
         - DESC="Releasenotes generation"
         - CMD="./.ci/travis/travis.sh releasenotes-gen"
         - SKIP_CI_BY_FILES="false"
+        - USE_MAVEN_REPO="true"
 
     # NonDex (openjdk8)
     - jdk: openjdk8
       env:
         - DESC="NonDex"
         - CMD="./.ci/travis/travis.sh nondex"
+        - USE_MAVEN_REPO="true"
 
     # site
     - jdk: openjdk8
       env:
         - DESC="site without validations"
         - CMD="./.ci/travis/travis.sh site"
+        - USE_MAVEN_REPO="true"
 
     # unit tests in German locale (openjdk8)
     - jdk: openjdk8
       env:
         - DESC="tests de"
         - CMD="./.ci/travis/travis.sh test-de"
+        - USE_MAVEN_REPO="true"
     # unit tests in Spanish locale (openjdk8)
     - jdk: openjdk8
       env:
         - DESC="tests es"
         - CMD="./.ci/travis/travis.sh test-es"
+        - USE_MAVEN_REPO="true"
     # unit tests in Finnish locale (openjdk8)
     - jdk: openjdk8
       env:
         - DESC="tests fi"
         - CMD="./.ci/travis/travis.sh test-fi"
+        - USE_MAVEN_REPO="true"
     # unit tests in French locale (openjdk8)
     - jdk: openjdk8
       env:
         - DESC="tests fr"
         - CMD="./.ci/travis/travis.sh test-fr"
+        - USE_MAVEN_REPO="true"
     # unit tests in Chinese locale (openjdk8)
     - jdk: openjdk8
       env:
         - DESC="tests zh"
         - CMD="./.ci/travis/travis.sh test-zh"
+        - USE_MAVEN_REPO="true"
     # unit tests in Japanese locale (openjdk8)
     - jdk: openjdk8
       env:
         - DESC="tests ja"
         - CMD="./.ci/travis/travis.sh test-jp"
+        - USE_MAVEN_REPO="true"
     # unit tests in Portuguese locale (openjdk8)
     - jdk: openjdk8
       env:
         - DESC="tests pt"
         - CMD="./.ci/travis/travis.sh test-pt"
+        - USE_MAVEN_REPO="true"
     # unit tests in Turkish locale (openjdk8)
     - jdk: openjdk8
       env:
         - DESC="tests tr"
         - CMD="./.ci/travis/travis.sh test-tr"
+        - USE_MAVEN_REPO="true"
 
     # assembly (openjdk8)
     - jdk: openjdk8
       env:
         - DESC="assembly & run '-all' jar"
         - CMD="./.ci/travis/travis.sh assembly-run-all-jar"
+        - USE_MAVEN_REPO="true"
 
     # NoExceptiontest - Guava with google_checks (openjdk8)
     - jdk: openjdk8
       env:
         - DESC="NoExceptionTest - Guava with google_checks"
         - CMD="./.ci/travis/travis.sh no-exception-test-guava-with-google-checks"
+        - USE_MAVEN_REPO="true"
 
     # release dry run (openjdk8)
     - jdk: openjdk8
       env:
         - DESC="release dry run"
         - CMD="./.ci/travis/travis.sh release-dry-run"
+        - USE_MAVEN_REPO="true"
 
     # Check the chmod on files.
     - env:
@@ -184,18 +208,21 @@ matrix:
     - jdk: openjdk8
       env:
         - DESC="sonarcloud.io"
+        - USE_MAVEN_REPO="true"
         - CMD="./.ci/travis/travis.sh sonarqube"
 
     # No error testing - simple-binary-encoding
     - jdk: openjdk8
       env:
         - DESC="no error test on simple-binary-encoding"
+        - USE_MAVEN_REPO="true"
         - CMD="./.ci/travis/travis.sh no-error-test-sbe"
 
     # versions to update
     - jdk: openjdk8
       env:
         - DESC="print versions to update"
+        - USE_MAVEN_REPO="true"
         - CMD="./.ci/travis/travis.sh versions"
         - SKIP_CI_BY_FILES="false"
 
@@ -203,24 +230,28 @@ matrix:
     - jdk: openjdk9
       env:
         - DESC="build with OpenJDK9"
+        - USE_MAVEN_REPO="true"
         - CMD="mvn -e package -Passembly && mvn -e site -Dlinkcheck.skip=true"
 
     # OpenJDK10 build
     - jdk: openjdk10
       env:
         - DESC="build with OpenJDK10"
+        - USE_MAVEN_REPO="true"
         - CMD="mvn -e package -Passembly && mvn -e site -Dlinkcheck.skip=true"
 
     # OpenJDK11 build
     - jdk: openjdk11
       env:
         - DESC="build with OpenJDK11"
+        - USE_MAVEN_REPO="true"
         - CMD="mvn -e package -Passembly && mvn -e site -Dlinkcheck.skip=true"
 
     # OpenJDK12 build
     - jdk: openjdk12
       env:
         - DESC="build with OpenJDK12"
+        - USE_MAVEN_REPO="true"
         - CMD="./.ci/travis/travis.sh jdk12"
 
     # OpenJDK9 compile input files with jdk9 specific syntax
