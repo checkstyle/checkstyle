@@ -237,14 +237,17 @@
             <td>excludedClasses</td>
             <td>User-configured class names to ignore</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>HashMap, ArrayList, String, float, TreeSet, List, Boolean, Void, Override, Short,
-                IllegalArgumentException, UnsupportedOperationException, HashSet, void, Character,
-                IndexOutOfBoundsException, byte, double, Double, LinkedList, Float, Byte,
-                SortedMap, Long, Throwable, Object, Class, Map, IllegalStateException, Set,
-                StringBuilder, SuppressWarnings, SortedSet, long, RuntimeException, Deprecated,
-                NullPointerException, Queue, SecurityException, FunctionalInterface, TreeMap,
-                Deque, int, Exception, Integer, SafeVarargs, StringBuffer, boolean, char, short,
-                ArrayIndexOutOfBoundsException</td>
+            <td>
+              ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte, Character,
+              Class, Deprecated, Deque, Double, Exception, Float, FunctionalInterface,
+              HashMap, HashSet, IllegalArgumentException, IllegalStateException,
+              IndexOutOfBoundsException, Integer, LinkedList, List, Long, Map,
+              NullPointerException, Object, Override, Queue, RuntimeException,
+              SafeVarargs, SecurityException, Set, Short, SortedMap, SortedSet,
+              String, StringBuffer, StringBuilder, SuppressWarnings, Throwable,
+              TreeMap, TreeSet, UnsupportedOperationException, Void, boolean,
+              byte, char, double, float, int, long, short, void
+            </td>
             <td>5.7</td>
           </tr>
           <tr>
@@ -524,14 +527,17 @@ public class Foo {
             <td>excludedClasses</td>
             <td>User-configured class names to ignore</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>HashMap, ArrayList, String, float, TreeSet, List, Boolean, Void, Override, Short,
-                IllegalArgumentException, UnsupportedOperationException, HashSet, void, Character,
-                IndexOutOfBoundsException, byte, double, Double, LinkedList, Float, Byte,
-                SortedMap, Long, Throwable, Object, Class, Map, IllegalStateException, Set,
-                StringBuilder, SuppressWarnings, SortedSet, long, RuntimeException, Deprecated,
-                NullPointerException, Queue, SecurityException, FunctionalInterface, TreeMap,
-                Deque, int, Exception, Integer, SafeVarargs, StringBuffer, boolean, char, short,
-                ArrayIndexOutOfBoundsException</td>
+            <td>
+              ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte, Character,
+              Class, Deprecated, Deque, Double, Exception, Float, FunctionalInterface,
+              HashMap, HashSet, IllegalArgumentException, IllegalStateException,
+              IndexOutOfBoundsException, Integer, LinkedList, List, Long, Map,
+              NullPointerException, Object, Override, Queue, RuntimeException,
+              SafeVarargs, SecurityException, Set, Short, SortedMap, SortedSet,
+              String, StringBuffer, StringBuilder, SuppressWarnings, Throwable,
+              TreeMap, TreeSet, UnsupportedOperationException, Void, boolean,
+              byte, char, double, float, int, long, short, void
+            </td>
             <td>5.7</td>
           </tr>
           <tr>

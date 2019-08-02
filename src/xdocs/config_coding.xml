@@ -1590,8 +1590,8 @@ class SomeClass
             <td>illegalClassNames</td>
             <td>Specify exception class names to reject.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>java.lang.Throwable, RuntimeException, Error, Throwable, java.lang.Error,
-                java.lang.RuntimeException, Exception, java.lang.Exception</code></td>
+            <td><code>Error, Exception, RuntimeException, Throwable, java.lang.Error,
+              java.lang.Exception, java.lang.RuntimeException, java.lang.Throwable</code></td>
             <td>3.2</td>
           </tr>
         </table>
@@ -1786,9 +1786,8 @@ class SomeClass
             <td>illegalClassNames</td>
             <td>Specify throw class names to reject.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>
-              <code>java.lang.Throwable, RuntimeException, Error, Throwable, java.lang.Error,
-              java.lang.RuntimeException</code>
+            <td><code>Error, RuntimeException, Throwable, java.lang.Error,
+              java.lang.RuntimeException, java.lang.Throwable</code>
             </td>
             <td>4.0</td>
           </tr>
@@ -2140,11 +2139,9 @@ class SomeClass
             <td>Specify classes that should not be used as types in variable
             declarations, return values or parameters.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>
-              <code>LinkedHashSet, java.util.HashSet, java.util.LinkedHashMap,
-              java.util.TreeMap, HashMap, TreeSet, java.util.HashMap, TreeMap,
-              java.util.LinkedHashSet, java.util.TreeSet, HashSet, LinkedHashMap</code>
-            </td>
+            <td><code>HashMap, HashSet, LinkedHashMap, LinkedHashSet, TreeMap, TreeSet,
+              java.util.HashMap, java.util.HashSet, java.util.LinkedHashMap,
+              java.util.LinkedHashSet, java.util.TreeMap, java.util.TreeSet</code></td>
             <td>3.2</td>
           </tr>
           <tr>
@@ -2158,7 +2155,7 @@ class SomeClass
             <td>ignoredMethodNames</td>
             <td>Specify methods that should not be checked.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>getInitialContext, getEnvironment</code></td>
+            <td><code>getEnvironment, getInitialContext</code></td>
             <td>3.2</td>
           </tr>
           <tr>

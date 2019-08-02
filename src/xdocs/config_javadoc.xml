@@ -80,9 +80,9 @@
             <td>tagOrder</td>
             <td>Specify the order by tags.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>&#64;author, &#64;version, &#64;param,
-                  &#64;return, &#64;throws, &#64;exception, &#64;see, &#64;since, &#64;serial,
-                  &#64;serialField, &#64;serialData, &#64;deprecated</code></td>
+            <td><code>&#64;author, &#64;deprecated, &#64;exception, &#64;param,
+              &#64;return, &#64;see, &#64;serial, &#64;serialData, &#64;serialField,
+              &#64;since, &#64;throws, &#64;version</code></td>
             <td>6.0</td>
           </tr>
         </table>

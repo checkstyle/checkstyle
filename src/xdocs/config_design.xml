@@ -159,7 +159,7 @@ public abstract class Plant {
                       Specify annotations which allow the check to skip the method from validation.
                     </td>
                     <td><a href="property_types.html#stringSet">String Set</a></td>
-                    <td><code>Before, BeforeClass, Test, After, AfterClass</code></td>
+                    <td><code>After, AfterClass, Before, BeforeClass, Test</code></td>
                     <td>7.2</td>
                 </tr>
             </table>
@@ -974,11 +974,12 @@ public class Foo{
             <td>immutableClassCanonicalNames</td>
             <td>Specify immutable classes canonical names.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>java.lang.String, java.lang.Integer, java.lang.Byte, java.lang.Character,
-            java.lang.Short, java.lang.Boolean, java.lang.Long, java.lang.Double, java.lang.Float,
-            java.lang.StackTraceElement, java.math.BigInteger, java.math.BigDecimal, java.io.File,
-            java.util.Locale, java.util.UUID, java.net.URL, java.net.URI,
-            java.net.Inet4Address, java.net.Inet6Address, java.net.InetSocketAddress</code></td>
+            <td><code>java.io.File, java.lang.Boolean, java.lang.Byte, java.lang.Character,
+              java.lang.Double, java.lang.Float, java.lang.Integer, java.lang.Long,
+              java.lang.Short, java.lang.StackTraceElement, java.lang.String,
+              java.math.BigDecimal, java.math.BigInteger, java.net.Inet4Address,
+              java.net.Inet6Address, java.net.InetSocketAddress, java.net.URI,
+              java.net.URL, java.util.Locale, java.util.UUID</code></td>
             <td>6.4.1</td>
           </tr>
           <tr>
@@ -988,8 +989,8 @@ public class Foo{
               consideration.
             </td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>org.junit.Rule, org.junit.ClassRule,
-                com.google.common.annotations.VisibleForTesting</code></td>
+            <td><code>com.google.common.annotations.VisibleForTesting,
+              org.junit.ClassRule, org.junit.Rule</code></td>
             <td>6.5</td>
           </tr>
         </table>
