@@ -49,7 +49,9 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.junit.Assert;
@@ -1063,38 +1065,23 @@ public class XdocsPagesTest {
                 }
             }
             else if (fieldClass == String[].class) {
-                if (value instanceof Collection) {
-                    final Collection<?> collection = (Collection<?>) value;
-                    final String[] newArray = new String[collection.size()];
-                    final Iterator<?> iterator = collection.iterator();
-                    int index = 0;
-
-                    while (iterator.hasNext()) {
-                        final Object next = iterator.next();
-                        newArray[index] = (String) next;
-                        index++;
-                    }
-
-                    value = newArray;
-                }
-
-                if (value != null && Array.getLength(value) > 0) {
-                    if (Array.get(value, 0) instanceof Number) {
-                        final String[] newArray = new String[Array.getLength(value)];
-
-                        for (int i = 0; i < newArray.length; i++) {
-                            newArray[i] = TokenUtil.getTokenName(((Number) Array.get(value, i))
-                                    .intValue());
-                        }
-
-                        value = newArray;
-                    }
-
-                    result = Arrays.toString((Object[]) value).replace("[", "")
-                            .replace("]", "");
+                if (value == null) {
+                    result = "";
                 }
                 else {
-                    result = "";
+                    final Stream<?> valuesStream;
+                    if (value instanceof Collection) {
+                        final Collection<?> collection = (Collection<?>) value;
+                        valuesStream = collection.stream();
+                    }
+                    else {
+                        final Object[] array = (Object[]) value;
+                        valuesStream = Arrays.stream(array);
+                    }
+                    result = valuesStream
+                        .map(String.class::cast)
+                        .sorted()
+                        .collect(Collectors.joining(", "));
                 }
 
                 if (result.isEmpty()) {
