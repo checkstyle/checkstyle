@@ -41,8 +41,8 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * <ul>
  * <li>
  * Property {@code illegalClassNames} - Specify throw class names to reject.
- * Default value is {@code java.lang.Throwable, RuntimeException, Error, Throwable,
- * java.lang.Error, java.lang.RuntimeException}.
+ * Default value is {@code Error, RuntimeException, Throwable, java.lang.Error,
+ * java.lang.RuntimeException, java.lang.Throwable}.
  * </li>
  * <li>
  * Property {@code ignoredMethodNames} - Specify names of methods to ignore.

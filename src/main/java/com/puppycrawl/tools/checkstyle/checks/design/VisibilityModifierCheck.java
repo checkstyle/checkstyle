@@ -127,35 +127,17 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </li>
  * <li>
  * Property {@code immutableClassCanonicalNames} - Specify immutable classes canonical names.
- * Default value is {@code
- * java.lang.String,
- * java.lang.Integer,
- * java.lang.Byte,
- * java.lang.Character,
- * java.lang.Short,
- * java.lang.Boolean,
- * java.lang.Long,
- * java.lang.Double,
- * java.lang.Float,
- * java.lang.StackTraceElement,
- * java.math.BigInteger,
- * java.math.BigDecimal,
- * java.io.File,
- * java.util.Locale,
- * java.util.UUID,
- * java.net.URL,
- * java.net.URI,
- * java.net.Inet4Address,
- * java.net.Inet6Address,
- * java.net.InetSocketAddress}.
+ * Default value is {@code java.io.File, java.lang.Boolean, java.lang.Byte,
+ * java.lang.Character, java.lang.Double, java.lang.Float, java.lang.Integer,
+ * java.lang.Long, java.lang.Short, java.lang.StackTraceElement, java.lang.String,
+ * java.math.BigDecimal, java.math.BigInteger, java.net.Inet4Address, java.net.Inet6Address,
+ * java.net.InetSocketAddress, java.net.URI, java.net.URL, java.util.Locale, java.util.UUID}.
  * </li>
  * <li>
- * Property {@code ignoreAnnotationCanonicalNames} - Specify the list of annotations
- * canonical names which ignore variables in consideration.
- * Default value is {@code
- * org.junit.Rule,
- * org.junit.ClassRule,
- * com.google.common.annotations.VisibleForTesting}.
+ * Property {@code ignoreAnnotationCanonicalNames} - Specify the list of annotations canonical
+ * names which ignore variables in consideration.
+ * Default value is {@code com.google.common.annotations.VisibleForTesting,
+ * org.junit.ClassRule, org.junit.Rule}.
  * </li>
  * </ul>
  * <p>

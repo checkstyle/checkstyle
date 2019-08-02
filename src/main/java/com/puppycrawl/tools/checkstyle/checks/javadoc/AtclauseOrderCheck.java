@@ -64,8 +64,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * VARIABLE_DEF</a>.
  * </li>
  * <li>
- * Property {@code tagOrder} - Specify the order by tags. Default value is
- * {@code @author, @version, @param, @return, @throws, @exception, @see, @since, @serial, @serialField, @serialData, @deprecated}.
+ * Property {@code tagOrder} - Specify the order by tags.
+ * Default value is {@code @author, @deprecated, @exception, @param, @return,
+ * @see, @serial, @serialData, @serialField, @since, @throws, @version}.
  * </li>
  * </ul>
  * <p>

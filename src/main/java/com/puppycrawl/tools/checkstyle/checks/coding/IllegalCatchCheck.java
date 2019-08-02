@@ -46,8 +46,8 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * <ul>
  * <li>
  * Property {@code illegalClassNames} - Specify exception class names to reject.
- * Default value is {@code java.lang.Throwable, RuntimeException, Error, Throwable,
- * java.lang.Error, java.lang.RuntimeException, Exception, java.lang.Exception}.
+ * Default value is {@code Error, Exception, RuntimeException, Throwable, java.lang.Error,
+ * java.lang.Exception, java.lang.RuntimeException, java.lang.Throwable}.
  * </li>
  * </ul>
  * <p>

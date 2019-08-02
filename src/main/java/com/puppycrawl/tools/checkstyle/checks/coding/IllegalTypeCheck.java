@@ -83,11 +83,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code illegalClassNames} - Specify classes that should not be used as types
- * in variable declarations, return values or parameters.
- * Default value is {@code LinkedHashSet, java.util.HashSet, java.util.LinkedHashMap,
- * java.util.TreeMap, HashMap, TreeSet, java.util.HashMap, TreeMap,
- * java.util.LinkedHashSet, java.util.TreeSet, HashSet, LinkedHashMap}.
+ * Property {@code illegalClassNames} - Specify classes that should not be used
+ * as types in variable declarations, return values or parameters.
+ * Default value is {@code HashMap, HashSet, LinkedHashMap, LinkedHashSet, TreeMap,
+ * TreeSet, java.util.HashMap, java.util.HashSet, java.util.LinkedHashMap,
+ * java.util.LinkedHashSet, java.util.TreeMap, java.util.TreeSet}.
  * </li>
  * <li>
  * Property {@code legalAbstractClassNames} - Define abstract classes that may be used as types.
@@ -95,7 +95,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * <li>
  * Property {@code ignoredMethodNames} - Specify methods that should not be checked.
- * Default value is {@code getInitialContext, getEnvironment}.
+ * Default value is {@code getEnvironment, getInitialContext}.
  * </li>
  * <li>
  * Property {@code illegalAbstractClassNameFormat} - Specify RegExp for illegal abstract class

@@ -155,7 +155,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * Property {@code ignoredAnnotations} - Specify annotations which allow the check to
  * skip the method from validation.
- * Default value is {@code Before, BeforeClass, Test, After, AfterClass}.
+ * Default value is {@code After, AfterClass, Before, BeforeClass, Test}.
  * </li>
  * </ul>
  * <p>
