@@ -91,8 +91,8 @@ public class MainTest {
           + " Defaults to plain%n"
           + "  -g, --generate-xpath-suppression%n"
           + "                            Generates to output a suppression.xml to use to suppress"
-          + " all violations from%n"
-          + "                              user's config%n"
+          + " all violations%n"
+          + "                              from user's config%n"
           + "  -h, --help                Show this help message and exit.%n"
           + "  -j, --javadocTree         Print Parse tree of the Javadoc comment%n"
           + "  -J, --treeWithJavadoc     Print full Abstract Syntax Tree of the file%n"
@@ -100,20 +100,21 @@ public class MainTest {
           + "  -p=<propertiesFile>       Loads the properties file%n"
           + "  -s=<suppressionLineColumnNumber>%n"
           + "                            Print xpath suppressions at the file's line and column"
-          + " position. Argument is%n"
-          + "                              the line and column number (separated by a : ) in the"
-          + " file that the%n"
-          + "                              suppression should be generated for%n"
+          + " position.%n"
+          + "                              Argument is the line and column number (separated by"
+          + " a : ) in the%n"
+          + "                              file that the suppression should be generated for%n"
           + "  -t, --tree                Print Abstract Syntax Tree(AST) of the file%n"
           + "  -T, --treeWithComments    Print Abstract Syntax Tree(AST) of the file including"
           + " comments%n"
           + "  -V, --version             Print version information and exit.%n"
           + "  -w, --tabWidth=<tabWidth> Sets the length of the tab character. Used only with"
-          + " \"-s\" option. Default%n"
-          + "                              value is 8%n"
+          + " \"-s\" option.%n"
+          + "                              Default value is 8%n"
           + "  -W, --tree-walker-threads-number=<treeWalkerThreadsNumber>%n"
           + "                            (experimental) The number of TreeWalker threads (must be"
-          + " greater than zero)%n"
+          + " greater than%n"
+          + "                              zero)%n"
           + "  -x, --exclude-regexp=<excludeRegex>%n"
           + "                            Regular expression of directory/file to exclude from"
           + " CheckStyle%n");
@@ -214,7 +215,7 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(() -> {
-            final String usage = "Unknown option: -q" + EOL
+            final String usage = "Unknown option: '-q'" + EOL
                     + SHORT_USAGE;
             assertEquals("Unexpected output log", "", systemOut.getLog());
             assertEquals("Unexpected system error log", usage, systemErr.getLog());
