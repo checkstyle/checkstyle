@@ -85,4 +85,25 @@ public class InputMissingDeprecatedSpecialCase
     void dontUse2() {
 
     }
+
+    /**
+     * @deprecated
+     */
+    int[] dontUse3() {
+        return null;
+    }
+
+    /**
+     * @deprecated
+     */
+    <T> T dontUse4() {
+        return null;
+    }
+
+    /**
+     * @deprecated
+     */
+    java.lang.String dontUse5() {
+        return null;
+    }
 }

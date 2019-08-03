@@ -21,14 +21,13 @@ package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck.MSG_KEY_ANNOTATION_MISSING_DEPRECATED;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck.MSG_KEY_JAVADOC_DUPLICATE_TAG;
-import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck.MSG_KEY_JAVADOC_MISSING;
 import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
@@ -39,41 +38,25 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void testGetDefaultJavadocTokens() {
         final MissingDeprecatedCheck missingDeprecatedCheck =
                 new MissingDeprecatedCheck();
         final int[] expected = {
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.ANNOTATION_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.ENUM_CONSTANT_DEF,
-            TokenTypes.ANNOTATION_FIELD_DEF,
+            JavadocTokenTypes.JAVADOC,
         };
 
-        assertArrayEquals("Default acceptable tokens are invalid",
-                expected, missingDeprecatedCheck.getAcceptableTokens());
+        assertArrayEquals("Default javadoc tokens are invalid",
+                expected, missingDeprecatedCheck.getDefaultJavadocTokens());
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    public void testGetRequiredJavadocTokens() {
         final MissingDeprecatedCheck checkObj = new MissingDeprecatedCheck();
         final int[] expected = {
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.ANNOTATION_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.ENUM_CONSTANT_DEF,
-            TokenTypes.ANNOTATION_FIELD_DEF,
+            JavadocTokenTypes.JAVADOC,
         };
-        assertArrayEquals("Default required tokens are invalid",
-            expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Default required javadoc tokens are invalid",
+            expected, checkObj.getRequiredJavadocTokens());
     }
 
     /**
@@ -106,13 +89,9 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
-            "5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
             "11: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "16: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "23: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
             "29: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
             "38: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "40: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
             "48: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
             "55: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
@@ -131,16 +110,13 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
             "5: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
             "12: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
             "14: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "17: " + getCheckMessage(MSG_KEY_JAVADOC_MISSING),
             "19: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "24: " + getCheckMessage(MSG_KEY_JAVADOC_MISSING),
-            "32: " + getCheckMessage(MSG_KEY_JAVADOC_MISSING),
             "33: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
-            "33: " + getCheckMessage(MSG_KEY_JAVADOC_MISSING),
             "42: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
-            "42: " + getCheckMessage(MSG_KEY_JAVADOC_MISSING),
-            "50: " + getCheckMessage(MSG_KEY_JAVADOC_MISSING),
             "51: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
+            "92: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "99: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "106: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
         verify(checkConfig, getPath("InputMissingDeprecatedSpecialCase.java"), expected);
@@ -163,7 +139,6 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
-            "7: " + getCheckMessage(MSG_KEY_JAVADOC_MISSING),
             "8: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
             "12: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
@@ -176,7 +151,6 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
-            "7: " + getCheckMessage(MSG_KEY_JAVADOC_MISSING),
             "11: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
@@ -184,16 +158,14 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSkipNoJavadocOption() throws Exception {
+    public void testPackageInfo() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
-        checkConfig.addAttribute("skipNoJavadoc", "true");
 
         final String[] expected = {
-            "10: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "26: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "2: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verify(checkConfig, getPath("InputMissingDeprecatedSkipNoJavadoc.java"), expected);
+        verify(checkConfig, getPath("package-info.java"), expected);
     }
 
 }

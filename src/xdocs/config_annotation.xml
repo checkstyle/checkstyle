@@ -562,14 +562,25 @@ public int foo() { ... }
         </p>
         <p>
           Package deprecation is a exception to the rule of always using the
-          javadoc tag and annotation to deprecate.  Only the package-info.java
-          file can contain a Deprecated annotation and it CANNOT contain
-          a deprecated javadoc tag.  This is the case with
-          Sun's javadoc tool released with JDK 1.6.0_11.  As a result, this check
-          does not deal with Deprecated packages in any way.  <b>No official
-          documentation was found confirming this behavior is correct
-          (of the javadoc tool).</b>
+          javadoc tag and annotation to deprecate.  It is not clear if the
+          javadoc tool will support it or not as newer versions keep flip flopping
+          on if it is supported or will cause an error.
+          See <a href="https://bugs.openjdk.java.net/browse/JDK-8160601">
+          JDK-8160601</a>.
+          The deprecated javadoc tag is currently the only way to say why the package
+          is deprecated and what to use instead.  Until this is resolved, if you
+          don't want to print violations on package-info, you can use a
+          <a href="config_filters.html">filter</a> to ignore these files until
+          the javadoc tool faithfully supports it. An example config using
+          SuppressionSingleFilter is:
         </p>
+        <source>
+&lt;!-- required till https://bugs.openjdk.java.net/browse/JDK-8160601 --&gt;
+&lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
+    &lt;property name=&quot;checks&quot; value=&quot;MissingDeprecatedCheck&quot;/&gt;
+    &lt;property name=&quot;files&quot; value=&quot;package-info\.java&quot;/&gt;
+&lt;/module&gt;
+        </source>
       </subsection>
       <subsection name="Properties" id="MissingDeprecated_Properties">
         <table>
@@ -581,14 +592,14 @@ public int foo() { ... }
             <th>since</th>
           </tr>
           <tr>
-            <td>skipNoJavadoc</td>
-            <td>Ignore cases when JavaDoc is missing, but still warns when JavaDoc is
-            present but either @deprecated is missing from JavaDoc or
-            @Deprecated is missing from the element.
-            </td>
+            <td>violateExecutionOnNonTightHtml</td>
+            <td>
+              If turned on, will print violations if the Javadoc being examined by this check
+              violates the tight html rules defined at
+              <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
-            <td>6.16</td>
+            <td>8.24</td>
           </tr>
         </table>
       </subsection>
@@ -597,26 +608,14 @@ public int foo() { ... }
         <source>
 &lt;module name=&quot;MissingDeprecated&quot;/&gt;
         </source>
-        <p>
-          In addition you can configure this check with skipNoJavadoc
-          option to allow it to ignore cases when JavaDoc is missing,
-          but still warns when JavaDoc is present but either
-          @deprecated is missing from JavaDoc or
-          @Deprecated is missing from the element.
-          To configure this check to allow it use: </p>
-        <source>
-&lt;module name=&quot;MissingDeprecated&quot;&gt;
-  &lt;property name="skipNoJavadoc" value="true" /&gt;
-&lt;/module&gt;
-        </source>
-        <p>Examples of validating source code with skipNoJavadoc:</p>
+        <p>Examples of validating source code:</p>
         <source>
 @deprecated
 public static final int MY_CONST = 123456; // no violation
 
 /** This javadoc is missing deprecated tag. */
 @deprecated
-public static final int COUNTER = 10; // violation as javadoc exists
+public static final int COUNTER = 10; // violation
         </source>
       </subsection>
 
@@ -640,8 +639,16 @@ public static final int COUNTER = 10; // violation as javadoc exists
             javadoc.duplicateTag</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missing%22">
-            javadoc.missing</a>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
+            javadoc.missed.html.close</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+            javadoc.parse.rule.error</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wrong.singleton.html.tag%22">
+            javadoc.wrong.singleton.html.tag</a>
           </li>
         </ul>
         <p>
