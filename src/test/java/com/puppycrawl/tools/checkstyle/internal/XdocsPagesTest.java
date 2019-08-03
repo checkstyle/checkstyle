@@ -151,7 +151,8 @@ public class XdocsPagesTest {
             "JavadocMethod.minLineCount",
             "JavadocMethod.allowMissingJavadoc",
             "JavadocMethod.allowMissingPropertyJavadoc",
-            "JavadocMethod.ignoreMethodNamesRegex"
+            "JavadocMethod.ignoreMethodNamesRegex",
+            "MissingDeprecated.skipNoJavadoc"
     );
 
     private static final Set<String> SUN_MODULES = Collections.unmodifiableSet(
