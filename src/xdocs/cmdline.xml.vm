@@ -25,9 +25,8 @@
     <section name="Description">
       <p>
         This document describes how to run Checkstyle using the command line
-        tool. The latest version of Checkstyle can be found at
-        <a href="https://github.com/checkstyle/checkstyle/releases">
-          https://github.com/checkstyle/checkstyle/releases</a>.
+        tool. The latest version of Checkstyle can be downloaded as described at
+        <a href="https://checkstyle.org/#Download">Download section</a>.
         This command line tool is included in the Checkstyle distribution.
       </p>
     </section>
