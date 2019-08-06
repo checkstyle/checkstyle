@@ -301,6 +301,7 @@ script:
   - echo "SKIP_CI_BY_FILES="$SKIP_CI_BY_FILES
   - echo "SKIP_CI_BY_COMMIT="$SKIP_CI_BY_COMMIT
   - |
+    set -e
     if [[ $SKIP_CI_BY_FILES == 'false' && $SKIP_CI_BY_COMMIT == 'false' ]]; then
          if [[ $USE_MAVEN_REPO == 'true' && ! -d "~/.m2" ]]; then
            echo "Maven local repo cache is not found, initializing it ..."
