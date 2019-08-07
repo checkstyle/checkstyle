@@ -134,15 +134,15 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Results in following:
  * </p>
  * <pre>
- * allowedFuture.addCallback(result -> assertEquals("Invalid response",
+ * allowedFuture.addCallback(result -&gt; assertEquals("Invalid response",
  *   EnumSet.of(HttpMethod.GET, HttpMethod.OPTIONS), result), // violation, lambda spans 2 lines
- *   ex -> fail(ex.getMessage())); // OK
+ *   ex -&gt; fail(ex.getMessage())); // OK
  *
- * allowedFuture.addCallback(result -> {
+ * allowedFuture.addCallback(result -&gt; {
  *   return assertEquals("Invalid response",
  *     EnumSet.of(HttpMethod.GET, HttpMethod.OPTIONS), result);
  *   }, // OK
- *   ex -> fail(ex.getMessage()));
+ *   ex -&gt; fail(ex.getMessage()));
  * </pre>
  *
  * @since 3.0
