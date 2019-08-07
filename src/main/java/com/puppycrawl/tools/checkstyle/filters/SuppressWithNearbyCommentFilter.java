@@ -66,6 +66,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code null}.
  * </li>
  * <li>
+ * Property {@code idFormat} - Specify check ID pattern to suppress.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
  * Property {@code influenceFormat} - Specify negative/zero/positive value that
  * defines the number of lines preceding/at/following the suppression comment.
  * Default value is {@code "0"}.
@@ -197,13 +201,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example of SuppressWithNearbyCommentFilter configuration (checkFormat which is set to
+ * Example of SuppressWithNearbyCommentFilter configuration (idFormat which is set to
  * '$1' points that ID of the checks is in the first group of commentFormat regular expressions):
  * </p>
  * <pre>
  * &lt;module name="SuppressWithNearbyCommentFilter"&gt;
  *   &lt;property name="commentFormat" value="@cs-: (\w+) \(\w+\)"/&gt;
- *   &lt;property name="checkFormat" value="$1"/&gt;
+ *   &lt;property name="idFormat" value="$1"/&gt;
  *   &lt;property name="influenceFormat" value="0"/&gt;
  * &lt;/module&gt;
  * </pre>
@@ -273,6 +277,9 @@ public class SuppressWithNearbyCommentFilter
     /** Define message pattern to suppress. */
     private String messageFormat;
 
+    /** Specify check ID pattern to suppress. */
+    private String idFormat;
+
     /**
      * Specify negative/zero/positive value that defines the number of lines
      * preceding/at/following the suppression comment.
@@ -327,6 +334,14 @@ public class SuppressWithNearbyCommentFilter
      */
     public void setMessageFormat(String format) {
         messageFormat = format;
+    }
+
+    /**
+     * Setter to specify check ID pattern to suppress.
+     * @param format a {@code String} value
+     */
+    public void setIdFormat(String format) {
+        idFormat = format;
     }
 
     /**
@@ -473,6 +488,9 @@ public class SuppressWithNearbyCommentFilter
         /** The parsed message regexp, expanded for the text of this tag. */
         private final Pattern tagMessageRegexp;
 
+        /** The parsed check ID regexp, expanded for the text of this tag. */
+        private final Pattern tagIdRegexp;
+
         /**
          * Constructs a tag.
          * @param text the text of the suppression.
@@ -497,6 +515,14 @@ public class SuppressWithNearbyCommentFilter
                     format = CommonUtil.fillTemplateWithStringsByRegexp(
                             filter.messageFormat, text, filter.commentFormat);
                     tagMessageRegexp = Pattern.compile(format);
+                }
+                if (filter.idFormat == null) {
+                    tagIdRegexp = null;
+                }
+                else {
+                    format = CommonUtil.fillTemplateWithStringsByRegexp(
+                            filter.idFormat, text, filter.commentFormat);
+                    tagIdRegexp = Pattern.compile(format);
                 }
                 format = CommonUtil.fillTemplateWithStringsByRegexp(
                         filter.influenceFormat, text, filter.commentFormat);
@@ -549,12 +575,14 @@ public class SuppressWithNearbyCommentFilter
                     && Objects.equals(lastLine, tag.lastLine)
                     && Objects.equals(text, tag.text)
                     && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)
-                    && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp);
+                    && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp)
+                    && Objects.equals(tagIdRegexp, tag.tagIdRegexp);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(text, firstLine, lastLine, tagCheckRegexp, tagMessageRegexp);
+            return Objects.hash(text, firstLine, lastLine, tagCheckRegexp, tagMessageRegexp,
+                    tagIdRegexp);
         }
 
         /**
@@ -565,7 +593,8 @@ public class SuppressWithNearbyCommentFilter
          */
         public boolean isMatch(TreeWalkerAuditEvent event) {
             return isInScopeOfSuppression(event)
-                    && (isCheckMatch(event) || isIdMatch(event))
+                    && isCheckMatch(event)
+                    && isIdMatch(event)
                     && isMessageMatch(event);
         }
 
@@ -595,10 +624,15 @@ public class SuppressWithNearbyCommentFilter
          * @return true if the {@link TreeWalkerAuditEvent} module ID matches the ID format.
          */
         private boolean isIdMatch(TreeWalkerAuditEvent event) {
-            boolean match = false;
-            if (event.getModuleId() != null) {
-                final Matcher idMatcher = tagCheckRegexp.matcher(event.getModuleId());
-                match = idMatcher.find();
+            boolean match = true;
+            if (tagIdRegexp != null) {
+                if (event.getModuleId() == null) {
+                    match = false;
+                }
+                else {
+                    final Matcher idMatcher = tagIdRegexp.matcher(event.getModuleId());
+                    match = idMatcher.find();
+                }
             }
             return match;
         }
@@ -624,6 +658,7 @@ public class SuppressWithNearbyCommentFilter
                     + ", lastLine=" + lastLine
                     + ", tagCheckRegexp=" + tagCheckRegexp
                     + ", tagMessageRegexp=" + tagMessageRegexp
+                    + ", tagIdRegexp=" + tagIdRegexp
                     + ']';
         }
 
