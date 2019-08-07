@@ -258,12 +258,11 @@ matrix:
         - DESC="compile input files that are not compiled by eclipse"
         - CMD="./.ci/travis/travis.sh javac8"
 
-    # disabled till https://github.com/checkstyle/checkstyle/issues/6949
     # new questionably spelled words
-    #- env:
-    #    - DESC="spell checker"
-    #    - CMD="./.ci/test-spelling-unknown-words.sh"
-    #    - SKIP_CI_BY_FILES="false"
+    - env:
+        - DESC="spell checker"
+        - CMD="./.ci/test-spelling-unknown-words.sh"
+        - SKIP_CI_BY_FILES="false"
 
     # find missing pitests
     - env:

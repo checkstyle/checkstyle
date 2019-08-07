@@ -11,36 +11,14 @@ whitelist_path="$spellchecker/whitelist.words"
 dict="$temp/english.words"
 word_splitter="$spellchecker/spelling-unknown-word-splitter.pl"
 run_output="$spellchecker/unknown.words"
+
 if [ ! -e "$dict" ]; then
-  mkdir -p "$temp"
-  echo "Retrieve ./usr/share/dict/linux.words"
-  words_rpm="$temp/words.rpm"
-  mirror="https://rpmfind.net"
-  file_path="/linux/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/w/"
-  location="${mirror}${file_path}"
-  file_name="$(curl -s "$location" | grep -o "words-.*.noarch.rpm" || echo "")"
-  if [ -z "$file_name" ]; then
-    echo "$0 failed to retrieve url for words package from $location"
-    exit 3
-  fi
-  location="${mirror}${file_path}${file_name}"
-  curl "$location" -o "$words_rpm"
-  if ! "$spellchecker/rpm2cpio.sh" "$words_rpm" |\
-    perl -e '$/="\0"; while (<>) {if (/^0707/) { $state = (m!\./usr/share/dict/linux.words!) }
-      elsif ($state == 1) { print }} '\
-    > "$dict"; then
-    rpm_extract_status="${PIPESTATUS[0]} ${PIPESTATUS[1]}"
-    rm -f "$words_rpm" "$dict"
-    echo "$0 failed to extract words ($location as $words_rpm) ($rpm_extract_status)"
-    exit 4
-  fi
-  rpm_extract_status="${PIPESTATUS[0]} ${PIPESTATUS[1]}"
-  if [ "$rpm_extract_status" != '0 0' ]; then
-    echo "$0 failed to extract words ($location as $words_rpm) ($rpm_extract_status)"
-    rm -f "$words_rpm" "$dict"
-    exit 5
-  fi
-  rm "$words_rpm"
+  mkdir -p $temp
+  echo "Retrieve cached english.words from checkstyle.sourceforge.io"
+  # english.words is taken from rpm:
+  # https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/w/"
+  # "words-.*.noarch.rpm"
+  curl https://checkstyle.sourceforge.io/reports/english.words -o $dict
 fi
 
 if [ ! -e "$word_splitter" ]; then
