@@ -1937,6 +1937,13 @@ public static void foo() {
                     <td>5.0</td>
                 </tr>
                 <tr>
+                    <td>idFormat</td>
+                    <td>Specify check ID pattern to suppress.</td>
+                    <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                    <td><code>null</code></td>
+                    <td>8.24</td>
+                </tr>
+                <tr>
                     <td>influenceFormat</td>
                     <td>Specify negative/zero/positive value that defines the number of
                         lines preceding/at/following the suppression comment.</td>
@@ -2083,14 +2090,14 @@ public static final int [] array; // @cs.suppress [ConstantName|NoWhitespaceAfte
 &lt;/module&gt;
             </source>
             <p>
-              Example of SuppressWithNearbyCommentFilter configuration (checkFormat which
+              Example of SuppressWithNearbyCommentFilter configuration (idFormat which
               is set to '$1' points that ID of the checks is in the first group of
               commentFormat regular expressions):
             </p>
             <source>
 &lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
   &lt;property name=&quot;commentFormat&quot; value=&quot;@cs-: (\w+) \(\w+\)"/&gt;
-  &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
+  &lt;property name=&quot;idFormat&quot; value=&quot;$1&quot;/&gt;
   &lt;property name=&quot;influenceFormat&quot; value=&quot;0&quot;/&gt;
 &lt;/module&gt;
             </source>
