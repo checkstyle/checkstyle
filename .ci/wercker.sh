@@ -35,16 +35,16 @@ no-error-orekit)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
+  checkout_from https://github.com/Hipparchus-Math/hipparchus.git
+  cd .ci-temp/hipparchus
+  mvn install -DskipTests
+  cd -
   checkout_from https://github.com/CS-SI/Orekit.git
   cd .ci-temp/Orekit
   # no CI is enforced in project, so to make our build stable we should
   # checkout to latest release (annotated tag)
-  #git checkout $(git describe --abbrev=0 --tags)
-  # Orekit use 'develop' branch as target for PullRequest merges, where all our breaking changes
-  # of 8.2 and above are applied
-  #git checkout develop
-  # due to temporal compilation problems(20180522) we use latest commit where compilation pass
-  git checkout 768201c
+  # git checkout $(git describe --abbrev=0 --tags)
+  git checkout 10.0
   mvn -e compile checkstyle:check -Dorekit.checkstyle.version=${CS_POM_VERSION}
   cd ../
   rm -rf Orekit
