@@ -253,14 +253,13 @@ public class AllChecksTest extends AbstractModuleTestSupport {
             }
 
             final DefaultConfiguration moduleConfig = createModuleConfig(module);
-            final Checker checker;
             if (module.equals(ImportControlCheck.class)) {
                 // ImportControlCheck must have the import control configuration file to avoid
                 // violation.
                 moduleConfig.addAttribute("file", getPath(
                         "InputAllChecksImportControl.xml"));
             }
-            checker = createChecker(moduleConfig);
+            final Checker checker = createChecker(moduleConfig);
             verify(checker, inputFilePath, expected);
         }
     }

@@ -52,8 +52,8 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
             throws Exception {
         final String expectedContents = readFile(expectedTextPrintFileName);
 
-        final String actualContents = AstTreeStringPrinter.printFileAst(
-                new File(actualJavaFileName), withComments).replaceAll(CRLF_REGEX, LF_REGEX);
+        final String actualContents = toLfLineEnding(AstTreeStringPrinter.printFileAst(
+                new File(actualJavaFileName), withComments));
 
         assertEquals("Generated AST from Java file should match pre-defined AST", expectedContents,
                 actualContents);
@@ -85,8 +85,8 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
                                                   String actualJavaFilename) throws Exception {
         final String expectedContents = readFile(expectedTextPrintFilename);
 
-        final String actualContents = AstTreeStringPrinter.printJavaAndJavadocTree(
-                new File(actualJavaFilename)).replaceAll(CRLF_REGEX, LF_REGEX);
+        final String actualContents = toLfLineEnding(AstTreeStringPrinter.printJavaAndJavadocTree(
+                new File(actualJavaFilename)));
 
         assertEquals("Generated AST from the java file should match the pre-defined AST",
                 expectedContents, actualContents);
@@ -103,8 +103,8 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
                                             String actualJavadocFilename) throws Exception {
         final String expectedContents = readFile(expectedTextPrintFilename);
 
-        final String actualContents = DetailNodeTreeStringPrinter.printFileAst(
-                new File(actualJavadocFilename)).replaceAll(CRLF_REGEX, LF_REGEX);
+        final String actualContents = toLfLineEnding(DetailNodeTreeStringPrinter.printFileAst(
+                new File(actualJavadocFilename)));
 
         assertEquals("Generated tree from the javadoc file should match the pre-defined tree",
                 expectedContents, actualContents);

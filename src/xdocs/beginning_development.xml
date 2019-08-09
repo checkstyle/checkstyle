@@ -37,15 +37,6 @@
             git clone git@github.com:you_user_name/checkstyle.git
         </source>
       </div>
-      <p>
-        Attention for Windows users, command should be:
-      </p>
-      <div class="wrap-content">
-        <source>
-          git config --global core.autocrlf true
-          git clone git@github.com:you_user_name/checkstyle.git
-        </source>
-      </div>
     </section>
 
     <section name="Starting Development">

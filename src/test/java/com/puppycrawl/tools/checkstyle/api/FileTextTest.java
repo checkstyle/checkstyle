@@ -28,16 +28,17 @@ import static org.junit.Assert.fail;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 
 import org.junit.Test;
 import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
 public class FileTextTest extends AbstractPathTestSupport {
 
@@ -94,14 +95,14 @@ public class FileTextTest extends AbstractPathTestSupport {
 
     @Test
     public void testLineColumnAfterCopyConstructor() throws IOException {
-        final String charsetName = StandardCharsets.ISO_8859_1.name();
-        final FileText fileText = new FileText(new File(getPath("InputFileTextImportControl.xml")),
-                charsetName);
+        final Charset charset = StandardCharsets.ISO_8859_1;
+        final String filepath = getPath("InputFileTextImportControl.xml");
+        final FileText fileText = new FileText(new File(filepath), charset.name());
         final FileText copy = new FileText(fileText);
         assertNull("LineBreaks not null", Whitebox.getInternalState(copy, "lineBreaks"));
         final LineColumn lineColumn = copy.lineColumn(100);
         assertEquals("Invalid line", 3, lineColumn.getLine());
-        if (System.getProperty("os.name").toLowerCase(Locale.ENGLISH).startsWith("windows")) {
+        if (CheckUtil.CRLF.equals(CheckUtil.getLineSeparatorForFile(filepath, charset))) {
             assertEquals("Invalid column", 44, lineColumn.getColumn());
         }
         else {

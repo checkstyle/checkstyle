@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.grammar.comments;
 
+import java.nio.charset.StandardCharsets;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -30,13 +31,14 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class AllSinglelineCommentsTest extends AbstractModuleTestSupport {
 
     private static final Set<String> ALL_COMMENTS = new LinkedHashSet<>();
 
-    private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+    private static String lineSeparator;
 
     @Override
     protected String getPackageLocation() {
@@ -44,11 +46,13 @@ public class AllSinglelineCommentsTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAllBlockComments() throws Exception {
+    public void testAllSinglelineComments() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(SinglelineCommentListenerCheck.class);
+        final String path = getPath("InputFullOfSinglelineComments.java");
+        lineSeparator = CheckUtil.getLineSeparatorForFile(path, StandardCharsets.UTF_8);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputFullOfSinglelineComments.java"), expected);
+        verify(checkConfig, path, expected);
         Assert.assertTrue("All comments should be empty", ALL_COMMENTS.isEmpty());
     }
 
@@ -78,7 +82,7 @@ public class AllSinglelineCommentsTest extends AbstractModuleTestSupport {
         public void init() {
             final int lines = 63;
             for (int i = 0; i < lines; i++) {
-                ALL_COMMENTS.add(i + LINE_SEPARATOR);
+                ALL_COMMENTS.add(i + lineSeparator);
             }
             ALL_COMMENTS.add(String.valueOf(lines));
         }
