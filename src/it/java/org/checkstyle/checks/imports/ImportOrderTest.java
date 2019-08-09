@@ -20,7 +20,7 @@
 package org.checkstyle.checks.imports;
 
 import org.checkstyle.base.AbstractCheckstyleModuleTestSupport;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;

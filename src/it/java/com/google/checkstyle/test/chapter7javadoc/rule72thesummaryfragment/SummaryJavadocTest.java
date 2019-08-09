@@ -19,7 +19,7 @@
 
 package com.google.checkstyle.test.chapter7javadoc.rule72thesummaryfragment;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
