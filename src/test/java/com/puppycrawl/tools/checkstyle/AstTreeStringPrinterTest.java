@@ -92,10 +92,10 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
         final FileText text = new FileText(
                 new File(getPath("InputAstTreeStringPrinterComments.java")).getAbsoluteFile(),
                 System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
-        final String actual = AstTreeStringPrinter.printAst(text,
-                JavaParser.Options.WITHOUT_COMMENTS);
-        final String expected = new String(Files.readAllBytes(Paths.get(
-                getPath("ExpectedAstTreeStringPrinter.txt"))), StandardCharsets.UTF_8);
+        final String actual = toLfLineEnding(AstTreeStringPrinter.printAst(text,
+                JavaParser.Options.WITHOUT_COMMENTS));
+        final String expected = toLfLineEnding(new String(Files.readAllBytes(Paths.get(
+                getPath("ExpectedAstTreeStringPrinter.txt"))), StandardCharsets.UTF_8));
 
         Assert.assertEquals("Print AST output is invalid", expected, actual);
     }

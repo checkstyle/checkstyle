@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.internal.utils;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.nio.charset.Charset;
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -39,6 +40,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.google.common.reflect.ClassPath;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
@@ -47,6 +49,8 @@ import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 public final class CheckUtil {
+
+    public static final String CRLF = "\r\n";
 
     private CheckUtil() {
     }
@@ -349,4 +353,27 @@ public final class CheckUtil {
         return result.toString();
     }
 
+    public static String getLineSeparatorForFile(String filepath, Charset charset)
+            throws IOException {
+        final boolean[] crFound = {false};
+        new FileText(new File(filepath), charset.name())
+                .getFullText()
+                .chars()
+                .peek(character -> {
+                    if (character == '\r') {
+                        crFound[0] = true;
+                    }
+                })
+                .filter(character -> character == '\n')
+                .findFirst();
+
+        final String result;
+        if (crFound[0]) {
+            result = CRLF;
+        }
+        else {
+            result = "\n";
+        }
+        return result;
+    }
 }

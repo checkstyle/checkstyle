@@ -29,9 +29,10 @@ import java.util.stream.Stream;
 
 public abstract class AbstractPathTestSupport {
 
-    protected static final String LF_REGEX = "\\\\n";
-
-    protected static final String CRLF_REGEX = "\\\\r\\\\n";
+    // we are using positive lookahead here, to convert \r\n to \n
+    // and \\r\\n to \\n (for parse tree dump files),
+    // by replacing the full match with the empty string
+    private static final String CR_FOLLOWED_BY_LF_REGEX = "(?x)\\\\r(?=\\\\n)|\\r(?=\\n)";
 
     private static final String EOL = System.lineSeparator();
 
@@ -75,9 +76,8 @@ public abstract class AbstractPathTestSupport {
      * @throws IOException if I/O exception occurs while reading
      */
     protected static String readFile(String filename) throws IOException {
-        return new String(Files.readAllBytes(
-                Paths.get(filename)), StandardCharsets.UTF_8)
-                .replaceAll(CRLF_REGEX, LF_REGEX);
+        return toLfLineEnding(new String(Files.readAllBytes(
+                Paths.get(filename)), StandardCharsets.UTF_8));
     }
 
     /**
@@ -87,6 +87,10 @@ public abstract class AbstractPathTestSupport {
      */
     public static String addEndOfLine(String... strings) {
         return Stream.of(strings).collect(Collectors.joining(EOL, "", EOL));
+    }
+
+    protected static String toLfLineEnding(String text) {
+        return text.replaceAll(CR_FOLLOWED_BY_LF_REGEX, "");
     }
 
 }
