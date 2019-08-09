@@ -19,11 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
+import java.io.File;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
-import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -70,10 +71,24 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *    &lt;property name="ignorePattern" value="^ *\* *[^ ]+$"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>To configure the check to only validate java files and ignore other extensions:
+ * </p>
+ * <pre>
+ * &lt;module name="LineLength"&gt;
+ *   &lt;property name="fileExtensions" value="java"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>To configure the check to only validate xml and property files and ignore other extensions:
+ * </p>
+ * <pre>
+ * &lt;module name="LineLength"&gt;
+ *   &lt;property name="fileExtensions" value="xml, properties"/&gt;
+ * &lt;/module&gt;
+ * </pre>
  *
  */
 @StatelessCheck
-public class LineLengthCheck extends AbstractCheck {
+public class LineLengthCheck extends AbstractFileSetCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -94,25 +109,9 @@ public class LineLengthCheck extends AbstractCheck {
     private Pattern ignorePattern = Pattern.compile("^$");
 
     @Override
-    public int[] getDefaultTokens() {
-        return getRequiredTokens();
-    }
-
-    @Override
-    public int[] getAcceptableTokens() {
-        return getRequiredTokens();
-    }
-
-    @Override
-    public int[] getRequiredTokens() {
-        return CommonUtil.EMPTY_INT_ARRAY;
-    }
-
-    @Override
-    public void beginTree(DetailAST rootAST) {
-        final String[] lines = getLines();
-        for (int i = 0; i < lines.length; i++) {
-            final String line = lines[i];
+    protected void processFiltered(File file, FileText fileText) {
+        for (int i = 0; i < fileText.size(); i++) {
+            final String line = fileText.get(i);
             final int realLength = CommonUtil.lengthExpandedTabs(
                 line, line.length(), getTabWidth());
 
