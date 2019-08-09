@@ -20,35 +20,17 @@
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
-import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class LineLengthCheckTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/linelength";
-    }
-
-    @Test
-    public void testGetRequiredTokens() {
-        final LineLengthCheck checkObj = new LineLengthCheck();
-        assertArrayEquals(
-            "LineLengthCheck#getRequiredTokens should return empty array by default",
-            CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
-    }
-
-    @Test
-    public void testGetAcceptableTokens() {
-        final LineLengthCheck checkObj = new LineLengthCheck();
-        assertArrayEquals(
-            "LineLengthCheck#getAcceptabletokens should return empty array by default",
-            CommonUtil.EMPTY_INT_ARRAY, checkObj.getAcceptableTokens());
     }
 
     @Test

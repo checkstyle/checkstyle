@@ -104,6 +104,7 @@ public class XdocsPagesTest {
             "TreeWalker",
             "name=\"Checker\"",
             "name=\"Header\"",
+            "name=\"LineLength\"",
             "name=\"Translation\"",
             "name=\"SeverityMatchFilter\"",
             "name=\"SuppressWithPlainTextCommentFilter\"",

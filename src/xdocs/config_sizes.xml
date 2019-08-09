@@ -326,6 +326,13 @@
             <th>since</th>
           </tr>
           <tr>
+            <td>fileExtensions</td>
+            <td>file extensions that are accepted</td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td><code>all files</code></td>
+            <td>8.24</td>
+          </tr>
+          <tr>
             <td>ignorePattern</td>
             <td>pattern for lines to ignore</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
@@ -359,6 +366,25 @@
         <source>
 &lt;module name="LineLength"&gt;
   &lt;property name="ignorePattern" value="^ *\* *[^ ]+$"/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check to only validate java files and ignore other extensions:
+        </p>
+        <source>
+&lt;module name="LineLength"&gt;
+  &lt;property name="fileExtensions" value="java"/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check to only validate xml and property files and ignore other
+          extensions:
+        </p>
+        <source>
+&lt;module name="LineLength"&gt;
+  &lt;property name="fileExtensions" value="xml, properties"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -419,7 +445,7 @@
 
       <subsection name="Parent Module" id="LineLength_Parent_Module">
         <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
+          <a href="config.html#Checker">Checker</a>
         </p>
       </subsection>
     </section>
