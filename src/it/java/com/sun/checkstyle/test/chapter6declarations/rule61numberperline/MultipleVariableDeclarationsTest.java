@@ -19,7 +19,7 @@
 
 package com.sun.checkstyle.test.chapter6declarations.rule61numberperline;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck;

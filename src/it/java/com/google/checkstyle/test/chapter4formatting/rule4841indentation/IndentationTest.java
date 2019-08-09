@@ -19,7 +19,7 @@
 
 package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractIndentationTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
