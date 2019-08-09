@@ -21,7 +21,7 @@ package com.google.checkstyle.test.chapter2filebasic.rule21filename;
 
 import static com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck.MSG_KEY;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;

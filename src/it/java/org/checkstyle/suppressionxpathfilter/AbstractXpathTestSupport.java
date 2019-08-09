@@ -25,14 +25,14 @@ import java.io.File;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.checkstyle.base.AbstractCheckstyleModuleTestSupport;
-import org.junit.Rule;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.io.TempDir;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.JavaParser;
@@ -52,8 +52,8 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
     private static final Pattern LINE_COLUMN_NUMBER_REGEX =
             Pattern.compile("([0-9]+):([0-9]+):");
 
-    @Rule
-    public final TemporaryFolder temporaryFolder = new TemporaryFolder();
+    @TempDir
+    private Path temporaryFolder;
 
     protected abstract String getCheckName();
 
@@ -87,8 +87,8 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
     private String createSuppressionsXpathConfigFile(String checkName,
                                                      List<String> xpathQueries)
             throws Exception {
-
-        final File suppressionsXpathConfigFile = temporaryFolder.newFile();
+        final File suppressionsXpathConfigFile =
+                Files.createTempFile(temporaryFolder, "", "").toFile();
         try (Writer bw = Files.newBufferedWriter(suppressionsXpathConfigFile.toPath(),
                 StandardCharsets.UTF_8)) {
             bw.write("<?xml version=\"1.0\"?>\n");

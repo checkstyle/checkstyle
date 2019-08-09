@@ -22,7 +22,7 @@ package com.google.checkstyle.test.chapter5naming.rule521packagenames;
 import java.io.File;
 import java.io.IOException;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
