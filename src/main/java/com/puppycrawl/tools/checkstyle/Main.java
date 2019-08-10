@@ -328,7 +328,6 @@ public final class Main {
      *         when output file could not be found
      * @throws CheckstyleException
      *         when properties file could not be loaded
-     * @noinspection UseOfSystemOutOrSystemErr
      */
     private static int runCheckstyle(CliOptions options, List<File> filesToProcess)
             throws CheckstyleException, IOException {
@@ -378,7 +377,7 @@ public final class Main {
                     ((DefaultConfiguration) treeWalkerConfig).addChild(moduleConfig);
                 }
 
-                listener = new XpathFileGeneratorAuditListener(System.out,
+                listener = new XpathFileGeneratorAuditListener(getOutputStream(options.outputPath),
                         AutomaticBean.OutputStreamOptions.NONE);
             }
             else {

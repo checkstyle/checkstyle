@@ -26,6 +26,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -41,6 +42,7 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -1069,6 +1071,38 @@ public class MainTest {
         });
         Main.main("-c", getPath("InputMainConfig-empty.xml"), "--generate-xpath-suppression",
                 getPath("InputMainComplexityOverflow.java"));
+    }
+
+    @Test
+    public void testGenerateXpathSuppressionOptionCustomOutput() throws Exception {
+        final String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + EOL
+                + "<!DOCTYPE suppressions PUBLIC" + EOL
+                + "    \"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2"
+                + "//EN\"" + EOL
+                + "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd\">"
+                + EOL
+                + "<suppressions>" + EOL
+                + "<suppress-xpath" + EOL
+                + "       files=\"InputMainGenerateXpathSuppressionsTabWidth.java\"" + EOL
+                + "       checks=\"ExplicitInitializationCheck\"" + EOL
+                + "       query=\"/CLASS_DEF[./IDENT["
+                + "@text='InputMainGenerateXpathSuppressionsTabWidth']]"
+                + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='low']\"/>" + EOL
+                + "</suppressions>" + EOL;
+        final File file = temporaryFolder.newFile();
+        exit.checkAssertionAfterwards(() -> {
+            try (BufferedReader br = Files.newBufferedReader(file.toPath())) {
+                final String fileContent = br.lines().collect(Collectors.joining(EOL)) + EOL;
+                assertEquals("Unexpected output log",
+                        expected, fileContent);
+                assertEquals("Unexpected system error log",
+                        "", systemErr.getLog());
+            }
+        });
+        Main.main("-c", getPath("InputMainConfig-xpath-suppressions.xml"),
+                "-o", file.getPath(),
+                "--generate-xpath-suppression",
+                getPath("InputMainGenerateXpathSuppressionsTabWidth.java"));
     }
 
     @Test
