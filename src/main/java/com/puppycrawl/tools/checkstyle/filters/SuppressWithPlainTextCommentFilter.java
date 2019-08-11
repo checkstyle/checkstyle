@@ -87,6 +87,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Property {@code messageFormat} - Specify message pattern to suppress.
  * Default value is {@code null}.
  * </li>
+ * <li>
+ * Property {@code idFormat} - Specify check ID pattern to suppress.
+ * Default value is {@code null}.
+ * </li>
  * </ul>
  * <p>
  * To configure a filter to suppress audit events between a comment containing
@@ -253,7 +257,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
  *     &lt;property name="offCommentFormat" value="CSOFF (\w+) \(\w+\)"/&gt;
  *     &lt;property name="onCommentFormat" value="CSON (\w+)"/&gt;
- *     &lt;property name="checkFormat" value="$1"/&gt;
+ *     &lt;property name="idFormat" value="$1"/&gt;
  *   &lt;/module&gt;
  *
  * &lt;/module&gt;
@@ -320,6 +324,9 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
     /** Specify message pattern to suppress. */
     private String messageFormat;
 
+    /** Specify check ID pattern to suppress. */
+    private String idFormat;
+
     /**
      * Setter to specify comment pattern to trigger filter to begin suppression.
      * @param pattern off comment format pattern.
@@ -350,6 +357,14 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
      */
     public final void setMessageFormat(String format) {
         messageFormat = format;
+    }
+
+    /**
+     * Setter to specify check ID pattern to suppress.
+     * @param format pattern for check ID format
+     */
+    public final void setIdFormat(String format) {
+        idFormat = format;
     }
 
     @Override
@@ -465,6 +480,8 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
         private final Pattern eventSourceRegexp;
         /** The regexp which is used to match the event message.*/
         private final Pattern eventMessageRegexp;
+        /** The regexp which is used to match the event ID.*/
+        private final Pattern eventIdRegexp;
 
         /** Suppression text.*/
         private final String text;
@@ -495,35 +512,36 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
             this.columnNo = columnNo;
             this.suppressionType = suppressionType;
 
+            final Pattern commentFormat;
+            if (this.suppressionType == SuppressionType.ON) {
+                commentFormat = filter.onCommentFormat;
+            }
+            else {
+                commentFormat = filter.offCommentFormat;
+            }
+
             //Expand regexp for check and message
             //Does not intern Patterns with Utils.getPattern()
             String format = "";
             try {
-                if (this.suppressionType == SuppressionType.ON) {
-                    format = CommonUtil.fillTemplateWithStringsByRegexp(
-                            filter.checkFormat, text, filter.onCommentFormat);
-                    eventSourceRegexp = Pattern.compile(format);
-                    if (filter.messageFormat == null) {
-                        eventMessageRegexp = null;
-                    }
-                    else {
-                        format = CommonUtil.fillTemplateWithStringsByRegexp(
-                                filter.messageFormat, text, filter.onCommentFormat);
-                        eventMessageRegexp = Pattern.compile(format);
-                    }
+                format = CommonUtil.fillTemplateWithStringsByRegexp(
+                        filter.checkFormat, text, commentFormat);
+                eventSourceRegexp = Pattern.compile(format);
+                if (filter.messageFormat == null) {
+                    eventMessageRegexp = null;
                 }
                 else {
                     format = CommonUtil.fillTemplateWithStringsByRegexp(
-                            filter.checkFormat, text, filter.offCommentFormat);
-                    eventSourceRegexp = Pattern.compile(format);
-                    if (filter.messageFormat == null) {
-                        eventMessageRegexp = null;
-                    }
-                    else {
-                        format = CommonUtil.fillTemplateWithStringsByRegexp(
-                                filter.messageFormat, text, filter.offCommentFormat);
-                        eventMessageRegexp = Pattern.compile(format);
-                    }
+                            filter.messageFormat, text, commentFormat);
+                    eventMessageRegexp = Pattern.compile(format);
+                }
+                if (filter.idFormat == null) {
+                    eventIdRegexp = null;
+                }
+                else {
+                    format = CommonUtil.fillTemplateWithStringsByRegexp(
+                            filter.idFormat, text, commentFormat);
+                    eventIdRegexp = Pattern.compile(format);
                 }
             }
             catch (final PatternSyntaxException ex) {
@@ -551,13 +569,15 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
                     && Objects.equals(suppressionType, suppression.suppressionType)
                     && Objects.equals(text, suppression.text)
                     && Objects.equals(eventSourceRegexp, suppression.eventSourceRegexp)
-                    && Objects.equals(eventMessageRegexp, suppression.eventMessageRegexp);
+                    && Objects.equals(eventMessageRegexp, suppression.eventMessageRegexp)
+                    && Objects.equals(eventIdRegexp, suppression.eventIdRegexp);
         }
 
         @Override
         public int hashCode() {
             return Objects.hash(
-                text, lineNo, columnNo, suppressionType, eventSourceRegexp, eventMessageRegexp);
+                text, lineNo, columnNo, suppressionType, eventSourceRegexp, eventMessageRegexp,
+                eventIdRegexp);
         }
 
         /**
@@ -567,7 +587,8 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
          */
         private boolean isMatch(AuditEvent event) {
             return isInScopeOfSuppression(event)
-                    && (isCheckMatch(event) || isIdMatch(event))
+                    && isCheckMatch(event)
+                    && isIdMatch(event)
                     && isMessageMatch(event);
         }
 
@@ -596,10 +617,15 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
          * @return true if the {@link AuditEvent} module ID matches the ID format.
          */
         private boolean isIdMatch(AuditEvent event) {
-            boolean match = false;
-            if (event.getModuleId() != null) {
-                final Matcher idMatcher = eventSourceRegexp.matcher(event.getModuleId());
-                match = idMatcher.find();
+            boolean match = true;
+            if (eventIdRegexp != null) {
+                if (event.getModuleId() == null) {
+                    match = false;
+                }
+                else {
+                    final Matcher idMatcher = eventIdRegexp.matcher(event.getModuleId());
+                    match = idMatcher.find();
+                }
             }
             return match;
         }
