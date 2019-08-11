@@ -895,10 +895,10 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
     </section>
 
     <section name="FinalParameters">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="FinalParameters_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
-          Check that parameters for methods, constructors, and catch blocks are
+          Check that parameters for methods, constructors, catch and for-each blocks are
           final. Interface, abstract, and native methods are not checked: the final
           keyword does not make sense for interface, abstract, and native method
           parameters as there is no code that could modify the parameter.
@@ -923,7 +923,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
           </tr>
           <tr>
             <td>ignorePrimitiveTypes</td>
-            <td>ignore primitive types as parameters</td>
+            <td>Ignore primitive types as parameters.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>6.2</td>
