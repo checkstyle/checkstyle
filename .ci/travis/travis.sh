@@ -219,8 +219,9 @@ no-error-test-sbe)
   mvn -e clean install -Pno-validations
   mkdir -p .ci-temp/
   cd .ci-temp/
-  git clone https://github.com/real-logic/simple-binary-encoding.git
+  git clone https://github.com/checkstyle/simple-binary-encoding.git
   cd simple-binary-encoding
+  git checkout issue_2116
   sed -i'' \
     "s/'com.puppycrawl.tools:checkstyle:.*'/'com.puppycrawl.tools:checkstyle:$CS_POM_VERSION'/" \
     build.gradle
