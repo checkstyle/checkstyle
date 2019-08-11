@@ -102,7 +102,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "AvoidEscapedUnicodeCharacters",
         "CommentsIndentation",
         "DescendantToken",
-        "FinalParameters",
         "Indentation",
         "NewlineAtEndOfFile",
         "OuterTypeFilename",
