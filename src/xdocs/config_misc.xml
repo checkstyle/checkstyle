@@ -23,10 +23,10 @@
     </section>
 
     <section name="ArrayTypeStyle">
+      <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="ArrayTypeStyle_Description">
-        <p>Since Checkstyle 3.1</p>
         <p>
-          Checks the style of array type definitions.  Some like Java style:
+          Checks the style of array type definitions. Some like Java style:
           <code>public static void main(String[] args)</code> and some like
           C style: <code>public static void main(String args[])</code>.
         </p>
@@ -52,7 +52,7 @@
           <tr>
             <td>javaStyle</td>
             <td>
-              Controls whether to enforce Java style (true) or C style (false).
+              Control whether to enforce Java style (true) or C style (false).
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
