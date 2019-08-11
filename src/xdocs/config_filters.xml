@@ -2216,6 +2216,13 @@ public class UserService {
                       <td><code>null</code></td>
                       <td>8.6</td>
                   </tr>
+                  <tr>
+                      <td>idFormat</td>
+                      <td>Specify check ID pattern to suppress.</td>
+                      <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                      <td><code>null</code></td>
+                      <td>8.24</td>
+                  </tr>
               </table>
           </subsection>
           <subsection name="Notes" id="SuppressWithPlainTextCommentFilter_Notes">
@@ -2398,7 +2405,7 @@ private int array1 [];
   &lt;module name="SuppressWithPlainTextCommentFilter&quot;&gt;
     &lt;property name="offCommentFormat" value="CSOFF (\w+) \(\w+\)"/&gt;
     &lt;property name="onCommentFormat" value="CSON (\w+)"/&gt;
-    &lt;property name="checkFormat" value="$1"/&gt;
+    &lt;property name="idFormat" value="$1"/&gt;
   &lt;/module&gt;
 
 &lt;/module&gt;
