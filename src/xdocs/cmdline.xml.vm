@@ -90,10 +90,10 @@ java -D&lt;property&gt;=&lt;value&gt;  \
           also ok, but might result in undesirable matching and suppress other issues.
         </li>
         <li>
-          <code>-g,--generate-xpath-suppression</code> - generate to output a suppression.xml to
+          <code>-g,--generate-xpath-suppression</code> - generate to output a suppression xml to
           use to suppress all violations from user's config. Instead of printing every violation,
-          all errors will be catched and single suppressions.xml file will be printed out. Used only
-          with <code>-c</code> option.
+          all errors will be catched and single suppressions xml file will be printed out. Used only
+          with <code>-c</code> option. Output location can be specified with <code>-o</code> option.
         </li>
         <li>
           <code>--tabWidth length</code> - set the length of the tab character. Used only with

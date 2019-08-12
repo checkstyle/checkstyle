@@ -92,7 +92,7 @@ public class MainTest {
           + "  -f=<format>               Sets the output format. Valid values: xml, plain."
           + " Defaults to plain%n"
           + "  -g, --generate-xpath-suppression%n"
-          + "                            Generates to output a suppression.xml to use to suppress"
+          + "                            Generates to output a suppression xml to use to suppress"
           + " all violations%n"
           + "                              from user's config%n"
           + "  -h, --help                Show this help message and exit.%n"

@@ -623,7 +623,7 @@ public final class Main {
 
         /** Switch whether to generate suppressions file or not. */
         @Option(names = {"-g", "--generate-xpath-suppression"},
-                description = "Generates to output a suppression.xml to use to suppress all"
+                description = "Generates to output a suppression xml to use to suppress all"
                         + " violations from user's config")
         private boolean generateXpathSuppressionsFile;
 
