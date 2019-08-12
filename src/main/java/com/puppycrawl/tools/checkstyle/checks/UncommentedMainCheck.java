@@ -29,14 +29,39 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Detects uncommented main methods. Basically detects
- * any main method, since if it is detectable
- * that means it is uncommented.
- *
- * <pre class="body">
+ * <p>
+ * Checks for uncommented main() methods.
+ * </p>
+ * <p>
+ * Rationale: A main() method is often used for debugging purposes.
+ * When debugging is finished, developers often forget to remove the method,
+ * which changes the API and increases the size of the resulting class or JAR file.
+ * With the exception of the real program entry points, all main() methods
+ * should be removed or commented out of the sources.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code excludedClasses} - Specify pattern for qualified names of
+ * classes which are allowed to have a main method.
+ * Default value is {@code "^$" (empty)}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
  * &lt;module name=&quot;UncommentedMain&quot;/&gt;
  * </pre>
+ * <p>
+ * To configure the check to allow the {@code main} method for all classes with "Main" name:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;UncommentedMain&quot;&gt;
+ *   &lt;property name=&quot;excludedClasses&quot; value=&quot;\.Main$&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
  *
+ * @since 3.2
  */
 @FileStatefulCheck
 public class UncommentedMainCheck
@@ -48,7 +73,7 @@ public class UncommentedMainCheck
      */
     public static final String MSG_KEY = "uncommented.main";
 
-    /** Compiled regexp to exclude classes from check. */
+    /** Specify pattern for qualified names of classes which are allowed to have a main method. */
     private Pattern excludedClasses = Pattern.compile("^$");
     /** Current class name. */
     private String currentClass;
@@ -58,7 +83,9 @@ public class UncommentedMainCheck
     private int classDepth;
 
     /**
-     * Set the excluded classes pattern.
+     * Setter to specify pattern for qualified names of classes which are allowed
+     * to have a main method.
+     *
      * @param excludedClasses a pattern
      */
     public void setExcludedClasses(Pattern excludedClasses) {
