@@ -28,7 +28,18 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
+ * <p>
  * Checks that the outer type name and the file name match.
+ * For example, the class {@code Foo} must be in a file named {@code Foo.java}.
+ * </p>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;OuterTypeFilename&quot;/&gt;
+ * </pre>
+ *
+ * @since 5.3
  */
 @FileStatefulCheck
 public class OuterTypeFilenameCheck extends AbstractCheck {

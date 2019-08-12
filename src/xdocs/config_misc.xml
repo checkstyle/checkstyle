@@ -1439,8 +1439,8 @@ key.png =value - violation
     </section>
 
     <section name="OuterTypeFilename">
+      <p>Since Checkstyle 5.3</p>
       <subsection name="Description" id="OuterTypeFilename_Description">
-        <p>Since Checkstyle 5.3</p>
         <p>
           Checks that the outer type name and the file name match. For example,
           the class <code>Foo</code> must be in a file named
