@@ -156,15 +156,15 @@ public class MyClass {
     </section>
 
     <section name="AvoidEscapedUnicodeCharacters">
+      <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="AvoidEscapedUnicodeCharacters_Description">
-        <p>Since Checkstyle 5.8</p>
         <p>
           Restrict using
-            <a href = "https://docs.oracle.com/javase/specs/jls/se7/html/jls-3.html#jls-3.3">
-          Unicode escapes</a> (e.g. \u221e).
+          <a href = "https://docs.oracle.com/javase/specs/jls/se11/html/jls-3.html#jls-3.3">
+          Unicode escapes</a> (such as \u221e).
           It is possible to allow using escapes for
           <a href="https://en.wiktionary.org/wiki/Appendix:Control_characters">
-              non-printable(control) characters</a>.
+              non-printable, control characters</a>.
           Also, this check can be configured to allow using escapes
           if trail comment is present. By the option it is possible to
           allow using escapes if literal contains only them.
@@ -182,30 +182,30 @@ public class MyClass {
           </tr>
           <tr>
             <td>allowEscapesForControlCharacters</td>
-            <td>Allow use escapes for non-printable(control) characters.</td>
+            <td>Allow use escapes for non-printable, control characters.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>false</td>
+            <td><code>false</code></td>
             <td>5.8</td>
           </tr>
           <tr>
             <td>allowByTailComment</td>
             <td>Allow use escapes if trail comment is present.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>false</td>
+            <td><code>false</code></td>
             <td>5.8</td>
           </tr>
           <tr>
             <td>allowIfAllCharactersEscaped</td>
             <td>Allow if all characters in literal are escaped.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>false</td>
+            <td><code>false</code></td>
             <td>5.8</td>
           </tr>
           <tr>
             <td>allowNonPrintableEscapes</td>
-            <td>Allow non-printable escapes.</td>
+            <td>Allow use escapes for non-printable, whitespace characters.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>false</td>
+            <td><code>false</code></td>
             <td>5.8</td>
           </tr>
         </table>
@@ -216,8 +216,8 @@ public class MyClass {
           Examples of using Unicode:
         </p>
         <source>
-String unitAbbrev = "μs"; //Best: perfectly clear even without a comment.
-String unitAbbrev = "\u03bcs"; //Poor: the reader has no idea what this is.
+String unitAbbrev = "μs";      // Best: perfectly clear even without a comment.
+String unitAbbrev = "\u03bcs"; // Poor: the reader has no idea what this is.
         </source>
         <p>
           An example of how to configure the check is:
@@ -226,14 +226,14 @@ String unitAbbrev = "\u03bcs"; //Poor: the reader has no idea what this is.
 &lt;module name=&quot;AvoidEscapedUnicodeCharacters&quot;/&gt;
         </source>
         <p>
-          An example of non-printable(control) characters.
+          An example of non-printable, control characters.
         </p>
         <source>
 return '\ufeff' + content; // byte order mark
         </source>
         <p>
           An example of how to configure the check to allow using escapes
-          for non-printable(control) characters:
+          for non-printable, control characters:
         </p>
         <source>
 &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
@@ -271,7 +271,8 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 &lt;/module&gt;
         </source>
         <p>
-          An example of how to configure the check to allow non-printable escapes:
+          An example of how to configure the check to allow using escapes
+          for non-printable, whitespace characters:
         </p>
         <source>
 &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
