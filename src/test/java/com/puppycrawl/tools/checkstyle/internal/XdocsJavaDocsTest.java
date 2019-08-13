@@ -98,7 +98,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "JavaNCSS",
         "NPathComplexity",
         // miscellaneous
-        "AvoidEscapedUnicodeCharacters",
         "CommentsIndentation",
         "DescendantToken",
         "Indentation",
