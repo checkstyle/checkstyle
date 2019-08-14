@@ -138,7 +138,9 @@ public final class Main {
                 final LocalizedMessage errorCounterMessage = new LocalizedMessage(1,
                         Definitions.CHECKSTYLE_BUNDLE, ERROR_COUNTER,
                         new String[] {String.valueOf(errorCounter)}, null, Main.class, null);
-                System.out.println(errorCounterMessage.getMessage());
+                // print error count statistic to error output stream,
+                // output stream might be used by validation report content
+                System.err.println(errorCounterMessage.getMessage());
             }
             if (exitStatus != 0) {
                 System.exit(exitStatus);

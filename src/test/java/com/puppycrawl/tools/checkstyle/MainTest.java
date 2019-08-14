@@ -144,10 +144,6 @@ public class MainTest {
             Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditFinished", null, null,
             getClass(), null);
 
-    private final LocalizedMessage errorCounterOneMessage = new LocalizedMessage(1,
-            Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER,
-            new String[] {String.valueOf(1)}, null, getClass(), null);
-
     private static String getPath(String filename) {
         return "src/test/resources/com/puppycrawl/tools/checkstyle/main/" + filename;
     }
@@ -300,9 +296,6 @@ public class MainTest {
     public void testNonExistentClass() throws Exception {
         exit.expectSystemExitWithStatus(-2);
         exit.checkAssertionAfterwards(() -> {
-            final String expectedExceptionMessage = errorCounterOneMessage.getMessage() + EOL;
-            assertEquals("Unexpected output log", expectedExceptionMessage, systemOut.getLog());
-
             final String cause = "com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
                     + " cannot initialize module TreeWalker - ";
             assertTrue("Unexpected system error log", systemErr.getLog().startsWith(cause));
@@ -401,9 +394,9 @@ public class MainTest {
                     + invalidPatternMessageMain.getMessage() + " [TypeName]" + EOL
                     + "[ERROR] " + expectedPath + ":5:7: "
                     + invalidPatternMessageMainInner.getMessage() + " [TypeName]" + EOL
-                    + auditFinishMessage.getMessage() + EOL
-                    + errorCounterTwoMessage.getMessage() + EOL, systemOut.getLog());
-            assertEquals("Unexpected system error log", "", systemErr.getLog());
+                    + auditFinishMessage.getMessage() + EOL, systemOut.getLog());
+            assertEquals("Unexpected system error log",
+                    errorCounterTwoMessage.getMessage() + EOL, systemErr.getLog());
         });
         Main.main("-c",
                 getPath("InputMainConfig-classname2-error.xml"),
@@ -432,9 +425,9 @@ public class MainTest {
             assertEquals("Unexpected output log", auditStartMessage.getMessage() + EOL
                     + "[ERROR] " + expectedPath + ":3:14: "
                     + invalidPatternMessageMain.getMessage() + " [TypeName]" + EOL
-                    + auditFinishMessage.getMessage() + EOL
-                    + errorCounterTwoMessage.getMessage() + EOL, systemOut.getLog());
-            assertEquals("Unexpected system error log", "", systemErr.getLog());
+                    + auditFinishMessage.getMessage() + EOL, systemOut.getLog());
+            assertEquals("Unexpected system error log",
+                    errorCounterTwoMessage.getMessage() + EOL, systemErr.getLog());
         });
         Main.main("-c",
                 getPath("InputMainConfig-classname2-error.xml"),
@@ -511,8 +504,6 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(-2);
         exit.checkAssertionAfterwards(() -> {
-            final String output = errorCounterOneMessage.getMessage() + EOL;
-            assertEquals("Unexpected output log", output, systemOut.getLog());
             final String errorOutput = "com.puppycrawl.tools.checkstyle.api."
                 + "CheckstyleException: unable to parse configuration stream - ";
             assertTrue("Unexpected system error log", systemErr.getLog().startsWith(errorOutput));
@@ -526,8 +517,6 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(-2);
         exit.checkAssertionAfterwards(() -> {
-            final String output = errorCounterOneMessage.getMessage() + EOL;
-            assertEquals("Unexpected output log", output, systemOut.getLog());
             final String errorOutput = "com.puppycrawl.tools.checkstyle.api."
                     + "CheckstyleException: cannot initialize module RegexpSingleline"
                     + " - RegexpSingleline is not allowed as a child in RegexpSingleline";
@@ -542,8 +531,6 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(-2);
         exit.checkAssertionAfterwards(() -> {
-            final String output = errorCounterOneMessage.getMessage() + EOL;
-            assertEquals("Unexpected output log", output, systemOut.getLog());
             final String errorOutput = "com.puppycrawl.tools.checkstyle.api."
                     + "CheckstyleException: cannot initialize module TreeWalker - "
                     + "cannot initialize module JavadocMethod - "
@@ -688,10 +675,6 @@ public class MainTest {
     public void testFileReferenceDuringException() throws Exception {
         exit.expectSystemExitWithStatus(-2);
         exit.checkAssertionAfterwards(() -> {
-            final String expectedExceptionMessage = auditStartMessage.getMessage() + EOL
-                            + errorCounterOneMessage.getMessage() + EOL;
-            assertEquals("Unexpected output log", expectedExceptionMessage, systemOut.getLog());
-
             final String exceptionFirstLine = "com.puppycrawl.tools.checkstyle.api."
                     + "CheckstyleException: Exception was thrown while processing "
                     + new File(getNonCompilablePath("InputMainIncorrectClass.java")).getPath()
@@ -1323,8 +1306,6 @@ public class MainTest {
                             + "TestRootModuleCheckerCheck, " + checkstylePackage
                             + "TestRootModuleCheckerCheck"},
                     null, getClass(), null);
-            assertEquals("Unexpected output log", errorCounterOneMessage.getMessage() + EOL,
-                    systemOut.getLog());
             assertTrue("Unexpected system error log",
                     systemErr.getLog().startsWith(checkstylePackage + "api.CheckstyleException: "
                     + unableToInstantiateExceptionMessage.getMessage()));
@@ -1338,9 +1319,6 @@ public class MainTest {
     public void testExecuteIgnoredModule() throws Exception {
         exit.expectSystemExitWithStatus(-2);
         exit.checkAssertionAfterwards(() -> {
-            final String expectedExceptionMessage = errorCounterOneMessage.getMessage() + EOL;
-            assertEquals("Unexpected output log", expectedExceptionMessage, systemOut.getLog());
-
             final String cause = "com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
                     + " cannot initialize module TreeWalker - ";
             assertTrue("Unexpected system error log", systemErr.getLog().startsWith(cause));
