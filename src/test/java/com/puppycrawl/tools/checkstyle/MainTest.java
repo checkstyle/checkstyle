@@ -1316,7 +1316,7 @@ public class MainTest {
     }
 
     @Test
-    public void testExecuteIgnoredModule() throws Exception {
+    public void testExceptionOnExecuteIgnoredModuleWithUnknownModuleName() throws Exception {
         exit.expectSystemExitWithStatus(-2);
         exit.checkAssertionAfterwards(() -> {
             final String cause = "com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
@@ -1326,6 +1326,33 @@ public class MainTest {
 
         Main.main("-c", getPath("InputMainConfig-non-existent-classname-ignore.xml"),
                 "--executeIgnoredModules",
+                getPath("InputMain.java"));
+    }
+
+    @Test
+    public void testExceptionOnExecuteIgnoredModuleWithBadPropertyValue() throws Exception {
+        exit.expectSystemExitWithStatus(-2);
+        exit.checkAssertionAfterwards(() -> {
+            final String cause = "com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
+                    + " cannot initialize module TreeWalker - ";
+            final String causeDetail = "it is not a boolean";
+            assertTrue("Unexpected system error log", systemErr.getLog().startsWith(cause));
+            assertTrue("Unexpected system error log", systemErr.getLog().contains(causeDetail));
+        });
+
+        Main.main("-c", getPath("InputMainConfig-TypeName-bad-value.xml"),
+                "--executeIgnoredModules",
+                getPath("InputMain.java"));
+    }
+
+    @Test
+    public void testNoProblemOnExecuteIgnoredModuleWithBadPropertyValue() throws Exception {
+        exit.checkAssertionAfterwards(() -> {
+            assertTrue("Unexpected system error log", systemErr.getLog().isEmpty());
+        });
+
+        Main.main("-c", getPath("InputMainConfig-TypeName-bad-value.xml"),
+                "",
                 getPath("InputMain.java"));
     }
 
