@@ -181,7 +181,7 @@ int[] a2 = new int[]{
         </p>
         <source>
 String a = getParameter("a");
-String b = (a==null || a.length&lt;1) ? null : a.substring(1);
+String b = (a==null || a.length()&lt;1) ? null : a.substring(1);
         </source>
 
         <p>
