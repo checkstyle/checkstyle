@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <pre>
  * String a = getParameter("a");
- * String b = (a==null || a.length&lt;1) ? null : a.substring(1);
+ * String b = (a==null || a.length()&lt;1) ? null : a.substring(1);
  * </pre>
  * <p>
  * Rationale: Some developers find inline conditionals hard to read, so
