@@ -1,5 +1,5 @@
 package org.checkstyle.suppressionxpathfilter.multiplevariabledeclarations;
 
-public class SuppressionXpathRegressionMultipleVariableDeclarationOne {
+public class SuppressionXpathRegressionMultipleVariableDeclarationsOne {
     int i, j; //warn
 }

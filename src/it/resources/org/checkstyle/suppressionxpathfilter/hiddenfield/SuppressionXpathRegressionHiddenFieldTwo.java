@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.hiddenfield;
 
-public class SuppressionXpathRegressionExplicitTwo {
+public class SuppressionXpathRegressionHiddenFieldTwo {
     static int someField;
     static Object other = null;
     Object field = null;

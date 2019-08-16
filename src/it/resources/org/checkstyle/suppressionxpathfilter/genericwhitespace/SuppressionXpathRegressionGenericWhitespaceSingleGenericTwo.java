@@ -2,7 +2,7 @@ package org.checkstyle.suppressionxpathfilter.genericwhitespace;
 
 import java.io.Serializable;
 
-public class SuppressionXpathRegressionProcessSingleGenericTwo {
+public class SuppressionXpathRegressionGenericWhitespaceSingleGenericTwo {
     <E>void bad() {//warn
     }
     <E> void good() {

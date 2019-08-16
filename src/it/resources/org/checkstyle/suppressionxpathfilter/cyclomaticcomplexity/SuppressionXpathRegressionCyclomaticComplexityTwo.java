@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.cyclomaticcomplexity;
 
-public class SuppressionXpathRegressionCyclomaticTwo {
+public class SuppressionXpathRegressionCyclomaticComplexityTwo {
 
 
     public void foo2() { //warn

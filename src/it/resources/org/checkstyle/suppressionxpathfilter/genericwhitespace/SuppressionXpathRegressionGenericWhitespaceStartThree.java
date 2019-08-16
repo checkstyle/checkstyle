@@ -2,7 +2,7 @@ package org.checkstyle.suppressionxpathfilter.genericwhitespace;
 
 import java.util.Collections;
 
-public class SuppressionXpathRegressionProcessStartThree {
+public class SuppressionXpathRegressionGenericWhitespaceStartThree {
     < E> void bad() {//warn
     }
     <E> void good() {
