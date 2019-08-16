@@ -93,7 +93,7 @@ public class XpathRegressionAbstractClassNameTest extends AbstractXpathTestSuppo
     @Test
     public void testClassNameNoModifier() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionAbstractClassNoModifier.java"));
+                new File(getPath("SuppressionXpathRegressionAbstractClassNameNoModifier.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AbstractClassNameCheck.class);
@@ -105,11 +105,14 @@ public class XpathRegressionAbstractClassNameTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAbstractClassNoModifier']]"
+                "/CLASS_DEF[./IDENT[@text='"
+                        + "SuppressionXpathRegressionAbstractClassNameNoModifier']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='AbstractMyClass']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAbstractClassNoModifier']]"
+                "/CLASS_DEF[./IDENT[@text='"
+                        + "SuppressionXpathRegressionAbstractClassNameNoModifier']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='AbstractMyClass']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAbstractClassNoModifier']]"
+                "/CLASS_DEF[./IDENT[@text='"
+                        + "SuppressionXpathRegressionAbstractClassNameNoModifier']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='AbstractMyClass']]/LITERAL_CLASS"
         );
 

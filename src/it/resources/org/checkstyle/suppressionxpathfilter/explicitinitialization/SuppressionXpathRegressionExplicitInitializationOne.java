@@ -1,5 +1,5 @@
 package org.checkstyle.suppressionxpathfilter.explicitinitialization;
 
-public class SuppressionXpathRegressionExplicitOne {
+public class SuppressionXpathRegressionExplicitInitializationOne {
     private int a = 0; //warn
 }

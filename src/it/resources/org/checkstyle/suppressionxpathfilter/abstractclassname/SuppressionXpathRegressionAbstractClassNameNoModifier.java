@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.abstractclassname;
 
-public class SuppressionXpathRegressionAbstractClassNoModifier {
+public class SuppressionXpathRegressionAbstractClassNameNoModifier {
     class AbstractMyClass { // warn
     }
 }

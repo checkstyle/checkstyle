@@ -39,8 +39,8 @@ public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpa
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMultipleVariableDeclarationOne.java"));
+        final File fileToProcess = new File(
+                getPath("SuppressionXpathRegressionMultipleVariableDeclarationsOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MultipleVariableDeclarationsCheck.class);
@@ -52,28 +52,28 @@ public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpa
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/CLASS_DEF[./IDENT["
-                + "@text='SuppressionXpathRegressionMultipleVariableDeclarationOne']]/OBJBLOCK"
+                + "@text='SuppressionXpathRegressionMultipleVariableDeclarationsOne']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='i']]",
             "/CLASS_DEF[./IDENT["
-                + "@text='SuppressionXpathRegressionMultipleVariableDeclarationOne']]/OBJBLOCK"
+                + "@text='SuppressionXpathRegressionMultipleVariableDeclarationsOne']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='i']]/MODIFIERS",
             "/CLASS_DEF[./IDENT["
-                + "@text='SuppressionXpathRegressionMultipleVariableDeclarationOne']]/OBJBLOCK"
+                + "@text='SuppressionXpathRegressionMultipleVariableDeclarationsOne']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='i']]/TYPE",
             "/CLASS_DEF[./IDENT["
-                + "@text='SuppressionXpathRegressionMultipleVariableDeclarationOne']]/OBJBLOCK"
+                + "@text='SuppressionXpathRegressionMultipleVariableDeclarationsOne']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='i']]/TYPE/LITERAL_INT",
             "/CLASS_DEF[./IDENT["
-                + "@text='SuppressionXpathRegressionMultipleVariableDeclarationOne']]/OBJBLOCK"
+                + "@text='SuppressionXpathRegressionMultipleVariableDeclarationsOne']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='j']]",
             "/CLASS_DEF[./IDENT["
-                + "@text='SuppressionXpathRegressionMultipleVariableDeclarationOne']]/OBJBLOCK"
+                + "@text='SuppressionXpathRegressionMultipleVariableDeclarationsOne']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='j']]/MODIFIERS",
             "/CLASS_DEF[./IDENT["
-                + "@text='SuppressionXpathRegressionMultipleVariableDeclarationOne']]/OBJBLOCK"
+                + "@text='SuppressionXpathRegressionMultipleVariableDeclarationsOne']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='j']]/TYPE",
             "/CLASS_DEF[./IDENT["
-                + "@text='SuppressionXpathRegressionMultipleVariableDeclarationOne']]/OBJBLOCK"
+                + "@text='SuppressionXpathRegressionMultipleVariableDeclarationsOne']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='j']]/TYPE/LITERAL_INT"
         );
 
@@ -83,8 +83,8 @@ public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpa
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMultipleVariableDeclarationTwo.java"));
+        final File fileToProcess = new File(
+                getPath("SuppressionXpathRegressionMultipleVariableDeclarationsTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MultipleVariableDeclarationsCheck.class);
@@ -96,16 +96,16 @@ public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpa
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/CLASS_DEF[./IDENT["
-                + "@text='SuppressionXpathRegressionMultipleVariableDeclarationTwo']]/OBJBLOCK"
+                + "@text='SuppressionXpathRegressionMultipleVariableDeclarationsTwo']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='i1']]",
             "/CLASS_DEF[./IDENT["
-                + "@text='SuppressionXpathRegressionMultipleVariableDeclarationTwo']]/OBJBLOCK"
+                + "@text='SuppressionXpathRegressionMultipleVariableDeclarationsTwo']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='i1']]/MODIFIERS",
             "/CLASS_DEF[./IDENT["
-                + "@text='SuppressionXpathRegressionMultipleVariableDeclarationTwo']]/OBJBLOCK"
+                + "@text='SuppressionXpathRegressionMultipleVariableDeclarationsTwo']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='i1']]/TYPE",
             "/CLASS_DEF[./IDENT["
-                + "@text='SuppressionXpathRegressionMultipleVariableDeclarationTwo']]/OBJBLOCK"
+                + "@text='SuppressionXpathRegressionMultipleVariableDeclarationsTwo']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='i1']]/TYPE/LITERAL_INT"
         );
 

@@ -40,7 +40,7 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionExplicitOne.java"));
+                new File(getPath("SuppressionXpathRegressionExplicitInitializationOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ExplicitInitializationCheck.class);
@@ -51,7 +51,7 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionExplicitOne']]"
+                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionExplicitInitializationOne']]"
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='a']"
         );
 
@@ -62,7 +62,7 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionExplicitTwo.java"));
+                new File(getPath("SuppressionXpathRegressionExplicitInitializationTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ExplicitInitializationCheck.class);
@@ -73,8 +73,8 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionExplicitTwo']]/OBJBLOCK"
-                        + "/VARIABLE_DEF/IDENT[@text='bar']"
+                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionExplicitInitializationTwo']]"
+                        + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='bar']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
