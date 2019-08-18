@@ -265,6 +265,18 @@ public class MainTest {
     }
 
     @Test
+    public void testExistingTargetFileButWithoutReadAccess()
+            throws Exception {
+        exit.expectSystemExitWithStatus(-1);
+        exit.checkAssertionAfterwards(() -> {
+            assertEquals("Unexpected output log", "Files to process must be specified, found 0."
+                + System.lineSeparator(), systemOut.getLog());
+            assertEquals("Unexpected system error log", "", systemErr.getLog());
+        });
+        Main.main("-c", "/google_checks.xml", "/etc/sudoers");
+    }
+
+    @Test
     public void testNonExistentConfigFile()
             throws Exception {
         exit.expectSystemExitWithStatus(-1);
