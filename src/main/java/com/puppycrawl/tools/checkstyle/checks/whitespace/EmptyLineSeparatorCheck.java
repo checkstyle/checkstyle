@@ -458,13 +458,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return true if the token has not allowed multiple empty lines before.
      */
     private boolean hasMultipleLinesBefore(DetailAST ast) {
-        boolean result = false;
-        if ((ast.getType() != TokenTypes.VARIABLE_DEF
-            || isTypeField(ast))
-                && hasNotAllowedTwoEmptyLinesBefore(ast)) {
-            result = true;
-        }
-        return result;
+        return (ast.getType() != TokenTypes.VARIABLE_DEF || isTypeField(ast))
+                    && hasNotAllowedTwoEmptyLinesBefore(ast);
     }
 
     /**
@@ -474,7 +469,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private void processPackage(DetailAST ast, DetailAST nextToken) {
         if (ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)) {
-            if (getFileContents().getFileName().endsWith("package-info.java")) {
+            if (getFileContents().inPackageInfo()) {
                 if (ast.getFirstChild().getChildCount() == 0 && !isPrecededByJavadoc(ast)) {
                     log(ast.getLineNo(), MSG_SHOULD_BE_SEPARATED, ast.getText());
                 }
@@ -683,13 +678,9 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return true, if token is preceded by javadoc comment.
      */
     private static boolean isPrecededByJavadoc(DetailAST token) {
-        boolean result = false;
         final DetailAST previous = token.getPreviousSibling();
-        if (previous.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
-                && JavadocUtil.isJavadocComment(previous.getFirstChild().getText())) {
-            result = true;
-        }
-        return result;
+        return previous.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
+                && JavadocUtil.isJavadocComment(previous.getFirstChild().getText());
     }
 
     /**
