@@ -148,6 +148,57 @@ public class EmptyLineSeparatorCheckTest
     }
 
     @Test
+    public void testBlockCommentNotSeparatedFromPackage() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        final String[] expected = {
+            "6: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "/*"),
+        };
+        verify(checkConfig,
+            getPath("InputEmptyLineSeparatorBlockCommentUnderPackage.java"),
+            expected);
+    }
+
+    @Test
+    public void testSingleCommentNotSeparatedFromPackage() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        final String[] expected = {
+            "4: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "//"),
+        };
+        verify(checkConfig,
+            getPath("InputEmptyLineSeparatorSingleCommentUnderPackage.java"),
+            expected);
+    }
+
+    @Test
+    public void testClassDefinitionNotSeparatedFromPackage() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        final String[] expected = {
+            "6: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+        };
+        verify(checkConfig,
+            getPath("InputEmptyLineSeparatorModifierUnderPackage.java"),
+            expected);
+    }
+
+    @Test
+    public void testBlockCommentSeparatedFromPackage() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig,
+            getPath("InputEmptyLineSeparatorBlockCommentSeparatedFromPackage.java"),
+            expected);
+    }
+
+    @Test
+    public void testSingleCommentSeparatedFromPackage() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig,
+            getPath("InputEmptyLineSeparatorSingleCommentSeparatedFromPackage.java"),
+            expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final EmptyLineSeparatorCheck emptyLineSeparatorCheckObj = new EmptyLineSeparatorCheck();
         final int[] actual = emptyLineSeparatorCheckObj.getAcceptableTokens();

@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -464,21 +465,26 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Process Package.
-     * @param ast token
+     * @param packageDef token
      * @param nextToken next token
      */
-    private void processPackage(DetailAST ast, DetailAST nextToken) {
-        if (ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)) {
+    private void processPackage(DetailAST packageDef, DetailAST nextToken) {
+        if (packageDef.getLineNo() > 1 && !hasEmptyLineBefore(packageDef)) {
             if (getFileContents().inPackageInfo()) {
-                if (ast.getFirstChild().getChildCount() == 0 && !isPrecededByJavadoc(ast)) {
-                    log(ast.getLineNo(), MSG_SHOULD_BE_SEPARATED, ast.getText());
+                if (packageDef.getFirstChild().getChildCount() == 0
+                    && !isPrecededByJavadoc(packageDef)) {
+                    log(packageDef.getLineNo(), MSG_SHOULD_BE_SEPARATED, packageDef.getText());
                 }
             }
             else {
-                log(ast.getLineNo(), MSG_SHOULD_BE_SEPARATED, ast.getText());
+                log(packageDef.getLineNo(), MSG_SHOULD_BE_SEPARATED, packageDef.getText());
             }
         }
-        if (!hasEmptyLineAfter(ast)) {
+        final Optional<DetailAST> comment = findCommentUnder(packageDef);
+        if (comment.isPresent()) {
+            log(comment.get().getLineNo(), MSG_SHOULD_BE_SEPARATED, comment.get().getText());
+        }
+        else if (!hasEmptyLineAfter(packageDef)) {
             log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
         }
     }
@@ -616,6 +622,20 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         // End of current token.
         final int currentEnd = lastToken.getLineNo();
         return hasEmptyLine(currentEnd + 1, nextBegin - 1);
+    }
+
+    /**
+     * Finds comment in next sibling of given packageDef.
+     *
+     * @param packageDef token to check
+     * @return comment under the token
+     */
+    private static Optional<DetailAST> findCommentUnder(DetailAST packageDef) {
+        return Optional.ofNullable(packageDef.getNextSibling())
+            .map(sibling -> sibling.findFirstToken(TokenTypes.MODIFIERS))
+            .map(DetailAST::getFirstChild)
+            .filter(EmptyLineSeparatorCheck::isComment)
+            .filter(comment -> comment.getLineNo() == packageDef.getLineNo() + 1);
     }
 
     /**
