@@ -229,8 +229,11 @@ for (Iterator foo = very.long.line.iterator();
           static initializers and instance initializers.
         </p>
         <p>
-          ATTENTION: empty line separator is required between AST siblings,
+          ATTENTION: empty line separator is required between token siblings,
           not after line where token is found.
+          If token does not have same type sibling then empty line
+          is required at its end (for example for CLASS_DEF it is after '}').
+          Also, trailing comments are skipped.
         </p>
       </subsection>
 
@@ -332,8 +335,7 @@ for (Iterator foo = very.long.line.iterator();
 ///////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.whitespace;
 import java.io.Serializable;
-class Foo
-{
+class Foo {
   public static final int FOO_CONST = 1;
   public void foo() {} //should be separated from previous statement.
 }
@@ -356,8 +358,7 @@ package com.puppycrawl.tools.checkstyle.whitespace;
 
 import java.io.Serializable;
 
-class Foo
-{
+class Foo {
   public static final int FOO_CONST = 1;
 
   public void foo() {}
@@ -396,8 +397,7 @@ package com.puppycrawl.tools.checkstyle.whitespace;&#10;&#10;
 
 import java.io.Serializable;&#10;
 
-class Foo
-{
+class Foo {
   public static final int FOO_CONST = 1;&#10;&#10;
 
   public void foo() {} //should be separated from previous statement.
@@ -448,8 +448,7 @@ class Foo
 
 package com.puppycrawl.tools.checkstyle.whitespace;
 
-class Foo
-{
+class Foo {
 
   public void foo() {&#10;
 

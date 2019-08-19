@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -39,8 +40,11 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * static initializers and instance initializers.
  * </p>
  * <p>
- * ATTENTION: empty line separator is required between AST siblings,
+ * ATTENTION: empty line separator is required between token siblings,
  * not after line where token is found.
+ * If token does not have same type sibling then empty line
+ * is required at its end (for example for CLASS_DEF it is after '}').
+ * Also, trailing comments are skipped.
  * </p>
  * <ul>
  * <li>
@@ -93,8 +97,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * ///////////////////////////////////////////////////
  * package com.puppycrawl.tools.checkstyle.whitespace;
  * import java.io.Serializable;
- * class Foo
- * {
+ * class Foo {
  *   public static final int FOO_CONST = 1;
  *   public void foo() {} //should be separated from previous statement.
  * }
@@ -122,8 +125,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  *
  * import java.io.Serializable;
  *
- * class Foo
- * {
+ * class Foo {
  *   public static final int FOO_CONST = 1;
  *
  *   public void foo() {}
@@ -169,8 +171,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * import java.io.Serializable;
  *
  *
- * class Foo
- * {
+ * class Foo {
  *   public static final int FOO_CONST = 1;
  *
  *
@@ -224,8 +225,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  *
  * package com.puppycrawl.tools.checkstyle.whitespace;
  *
- * class Foo
- * {
+ * class Foo {
  *
  *   public void foo() {
  *
@@ -347,35 +347,59 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         if (!allowMultipleEmptyLinesInsideClassMembers) {
             processMultipleLinesInside(ast);
         }
-
+        if (ast.getType() == TokenTypes.PACKAGE_DEF) {
+            checkCommentInModifiers(ast);
+        }
         DetailAST nextToken = ast.getNextSibling();
         while (nextToken != null && isComment(nextToken)) {
             nextToken = nextToken.getNextSibling();
         }
         if (nextToken != null) {
-            final int astType = ast.getType();
-            switch (astType) {
-                case TokenTypes.VARIABLE_DEF:
-                    processVariableDef(ast, nextToken);
-                    break;
-                case TokenTypes.IMPORT:
-                case TokenTypes.STATIC_IMPORT:
-                    processImport(ast, nextToken);
-                    break;
-                case TokenTypes.PACKAGE_DEF:
-                    processPackage(ast, nextToken);
-                    break;
-                default:
-                    if (nextToken.getType() == TokenTypes.RCURLY) {
-                        if (hasNotAllowedTwoEmptyLinesBefore(nextToken)) {
-                            log(ast.getLineNo(), MSG_MULTIPLE_LINES_AFTER, ast.getText());
-                        }
+            checkToken(ast, nextToken);
+        }
+    }
+
+    /**
+     * Checks that token and next token are separated.
+     *
+     * @param ast token to validate
+     * @param nextToken next sibling of the token
+     */
+    private void checkToken(DetailAST ast, DetailAST nextToken) {
+        final int astType = ast.getType();
+        switch (astType) {
+            case TokenTypes.VARIABLE_DEF:
+                processVariableDef(ast, nextToken);
+                break;
+            case TokenTypes.IMPORT:
+            case TokenTypes.STATIC_IMPORT:
+                processImport(ast, nextToken);
+                break;
+            case TokenTypes.PACKAGE_DEF:
+                processPackage(ast, nextToken);
+                break;
+            default:
+                if (nextToken.getType() == TokenTypes.RCURLY) {
+                    if (hasNotAllowedTwoEmptyLinesBefore(nextToken)) {
+                        log(ast.getLineNo(), MSG_MULTIPLE_LINES_AFTER, ast.getText());
                     }
-                    else if (!hasEmptyLineAfter(ast)) {
-                        log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED,
-                            nextToken.getText());
-                    }
-            }
+                }
+                else if (!hasEmptyLineAfter(ast)) {
+                    log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED,
+                        nextToken.getText());
+                }
+        }
+    }
+
+    /**
+     * Checks that packageDef token is separated from comment in modifiers.
+     *
+     * @param packageDef package def token
+     */
+    private void checkCommentInModifiers(DetailAST packageDef) {
+        final Optional<DetailAST> comment = findCommentUnder(packageDef);
+        if (comment.isPresent()) {
+            log(comment.get().getLineNo(), MSG_SHOULD_BE_SEPARATED, comment.get().getText());
         }
     }
 
@@ -621,6 +645,20 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         // End of current token.
         final int currentEnd = lastToken.getLineNo();
         return hasEmptyLine(currentEnd + 1, nextBegin - 1);
+    }
+
+    /**
+     * Finds comment in next sibling of given packageDef.
+     *
+     * @param packageDef token to check
+     * @return comment under the token
+     */
+    private static Optional<DetailAST> findCommentUnder(DetailAST packageDef) {
+        return Optional.ofNullable(packageDef.getNextSibling())
+            .map(sibling -> sibling.findFirstToken(TokenTypes.MODIFIERS))
+            .map(DetailAST::getFirstChild)
+            .filter(EmptyLineSeparatorCheck::isComment)
+            .filter(comment -> comment.getLineNo() == packageDef.getLineNo() + 1);
     }
 
     /**
