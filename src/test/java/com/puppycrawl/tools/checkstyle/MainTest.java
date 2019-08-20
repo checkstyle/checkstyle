@@ -20,6 +20,8 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
@@ -34,6 +36,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +62,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecker;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class MainTest {
 
@@ -344,6 +348,50 @@ public class MainTest {
         Main.main("-c", getPath("InputMainConfig-classname.xml"),
                 "-f", "xml",
                 getPath("InputMain.java"));
+    }
+
+    /**
+     * This test method is created only to cover
+     * pitest mutation survival at Main#getOutputStreamOptions.
+     * No ability to test it by out general tests because
+     * Main does not produce any output to System.out after report is generated,
+     * System.out and System.err should be non-closed streams
+     *
+     * @throws Exception if there is an error.
+     * @noinspection UseOfSystemOutOrSystemErr
+     */
+    @Test
+    public void testNonClosedSystemStreams() throws Exception {
+        Main.main("-c", getPath("InputMainConfig-classname.xml"),
+                "-f", "xml",
+                getPath("InputMain.java"));
+
+        final Boolean closedOut = (Boolean) TestUtil
+                .getClassDeclaredField(System.out.getClass(), "closing").get(System.out);
+        assertThat("System.out stream should not be closed", closedOut, is(false));
+        final Boolean closedErr = (Boolean) TestUtil
+                .getClassDeclaredField(System.err.getClass(), "closing").get(System.err);
+        assertThat("System.err stream should not be closed", closedErr, is(false));
+    }
+
+    /**
+     * This test method is created only to cover
+     * pitest mutation survival at Main#getOutputStreamOptions.
+     * No ability to test it by out general tests.
+     * It is hard test that inner stream is closed, so pure UT is created to validate result
+     * of private method Main.getOutputStreamOptions
+     *
+     * @throws Exception if there is an error.
+     */
+    @Test
+    public void testGetOutputStreamOptionsMethod() throws Exception {
+        final Path path = new File(getPath("InputMain.java")).toPath();
+        final AutomaticBean.OutputStreamOptions option =
+                (AutomaticBean.OutputStreamOptions) TestUtil
+                    .getClassDeclaredMethod(Main.class, "getOutputStreamOptions")
+                    .invoke(null, path);
+        assertThat("Main.getOutputStreamOptions return CLOSE on not null Path",
+                option, is(AutomaticBean.OutputStreamOptions.CLOSE));
     }
 
     @Test

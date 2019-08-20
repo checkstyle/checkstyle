@@ -1328,6 +1328,7 @@
         <excludes>
           <!-- system-out is ok there, that is CLI -->
           <exclude>**/Main.class</exclude>
+          <exclude>**/MainTest.class</exclude>
           <exclude>**/Main$CliOptions.class</exclude>
           <exclude>**/JavadocPropertiesGenerator.class</exclude>
           <!-- generated classes, unfortunately use problematic api -->
