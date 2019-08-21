@@ -53,8 +53,8 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * <p>Known limitation: The key should not contain a newline.
  * The string compare will work, but not the line number reporting.</p>
  * <ul>
- *   <li>Property {@code fileExtensions} - file type extension of the files to check.
- *   Default value is .properties.</li>
+ *   <li>Property {@code fileExtensions} - Specify file type extension of the files to check.
+ *   Default value is {@code .properties}.</li>
  * </ul>
  * <p>To configure the check:</p>
  * <pre>&lt;module name="OrderedProperties"/&gt;</pre>
@@ -75,6 +75,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  *   On line 6 you have "key." The dot is on position 46 which is higher than nothing.
  *   key.png will reported as violation because "png" comes before "sub".</li>
  * </ul>
+ *
  * @since 8.22
  */
 @StatelessCheck

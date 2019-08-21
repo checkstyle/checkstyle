@@ -1357,9 +1357,9 @@ void foo(String aFooString,
           </tr>
           <tr>
             <td>fileExtensions</td>
-            <td>file type extension of the files to check.</td>
+            <td>Specify file type extension of the files to check.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>.properties</td>
+            <td><code>.properties</code></td>
             <td>8.22</td>
           </tr>
         </table>
