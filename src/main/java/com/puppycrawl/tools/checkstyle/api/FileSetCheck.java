@@ -30,8 +30,8 @@ public interface FileSetCheck
     extends Configurable, Contextualizable {
 
     /**
-     * Sets the MessageDispatcher that is used to dispatch error
-     * messages to AuditListeners during processing.
+     * Sets the MessageDispatcher that is used to dispatch audit events
+     * to AuditListeners during processing.
      * @param dispatcher the dispatcher
      */
     void setMessageDispatcher(MessageDispatcher dispatcher);
@@ -58,7 +58,7 @@ public interface FileSetCheck
      * <p>
      * The file set to process might contain files that are not
      * interesting to the FileSetCheck. Such files should be ignored,
-     * no error message should be fired for them. For example a FileSetCheck
+     * no audit event should be fired for them. For example a FileSetCheck
      * that checks java files should ignore HTML or properties files.
      * </p>
      * <p>

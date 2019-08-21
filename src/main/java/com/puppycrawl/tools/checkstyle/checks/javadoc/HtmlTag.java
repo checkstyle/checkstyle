@@ -99,7 +99,7 @@ class HtmlTag {
 
     /**
      * Returns the source line number where this tag was found.
-     * Used for displaying a Checkstyle error.
+     * Used for displaying a Checkstyle violation.
      * @return an int line number.
      */
     public int getLineNo() {
@@ -108,7 +108,7 @@ class HtmlTag {
 
     /**
      * Returns the position with in the comment line where this tag
-     * was found.  Used for displaying a Checkstyle error.
+     * was found.  Used for displaying a Checkstyle violation.
      * @return an int relative to zero.
      */
     public int getPosition() {

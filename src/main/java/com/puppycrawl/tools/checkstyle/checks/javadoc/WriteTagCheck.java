@@ -195,7 +195,7 @@ public class WriteTagCheck
     /**
      * Log a message.
      *
-     * @param line the line number where the error was found
+     * @param line the line number where the violation was found
      * @param tagName the javadoc tag to be logged
      * @param tagValue the contents of the tag
      *

@@ -82,8 +82,8 @@ public final class DetectorOptions {
     }
 
     /**
-     * The message to report errors with.
-     * @return the message to report errors with.
+     * The message to report violations with.
+     * @return the message to report violations with.
      */
     public String getMessage() {
         return message;

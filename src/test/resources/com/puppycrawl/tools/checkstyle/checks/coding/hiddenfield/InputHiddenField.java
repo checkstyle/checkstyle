@@ -87,7 +87,7 @@ interface NothingHidden
 {
     public static int notHidden = 0;
 
-    // not an error
+    // not a violation
     public void noShadow(int notHidden);
 }
 
@@ -102,13 +102,13 @@ class PropertySetter
         this.prop = prop;
     }
 
-    /** error - incorrect method name */
+    /** violation - incorrect method name */
     public void setprop(int prop)
     {
         this.prop = prop;
     }
 
-    /** error - more than one parameter */
+    /** violation - more than one parameter */
     public void setProp(int prop, int extra)
     {
         this.prop = prop;
@@ -120,7 +120,7 @@ class PropertySetter2
 {
     private int prop;
 
-    /** error - not a void method */
+    /** violation - not a void method */
     public int setProp(int prop)
     {
         this.prop = prop;
@@ -270,7 +270,7 @@ enum PropertySetter4 {
 
     /**
      * if setterCanReturnItsClass == false then
-     *     error - not a void method
+     *     violation - not a void method
      *
      * if setterCanReturnItsClass == true then
      *     success as it is then considered to be a setter

@@ -179,7 +179,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     /**
      * Checks if period is at the end of sentence.
      * @param ast Javadoc root node.
-     * @return error string
+     * @return violation string
      */
     private static String getSummarySentence(DetailNode ast) {
         boolean flag = true;

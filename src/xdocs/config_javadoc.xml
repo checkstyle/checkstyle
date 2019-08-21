@@ -410,13 +410,13 @@ public int field;
         </p>
 
         <p>
-          Error messages about parameters and type parameters
+          Violates parameters and type parameters
           for which no param tags are
           present can be suppressed by defining property
-          <code>allowMissingParamTags</code>. Error messages about
+          <code>allowMissingParamTags</code>. Violates
           exceptions which are declared to be thrown, but for which no
           throws tag is present can be suppressed by defining property
-          <code>allowMissingThrowsTags</code>. Error messages about
+          <code>allowMissingThrowsTags</code>. Violates
           methods which return non-void but for which no return tag is
           present can be suppressed by defining property
           <code>allowMissingReturnTag</code>.
@@ -520,7 +520,7 @@ public int checkReturnTag(final int aTagIndex,
           </tr>
           <tr>
             <td>allowMissingParamTags</td>
-            <td>whether to ignore errors when a method has parameters
+            <td>whether to ignore violations when a method has parameters
             but does not have matching param tags in the javadoc.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
@@ -528,7 +528,7 @@ public int checkReturnTag(final int aTagIndex,
           </tr>
           <tr>
             <td>allowMissingThrowsTags</td>
-            <td>whether to ignore errors when a method declares
+            <td>whether to ignore violations when a method declares
             that it throws exceptions but does not have matching throws tags
             in the javadoc.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
@@ -537,7 +537,7 @@ public int checkReturnTag(final int aTagIndex,
           </tr>
           <tr>
             <td>allowMissingReturnTag</td>
-            <td>whether to ignore errors when a method returns
+            <td>whether to ignore violations when a method returns
             non-void type and does not have a return tag in the javadoc.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
@@ -545,7 +545,7 @@ public int checkReturnTag(final int aTagIndex,
           </tr>
           <tr>
             <td>allowMissingJavadoc</td>
-            <td>whether to ignore errors when a method javadoc is missed.</td>
+            <td>whether to ignore violations when a method javadoc is missed.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>4.0</td>
@@ -771,7 +771,7 @@ public boolean isSomething()
           file.
         </p>
         <p>
-          An error will be reported if both files exist as this is not
+          A violation will be reported if both files exist as this is not
           allowed by the Javadoc tool.
         </p>
       </subsection>
@@ -1434,7 +1434,7 @@ public boolean isSomething()
           </tr>
           <tr>
             <td>allowMissingParamTags</td>
-            <td>whether to ignore errors when a class has type parameters
+            <td>whether to ignore violations when a class has type parameters
                 but does not have matching param tags in the javadoc.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
@@ -1442,7 +1442,7 @@ public boolean isSomething()
           </tr>
           <tr>
             <td>allowUnknownTags</td>
-            <td>whether to ignore errors when a Javadoc tag is not recognised.</td>
+            <td>whether to ignore violations when a Javadoc tag is not recognised.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>5.1</td>

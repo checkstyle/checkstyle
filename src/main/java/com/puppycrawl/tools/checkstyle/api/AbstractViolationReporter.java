@@ -143,8 +143,8 @@ public abstract class AbstractViolationReporter
     /**
      * Log a message that has no column information.
      *
-     * @param line the line number where the error was found
-     * @param key the message that describes the error
+     * @param line the line number where the audit event was found
+     * @param key the message that describes the audit event
      * @param args the details of the message
      *
      * @see java.text.MessageFormat
@@ -156,9 +156,9 @@ public abstract class AbstractViolationReporter
     /**
      * Log a message that has column information.
      *
-     * @param line the line number where the error was found
-     * @param col the column number where the error was found
-     * @param key the message that describes the error
+     * @param line the line number where the audit event was found
+     * @param col the column number where the audit event was found
+     * @param key the message that describes the audit event
      * @param args the details of the message
      *
      * @see java.text.MessageFormat

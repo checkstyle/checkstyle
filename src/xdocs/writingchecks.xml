@@ -41,7 +41,7 @@
         module and forms the root of the tree) implement the
         <a href="apidocs/com/puppycrawl/tools/checkstyle/api/FileSetCheck.html">FileSetCheck</a>
         interface. These are pretty simple to grasp: they take a set of
-        input files and fire error messages.
+        input files and fire violation messages.
       </p>
 
       <p>
@@ -352,7 +352,7 @@ public class MethodLimitCheck extends AbstractCheck
     // that are METHOD_DEFS
     int methodDefs = objBlock.getChildCount(TokenTypes.METHOD_DEF);
 
-    // report error if limit is reached
+    // report violation if limit is reached
     if (methodDefs > this.max) {
       String message = "too many methods, only " + this.max + " are allowed";
       log(ast.getLineNo(), message);
@@ -518,10 +518,10 @@ public class MethodLimitCheck extends AbstractCheck
     <section name="Logging errors">
 
       <p>
-        Detecting errors is one thing, presenting them to the user is
+        Detecting violation is one thing, presenting them to the user is
         another. To do that, the Check base class provides several log
         methods, the simplest of them being <code>Check.log(String)</code>. In your
-        Check you can simply use a verbatim error string like in
+        Check you can simply use a verbatim violation string like in
         <code>log(&quot;Too many methods, only &quot; + mMax +
         &quot; are allowed&quot;);</code> as the argument. That will
         work, but it&#39;s not the best possible solution if your Check is
@@ -531,14 +531,14 @@ public class MethodLimitCheck extends AbstractCheck
       <p>
         If you are not living in a country where people speak English,
         you may have noticed that Checkstyle writes internationalized
-        error messages, for example if you live in Germany the error
+        violation messages, for example if you live in Germany the violation
         messages are German. The individual Checks don&#39;t have to do
         anything fancy to achieve this, it&#39;s actually quite easy and the
         Checkstyle framework does most of the work.
       </p>
 
       <p>
-        To support internationalized error messages, you need to create or reuse existing
+        To support internationalized violation messages, you need to create or reuse existing
         a messages.properties file alongside your Check class (
         <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/com/puppycrawl/tools/checkstyle/checks/sizes/messages.properties">
           example</a>)
@@ -547,7 +547,7 @@ public class MethodLimitCheck extends AbstractCheck
         directory.  Add a symbolic error code and an English
         representation to the messages.properties. The file should
         contain the following line: <code>too.many.methods=Too many methods, only {0} are
-        allowed</code>.  Then replace the verbatim error message with
+        allowed</code>.  Then replace the verbatim violation message with
         the symbolic representation and use one of the log helper
         methods to provide the dynamic part of the message (mMax in this
         case): <code>log(&quot;too.many.methods&quot;,
@@ -561,7 +561,7 @@ public class MethodLimitCheck extends AbstractCheck
       <p>
         Supporting a new language is very easy now, simply create a new
         messages file for the language, e.g. messages_fr.properties to
-        provide French error messages. The correct file will be chosen
+        provide French violation messages. The correct file will be chosen
         automatically, based on the language settings of the user&#39;s
         operating system.
       </p>
@@ -623,7 +623,7 @@ public class MethodLimitCheck extends AbstractCheck
       </div>
 
       <p>
-        Did you see all those errors about &quot;too many methods&quot;
+        Did you see all those violations about &quot;too many methods&quot;
         flying over your screen? Congratulations. You can now consider
         yourself a Checkstyle expert. Go to your fridge. Have a beer.
       </p>
@@ -722,7 +722,7 @@ public class LimitImplementationFiles extends AbstractFileSetCheck
       // log the message
       log(1, "max.files.exceeded", Integer.valueOf(this.max));
       // you can call log() multiple times to flag multiple
-      // errors in the same file
+      // violations in the same file
     }
   }
 }

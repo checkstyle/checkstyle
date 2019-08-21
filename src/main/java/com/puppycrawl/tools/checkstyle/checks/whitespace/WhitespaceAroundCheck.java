@@ -569,7 +569,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * unfortunately its not possible to implement this functionality
      * in isNotRelevantSituation method, because in this method when we return
      * true(is not relevant) ast is later doesn't check at all. For example:
-     * new Properties() {{setProperty("double curly braces", "are not a style error");
+     * new Properties() {{setProperty("double curly braces", "are not a style violation");
      * }};
      * For second left curly brace in first line when we would return true from
      * isNotRelevantSituation it wouldn't later check that the next token(setProperty)

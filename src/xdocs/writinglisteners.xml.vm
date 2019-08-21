@@ -21,7 +21,7 @@
         A Checkstyle listener monitors the progress of a <code>Checker</code> during the audit
         of files. The <code>Checker</code> notifies its attached listeners of
         significant events such as the start of the audit of a file and
-        the logging of a Check error, and the listeners respond
+        the logging of a Check violation, and the listeners respond
         appropriately.  Any number of listeners can be attached to a
         <code> Checker</code>. An audit always adds one of
         the distribution listeners, <a
@@ -39,7 +39,7 @@
         Checkstyle users, but you may find a need for a custom
         listener. For example, a user has requested verbose output of
         progress information during a Checkstyle run. Another user would
-        like to filter error events. This document explains how to write
+        like to filter violation events. This document explains how to write
         listeners for such tasks and how to integrate them in a Checker
         module. It also describes two custom listeners that are inspired
         by ANT listeners: a listener that is a wrapper for the Jakarta
@@ -61,9 +61,9 @@
         href="apidocs/com/puppycrawl/tools/checkstyle/api/AuditEvent.html">AuditEvent</a>.
         A file-related <code>AuditEvent</code> contains the
         name of that file. An <code>AuditEvent</code> for
-        error logging has a message, a severity level, a message source
+        violation logging has a message, a severity level, a message source
         such as the name of a <code>Check</code>, and file
-        line and column numbers that may be relevant to the error. The
+        line and column numbers that may be relevant to the violation. The
         notification of an exception to a <code>AuditListener</code> includes an error
         <code>AuditEvent</code> and the details of the exception. Here is a UML diagram for
         classes <code>AuditListener</code> and <code>AuditEvent</code>.

@@ -38,7 +38,7 @@
         <li><em>Filters</em>
 
         - modules that filter audit events,
-        including error messages, for acceptance.</li>
+        including messages, for acceptance.</li>
 
         <li><em>AuditListeners</em> - modules that report accepted events.</li>
 
@@ -829,7 +829,7 @@
 
       <p>
         A Checker module has a set of Filter submodules to filter audit
-        events, including the error messages fired by Checks.  A Filter
+        events, including the violation messages fired by Checks.  A Filter
         can accept or reject an audit event. If all Filters accept an
         audit event, then the Checker reports the event.  If any Filter
         rejects an event, then the Checker does not report the

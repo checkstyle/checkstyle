@@ -102,7 +102,7 @@ public class TryHandler extends BlockParentHandler {
 
     /**
      * Method to check indentation of try resources children.
-     * It takes into account forceStrictCondition value when logging errors.
+     * It takes into account forceStrictCondition value when logging violations.
      * Example of usage would include checking for try parenthesis and try resources.
      *
      * @param ast           AST to check.

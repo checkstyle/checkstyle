@@ -649,14 +649,14 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
           </tr>
           <tr>
             <td>minimumMessage</td>
-            <td>Define the error message when the minimum count is not reached.</td>
+            <td>Define the violation message when the minimum count is not reached.</td>
             <td><a href="property_types.html#string">String</a></td>
             <td><code>null</code></td>
             <td>3.2</td>
           </tr>
           <tr>
             <td>maximumMessage</td>
-            <td>Define the error message when the maximum count is exceeded.</td>
+            <td>Define the violation message when the maximum count is exceeded.</td>
             <td><a href="property_types.html#string">String</a></td>
             <td><code>null</code></td>
             <td>3.2</td>
@@ -1365,7 +1365,7 @@ void foo(String aFooString,
         </p>
         <p>
           Rationale: Sorted properties make it easy for people to find required properties by name
-          in file. It makes merges more easy. While there are no errors at runtime.
+          in file. It makes merges more easy. While there are no problems at runtime.
           This check is valuable only on files with string resources where order of lines
           does not matter at all, but this can be improved.
           E.g.: checkstyle/src/main/resources/com/puppycrawl/tools/checkstyle/messages.properties
@@ -2081,7 +2081,7 @@ messages_home_fr_CA_UNIX.properties
         </p>
         <p>
           Rationale: Multiple property keys usually appear after merge
-          or rebase of several branches. While there are no errors in
+          or rebase of several branches. While there are no problems in
           runtime, there can be a confusion due to having different values
           for the duplicated properties.
         </p>

@@ -68,7 +68,7 @@ public class CyclomaticComplexityCheck
     /** The current value. */
     private BigInteger currentValue = INITIAL_VALUE;
 
-    /** Threshold to report error for. */
+    /** Threshold to report violation for. */
     private int max = DEFAULT_COMPLEXITY_VALUE;
 
     /**

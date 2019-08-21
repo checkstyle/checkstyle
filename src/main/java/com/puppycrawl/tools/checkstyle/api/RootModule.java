@@ -36,7 +36,7 @@ public interface RootModule extends Configurable {
      * Once this is done, it is highly recommended to call for
      * the destroy method to close and remove the listeners.
      * @param files the list of files to be audited.
-     * @return the total number of errors found
+     * @return the total number of audit events with error severity found
      * @throws CheckstyleException if error condition within Checkstyle occurs
      * @see #destroy()
      */

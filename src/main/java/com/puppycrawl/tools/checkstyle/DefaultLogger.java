@@ -138,7 +138,7 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
 
     /**
      * Creates a new {@code DefaultLogger} instance.
-     * @param outputStream where to log infos and errors
+     * @param outputStream where to log audit events
      * @param outputStreamOptions if {@code CLOSE} that should be closed in auditFinished()
      */
     public DefaultLogger(OutputStream outputStream, OutputStreamOptions outputStreamOptions) {

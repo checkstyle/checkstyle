@@ -516,7 +516,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
     /**
      * Checks resource files in bundle for consistency regarding their keys.
      * All files in bundle must have the same key set. If this is not the case
-     * an error message is posted giving information which key misses in which file.
+     * an audit event message is posted giving information which key misses in which file.
      * @param bundle resource bundle.
      */
     private void checkTranslationKeys(ResourceBundle bundle) {

@@ -108,14 +108,14 @@
             <td>Controls whether to check for duplicates of a required pattern,
               any negative value means no checking for duplicates, any positive
               value is used as the maximum number of allowed duplicates, if the
-              limit is exceeded errors will be logged.</td>
+              limit is exceeded violations will be logged.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>0</code></td>
             <td>4.0</td>
           </tr>
           <tr>
             <td>errorLimit</td>
-            <td>Controls the maximum number of errors before the check will abort.</td>
+            <td>Controls the maximum number of violations before the check will abort.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>100</code></td>
             <td>4.0</td>
@@ -236,7 +236,7 @@
           tells the regexp engine to ignore the case.
         </p>
         <p>
-          There is also a feature to limit the number of errors reported.
+          There is also a feature to limit the number of violations reported.
           When the limit is reached the check aborts with a message
           reporting that the limit has been reached.
           The default limit setting is 100, but this can be change as shown in
@@ -652,13 +652,13 @@ public static final int A_SETPOINT = 1;
         </p>
         <p>
           It is recommended that if you create your own pattern, to also
-          specify a custom error message. This allows the error message printed
+          specify a custom violation message. This allows the violation message printed
           to be clear what the violation is, especially if multiple RegexpOnFilename
           checks are used.
           Argument 0 for the message populates the check's folderPattern.
           Argument 1 for the message populates the check's fileNamePattern.
           The file name is not passed as an argument since it is part of CheckStyle's
-          default error messages.
+          default violation messages.
         </p>
       </subsection>
 

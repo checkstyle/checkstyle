@@ -9,7 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 /**
- * Test case for detecting simple semantic errors.
+ * Test case for detecting simple semantic violations.
  * @author Lars Kühne
  **/
 class InputEqualsHashCodeSemantic

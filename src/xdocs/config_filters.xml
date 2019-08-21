@@ -432,7 +432,7 @@ public class UserService {
       <subsection name="Description" id="SuppressionFilter_Description">
           <p>
             Filter <code>SuppressionFilter</code> rejects
-            audit events for Check errors according to
+            audit events for Check violations according to
             a <a href="dtds/suppressions_1_2.dtd">suppressions XML
             document</a> in a file. If there is no configured
             suppressions file or the optional is set to true and
@@ -562,12 +562,12 @@ public class UserService {
           <p>
             The following suppressions XML document directs
             a <code>SuppressionFilter</code> to
-            reject <code>JavadocStyleCheck</code> errors for
+            reject <code>JavadocStyleCheck</code> violations for
             lines 82 and 108 to 122 of
             file <code>AbstractComplexityCheck.java</code>,
-            and <code>MagicNumberCheck</code> errors for line
+            and <code>MagicNumberCheck</code> violations for line
             221 of file <code>JavadocStyleCheck.java</code>,
-            and <code>'Missing a Javadoc comment'</code> errors
+            and <code>'Missing a Javadoc comment'</code> violations
             for all lines and files:
           </p>
           <source>
@@ -639,7 +639,7 @@ public class UserService {
   files=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
           </source>
           <p>
-            Suppress naming errors on variable named 'log' in all files:
+            Suppress naming violations on variable named 'log' in all files:
           </p>
           <source>
 &lt;suppress message=&quot;Name 'log' must match pattern&quot;/&gt;
@@ -749,12 +749,12 @@ public class UserService {
           <p>
             The following suppressions directs
             a <code>SuppressionSingleFilter</code> to
-            reject <code>JavadocStyleCheck</code> errors for
+            reject <code>JavadocStyleCheck</code> violations for
             lines 82 and 108 to 122 of
             file <code>AbstractComplexityCheck.java</code>,
-            and <code>MagicNumberCheck</code> errors for line
+            and <code>MagicNumberCheck</code> violations for line
             221 of file <code>JavadocStyleCheck.java</code>,
-            and <code>'Missing a Javadoc comment'</code> errors
+            and <code>'Missing a Javadoc comment'</code> violations
             for all lines and files:
           </p>
           <source>
@@ -847,7 +847,7 @@ public class UserService {
 &lt;/module&gt;
           </source>
           <p>
-            Suppress naming errors on variable named 'log' in all files:
+            Suppress naming violations on variable named 'log' in all files:
           </p>
           <source>
 &lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
@@ -1110,7 +1110,7 @@ public class UserService {
         <p>
           The following suppressions XML document directs
           a <code>SuppressionXpathFilter</code> to
-          reject <code>CyclomaticComplexity</code> errors for
+          reject <code>CyclomaticComplexity</code> violations for
           all methods with name <i>sayHelloWorld</i> inside <i>FileOne</i>
           and <i>FileTwo</i> files:
         </p>

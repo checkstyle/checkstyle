@@ -219,15 +219,15 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     }
 
     /**
-     * Get tab width to report errors with.
-     * @return the tab width to report errors with
+     * Get tab width to report audit events with.
+     * @return the tab width to audit events with
      */
     protected final int getTabWidth() {
         return tabWidth;
     }
 
     /**
-     * Set the tab width to report errors with.
+     * Set the tab width to report audit events with.
      * @param tabWidth an {@code int} value
      */
     public final void setTabWidth(int tabWidth) {

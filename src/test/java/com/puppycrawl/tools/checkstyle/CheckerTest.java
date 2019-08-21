@@ -1384,11 +1384,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.addListener(logger);
 
         final String path = temporaryFolder.newFile("file.java").getPath();
-        final String errorMessage =
+        final String violationMessage =
                 getCheckMessage(NewlineAtEndOfFileCheck.class, MSG_KEY_NO_NEWLINE_EOF);
         final String[] expected = {
-            "1: " + errorMessage + " [NewlineAtEndOfFile]",
-            "1: " + errorMessage + " [ModuleId]",
+            "1: " + violationMessage + " [NewlineAtEndOfFile]",
+            "1: " + violationMessage + " [ModuleId]",
         };
 
         // super.verify does not work here, for we change the logger

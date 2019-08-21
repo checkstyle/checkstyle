@@ -72,7 +72,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
     /** NP value for current range. */
     private BigInteger currentRangeValue = INITIAL_VALUE;
 
-    /** Threshold to report error for. */
+    /** Threshold to report violation for. */
     private int max = DEFAULT_MAX;
 
     /** True, when branch is visited, but not leaved. */

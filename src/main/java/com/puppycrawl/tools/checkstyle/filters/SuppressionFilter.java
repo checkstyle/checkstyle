@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
 
 /**
  * <p>
- * Filter {@code SuppressionFilter} rejects audit events for Check errors according to a
+ * Filter {@code SuppressionFilter} rejects audit events for Check violations according to a
  * <a href="https://checkstyle.org/dtds/suppressions_1_2.dtd">suppressions XML document</a>
  * in a file. If there is no configured suppressions file or the optional is set to true and
  * suppressions file was not found the Filter accepts all audit events.
@@ -129,10 +129,10 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </pre>
  * <p>
  * The following suppressions XML document directs a {@code SuppressionFilter} to
- * reject {@code JavadocStyleCheck} errors for lines 82 and 108 to 122 of file
- * {@code AbstractComplexityCheck.java}, and {@code MagicNumberCheck} errors for
+ * reject {@code JavadocStyleCheck} violations for lines 82 and 108 to 122 of file
+ * {@code AbstractComplexityCheck.java}, and {@code MagicNumberCheck} violations for
  * line 221 of file {@code JavadocStyleCheck.java}, and
- * {@code 'Missing a Javadoc comment'} errors for all lines and files:
+ * {@code 'Missing a Javadoc comment'} violations for all lines and files:
  * </p>
  * <pre>
  * &lt;?xml version=&quot;1.0&quot;?&gt;
@@ -203,7 +203,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  *   files=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
  * </pre>
  * <p>
- * Suppress naming errors on variable named 'log' in all files:
+ * Suppress naming violations on variable named 'log' in all files:
  * </p>
  * <pre>
  * &lt;suppress message=&quot;Name 'log' must match pattern&quot;/&gt;

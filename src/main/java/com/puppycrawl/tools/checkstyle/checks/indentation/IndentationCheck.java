@@ -271,10 +271,10 @@ public class IndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Log an error message.
+     * Log a violation message.
      *
-     * @param line the line number where the error was found
-     * @param key the message that describes the error
+     * @param line the line number where the violation was found
+     * @param key the message that describes the violation
      * @param args the details of the message
      *
      * @see java.text.MessageFormat
