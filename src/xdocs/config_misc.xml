@@ -2030,10 +2030,10 @@ messages_home_fr_CA_UNIX.properties
     </section>
 
     <section name="UniqueProperties">
+      <p>Since Checkstyle 5.7</p>
       <subsection name="Description" id="UniqueProperties_Description">
-        <p>Since Checkstyle 5.7</p>
         <p>
-          Checks properties files for duplicated properties.
+          Checks properties files for duplicate property keys.
         </p>
         <p>
           Rationale: Multiple property keys usually appear after merge
@@ -2055,9 +2055,9 @@ messages_home_fr_CA_UNIX.properties
           </tr>
           <tr>
             <td>fileExtensions</td>
-            <td>file type extension of the files to check.</td>
+            <td>Specify file type extension of the files to check.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>.properties</td>
+            <td><code>.properties</code></td>
             <td>5.7</td>
           </tr>
         </table>

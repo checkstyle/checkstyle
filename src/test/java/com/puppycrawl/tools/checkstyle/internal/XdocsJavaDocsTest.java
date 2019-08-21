@@ -104,7 +104,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "TodoComment",
         "TrailingComment",
         "Translation",
-        "UniqueProperties",
         "UpperEll",
         // modifier
         "AnonInnerLength",
