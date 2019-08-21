@@ -28,7 +28,7 @@ import java.util.EventObject;
  * I'm not very satisfied about the design of this event since there are
  * optional methods that will return null in most of the case. This will
  * need some work to clean it up especially if we want to introduce
- * a more sequential reporting action rather than a packet error
+ * a more sequential reporting action rather than a packet
  * reporting. This will allow for example to follow the process quickly
  * in an interface or a servlet (yep, that's cool to run a check via
  * a web interface in a source repository ;-)

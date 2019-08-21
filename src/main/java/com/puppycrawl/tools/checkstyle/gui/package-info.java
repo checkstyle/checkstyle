@@ -35,7 +35,7 @@
  *     (well, err.., except Eclipse).
  *   </li>
  *   <li>
- *     Add ability to execute individual Checks and display the error messages.
+ *     Add ability to execute individual Checks and display the violation messages.
  *   </li>
  *   <li>
  *     Add a GUI for the

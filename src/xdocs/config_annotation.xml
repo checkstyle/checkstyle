@@ -1015,7 +1015,7 @@ public static final int COUNTER = 10; // violation
         <p>
           Maintains a set of check suppressions from
           <code>@SuppressWarnings</code> annotations. It allows to
-          prevent Checkstyle from reporting errors from parts of code
+          prevent Checkstyle from reporting violations from parts of code
           that were annotated with <code>@SuppressWarnings</code> and
           using name of the check to be excluded. You can also define
           aliases for check names that need to be suppressed.
@@ -1045,7 +1045,7 @@ public static final int COUNTER = 10; // violation
       </subsection>
 
       <subsection name="Examples" id="SuppressWarningsHolder_Examples">
-        <p>To prevent <code>FooCheck</code> errors from being reported write:</p>
+        <p>To prevent <code>FooCheck</code> violations from being reported write:</p>
         <source>
 @SuppressWarnings("foo") interface I { }
 @SuppressWarnings("foo") enum E { }

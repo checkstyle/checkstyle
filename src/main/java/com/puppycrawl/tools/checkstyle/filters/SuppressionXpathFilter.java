@@ -418,7 +418,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </p>
  * <p>
  * The following suppressions XML document directs a {@code SuppressionXpathFilter} to reject
- * {@code CyclomaticComplexity} errors for all methods with name <i>sayHelloWorld</i> inside
+ * {@code CyclomaticComplexity} violations for all methods with name <i>sayHelloWorld</i> inside
  * <i>FileOne</i> and <i>FileTwo</i> files:
  * </p>
  * <p>

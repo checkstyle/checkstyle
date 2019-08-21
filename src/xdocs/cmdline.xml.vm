@@ -47,7 +47,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
 
       <p>
         Checkstyle will process the specified files and by default report
-        errors to standard out in plain format. Checkstyle requires a <a
+        violations to standard out in plain format. Checkstyle requires a <a
         href="config.html">configuration XML file</a> that configures the
         checks to apply. Command line options are:
       </p>
@@ -92,7 +92,8 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         <li>
           <code>-g,--generate-xpath-suppression</code> - generate to output a suppression xml to
           use to suppress all violations from user's config. Instead of printing every violation,
-          all errors will be catched and single suppressions xml file will be printed out. Used only
+          all violations will be catched and single suppressions xml file will be printed out.
+          Used only
           with <code>-c</code> option. Output location can be specified with <code>-o</code> option.
         </li>
         <li>

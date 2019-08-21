@@ -129,7 +129,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        // Reset for each tree, just increase there are errors in preceding
+        // Reset for each tree, just increase there are violations in preceding
         // trees.
         depth = 0;
     }

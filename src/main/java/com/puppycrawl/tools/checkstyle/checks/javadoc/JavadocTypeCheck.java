@@ -102,11 +102,11 @@ public class JavadocTypeCheck
     /** Compiled regexp to match version tag content. **/
     private Pattern versionFormat;
     /**
-     * Controls whether to ignore errors when a method has type parameters but
+     * Controls whether to ignore violations when a method has type parameters but
      * does not have matching param tags in the javadoc. Defaults to false.
      */
     private boolean allowMissingParamTags;
-    /** Controls whether to flag errors for unknown tags. Defaults to false. */
+    /** Controls whether to flag violations for unknown tags. Defaults to false. */
     private boolean allowUnknownTags;
 
     /** List of annotations that allow missed documentation. */
@@ -155,7 +155,7 @@ public class JavadocTypeCheck
     }
 
     /**
-     * Controls whether to flag errors for unknown tags. Defaults to false.
+     * Controls whether to flag violations for unknown tags. Defaults to false.
      * @param flag a {@code Boolean} value
      */
     public void setAllowUnknownTags(boolean flag) {

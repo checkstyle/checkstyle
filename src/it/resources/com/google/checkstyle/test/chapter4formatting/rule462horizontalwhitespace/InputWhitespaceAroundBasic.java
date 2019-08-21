@@ -175,14 +175,14 @@ class InputWhitespaceAroundBasic
     }
 
 
-    /** bug  806243 (NoWhitespaceBeforeCheck error for anonymous inner class) */
+    /** bug  806243 (NoWhitespaceBeforeCheck violation for anonymous inner class) */
     private int i ;
     //           ^ whitespace
     private int i1, i2, i3 ;
     //                    ^ whitespace
     private int i4, i5, i6;
 
-    /** bug  806243 (NoWhitespaceBeforeCheck error for anonymous inner class) */
+    /** bug  806243 (NoWhitespaceBeforeCheck violation for anonymous inner class) */
     void bug806243()
     {
         Object o = new InputWhitespaceAroundBasic() {
@@ -196,7 +196,7 @@ class InputWhitespaceAroundBasic
 }
 
 /**
- * Bug 806242 (NoWhitespaceBeforeCheck error with an interface).
+ * Bug 806242 (NoWhitespaceBeforeCheck violation with an interface).
  * @author o_sukhodolsky
  * @version 1.0
  */
@@ -207,7 +207,7 @@ interface IFoo
 }
 
 /**
- * Avoid Whitespace errors in for loop.
+ * Avoid Whitespace violations in for loop.
  * @author lkuehne
  * @version 1.0
  */

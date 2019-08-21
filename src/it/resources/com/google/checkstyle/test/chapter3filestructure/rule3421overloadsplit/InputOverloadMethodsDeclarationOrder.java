@@ -22,7 +22,7 @@ class InputOverloadMethodsDeclarationOrder
 
     }
 
-    //error because overloads never split
+    //violation because overloads never split
     public void overloadMethod(String s, Boolean b, int i) //warn
     {
         //some foo code
@@ -50,7 +50,7 @@ class InputOverloadMethodsDeclarationOrder
 
         }
 
-        //error because overloads never split
+        //violation because overloads never split
         public void overloadMethod(String s, Boolean b, int i) //warn
         {
             //some foo code
@@ -105,7 +105,7 @@ enum FooType {
 
     }
 
-    //error because overloads never split
+    //violation because overloads never split
     public void overloadMethod(String s, Boolean b, int i) //warn
     {
         //some foo code

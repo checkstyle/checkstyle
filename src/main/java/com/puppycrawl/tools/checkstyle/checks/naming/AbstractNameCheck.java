@@ -36,7 +36,7 @@ public abstract class AbstractNameCheck
     extends AbstractCheck {
 
     /**
-     * Message key for invalid pattern error.
+     * Message key for invalid pattern violation.
      */
     public static final String MSG_INVALID_PATTERN = "name.invalidPattern";
 

@@ -323,9 +323,9 @@ public abstract class AbstractExpressionHandler {
         IndentLevel indentLevel, boolean mustMatch) {
         final String line = indentCheck.getLine(lineNum - 1);
         final int start = getLineStart(line);
-        // if must match is set, it is an error if the line start is not
+        // if must match is set, it is a violation if the line start is not
         // at the correct indention level; otherwise, it is an only an
-        // error if this statement starts the line and it is less than
+        // violation if this statement starts the line and it is less than
         // the correct indentation level
         if (mustMatch && !indentLevel.isAcceptable(start)
                 || !mustMatch && colNum == start && indentLevel.isGreaterThan(start)) {

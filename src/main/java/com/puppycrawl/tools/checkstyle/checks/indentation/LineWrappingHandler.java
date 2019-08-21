@@ -346,7 +346,7 @@ public class LineWrappingHandler {
      * Logs warning message if indentation is incorrect.
      *
      * @param currentNode
-     *            current node which probably invoked an error.
+     *            current node which probably invoked a violation.
      * @param currentIndent
      *            correct indentation.
      */

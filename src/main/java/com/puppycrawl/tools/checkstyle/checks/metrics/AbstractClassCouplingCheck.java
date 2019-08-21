@@ -311,7 +311,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
 
         /**
          * Set of referenced classes.
-         * Sorted by name for predictable error messages in unit tests.
+         * Sorted by name for predictable violation messages in unit tests.
          */
         private final Set<String> referencedClassNames = new TreeSet<>();
         /** Own class name. */

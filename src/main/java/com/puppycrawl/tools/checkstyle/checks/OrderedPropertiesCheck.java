@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * <p>Detects if keys in properties files are in correct order.</p>
  * <p>
  *   Rationale: Sorted properties make it easy for people to find required properties by name
- *   in file. It makes merges more easy. While there are no errors at runtime.
+ *   in file. It makes merges more easy. While there are no problems at runtime.
  *   This check is valuable only on files with string resources where order of lines
  *   does not matter at all, but this can be improved.
  *   E.g.: checkstyle/src/main/resources/com/puppycrawl/tools/checkstyle/messages.properties

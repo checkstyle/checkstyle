@@ -629,7 +629,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
     }
 
     /**
-     * Set the tab width to report errors with.
+     * Set the tab width to report audit events with.
      * @param tabWidth an {@code int} value
      */
     public final void setTabWidth(int tabWidth) {

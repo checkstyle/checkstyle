@@ -47,7 +47,7 @@ public final class ExecutableStatementCountCheck
     /** Stack of method contexts. */
     private final Deque<Context> contextStack = new ArrayDeque<>();
 
-    /** Threshold to report error for. */
+    /** Threshold to report violation for. */
     private int max;
 
     /** Current method context. */

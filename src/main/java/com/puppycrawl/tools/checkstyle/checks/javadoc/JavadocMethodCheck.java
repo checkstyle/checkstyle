@@ -144,20 +144,20 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     private boolean allowThrowsTagsForSubclasses;
 
     /**
-     * Controls whether to ignore errors when a method has parameters but does
+     * Controls whether to ignore violations when a method has parameters but does
      * not have matching param tags in the javadoc. Defaults to false.
      */
     private boolean allowMissingParamTags;
 
     /**
-     * Controls whether to ignore errors when a method declares that it throws
+     * Controls whether to ignore violations when a method declares that it throws
      * exceptions but does not have matching throws tags in the javadoc.
      * Defaults to false.
      */
     private boolean allowMissingThrowsTags;
 
     /**
-     * Controls whether to ignore errors when a method returns non-void type
+     * Controls whether to ignore violations when a method returns non-void type
      * but does not have a return tag in the javadoc. Defaults to false.
      */
     private boolean allowMissingReturnTag;
@@ -273,7 +273,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     }
 
     /**
-     * Controls whether to ignore errors when there is no javadoc. Defaults to
+     * Controls whether to ignore violations when there is no javadoc. Defaults to
      * false.
      *
      * @param flag a {@code Boolean} value
@@ -285,7 +285,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     }
 
     /**
-     * Controls whether to ignore errors when there is no javadoc for a
+     * Controls whether to ignore violations when there is no javadoc for a
      * property accessor (setter/getter methods). Defaults to false.
      *
      * @param flag a {@code Boolean} value
@@ -390,7 +390,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
 
     /**
      * Validates whether the Javadoc has a short circuit tag. Currently this is
-     * the inheritTag. Any errors are logged.
+     * the inheritTag. Any violations are logged.
      *
      * @param ast the construct being checked
      * @param tags the list of Javadoc tags associated with the construct
@@ -722,7 +722,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     private void checkReturnTag(List<JavadocTag> tags, int lineNo,
         boolean reportExpectedTags) {
         // Loop over tags finding return tags. After the first one, report an
-        // error.
+        // violation.
         boolean found = false;
         final ListIterator<JavadocTag> it = tags.listIterator();
         while (it.hasNext()) {

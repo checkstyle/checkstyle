@@ -63,11 +63,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * <p>
  * It is recommended that if you create your own pattern, to also specify a
- * custom error message. This allows the error message printed to be clear what
+ * custom violation message. This allows the violation message printed to be clear what
  * the violation is, especially if multiple RegexpOnFilename checks are used.
  * Argument 0 for the message populates the check's folderPattern. Argument 1
  * for the message populates the check's fileNamePattern. The file name is not
- * passed as an argument since it is part of CheckStyle's default error
+ * passed as an argument since it is part of CheckStyle's default violation
  * messages.
  * </p>
  *
@@ -328,7 +328,7 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
         return fileNamePattern == null || fileNamePattern.matcher(fileName).find() == match;
     }
 
-    /** Logs the errors for the check. */
+    /** Logs the violations for the check. */
     private void log() {
         final String folder = getStringOrDefault(folderPattern, "");
         final String fileName = getStringOrDefault(fileNamePattern, "");

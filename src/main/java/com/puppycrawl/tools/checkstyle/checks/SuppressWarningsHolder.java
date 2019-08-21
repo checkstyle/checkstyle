@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * <p>
  * Maintains a set of check suppressions from {@code @SuppressWarnings} annotations.
- * It allows to prevent Checkstyle from reporting errors from parts of code that were
+ * It allows to prevent Checkstyle from reporting violations from parts of code that were
  * annotated with {@code @SuppressWarnings} and using name of the check to be excluded.
  * You can also define aliases for check names that need to be suppressed.
  * </p>
@@ -47,7 +47,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
- * To prevent {@code FooCheck} errors from being reported write:
+ * To prevent {@code FooCheck} violations from being reported write:
  * </p>
  * <pre>
  * &#64;SuppressWarnings("foo") interface I { }

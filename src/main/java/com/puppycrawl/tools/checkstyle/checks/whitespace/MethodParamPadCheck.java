@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * That is, if the identifier and left parenthesis are on the same line,
  * checks whether a space is required immediately after the identifier or
  * such a space is forbidden.
- * If they are not on the same line, reports an error, unless configured to
+ * If they are not on the same line, reports a violation, unless configured to
  * allow line breaks. To allow linebreaks after the identifier, set property
  * {@code allowLineBreaks} to {@code true}.
  * </p>

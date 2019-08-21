@@ -67,11 +67,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code minimumMessage} - Define the error message when the minimum count is not reached.
+ * Property {@code minimumMessage} - Define the violation message
+ * when the minimum count is not reached.
  * Default value is {@code null}.
  * </li>
  * <li>
- * Property {@code maximumMessage} - Define the error message when the maximum count is exceeded.
+ * Property {@code maximumMessage} - Define the violation message
+ * when the maximum count is exceeded.
  * Default value is {@code null}.
  * </li>
  * </ul>
@@ -310,9 +312,9 @@ public class DescendantTokenCheck extends AbstractCheck {
     private boolean sumTokenCounts;
     /** Specify set of tokens with limited occurrences as descendants. */
     private int[] limitedTokens = CommonUtil.EMPTY_INT_ARRAY;
-    /** Define the error message when the minimum count is not reached. */
+    /** Define the violation message when the minimum count is not reached. */
     private String minimumMessage;
-    /** Define the error message when the maximum count is exceeded. */
+    /** Define the violation message when the maximum count is exceeded. */
     private String maximumMessage;
 
     /**
@@ -507,9 +509,9 @@ public class DescendantTokenCheck extends AbstractCheck {
     }
 
     /**
-     * Setter to define the error message when the minimum count is not reached.
+     * Setter to define the violation message when the minimum count is not reached.
      *
-     * @param message the error message for minimum count not reached.
+     * @param message the violation message for minimum count not reached.
      *     Used as a {@code MessageFormat} pattern with arguments
      *     <ul>
      *     <li>{0} - token count</li>
@@ -523,9 +525,9 @@ public class DescendantTokenCheck extends AbstractCheck {
     }
 
     /**
-     * Setter to define the error message when the maximum count is exceeded.
+     * Setter to define the violation message when the maximum count is exceeded.
      *
-     * @param message the error message for maximum count exceeded.
+     * @param message the violation message for maximum count exceeded.
      *     Used as a {@code MessageFormat} pattern with arguments
      * <ul>
      * <li>{0} - token count</li>

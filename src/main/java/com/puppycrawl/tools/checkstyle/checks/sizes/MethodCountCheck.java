@@ -163,7 +163,7 @@ public final class MethodCountCheck extends AbstractCheck {
     /**
      * Check the counters and report violations.
      * @param counter the method counters to check
-     * @param ast to report errors against.
+     * @param ast to report violations against.
      */
     private void checkCounters(MethodCounter counter, DetailAST ast) {
         checkMax(maxPrivate, counter.value(Scope.PRIVATE),

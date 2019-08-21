@@ -71,9 +71,10 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
  * </ul>
  * <p>
  * The following suppressions directs a {@code SuppressionSingleFilter} to reject
- * {@code JavadocStyleCheck} errors for lines 82 and 108 to 122 of file
- * {@code AbstractComplexityCheck.java}, and {@code MagicNumberCheck} errors for line 221 of file
- * {@code JavadocStyleCheck.java}, and {@code 'Missing a Javadoc comment'} errors for all lines
+ * {@code JavadocStyleCheck} violations for lines 82 and 108 to 122 of file
+ * {@code AbstractComplexityCheck.java}, and
+ * {@code MagicNumberCheck} violations for line 221 of file
+ * {@code JavadocStyleCheck.java}, and {@code 'Missing a Javadoc comment'} violations for all lines
  * and files:
  * </p>
  * <pre>
@@ -166,7 +167,7 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Suppress naming errors on variable named 'log' in all files:
+ * Suppress naming violations on variable named 'log' in all files:
  * </p>
  * <pre>
  * &lt;module name="SuppressionSingleFilter"&gt;
