@@ -273,7 +273,9 @@ public class MainTest {
                 + System.lineSeparator(), systemOut.getLog());
             assertEquals("Unexpected system error log", "", systemErr.getLog());
         });
-        Main.main("-c", "/google_checks.xml", "/etc/sudoers");
+        final File file = temporaryFolder.newFile("testExistingTargetFileButWithoutReadAccess");
+        file.setReadable(false);
+        Main.main("-c", "/google_checks.xml", file.getCanonicalPath());
     }
 
     @Test
