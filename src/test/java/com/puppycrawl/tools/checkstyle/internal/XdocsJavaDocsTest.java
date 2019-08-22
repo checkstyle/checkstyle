@@ -102,7 +102,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "NewlineAtEndOfFile",
         "TodoComment",
         "Translation",
-        "UpperEll",
         // modifier
         "AnonInnerLength",
         "ExecutableStatementCount",
