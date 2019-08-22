@@ -33,71 +33,86 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * The check to ensure that comments are the only thing on a line.
- * For the case of {@code //} comments that means that the only thing that should
- * precede it is whitespace.
- * It doesn't check comments if they do not end line, i.e. it accept
- * the following:
+ * The check to ensure that requires that comments be the only thing on a line.
+ * For the case of {@code //} comments that means that the only thing that should precede
+ * it is whitespace. It doesn't check comments if they do not end a line; for example,
+ * it accepts the following: <code>Thread.sleep( 10 /*some comment here&#42;/ );</code>
+ * Format property is intended to deal with the <code>} // while</code> example.
  * </p>
- * <pre><code>Thread.sleep( 10 /*some comment here&#42;/ );</code></pre>
- * <p>Format property is intended to deal with the <code>} // while</code> example.
+ * <p>
+ * Rationale: Steve McConnell in <cite>Code Complete</cite> suggests that endline
+ * comments are a bad practice. An end line comment would be one that is on
+ * the same line as actual code. For example:
  * </p>
- *
- * <p>Rationale: Steve McConnell in &quot;Code Complete&quot; suggests that endline
- * comments are a bad practice. An end line comment would
- * be one that is on the same line as actual code. For example:
  * <pre>
- *  a = b + c;      // Some insightful comment
- *  d = e / f;        // Another comment for this line
+ * a = b + c;      // Some insightful comment
+ * d = e / f;        // Another comment for this line
  * </pre>
- * Quoting &quot;Code Complete&quot; for the justification:
+ * <p>
+ * Quoting <cite>Code Complete</cite> for the justification:
+ * </p>
  * <ul>
  * <li>
- * &quot;The comments have to be aligned so that they do not
- * interfere with the visual structure of the code. If you don't
- * align them neatly, they'll make your listing look like it's been
- * through a washing machine.&quot;
+ * "The comments have to be aligned so that they do not interfere with the visual
+ * structure of the code. If you don't align them neatly, they'll make your listing
+ * look like it's been through a washing machine."
  * </li>
  * <li>
- * &quot;Endline comments tend to be hard to format...It takes time
- * to align them. Such time is not spent learning more about
- * the code; it's dedicated solely to the tedious task of
- * pressing the spacebar or tab key.&quot;
+ * "Endline comments tend to be hard to format...It takes time to align them.
+ * Such time is not spent learning more about the code; it's dedicated solely
+ * to the tedious task of pressing the spacebar or tab key."
  * </li>
  * <li>
- * &quot;Endline comments are also hard to maintain. If the code on
- * any line containing an endline comment grows, it bumps the
- * comment farther out, and all the other endline comments will
- * have to bumped out to match. Styles that are hard to
- * maintain aren't maintained....&quot;
+ * "Endline comments are also hard to maintain. If the code on any line containing
+ * an endline comment grows, it bumps the comment farther out, and all the other
+ * endline comments will have to bumped out to match. Styles that are hard to
+ * maintain aren't maintained...."
  * </li>
  * <li>
- * &quot;Endline comments also tend to be cryptic. The right side of
- * the line doesn't offer much room and the desire to keep the
- * comment on one line means the comment must be short.
- * Work then goes into making the line as short as possible
- * instead of as clear as possible. The comment usually ends
- * up as cryptic as possible....&quot;
+ * "Endline comments also tend to be cryptic. The right side of the line doesn't
+ * offer much room and the desire to keep the comment on one line means the comment
+ * must be short. Work then goes into making the line as short as possible instead
+ * of as clear as possible. The comment usually ends up as cryptic as possible...."
  * </li>
  * <li>
- * &quot;A systemic problem with endline comments is that it's hard
- * to write a meaningful comment for one line of code. Most
- * endline comments just repeat the line of code, which hurts
- * more than it helps.&quot;
+ * "A systemic problem with endline comments is that it's hard to write a meaningful
+ * comment for one line of code. Most endline comments just repeat the line of code,
+ * which hurts more than it helps."
  * </li>
  * </ul>
- * His comments on being hard to maintain when the size of
- * the line changes are even more important in the age of
- * automated refactorings.
- *
- * <p>To configure the check so it enforces only comment on a line:
+ * <p>
+ * McConnell's comments on being hard to maintain when the size of the line changes
+ * are even more important in the age of automated refactorings.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code format} - Specify pattern for strings allowed before the comment.
+ * Default value is <code>"^[\s});]*$"</code>.
+ * </li>
+ * <li>
+ * Property {@code legalComment} - Define pattern for text allowed in trailing comments.
+ * (This pattern will not be applied to multiline comments and the text of
+ * the comment will be trimmed before matching.)
+ * Default value is {@code null}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;TrailingComment&quot;/&gt;
+ * </pre>
+ * <p>
+ * To configure the check so it enforces only comment on a line:
+ * </p>
  * <pre>
  * &lt;module name=&quot;TrailingComment&quot;&gt;
- *    &lt;property name=&quot;format&quot; value=&quot;^\\s*$&quot;/&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;^\\s*$&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  *
  * @noinspection HtmlTagCanBeJavadocTag
+ * @since 3.4
  */
 @StatelessCheck
 public class TrailingCommentCheck extends AbstractCheck {
@@ -108,14 +123,20 @@ public class TrailingCommentCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "trailing.comments";
 
-    /** Pattern for legal trailing comment. */
+    /** Define pattern for text allowed in trailing comments.
+     * (This pattern will not be applied to multiline comments and the text
+     * of the comment will be trimmed before matching.)
+     */
     private Pattern legalComment;
 
-    /** The regexp to match against. */
+    /** Specify pattern for strings allowed before the comment. */
     private Pattern format = Pattern.compile("^[\\s});]*$");
 
     /**
-     * Sets patter for legal trailing comments.
+     * Setter to define pattern for text allowed in trailing comments.
+     * (This pattern will not be applied to multiline comments and the text
+     * of the comment will be trimmed before matching.)
+     *
      * @param legalComment pattern to set.
      */
     public void setLegalComment(final Pattern legalComment) {
@@ -123,7 +144,7 @@ public class TrailingCommentCheck extends AbstractCheck {
     }
 
     /**
-     * Set the format for the specified regular expression.
+     * Setter to specify pattern for strings allowed before the comment.
      * @param pattern a pattern
      */
     public final void setFormat(Pattern pattern) {
