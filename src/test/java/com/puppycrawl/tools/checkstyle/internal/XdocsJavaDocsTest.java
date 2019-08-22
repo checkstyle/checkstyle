@@ -97,8 +97,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "CyclomaticComplexity",
         "JavaNCSS",
         "NPathComplexity",
-        // miscellaneous
-        "Indentation",
         // modifier
         "AnonInnerLength",
         "ExecutableStatementCount",

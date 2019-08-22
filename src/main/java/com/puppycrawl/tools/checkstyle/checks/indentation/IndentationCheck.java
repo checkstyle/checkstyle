@@ -29,58 +29,129 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
- * Checks correct indentation of Java Code.
- *
  * <p>
- * The basic idea behind this is that while
- * pretty printers are sometimes convenient for reformatting of
+ * Checks correct indentation of Java code.
+ * </p>
+ * <p>
+ * The idea behind this is that while
+ * pretty printers are sometimes convenient for bulk reformats of
  * legacy code, they often either aren't configurable enough or
- * just can't anticipate how format should be done.  Sometimes this is
- * personal preference, other times it is practical experience.  In any
+ * just can't anticipate how format should be done. Sometimes this is
+ * personal preference, other times it is practical experience. In any
  * case, this check should just ensure that a minimal set of indentation
- * rules are followed.
+ * rules is followed.
  * </p>
- *
+ * <ul>
+ * <li>
+ * Property {@code basicOffset} - Specify how far new indentation level should be
+ * indented when on the next line.
+ * Default value is {@code 4}.
+ * </li>
+ * <li>
+ * Property {@code braceAdjustment} - Specify how far a braces should be indented
+ * when on the next line.
+ * Default value is {@code 0}.
+ * </li>
+ * <li>
+ * Property {@code caseIndent} - Specify how far a case label should be indented
+ * when on next line.
+ * Default value is {@code 4}.
+ * </li>
+ * <li>
+ * Property {@code throwsIndent} - Specify how far a throws clause should be
+ * indented when on next line.
+ * Default value is {@code 4}.
+ * </li>
+ * <li>
+ * Property {@code arrayInitIndent} - Specify how far an array initialisation
+ * should be indented when on next line. Default value is {@code 4}.
+ * </li>
+ * <li>
+ * Property {@code lineWrappingIndentation} - Specify how far continuation line
+ * should be indented when line-wrapping is present.
+ * Default value is {@code 4}.
+ * </li>
+ * <li>
+ * Property {@code forceStrictCondition} - Force strict indent level in line
+ * wrapping case. If value is true, line wrap indent have to be same as
+ * lineWrappingIndentation parameter. If value is false, line wrap indent
+ * could be bigger on any value user would like.
+ * Default value is {@code false}.
+ * </li>
+ * </ul>
  * <p>
- * Implementation --
- *  Basically, this check requests visitation for all handled token
- *  types (those tokens registered in the HandlerFactory).  When visitToken
- *  is called, a new ExpressionHandler is created for the AST and pushed
- *  onto the handlers stack.  The new handler then checks the indentation
- *  for the currently visiting AST.  When leaveToken is called, the
- *  ExpressionHandler is popped from the stack.
- * </p>
- *
- * <p>
- *  While on the stack the ExpressionHandler can be queried for the
- *  indentation level it suggests for children as well as for other
- *  values.
- * </p>
- *
- * <p>
- *  While an ExpressionHandler checks the indentation level of its own
- *  AST, it typically also checks surrounding ASTs.  For instance, a
- *  while loop handler checks the while loop as well as the braces
- *  and immediate children.
+ * To configure the check:
  * </p>
  * <pre>
- *   - handler class -to-&gt; ID mapping kept in Map
- *   - parent passed in during construction
- *   - suggest child indent level
- *   - allows for some tokens to be on same line (ie inner classes OBJBLOCK)
- *     and not increase indentation level
- *   - looked at using double dispatch for getSuggestedChildIndent(), but it
- *     doesn't seem worthwhile, at least now
- *   - both tabs and spaces are considered whitespace in front of the line...
- *     tabs are converted to spaces
- *   - block parents with parens -- for, while, if, etc... -- are checked that
- *     they match the level of the parent
+ * &lt;module name="Indentation"/&gt;
+ * </pre>
+ * <p>
+ * To configure the check to enforce the indentation style recommended by Oracle:
+ * </p>
+ * <pre>
+ * &lt;module name="Indentation"&gt;
+ *   &lt;property name="caseIndent" value="0"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the Check to enforce strict condition in line-wrapping validation.
+ * </p>
+ * <pre>
+ * &lt;module name="Indentation"&gt;
+ *   &lt;property name="forceStrictCondition" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Such config doesn't allow next cases:
+ * </p>
+ * <pre>
+ * void foo(String aFooString,
+ *         int aFooInt) {} // indent:8 ; expected: 4; warn, because 8 != 4
+ * </pre>
+ * <p>
+ * But if forceStrictCondition = false, this code is valid:
+ * </p>
+ * <pre>
+ * void foo(String aFooString,
+ *         int aFooInt) {} // indent:8 ; expected: &gt; 4; ok, because 8 &gt; 4
  * </pre>
  *
  * @noinspection ThisEscapedInObjectConstruction
+ * @since 3.1
  */
 @FileStatefulCheck
 public class IndentationCheck extends AbstractCheck {
+
+    /*  -- Implementation --
+     *
+     *  Basically, this check requests visitation for all handled token
+     *  types (those tokens registered in the HandlerFactory).  When visitToken
+     *  is called, a new ExpressionHandler is created for the AST and pushed
+     *  onto the handlers stack.  The new handler then checks the indentation
+     *  for the currently visiting AST.  When leaveToken is called, the
+     *  ExpressionHandler is popped from the stack.
+     *
+     *  While on the stack the ExpressionHandler can be queried for the
+     *  indentation level it suggests for children as well as for other
+     *  values.
+     *
+     *  While an ExpressionHandler checks the indentation level of its own
+     *  AST, it typically also checks surrounding ASTs.  For instance, a
+     *  while loop handler checks the while loop as well as the braces
+     *  and immediate children.
+     *
+     *   - handler class -to-&gt; ID mapping kept in Map
+     *   - parent passed in during construction
+     *   - suggest child indent level
+     *   - allows for some tokens to be on same line (ie inner classes OBJBLOCK)
+     *     and not increase indentation level
+     *   - looked at using double dispatch for getSuggestedChildIndent(), but it
+     *     doesn't seem worthwhile, at least now
+     *   - both tabs and spaces are considered whitespace in front of the line...
+     *     tabs are converted to spaces
+     *   - block parents with parens -- for, while, if, etc... -- are checked that
+     *     they match the level of the parent
+     */
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -121,33 +192,36 @@ public class IndentationCheck extends AbstractCheck {
     /** Lines logged as having incorrect indentation. */
     private Set<Integer> incorrectIndentationLines;
 
-    /** How many tabs or spaces to use. */
+    /** Specify how far new indentation level should be indented when on the next line. */
     private int basicOffset = DEFAULT_INDENTATION;
 
-    /** How much to indent a case label. */
+    /** Specify how far a case label should be indented when on next line. */
     private int caseIndent = DEFAULT_INDENTATION;
 
-    /** How far brace should be indented when on next line. */
+    /** Specify how far a braces should be indented when on the next line. */
     private int braceAdjustment;
 
-    /** How far throws should be indented when on next line. */
+    /** Specify how far a throws clause should be indented when on next line. */
     private int throwsIndent = DEFAULT_INDENTATION;
 
-    /** How much to indent an array initialization when on next line. */
+    /** Specify how far an array initialisation should be indented when on next line. */
     private int arrayInitIndent = DEFAULT_INDENTATION;
 
-    /** How far continuation line should be indented when line-wrapping is present. */
+    /** Specify how far continuation line should be indented when line-wrapping is present. */
     private int lineWrappingIndentation = DEFAULT_INDENTATION;
 
     /**
-     * Force strict condition in line wrapping case. If value is true, line wrap indent
-     * have to be same as lineWrappingIndentation parameter, if value is false, line wrap indent
-     * have to be not less than lineWrappingIndentation parameter.
+     * Force strict indent level in line wrapping case. If value is true, line wrap indent
+     * have to be same as lineWrappingIndentation parameter. If value is false, line wrap indent
+     * could be bigger on any value user would like.
      */
     private boolean forceStrictCondition;
 
     /**
-     * Get forcing strict condition.
+     * Getter to query strict indent level in line wrapping case. If value is true, line wrap indent
+     * have to be same as lineWrappingIndentation parameter. If value is false, line wrap indent
+     * could be bigger on any value user would like.
+     *
      * @return forceStrictCondition value.
      */
     public boolean isForceStrictCondition() {
@@ -155,7 +229,10 @@ public class IndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Set forcing strict condition.
+     * Setter to force strict indent level in line wrapping case. If value is true, line wrap indent
+     * have to be same as lineWrappingIndentation parameter. If value is false, line wrap indent
+     * could be bigger on any value user would like.
+     *
      * @param value user's value of forceStrictCondition.
      */
     public void setForceStrictCondition(boolean value) {
@@ -163,7 +240,7 @@ public class IndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Set the basic offset.
+     * Setter to specify how far new indentation level should be indented when on the next line.
      *
      * @param basicOffset   the number of tabs or spaces to indent
      */
@@ -172,7 +249,7 @@ public class IndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Get the basic offset.
+     * Getter to query how far new indentation level should be indented when on the next line.
      *
      * @return the number of tabs or spaces to indent
      */
@@ -181,7 +258,7 @@ public class IndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Adjusts brace indentation (positive offset).
+     * Setter to specify how far a braces should be indented when on the next line.
      *
      * @param adjustmentAmount   the brace offset
      */
@@ -190,7 +267,7 @@ public class IndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Get the brace adjustment amount.
+     * Getter to query how far a braces should be indented when on the next line.
      *
      * @return the positive offset to adjust braces
      */
@@ -199,7 +276,7 @@ public class IndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Set the case indentation level.
+     * Setter to specify how far a case label should be indented when on next line.
      *
      * @param amount   the case indentation level
      */
@@ -208,7 +285,7 @@ public class IndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Get the case indentation level.
+     * Getter to query how far a case label should be indented when on next line.
      *
      * @return the case indentation level
      */
@@ -217,7 +294,7 @@ public class IndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Set the throws indentation level.
+     * Setter to specify how far a throws clause should be indented when on next line.
      *
      * @param throwsIndent the throws indentation level
      */
@@ -226,7 +303,7 @@ public class IndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Get the throws indentation level.
+     * Getter to query how far a throws clause should be indented when on next line.
      *
      * @return the throws indentation level
      */
@@ -235,7 +312,7 @@ public class IndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Set the array initialisation indentation level.
+     * Setter to specify how far an array initialisation should be indented when on next line.
      *
      * @param arrayInitIndent the array initialisation indentation level
      */
@@ -244,7 +321,7 @@ public class IndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Get the line-wrapping indentation level.
+     * Getter to query how far an array initialisation should be indented when on next line.
      *
      * @return the initialisation indentation level
      */
@@ -253,7 +330,7 @@ public class IndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Get the array line-wrapping indentation level.
+     * Getter to query how far continuation line should be indented when line-wrapping is present.
      *
      * @return the line-wrapping indentation level
      */
@@ -262,7 +339,7 @@ public class IndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Set the line-wrapping indentation level.
+     * Setter to specify how far continuation line should be indented when line-wrapping is present.
      *
      * @param lineWrappingIndentation the line-wrapping indentation level
      */

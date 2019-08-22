@@ -1060,8 +1060,8 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
     </section>
 
     <section name="Indentation">
+      <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="Indentation_Description">
-        <p>Since Checkstyle 3.1</p>
         <p>
           Checks correct indentation of Java code.
         </p>
@@ -1070,8 +1070,8 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
           The idea behind this is that while pretty printers are
           sometimes convenient for bulk reformats of legacy code, they often
           either aren't configurable enough or just can't anticipate how
-          format should be done.  Sometimes this is personal preference, other
-          times it is practical experience.  In any case, this check should
+          format should be done. Sometimes this is personal preference, other
+          times it is practical experience. In any case, this check should
           just ensure that a minimal set of indentation rules is followed.
         </p>
       </subsection>
@@ -1087,53 +1087,57 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
           </tr>
           <tr>
             <td>basicOffset</td>
-            <td>how far new indentation level should be indented when on the next line</td>
+            <td>
+              Specify how far new indentation level should be indented when on the next line.
+            </td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td>4</td>
+            <td><code>4</code></td>
             <td>3.1</td>
           </tr>
           <tr>
             <td>braceAdjustment</td>
-            <td>how far a braces should be indented when on the next line</td>
+            <td>Specify how far a braces should be indented when on the next line.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td>0</td>
+            <td><code>0</code></td>
             <td>3.1</td>
           </tr>
           <tr>
             <td>caseIndent</td>
-            <td>how far a case label should be indented when on next line</td>
+            <td>Specify how far a case label should be indented when on next line.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td>4</td>
+            <td><code>4</code></td>
             <td>3.1</td>
           </tr>
           <tr>
             <td>throwsIndent</td>
-            <td>how far a throws clause should be indented when on next line</td>
+            <td>Specify how far a throws clause should be indented when on next line.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td>4</td>
+            <td><code>4</code></td>
             <td>5.7</td>
           </tr>
           <tr>
             <td>arrayInitIndent</td>
-            <td>how far an array initialisation should be indented when on next line</td>
+            <td>Specify how far an array initialisation should be indented when on next line.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td>4</td>
+            <td><code>4</code></td>
             <td>5.8</td>
           </tr>
           <tr>
             <td>lineWrappingIndentation</td>
-            <td>how far continuation line should be indented when line-wrapping is present</td>
+            <td>
+              Specify how far continuation line should be indented when line-wrapping is present.
+            </td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td>4</td>
+            <td><code>4</code></td>
             <td>5.9</td>
           </tr>
           <tr>
             <td>forceStrictCondition</td>
-            <td>force strict indent level in line wrapping case. If value is true, line wrap indent
+            <td>Force strict indent level in line wrapping case. If value is true, line wrap indent
                 have to be same as lineWrappingIndentation parameter. If value is false, line wrap
                 indent could be bigger on any value user would like.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>false</td>
+            <td><code>false</code></td>
             <td>6.3</td>
           </tr>
         </table>
