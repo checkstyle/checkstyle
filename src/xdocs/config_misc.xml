@@ -1595,15 +1595,15 @@ key.png =value - violation
     </section>
 
     <section name="TrailingComment">
+      <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="TrailingComment_Description">
-        <p>Since Checkstyle 3.4</p>
         <p>
           The check to ensure that requires that comments be the only thing on
-          a line.  For the case of <code>//</code> comments that means that the only thing
-          that should precede it is whitespace.  It doesn't check comments if
+          a line. For the case of <code>//</code> comments that means that the only thing
+          that should precede it is whitespace. It doesn't check comments if
           they do not end a line; for example, it accepts the following:
-          <code>Thread.sleep( 10 &lt;some comment here&gt; );</code> Format
-          property is intended to deal with the "} // while" example.
+          <code>Thread.sleep( 10 /*some comment here*/ );</code> Format
+          property is intended to deal with the <code>} // while</code> example.
         </p>
 
         <p>
@@ -1640,7 +1640,7 @@ d = e / f;        // Another comment for this line
           </li>
           <li> &quot;Endline comments also tend to be cryptic. The right side
           of the line doesn't offer much room and the desire to keep the
-          comment on one line means the comment must be short.  Work then goes
+          comment on one line means the comment must be short. Work then goes
           into making the line as short as possible instead of as clear as
           possible. The comment usually ends up as cryptic as
           possible....&quot;
@@ -1670,14 +1670,14 @@ d = e / f;        // Another comment for this line
           </tr>
           <tr>
             <td>format</td>
-            <td>pattern for strings allowed before the comment</td>
+            <td>Specify pattern for strings allowed before the comment.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"^[\s});]*$"</code></td>
             <td>3.4</td>
           </tr>
           <tr>
             <td>legalComment</td>
-            <td>pattern for text allowed in trailing comments. (This
+            <td>Define pattern for text allowed in trailing comments. (This
                 pattern will not be applied to multiline comments and the text of the
                 comment will be trimmed before matching.)</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>

@@ -102,7 +102,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "Indentation",
         "NewlineAtEndOfFile",
         "TodoComment",
-        "TrailingComment",
         "Translation",
         "UpperEll",
         // modifier
