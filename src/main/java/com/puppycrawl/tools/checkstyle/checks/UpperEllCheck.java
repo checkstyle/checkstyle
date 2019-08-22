@@ -26,26 +26,23 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>Checks that long constants are defined with an upper ell.
- * That is <span class="code">'L'</span> and not
- * <span class="code">'l'</span>. This is in accordance to the Java Language
- * Specification, <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.1">
+ * <p>
+ * Checks that long constants are defined with an upper ell. That is {@code 'L'}
+ * and not {@code 'l'}. This is in accordance with the Java Language Specification,
+ * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-3.html#jls-3.10.1">
  * Section 3.10.1</a>.
  * </p>
  * <p>
- * Rationale: The letter <span class="code">l</span> looks a lot
- * like the number <span class="code">1</span>.
+ * Rationale: The lower-case ell {@code 'l'} looks a lot like {@code 1}.
  * </p>
- *
- * <p>Examples
- * <p class="body">
+ * <p>
  * To configure the check:
- *
  * </p>
- * <pre class="body">
+ * <pre>
  * &lt;module name=&quot;UpperEll&quot;/&gt;
  * </pre>
  *
+ * @since 3.0
  */
 @StatelessCheck
 public class UpperEllCheck extends AbstractCheck {
