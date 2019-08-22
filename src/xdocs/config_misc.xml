@@ -574,8 +574,8 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
     </section>
 
     <section name="DescendantToken">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="DescendantToken_Description">
-        <p>Since Checkstyle 3.2</p>
         <p>
           Checks for restricted tokens beneath other tokens.
         </p>
@@ -601,47 +601,47 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
           </tr>
           <tr>
             <td>limitedTokens</td>
-            <td>set of tokens with limited occurrences as descendants</td>
+            <td>Specify set of tokens with limited occurrences as descendants.</td>
             <td>
              subset of tokens
              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
             </td>
-            <td/>
+            <td><code>{}</code></td>
             <td>3.2</td>
           </tr>
           <tr>
             <td>minimumDepth</td>
-            <td>the minimum depth for descendant counts</td>
+            <td>Specify the minimum depth for descendant counts.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td>0</td>
+            <td><code>0</code></td>
             <td>3.2</td>
           </tr>
           <tr>
             <td>maximumDepth</td>
-            <td>the maximum depth for descendant counts</td>
+            <td>Specify the maximum depth for descendant counts.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td>java.lang.Integer.MAX_VALUE</td>
+            <td><code>java.lang.Integer.MAX_VALUE</code></td>
             <td>3.2</td>
           </tr>
           <tr>
             <td>minimumNumber</td>
-            <td>a minimum count for descendants</td>
+            <td>Specify a minimum count for descendants.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td>0</td>
+            <td><code>0</code></td>
             <td>3.2</td>
           </tr>
           <tr>
             <td>maximumNumber</td>
-            <td>a maximum count for descendants</td>
+            <td>Specify a maximum count for descendants.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td>java.lang.Integer.MAX_VALUE</td>
+            <td><code>java.lang.Integer.MAX_VALUE</code></td>
             <td>3.2</td>
           </tr>
           <tr>
             <td>sumTokenCounts</td>
             <td>
-              whether the number of tokens found should be calculated
-              from the sum of the individual token counts
+              Control whether the number of tokens found should be calculated
+              from the sum of the individual token counts.
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
@@ -649,16 +649,16 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
           </tr>
           <tr>
             <td>minimumMessage</td>
-            <td>error message when the minimum count is not reached</td>
+            <td>Define the error message when the minimum count is not reached.</td>
             <td><a href="property_types.html#string">String</a></td>
-            <td>null</td>
+            <td><code>null</code></td>
             <td>3.2</td>
           </tr>
           <tr>
             <td>maximumMessage</td>
-            <td>error message when the maximum count is exceeded</td>
+            <td>Define the error message when the maximum count is exceeded.</td>
             <td><a href="property_types.html#string">String</a></td>
-            <td>null</td>
+            <td><code>null</code></td>
             <td>3.2</td>
           </tr>
         </table>
@@ -666,7 +666,10 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 
       <subsection name="Examples" id="DescendantToken_Examples">
 
-        <p>Switch with no default:</p>
+        <p>
+          To configure the check to produce a violation on a switch statement
+          with no default case:
+        </p>
         <source>
 &lt;module name="DescendantToken"&gt;
   &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
@@ -677,7 +680,8 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </source>
 
         <p>
-          The condition in <code>for</code> performs no check:
+          To configure the check to produce a violation on a
+          condition in <code>for</code> which performs no check:
         </p>
         <source>
 &lt;module name="DescendantToken"&gt;
@@ -688,7 +692,8 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </source>
 
         <p>
-          Comparing <code>this</code> with <code>null</code> (i.e. <code>this ==
+          To configure the check to produce a violation on
+          comparing <code>this</code> with <code>null</code> (i.e. <code>this ==
           null</code> and <code>this != null</code>):
         </p>
         <source>
@@ -701,7 +706,10 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 &lt;/module&gt;
         </source>
 
-        <p>String literal equality check:</p>
+        <p>
+          To configure the check to produce a violation on a <code>String</code>
+          literal equality check:
+        </p>
         <source>
 &lt;module name="DescendantToken"&gt;
   &lt;property name="tokens" value="EQUAL,NOT_EQUAL"/&gt;
@@ -712,8 +720,8 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </source>
 
         <p>
-          Assert statement may have side effects (formatted for browser
-          display):
+          To configure the check to produce a violation on an assert statement
+          that may have side effects (formatted for browser display):
         </p>
         <source>
 &lt;module name="DescendantToken"&gt;
@@ -727,7 +735,8 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </source>
 
         <p>
-          The initialiser in <code>for</code> performs no setup (where a <code>while</code>
+          To configure the check to produce a violation on an initializer in
+          <code>for</code> performs no setup (where a <code>while</code>
           statement could be used instead):
         </p>
         <source>
@@ -739,7 +748,8 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </source>
 
         <p>
-          A switch within a switch:
+          To configure the check to produce a violation on a switch that is
+          nested in another switch:
         </p>
         <source>
 &lt;module name="DescendantToken"&gt;
@@ -750,7 +760,10 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 &lt;/module&gt;
         </source>
 
-        <p>A return statement from within a catch or finally block:</p>
+        <p>
+          To configure the check to produce a violation on a return statement
+          from within a catch or finally block:
+        </p>
         <source>
 &lt;module name="DescendantToken"&gt;
   &lt;property name="tokens" value="LITERAL_FINALLY,LITERAL_CATCH"/&gt;
@@ -759,7 +772,10 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 &lt;/module&gt;
         </source>
 
-        <p>A try statement within a catch or finally block:</p>
+        <p>
+          To configure the check to produce a violation on a try statement
+          within a catch or finally block:
+        </p>
         <source>
 &lt;module name="DescendantToken"&gt;
   &lt;property name="tokens" value="LITERAL_CATCH,LITERAL_FINALLY"/&gt;
@@ -768,7 +784,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 &lt;/module&gt;
         </source>
 
-        <p>Too many cases within a switch:</p>
+        <p>To configure the check to produce a violation on a switch with too many cases:</p>
         <source>
 &lt;module name="DescendantToken"&gt;
   &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
@@ -778,7 +794,10 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 &lt;/module&gt;
         </source>
 
-        <p>Too many local variables within a method:</p>
+        <p>
+          To configure the check to produce a violation on a method with
+          too many local variables:
+        </p>
         <source>
 &lt;module name="DescendantToken"&gt;
   &lt;property name="tokens" value="METHOD_DEF"/&gt;
@@ -788,7 +807,10 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 &lt;/module&gt;
         </source>
 
-        <p>Too many returns from within a method:</p>
+        <p>
+          To configure the check to produce a violation on a method
+          with too many returns:
+        </p>
         <source>
 &lt;module name="DescendantToken"&gt;
   &lt;property name="tokens" value="METHOD_DEF"/&gt;
@@ -797,7 +819,10 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 &lt;/module&gt;
         </source>
 
-        <p>Too many fields within an interface:</p>
+        <p>
+          To configure the check to produce a violation on an interface
+          with too many fields:
+        </p>
         <source>
 &lt;module name="DescendantToken"&gt;
   &lt;property name="tokens" value="INTERFACE_DEF"/&gt;
@@ -807,7 +832,10 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 &lt;/module&gt;
         </source>
 
-        <p>Limits the number of exceptions a method can throw:</p>
+        <p>
+          To configure the check to produce a violation on a method
+          which throws too many exceptions:
+        </p>
         <source>
 &lt;module name="DescendantToken"&gt;
   &lt;property name="tokens" value="LITERAL_THROWS"/&gt;
@@ -816,7 +844,10 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 &lt;/module&gt;
         </source>
 
-        <p>Limits the number of expressions in a method:</p>
+        <p>
+          To configure the check to produce a violation on a method
+          with too many expressions:
+        </p>
         <source>
 &lt;module name="DescendantToken"&gt;
   &lt;property name="tokens" value="METHOD_DEF"/&gt;
@@ -825,7 +856,9 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 &lt;/module&gt;
         </source>
 
-        <p>Disallows empty statements:</p>
+        <p>
+          To configure the check to produce a violation on an empty statement:
+        </p>
         <source>
 &lt;module name="DescendantToken"&gt;
   &lt;property name="tokens" value="EMPTY_STAT"/&gt;
@@ -837,7 +870,10 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 &lt;/module&gt;
         </source>
 
-        <p>Too many fields within a class:</p>
+        <p>
+          To configure the check to produce a violation on a class
+          with too many fields:
+        </p>
         <source>
 &lt;module name="DescendantToken"&gt;
   &lt;property name="tokens" value="CLASS_DEF"/&gt;

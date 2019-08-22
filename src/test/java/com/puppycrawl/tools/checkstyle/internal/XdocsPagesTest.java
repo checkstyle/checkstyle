@@ -1053,10 +1053,9 @@ public class XdocsPagesTest {
                 }
                 else {
                     result = Arrays.toString((int[]) value).replace("[", "").replace("]", "");
-
-                    if (result.isEmpty()) {
-                        result = "{}";
-                    }
+                }
+                if (result.isEmpty()) {
+                    result = "{}";
                 }
             }
             else if (fieldClass == double[].class) {
