@@ -99,7 +99,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "NPathComplexity",
         // miscellaneous
         "Indentation",
-        "NewlineAtEndOfFile",
         "TodoComment",
         "Translation",
         // modifier
