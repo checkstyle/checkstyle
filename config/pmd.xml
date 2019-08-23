@@ -166,6 +166,9 @@
     <!-- We cannot change the class loader because it breaks the build.
          See https://github.com/checkstyle/checkstyle/issues/5680 for details. -->
     <exclude name="UseProperClassLoader"/>
+    <!-- Demand for static modifier is not correct for library projects.
+         It is valid only for application projects -->
+    <exclude name="ProperLogger" />
   </rule>
   <rule ref="category/java/errorprone.xml/AvoidDuplicateLiterals">
     <properties>

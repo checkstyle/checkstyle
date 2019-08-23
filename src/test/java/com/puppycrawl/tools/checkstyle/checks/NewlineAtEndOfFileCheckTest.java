@@ -25,6 +25,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
@@ -210,21 +211,27 @@ public class NewlineAtEndOfFileCheckTest
 
     @Test
     public void testWrongSeparatorLength() throws Exception {
-        final RandomAccessFile file = new RandomAccessFile(
-                getPath("InputNewlineAtEndOfFileLf.java"), "r") {
-            @Override
-            public int read(byte[] bytes) {
-                return 0;
-            }
-        };
-
-        try {
+        try (RandomAccessFile file =
+                     new ReadZeroRandomAccessFile(getPath("InputNewlineAtEndOfFileLf.java"), "r")) {
             Whitebox.invokeMethod(new NewlineAtEndOfFileCheck(), "endsWithNewline", file);
             fail("Exception is expected");
         }
         catch (IOException ex) {
             assertEquals("Error message is unexpected",
                     "Unable to read 1 bytes, got 0", ex.getMessage());
+        }
+    }
+
+    private static class ReadZeroRandomAccessFile extends RandomAccessFile {
+
+        /* default */ ReadZeroRandomAccessFile(String name, String mode)
+                throws FileNotFoundException {
+            super(name, mode);
+        }
+
+        @Override
+        public int read(byte[] bytes) {
+            return 0;
         }
     }
 
