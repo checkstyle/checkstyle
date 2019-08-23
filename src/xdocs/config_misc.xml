@@ -1777,15 +1777,16 @@ d = e / f;        // Another comment for this line
     </section>
 
     <section name="Translation">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Translation_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
           A <a href="config.html#Overview">FileSetCheck</a> that ensures
           the correct translation of code by checking property files for
           consistency regarding their keys. Two property files
           describing one and the same context are consistent if they
           contain the same keys. TranslationCheck also can check an existence of required
-          translations which must exist in project, if 'requiredTranslations' option is used.
+          translations which must exist in project, if <code>requiredTranslations</code>
+          option is used.
         </p>
 
         <p>
@@ -1812,8 +1813,25 @@ messages_de.properties: Key 'cancel' missing.
 messages.properties: Key 'hell' missing.
 messages.properties: Key 'ok' missing.
         </source>
+      </subsection>
+
+      <subsection name="Notes" id="Translation_Notes">
         <p>
-          <font color="red">Attention:</font> this Check could produce false-positives if it
+          Language code for the property <code>requiredTranslations</code> is composed of
+          the lowercase, two-letter codes as defined by
+          <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a>.
+          Default value is empty String Set which means that only the existence
+          of default translation is checked. Note, if you specify language codes (or just
+          one language code) of required translations the check will also check for
+          existence of default translation files in project.
+          </p>
+        <p>
+          Attention: the check will perform the validation of ISO codes if the option
+          is used. So, if you specify, for example, "mm" for language code, TranslationCheck
+          will rise violation that the language code is incorrect.
+        </p>
+        <p>
+          Attention: this Check could produce false-positives if it
           is used with <a href="config.html#Checker">Checker</a> that use cache (property
           "cacheFile") This is known design problem, will be addressed at
           <a href="https://github.com/checkstyle/checkstyle/issues/3539">issue</a>.
@@ -1832,7 +1850,7 @@ messages.properties: Key 'ok' missing.
           <tr>
             <td>fileExtensions</td>
             <td>
-              File type extension to identify translation files. Setting
+              Specify file type extension to identify translation files. Setting
               this property is typically only required if your
               translation files are preprocessed and the original files
               do not have the extension <code>.properties</code>
@@ -1843,7 +1861,8 @@ messages.properties: Key 'ok' missing.
           </tr>
           <tr>
             <td>baseName</td>
-            <td><a href="https://docs.oracle.com/javase/7/docs/api/java/util/ResourceBundle.html">
+            <td>Specify
+              <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ResourceBundle.html">
               Base name</a> of resource bundles which contain message resources. It helps
               the check to distinguish config and localization resources.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
@@ -1853,16 +1872,7 @@ messages.properties: Key 'ok' missing.
           <tr>
             <td>requiredTranslations</td>
             <td>
-              Allows to specify language codes of required translations which must exist in project.
-              Language code is composed of the lowercase, two-letter codes as defined by
-              <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a>.
-              Default value is empty String Set which means that only the existence
-              of default translation is checked. Note, if you specify language codes (or just
-              one language code) of required translations the check will also check for
-              existence of default translation files in project.
-              ATTENTION: the check will perform the validation of ISO codes if the option
-              is used. So, if you specify, for example, "mm" for language code, TranslationCheck
-              will rise violation that the language code is incorrect.
+              Specify language codes of required translations which must exist in project.
             </td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>{}</code></td>
@@ -1913,8 +1923,6 @@ messages.properties: Key 'ok' missing.
   &lt;property name=&quot;requiredTranslations&quot; value=&quot;es, fr, de&quot;/&gt;
 &lt;/module&gt;
         </source>
-        <p>
-        </p>
         <p>
           As we can see from the configuration, the TranslationCheck was configured to check
           an existence of 'es', 'fr' and 'de' translations. Lets assume that we have the resource

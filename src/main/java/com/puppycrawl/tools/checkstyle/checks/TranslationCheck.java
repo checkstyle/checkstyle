@@ -53,51 +53,132 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * The TranslationCheck class helps to ensure the correct translation of code by
- * checking locale-specific resource files for consistency regarding their keys.
- * Two locale-specific resource files describing one and the same context are consistent if they
- * contain the same keys. TranslationCheck also can check an existence of required translations
- * which must exist in project, if 'requiredTranslations' option is used.
+ * A <a href="https://checkstyle.org/config.html#Overview">FileSetCheck</a> that
+ * ensures the correct translation of code by checking property files for consistency
+ * regarding their keys. Two property files describing one and the same context
+ * are consistent if they contain the same keys. TranslationCheck also can check
+ * an existence of required translations which must exist in project, if
+ * {@code requiredTranslations} option is used.
  * </p>
  * <p>
- * An example of how to configure the check is:
+ * Consider the following properties file in the same directory:
  * </p>
  * <pre>
- * &lt;module name="Translation"/&gt;
- * </pre>
- * Check has the following options:
+ * #messages.properties
+ * hello=Hello
+ * cancel=Cancel
  *
- * <p><b>baseName</b> - a base name regexp for resource bundles which contain message resources. It
- * helps the check to distinguish config and localization resources. Default value is
- * <b>^messages.*$</b>
- * <p>An example of how to configure the check to validate only bundles which base names start with
- * "ButtonLabels":
+ * #messages_de.properties
+ * hell=Hallo
+ * ok=OK
+ * </pre>
+ * <p>
+ * The Translation check will find the typo in the German {@code hello} key,
+ * the missing {@code ok} key in the default resource file and the missing
+ * {@code cancel} key in the German resource file:
+ * </p>
+ * <pre>
+ * messages_de.properties: Key 'hello' missing.
+ * messages_de.properties: Key 'cancel' missing.
+ * messages.properties: Key 'hell' missing.
+ * messages.properties: Key 'ok' missing.
+ * </pre>
+ * <p>
+ * Language code for the property {@code requiredTranslations} is composed of
+ * the lowercase, two-letter codes as defined by
+ * <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a>.
+ * Default value is empty String Set which means that only the existence of default
+ * translation is checked. Note, if you specify language codes (or just one
+ * language code) of required translations the check will also check for existence
+ * of default translation files in project.
+ * </p>
+ * <p>
+ * Attention: the check will perform the validation of ISO codes if the option
+ * is used. So, if you specify, for example, "mm" for language code,
+ * TranslationCheck will rise violation that the language code is incorrect.
+ * </p>
+ * <p>
+ * Attention: this Check could produce false-positives if it is used with
+ * <a href="https://checkstyle.org/config.html#Checker">Checker</a> that use cache
+ * (property "cacheFile") This is known design problem, will be addressed at
+ * <a href="https://github.com/checkstyle/checkstyle/issues/3539">issue</a>.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code fileExtensions} - Specify file type extension to identify
+ * translation files. Setting this property is typically only required if your
+ * translation files are preprocessed and the original files do not have
+ * the extension {@code .properties} Default value is {@code .properties}.
+ * </li>
+ * <li>
+ * Property {@code baseName} - Specify
+ * <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ResourceBundle.html">
+ * Base name</a> of resource bundles which contain message resources.
+ * It helps the check to distinguish config and localization resources.
+ * Default value is {@code "^messages.*$"}.
+ * </li>
+ * <li>
+ * Property {@code requiredTranslations} - Specify language codes of required
+ * translations which must exist in project.
+ * Default value is {@code {}}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check to check only files which have '.properties' and
+ * '.translations' extensions:
  * </p>
  * <pre>
  * &lt;module name="Translation"&gt;
- *     &lt;property name="baseName" value="^ButtonLabels.*$"/&gt;
+ *   &lt;property name="fileExtensions" value="properties, translations"/&gt;
  * &lt;/module&gt;
  * </pre>
- * <p>To configure the check to check only files which have '.properties' and '.translations'
- * extensions:
+ * <p>
+ * Note, that files with the same path and base name but which have different
+ * extensions will be considered as files that belong to different resource bundles.
+ * </p>
+ * <p>
+ * An example of how to configure the check to validate only bundles which base
+ * names start with "ButtonLabels":
  * </p>
  * <pre>
  * &lt;module name="Translation"&gt;
- *     &lt;property name="fileExtensions" value="properties, translations"/&gt;
+ *   &lt;property name="baseName" value="^ButtonLabels.*$"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * To configure the check to check existence of Japanese and French translations:
+ * </p>
+ * <pre>
+ * &lt;module name="Translation"&gt;
+ *   &lt;property name="requiredTranslations" value="ja, fr"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * The following example shows how the check works if there is a message bundle
+ * which element name contains language code, county code, platform name.
+ * Consider that we have the below configuration:
+ * </p>
+ * <pre>
+ * &lt;module name="Translation"&gt;
+ *   &lt;property name="requiredTranslations" value="es, fr, de"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * As we can see from the configuration, the TranslationCheck was configured
+ * to check an existence of 'es', 'fr' and 'de' translations. Lets assume that
+ * we have the resource bundle:
+ * </p>
+ * <pre>
+ * messages_home.properties
+ * messages_home_es_US.properties
+ * messages_home_fr_CA_UNIX.properties
+ * </pre>
+ * <p>
+ * Than the check will rise the following violation: "0: Properties file
+ * 'messages_home_de.properties' is missing."
+ * </p>
  *
- * <p><b>requiredTranslations</b> which allows to specify language codes of required translations
- * which must exist in project. Language code is composed of the lowercase, two-letter codes as
- * defined by <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a>.
- * Default value is <b>empty String Set</b> which means that only the existence of
- * default translation is checked. Note, if you specify language codes (or just one language
- * code) of required translations the check will also check for existence of default translation
- * files in project. ATTENTION: the check will perform the validation of ISO codes if the option
- * is used. So, if you specify, for example, "mm" for language code, TranslationCheck will rise
- * violation that the language code is incorrect.
- * <br>
- *
+ * @since 3.0
  */
 @GlobalStatefulCheck
 public class TranslationCheck extends AbstractFileSetCheck {
@@ -167,11 +248,16 @@ public class TranslationCheck extends AbstractFileSetCheck {
     /** The files to process. */
     private final Set<File> filesToProcess = ConcurrentHashMap.newKeySet();
 
-    /** The base name regexp pattern. */
+    /**
+     * Specify
+     * <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ResourceBundle.html">
+     * Base name</a> of resource bundles which contain message resources.
+     * It helps the check to distinguish config and localization resources.
+     */
     private Pattern baseName;
 
     /**
-     * Language codes of required translations for the check (de, pt, ja, etc).
+     * Specify language codes of required translations which must exist in project.
      */
     private Set<String> requiredTranslations = new HashSet<>();
 
@@ -185,7 +271,11 @@ public class TranslationCheck extends AbstractFileSetCheck {
     }
 
     /**
-     * Sets the base name regexp pattern.
+     * Setter to specify
+     * <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ResourceBundle.html">
+     * Base name</a> of resource bundles which contain message resources.
+     * It helps the check to distinguish config and localization resources.
+     *
      * @param baseName base name regexp.
      */
     public void setBaseName(Pattern baseName) {
@@ -193,7 +283,8 @@ public class TranslationCheck extends AbstractFileSetCheck {
     }
 
     /**
-     * Sets language codes of required translations for the check.
+     * Setter to specify language codes of required translations which must exist in project.
+     *
      * @param translationCodes a comma separated list of language codes.
      */
     public void setRequiredTranslations(String... translationCodes) {
