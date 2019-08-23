@@ -40,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * {
  *   int whichIsWhich = 0;
  *   {
- *     int whichIsWhich = 2;
+ *     whichIsWhich = 2;
  *   }
  *   System.out.println("value = " + whichIsWhich);
  * }
