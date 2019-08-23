@@ -191,4 +191,24 @@
                         //MethodDeclarator[@Image='validateRuleNameOrder']"/>
         </properties>
     </rule>
+    <rule ref="category/java/errorprone.xml/CloseResource">
+        <properties>
+            <!-- we do close streams in special methods -->
+            <property name="violationSuppressXPath"
+                      value="
+                      //ClassOrInterfaceDeclaration[@Image='XdocsPagesTest']
+                                 //MethodDeclaration[@Name='getModulePropertyExpectedValue']
+                      |//ClassOrInterfaceDeclaration[@Image='DefaultLoggerPowerTest']
+                                 //MethodDeclaration[@Name='testNewCtor']
+                      |//ClassOrInterfaceDeclaration[@Image='ImportControlLoaderPowerTest']
+                                 //MethodDeclaration[@Name='testInputStreamThatFailsOnClose']
+                      |//ClassOrInterfaceDeclaration[@Image='ImportControlLoaderPowerTest']
+                                 //MethodDeclaration[@Name='testInputStreamFailsOnRead']
+                      |//ClassOrInterfaceDeclaration[@Image='XpathFileGeneratorAuditListenerTest']
+                                 //MethodDeclaration[@Name='verifyOutput']
+                      |//ClassOrInterfaceDeclaration[@Image='CommonUtilTest']
+                                 //MethodDeclaration[@Name='testClose']
+                      "/>
+        </properties>
+    </rule>
 </ruleset>

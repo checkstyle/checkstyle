@@ -40,4 +40,25 @@
                             |picocli.CommandLine.Spec"/>
         </properties>
     </rule>
+    <rule ref="category/java/errorprone.xml/CloseResource">
+        <properties>
+            <property name="allowedResourceTypes" value="java.io.ByteArrayOutputStream|
+            java.io.ByteArrayInputStream|java.io.StringWriter|java.io.CharArrayWriter|
+            java.io.StringReader" />
+            <!-- we do close streams in special methods -->
+            <property name="violationSuppressXPath"
+                      value="//ClassOrInterfaceDeclaration[@Image='DefaultLogger']
+                      |//ClassOrInterfaceDeclaration[@Image='Main']
+                                 //MethodDeclaration[@Name='createListener']
+                      |//ClassOrInterfaceDeclaration[@Image='PropertyCacheFile']
+                                 //MethodDeclaration[@Name='persist' or @Name='serialize']
+                      |//ClassOrInterfaceDeclaration[@Image='XmlLoader']
+                                 //MethodDeclaration[@Name='resolveEntity']
+                      |//ClassOrInterfaceDeclaration[@Image='CheckstyleAntTask']
+                                 //MethodDeclaration[@Name='getListeners'
+                                                       or @Name='createDefaultLogger']
+                      "/>
+        </properties>
+    </rule>
+
 </ruleset>
