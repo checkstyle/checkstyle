@@ -50,7 +50,6 @@ Continuous integration and Quality reports
 ======================
 Travis (Linux & MacOS build): [![][travis img]][travis]
 AppVeyor (Windows build): [![][appveyor img]][appveyor]
-[Distelli CI](https://www.distelli.com/checkstyle/builds)
 
 Quality reports: https://checkstyle.org/project-reports.html
 

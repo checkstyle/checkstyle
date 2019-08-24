@@ -275,7 +275,7 @@ matrix:
         - CMD="./.ci/travis/travis.sh verify-no-exception-configs"
 
 script:
-  - SKIP_FILES1=".github|codeship-*|buddy.yml|appveyor.yml|circleci|distelli-manifest.yml"
+  - SKIP_FILES1=".github|codeship-*|buddy.yml|appveyor.yml|circleci"
   - SKIP_FILES2="|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr"
   - SKIP_FILES3="|shippable.yml|shippable.sh|wercker.yml|wercker.sh|intellij-idea-inspections.xml"
   - SKIP_FILES4="|Jenkinsfile"
