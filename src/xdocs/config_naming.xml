@@ -228,7 +228,7 @@ public class MyClass { // OK, ignore checking the class name
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="AbbreviationAsWordInName_Error_Messages">
+      <subsection name="Violation Messages" id="AbbreviationAsWordInName_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22abbreviation.as.word%22">
@@ -335,7 +335,7 @@ class AbstractThirdClass {} // OK, no "abstract" modifier
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="AbstractClassName_Error_Messages">
+      <subsection name="Violation Messages" id="AbstractClassName_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.abstract.class.name%22">
@@ -460,7 +460,7 @@ public class MyTest {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="CatchParameterName_Error_Messages">
+      <subsection name="Violation Messages" id="CatchParameterName_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -548,7 +548,7 @@ class MyClass3&lt;abc&gt; {} // violation, the class type parameter
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="ClassTypeParameterName_Error_Messages">
+      <subsection name="Violation Messages" id="ClassTypeParameterName_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -699,7 +699,7 @@ class MyClass {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="ConstantName_Error_Messages">
+      <subsection name="Violation Messages" id="ConstantName_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -792,7 +792,7 @@ interface ThirdInterface&lt;type&gt; {} // violation, name 'type' must
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="InterfaceTypeParameterName_Error_Messages">
+      <subsection name="Violation Messages" id="InterfaceTypeParameterName_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -891,7 +891,7 @@ public class TestClass {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="LambdaParameterName_Error_Messages">
+      <subsection name="Violation Messages" id="LambdaParameterName_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -1035,7 +1035,7 @@ class MyClass {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="LocalFinalVariableName_Error_Messages">
+      <subsection name="Violation Messages" id="LocalFinalVariableName_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -1237,7 +1237,7 @@ class MyClass {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="LocalVariableName_Error_Messages">
+      <subsection name="Violation Messages" id="LocalVariableName_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -1406,7 +1406,7 @@ class MyClass {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="MemberName_Error_Messages">
+      <subsection name="Violation Messages" id="MemberName_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -1612,7 +1612,7 @@ class MyClass {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="MethodName_Error_Messages">
+      <subsection name="Violation Messages" id="MethodName_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22method.name.equals.class.name%22">
@@ -1714,7 +1714,7 @@ class MyClass {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="MethodTypeParameterName_Error_Messages">
+      <subsection name="Violation Messages" id="MethodTypeParameterName_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -1832,7 +1832,7 @@ package com._checkstyle.checks_; // violation, name 'com._checkstyle.checks_' mu
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="PackageName_Error_Messages">
+      <subsection name="Violation Messages" id="PackageName_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -1987,7 +1987,7 @@ public boolean equals(Object o) {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="ParameterName_Error_Messages">
+      <subsection name="Violation Messages" id="ParameterName_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -2098,7 +2098,7 @@ public boolean equals(Object o) {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="StaticVariableName_Error_Messages">
+      <subsection name="Violation Messages" id="StaticVariableName_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -2256,7 +2256,7 @@ public boolean equals(Object o) {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="TypeName_Error_Messages">
+      <subsection name="Violation Messages" id="TypeName_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">

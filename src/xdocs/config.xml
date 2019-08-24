@@ -33,7 +33,7 @@
       <ul>
 
         <li><em>FileSetChecks</em> - modules that take a set of input
-        files and fire error messages.</li>
+        files and fire violation messages.</li>
 
         <li><em>Filters</em>
 
@@ -819,7 +819,7 @@
         The obvious question is how do you know which message keys a
         Check uses, so that you can override them? You can examine all
         keys in the check's specific <a href="checks.html">configuration
-        documentation</a>. Each check has a section called 'Error Messages'.
+        documentation</a>. Each check has a section called 'Violation Messages'.
         This section lists every key the check uses and links to the default
         message used by checkstyle.
       </p>

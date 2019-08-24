@@ -129,7 +129,7 @@ switch (a)
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="AvoidNestedBlocks_Error_Messages">
+      <subsection name="Violation Messages" id="AvoidNestedBlocks_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22block.nested%22">
@@ -302,7 +302,7 @@ switch (a) {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="EmptyBlock_Error_Messages">
+      <subsection name="Violation Messages" id="EmptyBlock_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22block.empty%22">
@@ -491,7 +491,7 @@ try {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="EmptyCatchBlock_Error_Messages">
+      <subsection name="Violation Messages" id="EmptyCatchBlock_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22catch.block.empty%22">
@@ -688,7 +688,7 @@ try {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="LeftCurly_Error_Messages">
+      <subsection name="Violation Messages" id="LeftCurly_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.break.after%22">
@@ -901,7 +901,7 @@ allowedFuture.addCallback(result -> {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="NeedBraces_Error_Messages">
+      <subsection name="Violation Messages" id="NeedBraces_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22needBraces%22">
@@ -1052,7 +1052,7 @@ allowedFuture.addCallback(result -> {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="RightCurly_Error_Messages">
+      <subsection name="Violation Messages" id="RightCurly_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.alone%22">

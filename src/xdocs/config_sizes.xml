@@ -77,7 +77,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="AnonInnerLength_Error_Messages">
+      <subsection name="Violation Messages" id="AnonInnerLength_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22maxLen.anonInner%22">
@@ -185,7 +185,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="ExecutableStatementCount_Error_Messages">
+      <subsection name="Violation Messages" id="ExecutableStatementCount_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22executableStatementCount%22">
@@ -275,7 +275,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="FileLength_Error_Messages">
+      <subsection name="Violation Messages" id="FileLength_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22maxLen.file%22">
@@ -424,7 +424,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="LineLength_Error_Messages">
+      <subsection name="Violation Messages" id="LineLength_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22maxLineLen%22">
@@ -616,7 +616,7 @@ public class ExampleClass {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="MethodCount_Error_Messages">
+      <subsection name="Violation Messages" id="MethodCount_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22too.many.methods%22">
@@ -769,7 +769,7 @@ public class ExampleClass {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="MethodLength_Error_Messages">
+      <subsection name="Violation Messages" id="MethodLength_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22maxLen.method%22">
@@ -856,7 +856,7 @@ public class ExampleClass {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="OuterTypeNumber_Error_Messages">
+      <subsection name="Violation Messages" id="OuterTypeNumber_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22maxOuterTypes%22">
@@ -995,7 +995,7 @@ public void needsLotsOfParameters(int a, int b, int c, int d, int e, int f, int 
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="ParameterNumber_Error_Messages">
+      <subsection name="Violation Messages" id="ParameterNumber_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22maxParam%22">

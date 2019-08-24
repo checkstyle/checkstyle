@@ -147,7 +147,7 @@ int[] a2 = new int[]{
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="ArrayTrailingComma_Error_Messages">
+      <subsection name="Violation Messages" id="ArrayTrailingComma_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22array.trailing.comma%22">
@@ -208,7 +208,7 @@ String b = (a==null || a.length()&lt;1) ? null : a.substring(1);
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="AvoidInlineConditionals_Error_Messages">
+      <subsection name="Violation Messages" id="AvoidInlineConditionals_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22inline.conditional.avoid%22">
@@ -332,7 +332,7 @@ class Test {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="CovariantEquals_Error_Messages">
+      <subsection name="Violation Messages" id="CovariantEquals_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22covariant.equals%22">
@@ -485,7 +485,7 @@ class K {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="DeclarationOrder_Error_Messages">
+      <subsection name="Violation Messages" id="DeclarationOrder_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22declaration.order.access%22">
@@ -605,7 +605,7 @@ switch (i) {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="DefaultComesLast_Error_Messages">
+      <subsection name="Violation Messages" id="DefaultComesLast_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22default.comes.last%22">
@@ -671,7 +671,7 @@ doUnconditionalStuff();
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="EmptyStatement_Error_Messages">
+      <subsection name="Violation Messages" id="EmptyStatement_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22empty.statement%22">
@@ -770,7 +770,7 @@ String nullString = null;
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="EqualsAvoidNull_Error_Messages">
+      <subsection name="Violation Messages" id="EqualsAvoidNull_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22equals.avoid.null%22">
@@ -843,7 +843,7 @@ String nullString = null;
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="EqualsHashCode_Error_Messages">
+      <subsection name="Violation Messages" id="EqualsHashCode_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22equals.noEquals%22">
@@ -967,7 +967,7 @@ public class Test {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="ExplicitInitialization_Error_Messages">
+      <subsection name="Violation Messages" id="ExplicitInitialization_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22explicit.init%22">
@@ -1115,7 +1115,7 @@ case 6:
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="FallThrough_Error_Messages">
+      <subsection name="Violation Messages" id="FallThrough_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22fall.through%22">
@@ -1286,7 +1286,7 @@ public class MyClass {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="FinalLocalVariable_Error_Messages">
+      <subsection name="Violation Messages" id="FinalLocalVariable_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22final.variable%22">
@@ -1533,7 +1533,7 @@ class SomeClass
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="HiddenField_Error_Messages">
+      <subsection name="Violation Messages" id="HiddenField_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22hidden.field%22">
@@ -1615,7 +1615,7 @@ class SomeClass
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="IllegalCatch_Error_Messages">
+      <subsection name="Violation Messages" id="IllegalCatch_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.catch%22">
@@ -1737,7 +1737,7 @@ class SomeClass
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="IllegalInstantiation_Error_Messages">
+      <subsection name="Violation Messages" id="IllegalInstantiation_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22instantiation.avoid%22">
@@ -1853,7 +1853,7 @@ class SomeClass
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="IllegalThrows_Error_Messages">
+      <subsection name="Violation Messages" id="IllegalThrows_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.throw%22">
@@ -1944,7 +1944,7 @@ class SomeClass
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="IllegalToken_Error_Messages">
+      <subsection name="Violation Messages" id="IllegalToken_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.token%22">
@@ -2075,7 +2075,7 @@ class SomeClass
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="IllegalTokenText_Error_Messages">
+      <subsection name="Violation Messages" id="IllegalTokenText_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.token.text%22">
@@ -2318,7 +2318,7 @@ public class Test {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="IllegalType_Error_Messages">
+      <subsection name="Violation Messages" id="IllegalType_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.type%22">
@@ -2397,7 +2397,7 @@ while ((line = bufferedReader.readLine()) != null) {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="InnerAssignment_Error_Messages">
+      <subsection name="Violation Messages" id="InnerAssignment_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22assignment.inner.avoid%22">
@@ -2667,7 +2667,7 @@ class TestMethodCall {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="MagicNumber_Error_Messages">
+      <subsection name="Violation Messages" id="MagicNumber_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22magic.number%22">
@@ -2720,7 +2720,7 @@ class TestMethodCall {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="MissingCtor_Error_Messages">
+      <subsection name="Violation Messages" id="MissingCtor_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22missing.ctor%22">
@@ -2789,7 +2789,7 @@ class TestMethodCall {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="MissingSwitchDefault_Error_Messages">
+      <subsection name="Violation Messages" id="MissingSwitchDefault_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22missing.switch.default%22">
@@ -2914,7 +2914,7 @@ for (String line: lines) {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="ModifiedControlVariable_Error_Messages">
+      <subsection name="Violation Messages" id="ModifiedControlVariable_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22modified.control.variable%22">
@@ -3050,7 +3050,7 @@ for (String line: lines) {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="MultipleStringLiterals_Error_Messages">
+      <subsection name="Violation Messages" id="MultipleStringLiterals_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22multiple.string.literal%22">
@@ -3118,7 +3118,7 @@ for (String line: lines) {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="MultipleVariableDeclarations_Error_Messages">
+      <subsection name="Violation Messages" id="MultipleVariableDeclarations_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22multiple.variable.declarations%22">
@@ -3203,7 +3203,7 @@ for (String line: lines) {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="NestedForDepth_Error_Messages">
+      <subsection name="Violation Messages" id="NestedForDepth_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22nested.for.depth%22">
@@ -3283,7 +3283,7 @@ for (String line: lines) {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="NestedIfDepth_Error_Messages">
+      <subsection name="Violation Messages" id="NestedIfDepth_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22nested.if.depth%22">
@@ -3363,7 +3363,7 @@ for (String line: lines) {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="NestedTryDepth_Error_Messages">
+      <subsection name="Violation Messages" id="NestedTryDepth_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22nested.try.depth%22">
@@ -3512,7 +3512,7 @@ System.out.println(s2 instanceof Square); //true
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="NoClone_Error_Messages">
+      <subsection name="Violation Messages" id="NoClone_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22avoid.clone.method%22">
@@ -3579,7 +3579,7 @@ System.out.println(s2 instanceof Square); //true
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="NoFinalizer_Error_Messages">
+      <subsection name="Violation Messages" id="NoFinalizer_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22avoid.finalizer.method%22">
@@ -3717,7 +3717,7 @@ try (Reader r = new PipedReader(); s2; Reader s3 = new PipedReader() // violatio
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="OneStatementPerLine_Error_Messages">
+      <subsection name="Violation Messages" id="OneStatementPerLine_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22multiple.statements.line%22">
@@ -3782,7 +3782,7 @@ public void foo(int i, String s) {}
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="OverloadMethodsDeclarationOrder_Error_Messages">
+      <subsection name="Violation Messages" id="OverloadMethodsDeclarationOrder_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22overload.methods.declaration%22">
@@ -3891,7 +3891,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="PackageDeclaration_Error_Messages">
+      <subsection name="Violation Messages" id="PackageDeclaration_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22mismatch.package.directory%22">
@@ -3951,7 +3951,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="ParameterAssignment_Error_Messages">
+      <subsection name="Violation Messages" id="ParameterAssignment_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22parameter.assignment%22">
@@ -4192,7 +4192,7 @@ class C {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="RequireThis_Error_Messages">
+      <subsection name="Violation Messages" id="RequireThis_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22require.this.method%22">
@@ -4382,7 +4382,7 @@ class C {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="ReturnCount_Error_Messages">
+      <subsection name="Violation Messages" id="ReturnCount_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22return.count%22">
@@ -4449,7 +4449,7 @@ class C {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="SimplifyBooleanExpression_Error_Messages">
+      <subsection name="Violation Messages" id="SimplifyBooleanExpression_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22simplify.expression%22">
@@ -4524,7 +4524,7 @@ return !valid();
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="SimplifyBooleanReturn_Error_Messages">
+      <subsection name="Violation Messages" id="SimplifyBooleanReturn_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22simplify.boolReturn%22">
@@ -4589,7 +4589,7 @@ if (&quot;something&quot;.equals(x))
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="StringLiteralEquality_Error_Messages">
+      <subsection name="Violation Messages" id="StringLiteralEquality_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22string.literal.equality%22">
@@ -4649,7 +4649,7 @@ if (&quot;something&quot;.equals(x))
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="SuperClone_Error_Messages">
+      <subsection name="Violation Messages" id="SuperClone_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22missing.super.call%22">
@@ -4711,7 +4711,7 @@ if (&quot;something&quot;.equals(x))
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="SuperFinalize_Error_Messages">
+      <subsection name="Violation Messages" id="SuperFinalize_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22missing.super.call%22">
@@ -4900,7 +4900,7 @@ if (&quot;something&quot;.equals(x))
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="UnnecessaryParentheses_Error_Messages">
+      <subsection name="Violation Messages" id="UnnecessaryParentheses_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.paren.assign%22">
@@ -5055,8 +5055,8 @@ class A {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages"
-                  id="UnnecessarySemicolonAfterTypeMemberDeclaration_Error_Messages">
+      <subsection name="Violation Messages"
+                  id="UnnecessarySemicolonAfterTypeMemberDeclaration_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.semicolon%22">
@@ -5147,7 +5147,8 @@ enum NoSemicolon {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="UnnecessarySemicolonInEnumeration_Error_Messages">
+      <subsection name="Violation Messages"
+                  id="UnnecessarySemicolonInEnumeration_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.semicolon%22">
@@ -5258,7 +5259,8 @@ class A {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="UnnecessarySemicolonInTryWithResources_Error_Messages">
+      <subsection name="Violation Messages"
+                  id="UnnecessarySemicolonInTryWithResources_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.semicolon%22">
@@ -5485,7 +5487,8 @@ for (int i = 0; i &lt; 20; i++) {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="VariableDeclarationUsageDistance_Error_Messages">
+      <subsection name="Violation Messages"
+                  id="VariableDeclarationUsageDistance_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22variable.declaration.usage.distance%22">

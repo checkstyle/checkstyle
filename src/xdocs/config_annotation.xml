@@ -207,7 +207,7 @@ public String getNameIfPresent() { ... }
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="AnnotationLocation_Error_Messages">
+      <subsection name="Violation Messages" id="AnnotationLocation_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.location%22">
@@ -337,7 +337,7 @@ public int foo() { ... }
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="AnnotationOnSameLine_Error_Messages">
+      <subsection name="Violation Messages" id="AnnotationOnSameLine_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.same.line%22">
@@ -505,7 +505,7 @@ public int foo() { ... }
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="AnnotationUseStyle_Error_Messages">
+      <subsection name="Violation Messages" id="AnnotationUseStyle_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.incorrect.style%22">
@@ -628,7 +628,7 @@ public static final int COUNTER = 10; // violation
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="MissingDeprecated_Error_Messages">
+      <subsection name="Violation Messages" id="MissingDeprecated_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.missing.deprecated%22">
@@ -750,7 +750,7 @@ public static final int COUNTER = 10; // violation
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="MissingOverride_Error_Messages">
+      <subsection name="Violation Messages" id="MissingOverride_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.missing.override%22">
@@ -813,7 +813,7 @@ public static final int COUNTER = 10; // violation
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="PackageAnnotation_Error_Messages">
+      <subsection name="Violation Messages" id="PackageAnnotation_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.package.location%22">
@@ -987,7 +987,7 @@ public static final int COUNTER = 10; // violation
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="SuppressWarnings_Error_Messages">
+      <subsection name="Violation Messages" id="SuppressWarnings_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22suppressed.warning.not.allowed%22">
@@ -1103,7 +1103,7 @@ public void someFunctionWithInvalidStyle() {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="SuppressWarningsHolder_Error_Messages">
+      <subsection name="Violation Messages" id="SuppressWarningsHolder_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22suppress.warnings.invalid.target%22">

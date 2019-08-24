@@ -62,7 +62,7 @@
         The property <code>checkstyle.basedir</code>
         specifies a base directory which files are then reported
         relative to. For example, if a base directory is specified as
-        <code>c:\projects\checkstyle</code>, then an error
+        <code>c:\projects\checkstyle</code>, then a violation
         in the file <code>c:\projects\checkstyle\src\dir\subdir\File.java</code>
         will be reported as <code>src\dir\subdir\File.java</code>. The property type
         is <a href="property_types.html#string">string</a> and defaults

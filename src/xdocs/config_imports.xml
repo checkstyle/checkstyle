@@ -112,7 +112,7 @@
           </li>
         </ul>
       </subsection>
-      <subsection name="Error Messages" id="AvoidStarImport_Error_Messages">
+      <subsection name="Violation Messages" id="AvoidStarImport_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.avoidStar%22">
@@ -204,7 +204,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="AvoidStaticImport_Error_Messages">
+      <subsection name="Violation Messages" id="AvoidStaticImport_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.avoidStatic%22">
@@ -560,7 +560,7 @@ import android.*;
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="CustomImportOrder_Error_Messages">
+      <subsection name="Violation Messages" id="CustomImportOrder_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22custom.import.order%22">
@@ -852,7 +852,7 @@ public class InputIllegalImport { }
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="IllegalImport_Error_Messages">
+      <subsection name="Violation Messages" id="IllegalImport_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.illegal%22">
@@ -1317,7 +1317,7 @@ import java.util.stream.IntStream;
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="ImportControl_Error_Messages">
+      <subsection name="Violation Messages" id="ImportControl_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.control.disallowed%22">
@@ -1728,7 +1728,7 @@ public class InputEclipseStaticImportsOrder { }
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="ImportOrder_Error_Messages">
+      <subsection name="Violation Messages" id="ImportOrder_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.groups.separated.internally%22">
@@ -1807,7 +1807,7 @@ public class InputEclipseStaticImportsOrder { }
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="RedundantImport_Error_Messages">
+      <subsection name="Violation Messages" id="RedundantImport_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.duplicate%22">
@@ -1941,7 +1941,7 @@ class FooBar {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="UnusedImports_Error_Messages">
+      <subsection name="Violation Messages" id="UnusedImports_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.unused%22">

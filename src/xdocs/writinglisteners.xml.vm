@@ -53,7 +53,7 @@
         interface. During an audit, a <code>Checker</code>
         informs its attached <code>AuditListeners</code> of
         six kinds of events: audit started/ended, file started/ended,
-        and logging of an error/exception.
+        and logging of an error(violation)/exception.
       </p>
 
       <p>
@@ -64,7 +64,7 @@
         violation logging has a message, a severity level, a message source
         such as the name of a <code>Check</code>, and file
         line and column numbers that may be relevant to the violation. The
-        notification of an exception to a <code>AuditListener</code> includes an error
+        notification of an exception to a <code>AuditListener</code> includes a violation
         <code>AuditEvent</code> and the details of the exception. Here is a UML diagram for
         classes <code>AuditListener</code> and <code>AuditEvent</code>.
       </p>
@@ -88,8 +88,8 @@
       <p>
         The custom listener that we demonstrate here is a verbose
         listener that simply prints each event notification to an output
-        stream, and reports the number of errors per audited file and
-        the total number of errors. The default output stream is <code>System.out</code>.
+        stream, and reports the number of violations per audited file and
+        the total number of violations. The default output stream is <code>System.out</code>.
         In order to enable the specification of output to a file through property
         <code>file</code>, the class extends <code>AutomaticBean</code> and defines method
         <code>setFile(String)</code>.
