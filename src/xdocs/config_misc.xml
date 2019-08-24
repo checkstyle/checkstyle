@@ -129,7 +129,7 @@ public class MyClass {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="ArrayTypeStyle_Error_Messages">
+      <subsection name="Violation Messages" id="ArrayTypeStyle_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22array.type.style%22">
@@ -294,7 +294,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="AvoidEscapedUnicodeCharacters_Error_Messages">
+      <subsection name="Violation Messages" id="AvoidEscapedUnicodeCharacters_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22forbid.escaped.unicode.char%22">
@@ -543,7 +543,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="CommentsIndentation_Error_Messages">
+      <subsection name="Violation Messages" id="CommentsIndentation_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22comments.indentation.block%22">
@@ -893,7 +893,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="DescendantToken_Error_Messages">
+      <subsection name="Violation Messages" id="DescendantToken_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22descendant.token.max%22">
@@ -1033,7 +1033,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="FinalParameters_Error_Messages">
+      <subsection name="Violation Messages" id="FinalParameters_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22final.parameter%22">
@@ -1198,7 +1198,7 @@ void foo(String aFooString,
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="Indentation_Error_Messages">
+      <subsection name="Violation Messages" id="Indentation_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22indentation.child.error%22">
@@ -1357,7 +1357,7 @@ StaticMethodCandidateCheck.name = Static Method Candidate
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="NewlineAtEndOfFile_Error_Messages">
+      <subsection name="Violation Messages" id="NewlineAtEndOfFile_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22noNewlineAtEOF%22">
@@ -1475,7 +1475,7 @@ key.png =value - violation
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="OrderedProperties_Error_Messages">
+      <subsection name="Violation Messages" id="OrderedProperties_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22properties.notSorted.property%22">
@@ -1537,7 +1537,7 @@ key.png =value - violation
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="OuterTypeFilename_Error_Messages">
+      <subsection name="Violation Messages" id="OuterTypeFilename_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22type.file.mismatch%22">
@@ -1635,7 +1635,7 @@ key.png =value - violation
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="TodoComment_Error_Messages">
+      <subsection name="Violation Messages" id="TodoComment_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22todo.match%22">
@@ -1781,7 +1781,7 @@ d = e / f;        // Another comment for this line
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="TrailingComment_Error_Messages">
+      <subsection name="Violation Messages" id="TrailingComment_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22trailing.comments%22">
@@ -1983,7 +1983,7 @@ messages_home_fr_CA_UNIX.properties
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="Translation_Error_Messages">
+      <subsection name="Violation Messages" id="Translation_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22translation.missingKey%22">
@@ -2078,7 +2078,7 @@ messages_home_fr_CA_UNIX.properties
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="UncommentedMain_Error_Messages">
+      <subsection name="Violation Messages" id="UncommentedMain_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22uncommented.main%22">
@@ -2158,7 +2158,7 @@ messages_home_fr_CA_UNIX.properties
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="UniqueProperties_Error_Messages">
+      <subsection name="Violation Messages" id="UniqueProperties_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22properties.duplicate.property%22">
@@ -2230,7 +2230,7 @@ messages_home_fr_CA_UNIX.properties
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="UpperEll_Error_Messages">
+      <subsection name="Violation Messages" id="UpperEll_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22upperEll%22">

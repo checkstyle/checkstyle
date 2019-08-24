@@ -116,7 +116,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="AtclauseOrder_Error_Messages">
+      <subsection name="Violation Messages" id="AtclauseOrder_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22at.clause.order%22">
@@ -207,7 +207,7 @@ public class TestClass {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="InvalidJavadocPosition_Error_Messages">
+      <subsection name="Violation Messages" id="InvalidJavadocPosition_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22invalid.position%22">
@@ -357,7 +357,7 @@ public int field;
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="JavadocBlockTagLocation_Error_Messages">
+      <subsection name="Violation Messages" id="JavadocBlockTagLocation_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.blockTagLocation%22">
@@ -711,7 +711,7 @@ public boolean isSomething()
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="JavadocMethod_Error_Messages">
+      <subsection name="Violation Messages" id="JavadocMethod_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.classInfo%22">
@@ -827,7 +827,7 @@ public boolean isSomething()
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="JavadocPackage_Error_Messages">
+      <subsection name="Violation Messages" id="JavadocPackage_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.legacyPackageHtml%22">
@@ -954,7 +954,7 @@ public boolean isSomething()
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="JavadocParagraph_Error_Messages">
+      <subsection name="Violation Messages" id="JavadocParagraph_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
@@ -1224,7 +1224,7 @@ public boolean isSomething()
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="JavadocStyle_Error_Messages">
+      <subsection name="Violation Messages" id="JavadocStyle_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.empty%22">
@@ -1331,7 +1331,8 @@ public boolean isSomething()
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="JavadocTagContinuationIndentation_Error_Messages">
+      <subsection name="Violation Messages"
+                  id="JavadocTagContinuationIndentation_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
@@ -1563,7 +1564,7 @@ class DatabaseConfiguration {}
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="JavadocType_Error_Messages">
+      <subsection name="Violation Messages" id="JavadocType_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unknownTag%22">
@@ -1714,7 +1715,7 @@ class DatabaseConfiguration {}
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="JavadocVariable_Error_Messages">
+      <subsection name="Violation Messages" id="JavadocVariable_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missing%22">
@@ -1919,7 +1920,7 @@ public boolean isSomething()
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="MissingJavadocMethod_Error_Messages">
+      <subsection name="Violation Messages" id="MissingJavadocMethod_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missing%22">
@@ -1989,7 +1990,7 @@ package com.checkstyle.api; // violation
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="MissingJavadocPackage_Error_Messages">
+      <subsection name="Violation Messages" id="MissingJavadocPackage_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22package.javadoc.missing%22">
@@ -2169,7 +2170,7 @@ class DatabaseConfiguration {}
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="MissingJavadocType_Error_Messages">
+      <subsection name="Violation Messages" id="MissingJavadocType_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missing%22">
@@ -2277,7 +2278,7 @@ class DatabaseConfiguration {}
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="NonEmptyAtclauseDescription_Error_Messages">
+      <subsection name="Violation Messages" id="NonEmptyAtclauseDescription_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
@@ -2392,7 +2393,7 @@ class DatabaseConfiguration {}
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="SingleLineJavadoc_Error_Messages">
+      <subsection name="Violation Messages" id="SingleLineJavadoc_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
@@ -2559,7 +2560,7 @@ public class TestClass {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="SummaryJavadoc_Error_Messages">
+      <subsection name="Violation Messages" id="SummaryJavadoc_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
@@ -2717,7 +2718,7 @@ public class TestClass {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="WriteTag_Error_Messages">
+      <subsection name="Violation Messages" id="WriteTag_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.writeTag%22">

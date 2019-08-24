@@ -232,7 +232,7 @@ public class FooTest {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="DesignForExtension_Error_Messages">
+      <subsection name="Violation Messages" id="DesignForExtension_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22design.forExtension%22">
@@ -290,7 +290,7 @@ public class FooTest {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="FinalClass_Error_Messages">
+      <subsection name="Violation Messages" id="FinalClass_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22final.class%22">
@@ -374,7 +374,7 @@ public class StringUtils // not final to allow subclassing
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="HideUtilityClassConstructor_Error_Messages">
+      <subsection name="Violation Messages" id="HideUtilityClassConstructor_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22hide.utility.class%22">
@@ -427,7 +427,7 @@ public class StringUtils // not final to allow subclassing
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="InnerTypeLast_Error_Messages">
+      <subsection name="Violation Messages" id="InnerTypeLast_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22arrangement.members.before.inner%22">
@@ -521,7 +521,7 @@ public class StringUtils // not final to allow subclassing
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="InterfaceIsType_Error_Messages">
+      <subsection name="Violation Messages" id="InterfaceIsType_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22interface.type%22">
@@ -618,7 +618,7 @@ public class StringUtils // not final to allow subclassing
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="MutableException_Error_Messages">
+      <subsection name="Violation Messages" id="MutableException_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22mutable.exception%22">
@@ -716,7 +716,7 @@ public class Foo{
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="OneTopLevelClass_Error_Messages">
+      <subsection name="Violation Messages" id="OneTopLevelClass_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22one.top.level.class%22">
@@ -828,7 +828,7 @@ public class Foo{
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="ThrowsCount_Error_Messages">
+      <subsection name="Violation Messages" id="ThrowsCount_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22throws.count%22">
@@ -1262,7 +1262,7 @@ public class InputPublicImmutable {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="VisibilityModifier_Error_Messages">
+      <subsection name="Violation Messages" id="VisibilityModifier_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22variable.notPrivate%22">

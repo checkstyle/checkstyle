@@ -457,7 +457,7 @@ public static final int A_SETPOINT = 1;
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="Regexp_Error_Messages">
+      <subsection name="Violation Messages" id="Regexp_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22duplicate.regexp%22">
@@ -581,7 +581,7 @@ public static final int A_SETPOINT = 1;
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="RegexpMultiline_Error_Messages">
+      <subsection name="Violation Messages" id="RegexpMultiline_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.StackOverflowError%22">
@@ -790,7 +790,7 @@ public static final int A_SETPOINT = 1;
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="RegexpOnFilename_Error_Messages">
+      <subsection name="Violation Messages" id="RegexpOnFilename_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.filename.match%22">
@@ -943,7 +943,7 @@ public static final int A_SETPOINT = 1;
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="RegexpSingleline_Error_Messages">
+      <subsection name="Violation Messages" id="RegexpSingleline_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.exceeded%22">
@@ -1075,7 +1075,7 @@ public static final int A_SETPOINT = 1;
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="RegexpSinglelineJava_Error_Messages">
+      <subsection name="Violation Messages" id="RegexpSinglelineJava_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.exceeded%22">

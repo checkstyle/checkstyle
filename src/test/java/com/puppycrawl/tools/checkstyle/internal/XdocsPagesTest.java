@@ -502,8 +502,8 @@ public class XdocsPagesTest {
                 validatePropertySection(fileName, sectionName, null, instance);
                 subSectionPos++;
             }
-            if (subSectionPos == 4 && !"Error Messages".equals(subSectionName)) {
-                validateErrorSection(fileName, sectionName, null, instance);
+            if (subSectionPos == 4 && !"Violation Messages".equals(subSectionName)) {
+                validateViolationSection(fileName, sectionName, null, instance);
                 subSectionPos++;
             }
 
@@ -519,7 +519,7 @@ public class XdocsPagesTest {
                     validateUsageExample(fileName, sectionName, subSection);
                     break;
                 case 4:
-                    validateErrorSection(fileName, sectionName, subSection, instance);
+                    validateViolationSection(fileName, sectionName, subSection, instance);
                     break;
                 case 5:
                     validatePackageSection(fileName, sectionName, subSection, instance);
@@ -571,7 +571,7 @@ public class XdocsPagesTest {
                 result = "Example of Usage";
                 break;
             case 4:
-                result = "Error Messages";
+                result = "Violation Messages";
                 break;
             case 5:
                 result = "Package";
@@ -1238,8 +1238,9 @@ public class XdocsPagesTest {
         return result;
     }
 
-    private static void validateErrorSection(String fileName, String sectionName, Node subSection,
-            Object instance) throws Exception {
+    private static void validateViolationSection(String fileName, String sectionName,
+                                                 Node subSection,
+                                                 Object instance) throws Exception {
         final Class<?> clss = instance.getClass();
         final Set<Field> fields = CheckUtil.getCheckMessages(clss);
         final Set<String> list = new TreeSet<>();

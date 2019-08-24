@@ -127,7 +127,7 @@ public final class Person {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="ClassMemberImpliedModifier_Error_Messages">
+      <subsection name="Violation Messages" id="ClassMemberImpliedModifier_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22class.implied.modifier%22">
@@ -372,7 +372,7 @@ public interface RoadFeature {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="InterfaceMemberImpliedModifier_Error_Messages">
+      <subsection name="Violation Messages" id="InterfaceMemberImpliedModifier_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22interface.implied.modifier%22">
@@ -479,7 +479,7 @@ public interface RoadFeature {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="ModifierOrder_Error_Messages">
+      <subsection name="Violation Messages" id="ModifierOrder_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.order%22">
@@ -716,7 +716,7 @@ public class ClassExtending extends ClassExample {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="RedundantModifier_Error_Messages">
+      <subsection name="Violation Messages" id="RedundantModifier_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22redundantModifier%22">

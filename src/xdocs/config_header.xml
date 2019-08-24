@@ -160,7 +160,7 @@ line 5: ////////////////////////////////////////////////////////////////////
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="Header_Error_Messages">
+      <subsection name="Violation Messages" id="Header_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fheader+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22header.mismatch%22">
@@ -402,7 +402,7 @@ public class ThisWillPass { }
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="RegexpHeader_Error_Messages">
+      <subsection name="Violation Messages" id="RegexpHeader_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fheader+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22header.mismatch%22">

@@ -132,7 +132,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="BooleanExpressionComplexity_Error_Messages">
+      <subsection name="Violation Messages" id="BooleanExpressionComplexity_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22booleanExpressionComplexity%22">
@@ -451,7 +451,7 @@ public class Foo {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="ClassDataAbstractionCoupling_Error_Messages">
+      <subsection name="Violation Messages" id="ClassDataAbstractionCoupling_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22classDataAbstractionCoupling%22">
@@ -656,7 +656,7 @@ public class Foo {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="ClassFanOutComplexity_Error_Messages">
+      <subsection name="Violation Messages" id="ClassFanOutComplexity_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22classFanOutComplexity%22">
@@ -888,7 +888,7 @@ class SwitchExample {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="CyclomaticComplexity_Error_Messages">
+      <subsection name="Violation Messages" id="CyclomaticComplexity_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22cyclomaticComplexity%22">
@@ -1013,7 +1013,7 @@ class SwitchExample {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="JavaNCSS_Error_Messages">
+      <subsection name="Violation Messages" id="JavaNCSS_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ncss.class%22">
@@ -1172,7 +1172,7 @@ class SwitchExample {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="NPathComplexity_Error_Messages">
+      <subsection name="Violation Messages" id="NPathComplexity_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22npathComplexity%22">

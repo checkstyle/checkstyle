@@ -85,7 +85,7 @@ for (
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="EmptyForInitializerPad_Error_Messages">
+      <subsection name="Violation Messages" id="EmptyForInitializerPad_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notPreceded%22">
@@ -184,7 +184,7 @@ for (Iterator foo = very.long.line.iterator();
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="EmptyForIteratorPad_Error_Messages">
+      <subsection name="Violation Messages" id="EmptyForIteratorPad_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
@@ -466,7 +466,7 @@ class Foo
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="EmptyLineSeparator_Error_Messages">
+      <subsection name="Violation Messages" id="EmptyLineSeparator_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22empty.line.separator%22">
@@ -592,7 +592,7 @@ class Foo
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="FileTabCharacter_Error_Messages">
+      <subsection name="Violation Messages" id="FileTabCharacter_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22containsTab%22">
@@ -695,7 +695,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="GenericWhitespace_Error_Messages">
+      <subsection name="Violation Messages" id="GenericWhitespace_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
@@ -854,7 +854,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="MethodParamPad_Error_Messages">
+      <subsection name="Violation Messages" id="MethodParamPad_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.previous%22">
@@ -991,7 +991,7 @@ import static java.math.BigInteger.ZERO;
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="NoLineWrap_Error_Messages">
+      <subsection name="Violation Messages" id="NoLineWrap_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22no.line.wrap%22">
@@ -1169,7 +1169,7 @@ public void foo(final char @NotNull [] param) {} // No violation
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="NoWhitespaceAfter_Error_Messages">
+      <subsection name="Violation Messages" id="NoWhitespaceAfter_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
@@ -1304,7 +1304,7 @@ public void foo(final char @NotNull [] param) {} // No violation
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="NoWhitespaceBefore_Error_Messages">
+      <subsection name="Violation Messages" id="NoWhitespaceBefore_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.preceded%22">
@@ -1527,7 +1527,7 @@ public void foo(final char @NotNull [] param) {} // No violation
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="OperatorWrap_Error_Messages">
+      <subsection name="Violation Messages" id="OperatorWrap_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.new%22">
@@ -1743,7 +1743,7 @@ try (Closeable resource = acquire(); ) // no check before right parenthesis
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="ParenPad_Error_Messages">
+      <subsection name="Violation Messages" id="ParenPad_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
@@ -1915,7 +1915,7 @@ Arrays.sort(stringArray, String
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="SeparatorWrap_Error_Messages">
+      <subsection name="Violation Messages" id="SeparatorWrap_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.new%22">
@@ -2026,7 +2026,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="SingleSpaceSeparator_Error_Messages">
+      <subsection name="Violation Messages" id="SingleSpaceSeparator_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22single.space.separator%22">
@@ -2112,7 +2112,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="TypecastParenPad_Error_Messages">
+      <subsection name="Violation Messages" id="TypecastParenPad_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
@@ -2253,7 +2253,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="WhitespaceAfter_Error_Messages">
+      <subsection name="Violation Messages" id="WhitespaceAfter_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notFollowed%22">
@@ -2727,7 +2727,7 @@ try {
         </ul>
       </subsection>
 
-      <subsection name="Error Messages" id="WhitespaceAround_Error_Messages">
+      <subsection name="Violation Messages" id="WhitespaceAround_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notFollowed%22">

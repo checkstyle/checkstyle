@@ -515,7 +515,7 @@ public class MethodLimitCheck extends AbstractCheck
 
     </section>
 
-    <section name="Logging errors">
+    <section name="Logging violations">
 
       <p>
         Detecting violation is one thing, presenting them to the user is
@@ -544,7 +544,7 @@ public class MethodLimitCheck extends AbstractCheck
           example</a>)
         , i.e. the
         Java file and the properties files should be in the same
-        directory.  Add a symbolic error code and an English
+        directory.  Add a symbolic violation code and an English
         representation to the messages.properties. The file should
         contain the following line: <code>too.many.methods=Too many methods, only {0} are
         allowed</code>.  Then replace the verbatim violation message with
@@ -685,7 +685,7 @@ public class MethodLimitCheck extends AbstractCheck
       and override the abstract
       <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html#processFiltered-java.io.File-java.util.List-">
               <code>processFiltered(java.io.File, java.util.List)</code></a> method and you&#39;re
-      done. A very simple example could fire an error if the number of files
+      done. A very simple example could fire a violation if the number of files
       exceeds a certain limit. Here is a FileSetCheck that does just that:</p>
 
       <source>
