@@ -1560,12 +1560,13 @@ key.png =value - violation
     </section>
 
     <section name="TodoComment">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="TodoComment_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
           A check for <code>TODO:</code> comments. Actually
-          it is a generic <a
-          href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html">regular
+          it is a generic
+          <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html">
+          regular
           expression</a> matcher on Java comments. To check for other
           patterns in Java comments, set the <code>format</code> property.
         </p>
@@ -1582,7 +1583,7 @@ key.png =value - violation
           </tr>
           <tr>
             <td>format</td>
-            <td>Pattern to match comments against</td>
+            <td>Specify pattern to match comments against.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"TODO:"</code></td>
             <td>3.0</td>

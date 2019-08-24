@@ -28,26 +28,37 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * A check for 'TODO:' comments. To check for other patterns in Java comments, set
- * property format.
+ * A check for {@code TODO:} comments. Actually it is a generic
+ * <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html">
+ * regular expression</a> matcher on Java comments. To check for other patterns
+ * in Java comments, set the {@code format} property.
  * </p>
  * <p>
- * An example of how to configure the check is:
+ * Using {@code TODO:} comments is a great way to keep track of tasks that need to be done.
+ * Having them reported by Checkstyle makes it very hard to forget about them.
  * </p>
- *
+ * <ul>
+ * <li>
+ * Property {@code format} - Specify pattern to match comments against.
+ * Default value is {@code "TODO:"}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
  * <pre>
  * &lt;module name="TodoComment"/&gt;
  * </pre>
  * <p>
- * An example of how to configure the check for comments that contain
- * {@code TODO} or {@code FIXME}is:
+ * To configure the check for comments that contain {@code TODO} and {@code FIXME}:
  * </p>
- *
  * <pre>
  * &lt;module name="TodoComment"&gt;
- *    &lt;property name="format" value="(TODO)|(FIXME)"/&gt;
+ *   &lt;property name="format" value="(TODO)|(FIXME)"/&gt;
  * &lt;/module&gt;
  * </pre>
+ *
+ * @since 3.0
  */
 @StatelessCheck
 public class TodoCommentCheck
@@ -60,7 +71,7 @@ public class TodoCommentCheck
     public static final String MSG_KEY = "todo.match";
 
     /**
-     * Regular expression pattern compiled from format.
+     * Specify pattern to match comments against.
      */
     private Pattern format = Pattern.compile("TODO:");
 
@@ -70,7 +81,7 @@ public class TodoCommentCheck
     }
 
     /**
-     * Setter for 'todo' comment pattern.
+     * Setter to specify pattern to match comments against.
      * @param pattern
      *        pattern of 'todo' comment.
      */
