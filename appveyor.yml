@@ -12,7 +12,6 @@ skip_commits:
     - buddy.yml
     - codeship-services.yml
     - codeship-steps.yml
-    - distelli-manifest.yml
     - LICENSE
     - LICENSE.apache20
     - README.md

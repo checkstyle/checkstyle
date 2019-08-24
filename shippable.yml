@@ -10,6 +10,7 @@ env:
     - CMD="./.ci/shippable.sh no-exception-openjdk9-lucene-and-others"
     - CMD="./.ci/shippable.sh no-exception-cassandra-storm-tapestry"
     - CMD="./.ci/shippable.sh no-exception-hadoop-apache-groovy-scouter"
+    - CMD="./.ci/shippable.sh no-exception-only-javadoc"
 
 branches:
   only:
@@ -40,7 +41,7 @@ build:
       fi
       # load custom PATH
       export PATH=/root/groovy-2.4.7/bin:$PATH
-      SKIP_FILES1="appveyor.yml|codeship-*|buddy.yml|circleci|distelli-manifest.yml|.travis.yml"
+      SKIP_FILES1="appveyor.yml|codeship-*|buddy.yml|circleci|.travis.yml"
       SKIP_FILES2="|wercker.yml|wercker.sh|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md"
       SKIP_FILES3="|release.sh|RIGHTS.antlr|intellij-idea-inspections.xml"
       SKIP_FILES4="|org.eclipse.jdt.core.prefs"

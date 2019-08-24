@@ -94,6 +94,23 @@ no-exception-hadoop-apache-groovy-scouter)
     --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
   ;;
 
+no-exception-only-javadoc)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  echo 'CS_POM_VERSION='${CS_POM_VERSION}
+  build_checkstyle
+  checkout_from https://github.com/checkstyle/contribution.git
+  cd .ci-temp/contribution/checkstyle-tester
+  sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
+  sed -i.'' 's/#spring-framework/spring-framework/' projects-to-test-on.properties
+  sed -i.'' 's/#nbia-dcm4che-tools/nbia-dcm4che-tools/' projects-to-test-on.properties
+  sed -i.'' 's/#spotbugs/spotbugs/' projects-to-test-on.properties
+  sed -i.'' 's/#pmd/pmd/' projects-to-test-on.properties
+  sed -i.'' 's/#apache-ant/apache-ant/' projects-to-test-on.properties
+  groovy launch.groovy --listOfProjects projects-to-test-on.properties \
+    --config checks-only-javadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s

@@ -31,7 +31,7 @@ build:
         SKIP_FILES1="appveyor.yml|codeship-*|buddy.yml|circleci|travis"
         SKIP_FILES2="|shippable|sonar-|fast-forward-merge.sh|LICENSE|LICENSE.apache20"
         SKIP_FILES3="|README.md|release.sh|RIGHTS.antlr|intellij-idea-inspections.xml"
-        SKIP_FILES4="|org.eclipse.jdt.core.prefs|distelli-manifest.yml|jsoref-spellchecker"
+        SKIP_FILES4="|org.eclipse.jdt.core.prefs|jsoref-spellchecker"
         SKIP_FILES5="|check-only-javadoc-error.sh|eclipse-compiler-javac.sh|idea_inspection"
         SKIP_FILES6="|test-spelling-unknown-words.sh|Jenkinsfile"
         SKIP_FILES=$SKIP_FILES1$SKIP_FILES2$SKIP_FILES3$SKIP_FILES4$SKIP_FILES5$SKIP_FILES6
