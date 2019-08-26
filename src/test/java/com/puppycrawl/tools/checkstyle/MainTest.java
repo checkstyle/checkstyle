@@ -497,6 +497,30 @@ public class MainTest {
     }
 
     @Test
+    public void testExistingTargetFileWithOneErrorAgainsSunCheck()
+            throws Exception {
+        exit.expectSystemExitWithStatus(1);
+        exit.checkAssertionAfterwards(() -> {
+            final LocalizedMessage errorCounterTwoMessage = new LocalizedMessage(1,
+                    Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER,
+                    new String[] {String.valueOf(1)}, null, getClass(), null);
+            final LocalizedMessage message = new LocalizedMessage(1,
+                    "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
+                    "javadoc.packageInfo", new String[] {},
+                    null, getClass(), null);
+            final String expectedPath = getFilePath("InputMain1.java");
+            assertEquals("Unexpected output log", auditStartMessage.getMessage() + EOL
+                    + "[ERROR] " + expectedPath + ":1: "
+                    + message.getMessage() + " [JavadocPackage]" + EOL
+                    + auditFinishMessage.getMessage() + EOL, systemOut.getLog());
+            assertEquals("Unexpected system error log",
+                    errorCounterTwoMessage.getMessage() + EOL, systemErr.getLog());
+        });
+        Main.main("-c", "/sun_checks.xml",
+                getPath("InputMain1.java"));
+    }
+
+    @Test
     public void testExistentTargetFilePlainOutputToNonExistentFile()
             throws Exception {
         exit.checkAssertionAfterwards(() -> {
