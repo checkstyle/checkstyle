@@ -150,6 +150,13 @@ matrix:
         - CMD="./.ci/travis/travis.sh no-exception-test-guava-with-google-checks"
         - USE_MAVEN_REPO="true"
 
+    # NoExceptiontest - Guava with sun_checks (openjdk8)
+    - jdk: openjdk8
+      env:
+        - DESC="NoExceptionTest - Guava with sun_checks"
+        - CMD="./.ci/travis/travis.sh no-exception-test-guava-with-sun-checks"
+        - USE_MAVEN_REPO="true"
+
     # release dry run (openjdk8)
     - jdk: openjdk8
       env:

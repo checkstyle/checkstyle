@@ -278,6 +278,23 @@ no-exception-test-guava-with-google-checks)
       --config ../../src/main/resources/google_checks.xml --checkstyleVersion $CS_POM_VERSION
   ;;
 
+no-exception-test-guava-with-sun-checks)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  echo CS_version: $CS_POM_VERSION
+  git clone https://github.com/checkstyle/contribution
+  cd contribution/checkstyle-tester
+  sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
+  sed -i.'' 's/#guava|/guava|/' projects-to-test-on.properties
+  cd ../../
+  mvn -e clean install -Pno-validations
+  sed -i.'' 's/value=\"error\"/value=\"ignore\"/' src/main/resources/sun_checks.xml
+  cd contribution/checkstyle-tester
+  export MAVEN_OPTS="-Xmx2048m"
+  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
+      --config ../../src/main/resources/sun_checks.xml --checkstyleVersion $CS_POM_VERSION
+  ;;
+
 no-exception-test-hibernate)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
