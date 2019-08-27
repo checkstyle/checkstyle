@@ -9,7 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 /**
- * Test case for detecting simple semantic errors.
+ * Test case for detecting simple semantic violations.
  * @author Lars Kühne
  **/
 class InputRegexpSemantic
@@ -52,7 +52,7 @@ class InputRegexpSemantic
         catch (IllegalStateException emptyCatchIsAlwaysAnError) {
         }
         catch (NullPointerException ex) {
-            // can never happen, but only commenting this is currently an error
+            // can never happen, but only commenting this is currently a problem
             // Possible future enhancement: allowEmptyCatch="commented"
         }
         catch (ArrayIndexOutOfBoundsException ex) {

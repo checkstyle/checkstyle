@@ -9,7 +9,7 @@ import java.awt.Dimension; // explicit import for instantiation tests
 import java.awt.Color;
 
 /**
- * Test case for detecting simple semantic errors.
+ * Test case for detecting simple semantic violations.
  * @author Lars Kühne
  **/
 class InputIllegalInstantiationSemantic

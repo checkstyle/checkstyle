@@ -8,7 +8,7 @@ public class InputSummaryJavadocPeriodAtEnd {
     public static final byte NUL = 0;
 
     /**
-     * @throws Exception if an error occurs.
+     * @throws Exception if a problem occurs.
      */
     public void foo1() throws Exception {
 

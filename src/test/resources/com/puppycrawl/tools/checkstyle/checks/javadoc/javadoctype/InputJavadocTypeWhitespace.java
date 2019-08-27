@@ -8,7 +8,7 @@ package com . puppycrawl
 
 /**
  * Class for testing javadoc issues.
- * error missing author tag
+ * violation missing author tag
  **/
 class InputJavadocTypeWhitespace
 {
@@ -26,7 +26,7 @@ class InputJavadocTypeWhitespace
         };
     }
 
-    /** bug 806243 (NoWhitespaceBeforeCheck error for anonymous inner class) */
+    /** bug 806243 (NoWhitespaceBeforeCheck violation for anonymous inner class) */
     void bug806243()
     {
         Object o = new InputJavadocTypeWhitespace() {
@@ -36,7 +36,7 @@ class InputJavadocTypeWhitespace
 }
 
 /**
- * Bug 806242 (NoWhitespaceBeforeCheck error with an interface).
+ * Bug 806242 (NoWhitespaceBeforeCheck violation with an interface).
  * @author o_sukhodolsky
  * @version 1.0
  */
@@ -46,7 +46,7 @@ interface IFoo
 }
 
 /**
- * Avoid Whitespace errors in for loop.
+ * Avoid Whitespace violations in for loop.
  * @author lkuehne
  * @version 1.0
  */

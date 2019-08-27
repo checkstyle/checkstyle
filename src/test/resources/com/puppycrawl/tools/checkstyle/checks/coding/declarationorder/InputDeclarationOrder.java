@@ -109,33 +109,33 @@ enum InputDeclarationOrderEnum
 
     static final int FOO2 = 3;
 
-    // error public before package
+    // violation: public before package
     public static final int FOO = 3;
 
     private static final int FOO3 = 3;
 
-    // eror public before package and private
+    // violation: public before package and private
     public static final int FOO4 = 3;
 
     private static final String ERROR = "error";
 
-    // error protected before private
+    // violation: protected before private
     protected static final String ERROR1 = "error";
 
-    // error public before private
+    // violation: public before private
     public static final String WARNING = "warning";
 
     private int mMaxInitVars = 3;
 
-    // error statics should be before instance members
-    // error publics before private
+    // violation: statics should be before instance members
+    // violation: publics before private
     public static final int MAX_ITER_VARS = 3;
 
     private class InnerClass
     {
         private static final int INNER_FOO = 2;
 
-        // error public before private
+        // violation: public before private
         public static final int INNER_FOO2 = 2;
 
         public InnerClass()
@@ -145,8 +145,8 @@ enum InputDeclarationOrderEnum
             foo += INNER_FOO3;
         }
 
-        // error member variables should be before methods or ctors
-        // error public before private
+        // violation: member variables should be before methods or ctors
+        // violation: public before private
         public static final int INNER_FOO3 = 2;
     }
 
@@ -181,7 +181,7 @@ enum InputDeclarationOrderEnum
         return 1;
     }
 
-    // error member variables should be before methods or ctors
+    // violation: member variables should be before methods or ctors
     private int mFoo = 0;
 
     class AsyncProcess {

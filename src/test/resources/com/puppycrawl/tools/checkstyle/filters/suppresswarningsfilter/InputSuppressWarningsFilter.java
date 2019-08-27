@@ -5,7 +5,7 @@
 package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
 
 /**
- * Test input for using comments to suppress errors.
+ * Test input for using comments to suppress violations.
  *
  * @author Trevor Robinson
  **/

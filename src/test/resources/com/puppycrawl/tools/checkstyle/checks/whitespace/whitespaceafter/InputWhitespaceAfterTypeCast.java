@@ -8,7 +8,7 @@ package com . puppycrawl
 
 /**
  * Class for testing whitespace issues.
- * error missing author tag
+ * violation missing author tag
  **/
 class InputWhitespaceAfterTypeCast
 {
@@ -85,7 +85,7 @@ class InputWhitespaceAfterTypeCast
     private void testCasts()
     {
         Object o = (Object) new Object(); // ok
-        o = (Object)o; // error
+        o = (Object)o; // violation
         o = ( Object ) o; // ok
         o = (Object)
             o; // ok
@@ -181,14 +181,14 @@ class InputWhitespaceAfterTypeCast
     }
 
 
-    /** bug 806243 (NoWhitespaceBeforeCheck error for anonymous inner class) */
+    /** bug 806243 (NoWhitespaceBeforeCheck violation for anonymous inner class) */
     private int i ;
     //           ^ whitespace
     private int i1, i2, i3 ;
     //                    ^ whitespace
     private int i4, i5, i6;
 
-    /** bug 806243 (NoWhitespaceBeforeCheck error for anonymous inner class) */
+    /** bug 806243 (NoWhitespaceBeforeCheck violation for anonymous inner class) */
     void bug806243()
     {
         Object o = new InputWhitespaceAfterTypeCast() {
@@ -202,7 +202,7 @@ class InputWhitespaceAfterTypeCast
 }
 
 /**
- * Bug 806242 (NoWhitespaceBeforeCheck error with an interface).
+ * Bug 806242 (NoWhitespaceBeforeCheck violation with an interface).
  * @author o_sukhodolsky
  * @version 1.0
  */
@@ -213,7 +213,7 @@ interface IFoo
 }
 
 /**
- * Avoid Whitespace errors in for loop.
+ * Avoid Whitespace violations in for loop.
  * @author lkuehne
  * @version 1.0
  */

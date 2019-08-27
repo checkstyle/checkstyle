@@ -89,7 +89,7 @@ interface NothingHiddenReorder
 {
     public static int notHidden = 0;
 
-    // not an error
+    // not a violation
     public void noShadow(int notHidden);
 }
 
@@ -106,7 +106,7 @@ enum HiddenEnum1
         }
 
         /**
-         * Should not be flagged as error as we don't check
+         * Should not be flagged as violation as we don't check
          * hidden class level fields
          */
         int hidden;

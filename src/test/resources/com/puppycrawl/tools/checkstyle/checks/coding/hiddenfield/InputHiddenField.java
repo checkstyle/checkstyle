@@ -189,7 +189,7 @@ enum HiddenEnum
     C(1212)
     {
         /**
-         * Should not be flagged as error as we don't check
+         * Should not be flagged as violation as we don't check
          * hidden class level fields
          */
         int hidden;
@@ -245,7 +245,7 @@ class PropertySetter3
 
     /**
      * if setterCanReturnItsClass == false then
-     *     error - not a void method
+     *     violation - not a void method
      *
      * if setterCanReturnItsClass == true then
      *     success as it is then considered to be a setter

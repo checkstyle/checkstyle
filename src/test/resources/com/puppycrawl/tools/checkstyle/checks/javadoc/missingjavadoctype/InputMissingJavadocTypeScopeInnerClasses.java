@@ -4,7 +4,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
    Checks javadoc scoping for inner classes.
 
    Once the Javadoc Check Scope has been left,
-   all inner elements should not be reported as error,
+   all inner elements should not be reported as violation,
    even if they belong to the checkscope if isolated.
  */
 public class InputMissingJavadocTypeScopeInnerClasses

@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Test case file for checkstyle.
 // Created: Feb-2001
-// Ignore error
+// Ignore violation
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.sizes.parameternumber;
 import java.io.*;
@@ -145,7 +145,7 @@ final class InputParameterNumberSimple
     // long line that has a tab ->        <- and would be OK if tab counted as 1 char
     // tabs that count as one char because of their position ->        <-   ->        <-, OK
 
-    /** some lines to test the error column after tabs */
+    /** some lines to test the violation column after tabs */
     void errorColumnAfterTabs()
     {
         // with tab-width 8 all statements below start at the same column,

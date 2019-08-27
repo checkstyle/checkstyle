@@ -5,14 +5,14 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
  **/
 class InputMissingJavadocTypeInner
 {
-    // Ignore - two errors
+    // Ignore - two violations
     class InnerInner2 // warn
     {
         // Ignore
         public int fData;
     }
 
-    // Ignore - 2 errors
+    // Ignore - 2 violations
     interface InnerInterface2 // warn
     {
         // Ignore - should be all upper case
