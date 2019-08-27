@@ -50,7 +50,7 @@ class InputJavadocTypeTags1
     {
     }
 
-    /** @throws WrongException error **/
+    /** @throws WrongException problem **/
     void method7()
         throws Exception, NullPointerException
     {
@@ -69,7 +69,7 @@ class InputJavadocTypeTags1
     {
     }
 
-    /** @param WrongParam error **/
+    /** @param WrongParam problem **/
     void method10(int aOne, int aTwo)
     {
     }

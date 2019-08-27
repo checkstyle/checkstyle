@@ -5,7 +5,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 public class InputMissingJavadocMethod_01 {
 
     /** Do 1.
-     * @throws TestException1 when error occurs.
+     * @throws TestException1 when problem occurs.
      */
     public void doStuff1() throws TestException1 {
         try {
@@ -14,7 +14,7 @@ public class InputMissingJavadocMethod_01 {
         throw new InputMissingJavadocMethod_01().new TestException1("");
     }
     /** Do 2.
-     * @throws TestException2 when error occurs.
+     * @throws TestException2 when problem occurs.
      */
     private static void doStuff2() throws TestException2 {
         throw new TestException2("");

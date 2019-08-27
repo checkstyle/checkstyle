@@ -3,8 +3,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 public class InputJavadocMethod_03 {
 
     /** Do 1.
-     * @throws TestException1 when error occurs.
-     * @throws TestException2 when error occurs.
+     * @throws TestException1 when problem occurs.
+     * @throws TestException2 when problem occurs.
      */
     public void doStuff1() throws TestException1, TestException2 {
         try {
@@ -13,7 +13,7 @@ public class InputJavadocMethod_03 {
         throw new InputJavadocMethod_03().new TestException1("");
     }
     /** Do 2.
-     * @throws TestException2 when error occurs.
+     * @throws TestException2 when problem occurs.
      */
     private static void doStuff2() throws TestException2 {
         throw new TestException2("");

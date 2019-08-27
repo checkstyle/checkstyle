@@ -10,14 +10,14 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
  **/
 class InputJavadocTypeInner
 {
-    // Ignore - two errors
+    // Ignore - two violations
     class InnerInner2
     {
         // Ignore
         public int fData;
     }
 
-    // Ignore - 2 errors
+    // Ignore - 2 violations
     interface InnerInterface2
     {
         // Ignore - should be all upper case

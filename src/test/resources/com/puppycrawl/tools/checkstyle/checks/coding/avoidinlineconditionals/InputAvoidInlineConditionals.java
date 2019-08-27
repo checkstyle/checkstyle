@@ -8,7 +8,7 @@ package com . puppycrawl
 
 /**
  * Class for testing inline conditionals.
- * error missing author tag
+ * violation missing author tag
  **/
 class InputAvoidInlineConditionals
 {

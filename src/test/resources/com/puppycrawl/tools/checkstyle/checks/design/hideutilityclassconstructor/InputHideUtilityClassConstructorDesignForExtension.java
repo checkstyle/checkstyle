@@ -65,7 +65,7 @@ public abstract class InputHideUtilityClassConstructorDesignForExtension
     {
         public int compare(Object o1, Object o2)
         {
-            // some complex stuff that would normally trigger an error report
+            // some complex stuff that would normally trigger a violation report
             if (o1.hashCode() > o2.hashCode()) {
                 return -1;
             }
