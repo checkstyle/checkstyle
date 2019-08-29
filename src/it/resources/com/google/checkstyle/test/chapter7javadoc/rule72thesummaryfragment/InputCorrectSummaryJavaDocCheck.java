@@ -17,7 +17,7 @@ class InputCorrectSummaryJavaDocCheck {
 
     /**
      * This is valid.
-     * @throws Exception if an error occurs.
+     * @throws Exception if a problem occurs.
      */
     void foo4() throws Exception {}
 
@@ -66,7 +66,7 @@ class InputCorrectSummaryJavaDocCheck {
 
         /**
          * This is valid.
-         * @throws Exception if an error occurs.
+         * @throws Exception if a problem occurs.
          */
         void foo4() throws Exception {}
 
@@ -110,7 +110,7 @@ class InputCorrectSummaryJavaDocCheck {
 
         /**
          * This is valid.
-         * @throws Exception if an error occurs.
+         * @throws Exception if a problem occurs.
          */
         void foo4() throws Exception {}
 

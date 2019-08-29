@@ -2,7 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 
 /**
  * Class for testing whitespace issues.
- * error missing author tag
+ * violation missing author tag
  **/
 class InputWhitespaceAroundBasic
 {
