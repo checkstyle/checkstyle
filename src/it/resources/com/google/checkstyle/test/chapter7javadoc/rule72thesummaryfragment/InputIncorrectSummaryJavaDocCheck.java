@@ -12,7 +12,7 @@ class InputIncorrectSummaryJavaDocCheck {
     void foo3() {}
 
 /*warn*//**
-     * @throws Exception if an error occurs
+     * @throws Exception if a problem occurs
      */
     void foo4() throws Exception {}
 
@@ -67,7 +67,7 @@ class InputIncorrectSummaryJavaDocCheck {
         void foo3() {}
 
 /*warn*//**
-         * @throws Exception if an error occurs
+         * @throws Exception if a problem occurs
          */
         void foo4() throws Exception {}
 
@@ -101,7 +101,7 @@ class InputIncorrectSummaryJavaDocCheck {
         void foo3() {}
 
 /*warn*//**
-         * @throws Exception if an error occurs
+         * @throws Exception if a problem occurs
          */
         void foo4() throws Exception {}
 

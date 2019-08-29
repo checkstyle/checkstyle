@@ -10,11 +10,11 @@ class InputSingleLineJavadocCheck{
      */
     void foo2() {}
 
-    /** @throws CheckstyleException if an error occurs */ //warn
+    /** @throws CheckstyleException if a problem occurs */ //warn
     void foo3() {}
 
     /**
-     * @throws CheckstyleException if an error occurs
+     * @throws CheckstyleException if a problem occurs
      */
     void foo4() {}
 

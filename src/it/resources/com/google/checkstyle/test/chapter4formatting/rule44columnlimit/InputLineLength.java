@@ -131,8 +131,8 @@ final class InputLineLength
     // long line that has a tab ->    <- and would be OK if tab counted as 1 char
     // tabs that count as one char because of their position ->    <-   ->    <-, OK
 
-    /** some lines to test the error column after tabs */
-    void errorColumnAfterTabs()
+    /** some lines to test the column after tabs */
+    void violateColumnAfterTabs()
     {
         // with tab-width 8 all statements below start at the same column,
         // with different combinations of ' ' and '\t' before the statement
