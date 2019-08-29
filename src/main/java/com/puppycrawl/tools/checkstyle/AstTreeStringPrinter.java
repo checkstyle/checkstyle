@@ -44,7 +44,7 @@ public final class AstTreeStringPrinter {
     private static final Pattern TAB = Pattern.compile("\t");
 
     /** OS specific line separator. */
-    private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+    private static final String LINE_SEPARATOR = System.lineSeparator();
 
     /** Prevent instances. */
     private AstTreeStringPrinter() {
