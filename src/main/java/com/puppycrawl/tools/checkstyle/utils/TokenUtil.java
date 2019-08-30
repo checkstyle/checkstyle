@@ -40,10 +40,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class TokenUtil {
 
+    /** Maps from a token value to name. */
+    /* package */ static final String[] TOKEN_VALUE_TO_NAME;
+
     /** Maps from a token name to value. */
     private static final Map<String, Integer> TOKEN_NAME_TO_VALUE;
-    /** Maps from a token value to name. */
-    private static final String[] TOKEN_VALUE_TO_NAME;
 
     /** Array of all token IDs. */
     private static final int[] TOKEN_IDS;

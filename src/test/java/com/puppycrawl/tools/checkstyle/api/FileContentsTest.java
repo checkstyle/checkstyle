@@ -26,6 +26,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -246,12 +247,14 @@ public class FileContentsTest {
     }
 
     @Test
-    public void testGetJavadocBefore() {
+    public void testGetJavadocBefore() throws Exception {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Collections.singletonList("    ")));
         final Map<Integer, TextBlock> javadoc = new HashMap<>();
         javadoc.put(0, new Comment(new String[] {"// "}, 2, 1, 2));
-        Whitebox.setInternalState(fileContents, "javadocComments", javadoc);
+        final Field javadocCommentsField = FileContents.class.getDeclaredField("javadocComments");
+        javadocCommentsField.setAccessible(true);
+        javadocCommentsField.set(fileContents, javadoc);
         final TextBlock javadocBefore = fileContents.getJavadocBefore(2);
 
         assertEquals("Invalid before javadoc",

@@ -136,6 +136,13 @@
       <property name="acceptableDecimalLength" value="6"/>
     </properties>
   </rule>
+  <rule ref="category/java/codestyle.xml/DefaultPackage">
+    <properties>
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@Image='FileContents'
+        or @Image='FileText' or @Image='TokenUtil']"/>
+    </properties>
+  </rule>
   <rule ref="category/java/codestyle.xml/LongVariable">
     <properties>
       <!-- Nothing bad with the long and descriptive variable names if only they fit the line,

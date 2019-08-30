@@ -19,24 +19,19 @@
 
 package com.puppycrawl.tools.checkstyle.internal.powermock;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.gui.MainFrameModel;
 import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 
@@ -48,18 +43,9 @@ public class MainFrameModelPowerTest extends AbstractModuleTestSupport {
     private static final String FILE_NAME_NON_JAVA = "NotJavaFile.notjava";
     private static final String FILE_NAME_NON_EXISTENT = "non-existent.file";
 
-    private MainFrameModel model;
-    private File testData;
-
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/gui/mainframemodel";
-    }
-
-    @Before
-    public void prepareTestData() throws IOException {
-        model = new MainFrameModel();
-        testData = new File(getPath(FILE_NAME_TEST_DATA));
     }
 
     @Test
@@ -82,30 +68,6 @@ public class MainFrameModelPowerTest extends AbstractModuleTestSupport {
         final File nonExistentFile = new File(getPath(FILE_NAME_NON_EXISTENT));
         assertFalse("MainFrame should not accept nonexistent file",
                 MainFrameModel.shouldAcceptFile(nonExistentFile));
-    }
-
-    @Test
-    public void testOpenFileWithUnknownParseMode() throws CheckstyleException {
-        final ParseMode unknownParseMode = PowerMockito.mock(ParseMode.class);
-        Whitebox.setInternalState(unknownParseMode, "ordinal", 3);
-
-        PowerMockito.when(unknownParseMode.toString()).thenReturn("Unknown parse mode");
-        PowerMockito.mockStatic(ParseMode.class);
-        PowerMockito.when(ParseMode.values()).thenReturn(
-                new ParseMode[] {
-                    ParseMode.PLAIN_JAVA, ParseMode.JAVA_WITH_COMMENTS,
-                    ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS, unknownParseMode, });
-
-        try {
-            model.setParseMode(unknownParseMode);
-            model.openFile(testData);
-
-            fail("Expected IllegalArgumentException is not thrown.");
-        }
-        catch (IllegalArgumentException ex) {
-            assertEquals("Invalid exception message",
-                    "Unknown mode: Unknown parse mode", ex.getMessage());
-        }
     }
 
 }

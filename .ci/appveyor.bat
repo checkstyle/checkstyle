@@ -26,10 +26,7 @@ mvn -e verify -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true
 :: powermock doesn't support modifying final fields in JDK12
 if "%OPTION%" ==  "verify_without_checkstyle_JDK12" (
 mvn -e verify -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true^
- -Dtest=!FileContentsTest#testGetJavadocBefore,!FileTextTest#testFindLine*,^
-!MainFrameModelPowerTest#testOpenFileWithUnknownParseMode,^
-!TokenUtilTest#testTokenValueIncorrect2,^
-!ImportControlLoaderPowerTest#testInputStreamThatFailsOnClose^
+ -Dtest=!ImportControlLoaderPowerTest#testInputStreamThatFailsOnClose^
  -Djacoco.skip=true
   goto :END_CASE
 )
@@ -42,10 +39,7 @@ mvn -e -Pno-validations site
 :: powermock doesn't support modifying final fields in JDK12
 if "%OPTION%" == "site_without_verify_jdk12" (
 mvn -e -Pno-validations site^
- -Dtest=!FileContentsTest#testGetJavadocBefore,!FileTextTest#testFindLine*,^
-!MainFrameModelPowerTest#testOpenFileWithUnknownParseMode,^
-!TokenUtilTest#testTokenValueIncorrect2,^
-!ImportControlLoaderPowerTest#testInputStreamThatFailsOnClose^
+ -Dtest=!ImportControlLoaderPowerTest#testInputStreamThatFailsOnClose^
  -Djacoco.skip=true
   goto :END_CASE
 )
