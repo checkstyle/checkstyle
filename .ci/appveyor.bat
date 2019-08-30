@@ -20,13 +20,12 @@ mvn -e verify -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true
 )
 
 if "%OPTION%" ==  "verify_without_checkstyle_JDK11" (
-mvn -e verify -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dspotbugs.skip=true
+mvn -e verify -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true
   goto :END_CASE
 )
-:: Spotbugs check is disabled till https://github.com/spotbugs/spotbugs/issues/259
 :: powermock doesn't support modifying final fields in JDK12
 if "%OPTION%" ==  "verify_without_checkstyle_JDK12" (
-mvn -e verify -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dspotbugs.skip=true^
+mvn -e verify -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true^
  -Dtest=!FileContentsTest#testGetJavadocBefore,!FileTextTest#testFindLine*,^
 !MainFrameModelPowerTest#testOpenFileWithUnknownParseMode,^
 !TokenUtilTest#testTokenValueIncorrect2,^
@@ -40,7 +39,6 @@ mvn -e -Pno-validations site
   goto :END_CASE
 )
 
-:: Spotbugs check is disabled till https://github.com/spotbugs/spotbugs/issues/259
 :: powermock doesn't support modifying final fields in JDK12
 if "%OPTION%" == "site_without_verify_jdk12" (
 mvn -e -Pno-validations site^

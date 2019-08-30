@@ -64,6 +64,20 @@ matrix:
         - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean compile pmd:check spotbugs:check"
         - USE_MAVEN_REPO="true"
 
+    # spotbugs and pmd (openjdk11)
+    - jdk: openjdk11
+      env:
+        - DESC="spotbugs,pmd"
+        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean compile pmd:check spotbugs:check"
+        - USE_MAVEN_REPO="true"
+
+    # spotbugs and pmd (openjdk12)
+    - jdk: openjdk12
+      env:
+        - DESC="spotbugs,pmd"
+        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean compile pmd:check spotbugs:check"
+        - USE_MAVEN_REPO="true"
+
     # eclipse static analysis
     - jdk: openjdk8
       env:
