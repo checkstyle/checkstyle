@@ -19,11 +19,25 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
+import com.puppycrawl.tools.checkstyle.AstTreeStringPrinter;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.xpath.AbstractNode;
+import com.puppycrawl.tools.checkstyle.xpath.RootNode;
+import net.sf.saxon.om.Item;
+import net.sf.saxon.sxpath.XPathDynamicContext;
+import net.sf.saxon.sxpath.XPathEvaluator;
+import net.sf.saxon.sxpath.XPathExpression;
+import net.sf.saxon.trans.XPathException;
 
 /**
  * Contains utility methods for xpath.
@@ -87,6 +101,9 @@ public final class XpathUtil {
             TokenTypes.IDENT, TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL,
             TokenTypes.NUM_LONG, TokenTypes.NUM_INT, TokenTypes.NUM_DOUBLE, TokenTypes.NUM_FLOAT);
 
+    /** Delimiter to separate xpath results. */
+    private static final String DELIMITER = "---------" + System.lineSeparator();
+
     /** Stop instances being created. **/
     private XpathUtil() {
     }
@@ -113,6 +130,37 @@ public final class XpathUtil {
             text = text.substring(1, text.length() - 1);
         }
         return text;
+    }
+
+    /**
+     * Returns xpath query results on file as string.
+     *
+     * @param xpath query to evaluate
+     * @param file file to run on
+     * @return all results as string separated by {@link XpathUtil#DELIMITER}
+     * @throws CheckstyleException if some parsing error happens
+     * @throws IOException if an error occurs
+     */
+    public static String printXpathBranch(String xpath, File file) throws CheckstyleException,
+            IOException {
+        final XPathEvaluator xpathEvaluator = new XPathEvaluator();
+        try {
+            final RootNode rootNode = new RootNode(JavaParser.parseFile(file,
+                JavaParser.Options.WITH_COMMENTS));
+            final XPathExpression xpathExpression = xpathEvaluator.createExpression(xpath);
+            final XPathDynamicContext xpathDynamicContext =
+                xpathExpression.createDynamicContext(rootNode);
+            final List<Item<?>> matchingItems = xpathExpression.evaluate(xpathDynamicContext);
+            return matchingItems.stream()
+                .map(item -> ((AbstractNode) item).getUnderlyingNode())
+                .map(AstTreeStringPrinter::printBranch)
+                .collect(Collectors.joining(DELIMITER));
+        }
+        catch (XPathException ex) {
+            final String errMsg = String.format(Locale.ROOT,
+                "Error during evaluation for xpath: %s, file: %s", xpath, file.getCanonicalPath());
+            throw new CheckstyleException(errMsg, ex);
+        }
     }
 
 }

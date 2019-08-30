@@ -24,12 +24,16 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public abstract class AbstractPathTestSupport {
 
     protected static final String LF_REGEX = "\\\\n";
 
     protected static final String CRLF_REGEX = "\\\\r\\\\n";
+
+    private static final String EOL = System.lineSeparator();
 
     /**
      * Returns the exact location for the package where the file is present.
@@ -72,6 +76,15 @@ public abstract class AbstractPathTestSupport {
         return new String(Files.readAllBytes(
                 Paths.get(filename)), StandardCharsets.UTF_8)
                 .replaceAll(CRLF_REGEX, LF_REGEX);
+    }
+
+    /**
+     * Join given strings with {@link #EOL} delimiter and add EOL at the end.
+     * @param strings strings to join
+     * @return joined strings
+     */
+    public static String addEndOfLine(String... strings) {
+        return Stream.of(strings).collect(Collectors.joining(EOL, "", EOL));
     }
 
 }

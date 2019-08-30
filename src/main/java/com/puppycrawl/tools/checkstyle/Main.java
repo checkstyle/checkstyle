@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Filter;
@@ -49,6 +50,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.RootModule;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -275,6 +277,10 @@ public final class Main {
             final String stringAst = AstTreeStringPrinter.printFileAst(file,
                     JavaParser.Options.WITHOUT_COMMENTS);
             System.out.print(stringAst);
+        }
+        else if (Objects.nonNull(options.xpath)) {
+            final String branch = XpathUtil.printXpathBranch(options.xpath, filesToProcess.get(0));
+            System.out.print(branch);
         }
         else if (options.printAstWithComments) {
             final File file = filesToProcess.get(0);
@@ -699,6 +705,11 @@ public final class Main {
                 + "number of TreeWalker threads (must be greater than zero)")
         private int treeWalkerThreadsNumber = DEFAULT_THREAD_COUNT;
 
+        /** Show AST branches that match xpath. */
+        @Option(names = {"-b", "--branch-matching-xpath"},
+            description = "Show Abstract Syntax Tree(AST) branches that match XPath")
+        private String xpath;
+
         /**
          * Gets the list of exclusions provided through the command line arguments.
          * @return List of exclusion patterns.
@@ -729,7 +740,8 @@ public final class Main {
                 result.add("Files to process must be specified, found 0.");
             }
             // ensure there is no conflicting options
-            else if (printAst || printAstWithComments || printJavadocTree || printTreeWithJavadoc) {
+            else if (printAst || printAstWithComments || printJavadocTree || printTreeWithJavadoc
+                || xpath != null) {
                 if (suppressionLineColumnNumber != null || configurationFile != null
                         || propertiesFile != null || outputPath != null
                         || parseResult.hasMatchedOption(OUTPUT_FORMAT_OPTION)) {

@@ -19,20 +19,35 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import static com.puppycrawl.tools.checkstyle.AbstractPathTestSupport.addEndOfLine;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static com.puppycrawl.tools.checkstyle.utils.XpathUtil.getTextAttributeValue;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class XpathUtilTest {
+
+    @Rule
+    public final TemporaryFolder tempFolder = new TemporaryFolder();
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
@@ -70,6 +85,79 @@ public class XpathUtilTest {
                 getTextAttributeValue(createDetailAST(TokenTypes.IDENT, "HELLO WORLD")));
         assertNotEquals("Returned value differs from expected", "HELLO WORLD",
                 getTextAttributeValue(createDetailAST(TokenTypes.STRING_LITERAL, "HELLO WORLD")));
+    }
+
+    @Test
+    public void testPrintXpathNotComment() throws Exception {
+        final String fileContent = "class Test { public void method() {int a = 5;}}";
+        final File file = tempFolder.newFile();
+        Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
+        final String expected = addEndOfLine(
+            "CLASS_DEF -> CLASS_DEF [1:0]",
+            "`--OBJBLOCK -> OBJBLOCK [1:11]",
+            "    |--METHOD_DEF -> METHOD_DEF [1:13]",
+            "    |   `--SLIST -> { [1:34]",
+            "    |       |--VARIABLE_DEF -> VARIABLE_DEF [1:35]",
+            "    |       |   |--IDENT -> a [1:39]");
+        final String result = XpathUtil.printXpathBranch(
+            "//CLASS_DEF//METHOD_DEF//VARIABLE_DEF//IDENT", file);
+        assertThat("Branch string is different", result, is(expected));
+    }
+
+    @Test
+    public void testPrintXpathComment() throws Exception {
+        final String fileContent = "class Test { /* comment */ }";
+        final File file = tempFolder.newFile();
+        Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
+        final String expected = addEndOfLine(
+            "CLASS_DEF -> CLASS_DEF [1:0]",
+            "`--OBJBLOCK -> OBJBLOCK [1:11]",
+            "    |--BLOCK_COMMENT_BEGIN -> /* [1:13]");
+        final String result = XpathUtil.printXpathBranch(
+            "//CLASS_DEF//BLOCK_COMMENT_BEGIN", file);
+        assertThat("Branch string is different", result, is(expected));
+    }
+
+    @Test
+    public void testPrintXpathTwo() throws Exception {
+        final String fileContent = "class Test { public void method() {int a = 5; int b = 5;}}";
+        final File file = tempFolder.newFile();
+        Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
+        final String expected = addEndOfLine(
+            "CLASS_DEF -> CLASS_DEF [1:0]",
+            "`--OBJBLOCK -> OBJBLOCK [1:11]",
+            "    |--METHOD_DEF -> METHOD_DEF [1:13]",
+            "    |   `--SLIST -> { [1:34]",
+            "    |       |--VARIABLE_DEF -> VARIABLE_DEF [1:35]",
+            "    |       |   |--IDENT -> a [1:39]",
+            "---------",
+            "CLASS_DEF -> CLASS_DEF [1:0]",
+            "`--OBJBLOCK -> OBJBLOCK [1:11]",
+            "    |--METHOD_DEF -> METHOD_DEF [1:13]",
+            "    |   `--SLIST -> { [1:34]",
+            "    |       |--VARIABLE_DEF -> VARIABLE_DEF [1:46]",
+            "    |       |   |--IDENT -> b [1:50]");
+        final String result = XpathUtil.printXpathBranch(
+            "//CLASS_DEF//METHOD_DEF//VARIABLE_DEF//IDENT", file);
+        assertThat("Branch string is different", result, is(expected));
+    }
+
+    @Test
+    public void testInvalidXpath() throws IOException {
+        final String fileContent = "class Test { public void method() {int a = 5; int b = 5;}}";
+        final File file = tempFolder.newFile();
+        Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
+        final String invalidXpath = "\\//CLASS_DEF//METHOD_DEF//VARIABLE_DEF//IDENT";
+        try {
+            XpathUtil.printXpathBranch(invalidXpath, file);
+            fail("Should end with exception");
+        }
+        catch (CheckstyleException ex) {
+            final String expectedMessage =
+                "Error during evaluation for xpath: " + invalidXpath
+                    + ", file: " + file.getCanonicalPath();
+            assertThat("Exception message is different", ex.getMessage(), is(expectedMessage));
+        }
     }
 
     private static DetailAST createDetailAST(int type) {
