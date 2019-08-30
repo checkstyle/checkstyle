@@ -132,6 +132,25 @@ public final class AstTreeStringPrinter {
     }
 
     /**
+     * Print branch info from root down to given {@code node}.
+     * @param node last item of the branch
+     * @return branch as string
+     */
+    public static String printBranch(DetailAST node) {
+        final String result;
+        if (node == null) {
+            result = "";
+        }
+        else {
+            result = printBranch(node.getParent())
+                + getIndentation(node)
+                + getNodeInfo(node)
+                + LINE_SEPARATOR;
+        }
+        return result;
+    }
+
+    /**
      * Print AST.
      * @param ast the root AST node.
      * @return string AST.

@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.puppycrawl.tools.checkstyle.AbstractPathTestSupport.addEndOfLine;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -46,8 +47,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -72,13 +73,12 @@ public class MainTest {
             + "Try 'checkstyle --help' for more information.%n");
 
     private static final String USAGE = String.format(Locale.ROOT,
-          "Usage: checkstyle [-dEghjJtTV] [-c=<configurationFile>] [-C=<checkerThreadsNumber>]"
-          + " [-f=<format>]%n"
-          + "                  [-o=<outputPath>] [-p=<propertiesFile>]"
-          + " [-s=<suppressionLineColumnNumber>]%n"
-          + "                  [-w=<tabWidth>] [-W=<treeWalkerThreadsNumber>]"
-          + " [-e=<exclude>]...%n"
-          + "                  [-x=<excludeRegex>]..."
+          "Usage: checkstyle [-dEghjJtTV] [-b=<xpath>] [-c=<configurationFile>]"
+          + " [-C=<checkerThreadsNumber>]%n"
+          + "                  [-f=<format>] [-o=<outputPath>] [-p=<propertiesFile>]%n"
+          + "                  [-s=<suppressionLineColumnNumber>] [-w=<tabWidth>]"
+          + " [-W=<treeWalkerThreadsNumber>]%n"
+          + "                  [-e=<exclude>]... [-x=<excludeRegex>]..."
           + " <files>...%n"
           + "Checkstyle verifies that the specified source code files adhere to the specified"
           + " rules. By default%n"
@@ -86,6 +86,8 @@ public class MainTest {
           + " configuration XML%n"
           + "file that configures the checks to apply.%n"
           + "      <files>...            One or more source files to verify%n"
+          + "  -b, --branch-matching-xpath=<xpath>%n"
+          + "                            Show Abstract Syntax Tree(AST) branches that match XPath%n"
           + "  -c=<configurationFile>    Sets the check configuration file to use.%n"
           + "  -C, --checker-threads-number=<checkerThreadsNumber>%n"
           + "                            (experimental) The number of Checker threads (must be"
@@ -827,6 +829,98 @@ public class MainTest {
             assertEquals("Unexpected system error log", "", systemErr.getLog());
         });
         Main.main("-t", getPath("InputMain.java"));
+    }
+
+    @Test
+    public void testPrintXpathOption() throws Exception {
+        final String expected = addEndOfLine(
+            "CLASS_DEF -> CLASS_DEF [3:0]",
+            "`--OBJBLOCK -> OBJBLOCK [3:28]",
+            "    |--METHOD_DEF -> METHOD_DEF [4:4]",
+            "    |   `--SLIST -> { [4:20]",
+            "    |       |--VARIABLE_DEF -> VARIABLE_DEF [5:8]",
+            "    |       |   |--IDENT -> a [5:12]");
+        exit.checkAssertionAfterwards(() -> {
+            Assert.assertThat("Unexpected output log", systemOut.getLog(), is(expected));
+            Assert.assertThat("Unexpected system error log", systemErr.getLog(), is(""));
+        });
+        Main.main("-b", "/CLASS_DEF//METHOD_DEF[./IDENT[@text='methodOne']]//VARIABLE_DEF/IDENT",
+            getPath("InputMainXPath.java"));
+    }
+
+    @Test
+    public void testPrintXpathCommentNode() throws Exception {
+        final String expected = addEndOfLine(
+            "CLASS_DEF -> CLASS_DEF [17:0]",
+            "`--OBJBLOCK -> OBJBLOCK [17:19]",
+            "    |--CTOR_DEF -> CTOR_DEF [19:4]",
+            "    |   |--BLOCK_COMMENT_BEGIN -> /* [18:4]");
+        exit.checkAssertionAfterwards(() -> {
+            Assert.assertThat("Unexpected output log", systemOut.getLog(), is(expected));
+            Assert.assertThat("Unexpected system error log", systemErr.getLog(), is(""));
+        });
+        Main.main("-b", "/CLASS_DEF//BLOCK_COMMENT_BEGIN",
+            getPath("InputMainXPath.java"));
+    }
+
+    @Test
+    public void testPrintXpathNodeParentNull() throws Exception {
+        final String expected = "PACKAGE_DEF -> package [1:0]" + EOL;
+        exit.checkAssertionAfterwards(() -> {
+            Assert.assertThat("Unexpected output log", systemOut.getLog(), is(expected));
+            Assert.assertThat("Unexpected system error log", systemErr.getLog(), is(""));
+        });
+        Main.main("-b", "/PACKAGE_DEF", getPath("InputMainXPath.java"));
+    }
+
+    @Test
+    public void testPrintXpathFullOption() throws Exception {
+        final String expected = addEndOfLine(
+            "CLASS_DEF -> CLASS_DEF [3:0]",
+            "`--OBJBLOCK -> OBJBLOCK [3:28]",
+            "    |--METHOD_DEF -> METHOD_DEF [8:4]",
+            "    |   `--SLIST -> { [8:26]",
+            "    |       |--VARIABLE_DEF -> VARIABLE_DEF [9:8]",
+            "    |       |   |--IDENT -> a [9:12]");
+        exit.checkAssertionAfterwards(() -> {
+            Assert.assertThat("Unexpected output log", systemOut.getLog(), is(expected));
+            Assert.assertThat("Unexpected system error log", systemErr.getLog(), is(""));
+        });
+        final String xpath = "/CLASS_DEF//METHOD_DEF[./IDENT[@text='method']]//VARIABLE_DEF/IDENT";
+        Main.main("--branch-matching-xpath", xpath, getPath("InputMainXPath.java"));
+    }
+
+    @Test
+    public void testPrintXpathTwoResults() throws Exception {
+        final String expected = addEndOfLine(
+            "CLASS_DEF -> CLASS_DEF [12:0]",
+            "`--OBJBLOCK -> OBJBLOCK [12:10]",
+            "    |--METHOD_DEF -> METHOD_DEF [13:4]",
+            "---------",
+            "CLASS_DEF -> CLASS_DEF [12:0]",
+            "`--OBJBLOCK -> OBJBLOCK [12:10]",
+            "    |--METHOD_DEF -> METHOD_DEF [14:4]");
+        exit.checkAssertionAfterwards(() -> {
+            Assert.assertThat("Unexpected output log", systemOut.getLog(), is(expected));
+            Assert.assertThat("Unexpected system error log", systemErr.getLog(), is(""));
+        });
+        Main.main("--branch-matching-xpath", "/CLASS_DEF[./IDENT[@text='Two']]//METHOD_DEF",
+            getPath("InputMainXPath.java"));
+    }
+
+    @Test
+    public void testPrintXpathInvalidXpath() throws Exception {
+        final String invalidXpath = "\\/CLASS_DEF[./IDENT[@text='Two']]//METHOD_DEF";
+        final String filePath = getFilePath("InputMainXPath.java");
+        exit.expectSystemExitWithStatus(-2);
+        exit.checkAssertionAfterwards(() -> {
+            final String exceptionFirstLine = "com.puppycrawl.tools.checkstyle.api."
+                + "CheckstyleException: Error during evaluation for xpath: " + invalidXpath
+                + ", file: " + filePath + EOL;
+            assertThat("Unexpected system error log",
+                systemErr.getLog().startsWith(exceptionFirstLine), is(true));
+        });
+        Main.main("--branch-matching-xpath", invalidXpath, filePath);
     }
 
     @Test
@@ -1607,15 +1701,6 @@ public class MainTest {
         final AuditListener listener = Main.OutputFormat.PLAIN.createListener(out,
                 AutomaticBean.OutputStreamOptions.CLOSE);
         assertTrue("listener is DefaultLogger", listener instanceof DefaultLogger);
-    }
-
-    /**
-     * Join given strings with {@link #EOL} delimiter and add EOL at the end.
-     * @param strings strings to join
-     * @return joined strings
-     */
-    private static String addEndOfLine(String... strings) {
-        return Stream.of(strings).collect(Collectors.joining(EOL, "", EOL));
     }
 
 }

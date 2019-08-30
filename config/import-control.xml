@@ -68,6 +68,14 @@
     <allow pkg="java.nio" local-only="true" />
     <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerFilter"/>
     <allow class="com.google.common.reflect.ClassPath" local-only="true"/>
+
+    <file name="XpathUtil" regex="true">
+      <allow pkg="net.sf.saxon"/>
+      <allow class="com.puppycrawl.tools.checkstyle.AstTreeStringPrinter"/>
+      <allow class="com.puppycrawl.tools.checkstyle.JavaParser"/>
+      <allow class="com.puppycrawl.tools.checkstyle.xpath.AbstractNode"/>
+      <allow class="com.puppycrawl.tools.checkstyle.xpath.RootNode"/>
+    </file>
   </subpackage>
 
   <subpackage name="ant">
