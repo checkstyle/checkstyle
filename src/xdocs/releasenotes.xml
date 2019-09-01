@@ -15,6 +15,177 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.24">
+      <div class="releaseDate">01.09.2019</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Change LineLength Check parent from TreeWalker to Checker.
+            Author: rnveach, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/2116">#2116</a>
+          </li>
+          <li>
+            MissingDeprecated: refactor to use javadoc AST .
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/4983">#4983</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            Add ID format property to SuppressWithPlainTextCommentFilter.
+            Author: Erik Silkensen
+            <a href="https://github.com/checkstyle/checkstyle/issues/6954">#6954</a>
+          </li>
+          <li>
+            New check: JavadocBlockTagLocation.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6929">#6929</a>
+          </li>
+          <li>
+            new check: UnnecessarySemicolonAfterTypeMemberDeclaration .
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/6847">#6847</a>
+          </li>
+          <li>
+            Add ID format property to SuppressWithNearbyCommentFilter.
+            Author: Erik Silkensen
+            <a href="https://github.com/checkstyle/checkstyle/issues/6884">#6884</a>
+          </li>
+          <li>
+            Add ID format property to SuppressionCommentFilter.
+            Author: Erik Silkensen
+            <a href="https://github.com/checkstyle/checkstyle/issues/6883">#6883</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Command line option -o does not produce output with -g option.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/6934">#6934</a>
+          </li>
+          <li>
+            NeedBraces: lambda with no braces not reported when contents span multiple lines.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/3837">#3837</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Use violation term as much as possible.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6771">#6771</a>
+          </li>
+          <li>
+            Remove usage of DetailAST.branchContains.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/5124">#5124</a>
+          </li>
+          <li>
+            create tests in MainTest.java to cover execution over some Input for
+            sun and google configs.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7021">#7021</a>
+          </li>
+          <li>
+            stop using puppet/disteli CI .
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7017">#7017</a>
+          </li>
+          <li>
+            Align XDocs and Javadocs for miscellaneous package.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6966">#6966</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: Mincong HUANG
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            doc: fix compilation error.
+            Author: Mincong HUANG
+          </li>
+          <li>
+            Japanese locale contains mistranslation.
+            Author: Yuki Shira
+            <a href="https://github.com/checkstyle/checkstyle/issues/7012">#7012</a>
+          </li>
+          <li>
+            Make test on file that have no read access but has write access.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6991">#6991</a>
+          </li>
+          <li>
+            Align XDocs and Javadocs.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/5750">#5750</a>
+          </li>
+          <li>
+            Upgrade PMD to 6.17.0.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6868">#6868</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-main profile to 100% .
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6982">#6982</a>
+          </li>
+          <li>
+            doc: fix sample code of AvoidInlineConditionals to be compilable.
+            Author: Mincong HUANG
+          </li>
+          <li>
+            [Java] Checkstyle CLI while generating xpath suppressions provides
+            extraneous stdout output.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6974">#6974</a>
+          </li>
+          <li>
+            Update link to latest version of CLI jar.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6933">#6933</a>
+          </li>
+          <li>
+            spell checker is failing due to failure to get words file.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6949">#6949</a>
+          </li>
+          <li>
+            eclipse violation over javadoc of AtclauseOrderCheck.java.
+            Author: Erik Silkensen
+            <a href="https://github.com/checkstyle/checkstyle/issues/6947">#6947</a>
+          </li>
+          <li>
+            javadoc error in NeedBracesCheck.java.
+            Author: Erik Silkensen
+            <a href="https://github.com/checkstyle/checkstyle/issues/6948">#6948</a>
+          </li>
+          <li>
+            Xdocs: sort values for String Set properties.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6938">#6938</a>
+          </li>
+          <li>
+            CLI: Add short versions for &#39;executeIgnoredModules&#39; and &#39;tabWidth&#39;.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6936">#6936</a>
+          </li>
+          <li>
+            CI: hide maven download text to prevent log overflow.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6919">#6919</a>
+          </li>
+          <li>
+            Align XDocs and Javadocs for filters package .
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6726">#6726</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 8.23">
       <div class="releaseDate">27.07.2019</div>
       <p>New:</p>
