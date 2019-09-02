@@ -270,17 +270,20 @@ public class MainTest {
     }
 
     @Test
-    public void testExistingTargetFileButWithoutReadAccess()
-            throws Exception {
-        exit.expectSystemExitWithStatus(-1);
-        exit.checkAssertionAfterwards(() -> {
-            assertEquals("Unexpected output log", "Files to process must be specified, found 0."
-                + System.lineSeparator(), systemOut.getLog());
-            assertEquals("Unexpected system error log", "", systemErr.getLog());
-        });
+    public void testExistingTargetFileButWithoutReadAccess() throws Exception {
         final File file = temporaryFolder.newFile("testExistingTargetFileButWithoutReadAccess");
-        file.setReadable(false);
-        Main.main("-c", "/google_checks.xml", file.getCanonicalPath());
+        final boolean isSuccessfulChange = file.setReadable(false);
+        // skip execution if file is still readable, it is possible on some windows machines
+        // see https://github.com/checkstyle/checkstyle/issues/7032 for details
+        if (isSuccessfulChange) {
+            exit.expectSystemExitWithStatus(-1);
+            exit.checkAssertionAfterwards(() -> {
+                assertEquals("Unexpected output log", "Files to process must be specified, found 0."
+                    + System.lineSeparator(), systemOut.getLog());
+                assertEquals("Unexpected system error log", "", systemErr.getLog());
+            });
+            Main.main("-c", "/google_checks.xml", file.getCanonicalPath());
+        }
     }
 
     @Test
