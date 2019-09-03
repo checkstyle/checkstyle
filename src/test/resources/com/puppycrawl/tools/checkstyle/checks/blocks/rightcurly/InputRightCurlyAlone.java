@@ -66,4 +66,18 @@ public class InputRightCurlyAlone {
         }{}; // violation
         };
     }
+
+    public @interface TestAnnotation {} //violation
+
+    public @interface TestAnnotation1{ String value(); } //violation
+
+    public @interface TestAnnotation2 {
+        String value();} //violation
+
+    public @interface TestAnnotation3 {
+        String value();
+    }
+
+    public @interface TestAnnottation4 { String value();
+    }
 }
