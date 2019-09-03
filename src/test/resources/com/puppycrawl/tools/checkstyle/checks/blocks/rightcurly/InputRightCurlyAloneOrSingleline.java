@@ -209,4 +209,18 @@ public class InputRightCurlyAloneOrSingleline {
         }; // violation
         for (int i = 0; i < 1; i++) { new Object(); }; // violation
     }
+
+    public @interface TestAnnotation {}
+
+    public @interface TestAnnotation1{ String value(); }
+
+    public @interface TestAnnotation2 {
+        String value();} //violation
+
+    public @interface TestAnnotation3 {
+        String value();
+    }
+
+    public @interface TestAnnottation4 { String value();
+    }
 }

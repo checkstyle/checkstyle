@@ -143,3 +143,19 @@ class WithArraysAlone {
     String[] s4 =
         {"foo", "foo"}; // ok
 }
+
+class Interface {
+    public @interface TestAnnotation {} //warn
+
+    public @interface TestAnnotation1 { String someValue(); } //warn
+
+    public @interface TestAnnotation2 {
+        String someValue();} //warn
+
+    public @interface TestAnnotation3 {
+        String someValue();
+    } //ok
+
+    public @interface TestAnnotation4 { String someValue();
+    } //ok
+}
