@@ -53,7 +53,8 @@ public final class FileContents implements CommentListener {
     /** The text. */
     private final FileText text;
 
-    /** Map of the Javadoc comments indexed on the last line of the comment.
+    /**
+     * Map of the Javadoc comments indexed on the last line of the comment.
      * The hack is it assumes that there is only one Javadoc comment per line.
      */
     private final Map<Integer, TextBlock> javadocComments = new HashMap<>();

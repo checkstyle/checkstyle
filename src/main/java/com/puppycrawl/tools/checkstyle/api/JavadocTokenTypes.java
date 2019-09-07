@@ -1212,7 +1212,8 @@ public final class JavadocTokenTypes {
     //------- JAVADOC TAGS DEPENDING ON RULE TYPES OFFSET ----------------------------------------//
     //--------------------------------------------------------------------------------------------//
 
-    /** Rule types offset.
+    /**
+     * Rule types offset.
      * RULE_TYPES_OFFSET constant is used to split lexer tokens types and parser rules types.
      * We need unique numbers for all tokens,
      * ANTLR do not need this and that is why this types are mixed by used values.
@@ -1686,7 +1687,9 @@ public final class JavadocTokenTypes {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
-    /** Html comment: <code>&lt;&#33;-- --&gt;</code>.
+    /**
+     * Html comment: <code>&lt;&#33;-- --&gt;</code>.
+     *
      * @noinspection HtmlTagCanBeJavadocTag
      */
     public static final int HTML_COMMENT = JavadocParser.RULE_htmlComment

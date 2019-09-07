@@ -452,7 +452,8 @@ public class ImportOrderCheck
     private boolean lastImportStatic;
     /** Whether there was any imports. */
     private boolean beforeFirstImport;
-    /** Whether static and type import groups should be split apart.
+    /**
+     * Whether static and type import groups should be split apart.
      * When the {@code option} property is set to {@code INFLOW}, {@code BELOW} or {@code UNDER},
      * both the type and static imports use the properties {@code groups} and {@code separated}.
      * When the {@code option} property is set to {@code TOP} or {@code BOTTOM}, static imports

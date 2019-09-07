@@ -56,11 +56,13 @@ public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
         return "com/puppycrawl/tools/checkstyle/gui/codeselectorpresentation";
     }
 
-    /** Converts lineToPosition from multicharacter to one character line separator
-      * needs to support crossplatform line separators.
-      * @param systemLinesToPosition lines to position mapping for current system
-      * @return lines to position mapping with one character line separator
-      */
+    /**
+     * Converts lineToPosition from multicharacter to one character line separator
+     * needs to support crossplatform line separators.
+     *
+     * @param systemLinesToPosition lines to position mapping for current system
+     * @return lines to position mapping with one character line separator
+     */
     private static List<Integer> convertLinesToPosition(List<Integer> systemLinesToPosition) {
         final List<Integer> convertedLinesToPosition = new ArrayList<>();
         final int lineSeparationCorrection = System.lineSeparator().length() - 1;
