@@ -63,7 +63,9 @@ public abstract class AbstractPathTestSupport {
         return "/" + getPackageLocation() + "/" + filename;
     }
 
-    /** Reads the contents of a file.
+    /**
+     * Reads the contents of a file.
+     *
      * @param filename the name of the file whose contents are to be read
      * @return contents of the file with all {@code \r\n} replaced by {@code \n}
      * @throws IOException if I/O exception occurs while reading

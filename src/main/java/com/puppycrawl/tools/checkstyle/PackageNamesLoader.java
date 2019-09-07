@@ -59,7 +59,8 @@ public final class PackageNamesLoader
     private static final String DTD_RESOURCE_NAME =
         "com/puppycrawl/tools/checkstyle/packages_1_0.dtd";
 
-    /** Name of default checkstyle package names resource file.
+    /**
+     * Name of default checkstyle package names resource file.
      * The file must be in the classpath.
      */
     private static final String CHECKSTYLE_PACKAGES =

@@ -123,7 +123,8 @@ public class TrailingCommentCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "trailing.comments";
 
-    /** Define pattern for text allowed in trailing comments.
+    /**
+     * Define pattern for text allowed in trailing comments.
      * (This pattern will not be applied to multiline comments and the text
      * of the comment will be trimmed before matching.)
      */

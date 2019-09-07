@@ -130,7 +130,8 @@ public class ParameterNumberCheck
         }
     }
 
-    /** Determine whether to ignore number of parameters for the method.
+    /**
+     * Determine whether to ignore number of parameters for the method.
      *
      * @param ast the token to process
      * @return true if this is overridden method and number of parameters should be ignored

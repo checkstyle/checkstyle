@@ -187,7 +187,8 @@ public class HiddenFieldCheck
      */
     public static final String MSG_KEY = "hidden.field";
 
-    /** Stack of sets of field names,
+    /**
+     * Stack of sets of field names,
      * one for each class of a set of nested classes.
      */
     private FieldFrame frame;

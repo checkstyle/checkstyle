@@ -427,9 +427,10 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
-    /** Tests that a non-static import after a static import correctly gives an
-     * error if order=bottom. */
-
+    /**
+     * Tests that a non-static import after a static import correctly gives an
+     * error if order=bottom.
+     */
     @Test
     public void testStaticGroupsAlphabeticalOrderTopNegative() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -445,9 +446,10 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
-    /** Tests that a non-static import before a static import correctly gives an
-     * error if order=top. */
-
+    /**
+     * Tests that a non-static import before a static import correctly gives an
+     * error if order=top.
+     */
     @Test
     public void testStaticGroupsAlphabeticalOrderBottomNegative2() throws Exception {
         final DefaultConfiguration checkConfig =

@@ -81,7 +81,9 @@ public final class LocalizedMessage
     /** Key for the message format. **/
     private final String key;
 
-    /** Arguments for MessageFormat.
+    /**
+     * Arguments for MessageFormat.
+     *
      * @noinspection NonSerializableFieldInSerializableClass
      */
     private final Object[] args;
