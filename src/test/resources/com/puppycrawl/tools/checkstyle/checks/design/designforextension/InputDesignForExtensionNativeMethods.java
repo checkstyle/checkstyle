@@ -19,7 +19,7 @@ public class InputDesignForExtensionNativeMethods {
     public native void foo5();
 
     /*
-     * Block-commend doc for native method.
+     * Violation. Block-commend doc for native method.
      */
     public native void foo6();
 

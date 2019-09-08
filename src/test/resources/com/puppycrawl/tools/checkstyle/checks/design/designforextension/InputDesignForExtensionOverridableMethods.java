@@ -101,7 +101,7 @@ public class InputDesignForExtensionOverridableMethods {
         // organized in a block
         public void foo24() {}
 
-        /* Block comment */
+        /* Block comment violation */
         public void foo25() {
             return;
         }
@@ -125,7 +125,7 @@ public class InputDesignForExtensionOverridableMethods {
             return;
         }
 
-        /* Block comment */
+        /* Block comment violation */
         @Deprecated
         public void foo29() {
             return;
@@ -147,7 +147,7 @@ public class InputDesignForExtensionOverridableMethods {
             return 1;
         }
 
-        /* */
+        /* */ // violation
         public int foo31() {
             /** */
             return 1;
@@ -160,13 +160,13 @@ public class InputDesignForExtensionOverridableMethods {
         }
 
         @Deprecated
-        /** */
+        /** */ // violation
         public int foo33() {
             return 1;
         }
 
         @Deprecated
-        /* */
+        /* */ // violation
         public int foo34() {
             return 1;
         }
@@ -187,7 +187,7 @@ public class InputDesignForExtensionOverridableMethods {
         // comment
         public void foo38() { }
 
-        @Deprecated /** */
+        @Deprecated /** */ // violation
         public void foo39() {return; }
 
         void foo40() { // no violation: empty body
@@ -204,6 +204,18 @@ public class InputDesignForExtensionOverridableMethods {
 
         /** */
         void foo43() {
+            return;
+        }
+
+        /** */
+        /* not empty */
+        void foo44() {
+            return;
+        }
+
+        /* not empty */
+        /** */
+        void foo45() {
             return;
         }
 
