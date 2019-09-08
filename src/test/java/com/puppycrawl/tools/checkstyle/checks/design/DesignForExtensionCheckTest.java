@@ -78,8 +78,14 @@ public class DesignForExtensionCheckTest
             "68:9: " + getCheckMessage(MSG_KEY, "A", "foo14"),
             "90:9: " + getCheckMessage(MSG_KEY, "A", "foo22"),
             "96:9: " + getCheckMessage(MSG_KEY, "A", "foo23"),
+            "105:9: " + getCheckMessage(MSG_KEY, "A", "foo25"),
             "110:9: " + getCheckMessage(MSG_KEY, "A", "foo26"),
             "117:9: " + getCheckMessage(MSG_KEY, "A", "foo27"),
+            "129:9: " + getCheckMessage(MSG_KEY, "A", "foo29"),
+            "151:9: " + getCheckMessage(MSG_KEY, "A", "foo31"),
+            "162:9: " + getCheckMessage(MSG_KEY, "A", "foo33"),
+            "168:9: " + getCheckMessage(MSG_KEY, "A", "foo34"),
+            "190:9: " + getCheckMessage(MSG_KEY, "A", "foo39"),
             "197:9: " + getCheckMessage(MSG_KEY, "A", "foo41"),
         };
         verify(checkConfig, getPath("InputDesignForExtensionOverridableMethods.java"), expected);
@@ -117,6 +123,7 @@ public class DesignForExtensionCheckTest
         checkConfig.addAttribute("ignoredAnnotations", "Deprecated");
         final String[] expected = {
             "8:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtensionNativeMethods", "foo1"),
+            "24:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtensionNativeMethods", "foo6"),
         };
         verify(checkConfig, getPath("InputDesignForExtensionNativeMethods.java"), expected);
     }
