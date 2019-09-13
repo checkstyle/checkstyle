@@ -32,5 +32,11 @@
                 <ignoreVersion type="regex">.*</ignoreVersion>
             </ignoreVersions>
         </rule>
+        <rule groupId="org.pitest" artifactId="pitest-maven">
+            <ignoreVersions>
+                <!-- till https://github.com/hcoles/pitest/issues/673 -->
+                <ignoreVersion type="regex">.*</ignoreVersion>
+            </ignoreVersions>
+        </rule>
     </rules>
 </ruleset>
