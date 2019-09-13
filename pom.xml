@@ -359,7 +359,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>sonar-maven-plugin</artifactId>
-          <version>3.6.0.1398</version>
+          <version>3.6.1.1688</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
