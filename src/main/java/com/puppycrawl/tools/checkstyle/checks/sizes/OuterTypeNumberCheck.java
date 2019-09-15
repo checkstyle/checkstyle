@@ -25,7 +25,34 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks for the number of defined types at the "outer" level.
+ * <p>
+ * Checks for the number of types declared at the <i>outer</i> (or <i>root</i>) level in a file.
+ * </p>
+ * <p>
+ * Rationale: It is considered good practice to only define one outer type per file.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code max} - Specify the maximum number of outer types allowed.
+ * Default value is {@code 1}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check to accept 1 outer type per file:
+ * </p>
+ * <pre>
+ * &lt;module name="OuterTypeNumber"/&gt;
+ * </pre>
+ * <p>
+ * To configure the check to accept 2 outer types per file:
+ * </p>
+ * <pre>
+ * &lt;module name="OuterTypeNumber"&gt;
+ *   &lt;property name="max" value="2"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ *
+ * @since 5.0
  */
 @FileStatefulCheck
 public class OuterTypeNumberCheck extends AbstractCheck {
@@ -36,7 +63,7 @@ public class OuterTypeNumberCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "maxOuterTypes";
 
-    /** The maximum allowed number of outer types. */
+    /** Specify the maximum number of outer types allowed. */
     private int max = 1;
     /** Tracks the current depth in types. */
     private int currentDepth;
@@ -86,7 +113,8 @@ public class OuterTypeNumberCheck extends AbstractCheck {
     }
 
     /**
-     * Sets the maximum allowed number of outer types.
+     * Setter to specify the maximum number of outer types allowed.
+     *
      * @param max the new number.
      */
     public void setMax(int max) {
