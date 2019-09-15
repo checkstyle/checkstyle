@@ -35,26 +35,28 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * classes should usually be refactored into a named inner class.
  * See also Bloch, Effective Java, p. 93.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code max} - Specify the maximum number of lines allowed.
+ * Default value is {@code 20}.
+ * </li>
+ * </ul>
  * <p>
- * The default maximum anonymous inner class length is 20 lines.
- * To change the maximum number of lines, set property max.
- * </p>
- * <p>
- * An example of how to configure the check is:
+ * To configure the check to accept anonymous classes with up to 20 lines:
  * </p>
  * <pre>
  * &lt;module name="AnonInnerLength"/&gt;
  * </pre>
  * <p>
- * An example of how to configure the check so that it accepts anonymous
- * inner classes with up to 60 lines is:
+ * To configure the check to accept anonymous classes with up to 60 lines:
  * </p>
  * <pre>
  * &lt;module name="AnonInnerLength"&gt;
- *    &lt;property name="max" value="60"/&gt;
+ *   &lt;property name="max" value="60"/&gt;
  * &lt;/module&gt;
  * </pre>
  *
+ * @since 3.2
  */
 @StatelessCheck
 public class AnonInnerLengthCheck extends AbstractCheck {
@@ -68,7 +70,7 @@ public class AnonInnerLengthCheck extends AbstractCheck {
     /** Default maximum number of lines. */
     private static final int DEFAULT_MAX = 20;
 
-    /** Maximum number of lines. */
+    /** Specify the maximum number of lines allowed. */
     private int max = DEFAULT_MAX;
 
     @Override
@@ -101,7 +103,8 @@ public class AnonInnerLengthCheck extends AbstractCheck {
     }
 
     /**
-     * Sets maximum length of an anonymous inner class.
+     * Setter to specify the maximum number of lines allowed.
+     *
      * @param length the maximum length of an anonymous inner class.
      */
     public void setMax(int length) {

@@ -23,8 +23,8 @@
     </section>
 
     <section name="AnonInnerLength">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="AnonInnerLength_Description">
-        <p>Since Checkstyle 3.2</p>
         <p>
           Checks for long anonymous inner classes.
         </p>
@@ -33,7 +33,7 @@
           Rationale: If an anonymous inner class becomes very long it is hard
           to understand and to see the flow of the method where the class is
           defined. Therefore long anonymous inner classes should usually be
-          refactored into a named inner class.  See also Bloch, Effective
+          refactored into a named inner class. See also Bloch, Effective
           Java, p. 93.
         </p>
       </subsection>
@@ -49,9 +49,9 @@
           </tr>
           <tr>
             <td>max</td>
-            <td>maximum allowable number of lines</td>
+            <td>Specify the maximum number of lines allowed.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td>20</td>
+            <td><code>20</code></td>
             <td>3.2</td>
           </tr>
         </table>
@@ -59,7 +59,13 @@
 
       <subsection name="Examples" id="AnonInnerLength_Examples">
         <p>
-          To configure the check to accept files with up to 60 lines:
+          To configure the check to accept anonymous classes with up to 20 lines:
+        </p>
+        <source>
+&lt;module name="AnonInnerLength"/&gt;
+        </source>
+        <p>
+          To configure the check to accept anonymous classes with up to 60 lines:
         </p>
         <source>
 &lt;module name="AnonInnerLength"&gt;
