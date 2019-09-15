@@ -101,7 +101,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "AnonInnerLength",
         "ExecutableStatementCount",
         "FileLength",
-        "LineLength",
         "MethodCount",
         "MethodLength",
         "OuterTypeNumber",
