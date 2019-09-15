@@ -28,47 +28,63 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
+ * <p>
  * Checks for long lines.
- *
+ * </p>
  * <p>
  * Rationale: Long lines are hard to read in printouts or if developers
  * have limited screen space for the source code, e.g. if the IDE displays
  * additional information like project tree, class hierarchy, etc.
  * </p>
- *
+ * <ul>
+ * <li>
+ * The calculation of the length of a line takes into account the number of
+ * expanded spaces for a tab character ({@code '\t'}). The default number of spaces is {@code 8}.
+ * To specify a different number of spaces, the user can set
+ * <a href="https://checkstyle.org/config.html#TreeWalker">{@code TreeWalker}</a>
+ * property {@code tabWidth} which applies to all Checks, including {@code LineLength};
+ * or can set property {@code tabWidth} for {@code LineLength} alone.
+ * </li>
+ * <li>
+ * Package and import statements (lines matching pattern {@code ^(package|import) .*})
+ * are not verified by this check.
+ * </li>
+ * </ul>
+ * <ul>
+ * <li>
+ * Property {@code fileExtensions} - Specify file extensions that are accepted.
+ * Default value is {@code all files}.
+ * </li>
+ * <li>
+ * Property {@code ignorePattern} - Specify pattern for lines to ignore.
+ * Default value is {@code "^$" (empty)}.
+ * </li>
+ * <li>
+ * Property {@code max} - Specify the maximum line length allowed.
+ * Default value is {@code 80}.
+ * </li>
+ * </ul>
  * <p>
- * Package statements and import statements (lines matching pattern
- * {@code ^(package|import) .*}), and are not verified by this check.
- * </p>
- * <p>
- * The default maximum allowable line length is 80 characters. To change the
- * maximum, set property max.
- * </p>
- * <p>
- * To ignore lines in the check, set property ignorePattern to a regular
- * expression for the lines to ignore.
- * </p>
- * <p>
- * An example of how to configure the check is:
+ * To configure the check to accept lines up to 80 characters long:
  * </p>
  * <pre>
  * &lt;module name="LineLength"/&gt;
  * </pre>
- * <p> An example of how to configure the check to accept lines up to 120
- * characters long is:
- *</p>
- * <pre>
- * &lt;module name="LineLength"&gt;
- *    &lt;property name="max" value="120"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p> An example of how to configure the check to ignore lines that begin with
- * &quot; * &quot;, followed by just one word, such as within a Javadoc comment,
- * is:
+ * <p>
+ * To configure the check to accept lines up to 120 characters long:
  * </p>
  * <pre>
  * &lt;module name="LineLength"&gt;
- *    &lt;property name="ignorePattern" value="^ *\* *[^ ]+$"/&gt;
+ *   &lt;property name="max" value="120"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check to ignore lines that begin with {@code " * "} code,
+ * followed by just one word, such as within a Javadoc comment:
+ * </p>
+ * <pre>
+ * &lt;module name="LineLength"&gt;
+ *   &lt;property name="ignorePattern" value="^ *\* *[^ ]+$"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>To configure the check to only validate java files and ignore other extensions:
@@ -86,6 +102,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  *
+ * @since 3.0
  */
 @StatelessCheck
 public class LineLengthCheck extends AbstractFileSetCheck {
@@ -102,10 +119,10 @@ public class LineLengthCheck extends AbstractFileSetCheck {
     /** Patterns matching package, import, and import static statements. */
     private static final Pattern IGNORE_PATTERN = Pattern.compile("^(package|import) .*");
 
-    /** The maximum number of columns in a line. */
+    /** Specify the maximum line length allowed. */
     private int max = DEFAULT_MAX_COLUMNS;
 
-    /** The regexp when long lines are ignored. */
+    /** Specify pattern for lines to ignore. */
     private Pattern ignorePattern = Pattern.compile("^$");
 
     @Override
@@ -123,7 +140,8 @@ public class LineLengthCheck extends AbstractFileSetCheck {
     }
 
     /**
-     * Sets the maximum length of a line.
+     * Setter to specify the maximum line length allowed.
+     *
      * @param length the maximum length of a line
      */
     public void setMax(int length) {
@@ -131,7 +149,8 @@ public class LineLengthCheck extends AbstractFileSetCheck {
     }
 
     /**
-     * Set the ignore pattern.
+     * Setter to specify pattern for lines to ignore.
+     *
      * @param pattern a pattern.
      */
     public final void setIgnorePattern(Pattern pattern) {

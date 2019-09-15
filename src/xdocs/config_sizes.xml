@@ -308,8 +308,8 @@
     </section>
 
     <section name="LineLength">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="LineLength_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
           Checks for long lines.
         </p>
@@ -333,29 +333,36 @@
           </tr>
           <tr>
             <td>fileExtensions</td>
-            <td>file extensions that are accepted</td>
+            <td>Specify file extensions that are accepted.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>all files</code></td>
             <td>8.24</td>
           </tr>
           <tr>
             <td>ignorePattern</td>
-            <td>pattern for lines to ignore</td>
+            <td>Specify pattern for lines to ignore.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td>"^$" (empty)</td>
+            <td><code>"^$" (empty)</code></td>
             <td>3.0</td>
           </tr>
           <tr>
             <td>max</td>
-            <td>maximum allowable line length</td>
+            <td>Specify the maximum line length allowed.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td>80</td>
+            <td><code>80</code></td>
             <td>3.0</td>
           </tr>
         </table>
       </subsection>
 
       <subsection name="Examples" id="LineLength_Examples">
+        <p>
+          To configure the check to accept lines up to 80 characters long:
+        </p>
+        <source>
+&lt;module name="LineLength"/&gt;
+        </source>
+
         <p>
           To configure the check to accept lines up to 120 characters long:
         </p>
@@ -366,8 +373,8 @@
         </source>
 
         <p>
-          To configure the check to ignore lines that begin with &quot; *
-          &quot;, followed by just one word, such as within a Javadoc comment:
+          To configure the check to ignore lines that begin with <code>&quot; * &quot;</code>code,
+          followed by just one word, such as within a Javadoc comment:
         </p>
         <source>
 &lt;module name="LineLength"&gt;
@@ -400,7 +407,7 @@
           <li>
             The calculation of the length of a line takes into account the
             number of expanded spaces for a tab character (<code>'\t'</code>). The default number
-            of spaces is <code>8</code>.  To specify a different number of spaces, the user can set
+            of spaces is <code>8</code>. To specify a different number of spaces, the user can set
             <a href="config.html#TreeWalker"><code>TreeWalker</code></a> property
             <code>tabWidth</code> which applies to all Checks, including <code>LineLength</code>;
             or can set property <code>tabWidth</code> for <code>LineLength</code> alone.
