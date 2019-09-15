@@ -34,7 +34,6 @@ no-exception-openjdk7-openjdk8)
   build_checkstyle
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
-  git checkout issue_2116
   sed -i'' 's/^guava/#guava/' projects-for-circle.properties
   sed -i'' 's/#openjdk7/openjdk7/' projects-for-circle.properties
   sed -i'' 's/#openjdk8/openjdk8/' projects-for-circle.properties
@@ -49,7 +48,6 @@ no-exception-openjdk9-lucene-and-others)
   build_checkstyle
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
-  git checkout issue_2116
   sed -i'' 's/^guava/#guava/' projects-for-circle.properties
   # till hg is installed
   #sed -i'' 's/#openjdk9/openjdk9/' projects-for-circle.properties
@@ -68,7 +66,6 @@ no-exception-cassandra-storm-tapestry)
   build_checkstyle
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
-  git checkout issue_2116
   sed -i'' 's/^guava/#guava/' projects-for-circle.properties
   sed -i'' 's/#tapestry-5/tapestry-5/' projects-for-circle.properties
   sed -i'' 's/#storm/storm/' projects-for-circle.properties
@@ -84,7 +81,6 @@ no-exception-hadoop-apache-groovy-scouter)
   build_checkstyle
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
-  git checkout issue_2116
   sed -i'' 's/^guava/#guava/' projects-for-circle.properties
   sed -i'' 's/#apache-commons/apache-commons/' projects-for-circle.properties
   sed -i'' 's/#hadoop/hadoop/' projects-for-circle.properties
