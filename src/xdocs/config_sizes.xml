@@ -796,8 +796,8 @@ public class ExampleClass {
     </section>
 
     <section name="OuterTypeNumber">
+      <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="OuterTypeNumber_Description">
-        <p>Since Checkstyle 5.0</p>
         <p>
           Checks for the number of types declared at the <i>outer</i>
           (or <i>root</i>) level in a file.
@@ -820,9 +820,9 @@ public class ExampleClass {
           </tr>
           <tr>
             <td>max</td>
-            <td>maximum allowable number of outer types</td>
+            <td>Specify the maximum number of outer types allowed.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td>1</td>
+            <td><code>1</code></td>
             <td>5.0</td>
           </tr>
         </table>
