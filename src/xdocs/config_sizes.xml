@@ -672,8 +672,8 @@ public class ExampleClass {
     </section>
 
     <section name="MethodLength">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="MethodLength_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
           Checks for long methods and constructors.
         </p>
@@ -696,16 +696,16 @@ public class ExampleClass {
           </tr>
           <tr>
             <td>max</td>
-            <td>maximum allowable number of lines</td>
+            <td>Specify the maximum number of lines allowed.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td>150</td>
+            <td><code>150</code></td>
             <td>3.0</td>
           </tr>
           <tr>
             <td>countEmpty</td>
             <td>
-              whether to count empty lines and single line comments of the
-              form <code>//</code>
+              Control whether to count empty lines and single line comments of the
+              form <code>//</code>.
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
