@@ -69,8 +69,10 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "142:9: " + getCheckMessage(MSG_VARIABLE, "s", ""),
             "168:16: " + getCheckMessage(MSG_VARIABLE, "a", ""),
             "168:20: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "168:24: " + getCheckMessage(MSG_VARIABLE, "a", ""),
             "174:16: " + getCheckMessage(MSG_VARIABLE, "b", ""),
             "174:20: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "174:24: " + getCheckMessage(MSG_VARIABLE, "b", ""),
         };
         verify(checkConfig,
                getPath("InputRequireThisEnumInnerClassesAndBugs.java"),
@@ -111,11 +113,45 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "142:9: " + getCheckMessage(MSG_VARIABLE, "s", ""),
             "168:16: " + getCheckMessage(MSG_VARIABLE, "a", ""),
             "168:20: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "168:24: " + getCheckMessage(MSG_VARIABLE, "a", ""),
             "174:16: " + getCheckMessage(MSG_VARIABLE, "b", ""),
             "174:20: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "174:24: " + getCheckMessage(MSG_VARIABLE, "b", ""),
         };
         verify(checkConfig,
                getPath("InputRequireThisEnumInnerClassesAndBugs.java"),
+               expected);
+    }
+
+    @Test
+    public void testFieldsInExpressions() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(RequireThisCheck.class);
+        checkConfig.addAttribute("checkMethods", "false");
+        checkConfig.addAttribute("validateOnlyOverlapping", "false");
+        final String[] expected = {
+            "15:28: " + getCheckMessage(MSG_VARIABLE, "id", ""),
+            "16:28: " + getCheckMessage(MSG_VARIABLE, "length", ""),
+            "17:28: " + getCheckMessage(MSG_VARIABLE, "length", ""),
+            "18:26: " + getCheckMessage(MSG_VARIABLE, "length", ""),
+            "19:26: " + getCheckMessage(MSG_VARIABLE, "length", ""),
+            "20:25: " + getCheckMessage(MSG_VARIABLE, "length", ""),
+            "21:25: " + getCheckMessage(MSG_VARIABLE, "length", ""),
+            "22:26: " + getCheckMessage(MSG_VARIABLE, "length", ""),
+            "23:26: " + getCheckMessage(MSG_VARIABLE, "length", ""),
+            "24:33: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "25:36: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "26:26: " + getCheckMessage(MSG_VARIABLE, "length", ""),
+            "27:26: " + getCheckMessage(MSG_VARIABLE, "length", ""),
+            "28:28: " + getCheckMessage(MSG_VARIABLE, "length", ""),
+            "29:26: " + getCheckMessage(MSG_VARIABLE, "length", ""),
+            "30:26: " + getCheckMessage(MSG_VARIABLE, "length", ""),
+            "31:26: " + getCheckMessage(MSG_VARIABLE, "length", ""),
+            "32:31: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "33:32: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+        };
+        verify(checkConfig,
+               getPath("InputRequireThisExpressions.java"),
                expected);
     }
 
@@ -213,6 +249,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "185:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "189:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "210:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "217:29: " + getCheckMessage(MSG_VARIABLE, "booleanField", ""),
             "228:21: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "238:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "253:9: " + getCheckMessage(MSG_VARIABLE, "booleanField", ""),
