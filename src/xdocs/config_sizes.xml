@@ -110,8 +110,8 @@
     </section>
 
     <section name="ExecutableStatementCount">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="ExecutableStatementCount_Description">
-        <p>Since Checkstyle 3.2</p>
         <p>
           Restricts the number of executable statements to a specified limit.
         </p>
@@ -128,7 +128,7 @@
           </tr>
           <tr>
             <td>max</td>
-            <td>the maximum threshold allowed</td>
+            <td>Specify the maximum threshold allowed.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>30</code></td>
             <td>3.2</td>
