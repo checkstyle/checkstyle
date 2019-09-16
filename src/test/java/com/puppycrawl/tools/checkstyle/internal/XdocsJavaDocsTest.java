@@ -98,7 +98,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "JavaNCSS",
         "NPathComplexity",
         // sizes
-        "ExecutableStatementCount",
         "FileLength",
         "MethodCount",
         "MethodLength",
