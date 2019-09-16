@@ -615,7 +615,7 @@ public class RequireThisCheck extends AbstractCheck {
         final DetailAST prevSibling = ast.getPreviousSibling();
         if (variableDeclarationFrameType == FrameType.CLASS_FRAME
                 && !validateOnlyOverlapping
-                && prevSibling == null
+                && (prevSibling == null || ast.getParent().getType() != TokenTypes.DOT)
                 && canBeReferencedFromStaticContext(ast)) {
             frameWhereViolationIsFound = variableDeclarationFrame;
         }
