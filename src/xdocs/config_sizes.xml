@@ -896,8 +896,8 @@ public class ExampleClass {
     </section>
 
     <section name="ParameterNumber">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="ParameterNumber_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
           Checks the number of parameters of a method or constructor.
         </p>
@@ -914,16 +914,18 @@ public class ExampleClass {
           </tr>
           <tr>
             <td>max</td>
-            <td>maximum allowable number of parameters</td>
+            <td>Specify the maximum number of parameters allowed.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td>7</td>
+            <td><code>7</code></td>
             <td>3.0</td>
           </tr>
           <tr>
             <td>ignoreOverriddenMethods</td>
-            <td>Ignore number of parameters for methods with @Override annotation</td>
+            <td>
+              Ignore number of parameters for methods with <code>@Override</code> annotation.
+            </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>false</td>
+            <td><code>false</code></td>
             <td>6.2</td>
           </tr>
           <tr>
@@ -970,8 +972,8 @@ public class ExampleClass {
 &lt;/module&gt;
         </source>
           <p>
-              To configure the check to ignore number of parameters for methods with @Override
-              or @java.lang.Override annotation.
+              To configure the check to ignore number of parameters for methods with
+              <code>@Override</code> or <code>@java.lang.Override annotation</code>.
           </p>
           <p>
               Rationale: developer may need to override method with many parameters from
@@ -981,15 +983,15 @@ public class ExampleClass {
           <source>
 &lt;module name="ParameterNumber"&gt;
   &lt;property name="ignoreOverriddenMethods" value="true"/&gt;
-  &lt;property name="tokens" value="METHOD_DEF"/&gt;
 &lt;/module&gt;
           </source>
           <p>
-              Java code example
+              Java code example:
           </p>
           <source>
 @Override
-public void needsLotsOfParameters(int a, int b, int c, int d, int e, int f, int g, int h) {
+public void needsLotsOfParameters(int a,
+    int b, int c, int d, int e, int f, int g, int h) {
     ...
 }
           </source>

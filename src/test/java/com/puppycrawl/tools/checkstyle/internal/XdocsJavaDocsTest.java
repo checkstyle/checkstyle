@@ -102,7 +102,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "FileLength",
         "MethodCount",
         "MethodLength",
-        "ParameterNumber",
         // modifiers
         "ModifierOrder",
         "RedundantModifier",

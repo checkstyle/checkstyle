@@ -28,40 +28,66 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * Checks the number of parameters that a method or constructor has.
- * The default allowable number of parameters is 7.
- * To change the number of allowable parameters, set property max.
- * Allows to ignore number of parameters for methods with
- * &#064;{@link Override} annotation.
+ * Checks the number of parameters of a method or constructor.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code max} - Specify the maximum number of parameters allowed.
+ * Default value is {@code 7}.
+ * </li>
+ * <li>
+ * Property {@code ignoreOverriddenMethods} - Ignore number of parameters for
+ * methods with {@code @Override} annotation.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+ * METHOD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+ * CTOR_DEF</a>.
+ * </li>
+ * </ul>
  * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
  * &lt;module name="ParameterNumber"/&gt;
  * </pre>
  * <p>
- * An example of how to configure the check to allow 10 parameters
- * and ignoring parameters for methods with &#064;{@link Override}
- * annotation is:
+ * To configure the check to allow 10 parameters for a method:
  * </p>
  * <pre>
  * &lt;module name="ParameterNumber"&gt;
- *    &lt;property name="max" value="10"/&gt;
- *    &lt;property name="ignoreOverriddenMethods" value="true"/&gt;
+ *   &lt;property name="max" value="10"/&gt;
+ *   &lt;property name="tokens" value="METHOD_DEF"/&gt;
  * &lt;/module&gt;
  * </pre>
- * Java code that will be ignored:
+ * <p>
+ * To configure the check to ignore number of parameters for methods with
+ * {@code @Override} or {@code @java.lang.Override annotation}.
+ * </p>
+ * <p>
+ * Rationale: developer may need to override method with many parameters from
+ * 3-rd party library. In this case developer has no control over number of parameters.
+ * </p>
  * <pre>
- * {@code
- *
- *  &#064;Override
- *  public void needsLotsOfParameters(int a,
- *      int b, int c, int d, int e, int f, int g, int h) {
- *      ...
- *  }
+ * &lt;module name="ParameterNumber"&gt;
+ *   &lt;property name="ignoreOverriddenMethods" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Java code example:
+ * </p>
+ * <pre>
+ * &#064;Override
+ * public void needsLotsOfParameters(int a,
+ *     int b, int c, int d, int e, int f, int g, int h) {
+ *     ...
  * }
  * </pre>
+ *
+ * @since 3.0
  */
 @StatelessCheck
 public class ParameterNumberCheck
@@ -82,14 +108,15 @@ public class ParameterNumberCheck
     /** Default maximum number of allowed parameters. */
     private static final int DEFAULT_MAX_PARAMETERS = 7;
 
-    /** The maximum number of allowed parameters. */
+    /** Specify the maximum number of parameters allowed. */
     private int max = DEFAULT_MAX_PARAMETERS;
 
-    /** Ignore overridden methods. */
+    /** Ignore number of parameters for methods with {@code @Override} annotation. */
     private boolean ignoreOverriddenMethods;
 
     /**
-     * Sets the maximum number of allowed parameters.
+     * Setter to specify the maximum number of parameters allowed.
+     *
      * @param max the max allowed parameters
      */
     public void setMax(int max) {
@@ -97,8 +124,8 @@ public class ParameterNumberCheck
     }
 
     /**
-     * Ignore number of parameters for methods with
-     * &#064;{@link Override} annotation.
+     * Setter to ignore number of parameters for methods with {@code @Override} annotation.
+     *
      * @param ignoreOverriddenMethods set ignore overridden methods
      */
     public void setIgnoreOverriddenMethods(boolean ignoreOverriddenMethods) {
