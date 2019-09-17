@@ -34,25 +34,32 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * Therefore long classes should usually be refactored into several
  * individual classes that focus on a specific task.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code max} - Specify the maximum number of lines allowed.
+ * Default value is {@code 2000}.
+ * </li>
+ * <li>
+ * Property {@code fileExtensions} - Specify the file type extension of files to process.
+ * Default value is {@code all files}.
+ * </li>
+ * </ul>
  * <p>
- * The default maximum file length is 2000 lines. To change the maximum
- * number of lines, set property max.
- * </p>
- * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
  * &lt;module name="FileLength"/&gt;
  * </pre>
  * <p>
- * An example of how to configure the check so that it accepts files with at
- * most 1500 lines is:
+ * To configure the check to accept files with up to 1500 lines:
  * </p>
  * <pre>
  * &lt;module name="FileLength"&gt;
- *    &lt;property name="max" value="1500"/&gt;
+ *   &lt;property name="max" value="1500"/&gt;
  * &lt;/module&gt;
  * </pre>
+ *
+ * @since 5.0
  */
 @StatelessCheck
 public class FileLengthCheck extends AbstractFileSetCheck {
@@ -66,7 +73,7 @@ public class FileLengthCheck extends AbstractFileSetCheck {
     /** Default maximum number of lines. */
     private static final int DEFAULT_MAX_LINES = 2000;
 
-    /** The maximum number of lines. */
+    /** Specify the maximum number of lines allowed. */
     private int max = DEFAULT_MAX_LINES;
 
     @Override
@@ -77,7 +84,8 @@ public class FileLengthCheck extends AbstractFileSetCheck {
     }
 
     /**
-     * Sets the maximum length of a Java source file.
+     * Setter to specify the maximum number of lines allowed.
+     *
      * @param length the maximum length of a Java source file
      */
     public void setMax(int length) {
