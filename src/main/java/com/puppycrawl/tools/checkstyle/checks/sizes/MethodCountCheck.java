@@ -32,8 +32,107 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
- * Checks the number of methods declared in each type declaration by access
- * modifier or total count.
+ * <p>
+ * Checks the number of methods declared in each type declaration by access modifier
+ * or total count.
+ * </p>
+ * <p>
+ * This check can be configured to flag classes that define too many methods
+ * to prevent the class from getting too complex. Counting can be customized
+ * to prevent too many total methods in a type definition ({@code maxTotal}),
+ * or to prevent too many methods of a specific access modifier ({@code private},
+ * {@code package}, {@code protected} or {@code public}). Each count is completely
+ * separated to customize how many methods of each you want to allow. For example,
+ * specifying a {@code maxTotal} of 10, still means you can prevent more than 0
+ * {@code maxPackage} methods. A violation won't appear for 8 public methods,
+ * but one will appear if there is also 3 private methods or any package-private methods.
+ * </p>
+ * <p>
+ * Methods defined in anonymous classes are not counted towards any totals.
+ * Counts only go towards the main type declaration parent, and are kept separate
+ * from it's children's inner types.
+ * </p>
+ * <pre>
+ * public class ExampleClass {
+ *   public enum Colors {
+ *     RED, GREEN, YELLOW;
+ *
+ *     public String getRGB() { ... } // NOT counted towards ExampleClass
+ *   }
+ *
+ *   public void example() { // counted towards ExampleClass
+ *     Runnable r = (new Runnable() {
+ *       public void run() { ... } // NOT counted towards ExampleClass, won't produce any violations
+ *     });
+ *   }
+ *
+ *   public static class InnerExampleClass {
+ *     protected void example2() { ... } // NOT counted towards ExampleClass,
+ *                                    // but counted towards InnerExampleClass
+ *   }
+ * }
+ * </pre>
+ * <ul>
+ * <li>
+ * Property {@code maxTotal} - Specify the maximum number of methods allowed at all scope levels.
+ * Default value is {@code 100}.
+ * </li>
+ * <li>
+ * Property {@code maxPrivate} - Specify the maximum number of {@code private} methods allowed.
+ * Default value is {@code 100}.
+ * </li>
+ * <li>
+ * Property {@code maxPackage} - Specify the maximum number of {@code package} methods allowed.
+ * Default value is {@code 100}.
+ * </li>
+ * <li>
+ * Property {@code maxProtected} - Specify the maximum number of {@code protected} methods allowed.
+ * Default value is 100.
+ * </li>
+ * <li>
+ * Property {@code maxPublic} - Specify the maximum number of {@code public} methods allowed.
+ * Default value is {@code 100}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+ * CLASS_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+ * ENUM_CONSTANT_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+ * ENUM_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+ * INTERFACE_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+ * ANNOTATION_DEF</a>.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check with defaults:
+ * </p>
+ * <pre>
+ * &lt;module name="MethodCount"/&gt;
+ * </pre>
+ * <p>
+ * To configure the check to allow no more than 30 methods per type declaration:
+ * </p>
+ * <pre>
+ * &lt;module name="MethodCount"&gt;
+ *   &lt;property name="maxTotal" value="30"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check to allow no more than 10 public methods per type declaration,
+ * and 40 methods in total:
+ * </p>
+ * <pre>
+ * &lt;module name="MethodCount"&gt;
+ *   &lt;property name="maxPublic" value="10"/&gt;
+ *   &lt;property name="maxTotal" value="40"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ *
+ * @since 5.3
  */
 @FileStatefulCheck
 public final class MethodCountCheck extends AbstractCheck {
@@ -74,15 +173,15 @@ public final class MethodCountCheck extends AbstractCheck {
     /** Maintains stack of counters, to support inner types. */
     private final Deque<MethodCounter> counters = new ArrayDeque<>();
 
-    /** Maximum private methods. */
+    /** Specify the maximum number of {@code private} methods allowed. */
     private int maxPrivate = DEFAULT_MAX_METHODS;
-    /** Maximum package methods. */
+    /** Specify the maximum number of {@code package} methods allowed. */
     private int maxPackage = DEFAULT_MAX_METHODS;
-    /** Maximum protected methods. */
+    /** Specify the maximum number of {@code protected} methods allowed. */
     private int maxProtected = DEFAULT_MAX_METHODS;
-    /** Maximum public methods. */
+    /** Specify the maximum number of {@code public} methods allowed. */
     private int maxPublic = DEFAULT_MAX_METHODS;
-    /** Maximum total number of methods. */
+    /** Specify the maximum number of methods allowed at all scope levels. */
     private int maxTotal = DEFAULT_MAX_METHODS;
 
     @Override
@@ -191,7 +290,8 @@ public final class MethodCountCheck extends AbstractCheck {
     }
 
     /**
-     * Sets the maximum allowed {@code private} methods per type.
+     * Setter to specify the maximum number of {@code private} methods allowed.
+     *
      * @param value the maximum allowed.
      */
     public void setMaxPrivate(int value) {
@@ -199,7 +299,8 @@ public final class MethodCountCheck extends AbstractCheck {
     }
 
     /**
-     * Sets the maximum allowed {@code package} methods per type.
+     * Setter to specify the maximum number of {@code package} methods allowed.
+     *
      * @param value the maximum allowed.
      */
     public void setMaxPackage(int value) {
@@ -207,7 +308,8 @@ public final class MethodCountCheck extends AbstractCheck {
     }
 
     /**
-     * Sets the maximum allowed {@code protected} methods per type.
+     * Setter to specify the maximum number of {@code protected} methods allowed.
+     *
      * @param value the maximum allowed.
      */
     public void setMaxProtected(int value) {
@@ -215,7 +317,8 @@ public final class MethodCountCheck extends AbstractCheck {
     }
 
     /**
-     * Sets the maximum allowed {@code public} methods per type.
+     * Setter to specify the maximum number of {@code public} methods allowed.
+     *
      * @param value the maximum allowed.
      */
     public void setMaxPublic(int value) {
@@ -223,7 +326,8 @@ public final class MethodCountCheck extends AbstractCheck {
     }
 
     /**
-     * Sets the maximum total methods per type.
+     * Setter to specify the maximum number of methods allowed at all scope levels.
+     *
      * @param value the maximum allowed.
      */
     public void setMaxTotal(int value) {
