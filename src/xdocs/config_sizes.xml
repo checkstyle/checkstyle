@@ -470,8 +470,8 @@
     </section>
 
     <section name="MethodCount">
+      <p>Since Checkstyle 5.3</p>
       <subsection name="Description" id="MethodCount_Description">
-        <p>Since Checkstyle 5.3</p>
         <p>
           Checks the number of methods declared in each type declaration by access modifier or
           total count.
@@ -493,7 +493,8 @@
           Methods defined in anonymous classes are not counted towards any totals.
           Counts only go towards the main type declaration parent, and are kept separate from it's
           children's inner types.
-          <source>
+        </p>
+        <source>
 public class ExampleClass {
   public enum Colors {
     RED, GREEN, YELLOW;
@@ -503,7 +504,7 @@ public class ExampleClass {
 
   public void example() { // counted towards ExampleClass
     Runnable r = (new Runnable() {
-      public void run() { ... } // NOT counted towards ExampleClass and won't produce any violations
+      public void run() { ... } // NOT counted towards ExampleClass, won't produce any violations
     });
   }
 
@@ -512,8 +513,7 @@ public class ExampleClass {
                                    // but counted towards InnerExampleClass
   }
 }
-          </source>
-        </p>
+        </source>
       </subsection>
 
       <subsection name="Properties" id="MethodCount_Properties">
@@ -527,37 +527,37 @@ public class ExampleClass {
           </tr>
           <tr>
             <td>maxTotal</td>
-            <td>maximum allowable number of methods at all scope levels</td>
+            <td>Specify the maximum number of methods allowed at all scope levels.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td>100</td>
+            <td><code>100</code></td>
             <td>5.3</td>
           </tr>
           <tr>
             <td>maxPrivate</td>
-            <td>maximum allowable number of <code>private</code> methods</td>
+            <td>Specify the maximum number of <code>private</code> methods allowed.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td>100</td>
+            <td><code>100</code></td>
             <td>5.3</td>
           </tr>
           <tr>
             <td>maxPackage</td>
-            <td>maximum allowable number of <code>package</code> methods</td>
+            <td>Specify the maximum number of <code>package</code> methods allowed.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td>100</td>
+            <td><code>100</code></td>
             <td>5.3</td>
           </tr>
           <tr>
             <td>maxProtected</td>
-            <td>maximum allowable number of <code>protected</code> methods</td>
+            <td>Specify the maximum number of <code>protected</code> methods allowed.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>100</td>
             <td>5.3</td>
           </tr>
           <tr>
             <td>maxPublic</td>
-            <td>maximum allowable number of <code>public</code> methods</td>
+            <td>Specify the maximum number of <code>public</code> methods allowed.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td>100</td>
+            <td><code>100</code></td>
             <td>5.3</td>
           </tr>
 
