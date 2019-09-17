@@ -218,15 +218,15 @@
     </section>
 
     <section name="FileLength">
+      <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="FileLength_Description">
-        <p>Since Checkstyle 5.0</p>
         <p>
           Checks for long source files.
         </p>
 
         <p>
           Rationale: If a source file becomes very long it is hard to
-          understand.  Therefore long classes should usually be refactored
+          understand. Therefore long classes should usually be refactored
           into several individual classes that focus on a specific task.
         </p>
       </subsection>
@@ -242,14 +242,14 @@
           </tr>
           <tr>
             <td>max</td>
-            <td>maximum allowable number of lines</td>
+            <td>Specify the maximum number of lines allowed.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td>2000</td>
+            <td><code>2000</code></td>
             <td>3.2</td>
           </tr>
           <tr>
             <td>fileExtensions</td>
-            <td>file type extension of files to process</td>
+            <td>Specify the file type extension of files to process.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>all files</code></td>
             <td>5.0</td>
@@ -258,6 +258,12 @@
       </subsection>
 
       <subsection name="Examples" id="FileLength_Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name="FileLength"/&gt;
+        </source>
         <p>
           To configure the check to accept files with up to 1500 lines:
         </p>
