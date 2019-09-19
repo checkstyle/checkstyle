@@ -281,6 +281,10 @@ matrix:
         - DESC="ensure that all modules are used in no exception configs"
         - CMD="./.ci/travis/travis.sh verify-no-exception-configs"
 
+    - env:
+        - DESC="ensure that no files are in changed state after clone"
+        - CMD="./.ci/travis/travis.sh git-status"
+
 script:
   - SKIP_FILES1=".github|codeship-*|buddy.yml|appveyor.yml|circleci"
   - SKIP_FILES2="|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr"
