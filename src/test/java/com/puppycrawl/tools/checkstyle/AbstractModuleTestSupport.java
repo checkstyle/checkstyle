@@ -73,7 +73,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
 
     /**
      * Returns log stream.
-     * @return stream log stream
+     * @return stream with log
      */
     public ByteArrayOutputStream getStream() {
         return stream;
