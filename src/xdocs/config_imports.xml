@@ -424,7 +424,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
           <li>groups of non-static imports: &quot;java&quot; and &quot;javax&quot; packages first,
               then &quot;org&quot; and &quot;com&quot;, then all other imports as one group</li>
           <li>imports will be sorted in the groups</li>
-          <li>groups are separated by, at least, one blank line</li>
+          <li>groups are separated by one blank line</li>
         </ul>
         <source>
 &lt;module name=&quot;CustomImportOrder&quot;&gt;
@@ -444,7 +444,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
           <li>groups of non-static imports: all imports except of &quot;javax&quot; and
               &quot;java&quot;, then &quot;javax&quot; and &quot;java&quot;</li>
           <li>imports will be sorted in the groups</li>
-          <li>groups are separated by, at least, one blank line</li>
+          <li>groups are separated by one blank line</li>
         </ul>
 
         <p>
