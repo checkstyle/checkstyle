@@ -218,7 +218,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * imports will be sorted in the groups
  * </li>
  * <li>
- * groups are separated by, at least, one blank line
+ * groups are separated by one blank line
  * </li>
  * </ul>
  * <pre>
@@ -246,7 +246,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * imports will be sorted in the groups
  * </li>
  * <li>
- * groups are separated by, at least, one blank line
+ * groups are separated by one blank line
  * </li>
  * </ul>
  * <p>
