@@ -255,4 +255,27 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputRegexpMultilineSemantic.java"), expected);
     }
 
+    @Test
+    public void testMultilineSupport() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
+        checkConfig.addAttribute("format", "abc.*def");
+        checkConfig.addAttribute("matchAcrossLines", "true");
+        final String[] expected = {
+            "9: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "abc.*def"),
+        };
+        verify(checkConfig, getPath("InputRegexpMultilineMultilineSupport.java"), expected);
+    }
+
+    @Test
+    public void testMultilineSupportNotGreedy() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
+        checkConfig.addAttribute("format", "abc.*?def");
+        checkConfig.addAttribute("matchAcrossLines", "true");
+        final String[] expected = {
+            "9: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "abc.*?def"),
+            "11: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "abc.*?def"),
+        };
+        verify(checkConfig, getPath("InputRegexpMultilineMultilineSupport2.java"), expected);
+    }
+
 }

@@ -551,6 +551,13 @@ public static final int A_SETPOINT = 1;
             <td>5.0</td>
           </tr>
           <tr>
+            <td>matchAcrossLines</td>
+            <td>Controls whether to match expressions across multiple lines.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>false</code></td>
+            <td>8.25</td>
+          </tr>
+          <tr>
             <td>fileExtensions</td>
             <td>file type extension of files to process</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
@@ -570,6 +577,36 @@ public static final int A_SETPOINT = 1;
     value=&quot;System\.(out)|(err)\.print(ln)?\(&quot;/&gt;
 &lt;/module&gt;
         </source>
+
+        <p>
+          To configure the check to match text that spans multiple lines,
+          like normal code in a Java file:
+        </p>
+        <source>
+&lt;module name=&quot;RegexpMultiline&quot;&gt;
+  &lt;property name=&quot;matchAcrossLines&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;format&quot; value=&quot;System\.out.*print\(&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example of violation from the above config:
+        </p>
+        <source>
+void method() {
+  System.out. // violation
+  print("Example");
+  System.out.
+  print("Example");
+}
+        </source>
+        <p>
+          Note: Beware of the greedy regular expression used in the above example.
+          <code>.*</code> will match as much as possible and not produce multiple violations in
+          the file if multiple groups of lines could match the expression. To prevent an
+          expression being too greedy, avoid overusing matching all text or allow it to be
+          optional, like <code>.*?</code>. Changing the example expression to not be greedy
+          will allow multiple violations in the example to be found in the same file.
+        </p>
       </subsection>
 
       <subsection name="Example of Usage" id="RegexpMultiline_Example_of_Usage">
