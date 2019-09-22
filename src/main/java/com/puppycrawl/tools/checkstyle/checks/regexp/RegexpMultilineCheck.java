@@ -43,6 +43,8 @@ public class RegexpMultilineCheck extends AbstractFileSetCheck {
     private int maximum;
     /** Whether to ignore case when matching. */
     private boolean ignoreCase;
+    /** Whether to match across multiple lines. */
+    private boolean matchAcrossLines;
 
     /** The detector to use. */
     private MultilineDetector detector;
@@ -51,7 +53,7 @@ public class RegexpMultilineCheck extends AbstractFileSetCheck {
     public void beginProcessing(String charset) {
         final DetectorOptions options = DetectorOptions.newBuilder()
             .reporter(this)
-            .compileFlags(Pattern.MULTILINE)
+            .compileFlags(getRegexCompileFlags())
             .format(format)
             .message(message)
             .minimum(minimum)
@@ -64,6 +66,24 @@ public class RegexpMultilineCheck extends AbstractFileSetCheck {
     @Override
     protected void processFiltered(File file, FileText fileText) {
         detector.processLines(fileText);
+    }
+
+    /**
+     * Retrieves the compile flags for the regular expression being built based
+     * on {@code matchAcrossLines}.
+     * @return The compile flags.
+     */
+    private int getRegexCompileFlags() {
+        final int result;
+
+        if (matchAcrossLines) {
+            result = Pattern.DOTALL;
+        }
+        else {
+            result = Pattern.MULTILINE;
+        }
+
+        return result;
     }
 
     /**
@@ -104,6 +124,14 @@ public class RegexpMultilineCheck extends AbstractFileSetCheck {
      */
     public void setIgnoreCase(boolean ignoreCase) {
         this.ignoreCase = ignoreCase;
+    }
+
+    /**
+     * Sets whether to match across multiple lines.
+     * @param matchAcrossLines whether to match across multiple lines.
+     */
+    public void setMatchAcrossLines(boolean matchAcrossLines) {
+        this.matchAcrossLines = matchAcrossLines;
     }
 
 }
