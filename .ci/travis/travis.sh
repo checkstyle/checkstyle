@@ -224,7 +224,7 @@ no-error-test-sbe)
   sed -i'' \
     "s/'com.puppycrawl.tools:checkstyle:.*'/'com.puppycrawl.tools:checkstyle:$CS_POM_VERSION'/" \
     build.gradle
-  ./gradlew build
+  ./gradlew build --stacktrace
   ;;
 
 no-exception-test-checkstyle-sevntu-checkstyle)
