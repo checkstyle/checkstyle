@@ -161,13 +161,13 @@ public class XpathUtilTest {
     }
 
     private static DetailAST createDetailAST(int type) {
-        final DetailAST detailAST = new DetailAstImpl();
+        final DetailAstImpl detailAST = new DetailAstImpl();
         detailAST.setType(type);
         return detailAST;
     }
 
     private static DetailAST createDetailAST(int type, String text) {
-        final DetailAST detailAST = new DetailAstImpl();
+        final DetailAstImpl detailAST = new DetailAstImpl();
         detailAST.setType(type);
         detailAST.setText(text);
         return detailAST;

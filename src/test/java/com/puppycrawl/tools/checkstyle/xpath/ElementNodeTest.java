@@ -105,7 +105,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
 
     @Test
     public void testGetAttributeValue() {
-        final DetailAST detailAST = new DetailAstImpl();
+        final DetailAstImpl detailAST = new DetailAstImpl();
         detailAST.setType(TokenTypes.IDENT);
         detailAST.setText("HelloWorld");
 
@@ -117,7 +117,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
 
     @Test
     public void testGetAttributeValueNoAttribute() {
-        final DetailAST detailAST = new DetailAstImpl();
+        final DetailAstImpl detailAST = new DetailAstImpl();
         detailAST.setType(TokenTypes.CLASS_DEF);
         detailAST.setText("HelloWorld");
 
@@ -128,7 +128,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
 
     @Test
     public void testGetAttributeValueWrongAttribute() {
-        final DetailAST detailAST = new DetailAstImpl();
+        final DetailAstImpl detailAST = new DetailAstImpl();
         detailAST.setType(TokenTypes.IDENT);
         detailAST.setText("HelloWorld");
 
@@ -139,7 +139,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
 
     @Test
     public void testIterateAxisEmptyChildren() {
-        final DetailAST detailAST = new DetailAstImpl();
+        final DetailAstImpl detailAST = new DetailAstImpl();
         detailAST.setType(TokenTypes.METHOD_DEF);
         final ElementNode elementNode = new ElementNode(rootNode, null, detailAST);
         try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.CHILD)) {

@@ -38,7 +38,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
 
     @Test
     public void testToString() {
-        final DetailAST ast = new DetailAstImpl();
+        final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(TokenTypes.LITERAL_NEW);
         ast.setColumnNo(14);
         ast.setLineNo(15);

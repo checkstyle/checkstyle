@@ -133,7 +133,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     @SuppressWarnings("unchecked")
     public void testStatefulFieldsClearedOnBeginTree1() throws Exception {
-        final DetailAST ast = new DetailAstImpl();
+        final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(TokenTypes.LITERAL_ELSE);
 
         final NPathComplexityCheck check = new NPathComplexityCheck();
@@ -286,7 +286,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         final NPathComplexityCheck check = new NPathComplexityCheck();
         final Object tokenEnd = TestUtil.getClassDeclaredField(NPathComplexityCheck.class,
                 "processingTokenEnd").get(check);
-        final DetailAST token = new DetailAstImpl();
+        final DetailAstImpl token = new DetailAstImpl();
         token.setLineNo(0);
         token.setColumnNo(0);
 

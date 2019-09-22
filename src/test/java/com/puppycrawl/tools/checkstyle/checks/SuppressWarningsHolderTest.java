@@ -308,7 +308,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
                 .getDeclaredMethod("getAnnotationValues", DetailAST.class);
         getAllAnnotationValues.setAccessible(true);
 
-        final DetailAST methodDef = new DetailAstImpl();
+        final DetailAstImpl methodDef = new DetailAstImpl();
         methodDef.setType(TokenTypes.METHOD_DEF);
         methodDef.setText("Method Def");
         methodDef.setLineNo(0);
@@ -360,7 +360,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     @Test
     public void testAstWithoutChildren() {
         final SuppressWarningsHolder holder = new SuppressWarningsHolder();
-        final DetailAST methodDef = new DetailAstImpl();
+        final DetailAstImpl methodDef = new DetailAstImpl();
         methodDef.setType(TokenTypes.METHOD_DEF);
 
         try {

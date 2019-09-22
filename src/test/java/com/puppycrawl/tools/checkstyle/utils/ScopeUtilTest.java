@@ -275,7 +275,7 @@ public class ScopeUtilTest {
 
     private static DetailAST getNodeWithParentScope(int literal, String scope,
                                                     int parentTokenType) {
-        final DetailAST ast = getNode(parentTokenType, TokenTypes.MODIFIERS, literal);
+        final DetailAstImpl ast = getNode(parentTokenType, TokenTypes.MODIFIERS, literal);
         ast.setText(scope);
         final DetailAstImpl ast2 = getNode(TokenTypes.OBJBLOCK);
         ((AST) ast.getParent().getParent()).addChild(ast2);

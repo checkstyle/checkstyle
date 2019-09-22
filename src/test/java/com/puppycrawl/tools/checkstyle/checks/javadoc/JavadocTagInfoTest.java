@@ -30,7 +30,6 @@ import java.lang.reflect.Method;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class JavadocTagInfoTest {
@@ -71,7 +70,7 @@ public class JavadocTagInfoTest {
 
     @Test
     public void testAuthor() {
-        final DetailAST ast = new DetailAstImpl();
+        final DetailAstImpl ast = new DetailAstImpl();
 
         final int[] validTypes = {
             TokenTypes.PACKAGE_DEF,
@@ -107,7 +106,7 @@ public class JavadocTagInfoTest {
             final DetailAstImpl astParent = new DetailAstImpl();
             astParent.setType(TokenTypes.LITERAL_CATCH);
 
-            final DetailAST ast = new DetailAstImpl();
+            final DetailAstImpl ast = new DetailAstImpl();
             final Method setParent = ast.getClass().getDeclaredMethod("setParent",
                     DetailAstImpl.class);
             setParent.setAccessible(true);
@@ -142,7 +141,7 @@ public class JavadocTagInfoTest {
 
     @Test
     public void testDeprecated() throws ReflectiveOperationException {
-        final DetailAST ast = new DetailAstImpl();
+        final DetailAstImpl ast = new DetailAstImpl();
         final DetailAstImpl astParent = new DetailAstImpl();
         astParent.setType(TokenTypes.LITERAL_CATCH);
         final Method setParent = ast.getClass().getDeclaredMethod("setParent", DetailAstImpl.class);
@@ -178,7 +177,7 @@ public class JavadocTagInfoTest {
 
     @Test
     public void testSerial() throws ReflectiveOperationException {
-        final DetailAST ast = new DetailAstImpl();
+        final DetailAstImpl ast = new DetailAstImpl();
         final DetailAstImpl astParent = new DetailAstImpl();
         astParent.setType(TokenTypes.LITERAL_CATCH);
         final Method setParent = ast.getClass().getDeclaredMethod("setParent", DetailAstImpl.class);
@@ -206,7 +205,7 @@ public class JavadocTagInfoTest {
 
     @Test
     public void testException() {
-        final DetailAST ast = new DetailAstImpl();
+        final DetailAstImpl ast = new DetailAstImpl();
 
         final int[] validTypes = {
             TokenTypes.METHOD_DEF,
@@ -225,7 +224,7 @@ public class JavadocTagInfoTest {
 
     @Test
     public void testThrows() {
-        final DetailAST ast = new DetailAstImpl();
+        final DetailAstImpl ast = new DetailAstImpl();
 
         final int[] validTypes = {
             TokenTypes.METHOD_DEF,
@@ -244,7 +243,7 @@ public class JavadocTagInfoTest {
 
     @Test
     public void testVersions() {
-        final DetailAST ast = new DetailAstImpl();
+        final DetailAstImpl ast = new DetailAstImpl();
 
         final int[] validTypes = {
             TokenTypes.PACKAGE_DEF,
@@ -266,7 +265,7 @@ public class JavadocTagInfoTest {
 
     @Test
     public void testParam() {
-        final DetailAST ast = new DetailAstImpl();
+        final DetailAstImpl ast = new DetailAstImpl();
 
         final int[] validTypes = {
             TokenTypes.CLASS_DEF,

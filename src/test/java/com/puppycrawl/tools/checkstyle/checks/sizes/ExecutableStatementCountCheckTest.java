@@ -33,7 +33,6 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.Context;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -49,7 +48,7 @@ public class ExecutableStatementCountCheckTest
     @Test
     @SuppressWarnings("unchecked")
     public void testStatefulFieldsClearedOnBeginTree() throws Exception {
-        final DetailAST ast = new DetailAstImpl();
+        final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(TokenTypes.STATIC_INIT);
         final ExecutableStatementCountCheck check = new ExecutableStatementCountCheck();
         Assert.assertTrue("Stateful field is not cleared after beginTree",

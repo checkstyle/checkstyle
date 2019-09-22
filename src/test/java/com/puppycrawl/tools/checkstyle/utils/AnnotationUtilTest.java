@@ -76,7 +76,7 @@ public class AnnotationUtilTest {
 
     @Test
     public void testContainsAnnotationFalse() {
-        final DetailAST ast = new DetailAstImpl();
+        final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(1);
         assertFalse("AnnotationUtil should not contain " + ast,
                 AnnotationUtil.containsAnnotation(ast));

@@ -324,7 +324,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
         check.setFileContents(new FileContents(theText));
         check.clearMessages();
 
-        final DetailAST ast = new DetailAstImpl();
+        final DetailAstImpl ast = new DetailAstImpl();
         ast.setLineNo(1);
         ast.setColumnNo(4);
         check.visitToken(ast);

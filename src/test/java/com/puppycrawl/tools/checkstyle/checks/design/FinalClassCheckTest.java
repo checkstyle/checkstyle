@@ -31,7 +31,6 @@ import org.powermock.reflect.Whitebox;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class FinalClassCheckTest
@@ -92,7 +91,7 @@ public class FinalClassCheckTest
     @Test
     public void testImproperToken() {
         final FinalClassCheck finalClassCheck = new FinalClassCheck();
-        final DetailAST badAst = new DetailAstImpl();
+        final DetailAstImpl badAst = new DetailAstImpl();
         final int unsupportedTokenByCheck = TokenTypes.EOF;
         badAst.setType(unsupportedTokenByCheck);
         try {

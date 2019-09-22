@@ -113,7 +113,7 @@ public class ModifiedControlVariableCheckTest
     public void testImproperToken() {
         final ModifiedControlVariableCheck check = new ModifiedControlVariableCheck();
 
-        final DetailAST classDefAst = new DetailAstImpl();
+        final DetailAstImpl classDefAst = new DetailAstImpl();
         classDefAst.setType(TokenTypes.CLASS_DEF);
 
         try {

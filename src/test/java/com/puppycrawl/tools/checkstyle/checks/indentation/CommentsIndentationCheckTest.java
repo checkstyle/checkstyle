@@ -28,7 +28,6 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -209,7 +208,7 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testVisitToken() {
         final CommentsIndentationCheck check = new CommentsIndentationCheck();
-        final DetailAST methodDef = new DetailAstImpl();
+        final DetailAstImpl methodDef = new DetailAstImpl();
         methodDef.setType(TokenTypes.METHOD_DEF);
         methodDef.setText("methodStub");
         try {

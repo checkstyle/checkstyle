@@ -365,7 +365,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testUnusedMethod() throws Exception {
-        final DetailAST ident = new DetailAstImpl();
+        final DetailAstImpl ident = new DetailAstImpl();
         ident.setText("testName");
 
         final Class<?> cls = Class.forName(RequireThisCheck.class.getName() + "$CatchFrame");
