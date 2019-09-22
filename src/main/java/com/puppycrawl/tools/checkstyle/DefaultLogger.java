@@ -39,7 +39,6 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  * It gives structure.
  *
  * @see XMLLogger
- * @noinspection ClassWithTooManyConstructors
  */
 public class DefaultLogger extends AutomaticBean implements AuditListener {
 
@@ -71,70 +70,6 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
 
     /** Formatter for the log message. */
     private final AuditEventFormatter formatter;
-
-    /**
-     * Creates a new {@code DefaultLogger} instance.
-     * @param outputStream where to log infos and errors
-     * @param closeStreamsAfterUse if oS should be closed in auditFinished()
-     * @deprecated in order to fulfill demands of BooleanParameter IDEA check.
-     * @noinspection BooleanParameter
-     */
-    @Deprecated
-    public DefaultLogger(OutputStream outputStream, boolean closeStreamsAfterUse) {
-        // no need to close oS twice
-        this(outputStream, closeStreamsAfterUse, outputStream, false);
-    }
-
-    /**
-     * Creates a new {@code DefaultLogger} instance.
-     * @param infoStream the {@code OutputStream} for info messages.
-     * @param closeInfoAfterUse auditFinished should close infoStream.
-     * @param errorStream the {@code OutputStream} for error messages.
-     * @param closeErrorAfterUse auditFinished should close errorStream
-     * @deprecated in order to fulfill demands of BooleanParameter IDEA check.
-     * @noinspection BooleanParameter
-     */
-    @Deprecated
-    public DefaultLogger(OutputStream infoStream,
-                         boolean closeInfoAfterUse,
-                         OutputStream errorStream,
-                         boolean closeErrorAfterUse) {
-        this(infoStream, closeInfoAfterUse, errorStream, closeErrorAfterUse,
-            new AuditEventDefaultFormatter());
-    }
-
-    /**
-     * Creates a new {@code DefaultLogger} instance.
-     *
-     * @param infoStream the {@code OutputStream} for info messages
-     * @param closeInfoAfterUse auditFinished should close infoStream
-     * @param errorStream the {@code OutputStream} for error messages
-     * @param closeErrorAfterUse auditFinished should close errorStream
-     * @param messageFormatter formatter for the log message.
-     * @deprecated in order to fulfill demands of BooleanParameter IDEA check.
-     * @noinspection BooleanParameter, WeakerAccess
-     */
-    @Deprecated
-    public DefaultLogger(OutputStream infoStream,
-                         boolean closeInfoAfterUse,
-                         OutputStream errorStream,
-                         boolean closeErrorAfterUse,
-                         AuditEventFormatter messageFormatter) {
-        closeInfo = closeInfoAfterUse;
-        closeError = closeErrorAfterUse;
-        final Writer infoStreamWriter = new OutputStreamWriter(infoStream, StandardCharsets.UTF_8);
-        infoWriter = new PrintWriter(infoStreamWriter);
-
-        if (infoStream == errorStream) {
-            errorWriter = infoWriter;
-        }
-        else {
-            final Writer errorStreamWriter = new OutputStreamWriter(errorStream,
-                    StandardCharsets.UTF_8);
-            errorWriter = new PrintWriter(errorStreamWriter);
-        }
-        formatter = messageFormatter;
-    }
 
     /**
      * Creates a new {@code DefaultLogger} instance.

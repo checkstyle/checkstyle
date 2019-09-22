@@ -19,9 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -70,20 +68,6 @@ public final class FileContents implements CommentListener {
     /**
      * Creates a new {@code FileContents} instance.
      *
-     * @param filename name of the file
-     * @param lines the contents of the file
-     * @deprecated Use {@link #FileContents(FileText)} instead
-     *     in order to preserve the original line breaks where possible.
-     */
-    @Deprecated
-    public FileContents(String filename, String... lines) {
-        fileName = filename;
-        text = new FileText(new File(filename), Arrays.asList(lines));
-    }
-
-    /**
-     * Creates a new {@code FileContents} instance.
-     *
      * @param text the contents of the file
      */
     public FileContents(FileText text) {
@@ -123,7 +107,7 @@ public final class FileContents implements CommentListener {
      * @param endLineNo the ending line number
      * @param endColNo the ending column number
      **/
-    private void reportBlockComment(int startLineNo, int startColNo,
+    public void reportBlockComment(int startLineNo, int startColNo,
             int endLineNo, int endColNo) {
         final String[] cComment = extractBlockComment(startLineNo, startColNo,
                 endLineNo, endColNo);
@@ -149,62 +133,12 @@ public final class FileContents implements CommentListener {
     }
 
     /**
-     * Report the location of a C++ style comment.
-     * @param startLineNo the starting line number
-     * @param startColNo the starting column number
-     * @deprecated Use {@link #reportSingleLineComment(int, int)} instead.
-     **/
-    @Deprecated
-    public void reportCppComment(int startLineNo, int startColNo) {
-        reportSingleLineComment(startLineNo, startColNo);
-    }
-
-    /**
-     * Returns a map of all the C++ style comments. The key is a line number,
-     * the value is the comment {@link TextBlock} at the line.
-     * @return the Map of comments
-     * @deprecated Use {@link #getSingleLineComments()} instead.
-     */
-    @Deprecated
-    public Map<Integer, TextBlock> getCppComments() {
-        return getSingleLineComments();
-    }
-
-    /**
      * Returns a map of all the single line comments. The key is a line number,
      * the value is the comment {@link TextBlock} at the line.
      * @return the Map of comments
      */
     public Map<Integer, TextBlock> getSingleLineComments() {
         return Collections.unmodifiableMap(cppComments);
-    }
-
-    /**
-     * Report the location of a C-style comment.
-     * @param startLineNo the starting line number
-     * @param startColNo the starting column number
-     * @param endLineNo the ending line number
-     * @param endColNo the ending column number
-     * @deprecated Use {@link #reportBlockComment(int, int, int, int)} instead.
-     **/
-    // -@cs[AbbreviationAsWordInName] Can't change yet since class is API.
-    @Deprecated
-    public void reportCComment(int startLineNo, int startColNo,
-            int endLineNo, int endColNo) {
-        reportBlockComment(startLineNo, startColNo, endLineNo, endColNo);
-    }
-
-    /**
-     * Returns a map of all C style comments. The key is the line number, the
-     * value is a {@link List} of C style comment {@link TextBlock}s
-     * that start at that line.
-     * @return the map of comments
-     * @deprecated Use {@link #getBlockComments()} instead.
-     */
-    // -@cs[AbbreviationAsWordInName] Can't change yet since class is API.
-    @Deprecated
-    public Map<Integer, List<TextBlock>> getCComments() {
-        return getBlockComments();
     }
 
     /**

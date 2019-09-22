@@ -33,6 +33,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
 public class DefaultLoggerTest {
@@ -49,7 +50,8 @@ public class DefaultLoggerTest {
     public void testCtor() throws UnsupportedEncodingException {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
-        final DefaultLogger dl = new DefaultLogger(infoStream, true, errorStream, true);
+        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
+                errorStream, OutputStreamOptions.CLOSE);
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
         final String output = errorStream.toString(StandardCharsets.UTF_8.name());
@@ -66,7 +68,7 @@ public class DefaultLoggerTest {
     @Test
     public void testCtorWithTwoParameters() {
         final OutputStream infoStream = new ByteArrayOutputStream();
-        final DefaultLogger dl = new DefaultLogger(infoStream, true);
+        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE);
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
         final String output = infoStream.toString();
@@ -136,7 +138,8 @@ public class DefaultLoggerTest {
     public void testAddErrorModuleId() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final OutputStream errorStream = new ByteArrayOutputStream();
-        final DefaultLogger dl = new DefaultLogger(infoStream, true, errorStream, true);
+        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
+                errorStream, OutputStreamOptions.CLOSE);
         dl.finishLocalSetup();
         dl.auditStarted(null);
         dl.addError(new AuditEvent(this, "fileName", new LocalizedMessage(1, 2, "bundle", "key",

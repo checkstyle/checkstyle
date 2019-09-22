@@ -39,6 +39,7 @@ import org.powermock.reflect.Whitebox;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import com.puppycrawl.tools.checkstyle.ConfigurationLoader.IgnoredModulesOptions;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
@@ -177,7 +178,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         try {
             final String fName = getPath("InputConfigurationLoaderMissingPropertyName.xml");
             ConfigurationLoader.loadConfiguration(fName, new PropertiesExpander(new Properties()),
-                    false);
+                    IgnoredModulesOptions.EXECUTE);
 
             fail("missing property name");
         }
@@ -508,7 +509,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         final DefaultConfiguration config =
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
                         getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml"),
-                        new PropertiesExpander(new Properties()), true);
+                        new PropertiesExpander(new Properties()), IgnoredModulesOptions.OMIT);
 
         final Configuration[] children = config.getChildren();
         assertEquals("Invalid children count", 0, children[0].getChildren().length);
@@ -520,7 +521,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(new InputSource(
                         new File(getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml"))
                             .toURI().toString()),
-                        new PropertiesExpander(new Properties()), true);
+                        new PropertiesExpander(new Properties()), IgnoredModulesOptions.OMIT);
 
         final Configuration[] children = config.getChildren();
         assertEquals("Invalid children count", 0, children[0].getChildren().length);
@@ -531,7 +532,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         final DefaultConfiguration config =
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
                         getPath("InputConfigurationLoaderCheckerIgnoreSeverity.xml"),
-                        new PropertiesExpander(new Properties()), true);
+                        new PropertiesExpander(new Properties()), IgnoredModulesOptions.OMIT);
 
         final Configuration[] children = config.getChildren();
         assertEquals("Invalid children count", 0, children.length);
@@ -543,7 +544,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
             final DefaultConfiguration config =
                     (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
                             ";InputConfigurationLoaderModuleIgnoreSeverity.xml",
-                            new PropertiesExpander(new Properties()), true);
+                            new PropertiesExpander(new Properties()), IgnoredModulesOptions.OMIT);
 
             final Configuration[] children = config.getChildren();
             assertEquals("Invalid children count", 0, children[0].getChildren().length);
@@ -560,9 +561,9 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     public void testLoadConfigurationDeprecated() throws Exception {
         final DefaultConfiguration config =
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
-                        Files.newInputStream(Paths.get(
-                            getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml"))),
-                        new PropertiesExpander(new Properties()), true);
+                        new InputSource(Files.newInputStream(Paths.get(
+                            getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml")))),
+                        new PropertiesExpander(new Properties()), IgnoredModulesOptions.OMIT);
 
         final Configuration[] children = config.getChildren();
         assertEquals("Invalid children count",
@@ -585,7 +586,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         final DefaultConfiguration config =
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
                         getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml"),
-                        new PropertiesExpander(new Properties()), true);
+                        new PropertiesExpander(new Properties()), IgnoredModulesOptions.OMIT);
 
         final Configuration[] children = config.getChildren();
         assertEquals("Invalid children count",

@@ -67,6 +67,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
@@ -89,6 +90,10 @@ import com.puppycrawl.tools.checkstyle.internal.testmodules.TestFileSetCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
+/**
+ * CheckerTest.
+ * @noinspection ClassWithTooManyDependencies
+ */
 public class CheckerTest extends AbstractModuleTestSupport {
 
     @Rule
@@ -1323,7 +1328,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 new CloseAndFlushTestByteArrayOutputStream()) {
             checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
             checker.addListener(new DefaultLogger(testInfoOutputStream,
-                true, testErrorOutputStream, true));
+                OutputStreamOptions.CLOSE, testErrorOutputStream, OutputStreamOptions.CLOSE));
 
             final File tmpFile = temporaryFolder.newFile("file.java");
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -1348,7 +1353,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         try (CloseAndFlushTestByteArrayOutputStream testInfoOutputStream =
                 new CloseAndFlushTestByteArrayOutputStream()) {
             checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-            checker.addListener(new XMLLogger(testInfoOutputStream, true));
+            checker.addListener(new XMLLogger(testInfoOutputStream, OutputStreamOptions.CLOSE));
 
             final File tmpFile = temporaryFolder.newFile("file.java");
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -1379,8 +1384,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         // BriefUtLogger does not print the module name or id postfix,
         // so we need to set logger manually
         final ByteArrayOutputStream out = Whitebox.getInternalState(this, "stream");
-        final DefaultLogger logger =
-                new DefaultLogger(out, true, out, false, new AuditEventDefaultFormatter());
+        final DefaultLogger logger = new DefaultLogger(out, OutputStreamOptions.CLOSE, out,
+                OutputStreamOptions.NONE, new AuditEventDefaultFormatter());
         checker.addListener(logger);
 
         final String path = temporaryFolder.newFile("file.java").getPath();
