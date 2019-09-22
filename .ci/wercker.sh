@@ -39,12 +39,12 @@ no-error-orekit)
   cd .ci-temp/hipparchus
   mvn install -DskipTests
   cd -
-  checkout_from https://github.com/CS-SI/Orekit.git
+  checkout_from https://github.com/rnveach/Orekit.git
   cd .ci-temp/Orekit
   # no CI is enforced in project, so to make our build stable we should
   # checkout to latest release (annotated tag)
   # git checkout $(git describe --abbrev=0 --tags)
-  git checkout 10.0
+  git checkout patch-1
   mvn -e compile checkstyle:check -Dorekit.checkstyle.version=${CS_POM_VERSION}
   cd ../
   rm -rf Orekit
@@ -54,8 +54,9 @@ no-error-xwiki)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  checkout_from https://github.com/xwiki/xwiki-commons.git
+  checkout_from https://github.com/rnveach/xwiki-commons.git
   cd .ci-temp/xwiki-commons
+  git checkout patch-1
   mvn -f xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
     install -DskipTests -Dcheckstyle.version=${CS_POM_VERSION}
   mvn -e test-compile checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
