@@ -101,7 +101,11 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
         }
     }
 
-    @Override
+    /**
+     * Add previous sibling.
+     * @param ast
+     *        DetailAST object.
+     */
     public void addPreviousSibling(DetailAST ast) {
         clearBranchTokenTypes();
         clearChildCountCache(parent);
@@ -123,7 +127,11 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
         }
     }
 
-    @Override
+    /**
+     * Add next sibling.
+     * @param ast
+     *        DetailAST object.
+     */
     public void addNextSibling(DetailAST ast) {
         clearBranchTokenTypes();
         clearChildCountCache(parent);
@@ -217,7 +225,11 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
         return resultNo;
     }
 
-    @Override
+    /**
+     * Set line number.
+     * @param lineNo
+     *        line number.
+     */
     public void setLineNo(int lineNo) {
         this.lineNo = lineNo;
     }
@@ -241,7 +253,11 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
         return resultNo;
     }
 
-    @Override
+    /**
+     * Set column number.
+     * @param columnNo
+     *        column number.
+     */
     public void setColumnNo(int columnNo) {
         this.columnNo = columnNo;
     }

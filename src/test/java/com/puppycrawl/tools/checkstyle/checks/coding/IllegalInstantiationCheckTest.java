@@ -153,7 +153,7 @@ public class IllegalInstantiationCheckTest
     public void testImproperToken() {
         final IllegalInstantiationCheck check = new IllegalInstantiationCheck();
 
-        final DetailAST lambdaAst = new DetailAstImpl();
+        final DetailAstImpl lambdaAst = new DetailAstImpl();
         lambdaAst.setType(TokenTypes.LAMBDA);
 
         try {

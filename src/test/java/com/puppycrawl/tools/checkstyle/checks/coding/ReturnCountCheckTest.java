@@ -124,7 +124,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
     public void testImproperToken() {
         final ReturnCountCheck check = new ReturnCountCheck();
 
-        final DetailAST classDefAst = new DetailAstImpl();
+        final DetailAstImpl classDefAst = new DetailAstImpl();
         classDefAst.setType(TokenTypes.CLASS_DEF);
 
         try {

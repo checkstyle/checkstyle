@@ -86,7 +86,7 @@ public class PackageAnnotationCheck extends AbstractCheck {
             getFileContents().inPackageInfo();
 
         if (containsAnnotation && !inPackageInfo) {
-            log(ast.getLine(), MSG_KEY);
+            log(ast.getLineNo(), MSG_KEY);
         }
     }
 

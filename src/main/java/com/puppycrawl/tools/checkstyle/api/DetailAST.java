@@ -29,20 +29,6 @@ package com.puppycrawl.tools.checkstyle.api;
 public interface DetailAST {
 
     /**
-     * Add previous sibling.
-     * @param ast
-     *        DetailAST object.
-     */
-    void addPreviousSibling(DetailAST ast);
-
-    /**
-     * Add next sibling.
-     * @param ast
-     *        DetailAST object.
-     */
-    void addNextSibling(DetailAST ast);
-
-    /**
      * Returns the number of child nodes one level below this node. That is is
      * does not recurse down the tree.
      * @return the number of child nodes
@@ -69,22 +55,10 @@ public interface DetailAST {
     String getText();
 
     /**
-     * Set the text for this AST.
-     * @param text the text.
-     */
-    void setText(String text);
-
-    /**
      * Gets the type of this AST.
      * @return the type.
      */
     int getType();
-
-    /**
-     * Set the type for this AST.
-     * @param type the type.
-     */
-    void setType(int type);
 
     /**
      * Gets line number.
@@ -93,36 +67,10 @@ public interface DetailAST {
     int getLineNo();
 
     /**
-     * Set line number.
-     * @param lineNo
-     *        line number.
-     */
-    void setLineNo(int lineNo);
-
-    /**
      * Gets column number.
      * @return the column number
      */
     int getColumnNo();
-
-    /**
-     * Set column number.
-     * @param columnNo
-     *        column number.
-     */
-    void setColumnNo(int columnNo);
-
-    /**
-     * Gets the line number of this AST from the file.
-     * @return the line number
-     */
-    int getLine();
-
-    /**
-     * Gets the column number of this AST from the file.
-     * @return the line number
-     */
-    int getColumn();
 
     /**
      * Gets the last child node.
@@ -170,6 +118,4 @@ public interface DetailAST {
      */
     int getNumberOfChildren();
 
-    /** Remove all children. */
-    void removeChildren();
 }

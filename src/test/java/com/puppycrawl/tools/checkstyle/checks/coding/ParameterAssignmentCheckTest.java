@@ -80,7 +80,7 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
     public void testImproperToken() {
         final ParameterAssignmentCheck check = new ParameterAssignmentCheck();
 
-        final DetailAST classDefAst = new DetailAstImpl();
+        final DetailAstImpl classDefAst = new DetailAstImpl();
         classDefAst.setType(TokenTypes.CLASS_DEF);
 
         try {
