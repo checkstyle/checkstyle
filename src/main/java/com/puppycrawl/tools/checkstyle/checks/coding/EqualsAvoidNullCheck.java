@@ -350,10 +350,11 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
                 child = child.getNextSibling();
             }
         }
+        else {
+            argIsNotNull = arg.getType() == TokenTypes.STRING_LITERAL;
+        }
 
-        return argIsNotNull
-                || !arg.branchContains(TokenTypes.IDENT)
-                    && !arg.branchContains(TokenTypes.LITERAL_NULL);
+        return argIsNotNull;
     }
 
     /**
@@ -363,9 +364,12 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
      */
     private static DetailAST skipVariableAssign(final DetailAST currentAST) {
         DetailAST result = currentAST;
-        if (currentAST.getType() == TokenTypes.ASSIGN
-                && currentAST.getFirstChild().getType() == TokenTypes.IDENT) {
-            result = currentAST.getFirstChild().getNextSibling();
+        while (result.getType() == TokenTypes.LPAREN) {
+            result = result.getNextSibling();
+        }
+        if (result.getType() == TokenTypes.ASSIGN
+                && result.getFirstChild().getType() == TokenTypes.IDENT) {
+            result = result.getFirstChild().getNextSibling();
         }
         return result;
     }
@@ -421,13 +425,9 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
      * @return true if the field or the variable from THIS instance is of String type.
      */
     private boolean isStringFieldOrVariableFromThisInstance(DetailAST objCalledOn) {
-        boolean result = false;
         final String name = objCalledOn.getText();
         final DetailAST field = getObjectFrame(currentFrame).findField(name);
-        if (field != null) {
-            result = STRING.equals(getFieldType(field));
-        }
-        return result;
+        return STRING.equals(getFieldType(field));
     }
 
     /**
@@ -444,9 +444,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
         while (frame != null) {
             if (className.equals(frame.getFrameName())) {
                 final DetailAST field = frame.findField(name);
-                if (field != null) {
-                    result = STRING.equals(getFieldType(field));
-                }
+                result = STRING.equals(getFieldType(field));
                 break;
             }
             frame = getObjectFrame(frame.getParent());
