@@ -351,9 +351,39 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
             }
         }
 
-        return argIsNotNull
-                || !arg.branchContains(TokenTypes.IDENT)
-                    && !arg.branchContains(TokenTypes.LITERAL_NULL);
+        return argIsNotNull || !branchContainsIdentOrNull(arg);
+    }
+
+    /**
+     * Checks whether a {@code null} or {@code ident} exist under token.
+     *
+     * @param token tree token.
+     * @return true if a {@code null} or {@code ident} exists under token.
+     */
+    private static boolean branchContainsIdentOrNull(DetailAST token) {
+        boolean result = false;
+        DetailAST curNode = token;
+
+        while (curNode != null) {
+            if (curNode.getType() == TokenTypes.IDENT
+                    || curNode.getType() == TokenTypes.LITERAL_NULL) {
+                result = true;
+                break;
+            }
+
+            DetailAST toVisit = curNode.getFirstChild();
+            while (toVisit == null) {
+                if (curNode == token) {
+                    break;
+                }
+
+                toVisit = curNode.getNextSibling();
+                curNode = curNode.getParent();
+            }
+            curNode = toVisit;
+        }
+
+        return result;
     }
 
     /**
