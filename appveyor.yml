@@ -6,7 +6,6 @@ skip_commits:
     - .ci/
     - .circleci/
     - .github/
-    - .gitattributes
     - .gitignore
     - .travis.yml
     - buddy.yml
