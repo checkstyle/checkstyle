@@ -427,3 +427,12 @@ class TestConcatenations {
     }
 }
 
+class TestThisWithNotStringInstance {
+
+    MyString notString;
+
+    void foo() {
+        this.notString.equals(""); // ok
+    }
+
+}
