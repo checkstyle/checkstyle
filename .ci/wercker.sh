@@ -42,9 +42,9 @@ no-error-orekit)
   checkout_from https://github.com/CS-SI/Orekit.git
   cd .ci-temp/Orekit
   # no CI is enforced in project, so to make our build stable we should
-  # checkout to latest release (annotated tag)
+  # checkout to latest release/development (annotated tag or hash)
   # git checkout $(git describe --abbrev=0 --tags)
-  git checkout 10.0
+  git checkout 3a9787ec3f166bd770f9c119cd7724f57
   mvn -e compile checkstyle:check -Dorekit.checkstyle.version=${CS_POM_VERSION}
   cd ../
   rm -rf Orekit
