@@ -788,10 +788,6 @@
                 </exclude>
                 <!-- Swing related classes -->
                 <exclude>com/puppycrawl/tools/checkstyle/gui/*.class</exclude>
-                <!-- Deprecated classes -->
-                <exclude>
-                  com/puppycrawl/tools/checkstyle/checks/naming/AbstractTypeParameterNameCheck.class
-                </exclude>
                 <!-- Suppressed till https://github.com/jacoco/jacoco/issues/660 -->
                 <exclude>
                   com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationUseStyleCheck$1.class
@@ -833,10 +829,6 @@
                     <exclude>com.puppycrawl.tools.checkstyle.gui.ParseTreeTableModel*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.gui.TreeTableCellRenderer*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter*</exclude>
-                    <!-- This class is in deprecation phase -->
-                    <exclude>
-                      com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck
-                    </exclude>
                   </excludes>
                   <limits>
                     <limit>
@@ -2336,12 +2328,6 @@
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
-              <excludedClasses>
-                <!-- This class is in deprecation phase -->
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck
-                </param>
-              </excludedClasses>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
