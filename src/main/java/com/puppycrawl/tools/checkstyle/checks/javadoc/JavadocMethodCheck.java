@@ -166,26 +166,6 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     private List<String> allowedAnnotations = Collections.singletonList("Override");
 
     /**
-     * Set regex for matching method names to ignore.
-     * @param pattern a pattern.
-     * @deprecated Use {@link MissingJavadocMethodCheck} instead.
-     */
-    @Deprecated
-    public void setIgnoreMethodNamesRegex(Pattern pattern) {
-        // deprecated
-    }
-
-    /**
-     * Sets minimal amount of lines in method to allow no documentation.
-     * @param value user's value.
-     * @deprecated Use {@link MissingJavadocMethodCheck} instead.
-     */
-    @Deprecated
-    public void setMinLineCount(int value) {
-        // deprecated
-    }
-
-    /**
      * Allow validating throws tag.
      * @param value user's value.
      */
@@ -270,30 +250,6 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      */
     public void setAllowMissingReturnTag(boolean flag) {
         allowMissingReturnTag = flag;
-    }
-
-    /**
-     * Controls whether to ignore violations when there is no javadoc. Defaults to
-     * false.
-     *
-     * @param flag a {@code Boolean} value
-     * @deprecated Use {@link MissingJavadocMethodCheck} instead.
-     */
-    @Deprecated
-    public void setAllowMissingJavadoc(boolean flag) {
-        // deprecated
-    }
-
-    /**
-     * Controls whether to ignore violations when there is no javadoc for a
-     * property accessor (setter/getter methods). Defaults to false.
-     *
-     * @param flag a {@code Boolean} value
-     * @deprecated Use {@link MissingJavadocMethodCheck} instead.
-     */
-    @Deprecated
-    public void setAllowMissingPropertyJavadoc(final boolean flag) {
-        // deprecated
     }
 
     @Override

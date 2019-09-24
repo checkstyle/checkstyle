@@ -77,8 +77,6 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     public void extendAnnotationTest() throws Exception {
         final DefaultConfiguration config = createModuleConfig(JavadocMethodCheck.class);
         config.addAttribute("allowedAnnotations", "MyAnnotation, Override");
-        config.addAttribute("minLineCount", "2");
-        config.addAttribute("ignoreMethodNamesRegex", "regexThatDoesNotMatch");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(config, getPath("InputJavadocMethodExtendAnnotation.java"), expected);
     }
@@ -305,7 +303,6 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("allowMissingParamTags", "true");
         checkConfig.addAttribute("allowMissingThrowsTags", "true");
         checkConfig.addAttribute("allowMissingReturnTag", "true");
-        checkConfig.addAttribute("allowMissingJavadoc", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputJavadocMethodMissingJavadocTags.java"), expected);
     }
@@ -334,7 +331,6 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSetterGetterOn() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("allowMissingPropertyJavadoc", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputJavadocMethodSetterGetter.java"), expected);
     }
