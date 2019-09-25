@@ -26,6 +26,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -41,6 +42,7 @@ import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
@@ -388,8 +390,8 @@ public class SuppressionCommentFilterTest
     @Test
     public void testAcceptNullLocalizedMessage() {
         final SuppressionCommentFilter filter = new SuppressionCommentFilter();
-        final FileContents contents =
-                new FileContents("filename", "//CHECKSTYLE:OFF: ConstantNameCheck", "line2");
+        final FileContents contents = new FileContents(new FileText(new File("filename"),
+                Arrays.asList("//CHECKSTYLE:OFF: ConstantNameCheck", "line2")));
         contents.reportSingleLineComment(1, 0);
         final TreeWalkerAuditEvent auditEvent =
                 new TreeWalkerAuditEvent(contents, null, null, null);
@@ -606,8 +608,8 @@ public class SuppressionCommentFilterTest
     @Test
     public void testFindNearestMatchDontAllowSameColumn() {
         final SuppressionCommentFilter suppressionCommentFilter = new SuppressionCommentFilter();
-        final FileContents contents =
-                new FileContents("filename", "//CHECKSTYLE:OFF: ConstantNameCheck", "line2");
+        final FileContents contents = new FileContents(new FileText(new File("filename"),
+                Arrays.asList("//CHECKSTYLE:OFF: ConstantNameCheck", "line2")));
         contents.reportSingleLineComment(1, 0);
         final TreeWalkerAuditEvent dummyEvent = new TreeWalkerAuditEvent(contents, "filename",
                 new LocalizedMessage(1, null, null, null, null, Object.class, null), null);
@@ -641,7 +643,8 @@ public class SuppressionCommentFilterTest
      */
     private static List<Comparable<Object>> getTagsAfterExecution(SuppressionCommentFilter filter,
             String filename, String... lines) {
-        final FileContents contents = new FileContents(filename, lines);
+        final FileContents contents = new FileContents(
+                new FileText(new File(filename), Arrays.asList(lines)));
         for (int lineNo = 0; lineNo < lines.length; lineNo++) {
             final int colNo = lines[lineNo].indexOf("//");
             if (colNo >= 0) {
