@@ -39,7 +39,8 @@ public class FileContentsTest {
 
     @Test
     public void testTextFileName() {
-        final FileContents fileContents = new FileContents("filename", "123", "456");
+        final FileContents fileContents = new FileContents(
+                new FileText(new File("filename"), Arrays.asList("123", "456")));
 
         assertEquals("Invalid file name", "filename", fileContents.getText().getFile().getName());
         assertArrayEquals("Invalid array", new String[] {"123", "456"}, fileContents.getLines());
@@ -48,29 +49,41 @@ public class FileContentsTest {
 
     @Test
     public void testIsLineBlank() {
-        assertFalse("Invalid result", new FileContents("filename", "123").lineIsBlank(0));
-        assertTrue("Invalid result", new FileContents("filename", "").lineIsBlank(0));
+        assertFalse("Invalid result",
+                new FileContents(
+                        new FileText(new File("filename"), Collections.singletonList("123")))
+                                .lineIsBlank(0));
+        assertTrue("Invalid result",
+                new FileContents(new FileText(new File("filename"), Collections.singletonList("")))
+                        .lineIsBlank(0));
     }
 
     @Test
     public void testLineIsComment() {
-        assertFalse("Invalid result", new FileContents("filename", "123").lineIsComment(0));
-        assertTrue("Invalid result", new FileContents("filename", " // abc").lineIsComment(0));
+        assertFalse("Invalid result",
+                new FileContents(
+                        new FileText(new File("filename"), Collections.singletonList("123")))
+                                .lineIsComment(0));
+        assertTrue("Invalid result",
+                new FileContents(
+                        new FileText(new File("filename"), Collections.singletonList(" // abc")))
+                                .lineIsComment(0));
     }
 
     @Test
     public void testDeprecatedAbbreviatedMethod() {
         // just to make UT coverage 100%
-        final FileContents fileContents = new FileContents("filename", "123", "456");
-        fileContents.reportCppComment(1, 1);
-        fileContents.reportCComment(1, 1, 1, 1);
+        final FileContents fileContents = new FileContents(
+                new FileText(new File("filename"), Arrays.asList("123", "456")));
+        fileContents.reportSingleLineComment(1, 1);
+        fileContents.reportBlockComment(1, 1, 1, 1);
 
         final Comment cppComment = new Comment(new String[] {"23"}, 1, 1, 2);
         final Comment cComment = new Comment(new String[] {"2"}, 1, 1, 1);
         assertEquals("Invalid cpp comment", cppComment.toString(),
-                fileContents.getCppComments().get(1).toString());
+                fileContents.getSingleLineComments().get(1).toString());
         assertEquals("Invalid c comment", cComment.toString(),
-                fileContents.getCComments().get(1).get(0).toString());
+                fileContents.getBlockComments().get(1).get(0).toString());
     }
 
     @Test
@@ -97,8 +110,8 @@ public class FileContentsTest {
     public void testReportCppComment() {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Collections.singletonList("   //  ")));
-        fileContents.reportCppComment(1, 2);
-        final Map<Integer, TextBlock> cppComments = fileContents.getCppComments();
+        fileContents.reportSingleLineComment(1, 2);
+        final Map<Integer, TextBlock> cppComments = fileContents.getSingleLineComments();
 
         assertEquals("Invalid comment",
                 new Comment(new String[] {" //  "}, 2, 1, 6).toString(),
@@ -110,7 +123,7 @@ public class FileContentsTest {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Arrays.asList("     ", "  //test   ",
                         "  //test   ", "  //test   ")));
-        fileContents.reportCppComment(4, 4);
+        fileContents.reportSingleLineComment(4, 4);
 
         assertTrue("Should return true when comments intersect",
                 fileContents.hasIntersectionWithComment(1, 3, 4, 6));
@@ -121,7 +134,7 @@ public class FileContentsTest {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Collections.singletonList("  //   ")));
         fileContents.reportBlockComment("type", 1, 2, 1, 2);
-        final Map<Integer, List<TextBlock>> comments = fileContents.getCComments();
+        final Map<Integer, List<TextBlock>> comments = fileContents.getBlockComments();
 
         assertEquals("Invalid comment",
                 new Comment(new String[] {"/"}, 2, 1, 2).toString(),
@@ -134,7 +147,7 @@ public class FileContentsTest {
                 new FileText(new File("filename"), Collections.singletonList("/* a */ /* b */ ")));
         fileContents.reportBlockComment("type", 1, 0, 1, 6);
         fileContents.reportBlockComment("type", 1, 8, 1, 14);
-        final Map<Integer, List<TextBlock>> comments = fileContents.getCComments();
+        final Map<Integer, List<TextBlock>> comments = fileContents.getBlockComments();
 
         assertEquals("Invalid comment", Arrays.asList(
             new Comment(new String[] {"/* a */"}, 0, 1, 6),
@@ -147,7 +160,7 @@ public class FileContentsTest {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Arrays.asList("/*", "c", "*/")));
         fileContents.reportBlockComment("type", 1, 0, 3, 1);
-        final Map<Integer, List<TextBlock>> comments = fileContents.getCComments();
+        final Map<Integer, List<TextBlock>> comments = fileContents.getBlockComments();
 
         assertEquals("Invalid comment", Collections.singletonList(
             new Comment(new String[] {"/*", "c", "*/"}, 0, 3, 1)
@@ -173,8 +186,8 @@ public class FileContentsTest {
     public void testHasIntersectionWithBlockComment() {
         final FileContents fileContents = new FileContents(new FileText(new File("filename"),
                         Arrays.asList("  /* */    ", "    ", "  /* test   ", "  */  ", "   ")));
-        fileContents.reportCComment(1, 2, 1, 5);
-        fileContents.reportCComment(3, 2, 4, 2);
+        fileContents.reportBlockComment(1, 2, 1, 5);
+        fileContents.reportBlockComment(3, 2, 4, 2);
 
         assertTrue("Should return true when comments intersect",
                 fileContents.hasIntersectionWithComment(2, 2, 3, 6));
@@ -184,7 +197,7 @@ public class FileContentsTest {
     public void testHasIntersectionWithBlockComment2() {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Arrays.asList("  /* */    ", "    ", " ")));
-        fileContents.reportCComment(1, 2, 1, 5);
+        fileContents.reportBlockComment(1, 2, 1, 5);
 
         assertFalse("Should return false when there is no intersection",
                 fileContents.hasIntersectionWithComment(2, 2, 3, 6));
@@ -194,7 +207,7 @@ public class FileContentsTest {
     public void testReportJavadocComment() {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Collections.singletonList("  /** */   ")));
-        fileContents.reportCComment(1, 2, 1, 6);
+        fileContents.reportBlockComment(1, 2, 1, 6);
         final TextBlock comment = fileContents.getJavadocBefore(2);
 
         assertEquals("Invalid comment",
@@ -204,8 +217,9 @@ public class FileContentsTest {
 
     @Test
     public void testReportJavadocComment2() {
-        final FileContents fileContents = new FileContents("filename", "  /** */   ");
-        fileContents.reportCComment(1, 2, 1, 6);
+        final FileContents fileContents = new FileContents(
+                new FileText(new File("filename"), Collections.singletonList("  /** */   ")));
+        fileContents.reportBlockComment(1, 2, 1, 6);
         final TextBlock comment = fileContents.getJavadocBefore(2);
 
         assertEquals("Invalid comment",
@@ -250,7 +264,7 @@ public class FileContentsTest {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Arrays.asList("   ", "    ", "  /* test   ",
                         "  */  ", "   ")));
-        fileContents.reportCComment(3, 2, 4, 2);
+        fileContents.reportBlockComment(3, 2, 4, 2);
         final Map<Integer, List<TextBlock>> blockComments =
             fileContents.getBlockComments();
         final String[] text = blockComments.get(3).get(0).getText();

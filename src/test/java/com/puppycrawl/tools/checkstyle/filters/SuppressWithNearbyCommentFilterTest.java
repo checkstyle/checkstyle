@@ -24,8 +24,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,6 +41,7 @@ import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
@@ -420,8 +423,8 @@ public class SuppressWithNearbyCommentFilterTest
     @Test
     public void testAcceptNullLocalizedMessage() {
         final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
-        final FileContents contents =
-                new FileContents("filename", "//SUPPRESS CHECKSTYLE ignore");
+        final FileContents contents = new FileContents(new FileText(new File("filename"),
+                Collections.singletonList("//SUPPRESS CHECKSTYLE ignore")));
         contents.reportSingleLineComment(1, 0);
         final TreeWalkerAuditEvent auditEvent =
                 new TreeWalkerAuditEvent(contents, null, null, null);
@@ -740,7 +743,8 @@ public class SuppressWithNearbyCommentFilterTest
      */
     private static List<?> getTagsAfterExecution(SuppressWithNearbyCommentFilter filter,
             String filename, String... lines) {
-        final FileContents contents = new FileContents(filename, lines);
+        final FileContents contents = new FileContents(
+                new FileText(new File(filename), Arrays.asList(lines)));
         contents.reportSingleLineComment(1, 0);
         final TreeWalkerAuditEvent dummyEvent = new TreeWalkerAuditEvent(contents, filename,
                 new LocalizedMessage(1, null, null, null, null, Object.class, null), null);
