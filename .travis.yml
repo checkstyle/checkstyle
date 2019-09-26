@@ -21,6 +21,12 @@ install:
 matrix:
   fast_finish: true
   include:
+    # testing age of pr
+    - env:
+        - DESC="test Commits Since Latest Master"
+        - CMD="./.ci/travis/travis.sh pr-age"
+        - SKIP_CI_BY_FILES="false"
+
     # testing of PR format
     - env:
         - DESC="test Issue ref in PR description"

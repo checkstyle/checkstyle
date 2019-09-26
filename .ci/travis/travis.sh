@@ -194,6 +194,27 @@ pr-description)
   .ci/travis/xtr_pr-description.sh
   ;;
 
+pr-age)
+  ## Travis merges the PR commit into origin/master
+  ## This command undoes that to work with the original branch
+  ## if it notices a merge commit
+  if git show --summary HEAD | grep ^Merge: ;
+  then
+    git reset --hard `git log -n 1 --no-merges --pretty=format:"%h"`
+  fi
+
+  PR_MASTER=`git merge-base origin/master HEAD`
+  COMMITS_SINCE_MASTER=`git rev-list --count $PR_MASTER..origin/master`
+  MAX_ALLOWED=10
+  if [[ $COMMITS_SINCE_MASTER > $MAX_ALLOWED ]];
+  then
+    echo "The PR is based on a master that is $COMMITS_SINCE_MASTER commit(s) old."
+    echo "The max allowed is $MAX_ALLOWED"
+    sleep 5s
+    false
+  fi
+  ;;
+
 check-chmod)
   .ci/travis/checkchmod.sh
   ;;
