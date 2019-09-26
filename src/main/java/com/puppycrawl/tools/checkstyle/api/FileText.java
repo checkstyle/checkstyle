@@ -166,7 +166,9 @@ public final class FileText {
      * @param file the name of the file
      * @param lines the lines of the text, without terminators
      * @throws NullPointerException if the lines array is null
+     * @deprecated Use {@link #FileText(File, String)} to load the file directly.
      */
+    @Deprecated
     public FileText(File file, List<String> lines) {
         final StringBuilder buf = new StringBuilder(1024);
         for (final String line : lines) {
