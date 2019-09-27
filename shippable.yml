@@ -55,10 +55,10 @@ build:
         SKIP_CI_BY_FILES=true;
       fi
       echo "SKIP_CI_BY_FILES="$SKIP_CI_BY_FILES
+
       if [[ $SKIP_CI_BY_FILES == 'false' ]];
       then
         echo "Command: $CMD"
-        eval $CMD
       else
         echo "Build is skipped, changed files:"
         git diff --name-only HEAD HEAD~1

@@ -11,6 +11,13 @@ jobs:
       - run:
           name: skip_ci creation
           command: |
+            FILE=.ci-temp/skip_ci_files
+            if test -f "$FILE"; then
+                echo "$FILE exist"
+            else
+                echo "$FILE doesn't exist"
+            fi
+
             mkdir -p .ci-temp
             echo -n ".github|appveyor.yml|.travis.yml|\.ci/" >> .ci-temp/skip_ci_files
             echo -n "|fast-forward-merge.sh" >> .ci-temp/skip_ci_files
@@ -20,6 +27,7 @@ jobs:
             echo -n "|intellij-idea-inspections.xml" >> .ci-temp/skip_ci_files
             echo -n "|org.eclipse.jdt.core.prefs" >> .ci-temp/skip_ci_files
             echo -n "|Jenkinsfile" >> .ci-temp/skip_ci_files
+
             SKIP_CI_BY_FILES=false;
             if [ $(git diff --name-only HEAD `git merge-base origin/master HEAD` \
                    | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
