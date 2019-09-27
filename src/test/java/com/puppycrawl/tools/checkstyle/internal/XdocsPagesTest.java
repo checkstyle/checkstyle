@@ -63,6 +63,7 @@ import org.xml.sax.InputSource;
 
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
+import com.puppycrawl.tools.checkstyle.ConfigurationLoader.IgnoredModulesOptions;
 import com.puppycrawl.tools.checkstyle.ModuleFactory;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -378,7 +379,7 @@ public class XdocsPagesTest {
 
                 final PropertiesExpander expander = new PropertiesExpander(properties);
                 final Configuration config = ConfigurationLoader.loadConfiguration(new InputSource(
-                        new StringReader(code)), expander, false);
+                        new StringReader(code)), expander, IgnoredModulesOptions.EXECUTE);
                 final Checker checker = new Checker();
 
                 try {

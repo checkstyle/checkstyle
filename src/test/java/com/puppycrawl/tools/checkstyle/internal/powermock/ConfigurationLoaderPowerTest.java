@@ -33,6 +33,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
+import com.puppycrawl.tools.checkstyle.ConfigurationLoader.IgnoredModulesOptions;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.ThreadModeSettings;
@@ -68,7 +69,7 @@ public class ConfigurationLoaderPowerTest extends AbstractPathTestSupport {
         try {
             ConfigurationLoader.loadConfiguration(
                     getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml"),
-                    new PropertiesExpander(new Properties()), true);
+                    new PropertiesExpander(new Properties()), IgnoredModulesOptions.OMIT);
             fail("Exception is expected");
         }
         catch (CheckstyleException expected) {
