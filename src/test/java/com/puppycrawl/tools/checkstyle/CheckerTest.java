@@ -1328,7 +1328,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 new CloseAndFlushTestByteArrayOutputStream()) {
             checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
             checker.addListener(new DefaultLogger(testInfoOutputStream,
-                true, testErrorOutputStream, true));
+                OutputStreamOptions.CLOSE, testErrorOutputStream, OutputStreamOptions.CLOSE));
 
             final File tmpFile = temporaryFolder.newFile("file.java");
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -1384,8 +1384,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         // BriefUtLogger does not print the module name or id postfix,
         // so we need to set logger manually
         final ByteArrayOutputStream out = Whitebox.getInternalState(this, "stream");
-        final DefaultLogger logger =
-                new DefaultLogger(out, true, out, false, new AuditEventDefaultFormatter());
+        final DefaultLogger logger = new DefaultLogger(out, OutputStreamOptions.CLOSE, out,
+                OutputStreamOptions.NONE, new AuditEventDefaultFormatter());
         checker.addListener(logger);
 
         final String path = temporaryFolder.newFile("file.java").getPath();
