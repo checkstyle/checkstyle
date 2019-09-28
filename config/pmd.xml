@@ -123,7 +123,7 @@
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@Image='AbstractFileSetCheck'
         or @Image='AbstractCheck' or @Image='AbstractJavadocCheck' or @Image='AbstractNode'
-        or @Image='AbstractViolationReporter' or @Image='AbstractTypeAwareCheck']"/>
+        or @Image='AbstractViolationReporter']"/>
     </properties>
   </rule>
   <rule ref="category/java/codestyle.xml/UseUnderscoresInNumericLiterals">
@@ -210,13 +210,13 @@
            See https://github.com/checkstyle/checkstyle/issues/2285
            TranslationCheck: It is better to catch all exceptions since it can throw
            a runtime exception.
-           AbstractTypeAwareCheck: Exception type is not predictable. -->
+           JavadocMethodCheck: Exception type is not predictable. -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@Image='Checker']
                              //MethodDeclaration[@Name='processFiles']
                       |//ClassOrInterfaceDeclaration[@Image='TranslationCheck']
                              //MethodDeclaration[@Name='getTranslationKeys']
-                      |//ClassOrInterfaceDeclaration[@Image='AbstractTypeAwareCheck']
+                      |//ClassOrInterfaceDeclaration[@Image='JavadocMethodCheck']
                              //MethodDeclaration[@Name='resolveClass']"/>
     </properties>
   </rule>
@@ -348,18 +348,21 @@
   <rule ref="category/java/design.xml/TooManyMethods">
     <properties>
       <property name="maxmethods" value="20"/>
-      <!-- The class PackageObjectFactory has many boilerplate methods. -->
+      <!-- The class PackageObjectFactory has many boilerplate methods.
+           JavadocMethodCheck is in the process of being rewritten. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='PackageObjectFactory']"/>
+                value="//ClassOrInterfaceDeclaration[@Image='PackageObjectFactory']
+          |//ClassOrInterfaceDeclaration[@Image='JavadocMethodCheck']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveClassLength">
     <properties>
       <!-- *TokenTypes are special classes that are big due to a lot of description comments.
-           RequireThisCheck has to work with and identify many frames. -->
+           RequireThisCheck has to work with and identify many frames.
+           JavadocMethodCheck is in the process of being rewritten. -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypes'
-        or @Image='TokenTypes' or @Image='RequireThisCheck']"/>
+        or @Image='TokenTypes' or @Image='RequireThisCheck' or @Image='JavadocMethodCheck']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveParameterList">

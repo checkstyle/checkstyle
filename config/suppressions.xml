@@ -23,7 +23,7 @@
     <!-- test should be named as their main class -->
     <suppress checks="AbstractClassNameCheck"
               files="AbstractCheckTest.java|AbstractClassNameCheckTest.java|
-                     |AbstractTypeAwareCheckTest.java|AbstractJavadocCheckTest.java|
+                     |AbstractJavadocCheckTest.java|
                      |AbstractViolationReporterTest.java|AbstractFileSetCheckTest.java"/>
 
     <!-- Tone down the checking for test code -->

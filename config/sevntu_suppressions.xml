@@ -8,7 +8,7 @@
 
     <!-- Fixing these cases will decrease code readability -->
     <suppress checks="MultipleStringLiteralsExtended"
-              files="JavadocStyleCheck\.java|AbstractTypeAwareCheck\.java|XMLLogger\.java"/>
+              files="JavadocStyleCheck\.java|XMLLogger\.java"/>
     <suppress checks="MultipleStringLiteralsExtended"
               files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <!-- ParseTreeBuilder is generated, to keep ease of generation violations are suppressed -->
