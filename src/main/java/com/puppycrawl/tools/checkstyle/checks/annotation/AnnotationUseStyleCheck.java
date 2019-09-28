@@ -21,8 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 import java.util.Locale;
 
-import org.apache.commons.beanutils.ConversionException;
-
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -288,7 +286,6 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      * Setter to define the annotation element styles.
      *
      * @param style string representation
-     * @throws ConversionException if cannot convert string.
      */
     public void setElementStyle(final String style) {
         elementStyle = getOption(ElementStyle.class, style);
@@ -298,7 +295,6 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      * Setter to define the policy for trailing comma in arrays.
      *
      * @param comma string representation
-     * @throws ConversionException if cannot convert string.
      */
     public void setTrailingArrayComma(final String comma) {
         trailingArrayComma = getOption(TrailingArrayComma.class, comma);
@@ -308,7 +304,6 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      * Setter to define the policy for ending parenthesis.
      *
      * @param parens string representation
-     * @throws ConversionException if cannot convert string.
      */
     public void setClosingParens(final String parens) {
         closingParens = getOption(ClosingParens.class, parens);

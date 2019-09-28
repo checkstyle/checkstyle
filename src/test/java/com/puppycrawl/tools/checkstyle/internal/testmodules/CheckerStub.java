@@ -19,26 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
-import org.powermock.reflect.Whitebox;
-
 import com.puppycrawl.tools.checkstyle.Checker;
 
 public class CheckerStub extends Checker {
 
-    private static ClassLoader classLoader;
-
-    @Override
-    public void destroy() {
-        //hack to get setModuleClassloader tested
-        classLoader = Whitebox.getInternalState(this, "classLoader");
-    }
-
-    public static ClassLoader getClassLoader() {
-        return classLoader;
-    }
-
-    public static void reset() {
-        classLoader = null;
-    }
+    // dummy class
 
 }

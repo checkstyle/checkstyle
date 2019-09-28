@@ -71,9 +71,6 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     /** The sorted set of messages. */
     private final SortedSet<LocalizedMessage> messages = new TreeSet<>();
 
-    /** Class loader to resolve classes with. **/
-    private ClassLoader classLoader;
-
     /** Context of child components. */
     private Context childContext;
 
@@ -90,9 +87,12 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     /**
      * Sets classLoader to load class.
      * @param classLoader class loader to resolve classes with.
+     * @deprecated Checkstyle is not type aware tool and all class loading is potentially
+     *     unstable.
      */
+    @Deprecated
     public void setClassLoader(ClassLoader classLoader) {
-        this.classLoader = classLoader;
+        // no code
     }
 
     /**
@@ -106,7 +106,6 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     @Override
     public void finishLocalSetup() {
         final DefaultContext checkContext = new DefaultContext();
-        checkContext.add("classLoader", classLoader);
         checkContext.add("severity", getSeverity());
         checkContext.add("tabWidth", String.valueOf(getTabWidth()));
 

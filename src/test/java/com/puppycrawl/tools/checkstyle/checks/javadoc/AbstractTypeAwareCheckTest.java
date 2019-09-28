@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_CLASS_INFO;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -35,7 +34,6 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -173,19 +171,8 @@ public class AbstractTypeAwareCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration config = createModuleConfig(JavadocMethodCheck.class);
         config.addAttribute("logLoadErrors", "false");
         config.addAttribute("allowUndeclaredRTE", "true");
-        final String[] expected = {
-            "7:8: " + getCheckMessage(MSG_CLASS_INFO, "@throws", "InvalidExceptionName"),
-        };
-        try {
-            verify(config, getPath("InputAbstractTypeAwareLoadErrors.java"), expected);
-            fail("Exception is expected");
-        }
-        catch (CheckstyleException ex) {
-            final IllegalStateException cause = (IllegalStateException) ex.getCause();
-            assertEquals("Invalid exception message",
-                getCheckMessage(MSG_CLASS_INFO, "@throws", "InvalidExceptionName"),
-                cause.getMessage());
-        }
+        verify(config, getPath("InputAbstractTypeAwareLoadErrors.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test

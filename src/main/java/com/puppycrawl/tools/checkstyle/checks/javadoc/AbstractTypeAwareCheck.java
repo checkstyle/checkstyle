@@ -31,7 +31,6 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
@@ -63,26 +62,6 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
     private ClassResolver classResolver;
 
     /**
-     * Whether to log class loading errors to the checkstyle report
-     * instead of throwing a RTE.
-     *
-     * <p>Logging errors will avoid stopping checkstyle completely
-     * because of a typo in javadoc. However, with modern IDEs that
-     * support automated refactoring and generate javadoc this will
-     * occur rarely, so by default we assume a configuration problem
-     * in the checkstyle classpath and throw an exception.
-     *
-     * <p>This configuration option was triggered by bug 1422462.
-     */
-    private boolean logLoadErrors = true;
-
-    /**
-     * Whether to show class loading errors in the checkstyle report.
-     * Request ID 1491630
-     */
-    private boolean suppressLoadErrors;
-
-    /**
      * Called to process an AST when visiting it.
      * @param ast the AST to process. Guaranteed to not be PACKAGE_DEF or
      *             IMPORT tokens.
@@ -101,18 +80,22 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
      * instead of throwing a RTE.
      *
      * @param logLoadErrors true if errors should be logged
+     * @deprecated No substitute.
      */
+    @Deprecated
     public final void setLogLoadErrors(boolean logLoadErrors) {
-        this.logLoadErrors = logLoadErrors;
+        // no code
     }
 
     /**
      * Controls whether to show class loading errors in the checkstyle report.
      *
      * @param suppressLoadErrors true if errors shouldn't be shown
+     * @deprecated No substitute.
      */
+    @Deprecated
     public final void setSuppressLoadErrors(boolean suppressLoadErrors) {
-        this.suppressLoadErrors = suppressLoadErrors;
+        // no code
     }
 
     @Override
@@ -218,7 +201,7 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
     private ClassResolver getClassResolver() {
         if (classResolver == null) {
             classResolver =
-                new ClassResolver(getClassLoader(),
+                new ClassResolver(getClass().getClassLoader(),
                                   packageFullIdent.getText(),
                                   imports);
         }
@@ -261,33 +244,6 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
             logLoadError(ident);
         }
         return clazz;
-    }
-
-    /**
-     * Common implementation for logLoadError() method.
-     * @param lineNo line number of the problem.
-     * @param columnNo column number of the problem.
-     * @param msgKey message key to use.
-     * @param values values to fill the message out.
-     */
-    protected final void logLoadErrorImpl(int lineNo, int columnNo,
-                                          String msgKey, Object... values) {
-        if (!logLoadErrors) {
-            final LocalizedMessage msg = new LocalizedMessage(lineNo,
-                                                    columnNo,
-                                                    getMessageBundle(),
-                                                    msgKey,
-                                                    values,
-                                                    getSeverityLevel(),
-                                                    getId(),
-                                                    getClass(),
-                                                    null);
-            throw new IllegalStateException(msg.getMessage());
-        }
-
-        if (!suppressLoadErrors) {
-            log(lineNo, columnNo, msgKey, values);
-        }
     }
 
     /**

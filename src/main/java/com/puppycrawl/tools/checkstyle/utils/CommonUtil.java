@@ -36,8 +36,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-import org.apache.commons.beanutils.ConversionException;
-
 import antlr.Token;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -86,7 +84,7 @@ public final class CommonUtil {
      * @param pattern
      *            the pattern to match
      * @return a created regexp object
-     * @throws ConversionException
+     * @throws IllegalArgumentException
      *             if unable to create Pattern object.
      **/
     public static Pattern createPattern(String pattern) {

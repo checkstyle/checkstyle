@@ -49,12 +49,6 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     private int tabWidth = CommonUtil.DEFAULT_TAB_WIDTH;
 
     /**
-     * The class loader to load external classes. Not initialized as this must
-     * be set by my creator.
-     */
-    private ClassLoader classLoader;
-
-    /**
      * Returns the default token a check is interested in. Only used if the
      * configuration for a check does not define the tokens.
      * @return the default tokens
@@ -200,22 +194,6 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      */
     public final FileContents getFileContents() {
         return context.get().fileContents;
-    }
-
-    /**
-     * Set the class loader associated with the tree.
-     * @param classLoader the class loader
-     */
-    public final void setClassLoader(ClassLoader classLoader) {
-        this.classLoader = classLoader;
-    }
-
-    /**
-     * Returns the class loader associated with the tree.
-     * @return the class loader
-     */
-    public final ClassLoader getClassLoader() {
-        return classLoader;
     }
 
     /**

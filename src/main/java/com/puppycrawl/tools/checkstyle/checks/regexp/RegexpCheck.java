@@ -574,7 +574,6 @@ public class RegexpCheck extends AbstractCheck {
      * Setter to specify the pattern to match against.
      *
      * @param pattern the new pattern
-     * @throws org.apache.commons.beanutils.ConversionException unable to parse format
      */
     public final void setFormat(Pattern pattern) {
         format = CommonUtil.createPattern(pattern.pattern(), Pattern.MULTILINE);

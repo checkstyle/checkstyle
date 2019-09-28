@@ -353,7 +353,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testSetters() {
         // all  that is set by reflection, so just make code coverage be happy
         final Checker checker = new Checker();
-        checker.setClassLoader(getClass().getClassLoader());
+        checker.setClassLoader(null);
         checker.setBasedir("some");
         checker.setSeverity("ignore");
 
@@ -400,7 +400,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         assertNotNull("Default module factory should be created when it is not specified",
             actualCtx.get("moduleFactory"));
-        assertEquals("Invalid classLoader", classLoader, actualCtx.get("classLoader"));
     }
 
     @Test
@@ -420,8 +419,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
         assertEquals("Charset was different than expected",
                 System.getProperty("file.encoding", StandardCharsets.UTF_8.name()),
                 context.get("charset"));
-        assertEquals("Was used insufficient classloader",
-                contextClassLoader, context.get("classLoader"));
         assertEquals("Severity is set to unexpected value",
                 "error", context.get("severity"));
         assertEquals("Basedir is set to unexpected value",

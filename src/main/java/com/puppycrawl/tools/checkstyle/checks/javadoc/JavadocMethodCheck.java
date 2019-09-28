@@ -286,9 +286,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
 
     @Override
     protected final void logLoadError(Token ident) {
-        logLoadErrorImpl(ident.getLineNo(), ident.getColumnNo(),
-            MSG_CLASS_INFO,
-            JavadocTagInfo.THROWS.getText(), ident.getText());
+        // no code because class loading is deprecated
     }
 
     /**

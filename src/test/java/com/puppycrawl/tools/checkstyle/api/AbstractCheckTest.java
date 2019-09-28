@@ -226,30 +226,6 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetClassLoader() {
-        final AbstractCheck check = new AbstractCheck() {
-            @Override
-            public int[] getDefaultTokens() {
-                return CommonUtil.EMPTY_INT_ARRAY;
-            }
-
-            @Override
-            public int[] getAcceptableTokens() {
-                return getDefaultTokens();
-            }
-
-            @Override
-            public int[] getRequiredTokens() {
-                return getDefaultTokens();
-            }
-        };
-        final ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-        check.setClassLoader(classLoader);
-
-        assertEquals("Invalid classloader", classLoader, check.getClassLoader());
-    }
-
-    @Test
     public void testGetAcceptableTokens() {
         final int[] defaultTokens = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
         final int[] acceptableTokens = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
