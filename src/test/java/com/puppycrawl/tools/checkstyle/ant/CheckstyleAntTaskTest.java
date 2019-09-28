@@ -40,7 +40,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.tools.ant.AntClassLoader;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.types.FileSet;
@@ -55,7 +54,6 @@ import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.internal.testmodules.CheckerStub;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecker;
 
 public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
@@ -186,9 +184,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 TestRootModuleChecker.isProcessed());
         final List<File> filesToCheck = TestRootModuleChecker.getFilesToCheck();
         assertThat("There are more files to check than expected",
-                filesToCheck.size(), is(9));
+                filesToCheck.size(), is(8));
         assertThat("The path of file differs from expected",
-                filesToCheck.get(6).getAbsolutePath(), is(getPath(FLAWLESS_INPUT)));
+                filesToCheck.get(5).getAbsolutePath(), is(getPath(FLAWLESS_INPUT)));
         assertEquals("Amount of logged messages in unexpected",
                 8, antTask.getLoggedMessages().size());
     }
@@ -705,23 +703,6 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
         assertTrue("Checker is not processed",
                 TestRootModuleChecker.isProcessed());
-    }
-
-    @Test
-    public void testClassloaderInRootModule() throws IOException {
-        TestRootModuleChecker.reset();
-        CheckerStub.reset();
-
-        final CheckstyleAntTask antTask =
-                getCheckstyleAntTask(
-                        "InputCheckstyleAntTaskConfigCustomCheckerRootModule.xml");
-        antTask.setFile(new File(getPath(VIOLATED_INPUT)));
-
-        antTask.execute();
-
-        final ClassLoader classLoader = CheckerStub.getClassLoader();
-        assertTrue("Classloader is not set or has invalid type",
-                classLoader instanceof AntClassLoader);
     }
 
     private static class CheckstyleAntTaskLogStub extends CheckstyleAntTask {

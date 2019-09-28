@@ -161,7 +161,6 @@ public class IllegalTokenTextCheck
     /**
      * Setter to define the RegExp for illegal pattern.
      * @param format a {@code String} value
-     * @throws org.apache.commons.beanutils.ConversionException unable to parse format
      */
     public void setFormat(String format) {
         formatString = format;

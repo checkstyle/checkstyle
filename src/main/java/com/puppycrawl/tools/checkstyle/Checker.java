@@ -86,10 +86,6 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
     /** The audit event filters. */
     private final FilterSet filters = new FilterSet();
 
-    /** Class loader to resolve classes with. **/
-    private ClassLoader classLoader = Thread.currentThread()
-            .getContextClassLoader();
-
     /** The basedir to strip off in file names. */
     private String basedir;
 
@@ -445,7 +441,6 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
 
         final DefaultContext context = new DefaultContext();
         context.add("charset", charset);
-        context.add("classLoader", classLoader);
         context.add("moduleFactory", moduleFactory);
         context.add("severity", severity.getName());
         context.add("basedir", basedir);
@@ -596,9 +591,12 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * quality of their reports, e.g. to load a class and then analyze it via
      * reflection.
      * @param classLoader the new classloader
+     * @deprecated Checkstyle is not type aware tool and all class loading is potentially
+     *     unstable.
      */
+    @Deprecated
     public final void setClassLoader(ClassLoader classLoader) {
-        this.classLoader = classLoader;
+        // no code
     }
 
     @Override

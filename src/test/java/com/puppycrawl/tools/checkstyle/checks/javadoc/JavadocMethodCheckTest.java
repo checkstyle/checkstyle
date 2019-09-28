@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_CLASS_INFO;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_DUPLICATE_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_EXPECTED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_INVALID_INHERIT_DOC;
@@ -67,10 +66,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration config = createModuleConfig(JavadocMethodCheck.class);
         config.addAttribute("logLoadErrors", "true");
         config.addAttribute("allowUndeclaredRTE", "true");
-        final String[] expected = {
-            "7:8: " + getCheckMessage(MSG_CLASS_INFO, "@throws", "InvalidExceptionName"),
-        };
-        verify(config, getPath("InputJavadocMethodLoadErrors.java"), expected);
+        verify(config, getPath("InputJavadocMethodLoadErrors.java"), CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
