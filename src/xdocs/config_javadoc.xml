@@ -573,11 +573,7 @@ public void method();
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="JavadocMethod_Description">
         <p>
-          Checks the Javadoc of a method or constructor. By default,
-          check does not validate methods and constructors for unused throws.
-          To allow documented exceptions derived from
-          <code>java.lang.RuntimeException</code> that are not declared,
-          set property <code>allowUndeclaredRTE</code> to true. The scope
+          Checks the Javadoc of a method or constructor. The scope
           to verify is specified using the <code>Scope</code> class and
           defaults to <code>Scope.PRIVATE</code>. To verify another
           scope, set property scope to a different
@@ -588,13 +584,13 @@ public void method();
           Violates parameters and type parameters
           for which no param tags are
           present can be suppressed by defining property
-          <code>allowMissingParamTags</code>. Violates
-          exceptions which are declared to be thrown, but for which no
-          throws tag is present can be suppressed by defining property
-          <code>allowMissingThrowsTags</code>. Violates
-          methods which return non-void but for which no return tag is
+          <code>allowMissingParamTags</code>.
+          Violates methods which return non-void but for which no return tag is
           present can be suppressed by defining property
           <code>allowMissingReturnTag</code>.
+          Violates exceptions which are declared to be thrown, but for which no
+          throws tag is present by activation of property
+          <code>validateThrows</code>.
         </p>
 
         <p>
@@ -627,11 +623,6 @@ public int checkReturnTag(final int aTagIndex,
                           int aLineNo)
         </source>
 
-        <p>
-          The classpath may need to be configured to locate the class
-          information. The classpath configuration is dependent on the
-          mechanism used to invoke Checkstyle.
-        </p>
       </subsection>
 
       <subsection name="Properties" id="JavadocMethod_Properties">
@@ -673,34 +664,9 @@ public int checkReturnTag(final int aTagIndex,
               <td>3.4</td>
             </tr>
             <tr>
-              <td>allowUndeclaredRTE</td>
-              <td>Control whether to allow documented exceptions that are not declared
-              if they are a subclass of <code>java.lang.RuntimeException</code>.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
-              <td><code>false</code></td>
-              <td>3.0</td>
-            </tr>
-            <tr>
-              <td>allowThrowsTagsForSubclasses</td>
-              <td>Control whether to allow documented exceptions that
-              are subclass of one of declared exception.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
-              <td><code>false</code></td>
-              <td>3.1</td>
-            </tr>
-            <tr>
               <td>allowMissingParamTags</td>
               <td>Control whether to ignore violations when a method has parameters
               but does not have matching <code>param</code> tags in the javadoc.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
-              <td><code>false</code></td>
-              <td>3.1</td>
-            </tr>
-            <tr>
-              <td>allowMissingThrowsTags</td>
-              <td>Control whether to ignore violations when a method declares
-              that it throws exceptions but does not have matching <code>throws</code> tags
-              in the javadoc.</td>
               <td><a href="property_types.html#boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>3.1</td>
@@ -712,36 +678,6 @@ public int checkReturnTag(final int aTagIndex,
               <td><a href="property_types.html#boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>3.1</td>
-            </tr>
-            <tr>
-              <td>logLoadErrors</td>
-              <td>Control checkstyle's error handling when a class loading fails.
-              This check may need to load exception classes mentioned in
-              the <code>@throws</code> tag to check whether they are RuntimeExceptions.
-              If set to <code>false</code> a
-              classpath configuration problem is assumed and the TreeWalker
-              stops operating on the class completely.
-              If set to <code>true</code> (the default), checkstyle assumes a
-              typo or refactoring problem in the
-              javadoc and logs the problem in the normal checkstyle report
-              (potentially masking a configuration error).</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
-              <td><code>true</code></td>
-              <td>4.2</td>
-            </tr>
-            <tr>
-              <td>suppressLoadErrors</td>
-              <td>Control whether to suppress violations when a class loading fails.
-              When logLoadErrors is set to true, the TreeWalker completely
-              processes a class and displays any problems with loading exceptions
-              as checkstyle violations.
-              When this property is set to true, the violations generated when
-              logLoadErrors is set true are suppressed from being reported as
-              violations in the checkstyle report.
-              </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
-              <td><code>false</code></td>
-              <td>4.2</td>
             </tr>
             <tr>
               <td>tokens</td>
@@ -780,26 +716,12 @@ public int checkReturnTag(final int aTagIndex,
 
         <p>
           To configure the check for <code>public</code>
-          scope and to allow documentation of undeclared
-          RuntimeExceptions:
-        </p>
-        <source>
-&lt;module name="JavadocMethod"&gt;
-  &lt;property name="scope" value="public"/&gt;
-  &lt;property name="allowUndeclaredRTE" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-
-        <p>
-          To configure the check for for <code>public</code>
-          scope, to allow documentation of undeclared RuntimeExceptions,
-          while ignoring any missing param tags is:
+          scope, ignoring any missing param tags is:
         </p>
 
         <source>
 &lt;module name=&quot;JavadocMethod&quot;&gt;
   &lt;property name=&quot;scope&quot; value=&quot;public&quot;/&gt;
-  &lt;property name=&quot;allowUndeclaredRTE&quot; value=&quot;true&quot;/&gt;
   &lt;property name=&quot;allowMissingParamTags&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
