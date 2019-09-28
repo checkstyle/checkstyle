@@ -39,7 +39,7 @@ public final class PropertiesExpander
      * Creates a new PropertiesExpander.
      * @param properties the underlying properties to use for
      *     property resolution.
-     * @throws IllegalArgumentException indicates null was passed
+     * @throws IllegalArgumentException when properties argument is null
      */
     public PropertiesExpander(Properties properties) {
         if (properties == null) {
