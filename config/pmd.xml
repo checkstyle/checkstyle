@@ -272,7 +272,8 @@
         or @Image='NPathComplexityCheck']//MethodDeclaration[@Name='leaveToken']
       | //ClassOrInterfaceDeclaration[@Image='NoWhitespaceAfterCheck']
              //MethodDeclaration[@Name='getArrayDeclaratorPreviousElement']
-      | //ClassOrInterfaceDeclaration[@Image='ElementNode']//MethodDeclaration[@Name='iterateAxis']
+      | //ClassOrInterfaceDeclaration[@Image='ElementNode' or @Image='RootNode']
+             //MethodDeclaration[@Name='iterateAxis']
       | //ClassOrInterfaceDeclaration[@Image='SuppressFilterElement']
              //ConstructorDeclaration
       "/>

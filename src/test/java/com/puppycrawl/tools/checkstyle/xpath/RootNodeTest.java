@@ -96,6 +96,16 @@ public class RootNodeTest extends AbstractPathTestSupport {
     @Test
     public void testIterate() {
         assertEquals("Result iterator does not match expected",
+                EmptyIterator.OfNodes.THE_INSTANCE, rootNode.iterateAxis(AxisInfo.FOLLOWING));
+        assertEquals("Result iterator does not match expected",
+                EmptyIterator.OfNodes.THE_INSTANCE,
+                rootNode.iterateAxis(AxisInfo.FOLLOWING_SIBLING));
+        assertEquals("Result iterator does not match expected",
+                EmptyIterator.OfNodes.THE_INSTANCE, rootNode.iterateAxis(AxisInfo.PRECEDING));
+        assertEquals("Result iterator does not match expected",
+                EmptyIterator.OfNodes.THE_INSTANCE,
+                rootNode.iterateAxis(AxisInfo.PRECEDING_SIBLING));
+        assertEquals("Result iterator does not match expected",
                 EmptyIterator.OfNodes.THE_INSTANCE, rootNode.iterateAxis(AxisInfo.PARENT));
         assertEquals("Result iterator does not match expected",
                 EmptyIterator.OfNodes.THE_INSTANCE, rootNode.iterateAxis(AxisInfo.PARENT,
