@@ -20,11 +20,9 @@
 package com.puppycrawl.tools.checkstyle.xpath;
 
 import static com.puppycrawl.tools.checkstyle.internal.utils.XpathUtil.getXpathItems;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -783,7 +781,174 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .getNextSibling()
                 .getNextSibling();
         final DetailAST[] expected = {expectedVariableDefNode};
-        assertArrayEquals("Result nodes differ from expected", expected, actual);
+        assertThat("Result nodes differ from expected", actual, equalTo(expected));
+    }
+
+    @Test
+    public void testQueryElementFollowingSibling() throws Exception {
+        final String xpath = "//METHOD_DEF/following-sibling::*";
+        final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
+        final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
+        final DetailAST expectedMethodDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
+                TokenTypes.CLASS_DEF)
+                .findFirstToken(TokenTypes.OBJBLOCK)
+                .findFirstToken(TokenTypes.METHOD_DEF)
+                .getNextSibling();
+        final DetailAST[] expected = {expectedMethodDefNode,
+                expectedMethodDefNode.getNextSibling()};
+        assertThat("Result nodes differ from expected", actual, equalTo(expected));
+        assertThat("Invalid token type", actual[0].getType(), equalTo(TokenTypes.METHOD_DEF));
+        assertThat("Invalid token type", actual[1].getType(), equalTo(TokenTypes.RCURLY));
+    }
+
+    @Test
+    public void testQueryElementNoFollowingSibling() throws Exception {
+        final String xpath = "//CLASS_DEF/following-sibling::*";
+        final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
+        final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
+        assertThat("Invalid number of nodes", actual.length, equalTo(0));
+    }
+
+    @Test
+    public void testQueryElementFollowingSiblingRcurly() throws Exception {
+        final String xpath = "//METHOD_DEF/following-sibling::RCURLY";
+        final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
+        final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
+        final DetailAST expectedRightCurlyNode = getSiblingByType(rootNode.getUnderlyingNode(),
+                TokenTypes.CLASS_DEF)
+                .findFirstToken(TokenTypes.OBJBLOCK)
+                .findFirstToken(TokenTypes.METHOD_DEF)
+                .getNextSibling().getNextSibling();
+        final DetailAST[] expected = {expectedRightCurlyNode};
+        assertThat("Result nodes differ from expected", actual, equalTo(expected));
+    }
+
+    @Test
+    public void testQueryElementFollowing() throws Exception {
+        final String xpath = "//IDENT[@text='variable']/following::*";
+        final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
+        final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
+        final DetailAST expectedAssignNode = getSiblingByType(rootNode.getUnderlyingNode(),
+                TokenTypes.CLASS_DEF)
+                .findFirstToken(TokenTypes.OBJBLOCK)
+                .findFirstToken(TokenTypes.METHOD_DEF)
+                .findFirstToken(TokenTypes.SLIST)
+                .findFirstToken(TokenTypes.VARIABLE_DEF)
+                .findFirstToken(TokenTypes.MODIFIERS)
+                .getNextSibling()
+                .getNextSibling()
+                .getNextSibling();
+        final DetailAST expectedExprNode = expectedAssignNode.getFirstChild();
+        final DetailAST expectedNumIntNode = expectedExprNode.getFirstChild();
+        final DetailAST[] expected = {expectedAssignNode, expectedExprNode, expectedNumIntNode};
+        assertThat("Result nodes differ from expected", actual, equalTo(expected));
+    }
+
+    @Test
+    public void testQueryElementFollowingMethodDef() throws Exception {
+        final String xpath = "//PACKAGE_DEF/following::METHOD_DEF";
+        final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
+        final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
+        final DetailAST expectedMethodDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
+                TokenTypes.CLASS_DEF)
+                .findFirstToken(TokenTypes.OBJBLOCK)
+                .findFirstToken(TokenTypes.METHOD_DEF);
+        final DetailAST[] expected = {expectedMethodDefNode.getNextSibling(),
+            expectedMethodDefNode};
+        assertThat("Result nodes differ from expected", actual, equalTo(expected));
+        assertThat("Invalid token type", actual[0].getType(), equalTo(TokenTypes.METHOD_DEF));
+        assertThat("Invalid token type", actual[1].getType(), equalTo(TokenTypes.METHOD_DEF));
+    }
+
+    @Test
+    public void testQueryElementNoFollowing() throws Exception {
+        final String xpath = "//CLASS_DEF/following::*";
+        final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
+        final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
+        assertThat("Invalid number of nodes", actual.length, equalTo(0));
+    }
+
+    @Test
+    public void testQueryElementPrecedingSibling() throws Exception {
+        final String xpath = "//VARIABLE_DEF[./IDENT[@text='array']]/preceding-sibling::*";
+        final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
+        final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
+        final DetailAST expectedVariableDefNode1 = getSiblingByType(rootNode.getUnderlyingNode(),
+                TokenTypes.CLASS_DEF)
+                .findFirstToken(TokenTypes.OBJBLOCK)
+                .findFirstToken(TokenTypes.METHOD_DEF)
+                .findFirstToken(TokenTypes.SLIST)
+                .findFirstToken(TokenTypes.VARIABLE_DEF);
+        final DetailAST expectedSemiNode1 = expectedVariableDefNode1.getNextSibling();
+        final DetailAST expectedVariableDefNode2 = expectedSemiNode1.getNextSibling();
+        final DetailAST expectedSemiNode2 = expectedVariableDefNode2.getNextSibling();
+        final DetailAST[] expected = {expectedSemiNode2, expectedSemiNode1,
+            expectedVariableDefNode2, expectedVariableDefNode1};
+        assertThat("Result nodes differ from expected", actual, equalTo(expected));
+    }
+
+    @Test
+    public void testQueryElementPrecedingSiblingVariableDef() throws Exception {
+        final String xpath = "//VARIABLE_DEF[./IDENT[@text='array']]/preceding-sibling::"
+                + "VARIABLE_DEF";
+        final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
+        final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
+        final DetailAST expectedVariableDefNode1 = getSiblingByType(rootNode.getUnderlyingNode(),
+                TokenTypes.CLASS_DEF)
+                .findFirstToken(TokenTypes.OBJBLOCK)
+                .findFirstToken(TokenTypes.METHOD_DEF)
+                .findFirstToken(TokenTypes.SLIST)
+                .findFirstToken(TokenTypes.VARIABLE_DEF);
+        final DetailAST expectedVariableDefNode2 = expectedVariableDefNode1.getNextSibling()
+                .getNextSibling();
+        final DetailAST[] expected = {expectedVariableDefNode2, expectedVariableDefNode1};
+        assertThat("Result nodes differ from expected", actual, equalTo(expected));
+    }
+
+    @Test
+    public void testQueryElementPrecedingSiblingArray() throws Exception {
+        final String xpath = "//VARIABLE_DEF[./IDENT[@text='array']]/preceding-sibling::*[1]";
+        final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
+        final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
+        final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
+                TokenTypes.CLASS_DEF)
+                .findFirstToken(TokenTypes.OBJBLOCK)
+                .findFirstToken(TokenTypes.METHOD_DEF)
+                .findFirstToken(TokenTypes.SLIST)
+                .findFirstToken(TokenTypes.VARIABLE_DEF);
+        final DetailAST[] expected = {expectedVariableDefNode};
+        assertThat("Result nodes differ from expected", actual, equalTo(expected));
+    }
+
+    @Test
+    public void testQueryElementPrecedingOne() throws Exception {
+        final String xpath = "//LITERAL_CLASS/preceding::*";
+        final RootNode rootNode = getRootNode("InputXpathMapperSingleTopClass.java");
+        final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
+        assertThat("Invalid number of nodes", actual.length, equalTo(17));
+    }
+
+    @Test
+    public void testQueryElementPrecedingTwo() throws Exception {
+        final String xpath = "/PACKAGE_DEF/DOT/preceding::*";
+        final RootNode rootNode = getRootNode("InputXpathMapperSingleTopClass.java");
+        final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
+        final DetailAST expectedPackageDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
+                TokenTypes.PACKAGE_DEF);
+        final DetailAST expectedAnnotationsNode = expectedPackageDefNode.getFirstChild();
+        final DetailAST[] expected = {expectedAnnotationsNode, expectedPackageDefNode};
+        assertThat("Result nodes differ from expected", actual, equalTo(expected));
+    }
+
+    @Test
+    public void testQueryElementPrecedingLiteralPublic() throws Exception {
+        final String xpath = "//LITERAL_CLASS/preceding::LITERAL_PUBLIC";
+        final RootNode rootNode = getRootNode("InputXpathMapperSingleTopClass.java");
+        final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
+        final DetailAST expectedLiteralPublicNode = getSiblingByType(rootNode.getUnderlyingNode(),
+                TokenTypes.CLASS_DEF).getFirstChild().getFirstChild();
+        final DetailAST[] expected = {expectedLiteralPublicNode};
+        assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
     private RootNode getRootNode(String fileName) throws Exception {

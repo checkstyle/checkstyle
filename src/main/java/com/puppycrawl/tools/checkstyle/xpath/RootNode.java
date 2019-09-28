@@ -146,6 +146,10 @@ public class RootNode extends AbstractNode {
             case AxisInfo.ANCESTOR:
             case AxisInfo.ATTRIBUTE:
             case AxisInfo.PARENT:
+            case AxisInfo.FOLLOWING:
+            case AxisInfo.FOLLOWING_SIBLING:
+            case AxisInfo.PRECEDING:
+            case AxisInfo.PRECEDING_SIBLING:
                 result = EmptyIterator.OfNodes.THE_INSTANCE;
                 break;
             case AxisInfo.ANCESTOR_OR_SELF:
