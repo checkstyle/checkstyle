@@ -47,19 +47,14 @@ build:
       SKIP_FILES4="|org.eclipse.jdt.core.prefs"
       SKIP_FILES5="|Jenkinsfile"
       SKIP_FILES=$SKIP_FILES1$SKIP_FILES2$SKIP_FILES3$SKIP_FILES4$SKIP_FILES5
-      SKIP_CI_BY_FILES=false
-      if [[ $(git diff --name-only HEAD `git merge-base origin/master HEAD` \
-              | grep -vE "$SKIP_FILES" | cat | wc -c) > 0 ]]; then
-        SKIP_CI_BY_FILES=false;
-      else
-        SKIP_CI_BY_FILES=true;
-      fi
-      echo "SKIP_CI_BY_FILES="$SKIP_CI_BY_FILES
-      if [[ $SKIP_CI_BY_FILES == 'false' ]];
+      source ./.ci/common.sh
+      should_run_job "recheck" $SKIP_FILES
+      if [[ $RUN_JOB == 1 ]];
       then
-        echo "Command: $CMD"
+        echo "eval of CMD is starting"
+        echo "CMD=$CMD"
         eval $CMD
+        echo "eval of CMD is completed"
       else
-        echo "Build is skipped, changed files:"
-        git diff --name-only HEAD HEAD~1
+        echo "Build is skipped"
       fi
