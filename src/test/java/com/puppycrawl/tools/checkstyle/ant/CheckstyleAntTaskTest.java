@@ -19,7 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.ant;
 
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.endsWith;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
@@ -378,9 +382,10 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final List<String> output = FileUtils.readLines(outputFile, StandardCharsets.UTF_8);
         final String errorMessage = "Content of file with violations differs from expected";
         assertEquals(errorMessage, auditStartedMessage.getMessage(), output.get(0));
-        assertTrue(errorMessage, output.get(1).startsWith("[WARN]"));
-        assertTrue(errorMessage, output.get(1).endsWith("InputCheckstyleAntTaskError.java:4: "
-                + "@incomplete=Some javadoc [WriteTag]"));
+        assertThat(errorMessage, output.get(1), allOf(
+                startsWith("[WARN]"),
+                containsString("InputCheckstyleAntTaskError.java:4: "),
+                endsWith("@incomplete=Some javadoc [WriteTag]")));
         assertTrue(errorMessage, output.get(2).startsWith("[ERROR]"));
         assertTrue(errorMessage, output.get(2).endsWith("InputCheckstyleAntTaskError.java:7: "
                 + "Line is longer than 70 characters (found 80). [LineLength]"));
