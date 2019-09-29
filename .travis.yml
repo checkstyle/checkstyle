@@ -25,13 +25,13 @@ matrix:
     - env:
         - DESC="test Commits Since Latest Master"
         - CMD="./.ci/travis/travis.sh pr-age"
-        - SKIP_CI_BY_FILES="false"
+        - SKIP_JOB_BY_FILES="false"
 
     # testing of PR format
     - env:
         - DESC="test Issue ref in PR description"
         - CMD="./.ci/travis/travis.sh pr-description"
-        - SKIP_CI_BY_FILES="false"
+        - SKIP_JOB_BY_FILES="false"
 
     # unit tests (openjdk8)
     - jdk: openjdk8
@@ -46,7 +46,7 @@ matrix:
       env:
         - DESC="checkstyle and sevntu-checkstyle"
         - CMD="./.ci/travis/travis.sh checkstyle-and-sevntu"
-        - SKIP_CI_BY_FILES="false"
+        - SKIP_JOB_BY_FILES="false"
         - USE_MAVEN_REPO="true"
 
     # jacoco and codecov (openjdk8)
@@ -90,7 +90,7 @@ matrix:
       env:
         - DESC="Releasenotes generation"
         - CMD="./.ci/travis/travis.sh releasenotes-gen"
-        - SKIP_CI_BY_FILES="false"
+        - SKIP_JOB_BY_FILES="false"
         - USE_MAVEN_REPO="true"
 
     # NonDex (openjdk8)
@@ -188,7 +188,7 @@ matrix:
     - env:
         - DESC="check permissions on all files"
         - CMD="./.ci/travis/travis.sh check-chmod"
-        - SKIP_CI_BY_FILES="false"
+        - SKIP_JOB_BY_FILES="false"
 
     # Ensure that all Sevntu check are kused
     - jdk: openjdk8
@@ -243,7 +243,7 @@ matrix:
         - DESC="print versions to update"
         - USE_MAVEN_REPO="true"
         - CMD="./.ci/travis/travis.sh versions"
-        - SKIP_CI_BY_FILES="false"
+        - SKIP_JOB_BY_FILES="false"
 
     # OpenJDK9 build
     - jdk: openjdk9
@@ -289,7 +289,7 @@ matrix:
     - env:
         - DESC="spell checker"
         - CMD="./.ci/test-spelling-unknown-words.sh"
-        - SKIP_CI_BY_FILES="false"
+        - SKIP_JOB_BY_FILES="false"
 
     # find missing pitests
     - env:
@@ -311,33 +311,21 @@ script:
   - SKIP_FILES3="|shippable.yml|shippable.sh|wercker.yml|wercker.sh|intellij-idea-inspections.xml"
   - SKIP_FILES4="|Jenkinsfile"
   - SKIP_FILES=$SKIP_FILES1$SKIP_FILES2$SKIP_FILES3$SKIP_FILES4
-  - SKIP_CI_BY_COMMIT="false"
+  - source ./.ci/common.sh
   - |
-    if [[ $SKIP_CI_BY_FILES != 'false' ]]; then
-         if [[ $(git diff --name-only HEAD `git merge-base origin/master HEAD` \
-                    | grep -vE "$SKIP_FILES" | cat | wc -c | sed 's/^ *//' ) > 0 ]]; then
-              SKIP_CI_BY_FILES="false"
-         else
-              SKIP_CI_BY_FILES="true"
-         fi
+    if [ -z ${SKIP_JOB_BY_FILES+x} ]; then
+        SKIP_JOB_BY_FILES="recheck";
     fi
-  - |
-    export SKIP_CI_BY_COMMIT="false"
-    if [ $(git log -1 | grep -E "\[maven-release-plugin\] prepare release" | cat | wc -l) -lt 1 ];
-         then
-           SKIP_CI_BY_COMMIT="false"
-         else
-           SKIP_CI_BY_COMMIT="true"
-    fi
-  - echo "SKIP_CI_BY_FILES="$SKIP_CI_BY_FILES
-  - echo "SKIP_CI_BY_COMMIT="$SKIP_CI_BY_COMMIT
+  - should_run_job $SKIP_JOB_BY_FILES $SKIP_FILES
   - |
     set -e
-    if [[ $SKIP_CI_BY_FILES == 'false' && $SKIP_CI_BY_COMMIT == 'false' ]]; then
+    if [[ $RUN_JOB == 1 ]]; then
          if [[ $USE_MAVEN_REPO == 'true' && ! -d "~/.m2" ]]; then
            echo "Maven local repo cache is not found, initializing it ..."
            mvn -B install -Pno-validations;
          fi
+         echo "eval of CMD is starting";
+         echo "CMD=$CMD";
          eval $CMD;
          echo "eval of CMD is completed";
     else
@@ -348,9 +336,10 @@ after_success:
   - |
     set -e
     if [[ -n $CMD_AFTER_SUCCESS
-          && $SKIP_CI_BY_FILES == 'false'
+          && $RUN_JOB == 1
        ]];
     then
+        echo "CMD_AFTER_SUCCESS is starting";
         eval $CMD_AFTER_SUCCESS;
         echo "CMD_AFTER_SUCCESS is finished";
     fi
@@ -367,7 +356,7 @@ after_success:
             && $TRAVIS_BRANCH == 'master'
             && $TRAVIS_PULL_REQUEST == 'false'
             && $DEPLOY == 'true'
-            && $SKIP_CI_BY_FILES == 'false'
+            && $RUN_JOB == 1
             && $SKIP_DEPLOY == 'false'
        ]];
     then
