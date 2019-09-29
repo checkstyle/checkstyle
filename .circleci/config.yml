@@ -21,7 +21,13 @@ jobs:
             echo -n "|org.eclipse.jdt.core.prefs" >> .ci-temp/skip_ci_files
             echo -n "|Jenkinsfile" >> .ci-temp/skip_ci_files
             SKIP_CI_BY_FILES=false;
-            if [ $(git diff --name-only HEAD `git merge-base origin/master HEAD` \
+            ## Check if we are working with master to use a different previous commit
+            PREVIOUS_COMMIT="HEAD~1"
+            if [[ $(git branch master --contains `git rev-parse HEAD` \
+                       | wc -c ) > 0 ]]; then
+                 PREVIOUS_COMMIT=`git merge-base origin/master HEAD`
+            fi
+            if [ $(git diff --name-only HEAD $PREVIOUS_COMMIT \
                    | grep -vE $(cat .ci-temp/skip_ci_files) | wc -c) -gt 0 ] ; then
                 SKIP_CI_BY_FILES=false;
               else
