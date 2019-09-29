@@ -100,19 +100,27 @@ org.eclipse.jdt.core.compiler.problem.unusedDeclaredThrownExceptionExemptExcepti
 org.eclipse.jdt.core.compiler.problem.unusedDeclaredThrownExceptionWhenOverriding=disabled
 #We use checkstyle rule, special cases could be suppressed by configs out of code
 org.eclipse.jdt.core.compiler.problem.unusedExceptionParameter=ignore
+#Requires us to box and unbox all conversions manually which seems unnecessary.
+org.eclipse.jdt.core.compiler.problem.autoboxing=ignore
+#Too much complaining about potential null code but tests and pitests don't show anything.
+org.eclipse.jdt.core.compiler.problem.potentialNullReference=ignore
+#Complains about any resource that leaves a method that isn't closed first.
+org.eclipse.jdt.core.compiler.problem.potentiallyUnclosedCloseable=ignore
+#Too many false positives for methods that should be static but would cause issues.
+org.eclipse.jdt.core.compiler.problem.reportMethodCanBePotentiallyStatic=ignore
+#Checkstyle doesn't mind synthetic methods.
+org.eclipse.jdt.core.compiler.problem.syntheticAccessEmulation=ignore
+#We have another check that ensures fields have this when necessary.
+#This asks for this on all fields.
+org.eclipse.jdt.core.compiler.problem.unqualifiedFieldAccess=ignore
+#IntelliJ requires the type casts while this wants it removed.
+org.eclipse.jdt.core.compiler.problem.unnecessaryTypeCheck=ignore
 
 #
 #All below is disabled till - https://github.com/checkstyle/checkstyle/issues/5060
 #
 org.eclipse.jdt.core.compiler.annotation.missingNonNullByDefaultAnnotation=ignore
-org.eclipse.jdt.core.compiler.problem.autoboxing=ignore
-org.eclipse.jdt.core.compiler.problem.potentiallyUnclosedCloseable=ignore
-org.eclipse.jdt.core.compiler.problem.potentialNullReference=ignore
 org.eclipse.jdt.core.compiler.problem.rawTypeReference=warning
-org.eclipse.jdt.core.compiler.problem.reportMethodCanBePotentiallyStatic=ignore
-org.eclipse.jdt.core.compiler.problem.syntheticAccessEmulation=ignore
 org.eclipse.jdt.core.compiler.problem.uncheckedTypeOperation=warning
 org.eclipse.jdt.core.compiler.problem.unnecessaryElse=ignore
-org.eclipse.jdt.core.compiler.problem.unnecessaryTypeCheck=ignore
-org.eclipse.jdt.core.compiler.problem.unqualifiedFieldAccess=ignore
 org.eclipse.jdt.core.compiler.annotation.nullanalysis=ignore
