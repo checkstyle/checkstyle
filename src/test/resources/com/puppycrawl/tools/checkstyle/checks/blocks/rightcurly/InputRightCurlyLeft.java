@@ -188,4 +188,11 @@ class ClassWithStaticInitializers
         }; // violation
         for (int i = 0; i < 1; i++) { new Object(); }; // violation
     }
+
+    static final java.util.concurrent.ThreadFactory threadFactory
+            = new java.util.concurrent.ThreadFactory() {
+        @Override
+        public Thread newThread(final Runnable r) {
+            return new Thread(r);
+        }}; // violation
 }
