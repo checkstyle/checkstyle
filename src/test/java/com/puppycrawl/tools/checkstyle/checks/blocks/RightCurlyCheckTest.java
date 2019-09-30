@@ -134,6 +134,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "144:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
             "149:45: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 45),
             "152:20: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 20),
+            "197:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
         };
         verify(checkConfig, getPath("InputRightCurlyLeft.java"), expected);
     }
@@ -149,6 +150,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "122:6: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 6),
             "136:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
             "136:6: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 6),
+            "197:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
         };
         verify(checkConfig, getPath("InputRightCurlyLeft.java"), expected);
     }

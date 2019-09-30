@@ -34,7 +34,7 @@ case $1 in
 pitest-annotation|pitest-design \
 |pitest-metrics|pitest-modifier|pitest-naming \
 |pitest-sizes|pitest-whitespace \
-|pitest-api \
+|pitest-api|pitest-blocks \
 |pitest-packagenamesloader \
 |pitest-common-2|pitest-misc|pitest-xpath \
 |pitest-filters \
@@ -146,17 +146,6 @@ pitest-ant)
   "CheckstyleAntTask.java.html:<td class='covered'><pre><span  class='survived'>        log(&#34;To locate the files took &#34; + (endTime - startTime) + TIME_SUFFIX,</span></pre></td></tr>"
   "CheckstyleAntTask.java.html:<td class='uncovered'><pre><span  class=''>        catch (CheckstyleException ex) {</span></pre></td></tr>"
   "CheckstyleAntTask.java.html:<td class='uncovered'><pre><span  class='survived'>            throw new BuildException(&#34;Unable to process files: &#34; + files, ex);</span></pre></td></tr>"
-  );
-  checkPitestReport "${ignoredItems[@]}"
-  ;;
-
-pitest-blocks)
-  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
-  declare -a ignoredItems=(
-  "RightCurlyCheck.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; tokenAfterNextToken.getType() == TokenTypes.SEMI</span></pre></td></tr>"
-  "RightCurlyCheck.java.html:<td class='covered'><pre><span  class='survived'>            else if (tokenType == TokenTypes.LITERAL_CATCH) {</span></pre></td></tr>"
-  "RightCurlyCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (tokenType == TokenTypes.LITERAL_IF) {</span></pre></td></tr>"
-  "RightCurlyCheck.java.html:<td class='covered'><pre><span  class='survived'>        return rcurly.getParent().getParent().getType() == TokenTypes.INSTANCE_INIT</span></pre></td></tr>"
   );
   checkPitestReport "${ignoredItems[@]}"
   ;;

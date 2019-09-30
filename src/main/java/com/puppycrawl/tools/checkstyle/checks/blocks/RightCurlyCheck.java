@@ -285,7 +285,6 @@ public class RightCurlyCheck extends AbstractCheck {
         final DetailAST tokenAfterNextToken = Details.getNextToken(details.nextToken);
         return rcurly.getParent().getParent().getType() == TokenTypes.INSTANCE_INIT
                 && details.nextToken.getType() == TokenTypes.RCURLY
-                && tokenAfterNextToken.getType() == TokenTypes.SEMI
                 && rcurly.getLineNo() != Details.getNextToken(tokenAfterNextToken).getLineNo();
 
     }
@@ -387,7 +386,6 @@ public class RightCurlyCheck extends AbstractCheck {
          * @return object containing all details to make a validation
          */
         private static Details getDetailsForTryCatchFinally(DetailAST ast) {
-            final boolean shouldCheckLastRcurly;
             final DetailAST lcurly;
             DetailAST nextToken;
             final int tokenType = ast.getType();
@@ -399,31 +397,21 @@ public class RightCurlyCheck extends AbstractCheck {
                     lcurly = ast.getFirstChild();
                 }
                 nextToken = lcurly.getNextSibling();
-
-                if (nextToken == null) {
-                    shouldCheckLastRcurly = true;
-                    nextToken = getNextToken(ast);
-                }
-                else {
-                    shouldCheckLastRcurly = false;
-                }
-            }
-            else if (tokenType == TokenTypes.LITERAL_CATCH) {
-                nextToken = ast.getNextSibling();
-                lcurly = ast.getLastChild();
-                if (nextToken == null) {
-                    shouldCheckLastRcurly = true;
-                    nextToken = getNextToken(ast);
-                }
-                else {
-                    shouldCheckLastRcurly = false;
-                }
             }
             else {
+                nextToken = ast.getNextSibling();
+                lcurly = ast.getLastChild();
+            }
+
+            final boolean shouldCheckLastRcurly;
+            if (nextToken == null) {
                 shouldCheckLastRcurly = true;
                 nextToken = getNextToken(ast);
-                lcurly = ast.getFirstChild();
             }
+            else {
+                shouldCheckLastRcurly = false;
+            }
+
             final DetailAST rcurly = lcurly.getLastChild();
             return new Details(lcurly, rcurly, nextToken, shouldCheckLastRcurly);
         }
@@ -436,25 +424,18 @@ public class RightCurlyCheck extends AbstractCheck {
         private static Details getDetailsForIfElse(DetailAST ast) {
             final boolean shouldCheckLastRcurly;
             final DetailAST lcurly;
-            DetailAST nextToken;
-            final int tokenType = ast.getType();
-            if (tokenType == TokenTypes.LITERAL_IF) {
-                nextToken = ast.findFirstToken(TokenTypes.LITERAL_ELSE);
-                if (nextToken == null) {
-                    shouldCheckLastRcurly = true;
-                    nextToken = getNextToken(ast);
-                    lcurly = ast.getLastChild();
-                }
-                else {
-                    shouldCheckLastRcurly = false;
-                    lcurly = nextToken.getPreviousSibling();
-                }
-            }
-            else {
+            DetailAST nextToken = ast.findFirstToken(TokenTypes.LITERAL_ELSE);
+
+            if (nextToken == null) {
                 shouldCheckLastRcurly = true;
                 nextToken = getNextToken(ast);
-                lcurly = ast.getFirstChild();
+                lcurly = ast.getLastChild();
             }
+            else {
+                shouldCheckLastRcurly = false;
+                lcurly = nextToken.getPreviousSibling();
+            }
+
             DetailAST rcurly = null;
             if (lcurly.getType() == TokenTypes.SLIST) {
                 rcurly = lcurly.getLastChild();
