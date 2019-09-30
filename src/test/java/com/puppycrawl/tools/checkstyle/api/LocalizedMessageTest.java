@@ -20,10 +20,13 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_OBJECT_ARRAY;
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
@@ -31,6 +34,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLStreamHandler;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -52,6 +56,37 @@ import nl.jqno.equalsverifier.EqualsVerifierReport;
 public class LocalizedMessageTest {
 
     private static final Locale DEFAULT_LOCALE = Locale.getDefault();
+
+    /**
+     * Verifies that the language specified with the system property {@code user.language} exists.
+     */
+    @Test
+    public void testLanguageIsValid() {
+        assertThat("Invalid language",
+            Arrays.asList(Locale.getISOLanguages()), hasItem(DEFAULT_LOCALE.getLanguage()));
+    }
+
+    /**
+     * Verifies that the country specified with the system property {@code user.country} exists.
+     */
+    @Test
+    public void testCountryIsValid() {
+        assertThat("Invalid country",
+            Arrays.asList(Locale.getISOCountries()), hasItem(DEFAULT_LOCALE.getCountry()));
+    }
+
+    /**
+     * Verifies that if the language is specified explicitly (and it is not English),
+     * the message does not use the default value.
+     */
+    @Test
+    public void testLocaleIsSupported() {
+        if (!Locale.ENGLISH.getLanguage().equals(DEFAULT_LOCALE.getLanguage())) {
+            final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
+            assertThat("Unsupported language: " + DEFAULT_LOCALE,
+                    localizedMessage.getMessage(), not("Empty statement."));
+        }
+    }
 
     @Test
     public void testEqualsAndHashCode() {

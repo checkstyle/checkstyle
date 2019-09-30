@@ -141,7 +141,7 @@ matrix:
     - jdk: openjdk8
       env:
         - DESC="tests ja"
-        - CMD="./.ci/travis/travis.sh test-jp"
+        - CMD="./.ci/travis/travis.sh test-ja"
         - USE_MAVEN_REPO="true"
     # unit tests in Portuguese locale (openjdk8)
     - jdk: openjdk8
