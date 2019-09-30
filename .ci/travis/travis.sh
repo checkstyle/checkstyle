@@ -39,12 +39,12 @@ test-fr)
 
 test-zh)
   mvn -e clean integration-test failsafe:verify \
-    -DargLine='-Duser.language=zh -Duser.country=ZH -Xms1024m -Xmx2048m'
+    -DargLine='-Duser.language=zh -Duser.country=CN -Xms1024m -Xmx2048m'
   ;;
 
-test-jp)
+test-ja)
   mvn -e clean integration-test failsafe:verify \
-    -DargLine='-Duser.language=jp -Duser.country=JP -Xms1024m -Xmx2048m'
+    -DargLine='-Duser.language=ja -Duser.country=JP -Xms1024m -Xmx2048m'
   ;;
 
 test-pt)
