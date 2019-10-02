@@ -127,24 +127,19 @@ public class DefaultComesLastCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST defaultGroupAST = ast.getParent();
-        //default keywords used in annotations too - not what we're
-        //interested in
-        if (defaultGroupAST.getType() != TokenTypes.ANNOTATION_FIELD_DEF
-                && defaultGroupAST.getType() != TokenTypes.MODIFIERS) {
-            if (skipIfLastAndSharedWithCase) {
-                if (Objects.nonNull(findNextSibling(ast, TokenTypes.LITERAL_CASE))) {
-                    log(ast, MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE);
-                }
-                else if (ast.getPreviousSibling() == null
-                    && Objects.nonNull(findNextSibling(defaultGroupAST,
-                                                       TokenTypes.CASE_GROUP))) {
-                    log(ast, MSG_KEY);
-                }
+        if (skipIfLastAndSharedWithCase) {
+            if (Objects.nonNull(findNextSibling(ast, TokenTypes.LITERAL_CASE))) {
+                log(ast, MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE);
             }
-            else if (Objects.nonNull(findNextSibling(defaultGroupAST,
-                                                     TokenTypes.CASE_GROUP))) {
+            else if (ast.getPreviousSibling() == null
+                && Objects.nonNull(findNextSibling(defaultGroupAST,
+                                                   TokenTypes.CASE_GROUP))) {
                 log(ast, MSG_KEY);
             }
+        }
+        else if (Objects.nonNull(findNextSibling(defaultGroupAST,
+                                                 TokenTypes.CASE_GROUP))) {
+            log(ast, MSG_KEY);
         }
     }
 
