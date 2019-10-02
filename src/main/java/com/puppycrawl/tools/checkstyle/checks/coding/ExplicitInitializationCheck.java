@@ -181,8 +181,7 @@ public class ExplicitInitializationCheck extends AbstractCheck {
      */
     private static boolean isZeroChar(DetailAST exprStart) {
         return isZero(exprStart)
-            || exprStart.getType() == TokenTypes.CHAR_LITERAL
-            && "'\\0'".equals(exprStart.getText());
+            || "'\\0'".equals(exprStart.getText());
     }
 
     /**
