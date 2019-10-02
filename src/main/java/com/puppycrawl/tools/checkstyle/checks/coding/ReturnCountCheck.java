@@ -323,9 +323,7 @@ public final class ReturnCountCheck extends AbstractCheck {
          */
         public void visitLiteralReturn(int maxAssigned, Boolean voidReturn) {
             isVoidContext = voidReturn;
-            if (maxAllowed == null) {
-                maxAllowed = maxAssigned;
-            }
+            maxAllowed = maxAssigned;
 
             ++count;
         }
