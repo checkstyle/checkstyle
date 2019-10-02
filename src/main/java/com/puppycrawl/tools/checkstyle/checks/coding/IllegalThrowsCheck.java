@@ -146,11 +146,9 @@ public final class IllegalThrowsCheck extends AbstractCheck {
         if (!isIgnorableMethod(methodDef)) {
             DetailAST token = detailAST.getFirstChild();
             while (token != null) {
-                if (token.getType() != TokenTypes.COMMA) {
-                    final FullIdent ident = FullIdent.createFullIdent(token);
-                    if (illegalClassNames.contains(ident.getText())) {
-                        log(token, MSG_KEY, ident.getText());
-                    }
+                final FullIdent ident = FullIdent.createFullIdent(token);
+                if (illegalClassNames.contains(ident.getText())) {
+                    log(token, MSG_KEY, ident.getText());
                 }
                 token = token.getNextSibling();
             }
