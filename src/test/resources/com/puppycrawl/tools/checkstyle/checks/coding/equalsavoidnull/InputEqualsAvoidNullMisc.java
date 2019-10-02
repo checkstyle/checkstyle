@@ -9,7 +9,9 @@ public enum InputEqualsAvoidNullMisc {
     public void method() {}
 }
 class Receiver {
-    public void foo4(Receiver this) {}
+    public void foo4(Receiver this, String s) {
+        s.equals("abc");
+    }
 
     private class Inner {
         public Inner(Receiver Receiver.this) {}
