@@ -162,8 +162,7 @@ public class ArrayTrailingCommaCheck extends AbstractCheck {
         final DetailAST rcurly = arrayInit.findFirstToken(TokenTypes.RCURLY);
         final DetailAST previousSibling = rcurly.getPreviousSibling();
 
-        if (arrayInit.getLineNo() != rcurly.getLineNo()
-                && arrayInit.getChildCount() != 1
+        if (arrayInit.getChildCount() != 1
                 && rcurly.getLineNo() != previousSibling.getLineNo()
                 && arrayInit.getLineNo() != previousSibling.getLineNo()
                 && previousSibling.getType() != TokenTypes.COMMA) {
