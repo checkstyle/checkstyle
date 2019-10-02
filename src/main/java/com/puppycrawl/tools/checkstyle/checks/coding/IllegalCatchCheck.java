@@ -129,17 +129,13 @@ public final class IllegalCatchCheck extends AbstractCheck {
         if (currentNode.getType() == TokenTypes.BOR) {
             exceptionTypes.addAll(getAllExceptionTypes(currentNode));
             currentNode = currentNode.getNextSibling();
-            if (currentNode != null) {
-                exceptionTypes.add(currentNode);
-            }
+            exceptionTypes.add(currentNode);
         }
         else {
-            exceptionTypes.add(currentNode);
-            currentNode = currentNode.getNextSibling();
-            while (currentNode != null) {
+            do {
                 exceptionTypes.add(currentNode);
                 currentNode = currentNode.getNextSibling();
-            }
+            } while (currentNode != null);
         }
         return exceptionTypes;
     }
