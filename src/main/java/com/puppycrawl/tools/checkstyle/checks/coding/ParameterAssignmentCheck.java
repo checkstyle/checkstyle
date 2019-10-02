@@ -190,14 +190,12 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
      * @param ast ident to check.
      */
     private void checkIdent(DetailAST ast) {
-        if (!parameterNames.isEmpty()) {
-            final DetailAST identAST = ast.getFirstChild();
+        final DetailAST identAST = ast.getFirstChild();
 
-            if (identAST != null
-                && identAST.getType() == TokenTypes.IDENT
-                && parameterNames.contains(identAST.getText())) {
-                log(ast, MSG_KEY, identAST.getText());
-            }
+        if (identAST != null
+            && identAST.getType() == TokenTypes.IDENT
+            && parameterNames.contains(identAST.getText())) {
+            log(ast, MSG_KEY, identAST.getText());
         }
     }
 
