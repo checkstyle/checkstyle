@@ -267,16 +267,10 @@ public class FallThroughCheck extends AbstractCheck {
         final DetailAST thenStmt = ast.findFirstToken(TokenTypes.RPAREN)
                 .getNextSibling();
         final DetailAST elseStmt = thenStmt.getNextSibling();
-        boolean isTerminated = isTerminated(thenStmt, useBreak, useContinue);
 
-        if (isTerminated && elseStmt != null) {
-            isTerminated = isTerminated(elseStmt.getFirstChild(),
-                useBreak, useContinue);
-        }
-        else if (elseStmt == null) {
-            isTerminated = false;
-        }
-        return isTerminated;
+        return elseStmt != null
+                && isTerminated(thenStmt, useBreak, useContinue)
+                && isTerminated(elseStmt.getFirstChild(), useBreak, useContinue);
     }
 
     /**
