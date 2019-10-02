@@ -29,6 +29,11 @@ public class InputParameterAssignmentWithUnchecked {
         hidden += "test";
     }
 
+    // parameter name must be the same token name
+    void foo5(int EXPR) {
+        int i = EXPR;
+    }
+
     public static abstract class NestedClass {
         public abstract void test(String hidden);
     }
