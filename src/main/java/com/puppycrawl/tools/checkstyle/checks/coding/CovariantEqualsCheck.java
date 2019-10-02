@@ -144,8 +144,7 @@ public class CovariantEqualsCheck extends AbstractCheck {
             DetailAST child = objBlock.getFirstChild();
             boolean hasEqualsObject = false;
             while (child != null) {
-                if (child.getType() == TokenTypes.METHOD_DEF
-                        && CheckUtil.isEqualsMethod(child)) {
+                if (CheckUtil.isEqualsMethod(child)) {
                     if (isFirstParameterObject(child)) {
                         hasEqualsObject = true;
                     }
