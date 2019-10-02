@@ -119,7 +119,6 @@ public class EqualsHashCodeCheck
         final DetailAST parameters = ast.findFirstToken(TokenTypes.PARAMETERS);
 
         return CheckUtil.isEqualsMethod(ast)
-                && modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
                 && isObjectParam(parameters.getFirstChild())
                 && (ast.findFirstToken(TokenTypes.SLIST) != null
                         || modifiers.findFirstToken(TokenTypes.LITERAL_NATIVE) != null);
@@ -133,14 +132,10 @@ public class EqualsHashCodeCheck
      */
     private static boolean isHashCodeMethod(DetailAST ast) {
         final DetailAST modifiers = ast.getFirstChild();
-        final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
         final DetailAST methodName = ast.findFirstToken(TokenTypes.IDENT);
         final DetailAST parameters = ast.findFirstToken(TokenTypes.PARAMETERS);
 
-        return type.getFirstChild().getType() == TokenTypes.LITERAL_INT
-                && "hashCode".equals(methodName.getText())
-                && modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
-                && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == null
+        return "hashCode".equals(methodName.getText())
                 && parameters.getFirstChild() == null
                 && (ast.findFirstToken(TokenTypes.SLIST) != null
                         || modifiers.findFirstToken(TokenTypes.LITERAL_NATIVE) != null);
