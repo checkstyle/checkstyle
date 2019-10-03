@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Check that finds import statements that use the * notation.
+ * Checks that there are no import statements that use the {@code *} notation.
  * </p>
  * <p>
  * Rationale: Importing all classes from a package or static
@@ -39,26 +39,43 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * library introduces name clashes.
  * </p>
  * <p>
- * An example of how to configure the check is:
+ * Note that property {@code excludes} is not recursive, subpackages of excluded
+ * packages are not automatically excluded.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code excludes} - Specify packages where star imports are allowed.
+ * Default value is {@code {}}.
+ * </li>
+ * <li>
+ * Property {@code allowClassImports} - Control whether to allow starred class
+ * imports like {@code import java.util.*;}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code allowStaticMemberImports} - Control whether to allow starred
+ * static member imports like {@code import static org.junit.Assert.*;}.
+ * Default value is {@code false}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name="AvoidStarImport"/&gt;
+ * </pre>
+ * <p>
+ * To configure the check so that star imports from packages
+ * {@code java.io and java.net} as well as static members from class
+ * {@code java.lang.Math} are allowed:
  * </p>
  * <pre>
  * &lt;module name="AvoidStarImport"&gt;
  *   &lt;property name="excludes" value="java.io,java.net,java.lang.Math"/&gt;
- *   &lt;property name="allowClassImports" value="false"/&gt;
- *   &lt;property name="allowStaticMemberImports" value="false"/&gt;
  * &lt;/module&gt;
  * </pre>
- * The optional "excludes" property allows for certain packages like
- * java.io or java.net to be exempted from the rule. It also is used to
- * allow certain classes like java.lang.Math or java.io.File to be
- * excluded in order to support static member imports.
  *
- * <p>The optional "allowClassImports" when set to true, will allow starred
- * class imports but will not affect static member imports.
- *
- * <p>The optional "allowStaticMemberImports" when set to true will allow
- * starred static member imports but will not affect class imports.
- *
+ * @since 3.0
  */
 @StatelessCheck
 public class AvoidStarImportCheck
@@ -73,13 +90,19 @@ public class AvoidStarImportCheck
     /** Suffix for the star import. */
     private static final String STAR_IMPORT_SUFFIX = ".*";
 
-    /** The packages/classes to exempt from this check. */
+    /** Specify packages where star imports are allowed. */
     private final List<String> excludes = new ArrayList<>();
 
-    /** Whether to allow all class imports. */
+    /**
+     * Control whether to allow starred class imports like
+     * {@code import java.util.*;}.
+     */
     private boolean allowClassImports;
 
-    /** Whether to allow all static member imports. */
+    /**
+     * Control whether to allow starred static member imports like
+     * {@code import static org.junit.Assert.*;}.
+     */
     private boolean allowStaticMemberImports;
 
     @Override
@@ -107,8 +130,8 @@ public class AvoidStarImportCheck
     }
 
     /**
-     * Sets the list of packages or classes to be exempt from the check.
-     * The excludes can contain a .* or not.
+     * Setter to specify packages where star imports are allowed.
+     *
      * @param excludesParam a list of package names/fully-qualifies class names
      *     where star imports are ok.
      */
@@ -124,7 +147,9 @@ public class AvoidStarImportCheck
     }
 
     /**
-     * Sets whether or not to allow all non-static class imports.
+     * Setter to control whether to allow starred class imports like
+     * {@code import java.util.*;}.
+     *
      * @param allow true to allow false to disallow
      */
     public void setAllowClassImports(boolean allow) {
@@ -132,7 +157,9 @@ public class AvoidStarImportCheck
     }
 
     /**
-     * Sets whether or not to allow all static member imports.
+     * Setter to control whether to allow starred static member imports like
+     * {@code import static org.junit.Assert.*;}.
+     *
      * @param allow true to allow false to disallow
      */
     public void setAllowStaticMemberImports(boolean allow) {
