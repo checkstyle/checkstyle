@@ -87,6 +87,11 @@ class InputModifiedControlVariableBothForLoops
             String name;
             name = "";
         }
+        for (int EXPR = 0; EXPR < 1; EXPR++) {
+            for (int j = 0; j < 1; i++) {
+                i++;
+            }
+        }
     }
     private int i;
 }
