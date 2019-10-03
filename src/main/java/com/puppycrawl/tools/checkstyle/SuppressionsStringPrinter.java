@@ -64,21 +64,20 @@ public final class SuppressionsStringPrinter {
                                            int tabWidth) throws IOException, CheckstyleException {
         final Matcher matcher =
                 VALID_SUPPRESSION_LINE_COLUMN_NUMBER_REGEX.matcher(suppressionLineColumnNumber);
-        if (matcher.matches()) {
-            final FileText fileText = new FileText(file.getAbsoluteFile(),
-                    System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
-            final DetailAST detailAST =
-                    JavaParser.parseFileText(fileText, JavaParser.Options.WITH_COMMENTS);
-            final int lineNumber = Integer.parseInt(matcher.group(1));
-            final int columnNumber = Integer.parseInt(matcher.group(2));
-            return generate(fileText, detailAST, lineNumber, columnNumber, tabWidth);
-        }
-        else {
+        if (!matcher.matches()) {
             final String exceptionMsg = String.format(Locale.ROOT,
                     "%s does not match valid format 'line:column'.",
                     suppressionLineColumnNumber);
             throw new IllegalStateException(exceptionMsg);
         }
+
+        final FileText fileText = new FileText(file.getAbsoluteFile(),
+                System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
+        final DetailAST detailAST =
+                JavaParser.parseFileText(fileText, JavaParser.Options.WITH_COMMENTS);
+        final int lineNumber = Integer.parseInt(matcher.group(1));
+        final int columnNumber = Integer.parseInt(matcher.group(2));
+        return generate(fileText, detailAST, lineNumber, columnNumber, tabWidth);
     }
 
     /**

@@ -242,9 +242,8 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                 result.append(text, 0, text.indexOf(periodSuffix) + 1);
                 break;
             }
-            else {
-                result.append(text);
-            }
+
+            result.append(text);
         }
         return result.toString();
     }
