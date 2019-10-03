@@ -603,14 +603,14 @@ public class JavadocDetailNodeParser {
 
                 throw new IllegalArgumentException(msg);
             }
-            else {
-                final int ruleIndex = ex.getCtx().getRuleIndex();
-                final String ruleName = recognizer.getRuleNames()[ruleIndex];
-                final String upperCaseRuleName = convertUpperCamelToUpperUnderscore(ruleName);
 
-                errorMessage = new ParseErrorMessage(lineNumber,
-                        MSG_JAVADOC_PARSE_RULE_ERROR, charPositionInLine, msg, upperCaseRuleName);
-            }
+            final int ruleIndex = ex.getCtx().getRuleIndex();
+            final String ruleName = recognizer.getRuleNames()[ruleIndex];
+            final String upperCaseRuleName = convertUpperCamelToUpperUnderscore(ruleName);
+
+            errorMessage = new ParseErrorMessage(lineNumber,
+                    MSG_JAVADOC_PARSE_RULE_ERROR, charPositionInLine, msg, upperCaseRuleName);
+
         }
 
     }
