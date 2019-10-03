@@ -23,10 +23,10 @@
     </section>
 
     <section name="AvoidStarImport">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="AvoidStarImport_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
-          Checks that there are no import statements that use the * notation.
+          Checks that there are no import statements that use the <code>*</code> notation.
         </p>
 
         <p>
@@ -34,6 +34,13 @@
           members from a class leads to tight coupling between packages
           or classes and might lead to problems when a new version of a
           library introduces name clashes.
+        </p>
+      </subsection>
+
+      <subsection name="Notes" id="AvoidStarImport_Notes">
+        <p>
+          Note that property <code>excludes</code> is not recursive,
+          subpackages of excluded packages are not automatically excluded.
         </p>
       </subsection>
 
@@ -49,9 +56,7 @@
           <tr>
             <td>excludes</td>
             <td>
-              packages where star imports are allowed. Note that this property
-              is not recursive, subpackages of excluded packages are not
-              automatically excluded.
+              Specify packages where star imports are allowed.
             </td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>{}</code></td>
@@ -60,7 +65,7 @@
           <tr>
             <td>allowClassImports</td>
             <td>
-              whether to allow starred class imports like
+              Control whether to allow starred class imports like
               <code>import java.util.*;</code>.
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
@@ -70,8 +75,8 @@
           <tr>
             <td>allowStaticMemberImports</td>
             <td>
-              whether to allow starred static member imports like
-              <code>import static org.junit.Assert.*;</code>
+              Control whether to allow starred static member imports like
+              <code>import static org.junit.Assert.*;</code>.
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
@@ -82,16 +87,19 @@
 
       <subsection name="Examples" id="AvoidStarImport_Examples">
         <p>
-          An example how to configure the check so that star imports from
-          packages java.io and java.net as well as static members from class
-          from java.lang.Math are allowed:
+          To configure the check:
         </p>
-
+        <source>
+&lt;module name="AvoidStarImport"/&gt;
+        </source>
+        <p>
+          To configure the check so that star imports from packages
+          <code>java.io and java.net</code> as well as static members from class
+          <code>java.lang.Math</code> are allowed:
+        </p>
         <source>
 &lt;module name="AvoidStarImport"&gt;
   &lt;property name="excludes" value="java.io,java.net,java.lang.Math"/&gt;
-  &lt;property name="allowClassImports" value="false"/&gt;
-  &lt;property name="allowStaticMemberImports" value="false"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>

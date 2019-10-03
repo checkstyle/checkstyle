@@ -84,7 +84,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "Header",
         "RegexpHeader",
         // imports
-        "AvoidStarImport",
         "AvoidStaticImport",
         "IllegalImport",
         "ImportControl",
