@@ -77,6 +77,17 @@ public class InputSimplifyBooleanReturn
         }
     }
 
+    boolean aa() {
+        boolean asd = false;
+        boolean dasa = true;
+
+        if (asd) {
+            return dasa;
+        } else {
+            return true;
+        }
+    }
+
     boolean b() {
         boolean asd = false;
 
