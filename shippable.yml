@@ -47,9 +47,8 @@ build:
       SKIP_FILES4="|org.eclipse.jdt.core.prefs"
       SKIP_FILES5="|Jenkinsfile"
       SKIP_FILES=$SKIP_FILES1$SKIP_FILES2$SKIP_FILES3$SKIP_FILES4$SKIP_FILES5
-      #source ./.ci/common.sh
-      #should_run_job "recheck" $SKIP_FILES
-      export RUN_JOB=1
+      source ./.ci/common.sh
+      should_run_job "recheck" $SKIP_FILES
       if [[ $RUN_JOB == 1 ]];
       then
         echo "eval of CMD is starting"
