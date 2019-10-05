@@ -107,6 +107,25 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;module name=&quot;UnnecessaryParentheses&quot;/&gt;
  * </pre>
+ * <p>
+ * Which results in the following violations:
+ * </p>
+ * <pre>
+ * public int square(int a, int b){
+ *   int square = (a * b); //violation
+ *   return (square); //violation
+ * }
+ * int sumOfSquares = 0;
+ * for(int i=(0); i&lt;10; i++){ //violation
+ *   int x = (i + 1); //violation
+ *   sumOfSquares += (square(x * x)); //violation
+ * }
+ * double num = (10.0); //violation
+ * List&lt;String&gt; list = Arrays.asList(&quot;a1&quot;, &quot;b1&quot;, &quot;c1&quot;);
+ * myList.stream()
+ *   .filter((s) -&gt; s.startsWith(&quot;c&quot;)) //violation
+ *   .forEach(System.out::println);
+ * </pre>
  *
  * @since 3.4
  */
