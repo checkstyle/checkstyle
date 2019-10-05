@@ -90,7 +90,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "RedundantImport",
         "UnusedImports",
         // metrics
-        "BooleanExpressionComplexity",
         "ClassDataAbstractionCoupling",
         "ClassFanOutComplexity",
         "CyclomaticComplexity",
