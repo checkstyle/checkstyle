@@ -39,16 +39,65 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
  * <p>
- * Checks for unused import statements.
+ * Checks for unused import statements. Checkstyle uses a simple but very
+ * reliable algorithm to report on unused import statements. An import statement
+ * is considered unused if:
  * </p>
- *  <p>
- * An example of how to configure the check is:
+ * <ul>
+ * <li>
+ * It is not referenced in the file. The algorithm does not support wild-card
+ * imports like {@code import java.io.*;}. Most IDE's provide very sophisticated
+ * checks for imports that handle wild-card imports.
+ * </li>
+ * <li>
+ * It is a duplicate of another import. This is when a class is imported more
+ * than once.
+ * </li>
+ * <li>
+ * The class imported is from the {@code java.lang} package. For example
+ * importing {@code java.lang.String}.
+ * </li>
+ * <li>
+ * The class imported is from the same package.
+ * </li>
+ * <li>
+ * <b>Optionally:</b> it is referenced in Javadoc comments. This check is on by
+ * default, but it is considered bad practice to introduce a compile time
+ * dependency for documentation purposes only. As an example, the import
+ * {@code java.util.List} would be considered referenced with the Javadoc
+ * comment {@code {@link List}}. The alternative to avoid introducing a compile
+ * time dependency would be to write the Javadoc comment as {@code {&#64;link java.util.List}}.
+ * </li>
+ * </ul>
+ * <p>
+ * The main limitation of this check is handling the case where an imported type
+ * has the same name as a declaration, such as a member variable.
+ * </p>
+ * <p>
+ * For example, in the following case the import {@code java.awt.Component}
+ * will not be flagged as unused:
+ * </p>
+ * <pre>
+ * import java.awt.Component;
+ * class FooBar {
+ *   private Object Component; // a bad practice in my opinion
+ *   ...
+ * }
+ * </pre>
+ * <ul>
+ * <li>
+ * Property {@code processJavadoc} - Control whether to process Javadoc comments.
+ * Default value is {@code true}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
  * </p>
  * <pre>
  * &lt;module name="UnusedImports"/&gt;
  * </pre>
- * Compatible with Java 1.5 source.
  *
+ * @since 3.0
  */
 @FileStatefulCheck
 public class UnusedImportsCheck extends AbstractCheck {
@@ -84,13 +133,13 @@ public class UnusedImportsCheck extends AbstractCheck {
 
     /** Flag to indicate when time to start collecting references. */
     private boolean collect;
-    /** Flag whether to process Javadoc comments. */
+    /** Control whether to process Javadoc comments. */
     private boolean processJavadoc = true;
 
     /**
-     * Sets whether to process JavaDoc or not.
+     * Setter to control whether to process Javadoc comments.
      *
-     * @param value Flag for processing JavaDoc.
+     * @param value Flag for processing Javadoc comments.
      */
     public void setProcessJavadoc(boolean value) {
         processJavadoc = value;
