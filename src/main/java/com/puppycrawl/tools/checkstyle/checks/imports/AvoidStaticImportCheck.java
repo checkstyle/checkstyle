@@ -28,39 +28,49 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * Check that finds static imports.
+ * Checks that there are no static import statements.
  * </p>
  * <p>
  * Rationale: Importing static members can lead to naming conflicts
  * between class' members. It may lead to poor code readability since it
- * may no longer be clear what class a member resides (without looking
+ * may no longer be clear what class a member resides in (without looking
  * at the import statement).
  * </p>
  * <p>
- * An example of how to configure the check is:
+ * If you exclude a starred import on a class this automatically excludes
+ * each member individually.
+ * </p>
+ * <p>
+ * For example: Excluding {@code java.lang.Math.*}. will allow the import
+ * of each static member in the Math class individually like
+ * {@code java.lang.Math.PI, java.lang.Math.cos, ...}.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code excludes} - Control whether to allow for certain classes via
+ * a star notation to be excluded such as {@code java.lang.Math.*} or specific
+ * static members to be excluded like {@code java.lang.System.out} for a variable
+ * or {@code java.lang.Math.random} for a method. See notes section for details.
+ * Default value is {@code {}}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name="AvoidStaticImport"/&gt;
+ * </pre>
+ * <p>
+ * To configure the check so that the {@code java.lang.System.out} member and all
+ * members from {@code java.lang.Math} are allowed:
  * </p>
  * <pre>
  * &lt;module name="AvoidStaticImport"&gt;
- *   &lt;property name="excludes"
- *       value="java.lang.System.out,java.lang.Math.*"/&gt;
+ *   &lt;property name="excludes" value="java.lang.System.out,java.lang.Math.*"/&gt;
  * &lt;/module&gt;
  * </pre>
- * The optional "excludes" property allows for certain classes via a star
- * notation to be excluded such as java.lang.Math.* or specific
- * static members to be excluded like java.lang.System.out for a variable
- * or java.lang.Math.random for a method.
  *
- * <p>
- * If you exclude a starred import on a class this automatically
- * excludes each member individually.
- * </p>
- *
- * <p>
- * For example:
- * Excluding java.lang.Math.* will allow the import of
- * each static member in the Math class individually like
- * java.lang.Math.PI
- * </p>
+ * @since 5.0
  */
 @StatelessCheck
 public class AvoidStaticImportCheck
@@ -72,7 +82,12 @@ public class AvoidStaticImportCheck
      */
     public static final String MSG_KEY = "import.avoidStatic";
 
-    /** The classes/static members to exempt from this check. */
+    /**
+     * Control whether to allow for certain classes via a star notation to be
+     * excluded such as {@code java.lang.Math.*} or specific static members
+     * to be excluded like {@code java.lang.System.out} for a variable or
+     * {@code java.lang.Math.random} for a method. See notes section for details.
+     */
     private String[] excludes = CommonUtil.EMPTY_STRING_ARRAY;
 
     @Override
@@ -91,7 +106,11 @@ public class AvoidStaticImportCheck
     }
 
     /**
-     * Sets the list of classes or static members to be exempt from the check.
+     * Setter to control whether to allow for certain classes via a star notation
+     * to be excluded such as {@code java.lang.Math.*} or specific static members
+     * to be excluded like {@code java.lang.System.out} for a variable or
+     * {@code java.lang.Math.random} for a method. See notes section for details.
+     *
      * @param excludes a list of fully-qualified class names/specific
      *     static members where static imports are ok
      */
