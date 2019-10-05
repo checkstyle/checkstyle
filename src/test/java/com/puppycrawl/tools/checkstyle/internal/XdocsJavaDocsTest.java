@@ -87,7 +87,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "AvoidStaticImport",
         "IllegalImport",
         "ImportControl",
-        "RedundantImport",
         "UnusedImports",
         // metrics
         "BooleanExpressionComplexity",

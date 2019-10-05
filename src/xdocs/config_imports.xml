@@ -1771,8 +1771,8 @@ public class InputEclipseStaticImportsOrder { }
     </section>
 
     <section name="RedundantImport">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="RedundantImport_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
           Checks for redundant import statements. An import statement is
           considered redundant if:
@@ -1785,7 +1785,7 @@ public class InputEclipseStaticImportsOrder { }
           </li>
           <li>
             The class non-statically imported is from the <code>java.lang</code>
-            package, e.g.  importing <code>java.lang.String</code>.
+            package, e.g. importing <code>java.lang.String</code>.
           </li>
           <li>
             The class non-statically imported is from the same package as the current package.
