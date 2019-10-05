@@ -683,33 +683,38 @@ public class Foo {
     </section>
 
     <section name="CyclomaticComplexity">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="CyclomaticComplexity_Description">
-        <p>Since Checkstyle 3.2</p>
         <p>
           Checks cyclomatic complexity against a specified limit.
-            It is a measure of the minimum number of
-            possible paths through the source and therefore the number of
-            required tests, it is not a about quality of code!
+          It is a measure of the minimum number of
+          possible paths through the source and therefore the number of
+          required tests, it is not a about quality of code!
           It is only applied to methods, c-tors,
-          <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html">static initializers and instance initializers</a>.
-          <br/>
-          The complexity is equal to the number of decision points <code> + 1</code>
+          <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html">
+          static initializers and instance initializers</a>.
+        </p>
+        <p>
+          The complexity is equal to the number of decision points <code> + 1</code>.
           Decision points: <code>if</code>, <code>while</code>
           , <code>do</code>, <code>for</code>, <code>?:</code>, <code>catch</code>
           , <code>switch</code>, <code>case</code>
-          statements, and operators <code>&#x26;&#x26;</code> and <code>||</code>
+          statements and operators <code>&#x26;&#x26;</code> and <code>||</code>
           in the body of target.
-
-          <br/>By pure theory level 1-4 is considered easy to test, 5-7 OK, 8-10
+        </p>
+        <p>
+          By pure theory level 1-4 is considered easy to test, 5-7 OK, 8-10
           consider re-factoring to ease testing, and 11+ re-factor now as testing will be painful.
-
-            <br/>When it comes to code quality measurement by this metric
-            level 10 is very good level as a ultimate target (that is hard to archive).
-            Do not be ashamed to have complexity level 15 or even higher,
-            but keep it below 20 to catch really bad designed code automatically.
-            <br/>Please use Suppression to avoid violations on cases that could not be split in few
-            methods without damaging readability of code or encapsulation.
-            <br/>
+        </p>
+        <p>
+          When it comes to code quality measurement by this metric
+          level 10 is very good level as a ultimate target (that is hard to archive).
+          Do not be ashamed to have complexity level 15 or even higher,
+          but keep it below 20 to catch really bad designed code automatically.
+        </p>
+        <p>
+          Please use Suppression to avoid violations on cases that could not be split in few
+          methods without damaging readability of code or encapsulation.
         </p>
       </subsection>
 
@@ -724,14 +729,14 @@ public class Foo {
           </tr>
           <tr>
             <td>max</td>
-            <td>the maximum threshold allowed</td>
+            <td>Specify the maximum threshold allowed.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>10</code></td>
             <td>3.2</td>
           </tr>
           <tr>
             <td>switchBlockAsSingleDecisionPoint</td>
-            <td>whether to treat the whole switch block as a single decision point</td>
+            <td>Control whether to treat the whole switch block as a single decision point.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>6.11</td>
