@@ -69,7 +69,8 @@
         If you want to live on the bleeding edge, you can <a
         href="https://github.com/checkstyle/checkstyle">checkout</a>
         the current development code from GitHub and compile
-        yourself.
+        yourself. Or use <a href="https://jitpack.io/">jitpack.io</a> to build
+        and get artifacts you need (you can even build your forked repo).
       </p>
 
     </section>
