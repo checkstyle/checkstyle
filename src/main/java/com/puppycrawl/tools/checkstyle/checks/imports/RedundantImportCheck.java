@@ -30,25 +30,25 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Checks for imports that are redundant. An import statement is
+ * Checks for redundant import statements. An import statement is
  * considered redundant if:
  * </p>
  *<ul>
  *  <li>It is a duplicate of another import. This is, when a class is imported
  *  more than once.</li>
  *  <li>The class non-statically imported is from the {@code java.lang}
- *  package. For example importing {@code java.lang.String}.</li>
+ *  package, e.g. importing {@code java.lang.String}.</li>
  *  <li>The class non-statically imported is from the same package as the
  *  current package.</li>
  *</ul>
  * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
  * &lt;module name="RedundantImport"/&gt;
  * </pre>
- * Compatible with Java 1.5 source.
  *
+ * @since 3.0
  */
 @FileStatefulCheck
 public class RedundantImportCheck
