@@ -620,15 +620,21 @@ import android.*;
     </section>
 
     <section name="IllegalImport">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="IllegalImport_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
-          Checks for imports from a set of illegal packages. By default, the
-          check rejects all <code>sun.*</code> packages since
-          programs that contain direct calls to the <code>sun.*</code> packages are <a
-          href="https://www.oracle.com/technetwork/java/faq-sun-packages-142232.html">"not
-          guaranteed to work on all Java-compatible platforms"</a>. To reject other packages,
-          set property <code> illegalPkgs</code> to a list of the illegal packages.
+          Checks for imports from a set of illegal packages.
+        </p>
+      </subsection>
+
+      <subsection name="Notes" id="IllegalImport_Notes">
+        <p>
+          Note: By default, the check rejects all <code>sun.*</code> packages since
+          programs that contain direct calls to the <code>sun.*</code> packages are
+          <a href="https://www.oracle.com/technetwork/java/faq-sun-packages-142232.html">
+          "not guaranteed to work on all Java-compatible platforms"</a>.
+          To reject other packages, set property <code>illegalPkgs</code> to
+          a list of the illegal packages.
         </p>
       </subsection>
 
@@ -643,28 +649,30 @@ import android.*;
           </tr>
           <tr>
             <td>illegalPkgs</td>
-            <td>Packages to reject, if <b>regexp</b> variable is not set, checks if import is the
-                part of package. If <b>regexp</b> variable is set, then list of packages will be
-                interpreted as regular expressions. Note, all properties for match will be
-                used.</td>
+            <td>Specify packages to reject, if <b>regexp</b> property is not set, checks if import
+              is the part of package. If <b>regexp</b> property is set, then list of packages will
+              be interpreted as regular expressions. Note, all properties for match will be used.
+            </td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>sun</code></td>
             <td>3.0</td>
           </tr>
           <tr>
             <td>illegalClasses</td>
-            <td>Class names to reject, if <b>regexp</b> variable is not set, checks if import
-                equals class name. If <b>regexp</b> variable is set, then list of class name will
-                be interpreted as regular expressions. Note, all properties for match will be
-                used.</td>
+            <td>Specify class names to reject, if <b>regexp</b> property is not set, checks if
+              import equals class name. If <b>regexp</b> property is set, then list of class names
+              will be interpreted as regular expressions. Note, all properties for match will be
+              used.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>{}</code></td>
             <td>7.8</td>
           </tr>
           <tr>
             <td>regexp</td>
-            <td>Whether the <b>illegalPkgs</b> and <b>illegalClasses</b> should be interpreted as
-                regular expressions</td>
+            <td>
+              Control whether the <code>illegalPkgs</code> and <code>illegalClasses</code>
+              should be interpreted as regular expressions.
+            </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>7.8</td>
