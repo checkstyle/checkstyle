@@ -90,7 +90,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         // metrics
         "ClassDataAbstractionCoupling",
         "ClassFanOutComplexity",
-        "CyclomaticComplexity",
         "JavaNCSS",
         "NPathComplexity",
         // modifiers
