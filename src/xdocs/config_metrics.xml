@@ -23,10 +23,10 @@
     </section>
 
     <section name="BooleanExpressionComplexity">
+      <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="BooleanExpressionComplexity_Description">
-        <p>Since Checkstyle 3.4</p>
         <p>
-          Restrict the number of number of <code>&#x26;&#x26;</code>, <code>||</code>,
+          Restrict the number of <code>&#x26;&#x26;</code>, <code>||</code>,
           <code>&#x26;</code>, <code>|</code>
           and <code>^</code> in an expression.
         </p>
@@ -39,8 +39,8 @@
         <p>
           Note that the operators <code>&#x26;</code> and
           <code>|</code> are not only integer bitwise operators, they are also the
-          <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.22.2">
-          non-shortcut versions</a> of the boolean operators.
+          <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-15.html#jls-15.22.2">
+          non-shortcut versions</a> of the boolean operators
           <code>&#x26;&#x26;</code> and <code>||</code>.
         </p>
         <p>
@@ -63,7 +63,7 @@
           <tr>
             <td>max</td>
             <td>
-              the maximum allowed number of boolean operations in one
+              Specify the maximum number of boolean operations allowed in one
               expression.
             </td>
             <td><a href="property_types.html#integer">Integer</a></td>

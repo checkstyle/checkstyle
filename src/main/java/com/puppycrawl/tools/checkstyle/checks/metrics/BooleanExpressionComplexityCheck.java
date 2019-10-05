@@ -29,12 +29,69 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
- * Restricts nested boolean operators (&amp;&amp;, ||, &amp;, | and ^) to
- * a specified depth (default = 3).
- * Note: &amp;, | and ^ are not checked if they are part of constructor or
- * method call because they can be applied to non boolean variables and
- * Checkstyle does not know types of methods from different classes.
+ * <p>
+ * Restrict the number of {@code &amp;&amp;}, {@code ||}, {@code &amp;}, {@code |} and
+ * {@code ^} in an expression.
+ * </p>
+ * <p>
+ * Rationale: Too many conditions leads to code that is difficult to read
+ * and hence debug and maintain.
+ * </p>
+ * <p>
+ * Note that the operators {@code &amp;} and {@code |} are not only integer bitwise
+ * operators, they are also the
+ * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-15.html#jls-15.22.2">
+ * non-shortcut versions</a> of the boolean operators {@code &amp;&amp;} and {@code ||}.
+ * </p>
+ * <p>
+ * Note that {@code &amp;}, {@code |} and {@code ^} are not checked if they are part
+ * of constructor or method call because they can be applied to non boolean
+ * variables and Checkstyle does not know types of methods from different classes.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code max} - Specify the maximum number of boolean operations
+ * allowed in one expression.
+ * Default value is {@code 3}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">
+ * LAND</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND">
+ * BAND</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">
+ * LOR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR">
+ * BOR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR">
+ * BXOR</a>.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name="BooleanExpressionComplexity"/&gt;
+ * </pre>
+ * <p>
+ * To configure the check with 7 allowed operation in boolean expression:
+ * </p>
+ * <pre>
+ * &lt;module name="BooleanExpressionComplexity"&gt;
+ *   &lt;property name="max" value="7"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check to ignore {@code &amp;} and {@code |}:
+ * </p>
+ * <pre>
+ * &lt;module name="BooleanExpressionComplexity"&gt;
+ *   &lt;property name="tokens" value="BXOR,LAND,LOR"/&gt;
+ * &lt;/module&gt;
+ * </pre>
  *
+ * @since 3.4
  */
 @FileStatefulCheck
 public final class BooleanExpressionComplexityCheck extends AbstractCheck {
@@ -50,7 +107,7 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
 
     /** Stack of contexts. */
     private final Deque<Context> contextStack = new ArrayDeque<>();
-    /** Maximum allowed complexity. */
+    /** Specify the maximum number of boolean operations allowed in one expression. */
     private int max;
     /** Current context. */
     private Context context = new Context(false);
@@ -98,7 +155,8 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
     }
 
     /**
-     * Setter for maximum allowed complexity.
+     * Setter to specify the maximum number of boolean operations allowed in one expression.
+     *
      * @param max new maximum allowed complexity.
      */
     public void setMax(int max) {
