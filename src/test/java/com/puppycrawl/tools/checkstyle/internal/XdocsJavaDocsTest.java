@@ -87,7 +87,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "IllegalImport",
         "ImportControl",
         // metrics
-        "ClassDataAbstractionCoupling",
         "JavaNCSS",
         "NPathComplexity",
         // modifiers
