@@ -121,6 +121,6 @@ org.eclipse.jdt.core.compiler.problem.unnecessaryTypeCheck=ignore
 #All below is disabled till - https://github.com/checkstyle/checkstyle/issues/5060
 #
 org.eclipse.jdt.core.compiler.annotation.missingNonNullByDefaultAnnotation=ignore
-org.eclipse.jdt.core.compiler.problem.rawTypeReference=warning
-org.eclipse.jdt.core.compiler.problem.uncheckedTypeOperation=warning
+org.eclipse.jdt.core.compiler.problem.rawTypeReference=error
+org.eclipse.jdt.core.compiler.problem.uncheckedTypeOperation=error
 org.eclipse.jdt.core.compiler.annotation.nullanalysis=ignore
