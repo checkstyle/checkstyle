@@ -97,7 +97,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "RegexpMultiline",
         "RegexpOnFilename",
         "RegexpSingleline",
-        "RegexpSinglelineJava",
     };
 
     private static Checker checker;
