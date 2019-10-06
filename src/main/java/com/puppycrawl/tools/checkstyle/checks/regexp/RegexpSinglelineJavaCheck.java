@@ -25,23 +25,83 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * Implementation of a check that looks for a single line in Java files.
- * Supports ignoring comments for matches.
+ * <p>
+ * A check for detecting single lines that match a supplied
+ * regular expression in Java files.
+ * </p>
+ * <p>
+ * This class is variation on
+ * <a href="https://checkstyle.org/config_regexp.html#RegexpSingleline">RegexpSingleline</a>
+ * for detecting single lines that match a supplied regular expression in Java files.
+ * It supports suppressing matches in Java comments.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code format} - Specify the format of the regular expression to match.
+ * Default value is {@code "$."}.
+ * </li>
+ * <li>
+ * Property {@code message} - Specify the message which is used to notify about
+ * violations, if empty then default (hard-coded) message is used.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code ignoreCase} - Control whether to ignore case when searching.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code minimum} - Specify the minimum number of matches required in each file.
+ * Default value is {@code 0}.
+ * </li>
+ * <li>
+ * Property {@code maximum} - Specify the maximum number of matches required in each file.
+ * Default value is {@code 0}.
+ * </li>
+ * <li>
+ * Property {@code ignoreComments} - Control whether to ignore text in comments when searching.
+ * Default value is {@code false}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check for calls to {@code System.out.println}, except in comments:
+ * </p>
+ * <pre>
+ * &lt;module name="RegexpSinglelineJava"&gt;
+ *   &lt;!-- . matches any character, so we need to
+ *        escape it and use \. to match dots. --&gt;
+ *   &lt;property name="format" value="System\.out\.println"/&gt;
+ *   &lt;property name="ignoreComments" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check to find case-insensitive occurrences of "debug":
+ * </p>
+ * <pre>
+ * &lt;module name="RegexpSinglelineJava"&gt;
+ *   &lt;property name="format" value="debug"/&gt;
+ *   &lt;property name="ignoreCase" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ *
+ * @since 6.0
  */
 @StatelessCheck
 public class RegexpSinglelineJavaCheck extends AbstractCheck {
 
-    /** The format of the regular expression to match. */
+    /** Specify the format of the regular expression to match. */
     private String format = "$.";
-    /** The message to report for a match. */
+    /**
+     * Specify the message which is used to notify about violations,
+     * if empty then default (hard-coded) message is used.
+     */
     private String message;
-    /** The minimum number of matches required per file. */
+    /** Specify the minimum number of matches required in each file. */
     private int minimum;
-    /** The maximum number of matches required per file. */
+    /** Specify the maximum number of matches required in each file. */
     private int maximum;
-    /** Whether to ignore case when matching. */
+    /** Control whether to ignore case when searching. */
     private boolean ignoreCase;
-    /** Suppress comments. **/
+    /** Control whether to ignore text in comments when searching. */
     private boolean ignoreComments;
 
     @Override
@@ -81,7 +141,8 @@ public class RegexpSinglelineJavaCheck extends AbstractCheck {
     }
 
     /**
-     * Set the format of the regular expression to match.
+     * Setter to specify the format of the regular expression to match.
+     *
      * @param format the format of the regular expression to match.
      */
     public void setFormat(String format) {
@@ -89,7 +150,9 @@ public class RegexpSinglelineJavaCheck extends AbstractCheck {
     }
 
     /**
-     * Set the message to report for a match.
+     * Setter to specify the message which is used to notify about violations,
+     * if empty then default (hard-coded) message is used.
+     *
      * @param message the message to report for a match.
      */
     public void setMessage(String message) {
@@ -97,32 +160,36 @@ public class RegexpSinglelineJavaCheck extends AbstractCheck {
     }
 
     /**
-     * Set the minimum number of matches required per file.
-     * @param minimum the minimum number of matches required per file.
+     * Setter to specify the minimum number of matches required in each file.
+     *
+     * @param minimum the minimum number of matches required in each file.
      */
     public void setMinimum(int minimum) {
         this.minimum = minimum;
     }
 
     /**
-     * Set the maximum number of matches required per file.
-     * @param maximum the maximum number of matches required per file.
+     * Setter to specify the maximum number of matches required in each file.
+     *
+     * @param maximum the maximum number of matches required in each file.
      */
     public void setMaximum(int maximum) {
         this.maximum = maximum;
     }
 
     /**
-     * Set whether to ignore case when matching.
-     * @param ignoreCase whether to ignore case when matching.
+     * Setter to control whether to ignore case when searching.
+     *
+     * @param ignoreCase whether to ignore case when searching.
      */
     public void setIgnoreCase(boolean ignoreCase) {
         this.ignoreCase = ignoreCase;
     }
 
     /**
-     * Set whether to ignore comments when matching.
-     * @param ignore whether to ignore comments when matching.
+     * Setter to control whether to ignore text in comments when searching.
+     *
+     * @param ignore whether to ignore text in comments when searching.
      */
     public void setIgnoreComments(boolean ignore) {
         ignoreComments = ignore;
