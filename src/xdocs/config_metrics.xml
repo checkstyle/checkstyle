@@ -478,8 +478,8 @@ public class Foo {
     </section>
 
     <section name="ClassFanOutComplexity">
+      <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="ClassFanOutComplexity_Description">
-        <p>Since Checkstyle 3.4</p>
         <p>
           The number of other classes a given class relies on. Also the
           square of this has been shown to indicate the amount of
@@ -518,16 +518,16 @@ public class Foo {
           </tr>
           <tr>
             <td>max</td>
-            <td>the maximum threshold allowed</td>
+            <td>Specify the maximum threshold allowed.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>20</code></td>
             <td>3.4</td>
           </tr>
           <tr>
             <td>excludedClasses</td>
-            <td>User-configured class names to ignore</td>
+            <td>Specify user-configured class names to ignore.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>
+            <td><code>
               ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte, Character,
               Class, Deprecated, Deque, Double, Exception, Float, FunctionalInterface,
               HashMap, HashSet, IllegalArgumentException, IllegalStateException,
@@ -536,22 +536,25 @@ public class Foo {
               SafeVarargs, SecurityException, Set, Short, SortedMap, SortedSet,
               String, StringBuffer, StringBuilder, SuppressWarnings, Throwable,
               TreeMap, TreeSet, UnsupportedOperationException, Void, boolean,
-              byte, char, double, float, int, long, short, void
+              byte, char, double, float, int, long, short, void</code>
             </td>
             <td>5.7</td>
           </tr>
           <tr>
             <td>excludeClassesRegexps</td>
-            <td>User-configured regular expressions to ignore classes</td>
+            <td>Specify user-configured regular expressions to ignore classes.</td>
             <td><a href="property_types.html#regexp">Regular Expressions</a></td>
             <td><code>^$</code></td>
             <td>7.7</td>
           </tr>
           <tr>
             <td>excludedPackages</td>
-            <td>User-configured packages to ignore</td>
+            <td>
+              Specify user-configured packages to ignore. All excluded packages
+              should end with a period, so it also appends a dot to a package name.
+            </td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>{}</td>
+            <td><code>{}</code></td>
             <td>7.7</td>
           </tr>
         </table>
@@ -604,16 +607,16 @@ public class Foo {
           Also note, that checkstyle will not exclude classes within the same file
           even if it was listed in the <code>excludedPackages</code> parameter. For example,
           assuming the config is
-
-          <source>
+        </p>
+        <source>
 &lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
   &lt;property name=&quot;excludedPackages&quot; value=&quot;a.b&quot;/&gt;
 &lt;/module&gt;
-          </source>
-
+        </source>
+        <p>
           And the file <code>a.b.Foo.java</code> is:
-
-          <source>
+        </p>
+        <source>
 package a.b;
 
 import a.b.Bar;
@@ -628,8 +631,8 @@ public class Foo {
     public Foo foo; // Will not be ignored, same file
   }
 }
-          </source>
-
+        </source>
+        <p>
           The <code>bar</code> member will not be counted,
           since the <code>a.b</code> added to the <code>excludedPackages</code>.
           The <code>baz</code> member will be counted,
