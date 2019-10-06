@@ -1056,20 +1056,26 @@ class SwitchExample {
     </section>
 
     <section name="NPathComplexity">
+      <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="NPathComplexity_Description">
-        <p>Since Checkstyle 3.4</p>
+        <p>
+          Checks the NPATH complexity against a specified limit.
+        </p>
         <p>
           The NPATH metric computes the number of possible execution
           paths through a function(method). It takes into account the nesting of
           conditional statements and multi-part boolean expressions
           (A &amp;&amp; B, C || D, E ? F :G and their combinations).
-          <br/>
+        </p>
+        <p>
           The NPATH metric was designed base on Cyclomatic complexity to
           avoid problem of Cyclomatic complexity metric like nesting level within a
           function(method).
         </p>
         <p>
-          Metric was described at <a href="http://dl.acm.org/citation.cfm?id=42379">"NPATH: a measure of execution pathcomplexity and its applications"</a>. If you need detailed description of algorithm, please read that article,
+          Metric was described at <a href="http://dl.acm.org/citation.cfm?id=42379">
+          "NPATH: a measure of execution pathcomplexity and its applications"</a>.
+          If you need detailed description of algorithm, please read that article,
           it is well written and have number of examples and details.
         </p>
 
@@ -1081,11 +1087,15 @@ class SwitchExample {
         </blockquote>
 
         <blockquote>
-        Some of the most effective methods of reducing the NPATH value include<br/>
-        - distributing functionality,<br/>
-        - implementing multiple if statements as a switch statement<br/>
-        - creating a separate function for logical expressions with a high count of
-          and (&amp;&amp;) and or (||) operators.
+        Some of the most effective methods of reducing the NPATH value include:
+        <ul>
+          <li>distributing functionality;</li>
+          <li>implementing multiple if statements as a switch statement;</li>
+          <li>
+            creating a separate function for logical expressions with a high
+            count of variables and (&amp;&amp;) and or (||) operators.
+          </li>
+        </ul>
         </blockquote>
 
         <blockquote>
@@ -1099,6 +1109,7 @@ class SwitchExample {
         </blockquote>
 
         <table>
+        <caption>Examples</caption>
         <thead><tr><th>Structure</th><th> Complexity expression </th></tr></thead>
         <tr><td>if ([expr]) { [if-range] }</td><td>NP(if-range) + 1 + NP(expr)</td></tr>
         <tr><td>if ([expr]) { [if-range] } else { [else-range] }</td><td>NP(if-range)
@@ -1145,7 +1156,7 @@ class SwitchExample {
           </tr>
           <tr>
             <td>max</td>
-            <td>the maximum threshold allowed</td>
+            <td>Specify the maximum threshold allowed.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>200</code></td>
             <td>3.4</td>
