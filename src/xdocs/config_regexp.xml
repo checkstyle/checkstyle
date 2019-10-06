@@ -23,8 +23,8 @@
     </section>
 
     <section name="Regexp">
+      <p>Since Checkstyle 4.0</p>
       <subsection name="Description" id="Regexp_Description">
-        <p>Since Checkstyle 4.0</p>
         <p>
           A check that makes sure that a specified pattern exists, exists less
           than a set number of times, or does not exist in the file.
@@ -59,7 +59,7 @@
           <b>Note:</b> Not all regular expression engines are created equal. Some provide extra
           functions that others do not and some elements of the syntax may vary.
           This check makes use of the
-          <a href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/package-summary.html">
+          <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/package-summary.html">
           java.util.regex package</a>; please check its documentation for
           details of how to construct a regular expression to achieve a particular
           goal.
@@ -83,14 +83,14 @@
           </tr>
           <tr>
             <td>format</td>
-            <td>pattern</td>
+            <td>Specify the pattern to match against.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"^$"</code> (empty)</td>
             <td>4.0</td>
           </tr>
           <tr>
             <td>message</td>
-            <td>message which is used to notify about violations,
+            <td>Specify message which is used to notify about violations,
               if empty then the default (hard-coded) message is used.</td>
             <td><a href="property_types.html#string">String</a></td>
             <td><code>null</code></td>
@@ -98,14 +98,14 @@
           </tr>
           <tr>
             <td>illegalPattern</td>
-            <td>Controls whether the pattern is required or illegal.</td>
+            <td>Control whether the pattern is required or illegal.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>4.0</td>
           </tr>
           <tr>
             <td>duplicateLimit</td>
-            <td>Controls whether to check for duplicates of a required pattern,
+            <td>Control whether to check for duplicates of a required pattern,
               any negative value means no checking for duplicates, any positive
               value is used as the maximum number of allowed duplicates, if the
               limit is exceeded violations will be logged.</td>
@@ -115,14 +115,14 @@
           </tr>
           <tr>
             <td>errorLimit</td>
-            <td>Controls the maximum number of violations before the check will abort.</td>
+            <td>Specify the maximum number of violations before the check will abort.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>100</code></td>
             <td>4.0</td>
           </tr>
           <tr>
             <td>ignoreComments</td>
-            <td>Controls whether to ignore matches found within comments.</td>
+            <td>Control whether to ignore matches found within comments.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>4.0</td>
