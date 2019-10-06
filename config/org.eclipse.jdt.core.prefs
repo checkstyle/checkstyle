@@ -91,6 +91,12 @@ org.eclipse.jdt.core.compiler.problem.varargsArgumentNeedCast=error
 org.eclipse.jdt.core.compiler.problem.specialParameterHidingField=error
 org.eclipse.jdt.core.compiler.problem.typeParameterHiding=error
 org.eclipse.jdt.core.compiler.problem.fieldHiding=error
+
+# Ignore section
+
+# We are not ready to refactor code to use non-null validation, we will try later on
+org.eclipse.jdt.core.compiler.annotation.missingNonNullByDefaultAnnotation=ignore
+org.eclipse.jdt.core.compiler.annotation.nullanalysis=ignore
 #We can not enforce this rule as we are library and we keep deprecated stuff for some time
 org.eclipse.jdt.core.compiler.problem.deprecation=ignore
 #we will not put all String values to resources, it does not make sense in our project
@@ -120,7 +126,6 @@ org.eclipse.jdt.core.compiler.problem.unnecessaryTypeCheck=ignore
 #
 #All below is disabled till - https://github.com/checkstyle/checkstyle/issues/5060
 #
-org.eclipse.jdt.core.compiler.annotation.missingNonNullByDefaultAnnotation=ignore
 org.eclipse.jdt.core.compiler.problem.rawTypeReference=warning
 org.eclipse.jdt.core.compiler.problem.uncheckedTypeOperation=warning
-org.eclipse.jdt.core.compiler.annotation.nullanalysis=ignore
+
