@@ -81,15 +81,20 @@ public class RightCurlyTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testRightCurlyAloneOther() throws Exception {
         final String[] expected = {
+            "72:5: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 5),
             "97:5: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 5),
             "97:6: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 6),
             "108:5: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 5),
             "108:6: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 6),
             "122:5: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 5),
             "122:6: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 6),
+            "125:57: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 57),
             "148:39: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 39),
             "150:61: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 61),
             "153:28: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 28),
+            "163:16: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 16),
+            "165:30: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 30),
+            "168:16: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 16),
         };
 
         final Configuration checkConfig = getModuleConfig("RightCurly", "RightCurlyAlone");
