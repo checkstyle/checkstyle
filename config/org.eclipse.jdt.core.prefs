@@ -57,6 +57,8 @@ org.eclipse.jdt.core.compiler.problem.overridingMethodWithoutSuperInvocation=ign
 org.eclipse.jdt.core.compiler.problem.overridingPackageDefaultMethod=error
 org.eclipse.jdt.core.compiler.problem.parameterAssignment=error
 org.eclipse.jdt.core.compiler.problem.possibleAccidentalBooleanAssignment=error
+# rawTypeReference=warning to allow us suppress it in code for old code
+org.eclipse.jdt.core.compiler.problem.rawTypeReference=warning
 org.eclipse.jdt.core.compiler.problem.redundantNullAnnotation=error
 org.eclipse.jdt.core.compiler.problem.redundantNullCheck=error
 org.eclipse.jdt.core.compiler.problem.redundantSpecificationOfTypeArguments=error
@@ -64,6 +66,8 @@ org.eclipse.jdt.core.compiler.problem.redundantSuperinterface=error
 org.eclipse.jdt.core.compiler.problem.reportMethodCanBeStatic=error
 org.eclipse.jdt.core.compiler.problem.staticAccessReceiver=error
 org.eclipse.jdt.core.compiler.problem.syntacticNullAnalysisForFields=enabled
+# uncheckedTypeOperation=warning to allow us suppress it in code for old code
+org.eclipse.jdt.core.compiler.problem.uncheckedTypeOperation=warning
 org.eclipse.jdt.core.compiler.problem.unclosedCloseable=error
 org.eclipse.jdt.core.compiler.problem.undocumentedEmptyBlock=error
 org.eclipse.jdt.core.compiler.problem.unavoidableGenericTypeProblems=enabled
@@ -122,10 +126,3 @@ org.eclipse.jdt.core.compiler.problem.syntheticAccessEmulation=ignore
 org.eclipse.jdt.core.compiler.problem.unqualifiedFieldAccess=ignore
 #IntelliJ requires the type casts while this wants it removed.
 org.eclipse.jdt.core.compiler.problem.unnecessaryTypeCheck=ignore
-
-#
-#All below is disabled till - https://github.com/checkstyle/checkstyle/issues/5060
-#
-org.eclipse.jdt.core.compiler.problem.rawTypeReference=warning
-org.eclipse.jdt.core.compiler.problem.uncheckedTypeOperation=warning
-
