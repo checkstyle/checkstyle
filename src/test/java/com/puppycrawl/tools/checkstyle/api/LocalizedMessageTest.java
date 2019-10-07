@@ -62,8 +62,11 @@ public class LocalizedMessageTest {
      */
     @Test
     public void testLanguageIsValid() {
-        assertThat("Invalid language",
-            Arrays.asList(Locale.getISOLanguages()), hasItem(DEFAULT_LOCALE.getLanguage()));
+        final String language = DEFAULT_LOCALE.getLanguage();
+        if (!language.isEmpty()) {
+            assertThat("Invalid language",
+                Arrays.asList(Locale.getISOLanguages()), hasItem(language));
+        }
     }
 
     /**
@@ -71,8 +74,11 @@ public class LocalizedMessageTest {
      */
     @Test
     public void testCountryIsValid() {
-        assertThat("Invalid country",
-            Arrays.asList(Locale.getISOCountries()), hasItem(DEFAULT_LOCALE.getCountry()));
+        final String country = DEFAULT_LOCALE.getCountry();
+        if (!country.isEmpty()) {
+            assertThat("Invalid country",
+                    Arrays.asList(Locale.getISOCountries()), hasItem(country));
+        }
     }
 
     /**
@@ -81,7 +87,8 @@ public class LocalizedMessageTest {
      */
     @Test
     public void testLocaleIsSupported() {
-        if (!Locale.ENGLISH.getLanguage().equals(DEFAULT_LOCALE.getLanguage())) {
+        final String language = DEFAULT_LOCALE.getLanguage();
+        if (!language.isEmpty() && !Locale.ENGLISH.getLanguage().equals(language)) {
             final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
             assertThat("Unsupported language: " + DEFAULT_LOCALE,
                     localizedMessage.getMessage(), not("Empty statement."));
