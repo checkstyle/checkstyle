@@ -266,6 +266,7 @@
       <property name="tokens" value="LITERAL_IF"/>
       <property name="tokens" value="LITERAL_TRY"/>
       <property name="tokens" value="ANNOTATION_DEF"/>
+      <property name="tokens" value="ENUM_DEF"/>
       <property name="option" value="alone"/>
     </module>
     <module name="RightCurly">

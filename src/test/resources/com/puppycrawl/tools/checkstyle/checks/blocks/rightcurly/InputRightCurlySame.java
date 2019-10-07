@@ -30,20 +30,33 @@ public class InputRightCurlySame {
         }
     }
 
-    public void function(){};
+    public void function() {
+    }
 
-    public class TestClass {};
+    ;
 
-    public void testMethod() {};
+    public class TestClass {
+    }
 
-    public @interface TestAnnotation {}
+    ;
 
-    public @interface TestAnnotation1 { String someValue(); }
+    public void testMethod() {
+    }
+
+    ;
+
+    public @interface TestAnnotation {
+    }
+
+    public @interface TestAnnotation1 {
+        String someValue();
+    }
 
     public @interface TestAnnotation3 {
         String someValue();
     }
 
-    public @interface TestAnnotation4 {String someValue();
+    public @interface TestAnnotation4 {
+        String someValue();
     }
 }

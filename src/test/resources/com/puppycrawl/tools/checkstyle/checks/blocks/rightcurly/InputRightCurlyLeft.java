@@ -83,7 +83,7 @@ class InputRightCurlyLeft
     {
         HELLO,
         GOODBYE
-    };
+    }; //violation
 
     void method2()
     {

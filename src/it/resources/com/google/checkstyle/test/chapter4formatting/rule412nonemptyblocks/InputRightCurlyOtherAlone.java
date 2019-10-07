@@ -69,7 +69,7 @@ class InputRightCurlyOtherAlone
     {
         HELLO,
         GOODBYE
-    }; //ok
+    }; //warn
 
     void method2()
     {
@@ -122,7 +122,7 @@ class FooInnerAlone
     }} //warn
 
 class EnumContainerAlone {
-    private enum Suit { CLUBS, HEARTS, SPADES, DIAMONDS } // ok
+    private enum Suit { CLUBS, HEARTS, SPADES, DIAMONDS } // warn
 }
 
 class WithArraysAlone {
@@ -158,4 +158,18 @@ class Interface {
 
     public @interface TestAnnotation4 { String someValue();
     } //ok
+}
+
+enum TestEnum {} //warn
+
+enum TestEnum1 { SOME_VALUE; } //warn
+
+enum TestEnum2 {
+    SOME_VALUE;} //warn
+
+enum TestEnum3 {
+    SOME_VALUE;
+}
+
+enum TestEnum4 { SOME_VALUE;
 }
