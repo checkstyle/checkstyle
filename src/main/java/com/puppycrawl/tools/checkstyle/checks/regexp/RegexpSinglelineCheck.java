@@ -26,20 +26,93 @@ import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
- * Implementation of a check that looks for a single line in any file type.
+ * <p>
+ * A check for detecting single lines that match a supplied regular expression.
+ * Works with any file type.
+ * </p>
+ * <p>
+ * Rationale: This check can be used to prototype checks and to find common bad
+ * practice such as calling {@code ex.printStacktrace()},
+ * {@code System.out.println()}, {@code System.exit()}, etc.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code format} - Specify the format of the regular expression to match.
+ * Default value is {@code "$."}.
+ * </li>
+ * <li>
+ * Property {@code message} - Specify the message which is used to notify about
+ * violations, if empty then default (hard-coded) message is used.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code ignoreCase} - Control whether to ignore case when searching.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code minimum} - Specify the minimum number of matches required in each file.
+ * Default value is {@code 0}.
+ * </li>
+ * <li>
+ * Property {@code maximum} - Specify the maximum number of matches required in each file.
+ * Default value is {@code 0}.
+ * </li>
+ * <li>
+ * Property {@code fileExtensions} - Specify the file type extension of files to process.
+ * Default value is {@code all files}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check to find trailing whitespace at the end of a line:
+ * </p>
+ * <pre>
+ * &lt;module name="RegexpSingleline"&gt;
+ *   &lt;!-- \s matches whitespace character, $ matches end of line. --&gt;
+ *   &lt;property name="format" value="\s+$"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check to find trailing whitespace at the end of a line,
+ * with some <i>slack</i> of allowing two occurrences per file:
+ * </p>
+ * <pre>
+ * &lt;module name="RegexpSingleline"&gt;
+ *   &lt;property name="format" value="\s+$"/&gt;
+ *   &lt;!-- next line not required as 0 is the default --&gt;
+ *   &lt;property name="minimum" value="0"/&gt;
+ *   &lt;property name="maximum" value="2"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * An example of how to configure the check to make sure a copyright statement
+ * is included in the file:
+ * </p>
+ * <pre>
+ * &lt;module name="RegexpSingleline"&gt;
+ *   &lt;property name="format" value="This file is copyrighted"/&gt;
+ *   &lt;property name="minimum" value="1"/&gt;
+ *   &lt;!--  Need to specify a maximum, so 10 times is more than enough. --&gt;
+ *   &lt;property name="maximum" value="10"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ *
+ * @since 5.0
  */
 @StatelessCheck
 public class RegexpSinglelineCheck extends AbstractFileSetCheck {
 
-    /** The format of the regular expression to match. */
+    /** Specify the format of the regular expression to match. */
     private String format = "$.";
-    /** The message to report for a match. */
+    /**
+     * Specify the message which is used to notify about violations,
+     * if empty then default (hard-coded) message is used.
+     */
     private String message;
-    /** The minimum number of matches required per file. */
+    /** Specify the minimum number of matches required in each file. */
     private int minimum;
-    /** The maximum number of matches required per file. */
+    /** Specify the maximum number of matches required in each file. */
     private int maximum;
-    /** Whether to ignore case when matching. */
+    /** Control whether to ignore case when searching. */
     private boolean ignoreCase;
 
     /** The detector to use. */
@@ -65,7 +138,8 @@ public class RegexpSinglelineCheck extends AbstractFileSetCheck {
     }
 
     /**
-     * Set the format of the regular expression to match.
+     * Setter to specify the format of the regular expression to match.
+     *
      * @param format the format of the regular expression to match.
      */
     public void setFormat(String format) {
@@ -73,7 +147,9 @@ public class RegexpSinglelineCheck extends AbstractFileSetCheck {
     }
 
     /**
-     * Set the message to report for a match.
+     * Setter to specify the message which is used to notify about violations,
+     * if empty then default (hard-coded) message is used.
+     *
      * @param message the message to report for a match.
      */
     public void setMessage(String message) {
@@ -81,24 +157,27 @@ public class RegexpSinglelineCheck extends AbstractFileSetCheck {
     }
 
     /**
-     * Set the minimum number of matches required per file.
-     * @param minimum the minimum number of matches required per file.
+     * Setter to specify the minimum number of matches required in each file.
+     *
+     * @param minimum the minimum number of matches required in each file.
      */
     public void setMinimum(int minimum) {
         this.minimum = minimum;
     }
 
     /**
-     * Set the maximum number of matches required per file.
-     * @param maximum the maximum number of matches required per file.
+     * Setter to specify the maximum number of matches required in each file.
+     *
+     * @param maximum the maximum number of matches required in each file.
      */
     public void setMaximum(int maximum) {
         this.maximum = maximum;
     }
 
     /**
-     * Set whether to ignore case when matching.
-     * @param ignoreCase whether to ignore case when matching.
+     * Setter to control whether to ignore case when searching.
+     *
+     * @param ignoreCase whether to ignore case when searching.
      */
     public void setIgnoreCase(boolean ignoreCase) {
         this.ignoreCase = ignoreCase;
