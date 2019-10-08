@@ -92,7 +92,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "RedundantModifier",
         // regexp
         "RegexpOnFilename",
-        "RegexpSingleline",
     };
 
     private static Checker checker;
