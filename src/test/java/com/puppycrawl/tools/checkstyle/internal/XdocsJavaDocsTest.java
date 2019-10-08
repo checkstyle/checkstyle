@@ -369,6 +369,9 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         if ("source".equals(name)) {
             result = "pre";
         }
+        else if ("h4".equals(name)) {
+            result = "p";
+        }
         else {
             result = name;
         }
