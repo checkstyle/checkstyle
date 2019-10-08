@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 
 /**
- *
  * <p>
  * Checks that an overriding {@code clone()} method invokes {@code super.clone()}.
  * Does not check native methods, as they have no possible java defined implementation.

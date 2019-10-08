@@ -285,10 +285,12 @@ public class IllegalImportCheck
      */
     private String[] illegalPkgs;
 
-    /** Specify class names to reject, if <b>regexp</b> property is not set,
-     *  checks if import equals class name. If <b>regexp</b> property is set,
-     *  then list of class names will be interpreted as regular expressions.
-     *  Note, all properties for match will be used. */
+    /**
+     * Specify class names to reject, if <b>regexp</b> property is not set,
+     * checks if import equals class name. If <b>regexp</b> property is set,
+     * then list of class names will be interpreted as regular expressions.
+     * Note, all properties for match will be used.
+     */
     private String[] illegalClasses;
 
     /**
