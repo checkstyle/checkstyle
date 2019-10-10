@@ -28,15 +28,63 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * This check calculates the Non Commenting Source Statements (NCSS) metric for
- * java source files and methods. The check adheres to the <a
- * href="http://www.kclee.com/clemens/java/javancss">JavaNCSS specification
- * </a> and gives the same results as the JavaNCSS tool.
+ * <p>
+ * Determines complexity of methods, classes and files by counting
+ * the Non Commenting Source Statements (NCSS). This check adheres to the
+ * <a href="http://www.kclee.de/clemens/java/javancss/#specification">specification</a>
+ * for the <a href="http://www.kclee.de/clemens/java/javancss/">JavaNCSS-Tool</a>
+ * written by <b>Chr. Clemens Lee</b>.
+ * </p>
+ * <p>
+ * Roughly said the NCSS metric is calculated by counting the source lines which are
+ * not comments, (nearly) equivalent to counting the semicolons and opening curly braces.
+ * </p>
+ * <p>
+ * The NCSS for a class is summarized from the NCSS of all its methods, the NCSS
+ * of its nested classes and the number of member variable declarations.
+ * </p>
+ * <p>
+ * The NCSS for a file is summarized from the ncss of all its top level classes,
+ * the number of imports and the package declaration.
+ * </p>
+ * <p>
+ * Rationale: Too large methods and classes are hard to read and costly to maintain.
+ * A large NCSS number often means that a method or class has too many responsibilities
+ * and/or functionalities which should be decomposed into smaller units.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code methodMaximum} - Specify the maximum allowed number of
+ * non commenting lines in a method.
+ * Default value is {@code 50}.
+ * </li>
+ * <li>
+ * Property {@code classMaximum} - Specify the maximum allowed number of
+ * non commenting lines in a class.
+ * Default value is {@code 1500}.
+ * </li>
+ * <li>
+ * Property {@code fileMaximum} - Specify the maximum allowed number of
+ * non commenting lines in a file including all top level and nested classes.
+ * Default value is {@code 2000}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name="JavaNCSS"/&gt;
+ * </pre>
+ * <p>
+ * To configure the check with 40 allowed non commenting lines for a method:
+ * </p>
+ * <pre>
+ * &lt;module name="JavaNCSS"&gt;
+ *   &lt;property name="methodMaximum" value="40"/&gt;
+ * &lt;/module&gt;
+ * </pre>
  *
- * <p>The NCSS-metric tries to determine complexity of methods, classes and files
- * by counting the non commenting lines. Roughly said this is (nearly)
- * equivalent to counting the semicolons and opening curly braces.
- *
+ * @since 3.5
  */
 // -@cs[AbbreviationAsWordInName] We can not change it as,
 // check's name is a part of API (used in configurations).
@@ -70,13 +118,16 @@ public class JavaNCSSCheck extends AbstractCheck {
     /** Default constant for max method ncss. */
     private static final int METHOD_MAX_NCSS = 50;
 
-    /** Maximum ncss for a complete source file. */
+    /**
+     * Specify the maximum allowed number of non commenting lines in a file
+     * including all top level and nested classes.
+     */
     private int fileMaximum = FILE_MAX_NCSS;
 
-    /** Maximum ncss for a class. */
+    /** Specify the maximum allowed number of non commenting lines in a class. */
     private int classMaximum = CLASS_MAX_NCSS;
 
-    /** Maximum ncss for a method. */
+    /** Specify the maximum allowed number of non commenting lines in a method. */
     private int methodMaximum = METHOD_MAX_NCSS;
 
     /** List containing the stacked counters. */
@@ -192,7 +243,8 @@ public class JavaNCSSCheck extends AbstractCheck {
     }
 
     /**
-     * Sets the maximum ncss for a file.
+     * Setter to specify the maximum allowed number of non commenting lines
+     * in a file including all top level and nested classes.
      *
      * @param fileMaximum
      *            the maximum ncss
@@ -202,7 +254,7 @@ public class JavaNCSSCheck extends AbstractCheck {
     }
 
     /**
-     * Sets the maximum ncss for a class.
+     * Setter to specify the maximum allowed number of non commenting lines in a class.
      *
      * @param classMaximum
      *            the maximum ncss
@@ -212,7 +264,7 @@ public class JavaNCSSCheck extends AbstractCheck {
     }
 
     /**
-     * Sets the maximum ncss for a method.
+     * Setter to specify the maximum allowed number of non commenting lines in a method.
      *
      * @param methodMaximum
      *            the maximum ncss
