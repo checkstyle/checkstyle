@@ -923,23 +923,29 @@ class SwitchExample {
     </section>
 
     <section name="JavaNCSS">
+      <p>Since Checkstyle 3.5</p>
       <subsection name="Description" id="JavaNCSS_Description">
-        <p>Since Checkstyle 3.5</p>
         <p>
           Determines complexity of methods, classes and files by
-          counting the Non Commenting Source Statements (NCSS).  This
+          counting the Non Commenting Source Statements (NCSS). This
           check adheres to the <a
           href="http://www.kclee.de/clemens/java/javancss/#specification">
           specification</a> for the
           <a href="http://www.kclee.de/clemens/java/javancss/">JavaNCSS-Tool</a>
-          written by <b>Chr. Clemens Lee</b>.<br/>
+          written by <b>Chr. Clemens Lee</b>.
+        </p>
+        <p>
           Roughly said the NCSS metric is calculated by
           counting the source lines which are not comments, (nearly)
-          equivalent to counting the semicolons and opening curly
-          braces.<br/> The NCSS for a class is summarized from the NCSS
+          equivalent to counting the semicolons and opening curly braces.
+        </p>
+        <p>
+          The NCSS for a class is summarized from the NCSS
           of all its methods, the NCSS of its nested classes and the
-          number of member variable declarations.<br/> The NCSS for a
-          file is summarized from the ncss of all its top level classes,
+          number of member variable declarations.
+        </p>
+        <p>
+          The NCSS for a file is summarized from the ncss of all its top level classes,
           the number of imports and the package declaration.
         </p>
 
@@ -963,7 +969,7 @@ class SwitchExample {
           <tr>
             <td>methodMaximum</td>
             <td>
-              the maximum allowed number of non commenting lines in a
+              Specify the maximum allowed number of non commenting lines in a
               method.
             </td>
             <td><a href="property_types.html#integer">Integer</a></td>
@@ -973,7 +979,7 @@ class SwitchExample {
           <tr>
             <td>classMaximum</td>
             <td>
-              the maximum allowed number of non commenting lines in a
+              Specify the maximum allowed number of non commenting lines in a
               class.
             </td>
             <td><a href="property_types.html#integer">Integer</a></td>
@@ -983,7 +989,7 @@ class SwitchExample {
           <tr>
             <td>fileMaximum</td>
             <td>
-              the maximum allowed number of non commenting lines in a
+              Specify the maximum allowed number of non commenting lines in a
               file including all top level and nested classes.
             </td>
             <td><a href="property_types.html#integer">Integer</a></td>
