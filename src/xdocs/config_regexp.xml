@@ -657,8 +657,8 @@ void method() {
     </section>
 
     <section name="RegexpOnFilename">
+      <p>Since Checkstyle 6.15</p>
       <subsection name="Description" id="RegexpOnFilename_Description">
-        <p>Since Checkstyle 6.15</p>
         <p>
           Implementation of a check that looks for a file name and/or path match (or mis-match)
           against specified patterns. It can also be used to verify files match specific naming
@@ -710,21 +710,21 @@ void method() {
           </tr>
           <tr>
             <td>folderPattern</td>
-            <td>Regular expression to match the folder path against.</td>
+            <td>Specify the regular expression to match the folder path against.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>null</code></td>
             <td>6.15</td>
           </tr>
           <tr>
             <td>fileNamePattern</td>
-            <td>Regular expression to match the file name against.</td>
+            <td>Specify the regular expression to match the file name against.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>null</code></td>
             <td>6.15</td>
           </tr>
           <tr>
             <td>match</td>
-            <td>Whether to look for a match or mis-match on the file name, if the
+            <td>Control whether to look for a match or mis-match on the file name, if the
             fileNamePattern is supplied, otherwise it is applied on the folderPattern.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
@@ -732,14 +732,14 @@ void method() {
           </tr>
           <tr>
             <td>ignoreFileNameExtensions</td>
-            <td>Whether to ignore the file extension for the file name match.</td>
+            <td>Control whether to ignore the file extension for the file name match.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>6.15</td>
           </tr>
           <tr>
             <td>fileExtensions</td>
-            <td>File type extension of files to process. If this is specified, then
+            <td>Specify the file type extension of files to process. If this is specified, then
             only files that match these types are examined with the other patterns.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>all files</code></td>
@@ -795,9 +795,7 @@ void method() {
         </source>
         <p>
           To configure the check to only allow Java and XML files only in your source folder
-          and ignore any other folders:<br />
-          <b>Note:</b> 'folderPattern' must be specified if checkstyle is analyzing more than
-          the normal source folder, like the 'bin' folder where class files can be located.
+          and ignore any other folders:
         </p>
         <source>
 &lt;module name=&quot;RegexpOnFilename&quot;&gt;
@@ -806,6 +804,10 @@ void method() {
   &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          <b>Note:</b> 'folderPattern' must be specified if checkstyle is analyzing more than
+          the normal source folder, like the 'bin' folder where class files can be located.
+        </p>
         <p>
           To configure the check to only allow file names to be camel case:
         </p>
