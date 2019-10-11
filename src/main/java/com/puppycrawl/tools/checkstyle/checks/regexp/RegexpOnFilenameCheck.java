@@ -70,34 +70,29 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * passed as an argument since it is part of CheckStyle's default violation
  * messages.
  * </p>
- *
- * <p>
- * Check have following options:
- * </p>
  * <ul>
  * <li>
- * folderPattern - Regular expression to match the folder path against. Default
- * value is null.</li>
+ * Property {@code folderPattern} - Specify the regular expression to match the folder path against.
+ * Default value is {@code null}.</li>
  *
  * <li>
- * fileNamePattern - Regular expression to match the file name against. Default
- * value is null.</li>
+ * Property {@code fileNamePattern} - Specify the regular expression to match the file name against.
+ * Default value is {@code null}.</li>
  *
  * <li>
- * match - Whether to look for a match or mis-match on the file name, if the
- * fileNamePattern is supplied, otherwise it is applied on the folderPattern.
- * Default value is true.</li>
+ * Property {@code match} - Control whether to look for a match or mis-match on the file name, if
+ * the fileNamePattern is supplied, otherwise it is applied on the folderPattern.
+ * Default value is {@code true}.</li>
  *
  * <li>
- * ignoreFileNameExtensions - Whether to ignore the file extension for the file
- * name match. Default value is false.</li>
+ * Property {@code ignoreFileNameExtensions} - Control whether to ignore the file extension for
+ * the file name match. Default value is {@code false}.</li>
  *
  * <li>
- * fileExtensions - File type extension of files to process. If this is
+ * Property {@code fileExtensions} - Specify the file type extension of files to process. If this is
  * specified, then only files that match these types are examined with the other
- * patterns. Default value is {}.</li>
+ * patterns. Default value is {@code all files}.</li>
  * </ul>
- * <br>
  *
  * <p>
  * To configure the check to report file names that contain a space:
@@ -112,7 +107,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * <pre>
  * &lt;module name=&quot;RegexpOnFilename&quot;&gt;
- *   &lt;property name=&quot;fileNamePattern&quot; value=&quot;\\.gif$&quot;/&gt;
+ *   &lt;property name=&quot;fileNamePattern&quot; value=&quot;\.gif$&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
@@ -134,7 +129,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;module name=&quot;RegexpOnFilename&quot;&gt;
  *   &lt;property name=&quot;folderPattern&quot;
- *     value=&quot;[\\/]src[\\/]\\w+[\\/]resources[\\/]&quot;/&gt;
+ *     value=&quot;[\\/]src[\\/]\w+[\\/]resources[\\/]&quot;/&gt;
  *   &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
  *   &lt;property name=&quot;fileExtensions&quot; value=&quot;properties, xml&quot;/&gt;
  * &lt;/module&gt;
@@ -147,14 +142,23 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * <pre>
  * &lt;module name=&quot;RegexpOnFilename&quot;&gt;
- *   &lt;property name=&quot;fileNamePattern&quot; value=&quot;\\.(java|xml)$&quot;/&gt;
+ *   &lt;property name=&quot;fileNamePattern&quot; value=&quot;\.(java|xml)$&quot;/&gt;
  *   &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ *
  * <p>
  * To configure the check to only allow Java and XML files only in your source
  * folder and ignore any other folders:
  * </p>
+ *
+ * <pre>
+ * &lt;module name=&quot;RegexpOnFilename&quot;&gt;
+ *   &lt;property name=&quot;folderPattern&quot; value=&quot;[\\/]src[\\/]&quot;/&gt;
+ *   &lt;property name=&quot;fileNamePattern&quot; value=&quot;\.(java|xml)$&quot;/&gt;
+ *   &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
  *
  * <p>
  * <b>Note:</b> 'folderPattern' must be specified if checkstyle is analyzing
@@ -162,26 +166,19 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * can be located.
  * </p>
  *
- * <pre>
- * &lt;module name=&quot;RegexpOnFilename&quot;&gt;
- *   &lt;property name=&quot;folderPattern&quot; value=&quot;[\\/]src[\\/]&quot;/&gt;
- *   &lt;property name=&quot;fileNamePattern&quot; value=&quot;\\.(java|xml)$&quot;/&gt;
- *   &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
  * <p>
  * To configure the check to only allow file names to be camel case:
  * </p>
  *
  * <pre>
  * &lt;module name=&quot;RegexpOnFilename&quot;&gt;
- *   &lt;property name=&quot;fileNamePattern&quot;
- *     value=&quot;^([A-Z][a-z0-9]+\.?)+$&quot;/&gt;
+ *   &lt;property name=&quot;fileNamePattern&quot; value=&quot;^([A-Z][a-z0-9]+\.?)+$&quot;/&gt;
  *   &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
  *   &lt;property name=&quot;ignoreFileNameExtensions&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  *
+ * @since 6.15
  */
 @StatelessCheck
 public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
@@ -197,17 +194,20 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
      */
     public static final String MSG_MISMATCH = "regexp.filename.mismatch";
 
-    /** Compiled regexp to match a folder. */
+    /** Specify the regular expression to match the folder path against. */
     private Pattern folderPattern;
-    /** Compiled regexp to match a file. */
+    /** Specify the regular expression to match the file name against. */
     private Pattern fileNamePattern;
-    /** Whether to look for a file name match or mismatch. */
+    /**
+     * Control whether to look for a match or mis-match on the file name,
+     * if the fileNamePattern is supplied, otherwise it is applied on the folderPattern.
+     */
     private boolean match = true;
-    /** Whether to ignore the file's extension when looking for matches. */
+    /** Control whether to ignore the file extension for the file name match. */
     private boolean ignoreFileNameExtensions;
 
     /**
-     * Setter for folder format.
+     * Setter to specify the regular expression to match the folder path against.
      *
      * @param folderPattern format of folder.
      */
@@ -216,7 +216,7 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
     }
 
     /**
-     * Setter for file name format.
+     * Setter to specify the regular expression to match the file name against.
      *
      * @param fileNamePattern format of file.
      */
@@ -225,7 +225,8 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
     }
 
     /**
-     * Sets whether the check should look for a file name match or mismatch.
+     * Setter to control whether to look for a match or mis-match on the file name,
+     * if the fileNamePattern is supplied, otherwise it is applied on the folderPattern.
      *
      * @param match check's option for matching file names.
      */
@@ -234,7 +235,7 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
     }
 
     /**
-     * Sets whether file name matching should drop the file extension or not.
+     * Setter to control whether to ignore the file extension for the file name match.
      *
      * @param ignoreFileNameExtensions check's option for ignoring file extension.
      */
