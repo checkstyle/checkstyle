@@ -31,39 +31,46 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * <p>
  * Checks that the order of modifiers conforms to the suggestions in the
- * <a
- * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html">
- * Java Language specification, sections 8.1.1, 8.3.1 and 8.4.3</a>.
- * The correct order is:</p>
-
-<ol>
-  <li><span class="code">public</span></li>
-  <li><span class="code">protected</span></li>
-
-  <li><span class="code">private</span></li>
-  <li><span class="code">abstract</span></li>
-  <li><span class="code">default</span></li>
-  <li><span class="code">static</span></li>
-  <li><span class="code">final</span></li>
-  <li><span class="code">transient</span></li>
-  <li><span class="code">volatile</span></li>
-
-  <li><span class="code">synchronized</span></li>
-  <li><span class="code">native</span></li>
-  <li><span class="code">strictfp</span></li>
-</ol>
+ * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-8.html">
+ * Java Language specification, &#167; 8.1.1, 8.3.1, 8.4.3</a> and
+ * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-9.html">9.4</a>.
+ * The correct order is:
+ * </p>
+ * <ol>
+ * <li> {@code public} </li>
+ * <li> {@code protected} </li>
+ * <li> {@code private} </li>
+ * <li> {@code abstract} </li>
+ * <li> {@code default} </li>
+ * <li> {@code static} </li>
+ * <li> {@code final} </li>
+ * <li> {@code transient} </li>
+ * <li> {@code volatile} </li>
+ * <li> {@code synchronized} </li>
+ * <li> {@code native} </li>
+ * <li> {@code strictfp} </li>
+ * </ol>
+ * <p>
  * In additional, modifiers are checked to ensure all annotations
  * are declared before all other modifiers.
+ * </p>
  * <p>
  * Rationale: Code is easier to read if everybody follows
  * a standard.
  * </p>
  * <p>
- * An example of how to configure the check is:
+ * ATTENTION: We skip
+ * <a href="https://www.oracle.com/technetwork/articles/java/ma14-architect-annotations-2177655.html">
+ * type annotations</a> from validation.
+ * </p>
+ * <p>
+ * To configure the check:
  * </p>
  * <pre>
  * &lt;module name="ModifierOrder"/&gt;
  * </pre>
+ *
+ * @since 3.0
  */
 @StatelessCheck
 public class ModifierOrderCheck

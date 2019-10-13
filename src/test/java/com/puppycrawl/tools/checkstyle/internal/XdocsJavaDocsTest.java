@@ -84,7 +84,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "Header",
         "RegexpHeader",
         // modifiers
-        "ModifierOrder",
         "RedundantModifier",
     };
 
