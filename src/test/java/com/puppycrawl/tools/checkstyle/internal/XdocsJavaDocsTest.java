@@ -80,8 +80,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "SingleLineJavadoc",
         "SummaryJavadoc",
         "WriteTag",
-        // header
-        "RegexpHeader",
         // modifiers
         "RedundantModifier",
     };
