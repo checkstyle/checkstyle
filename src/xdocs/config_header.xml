@@ -197,17 +197,16 @@ line 5: ////////////////////////////////////////////////////////////////////
     </section>
 
     <section name="RegexpHeader">
+      <p>Since Checkstyle 6.9</p>
       <subsection name="Description" id="RegexpHeader_Description">
-        <p>Since Checkstyle 6.9</p>
         <p>
           Checks the header of a source file against a header that contains a
-          <a
-          href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html">regular
-          expression</a> for each line of the source header.
+          <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html">
+          regular expression</a> for each line of the source header.
         </p>
 
         <p>
-          Rationale: In some projects <a href="#Header">checking against a
+          Rationale: In some projects <a href="config_header.html#Header">checking against a
           fixed header</a> is not sufficient, e.g. the header might require a
           copyright line where the year information is not static.
         </p>
@@ -248,7 +247,7 @@ line 14: ^ \*/
           character. Hence you can often use the non-word character
           class to abstract away the concrete comment syntax and allow
           checking the header for different languages with a single
-          header definition.  For example, consider the following header
+          header definition. For example, consider the following header
           specification (note that this is not the full Apache license
           header):
         </p>
@@ -264,11 +263,16 @@ line 6: ^\W*$
         <p>
           Lines 1 and 2 leave room for technical header lines, e.g. the
           "#!/bin/sh" line in Unix shell scripts, or the XML file header
-          of XML files.  Set the multiline property to "1, 2" so these
+          of XML files. Set the multiline property to "1, 2" so these
           lines can be ignored for file types where they do no apply.
           Lines 3 through 6 define the actual header content. Note how
           lines 2, 4 and 5 use escapes for characters that have special
           regexp semantics.
+        </p>
+
+        <p>
+          In default configuration, if header is not specified, the default value
+          of header is set to null and the check does not rise any violations.
         </p>
       </subsection>
 
@@ -283,14 +287,14 @@ line 6: ^\W*$
           </tr>
           <tr>
             <td>headerFile</td>
-            <td>name of the file containing the required header</td>
+            <td>Specify the name of the file containing the required header.</td>
             <td><a href="property_types.html#uri">URI</a></td>
             <td><code>null</code></td>
             <td>3.2</td>
           </tr>
           <tr>
             <td>charset</td>
-            <td>character encoding to use when reading the headerFile</td>
+            <td>Specify the character encoding to use when reading the headerFile.</td>
             <td><a href="property_types.html#string">String</a></td>
             <td>the charset property of the parent
             <a href="config.html#Checker">Checker</a> module</td>
@@ -299,7 +303,7 @@ line 6: ^\W*$
           <tr>
             <td>header</td>
             <td>
-              the required header specified inline. Individual header lines
+              Define the required header specified inline. Individual header lines
               must be separated by the string <code>&quot;\n&quot;</code> (even on platforms with a
               different line separator). For header lines containing <code>&quot;\n\n&quot;</code>
               checkstyle will forcefully expect an empty line to exist. See examples
@@ -311,14 +315,14 @@ line 6: ^\W*$
           </tr>
           <tr>
             <td>multiLines</td>
-            <td>line numbers to repeat (zero or more times)</td>
+            <td>Specify the line numbers to repeat (zero or more times).</td>
             <td><a href="property_types.html#intSet">Integer Set</a></td>
             <td><code>{}</code></td>
             <td>3.4</td>
           </tr>
           <tr>
             <td>fileExtensions</td>
-            <td>file type extension of files to process</td>
+            <td>Specify the file type extension of files to process.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>all files</code></td>
             <td>6.9</td>
@@ -396,7 +400,7 @@ public class ThisWillPass { }
 
         <p>
           <u>Note</u>: <code>ignoreLines</code> property has been
-          removed from this check to simplify it.  To make some line optional
+          removed from this check to simplify it. To make some line optional
           use &quot;^.*$&quot; regexp for this line.
         </p>
       </subsection>
