@@ -53,10 +53,10 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     /** The lines of the header file. */
     private final List<String> readerLines = new ArrayList<>();
 
-    /** The file that contains the header to check against. */
+    /** Specify the name of the file containing the required header. */
     private URI headerFile;
 
-    /** Name of a charset to use for loading the header from a file. */
+    /** Specify the character encoding to use when reading the headerFile. */
     private String charset = System.getProperty("file.encoding", StandardCharsets.UTF_8.name());
 
     /**
@@ -75,7 +75,8 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     }
 
     /**
-     * Set the charset to use for loading the header from a file.
+     * Setter to specify the character encoding to use when reading the headerFile.
+     *
      * @param charset the charset to use for loading the header from a file
      * @throws UnsupportedEncodingException if charset is unsupported
      */
@@ -88,7 +89,8 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     }
 
     /**
-     * Set the header file to check against.
+     * Setter to specify the name of the file containing the required header..
+     *
      * @param uri the uri of the header to load.
      * @throws CheckstyleException if fileName is empty.
      */

@@ -26,11 +26,93 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
- * Checks the header of the source against a fixed header file.
- * In default configuration,if header is not specified,
- * the default value of header is set to null
- * and the check does not rise any violations.
+ * <p>
+ * Checks that a source file begins with a specified header.
+ * Property {@code headerFile} specifies a file that contains the required header.
+ * Alternatively, the header specification can be set directly in the
+ * {@code header} property without the need for an external file.
+ * </p>
+ * <p>
+ * Property {@code ignoreLines} specifies the line numbers to ignore when matching
+ * lines in a header file. This property is very useful for supporting headers
+ * that contain copyright dates. For example, consider the following header:
+ * </p>
+ * <pre>
+ * line 1: ////////////////////////////////////////////////////////////////////
+ * line 2: // checkstyle:
+ * line 3: // Checks Java source code for adherence to a set of rules.
+ * line 4: // Copyright (C) 2002  Oliver Burn
+ * line 5: ////////////////////////////////////////////////////////////////////
+ * </pre>
+ * <p>
+ * Since the year information will change over time, you can tell Checkstyle
+ * to ignore line 4 by setting property {@code ignoreLines} to {@code 4}.
+ * </p>
+ * <p>
+ * In default configuration, if header is not specified, the default value
+ * of header is set to {@code null} and the check does not rise any violations.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code headerFile} - Specify the name of the file containing the required header.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code charset} - Specify the character encoding to use when reading the headerFile.
+ * Default value is the charset property of the parent
+ * <a href="https://checkstyle.org/config.html#Checker">Checker</a> module.
+ * </li>
+ * <li>
+ * Property {@code header} - Specify the required header specified inline.
+ * Individual header lines must be separated by the string {@code "\n"}
+ * (even on platforms with a different line separator), see examples below.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code ignoreLines} - Specify the line numbers to ignore.
+ * Default value is {@code {}}.
+ * </li>
+ * <li>
+ * Property {@code fileExtensions} - Specify the file type extension of files to process.
+ * Default value is {@code all files}.
+ * </li>
+ * </ul>
+ * <p>
+ * In default configuration the check does not rise any violations.
+ * Default values of properties are used.
+ * </p>
+ * <pre>
+ * &lt;module name="Header"/&gt;
+ * </pre>
+ * <p>
+ * To configure the check to use header file {@code "config/java.header"}
+ * and ignore lines {@code 2}, {@code 3}, and {@code 4} and only process Java files:
+ * </p>
+ * <pre>
+ * &lt;module name="Header"&gt;
+ *   &lt;property name="headerFile" value="config/java.header"/&gt;
+ *   &lt;property name="ignoreLines" value="2, 3, 4"/&gt;
+ *   &lt;property name="fileExtensions" value="java"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check to verify that each file starts with the header
+ * </p>
+ * <pre>
+ * // Copyright (C) 2004 MyCompany
+ * // All rights reserved
+ * </pre>
+ * <p>
+ * without the need for an external header file:
+ * </p>
+ * <pre>
+ * &lt;module name="Header"&gt;
+ *   &lt;property name="header"
+ *     value="// Copyright (C) 2004 MyCompany\n// All rights reserved"/&gt;
+ * &lt;/module&gt;
+ * </pre>
  *
+ * @since 6.9
  */
 @StatelessCheck
 public class HeaderCheck extends AbstractHeaderCheck {
@@ -50,7 +132,7 @@ public class HeaderCheck extends AbstractHeaderCheck {
     /** Empty array to avoid instantiations. */
     private static final int[] EMPTY_INT_ARRAY = new int[0];
 
-    /** The header lines to ignore in the check, sorted. */
+    /** Specify the line numbers to ignore. */
     private int[] ignoreLines = EMPTY_INT_ARRAY;
 
     /**
@@ -75,7 +157,8 @@ public class HeaderCheck extends AbstractHeaderCheck {
     }
 
     /**
-     * Set the lines numbers to ignore in the header check.
+     * Setter to specify the line numbers to ignore.
+     *
      * @param list comma separated list of line numbers to ignore in header.
      */
     public void setIgnoreLines(int... list) {

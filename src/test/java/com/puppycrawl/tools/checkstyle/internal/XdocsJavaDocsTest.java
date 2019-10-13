@@ -81,7 +81,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "SummaryJavadoc",
         "WriteTag",
         // header
-        "Header",
         "RegexpHeader",
         // modifiers
         "ModifierOrder",
