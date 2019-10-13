@@ -116,7 +116,7 @@ jdk12)
   exclude3="\!TokenUtilTest#testTokenValueIncorrect2,"
   exclude4="\!ImportControlLoaderPowerTest#testInputStreamThatFailsOnClose"
 
-  mvn -e package -Passembly -Dtest=$exclude1$exclude2$exclude3$exclude4
+  mvn -e package -Passembly
   mvn -e site -Dlinkcheck.skip=true
   ;;
 
