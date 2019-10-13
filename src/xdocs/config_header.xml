@@ -23,12 +23,12 @@
     </section>
 
     <section name="Header">
+      <p>Since Checkstyle 6.9</p>
       <subsection name="Description" id="Header_Description">
-        <p>Since Checkstyle 6.9</p>
         <p>
           Checks that a source file begins with a specified header. Property
-          <code> headerFile</code> specifies a file that contains
-          the required header.  Alternatively, the header specification can be
+          <code>headerFile</code> specifies a file that contains
+          the required header. Alternatively, the header specification can be
           set directly in the <code>header</code> property
           without the need for an external file.
         </p>
@@ -51,7 +51,15 @@ line 5: ////////////////////////////////////////////////////////////////////
         <p>
           Since the year information will change over time, you can tell
           Checkstyle to ignore line 4 by setting property <code>ignoreLines</code> to
-          <code> 4</code>.
+          <code>4</code>.
+        </p>
+      </subsection>
+
+      <subsection name="Notes" id="Header_Notes">
+        <p>
+          In default configuration, if header is not specified,
+          the default value of header is set to <code>null</code>
+          and the check does not rise any violations.
         </p>
       </subsection>
 
@@ -66,14 +74,14 @@ line 5: ////////////////////////////////////////////////////////////////////
           </tr>
           <tr>
             <td>headerFile</td>
-            <td>name of the file containing the required header</td>
+            <td>Specify the name of the file containing the required header.</td>
             <td><a href="property_types.html#uri">URI</a></td>
             <td><code>null</code></td>
             <td>3.2</td>
           </tr>
           <tr>
             <td>charset</td>
-            <td>character encoding to use when reading the headerFile</td>
+            <td>Specify the character encoding to use when reading the headerFile.</td>
             <td><a href="property_types.html#string">String</a></td>
             <td>the charset property of the parent
             <a href="config.html#Checker">Checker</a> module</td>
@@ -82,7 +90,7 @@ line 5: ////////////////////////////////////////////////////////////////////
           <tr>
             <td>header</td>
             <td>
-              the required header specified inline. Individual header lines
+              Specify the required header specified inline. Individual header lines
               must be separated by the string <code>&quot;\n&quot;</code> (even on platforms with a
               different line separator), see examples below.
             </td>
@@ -92,14 +100,14 @@ line 5: ////////////////////////////////////////////////////////////////////
           </tr>
           <tr>
             <td>ignoreLines</td>
-            <td>line numbers to ignore</td>
+            <td>Specify the line numbers to ignore.</td>
             <td><a href="property_types.html#intSet">Integer Set</a></td>
             <td><code>{}</code></td>
             <td>3.2</td>
           </tr>
           <tr>
             <td>fileExtensions</td>
-            <td>file type extension of files to process</td>
+            <td>Specify the file type extension of files to process.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>all files</code></td>
             <td>6.9</td>

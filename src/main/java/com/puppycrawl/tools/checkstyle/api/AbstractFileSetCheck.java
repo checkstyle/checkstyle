@@ -44,7 +44,7 @@ public abstract class AbstractFileSetCheck
     /** The dispatcher errors are fired to. */
     private MessageDispatcher messageDispatcher;
 
-    /** The file extensions that are accepted by this filter. */
+    /** Specify the file type extension of files to process. */
     private String[] fileExtensions = CommonUtil.EMPTY_STRING_ARRAY;
 
     /** The tab width for column reporting. */
@@ -143,8 +143,8 @@ public abstract class AbstractFileSetCheck
     }
 
     /**
-     * Sets the file extensions that identify the files that pass the
-     * filter of this FileSetCheck.
+     * Setter to specify the file type extension of files to process.
+     *
      * @param extensions the set of file extensions. A missing
      *         initial '.' character of an extension is automatically added.
      * @throws IllegalArgumentException is argument is null
