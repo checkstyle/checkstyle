@@ -64,7 +64,7 @@ osx-assembly)
 
 osx-package)
   export JAVA_HOME=$(/usr/libexec/java_home)
-  mvn -e package -Dlinkcheck.skip=true
+  mvn -e package
   ;;
 
 osx-jdk12-package)
@@ -77,11 +77,7 @@ osx-jdk12-package)
   ;;
 
 osx-jdk12-assembly)
-  exclude1="!FileContentsTest#testGetJavadocBefore,!FileTextTest#testFindLine*,"
-  exclude2="!MainFrameModelPowerTest#testOpenFileWithUnknownParseMode,"
-  exclude3="!TokenUtilTest#testTokenValueIncorrect2,"
-  export JAVA_HOME=$(/usr/libexec/java_home)
-  mvn -e package -Passembly -Dtest=${exclude1}${exclude2}${exclude3}
+  mvn -e package -Passembly
   ;;
 
 site)
