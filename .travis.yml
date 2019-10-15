@@ -264,7 +264,14 @@ matrix:
       env:
         - DESC="build with OpenJDK12"
         - USE_MAVEN_REPO="true"
-        - CMD="./.ci/travis/travis.sh jdk12"
+        - CMD="./.ci/travis/travis.sh jdk12-assembly-site"
+
+    # OpenJDK12 verify limited
+    - jdk: openjdk12
+      env:
+        - DESC="verify limited with OpenJDK12"
+        - USE_MAVEN_REPO="true"
+        - CMD="./.ci/travis/travis.sh jdk12-verify-limited"
 
     # OpenJDK9 compile input files with jdk9 specific syntax
     - jdk: openjdk9
