@@ -512,12 +512,17 @@ public interface RoadFeature {
     </section>
 
     <section name="RedundantModifier">
-
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="RedundantModifier_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
-          Checks for redundant modifiers in:
+          Checks for redundant modifiers.
         </p>
+        <p>
+          Rationale: The Java Language Specification strongly
+          discourages the usage of <code>public</code> and <code>abstract</code> for method
+          declarations in interface definitions as a matter of style.
+        </p>
+        <p>The check validates:</p>
         <ol>
           <li>Interface and annotation definitions.</li>
           <li>Final modifier on methods of final and anonymous classes.</li>
@@ -531,11 +536,6 @@ public interface RoadFeature {
             as <code>static</code>.
           </li>
         </ol>
-        <p>
-          Rationale: The Java Language Specification strongly
-          discourages the usage of <code>public</code> and <code>abstract</code> for method
-          declarations in interface definitions as a matter of style.
-        </p>
 
         <p>
           Interfaces by definition are abstract so the <code>abstract</code>
