@@ -37,7 +37,6 @@ import org.xml.sax.helpers.DefaultHandler;
  * Contains the common implementation of a loader, for loading a configuration
  * from an XML file.
  * <p>
- * disciplinary, dour, draconian, exacting, firm, forbidding, grim, hard, hard-
  * boiled, harsh, harsh, in line, iron-fisted, no-nonsense, oppressive,
  * persnickety, picky, prudish, punctilious, puritanical, rigid, rigorous,
  * scrupulous, set, severe, square, stern, stickler, straight, strait-laced,
