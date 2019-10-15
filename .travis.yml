@@ -245,24 +245,17 @@ matrix:
         - CMD="./.ci/travis/travis.sh versions"
         - SKIP_JOB_BY_FILES="false"
 
-    # OpenJDK9 build
-    - jdk: openjdk9
-      env:
-        - DESC="build with OpenJDK9"
-        - USE_MAVEN_REPO="true"
-        - CMD="mvn -e package -Passembly && mvn -e site -Dlinkcheck.skip=true"
-
-    # OpenJDK10 build
-    - jdk: openjdk10
-      env:
-        - DESC="build with OpenJDK10"
-        - USE_MAVEN_REPO="true"
-        - CMD="mvn -e package -Passembly && mvn -e site -Dlinkcheck.skip=true"
-
-    # OpenJDK11 build
+    # OpenJDK11 verify
     - jdk: openjdk11
       env:
-        - DESC="build with OpenJDK11"
+        - DESC="verify with OpenJDK11"
+        - USE_MAVEN_REPO="true"
+        - CMD="mvn -e verify"
+
+    # OpenJDK11 assembly/site
+    - jdk: openjdk11
+      env:
+        - DESC="assembly/site with OpenJDK11"
         - USE_MAVEN_REPO="true"
         - CMD="mvn -e package -Passembly && mvn -e site -Dlinkcheck.skip=true"
 
