@@ -216,4 +216,21 @@ class InputRightCurlyAnnotations
             flag = !flag; } String.CASE_INSENSITIVE_ORDER. //violation
             equals("Xe-xe");
     }
+
+    public void testMethod() {}; //violation
+
+    public void testMethod1() {
+    }; //violation
+
+    public class TestClass {}; //violation
+
+    public class TestClass1 {
+    }; //violation
+
+    public class TestClass2 {
+        public TestClass2() {}; //violation
+
+        public TestClass2(String someValue) {
+        }; //violation
+    }
 }

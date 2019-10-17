@@ -58,14 +58,6 @@ public class InputRightCurlyAlone {
                 .collect(java.util.stream.Collectors.toList());
     }
 
-    class TestClass { private int field; }  //violation
-
-    class TestClass2 { private int field; };  //violation
-
-    class TestClass3 {
-        private int field;
-    };  //violation
-
     void method6(int a) {
         java.util.Map<String, String> map3 = new java.util.LinkedHashMap<String, String>() {{
             put("Hello", "World");

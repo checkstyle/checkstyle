@@ -246,7 +246,7 @@ public class RightCurlyCheck extends AbstractCheck {
     private static boolean shouldBeAloneOnLineWithNotAloneOption(Details details,
                                                                  String targetSrcLine) {
         return shouldBeAloneOnLineWithAloneOption(details, targetSrcLine)
-                && !isSingleLineBlock(details);
+                && !isBlockAloneOnSingleLine(details);
     }
 
     /**
@@ -286,15 +286,14 @@ public class RightCurlyCheck extends AbstractCheck {
         return rcurly.getParent().getParent().getType() == TokenTypes.INSTANCE_INIT
                 && details.nextToken.getType() == TokenTypes.RCURLY
                 && rcurly.getLineNo() != Details.getNextToken(tokenAfterNextToken).getLineNo();
-
     }
 
     /**
-     * Checks whether block has a single-line format.
+     * Checks whether block has a single-line format and is alone on a line.
      * @param details for validation.
-     * @return true if block has single-line format.
+     * @return true if block has single-line format and is alone on a line.
      */
-    private static boolean isSingleLineBlock(Details details) {
+    private static boolean isBlockAloneOnSingleLine(Details details) {
         final DetailAST rcurly = details.rcurly;
         final DetailAST lcurly = details.lcurly;
         DetailAST nextToken = details.nextToken;
@@ -306,7 +305,17 @@ public class RightCurlyCheck extends AbstractCheck {
             nextToken = Details.getNextToken(doWhileSemi);
         }
         return rcurly.getLineNo() == lcurly.getLineNo()
-                && rcurly.getLineNo() != nextToken.getLineNo();
+                && (rcurly.getLineNo() != nextToken.getLineNo()
+                || isRightcurlyFollowedBySemicolon(details));
+    }
+
+    /**
+     * Checks whether the right curly is followed by a semicolon.
+     * @param details details for validation.
+     * @return true if the right curly is followed by a semicolon.
+     */
+    private static boolean isRightcurlyFollowedBySemicolon(Details details) {
+        return details.nextToken.getType() == TokenTypes.SEMI;
     }
 
     /**
