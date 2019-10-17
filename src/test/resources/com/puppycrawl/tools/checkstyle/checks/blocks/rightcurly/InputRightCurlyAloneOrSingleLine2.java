@@ -58,15 +58,7 @@ public class InputRightCurlyAloneOrSingleLine2 {
                 .collect(java.util.stream.Collectors.toList());
     }
 
-    class TestClass { private int field; }
-
-    class TestClass2 { private int field; };  //violation
-
-    class TestClass3 {
-        private int field;
-    };  //violation
-
     class TestClass4 { }
 
-    class TestClass5 { } { }
+    class TestClass5 { } { } //violation
 }

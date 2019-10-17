@@ -29,4 +29,10 @@ public class InputRightCurlySame {
         for (; ; ) {
         }
     }
+
+    public void function(){};
+
+    public class TestClass {};
+
+    public void testMethod() {};
 }

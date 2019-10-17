@@ -252,6 +252,12 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "204:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
             "208:76: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 76),
             "216:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
+            "220:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
+            "223:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "225:29: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 29),
+            "228:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "231:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
+            "234:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
         };
         verify(checkConfig, getPath("InputRightCurlyAnnotations.java"), expected);
     }
@@ -288,7 +294,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "161:55: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 55),
             "164:75: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 75),
             "164:76: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 76),
-            "168:80: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 80),
             "164:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
             "176:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
             "182:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
@@ -459,11 +464,8 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "51:53: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 53),
             "53:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
             "53:52: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 52),
-            "61:42: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 42),
-            "63:43: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 43),
-            "67:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "74:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "74:11: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 11),
+            "66:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "66:11: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 11),
         };
         verify(checkConfig, getPath("InputRightCurlyAlone.java"),
                 expected);
@@ -481,12 +483,54 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "29:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
             "38:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
             "42:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
-            "63:43: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 43),
-            "67:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
-            "71:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
+            "63:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
         };
         verify(checkConfig, getPath(
                 "InputRightCurlyAloneOrSingleLine2.java"), expected);
+    }
+
+    @Test
+    public void testBlocksEndingWithSemiOptionSame() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
+        checkConfig.addAttribute("option", RightCurlyOption.SAME.toString());
+        checkConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF");
+        final String[] expected = {
+            "14:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "19:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "25:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+        };
+        verify(checkConfig, getPath("InputRightCurlySameBlocksWithSemi.java"), expected);
+    }
+
+    @Test
+    public void testBlocksEndingWithSemiOptionAlone() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
+        checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
+        checkConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF");
+        final String[] expected = {
+            "11:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
+            "14:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "16:29: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 29),
+            "19:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "22:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
+            "25:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+        };
+        verify(checkConfig, getPath("InputRightCurlyAloneBlocksWithSemi.java"), expected);
+    }
+
+    @Test
+    public void testBlocksEndingWithSemiOptionAloneOrSingleLine() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
+        checkConfig.addAttribute("option",
+                RightCurlyOption.ALONE_OR_SINGLELINE.toString());
+        checkConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF");
+        final String[] expected = {
+            "14:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "19:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "25:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+        };
+        verify(checkConfig,
+                getPath("InputRightCurlyAloneOrSingleLineBlocksWithSemi.java"), expected);
     }
 
 }
