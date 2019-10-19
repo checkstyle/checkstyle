@@ -115,9 +115,6 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "78:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "Unneeded"),
             "79: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
             "87:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
-            "109:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
-            "109:55: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aFour"),
-            "109:66: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aFive"),
             "178:8: " + getCheckMessage(MSG_UNUSED_TAG, "@throws", "ThreadDeath"),
             "179:8: " + getCheckMessage(MSG_UNUSED_TAG, "@throws", "ArrayStoreException"),
             "236:8: " + getCheckMessage(MSG_UNUSED_TAG, "@throws", "java.io.FileNotFoundException"),
@@ -128,7 +125,6 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "305:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aParam"),
             "344:5: " + getCheckMessage(MSG_INVALID_INHERIT_DOC),
             "383:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
-            "389:37: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "algorithm"),
         };
 
         verify(checkConfig, getPath("InputJavadocMethodTags.java"), expected);
@@ -155,9 +151,6 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "78:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "Unneeded"),
             "79: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
             "87:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
-            "109:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
-            "109:55: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aFour"),
-            "109:66: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aFive"),
             "236:8: " + getCheckMessage(MSG_UNUSED_TAG, "@throws", "java.io.FileNotFoundException"),
             "254:8: " + getCheckMessage(MSG_UNUSED_TAG, "@throws", "java.io.FileNotFoundException"),
             "256:28: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IOException"),
@@ -166,7 +159,6 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "305:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aParam"),
             "344:5: " + getCheckMessage(MSG_INVALID_INHERIT_DOC),
             "383:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
-            "389:37: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "algorithm"),
         };
         verify(checkConfig, getPath("InputJavadocMethodTags.java"), expected);
     }
@@ -250,9 +242,6 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "78:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "Unneeded"),
             "79: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
             "87:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
-            "109:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
-            "109:55: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aFour"),
-            "109:66: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aFive"),
             "178:8: " + getCheckMessage(MSG_UNUSED_TAG, "@throws", "ThreadDeath"),
             "179:8: " + getCheckMessage(MSG_UNUSED_TAG, "@throws", "ArrayStoreException"),
             "256:28: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IOException"),
@@ -261,7 +250,6 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "305:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aParam"),
             "344:5: " + getCheckMessage(MSG_INVALID_INHERIT_DOC),
             "383:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
-            "389:37: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "algorithm"),
         };
         verify(checkConfig, getPath("InputJavadocMethodTags.java"), expected);
     }
@@ -350,6 +338,23 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "55:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<Z>"),
         };
         verify(checkConfig, getPath("InputJavadocMethodTypeParamsTags.java"), expected);
+    }
+
+    @Test
+    public void testAllowUndocumentedParamsTags() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
+        final String[] expected = {
+            "17:6: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "unexpectedParam"),
+            "18:6: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "unexpectedParam2"),
+            "20:13: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "unexpectedParam3"),
+            "21:6: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "unexpectedParam4"),
+            "49:7: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "t"),
+            "51:34: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "w"),
+            "60:7: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
+            "61:34: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "y"),
+
+        };
+        verify(checkConfig, getPath("InputJavadocMethodParamsTags.java"), expected);
     }
 
     @Test

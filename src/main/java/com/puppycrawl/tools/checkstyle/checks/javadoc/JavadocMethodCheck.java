@@ -98,14 +98,14 @@ public class JavadocMethodCheck extends AbstractCheck {
     /** Compiled regexp to match Javadoc tags that take an argument. */
     private static final Pattern MATCH_JAVADOC_ARG = CommonUtil.createPattern(
             "^\\s*(?>\\*|\\/\\*\\*)?\\s*@(throws|exception|param)\\s+(\\S+)\\s+\\S*");
-
-    /** Compiled regexp to match first part of multilineJavadoc tags. */
-    private static final Pattern MATCH_JAVADOC_ARG_MULTILINE_START = CommonUtil.createPattern(
-            "^\\s*(?>\\*|\\/\\*\\*)?\\s*@(throws|exception|param)\\s+(\\S+)\\s*$");
+    /** Compiled regexp to match Javadoc tags with argument but with missing description. */
+    private static final Pattern MATCH_JAVADOC_ARG_MISSING_DESCRIPTION =
+        CommonUtil.createPattern("^\\s*(?>\\*|\\/\\*\\*)?\\s*@(throws|exception|param)\\s+"
+            + "(\\S[^*]*)(?:(\\s+|\\*\\/))?");
 
     /** Compiled regexp to look for a continuation of the comment. */
     private static final Pattern MATCH_JAVADOC_MULTILINE_CONT =
-            CommonUtil.createPattern("(\\*/|@|[^\\s\\*])");
+            CommonUtil.createPattern("(\\*\\/|@|[^\\s\\*])");
 
     /** Multiline finished at end of comment. */
     private static final String END_JAVADOC = "*/";
@@ -513,12 +513,12 @@ public class JavadocMethodCheck extends AbstractCheck {
             currentLine++;
             final Matcher javadocArgMatcher =
                 MATCH_JAVADOC_ARG.matcher(lines[i]);
+            final Matcher javadocArgMissingDescriptionMatcher =
+                MATCH_JAVADOC_ARG_MISSING_DESCRIPTION.matcher(lines[i]);
             final Matcher javadocNoargMatcher =
                 MATCH_JAVADOC_NOARG.matcher(lines[i]);
             final Matcher noargCurlyMatcher =
                 MATCH_JAVADOC_NOARG_CURLY.matcher(lines[i]);
-            final Matcher argMultilineStart =
-                MATCH_JAVADOC_ARG_MULTILINE_START.matcher(lines[i]);
             final Matcher noargMultilineStart =
                 MATCH_JAVADOC_NOARG_MULTILINE_START.matcher(lines[i]);
 
@@ -527,6 +527,13 @@ public class JavadocMethodCheck extends AbstractCheck {
                 tags.add(new JavadocTag(currentLine, col, javadocArgMatcher.group(1),
                         javadocArgMatcher.group(2)));
             }
+            else if (javadocArgMissingDescriptionMatcher.find()) {
+                final int col = calculateTagColumn(javadocArgMissingDescriptionMatcher, i,
+                    startColumnNumber);
+                tags.add(new JavadocTag(currentLine, col,
+                    javadocArgMissingDescriptionMatcher.group(1),
+                    javadocArgMissingDescriptionMatcher.group(2)));
+            }
             else if (javadocNoargMatcher.find()) {
                 final int col = calculateTagColumn(javadocNoargMatcher, i, startColumnNumber);
                 tags.add(new JavadocTag(currentLine, col, javadocNoargMatcher.group(1)));
@@ -534,10 +541,6 @@ public class JavadocMethodCheck extends AbstractCheck {
             else if (noargCurlyMatcher.find()) {
                 final int col = calculateTagColumn(noargCurlyMatcher, i, startColumnNumber);
                 tags.add(new JavadocTag(currentLine, col, noargCurlyMatcher.group(1)));
-            }
-            else if (argMultilineStart.find()) {
-                final int col = calculateTagColumn(argMultilineStart, i, startColumnNumber);
-                tags.addAll(getMultilineArgTags(argMultilineStart, col, lines, i, currentLine));
             }
             else if (noargMultilineStart.find()) {
                 tags.addAll(getMultilineNoArgTags(noargMultilineStart, lines, i, currentLine));
@@ -560,35 +563,6 @@ public class JavadocMethodCheck extends AbstractCheck {
             col += startColumnNumber;
         }
         return col;
-    }
-
-    /**
-     * Gets multiline Javadoc tags with arguments.
-     * @param argMultilineStart javadoc tag Matcher
-     * @param column column number of Javadoc tag
-     * @param lines comment text lines
-     * @param lineIndex line number that contains the javadoc tag
-     * @param tagLine javadoc tag line number in file
-     * @return javadoc tags with arguments
-     */
-    private static List<JavadocTag> getMultilineArgTags(final Matcher argMultilineStart,
-            final int column, final String[] lines, final int lineIndex, final int tagLine) {
-        final List<JavadocTag> tags = new ArrayList<>();
-        final String param1 = argMultilineStart.group(1);
-        final String param2 = argMultilineStart.group(2);
-        for (int remIndex = lineIndex + 1; remIndex < lines.length; remIndex++) {
-            final Matcher multilineCont = MATCH_JAVADOC_MULTILINE_CONT.matcher(lines[remIndex]);
-            if (multilineCont.find()) {
-                final String lFin = multilineCont.group(1);
-                if (!lFin.equals(NEXT_TAG)
-                    && !lFin.equals(END_JAVADOC)) {
-                    tags.add(new JavadocTag(tagLine, column, param1, param2));
-                }
-                break;
-            }
-        }
-
-        return tags;
     }
 
     /**
