@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import java.io.File;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
@@ -45,6 +46,11 @@ public class SuppressFilterElement
 
     /** The pattern for file names. */
     private final String filePattern;
+
+    /** If true (and on Windows), converts backslash into slash and retry. */
+    private final boolean convertFilePathToForwardSlashedOnMismatch =
+            File.separatorChar == '\\' && Boolean.parseBoolean(System.getProperty(
+                    "com.puppycrawl.convertFilePathToForwardSlashedOnMismatch", "true"));
 
     /** The regexp to match check names against. */
     private final Pattern checkRegexp;
@@ -192,10 +198,22 @@ public class SuppressFilterElement
      */
     private boolean isFileNameAndModuleNameMatching(AuditEvent event) {
         return event.getFileName() != null
-                && (fileRegexp == null || fileRegexp.matcher(event.getFileName()).find())
+                && (fileRegexp == null || fileMatches(event.getFileName()))
                 && event.getLocalizedMessage() != null
                 && (moduleId == null || moduleId.equals(event.getModuleId()))
                 && (checkRegexp == null || checkRegexp.matcher(event.getSourceName()).find());
+    }
+
+    /**
+     * Check if file path matches (and maybe also try with forward slashes).
+     *
+     * @param file file path as String
+     * @return true if the configured regex is found in the file path
+     */
+    private boolean fileMatches(String file) {
+        return fileRegexp.matcher(file).find()
+                || convertFilePathToForwardSlashedOnMismatch
+                        && fileRegexp.matcher(file.replace('\\', '/')).find();
     }
 
     /**
@@ -220,8 +238,8 @@ public class SuppressFilterElement
 
     @Override
     public int hashCode() {
-        return Objects.hash(filePattern, checkPattern, messagePattern, moduleId, linesCsv,
-                columnsCsv);
+        return Objects.hash(convertFilePathToForwardSlashedOnMismatch, filePattern, checkPattern,
+                messagePattern, moduleId, linesCsv, columnsCsv);
     }
 
     @Override
@@ -233,7 +251,9 @@ public class SuppressFilterElement
             return false;
         }
         final SuppressFilterElement suppressElement = (SuppressFilterElement) other;
-        return Objects.equals(filePattern, suppressElement.filePattern)
+        return convertFilePathToForwardSlashedOnMismatch
+                == suppressElement.convertFilePathToForwardSlashedOnMismatch
+                && Objects.equals(filePattern, suppressElement.filePattern)
                 && Objects.equals(checkPattern, suppressElement.checkPattern)
                 && Objects.equals(messagePattern, suppressElement.messagePattern)
                 && Objects.equals(moduleId, suppressElement.moduleId)

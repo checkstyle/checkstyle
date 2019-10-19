@@ -805,6 +805,7 @@
                 <rule>
                   <element>CLASS</element>
                   <excludes>
+                    <exclude>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</exclude>
                     <!-- Parser related classes -->
                     <exclude>
                       com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer
@@ -936,6 +937,26 @@
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
                       <minimum>1.00</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+                <rule>
+                  <element>CLASS</element>
+                  <includes>
+                    <include>
+                      com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement
+                    </include>
+                  </includes>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>1.00</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.96</minimum>
                     </limit>
                   </limits>
                 </rule>

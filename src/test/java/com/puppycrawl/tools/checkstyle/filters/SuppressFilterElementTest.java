@@ -24,6 +24,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.io.File;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -199,6 +201,31 @@ public class SuppressFilterElementTest {
     }
 
     @Test
+    public void testCheckForwardSlashedPath() {
+        // This test can only run on windows.
+        if (File.separatorChar == '\\') {
+            final LocalizedMessage message =
+                    new LocalizedMessage(10, 10, "", "", null, null, getClass(), null);
+            final AuditEvent ev = new AuditEvent(this, "path\\to\\ATest.java", message);
+            final SuppressFilterElement myFilter =
+                    new SuppressFilterElement("path/to/", null, null, null, null, null);
+            assertFalse("Filter should not accept invalid event", myFilter.accept(ev));
+        }
+    }
+
+    @Test
+    public void testCheckForwardSlashedPathMiss() {
+        final LocalizedMessage message =
+                new LocalizedMessage(10, 10, "", "", null, null, getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, "path\\to\\ATest.java", message);
+        System.setProperty("com.puppycrawl.convertFilePathToForwardSlashedOnMismatch", "false");
+        final SuppressFilterElement myFilter =
+                new SuppressFilterElement("path/to/", null, null, null, null, null);
+        System.clearProperty("com.puppycrawl.convertFilePathToForwardSlashedOnMismatch");
+        assertTrue("Filter should not accept invalid event", myFilter.accept(ev));
+    }
+
+    @Test
     public void testEquals() {
         // filterBased is used instead of filter field only to satisfy IntelliJ IDEA Inspection
         // Inspection "Arguments to assertEquals() in wrong order "
@@ -227,6 +254,12 @@ public class SuppressFilterElementTest {
         assertEquals("filter, filter2", filterBased2, filter23);
         assertNotEquals("filter, filter2", filterBased2, filter2);
         assertEquals("filter, filter2", filterBased2, filter23);
+
+        System.setProperty("com.puppycrawl.convertFilePathToForwardSlashedOnMismatch", "false");
+        final SuppressFilterElement filter4 =
+                new SuppressFilterElement("Test", "Test", null, null, null, null);
+        assertNotEquals("filter, filter2", filterBased, filter4);
+        System.clearProperty("com.puppycrawl.convertFilePathToForwardSlashedOnMismatch");
     }
 
     @Test
