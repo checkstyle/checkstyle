@@ -47,7 +47,7 @@ no-error-orekit)
   # no CI is enforced in project, so to make our build stable we should
   # checkout to latest release/development (annotated tag or hash)
   # git checkout $(git describe --abbrev=0 --tags)
-  git checkout 3a9787ec3f166bd770f9c119cd7724f57
+  git checkout 973d1bd3e4532d2c1d3a7c28136e2713bd057542
   mvn -e compile checkstyle:check -Dorekit.checkstyle.version=${CS_POM_VERSION}
   cd ../
   rm -rf Orekit
