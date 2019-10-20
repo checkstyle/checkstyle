@@ -2114,7 +2114,7 @@ public static final int [] array; // @cs.suppress [ConstantName|NoWhitespaceAfte
             </p>
             <source>
 &lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
-  &lt;property name=&quot;commentFormat&quot; value=&quot;@cs-: (\w+) \(\w+\)"/&gt;
+  &lt;property name=&quot;commentFormat&quot; value=&quot;@cs-: (\w+) \(.*\)"/&gt;
   &lt;property name=&quot;idFormat&quot; value=&quot;$1&quot;/&gt;
   &lt;property name=&quot;influenceFormat&quot; value=&quot;0&quot;/&gt;
 &lt;/module&gt;
