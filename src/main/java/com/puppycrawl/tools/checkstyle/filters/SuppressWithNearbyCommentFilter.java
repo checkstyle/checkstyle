@@ -206,7 +206,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <pre>
  * &lt;module name="SuppressWithNearbyCommentFilter"&gt;
- *   &lt;property name="commentFormat" value="@cs-: (\w+) \(\w+\)"/&gt;
+ *   &lt;property name="commentFormat" value="@cs-: (\w+) \(.*\)"/&gt;
  *   &lt;property name="idFormat" value="$1"/&gt;
  *   &lt;property name="influenceFormat" value="0"/&gt;
  * &lt;/module&gt;
