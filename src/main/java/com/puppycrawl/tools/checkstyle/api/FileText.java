@@ -78,14 +78,17 @@ public final class FileText {
     private final Charset charset;
 
     /**
-     * The full text contents of the file.
-     */
-    private final String fullText;
-
-    /**
      * The lines of the file, without terminators.
      */
     private final String[] lines;
+
+    /**
+     * The full text contents of the file.
+     *
+     * <p>Field is not final to ease reaching full test coverage.
+     * @noinspection FieldMayBeFinal
+     */
+    private String fullText;
 
     /**
      * The first position of each line within the full text.

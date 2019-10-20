@@ -27,6 +27,11 @@
                       value="picocli.CommandLine.Option
                             |picocli.CommandLine.Parameters
                             |picocli.CommandLine.Spec"/>
+            <!-- final modifier prevent us from reaching full test coverage,
+                 we value full coverage more than final modifier. -->
+            <property name="violationSuppressXPath"
+                      value="//ClassOrInterfaceDeclaration[@Image='FileText']
+                                //FieldDeclaration//VariableDeclarator[@Name='fullText']"/>
         </properties>
     </rule>
     <rule ref="category/java/bestpractices.xml/UnusedPrivateField">
