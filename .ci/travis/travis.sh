@@ -68,7 +68,7 @@ osx-package)
   ;;
 
 osx-jdk12-package)
-  exclude1="!FileContentsTest#testGetJavadocBefore,!FileTextTest#testFindLine*,"
+  exclude1="!FileContentsTest#testGetJavadocBefore,"
   exclude2="!MainFrameModelPowerTest#testOpenFileWithUnknownParseMode,"
   exclude3="!TokenUtilTest#testTokenValueIncorrect2,"
   exclude4="!ImportControlLoaderPowerTest#testInputStreamThatFailsOnClose"
@@ -112,7 +112,7 @@ jdk12-assembly-site)
 
 jdk12-verify-limited)
   # powermock doesn't support modifying final fields in JDK12, so need jacoco skip
-  exclude1="!FileContentsTest#testGetJavadocBefore,!FileTextTest#testFindLine*,"
+  exclude1="!FileContentsTest#testGetJavadocBefore,"
   exclude2="!MainFrameModelPowerTest#testOpenFileWithUnknownParseMode,"
   exclude3="!TokenUtilTest#testTokenValueIncorrect2,"
   exclude4="!ImportControlLoaderPowerTest#testInputStreamThatFailsOnClose"
