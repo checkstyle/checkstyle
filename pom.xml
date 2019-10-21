@@ -348,7 +348,7 @@
           <artifactId>maven-release-plugin</artifactId>
           <!-- version is same as in supper-pom as it is better to use same version
                as in sonatype-nexus-staging -->
-          <version>2.1</version>
+          <version>2.5.3</version>
         </plugin>
         <!-- from super-pom END -->
         <plugin>
