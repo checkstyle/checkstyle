@@ -30,6 +30,12 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <p>
  * Checks if unnecessary semicolon is used after type member declaration.
  * </p>
+ * <p>
+ * This check is not applicable to empty statements (unnecessary semicolons inside methods or
+ * init blocks),
+ * <a href="https://checkstyle.org/config_coding.html#EmptyStatement">EmptyStatement</a>
+ * is responsible for it.
+ * </p>
  * <ul>
  * <li>
  * Property {@code tokens} - tokens to check
@@ -75,6 +81,19 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *     A(){}; // violation, extra semicolon after constructor definition
  *     void method() {}; // violation, extra semicolon after method definition
  *     int field = 10;; // violation, extra semicolon after field declaration
+ *
+ *     {
+ *         ; // no violation, it is empty statement inside init block
+ *     }
+ *
+ *     static {
+ *         ; // no violation, it is empty statement inside static init block
+ *     }
+ *
+ *     void anotherMethod() {
+ *         ; // no violation, it is empty statement
+ *         if(true); // no violation, it is empty statement
+ *     }
  * }
  * </pre>
  *
