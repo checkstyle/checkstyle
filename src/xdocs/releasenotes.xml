@@ -15,6 +15,130 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.26">
+      <div class="releaseDate">27.10.2019</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Remove AbstractTypeAwareCheck and combine the missing pieces into JavadocMethod.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/7116">#7116</a>
+          </li>
+          <li>
+            remove functionality of Checker.setClassLoader and TreeWalker.setClassLoader.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/3773">#3773</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            WriteTag: Add localization for javadoc.write.tag message.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7120">#7120</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            upgrade to pmd 6.18.0.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7225">#7225</a>
+          </li>
+          <li>
+            Tests fail on OpenJDK 12 due to &#39;Failed to find the
+            &quot;modifiers&quot; field in method setInternalState.&#39;.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7033">#7033</a>
+          </li>
+          <li>
+            Purpose of UnnecessarySemicolonAfterTypeMemberDeclaration is unclear
+            in documentation..
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/7077">#7077</a>
+          </li>
+          <li>
+            doc: fix config sample for SuppressWithNearbyCommentFilter.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            config: fix Travis items to do more jdk11 and jdk12 builds.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7192">#7192</a>
+          </li>
+          <li>
+            Align XDocs and Javadocs for modifiers package.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7186">#7186</a>
+          </li>
+          <li>
+            Align XDocs and Javadocs for header package.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7185">#7185</a>
+          </li>
+          <li>
+            Align XDocs and Javadocs for regexp package.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7163">#7163</a>
+          </li>
+          <li>
+            Align XDocs and Javadocs for metrics package.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7145">#7145</a>
+          </li>
+          <li>
+            Align XDocs and Javadocs for imports package.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7144">#7144</a>
+          </li>
+          <li>
+            create examples for UnnecessaryParentheses usage .
+            Author: sd1998
+            <a href="https://github.com/checkstyle/checkstyle/issues/5747">#5747</a>
+          </li>
+          <li>
+            Fix JitCI build.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7170">#7170</a>
+          </li>
+          <li>
+            Review disabled validations of eclipse compiler.
+            Author: rnveach, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/5060">#5060</a>
+          </li>
+          <li>
+            config: fix previous commits check to avoid confusion with master and
+                    rewrite main ci for easier maintenance.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/7125">#7125</a>
+          </li>
+          <li>
+            Use ja-JP for Japanese locale, zh-CN for Chinese locale in travis.sh.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7129">#7129</a>
+          </li>
+          <li>
+            Pitest: add new mutator REMOVE_CONDITIONALS.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6320">#6320</a>
+          </li>
+          <li>
+            Remove usage of DetailAST.branchContains.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/5124">#5124</a>
+          </li>
+          <li>
+            Fix pitest coverage for RightCurly.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6367">#6367</a>
+          </li>
+          <li>
+            spotbugs is not executed in build process of openjdk12.
+            Author: Karl-Philipp Richter
+            <a href="https://github.com/checkstyle/checkstyle/issues/7040">#7040</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 8.25">
       <div class="releaseDate">29.09.2019</div>
       <p>Breaking backward compatibility:</p>
