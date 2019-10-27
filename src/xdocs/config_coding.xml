@@ -3431,6 +3431,89 @@ for (String line: lines) {
       </subsection>
     </section>
 
+    <section name="NoArrayTrailingComma">
+      <p>Since Checkstyle 8.28</p>
+       <subsection name="Description" id="NoArrayTrailingComma_Description">
+         <p>
+           Checks that array initialization do not contain a trailing comma.
+           Rationale: JLS allows trailing commas in arrays and enumerations, but does not allow
+           them in other locations. To unify the coding style, the use of trailing commas should
+           be prohibited.
+         </p>
+         <source>
+int[] foo = new int[] {
+  1,
+  2
+};
+         </source>
+         <p>
+          The check demands that there should not be any comma after the last element of an array.
+         </p>
+         <source>
+String[] foo = new String[] {
+  "FOO",
+  "BAR", //violation
+}
+         </source>
+       </subsection>
+       <subsection name="Examples" id="NoArrayTrailingComma_Examples">
+         <p>
+           To configure the check:
+         </p>
+         <source>
+&lt;module name=&quot;ArrayTrailingComma&quot;/&gt;
+         </source>
+         <p>
+           Which results in the following violations:
+         </p>
+         <source>
+String[] foo1 = {
+  "FOO", // OK
+  "BAR", // violation
+};
+String[] foo2 = { "FOO", "BAR", }; // violation
+String[] foo3 = {
+  "FOO", // OK
+  "BAR" // OK
+};
+String[] foo4 = { "FOO", "BAR" }; // OK
+         </source>
+       </subsection>
+       <subsection name="Example of Usage" id="NoArrayTrailingComma_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoArrayTrailingComma">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="NoArrayTrailingComma_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22no.array.trailing.comma%22">
+            no.array.trailing.comma</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="NoArrayTrailingComma_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="NoArrayTrailingComma_Parent_Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="NoClone">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="NoClone_Description">

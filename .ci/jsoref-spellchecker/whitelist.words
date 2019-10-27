@@ -884,6 +884,7 @@ nlow
 NMTOKEN
 noarch
 noarg
+noarraytrailingcomma
 noauto
 nobr
 noclone
