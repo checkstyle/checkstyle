@@ -583,6 +583,10 @@
             Checks that there is a newline at the end of each file.</td>
           </tr>
           <tr>
+            <td><a href="config_coding.html#NoArrayTrailingComma">NoArrayTrailingComma</a></td>
+            <td>Checks if array initialization does not contain a trailing comma.</td>
+          </tr>
+          <tr>
             <td><a href="config_coding.html#NoClone">NoClone</a></td>
             <td>
               Checks that the clone method is not overridden from the
