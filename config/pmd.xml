@@ -75,7 +75,7 @@
     <!-- It is possible only in functional languages and fanatically-pristine code, without
          additional option that are done at ReturnCountExtendedCheck it is not a good rule. -->
     <exclude name="OnlyOneReturn"/>
-    <!-- We use CheckstyleCustomShortVariable, to control the length and skip Override methods. -->
+    <!-- it is not easily configurable we use our Check to cover our needs -->
     <exclude name="ShortVariable"/>
     <!-- huge amount of false positives from 6.18.0 -->
     <exclude name="UnnecessaryFullyQualifiedName"/>
@@ -408,32 +408,4 @@
     <!-- Not configurable, decreases readability. -->
     <exclude name="UseStringBufferForStringAppends"/>
   </rule>
-
-  <!-- Checkstyle own rules. -->
-  <rule name="CheckstyleCustomShortVariable"
-        message="Avoid variables with short names that shorter than 2 symbols: {0}"
-        language="java"
-        class="net.sourceforge.pmd.lang.rule.XPathRule"
-        externalInfoUrl="">
-    <description>
-      Fields, local variables, or parameter names that are very short are not helpful to the reader.
-    </description>
-    <priority>3</priority>
-    <properties>
-      <property name="xpath">
-        <value>
-          <![CDATA[
-          //VariableDeclaratorId[string-length(@Image) < 2]
-          [not(ancestor::ForInit)]
-          [not(../../VariableDeclarator and ../../../LocalVariableDeclaration
-                and ../../../../ForStatement)]
-          [not((ancestor::FormalParameter) and (ancestor::TryStatement))]
-          [not(ancestor::ClassOrInterfaceDeclaration[
-              //MarkerAnnotation/Name[pmd-java:typeIs('java.lang.Override')]])]
-          ]]>
-        </value>
-      </property>
-    </properties>
-  </rule>
-
 </ruleset>
