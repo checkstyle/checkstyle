@@ -2016,6 +2016,30 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         verifyWarns(checkConfig, getPath("InputIndentationNewHandler.java"), expected);
     }
 
+    @Test
+    public void testChainedMethodWithBracketOnNewLine() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("arrayInitIndent", "2");
+        checkConfig.addAttribute("basicOffset", "2");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("caseIndent", "2");
+        checkConfig.addAttribute("forceStrictCondition", "false");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        checkConfig.addAttribute("tabWidth", "2");
+        checkConfig.addAttribute("throwsIndent", "2");
+        final String[] expected = {
+            "44: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 6, 8),
+            "45: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 8, 10),
+            "47: " + getCheckMessage(MSG_ERROR, "method call rparen", 6, 8),
+            "61: " + getCheckMessage(MSG_ERROR, "foo", 5, 8),
+            "82: " + getCheckMessage(MSG_ERROR, "if rcurly", 4, 6),
+            "84: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 2, 4),
+        };
+        final String fileName = "InputIndentationChainedMethodWithBracketOnNewLine.java";
+        verifyWarns(checkConfig, getPath(fileName), expected);
+    }
+
     private static final class IndentAudit implements AuditListener {
 
         private final IndentComment[] comments;
