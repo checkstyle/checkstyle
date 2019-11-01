@@ -57,7 +57,8 @@ public class MethodCallHandler extends AbstractExpressionHandler {
             // we should increase indentation only if this is the first
             // chained method call which was moved to the next line
             else {
-                indentLevel = new IndentLevel(container.getIndent(), getBasicOffset());
+                indentLevel = new IndentLevel(container.getIndent(),
+                    getIndentCheck().getLineWrappingIndentation());
             }
         }
         else if (getMainAst().getFirstChild().getType() == TokenTypes.LITERAL_NEW) {
