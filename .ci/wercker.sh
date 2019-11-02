@@ -37,6 +37,9 @@ no-error-orekit)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/Hipparchus-Math/hipparchus.git
   cd .ci-temp/hipparchus
+  # checkout to version that Orekit expects
+  SHA_HIPPARCHUS="4c6c6fc45e859e""ae2d4eb091a3a3c0a7a458b8d9"
+  git checkout $SHA_HIPPARCHUS
   mvn install -DskipTests
   cd -
   checkout_from https://github.com/CS-SI/Orekit.git
