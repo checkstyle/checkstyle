@@ -48,7 +48,163 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
- * Checks the Javadoc of a method or constructor.
+ * <p>
+ * Checks the Javadoc of a method or constructor. By default,
+ * check does not validate methods and constructors for unused throws.
+ * To allow documented exceptions derived from {@code java.lang.RuntimeException}
+ * that are not declared, set property {@code allowUndeclaredRTE} to true.
+ * The scope to verify is specified using the {@code Scope} class and defaults
+ * to {@code Scope.PRIVATE}. To verify another scope, set property scope to
+ * a different <a href="https://checkstyle.org/property_types.html#scope">scope</a>.
+ * </p>
+ * <p>
+ * Violates parameters and type parameters for which no param tags are present
+ * can be suppressed by defining property {@code allowMissingParamTags}.
+ * Violates exceptions which are declared to be thrown, but for which no throws
+ * tag is present can be suppressed by defining property {@code allowMissingThrowsTags}.
+ * Violates methods which return non-void but for which no return tag is present
+ * can be suppressed by defining property {@code allowMissingReturnTag}.
+ * </p>
+ * <p>
+ * Javadoc is not required on a method that is tagged with the {@code @Override}
+ * annotation. However under Java 5 it is not possible to mark a method required
+ * for an interface (this was <i>corrected</i> under Java 6). Hence Checkstyle
+ * supports using the convention of using a single {@code {@inheritDoc}} tag
+ * instead of all the other tags.
+ * </p>
+ * <p>
+ * Note that only inheritable items will allow the {@code {@inheritDoc}}
+ * tag to be used in place of comments. Static methods at all visibilities,
+ * private non-static methods and constructors are not inheritable.
+ * </p>
+ * <p>
+ * For example, if the following method is implementing a method required by
+ * an interface, then the Javadoc could be done as:
+ * </p>
+ * <pre>
+ * &#47;** {&#64;inheritDoc} *&#47;
+ * public int checkReturnTag(final int aTagIndex,
+ *                           JavadocTag[] aTags,
+ *                           int aLineNo)
+ * </pre>
+ * <p>
+ * The classpath may need to be configured to locate the class information.
+ * The classpath configuration is dependent on the mechanism used to invoke Checkstyle.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code allowedAnnotations} - Specify the list of annotations
+ * that allow missed documentation.
+ * Default value is {@code Override}.
+ * </li>
+ * <li>
+ * Property {@code validateThrows} - Control whether to validate {@code throws} tags.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
+ * Default value is {@code private}.
+ * </li>
+ * <li>
+ * Property {@code excludeScope} - Specify the visibility scope where Javadoc comments
+ * are not checked.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code allowUndeclaredRTE} - Control whether to allow documented exceptions
+ * that are not declared if they are a subclass of {@code java.lang.RuntimeException}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code allowThrowsTagsForSubclasses} - Control whether to allow
+ * documented exceptions that are subclass of one of declared exception.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code allowMissingParamTags} - Control whether to ignore violations
+ * when a method has parameters but does not have matching {@code param} tags in the javadoc.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code allowMissingThrowsTags} - Control whether to ignore violations
+ * when a method declares that it throws exceptions but does not have matching
+ * {@code throws} tags in the javadoc.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code allowMissingReturnTag} - Control whether to ignore violations
+ * when a method returns non-void type and does not have a {@code return} tag in the javadoc.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code logLoadErrors} - Control checkstyle's error handling when
+ * a class loading fails. This check may need to load exception classes mentioned
+ * in the {@code @throws} tag to check whether they are RuntimeExceptions.
+ * If set to {@code false} a classpath configuration problem is assumed and
+ * the TreeWalker stops operating on the class completely. If set to {@code true}
+ * (the default), checkstyle assumes a typo or refactoring problem in the javadoc
+ * and logs the problem in the normal checkstyle report (potentially masking
+ * a configuration error).
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code suppressLoadErrors} - Control whether to suppress violations
+ * when a class loading fails. When logLoadErrors is set to true, the TreeWalker
+ * completely processes a class and displays any problems with loading exceptions
+ * as checkstyle violations. When this property is set to true, the violations
+ * generated when logLoadErrors is set true are suppressed from being reported as
+ * violations in the checkstyle report.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+ * METHOD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+ * CTOR_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+ * ANNOTATION_FIELD_DEF</a>.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the default check:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocMethod"/&gt;
+ * </pre>
+ * <p>
+ * To configure the check for {@code public} scope and to allow documentation
+ * of undeclared RuntimeExceptions:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocMethod"&gt;
+ *   &lt;property name="scope" value="public"/&gt;
+ *   &lt;property name="allowUndeclaredRTE" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check for for {@code public} scope, to allow documentation
+ * of undeclared RuntimeExceptions, while ignoring any missing param tags is:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocMethod"&gt;
+ *   &lt;property name="scope" value="public"/&gt;
+ *   &lt;property name="allowUndeclaredRTE" value="true"/&gt;
+ *   &lt;property name="allowMissingParamTags" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check for methods which are in {@code private},
+ * but not in {@code protected} scope:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocMethod"&gt;
+ *   &lt;property name="scope" value="private"/&gt;
+ *   &lt;property name="excludeScope" value="protected"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ *
+ * @since 3.0
  */
 @FileStatefulCheck
 public class JavadocMethodCheck extends AbstractCheck {
@@ -137,55 +293,55 @@ public class JavadocMethodCheck extends AbstractCheck {
     /** {@code ClassResolver} instance for current tree. */
     private ClassResolver classResolver;
 
-    /** The visibility scope where Javadoc comments are checked. */
+    /** Specify the visibility scope where Javadoc comments are checked. */
     private Scope scope = Scope.PRIVATE;
 
-    /** The visibility scope where Javadoc comments shouldn't be checked. */
+    /** Specify the visibility scope where Javadoc comments are not checked. */
     private Scope excludeScope;
 
     /**
-     * Controls whether to allow documented exceptions that are not declared if
-     * they are a subclass of java.lang.RuntimeException.
+     * Control whether to allow documented exceptions that are not declared if
+     * they are a subclass of {@code java.lang.RuntimeException}.
      */
     // -@cs[AbbreviationAsWordInName] We can not change it as,
     // check's property is part of API (used in configurations).
     private boolean allowUndeclaredRTE;
 
     /**
-     * Allows validating throws tags.
+     * Control whether to validate {@code throws} tags.
      */
     private boolean validateThrows;
 
     /**
-     * Controls whether to allow documented exceptions that are subclass of one
-     * of declared exception. Defaults to false (backward compatibility).
+     * Control whether to allow documented exceptions that are subclass of one
+     * of declared exception.
      */
     private boolean allowThrowsTagsForSubclasses;
 
     /**
-     * Controls whether to ignore violations when a method has parameters but does
-     * not have matching param tags in the javadoc. Defaults to false.
+     * Control whether to ignore violations when a method has parameters but does
+     * not have matching {@code param} tags in the javadoc.
      */
     private boolean allowMissingParamTags;
 
     /**
-     * Controls whether to ignore violations when a method declares that it throws
-     * exceptions but does not have matching throws tags in the javadoc.
-     * Defaults to false.
+     * Control whether to ignore violations when a method declares that it throws
+     * exceptions but does not have matching {@code throws} tags in the javadoc.
      */
     private boolean allowMissingThrowsTags;
 
     /**
-     * Controls whether to ignore violations when a method returns non-void type
-     * but does not have a return tag in the javadoc. Defaults to false.
+     * Control whether to ignore violations when a method returns non-void type
+     * and does not have a {@code return} tag in the javadoc.
      */
     private boolean allowMissingReturnTag;
 
-    /** List of annotations that allow missed documentation. */
+    /** Specify the list of annotations that allow missed documentation. */
     private List<String> allowedAnnotations = Collections.singletonList("Override");
 
     /**
-     * Allow validating throws tag.
+     * Setter to control whether to validate {@code throws} tags.
+     *
      * @param value user's value.
      */
     public void setValidateThrows(boolean value) {
@@ -193,7 +349,8 @@ public class JavadocMethodCheck extends AbstractCheck {
     }
 
     /**
-     * Sets list of annotations.
+     * Setter to specify the list of annotations that allow missed documentation.
+     *
      * @param userAnnotations user's value.
      */
     public void setAllowedAnnotations(String... userAnnotations) {
@@ -201,7 +358,7 @@ public class JavadocMethodCheck extends AbstractCheck {
     }
 
     /**
-     * Set the scope.
+     * Setter to specify the visibility scope where Javadoc comments are checked.
      *
      * @param scope a scope.
      */
@@ -210,7 +367,7 @@ public class JavadocMethodCheck extends AbstractCheck {
     }
 
     /**
-     * Set the excludeScope.
+     * Setter to specify the visibility scope where Javadoc comments are not checked.
      *
      * @param excludeScope a scope.
      */
@@ -219,8 +376,8 @@ public class JavadocMethodCheck extends AbstractCheck {
     }
 
     /**
-     * Controls whether to allow documented exceptions that are not declared if
-     * they are a subclass of java.lang.RuntimeException.
+     * Setter to control whether to allow documented exceptions that are not declared if
+     * they are a subclass of {@code java.lang.RuntimeException}.
      *
      * @param flag a {@code Boolean} value
      */
@@ -231,8 +388,8 @@ public class JavadocMethodCheck extends AbstractCheck {
     }
 
     /**
-     * Controls whether to allow documented exception that are subclass of one
-     * of declared exceptions.
+     * Setter to control whether to allow documented exceptions that are subclass of one
+     * of declared exception.
      *
      * @param flag a {@code Boolean} value
      */
@@ -241,8 +398,8 @@ public class JavadocMethodCheck extends AbstractCheck {
     }
 
     /**
-     * Controls whether to allow a method which has parameters to omit matching
-     * param tags in the javadoc. Defaults to false.
+     * Setter to control whether to ignore violations when a method has parameters
+     * but does not have matching {@code param} tags in the javadoc.
      *
      * @param flag a {@code Boolean} value
      */
@@ -251,9 +408,8 @@ public class JavadocMethodCheck extends AbstractCheck {
     }
 
     /**
-     * Controls whether to allow a method which declares that it throws
-     * exceptions to omit matching throws tags in the javadoc. Defaults to
-     * false.
+     * Setter to control whether to ignore violations when a method declares that it throws
+     * exceptions but does not have matching {@code throws} tags in the javadoc.
      *
      * @param flag a {@code Boolean} value
      */
@@ -262,8 +418,8 @@ public class JavadocMethodCheck extends AbstractCheck {
     }
 
     /**
-     * Controls whether to allow a method which returns non-void type to omit
-     * the return tag in the javadoc. Defaults to false.
+     * Setter to control whether to ignore violations when a method returns non-void type
+     * and does not have a {@code return} tag in the javadoc.
      *
      * @param flag a {@code Boolean} value
      */
@@ -272,8 +428,13 @@ public class JavadocMethodCheck extends AbstractCheck {
     }
 
     /**
-     * Controls whether to log class loading errors to the checkstyle report
-     * instead of throwing a RTE.
+     * Setter to control checkstyle's error handling when a class loading fails.
+     * This check may need to load exception classes mentioned in the {@code @throws}
+     * tag to check whether they are RuntimeExceptions. If set to {@code false}
+     * a classpath configuration problem is assumed and the TreeWalker stops operating
+     * on the class completely. If set to {@code true}(the default), checkstyle assumes
+     * a typo or refactoring problem in the javadoc and logs the problem in the normal
+     * checkstyle report (potentially masking a configuration error).
      *
      * @param logLoadErrors true if errors should be logged
      * @deprecated No substitute.
@@ -284,7 +445,11 @@ public class JavadocMethodCheck extends AbstractCheck {
     }
 
     /**
-     * Controls whether to show class loading errors in the checkstyle report.
+     * Setter to control whether to suppress violations when a class loading fails.
+     * When logLoadErrors is set to true, the TreeWalker completely processes
+     * a class and displays any problems with loading exceptions as checkstyle violations.
+     * When this property is set to true, the violations generated when logLoadErrors
+     * is set true are suppressed from being reported as violations in the checkstyle report.
      *
      * @param suppressLoadErrors true if errors shouldn't be shown
      * @deprecated No substitute.
