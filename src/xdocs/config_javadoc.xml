@@ -396,13 +396,14 @@ public int field;
     </section>
 
     <section name="JavadocMethod">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="JavadocMethod_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
           Checks the Javadoc of a method or constructor. By default,
-          does not check for unused throws. To allow documented
-          <code>java.lang.RuntimeException</code>s that are not
-          declared, set property allowUndeclaredRTE to true. The scope
+          check does not validate methods and constructors for unused throws.
+          To allow documented exceptions derived from
+          <code>java.lang.RuntimeException</code> that are not declared,
+          set property <code>allowUndeclaredRTE</code> to true. The scope
           to verify is specified using the <code>Scope</code> class and
           defaults to <code>Scope.PRIVATE</code>. To verify another
           scope, set property scope to a different
@@ -435,7 +436,7 @@ public int field;
         <p>
           Note that only inheritable items will allow the
           <code>{@inheritDoc}</code> tag to be used in place
-          of comments.  Static methods at all visibilities, private non-static
+          of comments. Static methods at all visibilities, private non-static
           methods and constructors are not inheritable.
         </p>
 
@@ -445,11 +446,12 @@ public int field;
           Javadoc could be done as:
         </p>
 
-        <pre>
+        <source>
 /** {@inheritDoc} */
 public int checkReturnTag(final int aTagIndex,
                           JavadocTag[] aTags,
-                          int aLineNo)</pre>
+                          int aLineNo)
+        </source>
 
         <p>
           The classpath may need to be configured to locate the class
@@ -469,43 +471,43 @@ public int checkReturnTag(final int aTagIndex,
           </tr>
           <tr>
             <td>allowedAnnotations</td>
-            <td>List of annotations that allow missed documentation.</td>
+            <td>Specify the list of annotations that allow missed documentation.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>Override</code></td>
             <td>6.0</td>
           </tr>
           <tr>
             <td>validateThrows</td>
-            <td>Allows validating throws tags.</td>
+            <td>Control whether to validate <code>throws</code> tags.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>6.0</td>
           </tr>
           <tr>
             <td>scope</td>
-            <td>visibility scope where Javadoc comments are checked</td>
+            <td>Specify the visibility scope where Javadoc comments are checked.</td>
             <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>private</code></td>
             <td>3.0</td>
           </tr>
           <tr>
             <td>excludeScope</td>
-            <td>visibility scope where Javadoc comments are not checked</td>
+            <td>Specify the visibility scope where Javadoc comments are not checked.</td>
             <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>null</code></td>
             <td>3.4</td>
           </tr>
           <tr>
             <td>allowUndeclaredRTE</td>
-            <td>whether to allow documented exceptions that
-            are not declared if they are a subclass of <code>java.lang.RuntimeException</code></td>
+            <td>Control whether to allow documented exceptions that are not declared
+            if they are a subclass of <code>java.lang.RuntimeException</code>.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>3.0</td>
           </tr>
           <tr>
             <td>allowThrowsTagsForSubclasses</td>
-            <td>whether to allow documented exceptions that
+            <td>Control whether to allow documented exceptions that
             are subclass of one of declared exception.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
@@ -513,16 +515,16 @@ public int checkReturnTag(final int aTagIndex,
           </tr>
           <tr>
             <td>allowMissingParamTags</td>
-            <td>whether to ignore violations when a method has parameters
-            but does not have matching param tags in the javadoc.</td>
+            <td>Control whether to ignore violations when a method has parameters
+            but does not have matching <code>param</code> tags in the javadoc.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>3.1</td>
           </tr>
           <tr>
             <td>allowMissingThrowsTags</td>
-            <td>whether to ignore violations when a method declares
-            that it throws exceptions but does not have matching throws tags
+            <td>Control whether to ignore violations when a method declares
+            that it throws exceptions but does not have matching <code>throws</code> tags
             in the javadoc.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
@@ -530,21 +532,21 @@ public int checkReturnTag(final int aTagIndex,
           </tr>
           <tr>
             <td>allowMissingReturnTag</td>
-            <td>whether to ignore violations when a method returns
-            non-void type and does not have a return tag in the javadoc.</td>
+            <td>Control whether to ignore violations when a method returns
+            non-void type and does not have a <code>return</code> tag in the javadoc.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>3.1</td>
           </tr>
           <tr>
             <td>logLoadErrors</td>
-            <td>This check may need to load exception classes mentioned in
-            the @throws tag to check whether they are RuntimeExceptions.
-            If loading the class fails, this property allows to control
-            checkstyle's error handling. If set to <code>false</code> a
+            <td>Control checkstyle's error handling when a class loading fails.
+            This check may need to load exception classes mentioned in
+            the <code>@throws</code> tag to check whether they are RuntimeExceptions.
+            If set to <code>false</code> a
             classpath configuration problem is assumed and the TreeWalker
             stops operating on the class completely.
-            If set to <code>true</code> (the default) , checkstyle assumes a
+            If set to <code>true</code> (the default), checkstyle assumes a
             typo or refactoring problem in the
             javadoc and logs the problem in the normal checkstyle report
             (potentially masking a configuration error).</td>
@@ -554,7 +556,8 @@ public int checkReturnTag(final int aTagIndex,
           </tr>
           <tr>
             <td>suppressLoadErrors</td>
-            <td>When logLoadErrors is set to true, the TreeWalker completely
+            <td>Control whether to suppress violations when a class loading fails.
+            When logLoadErrors is set to true, the TreeWalker completely
             processes a class and displays any problems with loading exceptions
             as checkstyle violations.
             When this property is set to true, the violations generated when
