@@ -708,11 +708,11 @@ public int checkReturnTag(final int aTagIndex,
     </section>
 
     <section name="JavadocPackage">
+      <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="JavadocPackage_Description">
-        <p>Since Checkstyle 5.0</p>
         <p>
           Checks that each Java package has a Javadoc file used for
-          commenting.  By default it only allows a <code>package-info.java</code> file, but can be
+          commenting. By default it only allows a <code>package-info.java</code> file, but can be
           configured to allow a <code>package.html</code>
           file.
         </p>
@@ -734,8 +734,7 @@ public int checkReturnTag(final int aTagIndex,
           <tr>
             <td>allowLegacy</td>
             <td>
-              If set then allow the use of a
-              <code>package.html</code> file.
+              Allow legacy <code>package.html</code> file to be used.
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
@@ -743,7 +742,7 @@ public int checkReturnTag(final int aTagIndex,
           </tr>
           <tr>
             <td>fileExtensions</td>
-            <td>file type extension of files to process</td>
+            <td>Specify the file type extension of files to process.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>.java</code></td>
             <td>5.0</td>
@@ -757,6 +756,15 @@ public int checkReturnTag(final int aTagIndex,
         </p>
         <source>
 &lt;module name="JavadocPackage"/&gt;
+        </source>
+        <p>
+          To configure the check to use legacy <code>package.html</code> file
+          when <code>package-info.java</code> file is absent:
+        </p>
+        <source>
+&lt;module name="JavadocPackage"&gt;
+  &lt;property name=&quot;allowLegacy&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
         </source>
       </subsection>
 

@@ -69,7 +69,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
      */
     private static final String[] INCOMPATIBLE_CHECKS = {
         // javadoc
-        "JavadocPackage",
         "JavadocParagraph",
         "JavadocStyle",
         "JavadocTagContinuationIndentation",
