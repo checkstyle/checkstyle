@@ -30,8 +30,41 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
- * Checks that all packages have a package documentation. See the documentation
- * for more information.
+ * <p>
+ * Checks that each Java package has a Javadoc file used for commenting.
+ * By default it only allows a {@code package-info.java} file,
+ * but can be configured to allow a {@code package.html} file.
+ * </p>
+ * <p>
+ * A violation will be reported if both files exist as this is not allowed by the Javadoc tool.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code allowLegacy} - Allow legacy {@code package.html} file to be used.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code fileExtensions} - Specify the file type extension of files to process.
+ * Default value is {@code .java}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocPackage"/&gt;
+ * </pre>
+ * <p>
+ * To configure the check to use legacy {@code package.html} file
+ * when {@code package-info.java} file is absent:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocPackage"&gt;
+ *   &lt;property name="allowLegacy" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ *
+ * @since 5.0
  */
 @GlobalStatefulCheck
 public class JavadocPackageCheck extends AbstractFileSetCheck {
@@ -51,7 +84,7 @@ public class JavadocPackageCheck extends AbstractFileSetCheck {
     /** The directories checked. */
     private final Set<File> directoriesChecked = ConcurrentHashMap.newKeySet();
 
-    /** Indicates if allow legacy "package.html" file to be used. */
+    /** Allow legacy {@code package.html} file to be used. */
     private boolean allowLegacy;
 
     /**
@@ -92,8 +125,8 @@ public class JavadocPackageCheck extends AbstractFileSetCheck {
     }
 
     /**
-     * Indicates whether to allow support for the legacy <i>package.html</i>
-     * file.
+     * Setter to allow legacy {@code package.html} file to be used.
+     *
      * @param allowLegacy whether to allow support.
      */
     public void setAllowLegacy(boolean allowLegacy) {
