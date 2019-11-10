@@ -248,16 +248,7 @@ public final class ImportControlLoader extends XmlLoader {
      * @throws CheckstyleException if an error occurs.
      */
     public static PkgImportControl load(URI uri) throws CheckstyleException {
-        try (InputStream inputStream = uri.toURL().openStream()) {
-            final InputSource source = new InputSource(inputStream);
-            return load(source, uri);
-        }
-        catch (MalformedURLException ex) {
-            throw new CheckstyleException("syntax error in url " + uri, ex);
-        }
-        catch (IOException ex) {
-            throw new CheckstyleException("unable to find " + uri, ex);
-        }
+        return loadUri(uri);
     }
 
     /**
@@ -280,6 +271,25 @@ public final class ImportControlLoader extends XmlLoader {
         }
         catch (IOException ex) {
             throw new CheckstyleException("unable to read " + uri, ex);
+        }
+    }
+
+    /**
+     * Loads the import control file from a URI.
+     * @param uri the uri of the file to load.
+     * @return the root {@link PkgImportControl} object.
+     * @throws CheckstyleException if an error occurs.
+     */
+    private static PkgImportControl loadUri(URI uri) throws CheckstyleException {
+        try (InputStream inputStream = uri.toURL().openStream()) {
+            final InputSource source = new InputSource(inputStream);
+            return load(source, uri);
+        }
+        catch (MalformedURLException ex) {
+            throw new CheckstyleException("syntax error in url " + uri, ex);
+        }
+        catch (IOException ex) {
+            throw new CheckstyleException("unable to find " + uri, ex);
         }
     }
 

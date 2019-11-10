@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.internal.powermock;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.fail;
 
@@ -43,31 +42,6 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportControlLoader;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ImportControlLoader.class, URI.class})
 public class ImportControlLoaderPowerTest {
-
-    @Test
-    public void testInputStreamThatFailsOnClose() throws Exception {
-        final InputStream inputStream = PowerMockito.mock(InputStream.class);
-        Mockito.doThrow(IOException.class).when(inputStream).close();
-        final int available = Mockito.doThrow(IOException.class).when(inputStream).available();
-
-        final URL url = PowerMockito.mock(URL.class);
-        BDDMockito.given(url.openStream()).willReturn(inputStream);
-
-        final URI uri = PowerMockito.mock(URI.class);
-        BDDMockito.given(uri.toURL()).willReturn(url);
-
-        try {
-            ImportControlLoader.load(uri);
-            //Using available to bypass 'ignored result' warning
-            fail("exception expected " + available);
-        }
-        catch (CheckstyleException ex) {
-            final Throwable[] suppressed = ex.getSuppressed();
-            assertEquals("Expected one suppressed exception", 1, suppressed.length);
-            assertSame("Invalid exception class", IOException.class, suppressed[0].getClass());
-        }
-        Mockito.verify(inputStream).close();
-    }
 
     @Test
     public void testInputStreamFailsOnRead() throws Exception {
