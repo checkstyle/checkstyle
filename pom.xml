@@ -2098,6 +2098,10 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.imports.*</param>
               </targetTests>
+              <excludedMethods>
+                <!-- unkilled in generated code https://github.com/hcoles/pitest/issues/255 -->
+                <param>loadUri</param>
+              </excludedMethods>
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
@@ -2951,6 +2955,10 @@
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.utils.*</param>
               </targetClasses>
+              <excludedMethods>
+                <!-- unkilled in generated code https://github.com/hcoles/pitest/issues/255 -->
+                <param>isFileExists</param>
+              </excludedMethods>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.utils.*</param>
                 <!-- 12% mutation in CommonUtil,

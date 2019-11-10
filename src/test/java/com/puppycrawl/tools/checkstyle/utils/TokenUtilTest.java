@@ -26,7 +26,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -149,35 +148,15 @@ public class TokenUtilTest {
     }
 
     @Test
-    public void testTokenValueIncorrect2() throws Exception {
+    public void testTokenValueIncorrect2() {
         final int id = 0;
-        String[] originalValue = null;
-        Field fieldToken = null;
         try {
-            // overwrite static field with new value
-            final Field[] fields = TokenUtil.class.getDeclaredFields();
-            for (Field field : fields) {
-                field.setAccessible(true);
-                if ("TOKEN_VALUE_TO_NAME".equals(field.getName())) {
-                    fieldToken = field;
-                    final Field modifiersField = Field.class.getDeclaredField("modifiers");
-                    modifiersField.setAccessible(true);
-                    modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-                    originalValue = (String[]) field.get(null);
-                    field.set(null, new String[] {null});
-                }
-            }
-
             TokenUtil.getTokenName(id);
             fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException expected) {
             assertEquals("Invalid exception message",
                     "given id " + id, expected.getMessage());
-        }
-        finally {
-            // restoring original value, to let other tests pass
-            fieldToken.set(null, originalValue);
         }
     }
 

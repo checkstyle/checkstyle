@@ -111,14 +111,8 @@ jdk12-assembly-site)
   ;;
 
 jdk12-verify-limited)
-  # powermock doesn't support modifying final fields in JDK12, so need jacoco skip
-  exclude1="!FileContentsTest#testGetJavadocBefore,"
-  exclude2="!MainFrameModelPowerTest#testOpenFileWithUnknownParseMode,"
-  exclude3="!TokenUtilTest#testTokenValueIncorrect2,"
-  exclude4="!ImportControlLoaderPowerTest#testInputStreamThatFailsOnClose"
   # we skip pmd and spotbugs as they executed in special Travis build
-  mvn -e verify -Dtest=*,$exclude1$exclude2$exclude3$exclude4 -Djacoco.skip=true \
-    -Dpmd.skip=true -Dspotbugs.skip=true
+  mvn -e verify -Dpmd.skip=true -Dspotbugs.skip=true
   ;;
 
 nondex)
