@@ -110,15 +110,15 @@
       <!-- False positives on IF_ELSE-IF-ELSE-IF. -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@Image='XMLLogger']
-                           //MethodDeclarator[@Image='isReference']
+                           //MethodDeclaration[@Name='isReference']
       | //ClassOrInterfaceDeclaration[@Image='DetailAstImpl']
-              //MethodDeclarator[@Image='addPreviousSibling']
+              //MethodDeclaration[@Name='addPreviousSibling']
       | //ClassOrInterfaceDeclaration[@Image='AnnotationLocationCheck']
-              //MethodDeclarator[@Image='checkAnnotations']
+              //MethodDeclaration[@Name='checkAnnotations']
       | //ClassOrInterfaceDeclaration[@Image='AbstractImportControl']
-              //MethodDeclarator[@Image='checkAccess']
+              //MethodDeclaration[@Name='checkAccess']
       | //ClassOrInterfaceDeclaration[@Image='HandlerFactory']
-              //MethodDeclarator[@Image='getHandler']"/>
+              //MethodDeclaration[@Name='getHandler']"/>
     </properties>
   </rule>
   <rule ref="category/java/codestyle.xml/EmptyMethodInAbstractClassShouldBeAbstract">
@@ -231,7 +231,7 @@
       <property name="problemDepth" value="4"/>
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@Image='ClassResolver']
-                             //MethodDeclarator[@Image='resolve']"/>
+                             //MethodDeclaration[@Name='resolve']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/AvoidThrowingRawExceptionTypes">
@@ -398,7 +398,7 @@
       modifier. -->
       <property name="violationSuppressXPath"
         value="//ClassOrInterfaceDeclaration[@Image='UniqueProperties'
-          or @Image='SequencedProperties']//MethodDeclarator[@Image='keys' or @Image='put']"/>
+          or @Image='SequencedProperties']//MethodDeclaration[@Name='keys' or @Name='put']"/>
     </properties>
   </rule>
 
