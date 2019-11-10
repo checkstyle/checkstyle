@@ -812,8 +812,11 @@ public int checkReturnTag(final int aTagIndex,
     </section>
 
     <section name="JavadocParagraph">
+      <p>Since Checkstyle 6.0</p>
       <subsection name="Description" id="JavadocParagraph_Description">
-        <p>Since Checkstyle 6.0</p>
+        <p>
+          Checks the Javadoc paragraph.
+        </p>
         <p>
           Checks that:
         </p>
@@ -841,7 +844,7 @@ public int checkReturnTag(final int aTagIndex,
           <tr>
             <td>violateExecutionOnNonTightHtml</td>
             <td>
-              If turned on, will print violations if the Javadoc being examined by this check
+              Control when to print violations if the Javadoc being examined by this check
               violates the tight html rules defined at
               <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
@@ -850,7 +853,9 @@ public int checkReturnTag(final int aTagIndex,
           </tr>
           <tr>
             <td>allowNewlineParagraph</td>
-            <td>whether the &lt;p&gt; tag should be placed immediately before the first word</td>
+            <td>
+              Control whether the &lt;p&gt; tag should be placed immediately before the first word.
+            </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
             <td>6.9</td>
@@ -860,38 +865,56 @@ public int checkReturnTag(final int aTagIndex,
 
       <subsection name="Examples" id="JavadocParagraph_Examples">
         <p>
-          Default configuration:
+          To configure the default check:
         </p>
         <source>
 &lt;module name=&quot;JavadocParagraph&quot;/&gt;
         </source>
+        <p>By default, the check will report a violation if there is a new line
+          or whitespace after the &lt;p&gt; tag: </p>
+        <source>
+&#47;**
+ * No tag (ok).
+ *
+ * &lt;p&gt;Tag immediately before the text (ok).
+ * &lt;p&gt;No blank line before the tag (violation).
+ *
+ * &lt;p&gt;
+ * New line after tag (violation).
+ *
+ * &lt;p&gt; Whitespace after tag (violation).
+ *
+ *&#47;
+public class TestClass {
+}
+        </source>
         <p>
-          To allows to place text of a paragraph not immediately after a &lt;p&gt; tag:
+          To allow newlines and spaces immediately after the &lt;p&gt; tag:
         </p>
         <source>
 &lt;module name=&quot;JavadocParagraph&quot;&gt;
-  &lt;property name=&quot;allowNewlineParagraph&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;allowNewlineParagraph&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
-          In case of tagImmediatelyBeforeFirstWord set to false
+          In case of <code>allowNewlineParagraph</code> set to <code>false</code>
           the following example will not have any violations:
         </p>
         <source>
-/**
- * Some Javadoc.
+&#47;**
+ * No tag (ok).
+ *
+ * &lt;p&gt;Tag immediately before the text (ok).
+ * &lt;p&gt;No blank line before the tag (violation).
  *
  * &lt;p&gt;
- * Some Javadoc.
+ * New line after tag (ok).
  *
- * &lt;p&gt;  Some Javadoc.
- *
- * &lt;p&gt;
- * &lt;pre&gt;
- * Some preformatted Javadoc.
- * &lt;/pre&gt;
+ * &lt;p&gt; Whitespace after tag (ok).
  *
  *&#47;
+public class TestClass {
+}
         </source>
       </subsection>
 
