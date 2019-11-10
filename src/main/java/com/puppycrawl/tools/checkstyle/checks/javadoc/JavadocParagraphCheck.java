@@ -26,49 +26,88 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
+ * <p>
+ * Checks the Javadoc paragraph.
+ * </p>
+ * <p>
  * Checks that:
+ * </p>
  * <ul>
  * <li>There is one blank line between each of two paragraphs
  * and one blank line before the at-clauses block if it is present.</li>
  * <li>Each paragraph but the first has &lt;p&gt; immediately
  * before the first word, with no space after.</li>
  * </ul>
- *
- * <p>The check can be specified by option allowNewlineParagraph,
- * which says whether the &lt;p&gt; tag should be placed immediately before
- * the first word.
- *
- * <p>Default configuration:
+ * <ul>
+ * <li>
+ * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations
+ * if the Javadoc being examined by this check violates the tight html rules defined at
+ * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
+ * Tight-HTML Rules</a>.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code allowNewlineParagraph} - Control whether the &lt;p&gt; tag
+ * should be placed immediately before the first word.
+ * Default value is {@code true}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the default check:
  * </p>
  * <pre>
  * &lt;module name=&quot;JavadocParagraph&quot;/&gt;
  * </pre>
- *
- * <p>To allow newlines and spaces immediately after the &lt;p&gt; tag:
+ * <p>
+ * By default, the check will report a violation if there is a new line
+ * or whitespace after the &lt;p&gt; tag:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * No tag (ok).
+ *  *
+ *  * &lt;p&gt;Tag immediately before the text (ok).
+ *  * &lt;p&gt;No blank line before the tag (violation).
+ *  *
+ *  * &lt;p&gt;
+ *  * New line after tag (violation).
+ *  *
+ *  * &lt;p&gt; Whitespace after tag (violation).
+ *  *
+ *  *&#47;
+ * public class TestClass {
+ * }
+ * </pre>
+ * <p>
+ * To allow newlines and spaces immediately after the &lt;p&gt; tag:
+ * </p>
  * <pre>
  * &lt;module name=&quot;JavadocParagraph&quot;&gt;
- *      &lt;property name=&quot;allowNewlineParagraph&quot;
- *                   value==&quot;false&quot;/&gt;
- * &lt;/module&quot;&gt;
+ *   &lt;property name=&quot;allowNewlineParagraph&quot; value=&quot;false&quot;/&gt;
+ * &lt;/module&gt;
  * </pre>
- *
- * <p>In case of allowNewlineParagraph set to false
+ * <p>
+ * In case of {@code allowNewlineParagraph} set to {@code false}
  * the following example will not have any violations:
+ * </p>
  * <pre>
- *   /**
- *    * &lt;p&gt;
- *    * Some Javadoc.
- *    *
- *    * &lt;p&gt;  Some Javadoc.
- *    *
- *    * &lt;p&gt;
- *    * &lt;pre&gt;
- *    * Some preformatted Javadoc.
- *    * &lt;/pre&gt;
- *    *
- *    *&#47;
+ * &#47;**
+ *  * No tag (ok).
+ *  *
+ *  * &lt;p&gt;Tag immediately before the text (ok).
+ *  * &lt;p&gt;No blank line before the tag (violation).
+ *  *
+ *  * &lt;p&gt;
+ *  * New line after tag (ok).
+ *  *
+ *  * &lt;p&gt; Whitespace after tag (ok).
+ *  *
+ *  *&#47;
+ * public class TestClass {
+ * }
  * </pre>
  *
+ * @since 6.0
  */
 @StatelessCheck
 public class JavadocParagraphCheck extends AbstractJavadocCheck {
@@ -98,12 +137,14 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
     public static final String MSG_MISPLACED_TAG = "javadoc.paragraph.misplaced.tag";
 
     /**
-     * Whether the &lt;p&gt; tag should be placed immediately before the first word.
+     * Control whether the &lt;p&gt; tag should be placed immediately before the first word.
      */
     private boolean allowNewlineParagraph = true;
 
     /**
-     * Sets allowNewlineParagraph.
+     * Setter to control whether the &lt;p&gt; tag should be placed
+     * immediately before the first word.
+     *
      * @param value value to set.
      */
     public void setAllowNewlineParagraph(boolean value) {
