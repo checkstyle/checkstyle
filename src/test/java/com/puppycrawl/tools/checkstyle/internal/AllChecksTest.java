@@ -370,8 +370,71 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         final Configuration configuration = ConfigurationUtil
                 .loadConfiguration("src/main/resources/google_checks.xml");
 
-        validateAllCheckTokensAreReferencedInConfigFile("google", configuration,
+        validateAllDefaultTokensAreReferencedInChecks("google", configuration,
                 GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE);
+    }
+
+    private static void validateAllDefaultTokensAreReferencedInChecks(String configName,
+            Configuration configuration, Map<String, Set<String>> tokensToIgnore) throws Exception {
+        final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
+        final Set<Configuration> configChecks = ConfigurationUtil.getChecks(configuration);
+
+        final Map<String, Set<String>> configCheckTokens = new HashMap<>();
+        final Map<String, Set<String>> checkTokens = new HashMap<>();
+
+        for (Configuration checkConfig : configChecks) {
+            final String checkName = checkConfig.getName();
+            final Object instance;
+
+            try {
+                instance = moduleFactory.createModule(checkName);
+            }
+            catch (CheckstyleException ex) {
+                throw new CheckstyleException("Couldn't find check: " + checkName, ex);
+            }
+
+            if (instance instanceof AbstractCheck) {
+                final AbstractCheck check = (AbstractCheck) instance;
+                Set<String> configTokens = configCheckTokens.get(checkName);
+
+                if (configTokens == null) {
+                    configTokens = new HashSet<>();
+
+                    configCheckTokens.put(checkName, configTokens);
+
+                    final Set<String> overrideTokens = tokensToIgnore.get(checkName);
+
+                    if (overrideTokens != null) {
+                        configTokens.addAll(overrideTokens);
+                    }
+
+                    checkTokens.put(checkName,
+                            CheckUtil.getTokenNameSet(check.getDefaultTokens()));
+                }
+
+                try {
+                    configTokens.addAll(Arrays.asList(checkConfig.getAttribute("tokens").trim()
+                            .split(",\\s*")));
+                }
+                catch (CheckstyleException ex) {
+                    // no tokens defined and as default tokens are to be harcoded thus no action
+                    // needs to be performed here the validation would eventually fail for checks
+                    // that do not have the default tokens harcoded
+                }
+            }
+        }
+
+        for (Entry<String, Set<String>> entry : checkTokens.entrySet()) {
+            for (String checkName : entry.getValue()) {
+                if (!configCheckTokens.get(entry.getKey()).contains(checkName)) {
+                    throw new CheckstyleException("'" + entry.getKey()
+                    + "' should have all default tokens from check in " + configName
+                    + " config or specify an override to ignore the specific tokens "
+                    + entry.getValue().toArray()
+                    + configCheckTokens.get(entry.getKey()).toArray());
+                }
+            }
+        }
     }
 
     private static void validateAllCheckTokensAreReferencedInConfigFile(String configName,

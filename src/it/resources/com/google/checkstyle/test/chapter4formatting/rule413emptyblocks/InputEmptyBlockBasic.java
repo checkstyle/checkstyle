@@ -10,7 +10,7 @@ import java.awt.Color;
 
 class InputEmptyBlockBasic
 {
-    static {} //ok
+    static {} //warn
 
     public void fooMethod()
     {
@@ -21,10 +21,10 @@ class InputEmptyBlockBasic
         int index = 2;
         if (doSideEffect() == 1) {} // warn
         IO in = new IO();
-        while ((r = in.read()) != null) {} // ok
-        for (; index < s.length && s[index] != 'x'; index++) {} // ok
+        while ((r = in.read()) != null) {} // warn
+        for (; index < s.length && s[index] != 'x'; index++) {} // warn
         if (a == 1) {} else {System.identityHashCode("a");}  // warn
-        do {} while(a == 1); //ok
+        do {} while(a == 1); //warn
         switch (a) {} //warn
         int[] z = {}; // ok
     }
@@ -50,7 +50,7 @@ interface EmptyImplement {} //ok
 
 class WithInner
 {
-    static {} //ok
+    static {} //warn
 
     public void emptyMethod() {}
 
@@ -70,10 +70,10 @@ class WithInner
             int index = 2;
             if (doSideEffect() == 1) {} //warn
             IO in = new IO();
-            while ((r = in.read()) != null) {} // ok
-            for (; index < s.length && s[index] != 'x'; index++) {} // ok
+            while ((r = in.read()) != null) {} // warn
+            for (; index < s.length && s[index] != 'x'; index++) {} // warn
             if (a == 1) {} else {System.identityHashCode("a");} // warn
-            do {} while(a == 1); //ok
+            do {} while(a == 1); //warn
             switch (a) {} //warn
             int[] z = {}; // ok
         }
@@ -100,10 +100,10 @@ class WithAnon
                 int index = 2;
                 if (doSideEffect() == 1) {} //warn
                 IO in = new IO();
-                while ((r = in.read()) != null) {} // ok
-                for (; index < s.length && s[index] != 'x'; index++) {} // ok
+                while ((r = in.read()) != null) {} // warn
+                for (; index < s.length && s[index] != 'x'; index++) {} // warn
                 if (a == 1) {} else {System.identityHashCode("a");} // warn
-                do {} while(a == 1); //ok
+                do {} while(a == 1); //warn
                 switch (a) {} //warn
                 int[] z = {}; // ok
             }

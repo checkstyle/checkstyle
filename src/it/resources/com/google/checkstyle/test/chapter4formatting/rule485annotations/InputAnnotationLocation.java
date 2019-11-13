@@ -4,7 +4,7 @@ package com.google.checkstyle.test.chapter4formatting.rule485annotations;
 class InputAnnotationLocation
 {
 
-    @MyAnnotation2 @MyAnnotation1
+    @MyAnnotation2 @MyAnnotation1 //warn
     public int a;
 
     @MyAnnotation1 public int b;
@@ -33,7 +33,7 @@ class InputAnnotationLocation
           @MyAnnotation4 //warn
     class InnerClass
     {
-        @MyAnnotation2 @MyAnnotation1
+        @MyAnnotation2 @MyAnnotation1 //warn
         public int a;
 
         @MyAnnotation1 public int b;
@@ -60,10 +60,10 @@ class InputAnnotationLocation
     }
 
     @MyAnnotation1
-       @MyAnnotation2
+       @MyAnnotation2 //warn
     InnerClass anon = new InnerClass()
     {
-        @MyAnnotation2 @MyAnnotation1 public int a;
+        @MyAnnotation2 @MyAnnotation1 public int a; //warn
 
         @MyAnnotation1 public int b;
 

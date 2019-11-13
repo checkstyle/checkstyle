@@ -43,13 +43,17 @@ public class AnnotationLocationTest extends AbstractGoogleModuleTestSupport {
         final String msgLocation = "annotation.location";
         final String[] expected = {
             "3: " + getCheckMessage(clazz, msgLocationAlone, "MyAnnotation1"),
+            "7: " + getCheckMessage(clazz, msgLocationAlone, "MyAnnotation1"),
             "20: " + getCheckMessage(clazz, msgLocation, "MyAnnotation1", "8", "4"),
             "27: " + getCheckMessage(clazz, msgLocation, "MyAnnotation2", "7", "4"),
             "31: " + getCheckMessage(clazz, msgLocation, "MyAnnotation2", "8", "4"),
             "32: " + getCheckMessage(clazz, msgLocation, "MyAnnotation3", "6", "4"),
             "33: " + getCheckMessage(clazz, msgLocation, "MyAnnotation4", "10", "4"),
+            "36: " + getCheckMessage(clazz, msgLocationAlone, "MyAnnotation1"),
             "54: " + getCheckMessage(clazz, msgLocation, "MyAnnotation2", "12", "8"),
             "58: " + getCheckMessage(clazz, msgLocation, "MyAnnotation2", "12", "8"),
+            "63: " + getCheckMessage(clazz, msgLocation, "MyAnnotation2", "7", "4"),
+            "66: " + getCheckMessage(clazz, msgLocationAlone, "MyAnnotation1"),
             "78: " + getCheckMessage(clazz, msgLocation, "MyAnnotation2", "11", "8"),
             "81: " + getCheckMessage(clazz, msgLocation, "MyAnnotation2", "10", "8"),
             "90: " + getCheckMessage(clazz, msgLocation, "MyAnnotation2", "1", "0"),
