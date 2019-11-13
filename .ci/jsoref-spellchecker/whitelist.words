@@ -894,6 +894,7 @@ nocstylearray
 nodeps
 NODESET
 noembed
+noenumtrailingcomma
 noerr
 nofinalizer
 NOI
