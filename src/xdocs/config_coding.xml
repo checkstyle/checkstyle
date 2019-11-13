@@ -3668,6 +3668,112 @@ System.out.println(s2 instanceof Square); //true
       </subsection>
     </section>
 
+    <section name="NoEnumTrailingComma">
+      <p>Since Checkstyle 8.29</p>
+      <subsection name="Description" id="NoEnumTrailingComma_Description">
+        <p>
+          Checks that enum definition does not contain a trailing comma.
+          Rationale: JLS allows trailing commas in arrays and enumerations, but does not allow
+          them in other locations. To unify the coding style, the use of trailing commas should
+          be prohibited.
+        </p>
+        <source>
+enum Foo1 {
+  FOO,
+  BAR;
+}
+        </source>
+        <p>
+          The check demands that there should not be any comma after last constant in
+          enum definition.
+        </p>
+        <source>
+enum Foo1 {
+  FOO,
+  BAR, //violation
+}
+        </source>
+      </subsection>
+
+      <subsection name="Examples" id="NoEnumTrailingComma_Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;NoEnumTrailingComma&quot;/&gt;
+        </source>
+        <p>
+          Which results in the following violations:
+        </p>
+        <source>
+enum Foo1 {
+  FOO,
+  BAR; //OK
+}
+enum Foo2 {
+  FOO,
+  BAR //OK
+}
+enum Foo3 {
+  FOO,
+  BAR, //violation
+}
+enum Foo4 {
+  FOO,
+  BAR, // violation
+  ;
+}
+enum Foo5 {
+  FOO,
+  BAR,; // violation
+}
+enum Foo6 { FOO, BAR,; } // violation
+enum Foo7 { FOO, BAR, } // violation
+enum Foo8 {
+  FOO,
+  BAR // OK
+  ;
+}
+enum Foo9 { FOO, BAR; } // OK
+enum Foo10 { FOO, BAR } // OK
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="NoEnumTrailingComma_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoEnumTrailingComma">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="NoEnumTrailingComma_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22no.enum.trailing.comma%22">
+            no.enum.trailing.comma</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="NoEnumTrailingComma_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="NoEnumTrailingComma_Parent_Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="NoFinalizer">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="NoFinalizer_Description">

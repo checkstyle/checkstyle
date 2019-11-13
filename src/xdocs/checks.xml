@@ -609,6 +609,10 @@
             Checks that the at-clause tag is followed by description .</td>
           </tr>
           <tr>
+            <td><a href="config_coding.html#NoEnumTrailingComma">NoEnumTrailingComma</a></td>
+            <td>Checks if enum definition does not contain trailing comma</td>
+          </tr>
+          <tr>
             <td><a href="config_whitespace.html#NoWhitespaceAfter">NoWhitespaceAfter</a></td>
             <td>
             Checks that there is no whitespace after a token.</td>

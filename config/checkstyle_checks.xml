@@ -371,6 +371,11 @@
       <property name="severity" value="ignore"/>
     </module>
     <module name="NoClone"/>
+    <module name="NoEnumTrailingComma">
+      <!-- This Check is conflicting with our vision of code
+           to be same as ArrayTrailingComma requires it -->
+      <property name="severity" value="ignore"/>
+    </module>
     <module name="NoFinalizer"/>
     <module name="OneStatementPerLine"/>
     <module name="OverloadMethodsDeclarationOrder"/>

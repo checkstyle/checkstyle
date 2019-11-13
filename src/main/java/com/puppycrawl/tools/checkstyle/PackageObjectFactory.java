@@ -513,6 +513,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.NestedTryDepthCheck");
         NAME_TO_FULL_MODULE_NAME.put("NoCloneCheck",
                 BASE_PACKAGE + ".checks.coding.NoCloneCheck");
+        NAME_TO_FULL_MODULE_NAME.put("NoEnumTrailingCommaCheck",
+                BASE_PACKAGE + ".checks.coding.NoEnumTrailingCommaCheck");
         NAME_TO_FULL_MODULE_NAME.put("NoFinalizerCheck",
                 BASE_PACKAGE + ".checks.coding.NoFinalizerCheck");
         NAME_TO_FULL_MODULE_NAME.put("OneStatementPerLineCheck",
