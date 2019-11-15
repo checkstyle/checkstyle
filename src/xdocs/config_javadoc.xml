@@ -982,34 +982,35 @@ public class TestClass {
     </section>
 
     <section name="JavadocStyle">
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="JavadocStyle_Description">
-        <p>Since Checkstyle 3.2</p>
         <p>
-          Validates Javadoc comments to help ensure they are well
-          formed.  The following checks are performed:
+          Validates Javadoc comments to help ensure they are well formed.
         </p>
-
+        <p>
+          The following checks are performed:
+        </p>
         <ul>
           <li>
             Ensures the first sentence ends with proper punctuation
             (That is a period, question mark, or exclamation mark, by default).
             Javadoc automatically places the first sentence in the
-            method summary table and index.  Without proper punctuation
-            the Javadoc may be malformed.  All items eligible for the
+            method summary table and index. Without proper punctuation
+            the Javadoc may be malformed. All items eligible for the
             <code>{@inheritDoc}</code> tag are exempt from this
             requirement.
           </li>
 
           <li>
             Check text for Javadoc statements that do not have any
-            description.  This includes both completely empty Javadoc,
-            and Javadoc with only tags such as @param and @return.
+            description. This includes both completely empty Javadoc,
+            and Javadoc with only tags such as <code>@param</code> and <code>@return</code>.
           </li>
 
           <li>
-            Check text for incomplete HTML tags.  Verifies that HTML
+            Check text for incomplete HTML tags. Verifies that HTML
             tags have corresponding end tags and issues an "Unclosed
-            HTML tag found:" error if not.  An "Extra HTML tag found:"
+            HTML tag found:" error if not. An "Extra HTML tag found:"
             error is issued if an end tag is found without a previous
             open tag.
           </li>
@@ -1047,14 +1048,14 @@ public class TestClass {
           </tr>
           <tr>
             <td>scope</td>
-            <td>visibility scope where Javadoc comments are checked</td>
+            <td>Specify the visibility scope where Javadoc comments are checked.</td>
             <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>private</code></td>
             <td>3.2</td>
           </tr>
           <tr>
             <td>excludeScope</td>
-            <td>visibility scope where Javadoc comments are not checked</td>
+            <td>Specify the visibility scope where Javadoc comments are not checked.</td>
             <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>null</code></td>
             <td>3.4</td>
@@ -1062,7 +1063,7 @@ public class TestClass {
           <tr>
             <td>checkFirstSentence</td>
             <td>
-              Whether to check the first sentence for proper end of sentence.
+              Control whether to check the first sentence for proper end of sentence.
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
@@ -1071,7 +1072,7 @@ public class TestClass {
           <tr>
             <td>endOfSentenceFormat</td>
             <td>
-              Format for matching the end of a sentence.
+              Specify the format for matching the end of a sentence.
             </td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"([.?!][ \t\n\r\f&lt;])|([.?!]$)"</code></td>
@@ -1080,7 +1081,7 @@ public class TestClass {
           <tr>
             <td>checkEmptyJavadoc</td>
             <td>
-              Whether to check if the Javadoc is missing a describing text.
+              Control whether to check if the Javadoc is missing a describing text.
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
@@ -1088,7 +1089,7 @@ public class TestClass {
           </tr>
           <tr>
             <td>checkHtml</td>
-            <td>Whether to check for incomplete HTML tags.</td>
+            <td>Control whether to check for incomplete HTML tags.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
             <td>3.2</td>
