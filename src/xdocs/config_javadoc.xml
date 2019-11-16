@@ -2600,10 +2600,10 @@ public class TestClass {
     </section>
 
     <section name="WriteTag">
+      <p>Since Checkstyle 4.2</p>
       <subsection name="Description" id="WriteTag_Description">
-        <p>Since Checkstyle 4.2</p>
         <p>
-         Requires user defined JavaDoc tag to be present in javadoc comment with
+         Requires user defined Javadoc tag to be present in Javadoc comment with
          defined format. To define the format for a tag, set property tagFormat to a regular
          expression. Property tagSeverity is used for severity of events when the tag exists.
         </p>
@@ -2620,21 +2620,21 @@ public class TestClass {
           </tr>
           <tr>
             <td>tag</td>
-            <td>Name of tag</td>
+            <td>Specify the name of tag.</td>
             <td><a href="property_types.html#string">String</a></td>
            <td><code>null</code></td>
            <td>4.2</td>
           </tr>
           <tr>
             <td>tagFormat</td>
-            <td>Format of tag</td>
+            <td>Specify the regexp to match tag content.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>null</code></td>
             <td>4.2</td>
           </tr>
           <tr>
             <td>tagSeverity</td>
-            <td>Severity level when tag is found and printed</td>
+            <td>Specify the severity level when tag is found and printed.</td>
             <td><a href="property_types.html#severity">Severity</a></td>
             <td><code>info</code></td>
             <td>4.2</td>
@@ -2677,7 +2677,7 @@ public class TestClass {
 
       <subsection name="Examples" id="WriteTag_Examples">
         <p>
-        An example of how to configure the check for printing author name is:
+        To configure the check for printing author name:
         </p>
 
         <source>
@@ -2688,7 +2688,7 @@ public class TestClass {
         </source>
 
         <p>
-         An example of how to configure the check to print warnings if an
+         To configure the check to print warnings if an
          "@incomplete" tag is found, and not print anything if it is not found:
         </p>
 
