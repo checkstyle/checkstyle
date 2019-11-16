@@ -75,7 +75,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "NonEmptyAtclauseDescription",
         "SingleLineJavadoc",
         "SummaryJavadoc",
-        "WriteTag",
     };
 
     private static Checker checker;
