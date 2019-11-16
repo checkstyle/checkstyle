@@ -39,10 +39,129 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
- * Checks the Javadoc of a type.
+ * <p>
+ * Checks Javadoc comments for class and interface definitions. By default, does not check
+ * for author or version tags. The scope to verify is specified using the {@code Scope}
+ * class and defaults to {@code Scope.PRIVATE}. To verify another scope, set property
+ * scope to one of the {@code Scope} constants. To define the format for an author
+ * tag or a version tag, set property authorFormat or versionFormat respectively to a
+ * <a href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html">
+ * regular expression</a>.
+ * </p>
+ * <p>
+ * Does not perform checks for author and version tags for inner classes,
+ * as they should be redundant because of outer class.
+ * </p>
+ * <p>
+ * Error messages about type parameters for which no param tags are present
+ * can be suppressed by defining property {@code allowMissingParamTags}.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
+ * Default value is {@code private}.
+ * </li>
+ * <li>
+ * Property {@code excludeScope} - Specify the visibility scope where Javadoc
+ * comments are not checked.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code authorFormat} - Specify the pattern for {@code @author} tag.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code versionFormat} - Specify the pattern for {@code @version} tag.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code allowMissingParamTags} - Control whether to ignore violations
+ * when a class has type parameters but does not have matching param tags in the Javadoc.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code allowUnknownTags} - Control whether to ignore violations when
+ * a Javadoc tag is not recognised.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code allowedAnnotations} - Specify the list of annotations that allow
+ * missed documentation. Only short names are allowed, e.g. {@code Generated}.
+ * Default value is {@code Generated}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+ * INTERFACE_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+ * CLASS_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+ * ENUM_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+ * ANNOTATION_DEF</a>.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the default check:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocType"/&gt;
+ * </pre>
+ * <p>
+ * To configure the check for {@code public} scope:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocType"&gt;
+ *   &lt;property name="scope" value="public"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check for an {@code @author} tag:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocType"&gt;
+ *   &lt;property name="authorFormat" value="\S"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check for a CVS revision version tag:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocType"&gt;
+ *   &lt;property name="versionFormat" value="\$Revision.*\$"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check for {@code private} classes only:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocType"&gt;
+ *   &lt;property name="scope" value="private"/&gt;
+ *   &lt;property name="excludeScope" value="package"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example that allows missing comments for classes annotated with
+ * {@code @SpringBootApplication} and {@code @Configuration}:
+ * </p>
+ * <pre>
+ * &#64;SpringBootApplication // no violations about missing comment on class
+ * public class Application {}
  *
- * <p>Does not perform checks for author and version tags for inner classes, as
- * they should be redundant because of outer class.
+ * &#64;Configuration // no violations about missing comment on class
+ * class DatabaseConfiguration {}
+ * </pre>
+ * <p>
+ * Use following configuration:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocType"&gt;
+ *   &lt;property name="allowedAnnotations" value="SpringBootApplication,Configuration"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ *
+ * @since 3.0
  *
  */
 @StatelessCheck
@@ -93,27 +212,31 @@ public class JavadocTypeCheck
     private static final Pattern TYPE_NAME_IN_JAVADOC_TAG_SPLITTER =
             Pattern.compile("\\s+");
 
-    /** The scope to check for. */
+    /** Specify the visibility scope where Javadoc comments are checked. */
     private Scope scope = Scope.PRIVATE;
-    /** The visibility scope where Javadoc comments shouldn't be checked. **/
+    /** Specify the visibility scope where Javadoc comments are not checked. */
     private Scope excludeScope;
-    /** Compiled regexp to match author tag content. **/
+    /** Specify the pattern for {@code @author} tag. */
     private Pattern authorFormat;
-    /** Compiled regexp to match version tag content. **/
+    /** Specify the pattern for {@code @version} tag. */
     private Pattern versionFormat;
     /**
-     * Controls whether to ignore violations when a method has type parameters but
-     * does not have matching param tags in the javadoc. Defaults to false.
+     * Control whether to ignore violations when a class has type parameters but
+     * does not have matching param tags in the Javadoc.
      */
     private boolean allowMissingParamTags;
-    /** Controls whether to flag violations for unknown tags. Defaults to false. */
+    /** Control whether to ignore violations when a Javadoc tag is not recognised. */
     private boolean allowUnknownTags;
 
-    /** List of annotations that allow missed documentation. */
+    /**
+     * Specify the list of annotations that allow missed documentation.
+     * Only short names are allowed, e.g. {@code Generated}.
+     */
     private List<String> allowedAnnotations = Collections.singletonList("Generated");
 
     /**
-     * Sets the scope to check.
+     * Setter to specify the visibility scope where Javadoc comments are checked.
+     *
      * @param scope a scope.
      */
     public void setScope(Scope scope) {
@@ -121,7 +244,8 @@ public class JavadocTypeCheck
     }
 
     /**
-     * Set the excludeScope.
+     * Setter to specify the visibility scope where Javadoc comments are not checked.
+     *
      * @param excludeScope a scope.
      */
     public void setExcludeScope(Scope excludeScope) {
@@ -129,7 +253,8 @@ public class JavadocTypeCheck
     }
 
     /**
-     * Set the author tag pattern.
+     * Setter to specify the pattern for {@code @author} tag.
+     *
      * @param pattern a pattern.
      */
     public void setAuthorFormat(Pattern pattern) {
@@ -137,7 +262,8 @@ public class JavadocTypeCheck
     }
 
     /**
-     * Set the version format pattern.
+     * Setter to specify the pattern for {@code @version} tag.
+     *
      * @param pattern a pattern.
      */
     public void setVersionFormat(Pattern pattern) {
@@ -145,8 +271,8 @@ public class JavadocTypeCheck
     }
 
     /**
-     * Controls whether to allow a type which has type parameters to
-     * omit matching param tags in the javadoc. Defaults to false.
+     * Setter to control whether to ignore violations when a class has type parameters but
+     * does not have matching param tags in the Javadoc.
      *
      * @param flag a {@code Boolean} value
      */
@@ -155,7 +281,8 @@ public class JavadocTypeCheck
     }
 
     /**
-     * Controls whether to flag violations for unknown tags. Defaults to false.
+     * Setter to control whether to ignore violations when a Javadoc tag is not recognised.
+     *
      * @param flag a {@code Boolean} value
      */
     public void setAllowUnknownTags(boolean flag) {
@@ -163,7 +290,9 @@ public class JavadocTypeCheck
     }
 
     /**
-     * Sets list of annotations.
+     * Setter to specify the list of annotations that allow missed documentation.
+     * Only short names are allowed, e.g. {@code Generated}.
+     *
      * @param userAnnotations user's value.
      */
     public void setAllowedAnnotations(String... userAnnotations) {
