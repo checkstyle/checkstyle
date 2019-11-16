@@ -68,7 +68,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * public class Test extends Exception {
  * //Valid
  *   &#47;**
- *    * {@inheritDoc}
+ *    * {&#64;inheritDoc}
  *    *&#47;
  *   public String ValidFunction(){
  *     return "";
@@ -97,7 +97,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </p>
  * <pre>
  * &lt;module name="SummaryJavadocCheck"&gt;
- *   &lt;property name="period" value="&#12290;"/&gt;
+ *   &lt;property name="period" value="。"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
@@ -111,7 +111,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  *   void invalidJavaDocMethod() {
  *   }
  *   &#47;**
- *   * This is valid java doc&#12290;
+ *   * This is valid java doc。
  *   *&#47;
  *   void validJavaDocMethod() {
  *   }

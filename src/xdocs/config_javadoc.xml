@@ -2684,7 +2684,7 @@ public class Test extends Exception {
         </p>
         <source>
 &lt;module name=&quot;SummaryJavadocCheck&quot;&gt;
-  &lt;property name=&quot;period&quot; value="&#12290;"/&gt;
+  &lt;property name=&quot;period&quot; value="。"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -2699,7 +2699,7 @@ public class TestClass {
   void invalidJavaDocMethod() {
   }
   /**
-  * This is valid java doc&#12290;
+  * This is valid java doc。
   */
   void validJavaDocMethod() {
   }
