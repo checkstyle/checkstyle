@@ -32,15 +32,34 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <p>
  * Checks the indentation of the continuation lines in at-clauses.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations
+ * if the Javadoc being examined by this check violates the tight html rules defined at
+ * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code offset} - Specify how many spaces to use for new indentation level.
+ * Default value is {@code 4}.
+ * </li>
+ * </ul>
  * <p>
- * Default configuration:
+ * To configure the default check:
  * </p>
  * <pre>
- * &lt;module name=&quot;JavadocTagContinuationIndentation&quot;&gt;
- *     &lt;property name=&quot;offset&quot; value=&quot;4&quot;/&gt;
+ * &lt;module name="JavadocTagContinuationIndentation"/&gt;
+ * </pre>
+ * <p>
+ * To configure the check with two spaces indentation:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocTagContinuationIndentation"&gt;
+ *   &lt;property name="offset" value="2"/&gt;
  * &lt;/module&gt;
  * </pre>
  *
+ * @since 6.0
  *
  */
 @StatelessCheck
@@ -56,12 +75,13 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
     private static final int DEFAULT_INDENTATION = 4;
 
     /**
-     * How many spaces to use for new indentation level.
+     * Specify how many spaces to use for new indentation level.
      */
     private int offset = DEFAULT_INDENTATION;
 
     /**
-     * Sets custom indentation level.
+     * Setter to specify how many spaces to use for new indentation level.
+     *
      * @param offset custom value.
      */
     public void setOffset(int offset) {
