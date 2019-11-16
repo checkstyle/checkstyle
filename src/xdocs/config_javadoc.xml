@@ -2478,10 +2478,10 @@ class DatabaseConfiguration {}
     </section>
 
     <section name="SingleLineJavadoc">
+      <p>Since Checkstyle 6.0</p>
       <subsection name="Description" id="SingleLineJavadoc_Description">
-        <p>Since Checkstyle 6.0</p>
         <p>
-           Checks that a JavaDoc block can fit in a single line and doesn't
+           Checks that a Javadoc block can fit in a single line and doesn't
            contain at-clauses. Javadoc comment that contains at least one at-clause
            should be formatted in a few lines.
         </p>
@@ -2499,7 +2499,7 @@ class DatabaseConfiguration {}
           <tr>
             <td>violateExecutionOnNonTightHtml</td>
             <td>
-              If turned on, will print violations if the Javadoc being examined by this check
+              Control when to print violations if the Javadoc being examined by this check
               violates the tight html rules defined at
               <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
@@ -2508,14 +2508,14 @@ class DatabaseConfiguration {}
           </tr>
           <tr>
             <td>ignoredTags</td>
-            <td>allows to specify at-clauses which are ignored by the check.</td>
+            <td>Specify at-clauses which are ignored by the check.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>{}</code></td>
             <td>6.8</td>
           </tr>
           <tr>
             <td>ignoreInlineTags</td>
-            <td>whether inline tags must be ignored.</td>
+            <td>Control whether inline tags must be ignored.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
             <td>6.8</td>
@@ -2525,13 +2525,14 @@ class DatabaseConfiguration {}
 
       <subsection name="Examples" id="SingleLineJavadoc_Examples">
         <p>
-          Default configuration:
+          To configure the check:
         </p>
         <source>
 &lt;module name=&quot;SingleLineJavadoc&quot;/&gt;
         </source>
         <p>
-          To specify a list of ignored at-clauses and make inline at-clauses not ignored:
+          To configure the check with a list of ignored at-clauses and make
+          inline at-clauses not ignored:
         </p>
         <source>
 &lt;module name=&quot;SingleLineJavadoc&quot;&gt;
