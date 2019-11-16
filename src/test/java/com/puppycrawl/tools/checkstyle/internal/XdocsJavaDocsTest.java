@@ -71,7 +71,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         // javadoc
         "JavadocType",
         "JavadocVariable",
-        "NonEmptyAtclauseDescription",
         "SingleLineJavadoc",
         "SummaryJavadoc",
         "WriteTag",
