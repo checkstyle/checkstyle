@@ -72,7 +72,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "JavadocType",
         "JavadocVariable",
         "SingleLineJavadoc",
-        "SummaryJavadoc",
     };
 
     private static Checker checker;

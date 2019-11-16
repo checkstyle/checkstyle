@@ -2425,14 +2425,14 @@ class DatabaseConfiguration {}
     </section>
 
    <section name="SummaryJavadoc">
-      <subsection name="Description" id="SummaryJavadoc_Description">
-        <p>Since Checkstyle 6.0</p>
+     <p>Since Checkstyle 6.0</p>
+     <subsection name="Description" id="SummaryJavadoc_Description">
         <p>
-          Checks that <a
-          href="https://www.oracle.com/technetwork/java/javase/documentation/index-137868.html#firstsentence">
+          Checks that
+          <a href="https://www.oracle.com/technetwork/java/javase/documentation/index-137868.html#firstsentence">
           Javadoc summary sentence</a> does not contain phrases that are not recommended to use.
           Summaries that contain only the <code>{@inheritDoc}</code> tag are skipped. Check also
-          violate javadoc that does not contain first sentence.
+          violate Javadoc that does not contain first sentence.
         </p>
       </subsection>
 
@@ -2448,7 +2448,7 @@ class DatabaseConfiguration {}
           <tr>
             <td>violateExecutionOnNonTightHtml</td>
             <td>
-              If turned on, will print violations if the Javadoc being examined by this check
+              Control when to print violations if the Javadoc being examined by this check
               violates the tight html rules defined at
               <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
@@ -2457,14 +2457,14 @@ class DatabaseConfiguration {}
           </tr>
           <tr>
             <td>forbiddenSummaryFragments</td>
-            <td>forbidden summary fragments</td>
+            <td>Specify the regexp for forbidden summary fragments.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"^$" (empty)</code></td>
             <td>6.0</td>
           </tr>
           <tr>
             <td>period</td>
-            <td>period symbol at the end of first javadoc sentence</td>
+            <td>Specify the period symbol at the end of first javadoc sentence.</td>
             <td><a href="property_types.html#string">String</a></td>
             <td><code>"."</code></td>
             <td>6.2</td>
@@ -2484,7 +2484,6 @@ class DatabaseConfiguration {}
           Example of <code>{@inheritDoc}</code> without summary.
         </p>
         <source>
-        <![CDATA[
 public class Test extends Exception {
 //Valid
   /**
@@ -2501,10 +2500,9 @@ public class Test extends Exception {
     return "";
   }
 }
-      ]]>
         </source>
         <p>
-          To ensure that summary do not contain phrase like "This method returns" , use
+          To ensure that summary do not contain phrase like "This method returns", use
           following config:
         </p>
         <source>
@@ -2518,14 +2516,14 @@ public class Test extends Exception {
         </p>
         <source>
 &lt;module name=&quot;SummaryJavadocCheck&quot;&gt;
-  &lt;property name=&quot;period&quot; value="。"/&gt;
+  &lt;property name=&quot;period&quot; value="&#12290;"/&gt;
 &lt;/module&gt;
         </source>
         <p>
           Example of period property.
         </p>
 
-        <source><![CDATA[
+        <source>
 public class TestClass {
   /**
   * This is invalid java doc.
@@ -2533,12 +2531,12 @@ public class TestClass {
   void invalidJavaDocMethod() {
   }
   /**
-  * This is valid java doc。
+  * This is valid java doc&#12290;
   */
   void validJavaDocMethod() {
   }
 }
-        ]]></source>
+        </source>
      </subsection>
      <subsection name="Example of Usage" id="SummaryJavadoc_Example_of_Usage">
         <ul>
