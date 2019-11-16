@@ -2175,8 +2175,8 @@ class DatabaseConfiguration {}
     </section>
 
     <section name="NonEmptyAtclauseDescription">
+      <p>Since Checkstyle 6.0</p>
       <subsection name="Description" id="NonEmptyAtclauseDescription_Description">
-        <p>Since Checkstyle 6.0</p>
         <p>
           Checks that the at-clause tag is followed by description.
         </p>
@@ -2194,7 +2194,7 @@ class DatabaseConfiguration {}
           <tr>
             <td>violateExecutionOnNonTightHtml</td>
             <td>
-              If turned on, will print violations if the Javadoc being examined by this check
+              Control when to print violations if the Javadoc being examined by this check
               violates the tight html rules defined at
               <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
@@ -2240,6 +2240,15 @@ class DatabaseConfiguration {}
         </p>
         <source>
 &lt;module name=&quot;NonEmptyAtclauseDescription&quot;/&gt;
+        </source>
+        <p>
+          To configure the check to validate only <code>@param</code> and
+          <code>@return</code> tags:
+        </p>
+        <source>
+&lt;module name=&quot;NonEmptyAtclauseDescription&quot;&gt;
+  &lt;property name="javadocTokens" value="PARAM_LITERAL,RETURN_LITERAL"/&gt;
+&lt;/module&gt;
         </source>
       </subsection>
 

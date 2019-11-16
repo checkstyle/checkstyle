@@ -72,7 +72,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "JavadocTagContinuationIndentation",
         "JavadocType",
         "JavadocVariable",
-        "NonEmptyAtclauseDescription",
         "SingleLineJavadoc",
         "SummaryJavadoc",
         "WriteTag",
