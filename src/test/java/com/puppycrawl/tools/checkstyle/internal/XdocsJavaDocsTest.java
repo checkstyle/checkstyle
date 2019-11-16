@@ -26,7 +26,6 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,21 +63,9 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     private static final Map<String, String> CHECK_PROPERTY_DOC = new HashMap<>();
     private static final Map<String, String> CHECK_TEXT = new HashMap<>();
 
-    /**
-     * The list of checks that are not yet compatible with this rule.
-     */
-    private static final String[] INCOMPATIBLE_CHECKS = {
-        // javadoc
-        "SingleLineJavadoc",
-    };
-
     private static Checker checker;
 
     private static String checkName;
-
-    static {
-        Arrays.sort(INCOMPATIBLE_CHECKS);
-    }
 
     @Override
     protected String getPackageLocation() {
@@ -117,8 +104,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 final String sectionName = section.getAttributes().getNamedItem("name")
                         .getNodeValue();
 
-                if ("Content".equals(sectionName) || "Overview".equals(sectionName)
-                        || Arrays.binarySearch(INCOMPATIBLE_CHECKS, sectionName) >= 0) {
+                if ("Content".equals(sectionName) || "Overview".equals(sectionName)) {
                     continue;
                 }
 

@@ -31,30 +31,44 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
- * Checks that a JavaDoc block can fit on a single line and doesn't
- * contain at-clauses. Javadoc comment that contains at least one at-clause
- * should be formatted in a few lines.<br>
- * All inline at-clauses are ignored by default.
- *
- * <p>The Check has the following properties:
- * <br><b>ignoredTags</b> - allows to specify a list of at-clauses
- * (including custom at-clauses) to be ignored by the check.
- * <br><b>ignoreInlineTags</b> - whether inline at-clauses must be ignored.
+ * <p>
+ * Checks that a Javadoc block can fit in a single line and doesn't contain at-clauses.
+ * Javadoc comment that contains at least one at-clause should be formatted in a few lines.
  * </p>
- *
- * <p>Default configuration:
+ * <ul>
+ * <li>
+ * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations
+ * if the Javadoc being examined by this check violates the tight html rules defined at
+ * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code ignoredTags} - Specify at-clauses which are ignored by the check.
+ * Default value is {@code {}}.
+ * </li>
+ * <li>
+ * Property {@code ignoreInlineTags} - Control whether inline tags must be ignored.
+ * Default value is {@code true}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
  * <pre>
  * &lt;module name=&quot;SingleLineJavadoc&quot;/&gt;
  * </pre>
- * To specify a list of ignored at-clauses and make inline at-clauses not ignored in general:
+ * <p>
+ * To configure the check with a list of ignored at-clauses
+ * and make inline at-clauses not ignored:
+ * </p>
  * <pre>
  * &lt;module name=&quot;SingleLineJavadoc&quot;&gt;
- *     &lt;property name=&quot;ignoredTags&quot; value=&quot;&#64;inheritDoc, &#64;link&quot;/&gt;
- *     &lt;property name=&quot;ignoreInlineTags&quot; value=&quot;false&quot;/&gt;
+ *   &lt;property name=&quot;ignoredTags&quot; value=&quot;&#64;inheritDoc, &#64;see&quot;/&gt;
+ *   &lt;property name=&quot;ignoreInlineTags&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  *
- *
+ * @since 6.0
  */
 @StatelessCheck
 public class SingleLineJavadocCheck extends AbstractJavadocCheck {
@@ -66,15 +80,15 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
     public static final String MSG_KEY = "singleline.javadoc";
 
     /**
-     * Allows to specify a list of tags to be ignored by check.
+     * Specify at-clauses which are ignored by the check.
      */
     private List<String> ignoredTags = new ArrayList<>();
 
-    /** Whether inline tags must be ignored. **/
+    /** Control whether inline tags must be ignored. */
     private boolean ignoreInlineTags = true;
 
     /**
-     * Sets a list of tags to be ignored by check.
+     * Setter to specify at-clauses which are ignored by the check.
      *
      * @param tags to be ignored by check.
      */
@@ -83,7 +97,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Sets whether inline tags must be ignored.
+     * Setter to control whether inline tags must be ignored.
      *
      * @param ignoreInlineTags whether inline tags must be ignored.
      */
