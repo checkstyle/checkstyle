@@ -1759,8 +1759,8 @@ class DatabaseConfiguration {}
     </section>
 
     <section name="JavadocVariable">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="JavadocVariable_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
           Checks that variables have Javadoc comments. Ignores <code>serialVersionUID</code>
           fields.
@@ -1778,21 +1778,21 @@ class DatabaseConfiguration {}
           </tr>
           <tr>
             <td>scope</td>
-            <td>visibility scope where Javadoc comments are checked</td>
+            <td>Specify the visibility scope where Javadoc comments are checked.</td>
             <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>private</code></td>
             <td>3.0</td>
           </tr>
           <tr>
             <td>excludeScope</td>
-            <td>visibility scope where Javadoc comments are not checked</td>
+            <td>Specify the visibility scope where Javadoc comments are not checked.</td>
             <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>null</code></td>
             <td>3.4</td>
           </tr>
           <tr>
               <td>ignoreNamePattern</td>
-              <td>regexp to define variable names to ignore</td>
+              <td>Specify the regexp to define variable names to ignore.</td>
               <td><a href="property_types.html#regexp">Regular Expression</a></td>
               <td><code>null</code></td>
               <td>5.8</td>
