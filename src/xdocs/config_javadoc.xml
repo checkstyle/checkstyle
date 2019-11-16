@@ -1355,15 +1355,15 @@ public class TestClass {
     </section>
 
     <section name="JavadocType">
+      <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="JavadocType_Description">
-        <p>Since Checkstyle 3.0</p>
         <p>
           Checks Javadoc comments for class and interface definitions.
-          By default, does not check for author or version tags.  The
+          By default, does not check for author or version tags. The
           scope to verify is specified using the <code>Scope</code>
           class and defaults to <code>Scope.PRIVATE</code>. To verify
           another scope, set property scope to one of the
-          <code>Scope</code> constants.  To define the format for an
+          <code>Scope</code> constants. To define the format for an
           author tag or a version tag, set property authorFormat or
           versionFormat respectively to a
           <a href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html">
@@ -1391,43 +1391,43 @@ public class TestClass {
           </tr>
           <tr>
             <td>scope</td>
-            <td>visibility scope where Javadoc comments are checked</td>
+            <td>Specify the visibility scope where Javadoc comments are checked.</td>
             <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>private</code></td>
             <td>3.0</td>
           </tr>
           <tr>
             <td>excludeScope</td>
-            <td>visibility scope where Javadoc comments are not checked</td>
+            <td>Specify the visibility scope where Javadoc comments are not checked.</td>
             <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>null</code></td>
             <td>3.4</td>
           </tr>
           <tr>
             <td>authorFormat</td>
-            <td>pattern for @author tag</td>
+            <td>Specify the pattern for <code>@author</code> tag.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>null</code></td>
             <td>3.0</td>
           </tr>
           <tr>
             <td>versionFormat</td>
-            <td>pattern for @version tag</td>
+            <td>Specify the pattern for <code>@version</code> tag.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>null</code></td>
             <td>3.0</td>
           </tr>
           <tr>
             <td>allowMissingParamTags</td>
-            <td>whether to ignore violations when a class has type parameters
-                but does not have matching param tags in the javadoc.</td>
+            <td>Control whether to ignore violations when a class has type parameters
+                but does not have matching param tags in the Javadoc.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>4.0</td>
           </tr>
           <tr>
             <td>allowUnknownTags</td>
-            <td>whether to ignore violations when a Javadoc tag is not recognised.</td>
+            <td>Control whether to ignore violations when a Javadoc tag is not recognised.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
             <td>5.1</td>
@@ -1435,8 +1435,8 @@ public class TestClass {
           <tr>
             <td>allowedAnnotations</td>
             <td>
-              List of annotations that allow missed documentation. Only short names are allowed,
-              e.g. <code>Generated</code>.
+              Specify the list of annotations that allow missed documentation.
+              Only short names are allowed, e.g. <code>Generated</code>.
             </td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>Generated</code></td>
@@ -1489,7 +1489,7 @@ public class TestClass {
         </source>
 
         <p>
-          To configure the check for an @author tag:
+          To configure the check for an <code>@author</code> tag:
         </p>
         <source>
 &lt;module name="JavadocType"&gt;
