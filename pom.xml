@@ -46,6 +46,13 @@
       </roles>
     </developer>
     <developer>
+      <id>pbludov</id>
+      <name>Pavel Bludov</name>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+    <developer>
       <id>sabaka</id>
       <name>Ilja Dubinin</name>
       <roles>
