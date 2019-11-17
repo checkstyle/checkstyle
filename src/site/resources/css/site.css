@@ -62,12 +62,12 @@ h2:hover .anchor, h3:hover .anchor {
   word-wrap: break-word !important;
 }
 
-.section {
+section {
   position: relative;
 }
 
 .releaseDate {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 2px;
+  right: 6px;
 }
