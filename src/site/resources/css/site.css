@@ -34,7 +34,7 @@ h4 {
 
 #banner {
   border-bottom: 1px solid #fff;
-  background: url("../images/header-background.png") repeat scroll 0 0 transparent;
+  background: url("../images/header-background.png") repeat-x scroll 0 0 transparent;
 }
 
 .dl-link {
