@@ -107,14 +107,32 @@ public class MissingJavadocPackageCheck extends AbstractCheck {
      * @return true if there is javadoc, false otherwise
      */
     private static boolean hasJavadoc(DetailAST ast) {
-        final boolean hasBefore = isJavadocComment(ast.getPreviousSibling());
-        // need to go 3 levels down the tree for annotation case
-        final boolean hasWithAnnotation = Optional.of(ast.getFirstChild())
+        final boolean hasJavadocBefore = ast.getPreviousSibling() != null
+            && isJavadoc(ast.getPreviousSibling());
+        return hasJavadocBefore || hasJavadocAboveAnnotation(ast);
+    }
+
+    /**
+     * Checks javadoc existence in annotations list.
+     *
+     * @param ast package def
+     * @return true if there is a javadoc, false otherwise
+     */
+    private static boolean hasJavadocAboveAnnotation(DetailAST ast) {
+        final Optional<DetailAST> firstAnnotationChild = Optional.of(ast.getFirstChild())
             .map(DetailAST::getFirstChild)
-            .map(DetailAST::getFirstChild)
-            .map(MissingJavadocPackageCheck::isJavadocComment)
-            .orElse(false);
-        return hasBefore || hasWithAnnotation;
+            .map(DetailAST::getFirstChild);
+        boolean result = false;
+        if (firstAnnotationChild.isPresent()) {
+            for (DetailAST child = firstAnnotationChild.get(); child != null;
+                 child = child.getNextSibling()) {
+                if (isJavadoc(child)) {
+                    result = true;
+                    break;
+                }
+            }
+        }
+        return result;
     }
 
     /**
@@ -122,9 +140,7 @@ public class MissingJavadocPackageCheck extends AbstractCheck {
      * @param ast token to check
      * @return true if ast is a javadoc comment, false otherwise
      */
-    private static boolean isJavadocComment(DetailAST ast) {
-        return ast != null
-                && ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
-                && JavadocUtil.isJavadocComment(ast);
+    private static boolean isJavadoc(DetailAST ast) {
+        return ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN && JavadocUtil.isJavadocComment(ast);
     }
 }

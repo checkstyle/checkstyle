@@ -1,2 +1,2 @@
 
-package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage.nojavadoc.blank;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage.nojavadoc.blank; // violation
