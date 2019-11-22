@@ -280,6 +280,8 @@
              //MethodDeclaration[@Name='iterateAxis']
       | //ClassOrInterfaceDeclaration[@Image='SuppressFilterElement']
              //ConstructorDeclaration
+      | //ClassOrInterfaceDeclaration[@Image='CustomImportOrderCheck']
+             //MethodDeclaration[@Name='finishImportList']
       "/>
     </properties>
   </rule>
