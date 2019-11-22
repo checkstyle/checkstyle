@@ -205,23 +205,24 @@ matrix:
         - CMD2="./.ci/travis/travis.sh osx-assembly"
         - CMD="$CMD1 && $CMD2"
 
-    # MacOS JDK11 verify (till cache is not working, we can not do verify)
-    - os: osx
-      osx_image: xcode10.1
-      env:
-        - DESC="MacOS JDK11 verify, site, assembly
-        - CMD1="./.ci/travis/travis.sh osx-package"
-        - CMD2="./.ci/travis/travis.sh osx-assembly"
-        - CMD="$CMD1 && $CMD2"
-
-    # MacOS JDK12 verify (till cache is not working, we can not do verify)
-    - os: osx
-      osx_image: xcode10.2
-      env:
-        - DESC="MacOS JDK12 verify, site, assembly
-        - CMD1="./.ci/travis/travis.sh osx-jdk12-package"
-        - CMD2="./.ci/travis/travis.sh osx-jdk12-assembly"
-        - CMD="$CMD1 && $CMD2"
+#         disable Mac JDK11+ until https://github.com/checkstyle/checkstyle/issues/7276
+#    # MacOS JDK11 verify (till cache is not working, we can not do verify)
+#    - os: osx
+#      osx_image: xcode10.1
+#      env:
+#        - DESC="MacOS JDK11 verify, site, assembly
+#        - CMD1="./.ci/travis/travis.sh osx-package"
+#        - CMD2="./.ci/travis/travis.sh osx-assembly"
+#        - CMD="$CMD1 && $CMD2"
+#
+#    # MacOS JDK12 verify (till cache is not working, we can not do verify)
+#    - os: osx
+#      osx_image: xcode10.2
+#      env:
+#        - DESC="MacOS JDK12 verify, site, assembly
+#        - CMD1="./.ci/travis/travis.sh osx-jdk12-package"
+#        - CMD2="./.ci/travis/travis.sh osx-jdk12-assembly"
+#        - CMD="$CMD1 && $CMD2"
 
     # https://sonarcloud.io (openjdk8)
     - jdk: openjdk8
