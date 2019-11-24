@@ -129,7 +129,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                         "LITERAL_BOOLEAN", "CLASS_DEF", "COLON", "LITERAL_TRY", "ENUM_DEF", "GT",
                         "NUM_INT", "ANNOTATION_DEF", "METHOD_REF", "TYPE_ARGUMENTS",
                         "DOUBLE_COLON", "IDENT", "MOD_ASSIGN", "LITERAL_FOR", "SUPER_CTOR_CALL",
-                        "STRING_LITERAL", "ARRAY_DECLARATOR", "LITERAL_CASE").collect(
+                        "STRING_LITERAL", "ARRAY_DECLARATOR", "LITERAL_CASE",
+                        "MULTILINE_STRING_LITERAL").collect(
                         Collectors.toSet()));
         // we have no need to block specific token text
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("IllegalTokenText",

@@ -142,7 +142,7 @@ public class IllegalTokenTextCheckTest
 
     @Test
     public void testAcceptableTokensMakeSense() {
-        final int expectedTokenTypesTotalNumber = 169;
+        final int expectedTokenTypesTotalNumber = 170;
         assertEquals(expectedTokenTypesTotalNumber, TokenUtil.getTokenTypesTotalNumber(),
                 "Total number of TokenTypes has changed, acceptable tokens in"
                 + " IllegalTokenTextCheck need to be reconsidered.");
@@ -157,6 +157,7 @@ public class IllegalTokenTextCheckTest
             TokenTypes.IDENT,
             TokenTypes.COMMENT_CONTENT,
             TokenTypes.STRING_LITERAL,
+            TokenTypes.MULTILINE_STRING_LITERAL,
             TokenTypes.CHAR_LITERAL
         );
         for (int tokenType : allowedTokens) {

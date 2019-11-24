@@ -117,6 +117,12 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testMultilineStrings() throws Exception {
+        verifyAst(getPath("InputRegressionJavaMultilineStringsAst.txt"),
+                getNonCompilablePath("InputRegressionJavaMultilineStringsAst.java"));
+    }
+
+    @Test
     public void testUnusedConstructors1() throws Exception {
         final Class<?> clss = GeneratedJavaLexer.class;
         final Constructor<?> constructor = clss.getDeclaredConstructor(InputStream.class);
@@ -194,6 +200,9 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
         AssertGeneratedJavaLexer.verifyFail("mLONG_LITERAL", '1', ';');
         AssertGeneratedJavaLexer.verifyFail("mLONG_LITERAL", ';');
         AssertGeneratedJavaLexer.verifyFail("mINT_LITERAL", ';');
+        AssertGeneratedJavaLexer.verifyFail("mINT_LITERAL", 'b');
+        AssertGeneratedJavaLexer.verifyFail("mINT_LITERAL", 'B');
+        AssertGeneratedJavaLexer.verifyFail("mINT_LITERAL", '0', 'x', 'x');
         AssertGeneratedJavaLexer.verifyFail("mHEX_DOUBLE_LITERAL", '0', 'a');
         AssertGeneratedJavaLexer.verifyFail("mHEX_FLOAT_LITERAL", '0', 'a');
     }
@@ -211,6 +220,8 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
         AssertGeneratedJavaLexer.verifyPass("mWS", ' ', ';');
         AssertGeneratedJavaLexer.verifyPass("mID_START", '$');
         AssertGeneratedJavaLexer.verifyPass("mID_PART", '$');
+        AssertGeneratedJavaLexer.verifyPass("mTWO_DOUBLE_QUOTES", '"', '"', ';');
+        AssertGeneratedJavaLexer.verifyPass("mONE_DOUBLE_QUOTE", '"', ';');
         AssertGeneratedJavaLexer.verifyPass("mESC", '\\', '\\');
         AssertGeneratedJavaLexer.verifyPass("mLONG_LITERAL", '1', 'L');
         AssertGeneratedJavaLexer.verifyPass("mINT_LITERAL", '0', ';');

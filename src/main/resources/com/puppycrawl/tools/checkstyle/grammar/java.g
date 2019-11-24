@@ -110,6 +110,27 @@ tokens {
 
     //Support of java comments has been extended
     BLOCK_COMMENT_END;COMMENT_CONTENT;
+
+    // All other tokens to keep order
+    SINGLE_LINE_COMMENT_CONTENT;
+    BLOCK_COMMENT_CONTENT;
+    STD_ESC;
+    BINARY_DIGIT;
+    ID_START;
+    ID_PART;
+    INT_LITERAL;
+    LONG_LITERAL;
+    FLOAT_LITERAL;
+    DOUBLE_LITERAL;
+    HEX_FLOAT_LITERAL;
+    HEX_DOUBLE_LITERAL;
+    SIGNED_INTEGER;
+    BINARY_EXPONENT;
+
+    // java 13 feature
+    MULTILINE_STRING_LITERAL;
+    TWO_DOUBLE_QUOTES;
+    ONE_DOUBLE_QUOTE;
 }
 
 {
@@ -1604,6 +1625,7 @@ constant
     |   NUM_FLOAT
     |   NUM_DOUBLE
     |    CHAR_LITERAL
+    |    MULTILINE_STRING_LITERAL
     |    STRING_LITERAL
     ;
 
@@ -2062,3 +2084,17 @@ protected
 BINARY_EXPONENT
     :   ('p'|'P') SIGNED_INTEGER
     ;
+
+MULTILINE_STRING_LITERAL
+    :   '"''"''"' ( ESC | TWO_DOUBLE_QUOTES | ONE_DOUBLE_QUOTE | ~'"' )* '"''"''"'
+    ;
+
+protected
+TWO_DOUBLE_QUOTES
+  :  '"''"' ~'"'
+  ;
+
+protected
+ONE_DOUBLE_QUOTE
+  :  '"' ~'"'
+  ;

@@ -3538,6 +3538,13 @@ public final class TokenTypes {
     public static final int COMMENT_CONTENT =
             GeneratedJavaTokenTypes.COMMENT_CONTENT;
 
+    /**
+     * A multiline string literal (text block). This is a sequence of (possibly escaped)
+     * characters enclosed in three double quotes.
+     */
+    public static final int MULTILINE_STRING_LITERAL =
+            GeneratedJavaTokenTypes.MULTILINE_STRING_LITERAL;
+
     /** Prevent instantiation. */
     private TokenTypes() {
     }
