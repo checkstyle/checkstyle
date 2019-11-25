@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.Checker.EXCEPTION_MSG;
 import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_FINISHED_MESSAGE;
 import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_STARTED_MESSAGE;
@@ -88,6 +89,7 @@ import com.puppycrawl.tools.checkstyle.internal.testmodules.DebugFilter;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.TestBeforeExecutionFileFilter;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.TestFileSetCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -1332,14 +1334,18 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
             verify(checker, tmpFile.getPath(), expected);
 
-            assertEquals("Close count was not expected",
-                    1, testInfoOutputStream.getCloseCount());
-            assertEquals("Flush count was not expected",
-                    3, testInfoOutputStream.getFlushCount());
-            assertEquals("Close count was not expected",
-                    1, testErrorOutputStream.getCloseCount());
-            assertEquals("Flush count was not expected",
-                    1, testErrorOutputStream.getFlushCount());
+            assertWithMessage("Output stream close count")
+                    .that(testInfoOutputStream.getCloseCount())
+                    .isEqualTo(1);
+            assertWithMessage("Output stream flush count")
+                    .that(testInfoOutputStream.getFlushCount())
+                    .isEqualTo(TestUtil.adjustFlushCountForOutputStreamClose(3));
+            assertWithMessage("Error stream close count")
+                    .that(testErrorOutputStream.getCloseCount())
+                    .isEqualTo(1);
+            assertWithMessage("Error stream flush count")
+                    .that(testErrorOutputStream.getFlushCount())
+                    .isEqualTo(TestUtil.adjustFlushCountForOutputStreamClose(1));
         }
     }
 
@@ -1357,10 +1363,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
             verify(checker, tmpFile.getPath(), tmpFile.getPath(), expected);
 
-            assertEquals("Close count was not expected",
-                    1, testInfoOutputStream.getCloseCount());
-            assertEquals("Flush count was not expected",
-                    0, testInfoOutputStream.getFlushCount());
+            assertWithMessage("Output stream close count")
+                    .that(testInfoOutputStream.getCloseCount())
+                    .isEqualTo(1);
+            assertWithMessage("Output stream flush count")
+                    .that(testInfoOutputStream.getFlushCount())
+                    .isEqualTo(TestUtil.adjustFlushCountForOutputStreamClose(0));
         }
     }
 

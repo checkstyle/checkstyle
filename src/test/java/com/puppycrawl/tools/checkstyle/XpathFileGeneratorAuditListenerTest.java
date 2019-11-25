@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -44,6 +45,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class XpathFileGeneratorAuditListenerTest {
 
@@ -306,8 +308,12 @@ public class XpathFileGeneratorAuditListenerTest {
 
         listener.auditFinished(null);
 
-        assertEquals("expected number of flushes", 1, out.flushCount);
-        assertEquals("expected number of closes", 1, out.closeCount);
+        assertWithMessage("Output stream flush count")
+                .that(out.flushCount)
+                .isEqualTo(TestUtil.adjustFlushCountForOutputStreamClose(1));
+        assertWithMessage("Output stream close count")
+                .that(out.closeCount)
+                .isEqualTo(1);
 
         final String actual = out.toString();
         assertEquals("Invalid suppressions file content", expected, actual);

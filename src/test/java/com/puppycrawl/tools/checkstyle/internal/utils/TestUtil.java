@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.internal.utils;
 
+import java.io.OutputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -193,6 +194,44 @@ public final class TestUtil {
             curNode = toVisit;
         }
         return Optional.ofNullable(curNode);
+    }
+
+    /**
+     * <p>
+     * Returns the JDK version as a number that is easy to compare.
+     * </p>
+     * <p>
+     * For JDK "1.8" it will be 8; for JDK "11" it will be 11.
+     * </p>
+     *
+     * @return JDK version as integer
+     */
+    public static int getJdkVersion() {
+        String version = System.getProperty("java.specification.version");
+        if (version.startsWith("1.")) {
+            version = version.substring(2);
+        }
+        return Integer.parseInt(version);
+    }
+
+    /**
+     * <p>
+     * Adjusts the expected number of flushes for tests that call {@link OutputStream#close} method.
+     * </p>
+     * <p>
+     * After <a href="https://bugs.openjdk.java.net/browse/JDK-8220477">JDK-8220477</a>
+     * there is one additional flush from {@code sun.nio.cs.StreamEncoder#implClose}.
+     * </p>
+     *
+     * @param flushCount flush count to adjust
+     * @return adjusted flush count
+     */
+    public static int adjustFlushCountForOutputStreamClose(int flushCount) {
+        int result = flushCount;
+        if (getJdkVersion() >= 13) {
+            ++result;
+        }
+        return result;
     }
 
 }
