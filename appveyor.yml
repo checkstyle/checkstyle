@@ -81,10 +81,10 @@ environment:
     - JAVA_HOME: C:\Program Files\Java\jdk11
       DESC: "verify without checkstyle (JDK11)"
       CMD: "./.ci/appveyor.bat verify_without_checkstyle_JDK11"
-    # verify without checkstyle (JDK12)
-    - JAVA_HOME: C:\Program Files\Java\jdk12
-      DESC: "verify without checkstyle (JDK12)"
-      CMD: "./.ci/appveyor.bat verify_without_checkstyle_JDK12"
+    # verify without checkstyle (JDK13)
+    - JAVA_HOME: C:\Program Files\Java\jdk13
+      DESC: "verify without checkstyle (JDK13)"
+      CMD: "./.ci/appveyor.bat verify_without_checkstyle_JDK13"
     # site, without verify (JDK8)
     - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
       DESC: "site, without verify (JDK8)"
@@ -101,10 +101,10 @@ environment:
     - JAVA_HOME: C:\Program Files\Java\jdk11
       DESC: "site, without verify (JDK11)"
       CMD: "./.ci/appveyor.bat site_without_verify"
-    # site, without verify (JDK12)
-    - JAVA_HOME: C:\Program Files\Java\jdk12
-      DESC: "site, without verify (JDK12)"
-      CMD: "./.ci/appveyor.bat site_without_verify_jdk12"
+    # site, without verify (JDK13)
+    - JAVA_HOME: C:\Program Files\Java\jdk13
+      DESC: "site, without verify (JDK13)"
+      CMD: "./.ci/appveyor.bat site_without_verify"
 
 build_script:
   - ps: >
