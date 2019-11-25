@@ -71,8 +71,8 @@ matrix:
         - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean compile pmd:check spotbugs:check"
         - USE_MAVEN_REPO="true"
 
-    # spotbugs and pmd (openjdk12)
-    - jdk: openjdk12
+    # spotbugs and pmd (openjdk13)
+    - jdk: openjdk13
       env:
         - DESC="spotbugs,pmd"
         - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean compile pmd:check spotbugs:check"
@@ -214,13 +214,13 @@ matrix:
         - CMD2="./.ci/travis/travis.sh osx-assembly"
         - CMD="$CMD1 && $CMD2"
 
-    # MacOS JDK12 verify (till cache is not working, we can not do verify)
+    # MacOS JDK13 verify (till cache is not working, we can not do verify)
     - os: osx
-      osx_image: xcode10.2
+      osx_image: xcode11.2
       env:
-        - DESC="MacOS JDK12 verify, site, assembly
-        - CMD1="./.ci/travis/travis.sh osx-jdk12-package"
-        - CMD2="./.ci/travis/travis.sh osx-jdk12-assembly"
+        - DESC="MacOS JDK13 verify, site, assembly
+        - CMD1="./.ci/travis/travis.sh osx-jdk13-package"
+        - CMD2="./.ci/travis/travis.sh osx-jdk13-assembly"
         - CMD="$CMD1 && $CMD2"
 
     # https://sonarcloud.io (openjdk8)
@@ -259,19 +259,19 @@ matrix:
         - USE_MAVEN_REPO="true"
         - CMD="mvn -e package -Passembly && mvn -e site -Dlinkcheck.skip=true"
 
-    # OpenJDK12 build
-    - jdk: openjdk12
+    # OpenJDK13 build
+    - jdk: openjdk13
       env:
-        - DESC="build with OpenJDK12"
+        - DESC="build with OpenJDK13"
         - USE_MAVEN_REPO="true"
-        - CMD="./.ci/travis/travis.sh jdk12-assembly-site"
+        - CMD="./.ci/travis/travis.sh jdk13-assembly-site"
 
-    # OpenJDK12 verify limited
-    - jdk: openjdk12
+    # OpenJDK13 verify limited
+    - jdk: openjdk13
       env:
-        - DESC="verify limited with OpenJDK12"
+        - DESC="verify limited with OpenJDK13"
         - USE_MAVEN_REPO="true"
-        - CMD="./.ci/travis/travis.sh jdk12-verify-limited"
+        - CMD="./.ci/travis/travis.sh jdk13-verify-limited"
 
     # OpenJDK9 compile input files with jdk9 specific syntax
     - jdk: openjdk9
@@ -284,6 +284,12 @@ matrix:
       env:
         - DESC="compile input files that are not compiled by eclipse"
         - CMD="./.ci/travis/travis.sh javac8"
+
+    # OpenJDK13 compile input files with jdk13 specific syntax
+    - jdk: openjdk13
+      env:
+        - DESC="compile input files with jdk13 specific syntax"
+        - CMD="./.ci/travis/travis.sh javac13"
 
     # new questionably spelled words
     - env:

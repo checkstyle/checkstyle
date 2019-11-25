@@ -67,25 +67,17 @@ osx-package)
   mvn -e package
   ;;
 
-osx-jdk12-package)
-  exclude1="!FileContentsTest#testGetJavadocBefore,"
-  exclude2="!MainFrameModelPowerTest#testOpenFileWithUnknownParseMode,"
-  exclude3="!TokenUtilTest#testTokenValueIncorrect2,"
-  exclude4="!ImportControlLoaderPowerTest#testInputStreamThatFailsOnClose"
+osx-jdk13-package)
   export JAVA_HOME=$(/usr/libexec/java_home)
-  mvn -e package -Dtest=*,${exclude1}${exclude2}${exclude3}${exclude4}
+  mvn -e package
   ;;
 
-osx-jdk12-assembly)
+osx-jdk13-assembly)
   mvn -e package -Passembly
   ;;
 
 site)
   mvn -e clean site -Pno-validations
-  ;;
-
-javac9)
-  javac $(grep -Rl --include='*.java' ': Compilable with Java9' src/test/resources-noncompilable)
   ;;
 
 javac8)
@@ -105,12 +97,40 @@ javac8)
   done
   ;;
 
-jdk12-assembly-site)
+javac9)
+  files=($(grep -Rl --include='*.java' ': Compilable with Java9' \
+        src/test/resources-noncompilable || true))
+  if [[  ${#files[@]} -eq 0 ]]; then
+    echo "No Java9 files to process"
+  else
+      mkdir -p target
+      for file in "${files[@]}"
+      do
+        javac -d target "${file}"
+      done
+  fi
+  ;;
+
+javac13)
+  files=($(grep -Rl --include='*.java' ': Compilable with Java13' \
+        src/test/resources-noncompilable || true))
+  if [[  ${#files[@]} -eq 0 ]]; then
+    echo "No Java13 files to process"
+  else
+      mkdir -p target
+      for file in "${files[@]}"
+      do
+        javac --release 13 --enable-preview -d target "${file}"
+      done
+  fi
+  ;;
+
+jdk13-assembly-site)
   mvn -e package -Passembly
   mvn -e site -Pno-validations
   ;;
 
-jdk12-verify-limited)
+jdk13-verify-limited)
   # we skip pmd and spotbugs as they executed in special Travis build
   mvn -e verify -Dpmd.skip=true -Dspotbugs.skip=true
   ;;
