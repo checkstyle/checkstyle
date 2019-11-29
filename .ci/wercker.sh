@@ -59,7 +59,6 @@ no-error-xwiki)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/xwiki/xwiki-commons.git
   cd .ci-temp/xwiki-commons
-  git checkout "d0c1c946f3353014ed4c774829d""af0f6045842f3"
   mvn -f xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
     install -DskipTests -Dcheckstyle.version=${CS_POM_VERSION}
   mvn -e test-compile checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
