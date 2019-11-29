@@ -71,3 +71,31 @@ section {
   top: 2px;
   right: 6px;
 }
+
+.wrapper {
+  overflow-y: auto;
+}
+
+span.wrapper {
+  display: block;
+}
+
+@media screen and (max-width: 600px) {
+  #leftColumn {
+    float: none;
+    width: auto;
+    margin: 1.5em;
+  }
+
+  #bodyColumn {
+    margin: 1.5em;
+  }
+
+  #bannerRight {
+    display: none;
+  }
+
+  p, h1, h2, h3, h4, h5, h6, li {
+    word-break: break-word;
+  }
+}
